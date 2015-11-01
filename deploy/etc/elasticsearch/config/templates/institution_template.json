@@ -21,7 +21,7 @@
         }, 
         "dynamic": "strict", 
         "properties": {
-          "title": {
+          "1:title": {
             "type": "string"
           }
         }

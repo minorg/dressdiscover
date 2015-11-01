@@ -21,11 +21,11 @@
         }, 
         "dynamic": "strict", 
         "properties": {
-          "institution_id": {
+          "1:institution_id": {
             "index": "not_analyzed", 
             "type": "string"
           }, 
-          "title": {
+          "2:title": {
             "type": "string"
           }
         }
