@@ -8,6 +8,7 @@ namespace * costume.api.services.collection
 include "costume/api/models/collection/collection.thrift"
 include "costume/api/models/collection/collection_entry.thrift"
 include "costume/api/models/collection/collection_id.thrift"
+include "costume/api/models/institution/institution_id.thrift"
 include "costume/api/services/io_exception.thrift"
 include "costume/api/services/collection/invalid_collection_id_exception.thrift"
 include "costume/api/services/collection/no_such_collection_exception.thrift"
@@ -24,6 +25,13 @@ service CollectionQueryService {
 
 	list<collection_entry.CollectionEntry>
 	get_collections(
+	) throws (
+		io_exception.IoException e
+	);
+
+	list<collection_entry.CollectionEntry>
+	get_collections_by_institution_id(
+		institution_id.InstitutionId institution_id
 	) throws (
 		io_exception.IoException e
 	);

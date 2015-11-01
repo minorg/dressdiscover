@@ -8,8 +8,17 @@ namespace * costume.api.services.institution
 include "costume/api/models/institution/institution.thrift"
 include "costume/api/models/institution/institution_id.thrift"
 include "costume/api/services/io_exception.thrift"
+include "costume/api/services/institution/no_such_institution_exception.thrift"
 
 service InstitutionCommandService {
+	void
+	delete_institution_by_id(
+		institution_id.InstitutionId id
+	) throws (
+		io_exception.IoException e1,
+		no_such_institution_exception.NoSuchInstitutionException e2
+	);
+
 	void
 	delete_institutions(
 	) throws (

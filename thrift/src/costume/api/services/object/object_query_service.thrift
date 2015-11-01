@@ -5,6 +5,8 @@ namespace servlet_java net.lab1318.costume.server.controllers.object
 namespace validating_service_java net.lab1318.costume.lib.services.object
 namespace * costume.api.services.object
 
+include "costume/api/models/collection/collection_id.thrift"
+include "costume/api/models/institution/institution_id.thrift"
 include "costume/api/models/object/object.thrift"
 include "costume/api/models/object/object_entry.thrift"
 include "costume/api/models/object/object_id.thrift"
@@ -24,6 +26,20 @@ service ObjectQueryService {
 
 	list<object_entry.ObjectEntry>
 	get_objects(
+	) throws (
+		io_exception.IoException e
+	);
+
+	list<object_entry.ObjectEntry>
+	get_objects_by_collection_id(
+		collection_id.CollectionId collection_id
+	) throws (
+		io_exception.IoException e
+	);
+
+	list<object_entry.ObjectEntry>
+	get_objects_by_institution_id(
+		institution_id.InstitutionId institution_id
 	) throws (
 		io_exception.IoException e
 	);
