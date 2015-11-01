@@ -117,6 +117,32 @@ class ObjectCommandServiceJsonRpcClient(costume.api.services.object.object_comma
     ):
         self.__request(method='delete_objects', params={})
 
+    def _delete_objects_by_collection_id(
+        self,
+        collection_id,
+    ):
+        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot.write_struct_begin()
+        oprot.write_field_begin(name='collection_id', type=11, id=None)
+        oprot.write_string(collection_id)
+        oprot.write_field_end()
+        oprot.write_struct_end()
+
+        self.__request(method='delete_objects_by_collection_id', params=oprot.value)
+
+    def _delete_objects_by_institution_id(
+        self,
+        institution_id,
+    ):
+        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot.write_struct_begin()
+        oprot.write_field_begin(name='institution_id', type=11, id=None)
+        oprot.write_string(str(institution_id))
+        oprot.write_field_end()
+        oprot.write_struct_end()
+
+        self.__request(method='delete_objects_by_institution_id', params=oprot.value)
+
     def _post_object(
         self,
         object,  # @ReservedAssignment

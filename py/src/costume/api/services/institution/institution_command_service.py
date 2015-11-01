@@ -4,6 +4,27 @@ import costume.api.models.institution.institution_id
 
 
 class InstitutionCommandService(object):
+    def delete_institution_by_id(
+        self,
+        id=None,  # @ReservedAssignment
+    ):
+        '''
+        :type id: costume.api.models.institution.institution_id.InstitutionId
+        '''
+
+        if id is None:
+            raise ValueError('id is required')
+        if not isinstance(id, costume.api.models.institution.institution_id.InstitutionId):
+            raise TypeError("expected id to be a costume.api.models.institution.institution_id.InstitutionId but it is a %s" % getattr(__builtin__, 'type')(id))
+
+        self._delete_institution_by_id(id=id)
+
+    def _delete_institution_by_id(
+        self,
+        id,  # @ReservedAssignment
+    ):
+        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._delete_institution_by_id')
+
     def delete_institutions(
         self,
     ):

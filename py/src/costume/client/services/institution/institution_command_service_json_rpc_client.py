@@ -1,6 +1,7 @@
 from urlparse import urlparse
 import base64
 import costume.api.services.institution.institution_command_service
+import costume.api.services.institution.no_such_institution_exception  # @UnusedImport
 import costume.api.services.io_exception  # @UnusedImport
 import json
 import thryft.protocol.builtins_input_protocol
@@ -110,6 +111,19 @@ class InstitutionCommandServiceJsonRpcClient(costume.api.services.institution.in
             raise RuntimeError("JSON-RPC error: code=%s, message='%s'" % (code, message))
 
         return response.get('result')
+
+    def _delete_institution_by_id(
+        self,
+        id,  # @ReservedAssignment
+    ):
+        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot.write_struct_begin()
+        oprot.write_field_begin(name='id', type=11, id=None)
+        oprot.write_string(str(id))
+        oprot.write_field_end()
+        oprot.write_struct_end()
+
+        self.__request(method='delete_institution_by_id', params=oprot.value)
 
     def _delete_institutions(
         self,

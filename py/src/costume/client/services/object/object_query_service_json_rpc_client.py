@@ -137,3 +137,33 @@ class ObjectQueryServiceJsonRpcClient(costume.api.services.object.object_query_s
         iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
         return tuple([costume.api.models.object.object_entry.ObjectEntry.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
 
+    def _get_objects_by_collection_id(
+        self,
+        collection_id,
+    ):
+        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot.write_struct_begin()
+        oprot.write_field_begin(name='collection_id', type=11, id=None)
+        oprot.write_string(collection_id)
+        oprot.write_field_end()
+        oprot.write_struct_end()
+
+        return_value = self.__request(method='get_objects_by_collection_id', params=oprot.value)
+        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
+        return tuple([costume.api.models.object.object_entry.ObjectEntry.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+
+    def _get_objects_by_institution_id(
+        self,
+        institution_id,
+    ):
+        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot.write_struct_begin()
+        oprot.write_field_begin(name='institution_id', type=11, id=None)
+        oprot.write_string(str(institution_id))
+        oprot.write_field_end()
+        oprot.write_struct_end()
+
+        return_value = self.__request(method='get_objects_by_institution_id', params=oprot.value)
+        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
+        return tuple([costume.api.models.object.object_entry.ObjectEntry.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+

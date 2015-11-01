@@ -2,6 +2,7 @@ from itertools import ifilterfalse
 import __builtin__
 import costume.api.models.collection.collection
 import costume.api.models.collection.collection_entry
+import costume.api.models.institution.institution_id
 
 
 class CollectionQueryService(object):
@@ -50,3 +51,30 @@ class CollectionQueryService(object):
         self,
     ):
         raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_collections')
+
+    def get_collections_by_institution_id(
+        self,
+        institution_id=None,
+    ):
+        '''
+        :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+        :rtype: tuple(costume.api.models.collection.collection_entry.CollectionEntry)
+        '''
+
+        if institution_id is None:
+            raise ValueError('institution_id is required')
+        if not isinstance(institution_id, costume.api.models.institution.institution_id.InstitutionId):
+            raise TypeError("expected institution_id to be a costume.api.models.institution.institution_id.InstitutionId but it is a %s" % getattr(__builtin__, 'type')(institution_id))
+
+        get_collections_by_institution_id_return_value = self._get_collections_by_institution_id(institution_id=institution_id)
+
+        if not (isinstance(get_collections_by_institution_id_return_value, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.collection.collection_entry.CollectionEntry), get_collections_by_institution_id_return_value))) == 0):
+            raise TypeError(getattr(__builtin__, 'type')(get_collections_by_institution_id_return_value))
+
+        return get_collections_by_institution_id_return_value
+
+    def _get_collections_by_institution_id(
+        self,
+        institution_id,
+    ):
+        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_collections_by_institution_id')

@@ -1,6 +1,7 @@
 from urlparse import urlparse
 import base64
 import costume.api.services.collection.collection_command_service
+import costume.api.services.collection.no_such_collection_exception  # @UnusedImport
 import costume.api.services.io_exception  # @UnusedImport
 import json
 import thryft.protocol.builtins_input_protocol
@@ -112,10 +113,36 @@ class CollectionCommandServiceJsonRpcClient(costume.api.services.collection.coll
 
         return response.get('result')
 
+    def _delete_collection_by_id(
+        self,
+        id,  # @ReservedAssignment
+    ):
+        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot.write_struct_begin()
+        oprot.write_field_begin(name='id', type=11, id=None)
+        oprot.write_string(id)
+        oprot.write_field_end()
+        oprot.write_struct_end()
+
+        self.__request(method='delete_collection_by_id', params=oprot.value)
+
     def _delete_collections(
         self,
     ):
         self.__request(method='delete_collections', params={})
+
+    def _delete_collections_by_institution_id(
+        self,
+        institution_id,
+    ):
+        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot.write_struct_begin()
+        oprot.write_field_begin(name='institution_id', type=11, id=None)
+        oprot.write_string(str(institution_id))
+        oprot.write_field_end()
+        oprot.write_struct_end()
+
+        self.__request(method='delete_collections_by_institution_id', params=oprot.value)
 
     def _post_collection(
         self,

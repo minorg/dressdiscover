@@ -1,8 +1,30 @@
 import __builtin__
 import costume.api.models.collection.collection
+import costume.api.models.institution.institution_id
 
 
 class CollectionCommandService(object):
+    def delete_collection_by_id(
+        self,
+        id=None,  # @ReservedAssignment
+    ):
+        '''
+        :type id: str
+        '''
+
+        if id is None:
+            raise ValueError('id is required')
+        if not isinstance(id, basestring):
+            raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
+
+        self._delete_collection_by_id(id=id)
+
+    def _delete_collection_by_id(
+        self,
+        id,  # @ReservedAssignment
+    ):
+        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._delete_collection_by_id')
+
     def delete_collections(
         self,
     ):
@@ -12,6 +34,27 @@ class CollectionCommandService(object):
         self,
     ):
         raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._delete_collections')
+
+    def delete_collections_by_institution_id(
+        self,
+        institution_id=None,
+    ):
+        '''
+        :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+        '''
+
+        if institution_id is None:
+            raise ValueError('institution_id is required')
+        if not isinstance(institution_id, costume.api.models.institution.institution_id.InstitutionId):
+            raise TypeError("expected institution_id to be a costume.api.models.institution.institution_id.InstitutionId but it is a %s" % getattr(__builtin__, 'type')(institution_id))
+
+        self._delete_collections_by_institution_id(institution_id=institution_id)
+
+    def _delete_collections_by_institution_id(
+        self,
+        institution_id,
+    ):
+        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._delete_collections_by_institution_id')
 
     def post_collection(
         self,
