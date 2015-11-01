@@ -1,0 +1,41 @@
+{
+  "object_template": {
+    "template": "object_*", 
+    "settings": {
+      "analysis": {
+        "analyzer": {
+          "email_and_url": {
+            "filter": [
+              "standard", 
+              "lowercase"
+            ], 
+            "tokenizer": "uax_url_email"
+          }
+        }
+      }
+    }, 
+    "mappings": {
+      "object": {
+        "_all": {
+          "enabled": false
+        }, 
+        "dynamic": "strict", 
+        "properties": {
+          "institution_id": {
+            "index": "not_analyzed", 
+            "type": "string"
+          }, 
+          "title": {
+            "type": "string"
+          }, 
+          "collection_id": {
+            "type": "string"
+          }, 
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

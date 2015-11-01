@@ -1,0 +1,31 @@
+{
+  "institution_template": {
+    "template": "institution_*", 
+    "settings": {
+      "analysis": {
+        "analyzer": {
+          "email_and_url": {
+            "filter": [
+              "standard", 
+              "lowercase"
+            ], 
+            "tokenizer": "uax_url_email"
+          }
+        }
+      }
+    }, 
+    "mappings": {
+      "institution": {
+        "_all": {
+          "enabled": false
+        }, 
+        "dynamic": "strict", 
+        "properties": {
+          "title": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
