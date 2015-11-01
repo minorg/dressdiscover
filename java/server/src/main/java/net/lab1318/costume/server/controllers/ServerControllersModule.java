@@ -1,4 +1,4 @@
-package net.lab1318.g2f.server.controllers;
+package net.lab1318.costume.server.controllers;
 
 import com.google.inject.servlet.ServletModule;
 

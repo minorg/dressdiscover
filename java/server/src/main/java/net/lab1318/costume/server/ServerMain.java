@@ -1,4 +1,4 @@
-package net.lab1318.g2f.server;
+package net.lab1318.costume.server;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
@@ -16,7 +16,7 @@ import net.lab1318.costume.gui.GuiModule;
 import net.lab1318.costume.lib.AbstractMain;
 import net.lab1318.costume.lib.CostumeProperties;
 import net.lab1318.costume.lib.services.ServicesModule;
-import net.lab1318.g2f.server.controllers.ServerControllersModule;
+import net.lab1318.costume.server.controllers.ServerControllersModule;
 
 public final class ServerMain extends AbstractMain {
     public static void main(final String[] argv) throws Exception {
