@@ -22,7 +22,7 @@ public abstract class AbstractMain extends org.notaweb.lib.AbstractMain {
             throw new IllegalArgumentException("must specify api_url with port in notablist.properties");
         }
 
-        _configureLogback(new File(properties.getLogbackXmlFilePath().or("/etc/g2f/logback.xml")));
+        _configureLogback(new File(properties.getLogbackXmlFilePath().or("/etc/costume/logback.xml")));
 
         return properties;
     }
