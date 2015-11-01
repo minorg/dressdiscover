@@ -15,6 +15,26 @@ public class ValidatingObjectCommandService implements net.lab1318.costume.api.s
     }
 
     @Override
+    public final void deleteObjectsByCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) throws net.lab1318.costume.api.services.IoException {
+        _validateDeleteObjectsByCollectionIdParameters(collectionId);
+        delegate.deleteObjectsByCollectionId(collectionId);
+    }
+
+    protected void _validateDeleteObjectsByCollectionIdParameters(final net.lab1318.costume.api.models.collection.CollectionId collectionId) {
+        com.google.common.base.Preconditions.checkNotNull(collectionId, "net.lab1318.costume.api.services.object.ObjectCommandService.deleteObjectsByCollectionId: missing collectionId");
+    }
+
+    @Override
+    public final void deleteObjectsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws net.lab1318.costume.api.services.IoException {
+        _validateDeleteObjectsByInstitutionIdParameters(institutionId);
+        delegate.deleteObjectsByInstitutionId(institutionId);
+    }
+
+    protected void _validateDeleteObjectsByInstitutionIdParameters(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
+        com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.services.object.ObjectCommandService.deleteObjectsByInstitutionId: missing institutionId");
+    }
+
+    @Override
     public final net.lab1318.costume.api.models.object.ObjectId postObject(final net.lab1318.costume.api.models.object.Object object) throws net.lab1318.costume.api.services.IoException {
         _validatePostObjectParameters(object);
         return com.google.common.base.Preconditions.checkNotNull(delegate.postObject(object), "net.lab1318.costume.api.services.object.ObjectCommandService.postObject: missing returnValue");

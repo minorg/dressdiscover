@@ -24,5 +24,25 @@ public class ValidatingObjectQueryService implements net.lab1318.costume.api.ser
         return com.google.common.base.Preconditions.checkNotNull(delegate.getObjects(), "net.lab1318.costume.api.services.object.ObjectQueryService.getObjects: missing returnValue");
     }
 
+    @Override
+    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> getObjectsByCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) throws net.lab1318.costume.api.services.IoException {
+        _validateGetObjectsByCollectionIdParameters(collectionId);
+        return com.google.common.base.Preconditions.checkNotNull(delegate.getObjectsByCollectionId(collectionId), "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectsByCollectionId: missing returnValue");
+    }
+
+    protected void _validateGetObjectsByCollectionIdParameters(final net.lab1318.costume.api.models.collection.CollectionId collectionId) {
+        com.google.common.base.Preconditions.checkNotNull(collectionId, "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectsByCollectionId: missing collectionId");
+    }
+
+    @Override
+    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> getObjectsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws net.lab1318.costume.api.services.IoException {
+        _validateGetObjectsByInstitutionIdParameters(institutionId);
+        return com.google.common.base.Preconditions.checkNotNull(delegate.getObjectsByInstitutionId(institutionId), "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectsByInstitutionId: missing returnValue");
+    }
+
+    protected void _validateGetObjectsByInstitutionIdParameters(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
+        com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectsByInstitutionId: missing institutionId");
+    }
+
     private final net.lab1318.costume.api.services.object.ObjectQueryService delegate;
 }

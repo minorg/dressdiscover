@@ -10,6 +10,16 @@ public class ValidatingInstitutionCommandService implements net.lab1318.costume.
     }
 
     @Override
+    public final void deleteInstitutionById(final net.lab1318.costume.api.models.institution.InstitutionId id) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.institution.NoSuchInstitutionException {
+        _validateDeleteInstitutionByIdParameters(id);
+        delegate.deleteInstitutionById(id);
+    }
+
+    protected void _validateDeleteInstitutionByIdParameters(final net.lab1318.costume.api.models.institution.InstitutionId id) {
+        com.google.common.base.Preconditions.checkNotNull(id, "net.lab1318.costume.api.services.institution.InstitutionCommandService.deleteInstitutionById: missing id");
+    }
+
+    @Override
     public final void deleteInstitutions() throws net.lab1318.costume.api.services.IoException {
         delegate.deleteInstitutions();
     }

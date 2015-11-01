@@ -1,6 +1,7 @@
 package net.lab1318.costume.lib.services.collection;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
@@ -13,6 +14,7 @@ import com.google.common.collect.ImmutableMap;
 import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.collection.CollectionId;
+import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.lib.services.TestData;
 
 public final class ElasticSearchCollectionQueryServiceTest extends CollectionServiceTest {
@@ -39,6 +41,14 @@ public final class ElasticSearchCollectionQueryServiceTest extends CollectionSer
                 }
             }
             assertTrue(found);
+        }
+    }
+
+    @Test
+    public void testGetCollectionsByInstitutionId() throws Exception {
+        _putCollections();
+        for (final InstitutionEntry institution : TestData.getInstance().getInstitutions()) {
+            assertNotEquals(0, collectionQueryService.getCollectionsByInstitutionId(institution.getId()));
         }
     }
 }

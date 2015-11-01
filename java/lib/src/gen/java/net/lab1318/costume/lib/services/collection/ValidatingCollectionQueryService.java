@@ -24,5 +24,15 @@ public class ValidatingCollectionQueryService implements net.lab1318.costume.api
         return com.google.common.base.Preconditions.checkNotNull(delegate.getCollections(), "net.lab1318.costume.api.services.collection.CollectionQueryService.getCollections: missing returnValue");
     }
 
+    @Override
+    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionEntry> getCollectionsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws net.lab1318.costume.api.services.IoException {
+        _validateGetCollectionsByInstitutionIdParameters(institutionId);
+        return com.google.common.base.Preconditions.checkNotNull(delegate.getCollectionsByInstitutionId(institutionId), "net.lab1318.costume.api.services.collection.CollectionQueryService.getCollectionsByInstitutionId: missing returnValue");
+    }
+
+    protected void _validateGetCollectionsByInstitutionIdParameters(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
+        com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.services.collection.CollectionQueryService.getCollectionsByInstitutionId: missing institutionId");
+    }
+
     private final net.lab1318.costume.api.services.collection.CollectionQueryService delegate;
 }

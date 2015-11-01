@@ -5,10 +5,12 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableTable;
 
 import net.lab1318.costume.api.models.collection.Collection;
+import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.object.Object;
+import net.lab1318.costume.api.services.collection.InvalidCollectionIdException;
 
 public final class TestData {
     public static TestData getInstance() {
@@ -34,8 +36,12 @@ public final class TestData {
             final Collection collection = Collection.builder().setInstitutionId(institutionId)
                     .setTitle("Test collection").build();
             collectionsBuilder.put(institutionId, collection);
-            objectsBuilder.put(institutionId, collection,
-                    Object.builder().setInstitutionId(institutionId).setTitle("Test object").build());
+            try {
+                objectsBuilder.put(institutionId, collection, Object.builder().setCollectionId(CollectionId.parse(""))
+                        .setInstitutionId(institutionId).setTitle("Test object").build());
+            } catch (final InvalidCollectionIdException e) {
+                throw new UnsupportedOperationException();
+            }
         }
         collections = collectionsBuilder.build();
         institutions = institutionsBuilder.build();

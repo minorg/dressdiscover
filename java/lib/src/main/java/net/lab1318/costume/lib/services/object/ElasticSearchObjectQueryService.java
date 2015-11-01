@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.elasticsearch.common.bytes.BytesReference;
+import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.notaweb.lib.protocols.ElasticSearchInputProtocol;
 import org.notaweb.lib.stores.ElasticSearchIndex;
@@ -21,6 +22,8 @@ import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import net.lab1318.costume.api.models.collection.CollectionId;
+import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.object.ObjectId;
@@ -74,10 +77,10 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             return elasticSearchIndex.getModelById(id, Optional.absent(), logger, Markers.GET_OBJECT_BY_ID,
                     ObjectElasticSearchModelFactory.getInstance());
         } catch (final InvalidModelException e) {
-            logger.warn(Markers.GET_OBJECT_BY_ID, "invalid trial model {}: ", id, e);
+            logger.warn(Markers.GET_OBJECT_BY_ID, "invalid object model {}: ", id, e);
             throw new NoSuchObjectException();
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting trial" + id);
+            throw ServiceExceptionHelper.wrapException(e, "error getting object" + id);
         } catch (final NoSuchModelException e) {
             throw new NoSuchObjectException();
         }
@@ -86,11 +89,44 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     @Override
     public ImmutableList<ObjectEntry> getObjects() throws IoException {
         try {
-            return elasticSearchIndex.getModels(logger, Markers.GET_OBJECT_BY_ID,
+            return elasticSearchIndex.getModels(logger, Markers.GET_OBJECTS,
                     ObjectElasticSearchModelFactory.getInstance(), elasticSearchIndex.prepareSearchModels()
                             .setQuery(QueryBuilders.matchAllQuery()).setSize(Integer.MAX_VALUE));
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting trials");
+            throw ServiceExceptionHelper.wrapException(e, "error getting objects");
+        }
+    }
+
+    @Override
+    public ImmutableList<ObjectEntry> getObjectsByCollectionId(final CollectionId collectionId) throws IoException {
+        try {
+            return elasticSearchIndex
+                    .getModels(logger, Markers.GET_OBJECTS_BY_COLLECTION_ID,
+                            ObjectElasticSearchModelFactory.getInstance(),
+                            elasticSearchIndex.prepareSearchModels()
+                                    .setQuery(QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
+                                            FilterBuilders.termFilter(
+                                                    Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
+                                                    collectionId.toString())))
+                                    .setSize(Integer.MAX_VALUE));
+        } catch (final IOException e) {
+            throw ServiceExceptionHelper.wrapException(e, "error getting objects by collection id");
+        }
+    }
+
+    @Override
+    public ImmutableList<ObjectEntry> getObjectsByInstitutionId(final InstitutionId institutionId) throws IoException {
+        try {
+            return elasticSearchIndex.getModels(logger, Markers.GET_OBJECTS_BY_INSTITUTION_ID,
+                    ObjectElasticSearchModelFactory.getInstance(),
+                    elasticSearchIndex.prepareSearchModels()
+                            .setQuery(QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
+                                    FilterBuilders.termFilter(
+                                            Object.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
+                                            institutionId.toString())))
+                            .setSize(Integer.MAX_VALUE));
+        } catch (final IOException e) {
+            throw ServiceExceptionHelper.wrapException(e, "error getting objects by institution id");
         }
     }
 

@@ -2,6 +2,7 @@ package net.lab1318.costume.api.services.institution;
 
 public interface InstitutionCommandService {
     public enum FunctionMetadata {
+        DELETE_INSTITUTION_BY_ID("delete_institution_by_id"),
         DELETE_INSTITUTIONS("delete_institutions"),
         PUT_INSTITUTION("put_institution");
 
@@ -17,6 +18,493 @@ public interface InstitutionCommandService {
     }
 
     public static class Messages {
+        public final static class DeleteInstitutionByIdRequest implements org.thryft.Struct {
+            public static class Builder {
+                public Builder() {
+                    id = null;
+                }
+
+                public Builder(final DeleteInstitutionByIdRequest other) {
+                    this.id = other.getId();
+                }
+
+                protected DeleteInstitutionByIdRequest _build(final net.lab1318.costume.api.models.institution.InstitutionId id) {
+                    return new DeleteInstitutionByIdRequest(id);
+                }
+
+                public DeleteInstitutionByIdRequest build() {
+                    return _build(com.google.common.base.Preconditions.checkNotNull(id, "net.lab1318.costume.api.services.institution.DeleteInstitutionByIdRequest: missing id"));
+                }
+
+                public final net.lab1318.costume.api.models.institution.InstitutionId getId() {
+                    return id;
+                }
+
+                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    switch (type) {
+                    case LIST:
+                        return readAsList(iprot);
+                    case STRUCT:
+                        return readAsStruct(iprot);
+                    default:
+                        throw new IllegalArgumentException("cannot read as " + type);
+                    }
+                }
+
+                public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    iprot.readListBegin();
+                    id = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                    iprot.readListEnd();
+                    return this;
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    iprot.readStructBegin();
+                    while (true) {
+                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                            break;
+                        }
+                        switch (ifield.getName()) {
+                        case "id": {
+                            id = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                            break;
+                        }
+                        }
+                        iprot.readFieldEnd();
+                    }
+                    iprot.readStructEnd();
+                    return this;
+                }
+
+                public Builder setId(final net.lab1318.costume.api.models.institution.InstitutionId id) {
+                    this.id = com.google.common.base.Preconditions.checkNotNull(id);
+                    return this;
+                }
+
+                public Builder setIfPresent(final DeleteInstitutionByIdRequest other) {
+                    com.google.common.base.Preconditions.checkNotNull(other);
+
+                    setId(other.getId());
+
+                    return this;
+                }
+
+                public Builder set(final String name, @javax.annotation.Nullable final java.lang.Object value) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    case "id": setId((net.lab1318.costume.api.models.institution.InstitutionId)value); return this;
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
+                }
+
+                public Builder unsetId() {
+                    this.id = null;
+                    return this;
+                }
+
+                private net.lab1318.costume.api.models.institution.InstitutionId id;
+            }
+
+            @SuppressWarnings("serial")
+            public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
+                ID(new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING);
+
+                @Override
+                public com.google.common.reflect.TypeToken<?> getJavaType() {
+                    return javaType;
+                }
+
+                @Override
+                public int getThriftId() {
+                    return thriftId;
+                }
+
+                @Override
+                public String getThriftProtocolKey() {
+                    return thriftProtocolKey;
+                }
+
+                @Override
+                public org.thryft.protocol.Type getThriftProtocolType() {
+                    return thriftProtocolType;
+                }
+
+                @Override
+                public String getThriftName() {
+                    return thriftName;
+                }
+
+                @Override
+                public boolean hasThriftId() {
+                    return thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID;
+                }
+
+                @Override
+                public boolean isRequired()  {
+                    return required;
+                }
+
+                public static FieldMetadata valueOfJavaName(final String javaName) {
+                    switch (javaName) {
+                    case "id": return ID;
+                    default:
+                        throw new IllegalArgumentException(javaName);
+                    }
+                }
+
+                public static FieldMetadata valueOfThriftName(final String thriftName) {
+                    switch (thriftName) {
+                    case "id": return ID;
+                    default:
+                        throw new IllegalArgumentException(thriftName);
+                    }
+                }
+
+                private FieldMetadata(final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                    this.javaType = javaType;
+                    this.required = required;
+                    this.thriftId = thriftId;
+                    this.thriftName = thriftName;
+                    if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
+                        this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
+                    } else {
+                        this.thriftProtocolKey = thriftName;
+                    }
+                    this.thriftProtocolType = thriftProtocolType;
+                }
+
+                private final com.google.common.reflect.TypeToken<?> javaType;
+                private final boolean required;
+                private final int thriftId;
+                private final String thriftName;
+                private final String thriftProtocolKey;
+                private final org.thryft.protocol.Type thriftProtocolType;
+            }
+
+            /**
+             * Copy constructor
+             */
+            public DeleteInstitutionByIdRequest(final DeleteInstitutionByIdRequest other) {
+                this(other.getId());
+            }
+
+            /**
+             * Optional constructor
+             */
+            public DeleteInstitutionByIdRequest(final net.lab1318.costume.api.models.institution.InstitutionId id) {
+                this.id = com.google.common.base.Preconditions.checkNotNull(id, "net.lab1318.costume.api.services.institution.DeleteInstitutionByIdRequest: missing id");
+            }
+
+            public static Builder builder() {
+                return new Builder();
+            }
+
+            public static Builder builder(final DeleteInstitutionByIdRequest other) {
+                return new Builder(other);
+            }
+
+            public static Builder builder(final com.google.common.base.Optional<DeleteInstitutionByIdRequest> other) {
+                return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            @Override
+            public boolean equals(final java.lang.Object otherObject) {
+                if (otherObject == this) {
+                    return true;
+                } else if (!(otherObject instanceof DeleteInstitutionByIdRequest)) {
+                    return false;
+                }
+
+                final DeleteInstitutionByIdRequest other = (DeleteInstitutionByIdRequest)otherObject;
+                return
+                    getId().equals(other.getId());
+            }
+
+            @Override
+            public java.lang.Object get(final String fieldName) {
+                switch (fieldName) {
+                case "id": return getId();
+                default:
+                    throw new IllegalArgumentException(fieldName);
+                }
+            }
+
+            public final net.lab1318.costume.api.models.institution.InstitutionId getId() {
+                return id;
+            }
+
+            @Override
+            public int hashCode() {
+                int hashCode = 17;
+                hashCode = 31 * hashCode + getId().ordinal();
+                return hashCode;
+            }
+
+            public static DeleteInstitutionByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                switch (type) {
+                case LIST:
+                    return readAsList(iprot);
+                case STRUCT:
+                    return readAsStruct(iprot);
+                default:
+                    throw new IllegalArgumentException("cannot read as " + type);
+                }
+            }
+
+            public static DeleteInstitutionByIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                net.lab1318.costume.api.models.institution.InstitutionId id = null;
+
+                iprot.readListBegin();
+                id = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                iprot.readListEnd();
+                try {
+                    return new DeleteInstitutionByIdRequest(id);
+                } catch (final IllegalArgumentException | NullPointerException e) {
+                    throw new org.thryft.protocol.InputProtocolException(e);
+                }
+            }
+
+            public static DeleteInstitutionByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                net.lab1318.costume.api.models.institution.InstitutionId id = null;
+
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
+                    }
+                    switch (ifield.getName()) {
+                    case "id": {
+                        id = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                        break;
+                    }
+                    }
+                    iprot.readFieldEnd();
+                }
+                iprot.readStructEnd();
+                try {
+                    return new DeleteInstitutionByIdRequest(id);
+                } catch (final IllegalArgumentException | NullPointerException e) {
+                    throw new org.thryft.protocol.InputProtocolException(e);
+                }
+            }
+
+            public DeleteInstitutionByIdRequest replaceId(final net.lab1318.costume.api.models.institution.InstitutionId id) {
+                return new DeleteInstitutionByIdRequest(id);
+            }
+
+            @Override
+            public String toString() {
+                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("id", getId()).toString();
+            }
+
+            @Override
+            public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
+
+                oprot.writeEnum(getId());
+
+                oprot.writeListEnd();
+            }
+
+            @Override
+            public void writeAsStruct(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeStructBegin("net.lab1318.costume.api.services.institution.DeleteInstitutionByIdRequest");
+                writeFields(oprot);
+                oprot.writeStructEnd();
+            }
+
+            @Override
+            public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeFieldBegin("id", org.thryft.protocol.Type.STRING, (short)0);
+                oprot.writeEnum(getId());
+                oprot.writeFieldEnd();
+
+                oprot.writeFieldStop();
+            }
+
+            private final net.lab1318.costume.api.models.institution.InstitutionId id;
+        }
+
+        public final static class DeleteInstitutionByIdResponse implements org.thryft.Struct {
+            public static class Builder {
+                public Builder() {
+                }
+
+                public Builder(final DeleteInstitutionByIdResponse other) {
+                }
+
+                protected DeleteInstitutionByIdResponse _build() {
+                    return new DeleteInstitutionByIdResponse();
+                }
+
+                public DeleteInstitutionByIdResponse build() {
+                    return _build();
+                }
+
+                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    switch (type) {
+                    case LIST:
+                        return readAsList(iprot);
+                    case STRUCT:
+                        return readAsStruct(iprot);
+                    default:
+                        throw new IllegalArgumentException("cannot read as " + type);
+                    }
+                }
+
+                public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    iprot.readListBegin();
+                    iprot.readListEnd();
+                    return this;
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    iprot.readStructBegin();
+                    while (true) {
+                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                            break;
+                        }
+                        switch (ifield.getName()) {
+                        }
+                        iprot.readFieldEnd();
+                    }
+                    iprot.readStructEnd();
+                    return this;
+                }
+
+                public Builder setIfPresent(final DeleteInstitutionByIdResponse other) {
+                    com.google.common.base.Preconditions.checkNotNull(other);
+
+
+
+                    return this;
+                }
+
+                public Builder set(final String name, @javax.annotation.Nullable final java.lang.Object value) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
+                }
+            }
+
+            public DeleteInstitutionByIdResponse() {
+            }
+
+            /**
+             * Copy constructor
+             */
+            public DeleteInstitutionByIdResponse(final DeleteInstitutionByIdResponse other) {
+            }
+
+            public static Builder builder() {
+                return new Builder();
+            }
+
+            public static Builder builder(final DeleteInstitutionByIdResponse other) {
+                return new Builder(other);
+            }
+
+            public static Builder builder(final com.google.common.base.Optional<DeleteInstitutionByIdResponse> other) {
+                return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            @Override
+            public boolean equals(final java.lang.Object otherObject) {
+                if (otherObject == this) {
+                    return true;
+                } else if (!(otherObject instanceof DeleteInstitutionByIdResponse)) {
+                    return false;
+                }
+
+                return true;
+            }
+
+            @Override
+            public java.lang.Object get(final String fieldName) {
+                switch (fieldName) {
+                default:
+                    throw new IllegalArgumentException(fieldName);
+                }
+            }
+
+            @Override
+            public int hashCode() {
+                int hashCode = 17;
+                return hashCode;
+            }
+
+            public static DeleteInstitutionByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                switch (type) {
+                case LIST:
+                    return readAsList(iprot);
+                case STRUCT:
+                    return readAsStruct(iprot);
+                default:
+                    throw new IllegalArgumentException("cannot read as " + type);
+                }
+            }
+
+            public static DeleteInstitutionByIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                iprot.readListBegin();
+                iprot.readListEnd();
+                try {
+                    return new DeleteInstitutionByIdResponse();
+                } catch (final IllegalArgumentException | NullPointerException e) {
+                    throw new org.thryft.protocol.InputProtocolException(e);
+                }
+            }
+
+            public static DeleteInstitutionByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
+                    }
+                    switch (ifield.getName()) {
+                    }
+                    iprot.readFieldEnd();
+                }
+                iprot.readStructEnd();
+                try {
+                    return new DeleteInstitutionByIdResponse();
+                } catch (final IllegalArgumentException | NullPointerException e) {
+                    throw new org.thryft.protocol.InputProtocolException(e);
+                }
+            }
+
+            @Override
+            public String toString() {
+                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().toString();
+            }
+
+            @Override
+            public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 0);
+                oprot.writeListEnd();
+            }
+
+            @Override
+            public void writeAsStruct(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeStructBegin("net.lab1318.costume.api.services.institution.DeleteInstitutionByIdResponse");
+                writeFields(oprot);
+                oprot.writeStructEnd();
+            }
+
+            @Override
+            public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeFieldStop();
+            }
+        }
+
         public final static class DeleteInstitutionsRequest implements org.thryft.Struct {
             public static class Builder {
                 public Builder() {
@@ -910,6 +1398,8 @@ public interface InstitutionCommandService {
             }
         }
     }
+
+    public void deleteInstitutionById(final net.lab1318.costume.api.models.institution.InstitutionId id) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
 
     public void deleteInstitutions() throws net.lab1318.costume.api.services.IoException;
 

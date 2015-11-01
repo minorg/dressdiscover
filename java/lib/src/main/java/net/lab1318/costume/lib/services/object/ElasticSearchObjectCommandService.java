@@ -4,6 +4,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.IOException;
 
+import org.elasticsearch.index.query.FilterBuilders;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.notaweb.lib.stores.StringModelIdFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import net.lab1318.costume.api.models.collection.CollectionId;
+import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.services.IoException;
@@ -51,6 +55,33 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
             elasticSearchIndex.createIndex(logger, Markers.DELETE_OBJECTS);
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error deleting objects");
+        }
+    }
+
+    @Override
+    public void deleteObjectsByCollectionId(final CollectionId collectionId) throws IoException {
+        try {
+            elasticSearchIndex
+                    .deleteModels(logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID,
+                            QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
+                                    FilterBuilders.termFilter(Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
+                                            collectionId.toString())));
+        } catch (final IOException e) {
+            throw ServiceExceptionHelper.wrapException(e, "error deleting objects by collection id");
+        }
+    }
+
+    @Override
+    public void deleteObjectsByInstitutionId(final InstitutionId institutionId) throws IoException {
+        try {
+            elasticSearchIndex
+                    .deleteModels(logger, Markers.DELETE_OBJECTS_BY_INSTITUTION_ID,
+                            QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
+                                    FilterBuilders.termFilter(
+                                            Object.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
+                                            institutionId.toString())));
+        } catch (final IOException e) {
+            throw ServiceExceptionHelper.wrapException(e, "error deleting objects by institution id");
         }
     }
 

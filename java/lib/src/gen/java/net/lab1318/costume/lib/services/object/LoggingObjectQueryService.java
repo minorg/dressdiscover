@@ -5,11 +5,15 @@ public class LoggingObjectQueryService implements net.lab1318.costume.api.servic
     public static class Markers {
         public final static org.slf4j.Marker GET_OBJECT_BY_ID = org.slf4j.MarkerFactory.getMarker("GET_OBJECT_BY_ID");
         public final static org.slf4j.Marker GET_OBJECTS = org.slf4j.MarkerFactory.getMarker("GET_OBJECTS");
+        public final static org.slf4j.Marker GET_OBJECTS_BY_COLLECTION_ID = org.slf4j.MarkerFactory.getMarker("GET_OBJECTS_BY_COLLECTION_ID");
+        public final static org.slf4j.Marker GET_OBJECTS_BY_INSTITUTION_ID = org.slf4j.MarkerFactory.getMarker("GET_OBJECTS_BY_INSTITUTION_ID");
 
         public final static org.slf4j.Marker OBJECT_QUERY_SERVICE = org.slf4j.MarkerFactory.getMarker("OBJECT_QUERY_SERVICE");
         static {
             OBJECT_QUERY_SERVICE.add(GET_OBJECT_BY_ID);
             OBJECT_QUERY_SERVICE.add(GET_OBJECTS);
+            OBJECT_QUERY_SERVICE.add(GET_OBJECTS_BY_COLLECTION_ID);
+            OBJECT_QUERY_SERVICE.add(GET_OBJECTS_BY_INSTITUTION_ID);
         }
     }
 
@@ -76,6 +80,58 @@ public class LoggingObjectQueryService implements net.lab1318.costume.api.servic
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.GET_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        }
+    }
+
+    public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> getObjectsByCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) throws net.lab1318.costume.api.services.IoException {
+        final StringBuilder __logMessageStringBuilder = new StringBuilder();
+        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+
+        __logMessageStringBuilder.append("get_objects_by_collection_id(");
+        __logMessageStringBuilder.append("{}");
+        __logMessageArgs.add(new Messages.GetObjectsByCollectionIdRequest(collectionId));
+        __logMessageStringBuilder.append(")");
+
+        try {
+            com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> __returnValue = delegate.getObjectsByCollectionId(collectionId);
+
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(__returnValue);
+
+            logger.debug(Markers.GET_OBJECTS_BY_COLLECTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+
+            return __returnValue;
+        } catch (final net.lab1318.costume.api.services.IoException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.GET_OBJECTS_BY_COLLECTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        }
+    }
+
+    public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> getObjectsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws net.lab1318.costume.api.services.IoException {
+        final StringBuilder __logMessageStringBuilder = new StringBuilder();
+        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+
+        __logMessageStringBuilder.append("get_objects_by_institution_id(");
+        __logMessageStringBuilder.append("{}");
+        __logMessageArgs.add(new Messages.GetObjectsByInstitutionIdRequest(institutionId));
+        __logMessageStringBuilder.append(")");
+
+        try {
+            com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> __returnValue = delegate.getObjectsByInstitutionId(institutionId);
+
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(__returnValue);
+
+            logger.debug(Markers.GET_OBJECTS_BY_INSTITUTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+
+            return __returnValue;
+        } catch (final net.lab1318.costume.api.services.IoException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.GET_OBJECTS_BY_INSTITUTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
         }
     }

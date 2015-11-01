@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.elasticsearch.common.bytes.BytesReference;
+import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.notaweb.lib.protocols.ElasticSearchInputProtocol;
 import org.notaweb.lib.stores.ElasticSearchIndex;
@@ -24,6 +25,7 @@ import com.google.inject.Singleton;
 import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.collection.CollectionId;
+import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.collection.InvalidCollectionIdException;
@@ -91,6 +93,25 @@ public class ElasticSearchCollectionQueryService implements CollectionQueryServi
             return elasticSearchIndex.getModels(logger, Markers.GET_COLLECTION_BY_ID,
                     CollectionElasticSearchModelFactory.getInstance(), elasticSearchIndex.prepareSearchModels()
                             .setQuery(QueryBuilders.matchAllQuery()).setSize(Integer.MAX_VALUE));
+        } catch (final IOException e) {
+            throw ServiceExceptionHelper.wrapException(e, "error getting trials");
+        }
+    }
+
+    @Override
+    public ImmutableList<CollectionEntry> getCollectionsByInstitutionId(final InstitutionId institutionId)
+            throws IoException {
+        try {
+            return elasticSearchIndex
+                    .getModels(logger, Markers.GET_COLLECTION_BY_ID,
+                            CollectionElasticSearchModelFactory
+                                    .getInstance(),
+                            elasticSearchIndex.prepareSearchModels()
+                                    .setQuery(
+                                            QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
+                                                    FilterBuilders.termFilter(Collection.FieldMetadata.INSTITUTION_ID
+                                                            .getThriftProtocolKey(), institutionId.toString())))
+                            .setSize(Integer.MAX_VALUE));
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error getting trials");
         }

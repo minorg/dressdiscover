@@ -10,8 +10,28 @@ public class ValidatingCollectionCommandService implements net.lab1318.costume.a
     }
 
     @Override
+    public final void deleteCollectionById(final net.lab1318.costume.api.models.collection.CollectionId id) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException {
+        _validateDeleteCollectionByIdParameters(id);
+        delegate.deleteCollectionById(id);
+    }
+
+    protected void _validateDeleteCollectionByIdParameters(final net.lab1318.costume.api.models.collection.CollectionId id) {
+        com.google.common.base.Preconditions.checkNotNull(id, "net.lab1318.costume.api.services.collection.CollectionCommandService.deleteCollectionById: missing id");
+    }
+
+    @Override
     public final void deleteCollections() throws net.lab1318.costume.api.services.IoException {
         delegate.deleteCollections();
+    }
+
+    @Override
+    public final void deleteCollectionsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws net.lab1318.costume.api.services.IoException {
+        _validateDeleteCollectionsByInstitutionIdParameters(institutionId);
+        delegate.deleteCollectionsByInstitutionId(institutionId);
+    }
+
+    protected void _validateDeleteCollectionsByInstitutionIdParameters(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
+        com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.services.collection.CollectionCommandService.deleteCollectionsByInstitutionId: missing institutionId");
     }
 
     @Override

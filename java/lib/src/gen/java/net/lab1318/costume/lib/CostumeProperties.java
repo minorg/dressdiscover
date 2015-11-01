@@ -9,6 +9,7 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
             elasticSearchPort = com.google.common.primitives.UnsignedInteger.valueOf(9300);
             homeDirectoryPath = null;
             logbackXmlFilePath = com.google.common.base.Optional.absent();
+            powerhouseMuseumApiKey = com.google.common.base.Optional.absent();
         }
 
         public Builder(final CostumeProperties other) {
@@ -18,14 +19,15 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
             this.elasticSearchPort = other.getElasticSearchPort();
             this.homeDirectoryPath = other.getHomeDirectoryPath();
             this.logbackXmlFilePath = other.getLogbackXmlFilePath();
+            this.powerhouseMuseumApiKey = other.getPowerhouseMuseumApiKey();
         }
 
-        protected CostumeProperties _build(final org.thryft.native_.Url apiUrl, final String environment, final String elasticSearchHost, final com.google.common.primitives.UnsignedInteger elasticSearchPort, final String homeDirectoryPath, final com.google.common.base.Optional<String> logbackXmlFilePath) {
-            return new CostumeProperties(apiUrl, environment, elasticSearchHost, elasticSearchPort, homeDirectoryPath, logbackXmlFilePath);
+        protected CostumeProperties _build(final org.thryft.native_.Url apiUrl, final String environment, final String elasticSearchHost, final com.google.common.primitives.UnsignedInteger elasticSearchPort, final String homeDirectoryPath, final com.google.common.base.Optional<String> logbackXmlFilePath, final com.google.common.base.Optional<String> powerhouseMuseumApiKey) {
+            return new CostumeProperties(apiUrl, environment, elasticSearchHost, elasticSearchPort, homeDirectoryPath, logbackXmlFilePath, powerhouseMuseumApiKey);
         }
 
         public CostumeProperties build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(apiUrl, "net.lab1318.costume.lib.CostumeProperties: missing apiUrl"), com.google.common.base.Preconditions.checkNotNull(environment, "net.lab1318.costume.lib.CostumeProperties: missing environment"), com.google.common.base.Preconditions.checkNotNull(elasticSearchHost, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchHost"), com.google.common.base.Preconditions.checkNotNull(elasticSearchPort, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchPort"), com.google.common.base.Preconditions.checkNotNull(homeDirectoryPath, "net.lab1318.costume.lib.CostumeProperties: missing homeDirectoryPath"), com.google.common.base.Preconditions.checkNotNull(logbackXmlFilePath, "net.lab1318.costume.lib.CostumeProperties: missing logbackXmlFilePath"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(apiUrl, "net.lab1318.costume.lib.CostumeProperties: missing apiUrl"), com.google.common.base.Preconditions.checkNotNull(environment, "net.lab1318.costume.lib.CostumeProperties: missing environment"), com.google.common.base.Preconditions.checkNotNull(elasticSearchHost, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchHost"), com.google.common.base.Preconditions.checkNotNull(elasticSearchPort, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchPort"), com.google.common.base.Preconditions.checkNotNull(homeDirectoryPath, "net.lab1318.costume.lib.CostumeProperties: missing homeDirectoryPath"), com.google.common.base.Preconditions.checkNotNull(logbackXmlFilePath, "net.lab1318.costume.lib.CostumeProperties: missing logbackXmlFilePath"), com.google.common.base.Preconditions.checkNotNull(powerhouseMuseumApiKey, "net.lab1318.costume.lib.CostumeProperties: missing powerhouseMuseumApiKey"));
         }
 
         public final org.thryft.native_.Url getApiUrl() {
@@ -55,6 +57,10 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
             return logbackXmlFilePath;
         }
 
+        public final com.google.common.base.Optional<String> getPowerhouseMuseumApiKey() {
+            return powerhouseMuseumApiKey;
+        }
+
         public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
             switch (type) {
             case LIST:
@@ -75,6 +81,9 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
             homeDirectoryPath = iprot.readString();
             if (__list.getSize() > 5) {
                 logbackXmlFilePath = com.google.common.base.Optional.of(iprot.readString());
+            }
+            if (__list.getSize() > 6) {
+                powerhouseMuseumApiKey = com.google.common.base.Optional.of(iprot.readString());
             }
             iprot.readListEnd();
             return this;
@@ -110,6 +119,10 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
                 }
                 case "logback_xml_file_path": {
                     logbackXmlFilePath = com.google.common.base.Optional.of(iprot.readString());
+                    break;
+                }
+                case "powerhouse_museum_api_key": {
+                    powerhouseMuseumApiKey = com.google.common.base.Optional.of(iprot.readString());
                     break;
                 }
                 }
@@ -155,6 +168,9 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
             if (other.getLogbackXmlFilePath().isPresent()) {
                 setLogbackXmlFilePath(other.getLogbackXmlFilePath());
             }
+            if (other.getPowerhouseMuseumApiKey().isPresent()) {
+                setPowerhouseMuseumApiKey(other.getPowerhouseMuseumApiKey());
+            }
 
             return this;
         }
@@ -169,6 +185,16 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
             return this;
         }
 
+        public Builder setPowerhouseMuseumApiKey(final com.google.common.base.Optional<String> powerhouseMuseumApiKey) {
+            this.powerhouseMuseumApiKey = com.google.common.base.Preconditions.checkNotNull(powerhouseMuseumApiKey);
+            return this;
+        }
+
+        public Builder setPowerhouseMuseumApiKey(@javax.annotation.Nullable final String powerhouseMuseumApiKey) {
+            this.powerhouseMuseumApiKey = com.google.common.base.Optional.fromNullable(powerhouseMuseumApiKey);
+            return this;
+        }
+
         public Builder set(final String name, @javax.annotation.Nullable final java.lang.Object value) {
             com.google.common.base.Preconditions.checkNotNull(name);
 
@@ -179,6 +205,7 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
             case "elastic_search_port": setElasticSearchPort((com.google.common.primitives.UnsignedInteger)value); return this;
             case "home_directory_path": setHomeDirectoryPath((String)value); return this;
             case "logback_xml_file_path": setLogbackXmlFilePath((String)value); return this;
+            case "powerhouse_museum_api_key": setPowerhouseMuseumApiKey((String)value); return this;
             default:
                 throw new IllegalArgumentException(name);
             }
@@ -214,6 +241,11 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
             return this;
         }
 
+        public Builder unsetPowerhouseMuseumApiKey() {
+            this.powerhouseMuseumApiKey = com.google.common.base.Optional.absent();
+            return this;
+        }
+
         private org.thryft.native_.Url apiUrl;
         /**
          * dev, staging, production, etc.
@@ -223,6 +255,7 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
         private com.google.common.primitives.UnsignedInteger elasticSearchPort;
         private String homeDirectoryPath;
         private com.google.common.base.Optional<String> logbackXmlFilePath;
+        private com.google.common.base.Optional<String> powerhouseMuseumApiKey;
     }
 
     @SuppressWarnings("serial")
@@ -232,7 +265,8 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
         ELASTIC_SEARCH_HOST(new com.google.common.reflect.TypeToken<String>() {}, true, 0, "elastic_search_host", org.thryft.protocol.Type.STRING),
         ELASTIC_SEARCH_PORT(new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, true, 0, "elastic_search_port", org.thryft.protocol.Type.I32),
         HOME_DIRECTORY_PATH(new com.google.common.reflect.TypeToken<String>() {}, true, 0, "home_directory_path", org.thryft.protocol.Type.STRING),
-        LOGBACK_XML_FILE_PATH(new com.google.common.reflect.TypeToken<String>() {}, false, 0, "logback_xml_file_path", org.thryft.protocol.Type.STRING);
+        LOGBACK_XML_FILE_PATH(new com.google.common.reflect.TypeToken<String>() {}, false, 0, "logback_xml_file_path", org.thryft.protocol.Type.STRING),
+        POWERHOUSE_MUSEUM_API_KEY(new com.google.common.reflect.TypeToken<String>() {}, false, 0, "powerhouse_museum_api_key", org.thryft.protocol.Type.STRING);
 
         @Override
         public com.google.common.reflect.TypeToken<?> getJavaType() {
@@ -277,6 +311,7 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
             case "elasticSearchPort": return ELASTIC_SEARCH_PORT;
             case "homeDirectoryPath": return HOME_DIRECTORY_PATH;
             case "logbackXmlFilePath": return LOGBACK_XML_FILE_PATH;
+            case "powerhouseMuseumApiKey": return POWERHOUSE_MUSEUM_API_KEY;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -290,6 +325,7 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
             case "elastic_search_port": return ELASTIC_SEARCH_PORT;
             case "home_directory_path": return HOME_DIRECTORY_PATH;
             case "logback_xml_file_path": return LOGBACK_XML_FILE_PATH;
+            case "powerhouse_museum_api_key": return POWERHOUSE_MUSEUM_API_KEY;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -320,7 +356,7 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
      * Copy constructor
      */
     public CostumeProperties(final CostumeProperties other) {
-        this(other.getApiUrl(), other.getEnvironment(), other.getElasticSearchHost(), other.getElasticSearchPort(), other.getHomeDirectoryPath(), other.getLogbackXmlFilePath());
+        this(other.getApiUrl(), other.getEnvironment(), other.getElasticSearchHost(), other.getElasticSearchPort(), other.getHomeDirectoryPath(), other.getLogbackXmlFilePath(), other.getPowerhouseMuseumApiKey());
     }
 
     /**
@@ -333,30 +369,33 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
         this.elasticSearchPort = com.google.common.primitives.UnsignedInteger.valueOf(9300);
         this.homeDirectoryPath = com.google.common.base.Preconditions.checkNotNull(homeDirectoryPath, "net.lab1318.costume.lib.CostumeProperties: missing homeDirectoryPath");
         this.logbackXmlFilePath = com.google.common.base.Optional.absent();
+        this.powerhouseMuseumApiKey = com.google.common.base.Optional.absent();
     }
 
     /**
      * Total Nullable constructor
      */
-    public CostumeProperties(final org.thryft.native_.Url apiUrl, final String environment, final String elasticSearchHost, final com.google.common.primitives.UnsignedInteger elasticSearchPort, final String homeDirectoryPath, final @javax.annotation.Nullable String logbackXmlFilePath) {
+    public CostumeProperties(final org.thryft.native_.Url apiUrl, final String environment, final String elasticSearchHost, final com.google.common.primitives.UnsignedInteger elasticSearchPort, final String homeDirectoryPath, final @javax.annotation.Nullable String logbackXmlFilePath, final @javax.annotation.Nullable String powerhouseMuseumApiKey) {
         this.apiUrl = com.google.common.base.Preconditions.checkNotNull(apiUrl, "net.lab1318.costume.lib.CostumeProperties: missing apiUrl");
         this.environment = com.google.common.base.Preconditions.checkNotNull(environment, "net.lab1318.costume.lib.CostumeProperties: missing environment");
         this.elasticSearchHost = com.google.common.base.Preconditions.checkNotNull(elasticSearchHost, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchHost");
         this.elasticSearchPort = com.google.common.base.Preconditions.checkNotNull(elasticSearchPort, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchPort");
         this.homeDirectoryPath = com.google.common.base.Preconditions.checkNotNull(homeDirectoryPath, "net.lab1318.costume.lib.CostumeProperties: missing homeDirectoryPath");
         this.logbackXmlFilePath = com.google.common.base.Optional.fromNullable(logbackXmlFilePath);
+        this.powerhouseMuseumApiKey = com.google.common.base.Optional.fromNullable(powerhouseMuseumApiKey);
     }
 
     /**
      * Optional constructor
      */
-    public CostumeProperties(final org.thryft.native_.Url apiUrl, final String environment, final String elasticSearchHost, final com.google.common.primitives.UnsignedInteger elasticSearchPort, final String homeDirectoryPath, final com.google.common.base.Optional<String> logbackXmlFilePath) {
+    public CostumeProperties(final org.thryft.native_.Url apiUrl, final String environment, final String elasticSearchHost, final com.google.common.primitives.UnsignedInteger elasticSearchPort, final String homeDirectoryPath, final com.google.common.base.Optional<String> logbackXmlFilePath, final com.google.common.base.Optional<String> powerhouseMuseumApiKey) {
         this.apiUrl = com.google.common.base.Preconditions.checkNotNull(apiUrl, "net.lab1318.costume.lib.CostumeProperties: missing apiUrl");
         this.environment = com.google.common.base.Preconditions.checkNotNull(environment, "net.lab1318.costume.lib.CostumeProperties: missing environment");
         this.elasticSearchHost = com.google.common.base.Preconditions.checkNotNull(elasticSearchHost, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchHost");
         this.elasticSearchPort = com.google.common.base.Preconditions.checkNotNull(elasticSearchPort, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchPort");
         this.homeDirectoryPath = com.google.common.base.Preconditions.checkNotNull(homeDirectoryPath, "net.lab1318.costume.lib.CostumeProperties: missing homeDirectoryPath");
         this.logbackXmlFilePath = com.google.common.base.Preconditions.checkNotNull(logbackXmlFilePath, "net.lab1318.costume.lib.CostumeProperties: missing logbackXmlFilePath");
+        this.powerhouseMuseumApiKey = com.google.common.base.Preconditions.checkNotNull(powerhouseMuseumApiKey, "net.lab1318.costume.lib.CostumeProperties: missing powerhouseMuseumApiKey");
     }
 
     private static java.util.Properties __mergeProperties(
@@ -437,7 +476,8 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
             getElasticSearchHost().equals(other.getElasticSearchHost()) &&
             getElasticSearchPort().equals(other.getElasticSearchPort()) &&
             getHomeDirectoryPath().equals(other.getHomeDirectoryPath()) &&
-            getLogbackXmlFilePath().equals(other.getLogbackXmlFilePath());
+            getLogbackXmlFilePath().equals(other.getLogbackXmlFilePath()) &&
+            getPowerhouseMuseumApiKey().equals(other.getPowerhouseMuseumApiKey());
     }
 
     @Override
@@ -449,6 +489,7 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
         case "elastic_search_port": return getElasticSearchPort();
         case "home_directory_path": return getHomeDirectoryPath();
         case "logback_xml_file_path": return getLogbackXmlFilePath();
+        case "powerhouse_museum_api_key": return getPowerhouseMuseumApiKey();
         default:
             throw new IllegalArgumentException(fieldName);
         }
@@ -481,6 +522,10 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
         return logbackXmlFilePath;
     }
 
+    public final com.google.common.base.Optional<String> getPowerhouseMuseumApiKey() {
+        return powerhouseMuseumApiKey;
+    }
+
     @Override
     public int hashCode() {
         int hashCode = 17;
@@ -491,6 +536,9 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
         hashCode = 31 * hashCode + getHomeDirectoryPath().hashCode();
         if (getLogbackXmlFilePath().isPresent()) {
             hashCode = 31 * hashCode + getLogbackXmlFilePath().get().hashCode();
+        }
+        if (getPowerhouseMuseumApiKey().isPresent()) {
+            hashCode = 31 * hashCode + getPowerhouseMuseumApiKey().get().hashCode();
         }
         return hashCode;
     }
@@ -503,7 +551,7 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
     public static CostumeProperties load(final com.google.common.base.Optional<java.io.File> commandLinePropertiesFilePath) {
         java.util.Properties __properties = new java.util.Properties();
 
-        String[] __propertyNames = {"api_url", "environment", "elastic_search_host", "elastic_search_port", "home_directory_path", "logback_xml_file_path"};
+        String[] __propertyNames = {"api_url", "environment", "elastic_search_host", "elastic_search_port", "home_directory_path", "logback_xml_file_path", "powerhouse_museum_api_key"};
         for (final String propertyName : __propertyNames) {
             final String propertyValue = System.getenv("COSTUME_" + propertyName.toUpperCase());
             if (propertyValue != null) {
@@ -612,11 +660,26 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
             }
         }
 
+        final com.google.common.base.Optional<String> powerhouseMuseumApiKey;
+        {
+            Object powerhouseMuseumApiKeyObject = __properties.remove("powerhouse_museum_api_key");
+            if (!(powerhouseMuseumApiKeyObject instanceof String)) {
+                powerhouseMuseumApiKey = com.google.common.base.Optional.<String>absent();
+            } else {
+                final String powerhouseMuseumApiKeyString = ((String)powerhouseMuseumApiKeyObject).trim();
+                if (powerhouseMuseumApiKeyString.isEmpty()) {
+                    powerhouseMuseumApiKey = com.google.common.base.Optional.<String>absent();
+                } else {
+                    powerhouseMuseumApiKey = com.google.common.base.Optional.of(powerhouseMuseumApiKeyString);
+                }
+            }
+        }
+
         for (final java.util.Map.Entry<Object, Object> entry : __properties.entrySet()) {
             throw new RuntimeException("properties file(s) have unknown property " + entry.getKey().toString());
         }
 
-        return new CostumeProperties(apiUrl, environment, elasticSearchHost, elasticSearchPort, homeDirectoryPath, logbackXmlFilePath);
+        return new CostumeProperties(apiUrl, environment, elasticSearchHost, elasticSearchPort, homeDirectoryPath, logbackXmlFilePath, powerhouseMuseumApiKey);
     }
 
     public static CostumeProperties readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -637,6 +700,7 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
         com.google.common.primitives.UnsignedInteger elasticSearchPort = com.google.common.primitives.UnsignedInteger.valueOf(9300);
         String homeDirectoryPath = null;
         com.google.common.base.Optional<String> logbackXmlFilePath = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> powerhouseMuseumApiKey = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         apiUrl = org.thryft.native_.Url.parse(iprot.readString());
@@ -647,9 +711,12 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
         if (__list.getSize() > 5) {
             logbackXmlFilePath = com.google.common.base.Optional.of(iprot.readString());
         }
+        if (__list.getSize() > 6) {
+            powerhouseMuseumApiKey = com.google.common.base.Optional.of(iprot.readString());
+        }
         iprot.readListEnd();
         try {
-            return new CostumeProperties(apiUrl, environment, elasticSearchHost, elasticSearchPort, homeDirectoryPath, logbackXmlFilePath);
+            return new CostumeProperties(apiUrl, environment, elasticSearchHost, elasticSearchPort, homeDirectoryPath, logbackXmlFilePath, powerhouseMuseumApiKey);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -662,6 +729,7 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
         com.google.common.primitives.UnsignedInteger elasticSearchPort = com.google.common.primitives.UnsignedInteger.valueOf(9300);
         String homeDirectoryPath = null;
         com.google.common.base.Optional<String> logbackXmlFilePath = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> powerhouseMuseumApiKey = com.google.common.base.Optional.absent();
 
         iprot.readStructBegin();
         while (true) {
@@ -694,43 +762,55 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
                 logbackXmlFilePath = com.google.common.base.Optional.of(iprot.readString());
                 break;
             }
+            case "powerhouse_museum_api_key": {
+                powerhouseMuseumApiKey = com.google.common.base.Optional.of(iprot.readString());
+                break;
+            }
             }
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
         try {
-            return new CostumeProperties(apiUrl, environment, elasticSearchHost, elasticSearchPort, homeDirectoryPath, logbackXmlFilePath);
+            return new CostumeProperties(apiUrl, environment, elasticSearchHost, elasticSearchPort, homeDirectoryPath, logbackXmlFilePath, powerhouseMuseumApiKey);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public CostumeProperties replaceApiUrl(final org.thryft.native_.Url apiUrl) {
-        return new CostumeProperties(apiUrl, this.environment, this.elasticSearchHost, this.elasticSearchPort, this.homeDirectoryPath, this.logbackXmlFilePath);
+        return new CostumeProperties(apiUrl, this.environment, this.elasticSearchHost, this.elasticSearchPort, this.homeDirectoryPath, this.logbackXmlFilePath, this.powerhouseMuseumApiKey);
     }
 
     public CostumeProperties replaceElasticSearchHost(final String elasticSearchHost) {
-        return new CostumeProperties(this.apiUrl, this.environment, elasticSearchHost, this.elasticSearchPort, this.homeDirectoryPath, this.logbackXmlFilePath);
+        return new CostumeProperties(this.apiUrl, this.environment, elasticSearchHost, this.elasticSearchPort, this.homeDirectoryPath, this.logbackXmlFilePath, this.powerhouseMuseumApiKey);
     }
 
     public CostumeProperties replaceElasticSearchPort(final com.google.common.primitives.UnsignedInteger elasticSearchPort) {
-        return new CostumeProperties(this.apiUrl, this.environment, this.elasticSearchHost, elasticSearchPort, this.homeDirectoryPath, this.logbackXmlFilePath);
+        return new CostumeProperties(this.apiUrl, this.environment, this.elasticSearchHost, elasticSearchPort, this.homeDirectoryPath, this.logbackXmlFilePath, this.powerhouseMuseumApiKey);
     }
 
     public CostumeProperties replaceEnvironment(final String environment) {
-        return new CostumeProperties(this.apiUrl, environment, this.elasticSearchHost, this.elasticSearchPort, this.homeDirectoryPath, this.logbackXmlFilePath);
+        return new CostumeProperties(this.apiUrl, environment, this.elasticSearchHost, this.elasticSearchPort, this.homeDirectoryPath, this.logbackXmlFilePath, this.powerhouseMuseumApiKey);
     }
 
     public CostumeProperties replaceHomeDirectoryPath(final String homeDirectoryPath) {
-        return new CostumeProperties(this.apiUrl, this.environment, this.elasticSearchHost, this.elasticSearchPort, homeDirectoryPath, this.logbackXmlFilePath);
+        return new CostumeProperties(this.apiUrl, this.environment, this.elasticSearchHost, this.elasticSearchPort, homeDirectoryPath, this.logbackXmlFilePath, this.powerhouseMuseumApiKey);
     }
 
     public CostumeProperties replaceLogbackXmlFilePath(final com.google.common.base.Optional<String> logbackXmlFilePath) {
-        return new CostumeProperties(this.apiUrl, this.environment, this.elasticSearchHost, this.elasticSearchPort, this.homeDirectoryPath, logbackXmlFilePath);
+        return new CostumeProperties(this.apiUrl, this.environment, this.elasticSearchHost, this.elasticSearchPort, this.homeDirectoryPath, logbackXmlFilePath, this.powerhouseMuseumApiKey);
     }
 
     public CostumeProperties replaceLogbackXmlFilePath(final String logbackXmlFilePath) {
         return replaceLogbackXmlFilePath(com.google.common.base.Optional.fromNullable(logbackXmlFilePath));
+    }
+
+    public CostumeProperties replacePowerhouseMuseumApiKey(final com.google.common.base.Optional<String> powerhouseMuseumApiKey) {
+        return new CostumeProperties(this.apiUrl, this.environment, this.elasticSearchHost, this.elasticSearchPort, this.homeDirectoryPath, this.logbackXmlFilePath, powerhouseMuseumApiKey);
+    }
+
+    public CostumeProperties replacePowerhouseMuseumApiKey(final String powerhouseMuseumApiKey) {
+        return replacePowerhouseMuseumApiKey(com.google.common.base.Optional.fromNullable(powerhouseMuseumApiKey));
     }
 
     public com.google.common.collect.ImmutableMap<String, Object> toMap() {
@@ -743,17 +823,20 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
         if (getLogbackXmlFilePath().isPresent()) {
             builder.put("logback_xml_file_path", getLogbackXmlFilePath().get());
         }
+        if (getPowerhouseMuseumApiKey().isPresent()) {
+            builder.put("powerhouse_museum_api_key", getPowerhouseMuseumApiKey().get());
+        }
         return builder.build();
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("api_url", getApiUrl()).add("environment", getEnvironment()).add("elastic_search_host", getElasticSearchHost()).add("elastic_search_port", getElasticSearchPort()).add("home_directory_path", getHomeDirectoryPath()).add("logback_xml_file_path", getLogbackXmlFilePath().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("api_url", getApiUrl()).add("environment", getEnvironment()).add("elastic_search_host", getElasticSearchHost()).add("elastic_search_port", getElasticSearchPort()).add("home_directory_path", getHomeDirectoryPath()).add("logback_xml_file_path", getLogbackXmlFilePath().orNull()).add("powerhouse_museum_api_key", getPowerhouseMuseumApiKey().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 6);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 7);
 
         oprot.writeString(getApiUrl().toString());
 
@@ -767,6 +850,12 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
 
         if (getLogbackXmlFilePath().isPresent()) {
             oprot.writeString(getLogbackXmlFilePath().get());
+        } else {
+            oprot.writeNull();
+        }
+
+        if (getPowerhouseMuseumApiKey().isPresent()) {
+            oprot.writeString(getPowerhouseMuseumApiKey().get());
         } else {
             oprot.writeNull();
         }
@@ -809,6 +898,12 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
             oprot.writeFieldEnd();
         }
 
+        if (getPowerhouseMuseumApiKey().isPresent()) {
+            oprot.writeFieldBegin("powerhouse_museum_api_key", org.thryft.protocol.Type.STRING, (short)0);
+            oprot.writeString(getPowerhouseMuseumApiKey().get());
+            oprot.writeFieldEnd();
+        }
+
         oprot.writeFieldStop();
     }
 
@@ -826,6 +921,8 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
     private final String homeDirectoryPath;
 
     private final com.google.common.base.Optional<String> logbackXmlFilePath;
+
+    private final com.google.common.base.Optional<String> powerhouseMuseumApiKey;
 
     private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(CostumeProperties.class);
 }
