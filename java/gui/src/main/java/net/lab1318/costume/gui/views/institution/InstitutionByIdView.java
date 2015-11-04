@@ -5,9 +5,11 @@ import org.notaweb.gui.EventBus;
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
+import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.GridLayout;
+import com.vaadin.ui.Link;
 import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.api.models.collection.CollectionEntry;
@@ -29,6 +31,9 @@ public class InstitutionByIdView extends TopLevelView {
         final VerticalLayout rootLayout = new VerticalLayout();
 
         rootLayout.addComponent(new InstitutionHeader(_getEventBus(), institutionEntry));
+
+        rootLayout.addComponent(new Link(institutionEntry.getModel().getUrl().toString(),
+                new ExternalResource(institutionEntry.getModel().getUrl().toString())));
 
         {
             final GridLayout collectionsLayout = new GridLayout();

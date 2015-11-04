@@ -21,8 +21,15 @@
         }, 
         "dynamic": "strict", 
         "properties": {
+          "2:copyright_notice": {
+            "type": "string"
+          }, 
           "1:title": {
             "type": "string"
+          }, 
+          "3:url": {
+            "type": "string", 
+            "analyzer": "email_and_url"
           }
         }
       }

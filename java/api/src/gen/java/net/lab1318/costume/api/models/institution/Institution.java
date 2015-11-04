@@ -3,23 +3,35 @@ package net.lab1318.costume.api.models.institution;
 public class Institution implements org.thryft.Struct, org.notaweb.api.models.Model {
     public static class Builder {
         public Builder() {
+            copyrightNotice = null;
             title = null;
+            url = null;
         }
 
         public Builder(final Institution other) {
+            this.copyrightNotice = other.getCopyrightNotice();
             this.title = other.getTitle();
+            this.url = other.getUrl();
         }
 
-        protected Institution _build(final String title) {
-            return new Institution(title);
+        protected Institution _build(final String copyrightNotice, final String title, final org.thryft.native_.Url url) {
+            return new Institution(copyrightNotice, title, url);
         }
 
         public Institution build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.institution.Institution: missing title"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(copyrightNotice, "net.lab1318.costume.api.models.institution.Institution: missing copyrightNotice"), com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.institution.Institution: missing title"), com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.institution.Institution: missing url"));
+        }
+
+        public final String getCopyrightNotice() {
+            return copyrightNotice;
         }
 
         public final String getTitle() {
             return title;
+        }
+
+        public final org.thryft.native_.Url getUrl() {
+            return url;
         }
 
         public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -35,7 +47,9 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             iprot.readListBegin();
+            copyrightNotice = iprot.readString();
             title = iprot.readString();
+            url = org.thryft.native_.Url.parse(iprot.readString());
             iprot.readListEnd();
             return this;
         }
@@ -48,9 +62,21 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
                     break;
                 }
                 switch (ifield.getName()) {
+                case "copyright_notice": {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        copyrightNotice = iprot.readString();
+                    }
+                    break;
+                }
                 case "title": {
                     if (!ifield.hasId() || ifield.getId() == 1) {
                         title = iprot.readString();
+                    }
+                    break;
+                }
+                case "url": {
+                    if (!ifield.hasId() || ifield.getId() == 3) {
+                        url = org.thryft.native_.Url.parse(iprot.readString());
                     }
                     break;
                 }
@@ -61,10 +87,17 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
             return this;
         }
 
+        public Builder setCopyrightNotice(final String copyrightNotice) {
+            this.copyrightNotice = com.google.common.base.Preconditions.checkNotNull(copyrightNotice);
+            return this;
+        }
+
         public Builder setIfPresent(final Institution other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
+            setCopyrightNotice(other.getCopyrightNotice());
             setTitle(other.getTitle());
+            setUrl(other.getUrl());
 
             return this;
         }
@@ -74,14 +107,26 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
             return this;
         }
 
+        public Builder setUrl(final org.thryft.native_.Url url) {
+            this.url = com.google.common.base.Preconditions.checkNotNull(url);
+            return this;
+        }
+
         public Builder set(final String name, @javax.annotation.Nullable final java.lang.Object value) {
             com.google.common.base.Preconditions.checkNotNull(name);
 
             switch (name.toLowerCase()) {
+            case "copyright_notice": setCopyrightNotice((String)value); return this;
             case "title": setTitle((String)value); return this;
+            case "url": setUrl((org.thryft.native_.Url)value); return this;
             default:
                 throw new IllegalArgumentException(name);
             }
+        }
+
+        public Builder unsetCopyrightNotice() {
+            this.copyrightNotice = null;
+            return this;
         }
 
         public Builder unsetTitle() {
@@ -89,12 +134,21 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
             return this;
         }
 
+        public Builder unsetUrl() {
+            this.url = null;
+            return this;
+        }
+
+        private String copyrightNotice;
         private String title;
+        private org.thryft.native_.Url url;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "title", org.thryft.protocol.Type.STRING);
+        COPYRIGHT_NOTICE("copyrightNotice", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "copyright_notice", org.thryft.protocol.Type.STRING),
+        TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "title", org.thryft.protocol.Type.STRING),
+        URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, true, 3, "url", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -138,7 +192,9 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
+            case "copyrightNotice": return COPYRIGHT_NOTICE;
             case "title": return TITLE;
+            case "url": return URL;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -146,7 +202,9 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
+            case "copyright_notice": return COPYRIGHT_NOTICE;
             case "title": return TITLE;
+            case "url": return URL;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -179,14 +237,16 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
      * Copy constructor
      */
     public Institution(final Institution other) {
-        this(other.getTitle());
+        this(other.getCopyrightNotice(), other.getTitle(), other.getUrl());
     }
 
     /**
      * Optional constructor
      */
-    public Institution(final String title) {
+    public Institution(final String copyrightNotice, final String title, final org.thryft.native_.Url url) {
+        this.copyrightNotice = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(copyrightNotice, "net.lab1318.costume.api.models.institution.Institution: missing copyrightNotice"), "net.lab1318.costume.api.models.institution.Institution: copyrightNotice is empty");
         this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.institution.Institution: missing title"), "net.lab1318.costume.api.models.institution.Institution: title is empty");
+        this.url = com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.institution.Institution: missing url");
     }
 
     public static Builder builder() {
@@ -211,26 +271,40 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
 
         final Institution other = (Institution)otherObject;
         return
-            getTitle().equals(other.getTitle());
+            getCopyrightNotice().equals(other.getCopyrightNotice()) &&
+            getTitle().equals(other.getTitle()) &&
+            getUrl().equals(other.getUrl());
     }
 
     @Override
     public java.lang.Object get(final String fieldName) {
         switch (fieldName) {
+        case "copyright_notice": return getCopyrightNotice();
         case "title": return getTitle();
+        case "url": return getUrl();
         default:
             throw new IllegalArgumentException(fieldName);
         }
+    }
+
+    public final String getCopyrightNotice() {
+        return copyrightNotice;
     }
 
     public final String getTitle() {
         return title;
     }
 
+    public final org.thryft.native_.Url getUrl() {
+        return url;
+    }
+
     @Override
     public int hashCode() {
         int hashCode = 17;
+        hashCode = 31 * hashCode + getCopyrightNotice().hashCode();
         hashCode = 31 * hashCode + getTitle().hashCode();
+        hashCode = 31 * hashCode + getUrl().hashCode();
         return hashCode;
     }
 
@@ -246,20 +320,26 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
     }
 
     public static Institution readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+        String copyrightNotice = null;
         String title = null;
+        org.thryft.native_.Url url = null;
 
         iprot.readListBegin();
+        copyrightNotice = iprot.readString();
         title = iprot.readString();
+        url = org.thryft.native_.Url.parse(iprot.readString());
         iprot.readListEnd();
         try {
-            return new Institution(title);
+            return new Institution(copyrightNotice, title, url);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public static Institution readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+        String copyrightNotice = null;
         String title = null;
+        org.thryft.native_.Url url = null;
 
         iprot.readStructBegin();
         while (true) {
@@ -268,9 +348,21 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
                 break;
             }
             switch (ifield.getName()) {
+            case "copyright_notice": {
+                if (!ifield.hasId() || ifield.getId() == 2) {
+                    copyrightNotice = iprot.readString();
+                }
+                break;
+            }
             case "title": {
                 if (!ifield.hasId() || ifield.getId() == 1) {
                     title = iprot.readString();
+                }
+                break;
+            }
+            case "url": {
+                if (!ifield.hasId() || ifield.getId() == 3) {
+                    url = org.thryft.native_.Url.parse(iprot.readString());
                 }
                 break;
             }
@@ -279,26 +371,38 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
         }
         iprot.readStructEnd();
         try {
-            return new Institution(title);
+            return new Institution(copyrightNotice, title, url);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
+    public Institution replaceCopyrightNotice(final String copyrightNotice) {
+        return new Institution(copyrightNotice, this.title, this.url);
+    }
+
     public Institution replaceTitle(final String title) {
-        return new Institution(title);
+        return new Institution(this.copyrightNotice, title, this.url);
+    }
+
+    public Institution replaceUrl(final org.thryft.native_.Url url) {
+        return new Institution(this.copyrightNotice, this.title, url);
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("title", getTitle()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("copyright_notice", getCopyrightNotice()).add("title", getTitle()).add("url", getUrl()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
+
+        oprot.writeString(getCopyrightNotice());
 
         oprot.writeString(getTitle());
+
+        oprot.writeString(getUrl().toString());
 
         oprot.writeListEnd();
     }
@@ -312,12 +416,24 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin("copyright_notice", org.thryft.protocol.Type.STRING, (short)2);
+        oprot.writeString(getCopyrightNotice());
+        oprot.writeFieldEnd();
+
         oprot.writeFieldBegin("title", org.thryft.protocol.Type.STRING, (short)1);
         oprot.writeString(getTitle());
+        oprot.writeFieldEnd();
+
+        oprot.writeFieldBegin("url", org.thryft.protocol.Type.STRING, (short)3);
+        oprot.writeString(getUrl().toString());
         oprot.writeFieldEnd();
 
         oprot.writeFieldStop();
     }
 
+    private final String copyrightNotice;
+
     private final String title;
+
+    private final org.thryft.native_.Url url;
 }

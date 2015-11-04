@@ -11,16 +11,20 @@ import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
+import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 
 @SuppressWarnings("serial")
 public final class ObjectForm extends CustomComponent {
-    public ObjectForm(final ObjectEntry objectEntry) {
+    public ObjectForm(final ObjectEntry objectEntry, final Institution institution) {
         final VerticalLayout rootLayout = new VerticalLayout();
 
         final Label titleLabel = new Label(objectEntry.getModel().getTitle());
-        titleLabel.setStyleName("h4");
+        titleLabel.setStyleName("h3");
         rootLayout.addComponent(titleLabel);
+
+        final Label copyrightLabel = new Label(institution.getCopyrightNotice());
+        rootLayout.addComponent(copyrightLabel);
 
         final HorizontalLayout twoPaneLayout = new HorizontalLayout();
         twoPaneLayout.setSizeFull();
@@ -36,10 +40,6 @@ public final class ObjectForm extends CustomComponent {
 
             if (objectEntry.getModel().getProvenance().isPresent()) {
                 formLayout.addComponent(__createTextField("Provenance", objectEntry.getModel().getProvenance().get()));
-            }
-
-            if (objectEntry.getModel().getSourceId().isPresent()) {
-                formLayout.addComponent(__createTextField("Source ID", objectEntry.getModel().getSourceId().get()));
             }
 
             if (objectEntry.getModel().getSummary().isPresent()) {
@@ -68,6 +68,7 @@ public final class ObjectForm extends CustomComponent {
 
     private TextArea __createTextArea(final String caption, final String value) {
         final TextArea textArea = new TextArea(caption, value);
+        textArea.addStyleName("borderlessTextField");
         textArea.setReadOnly(true);
         textArea.setWidth((float) ((value.length() <= 80 ? value.length() : 80) * 0.5), Unit.EM);
         return textArea;
@@ -75,8 +76,9 @@ public final class ObjectForm extends CustomComponent {
 
     private TextField __createTextField(final String caption, final String value) {
         final TextField textField = new TextField(caption, value);
+        textField.addStyleName("borderlessTextField");
         textField.setReadOnly(true);
-        textField.setWidth((float) (value.length() * 0.5), Unit.EM);
+        textField.setWidth((float) (value.length() * 1.0), Unit.EM);
         return textField;
     }
 }
