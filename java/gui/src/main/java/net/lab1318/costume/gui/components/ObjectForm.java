@@ -1,10 +1,12 @@
 package net.lab1318.costume.gui.components;
 
+import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Link;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
@@ -42,6 +44,11 @@ public final class ObjectForm extends CustomComponent {
 
             if (objectEntry.getModel().getSummary().isPresent()) {
                 formLayout.addComponent(__createTextArea("Summary", objectEntry.getModel().getSummary().get()));
+            }
+
+            if (objectEntry.getModel().getUrl().isPresent()) {
+                formLayout.addComponent(new Link(objectEntry.getModel().getUrl().get().toString(),
+                        new ExternalResource(objectEntry.getModel().getUrl().get().toString())));
             }
 
             twoPaneLayout.addComponent(formLayout);
