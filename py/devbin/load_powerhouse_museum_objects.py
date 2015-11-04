@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 import os.path
 
@@ -60,7 +61,9 @@ except NoSuchInstitutionException:
 institution_command_service.put_institution(
     InstitutionId.POWERHOUSE_MUSEUM,
     Institution.Builder()
+        .set_copyright_notice("Copyright %s Powerhouse Museum, licensed Creative Commons Attribution Non-Commercial" % datetime.now().year)
         .set_title("Powerhouse Museum")
+        .set_url('http://powerhousemuseum.com')
         .build()
 )
 
@@ -73,7 +76,7 @@ collection_id = \
     )
 
 
-with open(os.path.join(PROPERTIES.home_directory_path, 'data', 'powerhouse_museum.json')) as f:
+with open(os.path.join(PROPERTIES.home_directory_path, 'data', 'powerhouse_museum_category_items.json')) as f:
     response = json.loads(f.read())
     for item_dict in response['items']:
         object_ = parse_item(collection_id=collection_id, item_dict=item_dict)

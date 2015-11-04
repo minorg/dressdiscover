@@ -27,7 +27,7 @@ public class ObjectByIdView extends TopLevelView {
 
         rootLayout.addComponent(new CollectionHeader(collectionEntry, _getEventBus(), institutionEntry));
 
-        rootLayout.addComponent(new ObjectForm(objectEntry));
+        rootLayout.addComponent(new ObjectForm(objectEntry, institutionEntry.getModel()));
 
         setCompositionRoot(rootLayout);
     }
