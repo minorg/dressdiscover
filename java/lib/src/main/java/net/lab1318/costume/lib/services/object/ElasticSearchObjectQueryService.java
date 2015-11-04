@@ -19,6 +19,7 @@ import org.thryft.protocol.InputProtocolException;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
+import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -87,35 +88,86 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     }
 
     @Override
-    public ImmutableList<ObjectEntry> getObjects() throws IoException {
+    public UnsignedInteger getObjectCount() throws IoException {
         try {
-            return elasticSearchIndex.getModels(logger, Markers.GET_OBJECTS,
-                    ObjectElasticSearchModelFactory.getInstance(), elasticSearchIndex.prepareSearchModels()
-                            .setQuery(QueryBuilders.matchAllQuery()).setSize(Integer.MAX_VALUE));
+            return UnsignedInteger
+                    .valueOf(elasticSearchIndex.countModels(logger, Markers.GET_OBJECT_COUNT).longValue());
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting objects");
+            throw ServiceExceptionHelper.wrapException(e, "error getting object count");
         }
     }
 
     @Override
-    public ImmutableList<ObjectEntry> getObjectsByCollectionId(final CollectionId collectionId) throws IoException {
+    public UnsignedInteger getObjectCountByCollectionId(final CollectionId collectionId) throws IoException {
         try {
-            return elasticSearchIndex
-                    .getModels(logger, Markers.GET_OBJECTS_BY_COLLECTION_ID,
-                            ObjectElasticSearchModelFactory.getInstance(),
-                            elasticSearchIndex.prepareSearchModels()
-                                    .setQuery(QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
-                                            FilterBuilders.termFilter(
-                                                    Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
-                                                    collectionId.toString())))
-                                    .setSize(Integer.MAX_VALUE));
+            return UnsignedInteger
+                    .valueOf(
+                            elasticSearchIndex
+                                    .countModels(logger, Markers.GET_OBJECT_COUNT_BY_COLLECTION_ID,
+                                            elasticSearchIndex.prepareCountModels()
+                                                    .setQuery(QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
+                                                            FilterBuilders.termFilter(
+                                                                    Object.FieldMetadata.COLLECTION_ID
+                                                                            .getThriftProtocolKey(),
+                                                                    collectionId.toString()))))
+                                    .longValue());
+        } catch (final IOException e) {
+            throw ServiceExceptionHelper.wrapException(e, "error getting object count by collection id");
+        }
+    }
+
+    @Override
+    public UnsignedInteger getObjectCountByInstitutionId(final InstitutionId institutionId) throws IoException {
+        try {
+            return UnsignedInteger
+                    .valueOf(
+                            elasticSearchIndex
+                                    .countModels(logger, Markers.GET_OBJECT_COUNT_BY_INSTITUTION_ID,
+                                            elasticSearchIndex.prepareCountModels()
+                                                    .setQuery(QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
+                                                            FilterBuilders.termFilter(
+                                                                    Object.FieldMetadata.INSTITUTION_ID
+                                                                            .getThriftProtocolKey(),
+                                                                    institutionId.toString()))))
+                                    .longValue());
+        } catch (final IOException e) {
+            throw ServiceExceptionHelper.wrapException(e, "error getting object count by collection id");
+        }
+    }
+
+    @Override
+    public ImmutableList<ObjectEntry> getObjects(final UnsignedInteger from, final UnsignedInteger size)
+            throws IoException {
+        try {
+            return elasticSearchIndex.getModels(logger, Markers.GET_OBJECTS_BY_COLLECTION_ID,
+                    ObjectElasticSearchModelFactory.getInstance(), elasticSearchIndex.prepareSearchModels()
+                            .setFrom(from.intValue()).setQuery(QueryBuilders.matchAllQuery()).setSize(size.intValue()));
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error getting objects by collection id");
         }
     }
 
     @Override
-    public ImmutableList<ObjectEntry> getObjectsByInstitutionId(final InstitutionId institutionId) throws IoException {
+    public ImmutableList<ObjectEntry> getObjectsByCollectionId(final CollectionId collectionId,
+            final UnsignedInteger from, final UnsignedInteger size) throws IoException {
+        try {
+            return elasticSearchIndex
+                    .getModels(logger, Markers.GET_OBJECTS_BY_COLLECTION_ID,
+                            ObjectElasticSearchModelFactory.getInstance(),
+                            elasticSearchIndex.prepareSearchModels().setFrom(from.intValue())
+                                    .setQuery(QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
+                                            FilterBuilders.termFilter(
+                                                    Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
+                                                    collectionId.toString())))
+                                    .setSize(size.intValue()));
+        } catch (final IOException e) {
+            throw ServiceExceptionHelper.wrapException(e, "error getting objects by collection id");
+        }
+    }
+
+    @Override
+    public ImmutableList<ObjectEntry> getObjectsByInstitutionId(final InstitutionId institutionId,
+            final UnsignedInteger from, final UnsignedInteger size) throws IoException {
         try {
             return elasticSearchIndex.getModels(logger, Markers.GET_OBJECTS_BY_INSTITUTION_ID,
                     ObjectElasticSearchModelFactory.getInstance(),

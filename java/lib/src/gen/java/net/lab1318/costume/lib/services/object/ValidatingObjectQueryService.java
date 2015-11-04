@@ -20,28 +20,63 @@ public class ValidatingObjectQueryService implements net.lab1318.costume.api.ser
     }
 
     @Override
-    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> getObjects() throws net.lab1318.costume.api.services.IoException {
-        return com.google.common.base.Preconditions.checkNotNull(delegate.getObjects(), "net.lab1318.costume.api.services.object.ObjectQueryService.getObjects: missing returnValue");
+    public final com.google.common.primitives.UnsignedInteger getObjectCount() throws net.lab1318.costume.api.services.IoException {
+        return com.google.common.base.Preconditions.checkNotNull(delegate.getObjectCount(), "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectCount: missing returnValue");
     }
 
     @Override
-    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> getObjectsByCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) throws net.lab1318.costume.api.services.IoException {
-        _validateGetObjectsByCollectionIdParameters(collectionId);
-        return com.google.common.base.Preconditions.checkNotNull(delegate.getObjectsByCollectionId(collectionId), "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectsByCollectionId: missing returnValue");
+    public final com.google.common.primitives.UnsignedInteger getObjectCountByCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) throws net.lab1318.costume.api.services.IoException {
+        _validateGetObjectCountByCollectionIdParameters(collectionId);
+        return com.google.common.base.Preconditions.checkNotNull(delegate.getObjectCountByCollectionId(collectionId), "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectCountByCollectionId: missing returnValue");
     }
 
-    protected void _validateGetObjectsByCollectionIdParameters(final net.lab1318.costume.api.models.collection.CollectionId collectionId) {
+    protected void _validateGetObjectCountByCollectionIdParameters(final net.lab1318.costume.api.models.collection.CollectionId collectionId) {
+        com.google.common.base.Preconditions.checkNotNull(collectionId, "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectCountByCollectionId: missing collectionId");
+    }
+
+    @Override
+    public final com.google.common.primitives.UnsignedInteger getObjectCountByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws net.lab1318.costume.api.services.IoException {
+        _validateGetObjectCountByInstitutionIdParameters(institutionId);
+        return com.google.common.base.Preconditions.checkNotNull(delegate.getObjectCountByInstitutionId(institutionId), "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectCountByInstitutionId: missing returnValue");
+    }
+
+    protected void _validateGetObjectCountByInstitutionIdParameters(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
+        com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectCountByInstitutionId: missing institutionId");
+    }
+
+    @Override
+    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> getObjects(final com.google.common.primitives.UnsignedInteger from, final com.google.common.primitives.UnsignedInteger size) throws net.lab1318.costume.api.services.IoException {
+        _validateGetObjectsParameters(from, size);
+        return com.google.common.base.Preconditions.checkNotNull(delegate.getObjects(from, size), "net.lab1318.costume.api.services.object.ObjectQueryService.getObjects: missing returnValue");
+    }
+
+    protected void _validateGetObjectsParameters(final com.google.common.primitives.UnsignedInteger from, final com.google.common.primitives.UnsignedInteger size) {
+        com.google.common.base.Preconditions.checkNotNull(from, "net.lab1318.costume.api.services.object.ObjectQueryService.getObjects: missing from");
+        com.google.common.base.Preconditions.checkNotNull(size, "net.lab1318.costume.api.services.object.ObjectQueryService.getObjects: missing size");
+    }
+
+    @Override
+    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> getObjectsByCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final com.google.common.primitives.UnsignedInteger from, final com.google.common.primitives.UnsignedInteger size) throws net.lab1318.costume.api.services.IoException {
+        _validateGetObjectsByCollectionIdParameters(collectionId, from, size);
+        return com.google.common.base.Preconditions.checkNotNull(delegate.getObjectsByCollectionId(collectionId, from, size), "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectsByCollectionId: missing returnValue");
+    }
+
+    protected void _validateGetObjectsByCollectionIdParameters(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final com.google.common.primitives.UnsignedInteger from, final com.google.common.primitives.UnsignedInteger size) {
         com.google.common.base.Preconditions.checkNotNull(collectionId, "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectsByCollectionId: missing collectionId");
+        com.google.common.base.Preconditions.checkNotNull(from, "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectsByCollectionId: missing from");
+        com.google.common.base.Preconditions.checkNotNull(size, "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectsByCollectionId: missing size");
     }
 
     @Override
-    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> getObjectsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws net.lab1318.costume.api.services.IoException {
-        _validateGetObjectsByInstitutionIdParameters(institutionId);
-        return com.google.common.base.Preconditions.checkNotNull(delegate.getObjectsByInstitutionId(institutionId), "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectsByInstitutionId: missing returnValue");
+    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> getObjectsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final com.google.common.primitives.UnsignedInteger from, final com.google.common.primitives.UnsignedInteger size) throws net.lab1318.costume.api.services.IoException {
+        _validateGetObjectsByInstitutionIdParameters(institutionId, from, size);
+        return com.google.common.base.Preconditions.checkNotNull(delegate.getObjectsByInstitutionId(institutionId, from, size), "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectsByInstitutionId: missing returnValue");
     }
 
-    protected void _validateGetObjectsByInstitutionIdParameters(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
+    protected void _validateGetObjectsByInstitutionIdParameters(final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final com.google.common.primitives.UnsignedInteger from, final com.google.common.primitives.UnsignedInteger size) {
         com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectsByInstitutionId: missing institutionId");
+        com.google.common.base.Preconditions.checkNotNull(from, "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectsByInstitutionId: missing from");
+        com.google.common.base.Preconditions.checkNotNull(size, "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectsByInstitutionId: missing size");
     }
 
     private final net.lab1318.costume.api.services.object.ObjectQueryService delegate;

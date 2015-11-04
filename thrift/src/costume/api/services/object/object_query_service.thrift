@@ -13,6 +13,7 @@ include "costume/api/models/object/object_id.thrift"
 include "costume/api/services/io_exception.thrift"
 include "costume/api/services/object/invalid_object_id_exception.thrift"
 include "costume/api/services/object/no_such_object_exception.thrift"
+include "thryft/native/u32.thrift"
 
 service ObjectQueryService {
 	object.Object
@@ -24,22 +25,48 @@ service ObjectQueryService {
 		no_such_object_exception.NoSuchObjectException e3
 	);
 
+	u32.u32
+	get_object_count(
+	) throws (
+		io_exception.IoException e
+	);
+
+	u32.u32
+	get_object_count_by_collection_id(
+		collection_id.CollectionId collection_id
+	) throws (
+		io_exception.IoException e
+	);
+
+	u32.u32
+	get_object_count_by_institution_id(
+		institution_id.InstitutionId institution_id
+	) throws (
+		io_exception.IoException e
+	);
+
 	list<object_entry.ObjectEntry>
 	get_objects(
+		u32.u32 from_,
+		u32.u32 size
 	) throws (
 		io_exception.IoException e
 	);
 
 	list<object_entry.ObjectEntry>
 	get_objects_by_collection_id(
-		collection_id.CollectionId collection_id
+		collection_id.CollectionId collection_id,
+		u32.u32 from_,
+		u32.u32 size
 	) throws (
 		io_exception.IoException e
 	);
 
 	list<object_entry.ObjectEntry>
 	get_objects_by_institution_id(
-		institution_id.InstitutionId institution_id
+		institution_id.InstitutionId institution_id,
+		u32.u32 from_,
+		u32.u32 size
 	) throws (
 		io_exception.IoException e
 	);

@@ -124,8 +124,13 @@ public class CollectionEntry implements org.thryft.Struct, org.notaweb.api.model
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        ID(new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.CollectionId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),
-        MODEL(new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.Collection>() {}, true, 0, "model", org.thryft.protocol.Type.STRUCT);
+        ID("id", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.CollectionId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),
+        MODEL("model", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.Collection>() {}, true, 0, "model", org.thryft.protocol.Type.STRUCT);
+
+        @Override
+        public String getJavaName() {
+            return javaName;
+        }
 
         @Override
         public com.google.common.reflect.TypeToken<?> getJavaType() {
@@ -180,7 +185,8 @@ public class CollectionEntry implements org.thryft.Struct, org.notaweb.api.model
             }
         }
 
-        private FieldMetadata(final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+            this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
@@ -193,6 +199,7 @@ public class CollectionEntry implements org.thryft.Struct, org.notaweb.api.model
             this.thriftProtocolType = thriftProtocolType;
         }
 
+        private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
         private final int thriftId;

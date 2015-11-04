@@ -260,13 +260,18 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        API_URL(new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, true, 0, "api_url", org.thryft.protocol.Type.STRING),
-        ENVIRONMENT(new com.google.common.reflect.TypeToken<String>() {}, true, 0, "environment", org.thryft.protocol.Type.STRING),
-        ELASTIC_SEARCH_HOST(new com.google.common.reflect.TypeToken<String>() {}, true, 0, "elastic_search_host", org.thryft.protocol.Type.STRING),
-        ELASTIC_SEARCH_PORT(new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, true, 0, "elastic_search_port", org.thryft.protocol.Type.I32),
-        HOME_DIRECTORY_PATH(new com.google.common.reflect.TypeToken<String>() {}, true, 0, "home_directory_path", org.thryft.protocol.Type.STRING),
-        LOGBACK_XML_FILE_PATH(new com.google.common.reflect.TypeToken<String>() {}, false, 0, "logback_xml_file_path", org.thryft.protocol.Type.STRING),
-        POWERHOUSE_MUSEUM_API_KEY(new com.google.common.reflect.TypeToken<String>() {}, false, 0, "powerhouse_museum_api_key", org.thryft.protocol.Type.STRING);
+        API_URL("apiUrl", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, true, 0, "api_url", org.thryft.protocol.Type.STRING),
+        ENVIRONMENT("environment", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "environment", org.thryft.protocol.Type.STRING),
+        ELASTIC_SEARCH_HOST("elasticSearchHost", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "elastic_search_host", org.thryft.protocol.Type.STRING),
+        ELASTIC_SEARCH_PORT("elasticSearchPort", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, true, 0, "elastic_search_port", org.thryft.protocol.Type.I32),
+        HOME_DIRECTORY_PATH("homeDirectoryPath", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "home_directory_path", org.thryft.protocol.Type.STRING),
+        LOGBACK_XML_FILE_PATH("logbackXmlFilePath", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "logback_xml_file_path", org.thryft.protocol.Type.STRING),
+        POWERHOUSE_MUSEUM_API_KEY("powerhouseMuseumApiKey", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "powerhouse_museum_api_key", org.thryft.protocol.Type.STRING);
+
+        @Override
+        public String getJavaName() {
+            return javaName;
+        }
 
         @Override
         public com.google.common.reflect.TypeToken<?> getJavaType() {
@@ -331,7 +336,8 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
             }
         }
 
-        private FieldMetadata(final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+            this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
@@ -344,6 +350,7 @@ public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Pro
             this.thriftProtocolType = thriftProtocolType;
         }
 
+        private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
         private final int thriftId;

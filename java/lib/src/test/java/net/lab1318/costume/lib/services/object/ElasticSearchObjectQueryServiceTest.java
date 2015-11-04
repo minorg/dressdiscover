@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.primitives.UnsignedInteger;
 
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
@@ -28,9 +29,32 @@ public final class ElasticSearchObjectQueryServiceTest extends ObjectServiceTest
     }
 
     @Test
+    public void testGetObjectCount() throws Exception {
+        final ImmutableMap<ObjectId, Object> expected = _postObjects();
+        assertEquals(expected.size(), objectQueryService.getObjectCount().intValue());
+    }
+
+    @Test
+    public void testGetObjectCountByCollectionId() throws Exception {
+        _postObjects();
+        for (final CollectionEntry collectionEntry : collectionQueryService.getCollections()) {
+            assertNotEquals(0, objectQueryService.getObjectCountByCollectionId(collectionEntry.getId()).intValue());
+        }
+    }
+
+    @Test
+    public void testGetObjectCountByInstitutionId() throws Exception {
+        _postObjects();
+        for (final InstitutionEntry institutionEntry : TestData.getInstance().getInstitutions()) {
+            assertNotEquals(0, objectQueryService.getObjectCountByInstitutionId(institutionEntry.getId()).intValue());
+        }
+    }
+
+    @Test
     public void testGetObjects() throws Exception {
         final ImmutableMap<ObjectId, Object> expected = _postObjects();
-        final ImmutableList<ObjectEntry> actual = objectQueryService.getObjects();
+        final ImmutableList<ObjectEntry> actual = objectQueryService.getObjects(UnsignedInteger.ZERO,
+                UnsignedInteger.MAX_VALUE);
         assertEquals(TestData.getInstance().getObjects().size(), actual.size());
         for (final Map.Entry<ObjectId, Object> expectedEntry : expected.entrySet()) {
             boolean found = false;
@@ -49,7 +73,9 @@ public final class ElasticSearchObjectQueryServiceTest extends ObjectServiceTest
     public void testGetObjectsByCollectionId() throws Exception {
         _postObjects();
         for (final CollectionEntry collectionEntry : collectionQueryService.getCollections()) {
-            assertNotEquals(0, objectQueryService.getObjectsByCollectionId(collectionEntry.getId()).size());
+            assertNotEquals(0, objectQueryService
+                    .getObjectsByCollectionId(collectionEntry.getId(), UnsignedInteger.ZERO, UnsignedInteger.MAX_VALUE)
+                    .size());
         }
     }
 
@@ -57,7 +83,8 @@ public final class ElasticSearchObjectQueryServiceTest extends ObjectServiceTest
     public void testGetObjectsByInstitutionId() throws Exception {
         _postObjects();
         for (final InstitutionEntry institutionEntry : TestData.getInstance().getInstitutions()) {
-            assertNotEquals(0, objectQueryService.getObjectsByInstitutionId(institutionEntry.getId()).size());
+            assertNotEquals(0, objectQueryService.getObjectsByInstitutionId(institutionEntry.getId(),
+                    UnsignedInteger.ZERO, UnsignedInteger.MAX_VALUE).size());
         }
     }
 }

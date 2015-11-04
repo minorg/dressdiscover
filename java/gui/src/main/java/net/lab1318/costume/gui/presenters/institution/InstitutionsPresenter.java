@@ -13,7 +13,6 @@ import com.vaadin.server.SystemError;
 import com.vaadin.ui.UI;
 
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
-import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService.Messages.GetInstitutionByIdRequest;
@@ -30,7 +29,8 @@ public class InstitutionsPresenter extends Presenter<InstitutionsView> {
 
     @Subscribe
     public void onGetInstitutionByIdRequest(final GetInstitutionByIdRequest request) {
-        __navigateToInstitutionId(request.getId());
+        UI.getCurrent().getNavigator()
+                .navigateTo(InstitutionByIdView.NAME + "/" + request.getId().name().toLowerCase());
     }
 
     @Override
@@ -43,10 +43,6 @@ public class InstitutionsPresenter extends Presenter<InstitutionsView> {
             return;
         }
         _getView().setInstitutions(institutions);
-    }
-
-    private void __navigateToInstitutionId(final InstitutionId institutionId) {
-        UI.getCurrent().getNavigator().navigateTo(InstitutionByIdView.NAME + "/" + institutionId.name().toLowerCase());
     }
 
     private final InstitutionQueryService institutionQueryService;

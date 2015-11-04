@@ -119,7 +119,12 @@ public interface CollectionCommandService {
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                ID(new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.CollectionId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING);
+                ID("id", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.CollectionId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING);
+
+                @Override
+                public String getJavaName() {
+                    return javaName;
+                }
 
                 @Override
                 public com.google.common.reflect.TypeToken<?> getJavaType() {
@@ -172,7 +177,8 @@ public interface CollectionCommandService {
                     }
                 }
 
-                private FieldMetadata(final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                    this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
                     this.thriftId = thriftId;
@@ -185,6 +191,7 @@ public interface CollectionCommandService {
                     this.thriftProtocolType = thriftProtocolType;
                 }
 
+                private final String javaName;
                 private final com.google.common.reflect.TypeToken<?> javaType;
                 private final boolean required;
                 private final int thriftId;
@@ -966,7 +973,12 @@ public interface CollectionCommandService {
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                INSTITUTION_ID(new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, true, 0, "institution_id", org.thryft.protocol.Type.STRING);
+                INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, true, 0, "institution_id", org.thryft.protocol.Type.STRING);
+
+                @Override
+                public String getJavaName() {
+                    return javaName;
+                }
 
                 @Override
                 public com.google.common.reflect.TypeToken<?> getJavaType() {
@@ -1019,7 +1031,8 @@ public interface CollectionCommandService {
                     }
                 }
 
-                private FieldMetadata(final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                    this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
                     this.thriftId = thriftId;
@@ -1032,6 +1045,7 @@ public interface CollectionCommandService {
                     this.thriftProtocolType = thriftProtocolType;
                 }
 
+                private final String javaName;
                 private final com.google.common.reflect.TypeToken<?> javaType;
                 private final boolean required;
                 private final int thriftId;
@@ -1453,7 +1467,12 @@ public interface CollectionCommandService {
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                COLLECTION(new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.Collection>() {}, true, 0, "collection", org.thryft.protocol.Type.STRUCT);
+                COLLECTION("collection", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.Collection>() {}, true, 0, "collection", org.thryft.protocol.Type.STRUCT);
+
+                @Override
+                public String getJavaName() {
+                    return javaName;
+                }
 
                 @Override
                 public com.google.common.reflect.TypeToken<?> getJavaType() {
@@ -1506,7 +1525,8 @@ public interface CollectionCommandService {
                     }
                 }
 
-                private FieldMetadata(final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                    this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
                     this.thriftId = thriftId;
@@ -1519,6 +1539,7 @@ public interface CollectionCommandService {
                     this.thriftProtocolType = thriftProtocolType;
                 }
 
+                private final String javaName;
                 private final com.google.common.reflect.TypeToken<?> javaType;
                 private final boolean required;
                 private final int thriftId;
@@ -1772,7 +1793,12 @@ public interface CollectionCommandService {
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                RETURN_VALUE(new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.CollectionId>() {}, true, 0, "return_value", org.thryft.protocol.Type.STRING);
+                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.CollectionId>() {}, true, 0, "return_value", org.thryft.protocol.Type.STRING);
+
+                @Override
+                public String getJavaName() {
+                    return javaName;
+                }
 
                 @Override
                 public com.google.common.reflect.TypeToken<?> getJavaType() {
@@ -1825,7 +1851,8 @@ public interface CollectionCommandService {
                     }
                 }
 
-                private FieldMetadata(final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                    this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
                     this.thriftId = thriftId;
@@ -1838,6 +1865,7 @@ public interface CollectionCommandService {
                     this.thriftProtocolType = thriftProtocolType;
                 }
 
+                private final String javaName;
                 private final com.google.common.reflect.TypeToken<?> javaType;
                 private final boolean required;
                 private final int thriftId;
