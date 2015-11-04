@@ -1,7 +1,6 @@
 package net.lab1318.costume.gui.components;
 
 import org.notaweb.gui.EventBus;
-import org.thryft.native_.Url;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
@@ -42,16 +41,16 @@ public final class ObjectsTable extends Table {
                 return button;
             }
         });
-        addGeneratedColumn(Object.FieldMetadata.THUMBNAIL_URL.getJavaName(), new ColumnGenerator() {
+        addGeneratedColumn(Object.FieldMetadata.THUMBNAIL.getJavaName(), new ColumnGenerator() {
             @Override
             public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
                     final java.lang.Object columnId) {
                 final ObjectId objectId = (ObjectId) source.getItem(itemId).getItemProperty("id").getValue();
                 @SuppressWarnings("unchecked")
-                final Optional<Url> thumbnailUrl = (Optional<Url>) source.getItem(itemId)
-                        .getItemProperty(Object.FieldMetadata.THUMBNAIL_URL.getJavaName()).getValue();
-                if (thumbnailUrl.isPresent()) {
-                    final Image image = new Image("thumbnail", thumbnailUrl.get());
+                final Optional<net.lab1318.costume.api.models.image.Image> thumbnail = (Optional<net.lab1318.costume.api.models.image.Image>) source
+                        .getItem(itemId).getItemProperty(Object.FieldMetadata.THUMBNAIL.getJavaName()).getValue();
+                if (thumbnail.isPresent()) {
+                    final Image image = new Image("", thumbnail.get());
                     image.addClickListener(new ClickListener() {
                         @Override
                         public void click(final com.vaadin.event.MouseEvents.ClickEvent event) {
@@ -65,6 +64,6 @@ public final class ObjectsTable extends Table {
             }
         });
         setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
-        setVisibleColumns(Object.FieldMetadata.THUMBNAIL_URL.getJavaName(), Object.FieldMetadata.TITLE.getJavaName());
+        setVisibleColumns(Object.FieldMetadata.THUMBNAIL.getJavaName(), Object.FieldMetadata.TITLE.getJavaName());
     }
 }

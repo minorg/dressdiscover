@@ -1,4 +1,5 @@
 import __builtin__
+import costume.api.models.image.image
 import costume.api.models.institution.institution_id
 
 
@@ -13,7 +14,7 @@ class Object(object):
             provenance=None,
             source_id=None,
             summary=None,
-            thumbnail_url=None,
+            thumbnail=None,
             url=None,
         ):
             '''
@@ -24,7 +25,7 @@ class Object(object):
             :type provenance: str or None
             :type source_id: str or None
             :type summary: str or None
-            :type thumbnail_url: str or None
+            :type thumbnail: costume.api.models.image.image.Image or None
             :type url: str or None
             '''
 
@@ -35,11 +36,11 @@ class Object(object):
             self.__provenance = provenance
             self.__source_id = source_id
             self.__summary = summary
-            self.__thumbnail_url = thumbnail_url
+            self.__thumbnail = thumbnail
             self.__url = url
 
         def build(self):
-            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, title=self.__title, description=self.__description, provenance=self.__provenance, source_id=self.__source_id, summary=self.__summary, thumbnail_url=self.__thumbnail_url, url=self.__url)
+            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, title=self.__title, description=self.__description, provenance=self.__provenance, source_id=self.__source_id, summary=self.__summary, thumbnail=self.__thumbnail, url=self.__url)
 
         @property
         def collection_id(self):
@@ -121,12 +122,12 @@ class Object(object):
             self.__summary = summary
             return self
 
-        def set_thumbnail_url(self, thumbnail_url):
+        def set_thumbnail(self, thumbnail):
             '''
-            :type thumbnail_url: str or None
+            :type thumbnail: costume.api.models.image.image.Image or None
             '''
 
-            self.__thumbnail_url = thumbnail_url
+            self.__thumbnail = thumbnail
             return self
 
         def set_title(self, title):
@@ -162,12 +163,12 @@ class Object(object):
             return self.__summary
 
         @property
-        def thumbnail_url(self):
+        def thumbnail(self):
             '''
-            :rtype: str
+            :rtype: costume.api.models.image.image.Image
             '''
 
-            return self.__thumbnail_url
+            return self.__thumbnail
 
         @property
         def title(self):
@@ -186,7 +187,7 @@ class Object(object):
             :type provenance: str or None
             :type source_id: str or None
             :type summary: str or None
-            :type thumbnail_url: str or None
+            :type thumbnail: costume.api.models.image.image.Image or None
             :type url: str or None
             '''
 
@@ -198,7 +199,7 @@ class Object(object):
                 self.set_provenance(object.provenance)
                 self.set_source_id(object.source_id)
                 self.set_summary(object.summary)
-                self.set_thumbnail_url(object.thumbnail_url)
+                self.set_thumbnail(object.thumbnail)
                 self.set_url(object.url)
             elif isinstance(object, dict):
                 for key, value in object.iteritems():
@@ -263,13 +264,13 @@ class Object(object):
 
             self.set_summary(summary)
 
-        @thumbnail_url.setter
-        def thumbnail_url(self, thumbnail_url):
+        @thumbnail.setter
+        def thumbnail(self, thumbnail):
             '''
-            :type thumbnail_url: str or None
+            :type thumbnail: costume.api.models.image.image.Image or None
             '''
 
-            self.set_thumbnail_url(thumbnail_url)
+            self.set_thumbnail(thumbnail)
 
         @title.setter
         def title(self, title):
@@ -296,7 +297,7 @@ class Object(object):
         provenance=None,
         source_id=None,
         summary=None,
-        thumbnail_url=None,
+        thumbnail=None,
         url=None,
     ):
         '''
@@ -307,7 +308,7 @@ class Object(object):
         :type provenance: str or None
         :type source_id: str or None
         :type summary: str or None
-        :type thumbnail_url: str or None
+        :type thumbnail: costume.api.models.image.image.Image or None
         :type url: str or None
         '''
 
@@ -351,10 +352,10 @@ class Object(object):
                 raise TypeError("expected summary to be a str but it is a %s" % getattr(__builtin__, 'type')(summary))
         self.__summary = summary
 
-        if thumbnail_url is not None:
-            if not isinstance(thumbnail_url, basestring):
-                raise TypeError("expected thumbnail_url to be a str but it is a %s" % getattr(__builtin__, 'type')(thumbnail_url))
-        self.__thumbnail_url = thumbnail_url
+        if thumbnail is not None:
+            if not isinstance(thumbnail, costume.api.models.image.image.Image):
+                raise TypeError("expected thumbnail to be a costume.api.models.image.image.Image but it is a %s" % getattr(__builtin__, 'type')(thumbnail))
+        self.__thumbnail = thumbnail
 
         if url is not None:
             if not isinstance(url, basestring):
@@ -376,14 +377,14 @@ class Object(object):
             return False
         if self.summary != other.summary:
             return False
-        if self.thumbnail_url != other.thumbnail_url:
+        if self.thumbnail != other.thumbnail:
             return False
         if self.url != other.url:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.title,self.description,self.provenance,self.source_id,self.summary,self.thumbnail_url,self.url,))
+        return hash((self.collection_id,self.institution_id,self.title,self.description,self.provenance,self.source_id,self.summary,self.thumbnail,self.url,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -404,8 +405,8 @@ class Object(object):
             field_reprs.append('source_id=' + "'" + self.source_id.encode('ascii', 'replace') + "'")
         if self.summary is not None:
             field_reprs.append('summary=' + "'" + self.summary.encode('ascii', 'replace') + "'")
-        if self.thumbnail_url is not None:
-            field_reprs.append('thumbnail_url=' + "'" + self.thumbnail_url.encode('ascii', 'replace') + "'")
+        if self.thumbnail is not None:
+            field_reprs.append('thumbnail=' + repr(self.thumbnail))
         if self.url is not None:
             field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
         return 'Object(' + ', '.join(field_reprs) + ')'
@@ -423,8 +424,8 @@ class Object(object):
             field_reprs.append('source_id=' + "'" + self.source_id.encode('ascii', 'replace') + "'")
         if self.summary is not None:
             field_reprs.append('summary=' + "'" + self.summary.encode('ascii', 'replace') + "'")
-        if self.thumbnail_url is not None:
-            field_reprs.append('thumbnail_url=' + "'" + self.thumbnail_url.encode('ascii', 'replace') + "'")
+        if self.thumbnail is not None:
+            field_reprs.append('thumbnail=' + repr(self.thumbnail))
         if self.url is not None:
             field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
         return 'Object(' + ', '.join(field_reprs) + ')'
@@ -436,7 +437,7 @@ class Object(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'title': self.title, 'description': self.description, 'provenance': self.provenance, 'source_id': self.source_id, 'summary': self.summary, 'thumbnail_url': self.thumbnail_url, 'url': self.url}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'title': self.title, 'description': self.description, 'provenance': self.provenance, 'source_id': self.source_id, 'summary': self.summary, 'thumbnail': self.thumbnail, 'url': self.url}
 
     def as_tuple(self):
         '''
@@ -445,7 +446,7 @@ class Object(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.title, self.description, self.provenance, self.source_id, self.summary, self.thumbnail_url, self.url,)
+        return (self.collection_id, self.institution_id, self.title, self.description, self.provenance, self.source_id, self.summary, self.thumbnail, self.url,)
 
     @property
     def collection_id(self):
@@ -521,11 +522,8 @@ class Object(object):
                     init_kwds['summary'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
-            elif ifield_name == 'thumbnail_url' and ifield_id == 8:
-                try:
-                    init_kwds['thumbnail_url'] = iprot.read_string()
-                except (TypeError, ValueError,):
-                    pass
+            elif ifield_name == 'thumbnail' and ifield_id == 8:
+                init_kwds['thumbnail'] = costume.api.models.image.image.Image.read(iprot)
             elif ifield_name == 'url' and ifield_id == 9:
                 try:
                     init_kwds['url'] = iprot.read_string()
@@ -545,7 +543,7 @@ class Object(object):
         provenance=None,
         source_id=None,
         summary=None,
-        thumbnail_url=None,
+        thumbnail=None,
         url=None,
     ):
         '''
@@ -558,7 +556,7 @@ class Object(object):
         :type provenance: str or None
         :type source_id: str or None
         :type summary: str or None
-        :type thumbnail_url: str or None
+        :type thumbnail: costume.api.models.image.image.Image or None
         :type url: str or None
         :rtype: costume.api.models.object.object.Object
         '''
@@ -577,11 +575,11 @@ class Object(object):
             source_id = self.source_id
         if summary is None:
             summary = self.summary
-        if thumbnail_url is None:
-            thumbnail_url = self.thumbnail_url
+        if thumbnail is None:
+            thumbnail = self.thumbnail
         if url is None:
             url = self.url
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, title=title, description=description, provenance=provenance, source_id=source_id, summary=summary, thumbnail_url=thumbnail_url, url=url)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, title=title, description=description, provenance=provenance, source_id=source_id, summary=summary, thumbnail=thumbnail, url=url)
 
     @property
     def source_id(self):
@@ -600,12 +598,12 @@ class Object(object):
         return self.__summary
 
     @property
-    def thumbnail_url(self):
+    def thumbnail(self):
         '''
-        :rtype: str
+        :rtype: costume.api.models.image.image.Image
         '''
 
-        return self.__thumbnail_url
+        return self.__thumbnail
 
     @property
     def title(self):
@@ -665,9 +663,9 @@ class Object(object):
             oprot.write_string(self.summary)
             oprot.write_field_end()
 
-        if self.thumbnail_url is not None:
-            oprot.write_field_begin(name='thumbnail_url', type=11, id=8)
-            oprot.write_string(self.thumbnail_url)
+        if self.thumbnail is not None:
+            oprot.write_field_begin(name='thumbnail', type=12, id=8)
+            self.thumbnail.write(oprot)
             oprot.write_field_end()
 
         if self.url is not None:

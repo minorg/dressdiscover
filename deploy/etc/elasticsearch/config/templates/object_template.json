@@ -44,9 +44,20 @@
           "7:summary": {
             "type": "string"
           }, 
-          "8:thumbnail_url": {
-            "type": "string", 
-            "analyzer": "email_and_url"
+          "8:thumbnail": {
+            "type": "nested", 
+            "properties": {
+              "url": {
+                "type": "string", 
+                "analyzer": "email_and_url"
+              }, 
+              "height_px": {
+                "type": "integer"
+              }, 
+              "width_px": {
+                "type": "integer"
+              }
+            }
           }, 
           "9:url": {
             "type": "string", 

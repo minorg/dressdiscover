@@ -3,6 +3,7 @@ namespace java net.lab1318.costume.api.models.object
 namespace * costume.api.models.object
 
 include "costume/api/models/collection/collection_id.thrift"
+include "costume/api/models/image/image.thrift"
 include "costume/api/models/institution/institution_id.thrift"
 include "thryft/native/url.thrift"
 
@@ -23,7 +24,7 @@ struct Object {
 
 	7: optional string summary;
 
-	8: optional url.Url thumbnail_url;
+	8: optional image.Image thumbnail;
 
 	9: optional url.Url url;
 }

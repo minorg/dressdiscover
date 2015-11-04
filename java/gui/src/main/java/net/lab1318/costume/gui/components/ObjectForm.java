@@ -48,8 +48,8 @@ public final class ObjectForm extends CustomComponent {
             twoPaneLayout.setComponentAlignment(formLayout, Alignment.TOP_LEFT);
         }
 
-        if (objectEntry.getModel().getThumbnailUrl().isPresent()) {
-            final Image thumbnail = new Image("", objectEntry.getModel().getThumbnailUrl().get());
+        if (objectEntry.getModel().getThumbnail().isPresent()) {
+            final Image thumbnail = new Image("", objectEntry.getModel().getThumbnail().get());
             twoPaneLayout.addComponent(thumbnail);
             twoPaneLayout.setComponentAlignment(thumbnail, Alignment.TOP_CENTER);
         }
