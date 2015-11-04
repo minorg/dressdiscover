@@ -6,11 +6,11 @@ import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
 import com.vaadin.data.Container;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
+import net.lab1318.costume.gui.components.CollectionHeader;
 import net.lab1318.costume.gui.components.ObjectsTable;
 import net.lab1318.costume.gui.views.TopLevelView;
 
@@ -26,7 +26,7 @@ public class CollectionByIdView extends TopLevelView {
             final Container objects) {
         final VerticalLayout rootLayout = new VerticalLayout();
 
-        rootLayout.addComponent(new Label(collectionEntry.getModel().getTitle()));
+        rootLayout.addComponent(new CollectionHeader(collectionEntry, _getEventBus(), institutionEntry));
 
         rootLayout.addComponent(new ObjectsTable(ImmutableMap.of(collectionEntry.getId(), collectionEntry.getModel()),
                 _getEventBus(), ImmutableMap.of(institutionEntry.getId(), institutionEntry.getModel()), objects));

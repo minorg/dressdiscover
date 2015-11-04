@@ -7,10 +7,8 @@ import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 import com.vaadin.data.Container;
 import com.vaadin.event.MouseEvents.ClickListener;
-import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Table;
 
@@ -53,15 +51,13 @@ public final class ObjectsTable extends Table {
                 final Optional<Url> thumbnailUrl = (Optional<Url>) source.getItem(itemId)
                         .getItemProperty(Object.FieldMetadata.THUMBNAIL_URL.getJavaName()).getValue();
                 if (thumbnailUrl.isPresent()) {
-                    final Image image = new Image("thumbnail", new ExternalResource(thumbnailUrl.get().toString()));
+                    final Image image = new Image("thumbnail", thumbnailUrl.get());
                     image.addClickListener(new ClickListener() {
                         @Override
                         public void click(final com.vaadin.event.MouseEvents.ClickEvent event) {
                             eventBus.post(new ObjectQueryService.Messages.GetObjectByIdRequest(objectId));
                         }
                     });
-                    image.setHeight(160, Unit.PIXELS);
-                    image.setWidth(160, Unit.PIXELS);
                     return image;
                 } else {
                     return new Label();
