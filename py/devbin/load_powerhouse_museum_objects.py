@@ -10,6 +10,7 @@ from costume.client.services.object.object_command_service_json_rpc_client impor
 from costume.lib.costume_properties import CostumeProperties
 from costume.api.models.object.object import Object
 from costume.api.services.institution.no_such_institution_exception import NoSuchInstitutionException
+from costume.api.models.image.image import Image
 
 
 PROPERTIES = CostumeProperties.load()
@@ -32,9 +33,15 @@ def parse_item(collection_id, item_dict):
             title = ''
     builder.title = title
 
-    thumbnail = item_dict.get('thumbnail')
-    if len(thumbnail) > 0:
-        builder.thumbnail_url = thumbnail['url']
+    thumbnail_dict = item_dict.get('thumbnail')
+    if len(thumbnail_dict) > 0:
+        thumbnail_builder = Image.Builder()
+        thumbnail_builder.url = thumbnail_dict['url']
+        if 'height' in thumbnail_dict:
+            thumbnail_builder.height_px = int(thumbnail_dict['height'])
+        if 'width' in thumbnail_dict:
+            thumbnail_builder.width_px = int(thumbnail_dict['width'])
+        builder.thumbnail = thumbnail_builder.build()
 
     builder.url = item_dict['permanent_url']
 

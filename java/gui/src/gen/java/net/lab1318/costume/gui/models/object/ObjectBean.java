@@ -9,7 +9,7 @@ public class ObjectBean {
         provenance = null;
         sourceId = null;
         summary = null;
-        thumbnailUrl = null;
+        thumbnail = null;
         url = null;
     }
 
@@ -21,7 +21,7 @@ public class ObjectBean {
         this.provenance = other.getProvenance().isPresent() ? other.getProvenance().get() : null;
         this.sourceId = other.getSourceId().isPresent() ? other.getSourceId().get() : null;
         this.summary = other.getSummary().isPresent() ? other.getSummary().get() : null;
-        this.thumbnailUrl = other.getThumbnailUrl().isPresent() ? other.getThumbnailUrl().get() : null;
+        this.thumbnail = other.getThumbnail().isPresent() ? new net.lab1318.costume.gui.models.image.ImageBean(other.getThumbnail().get()) : null;
         this.url = other.getUrl().isPresent() ? other.getUrl().get() : null;
     }
 
@@ -42,7 +42,7 @@ public class ObjectBean {
             getProvenance().equals(other.getProvenance()) &&
             getSourceId().equals(other.getSourceId()) &&
             getSummary().equals(other.getSummary()) &&
-            getThumbnailUrl().equals(other.getThumbnailUrl()) &&
+            getThumbnail().equals(other.getThumbnail()) &&
             getUrl().equals(other.getUrl());
     }
 
@@ -70,8 +70,8 @@ public class ObjectBean {
         return summary;
     }
 
-    public org.thryft.native_.Url getThumbnailUrl() {
-        return thumbnailUrl;
+    public net.lab1318.costume.gui.models.image.ImageBean getThumbnail() {
+        return thumbnail;
     }
 
     public String getTitle() {
@@ -100,8 +100,8 @@ public class ObjectBean {
         if (getSummary() != null) {
             hashCode = 31 * hashCode + getSummary().hashCode();
         }
-        if (getThumbnailUrl() != null) {
-            hashCode = 31 * hashCode + getThumbnailUrl().hashCode();
+        if (getThumbnail() != null) {
+            hashCode = 31 * hashCode + getThumbnail().hashCode();
         }
         if (getUrl() != null) {
             hashCode = 31 * hashCode + getUrl().hashCode();
@@ -133,8 +133,8 @@ public class ObjectBean {
         this.summary = summary;
     }
 
-    public void setThumbnailUrl(final org.thryft.native_.Url thumbnailUrl) {
-        this.thumbnailUrl = thumbnailUrl;
+    public void setThumbnail(final net.lab1318.costume.gui.models.image.ImageBean thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public void setTitle(final String title) {
@@ -147,7 +147,7 @@ public class ObjectBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("title", getTitle()).add("description", getDescription()).add("provenance", getProvenance()).add("source_id", getSourceId()).add("summary", getSummary()).add("thumbnail_url", getThumbnailUrl()).add("url", getUrl()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("title", getTitle()).add("description", getDescription()).add("provenance", getProvenance()).add("source_id", getSourceId()).add("summary", getSummary()).add("thumbnail", getThumbnail()).add("url", getUrl()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -164,7 +164,7 @@ public class ObjectBean {
 
     private String summary;
 
-    private org.thryft.native_.Url thumbnailUrl;
+    private net.lab1318.costume.gui.models.image.ImageBean thumbnail;
 
     private org.thryft.native_.Url url;
 }

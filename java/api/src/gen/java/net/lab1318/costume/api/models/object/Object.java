@@ -10,7 +10,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             provenance = com.google.common.base.Optional.absent();
             sourceId = com.google.common.base.Optional.absent();
             summary = com.google.common.base.Optional.absent();
-            thumbnailUrl = com.google.common.base.Optional.absent();
+            thumbnail = com.google.common.base.Optional.absent();
             url = com.google.common.base.Optional.absent();
         }
 
@@ -22,16 +22,16 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             this.provenance = other.getProvenance();
             this.sourceId = other.getSourceId();
             this.summary = other.getSummary();
-            this.thumbnailUrl = other.getThumbnailUrl();
+            this.thumbnail = other.getThumbnail();
             this.url = other.getUrl();
         }
 
-        protected Object _build(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<String> sourceId, final com.google.common.base.Optional<String> summary, final com.google.common.base.Optional<org.thryft.native_.Url> thumbnailUrl, final com.google.common.base.Optional<org.thryft.native_.Url> url) {
-            return new Object(collectionId, institutionId, title, description, provenance, sourceId, summary, thumbnailUrl, url);
+        protected Object _build(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<String> sourceId, final com.google.common.base.Optional<String> summary, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.Image> thumbnail, final com.google.common.base.Optional<org.thryft.native_.Url> url) {
+            return new Object(collectionId, institutionId, title, description, provenance, sourceId, summary, thumbnail, url);
         }
 
         public Object build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(collectionId, "net.lab1318.costume.api.models.object.Object: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.object.Object: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.object.Object: missing title"), com.google.common.base.Preconditions.checkNotNull(description, "net.lab1318.costume.api.models.object.Object: missing description"), com.google.common.base.Preconditions.checkNotNull(provenance, "net.lab1318.costume.api.models.object.Object: missing provenance"), com.google.common.base.Preconditions.checkNotNull(sourceId, "net.lab1318.costume.api.models.object.Object: missing sourceId"), com.google.common.base.Preconditions.checkNotNull(summary, "net.lab1318.costume.api.models.object.Object: missing summary"), com.google.common.base.Preconditions.checkNotNull(thumbnailUrl, "net.lab1318.costume.api.models.object.Object: missing thumbnailUrl"), com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.object.Object: missing url"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(collectionId, "net.lab1318.costume.api.models.object.Object: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.object.Object: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.object.Object: missing title"), com.google.common.base.Preconditions.checkNotNull(description, "net.lab1318.costume.api.models.object.Object: missing description"), com.google.common.base.Preconditions.checkNotNull(provenance, "net.lab1318.costume.api.models.object.Object: missing provenance"), com.google.common.base.Preconditions.checkNotNull(sourceId, "net.lab1318.costume.api.models.object.Object: missing sourceId"), com.google.common.base.Preconditions.checkNotNull(summary, "net.lab1318.costume.api.models.object.Object: missing summary"), com.google.common.base.Preconditions.checkNotNull(thumbnail, "net.lab1318.costume.api.models.object.Object: missing thumbnail"), com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.object.Object: missing url"));
         }
 
         public final net.lab1318.costume.api.models.collection.CollectionId getCollectionId() {
@@ -58,8 +58,8 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             return summary;
         }
 
-        public final com.google.common.base.Optional<org.thryft.native_.Url> getThumbnailUrl() {
-            return thumbnailUrl;
+        public final com.google.common.base.Optional<net.lab1318.costume.api.models.image.Image> getThumbnail() {
+            return thumbnail;
         }
 
         public final String getTitle() {
@@ -103,10 +103,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
                 summary = com.google.common.base.Optional.of(iprot.readString());
             }
             if (__list.getSize() > 7) {
-                try {
-                    thumbnailUrl = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-                } catch (final java.lang.IllegalArgumentException e) {
-                }
+                thumbnail = com.google.common.base.Optional.of(net.lab1318.costume.api.models.image.Image.readAsStruct(iprot));
             }
             if (__list.getSize() > 8) {
                 try {
@@ -172,12 +169,9 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
                     }
                     break;
                 }
-                case "thumbnail_url": {
+                case "thumbnail": {
                     if (!ifield.hasId() || ifield.getId() == 8) {
-                        try {
-                            thumbnailUrl = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-                        } catch (final java.lang.IllegalArgumentException e) {
-                        }
+                        thumbnail = com.google.common.base.Optional.of(net.lab1318.costume.api.models.image.Image.readAsStruct(iprot));
                     }
                     break;
                 }
@@ -230,8 +224,8 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             if (other.getSummary().isPresent()) {
                 setSummary(other.getSummary());
             }
-            if (other.getThumbnailUrl().isPresent()) {
-                setThumbnailUrl(other.getThumbnailUrl());
+            if (other.getThumbnail().isPresent()) {
+                setThumbnail(other.getThumbnail());
             }
             if (other.getUrl().isPresent()) {
                 setUrl(other.getUrl());
@@ -275,13 +269,13 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             return this;
         }
 
-        public Builder setThumbnailUrl(final com.google.common.base.Optional<org.thryft.native_.Url> thumbnailUrl) {
-            this.thumbnailUrl = com.google.common.base.Preconditions.checkNotNull(thumbnailUrl);
+        public Builder setThumbnail(final com.google.common.base.Optional<net.lab1318.costume.api.models.image.Image> thumbnail) {
+            this.thumbnail = com.google.common.base.Preconditions.checkNotNull(thumbnail);
             return this;
         }
 
-        public Builder setThumbnailUrl(@javax.annotation.Nullable final org.thryft.native_.Url thumbnailUrl) {
-            this.thumbnailUrl = com.google.common.base.Optional.fromNullable(thumbnailUrl);
+        public Builder setThumbnail(@javax.annotation.Nullable final net.lab1318.costume.api.models.image.Image thumbnail) {
+            this.thumbnail = com.google.common.base.Optional.fromNullable(thumbnail);
             return this;
         }
 
@@ -311,7 +305,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             case "provenance": setProvenance((String)value); return this;
             case "source_id": setSourceId((String)value); return this;
             case "summary": setSummary((String)value); return this;
-            case "thumbnail_url": setThumbnailUrl((org.thryft.native_.Url)value); return this;
+            case "thumbnail": setThumbnail((net.lab1318.costume.api.models.image.Image)value); return this;
             case "url": setUrl((org.thryft.native_.Url)value); return this;
             default:
                 throw new IllegalArgumentException(name);
@@ -348,8 +342,8 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             return this;
         }
 
-        public Builder unsetThumbnailUrl() {
-            this.thumbnailUrl = com.google.common.base.Optional.absent();
+        public Builder unsetThumbnail() {
+            this.thumbnail = com.google.common.base.Optional.absent();
             return this;
         }
 
@@ -370,7 +364,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         private com.google.common.base.Optional<String> provenance;
         private com.google.common.base.Optional<String> sourceId;
         private com.google.common.base.Optional<String> summary;
-        private com.google.common.base.Optional<org.thryft.native_.Url> thumbnailUrl;
+        private com.google.common.base.Optional<net.lab1318.costume.api.models.image.Image> thumbnail;
         private com.google.common.base.Optional<org.thryft.native_.Url> url;
     }
 
@@ -383,7 +377,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         PROVENANCE("provenance", new com.google.common.reflect.TypeToken<String>() {}, false, 5, "provenance", org.thryft.protocol.Type.STRING),
         SOURCE_ID("sourceId", new com.google.common.reflect.TypeToken<String>() {}, false, 6, "source_id", org.thryft.protocol.Type.STRING),
         SUMMARY("summary", new com.google.common.reflect.TypeToken<String>() {}, false, 7, "summary", org.thryft.protocol.Type.STRING),
-        THUMBNAIL_URL("thumbnailUrl", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 8, "thumbnail_url", org.thryft.protocol.Type.STRING),
+        THUMBNAIL("thumbnail", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.image.Image>() {}, false, 8, "thumbnail", org.thryft.protocol.Type.STRUCT),
         URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 9, "url", org.thryft.protocol.Type.STRING);
 
         @Override
@@ -435,7 +429,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             case "provenance": return PROVENANCE;
             case "sourceId": return SOURCE_ID;
             case "summary": return SUMMARY;
-            case "thumbnailUrl": return THUMBNAIL_URL;
+            case "thumbnail": return THUMBNAIL;
             case "url": return URL;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -451,7 +445,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             case "provenance": return PROVENANCE;
             case "source_id": return SOURCE_ID;
             case "summary": return SUMMARY;
-            case "thumbnail_url": return THUMBNAIL_URL;
+            case "thumbnail": return THUMBNAIL;
             case "url": return URL;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -485,7 +479,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
      * Copy constructor
      */
     public Object(final Object other) {
-        this(other.getCollectionId(), other.getInstitutionId(), other.getTitle(), other.getDescription(), other.getProvenance(), other.getSourceId(), other.getSummary(), other.getThumbnailUrl(), other.getUrl());
+        this(other.getCollectionId(), other.getInstitutionId(), other.getTitle(), other.getDescription(), other.getProvenance(), other.getSourceId(), other.getSummary(), other.getThumbnail(), other.getUrl());
     }
 
     /**
@@ -499,14 +493,14 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         this.provenance = com.google.common.base.Optional.absent();
         this.sourceId = com.google.common.base.Optional.absent();
         this.summary = com.google.common.base.Optional.absent();
-        this.thumbnailUrl = com.google.common.base.Optional.absent();
+        this.thumbnail = com.google.common.base.Optional.absent();
         this.url = com.google.common.base.Optional.absent();
     }
 
     /**
      * Total Nullable constructor
      */
-    public Object(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final String title, final @javax.annotation.Nullable String description, final @javax.annotation.Nullable String provenance, final @javax.annotation.Nullable String sourceId, final @javax.annotation.Nullable String summary, final @javax.annotation.Nullable org.thryft.native_.Url thumbnailUrl, final @javax.annotation.Nullable org.thryft.native_.Url url) {
+    public Object(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final String title, final @javax.annotation.Nullable String description, final @javax.annotation.Nullable String provenance, final @javax.annotation.Nullable String sourceId, final @javax.annotation.Nullable String summary, final @javax.annotation.Nullable net.lab1318.costume.api.models.image.Image thumbnail, final @javax.annotation.Nullable org.thryft.native_.Url url) {
         this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId, "net.lab1318.costume.api.models.object.Object: missing collectionId");
         this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.object.Object: missing institutionId");
         this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.object.Object: missing title"), "net.lab1318.costume.api.models.object.Object: title is empty");
@@ -514,14 +508,14 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         this.provenance = com.google.common.base.Optional.fromNullable(provenance);
         this.sourceId = com.google.common.base.Optional.fromNullable(sourceId);
         this.summary = com.google.common.base.Optional.fromNullable(summary);
-        this.thumbnailUrl = com.google.common.base.Optional.fromNullable(thumbnailUrl);
+        this.thumbnail = com.google.common.base.Optional.fromNullable(thumbnail);
         this.url = com.google.common.base.Optional.fromNullable(url);
     }
 
     /**
      * Optional constructor
      */
-    public Object(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<String> sourceId, final com.google.common.base.Optional<String> summary, final com.google.common.base.Optional<org.thryft.native_.Url> thumbnailUrl, final com.google.common.base.Optional<org.thryft.native_.Url> url) {
+    public Object(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<String> sourceId, final com.google.common.base.Optional<String> summary, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.Image> thumbnail, final com.google.common.base.Optional<org.thryft.native_.Url> url) {
         this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId, "net.lab1318.costume.api.models.object.Object: missing collectionId");
         this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.object.Object: missing institutionId");
         this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.object.Object: missing title"), "net.lab1318.costume.api.models.object.Object: title is empty");
@@ -529,7 +523,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         this.provenance = com.google.common.base.Preconditions.checkNotNull(provenance, "net.lab1318.costume.api.models.object.Object: missing provenance");
         this.sourceId = com.google.common.base.Preconditions.checkNotNull(sourceId, "net.lab1318.costume.api.models.object.Object: missing sourceId");
         this.summary = com.google.common.base.Preconditions.checkNotNull(summary, "net.lab1318.costume.api.models.object.Object: missing summary");
-        this.thumbnailUrl = com.google.common.base.Preconditions.checkNotNull(thumbnailUrl, "net.lab1318.costume.api.models.object.Object: missing thumbnailUrl");
+        this.thumbnail = com.google.common.base.Preconditions.checkNotNull(thumbnail, "net.lab1318.costume.api.models.object.Object: missing thumbnail");
         this.url = com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.object.Object: missing url");
     }
 
@@ -562,7 +556,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             getProvenance().equals(other.getProvenance()) &&
             getSourceId().equals(other.getSourceId()) &&
             getSummary().equals(other.getSummary()) &&
-            getThumbnailUrl().equals(other.getThumbnailUrl()) &&
+            getThumbnail().equals(other.getThumbnail()) &&
             getUrl().equals(other.getUrl());
     }
 
@@ -576,7 +570,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         case "provenance": return getProvenance();
         case "source_id": return getSourceId();
         case "summary": return getSummary();
-        case "thumbnail_url": return getThumbnailUrl();
+        case "thumbnail": return getThumbnail();
         case "url": return getUrl();
         default:
             throw new IllegalArgumentException(fieldName);
@@ -607,8 +601,8 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         return summary;
     }
 
-    public final com.google.common.base.Optional<org.thryft.native_.Url> getThumbnailUrl() {
-        return thumbnailUrl;
+    public final com.google.common.base.Optional<net.lab1318.costume.api.models.image.Image> getThumbnail() {
+        return thumbnail;
     }
 
     public final String getTitle() {
@@ -637,8 +631,8 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         if (getSummary().isPresent()) {
             hashCode = 31 * hashCode + getSummary().get().hashCode();
         }
-        if (getThumbnailUrl().isPresent()) {
-            hashCode = 31 * hashCode + getThumbnailUrl().get().hashCode();
+        if (getThumbnail().isPresent()) {
+            hashCode = 31 * hashCode + getThumbnail().get().hashCode();
         }
         if (getUrl().isPresent()) {
             hashCode = 31 * hashCode + getUrl().get().hashCode();
@@ -665,7 +659,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         com.google.common.base.Optional<String> provenance = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> sourceId = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> summary = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.thryft.native_.Url> thumbnailUrl = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<net.lab1318.costume.api.models.image.Image> thumbnail = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
@@ -689,10 +683,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             summary = com.google.common.base.Optional.of(iprot.readString());
         }
         if (__list.getSize() > 7) {
-            try {
-                thumbnailUrl = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-            } catch (final java.lang.IllegalArgumentException e) {
-            }
+            thumbnail = com.google.common.base.Optional.of(net.lab1318.costume.api.models.image.Image.readAsStruct(iprot));
         }
         if (__list.getSize() > 8) {
             try {
@@ -702,7 +693,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         }
         iprot.readListEnd();
         try {
-            return new Object(collectionId, institutionId, title, description, provenance, sourceId, summary, thumbnailUrl, url);
+            return new Object(collectionId, institutionId, title, description, provenance, sourceId, summary, thumbnail, url);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -716,7 +707,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         com.google.common.base.Optional<String> provenance = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> sourceId = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> summary = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.thryft.native_.Url> thumbnailUrl = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<net.lab1318.costume.api.models.image.Image> thumbnail = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.absent();
 
         iprot.readStructBegin();
@@ -772,12 +763,9 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
                 }
                 break;
             }
-            case "thumbnail_url": {
+            case "thumbnail": {
                 if (!ifield.hasId() || ifield.getId() == 8) {
-                    try {
-                        thumbnailUrl = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-                    } catch (final java.lang.IllegalArgumentException e) {
-                    }
+                    thumbnail = com.google.common.base.Optional.of(net.lab1318.costume.api.models.image.Image.readAsStruct(iprot));
                 }
                 break;
             }
@@ -795,18 +783,18 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         }
         iprot.readStructEnd();
         try {
-            return new Object(collectionId, institutionId, title, description, provenance, sourceId, summary, thumbnailUrl, url);
+            return new Object(collectionId, institutionId, title, description, provenance, sourceId, summary, thumbnail, url);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public Object replaceCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) {
-        return new Object(collectionId, this.institutionId, this.title, this.description, this.provenance, this.sourceId, this.summary, this.thumbnailUrl, this.url);
+        return new Object(collectionId, this.institutionId, this.title, this.description, this.provenance, this.sourceId, this.summary, this.thumbnail, this.url);
     }
 
     public Object replaceDescription(final com.google.common.base.Optional<String> description) {
-        return new Object(this.collectionId, this.institutionId, this.title, description, this.provenance, this.sourceId, this.summary, this.thumbnailUrl, this.url);
+        return new Object(this.collectionId, this.institutionId, this.title, description, this.provenance, this.sourceId, this.summary, this.thumbnail, this.url);
     }
 
     public Object replaceDescription(final String description) {
@@ -814,11 +802,11 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
     }
 
     public Object replaceInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
-        return new Object(this.collectionId, institutionId, this.title, this.description, this.provenance, this.sourceId, this.summary, this.thumbnailUrl, this.url);
+        return new Object(this.collectionId, institutionId, this.title, this.description, this.provenance, this.sourceId, this.summary, this.thumbnail, this.url);
     }
 
     public Object replaceProvenance(final com.google.common.base.Optional<String> provenance) {
-        return new Object(this.collectionId, this.institutionId, this.title, this.description, provenance, this.sourceId, this.summary, this.thumbnailUrl, this.url);
+        return new Object(this.collectionId, this.institutionId, this.title, this.description, provenance, this.sourceId, this.summary, this.thumbnail, this.url);
     }
 
     public Object replaceProvenance(final String provenance) {
@@ -826,7 +814,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
     }
 
     public Object replaceSourceId(final com.google.common.base.Optional<String> sourceId) {
-        return new Object(this.collectionId, this.institutionId, this.title, this.description, this.provenance, sourceId, this.summary, this.thumbnailUrl, this.url);
+        return new Object(this.collectionId, this.institutionId, this.title, this.description, this.provenance, sourceId, this.summary, this.thumbnail, this.url);
     }
 
     public Object replaceSourceId(final String sourceId) {
@@ -834,27 +822,27 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
     }
 
     public Object replaceSummary(final com.google.common.base.Optional<String> summary) {
-        return new Object(this.collectionId, this.institutionId, this.title, this.description, this.provenance, this.sourceId, summary, this.thumbnailUrl, this.url);
+        return new Object(this.collectionId, this.institutionId, this.title, this.description, this.provenance, this.sourceId, summary, this.thumbnail, this.url);
     }
 
     public Object replaceSummary(final String summary) {
         return replaceSummary(com.google.common.base.Optional.fromNullable(summary));
     }
 
-    public Object replaceThumbnailUrl(final com.google.common.base.Optional<org.thryft.native_.Url> thumbnailUrl) {
-        return new Object(this.collectionId, this.institutionId, this.title, this.description, this.provenance, this.sourceId, this.summary, thumbnailUrl, this.url);
+    public Object replaceThumbnail(final com.google.common.base.Optional<net.lab1318.costume.api.models.image.Image> thumbnail) {
+        return new Object(this.collectionId, this.institutionId, this.title, this.description, this.provenance, this.sourceId, this.summary, thumbnail, this.url);
     }
 
-    public Object replaceThumbnailUrl(final org.thryft.native_.Url thumbnailUrl) {
-        return replaceThumbnailUrl(com.google.common.base.Optional.fromNullable(thumbnailUrl));
+    public Object replaceThumbnail(final net.lab1318.costume.api.models.image.Image thumbnail) {
+        return replaceThumbnail(com.google.common.base.Optional.fromNullable(thumbnail));
     }
 
     public Object replaceTitle(final String title) {
-        return new Object(this.collectionId, this.institutionId, title, this.description, this.provenance, this.sourceId, this.summary, this.thumbnailUrl, this.url);
+        return new Object(this.collectionId, this.institutionId, title, this.description, this.provenance, this.sourceId, this.summary, this.thumbnail, this.url);
     }
 
     public Object replaceUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) {
-        return new Object(this.collectionId, this.institutionId, this.title, this.description, this.provenance, this.sourceId, this.summary, this.thumbnailUrl, url);
+        return new Object(this.collectionId, this.institutionId, this.title, this.description, this.provenance, this.sourceId, this.summary, this.thumbnail, url);
     }
 
     public Object replaceUrl(final org.thryft.native_.Url url) {
@@ -863,7 +851,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("title", getTitle()).add("description", getDescription().orNull()).add("provenance", getProvenance().orNull()).add("source_id", getSourceId().orNull()).add("summary", getSummary().orNull()).add("thumbnail_url", getThumbnailUrl().orNull()).add("url", getUrl().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("title", getTitle()).add("description", getDescription().orNull()).add("provenance", getProvenance().orNull()).add("source_id", getSourceId().orNull()).add("summary", getSummary().orNull()).add("thumbnail", getThumbnail().orNull()).add("url", getUrl().orNull()).toString();
     }
 
     @Override
@@ -900,8 +888,8 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             oprot.writeNull();
         }
 
-        if (getThumbnailUrl().isPresent()) {
-            oprot.writeString(getThumbnailUrl().get().toString());
+        if (getThumbnail().isPresent()) {
+            getThumbnail().get().writeAsStruct(oprot);
         } else {
             oprot.writeNull();
         }
@@ -960,9 +948,9 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             oprot.writeFieldEnd();
         }
 
-        if (getThumbnailUrl().isPresent()) {
-            oprot.writeFieldBegin("thumbnail_url", org.thryft.protocol.Type.STRING, (short)8);
-            oprot.writeString(getThumbnailUrl().get().toString());
+        if (getThumbnail().isPresent()) {
+            oprot.writeFieldBegin("thumbnail", org.thryft.protocol.Type.STRUCT, (short)8);
+            getThumbnail().get().writeAsStruct(oprot);
             oprot.writeFieldEnd();
         }
 
@@ -989,7 +977,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
 
     private final com.google.common.base.Optional<String> summary;
 
-    private final com.google.common.base.Optional<org.thryft.native_.Url> thumbnailUrl;
+    private final com.google.common.base.Optional<net.lab1318.costume.api.models.image.Image> thumbnail;
 
     private final com.google.common.base.Optional<org.thryft.native_.Url> url;
 }
