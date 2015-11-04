@@ -21,9 +21,9 @@ public class InstitutionsView extends TopLevelView {
         super(eventBus);
     }
 
-    public void setInstitutions(final ImmutableList<InstitutionEntry> institutions) {
+    public void setModels(final ImmutableList<InstitutionEntry> institutionEntries) {
         final GridLayout rootLayout = new GridLayout();
-        for (final InstitutionEntry institutionEntry : institutions) {
+        for (final InstitutionEntry institutionEntry : institutionEntries) {
             final Button institutionButton = new Button(institutionEntry.getModel().getTitle(),
                     new Button.ClickListener() {
                         @Override

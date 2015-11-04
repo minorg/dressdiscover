@@ -62,8 +62,6 @@ public class InstitutionByIdPresenter extends Presenter<InstitutionByIdView> {
             return;
         }
 
-        _getView().setInstitution(new InstitutionEntry(institutionId, institution));
-
         ImmutableList<CollectionEntry> collections;
         try {
             collections = collectionQueryService.getCollectionsByInstitutionId(institutionId);
@@ -72,9 +70,7 @@ public class InstitutionByIdPresenter extends Presenter<InstitutionByIdView> {
             return;
         }
 
-        if (!collections.isEmpty()) {
-            _getView().setCollections(collections);
-        }
+        _getView().setModels(collections, new InstitutionEntry(institutionId, institution));
     }
 
     private final CollectionQueryService collectionQueryService;

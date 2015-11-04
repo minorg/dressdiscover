@@ -139,23 +139,21 @@ public class CollectionByIdPresenter extends Presenter<CollectionByIdView> {
             return;
         }
 
-        _getView().setCollection(new CollectionEntry(collectionId, collection));
-        _getView().setInstitution(new InstitutionEntry(collection.getInstitutionId(), institution));
+        final BeanQueryFactory<ObjectBeanQuery> objectBeanQueryFactory = new BeanQueryFactory<ObjectBeanQuery>(
+                ObjectBeanQuery.class);
+        final Map<String, java.lang.Object> queryConfiguration = new HashMap<>();
+        queryConfiguration.put("collectionId", collectionId);
+        queryConfiguration.put("objectQueryService", objectQueryService);
+        objectBeanQueryFactory.setQueryConfiguration(queryConfiguration);
 
-        {
-            final BeanQueryFactory<ObjectBeanQuery> objectBeanQueryFactory = new BeanQueryFactory<ObjectBeanQuery>(
-                    ObjectBeanQuery.class);
-            final Map<String, java.lang.Object> queryConfiguration = new HashMap<>();
-            queryConfiguration.put("collectionId", collectionId);
-            queryConfiguration.put("objectQueryService", objectQueryService);
-            objectBeanQueryFactory.setQueryConfiguration(queryConfiguration);
-
-            final LazyQueryDefinition queryDefinition = new LazyQueryDefinition(true, 10, "id");
-            for (final Object.FieldMetadata field : Object.FieldMetadata.values()) {
-                queryDefinition.addProperty(field.getThriftName(), field.getJavaType().getRawType(), null, true, false);
-            }
-            _getView().setObjects(new LazyQueryContainer(queryDefinition, objectBeanQueryFactory));
+        final LazyQueryDefinition queryDefinition = new LazyQueryDefinition(true, 10, "id");
+        for (final Object.FieldMetadata field : Object.FieldMetadata.values()) {
+            queryDefinition.addProperty(field.getThriftName(), field.getJavaType().getRawType(), null, true, false);
         }
+
+        _getView().setModels(new CollectionEntry(collectionId, collection),
+                new InstitutionEntry(collection.getInstitutionId(), institution),
+                new LazyQueryContainer(queryDefinition, objectBeanQueryFactory));
     }
 
     private final CollectionQueryService collectionQueryService;

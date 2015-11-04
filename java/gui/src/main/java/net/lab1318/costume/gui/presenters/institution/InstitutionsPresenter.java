@@ -42,7 +42,7 @@ public class InstitutionsPresenter extends Presenter<InstitutionsView> {
             _getView().setComponentError(new SystemError("I/O exception", e));
             return;
         }
-        _getView().setInstitutions(institutions);
+        _getView().setModels(institutions);
     }
 
     private final InstitutionQueryService institutionQueryService;

@@ -18,13 +18,8 @@ public class ObjectByIdView extends TopLevelView {
         super(eventBus);
     }
 
-    public void setCollection(final CollectionEntry collectionEntry) {
-    }
-
-    public void setInstitution(final InstitutionEntry institutionEntry) {
-    }
-
-    public void setObject(final ObjectEntry object) {
+    public void setModels(final CollectionEntry collectionEntry, final InstitutionEntry institutionEntry,
+            final ObjectEntry objectEntry) {
     }
 
     public final static String NAME = "object_by_id";

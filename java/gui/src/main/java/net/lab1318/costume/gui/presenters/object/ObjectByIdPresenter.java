@@ -84,10 +84,8 @@ public class ObjectByIdPresenter extends Presenter<ObjectByIdView> {
             return;
         }
 
-        _getView().setCollection(new CollectionEntry(object.getCollectionId(), collection));
-        _getView().setInstitution(new InstitutionEntry(collection.getInstitutionId(), institution));
-        _getView().setObject(new ObjectEntry(objectId, object));
-
+        _getView().setModels(new CollectionEntry(object.getCollectionId(), collection),
+                new InstitutionEntry(collection.getInstitutionId(), institution), new ObjectEntry(objectId, object));
     }
 
     private final CollectionQueryService collectionQueryService;
