@@ -5,7 +5,6 @@ import costume.api.services.object.object_command_service
 import json
 import thryft.protocol.builtins_input_protocol
 import thryft.protocol.builtins_output_protocol
-import thryft.protocol.json_input_protocol
 import urllib2
 
 
@@ -137,24 +136,26 @@ class ObjectCommandServiceJsonRpcClient(costume.api.services.object.object_comma
         oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='institution_id', type=11, id=None)
-        oprot.write_string(str(institution_id))
+        oprot.write_string(institution_id)
         oprot.write_field_end()
         oprot.write_struct_end()
 
         self.__request(method='delete_objects_by_institution_id', params=oprot.value)
 
-    def _post_object(
+    def _put_object(
         self,
+        id,  # @ReservedAssignment
         object,  # @ReservedAssignment
     ):
         oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
         oprot.write_struct_begin()
+        oprot.write_field_begin(name='id', type=11, id=None)
+        oprot.write_string(id)
+        oprot.write_field_end()
         oprot.write_field_begin(name='object', type=12, id=None)
         object.write(oprot)
         oprot.write_field_end()
         oprot.write_struct_end()
 
-        return_value = self.__request(method='post_object', params=oprot.value)
-        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
-        return iprot.read_string()
+        self.__request(method='put_object', params=oprot.value)
 

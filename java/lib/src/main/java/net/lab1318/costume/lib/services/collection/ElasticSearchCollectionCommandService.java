@@ -7,7 +7,6 @@ import java.io.IOException;
 import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.notaweb.lib.stores.NoSuchModelException;
-import org.notaweb.lib.stores.StringModelIdFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,11 +14,11 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import net.lab1318.costume.api.models.collection.Collection;
+import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionCommandService;
-import net.lab1318.costume.api.services.collection.InvalidCollectionIdException;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
 import net.lab1318.costume.api.services.object.ObjectCommandService;
 import net.lab1318.costume.lib.services.ServiceExceptionHelper;
@@ -28,23 +27,6 @@ import net.lab1318.costume.lib.stores.collection.CollectionElasticSearchIndex;
 
 @Singleton
 public class ElasticSearchCollectionCommandService implements CollectionCommandService {
-    private final static class CollectionIdFactory implements StringModelIdFactory<CollectionId> {
-        public static CollectionIdFactory getInstance() {
-            return instance;
-        }
-
-        @Override
-        public CollectionId createModelId(final String id) {
-            try {
-                return CollectionId.parse(id);
-            } catch (final InvalidCollectionIdException e) {
-                throw new IllegalStateException(e);
-            }
-        }
-
-        private final static CollectionIdFactory instance = new CollectionIdFactory();
-    }
-
     @Inject
     public ElasticSearchCollectionCommandService(final CollectionElasticSearchIndex elasticSearchIndex,
             final ObjectCommandService objectCommandService) {
@@ -92,10 +74,9 @@ public class ElasticSearchCollectionCommandService implements CollectionCommandS
     }
 
     @Override
-    public CollectionId postCollection(final Collection collection) throws IoException {
+    public void putCollection(final CollectionId id, final Collection collection) throws IoException {
         try {
-            return elasticSearchIndex.postModel(logger, Markers.POST_COLLECTION, collection,
-                    CollectionIdFactory.getInstance());
+            elasticSearchIndex.putModel(logger, Markers.PUT_COLLECTION, new CollectionEntry(id, collection));
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error posting collection");
         }

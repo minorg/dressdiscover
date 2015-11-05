@@ -1,5 +1,4 @@
 import __builtin__
-import costume.api.models.institution.institution_id
 
 
 class Collection(object):
@@ -10,7 +9,7 @@ class Collection(object):
             title=None,
         ):
             '''
-            :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+            :type institution_id: str
             :type title: str
             '''
 
@@ -23,14 +22,14 @@ class Collection(object):
         @property
         def institution_id(self):
             '''
-            :rtype: costume.api.models.institution.institution_id.InstitutionId
+            :rtype: str
             '''
 
             return self.__institution_id
 
         def set_institution_id(self, institution_id):
             '''
-            :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+            :type institution_id: str
             '''
 
             self.__institution_id = institution_id
@@ -54,7 +53,7 @@ class Collection(object):
 
         def update(self, collection):
             '''
-            :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+            :type institution_id: str
             :type title: str
             '''
 
@@ -71,7 +70,7 @@ class Collection(object):
         @institution_id.setter
         def institution_id(self, institution_id):
             '''
-            :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+            :type institution_id: str
             '''
 
             self.set_institution_id(institution_id)
@@ -90,14 +89,14 @@ class Collection(object):
         title,
     ):
         '''
-        :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+        :type institution_id: str
         :type title: str
         '''
 
         if institution_id is None:
             raise ValueError('institution_id is required')
-        if not isinstance(institution_id, costume.api.models.institution.institution_id.InstitutionId):
-            raise TypeError("expected institution_id to be a costume.api.models.institution.institution_id.InstitutionId but it is a %s" % getattr(__builtin__, 'type')(institution_id))
+        if not isinstance(institution_id, basestring):
+            raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
         self.__institution_id = institution_id
 
         if title is None:
@@ -126,13 +125,13 @@ class Collection(object):
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('institution_id=' + repr(self.institution_id))
+        field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
         return 'Collection(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('institution_id=' + repr(self.institution_id))
+        field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
         return 'Collection(' + ', '.join(field_reprs) + ')'
 
@@ -157,7 +156,7 @@ class Collection(object):
     @property
     def institution_id(self):
         '''
-        :rtype: costume.api.models.institution.institution_id.InstitutionId
+        :rtype: str
         '''
 
         return self.__institution_id
@@ -179,7 +178,7 @@ class Collection(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'institution_id' and ifield_id == 1:
-                init_kwds['institution_id'] = costume.api.models.institution.institution_id.InstitutionId.value_of(iprot.read_string().strip().upper())
+                init_kwds['institution_id'] = iprot.read_string()
             elif ifield_name == 'title' and ifield_id == 2:
                 init_kwds['title'] = iprot.read_string()
             iprot.read_field_end()
@@ -195,7 +194,7 @@ class Collection(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type institution_id: costume.api.models.institution.institution_id.InstitutionId or None
+        :type institution_id: str or None
         :type title: str or None
         :rtype: costume.api.models.collection.collection.Collection
         '''
@@ -225,7 +224,7 @@ class Collection(object):
         oprot.write_struct_begin('Collection')
 
         oprot.write_field_begin(name='institution_id', type=11, id=1)
-        oprot.write_string(str(self.institution_id))
+        oprot.write_string(self.institution_id)
         oprot.write_field_end()
 
         oprot.write_field_begin(name='title', type=11, id=2)

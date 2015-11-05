@@ -20,8 +20,6 @@ struct Object {
 
 	5: optional string provenance;
 
-	6: optional string source_id;
-
 	7: optional string summary;
 
 	8: optional image.Image thumbnail;

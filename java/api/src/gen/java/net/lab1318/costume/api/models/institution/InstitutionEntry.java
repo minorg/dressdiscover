@@ -41,7 +41,11 @@ public class InstitutionEntry implements org.thryft.Struct, org.notaweb.api.mode
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             iprot.readListBegin();
-            id = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+            try {
+                id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+            } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                 throw new IllegalArgumentException(e);
+            }
             model = net.lab1318.costume.api.models.institution.Institution.readAsStruct(iprot);
             iprot.readListEnd();
             return this;
@@ -56,7 +60,11 @@ public class InstitutionEntry implements org.thryft.Struct, org.notaweb.api.mode
                 }
                 switch (ifield.getName()) {
                 case "id": {
-                    id = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                    try {
+                        id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                    } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                         throw new IllegalArgumentException(e);
+                    }
                     break;
                 }
                 case "model": {
@@ -262,7 +270,7 @@ public class InstitutionEntry implements org.thryft.Struct, org.notaweb.api.mode
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getId().ordinal();
+        hashCode = 31 * hashCode + getId().hashCode();
         hashCode = 31 * hashCode + getModel().hashCode();
         return hashCode;
     }
@@ -283,7 +291,11 @@ public class InstitutionEntry implements org.thryft.Struct, org.notaweb.api.mode
         net.lab1318.costume.api.models.institution.Institution model = null;
 
         iprot.readListBegin();
-        id = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+        try {
+            id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+        } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+             throw new IllegalArgumentException(e);
+        }
         model = net.lab1318.costume.api.models.institution.Institution.readAsStruct(iprot);
         iprot.readListEnd();
         try {
@@ -305,7 +317,11 @@ public class InstitutionEntry implements org.thryft.Struct, org.notaweb.api.mode
             }
             switch (ifield.getName()) {
             case "id": {
-                id = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                try {
+                    id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                     throw new IllegalArgumentException(e);
+                }
                 break;
             }
             case "model": {
@@ -340,7 +356,7 @@ public class InstitutionEntry implements org.thryft.Struct, org.notaweb.api.mode
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
 
-        oprot.writeEnum(getId());
+        oprot.writeString(getId().toString());
 
         getModel().writeAsStruct(oprot);
 
@@ -357,7 +373,7 @@ public class InstitutionEntry implements org.thryft.Struct, org.notaweb.api.mode
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeFieldBegin("id", org.thryft.protocol.Type.STRING, (short)0);
-        oprot.writeEnum(getId());
+        oprot.writeString(getId().toString());
         oprot.writeFieldEnd();
 
         oprot.writeFieldBegin("model", org.thryft.protocol.Type.STRUCT, (short)0);

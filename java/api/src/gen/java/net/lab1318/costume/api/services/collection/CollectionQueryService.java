@@ -55,7 +55,7 @@ public interface CollectionQueryService {
                     iprot.readListBegin();
                     try {
                         id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+                    } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                          throw new IllegalArgumentException(e);
                     }
                     iprot.readListEnd();
@@ -73,7 +73,7 @@ public interface CollectionQueryService {
                         case "id": {
                             try {
                                 id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                            } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+                            } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                                  throw new IllegalArgumentException(e);
                             }
                             break;
@@ -275,7 +275,7 @@ public interface CollectionQueryService {
                 iprot.readListBegin();
                 try {
                     id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+                } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                      throw new IllegalArgumentException(e);
                 }
                 iprot.readListEnd();
@@ -299,7 +299,7 @@ public interface CollectionQueryService {
                     case "id": {
                         try {
                             id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                        } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+                        } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                              throw new IllegalArgumentException(e);
                         }
                         break;
@@ -1268,7 +1268,11 @@ public interface CollectionQueryService {
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
-                    institutionId = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                    try {
+                        institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                    } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                         throw new IllegalArgumentException(e);
+                    }
                     iprot.readListEnd();
                     return this;
                 }
@@ -1282,7 +1286,11 @@ public interface CollectionQueryService {
                         }
                         switch (ifield.getName()) {
                         case "institution_id": {
-                            institutionId = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                            try {
+                                institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                            } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                                 throw new IllegalArgumentException(e);
+                            }
                             break;
                         }
                         }
@@ -1461,7 +1469,7 @@ public interface CollectionQueryService {
             @Override
             public int hashCode() {
                 int hashCode = 17;
-                hashCode = 31 * hashCode + getInstitutionId().ordinal();
+                hashCode = 31 * hashCode + getInstitutionId().hashCode();
                 return hashCode;
             }
 
@@ -1480,7 +1488,11 @@ public interface CollectionQueryService {
                 net.lab1318.costume.api.models.institution.InstitutionId institutionId = null;
 
                 iprot.readListBegin();
-                institutionId = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                try {
+                    institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                     throw new IllegalArgumentException(e);
+                }
                 iprot.readListEnd();
                 try {
                     return new GetCollectionsByInstitutionIdRequest(institutionId);
@@ -1500,7 +1512,11 @@ public interface CollectionQueryService {
                     }
                     switch (ifield.getName()) {
                     case "institution_id": {
-                        institutionId = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                        try {
+                            institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                        } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                             throw new IllegalArgumentException(e);
+                        }
                         break;
                     }
                     }
@@ -1527,7 +1543,7 @@ public interface CollectionQueryService {
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
 
-                oprot.writeEnum(getInstitutionId());
+                oprot.writeString(getInstitutionId().toString());
 
                 oprot.writeListEnd();
             }
@@ -1542,7 +1558,7 @@ public interface CollectionQueryService {
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeFieldBegin("institution_id", org.thryft.protocol.Type.STRING, (short)0);
-                oprot.writeEnum(getInstitutionId());
+                oprot.writeString(getInstitutionId().toString());
                 oprot.writeFieldEnd();
 
                 oprot.writeFieldStop();
@@ -1939,7 +1955,7 @@ public interface CollectionQueryService {
         }
     }
 
-    public net.lab1318.costume.api.models.collection.Collection getCollectionById(final net.lab1318.costume.api.models.collection.CollectionId id) throws net.lab1318.costume.api.services.collection.InvalidCollectionIdException, net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException;
+    public net.lab1318.costume.api.models.collection.Collection getCollectionById(final net.lab1318.costume.api.models.collection.CollectionId id) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException;
 
     public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionEntry> getCollections() throws net.lab1318.costume.api.services.IoException;
 

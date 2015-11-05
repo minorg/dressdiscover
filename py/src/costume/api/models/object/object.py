@@ -1,6 +1,5 @@
 import __builtin__
 import costume.api.models.image.image
-import costume.api.models.institution.institution_id
 
 
 class Object(object):
@@ -12,18 +11,16 @@ class Object(object):
             title=None,
             description=None,
             provenance=None,
-            source_id=None,
             summary=None,
             thumbnail=None,
             url=None,
         ):
             '''
             :type collection_id: str
-            :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+            :type institution_id: str
             :type title: str
             :type description: str or None
             :type provenance: str or None
-            :type source_id: str or None
             :type summary: str or None
             :type thumbnail: costume.api.models.image.image.Image or None
             :type url: str or None
@@ -34,13 +31,12 @@ class Object(object):
             self.__title = title
             self.__description = description
             self.__provenance = provenance
-            self.__source_id = source_id
             self.__summary = summary
             self.__thumbnail = thumbnail
             self.__url = url
 
         def build(self):
-            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, title=self.__title, description=self.__description, provenance=self.__provenance, source_id=self.__source_id, summary=self.__summary, thumbnail=self.__thumbnail, url=self.__url)
+            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, title=self.__title, description=self.__description, provenance=self.__provenance, summary=self.__summary, thumbnail=self.__thumbnail, url=self.__url)
 
         @property
         def collection_id(self):
@@ -61,7 +57,7 @@ class Object(object):
         @property
         def institution_id(self):
             '''
-            :rtype: costume.api.models.institution.institution_id.InstitutionId
+            :rtype: str
             '''
 
             return self.__institution_id
@@ -92,7 +88,7 @@ class Object(object):
 
         def set_institution_id(self, institution_id):
             '''
-            :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+            :type institution_id: str
             '''
 
             self.__institution_id = institution_id
@@ -104,14 +100,6 @@ class Object(object):
             '''
 
             self.__provenance = provenance
-            return self
-
-        def set_source_id(self, source_id):
-            '''
-            :type source_id: str or None
-            '''
-
-            self.__source_id = source_id
             return self
 
         def set_summary(self, summary):
@@ -147,14 +135,6 @@ class Object(object):
             return self
 
         @property
-        def source_id(self):
-            '''
-            :rtype: str
-            '''
-
-            return self.__source_id
-
-        @property
         def summary(self):
             '''
             :rtype: str
@@ -181,11 +161,10 @@ class Object(object):
         def update(self, object):
             '''
             :type collection_id: str
-            :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+            :type institution_id: str
             :type title: str
             :type description: str or None
             :type provenance: str or None
-            :type source_id: str or None
             :type summary: str or None
             :type thumbnail: costume.api.models.image.image.Image or None
             :type url: str or None
@@ -197,7 +176,6 @@ class Object(object):
                 self.set_title(object.title)
                 self.set_description(object.description)
                 self.set_provenance(object.provenance)
-                self.set_source_id(object.source_id)
                 self.set_summary(object.summary)
                 self.set_thumbnail(object.thumbnail)
                 self.set_url(object.url)
@@ -235,7 +213,7 @@ class Object(object):
         @institution_id.setter
         def institution_id(self, institution_id):
             '''
-            :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+            :type institution_id: str
             '''
 
             self.set_institution_id(institution_id)
@@ -247,14 +225,6 @@ class Object(object):
             '''
 
             self.set_provenance(provenance)
-
-        @source_id.setter
-        def source_id(self, source_id):
-            '''
-            :type source_id: str or None
-            '''
-
-            self.set_source_id(source_id)
 
         @summary.setter
         def summary(self, summary):
@@ -295,18 +265,16 @@ class Object(object):
         title,
         description=None,
         provenance=None,
-        source_id=None,
         summary=None,
         thumbnail=None,
         url=None,
     ):
         '''
         :type collection_id: str
-        :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+        :type institution_id: str
         :type title: str
         :type description: str or None
         :type provenance: str or None
-        :type source_id: str or None
         :type summary: str or None
         :type thumbnail: costume.api.models.image.image.Image or None
         :type url: str or None
@@ -320,8 +288,8 @@ class Object(object):
 
         if institution_id is None:
             raise ValueError('institution_id is required')
-        if not isinstance(institution_id, costume.api.models.institution.institution_id.InstitutionId):
-            raise TypeError("expected institution_id to be a costume.api.models.institution.institution_id.InstitutionId but it is a %s" % getattr(__builtin__, 'type')(institution_id))
+        if not isinstance(institution_id, basestring):
+            raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
         self.__institution_id = institution_id
 
         if title is None:
@@ -341,11 +309,6 @@ class Object(object):
             if not isinstance(provenance, basestring):
                 raise TypeError("expected provenance to be a str but it is a %s" % getattr(__builtin__, 'type')(provenance))
         self.__provenance = provenance
-
-        if source_id is not None:
-            if not isinstance(source_id, basestring):
-                raise TypeError("expected source_id to be a str but it is a %s" % getattr(__builtin__, 'type')(source_id))
-        self.__source_id = source_id
 
         if summary is not None:
             if not isinstance(summary, basestring):
@@ -373,8 +336,6 @@ class Object(object):
             return False
         if self.provenance != other.provenance:
             return False
-        if self.source_id != other.source_id:
-            return False
         if self.summary != other.summary:
             return False
         if self.thumbnail != other.thumbnail:
@@ -384,7 +345,7 @@ class Object(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.title,self.description,self.provenance,self.source_id,self.summary,self.thumbnail,self.url,))
+        return hash((self.collection_id,self.institution_id,self.title,self.description,self.provenance,self.summary,self.thumbnail,self.url,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -395,14 +356,12 @@ class Object(object):
     def __repr__(self):
         field_reprs = []
         field_reprs.append('collection_id=' + "'" + self.collection_id.encode('ascii', 'replace') + "'")
-        field_reprs.append('institution_id=' + repr(self.institution_id))
+        field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
         if self.description is not None:
             field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
         if self.provenance is not None:
             field_reprs.append('provenance=' + "'" + self.provenance.encode('ascii', 'replace') + "'")
-        if self.source_id is not None:
-            field_reprs.append('source_id=' + "'" + self.source_id.encode('ascii', 'replace') + "'")
         if self.summary is not None:
             field_reprs.append('summary=' + "'" + self.summary.encode('ascii', 'replace') + "'")
         if self.thumbnail is not None:
@@ -414,14 +373,12 @@ class Object(object):
     def __str__(self):
         field_reprs = []
         field_reprs.append('collection_id=' + "'" + self.collection_id.encode('ascii', 'replace') + "'")
-        field_reprs.append('institution_id=' + repr(self.institution_id))
+        field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
         if self.description is not None:
             field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
         if self.provenance is not None:
             field_reprs.append('provenance=' + "'" + self.provenance.encode('ascii', 'replace') + "'")
-        if self.source_id is not None:
-            field_reprs.append('source_id=' + "'" + self.source_id.encode('ascii', 'replace') + "'")
         if self.summary is not None:
             field_reprs.append('summary=' + "'" + self.summary.encode('ascii', 'replace') + "'")
         if self.thumbnail is not None:
@@ -437,7 +394,7 @@ class Object(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'title': self.title, 'description': self.description, 'provenance': self.provenance, 'source_id': self.source_id, 'summary': self.summary, 'thumbnail': self.thumbnail, 'url': self.url}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'title': self.title, 'description': self.description, 'provenance': self.provenance, 'summary': self.summary, 'thumbnail': self.thumbnail, 'url': self.url}
 
     def as_tuple(self):
         '''
@@ -446,7 +403,7 @@ class Object(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.title, self.description, self.provenance, self.source_id, self.summary, self.thumbnail, self.url,)
+        return (self.collection_id, self.institution_id, self.title, self.description, self.provenance, self.summary, self.thumbnail, self.url,)
 
     @property
     def collection_id(self):
@@ -467,7 +424,7 @@ class Object(object):
     @property
     def institution_id(self):
         '''
-        :rtype: costume.api.models.institution.institution_id.InstitutionId
+        :rtype: str
         '''
 
         return self.__institution_id
@@ -499,7 +456,7 @@ class Object(object):
             elif ifield_name == 'collection_id' and ifield_id == 1:
                 init_kwds['collection_id'] = iprot.read_string()
             elif ifield_name == 'institution_id' and ifield_id == 2:
-                init_kwds['institution_id'] = costume.api.models.institution.institution_id.InstitutionId.value_of(iprot.read_string().strip().upper())
+                init_kwds['institution_id'] = iprot.read_string()
             elif ifield_name == 'title' and ifield_id == 3:
                 init_kwds['title'] = iprot.read_string()
             elif ifield_name == 'description' and ifield_id == 4:
@@ -510,11 +467,6 @@ class Object(object):
             elif ifield_name == 'provenance' and ifield_id == 5:
                 try:
                     init_kwds['provenance'] = iprot.read_string()
-                except (TypeError, ValueError,):
-                    pass
-            elif ifield_name == 'source_id' and ifield_id == 6:
-                try:
-                    init_kwds['source_id'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
             elif ifield_name == 'summary' and ifield_id == 7:
@@ -541,7 +493,6 @@ class Object(object):
         title=None,
         description=None,
         provenance=None,
-        source_id=None,
         summary=None,
         thumbnail=None,
         url=None,
@@ -550,11 +501,10 @@ class Object(object):
         Copy this object, replace one or more fields, and return the copy.
 
         :type collection_id: str or None
-        :type institution_id: costume.api.models.institution.institution_id.InstitutionId or None
+        :type institution_id: str or None
         :type title: str or None
         :type description: str or None
         :type provenance: str or None
-        :type source_id: str or None
         :type summary: str or None
         :type thumbnail: costume.api.models.image.image.Image or None
         :type url: str or None
@@ -571,23 +521,13 @@ class Object(object):
             description = self.description
         if provenance is None:
             provenance = self.provenance
-        if source_id is None:
-            source_id = self.source_id
         if summary is None:
             summary = self.summary
         if thumbnail is None:
             thumbnail = self.thumbnail
         if url is None:
             url = self.url
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, title=title, description=description, provenance=provenance, source_id=source_id, summary=summary, thumbnail=thumbnail, url=url)
-
-    @property
-    def source_id(self):
-        '''
-        :rtype: str
-        '''
-
-        return self.__source_id
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, title=title, description=description, provenance=provenance, summary=summary, thumbnail=thumbnail, url=url)
 
     @property
     def summary(self):
@@ -636,7 +576,7 @@ class Object(object):
         oprot.write_field_end()
 
         oprot.write_field_begin(name='institution_id', type=11, id=2)
-        oprot.write_string(str(self.institution_id))
+        oprot.write_string(self.institution_id)
         oprot.write_field_end()
 
         oprot.write_field_begin(name='title', type=11, id=3)
@@ -651,11 +591,6 @@ class Object(object):
         if self.provenance is not None:
             oprot.write_field_begin(name='provenance', type=11, id=5)
             oprot.write_string(self.provenance)
-            oprot.write_field_end()
-
-        if self.source_id is not None:
-            oprot.write_field_begin(name='source_id', type=11, id=6)
-            oprot.write_string(self.source_id)
             oprot.write_field_end()
 
         if self.summary is not None:

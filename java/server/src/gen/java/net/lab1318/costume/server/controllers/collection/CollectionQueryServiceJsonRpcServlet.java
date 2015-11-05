@@ -161,9 +161,6 @@ public class CollectionQueryServiceJsonRpcServlet extends javax.servlet.http.Htt
         final net.lab1318.costume.api.models.collection.Collection result;
         try {
             result = service.getCollectionById(serviceRequest.getId());
-        } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
         } catch (final net.lab1318.costume.api.services.IoException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;

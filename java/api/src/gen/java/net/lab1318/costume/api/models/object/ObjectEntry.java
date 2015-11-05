@@ -43,7 +43,7 @@ public class ObjectEntry implements org.thryft.Struct, org.notaweb.api.models.Mo
             iprot.readListBegin();
             try {
                 id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
-            } catch (final net.lab1318.costume.api.services.object.InvalidObjectIdException e) {
+            } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
                  throw new IllegalArgumentException(e);
             }
             model = net.lab1318.costume.api.models.object.Object.readAsStruct(iprot);
@@ -62,7 +62,7 @@ public class ObjectEntry implements org.thryft.Struct, org.notaweb.api.models.Mo
                 case "id": {
                     try {
                         id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.services.object.InvalidObjectIdException e) {
+                    } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
                          throw new IllegalArgumentException(e);
                     }
                     break;
@@ -293,7 +293,7 @@ public class ObjectEntry implements org.thryft.Struct, org.notaweb.api.models.Mo
         iprot.readListBegin();
         try {
             id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
-        } catch (final net.lab1318.costume.api.services.object.InvalidObjectIdException e) {
+        } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
              throw new IllegalArgumentException(e);
         }
         model = net.lab1318.costume.api.models.object.Object.readAsStruct(iprot);
@@ -319,7 +319,7 @@ public class ObjectEntry implements org.thryft.Struct, org.notaweb.api.models.Mo
             case "id": {
                 try {
                     id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.services.object.InvalidObjectIdException e) {
+                } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
                      throw new IllegalArgumentException(e);
                 }
                 break;

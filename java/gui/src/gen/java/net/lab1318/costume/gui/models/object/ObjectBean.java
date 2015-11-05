@@ -7,7 +7,6 @@ public class ObjectBean {
         title = null;
         description = null;
         provenance = null;
-        sourceId = null;
         summary = null;
         thumbnail = null;
         url = null;
@@ -19,7 +18,6 @@ public class ObjectBean {
         this.title = other.getTitle();
         this.description = other.getDescription().isPresent() ? other.getDescription().get() : null;
         this.provenance = other.getProvenance().isPresent() ? other.getProvenance().get() : null;
-        this.sourceId = other.getSourceId().isPresent() ? other.getSourceId().get() : null;
         this.summary = other.getSummary().isPresent() ? other.getSummary().get() : null;
         this.thumbnail = other.getThumbnail().isPresent() ? new net.lab1318.costume.gui.models.image.ImageBean(other.getThumbnail().get()) : null;
         this.url = other.getUrl().isPresent() ? other.getUrl().get() : null;
@@ -40,7 +38,6 @@ public class ObjectBean {
             getTitle().equals(other.getTitle()) &&
             getDescription().equals(other.getDescription()) &&
             getProvenance().equals(other.getProvenance()) &&
-            getSourceId().equals(other.getSourceId()) &&
             getSummary().equals(other.getSummary()) &&
             getThumbnail().equals(other.getThumbnail()) &&
             getUrl().equals(other.getUrl());
@@ -60,10 +57,6 @@ public class ObjectBean {
 
     public String getProvenance() {
         return provenance;
-    }
-
-    public String getSourceId() {
-        return sourceId;
     }
 
     public String getSummary() {
@@ -86,16 +79,13 @@ public class ObjectBean {
     public int hashCode() {
         int hashCode = 17;
         hashCode = 31 * hashCode + getCollectionId().hashCode();
-        hashCode = 31 * hashCode + getInstitutionId().ordinal();
+        hashCode = 31 * hashCode + getInstitutionId().hashCode();
         hashCode = 31 * hashCode + getTitle().hashCode();
         if (getDescription() != null) {
             hashCode = 31 * hashCode + getDescription().hashCode();
         }
         if (getProvenance() != null) {
             hashCode = 31 * hashCode + getProvenance().hashCode();
-        }
-        if (getSourceId() != null) {
-            hashCode = 31 * hashCode + getSourceId().hashCode();
         }
         if (getSummary() != null) {
             hashCode = 31 * hashCode + getSummary().hashCode();
@@ -125,10 +115,6 @@ public class ObjectBean {
         this.provenance = provenance;
     }
 
-    public void setSourceId(final String sourceId) {
-        this.sourceId = sourceId;
-    }
-
     public void setSummary(final String summary) {
         this.summary = summary;
     }
@@ -147,7 +133,7 @@ public class ObjectBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("title", getTitle()).add("description", getDescription()).add("provenance", getProvenance()).add("source_id", getSourceId()).add("summary", getSummary()).add("thumbnail", getThumbnail()).add("url", getUrl()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("title", getTitle()).add("description", getDescription()).add("provenance", getProvenance()).add("summary", getSummary()).add("thumbnail", getThumbnail()).add("url", getUrl()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -159,8 +145,6 @@ public class ObjectBean {
     private String description;
 
     private String provenance;
-
-    private String sourceId;
 
     private String summary;
 

@@ -6,9 +6,9 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.ImmutableList;
 
-import net.lab1318.costume.api.models.collection.CollectionId;
+import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
 import net.lab1318.costume.lib.services.TestData;
@@ -17,13 +17,13 @@ public final class ElasticSearchCollectionCommandServiceTest extends CollectionS
     @Test
     public void testDeleteCollectionById() throws Exception {
         assertEquals(0, collectionQueryService.getCollections().size());
-        final ImmutableSet<CollectionId> collectionIds = _putCollections().keySet();
-        assertNotEquals(0, collectionIds.size());
-        for (final CollectionId collectionId : collectionIds) {
-            collectionQueryService.getCollectionById(collectionId);
-            collectionCommandService.deleteCollectionById(collectionId);
+        final ImmutableList<CollectionEntry> expected = _putCollections();
+        assertNotEquals(0, expected.size());
+        for (final CollectionEntry collectionEntry : expected) {
+            collectionQueryService.getCollectionById(collectionEntry.getId());
+            collectionCommandService.deleteCollectionById(collectionEntry.getId());
             try {
-                collectionQueryService.getCollectionById(collectionId);
+                collectionQueryService.getCollectionById(collectionEntry.getId());
                 fail();
             } catch (final NoSuchCollectionException e) {
             }

@@ -1,5 +1,4 @@
 import __builtin__
-import costume.api.models.institution.institution_id
 import costume.api.models.object.object
 
 
@@ -40,13 +39,13 @@ class ObjectCommandService(object):
         institution_id=None,
     ):
         '''
-        :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+        :type institution_id: str
         '''
 
         if institution_id is None:
             raise ValueError('institution_id is required')
-        if not isinstance(institution_id, costume.api.models.institution.institution_id.InstitutionId):
-            raise TypeError("expected institution_id to be a costume.api.models.institution.institution_id.InstitutionId but it is a %s" % getattr(__builtin__, 'type')(institution_id))
+        if not isinstance(institution_id, basestring):
+            raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
 
         self._delete_objects_by_institution_id(institution_id=institution_id)
 
@@ -56,29 +55,30 @@ class ObjectCommandService(object):
     ):
         raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._delete_objects_by_institution_id')
 
-    def post_object(
+    def put_object(
         self,
+        id=None,  # @ReservedAssignment
         object=None,  # @ReservedAssignment
     ):
         '''
+        :type id: str
         :type object: costume.api.models.object.object.Object
-        :rtype: str
         '''
 
+        if id is None:
+            raise ValueError('id is required')
+        if not isinstance(id, basestring):
+            raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
         if object is None:
             raise ValueError('object is required')
         if not isinstance(object, costume.api.models.object.object.Object):
             raise TypeError("expected object to be a costume.api.models.object.object.Object but it is a %s" % getattr(__builtin__, 'type')(object))
 
-        post_object_return_value = self._post_object(object=object)
+        self._put_object(id=id, object=object)
 
-        if not isinstance(post_object_return_value, basestring):
-            raise TypeError(getattr(__builtin__, 'type')(post_object_return_value))
-
-        return post_object_return_value
-
-    def _post_object(
+    def _put_object(
         self,
+        id,  # @ReservedAssignment
         object,  # @ReservedAssignment
     ):
-        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._post_object')
+        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._put_object')

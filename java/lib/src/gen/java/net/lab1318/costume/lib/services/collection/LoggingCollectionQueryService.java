@@ -22,7 +22,7 @@ public class LoggingCollectionQueryService implements net.lab1318.costume.api.se
         this.delegate = com.google.common.base.Preconditions.checkNotNull(delegate);
     }
 
-    public net.lab1318.costume.api.models.collection.Collection getCollectionById(final net.lab1318.costume.api.models.collection.CollectionId id) throws net.lab1318.costume.api.services.collection.InvalidCollectionIdException, net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException {
+    public net.lab1318.costume.api.models.collection.Collection getCollectionById(final net.lab1318.costume.api.models.collection.CollectionId id) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -40,11 +40,6 @@ public class LoggingCollectionQueryService implements net.lab1318.costume.api.se
             logger.debug(Markers.GET_COLLECTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
 
             return __returnValue;
-        } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.GET_COLLECTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
-            throw e;
         } catch (final net.lab1318.costume.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());

@@ -36,7 +36,7 @@ public class InstitutionEntryBean {
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getId().ordinal();
+        hashCode = 31 * hashCode + getId().hashCode();
         hashCode = 31 * hashCode + getModel().hashCode();
         return hashCode;
     }

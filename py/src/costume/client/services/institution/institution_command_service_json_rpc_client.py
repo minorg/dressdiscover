@@ -119,7 +119,7 @@ class InstitutionCommandServiceJsonRpcClient(costume.api.services.institution.in
         oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='id', type=11, id=None)
-        oprot.write_string(str(id))
+        oprot.write_string(id)
         oprot.write_field_end()
         oprot.write_struct_end()
 
@@ -138,7 +138,7 @@ class InstitutionCommandServiceJsonRpcClient(costume.api.services.institution.in
         oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='id', type=11, id=None)
-        oprot.write_string(str(id))
+        oprot.write_string(id)
         oprot.write_field_end()
         oprot.write_field_begin(name='institution', type=12, id=None)
         institution.write(oprot)

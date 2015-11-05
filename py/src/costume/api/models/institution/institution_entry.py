@@ -1,6 +1,5 @@
 import __builtin__
 import costume.api.models.institution.institution
-import costume.api.models.institution.institution_id
 
 
 class InstitutionEntry(object):
@@ -11,7 +10,7 @@ class InstitutionEntry(object):
             model=None,
         ):
             '''
-            :type id: costume.api.models.institution.institution_id.InstitutionId
+            :type id: str
             :type model: costume.api.models.institution.institution.Institution
             '''
 
@@ -24,7 +23,7 @@ class InstitutionEntry(object):
         @property
         def id(self):  # @ReservedAssignment
             '''
-            :rtype: costume.api.models.institution.institution_id.InstitutionId
+            :rtype: str
             '''
 
             return self.__id
@@ -39,7 +38,7 @@ class InstitutionEntry(object):
 
         def set_id(self, id):  # @ReservedAssignment
             '''
-            :type id: costume.api.models.institution.institution_id.InstitutionId
+            :type id: str
             '''
 
             self.__id = id
@@ -55,7 +54,7 @@ class InstitutionEntry(object):
 
         def update(self, institution_entry):
             '''
-            :type id: costume.api.models.institution.institution_id.InstitutionId
+            :type id: str
             :type model: costume.api.models.institution.institution.Institution
             '''
 
@@ -72,7 +71,7 @@ class InstitutionEntry(object):
         @id.setter
         def id(self, id):  # @ReservedAssignment
             '''
-            :type id: costume.api.models.institution.institution_id.InstitutionId
+            :type id: str
             '''
 
             self.set_id(id)
@@ -91,14 +90,14 @@ class InstitutionEntry(object):
         model,
     ):
         '''
-        :type id: costume.api.models.institution.institution_id.InstitutionId
+        :type id: str
         :type model: costume.api.models.institution.institution.Institution
         '''
 
         if id is None:
             raise ValueError('id is required')
-        if not isinstance(id, costume.api.models.institution.institution_id.InstitutionId):
-            raise TypeError("expected id to be a costume.api.models.institution.institution_id.InstitutionId but it is a %s" % getattr(__builtin__, 'type')(id))
+        if not isinstance(id, basestring):
+            raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
         self.__id = id
 
         if model is None:
@@ -125,13 +124,13 @@ class InstitutionEntry(object):
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('id=' + repr(self.id))
+        field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace') + "'")
         field_reprs.append('model=' + repr(self.model))
         return 'InstitutionEntry(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('id=' + repr(self.id))
+        field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace') + "'")
         field_reprs.append('model=' + repr(self.model))
         return 'InstitutionEntry(' + ', '.join(field_reprs) + ')'
 
@@ -156,7 +155,7 @@ class InstitutionEntry(object):
     @property
     def id(self):  # @ReservedAssignment
         '''
-        :rtype: costume.api.models.institution.institution_id.InstitutionId
+        :rtype: str
         '''
 
         return self.__id
@@ -186,7 +185,7 @@ class InstitutionEntry(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'id':
-                init_kwds['id'] = costume.api.models.institution.institution_id.InstitutionId.value_of(iprot.read_string().strip().upper())
+                init_kwds['id'] = iprot.read_string()
             elif ifield_name == 'model':
                 init_kwds['model'] = costume.api.models.institution.institution.Institution.read(iprot)
             iprot.read_field_end()
@@ -202,7 +201,7 @@ class InstitutionEntry(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type id: costume.api.models.institution.institution_id.InstitutionId or None
+        :type id: str or None
         :type model: costume.api.models.institution.institution.Institution or None
         :rtype: costume.api.models.institution.institution_entry.InstitutionEntry
         '''
@@ -224,7 +223,7 @@ class InstitutionEntry(object):
         oprot.write_struct_begin('InstitutionEntry')
 
         oprot.write_field_begin(name='id', type=11, id=None)
-        oprot.write_string(str(self.id))
+        oprot.write_string(self.id)
         oprot.write_field_end()
 
         oprot.write_field_begin(name='model', type=12, id=None)

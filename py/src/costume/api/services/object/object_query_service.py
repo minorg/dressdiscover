@@ -1,6 +1,5 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.models.institution.institution_id
 import costume.api.models.object.object
 import costume.api.models.object.object_entry
 
@@ -84,14 +83,14 @@ class ObjectQueryService(object):
         institution_id=None,
     ):
         '''
-        :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+        :type institution_id: str
         :rtype: int
         '''
 
         if institution_id is None:
             raise ValueError('institution_id is required')
-        if not isinstance(institution_id, costume.api.models.institution.institution_id.InstitutionId):
-            raise TypeError("expected institution_id to be a costume.api.models.institution.institution_id.InstitutionId but it is a %s" % getattr(__builtin__, 'type')(institution_id))
+        if not isinstance(institution_id, basestring):
+            raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
 
         get_object_count_by_institution_id_return_value = self._get_object_count_by_institution_id(institution_id=institution_id)
 
@@ -188,7 +187,7 @@ class ObjectQueryService(object):
         size=None,
     ):
         '''
-        :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+        :type institution_id: str
         :type from_: int
         :type size: int
         :rtype: tuple(costume.api.models.object.object_entry.ObjectEntry)
@@ -196,8 +195,8 @@ class ObjectQueryService(object):
 
         if institution_id is None:
             raise ValueError('institution_id is required')
-        if not isinstance(institution_id, costume.api.models.institution.institution_id.InstitutionId):
-            raise TypeError("expected institution_id to be a costume.api.models.institution.institution_id.InstitutionId but it is a %s" % getattr(__builtin__, 'type')(institution_id))
+        if not isinstance(institution_id, basestring):
+            raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
         if from_ is None:
             raise ValueError('from_ is required')
         if not isinstance(from_, (int, long)) and from_ >= 0:

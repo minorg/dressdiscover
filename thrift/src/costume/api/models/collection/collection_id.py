@@ -8,7 +8,7 @@ class CollectionId(_Id):
         return {'index': 'not_analyzed', 'type': 'string'}
 
     def java_read_protocol_throws_checked(self):
-        return ['net.lab1318.costume.api.services.collection.InvalidCollectionIdException']
+        return ['net.lab1318.costume.api.models.collection.InvalidCollectionIdException']
 
     def java_qname(self, boxed=False):
         return 'net.lab1318.costume.api.models.collection.CollectionId'

@@ -52,8 +52,8 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                 doPostDeleteCollections(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
             } else if (messageBegin.getName().equals("delete_collections_by_institution_id")) {
                 doPostDeleteCollectionsByInstitutionId(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
-            } else if (messageBegin.getName().equals("post_collection")) {
-                doPostPostCollection(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
+            } else if (messageBegin.getName().equals("put_collection")) {
+                doPostPutCollection(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
             } else {
                 __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(-32601, String.format("the method '%s' does not exist / is not available", messageBegin.getName())), messageBegin.getId());
                 return;
@@ -252,19 +252,18 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
         __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
     }
 
-    public void doPostPostCollection(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final net.lab1318.costume.api.services.collection.CollectionCommandService.Messages.PostCollectionRequest serviceRequest;
+    public void doPostPutCollection(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
+        final net.lab1318.costume.api.services.collection.CollectionCommandService.Messages.PutCollectionRequest serviceRequest;
         try {
-            serviceRequest = net.lab1318.costume.api.services.collection.CollectionCommandService.Messages.PostCollectionRequest.readAs(iprot, iprot.getCurrentFieldType());
+            serviceRequest = net.lab1318.costume.api.services.collection.CollectionCommandService.Messages.PutCollectionRequest.readAs(iprot, iprot.getCurrentFieldType());
         } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
             logger.debug("error deserializing service request: ", e);
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, -32602, "invalid JSON-RPC request method parameters: " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
         }
 
-        final net.lab1318.costume.api.models.collection.CollectionId result;
         try {
-            result = service.postCollection(serviceRequest.getCollection());
+            service.putCollection(serviceRequest.getId(), serviceRequest.getCollection());
         } catch (final net.lab1318.costume.api.services.IoException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
@@ -276,7 +275,8 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
             try {
                 final org.thryft.protocol.JsonRpcOutputProtocol oprot = new org.thryft.protocol.JsonRpcOutputProtocol(new org.thryft.protocol.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
                 oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                oprot.writeString(result.toString());
+                oprot.writeStructBegin("response");
+                oprot.writeStructEnd();
                 oprot.writeMessageEnd();
                 oprot.flush();
             } catch (final org.thryft.protocol.OutputProtocolException e) {

@@ -2,7 +2,6 @@ from itertools import ifilterfalse
 import __builtin__
 import costume.api.models.institution.institution
 import costume.api.models.institution.institution_entry
-import costume.api.models.institution.institution_id
 
 
 class InstitutionQueryService(object):
@@ -11,14 +10,14 @@ class InstitutionQueryService(object):
         id=None,  # @ReservedAssignment
     ):
         '''
-        :type id: costume.api.models.institution.institution_id.InstitutionId
+        :type id: str
         :rtype: costume.api.models.institution.institution.Institution
         '''
 
         if id is None:
             raise ValueError('id is required')
-        if not isinstance(id, costume.api.models.institution.institution_id.InstitutionId):
-            raise TypeError("expected id to be a costume.api.models.institution.institution_id.InstitutionId but it is a %s" % getattr(__builtin__, 'type')(id))
+        if not isinstance(id, basestring):
+            raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
 
         get_institution_by_id_return_value = self._get_institution_by_id(id=id)
 

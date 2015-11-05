@@ -15,16 +15,15 @@ import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
+import net.lab1318.costume.api.models.object.InvalidObjectIdException;
 import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
-import net.lab1318.costume.api.services.collection.InvalidCollectionIdException;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
-import net.lab1318.costume.api.services.object.InvalidObjectIdException;
 import net.lab1318.costume.api.services.object.NoSuchObjectException;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.gui.views.object.ObjectByIdView;
@@ -57,7 +56,7 @@ public class ObjectByIdPresenter extends Presenter<ObjectByIdView> {
         } catch (final IoException e) {
             _getView().setComponentError(new SystemError("I/O exception", e));
             return;
-        } catch (final InvalidObjectIdException | NoSuchObjectException e) {
+        } catch (final NoSuchObjectException e) {
             _getView().setComponentError(new UserError("no such object " + objectId));
             return;
         }
@@ -68,7 +67,7 @@ public class ObjectByIdPresenter extends Presenter<ObjectByIdView> {
         } catch (final IoException e) {
             _getView().setComponentError(new SystemError("I/O exception", e));
             return;
-        } catch (final InvalidCollectionIdException | NoSuchCollectionException e) {
+        } catch (final NoSuchCollectionException e) {
             _getView().setComponentError(new UserError("no such collection " + object.getCollectionId()));
             return;
         }

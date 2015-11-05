@@ -11,7 +11,6 @@ include "costume/api/models/object/object.thrift"
 include "costume/api/models/object/object_entry.thrift"
 include "costume/api/models/object/object_id.thrift"
 include "costume/api/services/io_exception.thrift"
-include "costume/api/services/object/invalid_object_id_exception.thrift"
 include "costume/api/services/object/no_such_object_exception.thrift"
 include "thryft/native/u32.thrift"
 
@@ -20,9 +19,8 @@ service ObjectQueryService {
 	get_object_by_id(
 		object_id.ObjectId id
 	) throws (
-		invalid_object_id_exception.InvalidObjectIdException e1,
-		io_exception.IoException e2,
-		no_such_object_exception.NoSuchObjectException e3
+		io_exception.IoException e1,
+		no_such_object_exception.NoSuchObjectException e2
 	);
 
 	u32.u32

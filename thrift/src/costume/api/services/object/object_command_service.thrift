@@ -32,10 +32,11 @@ service ObjectCommandService {
 		io_exception.IoException e
 	);
 
-	object_id.ObjectId
-	post_object(
+	void
+	put_object(
+		object_id.ObjectId id,
 		object.Object object
 	) throws (
-		io_exception.IoException e1
+		io_exception.IoException e
 	);
 }

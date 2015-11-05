@@ -13,7 +13,7 @@ public final class ElasticSearchObjectCommandServiceTest extends ObjectServiceTe
     @Test
     public void testDeleteObjects() throws Exception {
         assertEquals(0, objectQueryService.getObjectCount().intValue());
-        _postObjects();
+        _putObjects();
         assertNotEquals(0, objectQueryService.getObjectCount().intValue());
         objectCommandService.deleteObjects();
         assertEquals(0, objectQueryService.getObjectCount().intValue());
@@ -21,7 +21,7 @@ public final class ElasticSearchObjectCommandServiceTest extends ObjectServiceTe
 
     @Test
     public void testDeleteObjectsByCollectionId() throws Exception {
-        _postObjects();
+        _putObjects();
         for (final CollectionEntry collectionEntry : collectionQueryService.getCollections()) {
             assertNotEquals(0, objectQueryService.getObjectCountByCollectionId(collectionEntry.getId()).intValue());
             objectCommandService.deleteObjectsByCollectionId(collectionEntry.getId());
@@ -31,7 +31,7 @@ public final class ElasticSearchObjectCommandServiceTest extends ObjectServiceTe
 
     @Test
     public void testDeleteObjectsByInstitutionId() throws Exception {
-        _postObjects();
+        _putObjects();
         for (final InstitutionEntry institutionEntry : TestData.getInstance().getInstitutions()) {
             assertNotEquals(0, objectQueryService.getObjectCountByInstitutionId(institutionEntry.getId()).intValue());
             objectCommandService.deleteObjectsByInstitutionId(institutionEntry.getId());
@@ -42,7 +42,7 @@ public final class ElasticSearchObjectCommandServiceTest extends ObjectServiceTe
     @Test
     public void testPostObject() throws Exception {
         assertEquals(0, objectQueryService.getObjectCount().intValue());
-        _postObjects();
+        _putObjects();
         assertEquals(TestData.getInstance().getObjects().size(), objectQueryService.getObjectCount().intValue());
     }
 }
