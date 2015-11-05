@@ -38,9 +38,6 @@
           "5:provenance": {
             "type": "string"
           }, 
-          "6:source_id": {
-            "type": "string"
-          }, 
           "7:summary": {
             "type": "string"
           }, 

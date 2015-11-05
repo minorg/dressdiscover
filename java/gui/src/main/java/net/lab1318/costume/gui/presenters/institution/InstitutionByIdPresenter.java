@@ -46,7 +46,7 @@ public class InstitutionByIdPresenter extends Presenter<InstitutionByIdView> {
     protected void _onViewEnter(final ViewChangeEvent event) {
         InstitutionId institutionId;
         try {
-            institutionId = InstitutionId.parse(event.getParameters().toUpperCase());
+            institutionId = InstitutionId.parse(event.getParameters());
         } catch (final InvalidInstitutionIdException e) {
             _getView().setComponentError(new UserError("no such institution " + event.getParameters()));
             return;
