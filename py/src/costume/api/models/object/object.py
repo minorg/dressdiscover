@@ -1,6 +1,5 @@
 import __builtin__
 import costume.api.models.image.image
-import costume.api.models.institution.institution_id
 
 
 class Object(object):
@@ -19,7 +18,7 @@ class Object(object):
         ):
             '''
             :type collection_id: str
-            :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+            :type institution_id: str
             :type title: str
             :type description: str or None
             :type provenance: str or None
@@ -61,7 +60,7 @@ class Object(object):
         @property
         def institution_id(self):
             '''
-            :rtype: costume.api.models.institution.institution_id.InstitutionId
+            :rtype: str
             '''
 
             return self.__institution_id
@@ -92,7 +91,7 @@ class Object(object):
 
         def set_institution_id(self, institution_id):
             '''
-            :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+            :type institution_id: str
             '''
 
             self.__institution_id = institution_id
@@ -181,7 +180,7 @@ class Object(object):
         def update(self, object):
             '''
             :type collection_id: str
-            :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+            :type institution_id: str
             :type title: str
             :type description: str or None
             :type provenance: str or None
@@ -235,7 +234,7 @@ class Object(object):
         @institution_id.setter
         def institution_id(self, institution_id):
             '''
-            :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+            :type institution_id: str
             '''
 
             self.set_institution_id(institution_id)
@@ -302,7 +301,7 @@ class Object(object):
     ):
         '''
         :type collection_id: str
-        :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+        :type institution_id: str
         :type title: str
         :type description: str or None
         :type provenance: str or None
@@ -320,8 +319,8 @@ class Object(object):
 
         if institution_id is None:
             raise ValueError('institution_id is required')
-        if not isinstance(institution_id, costume.api.models.institution.institution_id.InstitutionId):
-            raise TypeError("expected institution_id to be a costume.api.models.institution.institution_id.InstitutionId but it is a %s" % getattr(__builtin__, 'type')(institution_id))
+        if not isinstance(institution_id, basestring):
+            raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
         self.__institution_id = institution_id
 
         if title is None:
@@ -395,7 +394,7 @@ class Object(object):
     def __repr__(self):
         field_reprs = []
         field_reprs.append('collection_id=' + "'" + self.collection_id.encode('ascii', 'replace') + "'")
-        field_reprs.append('institution_id=' + repr(self.institution_id))
+        field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
         if self.description is not None:
             field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
@@ -414,7 +413,7 @@ class Object(object):
     def __str__(self):
         field_reprs = []
         field_reprs.append('collection_id=' + "'" + self.collection_id.encode('ascii', 'replace') + "'")
-        field_reprs.append('institution_id=' + repr(self.institution_id))
+        field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
         if self.description is not None:
             field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
@@ -467,7 +466,7 @@ class Object(object):
     @property
     def institution_id(self):
         '''
-        :rtype: costume.api.models.institution.institution_id.InstitutionId
+        :rtype: str
         '''
 
         return self.__institution_id
@@ -499,7 +498,7 @@ class Object(object):
             elif ifield_name == 'collection_id' and ifield_id == 1:
                 init_kwds['collection_id'] = iprot.read_string()
             elif ifield_name == 'institution_id' and ifield_id == 2:
-                init_kwds['institution_id'] = costume.api.models.institution.institution_id.InstitutionId.value_of(iprot.read_string().strip().upper())
+                init_kwds['institution_id'] = iprot.read_string()
             elif ifield_name == 'title' and ifield_id == 3:
                 init_kwds['title'] = iprot.read_string()
             elif ifield_name == 'description' and ifield_id == 4:
@@ -550,7 +549,7 @@ class Object(object):
         Copy this object, replace one or more fields, and return the copy.
 
         :type collection_id: str or None
-        :type institution_id: costume.api.models.institution.institution_id.InstitutionId or None
+        :type institution_id: str or None
         :type title: str or None
         :type description: str or None
         :type provenance: str or None
@@ -636,7 +635,7 @@ class Object(object):
         oprot.write_field_end()
 
         oprot.write_field_begin(name='institution_id', type=11, id=2)
-        oprot.write_string(str(self.institution_id))
+        oprot.write_string(self.institution_id)
         oprot.write_field_end()
 
         oprot.write_field_begin(name='title', type=11, id=3)

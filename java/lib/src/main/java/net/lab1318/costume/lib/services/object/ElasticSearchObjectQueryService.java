@@ -25,11 +25,11 @@ import com.google.inject.Singleton;
 
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.InstitutionId;
+import net.lab1318.costume.api.models.object.InvalidObjectIdException;
 import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.object.InvalidObjectIdException;
 import net.lab1318.costume.api.services.object.NoSuchObjectException;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.lib.services.ServiceExceptionHelper;
@@ -73,7 +73,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     }
 
     @Override
-    public Object getObjectById(final ObjectId id) throws InvalidObjectIdException, IoException, NoSuchObjectException {
+    public Object getObjectById(final ObjectId id) throws IoException, NoSuchObjectException {
         try {
             return elasticSearchIndex.getModelById(id, Optional.absent(), logger, Markers.GET_OBJECT_BY_ID,
                     ObjectElasticSearchModelFactory.getInstance());

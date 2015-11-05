@@ -24,6 +24,7 @@ import com.google.inject.Singleton;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionId;
+import net.lab1318.costume.api.models.institution.InvalidInstitutionIdException;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
@@ -52,9 +53,9 @@ public class ElasticSearchInstitutionQueryService implements InstitutionQuerySer
         public InstitutionEntry createModelEntryFromSource(final String id, final BytesReference document)
                 throws InvalidModelException {
             try {
-                return new InstitutionEntry(InstitutionId.valueOf(id),
+                return new InstitutionEntry(InstitutionId.parse(id),
                         Institution.readAsStruct(new ElasticSearchInputProtocol(document)));
-            } catch (final InputProtocolException | IllegalArgumentException e) {
+            } catch (final InputProtocolException | InvalidInstitutionIdException e) {
                 throw new InvalidModelException(id, ServiceExceptionHelper.combineMessages(e,
                         "error deserializing model document from ElasticSearch"), e);
             }

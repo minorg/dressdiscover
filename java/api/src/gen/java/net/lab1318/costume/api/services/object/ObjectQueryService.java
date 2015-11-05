@@ -59,7 +59,7 @@ public interface ObjectQueryService {
                     iprot.readListBegin();
                     try {
                         id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.services.object.InvalidObjectIdException e) {
+                    } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
                          throw new IllegalArgumentException(e);
                     }
                     iprot.readListEnd();
@@ -77,7 +77,7 @@ public interface ObjectQueryService {
                         case "id": {
                             try {
                                 id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
-                            } catch (final net.lab1318.costume.api.services.object.InvalidObjectIdException e) {
+                            } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
                                  throw new IllegalArgumentException(e);
                             }
                             break;
@@ -279,7 +279,7 @@ public interface ObjectQueryService {
                 iprot.readListBegin();
                 try {
                     id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.services.object.InvalidObjectIdException e) {
+                } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
                      throw new IllegalArgumentException(e);
                 }
                 iprot.readListEnd();
@@ -303,7 +303,7 @@ public interface ObjectQueryService {
                     case "id": {
                         try {
                             id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
-                        } catch (final net.lab1318.costume.api.services.object.InvalidObjectIdException e) {
+                        } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
                              throw new IllegalArgumentException(e);
                         }
                         break;
@@ -1205,7 +1205,7 @@ public interface ObjectQueryService {
                     iprot.readListBegin();
                     try {
                         collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+                    } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                          throw new IllegalArgumentException(e);
                     }
                     iprot.readListEnd();
@@ -1223,7 +1223,7 @@ public interface ObjectQueryService {
                         case "collection_id": {
                             try {
                                 collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                            } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+                            } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                                  throw new IllegalArgumentException(e);
                             }
                             break;
@@ -1425,7 +1425,7 @@ public interface ObjectQueryService {
                 iprot.readListBegin();
                 try {
                     collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+                } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                      throw new IllegalArgumentException(e);
                 }
                 iprot.readListEnd();
@@ -1449,7 +1449,7 @@ public interface ObjectQueryService {
                     case "collection_id": {
                         try {
                             collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                        } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+                        } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                              throw new IllegalArgumentException(e);
                         }
                         break;
@@ -1855,7 +1855,11 @@ public interface ObjectQueryService {
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
-                    institutionId = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                    try {
+                        institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                    } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                         throw new IllegalArgumentException(e);
+                    }
                     iprot.readListEnd();
                     return this;
                 }
@@ -1869,7 +1873,11 @@ public interface ObjectQueryService {
                         }
                         switch (ifield.getName()) {
                         case "institution_id": {
-                            institutionId = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                            try {
+                                institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                            } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                                 throw new IllegalArgumentException(e);
+                            }
                             break;
                         }
                         }
@@ -2048,7 +2056,7 @@ public interface ObjectQueryService {
             @Override
             public int hashCode() {
                 int hashCode = 17;
-                hashCode = 31 * hashCode + getInstitutionId().ordinal();
+                hashCode = 31 * hashCode + getInstitutionId().hashCode();
                 return hashCode;
             }
 
@@ -2067,7 +2075,11 @@ public interface ObjectQueryService {
                 net.lab1318.costume.api.models.institution.InstitutionId institutionId = null;
 
                 iprot.readListBegin();
-                institutionId = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                try {
+                    institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                     throw new IllegalArgumentException(e);
+                }
                 iprot.readListEnd();
                 try {
                     return new GetObjectCountByInstitutionIdRequest(institutionId);
@@ -2087,7 +2099,11 @@ public interface ObjectQueryService {
                     }
                     switch (ifield.getName()) {
                     case "institution_id": {
-                        institutionId = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                        try {
+                            institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                        } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                             throw new IllegalArgumentException(e);
+                        }
                         break;
                     }
                     }
@@ -2114,7 +2130,7 @@ public interface ObjectQueryService {
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
 
-                oprot.writeEnum(getInstitutionId());
+                oprot.writeString(getInstitutionId().toString());
 
                 oprot.writeListEnd();
             }
@@ -2129,7 +2145,7 @@ public interface ObjectQueryService {
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeFieldBegin("institution_id", org.thryft.protocol.Type.STRING, (short)0);
-                oprot.writeEnum(getInstitutionId());
+                oprot.writeString(getInstitutionId().toString());
                 oprot.writeFieldEnd();
 
                 oprot.writeFieldStop();
@@ -3264,7 +3280,7 @@ public interface ObjectQueryService {
                     iprot.readListBegin();
                     try {
                         collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+                    } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                          throw new IllegalArgumentException(e);
                     }
                     from = iprot.readU32();
@@ -3284,7 +3300,7 @@ public interface ObjectQueryService {
                         case "collection_id": {
                             try {
                                 collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                            } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+                            } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                                  throw new IllegalArgumentException(e);
                             }
                             break;
@@ -3544,7 +3560,7 @@ public interface ObjectQueryService {
                 iprot.readListBegin();
                 try {
                     collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+                } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                      throw new IllegalArgumentException(e);
                 }
                 from = iprot.readU32();
@@ -3572,7 +3588,7 @@ public interface ObjectQueryService {
                     case "collection_id": {
                         try {
                             collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                        } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+                        } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                              throw new IllegalArgumentException(e);
                         }
                         break;
@@ -4091,7 +4107,11 @@ public interface ObjectQueryService {
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
-                    institutionId = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                    try {
+                        institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                    } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                         throw new IllegalArgumentException(e);
+                    }
                     from = iprot.readU32();
                     size = iprot.readU32();
                     iprot.readListEnd();
@@ -4107,7 +4127,11 @@ public interface ObjectQueryService {
                         }
                         switch (ifield.getName()) {
                         case "institution_id": {
-                            institutionId = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                            try {
+                                institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                            } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                                 throw new IllegalArgumentException(e);
+                            }
                             break;
                         }
                         case "from_": {
@@ -4340,7 +4364,7 @@ public interface ObjectQueryService {
             @Override
             public int hashCode() {
                 int hashCode = 17;
-                hashCode = 31 * hashCode + getInstitutionId().ordinal();
+                hashCode = 31 * hashCode + getInstitutionId().hashCode();
                 hashCode = 31 * hashCode + getFrom().hashCode();
                 hashCode = 31 * hashCode + getSize().hashCode();
                 return hashCode;
@@ -4363,7 +4387,11 @@ public interface ObjectQueryService {
                 com.google.common.primitives.UnsignedInteger size = com.google.common.primitives.UnsignedInteger.ZERO;
 
                 iprot.readListBegin();
-                institutionId = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                try {
+                    institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                     throw new IllegalArgumentException(e);
+                }
                 from = iprot.readU32();
                 size = iprot.readU32();
                 iprot.readListEnd();
@@ -4387,7 +4415,11 @@ public interface ObjectQueryService {
                     }
                     switch (ifield.getName()) {
                     case "institution_id": {
-                        institutionId = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                        try {
+                            institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                        } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                             throw new IllegalArgumentException(e);
+                        }
                         break;
                     }
                     case "from_": {
@@ -4430,7 +4462,7 @@ public interface ObjectQueryService {
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
 
-                oprot.writeEnum(getInstitutionId());
+                oprot.writeString(getInstitutionId().toString());
 
                 oprot.writeU32(getFrom());
 
@@ -4449,7 +4481,7 @@ public interface ObjectQueryService {
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeFieldBegin("institution_id", org.thryft.protocol.Type.STRING, (short)0);
-                oprot.writeEnum(getInstitutionId());
+                oprot.writeString(getInstitutionId().toString());
                 oprot.writeFieldEnd();
 
                 oprot.writeFieldBegin("from_", org.thryft.protocol.Type.I32, (short)0);
@@ -4858,7 +4890,7 @@ public interface ObjectQueryService {
         }
     }
 
-    public net.lab1318.costume.api.models.object.Object getObjectById(final net.lab1318.costume.api.models.object.ObjectId id) throws net.lab1318.costume.api.services.object.InvalidObjectIdException, net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.object.NoSuchObjectException;
+    public net.lab1318.costume.api.models.object.Object getObjectById(final net.lab1318.costume.api.models.object.ObjectId id) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.object.NoSuchObjectException;
 
     public com.google.common.primitives.UnsignedInteger getObjectCount() throws net.lab1318.costume.api.services.IoException;
 

@@ -52,7 +52,11 @@ public interface InstitutionQueryService {
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
-                    id = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                    try {
+                        id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                    } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                         throw new IllegalArgumentException(e);
+                    }
                     iprot.readListEnd();
                     return this;
                 }
@@ -66,7 +70,11 @@ public interface InstitutionQueryService {
                         }
                         switch (ifield.getName()) {
                         case "id": {
-                            id = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                            try {
+                                id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                            } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                                 throw new IllegalArgumentException(e);
+                            }
                             break;
                         }
                         }
@@ -245,7 +253,7 @@ public interface InstitutionQueryService {
             @Override
             public int hashCode() {
                 int hashCode = 17;
-                hashCode = 31 * hashCode + getId().ordinal();
+                hashCode = 31 * hashCode + getId().hashCode();
                 return hashCode;
             }
 
@@ -264,7 +272,11 @@ public interface InstitutionQueryService {
                 net.lab1318.costume.api.models.institution.InstitutionId id = null;
 
                 iprot.readListBegin();
-                id = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                try {
+                    id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                     throw new IllegalArgumentException(e);
+                }
                 iprot.readListEnd();
                 try {
                     return new GetInstitutionByIdRequest(id);
@@ -284,7 +296,11 @@ public interface InstitutionQueryService {
                     }
                     switch (ifield.getName()) {
                     case "id": {
-                        id = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                        try {
+                            id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                        } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                             throw new IllegalArgumentException(e);
+                        }
                         break;
                     }
                     }
@@ -311,7 +327,7 @@ public interface InstitutionQueryService {
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
 
-                oprot.writeEnum(getId());
+                oprot.writeString(getId().toString());
 
                 oprot.writeListEnd();
             }
@@ -326,7 +342,7 @@ public interface InstitutionQueryService {
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeFieldBegin("id", org.thryft.protocol.Type.STRING, (short)0);
-                oprot.writeEnum(getId());
+                oprot.writeString(getId().toString());
                 oprot.writeFieldEnd();
 
                 oprot.writeFieldStop();

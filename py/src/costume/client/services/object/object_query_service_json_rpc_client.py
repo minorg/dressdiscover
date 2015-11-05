@@ -2,7 +2,6 @@ from urlparse import urlparse
 import base64
 import costume.api.models.object.object
 import costume.api.services.io_exception  # @UnusedImport
-import costume.api.services.object.invalid_object_id_exception  # @UnusedImport
 import costume.api.services.object.no_such_object_exception  # @UnusedImport
 import costume.api.services.object.object_query_service
 import json
@@ -159,7 +158,7 @@ class ObjectQueryServiceJsonRpcClient(costume.api.services.object.object_query_s
         oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='institution_id', type=11, id=None)
-        oprot.write_string(str(institution_id))
+        oprot.write_string(institution_id)
         oprot.write_field_end()
         oprot.write_struct_end()
 
@@ -218,7 +217,7 @@ class ObjectQueryServiceJsonRpcClient(costume.api.services.object.object_query_s
         oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='institution_id', type=11, id=None)
-        oprot.write_string(str(institution_id))
+        oprot.write_string(institution_id)
         oprot.write_field_end()
         oprot.write_field_begin(name='from_', type=8, id=None)
         oprot.write_u32(from_)

@@ -53,7 +53,11 @@ public interface InstitutionCommandService {
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
-                    id = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                    try {
+                        id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                    } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                         throw new IllegalArgumentException(e);
+                    }
                     iprot.readListEnd();
                     return this;
                 }
@@ -67,7 +71,11 @@ public interface InstitutionCommandService {
                         }
                         switch (ifield.getName()) {
                         case "id": {
-                            id = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                            try {
+                                id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                            } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                                 throw new IllegalArgumentException(e);
+                            }
                             break;
                         }
                         }
@@ -246,7 +254,7 @@ public interface InstitutionCommandService {
             @Override
             public int hashCode() {
                 int hashCode = 17;
-                hashCode = 31 * hashCode + getId().ordinal();
+                hashCode = 31 * hashCode + getId().hashCode();
                 return hashCode;
             }
 
@@ -265,7 +273,11 @@ public interface InstitutionCommandService {
                 net.lab1318.costume.api.models.institution.InstitutionId id = null;
 
                 iprot.readListBegin();
-                id = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                try {
+                    id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                     throw new IllegalArgumentException(e);
+                }
                 iprot.readListEnd();
                 try {
                     return new DeleteInstitutionByIdRequest(id);
@@ -285,7 +297,11 @@ public interface InstitutionCommandService {
                     }
                     switch (ifield.getName()) {
                     case "id": {
-                        id = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                        try {
+                            id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                        } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                             throw new IllegalArgumentException(e);
+                        }
                         break;
                     }
                     }
@@ -312,7 +328,7 @@ public interface InstitutionCommandService {
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
 
-                oprot.writeEnum(getId());
+                oprot.writeString(getId().toString());
 
                 oprot.writeListEnd();
             }
@@ -327,7 +343,7 @@ public interface InstitutionCommandService {
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeFieldBegin("id", org.thryft.protocol.Type.STRING, (short)0);
-                oprot.writeEnum(getId());
+                oprot.writeString(getId().toString());
                 oprot.writeFieldEnd();
 
                 oprot.writeFieldStop();
@@ -905,7 +921,11 @@ public interface InstitutionCommandService {
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
-                    id = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                    try {
+                        id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                    } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                         throw new IllegalArgumentException(e);
+                    }
                     institution = net.lab1318.costume.api.models.institution.Institution.readAsStruct(iprot);
                     iprot.readListEnd();
                     return this;
@@ -920,7 +940,11 @@ public interface InstitutionCommandService {
                         }
                         switch (ifield.getName()) {
                         case "id": {
-                            id = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                            try {
+                                id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                            } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                                 throw new IllegalArgumentException(e);
+                            }
                             break;
                         }
                         case "institution": {
@@ -1126,7 +1150,7 @@ public interface InstitutionCommandService {
             @Override
             public int hashCode() {
                 int hashCode = 17;
-                hashCode = 31 * hashCode + getId().ordinal();
+                hashCode = 31 * hashCode + getId().hashCode();
                 hashCode = 31 * hashCode + getInstitution().hashCode();
                 return hashCode;
             }
@@ -1147,7 +1171,11 @@ public interface InstitutionCommandService {
                 net.lab1318.costume.api.models.institution.Institution institution = null;
 
                 iprot.readListBegin();
-                id = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                try {
+                    id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                     throw new IllegalArgumentException(e);
+                }
                 institution = net.lab1318.costume.api.models.institution.Institution.readAsStruct(iprot);
                 iprot.readListEnd();
                 try {
@@ -1169,7 +1197,11 @@ public interface InstitutionCommandService {
                     }
                     switch (ifield.getName()) {
                     case "id": {
-                        id = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                        try {
+                            id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                        } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                             throw new IllegalArgumentException(e);
+                        }
                         break;
                     }
                     case "institution": {
@@ -1204,7 +1236,7 @@ public interface InstitutionCommandService {
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
 
-                oprot.writeEnum(getId());
+                oprot.writeString(getId().toString());
 
                 getInstitution().writeAsStruct(oprot);
 
@@ -1221,7 +1253,7 @@ public interface InstitutionCommandService {
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeFieldBegin("id", org.thryft.protocol.Type.STRING, (short)0);
-                oprot.writeEnum(getId());
+                oprot.writeString(getId().toString());
                 oprot.writeFieldEnd();
 
                 oprot.writeFieldBegin("institution", org.thryft.protocol.Type.STRUCT, (short)0);

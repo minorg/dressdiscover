@@ -27,13 +27,13 @@ import com.vaadin.ui.UI;
 import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.collection.CollectionId;
+import net.lab1318.costume.api.models.collection.InvalidCollectionIdException;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
-import net.lab1318.costume.api.services.collection.InvalidCollectionIdException;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
@@ -123,7 +123,7 @@ public class CollectionByIdPresenter extends Presenter<CollectionByIdView> {
         } catch (final IoException e) {
             _getView().setComponentError(new SystemError("I/O exception", e));
             return;
-        } catch (final InvalidCollectionIdException | NoSuchCollectionException e) {
+        } catch (final NoSuchCollectionException e) {
             _getView().setComponentError(new UserError("no such collection " + collectionId));
             return;
         }

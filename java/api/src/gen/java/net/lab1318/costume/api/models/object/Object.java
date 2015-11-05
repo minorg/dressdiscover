@@ -85,10 +85,14 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             try {
                 collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-            } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+            } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                  throw new IllegalArgumentException(e);
             }
-            institutionId = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+            try {
+                institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+            } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                 throw new IllegalArgumentException(e);
+            }
             title = iprot.readString();
             if (__list.getSize() > 3) {
                 description = com.google.common.base.Optional.of(iprot.readString());
@@ -127,7 +131,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
                     if (!ifield.hasId() || ifield.getId() == 1) {
                         try {
                             collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                        } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+                        } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                              throw new IllegalArgumentException(e);
                         }
                     }
@@ -135,7 +139,11 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
                 }
                 case "institution_id": {
                     if (!ifield.hasId() || ifield.getId() == 2) {
-                        institutionId = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                        try {
+                            institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                        } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                             throw new IllegalArgumentException(e);
+                        }
                     }
                     break;
                 }
@@ -617,7 +625,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
     public int hashCode() {
         int hashCode = 17;
         hashCode = 31 * hashCode + getCollectionId().hashCode();
-        hashCode = 31 * hashCode + getInstitutionId().ordinal();
+        hashCode = 31 * hashCode + getInstitutionId().hashCode();
         hashCode = 31 * hashCode + getTitle().hashCode();
         if (getDescription().isPresent()) {
             hashCode = 31 * hashCode + getDescription().get().hashCode();
@@ -665,10 +673,14 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         try {
             collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-        } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+        } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
              throw new IllegalArgumentException(e);
         }
-        institutionId = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+        try {
+            institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+        } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+             throw new IllegalArgumentException(e);
+        }
         title = iprot.readString();
         if (__list.getSize() > 3) {
             description = com.google.common.base.Optional.of(iprot.readString());
@@ -721,7 +733,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
                 if (!ifield.hasId() || ifield.getId() == 1) {
                     try {
                         collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+                    } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                          throw new IllegalArgumentException(e);
                     }
                 }
@@ -729,7 +741,11 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             }
             case "institution_id": {
                 if (!ifield.hasId() || ifield.getId() == 2) {
-                    institutionId = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                    try {
+                        institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                    } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                         throw new IllegalArgumentException(e);
+                    }
                 }
                 break;
             }
@@ -860,7 +876,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
 
         oprot.writeString(getCollectionId().toString());
 
-        oprot.writeEnum(getInstitutionId());
+        oprot.writeString(getInstitutionId().toString());
 
         oprot.writeString(getTitle());
 
@@ -917,7 +933,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         oprot.writeFieldEnd();
 
         oprot.writeFieldBegin("institution_id", org.thryft.protocol.Type.STRING, (short)2);
-        oprot.writeEnum(getInstitutionId());
+        oprot.writeString(getInstitutionId().toString());
         oprot.writeFieldEnd();
 
         oprot.writeFieldBegin("title", org.thryft.protocol.Type.STRING, (short)3);

@@ -6,14 +6,14 @@ public class LoggingCollectionCommandService implements net.lab1318.costume.api.
         public final static org.slf4j.Marker DELETE_COLLECTION_BY_ID = org.slf4j.MarkerFactory.getMarker("DELETE_COLLECTION_BY_ID");
         public final static org.slf4j.Marker DELETE_COLLECTIONS = org.slf4j.MarkerFactory.getMarker("DELETE_COLLECTIONS");
         public final static org.slf4j.Marker DELETE_COLLECTIONS_BY_INSTITUTION_ID = org.slf4j.MarkerFactory.getMarker("DELETE_COLLECTIONS_BY_INSTITUTION_ID");
-        public final static org.slf4j.Marker POST_COLLECTION = org.slf4j.MarkerFactory.getMarker("POST_COLLECTION");
+        public final static org.slf4j.Marker PUT_COLLECTION = org.slf4j.MarkerFactory.getMarker("PUT_COLLECTION");
 
         public final static org.slf4j.Marker COLLECTION_COMMAND_SERVICE = org.slf4j.MarkerFactory.getMarker("COLLECTION_COMMAND_SERVICE");
         static {
             COLLECTION_COMMAND_SERVICE.add(DELETE_COLLECTION_BY_ID);
             COLLECTION_COMMAND_SERVICE.add(DELETE_COLLECTIONS);
             COLLECTION_COMMAND_SERVICE.add(DELETE_COLLECTIONS_BY_INSTITUTION_ID);
-            COLLECTION_COMMAND_SERVICE.add(POST_COLLECTION);
+            COLLECTION_COMMAND_SERVICE.add(PUT_COLLECTION);
         }
     }
 
@@ -90,28 +90,23 @@ public class LoggingCollectionCommandService implements net.lab1318.costume.api.
         }
     }
 
-    public net.lab1318.costume.api.models.collection.CollectionId postCollection(final net.lab1318.costume.api.models.collection.Collection collection) throws net.lab1318.costume.api.services.IoException {
+    public void putCollection(final net.lab1318.costume.api.models.collection.CollectionId id, final net.lab1318.costume.api.models.collection.Collection collection) throws net.lab1318.costume.api.services.IoException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
-        __logMessageStringBuilder.append("post_collection(");
+        __logMessageStringBuilder.append("put_collection(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.PostCollectionRequest(collection));
+        __logMessageArgs.add(new Messages.PutCollectionRequest(id, collection));
         __logMessageStringBuilder.append(")");
 
         try {
-            net.lab1318.costume.api.models.collection.CollectionId __returnValue = delegate.postCollection(collection);
+            delegate.putCollection(id, collection);
 
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(__returnValue);
-
-            logger.debug(Markers.POST_COLLECTION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
-
-            return __returnValue;
+            logger.debug(Markers.PUT_COLLECTION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
         } catch (final net.lab1318.costume.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
-            logger.error(Markers.POST_COLLECTION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.error(Markers.PUT_COLLECTION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
         }
     }

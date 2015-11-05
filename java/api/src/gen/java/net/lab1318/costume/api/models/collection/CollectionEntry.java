@@ -43,7 +43,7 @@ public class CollectionEntry implements org.thryft.Struct, org.notaweb.api.model
             iprot.readListBegin();
             try {
                 id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-            } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+            } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                  throw new IllegalArgumentException(e);
             }
             model = net.lab1318.costume.api.models.collection.Collection.readAsStruct(iprot);
@@ -62,7 +62,7 @@ public class CollectionEntry implements org.thryft.Struct, org.notaweb.api.model
                 case "id": {
                     try {
                         id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+                    } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                          throw new IllegalArgumentException(e);
                     }
                     break;
@@ -293,7 +293,7 @@ public class CollectionEntry implements org.thryft.Struct, org.notaweb.api.model
         iprot.readListBegin();
         try {
             id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-        } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+        } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
              throw new IllegalArgumentException(e);
         }
         model = net.lab1318.costume.api.models.collection.Collection.readAsStruct(iprot);
@@ -319,7 +319,7 @@ public class CollectionEntry implements org.thryft.Struct, org.notaweb.api.model
             case "id": {
                 try {
                     id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+                } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                      throw new IllegalArgumentException(e);
                 }
                 break;

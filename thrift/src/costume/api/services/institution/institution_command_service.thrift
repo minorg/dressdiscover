@@ -30,6 +30,6 @@ service InstitutionCommandService {
 		institution_id.InstitutionId id,
 		institution.Institution institution
 	) throws (
-		io_exception.IoException e1
+		io_exception.IoException e
 	);
 }

@@ -29,8 +29,7 @@ public class InstitutionsPresenter extends Presenter<InstitutionsView> {
 
     @Subscribe
     public void onGetInstitutionByIdRequest(final GetInstitutionByIdRequest request) {
-        UI.getCurrent().getNavigator()
-                .navigateTo(InstitutionByIdView.NAME + "/" + request.getId().name().toLowerCase());
+        UI.getCurrent().getNavigator().navigateTo(InstitutionByIdView.NAME + "/" + request.getId().toString());
     }
 
     @Override

@@ -86,7 +86,7 @@ public class ObjectBean {
     public int hashCode() {
         int hashCode = 17;
         hashCode = 31 * hashCode + getCollectionId().hashCode();
-        hashCode = 31 * hashCode + getInstitutionId().ordinal();
+        hashCode = 31 * hashCode + getInstitutionId().hashCode();
         hashCode = 31 * hashCode + getTitle().hashCode();
         if (getDescription() != null) {
             hashCode = 31 * hashCode + getDescription().hashCode();

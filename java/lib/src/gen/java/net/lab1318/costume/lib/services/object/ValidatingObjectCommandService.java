@@ -35,13 +35,14 @@ public class ValidatingObjectCommandService implements net.lab1318.costume.api.s
     }
 
     @Override
-    public final net.lab1318.costume.api.models.object.ObjectId postObject(final net.lab1318.costume.api.models.object.Object object) throws net.lab1318.costume.api.services.IoException {
-        _validatePostObjectParameters(object);
-        return com.google.common.base.Preconditions.checkNotNull(delegate.postObject(object), "net.lab1318.costume.api.services.object.ObjectCommandService.postObject: missing returnValue");
+    public final void putObject(final net.lab1318.costume.api.models.object.ObjectId id, final net.lab1318.costume.api.models.object.Object object) throws net.lab1318.costume.api.services.IoException {
+        _validatePutObjectParameters(id, object);
+        delegate.putObject(id, object);
     }
 
-    protected void _validatePostObjectParameters(final net.lab1318.costume.api.models.object.Object object) {
-        com.google.common.base.Preconditions.checkNotNull(object, "net.lab1318.costume.api.services.object.ObjectCommandService.postObject: missing object");
+    protected void _validatePutObjectParameters(final net.lab1318.costume.api.models.object.ObjectId id, final net.lab1318.costume.api.models.object.Object object) {
+        com.google.common.base.Preconditions.checkNotNull(id, "net.lab1318.costume.api.services.object.ObjectCommandService.putObject: missing id");
+        com.google.common.base.Preconditions.checkNotNull(object, "net.lab1318.costume.api.services.object.ObjectCommandService.putObject: missing object");
     }
 
     private final net.lab1318.costume.api.services.object.ObjectCommandService delegate;

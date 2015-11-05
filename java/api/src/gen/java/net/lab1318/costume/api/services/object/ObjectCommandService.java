@@ -5,7 +5,7 @@ public interface ObjectCommandService {
         DELETE_OBJECTS("delete_objects"),
         DELETE_OBJECTS_BY_COLLECTION_ID("delete_objects_by_collection_id"),
         DELETE_OBJECTS_BY_INSTITUTION_ID("delete_objects_by_institution_id"),
-        POST_OBJECT("post_object");
+        PUT_OBJECT("put_object");
 
         public String getThriftName() {
             return thriftName;
@@ -408,7 +408,7 @@ public interface ObjectCommandService {
                     iprot.readListBegin();
                     try {
                         collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+                    } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                          throw new IllegalArgumentException(e);
                     }
                     iprot.readListEnd();
@@ -426,7 +426,7 @@ public interface ObjectCommandService {
                         case "collection_id": {
                             try {
                                 collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                            } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+                            } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                                  throw new IllegalArgumentException(e);
                             }
                             break;
@@ -628,7 +628,7 @@ public interface ObjectCommandService {
                 iprot.readListBegin();
                 try {
                     collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+                } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                      throw new IllegalArgumentException(e);
                 }
                 iprot.readListEnd();
@@ -652,7 +652,7 @@ public interface ObjectCommandService {
                     case "collection_id": {
                         try {
                             collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                        } catch (final net.lab1318.costume.api.services.collection.InvalidCollectionIdException e) {
+                        } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                              throw new IllegalArgumentException(e);
                         }
                         break;
@@ -916,7 +916,11 @@ public interface ObjectCommandService {
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
-                    institutionId = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                    try {
+                        institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                    } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                         throw new IllegalArgumentException(e);
+                    }
                     iprot.readListEnd();
                     return this;
                 }
@@ -930,7 +934,11 @@ public interface ObjectCommandService {
                         }
                         switch (ifield.getName()) {
                         case "institution_id": {
-                            institutionId = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                            try {
+                                institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                            } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                                 throw new IllegalArgumentException(e);
+                            }
                             break;
                         }
                         }
@@ -1109,7 +1117,7 @@ public interface ObjectCommandService {
             @Override
             public int hashCode() {
                 int hashCode = 17;
-                hashCode = 31 * hashCode + getInstitutionId().ordinal();
+                hashCode = 31 * hashCode + getInstitutionId().hashCode();
                 return hashCode;
             }
 
@@ -1128,7 +1136,11 @@ public interface ObjectCommandService {
                 net.lab1318.costume.api.models.institution.InstitutionId institutionId = null;
 
                 iprot.readListBegin();
-                institutionId = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                try {
+                    institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                     throw new IllegalArgumentException(e);
+                }
                 iprot.readListEnd();
                 try {
                     return new DeleteObjectsByInstitutionIdRequest(institutionId);
@@ -1148,7 +1160,11 @@ public interface ObjectCommandService {
                     }
                     switch (ifield.getName()) {
                     case "institution_id": {
-                        institutionId = iprot.readEnum(net.lab1318.costume.api.models.institution.InstitutionId.class);
+                        try {
+                            institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
+                        } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                             throw new IllegalArgumentException(e);
+                        }
                         break;
                     }
                     }
@@ -1175,7 +1191,7 @@ public interface ObjectCommandService {
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
 
-                oprot.writeEnum(getInstitutionId());
+                oprot.writeString(getInstitutionId().toString());
 
                 oprot.writeListEnd();
             }
@@ -1190,7 +1206,7 @@ public interface ObjectCommandService {
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeFieldBegin("institution_id", org.thryft.protocol.Type.STRING, (short)0);
-                oprot.writeEnum(getInstitutionId());
+                oprot.writeString(getInstitutionId().toString());
                 oprot.writeFieldEnd();
 
                 oprot.writeFieldStop();
@@ -1375,22 +1391,28 @@ public interface ObjectCommandService {
             }
         }
 
-        public final static class PostObjectRequest implements org.thryft.Struct {
+        public final static class PutObjectRequest implements org.thryft.Struct {
             public static class Builder {
                 public Builder() {
+                    id = null;
                     object = null;
                 }
 
-                public Builder(final PostObjectRequest other) {
+                public Builder(final PutObjectRequest other) {
+                    this.id = other.getId();
                     this.object = other.getObject();
                 }
 
-                protected PostObjectRequest _build(final net.lab1318.costume.api.models.object.Object object) {
-                    return new PostObjectRequest(object);
+                protected PutObjectRequest _build(final net.lab1318.costume.api.models.object.ObjectId id, final net.lab1318.costume.api.models.object.Object object) {
+                    return new PutObjectRequest(id, object);
                 }
 
-                public PostObjectRequest build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(object, "net.lab1318.costume.api.services.object.PostObjectRequest: missing object"));
+                public PutObjectRequest build() {
+                    return _build(com.google.common.base.Preconditions.checkNotNull(id, "net.lab1318.costume.api.services.object.PutObjectRequest: missing id"), com.google.common.base.Preconditions.checkNotNull(object, "net.lab1318.costume.api.services.object.PutObjectRequest: missing object"));
+                }
+
+                public final net.lab1318.costume.api.models.object.ObjectId getId() {
+                    return id;
                 }
 
                 public final net.lab1318.costume.api.models.object.Object getObject() {
@@ -1410,6 +1432,11 @@ public interface ObjectCommandService {
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
+                    try {
+                        id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
+                    } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
+                         throw new IllegalArgumentException(e);
+                    }
                     object = net.lab1318.costume.api.models.object.Object.readAsStruct(iprot);
                     iprot.readListEnd();
                     return this;
@@ -1423,6 +1450,14 @@ public interface ObjectCommandService {
                             break;
                         }
                         switch (ifield.getName()) {
+                        case "id": {
+                            try {
+                                id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
+                            } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
+                                 throw new IllegalArgumentException(e);
+                            }
+                            break;
+                        }
                         case "object": {
                             object = net.lab1318.costume.api.models.object.Object.readAsStruct(iprot);
                             break;
@@ -1434,9 +1469,15 @@ public interface ObjectCommandService {
                     return this;
                 }
 
-                public Builder setIfPresent(final PostObjectRequest other) {
+                public Builder setId(final net.lab1318.costume.api.models.object.ObjectId id) {
+                    this.id = com.google.common.base.Preconditions.checkNotNull(id);
+                    return this;
+                }
+
+                public Builder setIfPresent(final PutObjectRequest other) {
                     com.google.common.base.Preconditions.checkNotNull(other);
 
+                    setId(other.getId());
                     setObject(other.getObject());
 
                     return this;
@@ -1451,10 +1492,16 @@ public interface ObjectCommandService {
                     com.google.common.base.Preconditions.checkNotNull(name);
 
                     switch (name.toLowerCase()) {
+                    case "id": setId((net.lab1318.costume.api.models.object.ObjectId)value); return this;
                     case "object": setObject((net.lab1318.costume.api.models.object.Object)value); return this;
                     default:
                         throw new IllegalArgumentException(name);
                     }
+                }
+
+                public Builder unsetId() {
+                    this.id = null;
+                    return this;
                 }
 
                 public Builder unsetObject() {
@@ -1462,11 +1509,13 @@ public interface ObjectCommandService {
                     return this;
                 }
 
+                private net.lab1318.costume.api.models.object.ObjectId id;
                 private net.lab1318.costume.api.models.object.Object object;
             }
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
+                ID("id", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.object.ObjectId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),
                 OBJECT("object", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.object.Object>() {}, true, 0, "object", org.thryft.protocol.Type.STRUCT);
 
                 @Override
@@ -1511,6 +1560,7 @@ public interface ObjectCommandService {
 
                 public static FieldMetadata valueOfJavaName(final String javaName) {
                     switch (javaName) {
+                    case "id": return ID;
                     case "object": return OBJECT;
                     default:
                         throw new IllegalArgumentException(javaName);
@@ -1519,6 +1569,7 @@ public interface ObjectCommandService {
 
                 public static FieldMetadata valueOfThriftName(final String thriftName) {
                     switch (thriftName) {
+                    case "id": return ID;
                     case "object": return OBJECT;
                     default:
                         throw new IllegalArgumentException(thriftName);
@@ -1551,26 +1602,27 @@ public interface ObjectCommandService {
             /**
              * Copy constructor
              */
-            public PostObjectRequest(final PostObjectRequest other) {
-                this(other.getObject());
+            public PutObjectRequest(final PutObjectRequest other) {
+                this(other.getId(), other.getObject());
             }
 
             /**
              * Optional constructor
              */
-            public PostObjectRequest(final net.lab1318.costume.api.models.object.Object object) {
-                this.object = com.google.common.base.Preconditions.checkNotNull(object, "net.lab1318.costume.api.services.object.PostObjectRequest: missing object");
+            public PutObjectRequest(final net.lab1318.costume.api.models.object.ObjectId id, final net.lab1318.costume.api.models.object.Object object) {
+                this.id = com.google.common.base.Preconditions.checkNotNull(id, "net.lab1318.costume.api.services.object.PutObjectRequest: missing id");
+                this.object = com.google.common.base.Preconditions.checkNotNull(object, "net.lab1318.costume.api.services.object.PutObjectRequest: missing object");
             }
 
             public static Builder builder() {
                 return new Builder();
             }
 
-            public static Builder builder(final PostObjectRequest other) {
+            public static Builder builder(final PutObjectRequest other) {
                 return new Builder(other);
             }
 
-            public static Builder builder(final com.google.common.base.Optional<PostObjectRequest> other) {
+            public static Builder builder(final com.google.common.base.Optional<PutObjectRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
             }
 
@@ -1578,22 +1630,28 @@ public interface ObjectCommandService {
             public boolean equals(final java.lang.Object otherObject) {
                 if (otherObject == this) {
                     return true;
-                } else if (!(otherObject instanceof PostObjectRequest)) {
+                } else if (!(otherObject instanceof PutObjectRequest)) {
                     return false;
                 }
 
-                final PostObjectRequest other = (PostObjectRequest)otherObject;
+                final PutObjectRequest other = (PutObjectRequest)otherObject;
                 return
+                    getId().equals(other.getId()) &&
                     getObject().equals(other.getObject());
             }
 
             @Override
             public java.lang.Object get(final String fieldName) {
                 switch (fieldName) {
+                case "id": return getId();
                 case "object": return getObject();
                 default:
                     throw new IllegalArgumentException(fieldName);
                 }
+            }
+
+            public final net.lab1318.costume.api.models.object.ObjectId getId() {
+                return id;
             }
 
             public final net.lab1318.costume.api.models.object.Object getObject() {
@@ -1603,11 +1661,12 @@ public interface ObjectCommandService {
             @Override
             public int hashCode() {
                 int hashCode = 17;
+                hashCode = 31 * hashCode + getId().hashCode();
                 hashCode = 31 * hashCode + getObject().hashCode();
                 return hashCode;
             }
 
-            public static PostObjectRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            public static PutObjectRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 switch (type) {
                 case LIST:
                     return readAsList(iprot);
@@ -1618,20 +1677,27 @@ public interface ObjectCommandService {
                 }
             }
 
-            public static PostObjectRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            public static PutObjectRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                net.lab1318.costume.api.models.object.ObjectId id = null;
                 net.lab1318.costume.api.models.object.Object object = null;
 
                 iprot.readListBegin();
+                try {
+                    id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
+                } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
+                     throw new IllegalArgumentException(e);
+                }
                 object = net.lab1318.costume.api.models.object.Object.readAsStruct(iprot);
                 iprot.readListEnd();
                 try {
-                    return new PostObjectRequest(object);
+                    return new PutObjectRequest(id, object);
                 } catch (final IllegalArgumentException | NullPointerException e) {
                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
             }
 
-            public static PostObjectRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            public static PutObjectRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                net.lab1318.costume.api.models.object.ObjectId id = null;
                 net.lab1318.costume.api.models.object.Object object = null;
 
                 iprot.readStructBegin();
@@ -1641,6 +1707,14 @@ public interface ObjectCommandService {
                         break;
                     }
                     switch (ifield.getName()) {
+                    case "id": {
+                        try {
+                            id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
+                        } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
+                             throw new IllegalArgumentException(e);
+                        }
+                        break;
+                    }
                     case "object": {
                         object = net.lab1318.costume.api.models.object.Object.readAsStruct(iprot);
                         break;
@@ -1650,24 +1724,30 @@ public interface ObjectCommandService {
                 }
                 iprot.readStructEnd();
                 try {
-                    return new PostObjectRequest(object);
+                    return new PutObjectRequest(id, object);
                 } catch (final IllegalArgumentException | NullPointerException e) {
                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
             }
 
-            public PostObjectRequest replaceObject(final net.lab1318.costume.api.models.object.Object object) {
-                return new PostObjectRequest(object);
+            public PutObjectRequest replaceId(final net.lab1318.costume.api.models.object.ObjectId id) {
+                return new PutObjectRequest(id, this.object);
+            }
+
+            public PutObjectRequest replaceObject(final net.lab1318.costume.api.models.object.Object object) {
+                return new PutObjectRequest(this.id, object);
             }
 
             @Override
             public String toString() {
-                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("object", getObject()).toString();
+                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("id", getId()).add("object", getObject()).toString();
             }
 
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
+                oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
+
+                oprot.writeString(getId().toString());
 
                 getObject().writeAsStruct(oprot);
 
@@ -1676,13 +1756,17 @@ public interface ObjectCommandService {
 
             @Override
             public void writeAsStruct(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeStructBegin("net.lab1318.costume.api.services.object.PostObjectRequest");
+                oprot.writeStructBegin("net.lab1318.costume.api.services.object.PutObjectRequest");
                 writeFields(oprot);
                 oprot.writeStructEnd();
             }
 
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeFieldBegin("id", org.thryft.protocol.Type.STRING, (short)0);
+                oprot.writeString(getId().toString());
+                oprot.writeFieldEnd();
+
                 oprot.writeFieldBegin("object", org.thryft.protocol.Type.STRUCT, (short)0);
                 getObject().writeAsStruct(oprot);
                 oprot.writeFieldEnd();
@@ -1690,29 +1774,25 @@ public interface ObjectCommandService {
                 oprot.writeFieldStop();
             }
 
+            private final net.lab1318.costume.api.models.object.ObjectId id;
+
             private final net.lab1318.costume.api.models.object.Object object;
         }
 
-        public final static class PostObjectResponse implements org.thryft.Struct {
+        public final static class PutObjectResponse implements org.thryft.Struct {
             public static class Builder {
                 public Builder() {
-                    returnValue = null;
                 }
 
-                public Builder(final PostObjectResponse other) {
-                    this.returnValue = other.getReturnValue();
+                public Builder(final PutObjectResponse other) {
                 }
 
-                protected PostObjectResponse _build(final net.lab1318.costume.api.models.object.ObjectId returnValue) {
-                    return new PostObjectResponse(returnValue);
+                protected PutObjectResponse _build() {
+                    return new PutObjectResponse();
                 }
 
-                public PostObjectResponse build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(returnValue, "net.lab1318.costume.api.services.object.PostObjectResponse: missing returnValue"));
-                }
-
-                public final net.lab1318.costume.api.models.object.ObjectId getReturnValue() {
-                    return returnValue;
+                public PutObjectResponse build() {
+                    return _build();
                 }
 
                 public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -1728,11 +1808,6 @@ public interface ObjectCommandService {
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
-                    try {
-                        returnValue = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.services.object.InvalidObjectIdException e) {
-                         throw new IllegalArgumentException(e);
-                    }
                     iprot.readListEnd();
                     return this;
                 }
@@ -1745,14 +1820,6 @@ public interface ObjectCommandService {
                             break;
                         }
                         switch (ifield.getName()) {
-                        case "return_value": {
-                            try {
-                                returnValue = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
-                            } catch (final net.lab1318.costume.api.services.object.InvalidObjectIdException e) {
-                                 throw new IllegalArgumentException(e);
-                            }
-                            break;
-                        }
                         }
                         iprot.readFieldEnd();
                     }
@@ -1760,16 +1827,11 @@ public interface ObjectCommandService {
                     return this;
                 }
 
-                public Builder setIfPresent(final PostObjectResponse other) {
+                public Builder setIfPresent(final PutObjectResponse other) {
                     com.google.common.base.Preconditions.checkNotNull(other);
 
-                    setReturnValue(other.getReturnValue());
 
-                    return this;
-                }
 
-                public Builder setReturnValue(final net.lab1318.costume.api.models.object.ObjectId returnValue) {
-                    this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue);
                     return this;
                 }
 
@@ -1777,126 +1839,30 @@ public interface ObjectCommandService {
                     com.google.common.base.Preconditions.checkNotNull(name);
 
                     switch (name.toLowerCase()) {
-                    case "return_value": setReturnValue((net.lab1318.costume.api.models.object.ObjectId)value); return this;
                     default:
                         throw new IllegalArgumentException(name);
                     }
                 }
-
-                public Builder unsetReturnValue() {
-                    this.returnValue = null;
-                    return this;
-                }
-
-                private net.lab1318.costume.api.models.object.ObjectId returnValue;
             }
 
-            @SuppressWarnings("serial")
-            public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.object.ObjectId>() {}, true, 0, "return_value", org.thryft.protocol.Type.STRING);
-
-                @Override
-                public String getJavaName() {
-                    return javaName;
-                }
-
-                @Override
-                public com.google.common.reflect.TypeToken<?> getJavaType() {
-                    return javaType;
-                }
-
-                @Override
-                public int getThriftId() {
-                    return thriftId;
-                }
-
-                @Override
-                public String getThriftProtocolKey() {
-                    return thriftProtocolKey;
-                }
-
-                @Override
-                public org.thryft.protocol.Type getThriftProtocolType() {
-                    return thriftProtocolType;
-                }
-
-                @Override
-                public String getThriftName() {
-                    return thriftName;
-                }
-
-                @Override
-                public boolean hasThriftId() {
-                    return thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID;
-                }
-
-                @Override
-                public boolean isRequired()  {
-                    return required;
-                }
-
-                public static FieldMetadata valueOfJavaName(final String javaName) {
-                    switch (javaName) {
-                    case "returnValue": return RETURN_VALUE;
-                    default:
-                        throw new IllegalArgumentException(javaName);
-                    }
-                }
-
-                public static FieldMetadata valueOfThriftName(final String thriftName) {
-                    switch (thriftName) {
-                    case "return_value": return RETURN_VALUE;
-                    default:
-                        throw new IllegalArgumentException(thriftName);
-                    }
-                }
-
-                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
-                    this.javaName = javaName;
-                    this.javaType = javaType;
-                    this.required = required;
-                    this.thriftId = thriftId;
-                    this.thriftName = thriftName;
-                    if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                        this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-                    } else {
-                        this.thriftProtocolKey = thriftName;
-                    }
-                    this.thriftProtocolType = thriftProtocolType;
-                }
-
-                private final String javaName;
-                private final com.google.common.reflect.TypeToken<?> javaType;
-                private final boolean required;
-                private final int thriftId;
-                private final String thriftName;
-                private final String thriftProtocolKey;
-                private final org.thryft.protocol.Type thriftProtocolType;
+            public PutObjectResponse() {
             }
 
             /**
              * Copy constructor
              */
-            public PostObjectResponse(final PostObjectResponse other) {
-                this(other.getReturnValue());
-            }
-
-            /**
-             * Optional constructor
-             */
-            public PostObjectResponse(final net.lab1318.costume.api.models.object.ObjectId returnValue) {
-                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "net.lab1318.costume.api.services.object.ObjectCommandService.postObject: missing returnValue");
+            public PutObjectResponse(final PutObjectResponse other) {
             }
 
             public static Builder builder() {
                 return new Builder();
             }
 
-            public static Builder builder(final PostObjectResponse other) {
+            public static Builder builder(final PutObjectResponse other) {
                 return new Builder(other);
             }
 
-            public static Builder builder(final com.google.common.base.Optional<PostObjectResponse> other) {
+            public static Builder builder(final com.google.common.base.Optional<PutObjectResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
             }
 
@@ -1904,36 +1870,28 @@ public interface ObjectCommandService {
             public boolean equals(final java.lang.Object otherObject) {
                 if (otherObject == this) {
                     return true;
-                } else if (!(otherObject instanceof PostObjectResponse)) {
+                } else if (!(otherObject instanceof PutObjectResponse)) {
                     return false;
                 }
 
-                final PostObjectResponse other = (PostObjectResponse)otherObject;
-                return
-                    getReturnValue().equals(other.getReturnValue());
+                return true;
             }
 
             @Override
             public java.lang.Object get(final String fieldName) {
                 switch (fieldName) {
-                case "return_value": return getReturnValue();
                 default:
                     throw new IllegalArgumentException(fieldName);
                 }
             }
 
-            public final net.lab1318.costume.api.models.object.ObjectId getReturnValue() {
-                return returnValue;
-            }
-
             @Override
             public int hashCode() {
                 int hashCode = 17;
-                hashCode = 31 * hashCode + getReturnValue().hashCode();
                 return hashCode;
             }
 
-            public static PostObjectResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            public static PutObjectResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 switch (type) {
                 case LIST:
                     return readAsList(iprot);
@@ -1944,26 +1902,17 @@ public interface ObjectCommandService {
                 }
             }
 
-            public static PostObjectResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.object.ObjectId returnValue = null;
-
+            public static PutObjectResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                 iprot.readListBegin();
-                try {
-                    returnValue = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.services.object.InvalidObjectIdException e) {
-                     throw new IllegalArgumentException(e);
-                }
                 iprot.readListEnd();
                 try {
-                    return new PostObjectResponse(returnValue);
+                    return new PutObjectResponse();
                 } catch (final IllegalArgumentException | NullPointerException e) {
                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
             }
 
-            public static PostObjectResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.object.ObjectId returnValue = null;
-
+            public static PutObjectResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                 iprot.readStructBegin();
                 while (true) {
                     final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -1971,60 +1920,39 @@ public interface ObjectCommandService {
                         break;
                     }
                     switch (ifield.getName()) {
-                    case "return_value": {
-                        try {
-                            returnValue = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
-                        } catch (final net.lab1318.costume.api.services.object.InvalidObjectIdException e) {
-                             throw new IllegalArgumentException(e);
-                        }
-                        break;
-                    }
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
                 try {
-                    return new PostObjectResponse(returnValue);
+                    return new PutObjectResponse();
                 } catch (final IllegalArgumentException | NullPointerException e) {
                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
             }
 
-            public PostObjectResponse replaceReturnValue(final net.lab1318.costume.api.models.object.ObjectId returnValue) {
-                return new PostObjectResponse(returnValue);
-            }
-
             @Override
             public String toString() {
-                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("return_value", getReturnValue()).toString();
+                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().toString();
             }
 
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
-
-                oprot.writeString(getReturnValue().toString());
-
+                oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 0);
                 oprot.writeListEnd();
             }
 
             @Override
             public void writeAsStruct(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeStructBegin("net.lab1318.costume.api.services.object.PostObjectResponse");
+                oprot.writeStructBegin("net.lab1318.costume.api.services.object.PutObjectResponse");
                 writeFields(oprot);
                 oprot.writeStructEnd();
             }
 
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeFieldBegin("return_value", org.thryft.protocol.Type.STRING, (short)0);
-                oprot.writeString(getReturnValue().toString());
-                oprot.writeFieldEnd();
-
                 oprot.writeFieldStop();
             }
-
-            private final net.lab1318.costume.api.models.object.ObjectId returnValue;
         }
     }
 
@@ -2034,5 +1962,5 @@ public interface ObjectCommandService {
 
     public void deleteObjectsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws net.lab1318.costume.api.services.IoException;
 
-    public net.lab1318.costume.api.models.object.ObjectId postObject(final net.lab1318.costume.api.models.object.Object object) throws net.lab1318.costume.api.services.IoException;
+    public void putObject(final net.lab1318.costume.api.models.object.ObjectId id, final net.lab1318.costume.api.models.object.Object object) throws net.lab1318.costume.api.services.IoException;
 }

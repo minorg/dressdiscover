@@ -10,7 +10,6 @@ include "costume/api/models/collection/collection_entry.thrift"
 include "costume/api/models/collection/collection_id.thrift"
 include "costume/api/models/institution/institution_id.thrift"
 include "costume/api/services/io_exception.thrift"
-include "costume/api/services/collection/invalid_collection_id_exception.thrift"
 include "costume/api/services/collection/no_such_collection_exception.thrift"
 
 service CollectionQueryService {
@@ -18,9 +17,8 @@ service CollectionQueryService {
 	get_collection_by_id(
 		collection_id.CollectionId id
 	) throws (
-		invalid_collection_id_exception.InvalidCollectionIdException e1,
-		io_exception.IoException e2,
-		no_such_collection_exception.NoSuchCollectionException e3
+		io_exception.IoException e1,
+		no_such_collection_exception.NoSuchCollectionException e2
 	);
 
 	list<collection_entry.CollectionEntry>

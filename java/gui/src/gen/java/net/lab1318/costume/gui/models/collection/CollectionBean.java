@@ -36,7 +36,7 @@ public class CollectionBean {
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getInstitutionId().ordinal();
+        hashCode = 31 * hashCode + getInstitutionId().hashCode();
         hashCode = 31 * hashCode + getTitle().hashCode();
         return hashCode;
     }

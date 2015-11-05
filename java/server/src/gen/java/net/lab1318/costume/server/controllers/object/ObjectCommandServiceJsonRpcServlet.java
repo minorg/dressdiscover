@@ -52,8 +52,8 @@ public class ObjectCommandServiceJsonRpcServlet extends javax.servlet.http.HttpS
                 doPostDeleteObjectsByCollectionId(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
             } else if (messageBegin.getName().equals("delete_objects_by_institution_id")) {
                 doPostDeleteObjectsByInstitutionId(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
-            } else if (messageBegin.getName().equals("post_object")) {
-                doPostPostObject(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
+            } else if (messageBegin.getName().equals("put_object")) {
+                doPostPutObject(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
             } else {
                 __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(-32601, String.format("the method '%s' does not exist / is not available", messageBegin.getName())), messageBegin.getId());
                 return;
@@ -249,19 +249,18 @@ public class ObjectCommandServiceJsonRpcServlet extends javax.servlet.http.HttpS
         __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
     }
 
-    public void doPostPostObject(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final net.lab1318.costume.api.services.object.ObjectCommandService.Messages.PostObjectRequest serviceRequest;
+    public void doPostPutObject(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
+        final net.lab1318.costume.api.services.object.ObjectCommandService.Messages.PutObjectRequest serviceRequest;
         try {
-            serviceRequest = net.lab1318.costume.api.services.object.ObjectCommandService.Messages.PostObjectRequest.readAs(iprot, iprot.getCurrentFieldType());
+            serviceRequest = net.lab1318.costume.api.services.object.ObjectCommandService.Messages.PutObjectRequest.readAs(iprot, iprot.getCurrentFieldType());
         } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
             logger.debug("error deserializing service request: ", e);
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, -32602, "invalid JSON-RPC request method parameters: " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
         }
 
-        final net.lab1318.costume.api.models.object.ObjectId result;
         try {
-            result = service.postObject(serviceRequest.getObject());
+            service.putObject(serviceRequest.getId(), serviceRequest.getObject());
         } catch (final net.lab1318.costume.api.services.IoException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
@@ -273,7 +272,8 @@ public class ObjectCommandServiceJsonRpcServlet extends javax.servlet.http.HttpS
             try {
                 final org.thryft.protocol.JsonRpcOutputProtocol oprot = new org.thryft.protocol.JsonRpcOutputProtocol(new org.thryft.protocol.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
                 oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                oprot.writeString(result.toString());
+                oprot.writeStructBegin("response");
+                oprot.writeStructEnd();
                 oprot.writeMessageEnd();
                 oprot.flush();
             } catch (final org.thryft.protocol.OutputProtocolException e) {

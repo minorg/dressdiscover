@@ -25,10 +25,10 @@ import com.google.inject.Singleton;
 import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.collection.CollectionId;
+import net.lab1318.costume.api.models.collection.InvalidCollectionIdException;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
-import net.lab1318.costume.api.services.collection.InvalidCollectionIdException;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
 import net.lab1318.costume.lib.services.ServiceExceptionHelper;
 import net.lab1318.costume.lib.services.collection.LoggingCollectionQueryService.Markers;
@@ -72,8 +72,7 @@ public class ElasticSearchCollectionQueryService implements CollectionQueryServi
     }
 
     @Override
-    public Collection getCollectionById(final CollectionId id)
-            throws InvalidCollectionIdException, IoException, NoSuchCollectionException {
+    public Collection getCollectionById(final CollectionId id) throws IoException, NoSuchCollectionException {
         try {
             return elasticSearchIndex.getModelById(id, Optional.absent(), logger, Markers.GET_COLLECTION_BY_ID,
                     CollectionElasticSearchModelFactory.getInstance());

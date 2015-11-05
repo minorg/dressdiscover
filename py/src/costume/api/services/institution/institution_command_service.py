@@ -1,6 +1,5 @@
 import __builtin__
 import costume.api.models.institution.institution
-import costume.api.models.institution.institution_id
 
 
 class InstitutionCommandService(object):
@@ -9,13 +8,13 @@ class InstitutionCommandService(object):
         id=None,  # @ReservedAssignment
     ):
         '''
-        :type id: costume.api.models.institution.institution_id.InstitutionId
+        :type id: str
         '''
 
         if id is None:
             raise ValueError('id is required')
-        if not isinstance(id, costume.api.models.institution.institution_id.InstitutionId):
-            raise TypeError("expected id to be a costume.api.models.institution.institution_id.InstitutionId but it is a %s" % getattr(__builtin__, 'type')(id))
+        if not isinstance(id, basestring):
+            raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
 
         self._delete_institution_by_id(id=id)
 
@@ -41,14 +40,14 @@ class InstitutionCommandService(object):
         institution=None,
     ):
         '''
-        :type id: costume.api.models.institution.institution_id.InstitutionId
+        :type id: str
         :type institution: costume.api.models.institution.institution.Institution
         '''
 
         if id is None:
             raise ValueError('id is required')
-        if not isinstance(id, costume.api.models.institution.institution_id.InstitutionId):
-            raise TypeError("expected id to be a costume.api.models.institution.institution_id.InstitutionId but it is a %s" % getattr(__builtin__, 'type')(id))
+        if not isinstance(id, basestring):
+            raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
         if institution is None:
             raise ValueError('institution is required')
         if not isinstance(institution, costume.api.models.institution.institution.Institution):

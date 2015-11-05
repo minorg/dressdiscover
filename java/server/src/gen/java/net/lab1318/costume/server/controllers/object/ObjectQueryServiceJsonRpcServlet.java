@@ -169,9 +169,6 @@ public class ObjectQueryServiceJsonRpcServlet extends javax.servlet.http.HttpSer
         final net.lab1318.costume.api.models.object.Object result;
         try {
             result = service.getObjectById(serviceRequest.getId());
-        } catch (final net.lab1318.costume.api.services.object.InvalidObjectIdException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
         } catch (final net.lab1318.costume.api.services.IoException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;

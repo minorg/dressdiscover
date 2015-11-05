@@ -18,6 +18,7 @@ import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionId;
+import net.lab1318.costume.api.models.institution.InvalidInstitutionIdException;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.collection.CollectionQueryService.Messages.GetCollectionByIdRequest;
@@ -45,8 +46,8 @@ public class InstitutionByIdPresenter extends Presenter<InstitutionByIdView> {
     protected void _onViewEnter(final ViewChangeEvent event) {
         InstitutionId institutionId;
         try {
-            institutionId = InstitutionId.valueOf(event.getParameters().toUpperCase());
-        } catch (final IllegalArgumentException e) {
+            institutionId = InstitutionId.parse(event.getParameters().toUpperCase());
+        } catch (final InvalidInstitutionIdException e) {
             _getView().setComponentError(new UserError("no such institution " + event.getParameters()));
             return;
         }

@@ -35,13 +35,14 @@ public class ValidatingCollectionCommandService implements net.lab1318.costume.a
     }
 
     @Override
-    public final net.lab1318.costume.api.models.collection.CollectionId postCollection(final net.lab1318.costume.api.models.collection.Collection collection) throws net.lab1318.costume.api.services.IoException {
-        _validatePostCollectionParameters(collection);
-        return com.google.common.base.Preconditions.checkNotNull(delegate.postCollection(collection), "net.lab1318.costume.api.services.collection.CollectionCommandService.postCollection: missing returnValue");
+    public final void putCollection(final net.lab1318.costume.api.models.collection.CollectionId id, final net.lab1318.costume.api.models.collection.Collection collection) throws net.lab1318.costume.api.services.IoException {
+        _validatePutCollectionParameters(id, collection);
+        delegate.putCollection(id, collection);
     }
 
-    protected void _validatePostCollectionParameters(final net.lab1318.costume.api.models.collection.Collection collection) {
-        com.google.common.base.Preconditions.checkNotNull(collection, "net.lab1318.costume.api.services.collection.CollectionCommandService.postCollection: missing collection");
+    protected void _validatePutCollectionParameters(final net.lab1318.costume.api.models.collection.CollectionId id, final net.lab1318.costume.api.models.collection.Collection collection) {
+        com.google.common.base.Preconditions.checkNotNull(id, "net.lab1318.costume.api.services.collection.CollectionCommandService.putCollection: missing id");
+        com.google.common.base.Preconditions.checkNotNull(collection, "net.lab1318.costume.api.services.collection.CollectionCommandService.putCollection: missing collection");
     }
 
     private final net.lab1318.costume.api.services.collection.CollectionCommandService delegate;

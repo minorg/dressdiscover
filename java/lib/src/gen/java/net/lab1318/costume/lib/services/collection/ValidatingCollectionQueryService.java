@@ -10,7 +10,7 @@ public class ValidatingCollectionQueryService implements net.lab1318.costume.api
     }
 
     @Override
-    public final net.lab1318.costume.api.models.collection.Collection getCollectionById(final net.lab1318.costume.api.models.collection.CollectionId id) throws net.lab1318.costume.api.services.collection.InvalidCollectionIdException, net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException {
+    public final net.lab1318.costume.api.models.collection.Collection getCollectionById(final net.lab1318.costume.api.models.collection.CollectionId id) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException {
         _validateGetCollectionByIdParameters(id);
         return com.google.common.base.Preconditions.checkNotNull(delegate.getCollectionById(id), "net.lab1318.costume.api.services.collection.CollectionQueryService.getCollectionById: missing returnValue");
     }

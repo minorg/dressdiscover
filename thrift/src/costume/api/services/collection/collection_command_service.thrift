@@ -33,8 +33,9 @@ service CollectionCommandService {
 		io_exception.IoException e
 	);
 
-	collection_id.CollectionId
-	post_collection(
+	void
+	put_collection(
+		collection_id.CollectionId id,
 		collection.Collection collection
 	) throws (
 		io_exception.IoException e1

@@ -2,7 +2,6 @@ from itertools import ifilterfalse
 import __builtin__
 import costume.api.models.collection.collection
 import costume.api.models.collection.collection_entry
-import costume.api.models.institution.institution_id
 
 
 class CollectionQueryService(object):
@@ -57,14 +56,14 @@ class CollectionQueryService(object):
         institution_id=None,
     ):
         '''
-        :type institution_id: costume.api.models.institution.institution_id.InstitutionId
+        :type institution_id: str
         :rtype: tuple(costume.api.models.collection.collection_entry.CollectionEntry)
         '''
 
         if institution_id is None:
             raise ValueError('institution_id is required')
-        if not isinstance(institution_id, costume.api.models.institution.institution_id.InstitutionId):
-            raise TypeError("expected institution_id to be a costume.api.models.institution.institution_id.InstitutionId but it is a %s" % getattr(__builtin__, 'type')(institution_id))
+        if not isinstance(institution_id, basestring):
+            raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
 
         get_collections_by_institution_id_return_value = self._get_collections_by_institution_id(institution_id=institution_id)
 
