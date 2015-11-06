@@ -21,6 +21,17 @@
         }, 
         "dynamic": "strict", 
         "properties": {
+          "3:model_metadata": {
+            "type": "nested", 
+            "properties": {
+              "1:ctime": {
+                "type": "date"
+              }, 
+              "2:mtime": {
+                "type": "date"
+              }
+            }
+          }, 
           "1:institution_id": {
             "index": "not_analyzed", 
             "type": "string"

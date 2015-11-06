@@ -1,23 +1,27 @@
 import __builtin__
+import costume.api.models.model_metadata
 
 
 class Collection(object):
     class Builder(object):
         def __init__(
             self,
+            model_metadata=None,
             institution_id=None,
             title=None,
         ):
             '''
+            :type model_metadata: costume.api.models.model_metadata.ModelMetadata
             :type institution_id: str
             :type title: str
             '''
 
+            self.__model_metadata = model_metadata
             self.__institution_id = institution_id
             self.__title = title
 
         def build(self):
-            return Collection(institution_id=self.__institution_id, title=self.__title)
+            return Collection(model_metadata=self.__model_metadata, institution_id=self.__institution_id, title=self.__title)
 
         @property
         def institution_id(self):
@@ -27,12 +31,28 @@ class Collection(object):
 
             return self.__institution_id
 
+        @property
+        def model_metadata(self):
+            '''
+            :rtype: costume.api.models.model_metadata.ModelMetadata
+            '''
+
+            return self.__model_metadata
+
         def set_institution_id(self, institution_id):
             '''
             :type institution_id: str
             '''
 
             self.__institution_id = institution_id
+            return self
+
+        def set_model_metadata(self, model_metadata):
+            '''
+            :type model_metadata: costume.api.models.model_metadata.ModelMetadata
+            '''
+
+            self.__model_metadata = model_metadata
             return self
 
         def set_title(self, title):
@@ -53,11 +73,13 @@ class Collection(object):
 
         def update(self, collection):
             '''
+            :type model_metadata: costume.api.models.model_metadata.ModelMetadata
             :type institution_id: str
             :type title: str
             '''
 
             if isinstance(collection, Collection):
+                self.set_model_metadata(collection.model_metadata)
                 self.set_institution_id(collection.institution_id)
                 self.set_title(collection.title)
             elif isinstance(collection, dict):
@@ -75,6 +97,14 @@ class Collection(object):
 
             self.set_institution_id(institution_id)
 
+        @model_metadata.setter
+        def model_metadata(self, model_metadata):
+            '''
+            :type model_metadata: costume.api.models.model_metadata.ModelMetadata
+            '''
+
+            self.set_model_metadata(model_metadata)
+
         @title.setter
         def title(self, title):
             '''
@@ -85,13 +115,21 @@ class Collection(object):
 
     def __init__(
         self,
+        model_metadata,
         institution_id,
         title,
     ):
         '''
+        :type model_metadata: costume.api.models.model_metadata.ModelMetadata
         :type institution_id: str
         :type title: str
         '''
+
+        if model_metadata is None:
+            raise ValueError('model_metadata is required')
+        if not isinstance(model_metadata, costume.api.models.model_metadata.ModelMetadata):
+            raise TypeError("expected model_metadata to be a costume.api.models.model_metadata.ModelMetadata but it is a %s" % getattr(__builtin__, 'type')(model_metadata))
+        self.__model_metadata = model_metadata
 
         if institution_id is None:
             raise ValueError('institution_id is required')
@@ -108,6 +146,8 @@ class Collection(object):
         self.__title = title
 
     def __eq__(self, other):
+        if self.model_metadata != other.model_metadata:
+            return False
         if self.institution_id != other.institution_id:
             return False
         if self.title != other.title:
@@ -115,7 +155,7 @@ class Collection(object):
         return True
 
     def __hash__(self):
-        return hash((self.institution_id,self.title,))
+        return hash((self.model_metadata,self.institution_id,self.title,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -125,12 +165,14 @@ class Collection(object):
 
     def __repr__(self):
         field_reprs = []
+        field_reprs.append('model_metadata=' + repr(self.model_metadata))
         field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
         return 'Collection(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
+        field_reprs.append('model_metadata=' + repr(self.model_metadata))
         field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
         return 'Collection(' + ', '.join(field_reprs) + ')'
@@ -142,7 +184,7 @@ class Collection(object):
         :rtype: dict
         '''
 
-        return {'institution_id': self.institution_id, 'title': self.title}
+        return {'model_metadata': self.model_metadata, 'institution_id': self.institution_id, 'title': self.title}
 
     def as_tuple(self):
         '''
@@ -151,7 +193,7 @@ class Collection(object):
         :rtype: tuple
         '''
 
-        return (self.institution_id, self.title,)
+        return (self.model_metadata, self.institution_id, self.title,)
 
     @property
     def institution_id(self):
@@ -160,6 +202,14 @@ class Collection(object):
         '''
 
         return self.__institution_id
+
+    @property
+    def model_metadata(self):
+        '''
+        :rtype: costume.api.models.model_metadata.ModelMetadata
+        '''
+
+        return self.__model_metadata
 
     @classmethod
     def read(cls, iprot):
@@ -177,6 +227,8 @@ class Collection(object):
             ifield_name, ifield_type, ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
+            elif ifield_name == 'model_metadata' and ifield_id == 3:
+                init_kwds['model_metadata'] = costume.api.models.model_metadata.ModelMetadata.read(iprot)
             elif ifield_name == 'institution_id' and ifield_id == 1:
                 init_kwds['institution_id'] = iprot.read_string()
             elif ifield_name == 'title' and ifield_id == 2:
@@ -188,22 +240,26 @@ class Collection(object):
 
     def replace(
         self,
+        model_metadata=None,
         institution_id=None,
         title=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
+        :type model_metadata: costume.api.models.model_metadata.ModelMetadata or None
         :type institution_id: str or None
         :type title: str or None
         :rtype: costume.api.models.collection.collection.Collection
         '''
 
+        if model_metadata is None:
+            model_metadata = self.model_metadata
         if institution_id is None:
             institution_id = self.institution_id
         if title is None:
             title = self.title
-        return self.__class__(institution_id=institution_id, title=title)
+        return self.__class__(model_metadata=model_metadata, institution_id=institution_id, title=title)
 
     @property
     def title(self):
@@ -222,6 +278,10 @@ class Collection(object):
         '''
 
         oprot.write_struct_begin('Collection')
+
+        oprot.write_field_begin(name='model_metadata', type=12, id=3)
+        self.model_metadata.write(oprot)
+        oprot.write_field_end()
 
         oprot.write_field_begin(name='institution_id', type=11, id=1)
         oprot.write_string(self.institution_id)

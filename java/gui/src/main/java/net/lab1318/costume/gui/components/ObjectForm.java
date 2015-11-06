@@ -34,6 +34,12 @@ public final class ObjectForm extends CustomComponent {
             formLayout.setSizeFull();
             formLayout.setSpacing(true);
 
+            if (objectEntry.getModel().getDateText().isPresent()) {
+                formLayout.addComponent(__createTextField("Date", objectEntry.getModel().getDateText().get()));
+            } else if (objectEntry.getModel().getDate().isPresent()) {
+                formLayout.addComponent(__createTextField("Date", objectEntry.getModel().getDate().get().toString()));
+            }
+
             if (objectEntry.getModel().getDescription().isPresent()) {
                 formLayout.addComponent(__createTextArea("Description", objectEntry.getModel().getDescription().get()));
             }

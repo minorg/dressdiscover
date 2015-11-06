@@ -4,16 +4,15 @@ import os.path
 
 from costume.api.models.collection.collection import Collection
 from costume.api.models.institution.institution import Institution
-from costume.client.services.collection.collection_command_service_json_rpc_client import CollectionCommandServiceJsonRpcClient
-from costume.client.services.institution.institution_command_service_json_rpc_client import InstitutionCommandServiceJsonRpcClient
-from costume.client.services.object.object_command_service_json_rpc_client import ObjectCommandServiceJsonRpcClient
 from costume.lib.costume_properties import CostumeProperties
 from costume.api.models.object.object import Object
 from costume.api.services.institution.no_such_institution_exception import NoSuchInstitutionException
 from costume.api.models.image.image import Image
+from services import Services
 
 
-PROPERTIES = CostumeProperties.load()
+properties = CostumeProperties.load()
+services = Services(properties=properties)
 
 INSTITUTION_ID = 'powerhouse_museum'
 
@@ -51,16 +50,11 @@ def parse_item(collection_id, item_dict):
     return object_id, object_builder.build()
 
 
-institution_command_service = InstitutionCommandServiceJsonRpcClient(api_url=PROPERTIES.api_url)
-collection_command_service = CollectionCommandServiceJsonRpcClient(api_url=PROPERTIES.api_url)
-object_command_service = ObjectCommandServiceJsonRpcClient(api_url=PROPERTIES.api_url)
-
-
 try:
-    institution_command_service.delete_institution_by_id(INSTITUTION_ID)
+    services.institution_command_service.delete_institution_by_id(INSTITUTION_ID)
 except NoSuchInstitutionException:
     pass
-institution_command_service.put_institution(
+services.institution_command_service.put_institution(
     INSTITUTION_ID,
     Institution.Builder()
         .set_copyright_notice("Copyright %s Powerhouse Museum, licensed Creative Commons Attribution Non-Commercial" % datetime.now().year)
@@ -70,7 +64,7 @@ institution_command_service.put_institution(
 )
 
 collection_id = INSTITUTION_ID + '/10'
-collection_command_service.put_collection(
+services.collection_command_service.put_collection(
     collection_id,
     Collection.Builder()
         .set_institution_id(INSTITUTION_ID)
@@ -79,8 +73,8 @@ collection_command_service.put_collection(
 )
 
 
-with open(os.path.join(PROPERTIES.home_directory_path, 'data', 'powerhouse_museum_category_items.json')) as f:
+with open(os.path.join(properties.home_directory_path, 'data', 'powerhouse_museum_category_items.json')) as f:
     response = json.loads(f.read())
     for item_dict in response['items']:
         object_id, object_ = parse_item(collection_id=collection_id, item_dict=item_dict)
-        object_command_service.put_object(object_id, object_)
+        services.object_command_service.put_object(object_id, object_)

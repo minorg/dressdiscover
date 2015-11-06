@@ -1,5 +1,7 @@
+from datetime import datetime
 import __builtin__
 import costume.api.models.image.image
+import costume.api.models.model_metadata
 
 
 class Object(object):
@@ -8,7 +10,10 @@ class Object(object):
             self,
             collection_id=None,
             institution_id=None,
+            model_metadata=None,
             title=None,
+            date=None,
+            date_text=None,
             description=None,
             provenance=None,
             summary=None,
@@ -18,7 +23,10 @@ class Object(object):
             '''
             :type collection_id: str
             :type institution_id: str
+            :type model_metadata: costume.api.models.model_metadata.ModelMetadata
             :type title: str
+            :type date: datetime or None
+            :type date_text: str or None
             :type description: str or None
             :type provenance: str or None
             :type summary: str or None
@@ -28,7 +36,10 @@ class Object(object):
 
             self.__collection_id = collection_id
             self.__institution_id = institution_id
+            self.__model_metadata = model_metadata
             self.__title = title
+            self.__date = date
+            self.__date_text = date_text
             self.__description = description
             self.__provenance = provenance
             self.__summary = summary
@@ -36,7 +47,7 @@ class Object(object):
             self.__url = url
 
         def build(self):
-            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, title=self.__title, description=self.__description, provenance=self.__provenance, summary=self.__summary, thumbnail=self.__thumbnail, url=self.__url)
+            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, date=self.__date, date_text=self.__date_text, description=self.__description, provenance=self.__provenance, summary=self.__summary, thumbnail=self.__thumbnail, url=self.__url)
 
         @property
         def collection_id(self):
@@ -45,6 +56,22 @@ class Object(object):
             '''
 
             return self.__collection_id
+
+        @property
+        def date(self):
+            '''
+            :rtype: datetime
+            '''
+
+            return self.__date
+
+        @property
+        def date_text(self):
+            '''
+            :rtype: str
+            '''
+
+            return self.__date_text
 
         @property
         def description(self):
@@ -63,6 +90,14 @@ class Object(object):
             return self.__institution_id
 
         @property
+        def model_metadata(self):
+            '''
+            :rtype: costume.api.models.model_metadata.ModelMetadata
+            '''
+
+            return self.__model_metadata
+
+        @property
         def provenance(self):
             '''
             :rtype: str
@@ -76,6 +111,22 @@ class Object(object):
             '''
 
             self.__collection_id = collection_id
+            return self
+
+        def set_date(self, date):
+            '''
+            :type date: datetime or None
+            '''
+
+            self.__date = date
+            return self
+
+        def set_date_text(self, date_text):
+            '''
+            :type date_text: str or None
+            '''
+
+            self.__date_text = date_text
             return self
 
         def set_description(self, description):
@@ -92,6 +143,14 @@ class Object(object):
             '''
 
             self.__institution_id = institution_id
+            return self
+
+        def set_model_metadata(self, model_metadata):
+            '''
+            :type model_metadata: costume.api.models.model_metadata.ModelMetadata
+            '''
+
+            self.__model_metadata = model_metadata
             return self
 
         def set_provenance(self, provenance):
@@ -162,7 +221,10 @@ class Object(object):
             '''
             :type collection_id: str
             :type institution_id: str
+            :type model_metadata: costume.api.models.model_metadata.ModelMetadata
             :type title: str
+            :type date: datetime or None
+            :type date_text: str or None
             :type description: str or None
             :type provenance: str or None
             :type summary: str or None
@@ -173,7 +235,10 @@ class Object(object):
             if isinstance(object, Object):
                 self.set_collection_id(object.collection_id)
                 self.set_institution_id(object.institution_id)
+                self.set_model_metadata(object.model_metadata)
                 self.set_title(object.title)
+                self.set_date(object.date)
+                self.set_date_text(object.date_text)
                 self.set_description(object.description)
                 self.set_provenance(object.provenance)
                 self.set_summary(object.summary)
@@ -202,6 +267,22 @@ class Object(object):
 
             self.set_collection_id(collection_id)
 
+        @date.setter
+        def date(self, date):
+            '''
+            :type date: datetime or None
+            '''
+
+            self.set_date(date)
+
+        @date_text.setter
+        def date_text(self, date_text):
+            '''
+            :type date_text: str or None
+            '''
+
+            self.set_date_text(date_text)
+
         @description.setter
         def description(self, description):
             '''
@@ -217,6 +298,14 @@ class Object(object):
             '''
 
             self.set_institution_id(institution_id)
+
+        @model_metadata.setter
+        def model_metadata(self, model_metadata):
+            '''
+            :type model_metadata: costume.api.models.model_metadata.ModelMetadata
+            '''
+
+            self.set_model_metadata(model_metadata)
 
         @provenance.setter
         def provenance(self, provenance):
@@ -262,7 +351,10 @@ class Object(object):
         self,
         collection_id,
         institution_id,
+        model_metadata,
         title,
+        date=None,
+        date_text=None,
         description=None,
         provenance=None,
         summary=None,
@@ -272,7 +364,10 @@ class Object(object):
         '''
         :type collection_id: str
         :type institution_id: str
+        :type model_metadata: costume.api.models.model_metadata.ModelMetadata
         :type title: str
+        :type date: datetime or None
+        :type date_text: str or None
         :type description: str or None
         :type provenance: str or None
         :type summary: str or None
@@ -292,6 +387,12 @@ class Object(object):
             raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
         self.__institution_id = institution_id
 
+        if model_metadata is None:
+            raise ValueError('model_metadata is required')
+        if not isinstance(model_metadata, costume.api.models.model_metadata.ModelMetadata):
+            raise TypeError("expected model_metadata to be a costume.api.models.model_metadata.ModelMetadata but it is a %s" % getattr(__builtin__, 'type')(model_metadata))
+        self.__model_metadata = model_metadata
+
         if title is None:
             raise ValueError('title is required')
         if not isinstance(title, basestring):
@@ -300,19 +401,37 @@ class Object(object):
             raise ValueError("expected len(title) to be >= 1, was %d" % len(title))
         self.__title = title
 
+        if date is not None:
+            if not isinstance(date, datetime):
+                raise TypeError("expected date to be a datetime but it is a %s" % getattr(__builtin__, 'type')(date))
+        self.__date = date
+
+        if date_text is not None:
+            if not isinstance(date_text, basestring):
+                raise TypeError("expected date_text to be a str but it is a %s" % getattr(__builtin__, 'type')(date_text))
+            if len(date_text) < 1:
+                raise ValueError("expected len(date_text) to be >= 1, was %d" % len(date_text))
+        self.__date_text = date_text
+
         if description is not None:
             if not isinstance(description, basestring):
                 raise TypeError("expected description to be a str but it is a %s" % getattr(__builtin__, 'type')(description))
+            if len(description) < 1:
+                raise ValueError("expected len(description) to be >= 1, was %d" % len(description))
         self.__description = description
 
         if provenance is not None:
             if not isinstance(provenance, basestring):
                 raise TypeError("expected provenance to be a str but it is a %s" % getattr(__builtin__, 'type')(provenance))
+            if len(provenance) < 1:
+                raise ValueError("expected len(provenance) to be >= 1, was %d" % len(provenance))
         self.__provenance = provenance
 
         if summary is not None:
             if not isinstance(summary, basestring):
                 raise TypeError("expected summary to be a str but it is a %s" % getattr(__builtin__, 'type')(summary))
+            if len(summary) < 1:
+                raise ValueError("expected len(summary) to be >= 1, was %d" % len(summary))
         self.__summary = summary
 
         if thumbnail is not None:
@@ -330,7 +449,13 @@ class Object(object):
             return False
         if self.institution_id != other.institution_id:
             return False
+        if self.model_metadata != other.model_metadata:
+            return False
         if self.title != other.title:
+            return False
+        if self.date != other.date:
+            return False
+        if self.date_text != other.date_text:
             return False
         if self.description != other.description:
             return False
@@ -345,7 +470,7 @@ class Object(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.title,self.description,self.provenance,self.summary,self.thumbnail,self.url,))
+        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.date,self.date_text,self.description,self.provenance,self.summary,self.thumbnail,self.url,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -357,7 +482,12 @@ class Object(object):
         field_reprs = []
         field_reprs.append('collection_id=' + "'" + self.collection_id.encode('ascii', 'replace') + "'")
         field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
+        field_reprs.append('model_metadata=' + repr(self.model_metadata))
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
+        if self.date is not None:
+            field_reprs.append('date=' + repr(self.date))
+        if self.date_text is not None:
+            field_reprs.append('date_text=' + "'" + self.date_text.encode('ascii', 'replace') + "'")
         if self.description is not None:
             field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
         if self.provenance is not None:
@@ -374,7 +504,12 @@ class Object(object):
         field_reprs = []
         field_reprs.append('collection_id=' + "'" + self.collection_id.encode('ascii', 'replace') + "'")
         field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
+        field_reprs.append('model_metadata=' + repr(self.model_metadata))
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
+        if self.date is not None:
+            field_reprs.append('date=' + repr(self.date))
+        if self.date_text is not None:
+            field_reprs.append('date_text=' + "'" + self.date_text.encode('ascii', 'replace') + "'")
         if self.description is not None:
             field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
         if self.provenance is not None:
@@ -394,7 +529,7 @@ class Object(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'title': self.title, 'description': self.description, 'provenance': self.provenance, 'summary': self.summary, 'thumbnail': self.thumbnail, 'url': self.url}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'date': self.date, 'date_text': self.date_text, 'description': self.description, 'provenance': self.provenance, 'summary': self.summary, 'thumbnail': self.thumbnail, 'url': self.url}
 
     def as_tuple(self):
         '''
@@ -403,7 +538,7 @@ class Object(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.title, self.description, self.provenance, self.summary, self.thumbnail, self.url,)
+        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.date, self.date_text, self.description, self.provenance, self.summary, self.thumbnail, self.url,)
 
     @property
     def collection_id(self):
@@ -412,6 +547,22 @@ class Object(object):
         '''
 
         return self.__collection_id
+
+    @property
+    def date(self):
+        '''
+        :rtype: datetime
+        '''
+
+        return self.__date
+
+    @property
+    def date_text(self):
+        '''
+        :rtype: str
+        '''
+
+        return self.__date_text
 
     @property
     def description(self):
@@ -428,6 +579,14 @@ class Object(object):
         '''
 
         return self.__institution_id
+
+    @property
+    def model_metadata(self):
+        '''
+        :rtype: costume.api.models.model_metadata.ModelMetadata
+        '''
+
+        return self.__model_metadata
 
     @property
     def provenance(self):
@@ -457,8 +616,20 @@ class Object(object):
                 init_kwds['collection_id'] = iprot.read_string()
             elif ifield_name == 'institution_id' and ifield_id == 2:
                 init_kwds['institution_id'] = iprot.read_string()
+            elif ifield_name == 'model_metadata' and ifield_id == 12:
+                init_kwds['model_metadata'] = costume.api.models.model_metadata.ModelMetadata.read(iprot)
             elif ifield_name == 'title' and ifield_id == 3:
                 init_kwds['title'] = iprot.read_string()
+            elif ifield_name == 'date' and ifield_id == 10:
+                try:
+                    init_kwds['date'] = iprot.read_date_time()
+                except (TypeError,):
+                    pass
+            elif ifield_name == 'date_text' and ifield_id == 11:
+                try:
+                    init_kwds['date_text'] = iprot.read_string()
+                except (TypeError, ValueError,):
+                    pass
             elif ifield_name == 'description' and ifield_id == 4:
                 try:
                     init_kwds['description'] = iprot.read_string()
@@ -490,7 +661,10 @@ class Object(object):
         self,
         collection_id=None,
         institution_id=None,
+        model_metadata=None,
         title=None,
+        date=None,
+        date_text=None,
         description=None,
         provenance=None,
         summary=None,
@@ -502,7 +676,10 @@ class Object(object):
 
         :type collection_id: str or None
         :type institution_id: str or None
+        :type model_metadata: costume.api.models.model_metadata.ModelMetadata or None
         :type title: str or None
+        :type date: datetime or None
+        :type date_text: str or None
         :type description: str or None
         :type provenance: str or None
         :type summary: str or None
@@ -515,8 +692,14 @@ class Object(object):
             collection_id = self.collection_id
         if institution_id is None:
             institution_id = self.institution_id
+        if model_metadata is None:
+            model_metadata = self.model_metadata
         if title is None:
             title = self.title
+        if date is None:
+            date = self.date
+        if date_text is None:
+            date_text = self.date_text
         if description is None:
             description = self.description
         if provenance is None:
@@ -527,7 +710,7 @@ class Object(object):
             thumbnail = self.thumbnail
         if url is None:
             url = self.url
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, title=title, description=description, provenance=provenance, summary=summary, thumbnail=thumbnail, url=url)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, date=date, date_text=date_text, description=description, provenance=provenance, summary=summary, thumbnail=thumbnail, url=url)
 
     @property
     def summary(self):
@@ -579,9 +762,23 @@ class Object(object):
         oprot.write_string(self.institution_id)
         oprot.write_field_end()
 
+        oprot.write_field_begin(name='model_metadata', type=12, id=12)
+        self.model_metadata.write(oprot)
+        oprot.write_field_end()
+
         oprot.write_field_begin(name='title', type=11, id=3)
         oprot.write_string(self.title)
         oprot.write_field_end()
+
+        if self.date is not None:
+            oprot.write_field_begin(name='date', type=10, id=10)
+            oprot.write_date_time(self.date)
+            oprot.write_field_end()
+
+        if self.date_text is not None:
+            oprot.write_field_begin(name='date_text', type=11, id=11)
+            oprot.write_string(self.date_text)
+            oprot.write_field_end()
 
         if self.description is not None:
             oprot.write_field_begin(name='description', type=11, id=4)
