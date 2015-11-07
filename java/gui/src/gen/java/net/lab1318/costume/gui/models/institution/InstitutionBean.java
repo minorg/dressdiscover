@@ -3,12 +3,14 @@ package net.lab1318.costume.gui.models.institution;
 public class InstitutionBean {
     public InstitutionBean() {
         copyrightNotice = null;
+        modelMetadata = null;
         title = null;
         url = null;
     }
 
     public InstitutionBean(final net.lab1318.costume.api.models.institution.Institution other) {
         this.copyrightNotice = other.getCopyrightNotice();
+        this.modelMetadata = new net.lab1318.costume.gui.models.ModelMetadataBean(other.getModelMetadata());
         this.title = other.getTitle();
         this.url = other.getUrl();
     }
@@ -24,12 +26,17 @@ public class InstitutionBean {
         final InstitutionBean other = (InstitutionBean)otherObject;
         return
             getCopyrightNotice().equals(other.getCopyrightNotice()) &&
+            getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
             getUrl().equals(other.getUrl());
     }
 
     public String getCopyrightNotice() {
         return copyrightNotice;
+    }
+
+    public net.lab1318.costume.gui.models.ModelMetadataBean getModelMetadata() {
+        return modelMetadata;
     }
 
     public String getTitle() {
@@ -44,6 +51,7 @@ public class InstitutionBean {
     public int hashCode() {
         int hashCode = 17;
         hashCode = 31 * hashCode + getCopyrightNotice().hashCode();
+        hashCode = 31 * hashCode + getModelMetadata().hashCode();
         hashCode = 31 * hashCode + getTitle().hashCode();
         hashCode = 31 * hashCode + getUrl().hashCode();
         return hashCode;
@@ -51,6 +59,10 @@ public class InstitutionBean {
 
     public void setCopyrightNotice(final String copyrightNotice) {
         this.copyrightNotice = copyrightNotice;
+    }
+
+    public void setModelMetadata(final net.lab1318.costume.gui.models.ModelMetadataBean modelMetadata) {
+        this.modelMetadata = modelMetadata;
     }
 
     public void setTitle(final String title) {
@@ -63,10 +75,12 @@ public class InstitutionBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("copyright_notice", getCopyrightNotice()).add("title", getTitle()).add("url", getUrl()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("copyright_notice", getCopyrightNotice()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("url", getUrl()).toString();
     }
 
     private String copyrightNotice;
+
+    private net.lab1318.costume.gui.models.ModelMetadataBean modelMetadata;
 
     private String title;
 

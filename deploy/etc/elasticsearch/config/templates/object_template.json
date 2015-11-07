@@ -29,10 +29,30 @@
             "index": "not_analyzed", 
             "type": "string"
           }, 
+          "14:model_metadata": {
+            "type": "nested", 
+            "properties": {
+              "1:ctime": {
+                "type": "date"
+              }, 
+              "2:mtime": {
+                "type": "date"
+              }
+            }
+          }, 
           "3:title": {
             "type": "string"
           }, 
+          "10:date": {
+            "type": "date"
+          }, 
+          "11:date_text": {
+            "type": "string"
+          }, 
           "4:description": {
+            "type": "string"
+          }, 
+          "12:physical_description": {
             "type": "string"
           }, 
           "5:provenance": {

@@ -4,26 +4,32 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
     public static class Builder {
         public Builder() {
             copyrightNotice = null;
+            modelMetadata = null;
             title = null;
             url = null;
         }
 
         public Builder(final Institution other) {
             this.copyrightNotice = other.getCopyrightNotice();
+            this.modelMetadata = other.getModelMetadata();
             this.title = other.getTitle();
             this.url = other.getUrl();
         }
 
-        protected Institution _build(final String copyrightNotice, final String title, final org.thryft.native_.Url url) {
-            return new Institution(copyrightNotice, title, url);
+        protected Institution _build(final String copyrightNotice, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final org.thryft.native_.Url url) {
+            return new Institution(copyrightNotice, modelMetadata, title, url);
         }
 
         public Institution build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(copyrightNotice, "net.lab1318.costume.api.models.institution.Institution: missing copyrightNotice"), com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.institution.Institution: missing title"), com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.institution.Institution: missing url"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(copyrightNotice, "net.lab1318.costume.api.models.institution.Institution: missing copyrightNotice"), com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.institution.Institution: missing modelMetadata"), com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.institution.Institution: missing title"), com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.institution.Institution: missing url"));
         }
 
         public final String getCopyrightNotice() {
             return copyrightNotice;
+        }
+
+        public final net.lab1318.costume.api.models.ModelMetadata getModelMetadata() {
+            return modelMetadata;
         }
 
         public final String getTitle() {
@@ -48,6 +54,7 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             iprot.readListBegin();
             copyrightNotice = iprot.readString();
+            modelMetadata = net.lab1318.costume.api.models.ModelMetadata.readAsStruct(iprot);
             title = iprot.readString();
             url = org.thryft.native_.Url.parse(iprot.readString());
             iprot.readListEnd();
@@ -65,6 +72,12 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
                 case "copyright_notice": {
                     if (!ifield.hasId() || ifield.getId() == 2) {
                         copyrightNotice = iprot.readString();
+                    }
+                    break;
+                }
+                case "model_metadata": {
+                    if (!ifield.hasId() || ifield.getId() == 4) {
+                        modelMetadata = net.lab1318.costume.api.models.ModelMetadata.readAsStruct(iprot);
                     }
                     break;
                 }
@@ -96,9 +109,15 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
             com.google.common.base.Preconditions.checkNotNull(other);
 
             setCopyrightNotice(other.getCopyrightNotice());
+            setModelMetadata(other.getModelMetadata());
             setTitle(other.getTitle());
             setUrl(other.getUrl());
 
+            return this;
+        }
+
+        public Builder setModelMetadata(final net.lab1318.costume.api.models.ModelMetadata modelMetadata) {
+            this.modelMetadata = com.google.common.base.Preconditions.checkNotNull(modelMetadata);
             return this;
         }
 
@@ -117,6 +136,7 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
 
             switch (name.toLowerCase()) {
             case "copyright_notice": setCopyrightNotice((String)value); return this;
+            case "model_metadata": setModelMetadata((net.lab1318.costume.api.models.ModelMetadata)value); return this;
             case "title": setTitle((String)value); return this;
             case "url": setUrl((org.thryft.native_.Url)value); return this;
             default:
@@ -126,6 +146,11 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
 
         public Builder unsetCopyrightNotice() {
             this.copyrightNotice = null;
+            return this;
+        }
+
+        public Builder unsetModelMetadata() {
+            this.modelMetadata = null;
             return this;
         }
 
@@ -140,6 +165,7 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
         }
 
         private String copyrightNotice;
+        private net.lab1318.costume.api.models.ModelMetadata modelMetadata;
         private String title;
         private org.thryft.native_.Url url;
     }
@@ -147,6 +173,7 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         COPYRIGHT_NOTICE("copyrightNotice", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "copyright_notice", org.thryft.protocol.Type.STRING),
+        MODEL_METADATA("modelMetadata", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.ModelMetadata>() {}, true, 4, "model_metadata", org.thryft.protocol.Type.STRUCT),
         TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "title", org.thryft.protocol.Type.STRING),
         URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, true, 3, "url", org.thryft.protocol.Type.STRING);
 
@@ -193,6 +220,7 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
             case "copyrightNotice": return COPYRIGHT_NOTICE;
+            case "modelMetadata": return MODEL_METADATA;
             case "title": return TITLE;
             case "url": return URL;
             default:
@@ -203,6 +231,7 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
             case "copyright_notice": return COPYRIGHT_NOTICE;
+            case "model_metadata": return MODEL_METADATA;
             case "title": return TITLE;
             case "url": return URL;
             default:
@@ -237,14 +266,15 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
      * Copy constructor
      */
     public Institution(final Institution other) {
-        this(other.getCopyrightNotice(), other.getTitle(), other.getUrl());
+        this(other.getCopyrightNotice(), other.getModelMetadata(), other.getTitle(), other.getUrl());
     }
 
     /**
      * Optional constructor
      */
-    public Institution(final String copyrightNotice, final String title, final org.thryft.native_.Url url) {
+    public Institution(final String copyrightNotice, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final org.thryft.native_.Url url) {
         this.copyrightNotice = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(copyrightNotice, "net.lab1318.costume.api.models.institution.Institution: missing copyrightNotice"), "net.lab1318.costume.api.models.institution.Institution: copyrightNotice is empty");
+        this.modelMetadata = com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.institution.Institution: missing modelMetadata");
         this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.institution.Institution: missing title"), "net.lab1318.costume.api.models.institution.Institution: title is empty");
         this.url = com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.institution.Institution: missing url");
     }
@@ -272,6 +302,7 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
         final Institution other = (Institution)otherObject;
         return
             getCopyrightNotice().equals(other.getCopyrightNotice()) &&
+            getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
             getUrl().equals(other.getUrl());
     }
@@ -280,6 +311,7 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
     public java.lang.Object get(final String fieldName) {
         switch (fieldName) {
         case "copyright_notice": return getCopyrightNotice();
+        case "model_metadata": return getModelMetadata();
         case "title": return getTitle();
         case "url": return getUrl();
         default:
@@ -289,6 +321,10 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
 
     public final String getCopyrightNotice() {
         return copyrightNotice;
+    }
+
+    public final net.lab1318.costume.api.models.ModelMetadata getModelMetadata() {
+        return modelMetadata;
     }
 
     public final String getTitle() {
@@ -303,6 +339,7 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
     public int hashCode() {
         int hashCode = 17;
         hashCode = 31 * hashCode + getCopyrightNotice().hashCode();
+        hashCode = 31 * hashCode + getModelMetadata().hashCode();
         hashCode = 31 * hashCode + getTitle().hashCode();
         hashCode = 31 * hashCode + getUrl().hashCode();
         return hashCode;
@@ -321,16 +358,18 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
 
     public static Institution readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         String copyrightNotice = null;
+        net.lab1318.costume.api.models.ModelMetadata modelMetadata = null;
         String title = null;
         org.thryft.native_.Url url = null;
 
         iprot.readListBegin();
         copyrightNotice = iprot.readString();
+        modelMetadata = net.lab1318.costume.api.models.ModelMetadata.readAsStruct(iprot);
         title = iprot.readString();
         url = org.thryft.native_.Url.parse(iprot.readString());
         iprot.readListEnd();
         try {
-            return new Institution(copyrightNotice, title, url);
+            return new Institution(copyrightNotice, modelMetadata, title, url);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -338,6 +377,7 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
 
     public static Institution readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         String copyrightNotice = null;
+        net.lab1318.costume.api.models.ModelMetadata modelMetadata = null;
         String title = null;
         org.thryft.native_.Url url = null;
 
@@ -351,6 +391,12 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
             case "copyright_notice": {
                 if (!ifield.hasId() || ifield.getId() == 2) {
                     copyrightNotice = iprot.readString();
+                }
+                break;
+            }
+            case "model_metadata": {
+                if (!ifield.hasId() || ifield.getId() == 4) {
+                    modelMetadata = net.lab1318.costume.api.models.ModelMetadata.readAsStruct(iprot);
                 }
                 break;
             }
@@ -371,34 +417,40 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
         }
         iprot.readStructEnd();
         try {
-            return new Institution(copyrightNotice, title, url);
+            return new Institution(copyrightNotice, modelMetadata, title, url);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public Institution replaceCopyrightNotice(final String copyrightNotice) {
-        return new Institution(copyrightNotice, this.title, this.url);
+        return new Institution(copyrightNotice, this.modelMetadata, this.title, this.url);
+    }
+
+    public Institution replaceModelMetadata(final net.lab1318.costume.api.models.ModelMetadata modelMetadata) {
+        return new Institution(this.copyrightNotice, modelMetadata, this.title, this.url);
     }
 
     public Institution replaceTitle(final String title) {
-        return new Institution(this.copyrightNotice, title, this.url);
+        return new Institution(this.copyrightNotice, this.modelMetadata, title, this.url);
     }
 
     public Institution replaceUrl(final org.thryft.native_.Url url) {
-        return new Institution(this.copyrightNotice, this.title, url);
+        return new Institution(this.copyrightNotice, this.modelMetadata, this.title, url);
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("copyright_notice", getCopyrightNotice()).add("title", getTitle()).add("url", getUrl()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("copyright_notice", getCopyrightNotice()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("url", getUrl()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 4);
 
         oprot.writeString(getCopyrightNotice());
+
+        getModelMetadata().writeAsStruct(oprot);
 
         oprot.writeString(getTitle());
 
@@ -420,6 +472,10 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
         oprot.writeString(getCopyrightNotice());
         oprot.writeFieldEnd();
 
+        oprot.writeFieldBegin("model_metadata", org.thryft.protocol.Type.STRUCT, (short)4);
+        getModelMetadata().writeAsStruct(oprot);
+        oprot.writeFieldEnd();
+
         oprot.writeFieldBegin("title", org.thryft.protocol.Type.STRING, (short)1);
         oprot.writeString(getTitle());
         oprot.writeFieldEnd();
@@ -432,6 +488,8 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
     }
 
     private final String copyrightNotice;
+
+    private final net.lab1318.costume.api.models.ModelMetadata modelMetadata;
 
     private final String title;
 
