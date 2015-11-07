@@ -15,7 +15,7 @@ struct Object {
 
 	2: institution_id.InstitutionId institution_id;
 
-	12: model_metadata.ModelMetadata model_metadata;
+	14: model_metadata.ModelMetadata model_metadata;
 
 	// @validation {"minLength": 1}
 	3: string title;
@@ -27,6 +27,9 @@ struct Object {
 
 	// @validation {"minLength": 1}
 	4: optional string description;
+
+	// @validation {"minLength": 1}
+	12: optional string physical_description;
 
 	// @validation {"minLength": 1}
 	5: optional string provenance;

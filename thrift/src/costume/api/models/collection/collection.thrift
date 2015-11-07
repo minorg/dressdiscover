@@ -7,9 +7,9 @@ include "costume/api/models/institution/institution_id.thrift"
 
 // @java_implements org.notaweb.api.models.Model
 struct Collection {
-	3: model_metadata.ModelMetadata model_metadata;
-
 	1: institution_id.InstitutionId institution_id;
+
+	3: model_metadata.ModelMetadata model_metadata;
 
 	// @validation {"minLength": 1}
 	2: string title;

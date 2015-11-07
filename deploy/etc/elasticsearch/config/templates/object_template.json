@@ -29,7 +29,7 @@
             "index": "not_analyzed", 
             "type": "string"
           }, 
-          "12:model_metadata": {
+          "14:model_metadata": {
             "type": "nested", 
             "properties": {
               "1:ctime": {
@@ -50,6 +50,9 @@
             "type": "string"
           }, 
           "4:description": {
+            "type": "string"
+          }, 
+          "12:physical_description": {
             "type": "string"
           }, 
           "5:provenance": {

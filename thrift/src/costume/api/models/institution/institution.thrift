@@ -10,7 +10,7 @@ struct Institution {
 	// @validation {"minLength": 1}
 	2: string copyright_notice;
 
-	3: model_metadata.ModelMetadata model_metadata;
+	4: model_metadata.ModelMetadata model_metadata;
 
 	// @validation {"minLength": 1}
 	1: string title;

@@ -76,7 +76,7 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
                     break;
                 }
                 case "model_metadata": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
+                    if (!ifield.hasId() || ifield.getId() == 4) {
                         modelMetadata = net.lab1318.costume.api.models.ModelMetadata.readAsStruct(iprot);
                     }
                     break;
@@ -173,7 +173,7 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         COPYRIGHT_NOTICE("copyrightNotice", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "copyright_notice", org.thryft.protocol.Type.STRING),
-        MODEL_METADATA("modelMetadata", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.ModelMetadata>() {}, true, 3, "model_metadata", org.thryft.protocol.Type.STRUCT),
+        MODEL_METADATA("modelMetadata", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.ModelMetadata>() {}, true, 4, "model_metadata", org.thryft.protocol.Type.STRUCT),
         TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "title", org.thryft.protocol.Type.STRING),
         URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, true, 3, "url", org.thryft.protocol.Type.STRING);
 
@@ -395,7 +395,7 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
                 break;
             }
             case "model_metadata": {
-                if (!ifield.hasId() || ifield.getId() == 3) {
+                if (!ifield.hasId() || ifield.getId() == 4) {
                     modelMetadata = net.lab1318.costume.api.models.ModelMetadata.readAsStruct(iprot);
                 }
                 break;
@@ -472,7 +472,7 @@ public class Institution implements org.thryft.Struct, org.notaweb.api.models.Mo
         oprot.writeString(getCopyrightNotice());
         oprot.writeFieldEnd();
 
-        oprot.writeFieldBegin("model_metadata", org.thryft.protocol.Type.STRUCT, (short)3);
+        oprot.writeFieldBegin("model_metadata", org.thryft.protocol.Type.STRUCT, (short)4);
         getModelMetadata().writeAsStruct(oprot);
         oprot.writeFieldEnd();
 

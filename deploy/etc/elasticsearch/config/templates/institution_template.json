@@ -24,7 +24,7 @@
           "2:copyright_notice": {
             "type": "string"
           }, 
-          "3:model_metadata": {
+          "4:model_metadata": {
             "type": "nested", 
             "properties": {
               "1:ctime": {

@@ -272,7 +272,7 @@ class Institution(object):
                 break
             elif ifield_name == 'copyright_notice' and ifield_id == 2:
                 init_kwds['copyright_notice'] = iprot.read_string()
-            elif ifield_name == 'model_metadata' and ifield_id == 3:
+            elif ifield_name == 'model_metadata' and ifield_id == 4:
                 init_kwds['model_metadata'] = costume.api.models.model_metadata.ModelMetadata.read(iprot)
             elif ifield_name == 'title' and ifield_id == 1:
                 init_kwds['title'] = iprot.read_string()
@@ -340,7 +340,7 @@ class Institution(object):
         oprot.write_string(self.copyright_notice)
         oprot.write_field_end()
 
-        oprot.write_field_begin(name='model_metadata', type=12, id=3)
+        oprot.write_field_begin(name='model_metadata', type=12, id=4)
         self.model_metadata.write(oprot)
         oprot.write_field_end()
 

@@ -2,14 +2,14 @@ package net.lab1318.costume.gui.models.collection;
 
 public class CollectionBean {
     public CollectionBean() {
-        modelMetadata = null;
         institutionId = null;
+        modelMetadata = null;
         title = null;
     }
 
     public CollectionBean(final net.lab1318.costume.api.models.collection.Collection other) {
-        this.modelMetadata = new net.lab1318.costume.gui.models.ModelMetadataBean(other.getModelMetadata());
         this.institutionId = other.getInstitutionId();
+        this.modelMetadata = new net.lab1318.costume.gui.models.ModelMetadataBean(other.getModelMetadata());
         this.title = other.getTitle();
     }
 
@@ -23,8 +23,8 @@ public class CollectionBean {
 
         final CollectionBean other = (CollectionBean)otherObject;
         return
-            getModelMetadata().equals(other.getModelMetadata()) &&
             getInstitutionId().equals(other.getInstitutionId()) &&
+            getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle());
     }
 
@@ -43,8 +43,8 @@ public class CollectionBean {
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getModelMetadata().hashCode();
         hashCode = 31 * hashCode + getInstitutionId().hashCode();
+        hashCode = 31 * hashCode + getModelMetadata().hashCode();
         hashCode = 31 * hashCode + getTitle().hashCode();
         return hashCode;
     }
@@ -63,12 +63,12 @@ public class CollectionBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("model_metadata", getModelMetadata()).add("institution_id", getInstitutionId()).add("title", getTitle()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).toString();
     }
 
-    private net.lab1318.costume.gui.models.ModelMetadataBean modelMetadata;
-
     private net.lab1318.costume.api.models.institution.InstitutionId institutionId;
+
+    private net.lab1318.costume.gui.models.ModelMetadataBean modelMetadata;
 
     private String title;
 }

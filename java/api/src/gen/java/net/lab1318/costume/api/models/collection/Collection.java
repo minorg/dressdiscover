@@ -3,23 +3,23 @@ package net.lab1318.costume.api.models.collection;
 public class Collection implements org.thryft.Struct, org.notaweb.api.models.Model {
     public static class Builder {
         public Builder() {
-            modelMetadata = null;
             institutionId = null;
+            modelMetadata = null;
             title = null;
         }
 
         public Builder(final Collection other) {
-            this.modelMetadata = other.getModelMetadata();
             this.institutionId = other.getInstitutionId();
+            this.modelMetadata = other.getModelMetadata();
             this.title = other.getTitle();
         }
 
-        protected Collection _build(final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final String title) {
-            return new Collection(modelMetadata, institutionId, title);
+        protected Collection _build(final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title) {
+            return new Collection(institutionId, modelMetadata, title);
         }
 
         public Collection build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.collection.Collection: missing modelMetadata"), com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.collection.Collection: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.collection.Collection: missing title"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.collection.Collection: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.collection.Collection: missing modelMetadata"), com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.collection.Collection: missing title"));
         }
 
         public final net.lab1318.costume.api.models.institution.InstitutionId getInstitutionId() {
@@ -47,12 +47,12 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             iprot.readListBegin();
-            modelMetadata = net.lab1318.costume.api.models.ModelMetadata.readAsStruct(iprot);
             try {
                 institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
             } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
                  throw new IllegalArgumentException(e);
             }
+            modelMetadata = net.lab1318.costume.api.models.ModelMetadata.readAsStruct(iprot);
             title = iprot.readString();
             iprot.readListEnd();
             return this;
@@ -66,12 +66,6 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
                     break;
                 }
                 switch (ifield.getName()) {
-                case "model_metadata": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        modelMetadata = net.lab1318.costume.api.models.ModelMetadata.readAsStruct(iprot);
-                    }
-                    break;
-                }
                 case "institution_id": {
                     if (!ifield.hasId() || ifield.getId() == 1) {
                         try {
@@ -79,6 +73,12 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
                         } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
                              throw new IllegalArgumentException(e);
                         }
+                    }
+                    break;
+                }
+                case "model_metadata": {
+                    if (!ifield.hasId() || ifield.getId() == 3) {
+                        modelMetadata = net.lab1318.costume.api.models.ModelMetadata.readAsStruct(iprot);
                     }
                     break;
                 }
@@ -98,8 +98,8 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
         public Builder setIfPresent(final Collection other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
-            setModelMetadata(other.getModelMetadata());
             setInstitutionId(other.getInstitutionId());
+            setModelMetadata(other.getModelMetadata());
             setTitle(other.getTitle());
 
             return this;
@@ -124,8 +124,8 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
             com.google.common.base.Preconditions.checkNotNull(name);
 
             switch (name.toLowerCase()) {
-            case "model_metadata": setModelMetadata((net.lab1318.costume.api.models.ModelMetadata)value); return this;
             case "institution_id": setInstitutionId((net.lab1318.costume.api.models.institution.InstitutionId)value); return this;
+            case "model_metadata": setModelMetadata((net.lab1318.costume.api.models.ModelMetadata)value); return this;
             case "title": setTitle((String)value); return this;
             default:
                 throw new IllegalArgumentException(name);
@@ -147,15 +147,15 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
             return this;
         }
 
-        private net.lab1318.costume.api.models.ModelMetadata modelMetadata;
         private net.lab1318.costume.api.models.institution.InstitutionId institutionId;
+        private net.lab1318.costume.api.models.ModelMetadata modelMetadata;
         private String title;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        MODEL_METADATA("modelMetadata", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.ModelMetadata>() {}, true, 3, "model_metadata", org.thryft.protocol.Type.STRUCT),
         INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, true, 1, "institution_id", org.thryft.protocol.Type.STRING),
+        MODEL_METADATA("modelMetadata", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.ModelMetadata>() {}, true, 3, "model_metadata", org.thryft.protocol.Type.STRUCT),
         TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "title", org.thryft.protocol.Type.STRING);
 
         @Override
@@ -200,8 +200,8 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "modelMetadata": return MODEL_METADATA;
             case "institutionId": return INSTITUTION_ID;
+            case "modelMetadata": return MODEL_METADATA;
             case "title": return TITLE;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -210,8 +210,8 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "model_metadata": return MODEL_METADATA;
             case "institution_id": return INSTITUTION_ID;
+            case "model_metadata": return MODEL_METADATA;
             case "title": return TITLE;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -245,15 +245,15 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
      * Copy constructor
      */
     public Collection(final Collection other) {
-        this(other.getModelMetadata(), other.getInstitutionId(), other.getTitle());
+        this(other.getInstitutionId(), other.getModelMetadata(), other.getTitle());
     }
 
     /**
      * Optional constructor
      */
-    public Collection(final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final String title) {
-        this.modelMetadata = com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.collection.Collection: missing modelMetadata");
+    public Collection(final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title) {
         this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.collection.Collection: missing institutionId");
+        this.modelMetadata = com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.collection.Collection: missing modelMetadata");
         this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.collection.Collection: missing title"), "net.lab1318.costume.api.models.collection.Collection: title is empty");
     }
 
@@ -279,16 +279,16 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
 
         final Collection other = (Collection)otherObject;
         return
-            getModelMetadata().equals(other.getModelMetadata()) &&
             getInstitutionId().equals(other.getInstitutionId()) &&
+            getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle());
     }
 
     @Override
     public java.lang.Object get(final String fieldName) {
         switch (fieldName) {
-        case "model_metadata": return getModelMetadata();
         case "institution_id": return getInstitutionId();
+        case "model_metadata": return getModelMetadata();
         case "title": return getTitle();
         default:
             throw new IllegalArgumentException(fieldName);
@@ -310,8 +310,8 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getModelMetadata().hashCode();
         hashCode = 31 * hashCode + getInstitutionId().hashCode();
+        hashCode = 31 * hashCode + getModelMetadata().hashCode();
         hashCode = 31 * hashCode + getTitle().hashCode();
         return hashCode;
     }
@@ -328,29 +328,29 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
     }
 
     public static Collection readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        net.lab1318.costume.api.models.ModelMetadata modelMetadata = null;
         net.lab1318.costume.api.models.institution.InstitutionId institutionId = null;
+        net.lab1318.costume.api.models.ModelMetadata modelMetadata = null;
         String title = null;
 
         iprot.readListBegin();
-        modelMetadata = net.lab1318.costume.api.models.ModelMetadata.readAsStruct(iprot);
         try {
             institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
         } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
              throw new IllegalArgumentException(e);
         }
+        modelMetadata = net.lab1318.costume.api.models.ModelMetadata.readAsStruct(iprot);
         title = iprot.readString();
         iprot.readListEnd();
         try {
-            return new Collection(modelMetadata, institutionId, title);
+            return new Collection(institutionId, modelMetadata, title);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public static Collection readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        net.lab1318.costume.api.models.ModelMetadata modelMetadata = null;
         net.lab1318.costume.api.models.institution.InstitutionId institutionId = null;
+        net.lab1318.costume.api.models.ModelMetadata modelMetadata = null;
         String title = null;
 
         iprot.readStructBegin();
@@ -360,12 +360,6 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
                 break;
             }
             switch (ifield.getName()) {
-            case "model_metadata": {
-                if (!ifield.hasId() || ifield.getId() == 3) {
-                    modelMetadata = net.lab1318.costume.api.models.ModelMetadata.readAsStruct(iprot);
-                }
-                break;
-            }
             case "institution_id": {
                 if (!ifield.hasId() || ifield.getId() == 1) {
                     try {
@@ -373,6 +367,12 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
                     } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
                          throw new IllegalArgumentException(e);
                     }
+                }
+                break;
+            }
+            case "model_metadata": {
+                if (!ifield.hasId() || ifield.getId() == 3) {
+                    modelMetadata = net.lab1318.costume.api.models.ModelMetadata.readAsStruct(iprot);
                 }
                 break;
             }
@@ -387,36 +387,36 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
         }
         iprot.readStructEnd();
         try {
-            return new Collection(modelMetadata, institutionId, title);
+            return new Collection(institutionId, modelMetadata, title);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public Collection replaceInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
-        return new Collection(this.modelMetadata, institutionId, this.title);
+        return new Collection(institutionId, this.modelMetadata, this.title);
     }
 
     public Collection replaceModelMetadata(final net.lab1318.costume.api.models.ModelMetadata modelMetadata) {
-        return new Collection(modelMetadata, this.institutionId, this.title);
+        return new Collection(this.institutionId, modelMetadata, this.title);
     }
 
     public Collection replaceTitle(final String title) {
-        return new Collection(this.modelMetadata, this.institutionId, title);
+        return new Collection(this.institutionId, this.modelMetadata, title);
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("model_metadata", getModelMetadata()).add("institution_id", getInstitutionId()).add("title", getTitle()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
 
-        getModelMetadata().writeAsStruct(oprot);
-
         oprot.writeString(getInstitutionId().toString());
+
+        getModelMetadata().writeAsStruct(oprot);
 
         oprot.writeString(getTitle());
 
@@ -432,12 +432,12 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("model_metadata", org.thryft.protocol.Type.STRUCT, (short)3);
-        getModelMetadata().writeAsStruct(oprot);
-        oprot.writeFieldEnd();
-
         oprot.writeFieldBegin("institution_id", org.thryft.protocol.Type.STRING, (short)1);
         oprot.writeString(getInstitutionId().toString());
+        oprot.writeFieldEnd();
+
+        oprot.writeFieldBegin("model_metadata", org.thryft.protocol.Type.STRUCT, (short)3);
+        getModelMetadata().writeAsStruct(oprot);
         oprot.writeFieldEnd();
 
         oprot.writeFieldBegin("title", org.thryft.protocol.Type.STRING, (short)2);
@@ -447,9 +447,9 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
         oprot.writeFieldStop();
     }
 
-    private final net.lab1318.costume.api.models.ModelMetadata modelMetadata;
-
     private final net.lab1318.costume.api.models.institution.InstitutionId institutionId;
+
+    private final net.lab1318.costume.api.models.ModelMetadata modelMetadata;
 
     private final String title;
 }
