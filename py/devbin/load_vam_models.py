@@ -6,11 +6,11 @@ from argparse import ArgumentParser
 
 from costume.api.models.collection.collection import Collection
 from costume.api.models.institution.institution import Institution
-from costume.api.models.model_metadata import ModelMetadata
 from costume.api.models.object.object import Object
 from costume.api.services.institution.no_such_institution_exception import NoSuchInstitutionException
 from costume.lib.costume_properties import CostumeProperties
 from services import Services
+from model_utils import new_model_metadata, get_nonempty_string
 
 
 INSTITUTION_ID = 'vam'
@@ -19,28 +19,23 @@ properties = CostumeProperties.load()
 services = Services(properties=properties)
 
 
-def __new_model_metadata():
-    datetime_now = datetime.now()
-    return ModelMetadata.Builder().set_ctime(datetime_now).set_mtime(datetime_now).build()
-
-
 def parse_museumobject(museumobject_dict):
     object_id = COLLECTION_ID + '/' + museumobject_dict['object_number']
 
     object_builder = Object.Builder()
 
     object_builder.collection_id = COLLECTION_ID
+    object_builder.description = get_nonempty_string(museumobject_dict, 'descriptive_line')
     object_builder.institution_id = INSTITUTION_ID
-    object_builder.set_model_metadata(__new_model_metadata())
-
-    title = museumobject_dict.get('title')
-    if title is None or len(title) == 0:
+    object_builder.model_metadata = new_model_metadata()
+    object_builder.physical_description = get_nonempty_string(museumobject_dict, 'physical_description')
+    title = get_nonempty_string(museumobject_dict, 'title')
+    if title is None:
         title = museumobject_dict.get('object')
         assert title is not None and len(title) > 0
     object_builder.title = title
 
-    object_builder.date_text = museumobject_dict['date_text']
-    assert len(object_builder.date_text) > 0
+    object_builder.date_text = get_nonempty_string(museumobject_dict, 'date_text')
 
     return object_id, object_builder.build()
 
@@ -62,7 +57,7 @@ services.institution_command_service.put_institution(
     INSTITUTION_ID,
     Institution.Builder()
         .set_copyright_notice("Copyright %s Victoria and Albert Museum" % datetime.now().year)
-        .set_model_metadata(__new_model_metadata())
+        .set_model_metadata(new_model_metadata())
         .set_title("Victoria and Albert Museum")
         .set_url('http://www.vam.ac.uk')
         .build()
@@ -73,7 +68,7 @@ services.collection_command_service.put_collection(
     COLLECTION_ID,
     Collection.Builder()
         .set_institution_id(INSTITUTION_ID)
-        .set_model_metadata(__new_model_metadata())
+        .set_model_metadata(new_model_metadata())
         .set_title("Textiles and Fashion Collection")
         .build()
 )
