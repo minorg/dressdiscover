@@ -11,6 +11,9 @@ from costume.api.services.institution.no_such_institution_exception import NoSuc
 from costume.lib.costume_properties import CostumeProperties
 from services import Services
 from model_utils import new_model_metadata, get_nonempty_string
+from costume.api.models.rights.rights_set import RightsSet
+from costume.api.models.rights.rights import Rights
+from costume.api.models.rights.rights_type import RightsType
 
 
 INSTITUTION_ID = 'vam'
@@ -56,7 +59,18 @@ if args.clean:
 services.institution_command_service.put_institution(
     INSTITUTION_ID,
     Institution.Builder()
-        .set_copyright_notice("Copyright %s Victoria and Albert Museum" % datetime.now().year)
+        .set_data_rights(
+            RightsSet.Builder()
+                .set_rights((
+                    Rights.Builder()
+                        .set_rights_holder("Victoria and Albert Museum")
+                        .set_text("Copyright %s Victoria and Albert Museum" % datetime.now().year)
+                        .set_type(RightsType.COPYRIGHTED)
+                        .build()
+
+                ,))
+                .build()
+        )
         .set_model_metadata(new_model_metadata())
         .set_title("Victoria and Albert Museum")
         .set_url('http://www.vam.ac.uk')

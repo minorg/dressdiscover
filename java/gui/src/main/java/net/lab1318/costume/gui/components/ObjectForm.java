@@ -23,8 +23,7 @@ public final class ObjectForm extends CustomComponent {
         titleLabel.setStyleName("h3");
         rootLayout.addComponent(titleLabel);
 
-        final Label copyrightLabel = new Label(institution.getCopyrightNotice());
-        rootLayout.addComponent(copyrightLabel);
+        rootLayout.addComponent(new RightsLabel(institution.getDataRights()));
 
         final HorizontalLayout twoPaneLayout = new HorizontalLayout();
         twoPaneLayout.setSizeFull();

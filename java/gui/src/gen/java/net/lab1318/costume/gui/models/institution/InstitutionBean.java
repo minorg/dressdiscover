@@ -2,14 +2,14 @@ package net.lab1318.costume.gui.models.institution;
 
 public class InstitutionBean {
     public InstitutionBean() {
-        copyrightNotice = null;
+        dataRights = null;
         modelMetadata = null;
         title = null;
         url = null;
     }
 
     public InstitutionBean(final net.lab1318.costume.api.models.institution.Institution other) {
-        this.copyrightNotice = other.getCopyrightNotice();
+        this.dataRights = new net.lab1318.costume.gui.models.rights.RightsSetBean(other.getDataRights());
         this.modelMetadata = new net.lab1318.costume.gui.models.ModelMetadataBean(other.getModelMetadata());
         this.title = other.getTitle();
         this.url = other.getUrl();
@@ -25,14 +25,14 @@ public class InstitutionBean {
 
         final InstitutionBean other = (InstitutionBean)otherObject;
         return
-            getCopyrightNotice().equals(other.getCopyrightNotice()) &&
+            getDataRights().equals(other.getDataRights()) &&
             getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
             getUrl().equals(other.getUrl());
     }
 
-    public String getCopyrightNotice() {
-        return copyrightNotice;
+    public net.lab1318.costume.gui.models.rights.RightsSetBean getDataRights() {
+        return dataRights;
     }
 
     public net.lab1318.costume.gui.models.ModelMetadataBean getModelMetadata() {
@@ -50,15 +50,15 @@ public class InstitutionBean {
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getCopyrightNotice().hashCode();
+        hashCode = 31 * hashCode + getDataRights().hashCode();
         hashCode = 31 * hashCode + getModelMetadata().hashCode();
         hashCode = 31 * hashCode + getTitle().hashCode();
         hashCode = 31 * hashCode + getUrl().hashCode();
         return hashCode;
     }
 
-    public void setCopyrightNotice(final String copyrightNotice) {
-        this.copyrightNotice = copyrightNotice;
+    public void setDataRights(final net.lab1318.costume.gui.models.rights.RightsSetBean dataRights) {
+        this.dataRights = dataRights;
     }
 
     public void setModelMetadata(final net.lab1318.costume.gui.models.ModelMetadataBean modelMetadata) {
@@ -75,10 +75,10 @@ public class InstitutionBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("copyright_notice", getCopyrightNotice()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("url", getUrl()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("data_rights", getDataRights()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("url", getUrl()).toString();
     }
 
-    private String copyrightNotice;
+    private net.lab1318.costume.gui.models.rights.RightsSetBean dataRights;
 
     private net.lab1318.costume.gui.models.ModelMetadataBean modelMetadata;
 
