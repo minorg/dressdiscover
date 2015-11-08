@@ -19,6 +19,10 @@ from costume.api.services.institution.no_such_institution_exception import NoSuc
 from costume.lib.costume_properties import CostumeProperties
 from model_utils import new_model_metadata, get_nonempty_string
 from services import Services
+from costume.api.models.inscription.inscription_set import InscriptionSet
+from costume.api.models.inscription.inscription import Inscription
+from costume.api.models.inscription.inscription_text import InscriptionText
+from costume.api.models.inscription.inscription_text_type import InscriptionTextType
 
 
 INSTITUTION_ID = 'vam'
@@ -39,6 +43,23 @@ def parse_museumobject(museumobject_dict):
     object_builder.description = get_nonempty_string(museumobject_dict, 'descriptive_line')
 
     object_builder.institution_id = INSTITUTION_ID
+
+    marks = get_nonempty_string(museumobject_dict, 'marks')
+    if marks is not None:
+        object_builder.set_inscriptions(
+            InscriptionSet(
+                inscriptions=(
+                    Inscription.Builder()
+                        .set_texts((
+                            InscriptionText.Builder()
+                                .set_type(InscriptionTextType.MARK)
+                                .set_value(marks)
+                                .build(),
+                        ))
+                        .build(),
+                )
+            )
+        )
 
     material_dicts = museumobject_dict.get('materials')
     if material_dicts is not None and len(material_dicts) > 0:

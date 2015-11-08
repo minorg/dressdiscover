@@ -50,6 +50,10 @@ public final class ObjectForm extends CustomComponent {
                 formLayout.addComponent(__createTextArea("Description", objectEntry.getModel().getDescription().get()));
             }
 
+            if (objectEntry.getModel().getInscriptions().isPresent()) {
+                formLayout.addComponent(new InscriptionsTable(objectEntry.getModel().getInscriptions().get()));
+            }
+
             if (objectEntry.getModel().getMaterials().isPresent()) {
                 formLayout.addComponent(new MaterialsTable(objectEntry.getModel().getMaterials().get()));
             }

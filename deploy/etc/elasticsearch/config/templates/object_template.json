@@ -52,6 +52,55 @@
           "4:description": {
             "type": "string"
           }, 
+          "17:inscriptions": {
+            "type": "nested", 
+            "properties": {
+              "1:inscriptions": {
+                "type": "nested", 
+                "properties": {
+                  "1:texts": {
+                    "type": "nested", 
+                    "properties": {
+                      "1:type": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }, 
+                      "2:value": {
+                        "type": "string"
+                      }, 
+                      "3:lang": {
+                        "type": "string"
+                      }
+                    }
+                  }, 
+                  "2:author": {
+                    "type": "nested", 
+                    "properties": {
+                      "1:title": {
+                        "type": "string"
+                      }, 
+                      "2:refid": {
+                        "type": "string"
+                      }, 
+                      "3:vocab": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }
+                    }
+                  }, 
+                  "3:position": {
+                    "type": "string"
+                  }
+                }
+              }, 
+              "2:display": {
+                "type": "string"
+              }, 
+              "3:notes": {
+                "type": "string"
+              }
+            }
+          }, 
           "15:materials": {
             "type": "nested", 
             "properties": {

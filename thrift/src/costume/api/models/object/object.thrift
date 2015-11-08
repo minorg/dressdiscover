@@ -5,6 +5,7 @@ namespace * costume.api.models.object
 include "costume/api/models/model_metadata.thrift"
 include "costume/api/models/collection/collection_id.thrift"
 include "costume/api/models/image/image.thrift"
+include "costume/api/models/inscription/inscription_set.thrift"
 include "costume/api/models/institution/institution_id.thrift"
 include "costume/api/models/material/material_set.thrift"
 include "costume/api/models/technique/technique_set.thrift"
@@ -29,6 +30,8 @@ struct Object {
 
 	// @validation {"minLength": 1}
 	4: optional string description;
+
+	17: optional inscription_set.InscriptionSet inscriptions;
 
 	15: optional material_set.MaterialSet materials;
 

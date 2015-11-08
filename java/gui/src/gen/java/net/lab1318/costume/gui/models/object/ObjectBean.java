@@ -9,6 +9,7 @@ public class ObjectBean {
         date = null;
         dateText = null;
         description = null;
+        inscriptions = null;
         materials = null;
         physicalDescription = null;
         provenance = null;
@@ -26,6 +27,7 @@ public class ObjectBean {
         this.date = other.getDate().isPresent() ? other.getDate().get() : null;
         this.dateText = other.getDateText().isPresent() ? other.getDateText().get() : null;
         this.description = other.getDescription().isPresent() ? other.getDescription().get() : null;
+        this.inscriptions = other.getInscriptions().isPresent() ? new net.lab1318.costume.gui.models.inscription.InscriptionSetBean(other.getInscriptions().get()) : null;
         this.materials = other.getMaterials().isPresent() ? new net.lab1318.costume.gui.models.material.MaterialSetBean(other.getMaterials().get()) : null;
         this.physicalDescription = other.getPhysicalDescription().isPresent() ? other.getPhysicalDescription().get() : null;
         this.provenance = other.getProvenance().isPresent() ? other.getProvenance().get() : null;
@@ -52,6 +54,7 @@ public class ObjectBean {
             getDate().equals(other.getDate()) &&
             getDateText().equals(other.getDateText()) &&
             getDescription().equals(other.getDescription()) &&
+            getInscriptions().equals(other.getInscriptions()) &&
             getMaterials().equals(other.getMaterials()) &&
             getPhysicalDescription().equals(other.getPhysicalDescription()) &&
             getProvenance().equals(other.getProvenance()) &&
@@ -75,6 +78,10 @@ public class ObjectBean {
 
     public String getDescription() {
         return description;
+    }
+
+    public net.lab1318.costume.gui.models.inscription.InscriptionSetBean getInscriptions() {
+        return inscriptions;
     }
 
     public net.lab1318.costume.api.models.institution.InstitutionId getInstitutionId() {
@@ -133,6 +140,9 @@ public class ObjectBean {
         if (getDescription() != null) {
             hashCode = 31 * hashCode + getDescription().hashCode();
         }
+        if (getInscriptions() != null) {
+            hashCode = 31 * hashCode + getInscriptions().hashCode();
+        }
         if (getMaterials() != null) {
             hashCode = 31 * hashCode + getMaterials().hashCode();
         }
@@ -171,6 +181,10 @@ public class ObjectBean {
 
     public void setDescription(final String description) {
         this.description = description;
+    }
+
+    public void setInscriptions(final net.lab1318.costume.gui.models.inscription.InscriptionSetBean inscriptions) {
+        this.inscriptions = inscriptions;
     }
 
     public void setInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
@@ -215,7 +229,7 @@ public class ObjectBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("date", getDate()).add("date_text", getDateText()).add("description", getDescription()).add("materials", getMaterials()).add("physical_description", getPhysicalDescription()).add("provenance", getProvenance()).add("summary", getSummary()).add("techniques", getTechniques()).add("thumbnail", getThumbnail()).add("url", getUrl()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("date", getDate()).add("date_text", getDateText()).add("description", getDescription()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("physical_description", getPhysicalDescription()).add("provenance", getProvenance()).add("summary", getSummary()).add("techniques", getTechniques()).add("thumbnail", getThumbnail()).add("url", getUrl()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -231,6 +245,8 @@ public class ObjectBean {
     private String dateText;
 
     private String description;
+
+    private net.lab1318.costume.gui.models.inscription.InscriptionSetBean inscriptions;
 
     private net.lab1318.costume.gui.models.material.MaterialSetBean materials;
 
