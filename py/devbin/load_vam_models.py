@@ -6,17 +6,19 @@ from argparse import ArgumentParser
 
 from costume.api.models.collection.collection import Collection
 from costume.api.models.institution.institution import Institution
+from costume.api.models.material.material import Material
+from costume.api.models.material.material_set import MaterialSet
+from costume.api.models.material.material_type import MaterialType
 from costume.api.models.object.object import Object
+from costume.api.models.rights.rights import Rights
+from costume.api.models.rights.rights_set import RightsSet
+from costume.api.models.rights.rights_type import RightsType
+from costume.api.models.technique.technique import Technique
+from costume.api.models.technique.technique_set import TechniqueSet
 from costume.api.services.institution.no_such_institution_exception import NoSuchInstitutionException
 from costume.lib.costume_properties import CostumeProperties
-from services import Services
 from model_utils import new_model_metadata, get_nonempty_string
-from costume.api.models.rights.rights_set import RightsSet
-from costume.api.models.rights.rights import Rights
-from costume.api.models.rights.rights_type import RightsType
-from costume.api.models.material.material import Material
-from costume.api.models.material.material_type import MaterialType
-from costume.api.models.material.material_set import MaterialSet
+from services import Services
 
 
 INSTITUTION_ID = 'vam'
@@ -55,6 +57,18 @@ def parse_museumobject(museumobject_dict):
 
     object_builder.physical_description = get_nonempty_string(museumobject_dict, 'physical_description')
 
+    technique_dicts = museumobject_dict.get('techniques')
+    if technique_dicts is not None and len(technique_dicts) > 0:
+        techniques = []
+        for technique_dict in technique_dicts:
+            technique_dict = technique_dict['fields']
+            techniques.append(
+                Technique.Builder()
+                    .set_title(technique_dict['name'])
+                    .build()
+            )
+        object_builder.techniques = TechniqueSet(techniques=tuple(techniques))
+
     title = get_nonempty_string(museumobject_dict, 'title')
     if title is None:
         title = museumobject_dict.get('object')
@@ -66,7 +80,6 @@ def parse_museumobject(museumobject_dict):
 
 argument_parser = ArgumentParser()
 argument_parser.add_argument('--clean', action='store_true')
-argument_parser.add_argument('--details', action='store_true')
 args = argument_parser.parse_args()
 
 

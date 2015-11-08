@@ -7,6 +7,7 @@ include "costume/api/models/collection/collection_id.thrift"
 include "costume/api/models/image/image.thrift"
 include "costume/api/models/institution/institution_id.thrift"
 include "costume/api/models/material/material_set.thrift"
+include "costume/api/models/technique/technique_set.thrift"
 include "thryft/native/date_time.thrift"
 include "thryft/native/url.thrift"
 
@@ -29,16 +30,18 @@ struct Object {
 	// @validation {"minLength": 1}
 	4: optional string description;
 
+	15: optional material_set.MaterialSet materials;
+
 	// @validation {"minLength": 1}
 	12: optional string physical_description;
-
-	15: optional material_set.MaterialSet materials;
 
 	// @validation {"minLength": 1}
 	5: optional string provenance;
 
 	// @validation {"minLength": 1}
 	7: optional string summary;
+
+	16: optional technique_set.TechniqueSet techniques;
 
 	8: optional image.Image thumbnail;
 

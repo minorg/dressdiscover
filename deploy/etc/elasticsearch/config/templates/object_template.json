@@ -52,9 +52,6 @@
           "4:description": {
             "type": "string"
           }, 
-          "12:physical_description": {
-            "type": "string"
-          }, 
           "15:materials": {
             "type": "nested", 
             "properties": {
@@ -85,11 +82,40 @@
               }
             }
           }, 
+          "12:physical_description": {
+            "type": "string"
+          }, 
           "5:provenance": {
             "type": "string"
           }, 
           "7:summary": {
             "type": "string"
+          }, 
+          "16:techniques": {
+            "type": "nested", 
+            "properties": {
+              "1:techniques": {
+                "type": "nested", 
+                "properties": {
+                  "1:title": {
+                    "type": "string"
+                  }, 
+                  "2:refid": {
+                    "type": "string"
+                  }, 
+                  "3:vocab": {
+                    "index": "not_analyzed", 
+                    "type": "string"
+                  }
+                }
+              }, 
+              "2:display": {
+                "type": "string"
+              }, 
+              "3:notes": {
+                "type": "string"
+              }
+            }
           }, 
           "8:thumbnail": {
             "type": "nested", 
