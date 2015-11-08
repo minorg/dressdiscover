@@ -29,10 +29,10 @@ public final class TechniquesTable extends Table {
         }
         setContainerDataSource(container);
         setPageLength(materials.getTechniques().size());
-        setColumnHeader(Technique.FieldMetadata.TITLE.getJavaName(), "Name");
+        setColumnHeader(Technique.FieldMetadata.TEXT.getJavaName(), "Name");
         setColumnHeader(Technique.FieldMetadata.VOCAB.getJavaName(), "Vocabulary");
         final List<Object> visibleColumns = new ArrayList<>();
-        visibleColumns.add(Technique.FieldMetadata.TITLE.getJavaName());
+        visibleColumns.add(Technique.FieldMetadata.TEXT.getJavaName());
         if (haveVocab) {
             visibleColumns.add(Technique.FieldMetadata.VOCAB.getJavaName());
         }

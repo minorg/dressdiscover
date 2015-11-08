@@ -29,10 +29,10 @@ public final class MaterialsTable extends Table {
         }
         setContainerDataSource(container);
         setPageLength(materials.getMaterials().size());
-        setColumnHeader(Material.FieldMetadata.TITLE.getJavaName(), "Name");
+        setColumnHeader(Material.FieldMetadata.TEXT.getJavaName(), "Name");
         setColumnHeader(Material.FieldMetadata.VOCAB.getJavaName(), "Vocabulary");
         final List<Object> visibleColumns = new ArrayList<>();
-        visibleColumns.add(Material.FieldMetadata.TITLE.getJavaName());
+        visibleColumns.add(Material.FieldMetadata.TEXT.getJavaName());
         if (haveVocab) {
             visibleColumns.add(Material.FieldMetadata.VOCAB.getJavaName());
         }

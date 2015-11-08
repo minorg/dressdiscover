@@ -35,9 +35,9 @@ public final class InscriptionsTable extends Table {
                 final Object itemId = addItem();
                 final Item row = getItem(itemId);
                 if (inscription.getAuthor().isPresent()) {
-                    row.getItemProperty("Author").setValue(inscription.getAuthor().get().getTitle());
+                    row.getItemProperty("Author").setValue(inscription.getAuthor().get().getText());
                 }
-                row.getItemProperty("Text").setValue(text.getValue());
+                row.getItemProperty("Text").setValue(text.getText());
                 row.getItemProperty("Text Type").setValue(text.getType().name());
             }
         }
