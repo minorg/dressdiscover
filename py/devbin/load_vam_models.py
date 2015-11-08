@@ -14,6 +14,9 @@ from model_utils import new_model_metadata, get_nonempty_string
 from costume.api.models.rights.rights_set import RightsSet
 from costume.api.models.rights.rights import Rights
 from costume.api.models.rights.rights_type import RightsType
+from costume.api.models.material.material import Material
+from costume.api.models.material.material_type import MaterialType
+from costume.api.models.material.material_set import MaterialSet
 
 
 INSTITUTION_ID = 'vam'
@@ -28,17 +31,35 @@ def parse_museumobject(museumobject_dict):
     object_builder = Object.Builder()
 
     object_builder.collection_id = COLLECTION_ID
+
+    object_builder.date_text = get_nonempty_string(museumobject_dict, 'date_text')
+
     object_builder.description = get_nonempty_string(museumobject_dict, 'descriptive_line')
+
     object_builder.institution_id = INSTITUTION_ID
+
+    material_dicts = museumobject_dict.get('materials')
+    if material_dicts is not None and len(material_dicts) > 0:
+        materials = []
+        for material_dict in material_dicts:
+            material_dict = material_dict['fields']
+            materials.append(
+                Material.Builder()
+                    .set_title(material_dict['name'])
+                    .set_type(MaterialType.OTHER)
+                    .build()
+            )
+        object_builder.materials = MaterialSet(materials=tuple(materials))
+
     object_builder.model_metadata = new_model_metadata()
+
     object_builder.physical_description = get_nonempty_string(museumobject_dict, 'physical_description')
+
     title = get_nonempty_string(museumobject_dict, 'title')
     if title is None:
         title = museumobject_dict.get('object')
         assert title is not None and len(title) > 0
     object_builder.title = title
-
-    object_builder.date_text = get_nonempty_string(museumobject_dict, 'date_text')
 
     return object_id, object_builder.build()
 
@@ -99,7 +120,7 @@ with open(os.path.join(properties.home_directory_path, 'data', 'vam_museumobject
     for museumobject_dict in response['records']:
         if museumobject_dict['fields']['object_number'] == 'O13814':
             with open(os.path.join(properties.home_directory_path, 'data', 'vam_museumobject_detail.json')) as f:
-                museum_object_dict = json.loads(f.read())[0]
+                museumobject_dict = json.loads(f.read())[0]
 
         object_id, object_ = parse_museumobject(museumobject_dict['fields'])
         services.object_command_service.put_object(object_id, object_)

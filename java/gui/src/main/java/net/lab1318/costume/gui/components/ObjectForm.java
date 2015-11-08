@@ -28,10 +28,17 @@ public final class ObjectForm extends CustomComponent {
         final HorizontalLayout twoPaneLayout = new HorizontalLayout();
         twoPaneLayout.setSizeFull();
 
+        final VerticalLayout leftPaneLayout = new VerticalLayout();
+        twoPaneLayout.addComponent(leftPaneLayout);
+        twoPaneLayout.setComponentAlignment(leftPaneLayout, Alignment.TOP_LEFT);
+        final VerticalLayout rightPaneLayout = new VerticalLayout();
+        twoPaneLayout.addComponent(rightPaneLayout);
+        twoPaneLayout.setComponentAlignment(rightPaneLayout, Alignment.TOP_CENTER);
+
         {
             final FormLayout formLayout = new FormLayout();
-            formLayout.setSizeFull();
             formLayout.setSpacing(true);
+            formLayout.setSizeFull();
 
             if (objectEntry.getModel().getDateText().isPresent()) {
                 formLayout.addComponent(__createTextField("Date", objectEntry.getModel().getDateText().get()));
@@ -41,6 +48,10 @@ public final class ObjectForm extends CustomComponent {
 
             if (objectEntry.getModel().getDescription().isPresent()) {
                 formLayout.addComponent(__createTextArea("Description", objectEntry.getModel().getDescription().get()));
+            }
+
+            if (objectEntry.getModel().getMaterials().isPresent()) {
+                formLayout.addComponent(new MaterialsTable(objectEntry.getModel().getMaterials().get()));
             }
 
             if (objectEntry.getModel().getProvenance().isPresent()) {
@@ -56,14 +67,12 @@ public final class ObjectForm extends CustomComponent {
                         new ExternalResource(objectEntry.getModel().getUrl().get().toString())));
             }
 
-            twoPaneLayout.addComponent(formLayout);
-            twoPaneLayout.setComponentAlignment(formLayout, Alignment.TOP_LEFT);
+            leftPaneLayout.addComponent(formLayout);
         }
 
         if (objectEntry.getModel().getThumbnail().isPresent()) {
             final Image thumbnail = new Image("", objectEntry.getModel().getThumbnail().get());
-            twoPaneLayout.addComponent(thumbnail);
-            twoPaneLayout.setComponentAlignment(thumbnail, Alignment.TOP_CENTER);
+            rightPaneLayout.addComponent(thumbnail);
         }
 
         rootLayout.addComponent(twoPaneLayout);
@@ -75,6 +84,7 @@ public final class ObjectForm extends CustomComponent {
         final TextArea textArea = new TextArea(caption, value);
         textArea.addStyleName("borderlessTextField");
         textArea.setReadOnly(true);
+        textArea.setHeight((float) value.length() / (float) 80 * (float) 2.0, Unit.EM);
         textArea.setWidth((float) ((value.length() <= 80 ? value.length() : 80) * 0.5), Unit.EM);
         return textArea;
     }

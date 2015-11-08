@@ -1,0 +1,95 @@
+package net.lab1318.costume.gui.models.material;
+
+/**
+ * VRA Core 4.0 material element
+ */
+public class MaterialBean {
+    public MaterialBean() {
+        type = null;
+        title = null;
+        refid = null;
+        vocab = null;
+    }
+
+    public MaterialBean(final net.lab1318.costume.api.models.material.Material other) {
+        this.type = other.getType();
+        this.title = other.getTitle();
+        this.refid = other.getRefid().isPresent() ? other.getRefid().get() : null;
+        this.vocab = other.getVocab().isPresent() ? other.getVocab().get() : null;
+    }
+
+    @Override
+    public boolean equals(final java.lang.Object otherObject) {
+        if (otherObject == this) {
+            return true;
+        } else if (!(otherObject instanceof MaterialBean)) {
+            return false;
+        }
+
+        final MaterialBean other = (MaterialBean)otherObject;
+        return
+            getType().equals(other.getType()) &&
+            getTitle().equals(other.getTitle()) &&
+            getRefid().equals(other.getRefid()) &&
+            getVocab().equals(other.getVocab());
+    }
+
+    public String getRefid() {
+        return refid;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public net.lab1318.costume.api.models.material.MaterialType getType() {
+        return type;
+    }
+
+    public net.lab1318.costume.api.models.Vocab getVocab() {
+        return vocab;
+    }
+
+    @Override
+    public int hashCode() {
+        int hashCode = 17;
+        hashCode = 31 * hashCode + getType().ordinal();
+        hashCode = 31 * hashCode + getTitle().hashCode();
+        if (getRefid() != null) {
+            hashCode = 31 * hashCode + getRefid().hashCode();
+        }
+        if (getVocab() != null) {
+            hashCode = 31 * hashCode + getVocab().ordinal();
+        }
+        return hashCode;
+    }
+
+    public void setRefid(final String refid) {
+        this.refid = refid;
+    }
+
+    public void setTitle(final String title) {
+        this.title = title;
+    }
+
+    public void setType(final net.lab1318.costume.api.models.material.MaterialType type) {
+        this.type = type;
+    }
+
+    public void setVocab(final net.lab1318.costume.api.models.Vocab vocab) {
+        this.vocab = vocab;
+    }
+
+    @Override
+    public String toString() {
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("type", getType()).add("title", getTitle()).add("refid", getRefid()).add("vocab", getVocab()).toString();
+    }
+
+    private net.lab1318.costume.api.models.material.MaterialType type;
+
+    private String title;
+
+    private String refid;
+
+    private net.lab1318.costume.api.models.Vocab vocab;
+}

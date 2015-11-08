@@ -10,6 +10,7 @@ public class ObjectBean {
         dateText = null;
         description = null;
         physicalDescription = null;
+        materials = null;
         provenance = null;
         summary = null;
         thumbnail = null;
@@ -25,6 +26,7 @@ public class ObjectBean {
         this.dateText = other.getDateText().isPresent() ? other.getDateText().get() : null;
         this.description = other.getDescription().isPresent() ? other.getDescription().get() : null;
         this.physicalDescription = other.getPhysicalDescription().isPresent() ? other.getPhysicalDescription().get() : null;
+        this.materials = other.getMaterials().isPresent() ? new net.lab1318.costume.gui.models.material.MaterialSetBean(other.getMaterials().get()) : null;
         this.provenance = other.getProvenance().isPresent() ? other.getProvenance().get() : null;
         this.summary = other.getSummary().isPresent() ? other.getSummary().get() : null;
         this.thumbnail = other.getThumbnail().isPresent() ? new net.lab1318.costume.gui.models.image.ImageBean(other.getThumbnail().get()) : null;
@@ -49,6 +51,7 @@ public class ObjectBean {
             getDateText().equals(other.getDateText()) &&
             getDescription().equals(other.getDescription()) &&
             getPhysicalDescription().equals(other.getPhysicalDescription()) &&
+            getMaterials().equals(other.getMaterials()) &&
             getProvenance().equals(other.getProvenance()) &&
             getSummary().equals(other.getSummary()) &&
             getThumbnail().equals(other.getThumbnail()) &&
@@ -73,6 +76,10 @@ public class ObjectBean {
 
     public net.lab1318.costume.api.models.institution.InstitutionId getInstitutionId() {
         return institutionId;
+    }
+
+    public net.lab1318.costume.gui.models.material.MaterialSetBean getMaterials() {
+        return materials;
     }
 
     public net.lab1318.costume.gui.models.ModelMetadataBean getModelMetadata() {
@@ -122,6 +129,9 @@ public class ObjectBean {
         if (getPhysicalDescription() != null) {
             hashCode = 31 * hashCode + getPhysicalDescription().hashCode();
         }
+        if (getMaterials() != null) {
+            hashCode = 31 * hashCode + getMaterials().hashCode();
+        }
         if (getProvenance() != null) {
             hashCode = 31 * hashCode + getProvenance().hashCode();
         }
@@ -157,6 +167,10 @@ public class ObjectBean {
         this.institutionId = institutionId;
     }
 
+    public void setMaterials(final net.lab1318.costume.gui.models.material.MaterialSetBean materials) {
+        this.materials = materials;
+    }
+
     public void setModelMetadata(final net.lab1318.costume.gui.models.ModelMetadataBean modelMetadata) {
         this.modelMetadata = modelMetadata;
     }
@@ -187,7 +201,7 @@ public class ObjectBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("date", getDate()).add("date_text", getDateText()).add("description", getDescription()).add("physical_description", getPhysicalDescription()).add("provenance", getProvenance()).add("summary", getSummary()).add("thumbnail", getThumbnail()).add("url", getUrl()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("date", getDate()).add("date_text", getDateText()).add("description", getDescription()).add("physical_description", getPhysicalDescription()).add("materials", getMaterials()).add("provenance", getProvenance()).add("summary", getSummary()).add("thumbnail", getThumbnail()).add("url", getUrl()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -205,6 +219,8 @@ public class ObjectBean {
     private String description;
 
     private String physicalDescription;
+
+    private net.lab1318.costume.gui.models.material.MaterialSetBean materials;
 
     private String provenance;
 
