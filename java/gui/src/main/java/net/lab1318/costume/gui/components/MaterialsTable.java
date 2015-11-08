@@ -22,7 +22,10 @@ public final class MaterialsTable extends Table {
         final BeanItemContainer<MaterialBean> container = new BeanItemContainer<>(MaterialBean.class);
         for (final Material material : materials.getMaterials()) {
             container.addBean(new MaterialBean(material));
-            haveVocab |= material.getVocab().isPresent();
+            if (material.getVocab().isPresent()) {
+                haveVocab = true;
+                break;
+            }
         }
         setContainerDataSource(container);
         setPageLength(materials.getMaterials().size());

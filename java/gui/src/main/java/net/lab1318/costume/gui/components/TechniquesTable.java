@@ -22,7 +22,10 @@ public final class TechniquesTable extends Table {
         final BeanItemContainer<TechniqueBean> container = new BeanItemContainer<>(TechniqueBean.class);
         for (final Technique material : materials.getTechniques()) {
             container.addBean(new TechniqueBean(material));
-            haveVocab |= material.getVocab().isPresent();
+            if (material.getVocab().isPresent()) {
+                haveVocab = true;
+                break;
+            }
         }
         setContainerDataSource(container);
         setPageLength(materials.getTechniques().size());
