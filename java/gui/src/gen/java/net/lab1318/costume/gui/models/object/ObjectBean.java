@@ -9,10 +9,11 @@ public class ObjectBean {
         date = null;
         dateText = null;
         description = null;
-        physicalDescription = null;
         materials = null;
+        physicalDescription = null;
         provenance = null;
         summary = null;
+        techniques = null;
         thumbnail = null;
         url = null;
     }
@@ -25,10 +26,11 @@ public class ObjectBean {
         this.date = other.getDate().isPresent() ? other.getDate().get() : null;
         this.dateText = other.getDateText().isPresent() ? other.getDateText().get() : null;
         this.description = other.getDescription().isPresent() ? other.getDescription().get() : null;
-        this.physicalDescription = other.getPhysicalDescription().isPresent() ? other.getPhysicalDescription().get() : null;
         this.materials = other.getMaterials().isPresent() ? new net.lab1318.costume.gui.models.material.MaterialSetBean(other.getMaterials().get()) : null;
+        this.physicalDescription = other.getPhysicalDescription().isPresent() ? other.getPhysicalDescription().get() : null;
         this.provenance = other.getProvenance().isPresent() ? other.getProvenance().get() : null;
         this.summary = other.getSummary().isPresent() ? other.getSummary().get() : null;
+        this.techniques = other.getTechniques().isPresent() ? new net.lab1318.costume.gui.models.technique.TechniqueSetBean(other.getTechniques().get()) : null;
         this.thumbnail = other.getThumbnail().isPresent() ? new net.lab1318.costume.gui.models.image.ImageBean(other.getThumbnail().get()) : null;
         this.url = other.getUrl().isPresent() ? other.getUrl().get() : null;
     }
@@ -50,10 +52,11 @@ public class ObjectBean {
             getDate().equals(other.getDate()) &&
             getDateText().equals(other.getDateText()) &&
             getDescription().equals(other.getDescription()) &&
-            getPhysicalDescription().equals(other.getPhysicalDescription()) &&
             getMaterials().equals(other.getMaterials()) &&
+            getPhysicalDescription().equals(other.getPhysicalDescription()) &&
             getProvenance().equals(other.getProvenance()) &&
             getSummary().equals(other.getSummary()) &&
+            getTechniques().equals(other.getTechniques()) &&
             getThumbnail().equals(other.getThumbnail()) &&
             getUrl().equals(other.getUrl());
     }
@@ -98,6 +101,10 @@ public class ObjectBean {
         return summary;
     }
 
+    public net.lab1318.costume.gui.models.technique.TechniqueSetBean getTechniques() {
+        return techniques;
+    }
+
     public net.lab1318.costume.gui.models.image.ImageBean getThumbnail() {
         return thumbnail;
     }
@@ -126,17 +133,20 @@ public class ObjectBean {
         if (getDescription() != null) {
             hashCode = 31 * hashCode + getDescription().hashCode();
         }
-        if (getPhysicalDescription() != null) {
-            hashCode = 31 * hashCode + getPhysicalDescription().hashCode();
-        }
         if (getMaterials() != null) {
             hashCode = 31 * hashCode + getMaterials().hashCode();
+        }
+        if (getPhysicalDescription() != null) {
+            hashCode = 31 * hashCode + getPhysicalDescription().hashCode();
         }
         if (getProvenance() != null) {
             hashCode = 31 * hashCode + getProvenance().hashCode();
         }
         if (getSummary() != null) {
             hashCode = 31 * hashCode + getSummary().hashCode();
+        }
+        if (getTechniques() != null) {
+            hashCode = 31 * hashCode + getTechniques().hashCode();
         }
         if (getThumbnail() != null) {
             hashCode = 31 * hashCode + getThumbnail().hashCode();
@@ -187,6 +197,10 @@ public class ObjectBean {
         this.summary = summary;
     }
 
+    public void setTechniques(final net.lab1318.costume.gui.models.technique.TechniqueSetBean techniques) {
+        this.techniques = techniques;
+    }
+
     public void setThumbnail(final net.lab1318.costume.gui.models.image.ImageBean thumbnail) {
         this.thumbnail = thumbnail;
     }
@@ -201,7 +215,7 @@ public class ObjectBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("date", getDate()).add("date_text", getDateText()).add("description", getDescription()).add("physical_description", getPhysicalDescription()).add("materials", getMaterials()).add("provenance", getProvenance()).add("summary", getSummary()).add("thumbnail", getThumbnail()).add("url", getUrl()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("date", getDate()).add("date_text", getDateText()).add("description", getDescription()).add("materials", getMaterials()).add("physical_description", getPhysicalDescription()).add("provenance", getProvenance()).add("summary", getSummary()).add("techniques", getTechniques()).add("thumbnail", getThumbnail()).add("url", getUrl()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -218,13 +232,15 @@ public class ObjectBean {
 
     private String description;
 
-    private String physicalDescription;
-
     private net.lab1318.costume.gui.models.material.MaterialSetBean materials;
+
+    private String physicalDescription;
 
     private String provenance;
 
     private String summary;
+
+    private net.lab1318.costume.gui.models.technique.TechniqueSetBean techniques;
 
     private net.lab1318.costume.gui.models.image.ImageBean thumbnail;
 

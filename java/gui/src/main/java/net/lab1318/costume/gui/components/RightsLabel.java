@@ -12,6 +12,7 @@ public final class RightsLabel extends Label {
             setValue(model.getDisplay().get());
         }
         final Rights rights = model.getRights().get(0);
+        setStyleName("small");
         setValue(rights.getText());
     }
 }

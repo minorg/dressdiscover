@@ -62,6 +62,10 @@ public final class ObjectForm extends CustomComponent {
                 formLayout.addComponent(__createTextArea("Summary", objectEntry.getModel().getSummary().get()));
             }
 
+            if (objectEntry.getModel().getTechniques().isPresent()) {
+                formLayout.addComponent(new TechniquesTable(objectEntry.getModel().getTechniques().get()));
+            }
+
             if (objectEntry.getModel().getUrl().isPresent()) {
                 formLayout.addComponent(new Link(objectEntry.getModel().getUrl().get().toString(),
                         new ExternalResource(objectEntry.getModel().getUrl().get().toString())));
