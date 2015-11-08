@@ -1,38 +1,39 @@
 import __builtin__
 import costume.api.models.model_metadata
+import costume.api.models.rights.rights_set
 
 
 class Institution(object):
     class Builder(object):
         def __init__(
             self,
-            copyright_notice=None,
+            data_rights=None,
             model_metadata=None,
             title=None,
             url=None,
         ):
             '''
-            :type copyright_notice: str
+            :type data_rights: costume.api.models.rights.rights_set.RightsSet
             :type model_metadata: costume.api.models.model_metadata.ModelMetadata
             :type title: str
             :type url: str
             '''
 
-            self.__copyright_notice = copyright_notice
+            self.__data_rights = data_rights
             self.__model_metadata = model_metadata
             self.__title = title
             self.__url = url
 
         def build(self):
-            return Institution(copyright_notice=self.__copyright_notice, model_metadata=self.__model_metadata, title=self.__title, url=self.__url)
+            return Institution(data_rights=self.__data_rights, model_metadata=self.__model_metadata, title=self.__title, url=self.__url)
 
         @property
-        def copyright_notice(self):
+        def data_rights(self):
             '''
-            :rtype: str
+            :rtype: costume.api.models.rights.rights_set.RightsSet
             '''
 
-            return self.__copyright_notice
+            return self.__data_rights
 
         @property
         def model_metadata(self):
@@ -42,12 +43,12 @@ class Institution(object):
 
             return self.__model_metadata
 
-        def set_copyright_notice(self, copyright_notice):
+        def set_data_rights(self, data_rights):
             '''
-            :type copyright_notice: str
+            :type data_rights: costume.api.models.rights.rights_set.RightsSet
             '''
 
-            self.__copyright_notice = copyright_notice
+            self.__data_rights = data_rights
             return self
 
         def set_model_metadata(self, model_metadata):
@@ -84,14 +85,14 @@ class Institution(object):
 
         def update(self, institution):
             '''
-            :type copyright_notice: str
+            :type data_rights: costume.api.models.rights.rights_set.RightsSet
             :type model_metadata: costume.api.models.model_metadata.ModelMetadata
             :type title: str
             :type url: str
             '''
 
             if isinstance(institution, Institution):
-                self.set_copyright_notice(institution.copyright_notice)
+                self.set_data_rights(institution.data_rights)
                 self.set_model_metadata(institution.model_metadata)
                 self.set_title(institution.title)
                 self.set_url(institution.url)
@@ -110,13 +111,13 @@ class Institution(object):
 
             return self.__url
 
-        @copyright_notice.setter
-        def copyright_notice(self, copyright_notice):
+        @data_rights.setter
+        def data_rights(self, data_rights):
             '''
-            :type copyright_notice: str
+            :type data_rights: costume.api.models.rights.rights_set.RightsSet
             '''
 
-            self.set_copyright_notice(copyright_notice)
+            self.set_data_rights(data_rights)
 
         @model_metadata.setter
         def model_metadata(self, model_metadata):
@@ -144,25 +145,23 @@ class Institution(object):
 
     def __init__(
         self,
-        copyright_notice,
+        data_rights,
         model_metadata,
         title,
         url,
     ):
         '''
-        :type copyright_notice: str
+        :type data_rights: costume.api.models.rights.rights_set.RightsSet
         :type model_metadata: costume.api.models.model_metadata.ModelMetadata
         :type title: str
         :type url: str
         '''
 
-        if copyright_notice is None:
-            raise ValueError('copyright_notice is required')
-        if not isinstance(copyright_notice, basestring):
-            raise TypeError("expected copyright_notice to be a str but it is a %s" % getattr(__builtin__, 'type')(copyright_notice))
-        if len(copyright_notice) < 1:
-            raise ValueError("expected len(copyright_notice) to be >= 1, was %d" % len(copyright_notice))
-        self.__copyright_notice = copyright_notice
+        if data_rights is None:
+            raise ValueError('data_rights is required')
+        if not isinstance(data_rights, costume.api.models.rights.rights_set.RightsSet):
+            raise TypeError("expected data_rights to be a costume.api.models.rights.rights_set.RightsSet but it is a %s" % getattr(__builtin__, 'type')(data_rights))
+        self.__data_rights = data_rights
 
         if model_metadata is None:
             raise ValueError('model_metadata is required')
@@ -185,7 +184,7 @@ class Institution(object):
         self.__url = url
 
     def __eq__(self, other):
-        if self.copyright_notice != other.copyright_notice:
+        if self.data_rights != other.data_rights:
             return False
         if self.model_metadata != other.model_metadata:
             return False
@@ -196,7 +195,7 @@ class Institution(object):
         return True
 
     def __hash__(self):
-        return hash((self.copyright_notice,self.model_metadata,self.title,self.url,))
+        return hash((self.data_rights,self.model_metadata,self.title,self.url,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -206,7 +205,7 @@ class Institution(object):
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('copyright_notice=' + "'" + self.copyright_notice.encode('ascii', 'replace') + "'")
+        field_reprs.append('data_rights=' + repr(self.data_rights))
         field_reprs.append('model_metadata=' + repr(self.model_metadata))
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
         field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
@@ -214,7 +213,7 @@ class Institution(object):
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('copyright_notice=' + "'" + self.copyright_notice.encode('ascii', 'replace') + "'")
+        field_reprs.append('data_rights=' + repr(self.data_rights))
         field_reprs.append('model_metadata=' + repr(self.model_metadata))
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
         field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
@@ -227,7 +226,7 @@ class Institution(object):
         :rtype: dict
         '''
 
-        return {'copyright_notice': self.copyright_notice, 'model_metadata': self.model_metadata, 'title': self.title, 'url': self.url}
+        return {'data_rights': self.data_rights, 'model_metadata': self.model_metadata, 'title': self.title, 'url': self.url}
 
     def as_tuple(self):
         '''
@@ -236,15 +235,15 @@ class Institution(object):
         :rtype: tuple
         '''
 
-        return (self.copyright_notice, self.model_metadata, self.title, self.url,)
+        return (self.data_rights, self.model_metadata, self.title, self.url,)
 
     @property
-    def copyright_notice(self):
+    def data_rights(self):
         '''
-        :rtype: str
+        :rtype: costume.api.models.rights.rights_set.RightsSet
         '''
 
-        return self.__copyright_notice
+        return self.__data_rights
 
     @property
     def model_metadata(self):
@@ -270,8 +269,8 @@ class Institution(object):
             ifield_name, ifield_type, ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
-            elif ifield_name == 'copyright_notice' and ifield_id == 2:
-                init_kwds['copyright_notice'] = iprot.read_string()
+            elif ifield_name == 'data_rights' and ifield_id == 5:
+                init_kwds['data_rights'] = costume.api.models.rights.rights_set.RightsSet.read(iprot)
             elif ifield_name == 'model_metadata' and ifield_id == 4:
                 init_kwds['model_metadata'] = costume.api.models.model_metadata.ModelMetadata.read(iprot)
             elif ifield_name == 'title' and ifield_id == 1:
@@ -285,7 +284,7 @@ class Institution(object):
 
     def replace(
         self,
-        copyright_notice=None,
+        data_rights=None,
         model_metadata=None,
         title=None,
         url=None,
@@ -293,22 +292,22 @@ class Institution(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type copyright_notice: str or None
+        :type data_rights: costume.api.models.rights.rights_set.RightsSet or None
         :type model_metadata: costume.api.models.model_metadata.ModelMetadata or None
         :type title: str or None
         :type url: str or None
         :rtype: costume.api.models.institution.institution.Institution
         '''
 
-        if copyright_notice is None:
-            copyright_notice = self.copyright_notice
+        if data_rights is None:
+            data_rights = self.data_rights
         if model_metadata is None:
             model_metadata = self.model_metadata
         if title is None:
             title = self.title
         if url is None:
             url = self.url
-        return self.__class__(copyright_notice=copyright_notice, model_metadata=model_metadata, title=title, url=url)
+        return self.__class__(data_rights=data_rights, model_metadata=model_metadata, title=title, url=url)
 
     @property
     def title(self):
@@ -336,8 +335,8 @@ class Institution(object):
 
         oprot.write_struct_begin('Institution')
 
-        oprot.write_field_begin(name='copyright_notice', type=11, id=2)
-        oprot.write_string(self.copyright_notice)
+        oprot.write_field_begin(name='data_rights', type=12, id=5)
+        self.data_rights.write(oprot)
         oprot.write_field_end()
 
         oprot.write_field_begin(name='model_metadata', type=12, id=4)

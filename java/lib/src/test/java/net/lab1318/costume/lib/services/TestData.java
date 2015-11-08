@@ -18,6 +18,9 @@ import net.lab1318.costume.api.models.object.InvalidObjectIdException;
 import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.object.ObjectId;
+import net.lab1318.costume.api.models.rights.Rights;
+import net.lab1318.costume.api.models.rights.RightsSet;
+import net.lab1318.costume.api.models.rights.RightsType;
 
 public final class TestData {
     public static TestData getInstance() {
@@ -33,9 +36,12 @@ public final class TestData {
 
         try {
             for (final InstitutionId institutionId : new InstitutionId[] { InstitutionId.parse("test_institution") }) {
-                institutionsBuilder.add(
-                        new InstitutionEntry(institutionId, Institution.builder().setCopyrightNotice("Copyright notice")
-                                .setTitle("Test institution").setUrl(Url.parse("http://example.com")).build()));
+                institutionsBuilder.add(new InstitutionEntry(institutionId,
+                        Institution.builder().setDataRights(RightsSet.builder().setDisplay("Copyright notice")
+                                .setRights(ImmutableList.of(Rights.builder().setRightsHolder("Test rights holder")
+                                        .setText("Test rights text").setType(RightsType.COPYRIGHTED).build()))
+                                .build()).setTitle("Test institution").setUrl(Url.parse("http://example.com"))
+                        .build()));
                 final Collection collection = Collection.builder().setInstitutionId(institutionId)
                         .setTitle("Test collection").build();
                 final CollectionId collectionId = CollectionId.parse(institutionId.toString() + "/test_collection");

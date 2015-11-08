@@ -21,8 +21,34 @@
         }, 
         "dynamic": "strict", 
         "properties": {
-          "2:copyright_notice": {
-            "type": "string"
+          "5:data_rights": {
+            "type": "nested", 
+            "properties": {
+              "1:rights": {
+                "type": "nested", 
+                "properties": {
+                  "1:rights_holder": {
+                    "type": "string"
+                  }, 
+                  "2:text": {
+                    "type": "string"
+                  }, 
+                  "3:type": {
+                    "index": "not_analyzed", 
+                    "type": "string"
+                  }, 
+                  "4:notes": {
+                    "type": "string"
+                  }
+                }
+              }, 
+              "2:display": {
+                "type": "string"
+              }, 
+              "3:notes": {
+                "type": "string"
+              }
+            }
           }, 
           "4:model_metadata": {
             "type": "nested", 
