@@ -4,34 +4,34 @@ public class InscriptionText implements org.thryft.Struct {
     public static class Builder {
         public Builder() {
             type = null;
-            value = null;
+            text = null;
             lang = com.google.common.base.Optional.absent();
         }
 
         public Builder(final InscriptionText other) {
             this.type = other.getType();
-            this.value = other.getValue();
+            this.text = other.getText();
             this.lang = other.getLang();
         }
 
-        protected InscriptionText _build(final net.lab1318.costume.api.models.inscription.InscriptionTextType type, final String value, final com.google.common.base.Optional<String> lang) {
-            return new InscriptionText(type, value, lang);
+        protected InscriptionText _build(final net.lab1318.costume.api.models.inscription.InscriptionTextType type, final String text, final com.google.common.base.Optional<String> lang) {
+            return new InscriptionText(type, text, lang);
         }
 
         public InscriptionText build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.inscription.InscriptionText: missing type"), com.google.common.base.Preconditions.checkNotNull(value, "net.lab1318.costume.api.models.inscription.InscriptionText: missing value"), com.google.common.base.Preconditions.checkNotNull(lang, "net.lab1318.costume.api.models.inscription.InscriptionText: missing lang"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.inscription.InscriptionText: missing type"), com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.inscription.InscriptionText: missing text"), com.google.common.base.Preconditions.checkNotNull(lang, "net.lab1318.costume.api.models.inscription.InscriptionText: missing lang"));
         }
 
         public final com.google.common.base.Optional<String> getLang() {
             return lang;
         }
 
-        public final net.lab1318.costume.api.models.inscription.InscriptionTextType getType() {
-            return type;
+        public final String getText() {
+            return text;
         }
 
-        public final String getValue() {
-            return value;
+        public final net.lab1318.costume.api.models.inscription.InscriptionTextType getType() {
+            return type;
         }
 
         public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -48,7 +48,7 @@ public class InscriptionText implements org.thryft.Struct {
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             type = iprot.readEnum(net.lab1318.costume.api.models.inscription.InscriptionTextType.class);
-            value = iprot.readString();
+            text = iprot.readString();
             if (__list.getSize() > 2) {
                 lang = com.google.common.base.Optional.of(iprot.readString());
             }
@@ -70,9 +70,9 @@ public class InscriptionText implements org.thryft.Struct {
                     }
                     break;
                 }
-                case "value": {
+                case "text": {
                     if (!ifield.hasId() || ifield.getId() == 2) {
-                        value = iprot.readString();
+                        text = iprot.readString();
                     }
                     break;
                 }
@@ -93,7 +93,7 @@ public class InscriptionText implements org.thryft.Struct {
             com.google.common.base.Preconditions.checkNotNull(other);
 
             setType(other.getType());
-            setValue(other.getValue());
+            setText(other.getText());
             if (other.getLang().isPresent()) {
                 setLang(other.getLang());
             }
@@ -111,13 +111,13 @@ public class InscriptionText implements org.thryft.Struct {
             return this;
         }
 
-        public Builder setType(final net.lab1318.costume.api.models.inscription.InscriptionTextType type) {
-            this.type = com.google.common.base.Preconditions.checkNotNull(type);
+        public Builder setText(final String text) {
+            this.text = com.google.common.base.Preconditions.checkNotNull(text);
             return this;
         }
 
-        public Builder setValue(final String value) {
-            this.value = com.google.common.base.Preconditions.checkNotNull(value);
+        public Builder setType(final net.lab1318.costume.api.models.inscription.InscriptionTextType type) {
+            this.type = com.google.common.base.Preconditions.checkNotNull(type);
             return this;
         }
 
@@ -126,7 +126,7 @@ public class InscriptionText implements org.thryft.Struct {
 
             switch (name.toLowerCase()) {
             case "type": setType((net.lab1318.costume.api.models.inscription.InscriptionTextType)value); return this;
-            case "value": setValue((String)value); return this;
+            case "text": setText((String)value); return this;
             case "lang": setLang((String)value); return this;
             default:
                 throw new IllegalArgumentException(name);
@@ -138,25 +138,25 @@ public class InscriptionText implements org.thryft.Struct {
             return this;
         }
 
+        public Builder unsetText() {
+            this.text = null;
+            return this;
+        }
+
         public Builder unsetType() {
             this.type = null;
             return this;
         }
 
-        public Builder unsetValue() {
-            this.value = null;
-            return this;
-        }
-
         private net.lab1318.costume.api.models.inscription.InscriptionTextType type;
-        private String value;
+        private String text;
         private com.google.common.base.Optional<String> lang;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.inscription.InscriptionTextType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),
-        VALUE("value", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "value", org.thryft.protocol.Type.STRING),
+        TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "text", org.thryft.protocol.Type.STRING),
         LANG("lang", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "lang", org.thryft.protocol.Type.STRING);
 
         @Override
@@ -202,7 +202,7 @@ public class InscriptionText implements org.thryft.Struct {
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
             case "type": return TYPE;
-            case "value": return VALUE;
+            case "text": return TEXT;
             case "lang": return LANG;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -212,7 +212,7 @@ public class InscriptionText implements org.thryft.Struct {
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
             case "type": return TYPE;
-            case "value": return VALUE;
+            case "text": return TEXT;
             case "lang": return LANG;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -246,33 +246,33 @@ public class InscriptionText implements org.thryft.Struct {
      * Copy constructor
      */
     public InscriptionText(final InscriptionText other) {
-        this(other.getType(), other.getValue(), other.getLang());
+        this(other.getType(), other.getText(), other.getLang());
     }
 
     /**
      * Required constructor
      */
-    public InscriptionText(final net.lab1318.costume.api.models.inscription.InscriptionTextType type, final String value) {
+    public InscriptionText(final net.lab1318.costume.api.models.inscription.InscriptionTextType type, final String text) {
         this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.inscription.InscriptionText: missing type");
-        this.value = com.google.common.base.Preconditions.checkNotNull(value, "net.lab1318.costume.api.models.inscription.InscriptionText: missing value");
+        this.text = com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.inscription.InscriptionText: missing text");
         this.lang = com.google.common.base.Optional.absent();
     }
 
     /**
      * Total Nullable constructor
      */
-    public InscriptionText(final net.lab1318.costume.api.models.inscription.InscriptionTextType type, final String value, final @javax.annotation.Nullable String lang) {
+    public InscriptionText(final net.lab1318.costume.api.models.inscription.InscriptionTextType type, final String text, final @javax.annotation.Nullable String lang) {
         this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.inscription.InscriptionText: missing type");
-        this.value = com.google.common.base.Preconditions.checkNotNull(value, "net.lab1318.costume.api.models.inscription.InscriptionText: missing value");
+        this.text = com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.inscription.InscriptionText: missing text");
         this.lang = org.thryft.Preconditions.checkOptionalStringMinLength(org.thryft.Preconditions.checkOptionalStringMaxLength(com.google.common.base.Optional.fromNullable(lang), 3, "net.lab1318.costume.api.models.inscription.InscriptionText: lang must have a maximum length of 3"), 2, "net.lab1318.costume.api.models.inscription.InscriptionText: lang must have a minimum length of 2");
     }
 
     /**
      * Optional constructor
      */
-    public InscriptionText(final net.lab1318.costume.api.models.inscription.InscriptionTextType type, final String value, final com.google.common.base.Optional<String> lang) {
+    public InscriptionText(final net.lab1318.costume.api.models.inscription.InscriptionTextType type, final String text, final com.google.common.base.Optional<String> lang) {
         this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.inscription.InscriptionText: missing type");
-        this.value = com.google.common.base.Preconditions.checkNotNull(value, "net.lab1318.costume.api.models.inscription.InscriptionText: missing value");
+        this.text = com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.inscription.InscriptionText: missing text");
         this.lang = org.thryft.Preconditions.checkOptionalStringMinLength(org.thryft.Preconditions.checkOptionalStringMaxLength(com.google.common.base.Preconditions.checkNotNull(lang, "net.lab1318.costume.api.models.inscription.InscriptionText: missing lang"), 3, "net.lab1318.costume.api.models.inscription.InscriptionText: lang must have a maximum length of 3"), 2, "net.lab1318.costume.api.models.inscription.InscriptionText: lang must have a minimum length of 2");
     }
 
@@ -299,7 +299,7 @@ public class InscriptionText implements org.thryft.Struct {
         final InscriptionText other = (InscriptionText)otherObject;
         return
             getType().equals(other.getType()) &&
-            getValue().equals(other.getValue()) &&
+            getText().equals(other.getText()) &&
             getLang().equals(other.getLang());
     }
 
@@ -307,7 +307,7 @@ public class InscriptionText implements org.thryft.Struct {
     public java.lang.Object get(final String fieldName) {
         switch (fieldName) {
         case "type": return getType();
-        case "value": return getValue();
+        case "text": return getText();
         case "lang": return getLang();
         default:
             throw new IllegalArgumentException(fieldName);
@@ -318,19 +318,19 @@ public class InscriptionText implements org.thryft.Struct {
         return lang;
     }
 
-    public final net.lab1318.costume.api.models.inscription.InscriptionTextType getType() {
-        return type;
+    public final String getText() {
+        return text;
     }
 
-    public final String getValue() {
-        return value;
+    public final net.lab1318.costume.api.models.inscription.InscriptionTextType getType() {
+        return type;
     }
 
     @Override
     public int hashCode() {
         int hashCode = 17;
         hashCode = 31 * hashCode + getType().ordinal();
-        hashCode = 31 * hashCode + getValue().hashCode();
+        hashCode = 31 * hashCode + getText().hashCode();
         if (getLang().isPresent()) {
             hashCode = 31 * hashCode + getLang().get().hashCode();
         }
@@ -350,18 +350,18 @@ public class InscriptionText implements org.thryft.Struct {
 
     public static InscriptionText readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         net.lab1318.costume.api.models.inscription.InscriptionTextType type = null;
-        String value = null;
+        String text = null;
         com.google.common.base.Optional<String> lang = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         type = iprot.readEnum(net.lab1318.costume.api.models.inscription.InscriptionTextType.class);
-        value = iprot.readString();
+        text = iprot.readString();
         if (__list.getSize() > 2) {
             lang = com.google.common.base.Optional.of(iprot.readString());
         }
         iprot.readListEnd();
         try {
-            return new InscriptionText(type, value, lang);
+            return new InscriptionText(type, text, lang);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -369,7 +369,7 @@ public class InscriptionText implements org.thryft.Struct {
 
     public static InscriptionText readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         net.lab1318.costume.api.models.inscription.InscriptionTextType type = null;
-        String value = null;
+        String text = null;
         com.google.common.base.Optional<String> lang = com.google.common.base.Optional.absent();
 
         iprot.readStructBegin();
@@ -385,9 +385,9 @@ public class InscriptionText implements org.thryft.Struct {
                 }
                 break;
             }
-            case "value": {
+            case "text": {
                 if (!ifield.hasId() || ifield.getId() == 2) {
-                    value = iprot.readString();
+                    text = iprot.readString();
                 }
                 break;
             }
@@ -402,31 +402,31 @@ public class InscriptionText implements org.thryft.Struct {
         }
         iprot.readStructEnd();
         try {
-            return new InscriptionText(type, value, lang);
+            return new InscriptionText(type, text, lang);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public InscriptionText replaceLang(final com.google.common.base.Optional<String> lang) {
-        return new InscriptionText(this.type, this.value, lang);
+        return new InscriptionText(this.type, this.text, lang);
     }
 
     public InscriptionText replaceLang(final String lang) {
         return replaceLang(com.google.common.base.Optional.fromNullable(lang));
     }
 
-    public InscriptionText replaceType(final net.lab1318.costume.api.models.inscription.InscriptionTextType type) {
-        return new InscriptionText(type, this.value, this.lang);
+    public InscriptionText replaceText(final String text) {
+        return new InscriptionText(this.type, text, this.lang);
     }
 
-    public InscriptionText replaceValue(final String value) {
-        return new InscriptionText(this.type, value, this.lang);
+    public InscriptionText replaceType(final net.lab1318.costume.api.models.inscription.InscriptionTextType type) {
+        return new InscriptionText(type, this.text, this.lang);
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("type", getType()).add("value", getValue()).add("lang", getLang().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("type", getType()).add("text", getText()).add("lang", getLang().orNull()).toString();
     }
 
     @Override
@@ -435,7 +435,7 @@ public class InscriptionText implements org.thryft.Struct {
 
         oprot.writeEnum(getType());
 
-        oprot.writeString(getValue());
+        oprot.writeString(getText());
 
         if (getLang().isPresent()) {
             oprot.writeString(getLang().get());
@@ -459,8 +459,8 @@ public class InscriptionText implements org.thryft.Struct {
         oprot.writeEnum(getType());
         oprot.writeFieldEnd();
 
-        oprot.writeFieldBegin("value", org.thryft.protocol.Type.STRING, (short)2);
-        oprot.writeString(getValue());
+        oprot.writeFieldBegin("text", org.thryft.protocol.Type.STRING, (short)2);
+        oprot.writeString(getText());
         oprot.writeFieldEnd();
 
         if (getLang().isPresent()) {
@@ -474,7 +474,7 @@ public class InscriptionText implements org.thryft.Struct {
 
     private final net.lab1318.costume.api.models.inscription.InscriptionTextType type;
 
-    private final String value;
+    private final String text;
 
     private final com.google.common.base.Optional<String> lang;
 }

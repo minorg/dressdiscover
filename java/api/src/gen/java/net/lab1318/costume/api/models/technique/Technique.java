@@ -6,31 +6,31 @@ package net.lab1318.costume.api.models.technique;
 public class Technique implements org.thryft.Struct {
     public static class Builder {
         public Builder() {
-            title = null;
+            text = null;
             refid = com.google.common.base.Optional.absent();
             vocab = com.google.common.base.Optional.absent();
         }
 
         public Builder(final Technique other) {
-            this.title = other.getTitle();
+            this.text = other.getText();
             this.refid = other.getRefid();
             this.vocab = other.getVocab();
         }
 
-        protected Technique _build(final String title, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab) {
-            return new Technique(title, refid, vocab);
+        protected Technique _build(final String text, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab) {
+            return new Technique(text, refid, vocab);
         }
 
         public Technique build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.technique.Technique: missing title"), com.google.common.base.Preconditions.checkNotNull(refid, "net.lab1318.costume.api.models.technique.Technique: missing refid"), com.google.common.base.Preconditions.checkNotNull(vocab, "net.lab1318.costume.api.models.technique.Technique: missing vocab"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.technique.Technique: missing text"), com.google.common.base.Preconditions.checkNotNull(refid, "net.lab1318.costume.api.models.technique.Technique: missing refid"), com.google.common.base.Preconditions.checkNotNull(vocab, "net.lab1318.costume.api.models.technique.Technique: missing vocab"));
         }
 
         public final com.google.common.base.Optional<String> getRefid() {
             return refid;
         }
 
-        public final String getTitle() {
-            return title;
+        public final String getText() {
+            return text;
         }
 
         public final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> getVocab() {
@@ -50,7 +50,7 @@ public class Technique implements org.thryft.Struct {
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            title = iprot.readString();
+            text = iprot.readString();
             if (__list.getSize() > 1) {
                 refid = com.google.common.base.Optional.of(iprot.readString());
             }
@@ -72,9 +72,9 @@ public class Technique implements org.thryft.Struct {
                     break;
                 }
                 switch (ifield.getName()) {
-                case "title": {
+                case "text": {
                     if (!ifield.hasId() || ifield.getId() == 1) {
-                        title = iprot.readString();
+                        text = iprot.readString();
                     }
                     break;
                 }
@@ -103,7 +103,7 @@ public class Technique implements org.thryft.Struct {
         public Builder setIfPresent(final Technique other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
-            setTitle(other.getTitle());
+            setText(other.getText());
             if (other.getRefid().isPresent()) {
                 setRefid(other.getRefid());
             }
@@ -124,8 +124,8 @@ public class Technique implements org.thryft.Struct {
             return this;
         }
 
-        public Builder setTitle(final String title) {
-            this.title = com.google.common.base.Preconditions.checkNotNull(title);
+        public Builder setText(final String text) {
+            this.text = com.google.common.base.Preconditions.checkNotNull(text);
             return this;
         }
 
@@ -143,7 +143,7 @@ public class Technique implements org.thryft.Struct {
             com.google.common.base.Preconditions.checkNotNull(name);
 
             switch (name.toLowerCase()) {
-            case "title": setTitle((String)value); return this;
+            case "text": setText((String)value); return this;
             case "refid": setRefid((String)value); return this;
             case "vocab": setVocab((net.lab1318.costume.api.models.Vocab)value); return this;
             default:
@@ -156,8 +156,8 @@ public class Technique implements org.thryft.Struct {
             return this;
         }
 
-        public Builder unsetTitle() {
-            this.title = null;
+        public Builder unsetText() {
+            this.text = null;
             return this;
         }
 
@@ -166,14 +166,14 @@ public class Technique implements org.thryft.Struct {
             return this;
         }
 
-        private String title;
+        private String text;
         private com.google.common.base.Optional<String> refid;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "title", org.thryft.protocol.Type.STRING),
+        TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "text", org.thryft.protocol.Type.STRING),
         REFID("refid", new com.google.common.reflect.TypeToken<String>() {}, false, 2, "refid", org.thryft.protocol.Type.STRING),
         VOCAB("vocab", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.Vocab>() {}, false, 3, "vocab", org.thryft.protocol.Type.STRING);
 
@@ -219,7 +219,7 @@ public class Technique implements org.thryft.Struct {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "title": return TITLE;
+            case "text": return TEXT;
             case "refid": return REFID;
             case "vocab": return VOCAB;
             default:
@@ -229,7 +229,7 @@ public class Technique implements org.thryft.Struct {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "title": return TITLE;
+            case "text": return TEXT;
             case "refid": return REFID;
             case "vocab": return VOCAB;
             default:
@@ -264,14 +264,14 @@ public class Technique implements org.thryft.Struct {
      * Copy constructor
      */
     public Technique(final Technique other) {
-        this(other.getTitle(), other.getRefid(), other.getVocab());
+        this(other.getText(), other.getRefid(), other.getVocab());
     }
 
     /**
      * Required constructor
      */
-    public Technique(final String title) {
-        this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.technique.Technique: missing title"), "net.lab1318.costume.api.models.technique.Technique: title is empty");
+    public Technique(final String text) {
+        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.technique.Technique: missing text"), "net.lab1318.costume.api.models.technique.Technique: text is empty");
         this.refid = com.google.common.base.Optional.absent();
         this.vocab = com.google.common.base.Optional.absent();
     }
@@ -279,8 +279,8 @@ public class Technique implements org.thryft.Struct {
     /**
      * Total Nullable constructor
      */
-    public Technique(final String title, final @javax.annotation.Nullable String refid, final @javax.annotation.Nullable net.lab1318.costume.api.models.Vocab vocab) {
-        this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.technique.Technique: missing title"), "net.lab1318.costume.api.models.technique.Technique: title is empty");
+    public Technique(final String text, final @javax.annotation.Nullable String refid, final @javax.annotation.Nullable net.lab1318.costume.api.models.Vocab vocab) {
+        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.technique.Technique: missing text"), "net.lab1318.costume.api.models.technique.Technique: text is empty");
         this.refid = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(refid), "net.lab1318.costume.api.models.technique.Technique: refid is empty");
         this.vocab = com.google.common.base.Optional.fromNullable(vocab);
     }
@@ -288,8 +288,8 @@ public class Technique implements org.thryft.Struct {
     /**
      * Optional constructor
      */
-    public Technique(final String title, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab) {
-        this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.technique.Technique: missing title"), "net.lab1318.costume.api.models.technique.Technique: title is empty");
+    public Technique(final String text, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab) {
+        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.technique.Technique: missing text"), "net.lab1318.costume.api.models.technique.Technique: text is empty");
         this.refid = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(refid, "net.lab1318.costume.api.models.technique.Technique: missing refid"), "net.lab1318.costume.api.models.technique.Technique: refid is empty");
         this.vocab = com.google.common.base.Preconditions.checkNotNull(vocab, "net.lab1318.costume.api.models.technique.Technique: missing vocab");
     }
@@ -316,7 +316,7 @@ public class Technique implements org.thryft.Struct {
 
         final Technique other = (Technique)otherObject;
         return
-            getTitle().equals(other.getTitle()) &&
+            getText().equals(other.getText()) &&
             getRefid().equals(other.getRefid()) &&
             getVocab().equals(other.getVocab());
     }
@@ -324,7 +324,7 @@ public class Technique implements org.thryft.Struct {
     @Override
     public java.lang.Object get(final String fieldName) {
         switch (fieldName) {
-        case "title": return getTitle();
+        case "text": return getText();
         case "refid": return getRefid();
         case "vocab": return getVocab();
         default:
@@ -336,8 +336,8 @@ public class Technique implements org.thryft.Struct {
         return refid;
     }
 
-    public final String getTitle() {
-        return title;
+    public final String getText() {
+        return text;
     }
 
     public final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> getVocab() {
@@ -347,7 +347,7 @@ public class Technique implements org.thryft.Struct {
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getTitle().hashCode();
+        hashCode = 31 * hashCode + getText().hashCode();
         if (getRefid().isPresent()) {
             hashCode = 31 * hashCode + getRefid().get().hashCode();
         }
@@ -369,12 +369,12 @@ public class Technique implements org.thryft.Struct {
     }
 
     public static Technique readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        String title = null;
+        String text = null;
         com.google.common.base.Optional<String> refid = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        title = iprot.readString();
+        text = iprot.readString();
         if (__list.getSize() > 1) {
             refid = com.google.common.base.Optional.of(iprot.readString());
         }
@@ -386,14 +386,14 @@ public class Technique implements org.thryft.Struct {
         }
         iprot.readListEnd();
         try {
-            return new Technique(title, refid, vocab);
+            return new Technique(text, refid, vocab);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public static Technique readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        String title = null;
+        String text = null;
         com.google.common.base.Optional<String> refid = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab = com.google.common.base.Optional.absent();
 
@@ -404,9 +404,9 @@ public class Technique implements org.thryft.Struct {
                 break;
             }
             switch (ifield.getName()) {
-            case "title": {
+            case "text": {
                 if (!ifield.hasId() || ifield.getId() == 1) {
-                    title = iprot.readString();
+                    text = iprot.readString();
                 }
                 break;
             }
@@ -430,26 +430,26 @@ public class Technique implements org.thryft.Struct {
         }
         iprot.readStructEnd();
         try {
-            return new Technique(title, refid, vocab);
+            return new Technique(text, refid, vocab);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public Technique replaceRefid(final com.google.common.base.Optional<String> refid) {
-        return new Technique(this.title, refid, this.vocab);
+        return new Technique(this.text, refid, this.vocab);
     }
 
     public Technique replaceRefid(final String refid) {
         return replaceRefid(com.google.common.base.Optional.fromNullable(refid));
     }
 
-    public Technique replaceTitle(final String title) {
-        return new Technique(title, this.refid, this.vocab);
+    public Technique replaceText(final String text) {
+        return new Technique(text, this.refid, this.vocab);
     }
 
     public Technique replaceVocab(final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab) {
-        return new Technique(this.title, this.refid, vocab);
+        return new Technique(this.text, this.refid, vocab);
     }
 
     public Technique replaceVocab(final net.lab1318.costume.api.models.Vocab vocab) {
@@ -458,14 +458,14 @@ public class Technique implements org.thryft.Struct {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("title", getTitle()).add("refid", getRefid().orNull()).add("vocab", getVocab().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("refid", getRefid().orNull()).add("vocab", getVocab().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
 
-        oprot.writeString(getTitle());
+        oprot.writeString(getText());
 
         if (getRefid().isPresent()) {
             oprot.writeString(getRefid().get());
@@ -491,8 +491,8 @@ public class Technique implements org.thryft.Struct {
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("title", org.thryft.protocol.Type.STRING, (short)1);
-        oprot.writeString(getTitle());
+        oprot.writeFieldBegin("text", org.thryft.protocol.Type.STRING, (short)1);
+        oprot.writeString(getText());
         oprot.writeFieldEnd();
 
         if (getRefid().isPresent()) {
@@ -510,7 +510,7 @@ public class Technique implements org.thryft.Struct {
         oprot.writeFieldStop();
     }
 
-    private final String title;
+    private final String text;
 
     private final com.google.common.base.Optional<String> refid;
 

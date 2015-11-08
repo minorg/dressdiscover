@@ -65,7 +65,7 @@
                         "index": "not_analyzed", 
                         "type": "string"
                       }, 
-                      "2:value": {
+                      "2:text": {
                         "type": "string"
                       }, 
                       "3:lang": {
@@ -76,7 +76,7 @@
                   "2:author": {
                     "type": "nested", 
                     "properties": {
-                      "1:title": {
+                      "1:text": {
                         "type": "string"
                       }, 
                       "2:refid": {
@@ -111,7 +111,7 @@
                     "index": "not_analyzed", 
                     "type": "string"
                   }, 
-                  "2:title": {
+                  "2:text": {
                     "type": "string"
                   }, 
                   "3:refid": {
@@ -146,7 +146,7 @@
               "1:techniques": {
                 "type": "nested", 
                 "properties": {
-                  "1:title": {
+                  "1:text": {
                     "type": "string"
                   }, 
                   "2:refid": {

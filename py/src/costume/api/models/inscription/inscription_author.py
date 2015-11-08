@@ -6,22 +6,22 @@ class InscriptionAuthor(object):
     class Builder(object):
         def __init__(
             self,
-            title=None,
+            text=None,
             refid=None,
             vocab=None,
         ):
             '''
-            :type title: str
+            :type text: str
             :type refid: str or None
             :type vocab: costume.api.models.vocab.Vocab or None
             '''
 
-            self.__title = title
+            self.__text = text
             self.__refid = refid
             self.__vocab = vocab
 
         def build(self):
-            return InscriptionAuthor(title=self.__title, refid=self.__refid, vocab=self.__vocab)
+            return InscriptionAuthor(text=self.__text, refid=self.__refid, vocab=self.__vocab)
 
         @property
         def refid(self):
@@ -39,12 +39,12 @@ class InscriptionAuthor(object):
             self.__refid = refid
             return self
 
-        def set_title(self, title):
+        def set_text(self, text):
             '''
-            :type title: str
+            :type text: str
             '''
 
-            self.__title = title
+            self.__text = text
             return self
 
         def set_vocab(self, vocab):
@@ -56,22 +56,22 @@ class InscriptionAuthor(object):
             return self
 
         @property
-        def title(self):
+        def text(self):
             '''
             :rtype: str
             '''
 
-            return self.__title
+            return self.__text
 
         def update(self, inscription_author):
             '''
-            :type title: str
+            :type text: str
             :type refid: str or None
             :type vocab: costume.api.models.vocab.Vocab or None
             '''
 
             if isinstance(inscription_author, InscriptionAuthor):
-                self.set_title(inscription_author.title)
+                self.set_text(inscription_author.text)
                 self.set_refid(inscription_author.refid)
                 self.set_vocab(inscription_author.vocab)
             elif isinstance(inscription_author, dict):
@@ -97,13 +97,13 @@ class InscriptionAuthor(object):
 
             self.set_refid(refid)
 
-        @title.setter
-        def title(self, title):
+        @text.setter
+        def text(self, text):
             '''
-            :type title: str
+            :type text: str
             '''
 
-            self.set_title(title)
+            self.set_text(text)
 
         @vocab.setter
         def vocab(self, vocab):
@@ -115,23 +115,23 @@ class InscriptionAuthor(object):
 
     def __init__(
         self,
-        title,
+        text,
         refid=None,
         vocab=None,
     ):
         '''
-        :type title: str
+        :type text: str
         :type refid: str or None
         :type vocab: costume.api.models.vocab.Vocab or None
         '''
 
-        if title is None:
-            raise ValueError('title is required')
-        if not isinstance(title, basestring):
-            raise TypeError("expected title to be a str but it is a %s" % getattr(__builtin__, 'type')(title))
-        if len(title) < 1:
-            raise ValueError("expected len(title) to be >= 1, was %d" % len(title))
-        self.__title = title
+        if text is None:
+            raise ValueError('text is required')
+        if not isinstance(text, basestring):
+            raise TypeError("expected text to be a str but it is a %s" % getattr(__builtin__, 'type')(text))
+        if len(text) < 1:
+            raise ValueError("expected len(text) to be >= 1, was %d" % len(text))
+        self.__text = text
 
         if refid is not None:
             if not isinstance(refid, basestring):
@@ -144,7 +144,7 @@ class InscriptionAuthor(object):
         self.__vocab = vocab
 
     def __eq__(self, other):
-        if self.title != other.title:
+        if self.text != other.text:
             return False
         if self.refid != other.refid:
             return False
@@ -153,7 +153,7 @@ class InscriptionAuthor(object):
         return True
 
     def __hash__(self):
-        return hash((self.title,self.refid,self.vocab,))
+        return hash((self.text,self.refid,self.vocab,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -163,7 +163,7 @@ class InscriptionAuthor(object):
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
+        field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace') + "'")
         if self.refid is not None:
             field_reprs.append('refid=' + "'" + self.refid.encode('ascii', 'replace') + "'")
         if self.vocab is not None:
@@ -172,7 +172,7 @@ class InscriptionAuthor(object):
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
+        field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace') + "'")
         if self.refid is not None:
             field_reprs.append('refid=' + "'" + self.refid.encode('ascii', 'replace') + "'")
         if self.vocab is not None:
@@ -186,7 +186,7 @@ class InscriptionAuthor(object):
         :rtype: dict
         '''
 
-        return {'title': self.title, 'refid': self.refid, 'vocab': self.vocab}
+        return {'text': self.text, 'refid': self.refid, 'vocab': self.vocab}
 
     def as_tuple(self):
         '''
@@ -195,7 +195,7 @@ class InscriptionAuthor(object):
         :rtype: tuple
         '''
 
-        return (self.title, self.refid, self.vocab,)
+        return (self.text, self.refid, self.vocab,)
 
     @classmethod
     def read(cls, iprot):
@@ -213,8 +213,8 @@ class InscriptionAuthor(object):
             ifield_name, ifield_type, ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
-            elif ifield_name == 'title' and ifield_id == 1:
-                init_kwds['title'] = iprot.read_string()
+            elif ifield_name == 'text' and ifield_id == 1:
+                init_kwds['text'] = iprot.read_string()
             elif ifield_name == 'refid' and ifield_id == 2:
                 try:
                     init_kwds['refid'] = iprot.read_string()
@@ -240,34 +240,34 @@ class InscriptionAuthor(object):
 
     def replace(
         self,
-        title=None,
+        text=None,
         refid=None,
         vocab=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type title: str or None
+        :type text: str or None
         :type refid: str or None
         :type vocab: costume.api.models.vocab.Vocab or None
         :rtype: costume.api.models.inscription.inscription_author.InscriptionAuthor
         '''
 
-        if title is None:
-            title = self.title
+        if text is None:
+            text = self.text
         if refid is None:
             refid = self.refid
         if vocab is None:
             vocab = self.vocab
-        return self.__class__(title=title, refid=refid, vocab=vocab)
+        return self.__class__(text=text, refid=refid, vocab=vocab)
 
     @property
-    def title(self):
+    def text(self):
         '''
         :rtype: str
         '''
 
-        return self.__title
+        return self.__text
 
     @property
     def vocab(self):
@@ -287,8 +287,8 @@ class InscriptionAuthor(object):
 
         oprot.write_struct_begin('InscriptionAuthor')
 
-        oprot.write_field_begin(name='title', type=11, id=1)
-        oprot.write_string(self.title)
+        oprot.write_field_begin(name='text', type=11, id=1)
+        oprot.write_string(self.text)
         oprot.write_field_end()
 
         if self.refid is not None:
