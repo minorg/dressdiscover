@@ -55,6 +55,36 @@
           "12:physical_description": {
             "type": "string"
           }, 
+          "15:materials": {
+            "type": "nested", 
+            "properties": {
+              "1:materials": {
+                "type": "nested", 
+                "properties": {
+                  "1:type": {
+                    "index": "not_analyzed", 
+                    "type": "string"
+                  }, 
+                  "2:title": {
+                    "type": "string"
+                  }, 
+                  "3:refid": {
+                    "type": "string"
+                  }, 
+                  "4:vocab": {
+                    "index": "not_analyzed", 
+                    "type": "string"
+                  }
+                }
+              }, 
+              "2:display": {
+                "type": "string"
+              }, 
+              "3:notes": {
+                "type": "string"
+              }
+            }
+          }, 
           "5:provenance": {
             "type": "string"
           }, 
