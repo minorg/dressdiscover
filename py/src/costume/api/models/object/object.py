@@ -1,6 +1,7 @@
 from datetime import datetime
 import __builtin__
 import costume.api.models.image.image
+import costume.api.models.inscription.inscription_set
 import costume.api.models.material.material_set
 import costume.api.models.model_metadata
 import costume.api.models.technique.technique_set
@@ -17,6 +18,7 @@ class Object(object):
             date=None,
             date_text=None,
             description=None,
+            inscriptions=None,
             materials=None,
             physical_description=None,
             provenance=None,
@@ -33,6 +35,7 @@ class Object(object):
             :type date: datetime or None
             :type date_text: str or None
             :type description: str or None
+            :type inscriptions: costume.api.models.inscription.inscription_set.InscriptionSet or None
             :type materials: costume.api.models.material.material_set.MaterialSet or None
             :type physical_description: str or None
             :type provenance: str or None
@@ -49,6 +52,7 @@ class Object(object):
             self.__date = date
             self.__date_text = date_text
             self.__description = description
+            self.__inscriptions = inscriptions
             self.__materials = materials
             self.__physical_description = physical_description
             self.__provenance = provenance
@@ -58,7 +62,7 @@ class Object(object):
             self.__url = url
 
         def build(self):
-            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, date=self.__date, date_text=self.__date_text, description=self.__description, materials=self.__materials, physical_description=self.__physical_description, provenance=self.__provenance, summary=self.__summary, techniques=self.__techniques, thumbnail=self.__thumbnail, url=self.__url)
+            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, date=self.__date, date_text=self.__date_text, description=self.__description, inscriptions=self.__inscriptions, materials=self.__materials, physical_description=self.__physical_description, provenance=self.__provenance, summary=self.__summary, techniques=self.__techniques, thumbnail=self.__thumbnail, url=self.__url)
 
         @property
         def collection_id(self):
@@ -91,6 +95,14 @@ class Object(object):
             '''
 
             return self.__description
+
+        @property
+        def inscriptions(self):
+            '''
+            :rtype: costume.api.models.inscription.inscription_set.InscriptionSet
+            '''
+
+            return self.__inscriptions
 
         @property
         def institution_id(self):
@@ -162,6 +174,14 @@ class Object(object):
             '''
 
             self.__description = description
+            return self
+
+        def set_inscriptions(self, inscriptions):
+            '''
+            :type inscriptions: costume.api.models.inscription.inscription_set.InscriptionSet or None
+            '''
+
+            self.__inscriptions = inscriptions
             return self
 
         def set_institution_id(self, institution_id):
@@ -285,6 +305,7 @@ class Object(object):
             :type date: datetime or None
             :type date_text: str or None
             :type description: str or None
+            :type inscriptions: costume.api.models.inscription.inscription_set.InscriptionSet or None
             :type materials: costume.api.models.material.material_set.MaterialSet or None
             :type physical_description: str or None
             :type provenance: str or None
@@ -302,6 +323,7 @@ class Object(object):
                 self.set_date(object.date)
                 self.set_date_text(object.date_text)
                 self.set_description(object.description)
+                self.set_inscriptions(object.inscriptions)
                 self.set_materials(object.materials)
                 self.set_physical_description(object.physical_description)
                 self.set_provenance(object.provenance)
@@ -355,6 +377,14 @@ class Object(object):
             '''
 
             self.set_description(description)
+
+        @inscriptions.setter
+        def inscriptions(self, inscriptions):
+            '''
+            :type inscriptions: costume.api.models.inscription.inscription_set.InscriptionSet or None
+            '''
+
+            self.set_inscriptions(inscriptions)
 
         @institution_id.setter
         def institution_id(self, institution_id):
@@ -445,6 +475,7 @@ class Object(object):
         date=None,
         date_text=None,
         description=None,
+        inscriptions=None,
         materials=None,
         physical_description=None,
         provenance=None,
@@ -461,6 +492,7 @@ class Object(object):
         :type date: datetime or None
         :type date_text: str or None
         :type description: str or None
+        :type inscriptions: costume.api.models.inscription.inscription_set.InscriptionSet or None
         :type materials: costume.api.models.material.material_set.MaterialSet or None
         :type physical_description: str or None
         :type provenance: str or None
@@ -514,6 +546,11 @@ class Object(object):
             if len(description) < 1:
                 raise ValueError("expected len(description) to be >= 1, was %d" % len(description))
         self.__description = description
+
+        if inscriptions is not None:
+            if not isinstance(inscriptions, costume.api.models.inscription.inscription_set.InscriptionSet):
+                raise TypeError("expected inscriptions to be a costume.api.models.inscription.inscription_set.InscriptionSet but it is a %s" % getattr(__builtin__, 'type')(inscriptions))
+        self.__inscriptions = inscriptions
 
         if materials is not None:
             if not isinstance(materials, costume.api.models.material.material_set.MaterialSet):
@@ -571,6 +608,8 @@ class Object(object):
             return False
         if self.description != other.description:
             return False
+        if self.inscriptions != other.inscriptions:
+            return False
         if self.materials != other.materials:
             return False
         if self.physical_description != other.physical_description:
@@ -588,7 +627,7 @@ class Object(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.date,self.date_text,self.description,self.materials,self.physical_description,self.provenance,self.summary,self.techniques,self.thumbnail,self.url,))
+        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.date,self.date_text,self.description,self.inscriptions,self.materials,self.physical_description,self.provenance,self.summary,self.techniques,self.thumbnail,self.url,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -608,6 +647,8 @@ class Object(object):
             field_reprs.append('date_text=' + "'" + self.date_text.encode('ascii', 'replace') + "'")
         if self.description is not None:
             field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
+        if self.inscriptions is not None:
+            field_reprs.append('inscriptions=' + repr(self.inscriptions))
         if self.materials is not None:
             field_reprs.append('materials=' + repr(self.materials))
         if self.physical_description is not None:
@@ -636,6 +677,8 @@ class Object(object):
             field_reprs.append('date_text=' + "'" + self.date_text.encode('ascii', 'replace') + "'")
         if self.description is not None:
             field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
+        if self.inscriptions is not None:
+            field_reprs.append('inscriptions=' + repr(self.inscriptions))
         if self.materials is not None:
             field_reprs.append('materials=' + repr(self.materials))
         if self.physical_description is not None:
@@ -659,7 +702,7 @@ class Object(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'date': self.date, 'date_text': self.date_text, 'description': self.description, 'materials': self.materials, 'physical_description': self.physical_description, 'provenance': self.provenance, 'summary': self.summary, 'techniques': self.techniques, 'thumbnail': self.thumbnail, 'url': self.url}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'date': self.date, 'date_text': self.date_text, 'description': self.description, 'inscriptions': self.inscriptions, 'materials': self.materials, 'physical_description': self.physical_description, 'provenance': self.provenance, 'summary': self.summary, 'techniques': self.techniques, 'thumbnail': self.thumbnail, 'url': self.url}
 
     def as_tuple(self):
         '''
@@ -668,7 +711,7 @@ class Object(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.date, self.date_text, self.description, self.materials, self.physical_description, self.provenance, self.summary, self.techniques, self.thumbnail, self.url,)
+        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.date, self.date_text, self.description, self.inscriptions, self.materials, self.physical_description, self.provenance, self.summary, self.techniques, self.thumbnail, self.url,)
 
     @property
     def collection_id(self):
@@ -701,6 +744,14 @@ class Object(object):
         '''
 
         return self.__description
+
+    @property
+    def inscriptions(self):
+        '''
+        :rtype: costume.api.models.inscription.inscription_set.InscriptionSet
+        '''
+
+        return self.__inscriptions
 
     @property
     def institution_id(self):
@@ -781,6 +832,8 @@ class Object(object):
                     init_kwds['description'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
+            elif ifield_name == 'inscriptions' and ifield_id == 17:
+                init_kwds['inscriptions'] = costume.api.models.inscription.inscription_set.InscriptionSet.read(iprot)
             elif ifield_name == 'materials' and ifield_id == 15:
                 init_kwds['materials'] = costume.api.models.material.material_set.MaterialSet.read(iprot)
             elif ifield_name == 'physical_description' and ifield_id == 12:
@@ -821,6 +874,7 @@ class Object(object):
         date=None,
         date_text=None,
         description=None,
+        inscriptions=None,
         materials=None,
         physical_description=None,
         provenance=None,
@@ -839,6 +893,7 @@ class Object(object):
         :type date: datetime or None
         :type date_text: str or None
         :type description: str or None
+        :type inscriptions: costume.api.models.inscription.inscription_set.InscriptionSet or None
         :type materials: costume.api.models.material.material_set.MaterialSet or None
         :type physical_description: str or None
         :type provenance: str or None
@@ -863,6 +918,8 @@ class Object(object):
             date_text = self.date_text
         if description is None:
             description = self.description
+        if inscriptions is None:
+            inscriptions = self.inscriptions
         if materials is None:
             materials = self.materials
         if physical_description is None:
@@ -877,7 +934,7 @@ class Object(object):
             thumbnail = self.thumbnail
         if url is None:
             url = self.url
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, date=date, date_text=date_text, description=description, materials=materials, physical_description=physical_description, provenance=provenance, summary=summary, techniques=techniques, thumbnail=thumbnail, url=url)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, date=date, date_text=date_text, description=description, inscriptions=inscriptions, materials=materials, physical_description=physical_description, provenance=provenance, summary=summary, techniques=techniques, thumbnail=thumbnail, url=url)
 
     @property
     def summary(self):
@@ -958,6 +1015,11 @@ class Object(object):
         if self.description is not None:
             oprot.write_field_begin(name='description', type=11, id=4)
             oprot.write_string(self.description)
+            oprot.write_field_end()
+
+        if self.inscriptions is not None:
+            oprot.write_field_begin(name='inscriptions', type=12, id=17)
+            self.inscriptions.write(oprot)
             oprot.write_field_end()
 
         if self.materials is not None:
