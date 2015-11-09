@@ -6,6 +6,7 @@ public class ObjectBean {
         institutionId = null;
         modelMetadata = null;
         title = null;
+        categories = null;
         date = null;
         dateText = null;
         description = null;
@@ -24,6 +25,7 @@ public class ObjectBean {
         this.institutionId = other.getInstitutionId();
         this.modelMetadata = new net.lab1318.costume.gui.models.ModelMetadataBean(other.getModelMetadata());
         this.title = other.getTitle();
+        this.categories = other.getCategories().isPresent() ? new java.util.ArrayList<String>(other.getCategories().get()) : null;
         this.date = other.getDate().isPresent() ? other.getDate().get() : null;
         this.dateText = other.getDateText().isPresent() ? other.getDateText().get() : null;
         this.description = other.getDescription().isPresent() ? other.getDescription().get() : null;
@@ -51,6 +53,7 @@ public class ObjectBean {
             getInstitutionId().equals(other.getInstitutionId()) &&
             getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
+            getCategories().equals(other.getCategories()) &&
             getDate().equals(other.getDate()) &&
             getDateText().equals(other.getDateText()) &&
             getDescription().equals(other.getDescription()) &&
@@ -62,6 +65,10 @@ public class ObjectBean {
             getTechniques().equals(other.getTechniques()) &&
             getThumbnail().equals(other.getThumbnail()) &&
             getUrl().equals(other.getUrl());
+    }
+
+    public java.util.List<String> getCategories() {
+        return categories;
     }
 
     public net.lab1318.costume.api.models.collection.CollectionId getCollectionId() {
@@ -131,6 +138,9 @@ public class ObjectBean {
         hashCode = 31 * hashCode + getInstitutionId().hashCode();
         hashCode = 31 * hashCode + getModelMetadata().hashCode();
         hashCode = 31 * hashCode + getTitle().hashCode();
+        if (getCategories() != null) {
+            hashCode = 31 * hashCode + getCategories().hashCode();
+        }
         if (getDate() != null) {
             hashCode = 31 * hashCode + getDate().hashCode();
         }
@@ -165,6 +175,10 @@ public class ObjectBean {
             hashCode = 31 * hashCode + getUrl().hashCode();
         }
         return hashCode;
+    }
+
+    public void setCategories(final java.util.List<String> categories) {
+        this.categories = categories;
     }
 
     public void setCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) {
@@ -229,7 +243,7 @@ public class ObjectBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("date", getDate()).add("date_text", getDateText()).add("description", getDescription()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("physical_description", getPhysicalDescription()).add("provenance", getProvenance()).add("summary", getSummary()).add("techniques", getTechniques()).add("thumbnail", getThumbnail()).add("url", getUrl()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("categories", getCategories()).add("date", getDate()).add("date_text", getDateText()).add("description", getDescription()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("physical_description", getPhysicalDescription()).add("provenance", getProvenance()).add("summary", getSummary()).add("techniques", getTechniques()).add("thumbnail", getThumbnail()).add("url", getUrl()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -239,6 +253,8 @@ public class ObjectBean {
     private net.lab1318.costume.gui.models.ModelMetadataBean modelMetadata;
 
     private String title;
+
+    private java.util.List<String> categories;
 
     private java.util.Date date;
 

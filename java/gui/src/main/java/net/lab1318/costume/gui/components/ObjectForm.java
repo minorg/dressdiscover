@@ -46,6 +46,10 @@ public final class ObjectForm extends CustomComponent {
                 formLayout.addComponent(__createTextField("Date", objectEntry.getModel().getDate().get().toString()));
             }
 
+            if (objectEntry.getModel().getCategories().isPresent()) {
+                formLayout.addComponent(new CategoriesTable(objectEntry.getModel().getCategories().get()));
+            }
+
             if (objectEntry.getModel().getDescription().isPresent()) {
                 formLayout.addComponent(__createTextArea("Description", objectEntry.getModel().getDescription().get()));
             }

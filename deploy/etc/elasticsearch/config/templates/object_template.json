@@ -43,6 +43,9 @@
           "3:title": {
             "type": "string"
           }, 
+          "18:categories": {
+            "type": "string"
+          }, 
           "10:date": {
             "type": "date"
           }, 
