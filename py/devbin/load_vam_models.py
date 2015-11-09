@@ -17,7 +17,7 @@ from costume.api.models.technique.technique import Technique
 from costume.api.models.technique.technique_set import TechniqueSet
 from costume.api.services.institution.no_such_institution_exception import NoSuchInstitutionException
 from costume.lib.costume_properties import CostumeProperties
-from model_utils import new_model_metadata, get_nonempty_string
+from model_utils import new_model_metadata, get_nonempty_value
 from services import Services
 from costume.api.models.inscription.inscription_set import InscriptionSet
 from costume.api.models.inscription.inscription import Inscription
@@ -36,15 +36,22 @@ def parse_museumobject(museumobject_dict):
 
     object_builder = Object.Builder()
 
+    category_dicts = get_nonempty_value(museumobject_dict, 'categories')
+    if category_dicts is not None:
+        categories = []
+        for category_dict in category_dicts:
+            categories.append(category_dict['fields']['name'])
+        object_builder.set_categories(tuple(categories))
+
     object_builder.collection_id = COLLECTION_ID
 
-    object_builder.date_text = get_nonempty_string(museumobject_dict, 'date_text')
+    object_builder.date_text = get_nonempty_value(museumobject_dict, 'date_text')
 
-    object_builder.description = get_nonempty_string(museumobject_dict, 'descriptive_line')
+    object_builder.description = get_nonempty_value(museumobject_dict, 'descriptive_line')
 
     object_builder.institution_id = INSTITUTION_ID
 
-    marks = get_nonempty_string(museumobject_dict, 'marks')
+    marks = get_nonempty_value(museumobject_dict, 'marks')
     if marks is not None:
         object_builder.set_inscriptions(
             InscriptionSet(
@@ -61,14 +68,14 @@ def parse_museumobject(museumobject_dict):
             )
         )
 
-    material_dicts = museumobject_dict.get('materials')
-    if material_dicts is not None and len(material_dicts) > 0:
+    material_dicts = get_nonempty_value(museumobject_dict, 'materials')
+    if material_dicts is not None:
         materials = []
         for material_dict in material_dicts:
             material_dict = material_dict['fields']
             materials.append(
                 Material.Builder()
-                    .set_title(material_dict['name'])
+                    .set_text(material_dict['name'])
                     .set_type(MaterialType.OTHER)
                     .build()
             )
@@ -76,7 +83,7 @@ def parse_museumobject(museumobject_dict):
 
     object_builder.model_metadata = new_model_metadata()
 
-    object_builder.physical_description = get_nonempty_string(museumobject_dict, 'physical_description')
+    object_builder.physical_description = get_nonempty_value(museumobject_dict, 'physical_description')
 
     technique_dicts = museumobject_dict.get('techniques')
     if technique_dicts is not None and len(technique_dicts) > 0:
@@ -85,12 +92,12 @@ def parse_museumobject(museumobject_dict):
             technique_dict = technique_dict['fields']
             techniques.append(
                 Technique.Builder()
-                    .set_title(technique_dict['name'])
+                    .set_text(technique_dict['name'])
                     .build()
             )
         object_builder.techniques = TechniqueSet(techniques=tuple(techniques))
 
-    title = get_nonempty_string(museumobject_dict, 'title')
+    title = get_nonempty_value(museumobject_dict, 'title')
     if title is None:
         title = museumobject_dict.get('object')
         assert title is not None and len(title) > 0

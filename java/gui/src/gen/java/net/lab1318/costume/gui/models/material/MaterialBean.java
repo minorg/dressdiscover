@@ -6,14 +6,14 @@ package net.lab1318.costume.gui.models.material;
 public class MaterialBean {
     public MaterialBean() {
         type = null;
-        title = null;
+        text = null;
         refid = null;
         vocab = null;
     }
 
     public MaterialBean(final net.lab1318.costume.api.models.material.Material other) {
         this.type = other.getType();
-        this.title = other.getTitle();
+        this.text = other.getText();
         this.refid = other.getRefid().isPresent() ? other.getRefid().get() : null;
         this.vocab = other.getVocab().isPresent() ? other.getVocab().get() : null;
     }
@@ -29,7 +29,7 @@ public class MaterialBean {
         final MaterialBean other = (MaterialBean)otherObject;
         return
             getType().equals(other.getType()) &&
-            getTitle().equals(other.getTitle()) &&
+            getText().equals(other.getText()) &&
             getRefid().equals(other.getRefid()) &&
             getVocab().equals(other.getVocab());
     }
@@ -38,8 +38,8 @@ public class MaterialBean {
         return refid;
     }
 
-    public String getTitle() {
-        return title;
+    public String getText() {
+        return text;
     }
 
     public net.lab1318.costume.api.models.material.MaterialType getType() {
@@ -54,7 +54,7 @@ public class MaterialBean {
     public int hashCode() {
         int hashCode = 17;
         hashCode = 31 * hashCode + getType().ordinal();
-        hashCode = 31 * hashCode + getTitle().hashCode();
+        hashCode = 31 * hashCode + getText().hashCode();
         if (getRefid() != null) {
             hashCode = 31 * hashCode + getRefid().hashCode();
         }
@@ -68,8 +68,8 @@ public class MaterialBean {
         this.refid = refid;
     }
 
-    public void setTitle(final String title) {
-        this.title = title;
+    public void setText(final String text) {
+        this.text = text;
     }
 
     public void setType(final net.lab1318.costume.api.models.material.MaterialType type) {
@@ -82,12 +82,12 @@ public class MaterialBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("type", getType()).add("title", getTitle()).add("refid", getRefid()).add("vocab", getVocab()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("type", getType()).add("text", getText()).add("refid", getRefid()).add("vocab", getVocab()).toString();
     }
 
     private net.lab1318.costume.api.models.material.MaterialType type;
 
-    private String title;
+    private String text;
 
     private String refid;
 

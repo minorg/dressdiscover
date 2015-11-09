@@ -7,21 +7,21 @@ class InscriptionText(object):
         def __init__(
             self,
             type=None,  # @ReservedAssignment
-            value=None,
+            text=None,
             lang=None,
         ):
             '''
             :type type: costume.api.models.inscription.inscription_text_type.InscriptionTextType
-            :type value: str
+            :type text: str
             :type lang: str or None
             '''
 
             self.__type = type
-            self.__value = value
+            self.__text = text
             self.__lang = lang
 
         def build(self):
-            return InscriptionText(type=self.__type, value=self.__value, lang=self.__lang)
+            return InscriptionText(type=self.__type, text=self.__text, lang=self.__lang)
 
         @property
         def lang(self):
@@ -39,6 +39,14 @@ class InscriptionText(object):
             self.__lang = lang
             return self
 
+        def set_text(self, text):
+            '''
+            :type text: str
+            '''
+
+            self.__text = text
+            return self
+
         def set_type(self, type):  # @ReservedAssignment
             '''
             :type type: costume.api.models.inscription.inscription_text_type.InscriptionTextType
@@ -47,13 +55,13 @@ class InscriptionText(object):
             self.__type = type
             return self
 
-        def set_value(self, value):
+        @property
+        def text(self):
             '''
-            :type value: str
+            :rtype: str
             '''
 
-            self.__value = value
-            return self
+            return self.__text
 
         @property
         def type(self):  # @ReservedAssignment
@@ -66,13 +74,13 @@ class InscriptionText(object):
         def update(self, inscription_text):
             '''
             :type type: costume.api.models.inscription.inscription_text_type.InscriptionTextType
-            :type value: str
+            :type text: str
             :type lang: str or None
             '''
 
             if isinstance(inscription_text, InscriptionText):
                 self.set_type(inscription_text.type)
-                self.set_value(inscription_text.value)
+                self.set_text(inscription_text.text)
                 self.set_lang(inscription_text.lang)
             elif isinstance(inscription_text, dict):
                 for key, value in inscription_text.iteritems():
@@ -80,14 +88,6 @@ class InscriptionText(object):
             else:
                 raise TypeError(inscription_text)
             return self
-
-        @property
-        def value(self):
-            '''
-            :rtype: str
-            '''
-
-            return self.__value
 
         @lang.setter
         def lang(self, lang):
@@ -97,6 +97,14 @@ class InscriptionText(object):
 
             self.set_lang(lang)
 
+        @text.setter
+        def text(self, text):
+            '''
+            :type text: str
+            '''
+
+            self.set_text(text)
+
         @type.setter
         def type(self, type):  # @ReservedAssignment
             '''
@@ -105,23 +113,15 @@ class InscriptionText(object):
 
             self.set_type(type)
 
-        @value.setter
-        def value(self, value):
-            '''
-            :type value: str
-            '''
-
-            self.set_value(value)
-
     def __init__(
         self,
         type,  # @ReservedAssignment
-        value,
+        text,
         lang=None,
     ):
         '''
         :type type: costume.api.models.inscription.inscription_text_type.InscriptionTextType
-        :type value: str
+        :type text: str
         :type lang: str or None
         '''
 
@@ -131,11 +131,11 @@ class InscriptionText(object):
             raise TypeError("expected type to be a costume.api.models.inscription.inscription_text_type.InscriptionTextType but it is a %s" % getattr(__builtin__, 'type')(type))
         self.__type = type
 
-        if value is None:
-            raise ValueError('value is required')
-        if not isinstance(value, basestring):
-            raise TypeError("expected value to be a str but it is a %s" % getattr(__builtin__, 'type')(value))
-        self.__value = value
+        if text is None:
+            raise ValueError('text is required')
+        if not isinstance(text, basestring):
+            raise TypeError("expected text to be a str but it is a %s" % getattr(__builtin__, 'type')(text))
+        self.__text = text
 
         if lang is not None:
             if not isinstance(lang, basestring):
@@ -149,14 +149,14 @@ class InscriptionText(object):
     def __eq__(self, other):
         if self.type != other.type:
             return False
-        if self.value != other.value:
+        if self.text != other.text:
             return False
         if self.lang != other.lang:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.type,self.value,self.lang,))
+        return hash((self.type,self.text,self.lang,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -167,7 +167,7 @@ class InscriptionText(object):
     def __repr__(self):
         field_reprs = []
         field_reprs.append('type=' + repr(self.type))
-        field_reprs.append('value=' + "'" + self.value.encode('ascii', 'replace') + "'")
+        field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace') + "'")
         if self.lang is not None:
             field_reprs.append('lang=' + "'" + self.lang.encode('ascii', 'replace') + "'")
         return 'InscriptionText(' + ', '.join(field_reprs) + ')'
@@ -175,7 +175,7 @@ class InscriptionText(object):
     def __str__(self):
         field_reprs = []
         field_reprs.append('type=' + repr(self.type))
-        field_reprs.append('value=' + "'" + self.value.encode('ascii', 'replace') + "'")
+        field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace') + "'")
         if self.lang is not None:
             field_reprs.append('lang=' + "'" + self.lang.encode('ascii', 'replace') + "'")
         return 'InscriptionText(' + ', '.join(field_reprs) + ')'
@@ -187,7 +187,7 @@ class InscriptionText(object):
         :rtype: dict
         '''
 
-        return {'type': self.type, 'value': self.value, 'lang': self.lang}
+        return {'type': self.type, 'text': self.text, 'lang': self.lang}
 
     def as_tuple(self):
         '''
@@ -196,7 +196,7 @@ class InscriptionText(object):
         :rtype: tuple
         '''
 
-        return (self.type, self.value, self.lang,)
+        return (self.type, self.text, self.lang,)
 
     @property
     def lang(self):
@@ -224,8 +224,8 @@ class InscriptionText(object):
                 break
             elif ifield_name == 'type' and ifield_id == 1:
                 init_kwds['type'] = costume.api.models.inscription.inscription_text_type.InscriptionTextType.value_of(iprot.read_string().strip().upper())
-            elif ifield_name == 'value' and ifield_id == 2:
-                init_kwds['value'] = iprot.read_string()
+            elif ifield_name == 'text' and ifield_id == 2:
+                init_kwds['text'] = iprot.read_string()
             elif ifield_name == 'lang' and ifield_id == 3:
                 try:
                     init_kwds['lang'] = iprot.read_string()
@@ -239,25 +239,33 @@ class InscriptionText(object):
     def replace(
         self,
         type=None,  # @ReservedAssignment
-        value=None,
+        text=None,
         lang=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
         :type type: costume.api.models.inscription.inscription_text_type.InscriptionTextType or None
-        :type value: str or None
+        :type text: str or None
         :type lang: str or None
         :rtype: costume.api.models.inscription.inscription_text.InscriptionText
         '''
 
         if type is None:
             type = self.type  # @ReservedAssignment
-        if value is None:
-            value = self.value
+        if text is None:
+            text = self.text
         if lang is None:
             lang = self.lang
-        return self.__class__(type=type, value=value, lang=lang)
+        return self.__class__(type=type, text=text, lang=lang)
+
+    @property
+    def text(self):
+        '''
+        :rtype: str
+        '''
+
+        return self.__text
 
     @property
     def type(self):  # @ReservedAssignment
@@ -266,14 +274,6 @@ class InscriptionText(object):
         '''
 
         return self.__type
-
-    @property
-    def value(self):
-        '''
-        :rtype: str
-        '''
-
-        return self.__value
 
     def write(self, oprot):
         '''
@@ -289,8 +289,8 @@ class InscriptionText(object):
         oprot.write_string(str(self.type))
         oprot.write_field_end()
 
-        oprot.write_field_begin(name='value', type=11, id=2)
-        oprot.write_string(self.value)
+        oprot.write_field_begin(name='text', type=11, id=2)
+        oprot.write_string(self.text)
         oprot.write_field_end()
 
         if self.lang is not None:

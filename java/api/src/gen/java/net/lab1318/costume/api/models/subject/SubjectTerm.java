@@ -1,25 +1,30 @@
-package net.lab1318.costume.api.models.inscription;
+package net.lab1318.costume.api.models.subject;
 
-public class InscriptionAuthor implements org.thryft.Struct {
+/**
+ * VRA Core 4.0 subject term element
+ */
+public class SubjectTerm implements org.thryft.Struct {
     public static class Builder {
         public Builder() {
             text = null;
+            type = null;
             refid = com.google.common.base.Optional.absent();
             vocab = com.google.common.base.Optional.absent();
         }
 
-        public Builder(final InscriptionAuthor other) {
+        public Builder(final SubjectTerm other) {
             this.text = other.getText();
+            this.type = other.getType();
             this.refid = other.getRefid();
             this.vocab = other.getVocab();
         }
 
-        protected InscriptionAuthor _build(final String text, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab) {
-            return new InscriptionAuthor(text, refid, vocab);
+        protected SubjectTerm _build(final String text, final net.lab1318.costume.api.models.subject.SubjectTermType type, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab) {
+            return new SubjectTerm(text, type, refid, vocab);
         }
 
-        public InscriptionAuthor build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.inscription.InscriptionAuthor: missing text"), com.google.common.base.Preconditions.checkNotNull(refid, "net.lab1318.costume.api.models.inscription.InscriptionAuthor: missing refid"), com.google.common.base.Preconditions.checkNotNull(vocab, "net.lab1318.costume.api.models.inscription.InscriptionAuthor: missing vocab"));
+        public SubjectTerm build() {
+            return _build(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.subject.SubjectTerm: missing text"), com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.subject.SubjectTerm: missing type"), com.google.common.base.Preconditions.checkNotNull(refid, "net.lab1318.costume.api.models.subject.SubjectTerm: missing refid"), com.google.common.base.Preconditions.checkNotNull(vocab, "net.lab1318.costume.api.models.subject.SubjectTerm: missing vocab"));
         }
 
         public final com.google.common.base.Optional<String> getRefid() {
@@ -28,6 +33,10 @@ public class InscriptionAuthor implements org.thryft.Struct {
 
         public final String getText() {
             return text;
+        }
+
+        public final net.lab1318.costume.api.models.subject.SubjectTermType getType() {
+            return type;
         }
 
         public final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> getVocab() {
@@ -48,10 +57,11 @@ public class InscriptionAuthor implements org.thryft.Struct {
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             text = iprot.readString();
-            if (__list.getSize() > 1) {
+            type = iprot.readEnum(net.lab1318.costume.api.models.subject.SubjectTermType.class);
+            if (__list.getSize() > 2) {
                 refid = com.google.common.base.Optional.of(iprot.readString());
             }
-            if (__list.getSize() > 2) {
+            if (__list.getSize() > 3) {
                 try {
                     vocab = com.google.common.base.Optional.of(iprot.readEnum(net.lab1318.costume.api.models.Vocab.class));
                 } catch (final IllegalArgumentException e) {
@@ -75,14 +85,20 @@ public class InscriptionAuthor implements org.thryft.Struct {
                     }
                     break;
                 }
-                case "refid": {
+                case "type": {
                     if (!ifield.hasId() || ifield.getId() == 2) {
+                        type = iprot.readEnum(net.lab1318.costume.api.models.subject.SubjectTermType.class);
+                    }
+                    break;
+                }
+                case "refid": {
+                    if (!ifield.hasId() || ifield.getId() == 3) {
                         refid = com.google.common.base.Optional.of(iprot.readString());
                     }
                     break;
                 }
                 case "vocab": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
+                    if (!ifield.hasId() || ifield.getId() == 4) {
                         try {
                             vocab = com.google.common.base.Optional.of(iprot.readEnum(net.lab1318.costume.api.models.Vocab.class));
                         } catch (final IllegalArgumentException e) {
@@ -97,10 +113,11 @@ public class InscriptionAuthor implements org.thryft.Struct {
             return this;
         }
 
-        public Builder setIfPresent(final InscriptionAuthor other) {
+        public Builder setIfPresent(final SubjectTerm other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
             setText(other.getText());
+            setType(other.getType());
             if (other.getRefid().isPresent()) {
                 setRefid(other.getRefid());
             }
@@ -126,6 +143,11 @@ public class InscriptionAuthor implements org.thryft.Struct {
             return this;
         }
 
+        public Builder setType(final net.lab1318.costume.api.models.subject.SubjectTermType type) {
+            this.type = com.google.common.base.Preconditions.checkNotNull(type);
+            return this;
+        }
+
         public Builder setVocab(final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab) {
             this.vocab = com.google.common.base.Preconditions.checkNotNull(vocab);
             return this;
@@ -141,6 +163,7 @@ public class InscriptionAuthor implements org.thryft.Struct {
 
             switch (name.toLowerCase()) {
             case "text": setText((String)value); return this;
+            case "type": setType((net.lab1318.costume.api.models.subject.SubjectTermType)value); return this;
             case "refid": setRefid((String)value); return this;
             case "vocab": setVocab((net.lab1318.costume.api.models.Vocab)value); return this;
             default:
@@ -158,12 +181,18 @@ public class InscriptionAuthor implements org.thryft.Struct {
             return this;
         }
 
+        public Builder unsetType() {
+            this.type = null;
+            return this;
+        }
+
         public Builder unsetVocab() {
             this.vocab = com.google.common.base.Optional.absent();
             return this;
         }
 
         private String text;
+        private net.lab1318.costume.api.models.subject.SubjectTermType type;
         private com.google.common.base.Optional<String> refid;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab;
     }
@@ -171,8 +200,9 @@ public class InscriptionAuthor implements org.thryft.Struct {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "text", org.thryft.protocol.Type.STRING),
-        REFID("refid", new com.google.common.reflect.TypeToken<String>() {}, false, 2, "refid", org.thryft.protocol.Type.STRING),
-        VOCAB("vocab", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.Vocab>() {}, false, 3, "vocab", org.thryft.protocol.Type.STRING);
+        TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.subject.SubjectTermType>() {}, true, 2, "type", org.thryft.protocol.Type.STRING),
+        REFID("refid", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "refid", org.thryft.protocol.Type.STRING),
+        VOCAB("vocab", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.Vocab>() {}, false, 4, "vocab", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -217,6 +247,7 @@ public class InscriptionAuthor implements org.thryft.Struct {
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
             case "text": return TEXT;
+            case "type": return TYPE;
             case "refid": return REFID;
             case "vocab": return VOCAB;
             default:
@@ -227,6 +258,7 @@ public class InscriptionAuthor implements org.thryft.Struct {
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
             case "text": return TEXT;
+            case "type": return TYPE;
             case "refid": return REFID;
             case "vocab": return VOCAB;
             default:
@@ -260,15 +292,16 @@ public class InscriptionAuthor implements org.thryft.Struct {
     /**
      * Copy constructor
      */
-    public InscriptionAuthor(final InscriptionAuthor other) {
-        this(other.getText(), other.getRefid(), other.getVocab());
+    public SubjectTerm(final SubjectTerm other) {
+        this(other.getText(), other.getType(), other.getRefid(), other.getVocab());
     }
 
     /**
      * Required constructor
      */
-    public InscriptionAuthor(final String text) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.inscription.InscriptionAuthor: missing text"), "net.lab1318.costume.api.models.inscription.InscriptionAuthor: text is empty");
+    public SubjectTerm(final String text, final net.lab1318.costume.api.models.subject.SubjectTermType type) {
+        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.subject.SubjectTerm: missing text"), "net.lab1318.costume.api.models.subject.SubjectTerm: text is empty");
+        this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.subject.SubjectTerm: missing type");
         this.refid = com.google.common.base.Optional.absent();
         this.vocab = com.google.common.base.Optional.absent();
     }
@@ -276,30 +309,32 @@ public class InscriptionAuthor implements org.thryft.Struct {
     /**
      * Total Nullable constructor
      */
-    public InscriptionAuthor(final String text, final @javax.annotation.Nullable String refid, final @javax.annotation.Nullable net.lab1318.costume.api.models.Vocab vocab) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.inscription.InscriptionAuthor: missing text"), "net.lab1318.costume.api.models.inscription.InscriptionAuthor: text is empty");
-        this.refid = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(refid), "net.lab1318.costume.api.models.inscription.InscriptionAuthor: refid is empty");
+    public SubjectTerm(final String text, final net.lab1318.costume.api.models.subject.SubjectTermType type, final @javax.annotation.Nullable String refid, final @javax.annotation.Nullable net.lab1318.costume.api.models.Vocab vocab) {
+        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.subject.SubjectTerm: missing text"), "net.lab1318.costume.api.models.subject.SubjectTerm: text is empty");
+        this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.subject.SubjectTerm: missing type");
+        this.refid = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(refid), "net.lab1318.costume.api.models.subject.SubjectTerm: refid is empty");
         this.vocab = com.google.common.base.Optional.fromNullable(vocab);
     }
 
     /**
      * Optional constructor
      */
-    public InscriptionAuthor(final String text, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.inscription.InscriptionAuthor: missing text"), "net.lab1318.costume.api.models.inscription.InscriptionAuthor: text is empty");
-        this.refid = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(refid, "net.lab1318.costume.api.models.inscription.InscriptionAuthor: missing refid"), "net.lab1318.costume.api.models.inscription.InscriptionAuthor: refid is empty");
-        this.vocab = com.google.common.base.Preconditions.checkNotNull(vocab, "net.lab1318.costume.api.models.inscription.InscriptionAuthor: missing vocab");
+    public SubjectTerm(final String text, final net.lab1318.costume.api.models.subject.SubjectTermType type, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab) {
+        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.subject.SubjectTerm: missing text"), "net.lab1318.costume.api.models.subject.SubjectTerm: text is empty");
+        this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.subject.SubjectTerm: missing type");
+        this.refid = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(refid, "net.lab1318.costume.api.models.subject.SubjectTerm: missing refid"), "net.lab1318.costume.api.models.subject.SubjectTerm: refid is empty");
+        this.vocab = com.google.common.base.Preconditions.checkNotNull(vocab, "net.lab1318.costume.api.models.subject.SubjectTerm: missing vocab");
     }
 
     public static Builder builder() {
         return new Builder();
     }
 
-    public static Builder builder(final InscriptionAuthor other) {
+    public static Builder builder(final SubjectTerm other) {
         return new Builder(other);
     }
 
-    public static Builder builder(final com.google.common.base.Optional<InscriptionAuthor> other) {
+    public static Builder builder(final com.google.common.base.Optional<SubjectTerm> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
     }
 
@@ -307,13 +342,14 @@ public class InscriptionAuthor implements org.thryft.Struct {
     public boolean equals(final java.lang.Object otherObject) {
         if (otherObject == this) {
             return true;
-        } else if (!(otherObject instanceof InscriptionAuthor)) {
+        } else if (!(otherObject instanceof SubjectTerm)) {
             return false;
         }
 
-        final InscriptionAuthor other = (InscriptionAuthor)otherObject;
+        final SubjectTerm other = (SubjectTerm)otherObject;
         return
             getText().equals(other.getText()) &&
+            getType().equals(other.getType()) &&
             getRefid().equals(other.getRefid()) &&
             getVocab().equals(other.getVocab());
     }
@@ -322,6 +358,7 @@ public class InscriptionAuthor implements org.thryft.Struct {
     public java.lang.Object get(final String fieldName) {
         switch (fieldName) {
         case "text": return getText();
+        case "type": return getType();
         case "refid": return getRefid();
         case "vocab": return getVocab();
         default:
@@ -337,6 +374,10 @@ public class InscriptionAuthor implements org.thryft.Struct {
         return text;
     }
 
+    public final net.lab1318.costume.api.models.subject.SubjectTermType getType() {
+        return type;
+    }
+
     public final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> getVocab() {
         return vocab;
     }
@@ -345,6 +386,7 @@ public class InscriptionAuthor implements org.thryft.Struct {
     public int hashCode() {
         int hashCode = 17;
         hashCode = 31 * hashCode + getText().hashCode();
+        hashCode = 31 * hashCode + getType().ordinal();
         if (getRefid().isPresent()) {
             hashCode = 31 * hashCode + getRefid().get().hashCode();
         }
@@ -354,7 +396,7 @@ public class InscriptionAuthor implements org.thryft.Struct {
         return hashCode;
     }
 
-    public static InscriptionAuthor readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+    public static SubjectTerm readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
         switch (type) {
         case LIST:
             return readAsList(iprot);
@@ -365,17 +407,19 @@ public class InscriptionAuthor implements org.thryft.Struct {
         }
     }
 
-    public static InscriptionAuthor readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+    public static SubjectTerm readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         String text = null;
+        net.lab1318.costume.api.models.subject.SubjectTermType type = null;
         com.google.common.base.Optional<String> refid = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         text = iprot.readString();
-        if (__list.getSize() > 1) {
+        type = iprot.readEnum(net.lab1318.costume.api.models.subject.SubjectTermType.class);
+        if (__list.getSize() > 2) {
             refid = com.google.common.base.Optional.of(iprot.readString());
         }
-        if (__list.getSize() > 2) {
+        if (__list.getSize() > 3) {
             try {
                 vocab = com.google.common.base.Optional.of(iprot.readEnum(net.lab1318.costume.api.models.Vocab.class));
             } catch (final IllegalArgumentException e) {
@@ -383,14 +427,15 @@ public class InscriptionAuthor implements org.thryft.Struct {
         }
         iprot.readListEnd();
         try {
-            return new InscriptionAuthor(text, refid, vocab);
+            return new SubjectTerm(text, type, refid, vocab);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
-    public static InscriptionAuthor readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+    public static SubjectTerm readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         String text = null;
+        net.lab1318.costume.api.models.subject.SubjectTermType type = null;
         com.google.common.base.Optional<String> refid = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab = com.google.common.base.Optional.absent();
 
@@ -407,14 +452,20 @@ public class InscriptionAuthor implements org.thryft.Struct {
                 }
                 break;
             }
-            case "refid": {
+            case "type": {
                 if (!ifield.hasId() || ifield.getId() == 2) {
+                    type = iprot.readEnum(net.lab1318.costume.api.models.subject.SubjectTermType.class);
+                }
+                break;
+            }
+            case "refid": {
+                if (!ifield.hasId() || ifield.getId() == 3) {
                     refid = com.google.common.base.Optional.of(iprot.readString());
                 }
                 break;
             }
             case "vocab": {
-                if (!ifield.hasId() || ifield.getId() == 3) {
+                if (!ifield.hasId() || ifield.getId() == 4) {
                     try {
                         vocab = com.google.common.base.Optional.of(iprot.readEnum(net.lab1318.costume.api.models.Vocab.class));
                     } catch (final IllegalArgumentException e) {
@@ -427,42 +478,48 @@ public class InscriptionAuthor implements org.thryft.Struct {
         }
         iprot.readStructEnd();
         try {
-            return new InscriptionAuthor(text, refid, vocab);
+            return new SubjectTerm(text, type, refid, vocab);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
-    public InscriptionAuthor replaceRefid(final com.google.common.base.Optional<String> refid) {
-        return new InscriptionAuthor(this.text, refid, this.vocab);
+    public SubjectTerm replaceRefid(final com.google.common.base.Optional<String> refid) {
+        return new SubjectTerm(this.text, this.type, refid, this.vocab);
     }
 
-    public InscriptionAuthor replaceRefid(final String refid) {
+    public SubjectTerm replaceRefid(final String refid) {
         return replaceRefid(com.google.common.base.Optional.fromNullable(refid));
     }
 
-    public InscriptionAuthor replaceText(final String text) {
-        return new InscriptionAuthor(text, this.refid, this.vocab);
+    public SubjectTerm replaceText(final String text) {
+        return new SubjectTerm(text, this.type, this.refid, this.vocab);
     }
 
-    public InscriptionAuthor replaceVocab(final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab) {
-        return new InscriptionAuthor(this.text, this.refid, vocab);
+    public SubjectTerm replaceType(final net.lab1318.costume.api.models.subject.SubjectTermType type) {
+        return new SubjectTerm(this.text, type, this.refid, this.vocab);
     }
 
-    public InscriptionAuthor replaceVocab(final net.lab1318.costume.api.models.Vocab vocab) {
+    public SubjectTerm replaceVocab(final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab) {
+        return new SubjectTerm(this.text, this.type, this.refid, vocab);
+    }
+
+    public SubjectTerm replaceVocab(final net.lab1318.costume.api.models.Vocab vocab) {
         return replaceVocab(com.google.common.base.Optional.fromNullable(vocab));
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("refid", getRefid().orNull()).add("vocab", getVocab().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("type", getType()).add("refid", getRefid().orNull()).add("vocab", getVocab().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 4);
 
         oprot.writeString(getText());
+
+        oprot.writeEnum(getType());
 
         if (getRefid().isPresent()) {
             oprot.writeString(getRefid().get());
@@ -481,7 +538,7 @@ public class InscriptionAuthor implements org.thryft.Struct {
 
     @Override
     public void writeAsStruct(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeStructBegin("net.lab1318.costume.api.models.inscription.InscriptionAuthor");
+        oprot.writeStructBegin("net.lab1318.costume.api.models.subject.SubjectTerm");
         writeFields(oprot);
         oprot.writeStructEnd();
     }
@@ -492,14 +549,18 @@ public class InscriptionAuthor implements org.thryft.Struct {
         oprot.writeString(getText());
         oprot.writeFieldEnd();
 
+        oprot.writeFieldBegin("type", org.thryft.protocol.Type.STRING, (short)2);
+        oprot.writeEnum(getType());
+        oprot.writeFieldEnd();
+
         if (getRefid().isPresent()) {
-            oprot.writeFieldBegin("refid", org.thryft.protocol.Type.STRING, (short)2);
+            oprot.writeFieldBegin("refid", org.thryft.protocol.Type.STRING, (short)3);
             oprot.writeString(getRefid().get());
             oprot.writeFieldEnd();
         }
 
         if (getVocab().isPresent()) {
-            oprot.writeFieldBegin("vocab", org.thryft.protocol.Type.STRING, (short)3);
+            oprot.writeFieldBegin("vocab", org.thryft.protocol.Type.STRING, (short)4);
             oprot.writeEnum(getVocab().get());
             oprot.writeFieldEnd();
         }
@@ -508,6 +569,8 @@ public class InscriptionAuthor implements org.thryft.Struct {
     }
 
     private final String text;
+
+    private final net.lab1318.costume.api.models.subject.SubjectTermType type;
 
     private final com.google.common.base.Optional<String> refid;
 

@@ -8,7 +8,7 @@ include "costume/api/models/vocab.thrift"
 // VRA Core 4.0 technique element
 struct Technique {
 	// @validation {"minLength": 1}
-	1: string title;
+	1: string text;
 
 	2: optional refid.Refid refid;
 	3: optional vocab.Vocab vocab;

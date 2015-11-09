@@ -3,7 +3,7 @@ from datetime import datetime
 from costume.api.models.model_metadata import ModelMetadata
 
 
-def get_nonempty_string(dict_, key):
+def get_nonempty_value(dict_, key):
     value = dict_.get(key)
     if value is None:
         return None

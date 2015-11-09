@@ -5,13 +5,13 @@ package net.lab1318.costume.gui.models.technique;
  */
 public class TechniqueBean {
     public TechniqueBean() {
-        title = null;
+        text = null;
         refid = null;
         vocab = null;
     }
 
     public TechniqueBean(final net.lab1318.costume.api.models.technique.Technique other) {
-        this.title = other.getTitle();
+        this.text = other.getText();
         this.refid = other.getRefid().isPresent() ? other.getRefid().get() : null;
         this.vocab = other.getVocab().isPresent() ? other.getVocab().get() : null;
     }
@@ -26,7 +26,7 @@ public class TechniqueBean {
 
         final TechniqueBean other = (TechniqueBean)otherObject;
         return
-            getTitle().equals(other.getTitle()) &&
+            getText().equals(other.getText()) &&
             getRefid().equals(other.getRefid()) &&
             getVocab().equals(other.getVocab());
     }
@@ -35,8 +35,8 @@ public class TechniqueBean {
         return refid;
     }
 
-    public String getTitle() {
-        return title;
+    public String getText() {
+        return text;
     }
 
     public net.lab1318.costume.api.models.Vocab getVocab() {
@@ -46,7 +46,7 @@ public class TechniqueBean {
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getTitle().hashCode();
+        hashCode = 31 * hashCode + getText().hashCode();
         if (getRefid() != null) {
             hashCode = 31 * hashCode + getRefid().hashCode();
         }
@@ -60,8 +60,8 @@ public class TechniqueBean {
         this.refid = refid;
     }
 
-    public void setTitle(final String title) {
-        this.title = title;
+    public void setText(final String text) {
+        this.text = text;
     }
 
     public void setVocab(final net.lab1318.costume.api.models.Vocab vocab) {
@@ -70,10 +70,10 @@ public class TechniqueBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("title", getTitle()).add("refid", getRefid()).add("vocab", getVocab()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("refid", getRefid()).add("vocab", getVocab()).toString();
     }
 
-    private String title;
+    private String text;
 
     private String refid;
 

@@ -6,7 +6,7 @@ include "costume/api/models/inscription/inscription_text_type.thrift"
 
 struct InscriptionText {
 	1: inscription_text_type.InscriptionTextType type;
-	2: string value;
+	2: string text;
 
 	// @validation {"minLength": 2, "maxLength": 3}
 	3: optional string lang;

@@ -11,7 +11,7 @@ struct Material {
 	1: material_type.MaterialType type;
 
 	// @validation {"minLength": 1}
-	2: string title;
+	2: string text;
 
 	3: optional refid.Refid refid;
 	4: optional vocab.Vocab vocab;

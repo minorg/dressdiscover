@@ -23,6 +23,9 @@ struct Object {
 	// @validation {"minLength": 1}
 	3: string title;
 
+	// @validation {"minLength": 1}
+	18: optional list<string> categories;
+
 	10: optional date_time.DateTime date;
 
 	// @validation {"minLength": 1}

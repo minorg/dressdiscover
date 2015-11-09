@@ -1,4 +1,5 @@
 from datetime import datetime
+from itertools import ifilterfalse
 import __builtin__
 import costume.api.models.image.image
 import costume.api.models.inscription.inscription_set
@@ -15,6 +16,7 @@ class Object(object):
             institution_id=None,
             model_metadata=None,
             title=None,
+            categories=None,
             date=None,
             date_text=None,
             description=None,
@@ -32,6 +34,7 @@ class Object(object):
             :type institution_id: str
             :type model_metadata: costume.api.models.model_metadata.ModelMetadata
             :type title: str
+            :type categories: tuple(str) or None
             :type date: datetime or None
             :type date_text: str or None
             :type description: str or None
@@ -49,6 +52,7 @@ class Object(object):
             self.__institution_id = institution_id
             self.__model_metadata = model_metadata
             self.__title = title
+            self.__categories = categories
             self.__date = date
             self.__date_text = date_text
             self.__description = description
@@ -62,7 +66,15 @@ class Object(object):
             self.__url = url
 
         def build(self):
-            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, date=self.__date, date_text=self.__date_text, description=self.__description, inscriptions=self.__inscriptions, materials=self.__materials, physical_description=self.__physical_description, provenance=self.__provenance, summary=self.__summary, techniques=self.__techniques, thumbnail=self.__thumbnail, url=self.__url)
+            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, categories=self.__categories, date=self.__date, date_text=self.__date_text, description=self.__description, inscriptions=self.__inscriptions, materials=self.__materials, physical_description=self.__physical_description, provenance=self.__provenance, summary=self.__summary, techniques=self.__techniques, thumbnail=self.__thumbnail, url=self.__url)
+
+        @property
+        def categories(self):
+            '''
+            :rtype: tuple(str)
+            '''
+
+            return self.__categories
 
         @property
         def collection_id(self):
@@ -143,6 +155,14 @@ class Object(object):
             '''
 
             return self.__provenance
+
+        def set_categories(self, categories):
+            '''
+            :type categories: tuple(str) or None
+            '''
+
+            self.__categories = categories
+            return self
 
         def set_collection_id(self, collection_id):
             '''
@@ -302,6 +322,7 @@ class Object(object):
             :type institution_id: str
             :type model_metadata: costume.api.models.model_metadata.ModelMetadata
             :type title: str
+            :type categories: tuple(str) or None
             :type date: datetime or None
             :type date_text: str or None
             :type description: str or None
@@ -320,6 +341,7 @@ class Object(object):
                 self.set_institution_id(object.institution_id)
                 self.set_model_metadata(object.model_metadata)
                 self.set_title(object.title)
+                self.set_categories(object.categories)
                 self.set_date(object.date)
                 self.set_date_text(object.date_text)
                 self.set_description(object.description)
@@ -345,6 +367,14 @@ class Object(object):
             '''
 
             return self.__url
+
+        @categories.setter
+        def categories(self, categories):
+            '''
+            :type categories: tuple(str) or None
+            '''
+
+            self.set_categories(categories)
 
         @collection_id.setter
         def collection_id(self, collection_id):
@@ -472,6 +502,7 @@ class Object(object):
         institution_id,
         model_metadata,
         title,
+        categories=None,
         date=None,
         date_text=None,
         description=None,
@@ -489,6 +520,7 @@ class Object(object):
         :type institution_id: str
         :type model_metadata: costume.api.models.model_metadata.ModelMetadata
         :type title: str
+        :type categories: tuple(str) or None
         :type date: datetime or None
         :type date_text: str or None
         :type description: str or None
@@ -527,6 +559,13 @@ class Object(object):
         if len(title) < 1:
             raise ValueError("expected len(title) to be >= 1, was %d" % len(title))
         self.__title = title
+
+        if categories is not None:
+            if not (isinstance(categories, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), categories))) == 0):
+                raise TypeError("expected categories to be a tuple(str) but it is a %s" % getattr(__builtin__, 'type')(categories))
+            if len(categories) < 1:
+                raise ValueError("expected len(categories) to be >= 1, was %d" % len(categories))
+        self.__categories = categories
 
         if date is not None:
             if not isinstance(date, datetime):
@@ -602,6 +641,8 @@ class Object(object):
             return False
         if self.title != other.title:
             return False
+        if self.categories != other.categories:
+            return False
         if self.date != other.date:
             return False
         if self.date_text != other.date_text:
@@ -627,7 +668,7 @@ class Object(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.date,self.date_text,self.description,self.inscriptions,self.materials,self.physical_description,self.provenance,self.summary,self.techniques,self.thumbnail,self.url,))
+        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.categories,self.date,self.date_text,self.description,self.inscriptions,self.materials,self.physical_description,self.provenance,self.summary,self.techniques,self.thumbnail,self.url,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -641,6 +682,8 @@ class Object(object):
         field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
         field_reprs.append('model_metadata=' + repr(self.model_metadata))
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
+        if self.categories is not None:
+            field_reprs.append('categories=' + repr(self.categories))
         if self.date is not None:
             field_reprs.append('date=' + repr(self.date))
         if self.date_text is not None:
@@ -671,6 +714,8 @@ class Object(object):
         field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
         field_reprs.append('model_metadata=' + repr(self.model_metadata))
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
+        if self.categories is not None:
+            field_reprs.append('categories=' + repr(self.categories))
         if self.date is not None:
             field_reprs.append('date=' + repr(self.date))
         if self.date_text is not None:
@@ -702,7 +747,7 @@ class Object(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'date': self.date, 'date_text': self.date_text, 'description': self.description, 'inscriptions': self.inscriptions, 'materials': self.materials, 'physical_description': self.physical_description, 'provenance': self.provenance, 'summary': self.summary, 'techniques': self.techniques, 'thumbnail': self.thumbnail, 'url': self.url}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'categories': self.categories, 'date': self.date, 'date_text': self.date_text, 'description': self.description, 'inscriptions': self.inscriptions, 'materials': self.materials, 'physical_description': self.physical_description, 'provenance': self.provenance, 'summary': self.summary, 'techniques': self.techniques, 'thumbnail': self.thumbnail, 'url': self.url}
 
     def as_tuple(self):
         '''
@@ -711,7 +756,15 @@ class Object(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.date, self.date_text, self.description, self.inscriptions, self.materials, self.physical_description, self.provenance, self.summary, self.techniques, self.thumbnail, self.url,)
+        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.categories, self.date, self.date_text, self.description, self.inscriptions, self.materials, self.physical_description, self.provenance, self.summary, self.techniques, self.thumbnail, self.url,)
+
+    @property
+    def categories(self):
+        '''
+        :rtype: tuple(str)
+        '''
+
+        return self.__categories
 
     @property
     def collection_id(self):
@@ -817,6 +870,8 @@ class Object(object):
                 init_kwds['model_metadata'] = costume.api.models.model_metadata.ModelMetadata.read(iprot)
             elif ifield_name == 'title' and ifield_id == 3:
                 init_kwds['title'] = iprot.read_string()
+            elif ifield_name == 'categories' and ifield_id == 18:
+                init_kwds['categories'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'date' and ifield_id == 10:
                 try:
                     init_kwds['date'] = iprot.read_date_time()
@@ -871,6 +926,7 @@ class Object(object):
         institution_id=None,
         model_metadata=None,
         title=None,
+        categories=None,
         date=None,
         date_text=None,
         description=None,
@@ -890,6 +946,7 @@ class Object(object):
         :type institution_id: str or None
         :type model_metadata: costume.api.models.model_metadata.ModelMetadata or None
         :type title: str or None
+        :type categories: tuple(str) or None
         :type date: datetime or None
         :type date_text: str or None
         :type description: str or None
@@ -912,6 +969,8 @@ class Object(object):
             model_metadata = self.model_metadata
         if title is None:
             title = self.title
+        if categories is None:
+            categories = self.categories
         if date is None:
             date = self.date
         if date_text is None:
@@ -934,7 +993,7 @@ class Object(object):
             thumbnail = self.thumbnail
         if url is None:
             url = self.url
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, date=date, date_text=date_text, description=description, inscriptions=inscriptions, materials=materials, physical_description=physical_description, provenance=provenance, summary=summary, techniques=techniques, thumbnail=thumbnail, url=url)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, categories=categories, date=date, date_text=date_text, description=description, inscriptions=inscriptions, materials=materials, physical_description=physical_description, provenance=provenance, summary=summary, techniques=techniques, thumbnail=thumbnail, url=url)
 
     @property
     def summary(self):
@@ -1001,6 +1060,14 @@ class Object(object):
         oprot.write_field_begin(name='title', type=11, id=3)
         oprot.write_string(self.title)
         oprot.write_field_end()
+
+        if self.categories is not None:
+            oprot.write_field_begin(name='categories', type=15, id=18)
+            oprot.write_list_begin(11, len(self.categories))
+            for _0 in self.categories:
+                oprot.write_string(_0)
+            oprot.write_list_end()
+            oprot.write_field_end()
 
         if self.date is not None:
             oprot.write_field_begin(name='date', type=10, id=10)

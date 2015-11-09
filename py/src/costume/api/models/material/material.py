@@ -8,24 +8,24 @@ class Material(object):
         def __init__(
             self,
             type=None,  # @ReservedAssignment
-            title=None,
+            text=None,
             refid=None,
             vocab=None,
         ):
             '''
             :type type: costume.api.models.material.material_type.MaterialType
-            :type title: str
+            :type text: str
             :type refid: str or None
             :type vocab: costume.api.models.vocab.Vocab or None
             '''
 
             self.__type = type
-            self.__title = title
+            self.__text = text
             self.__refid = refid
             self.__vocab = vocab
 
         def build(self):
-            return Material(type=self.__type, title=self.__title, refid=self.__refid, vocab=self.__vocab)
+            return Material(type=self.__type, text=self.__text, refid=self.__refid, vocab=self.__vocab)
 
         @property
         def refid(self):
@@ -43,12 +43,12 @@ class Material(object):
             self.__refid = refid
             return self
 
-        def set_title(self, title):
+        def set_text(self, text):
             '''
-            :type title: str
+            :type text: str
             '''
 
-            self.__title = title
+            self.__text = text
             return self
 
         def set_type(self, type):  # @ReservedAssignment
@@ -68,12 +68,12 @@ class Material(object):
             return self
 
         @property
-        def title(self):
+        def text(self):
             '''
             :rtype: str
             '''
 
-            return self.__title
+            return self.__text
 
         @property
         def type(self):  # @ReservedAssignment
@@ -86,14 +86,14 @@ class Material(object):
         def update(self, material):
             '''
             :type type: costume.api.models.material.material_type.MaterialType
-            :type title: str
+            :type text: str
             :type refid: str or None
             :type vocab: costume.api.models.vocab.Vocab or None
             '''
 
             if isinstance(material, Material):
                 self.set_type(material.type)
-                self.set_title(material.title)
+                self.set_text(material.text)
                 self.set_refid(material.refid)
                 self.set_vocab(material.vocab)
             elif isinstance(material, dict):
@@ -119,13 +119,13 @@ class Material(object):
 
             self.set_refid(refid)
 
-        @title.setter
-        def title(self, title):
+        @text.setter
+        def text(self, text):
             '''
-            :type title: str
+            :type text: str
             '''
 
-            self.set_title(title)
+            self.set_text(text)
 
         @type.setter
         def type(self, type):  # @ReservedAssignment
@@ -146,13 +146,13 @@ class Material(object):
     def __init__(
         self,
         type,  # @ReservedAssignment
-        title,
+        text,
         refid=None,
         vocab=None,
     ):
         '''
         :type type: costume.api.models.material.material_type.MaterialType
-        :type title: str
+        :type text: str
         :type refid: str or None
         :type vocab: costume.api.models.vocab.Vocab or None
         '''
@@ -163,13 +163,13 @@ class Material(object):
             raise TypeError("expected type to be a costume.api.models.material.material_type.MaterialType but it is a %s" % getattr(__builtin__, 'type')(type))
         self.__type = type
 
-        if title is None:
-            raise ValueError('title is required')
-        if not isinstance(title, basestring):
-            raise TypeError("expected title to be a str but it is a %s" % getattr(__builtin__, 'type')(title))
-        if len(title) < 1:
-            raise ValueError("expected len(title) to be >= 1, was %d" % len(title))
-        self.__title = title
+        if text is None:
+            raise ValueError('text is required')
+        if not isinstance(text, basestring):
+            raise TypeError("expected text to be a str but it is a %s" % getattr(__builtin__, 'type')(text))
+        if len(text) < 1:
+            raise ValueError("expected len(text) to be >= 1, was %d" % len(text))
+        self.__text = text
 
         if refid is not None:
             if not isinstance(refid, basestring):
@@ -184,7 +184,7 @@ class Material(object):
     def __eq__(self, other):
         if self.type != other.type:
             return False
-        if self.title != other.title:
+        if self.text != other.text:
             return False
         if self.refid != other.refid:
             return False
@@ -193,7 +193,7 @@ class Material(object):
         return True
 
     def __hash__(self):
-        return hash((self.type,self.title,self.refid,self.vocab,))
+        return hash((self.type,self.text,self.refid,self.vocab,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -204,7 +204,7 @@ class Material(object):
     def __repr__(self):
         field_reprs = []
         field_reprs.append('type=' + repr(self.type))
-        field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
+        field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace') + "'")
         if self.refid is not None:
             field_reprs.append('refid=' + "'" + self.refid.encode('ascii', 'replace') + "'")
         if self.vocab is not None:
@@ -214,7 +214,7 @@ class Material(object):
     def __str__(self):
         field_reprs = []
         field_reprs.append('type=' + repr(self.type))
-        field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
+        field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace') + "'")
         if self.refid is not None:
             field_reprs.append('refid=' + "'" + self.refid.encode('ascii', 'replace') + "'")
         if self.vocab is not None:
@@ -228,7 +228,7 @@ class Material(object):
         :rtype: dict
         '''
 
-        return {'type': self.type, 'title': self.title, 'refid': self.refid, 'vocab': self.vocab}
+        return {'type': self.type, 'text': self.text, 'refid': self.refid, 'vocab': self.vocab}
 
     def as_tuple(self):
         '''
@@ -237,7 +237,7 @@ class Material(object):
         :rtype: tuple
         '''
 
-        return (self.type, self.title, self.refid, self.vocab,)
+        return (self.type, self.text, self.refid, self.vocab,)
 
     @classmethod
     def read(cls, iprot):
@@ -257,8 +257,8 @@ class Material(object):
                 break
             elif ifield_name == 'type' and ifield_id == 1:
                 init_kwds['type'] = costume.api.models.material.material_type.MaterialType.value_of(iprot.read_string().strip().upper())
-            elif ifield_name == 'title' and ifield_id == 2:
-                init_kwds['title'] = iprot.read_string()
+            elif ifield_name == 'text' and ifield_id == 2:
+                init_kwds['text'] = iprot.read_string()
             elif ifield_name == 'refid' and ifield_id == 3:
                 try:
                     init_kwds['refid'] = iprot.read_string()
@@ -285,7 +285,7 @@ class Material(object):
     def replace(
         self,
         type=None,  # @ReservedAssignment
-        title=None,
+        text=None,
         refid=None,
         vocab=None,
     ):
@@ -293,7 +293,7 @@ class Material(object):
         Copy this object, replace one or more fields, and return the copy.
 
         :type type: costume.api.models.material.material_type.MaterialType or None
-        :type title: str or None
+        :type text: str or None
         :type refid: str or None
         :type vocab: costume.api.models.vocab.Vocab or None
         :rtype: costume.api.models.material.material.Material
@@ -301,21 +301,21 @@ class Material(object):
 
         if type is None:
             type = self.type  # @ReservedAssignment
-        if title is None:
-            title = self.title
+        if text is None:
+            text = self.text
         if refid is None:
             refid = self.refid
         if vocab is None:
             vocab = self.vocab
-        return self.__class__(type=type, title=title, refid=refid, vocab=vocab)
+        return self.__class__(type=type, text=text, refid=refid, vocab=vocab)
 
     @property
-    def title(self):
+    def text(self):
         '''
         :rtype: str
         '''
 
-        return self.__title
+        return self.__text
 
     @property
     def type(self):  # @ReservedAssignment
@@ -347,8 +347,8 @@ class Material(object):
         oprot.write_string(str(self.type))
         oprot.write_field_end()
 
-        oprot.write_field_begin(name='title', type=11, id=2)
-        oprot.write_string(self.title)
+        oprot.write_field_begin(name='text', type=11, id=2)
+        oprot.write_string(self.text)
         oprot.write_field_end()
 
         if self.refid is not None:

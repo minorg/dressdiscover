@@ -1,14 +1,19 @@
-package net.lab1318.costume.gui.models.inscription;
+package net.lab1318.costume.gui.models.subject;
 
-public class InscriptionAuthorBean {
-    public InscriptionAuthorBean() {
+/**
+ * VRA Core 4.0 subject term element
+ */
+public class SubjectTermBean {
+    public SubjectTermBean() {
         text = null;
+        type = null;
         refid = null;
         vocab = null;
     }
 
-    public InscriptionAuthorBean(final net.lab1318.costume.api.models.inscription.InscriptionAuthor other) {
+    public SubjectTermBean(final net.lab1318.costume.api.models.subject.SubjectTerm other) {
         this.text = other.getText();
+        this.type = other.getType();
         this.refid = other.getRefid().isPresent() ? other.getRefid().get() : null;
         this.vocab = other.getVocab().isPresent() ? other.getVocab().get() : null;
     }
@@ -17,13 +22,14 @@ public class InscriptionAuthorBean {
     public boolean equals(final java.lang.Object otherObject) {
         if (otherObject == this) {
             return true;
-        } else if (!(otherObject instanceof InscriptionAuthorBean)) {
+        } else if (!(otherObject instanceof SubjectTermBean)) {
             return false;
         }
 
-        final InscriptionAuthorBean other = (InscriptionAuthorBean)otherObject;
+        final SubjectTermBean other = (SubjectTermBean)otherObject;
         return
             getText().equals(other.getText()) &&
+            getType().equals(other.getType()) &&
             getRefid().equals(other.getRefid()) &&
             getVocab().equals(other.getVocab());
     }
@@ -36,6 +42,10 @@ public class InscriptionAuthorBean {
         return text;
     }
 
+    public net.lab1318.costume.api.models.subject.SubjectTermType getType() {
+        return type;
+    }
+
     public net.lab1318.costume.api.models.Vocab getVocab() {
         return vocab;
     }
@@ -44,6 +54,7 @@ public class InscriptionAuthorBean {
     public int hashCode() {
         int hashCode = 17;
         hashCode = 31 * hashCode + getText().hashCode();
+        hashCode = 31 * hashCode + getType().ordinal();
         if (getRefid() != null) {
             hashCode = 31 * hashCode + getRefid().hashCode();
         }
@@ -61,16 +72,22 @@ public class InscriptionAuthorBean {
         this.text = text;
     }
 
+    public void setType(final net.lab1318.costume.api.models.subject.SubjectTermType type) {
+        this.type = type;
+    }
+
     public void setVocab(final net.lab1318.costume.api.models.Vocab vocab) {
         this.vocab = vocab;
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("refid", getRefid()).add("vocab", getVocab()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("type", getType()).add("refid", getRefid()).add("vocab", getVocab()).toString();
     }
 
     private String text;
+
+    private net.lab1318.costume.api.models.subject.SubjectTermType type;
 
     private String refid;
 
