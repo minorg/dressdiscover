@@ -9,11 +9,9 @@ import com.vaadin.ui.UI;
 
 import net.lab1318.costume.gui.controllers.GuiServlet;
 import net.lab1318.costume.gui.presenters.collection.CollectionByIdPresenter;
-import net.lab1318.costume.gui.presenters.institution.InstitutionByIdPresenter;
 import net.lab1318.costume.gui.presenters.institution.InstitutionsPresenter;
 import net.lab1318.costume.gui.presenters.object.ObjectByIdPresenter;
 import net.lab1318.costume.gui.views.collection.CollectionByIdView;
-import net.lab1318.costume.gui.views.institution.InstitutionByIdView;
 import net.lab1318.costume.gui.views.institution.InstitutionsView;
 import net.lab1318.costume.gui.views.object.ObjectByIdView;
 
@@ -31,11 +29,6 @@ public final class GuiUI extends UI {
         {
             injector.getInstance(CollectionByIdPresenter.class);
             navigator.addView(CollectionByIdView.NAME, injector.getInstance(CollectionByIdView.class));
-        }
-
-        {
-            injector.getInstance(InstitutionByIdPresenter.class);
-            navigator.addView(InstitutionByIdView.NAME, injector.getInstance(InstitutionByIdView.class));
         }
 
         {
