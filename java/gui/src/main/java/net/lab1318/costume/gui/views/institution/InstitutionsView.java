@@ -17,6 +17,7 @@ import com.vaadin.ui.Tree;
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
+import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.gui.views.TopLevelView;
 
@@ -40,6 +41,12 @@ public class InstitutionsView extends TopLevelView {
                 if (event.getItemId() instanceof CollectionId) {
                     _getEventBus().post(new CollectionQueryService.Messages.GetCollectionByIdRequest(
                             (CollectionId) event.getItemId()));
+                } else if (event.getItemId() instanceof InstitutionId) {
+                    if (!viewTree.isExpanded(event.getItemId())) {
+                        viewTree.expandItem(event.getItemId());
+                    } else {
+                        viewTree.collapseItem(event.getItemId());
+                    }
                 }
             }
         });
