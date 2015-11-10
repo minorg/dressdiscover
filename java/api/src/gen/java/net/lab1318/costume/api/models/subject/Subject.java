@@ -50,7 +50,7 @@ public class Subject implements org.thryft.Struct {
                         iprot.readListEnd();
                         return sequence.build();
                     } catch (final org.thryft.protocol.InputProtocolException e) {
-                        return com.google.common.collect.ImmutableList.of();
+                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                     }
                 }
             }).apply(iprot);
@@ -80,7 +80,7 @@ public class Subject implements org.thryft.Struct {
                                     iprot.readListEnd();
                                     return sequence.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    return com.google.common.collect.ImmutableList.of();
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
                         }).apply(iprot);
@@ -295,7 +295,7 @@ public class Subject implements org.thryft.Struct {
                     iprot.readListEnd();
                     return sequence.build();
                 } catch (final org.thryft.protocol.InputProtocolException e) {
-                    return com.google.common.collect.ImmutableList.of();
+                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                 }
             }
         }).apply(iprot);
@@ -331,7 +331,7 @@ public class Subject implements org.thryft.Struct {
                                 iprot.readListEnd();
                                 return sequence.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
-                                return com.google.common.collect.ImmutableList.of();
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
                     }).apply(iprot);

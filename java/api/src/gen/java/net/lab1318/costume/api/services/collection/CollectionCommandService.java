@@ -57,7 +57,7 @@ public interface CollectionCommandService {
                     try {
                         id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
                     } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
-                         throw new IllegalArgumentException(e);
+                         throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     iprot.readListEnd();
                     return this;
@@ -75,7 +75,7 @@ public interface CollectionCommandService {
                             try {
                                 id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
                             } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
-                                 throw new IllegalArgumentException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             break;
                         }
@@ -277,7 +277,7 @@ public interface CollectionCommandService {
                 try {
                     id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
                 } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
-                     throw new IllegalArgumentException(e);
+                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 iprot.readListEnd();
                 try {
@@ -301,7 +301,7 @@ public interface CollectionCommandService {
                         try {
                             id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
                         } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
-                             throw new IllegalArgumentException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         break;
                     }
@@ -919,7 +919,7 @@ public interface CollectionCommandService {
                     try {
                         institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                     } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                         throw new IllegalArgumentException(e);
+                         throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     iprot.readListEnd();
                     return this;
@@ -937,7 +937,7 @@ public interface CollectionCommandService {
                             try {
                                 institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                             } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                                 throw new IllegalArgumentException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             break;
                         }
@@ -1139,7 +1139,7 @@ public interface CollectionCommandService {
                 try {
                     institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                 } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                     throw new IllegalArgumentException(e);
+                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 iprot.readListEnd();
                 try {
@@ -1163,7 +1163,7 @@ public interface CollectionCommandService {
                         try {
                             institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                         } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                             throw new IllegalArgumentException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         break;
                     }
@@ -1435,7 +1435,7 @@ public interface CollectionCommandService {
                     try {
                         id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
                     } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
-                         throw new IllegalArgumentException(e);
+                         throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     collection = net.lab1318.costume.api.models.collection.Collection.readAsStruct(iprot);
                     iprot.readListEnd();
@@ -1454,7 +1454,7 @@ public interface CollectionCommandService {
                             try {
                                 id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
                             } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
-                                 throw new IllegalArgumentException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             break;
                         }
@@ -1685,7 +1685,7 @@ public interface CollectionCommandService {
                 try {
                     id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
                 } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
-                     throw new IllegalArgumentException(e);
+                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 collection = net.lab1318.costume.api.models.collection.Collection.readAsStruct(iprot);
                 iprot.readListEnd();
@@ -1711,7 +1711,7 @@ public interface CollectionCommandService {
                         try {
                             id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
                         } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
-                             throw new IllegalArgumentException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         break;
                     }

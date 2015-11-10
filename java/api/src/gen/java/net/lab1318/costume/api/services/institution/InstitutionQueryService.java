@@ -55,7 +55,7 @@ public interface InstitutionQueryService {
                     try {
                         id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                     } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                         throw new IllegalArgumentException(e);
+                         throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     iprot.readListEnd();
                     return this;
@@ -73,7 +73,7 @@ public interface InstitutionQueryService {
                             try {
                                 id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                             } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                                 throw new IllegalArgumentException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             break;
                         }
@@ -275,7 +275,7 @@ public interface InstitutionQueryService {
                 try {
                     id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                 } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                     throw new IllegalArgumentException(e);
+                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 iprot.readListEnd();
                 try {
@@ -299,7 +299,7 @@ public interface InstitutionQueryService {
                         try {
                             id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                         } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                             throw new IllegalArgumentException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         break;
                     }
@@ -892,7 +892,7 @@ public interface InstitutionQueryService {
                                 iprot.readListEnd();
                                 return sequence.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
-                                return com.google.common.collect.ImmutableList.of();
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
                     }).apply(iprot);
@@ -921,7 +921,7 @@ public interface InstitutionQueryService {
                                         iprot.readListEnd();
                                         return sequence.build();
                                     } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        return com.google.common.collect.ImmutableList.of();
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
                             }).apply(iprot);
@@ -1135,7 +1135,7 @@ public interface InstitutionQueryService {
                             iprot.readListEnd();
                             return sequence.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
-                            return com.google.common.collect.ImmutableList.of();
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
                     }
                 }).apply(iprot);
@@ -1170,7 +1170,7 @@ public interface InstitutionQueryService {
                                     iprot.readListEnd();
                                     return sequence.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    return com.google.common.collect.ImmutableList.of();
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
                         }).apply(iprot);
