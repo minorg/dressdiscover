@@ -34,6 +34,9 @@ struct Object {
 	// @validation {"minLength": 1}
 	4: optional string description;
 
+	// @validation {"minLength": 1}
+	19: optional string history_notes;
+
 	17: optional inscription_set.InscriptionSet inscriptions;
 
 	15: optional material_set.MaterialSet materials;
