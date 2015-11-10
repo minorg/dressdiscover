@@ -44,7 +44,7 @@ public class CollectionEntry implements org.thryft.Struct, org.notaweb.api.model
             try {
                 id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
             } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
-                 throw new IllegalArgumentException(e);
+                 throw new org.thryft.protocol.InputProtocolException(e);
             }
             model = net.lab1318.costume.api.models.collection.Collection.readAsStruct(iprot);
             iprot.readListEnd();
@@ -63,7 +63,7 @@ public class CollectionEntry implements org.thryft.Struct, org.notaweb.api.model
                     try {
                         id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
                     } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
-                         throw new IllegalArgumentException(e);
+                         throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     break;
                 }
@@ -294,7 +294,7 @@ public class CollectionEntry implements org.thryft.Struct, org.notaweb.api.model
         try {
             id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
         } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
-             throw new IllegalArgumentException(e);
+             throw new org.thryft.protocol.InputProtocolException(e);
         }
         model = net.lab1318.costume.api.models.collection.Collection.readAsStruct(iprot);
         iprot.readListEnd();
@@ -320,7 +320,7 @@ public class CollectionEntry implements org.thryft.Struct, org.notaweb.api.model
                 try {
                     id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
                 } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
-                     throw new IllegalArgumentException(e);
+                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 break;
             }

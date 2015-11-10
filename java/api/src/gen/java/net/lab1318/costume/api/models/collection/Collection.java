@@ -50,7 +50,7 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
             try {
                 institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
             } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                 throw new IllegalArgumentException(e);
+                 throw new org.thryft.protocol.InputProtocolException(e);
             }
             modelMetadata = net.lab1318.costume.api.models.ModelMetadata.readAsStruct(iprot);
             title = iprot.readString();
@@ -71,7 +71,7 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
                         try {
                             institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                         } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                             throw new IllegalArgumentException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                     }
                     break;
@@ -336,7 +336,7 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
         try {
             institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
         } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-             throw new IllegalArgumentException(e);
+             throw new org.thryft.protocol.InputProtocolException(e);
         }
         modelMetadata = net.lab1318.costume.api.models.ModelMetadata.readAsStruct(iprot);
         title = iprot.readString();
@@ -365,7 +365,7 @@ public class Collection implements org.thryft.Struct, org.notaweb.api.models.Mod
                     try {
                         institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                     } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                         throw new IllegalArgumentException(e);
+                         throw new org.thryft.protocol.InputProtocolException(e);
                     }
                 }
                 break;

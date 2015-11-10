@@ -44,7 +44,7 @@ public class ObjectEntry implements org.thryft.Struct, org.notaweb.api.models.Mo
             try {
                 id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
             } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
-                 throw new IllegalArgumentException(e);
+                 throw new org.thryft.protocol.InputProtocolException(e);
             }
             model = net.lab1318.costume.api.models.object.Object.readAsStruct(iprot);
             iprot.readListEnd();
@@ -63,7 +63,7 @@ public class ObjectEntry implements org.thryft.Struct, org.notaweb.api.models.Mo
                     try {
                         id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
                     } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
-                         throw new IllegalArgumentException(e);
+                         throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     break;
                 }
@@ -294,7 +294,7 @@ public class ObjectEntry implements org.thryft.Struct, org.notaweb.api.models.Mo
         try {
             id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
         } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
-             throw new IllegalArgumentException(e);
+             throw new org.thryft.protocol.InputProtocolException(e);
         }
         model = net.lab1318.costume.api.models.object.Object.readAsStruct(iprot);
         iprot.readListEnd();
@@ -320,7 +320,7 @@ public class ObjectEntry implements org.thryft.Struct, org.notaweb.api.models.Mo
                 try {
                     id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
                 } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
-                     throw new IllegalArgumentException(e);
+                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 break;
             }

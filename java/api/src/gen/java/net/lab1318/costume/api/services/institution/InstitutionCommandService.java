@@ -56,7 +56,7 @@ public interface InstitutionCommandService {
                     try {
                         id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                     } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                         throw new IllegalArgumentException(e);
+                         throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     iprot.readListEnd();
                     return this;
@@ -74,7 +74,7 @@ public interface InstitutionCommandService {
                             try {
                                 id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                             } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                                 throw new IllegalArgumentException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             break;
                         }
@@ -276,7 +276,7 @@ public interface InstitutionCommandService {
                 try {
                     id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                 } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                     throw new IllegalArgumentException(e);
+                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 iprot.readListEnd();
                 try {
@@ -300,7 +300,7 @@ public interface InstitutionCommandService {
                         try {
                             id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                         } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                             throw new IllegalArgumentException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         break;
                     }
@@ -924,7 +924,7 @@ public interface InstitutionCommandService {
                     try {
                         id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                     } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                         throw new IllegalArgumentException(e);
+                         throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     institution = net.lab1318.costume.api.models.institution.Institution.readAsStruct(iprot);
                     iprot.readListEnd();
@@ -943,7 +943,7 @@ public interface InstitutionCommandService {
                             try {
                                 id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                             } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                                 throw new IllegalArgumentException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             break;
                         }
@@ -1174,7 +1174,7 @@ public interface InstitutionCommandService {
                 try {
                     id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                 } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                     throw new IllegalArgumentException(e);
+                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 institution = net.lab1318.costume.api.models.institution.Institution.readAsStruct(iprot);
                 iprot.readListEnd();
@@ -1200,7 +1200,7 @@ public interface InstitutionCommandService {
                         try {
                             id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                         } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                             throw new IllegalArgumentException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         break;
                     }

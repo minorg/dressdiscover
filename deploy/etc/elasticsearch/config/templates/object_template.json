@@ -55,6 +55,9 @@
           "4:description": {
             "type": "string"
           }, 
+          "19:history_notes": {
+            "type": "string"
+          }, 
           "17:inscriptions": {
             "type": "nested", 
             "properties": {

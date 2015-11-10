@@ -60,7 +60,7 @@ public interface ObjectQueryService {
                     try {
                         id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
                     } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
-                         throw new IllegalArgumentException(e);
+                         throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     iprot.readListEnd();
                     return this;
@@ -78,7 +78,7 @@ public interface ObjectQueryService {
                             try {
                                 id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
                             } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
-                                 throw new IllegalArgumentException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             break;
                         }
@@ -280,7 +280,7 @@ public interface ObjectQueryService {
                 try {
                     id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
                 } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
-                     throw new IllegalArgumentException(e);
+                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 iprot.readListEnd();
                 try {
@@ -304,7 +304,7 @@ public interface ObjectQueryService {
                         try {
                             id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
                         } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
-                             throw new IllegalArgumentException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         break;
                     }
@@ -1206,7 +1206,7 @@ public interface ObjectQueryService {
                     try {
                         collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
                     } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
-                         throw new IllegalArgumentException(e);
+                         throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     iprot.readListEnd();
                     return this;
@@ -1224,7 +1224,7 @@ public interface ObjectQueryService {
                             try {
                                 collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
                             } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
-                                 throw new IllegalArgumentException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             break;
                         }
@@ -1426,7 +1426,7 @@ public interface ObjectQueryService {
                 try {
                     collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
                 } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
-                     throw new IllegalArgumentException(e);
+                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 iprot.readListEnd();
                 try {
@@ -1450,7 +1450,7 @@ public interface ObjectQueryService {
                         try {
                             collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
                         } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
-                             throw new IllegalArgumentException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         break;
                     }
@@ -1858,7 +1858,7 @@ public interface ObjectQueryService {
                     try {
                         institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                     } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                         throw new IllegalArgumentException(e);
+                         throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     iprot.readListEnd();
                     return this;
@@ -1876,7 +1876,7 @@ public interface ObjectQueryService {
                             try {
                                 institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                             } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                                 throw new IllegalArgumentException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             break;
                         }
@@ -2078,7 +2078,7 @@ public interface ObjectQueryService {
                 try {
                     institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                 } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                     throw new IllegalArgumentException(e);
+                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 iprot.readListEnd();
                 try {
@@ -2102,7 +2102,7 @@ public interface ObjectQueryService {
                         try {
                             institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                         } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                             throw new IllegalArgumentException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         break;
                     }
@@ -2891,7 +2891,7 @@ public interface ObjectQueryService {
                                 iprot.readListEnd();
                                 return sequence.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
-                                return com.google.common.collect.ImmutableList.of();
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
                     }).apply(iprot);
@@ -2920,7 +2920,7 @@ public interface ObjectQueryService {
                                         iprot.readListEnd();
                                         return sequence.build();
                                     } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        return com.google.common.collect.ImmutableList.of();
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
                             }).apply(iprot);
@@ -3134,7 +3134,7 @@ public interface ObjectQueryService {
                             iprot.readListEnd();
                             return sequence.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
-                            return com.google.common.collect.ImmutableList.of();
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
                     }
                 }).apply(iprot);
@@ -3169,7 +3169,7 @@ public interface ObjectQueryService {
                                     iprot.readListEnd();
                                     return sequence.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    return com.google.common.collect.ImmutableList.of();
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
                         }).apply(iprot);
@@ -3281,7 +3281,7 @@ public interface ObjectQueryService {
                     try {
                         collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
                     } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
-                         throw new IllegalArgumentException(e);
+                         throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     from = iprot.readU32();
                     size = iprot.readU32();
@@ -3301,7 +3301,7 @@ public interface ObjectQueryService {
                             try {
                                 collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
                             } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
-                                 throw new IllegalArgumentException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             break;
                         }
@@ -3561,7 +3561,7 @@ public interface ObjectQueryService {
                 try {
                     collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
                 } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
-                     throw new IllegalArgumentException(e);
+                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 from = iprot.readU32();
                 size = iprot.readU32();
@@ -3589,7 +3589,7 @@ public interface ObjectQueryService {
                         try {
                             collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
                         } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
-                             throw new IllegalArgumentException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         break;
                     }
@@ -3720,7 +3720,7 @@ public interface ObjectQueryService {
                                 iprot.readListEnd();
                                 return sequence.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
-                                return com.google.common.collect.ImmutableList.of();
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
                     }).apply(iprot);
@@ -3749,7 +3749,7 @@ public interface ObjectQueryService {
                                         iprot.readListEnd();
                                         return sequence.build();
                                     } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        return com.google.common.collect.ImmutableList.of();
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
                             }).apply(iprot);
@@ -3963,7 +3963,7 @@ public interface ObjectQueryService {
                             iprot.readListEnd();
                             return sequence.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
-                            return com.google.common.collect.ImmutableList.of();
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
                     }
                 }).apply(iprot);
@@ -3998,7 +3998,7 @@ public interface ObjectQueryService {
                                     iprot.readListEnd();
                                     return sequence.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    return com.google.common.collect.ImmutableList.of();
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
                         }).apply(iprot);
@@ -4110,7 +4110,7 @@ public interface ObjectQueryService {
                     try {
                         institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                     } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                         throw new IllegalArgumentException(e);
+                         throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     from = iprot.readU32();
                     size = iprot.readU32();
@@ -4130,7 +4130,7 @@ public interface ObjectQueryService {
                             try {
                                 institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                             } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                                 throw new IllegalArgumentException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             break;
                         }
@@ -4390,7 +4390,7 @@ public interface ObjectQueryService {
                 try {
                     institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                 } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                     throw new IllegalArgumentException(e);
+                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 from = iprot.readU32();
                 size = iprot.readU32();
@@ -4418,7 +4418,7 @@ public interface ObjectQueryService {
                         try {
                             institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
                         } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
-                             throw new IllegalArgumentException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         break;
                     }
@@ -4549,7 +4549,7 @@ public interface ObjectQueryService {
                                 iprot.readListEnd();
                                 return sequence.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
-                                return com.google.common.collect.ImmutableList.of();
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
                     }).apply(iprot);
@@ -4578,7 +4578,7 @@ public interface ObjectQueryService {
                                         iprot.readListEnd();
                                         return sequence.build();
                                     } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        return com.google.common.collect.ImmutableList.of();
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
                             }).apply(iprot);
@@ -4792,7 +4792,7 @@ public interface ObjectQueryService {
                             iprot.readListEnd();
                             return sequence.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
-                            return com.google.common.collect.ImmutableList.of();
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
                     }
                 }).apply(iprot);
@@ -4827,7 +4827,7 @@ public interface ObjectQueryService {
                                     iprot.readListEnd();
                                     return sequence.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    return com.google.common.collect.ImmutableList.of();
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
                         }).apply(iprot);

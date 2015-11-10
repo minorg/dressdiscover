@@ -37,16 +37,16 @@ with open(MUSEUMOBJECTS_FILE_PATH, 'rb') as f:
     museumobject_dicts = json.loads(f.read())
 for museumobject_dict in museumobject_dicts:
     object_number = museumobject_dict['fields']['object_number']
+    museumobject_file_path = os.path.join(MUSEUMOBJECTS_DIR_PATH, str(object_number) + '.json')
+    if os.path.isfile(museumobject_file_path):
+        print 'skipping', object_number
+        continue
     url = urllib2.urlopen('http://www.vam.ac.uk/api/json/museumobject/' + str(object_number))
     try:
         url_json = url.read()
     finally:
         url.close()
     api_call_count = api_call_count + 1
-    museumobject_file_path = os.path.join(MUSEUMOBJECTS_DIR_PATH, str(object_number) + '.json')
-    if os.path.isfile(museumobject_file_path):
-        print 'skipping', object_number
-        continue
     with open(museumobject_file_path, 'w+b') as f:
         f.write(url_json)
     print api_call_count, 'read', object_number
