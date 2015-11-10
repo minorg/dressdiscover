@@ -59,8 +59,8 @@ def parse_museumobject(museumobject_dict):
                     Inscription.Builder()
                         .set_texts((
                             InscriptionText.Builder()
+                                .set_text(marks)
                                 .set_type(InscriptionTextType.MARK)
-                                .set_value(marks)
                                 .build(),
                         ))
                         .build(),
@@ -73,6 +73,8 @@ def parse_museumobject(museumobject_dict):
         materials = []
         for material_dict in material_dicts:
             material_dict = material_dict['fields']
+            if len(material_dict['name']) == 0:
+                continue
             materials.append(
                 Material.Builder()
                     .set_text(material_dict['name'])
@@ -90,6 +92,8 @@ def parse_museumobject(museumobject_dict):
         techniques = []
         for technique_dict in technique_dicts:
             technique_dict = technique_dict['fields']
+            if len(technique_dict['name']) == 0:
+                continue
             techniques.append(
                 Technique.Builder()
                     .set_text(technique_dict['name'])
@@ -150,18 +154,17 @@ services.collection_command_service.put_collection(
 )
 
 
-# TODO:
-# Search for records in T&F
-# Load them all without details
-# If --details, go through existing records, filling them in up to 3000 records
+DATA_DIR_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data'))
+MUSEUMOBJECTS_DIR_PATH = os.path.join(DATA_DIR_PATH, 'vam', 'museumobject')
 
-
-with open(os.path.join(properties.home_directory_path, 'data', 'vam_museumobjects.json')) as f:
-    response = json.loads(f.read())
-    for museumobject_dict in response['records']:
-        if museumobject_dict['fields']['object_number'] == 'O13814':
-            with open(os.path.join(properties.home_directory_path, 'data', 'vam_museumobject_detail.json')) as f:
-                museumobject_dict = json.loads(f.read())[0]
-
+object_count = 0
+for root_dir_path, _, file_names in os.walk(MUSEUMOBJECTS_DIR_PATH):
+    for file_name in file_names:
+        if not file_name.endswith('.json'):
+            continue
+        with open(os.path.join(root_dir_path, file_name), 'rb') as f:
+            museumobject_dict = json.loads(f.read())[0]
         object_id, object_ = parse_museumobject(museumobject_dict['fields'])
         services.object_command_service.put_object(object_id, object_)
+        print 'put object', object_id, '(#', object_count, ')'
+        object_count = object_count + 1
