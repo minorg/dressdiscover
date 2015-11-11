@@ -43,6 +43,77 @@
           "3:title": {
             "type": "string"
           }, 
+          "20:agents": {
+            "type": "nested", 
+            "properties": {
+              "1:agents": {
+                "type": "nested", 
+                "properties": {
+                  "1:name": {
+                    "type": "nested", 
+                    "properties": {
+                      "1:text": {
+                        "type": "string"
+                      }, 
+                      "2:type": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }, 
+                      "3:refid": {
+                        "type": "string"
+                      }, 
+                      "4:vocab": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }
+                    }
+                  }, 
+                  "2:attribution": {
+                    "type": "string"
+                  }, 
+                  "3:culture": {
+                    "type": "string"
+                  }, 
+                  "4:dates": {
+                    "type": "nested", 
+                    "properties": {
+                      "1:type": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }, 
+                      "2:earliest_date": {
+                        "type": "date"
+                      }, 
+                      "3:latest_date": {
+                        "type": "date"
+                      }
+                    }
+                  }, 
+                  "5:role": {
+                    "type": "nested", 
+                    "properties": {
+                      "1:text": {
+                        "type": "string"
+                      }, 
+                      "2:refid": {
+                        "type": "string"
+                      }, 
+                      "3:vocab": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }, 
+              "2:display": {
+                "type": "string"
+              }, 
+              "3:notes": {
+                "type": "string"
+              }
+            }
+          }, 
           "18:categories": {
             "type": "string"
           }, 

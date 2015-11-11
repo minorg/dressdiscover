@@ -6,6 +6,7 @@ public class ObjectBean {
         institutionId = null;
         modelMetadata = null;
         title = null;
+        agents = null;
         categories = null;
         date = null;
         dateText = null;
@@ -26,6 +27,7 @@ public class ObjectBean {
         this.institutionId = other.getInstitutionId();
         this.modelMetadata = new net.lab1318.costume.gui.models.ModelMetadataBean(other.getModelMetadata());
         this.title = other.getTitle();
+        this.agents = other.getAgents().isPresent() ? new net.lab1318.costume.gui.models.agent.AgentSetBean(other.getAgents().get()) : null;
         this.categories = other.getCategories().isPresent() ? new java.util.ArrayList<String>(other.getCategories().get()) : null;
         this.date = other.getDate().isPresent() ? other.getDate().get() : null;
         this.dateText = other.getDateText().isPresent() ? other.getDateText().get() : null;
@@ -55,6 +57,7 @@ public class ObjectBean {
             getInstitutionId().equals(other.getInstitutionId()) &&
             getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
+            getAgents().equals(other.getAgents()) &&
             getCategories().equals(other.getCategories()) &&
             getDate().equals(other.getDate()) &&
             getDateText().equals(other.getDateText()) &&
@@ -70,6 +73,10 @@ public class ObjectBean {
             getUrl().equals(other.getUrl());
     }
 
+    public net.lab1318.costume.gui.models.agent.AgentSetBean getAgents() {
+        return agents;
+    }
+
     public java.util.List<String> getCategories() {
         return categories;
     }
@@ -82,10 +89,16 @@ public class ObjectBean {
         return date;
     }
 
+    /**
+     * Dublin Core freetext date
+     */
     public String getDateText() {
         return dateText;
     }
 
+    /**
+     * Dublin Core description
+     */
     public String getDescription() {
         return description;
     }
@@ -114,6 +127,9 @@ public class ObjectBean {
         return physicalDescription;
     }
 
+    /**
+     * Dublin Core freetext provenance
+     */
     public String getProvenance() {
         return provenance;
     }
@@ -130,6 +146,9 @@ public class ObjectBean {
         return thumbnail;
     }
 
+    /**
+     * Dublin Core title
+     */
     public String getTitle() {
         return title;
     }
@@ -145,6 +164,9 @@ public class ObjectBean {
         hashCode = 31 * hashCode + getInstitutionId().hashCode();
         hashCode = 31 * hashCode + getModelMetadata().hashCode();
         hashCode = 31 * hashCode + getTitle().hashCode();
+        if (getAgents() != null) {
+            hashCode = 31 * hashCode + getAgents().hashCode();
+        }
         if (getCategories() != null) {
             hashCode = 31 * hashCode + getCategories().hashCode();
         }
@@ -185,6 +207,10 @@ public class ObjectBean {
             hashCode = 31 * hashCode + getUrl().hashCode();
         }
         return hashCode;
+    }
+
+    public void setAgents(final net.lab1318.costume.gui.models.agent.AgentSetBean agents) {
+        this.agents = agents;
     }
 
     public void setCategories(final java.util.List<String> categories) {
@@ -257,7 +283,7 @@ public class ObjectBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("categories", getCategories()).add("date", getDate()).add("date_text", getDateText()).add("description", getDescription()).add("history_notes", getHistoryNotes()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("physical_description", getPhysicalDescription()).add("provenance", getProvenance()).add("summary", getSummary()).add("techniques", getTechniques()).add("thumbnail", getThumbnail()).add("url", getUrl()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agents", getAgents()).add("categories", getCategories()).add("date", getDate()).add("date_text", getDateText()).add("description", getDescription()).add("history_notes", getHistoryNotes()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("physical_description", getPhysicalDescription()).add("provenance", getProvenance()).add("summary", getSummary()).add("techniques", getTechniques()).add("thumbnail", getThumbnail()).add("url", getUrl()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -266,14 +292,25 @@ public class ObjectBean {
 
     private net.lab1318.costume.gui.models.ModelMetadataBean modelMetadata;
 
+    /**
+     * Dublin Core title
+     */
     private String title;
+
+    private net.lab1318.costume.gui.models.agent.AgentSetBean agents;
 
     private java.util.List<String> categories;
 
     private java.util.Date date;
 
+    /**
+     * Dublin Core freetext date
+     */
     private String dateText;
 
+    /**
+     * Dublin Core description
+     */
     private String description;
 
     private String historyNotes;
@@ -284,6 +321,9 @@ public class ObjectBean {
 
     private String physicalDescription;
 
+    /**
+     * Dublin Core freetext provenance
+     */
     private String provenance;
 
     private String summary;
