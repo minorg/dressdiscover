@@ -16,6 +16,7 @@ public class ObjectBean {
         materials = null;
         physicalDescription = null;
         provenance = null;
+        subjects = null;
         summary = null;
         techniques = null;
         thumbnail = null;
@@ -37,6 +38,7 @@ public class ObjectBean {
         this.materials = other.getMaterials().isPresent() ? new net.lab1318.costume.gui.models.material.MaterialSetBean(other.getMaterials().get()) : null;
         this.physicalDescription = other.getPhysicalDescription().isPresent() ? other.getPhysicalDescription().get() : null;
         this.provenance = other.getProvenance().isPresent() ? other.getProvenance().get() : null;
+        this.subjects = other.getSubjects().isPresent() ? new net.lab1318.costume.gui.models.subject.SubjectSetBean(other.getSubjects().get()) : null;
         this.summary = other.getSummary().isPresent() ? other.getSummary().get() : null;
         this.techniques = other.getTechniques().isPresent() ? new net.lab1318.costume.gui.models.technique.TechniqueSetBean(other.getTechniques().get()) : null;
         this.thumbnail = other.getThumbnail().isPresent() ? new net.lab1318.costume.gui.models.image.ImageBean(other.getThumbnail().get()) : null;
@@ -67,6 +69,7 @@ public class ObjectBean {
             getMaterials().equals(other.getMaterials()) &&
             getPhysicalDescription().equals(other.getPhysicalDescription()) &&
             getProvenance().equals(other.getProvenance()) &&
+            getSubjects().equals(other.getSubjects()) &&
             getSummary().equals(other.getSummary()) &&
             getTechniques().equals(other.getTechniques()) &&
             getThumbnail().equals(other.getThumbnail()) &&
@@ -134,6 +137,10 @@ public class ObjectBean {
         return provenance;
     }
 
+    public net.lab1318.costume.gui.models.subject.SubjectSetBean getSubjects() {
+        return subjects;
+    }
+
     public String getSummary() {
         return summary;
     }
@@ -193,6 +200,9 @@ public class ObjectBean {
         }
         if (getProvenance() != null) {
             hashCode = 31 * hashCode + getProvenance().hashCode();
+        }
+        if (getSubjects() != null) {
+            hashCode = 31 * hashCode + getSubjects().hashCode();
         }
         if (getSummary() != null) {
             hashCode = 31 * hashCode + getSummary().hashCode();
@@ -261,6 +271,10 @@ public class ObjectBean {
         this.provenance = provenance;
     }
 
+    public void setSubjects(final net.lab1318.costume.gui.models.subject.SubjectSetBean subjects) {
+        this.subjects = subjects;
+    }
+
     public void setSummary(final String summary) {
         this.summary = summary;
     }
@@ -283,7 +297,7 @@ public class ObjectBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agents", getAgents()).add("categories", getCategories()).add("date", getDate()).add("date_text", getDateText()).add("description", getDescription()).add("history_notes", getHistoryNotes()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("physical_description", getPhysicalDescription()).add("provenance", getProvenance()).add("summary", getSummary()).add("techniques", getTechniques()).add("thumbnail", getThumbnail()).add("url", getUrl()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agents", getAgents()).add("categories", getCategories()).add("date", getDate()).add("date_text", getDateText()).add("description", getDescription()).add("history_notes", getHistoryNotes()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("physical_description", getPhysicalDescription()).add("provenance", getProvenance()).add("subjects", getSubjects()).add("summary", getSummary()).add("techniques", getTechniques()).add("thumbnail", getThumbnail()).add("url", getUrl()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -325,6 +339,8 @@ public class ObjectBean {
      * Dublin Core freetext provenance
      */
     private String provenance;
+
+    private net.lab1318.costume.gui.models.subject.SubjectSetBean subjects;
 
     private String summary;
 

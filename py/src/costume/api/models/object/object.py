@@ -6,6 +6,7 @@ import costume.api.models.image.image
 import costume.api.models.inscription.inscription_set
 import costume.api.models.material.material_set
 import costume.api.models.model_metadata
+import costume.api.models.subject.subject_set
 import costume.api.models.technique.technique_set
 
 
@@ -27,6 +28,7 @@ class Object(object):
             materials=None,
             physical_description=None,
             provenance=None,
+            subjects=None,
             summary=None,
             techniques=None,
             thumbnail=None,
@@ -47,6 +49,7 @@ class Object(object):
             :type materials: costume.api.models.material.material_set.MaterialSet or None
             :type physical_description: str or None
             :type provenance: str or None
+            :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
             :type summary: str or None
             :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
             :type thumbnail: costume.api.models.image.image.Image or None
@@ -67,13 +70,14 @@ class Object(object):
             self.__materials = materials
             self.__physical_description = physical_description
             self.__provenance = provenance
+            self.__subjects = subjects
             self.__summary = summary
             self.__techniques = techniques
             self.__thumbnail = thumbnail
             self.__url = url
 
         def build(self):
-            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, agents=self.__agents, categories=self.__categories, date=self.__date, date_text=self.__date_text, description=self.__description, history_notes=self.__history_notes, inscriptions=self.__inscriptions, materials=self.__materials, physical_description=self.__physical_description, provenance=self.__provenance, summary=self.__summary, techniques=self.__techniques, thumbnail=self.__thumbnail, url=self.__url)
+            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, agents=self.__agents, categories=self.__categories, date=self.__date, date_text=self.__date_text, description=self.__description, history_notes=self.__history_notes, inscriptions=self.__inscriptions, materials=self.__materials, physical_description=self.__physical_description, provenance=self.__provenance, subjects=self.__subjects, summary=self.__summary, techniques=self.__techniques, thumbnail=self.__thumbnail, url=self.__url)
 
         @property
         def agents(self):
@@ -283,6 +287,14 @@ class Object(object):
             self.__provenance = provenance
             return self
 
+        def set_subjects(self, subjects):
+            '''
+            :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
+            '''
+
+            self.__subjects = subjects
+            return self
+
         def set_summary(self, summary):
             '''
             :type summary: str or None
@@ -322,6 +334,14 @@ class Object(object):
 
             self.__url = url
             return self
+
+        @property
+        def subjects(self):
+            '''
+            :rtype: costume.api.models.subject.subject_set.SubjectSet
+            '''
+
+            return self.__subjects
 
         @property
         def summary(self):
@@ -371,6 +391,7 @@ class Object(object):
             :type materials: costume.api.models.material.material_set.MaterialSet or None
             :type physical_description: str or None
             :type provenance: str or None
+            :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
             :type summary: str or None
             :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
             :type thumbnail: costume.api.models.image.image.Image or None
@@ -392,6 +413,7 @@ class Object(object):
                 self.set_materials(object.materials)
                 self.set_physical_description(object.physical_description)
                 self.set_provenance(object.provenance)
+                self.set_subjects(object.subjects)
                 self.set_summary(object.summary)
                 self.set_techniques(object.techniques)
                 self.set_thumbnail(object.thumbnail)
@@ -515,6 +537,14 @@ class Object(object):
 
             self.set_provenance(provenance)
 
+        @subjects.setter
+        def subjects(self, subjects):
+            '''
+            :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
+            '''
+
+            self.set_subjects(subjects)
+
         @summary.setter
         def summary(self, summary):
             '''
@@ -571,6 +601,7 @@ class Object(object):
         materials=None,
         physical_description=None,
         provenance=None,
+        subjects=None,
         summary=None,
         techniques=None,
         thumbnail=None,
@@ -591,6 +622,7 @@ class Object(object):
         :type materials: costume.api.models.material.material_set.MaterialSet or None
         :type physical_description: str or None
         :type provenance: str or None
+        :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
         :type summary: str or None
         :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
         :type thumbnail: costume.api.models.image.image.Image or None
@@ -685,6 +717,11 @@ class Object(object):
                 raise ValueError("expected len(provenance) to be >= 1, was %d" % len(provenance))
         self.__provenance = provenance
 
+        if subjects is not None:
+            if not isinstance(subjects, costume.api.models.subject.subject_set.SubjectSet):
+                raise TypeError("expected subjects to be a costume.api.models.subject.subject_set.SubjectSet but it is a %s" % getattr(__builtin__, 'type')(subjects))
+        self.__subjects = subjects
+
         if summary is not None:
             if not isinstance(summary, basestring):
                 raise TypeError("expected summary to be a str but it is a %s" % getattr(__builtin__, 'type')(summary))
@@ -736,6 +773,8 @@ class Object(object):
             return False
         if self.provenance != other.provenance:
             return False
+        if self.subjects != other.subjects:
+            return False
         if self.summary != other.summary:
             return False
         if self.techniques != other.techniques:
@@ -747,7 +786,7 @@ class Object(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.agents,self.categories,self.date,self.date_text,self.description,self.history_notes,self.inscriptions,self.materials,self.physical_description,self.provenance,self.summary,self.techniques,self.thumbnail,self.url,))
+        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.agents,self.categories,self.date,self.date_text,self.description,self.history_notes,self.inscriptions,self.materials,self.physical_description,self.provenance,self.subjects,self.summary,self.techniques,self.thumbnail,self.url,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -781,6 +820,8 @@ class Object(object):
             field_reprs.append('physical_description=' + "'" + self.physical_description.encode('ascii', 'replace') + "'")
         if self.provenance is not None:
             field_reprs.append('provenance=' + "'" + self.provenance.encode('ascii', 'replace') + "'")
+        if self.subjects is not None:
+            field_reprs.append('subjects=' + repr(self.subjects))
         if self.summary is not None:
             field_reprs.append('summary=' + "'" + self.summary.encode('ascii', 'replace') + "'")
         if self.techniques is not None:
@@ -817,6 +858,8 @@ class Object(object):
             field_reprs.append('physical_description=' + "'" + self.physical_description.encode('ascii', 'replace') + "'")
         if self.provenance is not None:
             field_reprs.append('provenance=' + "'" + self.provenance.encode('ascii', 'replace') + "'")
+        if self.subjects is not None:
+            field_reprs.append('subjects=' + repr(self.subjects))
         if self.summary is not None:
             field_reprs.append('summary=' + "'" + self.summary.encode('ascii', 'replace') + "'")
         if self.techniques is not None:
@@ -842,7 +885,7 @@ class Object(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'agents': self.agents, 'categories': self.categories, 'date': self.date, 'date_text': self.date_text, 'description': self.description, 'history_notes': self.history_notes, 'inscriptions': self.inscriptions, 'materials': self.materials, 'physical_description': self.physical_description, 'provenance': self.provenance, 'summary': self.summary, 'techniques': self.techniques, 'thumbnail': self.thumbnail, 'url': self.url}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'agents': self.agents, 'categories': self.categories, 'date': self.date, 'date_text': self.date_text, 'description': self.description, 'history_notes': self.history_notes, 'inscriptions': self.inscriptions, 'materials': self.materials, 'physical_description': self.physical_description, 'provenance': self.provenance, 'subjects': self.subjects, 'summary': self.summary, 'techniques': self.techniques, 'thumbnail': self.thumbnail, 'url': self.url}
 
     def as_tuple(self):
         '''
@@ -851,7 +894,7 @@ class Object(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.agents, self.categories, self.date, self.date_text, self.description, self.history_notes, self.inscriptions, self.materials, self.physical_description, self.provenance, self.summary, self.techniques, self.thumbnail, self.url,)
+        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.agents, self.categories, self.date, self.date_text, self.description, self.history_notes, self.inscriptions, self.materials, self.physical_description, self.provenance, self.subjects, self.summary, self.techniques, self.thumbnail, self.url,)
 
     @property
     def categories(self):
@@ -1011,6 +1054,8 @@ class Object(object):
                     init_kwds['provenance'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
+            elif ifield_name == 'subjects' and ifield_id == 21:
+                init_kwds['subjects'] = costume.api.models.subject.subject_set.SubjectSet.read(iprot)
             elif ifield_name == 'summary' and ifield_id == 7:
                 try:
                     init_kwds['summary'] = iprot.read_string()
@@ -1046,6 +1091,7 @@ class Object(object):
         materials=None,
         physical_description=None,
         provenance=None,
+        subjects=None,
         summary=None,
         techniques=None,
         thumbnail=None,
@@ -1068,6 +1114,7 @@ class Object(object):
         :type materials: costume.api.models.material.material_set.MaterialSet or None
         :type physical_description: str or None
         :type provenance: str or None
+        :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
         :type summary: str or None
         :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
         :type thumbnail: costume.api.models.image.image.Image or None
@@ -1103,6 +1150,8 @@ class Object(object):
             physical_description = self.physical_description
         if provenance is None:
             provenance = self.provenance
+        if subjects is None:
+            subjects = self.subjects
         if summary is None:
             summary = self.summary
         if techniques is None:
@@ -1111,7 +1160,15 @@ class Object(object):
             thumbnail = self.thumbnail
         if url is None:
             url = self.url
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, agents=agents, categories=categories, date=date, date_text=date_text, description=description, history_notes=history_notes, inscriptions=inscriptions, materials=materials, physical_description=physical_description, provenance=provenance, summary=summary, techniques=techniques, thumbnail=thumbnail, url=url)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, agents=agents, categories=categories, date=date, date_text=date_text, description=description, history_notes=history_notes, inscriptions=inscriptions, materials=materials, physical_description=physical_description, provenance=provenance, subjects=subjects, summary=summary, techniques=techniques, thumbnail=thumbnail, url=url)
+
+    @property
+    def subjects(self):
+        '''
+        :rtype: costume.api.models.subject.subject_set.SubjectSet
+        '''
+
+        return self.__subjects
 
     @property
     def summary(self):
@@ -1230,6 +1287,11 @@ class Object(object):
         if self.provenance is not None:
             oprot.write_field_begin(name='provenance', type=11, id=5)
             oprot.write_string(self.provenance)
+            oprot.write_field_end()
+
+        if self.subjects is not None:
+            oprot.write_field_begin(name='subjects', type=12, id=21)
+            self.subjects.write(oprot)
             oprot.write_field_end()
 
         if self.summary is not None:

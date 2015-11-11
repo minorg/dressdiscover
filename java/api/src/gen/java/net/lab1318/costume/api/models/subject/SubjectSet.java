@@ -6,23 +6,23 @@ package net.lab1318.costume.api.models.subject;
 public class SubjectSet implements org.thryft.Struct {
     public static class Builder {
         public Builder() {
-            subject = null;
+            subjects = null;
             display = com.google.common.base.Optional.absent();
             notes = com.google.common.base.Optional.absent();
         }
 
         public Builder(final SubjectSet other) {
-            this.subject = other.getSubject();
+            this.subjects = other.getSubjects();
             this.display = other.getDisplay();
             this.notes = other.getNotes();
         }
 
-        protected SubjectSet _build(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> subject, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-            return new SubjectSet(subject, display, notes);
+        protected SubjectSet _build(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> subjects, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+            return new SubjectSet(subjects, display, notes);
         }
 
         public SubjectSet build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(subject, "net.lab1318.costume.api.models.subject.SubjectSet: missing subject"), com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.subject.SubjectSet: missing display"), com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.subject.SubjectSet: missing notes"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(subjects, "net.lab1318.costume.api.models.subject.SubjectSet: missing subjects"), com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.subject.SubjectSet: missing display"), com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.subject.SubjectSet: missing notes"));
         }
 
         public final com.google.common.base.Optional<String> getDisplay() {
@@ -33,8 +33,8 @@ public class SubjectSet implements org.thryft.Struct {
             return notes;
         }
 
-        public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> getSubject() {
-            return subject;
+        public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> getSubjects() {
+            return subjects;
         }
 
         public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -50,7 +50,7 @@ public class SubjectSet implements org.thryft.Struct {
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            subject = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject>>() {
+            subjects = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject>>() {
                 @Override
                 public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> apply(final org.thryft.protocol.InputProtocol iprot) {
                     try {
@@ -84,9 +84,9 @@ public class SubjectSet implements org.thryft.Struct {
                     break;
                 }
                 switch (ifield.getName()) {
-                case "subject": {
+                case "subjects": {
                     if (!ifield.hasId() || ifield.getId() == 1) {
-                        subject = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject>>() {
+                        subjects = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -137,7 +137,7 @@ public class SubjectSet implements org.thryft.Struct {
         public Builder setIfPresent(final SubjectSet other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
-            setSubject(other.getSubject());
+            setSubjects(other.getSubjects());
             if (other.getDisplay().isPresent()) {
                 setDisplay(other.getDisplay());
             }
@@ -158,8 +158,8 @@ public class SubjectSet implements org.thryft.Struct {
             return this;
         }
 
-        public Builder setSubject(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> subject) {
-            this.subject = com.google.common.base.Preconditions.checkNotNull(subject);
+        public Builder setSubjects(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> subjects) {
+            this.subjects = com.google.common.base.Preconditions.checkNotNull(subjects);
             return this;
         }
 
@@ -168,7 +168,7 @@ public class SubjectSet implements org.thryft.Struct {
             com.google.common.base.Preconditions.checkNotNull(name);
 
             switch (name.toLowerCase()) {
-            case "subject": setSubject((com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject>)value); return this;
+            case "subjects": setSubjects((com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject>)value); return this;
             case "display": setDisplay((String)value); return this;
             case "notes": setNotes((String)value); return this;
             default:
@@ -186,19 +186,19 @@ public class SubjectSet implements org.thryft.Struct {
             return this;
         }
 
-        public Builder unsetSubject() {
-            this.subject = null;
+        public Builder unsetSubjects() {
+            this.subjects = null;
             return this;
         }
 
-        private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> subject;
+        private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> subjects;
         private com.google.common.base.Optional<String> display;
         private com.google.common.base.Optional<String> notes;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        SUBJECT("subject", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject>>() {}, true, 1, "subject", org.thryft.protocol.Type.LIST),
+        SUBJECTS("subjects", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject>>() {}, true, 1, "subjects", org.thryft.protocol.Type.LIST),
         DISPLAY("display", new com.google.common.reflect.TypeToken<String>() {}, false, 2, "display", org.thryft.protocol.Type.STRING),
         NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "notes", org.thryft.protocol.Type.STRING);
 
@@ -244,7 +244,7 @@ public class SubjectSet implements org.thryft.Struct {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "subject": return SUBJECT;
+            case "subjects": return SUBJECTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -254,7 +254,7 @@ public class SubjectSet implements org.thryft.Struct {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "subject": return SUBJECT;
+            case "subjects": return SUBJECTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -289,14 +289,14 @@ public class SubjectSet implements org.thryft.Struct {
      * Copy constructor
      */
     public SubjectSet(final SubjectSet other) {
-        this(other.getSubject(), other.getDisplay(), other.getNotes());
+        this(other.getSubjects(), other.getDisplay(), other.getNotes());
     }
 
     /**
      * Required constructor
      */
-    public SubjectSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> subject) {
-        this.subject = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(subject, "net.lab1318.costume.api.models.subject.SubjectSet: missing subject"), "net.lab1318.costume.api.models.subject.SubjectSet: subject is empty");
+    public SubjectSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> subjects) {
+        this.subjects = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(subjects, "net.lab1318.costume.api.models.subject.SubjectSet: missing subjects"), "net.lab1318.costume.api.models.subject.SubjectSet: subjects is empty");
         this.display = com.google.common.base.Optional.absent();
         this.notes = com.google.common.base.Optional.absent();
     }
@@ -304,8 +304,8 @@ public class SubjectSet implements org.thryft.Struct {
     /**
      * Total Nullable constructor
      */
-    public SubjectSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> subject, final @javax.annotation.Nullable String display, final @javax.annotation.Nullable String notes) {
-        this.subject = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(subject, "net.lab1318.costume.api.models.subject.SubjectSet: missing subject"), "net.lab1318.costume.api.models.subject.SubjectSet: subject is empty");
+    public SubjectSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> subjects, final @javax.annotation.Nullable String display, final @javax.annotation.Nullable String notes) {
+        this.subjects = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(subjects, "net.lab1318.costume.api.models.subject.SubjectSet: missing subjects"), "net.lab1318.costume.api.models.subject.SubjectSet: subjects is empty");
         this.display = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(display), "net.lab1318.costume.api.models.subject.SubjectSet: display is empty");
         this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(notes), "net.lab1318.costume.api.models.subject.SubjectSet: notes is empty");
     }
@@ -313,8 +313,8 @@ public class SubjectSet implements org.thryft.Struct {
     /**
      * Optional constructor
      */
-    public SubjectSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> subject, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-        this.subject = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(subject, "net.lab1318.costume.api.models.subject.SubjectSet: missing subject"), "net.lab1318.costume.api.models.subject.SubjectSet: subject is empty");
+    public SubjectSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> subjects, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+        this.subjects = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(subjects, "net.lab1318.costume.api.models.subject.SubjectSet: missing subjects"), "net.lab1318.costume.api.models.subject.SubjectSet: subjects is empty");
         this.display = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.subject.SubjectSet: missing display"), "net.lab1318.costume.api.models.subject.SubjectSet: display is empty");
         this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.subject.SubjectSet: missing notes"), "net.lab1318.costume.api.models.subject.SubjectSet: notes is empty");
     }
@@ -341,7 +341,7 @@ public class SubjectSet implements org.thryft.Struct {
 
         final SubjectSet other = (SubjectSet)otherObject;
         return
-            getSubject().equals(other.getSubject()) &&
+            getSubjects().equals(other.getSubjects()) &&
             getDisplay().equals(other.getDisplay()) &&
             getNotes().equals(other.getNotes());
     }
@@ -349,7 +349,7 @@ public class SubjectSet implements org.thryft.Struct {
     @Override
     public java.lang.Object get(final String fieldName) {
         switch (fieldName) {
-        case "subject": return getSubject();
+        case "subjects": return getSubjects();
         case "display": return getDisplay();
         case "notes": return getNotes();
         default:
@@ -365,14 +365,14 @@ public class SubjectSet implements org.thryft.Struct {
         return notes;
     }
 
-    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> getSubject() {
-        return subject;
+    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> getSubjects() {
+        return subjects;
     }
 
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getSubject().hashCode();
+        hashCode = 31 * hashCode + getSubjects().hashCode();
         if (getDisplay().isPresent()) {
             hashCode = 31 * hashCode + getDisplay().get().hashCode();
         }
@@ -394,12 +394,12 @@ public class SubjectSet implements org.thryft.Struct {
     }
 
     public static SubjectSet readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> subject = null;
+        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> subjects = null;
         com.google.common.base.Optional<String> display = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        subject = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject>>() {
+        subjects = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject>>() {
             @Override
             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> apply(final org.thryft.protocol.InputProtocol iprot) {
                 try {
@@ -423,14 +423,14 @@ public class SubjectSet implements org.thryft.Struct {
         }
         iprot.readListEnd();
         try {
-            return new SubjectSet(subject, display, notes);
+            return new SubjectSet(subjects, display, notes);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public static SubjectSet readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> subject = null;
+        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> subjects = null;
         com.google.common.base.Optional<String> display = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
 
@@ -441,9 +441,9 @@ public class SubjectSet implements org.thryft.Struct {
                 break;
             }
             switch (ifield.getName()) {
-            case "subject": {
+            case "subjects": {
                 if (!ifield.hasId() || ifield.getId() == 1) {
-                    subject = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject>>() {
+                    subjects = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject>>() {
                         @Override
                         public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -479,14 +479,14 @@ public class SubjectSet implements org.thryft.Struct {
         }
         iprot.readStructEnd();
         try {
-            return new SubjectSet(subject, display, notes);
+            return new SubjectSet(subjects, display, notes);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public SubjectSet replaceDisplay(final com.google.common.base.Optional<String> display) {
-        return new SubjectSet(this.subject, display, this.notes);
+        return new SubjectSet(this.subjects, display, this.notes);
     }
 
     public SubjectSet replaceDisplay(final String display) {
@@ -494,28 +494,28 @@ public class SubjectSet implements org.thryft.Struct {
     }
 
     public SubjectSet replaceNotes(final com.google.common.base.Optional<String> notes) {
-        return new SubjectSet(this.subject, this.display, notes);
+        return new SubjectSet(this.subjects, this.display, notes);
     }
 
     public SubjectSet replaceNotes(final String notes) {
         return replaceNotes(com.google.common.base.Optional.fromNullable(notes));
     }
 
-    public SubjectSet replaceSubject(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> subject) {
-        return new SubjectSet(subject, this.display, this.notes);
+    public SubjectSet replaceSubjects(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> subjects) {
+        return new SubjectSet(subjects, this.display, this.notes);
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("subject", getSubject()).add("display", getDisplay().orNull()).add("notes", getNotes().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("subjects", getSubjects()).add("display", getDisplay().orNull()).add("notes", getNotes().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
 
-        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getSubject().size());
-        for (final net.lab1318.costume.api.models.subject.Subject _iter0 : getSubject()) {
+        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getSubjects().size());
+        for (final net.lab1318.costume.api.models.subject.Subject _iter0 : getSubjects()) {
             _iter0.writeAsStruct(oprot);
         }
         oprot.writeListEnd();
@@ -544,9 +544,9 @@ public class SubjectSet implements org.thryft.Struct {
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("subject", org.thryft.protocol.Type.LIST, (short)1);
-        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getSubject().size());
-        for (final net.lab1318.costume.api.models.subject.Subject _iter0 : getSubject()) {
+        oprot.writeFieldBegin("subjects", org.thryft.protocol.Type.LIST, (short)1);
+        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getSubjects().size());
+        for (final net.lab1318.costume.api.models.subject.Subject _iter0 : getSubjects()) {
             _iter0.writeAsStruct(oprot);
         }
         oprot.writeListEnd();
@@ -567,7 +567,7 @@ public class SubjectSet implements org.thryft.Struct {
         oprot.writeFieldStop();
     }
 
-    private final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> subject;
+    private final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> subjects;
 
     private final com.google.common.base.Optional<String> display;
 

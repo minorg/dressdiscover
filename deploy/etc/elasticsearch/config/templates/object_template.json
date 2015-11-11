@@ -214,6 +214,41 @@
           "5:provenance": {
             "type": "string"
           }, 
+          "21:subjects": {
+            "type": "nested", 
+            "properties": {
+              "1:subjects": {
+                "type": "nested", 
+                "properties": {
+                  "1:terms": {
+                    "type": "nested", 
+                    "properties": {
+                      "1:text": {
+                        "type": "string"
+                      }, 
+                      "2:type": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }, 
+                      "3:refid": {
+                        "type": "string"
+                      }, 
+                      "4:vocab": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }, 
+              "2:display": {
+                "type": "string"
+              }, 
+              "3:notes": {
+                "type": "string"
+              }
+            }
+          }, 
           "7:summary": {
             "type": "string"
           }, 

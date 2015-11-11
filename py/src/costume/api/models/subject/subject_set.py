@@ -7,22 +7,22 @@ class SubjectSet(object):
     class Builder(object):
         def __init__(
             self,
-            subject=None,
+            subjects=None,
             display=None,
             notes=None,
         ):
             '''
-            :type subject: tuple(costume.api.models.subject.subject.Subject)
+            :type subjects: tuple(costume.api.models.subject.subject.Subject)
             :type display: str or None
             :type notes: str or None
             '''
 
-            self.__subject = subject
+            self.__subjects = subjects
             self.__display = display
             self.__notes = notes
 
         def build(self):
-            return SubjectSet(subject=self.__subject, display=self.__display, notes=self.__notes)
+            return SubjectSet(subjects=self.__subjects, display=self.__display, notes=self.__notes)
 
         @property
         def display(self):
@@ -56,31 +56,31 @@ class SubjectSet(object):
             self.__notes = notes
             return self
 
-        def set_subject(self, subject):
+        def set_subjects(self, subjects):
             '''
-            :type subject: tuple(costume.api.models.subject.subject.Subject)
+            :type subjects: tuple(costume.api.models.subject.subject.Subject)
             '''
 
-            self.__subject = subject
+            self.__subjects = subjects
             return self
 
         @property
-        def subject(self):
+        def subjects(self):
             '''
             :rtype: tuple(costume.api.models.subject.subject.Subject)
             '''
 
-            return self.__subject
+            return self.__subjects
 
         def update(self, subject_set):
             '''
-            :type subject: tuple(costume.api.models.subject.subject.Subject)
+            :type subjects: tuple(costume.api.models.subject.subject.Subject)
             :type display: str or None
             :type notes: str or None
             '''
 
             if isinstance(subject_set, SubjectSet):
-                self.set_subject(subject_set.subject)
+                self.set_subjects(subject_set.subjects)
                 self.set_display(subject_set.display)
                 self.set_notes(subject_set.notes)
             elif isinstance(subject_set, dict):
@@ -106,33 +106,33 @@ class SubjectSet(object):
 
             self.set_notes(notes)
 
-        @subject.setter
-        def subject(self, subject):
+        @subjects.setter
+        def subjects(self, subjects):
             '''
-            :type subject: tuple(costume.api.models.subject.subject.Subject)
+            :type subjects: tuple(costume.api.models.subject.subject.Subject)
             '''
 
-            self.set_subject(subject)
+            self.set_subjects(subjects)
 
     def __init__(
         self,
-        subject,
+        subjects,
         display=None,
         notes=None,
     ):
         '''
-        :type subject: tuple(costume.api.models.subject.subject.Subject)
+        :type subjects: tuple(costume.api.models.subject.subject.Subject)
         :type display: str or None
         :type notes: str or None
         '''
 
-        if subject is None:
-            raise ValueError('subject is required')
-        if not (isinstance(subject, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.subject.subject.Subject), subject))) == 0):
-            raise TypeError("expected subject to be a tuple(costume.api.models.subject.subject.Subject) but it is a %s" % getattr(__builtin__, 'type')(subject))
-        if len(subject) < 1:
-            raise ValueError("expected len(subject) to be >= 1, was %d" % len(subject))
-        self.__subject = subject
+        if subjects is None:
+            raise ValueError('subjects is required')
+        if not (isinstance(subjects, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.subject.subject.Subject), subjects))) == 0):
+            raise TypeError("expected subjects to be a tuple(costume.api.models.subject.subject.Subject) but it is a %s" % getattr(__builtin__, 'type')(subjects))
+        if len(subjects) < 1:
+            raise ValueError("expected len(subjects) to be >= 1, was %d" % len(subjects))
+        self.__subjects = subjects
 
         if display is not None:
             if not isinstance(display, basestring):
@@ -149,7 +149,7 @@ class SubjectSet(object):
         self.__notes = notes
 
     def __eq__(self, other):
-        if self.subject != other.subject:
+        if self.subjects != other.subjects:
             return False
         if self.display != other.display:
             return False
@@ -158,7 +158,7 @@ class SubjectSet(object):
         return True
 
     def __hash__(self):
-        return hash((self.subject,self.display,self.notes,))
+        return hash((self.subjects,self.display,self.notes,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -168,7 +168,7 @@ class SubjectSet(object):
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('subject=' + repr(self.subject))
+        field_reprs.append('subjects=' + repr(self.subjects))
         if self.display is not None:
             field_reprs.append('display=' + "'" + self.display.encode('ascii', 'replace') + "'")
         if self.notes is not None:
@@ -177,7 +177,7 @@ class SubjectSet(object):
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('subject=' + repr(self.subject))
+        field_reprs.append('subjects=' + repr(self.subjects))
         if self.display is not None:
             field_reprs.append('display=' + "'" + self.display.encode('ascii', 'replace') + "'")
         if self.notes is not None:
@@ -191,7 +191,7 @@ class SubjectSet(object):
         :rtype: dict
         '''
 
-        return {'subject': self.subject, 'display': self.display, 'notes': self.notes}
+        return {'subjects': self.subjects, 'display': self.display, 'notes': self.notes}
 
     def as_tuple(self):
         '''
@@ -200,7 +200,7 @@ class SubjectSet(object):
         :rtype: tuple
         '''
 
-        return (self.subject, self.display, self.notes,)
+        return (self.subjects, self.display, self.notes,)
 
     @property
     def display(self):
@@ -234,8 +234,8 @@ class SubjectSet(object):
             ifield_name, ifield_type, ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
-            elif ifield_name == 'subject' and ifield_id == 1:
-                init_kwds['subject'] = tuple([costume.api.models.subject.subject.Subject.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+            elif ifield_name == 'subjects' and ifield_id == 1:
+                init_kwds['subjects'] = tuple([costume.api.models.subject.subject.Subject.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'display' and ifield_id == 2:
                 try:
                     init_kwds['display'] = iprot.read_string()
@@ -253,34 +253,34 @@ class SubjectSet(object):
 
     def replace(
         self,
-        subject=None,
+        subjects=None,
         display=None,
         notes=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type subject: tuple(costume.api.models.subject.subject.Subject) or None
+        :type subjects: tuple(costume.api.models.subject.subject.Subject) or None
         :type display: str or None
         :type notes: str or None
         :rtype: costume.api.models.subject.subject_set.SubjectSet
         '''
 
-        if subject is None:
-            subject = self.subject
+        if subjects is None:
+            subjects = self.subjects
         if display is None:
             display = self.display
         if notes is None:
             notes = self.notes
-        return self.__class__(subject=subject, display=display, notes=notes)
+        return self.__class__(subjects=subjects, display=display, notes=notes)
 
     @property
-    def subject(self):
+    def subjects(self):
         '''
         :rtype: tuple(costume.api.models.subject.subject.Subject)
         '''
 
-        return self.__subject
+        return self.__subjects
 
     def write(self, oprot):
         '''
@@ -292,9 +292,9 @@ class SubjectSet(object):
 
         oprot.write_struct_begin('SubjectSet')
 
-        oprot.write_field_begin(name='subject', type=15, id=1)
-        oprot.write_list_begin(12, len(self.subject))
-        for _0 in self.subject:
+        oprot.write_field_begin(name='subjects', type=15, id=1)
+        oprot.write_list_begin(12, len(self.subjects))
+        for _0 in self.subjects:
             _0.write(oprot)
         oprot.write_list_end()
         oprot.write_field_end()

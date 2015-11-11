@@ -9,6 +9,7 @@ include "costume/api/models/image/image.thrift"
 include "costume/api/models/inscription/inscription_set.thrift"
 include "costume/api/models/institution/institution_id.thrift"
 include "costume/api/models/material/material_set.thrift"
+include "costume/api/models/subject/subject_set.thrift"
 include "costume/api/models/technique/technique_set.thrift"
 include "thryft/native/date_time.thrift"
 include "thryft/native/url.thrift"
@@ -53,6 +54,8 @@ struct Object {
 	// Dublin Core freetext provenance
 	// @validation {"minLength": 1}
 	5: optional string provenance;
+
+	21: optional subject_set.SubjectSet subjects;
 
 	// @validation {"minLength": 1}
 	7: optional string summary;
