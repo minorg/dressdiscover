@@ -1,28 +1,36 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.models.subject.subject
+import costume.api.models.agent.agent
 
 
-class SubjectSet(object):
+class AgentSet(object):
     class Builder(object):
         def __init__(
             self,
-            subjects=None,
+            agents=None,
             display=None,
             notes=None,
         ):
             '''
-            :type subjects: tuple(costume.api.models.subject.subject.Subject)
+            :type agents: tuple(costume.api.models.agent.agent.Agent)
             :type display: str or None
             :type notes: str or None
             '''
 
-            self.__subjects = subjects
+            self.__agents = agents
             self.__display = display
             self.__notes = notes
 
         def build(self):
-            return SubjectSet(subjects=self.__subjects, display=self.__display, notes=self.__notes)
+            return AgentSet(agents=self.__agents, display=self.__display, notes=self.__notes)
+
+        @property
+        def agents(self):
+            '''
+            :rtype: tuple(costume.api.models.agent.agent.Agent)
+            '''
+
+            return self.__agents
 
         @property
         def display(self):
@@ -40,6 +48,14 @@ class SubjectSet(object):
 
             return self.__notes
 
+        def set_agents(self, agents):
+            '''
+            :type agents: tuple(costume.api.models.agent.agent.Agent)
+            '''
+
+            self.__agents = agents
+            return self
+
         def set_display(self, display):
             '''
             :type display: str or None
@@ -56,39 +72,31 @@ class SubjectSet(object):
             self.__notes = notes
             return self
 
-        def set_subjects(self, subjects):
+        def update(self, agent_set):
             '''
-            :type subjects: tuple(costume.api.models.subject.subject.Subject)
-            '''
-
-            self.__subjects = subjects
-            return self
-
-        @property
-        def subjects(self):
-            '''
-            :rtype: tuple(costume.api.models.subject.subject.Subject)
-            '''
-
-            return self.__subjects
-
-        def update(self, subject_set):
-            '''
-            :type subjects: tuple(costume.api.models.subject.subject.Subject)
+            :type agents: tuple(costume.api.models.agent.agent.Agent)
             :type display: str or None
             :type notes: str or None
             '''
 
-            if isinstance(subject_set, SubjectSet):
-                self.set_subjects(subject_set.subjects)
-                self.set_display(subject_set.display)
-                self.set_notes(subject_set.notes)
-            elif isinstance(subject_set, dict):
-                for key, value in subject_set.iteritems():
+            if isinstance(agent_set, AgentSet):
+                self.set_agents(agent_set.agents)
+                self.set_display(agent_set.display)
+                self.set_notes(agent_set.notes)
+            elif isinstance(agent_set, dict):
+                for key, value in agent_set.iteritems():
                     getattr(self, 'set_' + key)(value)
             else:
-                raise TypeError(subject_set)
+                raise TypeError(agent_set)
             return self
+
+        @agents.setter
+        def agents(self, agents):
+            '''
+            :type agents: tuple(costume.api.models.agent.agent.Agent)
+            '''
+
+            self.set_agents(agents)
 
         @display.setter
         def display(self, display):
@@ -106,33 +114,25 @@ class SubjectSet(object):
 
             self.set_notes(notes)
 
-        @subjects.setter
-        def subjects(self, subjects):
-            '''
-            :type subjects: tuple(costume.api.models.subject.subject.Subject)
-            '''
-
-            self.set_subjects(subjects)
-
     def __init__(
         self,
-        subjects,
+        agents,
         display=None,
         notes=None,
     ):
         '''
-        :type subjects: tuple(costume.api.models.subject.subject.Subject)
+        :type agents: tuple(costume.api.models.agent.agent.Agent)
         :type display: str or None
         :type notes: str or None
         '''
 
-        if subjects is None:
-            raise ValueError('subjects is required')
-        if not (isinstance(subjects, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.subject.subject.Subject), subjects))) == 0):
-            raise TypeError("expected subjects to be a tuple(costume.api.models.subject.subject.Subject) but it is a %s" % getattr(__builtin__, 'type')(subjects))
-        if len(subjects) < 1:
-            raise ValueError("expected len(subjects) to be >= 1, was %d" % len(subjects))
-        self.__subjects = subjects
+        if agents is None:
+            raise ValueError('agents is required')
+        if not (isinstance(agents, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.agent.agent.Agent), agents))) == 0):
+            raise TypeError("expected agents to be a tuple(costume.api.models.agent.agent.Agent) but it is a %s" % getattr(__builtin__, 'type')(agents))
+        if len(agents) < 1:
+            raise ValueError("expected len(agents) to be >= 1, was %d" % len(agents))
+        self.__agents = agents
 
         if display is not None:
             if not isinstance(display, basestring):
@@ -149,7 +149,7 @@ class SubjectSet(object):
         self.__notes = notes
 
     def __eq__(self, other):
-        if self.subjects != other.subjects:
+        if self.agents != other.agents:
             return False
         if self.display != other.display:
             return False
@@ -158,7 +158,7 @@ class SubjectSet(object):
         return True
 
     def __hash__(self):
-        return hash((self.subjects,self.display,self.notes,))
+        return hash((self.agents,self.display,self.notes,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -168,21 +168,29 @@ class SubjectSet(object):
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('subjects=' + repr(self.subjects))
+        field_reprs.append('agents=' + repr(self.agents))
         if self.display is not None:
             field_reprs.append('display=' + "'" + self.display.encode('ascii', 'replace') + "'")
         if self.notes is not None:
             field_reprs.append('notes=' + "'" + self.notes.encode('ascii', 'replace') + "'")
-        return 'SubjectSet(' + ', '.join(field_reprs) + ')'
+        return 'AgentSet(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('subjects=' + repr(self.subjects))
+        field_reprs.append('agents=' + repr(self.agents))
         if self.display is not None:
             field_reprs.append('display=' + "'" + self.display.encode('ascii', 'replace') + "'")
         if self.notes is not None:
             field_reprs.append('notes=' + "'" + self.notes.encode('ascii', 'replace') + "'")
-        return 'SubjectSet(' + ', '.join(field_reprs) + ')'
+        return 'AgentSet(' + ', '.join(field_reprs) + ')'
+
+    @property
+    def agents(self):
+        '''
+        :rtype: tuple(costume.api.models.agent.agent.Agent)
+        '''
+
+        return self.__agents
 
     def as_dict(self):
         '''
@@ -191,7 +199,7 @@ class SubjectSet(object):
         :rtype: dict
         '''
 
-        return {'subjects': self.subjects, 'display': self.display, 'notes': self.notes}
+        return {'agents': self.agents, 'display': self.display, 'notes': self.notes}
 
     def as_tuple(self):
         '''
@@ -200,7 +208,7 @@ class SubjectSet(object):
         :rtype: tuple
         '''
 
-        return (self.subjects, self.display, self.notes,)
+        return (self.agents, self.display, self.notes,)
 
     @property
     def display(self):
@@ -224,7 +232,7 @@ class SubjectSet(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.subject.subject_set.SubjectSet
+        :rtype: costume.api.models.agent.agent_set.AgentSet
         '''
 
         init_kwds = {}
@@ -234,8 +242,8 @@ class SubjectSet(object):
             ifield_name, ifield_type, ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
-            elif ifield_name == 'subjects' and ifield_id == 1:
-                init_kwds['subjects'] = tuple([costume.api.models.subject.subject.Subject.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+            elif ifield_name == 'agents' and ifield_id == 1:
+                init_kwds['agents'] = tuple([costume.api.models.agent.agent.Agent.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'display' and ifield_id == 2:
                 try:
                     init_kwds['display'] = iprot.read_string()
@@ -253,48 +261,40 @@ class SubjectSet(object):
 
     def replace(
         self,
-        subjects=None,
+        agents=None,
         display=None,
         notes=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type subjects: tuple(costume.api.models.subject.subject.Subject) or None
+        :type agents: tuple(costume.api.models.agent.agent.Agent) or None
         :type display: str or None
         :type notes: str or None
-        :rtype: costume.api.models.subject.subject_set.SubjectSet
+        :rtype: costume.api.models.agent.agent_set.AgentSet
         '''
 
-        if subjects is None:
-            subjects = self.subjects
+        if agents is None:
+            agents = self.agents
         if display is None:
             display = self.display
         if notes is None:
             notes = self.notes
-        return self.__class__(subjects=subjects, display=display, notes=notes)
-
-    @property
-    def subjects(self):
-        '''
-        :rtype: tuple(costume.api.models.subject.subject.Subject)
-        '''
-
-        return self.__subjects
+        return self.__class__(agents=agents, display=display, notes=notes)
 
     def write(self, oprot):
         '''
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.subject.subject_set.SubjectSet
+        :rtype: costume.api.models.agent.agent_set.AgentSet
         '''
 
-        oprot.write_struct_begin('SubjectSet')
+        oprot.write_struct_begin('AgentSet')
 
-        oprot.write_field_begin(name='subjects', type=15, id=1)
-        oprot.write_list_begin(12, len(self.subjects))
-        for _0 in self.subjects:
+        oprot.write_field_begin(name='agents', type=15, id=1)
+        oprot.write_list_begin(12, len(self.agents))
+        for _0 in self.agents:
             _0.write(oprot)
         oprot.write_list_end()
         oprot.write_field_end()

@@ -7,7 +7,7 @@ include "costume/api/models/subject/subject.thrift"
 // VRA Core 4.0 subjectSet element
 struct SubjectSet {
 	// @validation {"minLength": 1}
-	1: list<subject.Subject> subject;
+	1: list<subject.Subject> subjects;
 
 	// @validation {"minLength": 1}
 	2: optional string display;
