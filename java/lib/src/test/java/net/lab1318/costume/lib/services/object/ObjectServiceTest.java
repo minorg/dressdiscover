@@ -3,9 +3,13 @@ package net.lab1318.costume.lib.services.object;
 import org.junit.After;
 import org.junit.Before;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 
+import net.lab1318.costume.api.models.collection.CollectionId;
+import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.object.ObjectEntry;
+import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.collection.CollectionCommandService;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionCommandService;
@@ -30,6 +34,18 @@ public abstract class ObjectServiceTest extends ServiceTest {
         objectCommandService.deleteObjects();
         collectionCommandService.deleteCollections();
         institutionCommandService.deleteInstitutions();
+    }
+
+    protected final int _getObjectCountByCollectionId(final CollectionId collectionId) throws Exception {
+        return objectQueryService
+                .getObjectCount(Optional.of(ObjectQuery.builder().setIncludeCollectionId(collectionId).build()))
+                .intValue();
+    }
+
+    protected final int _getObjectCountByInstitutionId(final InstitutionId institutionId) throws Exception {
+        return objectQueryService
+                .getObjectCount(Optional.of(ObjectQuery.builder().setIncludeInstitutionId(institutionId).build()))
+                .intValue();
     }
 
     protected final ImmutableList<ObjectEntry> _putObjects() throws Exception {

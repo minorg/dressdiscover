@@ -50,16 +50,8 @@ public class ObjectQueryServiceJsonRpcServlet extends javax.servlet.http.HttpSer
                 doPostGetObjectById(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
             } else if (messageBegin.getName().equals("get_object_count")) {
                 doPostGetObjectCount(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
-            } else if (messageBegin.getName().equals("get_object_count_by_collection_id")) {
-                doPostGetObjectCountByCollectionId(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
-            } else if (messageBegin.getName().equals("get_object_count_by_institution_id")) {
-                doPostGetObjectCountByInstitutionId(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
             } else if (messageBegin.getName().equals("get_objects")) {
                 doPostGetObjects(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
-            } else if (messageBegin.getName().equals("get_objects_by_collection_id")) {
-                doPostGetObjectsByCollectionId(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
-            } else if (messageBegin.getName().equals("get_objects_by_institution_id")) {
-                doPostGetObjectsByInstitutionId(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
             } else {
                 __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(-32601, String.format("the method '%s' does not exist / is not available", messageBegin.getName())), messageBegin.getId());
                 return;
@@ -196,36 +188,9 @@ public class ObjectQueryServiceJsonRpcServlet extends javax.servlet.http.HttpSer
     }
 
     public void doPostGetObjectCount(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final com.google.common.primitives.UnsignedInteger result;
+        final net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectCountRequest serviceRequest;
         try {
-            result = service.getObjectCount();
-        } catch (final net.lab1318.costume.api.services.IoException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        }
-
-        final String httpServletResponseBody;
-        {
-            final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
-            try {
-                final org.thryft.protocol.JsonRpcOutputProtocol oprot = new org.thryft.protocol.JsonRpcOutputProtocol(new org.thryft.protocol.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
-                oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                oprot.writeU32(result);
-                oprot.writeMessageEnd();
-                oprot.flush();
-            } catch (final org.thryft.protocol.OutputProtocolException e) {
-                logger.error("error serializing service error response: ", e);
-                throw new IllegalStateException(e);
-            }
-            httpServletResponseBody = httpServletResponseBodyWriter.toString();
-        }
-        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
-    }
-
-    public void doPostGetObjectCountByCollectionId(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectCountByCollectionIdRequest serviceRequest;
-        try {
-            serviceRequest = net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectCountByCollectionIdRequest.readAs(iprot, iprot.getCurrentFieldType());
+            serviceRequest = net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectCountRequest.readAs(iprot, iprot.getCurrentFieldType());
         } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
             logger.debug("error deserializing service request: ", e);
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, -32602, "invalid JSON-RPC request method parameters: " + String.valueOf(e.getMessage())), jsonRpcRequestId);
@@ -234,43 +199,7 @@ public class ObjectQueryServiceJsonRpcServlet extends javax.servlet.http.HttpSer
 
         final com.google.common.primitives.UnsignedInteger result;
         try {
-            result = service.getObjectCountByCollectionId(serviceRequest.getCollectionId());
-        } catch (final net.lab1318.costume.api.services.IoException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        }
-
-        final String httpServletResponseBody;
-        {
-            final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
-            try {
-                final org.thryft.protocol.JsonRpcOutputProtocol oprot = new org.thryft.protocol.JsonRpcOutputProtocol(new org.thryft.protocol.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
-                oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                oprot.writeU32(result);
-                oprot.writeMessageEnd();
-                oprot.flush();
-            } catch (final org.thryft.protocol.OutputProtocolException e) {
-                logger.error("error serializing service error response: ", e);
-                throw new IllegalStateException(e);
-            }
-            httpServletResponseBody = httpServletResponseBodyWriter.toString();
-        }
-        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
-    }
-
-    public void doPostGetObjectCountByInstitutionId(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectCountByInstitutionIdRequest serviceRequest;
-        try {
-            serviceRequest = net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectCountByInstitutionIdRequest.readAs(iprot, iprot.getCurrentFieldType());
-        } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
-            logger.debug("error deserializing service request: ", e);
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, -32602, "invalid JSON-RPC request method parameters: " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        }
-
-        final com.google.common.primitives.UnsignedInteger result;
-        try {
-            result = service.getObjectCountByInstitutionId(serviceRequest.getInstitutionId());
+            result = service.getObjectCount(serviceRequest.getQuery());
         } catch (final net.lab1318.costume.api.services.IoException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
@@ -304,9 +233,9 @@ public class ObjectQueryServiceJsonRpcServlet extends javax.servlet.http.HttpSer
             return;
         }
 
-        final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> result;
+        final net.lab1318.costume.api.services.object.GetObjectsResult result;
         try {
-            result = service.getObjects(serviceRequest.getFrom(), serviceRequest.getSize());
+            result = service.getObjects(serviceRequest.getOptions(), serviceRequest.getQuery());
         } catch (final net.lab1318.costume.api.services.IoException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
@@ -318,91 +247,7 @@ public class ObjectQueryServiceJsonRpcServlet extends javax.servlet.http.HttpSer
             try {
                 final org.thryft.protocol.JsonRpcOutputProtocol oprot = new org.thryft.protocol.JsonRpcOutputProtocol(new org.thryft.protocol.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
                 oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, result.size());
-                for (final net.lab1318.costume.api.models.object.ObjectEntry _iter0 : result) {
-                    _iter0.writeAsStruct(oprot);
-                }
-                oprot.writeListEnd();
-                oprot.writeMessageEnd();
-                oprot.flush();
-            } catch (final org.thryft.protocol.OutputProtocolException e) {
-                logger.error("error serializing service error response: ", e);
-                throw new IllegalStateException(e);
-            }
-            httpServletResponseBody = httpServletResponseBodyWriter.toString();
-        }
-        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
-    }
-
-    public void doPostGetObjectsByCollectionId(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectsByCollectionIdRequest serviceRequest;
-        try {
-            serviceRequest = net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectsByCollectionIdRequest.readAs(iprot, iprot.getCurrentFieldType());
-        } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
-            logger.debug("error deserializing service request: ", e);
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, -32602, "invalid JSON-RPC request method parameters: " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        }
-
-        final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> result;
-        try {
-            result = service.getObjectsByCollectionId(serviceRequest.getCollectionId(), serviceRequest.getFrom(), serviceRequest.getSize());
-        } catch (final net.lab1318.costume.api.services.IoException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        }
-
-        final String httpServletResponseBody;
-        {
-            final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
-            try {
-                final org.thryft.protocol.JsonRpcOutputProtocol oprot = new org.thryft.protocol.JsonRpcOutputProtocol(new org.thryft.protocol.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
-                oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, result.size());
-                for (final net.lab1318.costume.api.models.object.ObjectEntry _iter0 : result) {
-                    _iter0.writeAsStruct(oprot);
-                }
-                oprot.writeListEnd();
-                oprot.writeMessageEnd();
-                oprot.flush();
-            } catch (final org.thryft.protocol.OutputProtocolException e) {
-                logger.error("error serializing service error response: ", e);
-                throw new IllegalStateException(e);
-            }
-            httpServletResponseBody = httpServletResponseBodyWriter.toString();
-        }
-        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
-    }
-
-    public void doPostGetObjectsByInstitutionId(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectsByInstitutionIdRequest serviceRequest;
-        try {
-            serviceRequest = net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectsByInstitutionIdRequest.readAs(iprot, iprot.getCurrentFieldType());
-        } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
-            logger.debug("error deserializing service request: ", e);
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, -32602, "invalid JSON-RPC request method parameters: " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        }
-
-        final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> result;
-        try {
-            result = service.getObjectsByInstitutionId(serviceRequest.getInstitutionId(), serviceRequest.getFrom(), serviceRequest.getSize());
-        } catch (final net.lab1318.costume.api.services.IoException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        }
-
-        final String httpServletResponseBody;
-        {
-            final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
-            try {
-                final org.thryft.protocol.JsonRpcOutputProtocol oprot = new org.thryft.protocol.JsonRpcOutputProtocol(new org.thryft.protocol.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
-                oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, result.size());
-                for (final net.lab1318.costume.api.models.object.ObjectEntry _iter0 : result) {
-                    _iter0.writeAsStruct(oprot);
-                }
-                oprot.writeListEnd();
+                result.writeAsStruct(oprot);
                 oprot.writeMessageEnd();
                 oprot.flush();
             } catch (final org.thryft.protocol.OutputProtocolException e) {

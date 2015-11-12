@@ -23,9 +23,9 @@ public final class ElasticSearchObjectCommandServiceTest extends ObjectServiceTe
     public void testDeleteObjectsByCollectionId() throws Exception {
         _putObjects();
         for (final CollectionEntry collectionEntry : collectionQueryService.getCollections()) {
-            assertNotEquals(0, objectQueryService.getObjectCountByCollectionId(collectionEntry.getId()).intValue());
+            assertNotEquals(0, _getObjectCountByCollectionId(collectionEntry.getId()));
             objectCommandService.deleteObjectsByCollectionId(collectionEntry.getId());
-            assertEquals(0, objectQueryService.getObjectCountByCollectionId(collectionEntry.getId()).intValue());
+            assertEquals(0, _getObjectCountByCollectionId(collectionEntry.getId()));
         }
     }
 
@@ -33,9 +33,9 @@ public final class ElasticSearchObjectCommandServiceTest extends ObjectServiceTe
     public void testDeleteObjectsByInstitutionId() throws Exception {
         _putObjects();
         for (final InstitutionEntry institutionEntry : TestData.getInstance().getInstitutions()) {
-            assertNotEquals(0, objectQueryService.getObjectCountByInstitutionId(institutionEntry.getId()).intValue());
+            assertNotEquals(0, _getObjectCountByInstitutionId(institutionEntry.getId()));
             objectCommandService.deleteObjectsByInstitutionId(institutionEntry.getId());
-            assertEquals(0, objectQueryService.getObjectCountByInstitutionId(institutionEntry.getId()).intValue());
+            assertEquals(0, _getObjectCountByInstitutionId(institutionEntry.getId()));
         }
     }
 
