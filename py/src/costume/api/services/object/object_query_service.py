@@ -1,7 +1,8 @@
-from itertools import ifilterfalse
 import __builtin__
 import costume.api.models.object.object
-import costume.api.models.object.object_entry
+import costume.api.models.object.object_query
+import costume.api.services.object.get_objects_options
+import costume.api.services.object.get_objects_result
 
 
 class ObjectQueryService(object):
@@ -34,12 +35,18 @@ class ObjectQueryService(object):
 
     def get_object_count(
         self,
+        query=None,
     ):
         '''
+        :type query: costume.api.models.object.object_query.ObjectQuery or None
         :rtype: int
         '''
 
-        get_object_count_return_value = self._get_object_count()
+        if query is not None:
+            if not isinstance(query, costume.api.models.object.object_query.ObjectQuery):
+                raise TypeError("expected query to be a costume.api.models.object.object_query.ObjectQuery but it is a %s" % getattr(__builtin__, 'type')(query))
+
+        get_object_count_return_value = self._get_object_count(query=query)
 
         if not isinstance(get_object_count_return_value, (int, long)) and get_object_count_return_value >= 0:
             raise TypeError(getattr(__builtin__, 'type')(get_object_count_return_value))
@@ -48,175 +55,39 @@ class ObjectQueryService(object):
 
     def _get_object_count(
         self,
+        query,
     ):
         raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_object_count')
 
-    def get_object_count_by_collection_id(
-        self,
-        collection_id=None,
-    ):
-        '''
-        :type collection_id: str
-        :rtype: int
-        '''
-
-        if collection_id is None:
-            raise ValueError('collection_id is required')
-        if not isinstance(collection_id, basestring):
-            raise TypeError("expected collection_id to be a str but it is a %s" % getattr(__builtin__, 'type')(collection_id))
-
-        get_object_count_by_collection_id_return_value = self._get_object_count_by_collection_id(collection_id=collection_id)
-
-        if not isinstance(get_object_count_by_collection_id_return_value, (int, long)) and get_object_count_by_collection_id_return_value >= 0:
-            raise TypeError(getattr(__builtin__, 'type')(get_object_count_by_collection_id_return_value))
-
-        return get_object_count_by_collection_id_return_value
-
-    def _get_object_count_by_collection_id(
-        self,
-        collection_id,
-    ):
-        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_object_count_by_collection_id')
-
-    def get_object_count_by_institution_id(
-        self,
-        institution_id=None,
-    ):
-        '''
-        :type institution_id: str
-        :rtype: int
-        '''
-
-        if institution_id is None:
-            raise ValueError('institution_id is required')
-        if not isinstance(institution_id, basestring):
-            raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
-
-        get_object_count_by_institution_id_return_value = self._get_object_count_by_institution_id(institution_id=institution_id)
-
-        if not isinstance(get_object_count_by_institution_id_return_value, (int, long)) and get_object_count_by_institution_id_return_value >= 0:
-            raise TypeError(getattr(__builtin__, 'type')(get_object_count_by_institution_id_return_value))
-
-        return get_object_count_by_institution_id_return_value
-
-    def _get_object_count_by_institution_id(
-        self,
-        institution_id,
-    ):
-        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_object_count_by_institution_id')
-
     def get_objects(
         self,
-        from_=None,
-        size=None,
+        options=None,
+        query=None,
     ):
         '''
-        :type from_: int
-        :type size: int
-        :rtype: tuple(costume.api.models.object.object_entry.ObjectEntry)
+        :type options: costume.api.services.object.get_objects_options.GetObjectsOptions
+        :type query: costume.api.models.object.object_query.ObjectQuery or None
+        :rtype: costume.api.services.object.get_objects_result.GetObjectsResult
         '''
 
-        if from_ is None:
-            raise ValueError('from_ is required')
-        if not isinstance(from_, (int, long)) and from_ >= 0:
-            raise TypeError("expected from_ to be a int but it is a %s" % getattr(__builtin__, 'type')(from_))
-        if size is None:
-            raise ValueError('size is required')
-        if not isinstance(size, (int, long)) and size >= 0:
-            raise TypeError("expected size to be a int but it is a %s" % getattr(__builtin__, 'type')(size))
+        if options is None:
+            raise ValueError('options is required')
+        if not isinstance(options, costume.api.services.object.get_objects_options.GetObjectsOptions):
+            raise TypeError("expected options to be a costume.api.services.object.get_objects_options.GetObjectsOptions but it is a %s" % getattr(__builtin__, 'type')(options))
+        if query is not None:
+            if not isinstance(query, costume.api.models.object.object_query.ObjectQuery):
+                raise TypeError("expected query to be a costume.api.models.object.object_query.ObjectQuery but it is a %s" % getattr(__builtin__, 'type')(query))
 
-        get_objects_return_value = self._get_objects(from_=from_, size=size)
+        get_objects_return_value = self._get_objects(options=options, query=query)
 
-        if not (isinstance(get_objects_return_value, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.object.object_entry.ObjectEntry), get_objects_return_value))) == 0):
+        if not isinstance(get_objects_return_value, costume.api.services.object.get_objects_result.GetObjectsResult):
             raise TypeError(getattr(__builtin__, 'type')(get_objects_return_value))
 
         return get_objects_return_value
 
     def _get_objects(
         self,
-        from_,
-        size,
+        options,
+        query,
     ):
         raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_objects')
-
-    def get_objects_by_collection_id(
-        self,
-        collection_id=None,
-        from_=None,
-        size=None,
-    ):
-        '''
-        :type collection_id: str
-        :type from_: int
-        :type size: int
-        :rtype: tuple(costume.api.models.object.object_entry.ObjectEntry)
-        '''
-
-        if collection_id is None:
-            raise ValueError('collection_id is required')
-        if not isinstance(collection_id, basestring):
-            raise TypeError("expected collection_id to be a str but it is a %s" % getattr(__builtin__, 'type')(collection_id))
-        if from_ is None:
-            raise ValueError('from_ is required')
-        if not isinstance(from_, (int, long)) and from_ >= 0:
-            raise TypeError("expected from_ to be a int but it is a %s" % getattr(__builtin__, 'type')(from_))
-        if size is None:
-            raise ValueError('size is required')
-        if not isinstance(size, (int, long)) and size >= 0:
-            raise TypeError("expected size to be a int but it is a %s" % getattr(__builtin__, 'type')(size))
-
-        get_objects_by_collection_id_return_value = self._get_objects_by_collection_id(collection_id=collection_id, from_=from_, size=size)
-
-        if not (isinstance(get_objects_by_collection_id_return_value, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.object.object_entry.ObjectEntry), get_objects_by_collection_id_return_value))) == 0):
-            raise TypeError(getattr(__builtin__, 'type')(get_objects_by_collection_id_return_value))
-
-        return get_objects_by_collection_id_return_value
-
-    def _get_objects_by_collection_id(
-        self,
-        collection_id,
-        from_,
-        size,
-    ):
-        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_objects_by_collection_id')
-
-    def get_objects_by_institution_id(
-        self,
-        institution_id=None,
-        from_=None,
-        size=None,
-    ):
-        '''
-        :type institution_id: str
-        :type from_: int
-        :type size: int
-        :rtype: tuple(costume.api.models.object.object_entry.ObjectEntry)
-        '''
-
-        if institution_id is None:
-            raise ValueError('institution_id is required')
-        if not isinstance(institution_id, basestring):
-            raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
-        if from_ is None:
-            raise ValueError('from_ is required')
-        if not isinstance(from_, (int, long)) and from_ >= 0:
-            raise TypeError("expected from_ to be a int but it is a %s" % getattr(__builtin__, 'type')(from_))
-        if size is None:
-            raise ValueError('size is required')
-        if not isinstance(size, (int, long)) and size >= 0:
-            raise TypeError("expected size to be a int but it is a %s" % getattr(__builtin__, 'type')(size))
-
-        get_objects_by_institution_id_return_value = self._get_objects_by_institution_id(institution_id=institution_id, from_=from_, size=size)
-
-        if not (isinstance(get_objects_by_institution_id_return_value, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.object.object_entry.ObjectEntry), get_objects_by_institution_id_return_value))) == 0):
-            raise TypeError(getattr(__builtin__, 'type')(get_objects_by_institution_id_return_value))
-
-        return get_objects_by_institution_id_return_value
-
-    def _get_objects_by_institution_id(
-        self,
-        institution_id,
-        from_,
-        size,
-    ):
-        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_objects_by_institution_id')
