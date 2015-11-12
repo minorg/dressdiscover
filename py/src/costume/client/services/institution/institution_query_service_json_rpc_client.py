@@ -136,3 +136,21 @@ class InstitutionQueryServiceJsonRpcClient(costume.api.services.institution.inst
         iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
         return tuple([costume.api.models.institution.institution_entry.InstitutionEntry.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
 
+    def _get_institutions_by_ids(
+        self,
+        ids,
+    ):
+        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot.write_struct_begin()
+        oprot.write_field_begin(name='ids', type=15, id=None)
+        oprot.write_list_begin(11, len(ids))
+        for _0 in ids:
+            oprot.write_string(_0)
+        oprot.write_list_end()
+        oprot.write_field_end()
+        oprot.write_struct_end()
+
+        return_value = self.__request(method='get_institutions_by_ids', params=oprot.value)
+        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
+        return tuple([costume.api.models.institution.institution.Institution.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+

@@ -5,11 +5,13 @@ public class LoggingInstitutionQueryService implements net.lab1318.costume.api.s
     public static class Markers {
         public final static org.slf4j.Marker GET_INSTITUTION_BY_ID = org.slf4j.MarkerFactory.getMarker("GET_INSTITUTION_BY_ID");
         public final static org.slf4j.Marker GET_INSTITUTIONS = org.slf4j.MarkerFactory.getMarker("GET_INSTITUTIONS");
+        public final static org.slf4j.Marker GET_INSTITUTIONS_BY_IDS = org.slf4j.MarkerFactory.getMarker("GET_INSTITUTIONS_BY_IDS");
 
         public final static org.slf4j.Marker INSTITUTION_QUERY_SERVICE = org.slf4j.MarkerFactory.getMarker("INSTITUTION_QUERY_SERVICE");
         static {
             INSTITUTION_QUERY_SERVICE.add(GET_INSTITUTION_BY_ID);
             INSTITUTION_QUERY_SERVICE.add(GET_INSTITUTIONS);
+            INSTITUTION_QUERY_SERVICE.add(GET_INSTITUTIONS_BY_IDS);
         }
     }
 
@@ -71,6 +73,37 @@ public class LoggingInstitutionQueryService implements net.lab1318.costume.api.s
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.GET_INSTITUTIONS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        }
+    }
+
+    public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.Institution> getInstitutionsByIds(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId> ids) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.institution.NoSuchInstitutionException {
+        final StringBuilder __logMessageStringBuilder = new StringBuilder();
+        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+
+        __logMessageStringBuilder.append("get_institutions_by_ids(");
+        __logMessageStringBuilder.append("{}");
+        __logMessageArgs.add(new Messages.GetInstitutionsByIdsRequest(ids));
+        __logMessageStringBuilder.append(")");
+
+        try {
+            com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.Institution> __returnValue = delegate.getInstitutionsByIds(ids);
+
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(__returnValue);
+
+            logger.debug(Markers.GET_INSTITUTIONS_BY_IDS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+
+            return __returnValue;
+        } catch (final net.lab1318.costume.api.services.IoException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.GET_INSTITUTIONS_BY_IDS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        } catch (final net.lab1318.costume.api.services.institution.NoSuchInstitutionException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.GET_INSTITUTIONS_BY_IDS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
         }
     }

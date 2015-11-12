@@ -25,4 +25,12 @@ service InstitutionQueryService {
 	) throws (
 		io_exception.IoException e
 	);
+
+	list<institution.Institution>
+	get_institutions_by_ids(
+		list<institution_id.InstitutionId> ids
+	) throws (
+		io_exception.IoException e1,
+		no_such_institution_exception.NoSuchInstitutionException e2
+	);
 }

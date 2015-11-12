@@ -5,12 +5,14 @@ public class LoggingObjectQueryService implements net.lab1318.costume.api.servic
     public static class Markers {
         public final static org.slf4j.Marker GET_OBJECT_BY_ID = org.slf4j.MarkerFactory.getMarker("GET_OBJECT_BY_ID");
         public final static org.slf4j.Marker GET_OBJECT_COUNT = org.slf4j.MarkerFactory.getMarker("GET_OBJECT_COUNT");
+        public final static org.slf4j.Marker GET_OBJECT_FACETS = org.slf4j.MarkerFactory.getMarker("GET_OBJECT_FACETS");
         public final static org.slf4j.Marker GET_OBJECTS = org.slf4j.MarkerFactory.getMarker("GET_OBJECTS");
 
         public final static org.slf4j.Marker OBJECT_QUERY_SERVICE = org.slf4j.MarkerFactory.getMarker("OBJECT_QUERY_SERVICE");
         static {
             OBJECT_QUERY_SERVICE.add(GET_OBJECT_BY_ID);
             OBJECT_QUERY_SERVICE.add(GET_OBJECT_COUNT);
+            OBJECT_QUERY_SERVICE.add(GET_OBJECT_FACETS);
             OBJECT_QUERY_SERVICE.add(GET_OBJECTS);
         }
     }
@@ -79,7 +81,33 @@ public class LoggingObjectQueryService implements net.lab1318.costume.api.servic
         }
     }
 
-    public net.lab1318.costume.api.services.object.GetObjectsResult getObjects(final net.lab1318.costume.api.services.object.GetObjectsOptions options, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query) throws net.lab1318.costume.api.services.IoException {
+    public net.lab1318.costume.api.services.object.ObjectFacets getObjectFacets(final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query) throws net.lab1318.costume.api.services.IoException {
+        final StringBuilder __logMessageStringBuilder = new StringBuilder();
+        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+
+        __logMessageStringBuilder.append("get_object_facets(");
+        __logMessageStringBuilder.append("{}");
+        __logMessageArgs.add(new Messages.GetObjectFacetsRequest(query));
+        __logMessageStringBuilder.append(")");
+
+        try {
+            net.lab1318.costume.api.services.object.ObjectFacets __returnValue = delegate.getObjectFacets(query);
+
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(__returnValue);
+
+            logger.debug(Markers.GET_OBJECT_FACETS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+
+            return __returnValue;
+        } catch (final net.lab1318.costume.api.services.IoException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.GET_OBJECT_FACETS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        }
+    }
+
+    public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> getObjects(final net.lab1318.costume.api.services.object.GetObjectsOptions options, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query) throws net.lab1318.costume.api.services.IoException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -89,7 +117,7 @@ public class LoggingObjectQueryService implements net.lab1318.costume.api.servic
         __logMessageStringBuilder.append(")");
 
         try {
-            net.lab1318.costume.api.services.object.GetObjectsResult __returnValue = delegate.getObjects(options, query);
+            com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> __returnValue = delegate.getObjects(options, query);
 
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(__returnValue);

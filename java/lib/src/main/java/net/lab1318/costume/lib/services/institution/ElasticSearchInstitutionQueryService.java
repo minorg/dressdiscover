@@ -75,10 +75,10 @@ public class ElasticSearchInstitutionQueryService implements InstitutionQuerySer
             return elasticSearchIndex.getModelById(id, Optional.absent(), logger, Markers.GET_INSTITUTION_BY_ID,
                     InstitutionElasticSearchModelFactory.getInstance());
         } catch (final InvalidModelException e) {
-            logger.warn(Markers.GET_INSTITUTION_BY_ID, "invalid trial model {}: ", id, e);
+            logger.warn(Markers.GET_INSTITUTION_BY_ID, "invalid institution model {}: ", id, e);
             throw new NoSuchInstitutionException();
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting trial" + id);
+            throw ServiceExceptionHelper.wrapException(e, "error getting institution" + id);
         } catch (final NoSuchModelException e) {
             throw new NoSuchInstitutionException();
         }
@@ -87,11 +87,38 @@ public class ElasticSearchInstitutionQueryService implements InstitutionQuerySer
     @Override
     public ImmutableList<InstitutionEntry> getInstitutions() throws IoException {
         try {
-            return elasticSearchIndex.getModels(logger, Markers.GET_INSTITUTION_BY_ID,
+            return elasticSearchIndex.getModels(logger, Markers.GET_INSTITUTIONS,
                     InstitutionElasticSearchModelFactory.getInstance(), elasticSearchIndex.prepareSearchModels()
                             .setQuery(QueryBuilders.matchAllQuery()).setSize(Integer.MAX_VALUE));
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting trials");
+            throw ServiceExceptionHelper.wrapException(e, "error getting institutions");
+        }
+    }
+
+    @Override
+    public ImmutableList<Institution> getInstitutionsByIds(final ImmutableList<InstitutionId> ids)
+            throws IoException, NoSuchInstitutionException {
+        if (ids.isEmpty()) {
+            return ImmutableList.of();
+        }
+        try {
+            final ImmutableList<InstitutionEntry> institutionEntries = elasticSearchIndex.getModelsByIds(ids, logger,
+                    Markers.GET_INSTITUTIONS_BY_IDS, InstitutionElasticSearchModelFactory.getInstance());
+            final ImmutableList.Builder<Institution> institutionsBuilder = ImmutableList.builder();
+            for (int i = 0; i < ids.size(); i++) {
+                final InstitutionId id = ids.get(i);
+                if (i >= institutionEntries.size()) {
+                    throw new NoSuchInstitutionException(id);
+                }
+                final InstitutionEntry institutionEntry = institutionEntries.get(i);
+                if (!id.equals(institutionEntry.getId())) {
+                    throw new NoSuchInstitutionException(id);
+                }
+                institutionsBuilder.add(institutionEntry.getModel());
+            }
+            return institutionsBuilder.build();
+        } catch (final IOException e) {
+            throw ServiceExceptionHelper.wrapException(e, "error getting institutions");
         }
     }
 

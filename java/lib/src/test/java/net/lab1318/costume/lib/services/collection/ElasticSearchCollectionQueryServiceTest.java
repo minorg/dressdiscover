@@ -8,7 +8,9 @@ import org.junit.Test;
 
 import com.google.common.collect.ImmutableList;
 
+import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionEntry;
+import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.lib.services.TestData;
 
@@ -36,6 +38,19 @@ public final class ElasticSearchCollectionQueryServiceTest extends CollectionSer
                 }
             }
             assertTrue(found);
+        }
+    }
+
+    @Test
+    public void testGetCollectionsByIds() throws Exception {
+        final ImmutableList<CollectionEntry> expected = _putCollections();
+        final ImmutableList.Builder<CollectionId> idsBuilder = ImmutableList.builder();
+        for (final CollectionEntry entry : expected) {
+            idsBuilder.add(entry.getId());
+        }
+        final ImmutableList<Collection> actual = collectionQueryService.getCollectionsByIds(idsBuilder.build());
+        for (int i = 0; i < expected.size(); i++) {
+            assertEquals(expected.get(i).getModel(), actual.get(i));
         }
     }
 

@@ -4,6 +4,7 @@ public interface CollectionQueryService {
     public enum FunctionMetadata {
         GET_COLLECTION_BY_ID("get_collection_by_id"),
         GET_COLLECTIONS("get_collections"),
+        GET_COLLECTIONS_BY_IDS("get_collections_by_ids"),
         GET_COLLECTIONS_BY_INSTITUTION_ID("get_collections_by_institution_id");
 
         public String getThriftName() {
@@ -1233,6 +1234,796 @@ public interface CollectionQueryService {
             private final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionEntry> returnValue;
         }
 
+        public final static class GetCollectionsByIdsRequest implements org.thryft.Struct {
+            public static class Builder {
+                public Builder() {
+                    ids = null;
+                }
+
+                public Builder(final GetCollectionsByIdsRequest other) {
+                    this.ids = other.getIds();
+                }
+
+                protected GetCollectionsByIdsRequest _build(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> ids) {
+                    return new GetCollectionsByIdsRequest(ids);
+                }
+
+                public GetCollectionsByIdsRequest build() {
+                    return _build(com.google.common.base.Preconditions.checkNotNull(ids, "net.lab1318.costume.api.services.collection.GetCollectionsByIdsRequest: missing ids"));
+                }
+
+                public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> getIds() {
+                    return ids;
+                }
+
+                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    switch (type) {
+                    case LIST:
+                        return readAsList(iprot);
+                    case STRUCT:
+                        return readAsStruct(iprot);
+                    default:
+                        throw new IllegalArgumentException("cannot read as " + type);
+                    }
+                }
+
+                public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    iprot.readListBegin();
+                    ids = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId>>() {
+                        @Override
+                        public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            try {
+                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequence = com.google.common.collect.ImmutableList.builder();
+                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                    try {
+                                        sequence.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
+                                    } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                                iprot.readListEnd();
+                                return sequence.build();
+                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                            }
+                        }
+                    }).apply(iprot);
+                    iprot.readListEnd();
+                    return this;
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    iprot.readStructBegin();
+                    while (true) {
+                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                            break;
+                        }
+                        switch (ifield.getName()) {
+                        case "ids": {
+                            ids = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                        final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequence = com.google.common.collect.ImmutableList.builder();
+                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                            try {
+                                                sequence.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
+                                            } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                            }
+                                        }
+                                        iprot.readListEnd();
+                                        return sequence.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                            }).apply(iprot);
+                            break;
+                        }
+                        }
+                        iprot.readFieldEnd();
+                    }
+                    iprot.readStructEnd();
+                    return this;
+                }
+
+                public Builder setIds(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> ids) {
+                    this.ids = com.google.common.base.Preconditions.checkNotNull(ids);
+                    return this;
+                }
+
+                public Builder setIfPresent(final GetCollectionsByIdsRequest other) {
+                    com.google.common.base.Preconditions.checkNotNull(other);
+
+                    setIds(other.getIds());
+
+                    return this;
+                }
+
+                @SuppressWarnings({"unchecked"})
+                public Builder set(final String name, @javax.annotation.Nullable final java.lang.Object value) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    case "ids": setIds((com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId>)value); return this;
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
+                }
+
+                public Builder unsetIds() {
+                    this.ids = null;
+                    return this;
+                }
+
+                private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> ids;
+            }
+
+            @SuppressWarnings("serial")
+            public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
+                IDS("ids", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId>>() {}, true, 0, "ids", org.thryft.protocol.Type.LIST);
+
+                @Override
+                public String getJavaName() {
+                    return javaName;
+                }
+
+                @Override
+                public com.google.common.reflect.TypeToken<?> getJavaType() {
+                    return javaType;
+                }
+
+                @Override
+                public int getThriftId() {
+                    return thriftId;
+                }
+
+                @Override
+                public String getThriftProtocolKey() {
+                    return thriftProtocolKey;
+                }
+
+                @Override
+                public org.thryft.protocol.Type getThriftProtocolType() {
+                    return thriftProtocolType;
+                }
+
+                @Override
+                public String getThriftName() {
+                    return thriftName;
+                }
+
+                @Override
+                public boolean hasThriftId() {
+                    return thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID;
+                }
+
+                @Override
+                public boolean isRequired()  {
+                    return required;
+                }
+
+                public static FieldMetadata valueOfJavaName(final String javaName) {
+                    switch (javaName) {
+                    case "ids": return IDS;
+                    default:
+                        throw new IllegalArgumentException(javaName);
+                    }
+                }
+
+                public static FieldMetadata valueOfThriftName(final String thriftName) {
+                    switch (thriftName) {
+                    case "ids": return IDS;
+                    default:
+                        throw new IllegalArgumentException(thriftName);
+                    }
+                }
+
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                    this.javaName = javaName;
+                    this.javaType = javaType;
+                    this.required = required;
+                    this.thriftId = thriftId;
+                    this.thriftName = thriftName;
+                    if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
+                        this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
+                    } else {
+                        this.thriftProtocolKey = thriftName;
+                    }
+                    this.thriftProtocolType = thriftProtocolType;
+                }
+
+                private final String javaName;
+                private final com.google.common.reflect.TypeToken<?> javaType;
+                private final boolean required;
+                private final int thriftId;
+                private final String thriftName;
+                private final String thriftProtocolKey;
+                private final org.thryft.protocol.Type thriftProtocolType;
+            }
+
+            /**
+             * Copy constructor
+             */
+            public GetCollectionsByIdsRequest(final GetCollectionsByIdsRequest other) {
+                this(other.getIds());
+            }
+
+            /**
+             * Optional constructor
+             */
+            public GetCollectionsByIdsRequest(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> ids) {
+                this.ids = com.google.common.base.Preconditions.checkNotNull(ids, "net.lab1318.costume.api.services.collection.GetCollectionsByIdsRequest: missing ids");
+            }
+
+            public static Builder builder() {
+                return new Builder();
+            }
+
+            public static Builder builder(final GetCollectionsByIdsRequest other) {
+                return new Builder(other);
+            }
+
+            public static Builder builder(final com.google.common.base.Optional<GetCollectionsByIdsRequest> other) {
+                return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            @Override
+            public boolean equals(final java.lang.Object otherObject) {
+                if (otherObject == this) {
+                    return true;
+                } else if (!(otherObject instanceof GetCollectionsByIdsRequest)) {
+                    return false;
+                }
+
+                final GetCollectionsByIdsRequest other = (GetCollectionsByIdsRequest)otherObject;
+                return
+                    getIds().equals(other.getIds());
+            }
+
+            @Override
+            public java.lang.Object get(final String fieldName) {
+                switch (fieldName) {
+                case "ids": return getIds();
+                default:
+                    throw new IllegalArgumentException(fieldName);
+                }
+            }
+
+            public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> getIds() {
+                return ids;
+            }
+
+            @Override
+            public int hashCode() {
+                int hashCode = 17;
+                hashCode = 31 * hashCode + getIds().hashCode();
+                return hashCode;
+            }
+
+            public static GetCollectionsByIdsRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                switch (type) {
+                case LIST:
+                    return readAsList(iprot);
+                case STRUCT:
+                    return readAsStruct(iprot);
+                default:
+                    throw new IllegalArgumentException("cannot read as " + type);
+                }
+            }
+
+            public static GetCollectionsByIdsRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> ids = null;
+
+                iprot.readListBegin();
+                ids = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId>>() {
+                    @Override
+                    public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
+                        try {
+                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                            final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequence = com.google.common.collect.ImmutableList.builder();
+                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                try {
+                                    sequence.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
+                                } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                            iprot.readListEnd();
+                            return sequence.build();
+                        } catch (final org.thryft.protocol.InputProtocolException e) {
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                        }
+                    }
+                }).apply(iprot);
+                iprot.readListEnd();
+                try {
+                    return new GetCollectionsByIdsRequest(ids);
+                } catch (final IllegalArgumentException | NullPointerException e) {
+                    throw new org.thryft.protocol.InputProtocolException(e);
+                }
+            }
+
+            public static GetCollectionsByIdsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> ids = null;
+
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
+                    }
+                    switch (ifield.getName()) {
+                    case "ids": {
+                        ids = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                    final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequence = com.google.common.collect.ImmutableList.builder();
+                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                        try {
+                                            sequence.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
+                                        } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                        }
+                                    }
+                                    iprot.readListEnd();
+                                    return sequence.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot);
+                        break;
+                    }
+                    }
+                    iprot.readFieldEnd();
+                }
+                iprot.readStructEnd();
+                try {
+                    return new GetCollectionsByIdsRequest(ids);
+                } catch (final IllegalArgumentException | NullPointerException e) {
+                    throw new org.thryft.protocol.InputProtocolException(e);
+                }
+            }
+
+            public GetCollectionsByIdsRequest replaceIds(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> ids) {
+                return new GetCollectionsByIdsRequest(ids);
+            }
+
+            @Override
+            public String toString() {
+                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("ids", getIds()).toString();
+            }
+
+            @Override
+            public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
+
+                oprot.writeListBegin(org.thryft.protocol.Type.STRING, getIds().size());
+                for (final net.lab1318.costume.api.models.collection.CollectionId _iter0 : getIds()) {
+                    oprot.writeString(_iter0.toString());
+                }
+                oprot.writeListEnd();
+
+                oprot.writeListEnd();
+            }
+
+            @Override
+            public void writeAsStruct(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeStructBegin("net.lab1318.costume.api.services.collection.GetCollectionsByIdsRequest");
+                writeFields(oprot);
+                oprot.writeStructEnd();
+            }
+
+            @Override
+            public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeFieldBegin("ids", org.thryft.protocol.Type.LIST, (short)0);
+                oprot.writeListBegin(org.thryft.protocol.Type.STRING, getIds().size());
+                for (final net.lab1318.costume.api.models.collection.CollectionId _iter0 : getIds()) {
+                    oprot.writeString(_iter0.toString());
+                }
+                oprot.writeListEnd();
+                oprot.writeFieldEnd();
+
+                oprot.writeFieldStop();
+            }
+
+            private final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> ids;
+        }
+
+        public final static class GetCollectionsByIdsResponse implements org.thryft.Struct {
+            public static class Builder {
+                public Builder() {
+                    returnValue = null;
+                }
+
+                public Builder(final GetCollectionsByIdsResponse other) {
+                    this.returnValue = other.getReturnValue();
+                }
+
+                protected GetCollectionsByIdsResponse _build(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> returnValue) {
+                    return new GetCollectionsByIdsResponse(returnValue);
+                }
+
+                public GetCollectionsByIdsResponse build() {
+                    return _build(com.google.common.base.Preconditions.checkNotNull(returnValue, "net.lab1318.costume.api.services.collection.GetCollectionsByIdsResponse: missing returnValue"));
+                }
+
+                public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> getReturnValue() {
+                    return returnValue;
+                }
+
+                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    switch (type) {
+                    case LIST:
+                        return readAsList(iprot);
+                    case STRUCT:
+                        return readAsStruct(iprot);
+                    default:
+                        throw new IllegalArgumentException("cannot read as " + type);
+                    }
+                }
+
+                public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    iprot.readListBegin();
+                    returnValue = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection>>() {
+                        @Override
+                        public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            try {
+                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.Collection> sequence = com.google.common.collect.ImmutableList.builder();
+                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                    sequence.add(net.lab1318.costume.api.models.collection.Collection.readAsStruct(iprot));
+                                }
+                                iprot.readListEnd();
+                                return sequence.build();
+                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                            }
+                        }
+                    }).apply(iprot);
+                    iprot.readListEnd();
+                    return this;
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    iprot.readStructBegin();
+                    while (true) {
+                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                            break;
+                        }
+                        switch (ifield.getName()) {
+                        case "return_value": {
+                            returnValue = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                        final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.Collection> sequence = com.google.common.collect.ImmutableList.builder();
+                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                            sequence.add(net.lab1318.costume.api.models.collection.Collection.readAsStruct(iprot));
+                                        }
+                                        iprot.readListEnd();
+                                        return sequence.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                            }).apply(iprot);
+                            break;
+                        }
+                        }
+                        iprot.readFieldEnd();
+                    }
+                    iprot.readStructEnd();
+                    return this;
+                }
+
+                public Builder setIfPresent(final GetCollectionsByIdsResponse other) {
+                    com.google.common.base.Preconditions.checkNotNull(other);
+
+                    setReturnValue(other.getReturnValue());
+
+                    return this;
+                }
+
+                public Builder setReturnValue(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> returnValue) {
+                    this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue);
+                    return this;
+                }
+
+                @SuppressWarnings({"unchecked"})
+                public Builder set(final String name, @javax.annotation.Nullable final java.lang.Object value) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    case "return_value": setReturnValue((com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection>)value); return this;
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
+                }
+
+                public Builder unsetReturnValue() {
+                    this.returnValue = null;
+                    return this;
+                }
+
+                private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> returnValue;
+            }
+
+            @SuppressWarnings("serial")
+            public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
+                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection>>() {}, true, 0, "return_value", org.thryft.protocol.Type.LIST);
+
+                @Override
+                public String getJavaName() {
+                    return javaName;
+                }
+
+                @Override
+                public com.google.common.reflect.TypeToken<?> getJavaType() {
+                    return javaType;
+                }
+
+                @Override
+                public int getThriftId() {
+                    return thriftId;
+                }
+
+                @Override
+                public String getThriftProtocolKey() {
+                    return thriftProtocolKey;
+                }
+
+                @Override
+                public org.thryft.protocol.Type getThriftProtocolType() {
+                    return thriftProtocolType;
+                }
+
+                @Override
+                public String getThriftName() {
+                    return thriftName;
+                }
+
+                @Override
+                public boolean hasThriftId() {
+                    return thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID;
+                }
+
+                @Override
+                public boolean isRequired()  {
+                    return required;
+                }
+
+                public static FieldMetadata valueOfJavaName(final String javaName) {
+                    switch (javaName) {
+                    case "returnValue": return RETURN_VALUE;
+                    default:
+                        throw new IllegalArgumentException(javaName);
+                    }
+                }
+
+                public static FieldMetadata valueOfThriftName(final String thriftName) {
+                    switch (thriftName) {
+                    case "return_value": return RETURN_VALUE;
+                    default:
+                        throw new IllegalArgumentException(thriftName);
+                    }
+                }
+
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                    this.javaName = javaName;
+                    this.javaType = javaType;
+                    this.required = required;
+                    this.thriftId = thriftId;
+                    this.thriftName = thriftName;
+                    if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
+                        this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
+                    } else {
+                        this.thriftProtocolKey = thriftName;
+                    }
+                    this.thriftProtocolType = thriftProtocolType;
+                }
+
+                private final String javaName;
+                private final com.google.common.reflect.TypeToken<?> javaType;
+                private final boolean required;
+                private final int thriftId;
+                private final String thriftName;
+                private final String thriftProtocolKey;
+                private final org.thryft.protocol.Type thriftProtocolType;
+            }
+
+            /**
+             * Copy constructor
+             */
+            public GetCollectionsByIdsResponse(final GetCollectionsByIdsResponse other) {
+                this(other.getReturnValue());
+            }
+
+            /**
+             * Optional constructor
+             */
+            public GetCollectionsByIdsResponse(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> returnValue) {
+                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "net.lab1318.costume.api.services.collection.CollectionQueryService.getCollectionsByIds: missing returnValue");
+            }
+
+            public static Builder builder() {
+                return new Builder();
+            }
+
+            public static Builder builder(final GetCollectionsByIdsResponse other) {
+                return new Builder(other);
+            }
+
+            public static Builder builder(final com.google.common.base.Optional<GetCollectionsByIdsResponse> other) {
+                return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            @Override
+            public boolean equals(final java.lang.Object otherObject) {
+                if (otherObject == this) {
+                    return true;
+                } else if (!(otherObject instanceof GetCollectionsByIdsResponse)) {
+                    return false;
+                }
+
+                final GetCollectionsByIdsResponse other = (GetCollectionsByIdsResponse)otherObject;
+                return
+                    getReturnValue().equals(other.getReturnValue());
+            }
+
+            @Override
+            public java.lang.Object get(final String fieldName) {
+                switch (fieldName) {
+                case "return_value": return getReturnValue();
+                default:
+                    throw new IllegalArgumentException(fieldName);
+                }
+            }
+
+            public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> getReturnValue() {
+                return returnValue;
+            }
+
+            @Override
+            public int hashCode() {
+                int hashCode = 17;
+                hashCode = 31 * hashCode + getReturnValue().hashCode();
+                return hashCode;
+            }
+
+            public static GetCollectionsByIdsResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                switch (type) {
+                case LIST:
+                    return readAsList(iprot);
+                case STRUCT:
+                    return readAsStruct(iprot);
+                default:
+                    throw new IllegalArgumentException("cannot read as " + type);
+                }
+            }
+
+            public static GetCollectionsByIdsResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> returnValue = null;
+
+                iprot.readListBegin();
+                returnValue = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection>>() {
+                    @Override
+                    public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> apply(final org.thryft.protocol.InputProtocol iprot) {
+                        try {
+                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                            final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.Collection> sequence = com.google.common.collect.ImmutableList.builder();
+                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                sequence.add(net.lab1318.costume.api.models.collection.Collection.readAsStruct(iprot));
+                            }
+                            iprot.readListEnd();
+                            return sequence.build();
+                        } catch (final org.thryft.protocol.InputProtocolException e) {
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                        }
+                    }
+                }).apply(iprot);
+                iprot.readListEnd();
+                try {
+                    return new GetCollectionsByIdsResponse(returnValue);
+                } catch (final IllegalArgumentException | NullPointerException e) {
+                    throw new org.thryft.protocol.InputProtocolException(e);
+                }
+            }
+
+            public static GetCollectionsByIdsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> returnValue = null;
+
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
+                    }
+                    switch (ifield.getName()) {
+                    case "return_value": {
+                        returnValue = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                    final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.Collection> sequence = com.google.common.collect.ImmutableList.builder();
+                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                        sequence.add(net.lab1318.costume.api.models.collection.Collection.readAsStruct(iprot));
+                                    }
+                                    iprot.readListEnd();
+                                    return sequence.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot);
+                        break;
+                    }
+                    }
+                    iprot.readFieldEnd();
+                }
+                iprot.readStructEnd();
+                try {
+                    return new GetCollectionsByIdsResponse(returnValue);
+                } catch (final IllegalArgumentException | NullPointerException e) {
+                    throw new org.thryft.protocol.InputProtocolException(e);
+                }
+            }
+
+            public GetCollectionsByIdsResponse replaceReturnValue(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> returnValue) {
+                return new GetCollectionsByIdsResponse(returnValue);
+            }
+
+            @Override
+            public String toString() {
+                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("return_value", getReturnValue()).toString();
+            }
+
+            @Override
+            public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
+
+                oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getReturnValue().size());
+                for (final net.lab1318.costume.api.models.collection.Collection _iter0 : getReturnValue()) {
+                    _iter0.writeAsStruct(oprot);
+                }
+                oprot.writeListEnd();
+
+                oprot.writeListEnd();
+            }
+
+            @Override
+            public void writeAsStruct(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeStructBegin("net.lab1318.costume.api.services.collection.GetCollectionsByIdsResponse");
+                writeFields(oprot);
+                oprot.writeStructEnd();
+            }
+
+            @Override
+            public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeFieldBegin("return_value", org.thryft.protocol.Type.LIST, (short)0);
+                oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getReturnValue().size());
+                for (final net.lab1318.costume.api.models.collection.Collection _iter0 : getReturnValue()) {
+                    _iter0.writeAsStruct(oprot);
+                }
+                oprot.writeListEnd();
+                oprot.writeFieldEnd();
+
+                oprot.writeFieldStop();
+            }
+
+            private final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> returnValue;
+        }
+
         public final static class GetCollectionsByInstitutionIdRequest implements org.thryft.Struct {
             public static class Builder {
                 public Builder() {
@@ -1958,6 +2749,8 @@ public interface CollectionQueryService {
     public net.lab1318.costume.api.models.collection.Collection getCollectionById(final net.lab1318.costume.api.models.collection.CollectionId id) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException;
 
     public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionEntry> getCollections() throws net.lab1318.costume.api.services.IoException;
+
+    public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> getCollectionsByIds(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> ids) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException;
 
     public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionEntry> getCollectionsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws net.lab1318.costume.api.services.IoException;
 }

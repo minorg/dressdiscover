@@ -1,11 +1,14 @@
 package net.lab1318.costume.lib.services;
 
+import java.util.Date;
+
 import org.thryft.native_.Url;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableTable;
 
+import net.lab1318.costume.api.models.ModelMetadata;
 import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.collection.CollectionId;
@@ -27,6 +30,11 @@ public final class TestData {
         return instance;
     }
 
+    private static ModelMetadata __newModelMetadata() {
+        final Date current = new Date();
+        return ModelMetadata.builder().setCtime(current).setMtime(current).build();
+    }
+
     private TestData() {
         final ImmutableList.Builder<InstitutionEntry> institutionsBuilder = ImmutableList.builder();
         final ImmutableMultimap.Builder<InstitutionId, CollectionEntry> collectionsBuilder = ImmutableMultimap
@@ -40,16 +48,18 @@ public final class TestData {
                         Institution.builder().setDataRights(RightsSet.builder().setDisplay("Copyright notice")
                                 .setRights(ImmutableList.of(Rights.builder().setRightsHolder("Test rights holder")
                                         .setText("Test rights text").setType(RightsType.COPYRIGHTED).build()))
-                                .build()).setTitle("Test institution").setUrl(Url.parse("http://example.com"))
-                        .build()));
+                                .build()).setModelMetadata(__newModelMetadata()).setTitle("Test institution")
+                        .setUrl(Url.parse("http://example.com")).build()));
                 final Collection collection = Collection.builder().setInstitutionId(institutionId)
-                        .setTitle("Test collection").build();
+                        .setModelMetadata(__newModelMetadata()).setTitle("Test collection").build();
                 final CollectionId collectionId = CollectionId.parse(institutionId.toString() + "/test_collection");
                 collectionsBuilder.put(institutionId, new CollectionEntry(collectionId, collection));
-                objectsBuilder.put(institutionId, collectionId,
-                        new ObjectEntry(ObjectId.parse(collectionId.toString() + "/test_object"),
-                                Object.builder().setCollectionId(collectionId).setInstitutionId(institutionId)
-                                        .setTitle("Test object").build()));
+                objectsBuilder
+                        .put(institutionId, collectionId,
+                                new ObjectEntry(ObjectId.parse(collectionId.toString() + "/test_object"),
+                                        Object.builder().setCollectionId(collectionId).setInstitutionId(institutionId)
+                                                .setModelMetadata(__newModelMetadata()).setTitle("Test object")
+                                                .build()));
             }
         } catch (final InvalidCollectionIdException | InvalidInstitutionIdException | InvalidObjectIdException e) {
             throw new IllegalStateException();

@@ -7,20 +7,16 @@ import org.notaweb.gui.presenters.Presenter;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMultimap;
-import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.SystemError;
-import com.vaadin.ui.UI;
 
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
-import net.lab1318.costume.api.services.collection.CollectionQueryService.Messages.GetCollectionByIdRequest;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
-import net.lab1318.costume.gui.views.collection.CollectionByIdView;
 import net.lab1318.costume.gui.views.institution.InstitutionsView;
 
 @SessionScoped
@@ -31,11 +27,6 @@ public class InstitutionsPresenter extends Presenter<InstitutionsView> {
         super(eventBus, view);
         this.collectionQueryService = checkNotNull(collectionQueryService);
         this.institutionQueryService = checkNotNull(institutionQueryService);
-    }
-
-    @Subscribe
-    public void onGetCollectionByIdRequest(final GetCollectionByIdRequest request) {
-        UI.getCurrent().getNavigator().navigateTo(CollectionByIdView.NAME + "/" + request.getId().toString());
     }
 
     @Override

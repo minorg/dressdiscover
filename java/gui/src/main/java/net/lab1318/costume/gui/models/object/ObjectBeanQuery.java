@@ -43,10 +43,9 @@ public final class ObjectBeanQuery extends AbstractBeanQuery<ObjectBeanWithId> {
     protected List<ObjectBeanWithId> loadBeans(final int startIndex, final int count) {
         final List<ObjectBeanWithId> beans = new ArrayList<>();
         try {
-            for (final ObjectEntry entry : objectQueryService
-                    .getObjects(GetObjectsOptions.builder().setFrom(UnsignedInteger.valueOf(startIndex))
-                            .setSize(UnsignedInteger.valueOf(count)).build(), objectQuery)
-                    .getObjects()) {
+            for (final ObjectEntry entry : objectQueryService.getObjects(GetObjectsOptions.builder()
+                    .setFrom(UnsignedInteger.valueOf(startIndex)).setSize(UnsignedInteger.valueOf(count)).build(),
+                    objectQuery)) {
                 beans.add(new ObjectBeanWithId(entry));
             }
         } catch (final IoException e) {
