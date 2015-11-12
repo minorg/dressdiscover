@@ -2,21 +2,16 @@ package net.lab1318.costume.gui.presenters.collection;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.notaweb.gui.EventBus;
 import org.notaweb.gui.presenters.Presenter;
-import org.vaadin.addons.lazyquerycontainer.AbstractBeanQuery;
 import org.vaadin.addons.lazyquerycontainer.BeanQueryFactory;
 import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
 import org.vaadin.addons.lazyquerycontainer.LazyQueryDefinition;
-import org.vaadin.addons.lazyquerycontainer.QueryDefinition;
 
 import com.google.common.eventbus.Subscribe;
-import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -31,7 +26,7 @@ import net.lab1318.costume.api.models.collection.InvalidCollectionIdException;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.models.object.Object;
-import net.lab1318.costume.api.models.object.ObjectEntry;
+import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
@@ -39,59 +34,12 @@ import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectByIdRequest;
-import net.lab1318.costume.gui.models.object.ObjectBeanWithId;
+import net.lab1318.costume.gui.models.object.ObjectBeanQuery;
 import net.lab1318.costume.gui.views.collection.CollectionByIdView;
 import net.lab1318.costume.gui.views.object.ObjectByIdView;
 
 @SessionScoped
 public class CollectionByIdPresenter extends Presenter<CollectionByIdView> {
-    @SuppressWarnings("serial")
-    public final static class ObjectBeanQuery extends AbstractBeanQuery<ObjectBeanWithId> {
-        public ObjectBeanQuery(final QueryDefinition definition, final Map<String, java.lang.Object> queryConfiguration,
-                final java.lang.Object[] sortPropertyIds, final boolean[] sortStates) {
-            super(definition, queryConfiguration, sortPropertyIds, sortStates);
-            this.collectionId = (CollectionId) queryConfiguration.get("collectionId");
-            this.objectQueryService = (ObjectQueryService) queryConfiguration.get("objectQueryService");
-        }
-
-        @Override
-        public int size() {
-            try {
-                return objectQueryService.getObjectCountByCollectionId(collectionId).intValue();
-            } catch (final IoException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-        @Override
-        protected ObjectBeanWithId constructBean() {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        protected List<ObjectBeanWithId> loadBeans(final int startIndex, final int count) {
-            final List<ObjectBeanWithId> beans = new ArrayList<>();
-            try {
-                for (final ObjectEntry entry : objectQueryService.getObjectsByCollectionId(collectionId,
-                        UnsignedInteger.valueOf(startIndex), UnsignedInteger.valueOf(count))) {
-                    beans.add(new ObjectBeanWithId(entry));
-                }
-            } catch (final IoException e) {
-                throw new RuntimeException(e);
-            }
-            return beans;
-        }
-
-        @Override
-        protected void saveBeans(final List<ObjectBeanWithId> added, final List<ObjectBeanWithId> modified,
-                final List<ObjectBeanWithId> removed) {
-            throw new UnsupportedOperationException();
-        }
-
-        private final CollectionId collectionId;
-        private final ObjectQueryService objectQueryService;
-    }
-
     @Inject
     public CollectionByIdPresenter(final CollectionQueryService collectionQueryService, final EventBus eventBus,
             final InstitutionQueryService institutionQueryService, final ObjectQueryService objectQueryService,
@@ -142,7 +90,7 @@ public class CollectionByIdPresenter extends Presenter<CollectionByIdView> {
         final BeanQueryFactory<ObjectBeanQuery> objectBeanQueryFactory = new BeanQueryFactory<ObjectBeanQuery>(
                 ObjectBeanQuery.class);
         final Map<String, java.lang.Object> queryConfiguration = new HashMap<>();
-        queryConfiguration.put("collectionId", collectionId);
+        queryConfiguration.put("objectQuery", ObjectQuery.builder().setIncludeCollectionId(collectionId).build());
         queryConfiguration.put("objectQueryService", objectQueryService);
         objectBeanQueryFactory.setQueryConfiguration(queryConfiguration);
 

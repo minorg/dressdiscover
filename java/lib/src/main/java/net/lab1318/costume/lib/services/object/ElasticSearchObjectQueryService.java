@@ -3,12 +3,20 @@ package net.lab1318.costume.lib.services.object;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.common.bytes.BytesReference;
+import org.elasticsearch.index.query.AndFilterBuilder;
+import org.elasticsearch.index.query.FilterBuilder;
 import org.elasticsearch.index.query.FilterBuilders;
+import org.elasticsearch.index.query.MoreLikeThisQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.indices.IndexMissingException;
+import org.elasticsearch.search.SearchHit;
 import org.notaweb.lib.protocols.ElasticSearchInputProtocol;
 import org.notaweb.lib.stores.ElasticSearchIndex;
 import org.notaweb.lib.stores.InvalidModelException;
@@ -23,13 +31,14 @@ import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import net.lab1318.costume.api.models.collection.CollectionId;
-import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.object.InvalidObjectIdException;
 import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.object.ObjectId;
+import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.IoException;
+import net.lab1318.costume.api.services.object.GetObjectsOptions;
+import net.lab1318.costume.api.services.object.GetObjectsResult;
 import net.lab1318.costume.api.services.object.NoSuchObjectException;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.lib.services.ServiceExceptionHelper;
@@ -88,100 +97,95 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     }
 
     @Override
-    public UnsignedInteger getObjectCount() throws IoException {
+    public UnsignedInteger getObjectCount(final Optional<ObjectQuery> query) throws IoException {
         try {
             return UnsignedInteger
-                    .valueOf(elasticSearchIndex.countModels(logger, Markers.GET_OBJECT_COUNT).longValue());
+                    .valueOf(elasticSearchIndex
+                            .countModels(logger, Markers.GET_OBJECT_COUNT,
+                                    elasticSearchIndex.prepareCountModels().setQuery(__translateQuery(query)))
+                            .longValue());
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error getting object count");
         }
     }
 
     @Override
-    public UnsignedInteger getObjectCountByCollectionId(final CollectionId collectionId) throws IoException {
-        try {
-            return UnsignedInteger
-                    .valueOf(
-                            elasticSearchIndex
-                                    .countModels(logger, Markers.GET_OBJECT_COUNT_BY_COLLECTION_ID,
-                                            elasticSearchIndex.prepareCountModels()
-                                                    .setQuery(QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
-                                                            FilterBuilders.termFilter(
-                                                                    Object.FieldMetadata.COLLECTION_ID
-                                                                            .getThriftProtocolKey(),
-                                                                    collectionId.toString()))))
-                                    .longValue());
-        } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting object count by collection id");
-        }
-    }
-
-    @Override
-    public UnsignedInteger getObjectCountByInstitutionId(final InstitutionId institutionId) throws IoException {
-        try {
-            return UnsignedInteger
-                    .valueOf(
-                            elasticSearchIndex
-                                    .countModels(logger, Markers.GET_OBJECT_COUNT_BY_INSTITUTION_ID,
-                                            elasticSearchIndex.prepareCountModels()
-                                                    .setQuery(QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
-                                                            FilterBuilders.termFilter(
-                                                                    Object.FieldMetadata.INSTITUTION_ID
-                                                                            .getThriftProtocolKey(),
-                                                                    institutionId.toString()))))
-                                    .longValue());
-        } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting object count by collection id");
-        }
-    }
-
-    @Override
-    public ImmutableList<ObjectEntry> getObjects(final UnsignedInteger from, final UnsignedInteger size)
+    public GetObjectsResult getObjects(final GetObjectsOptions options, final Optional<ObjectQuery> query)
             throws IoException {
+        SearchResponse searchResponse;
         try {
-            return elasticSearchIndex.getModels(logger, Markers.GET_OBJECTS_BY_COLLECTION_ID,
-                    ObjectElasticSearchModelFactory.getInstance(), elasticSearchIndex.prepareSearchModels()
-                            .setFrom(from.intValue()).setQuery(QueryBuilders.matchAllQuery()).setSize(size.intValue()));
+            searchResponse = elasticSearchIndex.getModels(logger, Markers.GET_OBJECTS,
+                    elasticSearchIndex.prepareSearchModels().setQuery(__translateQuery(query))
+                            .setFrom(options.getFrom().intValue()).setSize(options.getSize().intValue()));
+        } catch (final IndexMissingException e) {
+            logger.warn(Markers.GET_OBJECTS, "objects index does not exist, returning empty results");
+            return EMPTY_GET_OBJECTS_RESULT;
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting objects by collection id");
+            throw ServiceExceptionHelper.wrapException(e, "error getting objects");
         }
+
+        final GetObjectsResult.Builder resultBuilder = GetObjectsResult.builder();
+        resultBuilder.setTotalHits(UnsignedInteger.valueOf(searchResponse.getHits().getTotalHits()));
+        final ImmutableList.Builder<ObjectEntry> hitsBuilder = ImmutableList.builder();
+        for (final SearchHit searchHit : searchResponse.getHits().getHits()) {
+            try {
+                hitsBuilder.add(ObjectElasticSearchModelFactory.getInstance()
+                        .createModelEntryFromSource(searchHit.getId(), searchHit.getSourceRef()));
+            } catch (final InvalidModelException e) {
+                logger.warn(Markers.GET_OBJECTS, "invalid object from inedx {}", e.getId());
+                continue;
+            }
+        }
+        resultBuilder.setObjects(hitsBuilder.build());
+        return resultBuilder.build();
     }
 
-    @Override
-    public ImmutableList<ObjectEntry> getObjectsByCollectionId(final CollectionId collectionId,
-            final UnsignedInteger from, final UnsignedInteger size) throws IoException {
-        try {
-            return elasticSearchIndex
-                    .getModels(logger, Markers.GET_OBJECTS_BY_COLLECTION_ID,
-                            ObjectElasticSearchModelFactory.getInstance(),
-                            elasticSearchIndex.prepareSearchModels().setFrom(from.intValue())
-                                    .setQuery(QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
-                                            FilterBuilders.termFilter(
-                                                    Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
-                                                    collectionId.toString())))
-                                    .setSize(size.intValue()));
-        } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting objects by collection id");
+    private QueryBuilder __translateQuery(final Optional<ObjectQuery> query) {
+        if (!query.isPresent()) {
+            return QueryBuilders.matchAllQuery();
         }
-    }
 
-    @Override
-    public ImmutableList<ObjectEntry> getObjectsByInstitutionId(final InstitutionId institutionId,
-            final UnsignedInteger from, final UnsignedInteger size) throws IoException {
-        try {
-            return elasticSearchIndex.getModels(logger, Markers.GET_OBJECTS_BY_INSTITUTION_ID,
-                    ObjectElasticSearchModelFactory.getInstance(),
-                    elasticSearchIndex.prepareSearchModels()
-                            .setQuery(QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
-                                    FilterBuilders.termFilter(
-                                            Object.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
-                                            institutionId.toString())))
-                            .setSize(Integer.MAX_VALUE));
-        } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting objects by institution id");
+        QueryBuilder queryTranslated;
+        if (query.get().getQueryString().isPresent()) {
+            queryTranslated = QueryBuilders.queryStringQuery(query.get().getQueryString().get());
+        } else if (query.get().getMoreLikeObjectId().isPresent()) {
+            queryTranslated = QueryBuilders
+                    .moreLikeThisQuery(Object.FieldMetadata.CATEGORIES.getThriftProtocolKey(),
+                            Object.FieldMetadata.DESCRIPTION.getThriftProtocolKey(),
+                            Object.FieldMetadata.TITLE.getThriftProtocolKey())
+                    .docs(new MoreLikeThisQueryBuilder.Item(elasticSearchIndex.getIndexName(),
+                            elasticSearchIndex.getDocumentType(), query.get().getMoreLikeObjectId().get().toString()));
+        } else {
+            queryTranslated = QueryBuilders.matchAllQuery();
         }
+
+        final List<FilterBuilder> filters = new ArrayList<>();
+
+        if (query.get().getIncludeCollectionId().isPresent()) {
+            filters.add(FilterBuilders.termFilter(Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
+                    query.get().getIncludeCollectionId().get().toString()));
+        }
+
+        if (query.get().getIncludeInstitutionId().isPresent()) {
+            filters.add(FilterBuilders.termFilter(Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
+                    query.get().getIncludeInstitutionId().get().toString()));
+        }
+
+        if (filters.size() == 1) {
+            queryTranslated = QueryBuilders.filteredQuery(queryTranslated, filters.get(0));
+        } else if (filters.size() > 1) {
+            AndFilterBuilder andFilter = FilterBuilders.andFilter();
+            for (final FilterBuilder filter : filters) {
+                andFilter = andFilter.add(filter);
+            }
+            queryTranslated = QueryBuilders.filteredQuery(queryTranslated, andFilter);
+        }
+
+        return queryTranslated;
     }
 
     private final ObjectElasticSearchIndex elasticSearchIndex;
+    private final static GetObjectsResult EMPTY_GET_OBJECTS_RESULT = GetObjectsResult.builder()
+            .setObjects(ImmutableList.<ObjectEntry> of()).setTotalHits(UnsignedInteger.ZERO).build();
     private final static Logger logger = LoggerFactory.getLogger(ElasticSearchObjectQueryService.class);
 }
