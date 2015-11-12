@@ -5,12 +5,14 @@ public class LoggingCollectionQueryService implements net.lab1318.costume.api.se
     public static class Markers {
         public final static org.slf4j.Marker GET_COLLECTION_BY_ID = org.slf4j.MarkerFactory.getMarker("GET_COLLECTION_BY_ID");
         public final static org.slf4j.Marker GET_COLLECTIONS = org.slf4j.MarkerFactory.getMarker("GET_COLLECTIONS");
+        public final static org.slf4j.Marker GET_COLLECTIONS_BY_IDS = org.slf4j.MarkerFactory.getMarker("GET_COLLECTIONS_BY_IDS");
         public final static org.slf4j.Marker GET_COLLECTIONS_BY_INSTITUTION_ID = org.slf4j.MarkerFactory.getMarker("GET_COLLECTIONS_BY_INSTITUTION_ID");
 
         public final static org.slf4j.Marker COLLECTION_QUERY_SERVICE = org.slf4j.MarkerFactory.getMarker("COLLECTION_QUERY_SERVICE");
         static {
             COLLECTION_QUERY_SERVICE.add(GET_COLLECTION_BY_ID);
             COLLECTION_QUERY_SERVICE.add(GET_COLLECTIONS);
+            COLLECTION_QUERY_SERVICE.add(GET_COLLECTIONS_BY_IDS);
             COLLECTION_QUERY_SERVICE.add(GET_COLLECTIONS_BY_INSTITUTION_ID);
         }
     }
@@ -73,6 +75,37 @@ public class LoggingCollectionQueryService implements net.lab1318.costume.api.se
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.GET_COLLECTIONS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        }
+    }
+
+    public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> getCollectionsByIds(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> ids) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException {
+        final StringBuilder __logMessageStringBuilder = new StringBuilder();
+        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+
+        __logMessageStringBuilder.append("get_collections_by_ids(");
+        __logMessageStringBuilder.append("{}");
+        __logMessageArgs.add(new Messages.GetCollectionsByIdsRequest(ids));
+        __logMessageStringBuilder.append(")");
+
+        try {
+            com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> __returnValue = delegate.getCollectionsByIds(ids);
+
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(__returnValue);
+
+            logger.debug(Markers.GET_COLLECTIONS_BY_IDS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+
+            return __returnValue;
+        } catch (final net.lab1318.costume.api.services.IoException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.GET_COLLECTIONS_BY_IDS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        } catch (final net.lab1318.costume.api.services.collection.NoSuchCollectionException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.GET_COLLECTIONS_BY_IDS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
         }
     }

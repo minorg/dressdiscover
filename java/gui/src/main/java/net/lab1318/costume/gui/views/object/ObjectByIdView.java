@@ -9,7 +9,8 @@ import com.vaadin.ui.VerticalLayout;
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.models.object.ObjectEntry;
-import net.lab1318.costume.gui.components.CollectionHeader;
+import net.lab1318.costume.gui.components.CollectionButton;
+import net.lab1318.costume.gui.components.InstitutionButton;
 import net.lab1318.costume.gui.components.ObjectForm;
 import net.lab1318.costume.gui.views.TopLevelView;
 
@@ -25,7 +26,8 @@ public class ObjectByIdView extends TopLevelView {
             final ObjectEntry objectEntry) {
         final VerticalLayout rootLayout = new VerticalLayout();
 
-        rootLayout.addComponent(new CollectionHeader(collectionEntry, _getEventBus(), institutionEntry));
+        rootLayout.addComponent(new InstitutionButton("Institution: ", _getEventBus(), institutionEntry));
+        rootLayout.addComponent(new CollectionButton("Collection: ", collectionEntry, _getEventBus()));
 
         rootLayout.addComponent(new ObjectForm(objectEntry, institutionEntry.getModel()));
 

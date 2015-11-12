@@ -49,8 +49,8 @@ import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.GetObjectsOptions;
-import net.lab1318.costume.api.services.object.GetObjectsResult;
 import net.lab1318.costume.api.services.object.NoSuchObjectException;
+import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.lib.services.ServiceExceptionHelper;
 import net.lab1318.costume.lib.services.object.LoggingObjectQueryService.Markers;
@@ -121,25 +121,24 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     }
 
     @Override
-    public GetObjectsResult getObjects(final GetObjectsOptions options, final Optional<ObjectQuery> query)
-            throws IoException {
+    public ObjectFacets getObjectFacets(final Optional<ObjectQuery> query) throws IoException {
         final SearchRequestBuilder searchRequestBuilder = elasticSearchIndex.prepareSearchModels()
-                .setQuery(__translateQuery(query)).setFrom(options.getFrom().intValue())
-                .setSize(options.getSize().intValue());
+                .setQuery(__translateQuery(query)).setFrom(0).setSize(0);
         for (final AggregationBuilder<?> aggregation : AGGREGATIONS) {
             searchRequestBuilder.addAggregation(aggregation);
         }
+
         SearchResponse searchResponse;
         try {
             searchResponse = elasticSearchIndex.getModels(logger, Markers.GET_OBJECTS, searchRequestBuilder);
         } catch (final IndexMissingException e) {
             logger.warn(Markers.GET_OBJECTS, "objects index does not exist, returning empty results");
-            return EMPTY_GET_OBJECTS_RESULT;
+            return EMPTY_OBJECT_FACETS;
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error getting objects");
         }
 
-        final GetObjectsResult.Builder resultBuilder = GetObjectsResult.builder();
+        final ObjectFacets.Builder resultBuilder = ObjectFacets.builder();
 
         {
             final ImmutableMap.Builder<CollectionId, UnsignedInteger> collectionHitsBuilder = ImmutableMap.builder();
@@ -169,18 +168,34 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             resultBuilder.setInstitutionHits(institutionHitsBuilder.build());
         }
 
-        final ImmutableList.Builder<ObjectEntry> hitsBuilder = ImmutableList.builder();
+        return resultBuilder.build();
+    }
+
+    @Override
+    public ImmutableList<ObjectEntry> getObjects(final GetObjectsOptions options, final Optional<ObjectQuery> query)
+            throws IoException {
+        SearchResponse searchResponse;
+        try {
+            searchResponse = elasticSearchIndex.getModels(logger, Markers.GET_OBJECTS,
+                    elasticSearchIndex.prepareSearchModels().setQuery(__translateQuery(query))
+                            .setFrom(options.getFrom().intValue()).setSize(options.getSize().intValue()));
+        } catch (final IndexMissingException e) {
+            logger.warn(Markers.GET_OBJECTS, "objects index does not exist, returning empty results");
+            return ImmutableList.of();
+        } catch (final IOException e) {
+            throw ServiceExceptionHelper.wrapException(e, "error getting objects");
+        }
+
+        final ImmutableList.Builder<ObjectEntry> resultBuilder = ImmutableList.builder();
         for (final SearchHit searchHit : searchResponse.getHits().getHits()) {
             try {
-                hitsBuilder.add(ObjectElasticSearchModelFactory.getInstance()
+                resultBuilder.add(ObjectElasticSearchModelFactory.getInstance()
                         .createModelEntryFromSource(searchHit.getId(), searchHit.getSourceRef()));
             } catch (final InvalidModelException e) {
                 logger.warn(Markers.GET_OBJECTS, "invalid object from inedx {}", e.getId());
                 continue;
             }
         }
-        resultBuilder.setObjects(hitsBuilder.build());
-        resultBuilder.setTotalHits(UnsignedInteger.valueOf(searchResponse.getHits().getTotalHits()));
         return resultBuilder.build();
     }
 
@@ -230,13 +245,12 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
     private final ObjectElasticSearchIndex elasticSearchIndex;
     private final static TermsBuilder COLLECTION_HITS_AGGREGATION = AggregationBuilders
-            .terms(GetObjectsResult.FieldMetadata.COLLECTION_HITS.getThriftName())
+            .terms(ObjectFacets.FieldMetadata.COLLECTION_HITS.getThriftName())
             .field(Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey());
-    private final static GetObjectsResult EMPTY_GET_OBJECTS_RESULT = GetObjectsResult.builder()
-            .setCollectionHits(ImmutableMap.of()).setInstitutionHits(ImmutableMap.of())
-            .setObjects(ImmutableList.<ObjectEntry> of()).setTotalHits(UnsignedInteger.ZERO).build();
+    private final static ObjectFacets EMPTY_OBJECT_FACETS = ObjectFacets.builder().setCollectionHits(ImmutableMap.of())
+            .setInstitutionHits(ImmutableMap.of()).build();
     private final static TermsBuilder INSTITUTION_HITS_AGGREGATION = AggregationBuilders
-            .terms(GetObjectsResult.FieldMetadata.INSTITUTION_HITS.getThriftName())
+            .terms(ObjectFacets.FieldMetadata.INSTITUTION_HITS.getThriftName())
             .field(Object.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey());
     private final static ImmutableList<AggregationBuilder<?>> AGGREGATIONS = ImmutableList
             .of(COLLECTION_HITS_AGGREGATION, INSTITUTION_HITS_AGGREGATION);

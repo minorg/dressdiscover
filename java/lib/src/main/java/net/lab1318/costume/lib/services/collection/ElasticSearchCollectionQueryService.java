@@ -77,10 +77,10 @@ public class ElasticSearchCollectionQueryService implements CollectionQueryServi
             return elasticSearchIndex.getModelById(id, Optional.absent(), logger, Markers.GET_COLLECTION_BY_ID,
                     CollectionElasticSearchModelFactory.getInstance());
         } catch (final InvalidModelException e) {
-            logger.warn(Markers.GET_COLLECTION_BY_ID, "invalid trial model {}: ", id, e);
+            logger.warn(Markers.GET_COLLECTION_BY_ID, "invalid collection model {}: ", id, e);
             throw new NoSuchCollectionException();
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting trial" + id);
+            throw ServiceExceptionHelper.wrapException(e, "error getting collection" + id);
         } catch (final NoSuchModelException e) {
             throw new NoSuchCollectionException();
         }
@@ -89,11 +89,38 @@ public class ElasticSearchCollectionQueryService implements CollectionQueryServi
     @Override
     public ImmutableList<CollectionEntry> getCollections() throws IoException {
         try {
-            return elasticSearchIndex.getModels(logger, Markers.GET_COLLECTION_BY_ID,
+            return elasticSearchIndex.getModels(logger, Markers.GET_COLLECTIONS,
                     CollectionElasticSearchModelFactory.getInstance(), elasticSearchIndex.prepareSearchModels()
                             .setQuery(QueryBuilders.matchAllQuery()).setSize(Integer.MAX_VALUE));
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting trials");
+            throw ServiceExceptionHelper.wrapException(e, "error getting collections");
+        }
+    }
+
+    @Override
+    public ImmutableList<Collection> getCollectionsByIds(final ImmutableList<CollectionId> ids)
+            throws IoException, NoSuchCollectionException {
+        if (ids.isEmpty()) {
+            return ImmutableList.of();
+        }
+        try {
+            final ImmutableList<CollectionEntry> collectionEntries = elasticSearchIndex.getModelsByIds(ids, logger,
+                    Markers.GET_COLLECTIONS_BY_IDS, CollectionElasticSearchModelFactory.getInstance());
+            final ImmutableList.Builder<Collection> collectionsBuilder = ImmutableList.builder();
+            for (int i = 0; i < ids.size(); i++) {
+                final CollectionId id = ids.get(i);
+                if (i >= collectionEntries.size()) {
+                    throw new NoSuchCollectionException(id);
+                }
+                final CollectionEntry collectionEntry = collectionEntries.get(i);
+                if (!id.equals(collectionEntry.getId())) {
+                    throw new NoSuchCollectionException(id);
+                }
+                collectionsBuilder.add(collectionEntry.getModel());
+            }
+            return collectionsBuilder.build();
+        } catch (final IOException e) {
+            throw ServiceExceptionHelper.wrapException(e, "error getting collections");
         }
     }
 
@@ -102,7 +129,7 @@ public class ElasticSearchCollectionQueryService implements CollectionQueryServi
             throws IoException {
         try {
             return elasticSearchIndex
-                    .getModels(logger, Markers.GET_COLLECTION_BY_ID,
+                    .getModels(logger, Markers.GET_COLLECTIONS_BY_INSTITUTION_ID,
                             CollectionElasticSearchModelFactory
                                     .getInstance(),
                             elasticSearchIndex.prepareSearchModels()
@@ -112,7 +139,7 @@ public class ElasticSearchCollectionQueryService implements CollectionQueryServi
                                                             .getThriftProtocolKey(), institutionId.toString())))
                             .setSize(Integer.MAX_VALUE));
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting trials");
+            throw ServiceExceptionHelper.wrapException(e, "error getting collections");
         }
     }
 

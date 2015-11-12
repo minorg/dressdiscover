@@ -27,6 +27,14 @@ service CollectionQueryService {
 		io_exception.IoException e
 	);
 
+	list<collection.Collection>
+	get_collections_by_ids(
+		list<collection_id.CollectionId> ids
+	) throws (
+		io_exception.IoException e1,
+		no_such_collection_exception.NoSuchCollectionException e2
+	);
+
 	list<collection_entry.CollectionEntry>
 	get_collections_by_institution_id(
 		institution_id.InstitutionId institution_id

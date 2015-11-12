@@ -50,3 +50,30 @@ class InstitutionQueryService(object):
         self,
     ):
         raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_institutions')
+
+    def get_institutions_by_ids(
+        self,
+        ids=None,
+    ):
+        '''
+        :type ids: tuple(str)
+        :rtype: tuple(costume.api.models.institution.institution.Institution)
+        '''
+
+        if ids is None:
+            raise ValueError('ids is required')
+        if not (isinstance(ids, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), ids))) == 0):
+            raise TypeError("expected ids to be a tuple(str) but it is a %s" % getattr(__builtin__, 'type')(ids))
+
+        get_institutions_by_ids_return_value = self._get_institutions_by_ids(ids=ids)
+
+        if not (isinstance(get_institutions_by_ids_return_value, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.institution.institution.Institution), get_institutions_by_ids_return_value))) == 0):
+            raise TypeError(getattr(__builtin__, 'type')(get_institutions_by_ids_return_value))
+
+        return get_institutions_by_ids_return_value
+
+    def _get_institutions_by_ids(
+        self,
+        ids,
+    ):
+        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_institutions_by_ids')

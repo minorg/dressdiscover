@@ -10,9 +10,10 @@ import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 
 @SuppressWarnings("serial")
-public final class InstitutionHeader extends CustomComponent {
-    public InstitutionHeader(final EventBus eventBus, final InstitutionEntry institutionEntry) {
-        final Button institutionButton = new Button("Institution: " + institutionEntry.getModel().getTitle(),
+public final class InstitutionButton extends CustomComponent {
+    public InstitutionButton(final String captionPrefix, final EventBus eventBus,
+            final InstitutionEntry institutionEntry) {
+        final Button institutionButton = new Button(captionPrefix + institutionEntry.getModel().getTitle(),
                 new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {

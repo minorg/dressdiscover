@@ -13,6 +13,7 @@ import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.services.object.GetObjectsOptions;
+import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.lib.services.TestData;
 
 public final class ElasticSearchObjectQueryServiceTest extends ObjectServiceTest {
@@ -47,11 +48,18 @@ public final class ElasticSearchObjectQueryServiceTest extends ObjectServiceTest
     }
 
     @Test
+    public void testGetObjectFacets() throws Exception {
+        _putObjects();
+        final ObjectFacets actual = objectQueryService.getObjectFacets();
+        assertEquals(TestData.getInstance().getCollections().size(), actual.getCollectionHits().size());
+        assertEquals(TestData.getInstance().getInstitutions().size(), actual.getInstitutionHits().size());
+    }
+
+    @Test
     public void testGetObjects() throws Exception {
         final ImmutableList<ObjectEntry> expected = _putObjects();
         final ImmutableList<ObjectEntry> actual = objectQueryService.getObjects(
-                GetObjectsOptions.builder().setFrom(UnsignedInteger.ZERO).setSize(UnsignedInteger.MAX_VALUE).build())
-                .getObjects();
+                GetObjectsOptions.builder().setFrom(UnsignedInteger.ZERO).setSize(UnsignedInteger.MAX_VALUE).build());
         assertEquals(TestData.getInstance().getObjects().size(), actual.size());
         for (final ObjectEntry expectedEntry : expected) {
             boolean found = false;

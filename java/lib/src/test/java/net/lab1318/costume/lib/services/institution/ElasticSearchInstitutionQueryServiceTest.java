@@ -7,7 +7,9 @@ import org.junit.Test;
 
 import com.google.common.collect.ImmutableList;
 
+import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
+import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.lib.services.TestData;
 
 public final class ElasticSearchInstitutionQueryServiceTest extends InstitutionServiceTest {
@@ -34,6 +36,19 @@ public final class ElasticSearchInstitutionQueryServiceTest extends InstitutionS
                 }
             }
             assertTrue(found);
+        }
+    }
+
+    @Test
+    public void testGetInstitutionsByIds() throws Exception {
+        final ImmutableList<InstitutionEntry> expected = _putInstitutions();
+        final ImmutableList.Builder<InstitutionId> idsBuilder = ImmutableList.builder();
+        for (final InstitutionEntry entry : expected) {
+            idsBuilder.add(entry.getId());
+        }
+        final ImmutableList<Institution> actual = institutionQueryService.getInstitutionsByIds(idsBuilder.build());
+        for (int i = 0; i < expected.size(); i++) {
+            assertEquals(expected.get(i).getModel(), actual.get(i));
         }
     }
 }
