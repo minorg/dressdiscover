@@ -32,7 +32,6 @@ import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionId;
-import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
@@ -45,6 +44,7 @@ import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectByIdRequest;
 import net.lab1318.costume.gui.GuiUI;
+import net.lab1318.costume.gui.models.object.ObjectBean;
 import net.lab1318.costume.gui.models.object.ObjectBeanQuery;
 import net.lab1318.costume.gui.views.object.ObjectByIdView;
 import net.lab1318.costume.gui.views.object.ObjectsView;
@@ -147,8 +147,8 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
         objectBeanQueryFactory.setQueryConfiguration(queryConfiguration);
 
         final LazyQueryDefinition queryDefinition = new LazyQueryDefinition(true, 10, "id");
-        for (final Object.FieldMetadata field : Object.FieldMetadata.values()) {
-            queryDefinition.addProperty(field.getThriftName(), field.getJavaType().getRawType(), null, true, false);
+        for (final ObjectBean.FieldMetadata field : ObjectBean.FieldMetadata.values()) {
+            queryDefinition.addProperty(field.getJavaName(), field.getJavaType().getRawType(), null, true, false);
         }
 
         _getView().setModels(collectionMap, institutionMap, objectFacets,

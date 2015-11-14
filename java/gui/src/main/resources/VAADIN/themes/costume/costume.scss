@@ -43,4 +43,14 @@ $v-layout-spacing-vertical: 0.5em;
   .borderlessTextField {
   	border: none;
   }
+
+  .objectGrid td {
+  	height: 160px;
+  	text-align: center;
+  	vertical-align: middle;
+  }
+
+  .objectGrid .thumbnailGridCell {
+  	width: 160px;
+  }
 }
