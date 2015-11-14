@@ -206,7 +206,12 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
         QueryBuilder queryTranslated;
         if (query.get().getQueryString().isPresent()) {
-            queryTranslated = QueryBuilders.queryStringQuery(query.get().getQueryString().get());
+            queryTranslated = QueryBuilders.queryStringQuery(query.get().getQueryString().get())
+                    .field(Object.FieldMetadata.DATE_TEXT.getThriftProtocolKey())
+                    .field(Object.FieldMetadata.DESCRIPTION.getThriftProtocolKey())
+                    .field(Object.FieldMetadata.PHYSICAL_DESCRIPTION.getThriftProtocolKey())
+                    .field(Object.FieldMetadata.SUMMARY.getThriftProtocolKey())
+                    .field(Object.FieldMetadata.TITLE.getThriftProtocolKey());
         } else if (query.get().getMoreLikeObjectId().isPresent()) {
             queryTranslated = QueryBuilders
                     .moreLikeThisQuery(Object.FieldMetadata.CATEGORIES.getThriftProtocolKey(),
@@ -226,7 +231,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         }
 
         if (query.get().getIncludeInstitutionId().isPresent()) {
-            filters.add(FilterBuilders.termFilter(Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
+            filters.add(FilterBuilders.termFilter(Object.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
                     query.get().getIncludeInstitutionId().get().toString()));
         }
 

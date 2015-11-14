@@ -17,6 +17,7 @@ import com.google.inject.servlet.SessionScoped;
 import com.vaadin.data.util.converter.Converter;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.Resource;
+import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Grid.CellReference;
@@ -37,6 +38,7 @@ import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectId;
+import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.object.ObjectFacets;
@@ -55,10 +57,20 @@ public class ObjectsView extends TopLevelView {
 
     public void setModels(final ImmutableMap<CollectionId, Collection> collections,
             final ImmutableMap<InstitutionId, Institution> institutions, final ObjectFacets objectFacets,
-            final LazyQueryContainer objects) {
+            final ObjectQuery objectQuery, final LazyQueryContainer objects) {
+        if (objectQuery.getQueryString().isPresent()) {
+            _getNavbar().getSearchTextField().setValue(objectQuery.getQueryString().get());
+        }
+
+        final int objectsSize = objects.size();
+        if (objectsSize == 0) {
+            setCompositionRoot(new Label("No objects found."));
+            return;
+        }
+
         final HorizontalLayout twoPaneLayout = new HorizontalLayout();
         twoPaneLayout.setSizeFull();
-        twoPaneLayout.setHeight((float) 600.0, Unit.PIXELS);
+        twoPaneLayout.setHeight(700, Unit.PIXELS);
 
         {
             final VerticalLayout facetsLayout = new VerticalLayout();
@@ -82,6 +94,8 @@ public class ObjectsView extends TopLevelView {
 
         {
             final Grid grid = new Grid(objects);
+            grid.setHeightMode(HeightMode.ROW);
+            grid.setHeightByRows(4.0);
             grid.setSizeFull();
             grid.setCellStyleGenerator(new Grid.CellStyleGenerator() {
                 @Override
@@ -110,7 +124,7 @@ public class ObjectsView extends TopLevelView {
                     @Override
                     public void click(final RendererClickEvent event) {
                         final CollectionId collectionId = (CollectionId) objects.getItem(event.getItemId())
-                                .getItemProperty(Object.FieldMetadata.INSTITUTION_ID.getJavaName()).getValue();
+                                .getItemProperty(Object.FieldMetadata.COLLECTION_ID.getJavaName()).getValue();
                         _getEventBus().post(new CollectionQueryService.Messages.GetCollectionByIdRequest(collectionId));
                     }
                 }), new Converter<String, CollectionId>() {

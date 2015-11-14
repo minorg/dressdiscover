@@ -151,7 +151,7 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
             queryDefinition.addProperty(field.getJavaName(), field.getJavaType().getRawType(), null, true, false);
         }
 
-        _getView().setModels(collectionMap, institutionMap, objectFacets,
+        _getView().setModels(collectionMap, institutionMap, objectFacets, objectQuery,
                 new LazyQueryContainer(queryDefinition, objectBeanQueryFactory));
     }
 
