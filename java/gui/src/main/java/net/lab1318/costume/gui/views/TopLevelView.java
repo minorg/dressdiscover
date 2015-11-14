@@ -25,14 +25,17 @@ public abstract class TopLevelView extends View {
         notification.show(Page.getCurrent());
     }
 
+    protected final Navbar _getNavbar() {
+        return navbar;
+    }
+
     @Override
     protected void setCompositionRoot(final Component compositionRoot) {
         final VerticalLayout frameLayout = new VerticalLayout();
         frameLayout.setSizeFull();
-        frameLayout.setSpacing(true);
+        frameLayout.setSpacing(false);
 
         {
-            final Navbar navbar = new Navbar();
             frameLayout.addComponent(navbar);
             frameLayout.setComponentAlignment(navbar, Alignment.MIDDLE_CENTER);
         }
@@ -48,4 +51,6 @@ public abstract class TopLevelView extends View {
 
         super.setCompositionRoot(frameLayout);
     }
+
+    private final Navbar navbar = new Navbar();
 }
