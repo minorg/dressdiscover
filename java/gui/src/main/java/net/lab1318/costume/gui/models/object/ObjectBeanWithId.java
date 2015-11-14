@@ -1,10 +1,9 @@
 package net.lab1318.costume.gui.models.object;
 
-import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.object.ObjectId;
 
-public class ObjectBeanWithId extends Object {
+public final class ObjectBeanWithId extends ObjectBean {
     public ObjectBeanWithId(final ObjectEntry other) {
         super(other.getModel());
         this.id = other.getId();

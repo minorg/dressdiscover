@@ -4,6 +4,95 @@ package net.lab1318.costume.gui.models.rights;
  * VRA Core 4.0 rightsSet element
  */
 public class RightsSetBean {
+    @SuppressWarnings("serial")
+    public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
+        RIGHTS("rights", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.rights.RightsBean>>() {}, true, 1, "rights", org.thryft.protocol.Type.LIST),
+        DISPLAY("display", new com.google.common.reflect.TypeToken<String>() {}, false, 2, "display", org.thryft.protocol.Type.STRING),
+        NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "notes", org.thryft.protocol.Type.STRING);
+
+        @Override
+        public String getJavaName() {
+            return javaName;
+        }
+
+        @Override
+        public com.google.common.reflect.TypeToken<?> getJavaType() {
+            return javaType;
+        }
+
+        @Override
+        public int getThriftId() {
+            return thriftId;
+        }
+
+        @Override
+        public String getThriftProtocolKey() {
+            return thriftProtocolKey;
+        }
+
+        @Override
+        public org.thryft.protocol.Type getThriftProtocolType() {
+            return thriftProtocolType;
+        }
+
+        @Override
+        public String getThriftName() {
+            return thriftName;
+        }
+
+        @Override
+        public boolean hasThriftId() {
+            return thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID;
+        }
+
+        @Override
+        public boolean isRequired()  {
+            return required;
+        }
+
+        public static FieldMetadata valueOfJavaName(final String javaName) {
+            switch (javaName) {
+            case "rights": return RIGHTS;
+            case "display": return DISPLAY;
+            case "notes": return NOTES;
+            default:
+                throw new IllegalArgumentException(javaName);
+            }
+        }
+
+        public static FieldMetadata valueOfThriftName(final String thriftName) {
+            switch (thriftName) {
+            case "rights": return RIGHTS;
+            case "display": return DISPLAY;
+            case "notes": return NOTES;
+            default:
+                throw new IllegalArgumentException(thriftName);
+            }
+        }
+
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+            this.javaName = javaName;
+            this.javaType = javaType;
+            this.required = required;
+            this.thriftId = thriftId;
+            this.thriftName = thriftName;
+            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
+                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
+            } else {
+                this.thriftProtocolKey = thriftName;
+            }
+            this.thriftProtocolType = thriftProtocolType;
+        }
+
+        private final String javaName;
+        private final com.google.common.reflect.TypeToken<?> javaType;
+        private final boolean required;
+        private final int thriftId;
+        private final String thriftName;
+        private final String thriftProtocolKey;
+        private final org.thryft.protocol.Type thriftProtocolType;
+    }
+
     public RightsSetBean() {
         rights = null;
         display = null;

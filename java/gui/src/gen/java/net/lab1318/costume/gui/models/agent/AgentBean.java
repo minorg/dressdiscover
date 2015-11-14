@@ -4,6 +4,101 @@ package net.lab1318.costume.gui.models.agent;
  * VRA Core 4.0 agent element
  */
 public class AgentBean {
+    @SuppressWarnings("serial")
+    public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
+        NAME("name", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.agent.AgentNameBean>() {}, true, 1, "name", org.thryft.protocol.Type.STRUCT),
+        ATTRIBUTION("attribution", new com.google.common.reflect.TypeToken<String>() {}, false, 2, "attribution", org.thryft.protocol.Type.STRING),
+        CULTURE("culture", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "culture", org.thryft.protocol.Type.STRING),
+        DATES("dates", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.agent.AgentDatesBean>>() {}, false, 4, "dates", org.thryft.protocol.Type.LIST),
+        ROLE("role", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.agent.AgentRoleBean>() {}, false, 5, "role", org.thryft.protocol.Type.STRUCT);
+
+        @Override
+        public String getJavaName() {
+            return javaName;
+        }
+
+        @Override
+        public com.google.common.reflect.TypeToken<?> getJavaType() {
+            return javaType;
+        }
+
+        @Override
+        public int getThriftId() {
+            return thriftId;
+        }
+
+        @Override
+        public String getThriftProtocolKey() {
+            return thriftProtocolKey;
+        }
+
+        @Override
+        public org.thryft.protocol.Type getThriftProtocolType() {
+            return thriftProtocolType;
+        }
+
+        @Override
+        public String getThriftName() {
+            return thriftName;
+        }
+
+        @Override
+        public boolean hasThriftId() {
+            return thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID;
+        }
+
+        @Override
+        public boolean isRequired()  {
+            return required;
+        }
+
+        public static FieldMetadata valueOfJavaName(final String javaName) {
+            switch (javaName) {
+            case "name": return NAME;
+            case "attribution": return ATTRIBUTION;
+            case "culture": return CULTURE;
+            case "dates": return DATES;
+            case "role": return ROLE;
+            default:
+                throw new IllegalArgumentException(javaName);
+            }
+        }
+
+        public static FieldMetadata valueOfThriftName(final String thriftName) {
+            switch (thriftName) {
+            case "name": return NAME;
+            case "attribution": return ATTRIBUTION;
+            case "culture": return CULTURE;
+            case "dates": return DATES;
+            case "role": return ROLE;
+            default:
+                throw new IllegalArgumentException(thriftName);
+            }
+        }
+
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+            this.javaName = javaName;
+            this.javaType = javaType;
+            this.required = required;
+            this.thriftId = thriftId;
+            this.thriftName = thriftName;
+            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
+                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
+            } else {
+                this.thriftProtocolKey = thriftName;
+            }
+            this.thriftProtocolType = thriftProtocolType;
+        }
+
+        private final String javaName;
+        private final com.google.common.reflect.TypeToken<?> javaType;
+        private final boolean required;
+        private final int thriftId;
+        private final String thriftName;
+        private final String thriftProtocolKey;
+        private final org.thryft.protocol.Type thriftProtocolType;
+    }
+
     public AgentBean() {
         name = null;
         attribution = null;

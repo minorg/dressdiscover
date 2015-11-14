@@ -1,6 +1,143 @@
 package net.lab1318.costume.gui.models.object;
 
 public class ObjectBean {
+    @SuppressWarnings("serial")
+    public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
+        COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.CollectionId>() {}, true, 1, "collection_id", org.thryft.protocol.Type.STRING),
+        INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, true, 2, "institution_id", org.thryft.protocol.Type.STRING),
+        MODEL_METADATA("modelMetadata", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.ModelMetadataBean>() {}, true, 14, "model_metadata", org.thryft.protocol.Type.STRUCT),
+        TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 3, "title", org.thryft.protocol.Type.STRING),
+        AGENTS("agents", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.agent.AgentSetBean>() {}, false, 20, "agents", org.thryft.protocol.Type.STRUCT),
+        CATEGORIES("categories", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 18, "categories", org.thryft.protocol.Type.LIST),
+        DATE("date", new com.google.common.reflect.TypeToken<java.util.Date>() {}, false, 10, "date", org.thryft.protocol.Type.I64),
+        DATE_TEXT("dateText", new com.google.common.reflect.TypeToken<String>() {}, false, 11, "date_text", org.thryft.protocol.Type.STRING),
+        DESCRIPTION("description", new com.google.common.reflect.TypeToken<String>() {}, false, 4, "description", org.thryft.protocol.Type.STRING),
+        HISTORY_NOTES("historyNotes", new com.google.common.reflect.TypeToken<String>() {}, false, 19, "history_notes", org.thryft.protocol.Type.STRING),
+        INSCRIPTIONS("inscriptions", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.inscription.InscriptionSetBean>() {}, false, 17, "inscriptions", org.thryft.protocol.Type.STRUCT),
+        MATERIALS("materials", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.material.MaterialSetBean>() {}, false, 15, "materials", org.thryft.protocol.Type.STRUCT),
+        PHYSICAL_DESCRIPTION("physicalDescription", new com.google.common.reflect.TypeToken<String>() {}, false, 12, "physical_description", org.thryft.protocol.Type.STRING),
+        PROVENANCE("provenance", new com.google.common.reflect.TypeToken<String>() {}, false, 5, "provenance", org.thryft.protocol.Type.STRING),
+        SUBJECTS("subjects", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.subject.SubjectSetBean>() {}, false, 21, "subjects", org.thryft.protocol.Type.STRUCT),
+        SUMMARY("summary", new com.google.common.reflect.TypeToken<String>() {}, false, 7, "summary", org.thryft.protocol.Type.STRING),
+        TECHNIQUES("techniques", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.technique.TechniqueSetBean>() {}, false, 16, "techniques", org.thryft.protocol.Type.STRUCT),
+        THUMBNAIL("thumbnail", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.image.ImageBean>() {}, false, 8, "thumbnail", org.thryft.protocol.Type.STRUCT),
+        URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 9, "url", org.thryft.protocol.Type.STRING);
+
+        @Override
+        public String getJavaName() {
+            return javaName;
+        }
+
+        @Override
+        public com.google.common.reflect.TypeToken<?> getJavaType() {
+            return javaType;
+        }
+
+        @Override
+        public int getThriftId() {
+            return thriftId;
+        }
+
+        @Override
+        public String getThriftProtocolKey() {
+            return thriftProtocolKey;
+        }
+
+        @Override
+        public org.thryft.protocol.Type getThriftProtocolType() {
+            return thriftProtocolType;
+        }
+
+        @Override
+        public String getThriftName() {
+            return thriftName;
+        }
+
+        @Override
+        public boolean hasThriftId() {
+            return thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID;
+        }
+
+        @Override
+        public boolean isRequired()  {
+            return required;
+        }
+
+        public static FieldMetadata valueOfJavaName(final String javaName) {
+            switch (javaName) {
+            case "collectionId": return COLLECTION_ID;
+            case "institutionId": return INSTITUTION_ID;
+            case "modelMetadata": return MODEL_METADATA;
+            case "title": return TITLE;
+            case "agents": return AGENTS;
+            case "categories": return CATEGORIES;
+            case "date": return DATE;
+            case "dateText": return DATE_TEXT;
+            case "description": return DESCRIPTION;
+            case "historyNotes": return HISTORY_NOTES;
+            case "inscriptions": return INSCRIPTIONS;
+            case "materials": return MATERIALS;
+            case "physicalDescription": return PHYSICAL_DESCRIPTION;
+            case "provenance": return PROVENANCE;
+            case "subjects": return SUBJECTS;
+            case "summary": return SUMMARY;
+            case "techniques": return TECHNIQUES;
+            case "thumbnail": return THUMBNAIL;
+            case "url": return URL;
+            default:
+                throw new IllegalArgumentException(javaName);
+            }
+        }
+
+        public static FieldMetadata valueOfThriftName(final String thriftName) {
+            switch (thriftName) {
+            case "collection_id": return COLLECTION_ID;
+            case "institution_id": return INSTITUTION_ID;
+            case "model_metadata": return MODEL_METADATA;
+            case "title": return TITLE;
+            case "agents": return AGENTS;
+            case "categories": return CATEGORIES;
+            case "date": return DATE;
+            case "date_text": return DATE_TEXT;
+            case "description": return DESCRIPTION;
+            case "history_notes": return HISTORY_NOTES;
+            case "inscriptions": return INSCRIPTIONS;
+            case "materials": return MATERIALS;
+            case "physical_description": return PHYSICAL_DESCRIPTION;
+            case "provenance": return PROVENANCE;
+            case "subjects": return SUBJECTS;
+            case "summary": return SUMMARY;
+            case "techniques": return TECHNIQUES;
+            case "thumbnail": return THUMBNAIL;
+            case "url": return URL;
+            default:
+                throw new IllegalArgumentException(thriftName);
+            }
+        }
+
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+            this.javaName = javaName;
+            this.javaType = javaType;
+            this.required = required;
+            this.thriftId = thriftId;
+            this.thriftName = thriftName;
+            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
+                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
+            } else {
+                this.thriftProtocolKey = thriftName;
+            }
+            this.thriftProtocolType = thriftProtocolType;
+        }
+
+        private final String javaName;
+        private final com.google.common.reflect.TypeToken<?> javaType;
+        private final boolean required;
+        private final int thriftId;
+        private final String thriftName;
+        private final String thriftProtocolKey;
+        private final org.thryft.protocol.Type thriftProtocolType;
+    }
+
     public ObjectBean() {
         collectionId = null;
         institutionId = null;
