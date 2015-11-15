@@ -53,4 +53,12 @@ $v-layout-spacing-vertical: 0.5em;
   .objectGrid .thumbnailGridCell {
   	width: 160px;
   }
+
+  .v-align-center > .v-widget {
+    text-align: center;
+  }
+
+  .v-align-middle > .v-widget {
+    vertical-align: middle;
+  }
 }
