@@ -80,7 +80,7 @@ public class ObjectCommandServiceJsonRpcServlet extends javax.servlet.http.HttpS
     }
 
     private void __doPostResponse(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final String httpServletResponseBody) throws java.io.IOException {
-        httpServletResponse.setContentType("application/json");
+        httpServletResponse.setContentType("application/json; charset=utf-8");
 
         if (httpServletResponseBody.length() >= 128) {
             final String httpServletRequestAcceptEncoding = httpServletRequest.getHeader("Accept-Encoding");
@@ -128,7 +128,7 @@ public class ObjectCommandServiceJsonRpcServlet extends javax.servlet.http.HttpS
                         byte[] compressedHttpServletResponseBody = null;
                         try {
                             try {
-                                compressingOutputStream.write(httpServletResponseBody.getBytes());
+                                compressingOutputStream.write(httpServletResponseBody.getBytes("UTF-8"));
                                 compressingOutputStream.finish();
                                 compressedHttpServletResponseBody = byteArrayOutputStream.toByteArray();
                             } finally {
@@ -147,7 +147,7 @@ public class ObjectCommandServiceJsonRpcServlet extends javax.servlet.http.HttpS
             }
         }
 
-        httpServletResponse.getWriter().write(httpServletResponseBody);
+        httpServletResponse.getOutputStream().write(httpServletResponseBody.getBytes("UTF-8"));
     }
 
     public void doPostDeleteObjects(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {

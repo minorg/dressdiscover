@@ -3,7 +3,6 @@ package net.lab1318.costume.gui.presenters.object;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.notaweb.gui.EventBus;
-import org.notaweb.gui.presenters.Presenter;
 
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
@@ -26,6 +25,7 @@ import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
 import net.lab1318.costume.api.services.object.NoSuchObjectException;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
+import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.object.ObjectByIdView;
 
 @SessionScoped

@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.notaweb.gui.EventBus;
-import org.notaweb.gui.presenters.Presenter;
 import org.thryft.protocol.InputProtocolException;
 import org.thryft.protocol.JacksonJsonInputProtocol;
 import org.vaadin.addons.lazyquerycontainer.BeanQueryFactory;
@@ -20,13 +19,11 @@ import com.google.common.base.Charsets;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.SystemError;
 import com.vaadin.server.UserError;
-import com.vaadin.ui.UI;
 
 import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionId;
@@ -35,18 +32,15 @@ import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
-import net.lab1318.costume.api.services.collection.CollectionQueryService.Messages.GetCollectionByIdRequest;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
-import net.lab1318.costume.api.services.institution.InstitutionQueryService.Messages.GetInstitutionByIdRequest;
 import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
 import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
-import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectByIdRequest;
-import net.lab1318.costume.gui.GuiUI;
+import net.lab1318.costume.api.services.object.ObjectSortField;
 import net.lab1318.costume.gui.models.object.ObjectBean;
 import net.lab1318.costume.gui.models.object.ObjectBeanQuery;
-import net.lab1318.costume.gui.views.object.ObjectByIdView;
+import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.object.ObjectsView;
 
 @SessionScoped
@@ -59,21 +53,6 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
         this.collectionQueryService = checkNotNull(collectionQueryService);
         this.institutionQueryService = checkNotNull(institutionQueryService);
         this.objectQueryService = checkNotNull(objectQueryService);
-    }
-
-    @Subscribe
-    public void onGetCollectionByIdRequest(final GetCollectionByIdRequest request) {
-        GuiUI.navigateTo(ObjectQuery.builder().setIncludeCollectionId(request.getId()).build());
-    }
-
-    @Subscribe
-    public void onGetInstitutionByIdRequest(final GetInstitutionByIdRequest request) {
-        GuiUI.navigateTo(ObjectQuery.builder().setIncludeInstitutionId(request.getId()).build());
-    }
-
-    @Subscribe
-    public void onGetObjectByIdRequest(final GetObjectByIdRequest request) {
-        UI.getCurrent().getNavigator().navigateTo(ObjectByIdView.NAME + "/" + request.getId().toString());
     }
 
     @Override
@@ -148,7 +127,14 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
 
         final LazyQueryDefinition queryDefinition = new LazyQueryDefinition(true, 10, "id");
         for (final ObjectBean.FieldMetadata field : ObjectBean.FieldMetadata.values()) {
-            queryDefinition.addProperty(field.getJavaName(), field.getJavaType().getRawType(), null, true, false);
+            boolean sortable = false;
+            try {
+                ObjectSortField.valueOf(field.getThriftName().toUpperCase());
+                sortable = true;
+            } catch (final IllegalArgumentException e) {
+            }
+
+            queryDefinition.addProperty(field.getJavaName(), field.getJavaType().getRawType(), null, true, sortable);
         }
 
         _getView().setModels(collectionMap, institutionMap, objectFacets, objectQuery,

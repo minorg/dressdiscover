@@ -3,7 +3,6 @@ package net.lab1318.costume.gui.presenters.institution;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.notaweb.gui.EventBus;
-import org.notaweb.gui.presenters.Presenter;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMultimap;
@@ -17,6 +16,7 @@ import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
+import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.institution.InstitutionsView;
 
 @SessionScoped
