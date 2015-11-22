@@ -23,6 +23,8 @@ import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.terms.StringTerms;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms.Bucket;
 import org.elasticsearch.search.aggregations.bucket.terms.TermsBuilder;
+import org.elasticsearch.search.sort.SortBuilders;
+import org.elasticsearch.search.sort.SortOrder;
 import org.notaweb.lib.protocols.ElasticSearchInputProtocol;
 import org.notaweb.lib.stores.ElasticSearchIndex;
 import org.notaweb.lib.stores.InvalidModelException;
@@ -52,6 +54,7 @@ import net.lab1318.costume.api.services.object.GetObjectsOptions;
 import net.lab1318.costume.api.services.object.NoSuchObjectException;
 import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
+import net.lab1318.costume.api.services.object.ObjectSort;
 import net.lab1318.costume.lib.services.ServiceExceptionHelper;
 import net.lab1318.costume.lib.services.object.LoggingObjectQueryService.Markers;
 import net.lab1318.costume.lib.stores.object.ObjectElasticSearchIndex;
@@ -174,11 +177,22 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     @Override
     public ImmutableList<ObjectEntry> getObjects(final GetObjectsOptions options, final Optional<ObjectQuery> query)
             throws IoException {
+        final SearchRequestBuilder searchRequestBuilder = elasticSearchIndex.prepareSearchModels()
+                .setQuery(__translateQuery(query)).setFrom(options.getFrom().intValue())
+                .setSize(options.getSize().intValue());
+        if (options.getSorts().isPresent()) {
+            for (final ObjectSort sort : options.getSorts().get()) {
+                searchRequestBuilder.addSort(SortBuilders
+                        .fieldSort(Object.FieldMetadata.valueOfThriftName(sort.getField().name().toLowerCase())
+                                .getThriftProtocolKey())
+                        .order(sort.getOrder() == net.lab1318.costume.api.models.SortOrder.ASC ? SortOrder.ASC
+                                : SortOrder.DESC));
+            }
+        }
+
         SearchResponse searchResponse;
         try {
-            searchResponse = elasticSearchIndex.getModels(logger, Markers.GET_OBJECTS,
-                    elasticSearchIndex.prepareSearchModels().setQuery(__translateQuery(query))
-                            .setFrom(options.getFrom().intValue()).setSize(options.getSize().intValue()));
+            searchResponse = elasticSearchIndex.getModels(logger, Markers.GET_OBJECTS, searchRequestBuilder);
         } catch (final IndexMissingException e) {
             logger.warn(Markers.GET_OBJECTS, "objects index does not exist, returning empty results");
             return ImmutableList.of();
