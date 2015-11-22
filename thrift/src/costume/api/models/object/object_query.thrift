@@ -7,8 +7,14 @@ include "costume/api/models/object/object_id.thrift"
 
 struct ObjectQuery {
 	optional collection_id.CollectionId include_collection_id;
+
 	optional institution_id.InstitutionId include_institution_id;
+
+	// @validation {"minLength": 1}
+	optional string include_subject_term_text;
+
 	optional object_id.ObjectId more_like_object_id;
+
 	// @validation {"minLength": 1}
 	optional string query_string;
 }

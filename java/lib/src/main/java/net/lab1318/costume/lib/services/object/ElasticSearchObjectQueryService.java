@@ -14,12 +14,15 @@ import org.elasticsearch.index.query.AndFilterBuilder;
 import org.elasticsearch.index.query.FilterBuilder;
 import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.MoreLikeThisQueryBuilder;
+import org.elasticsearch.index.query.NestedFilterBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.indices.IndexMissingException;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.bucket.nested.Nested;
+import org.elasticsearch.search.aggregations.bucket.nested.NestedBuilder;
 import org.elasticsearch.search.aggregations.bucket.terms.StringTerms;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms.Bucket;
 import org.elasticsearch.search.aggregations.bucket.terms.TermsBuilder;
@@ -174,32 +177,49 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             resultBuilder.setInstitutionHits(institutionHitsBuilder.build());
         }
 
-		{
-			final ImmutableMap.Builder<String, UnsignedInteger> subjectTermTextsBuilder = ImmutableMap.builder();
-			for (final Bucket bucket : ((StringTerms) searchResponse.getAggregations()
-					.get(SUBJECT_TERM_TEXTS_AGGREGATION.getName())).getBuckets()) {
-				subjectTermTextsBuilder.put(bucket.getKey(),
-						UnsignedInteger.valueOf(bucket.getDocCount()));
-			}
-			resultBuilder.setSubjectTermTexts(subjectTermTextsBuilder.build());
-		}
+        {
+            final ImmutableMap.Builder<String, UnsignedInteger> subjectTermTextsBuilder = ImmutableMap.builder();
+            final Nested subjectTermTextsAggregation = searchResponse.getAggregations()
+                    .get(SUBJECT_TERM_TEXTS_AGGREGATION.getName());
+            final Nested objectSubjectsAggregation = subjectTermTextsAggregation.getAggregations()
+                    .get(Object.FieldMetadata.SUBJECTS.getThriftName());
+            // final Nested subjectSetSubjectsAggregation =
+            // objectSubjectsAggregation.getAggregations()
+            // .get(SubjectSet.FieldMetadata.SUBJECTS.getThriftName());
+            final Nested subjectTermsAggregation = objectSubjectsAggregation.getAggregations()
+                    .get(Subject.FieldMetadata.TERMS.getThriftName());
+            final StringTerms subjectTermTextAggregation = subjectTermsAggregation.getAggregations()
+                    .get(SubjectTerm.FieldMetadata.TEXT.getThriftName());
+
+            for (final Bucket bucket : subjectTermTextAggregation.getBuckets()) {
+                subjectTermTextsBuilder.put(bucket.getKey(), UnsignedInteger.valueOf(bucket.getDocCount()));
+            }
+            resultBuilder.setSubjectTermTexts(subjectTermTextsBuilder.build());
+        }
 
         return resultBuilder.build();
     }
 
     @Override
-    public ImmutableList<ObjectEntry> getObjects(final GetObjectsOptions options, final Optional<ObjectQuery> query)
-            throws IoException {
-        final SearchRequestBuilder searchRequestBuilder = elasticSearchIndex.prepareSearchModels()
-                .setQuery(__translateQuery(query)).setFrom(options.getFrom().intValue())
-                .setSize(options.getSize().intValue());
-        if (options.getSorts().isPresent()) {
-            for (final ObjectSort sort : options.getSorts().get()) {
-                searchRequestBuilder.addSort(SortBuilders
-                        .fieldSort(Object.FieldMetadata.valueOfThriftName(sort.getField().name().toLowerCase())
-                                .getThriftProtocolKey())
-                        .order(sort.getOrder() == net.lab1318.costume.api.models.SortOrder.ASC ? SortOrder.ASC
-                                : SortOrder.DESC));
+    public ImmutableList<ObjectEntry> getObjects(final Optional<GetObjectsOptions> options,
+            final Optional<ObjectQuery> query) throws IoException {
+        SearchRequestBuilder searchRequestBuilder = elasticSearchIndex.prepareSearchModels()
+                .setQuery(__translateQuery(query));
+        if (options.isPresent()) {
+            if (options.get().getFrom().isPresent()) {
+                searchRequestBuilder = searchRequestBuilder.setFrom(options.get().getFrom().get().intValue());
+            }
+            if (options.get().getSize().isPresent()) {
+                searchRequestBuilder = searchRequestBuilder.setSize(options.get().getSize().get().intValue());
+            }
+            if (options.get().getSorts().isPresent()) {
+                for (final ObjectSort sort : options.get().getSorts().get()) {
+                    searchRequestBuilder = searchRequestBuilder.addSort(SortBuilders
+                            .fieldSort(Object.FieldMetadata.valueOfThriftName(sort.getField().name().toLowerCase())
+                                    .getThriftProtocolKey())
+                            .order(sort.getOrder() == net.lab1318.costume.api.models.SortOrder.ASC ? SortOrder.ASC
+                                    : SortOrder.DESC));
+                }
             }
         }
 
@@ -262,6 +282,30 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                     query.get().getIncludeInstitutionId().get().toString()));
         }
 
+        if (query.get().getIncludeSubjectTermText().isPresent()) {
+            final NestedFilterBuilder filter = FilterBuilders
+                    .nestedFilter(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey(),
+                            FilterBuilders
+                                    .nestedFilter(
+                                            Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+                                                    + SubjectSet.FieldMetadata.SUBJECTS.getThriftProtocolKey(),
+                                            FilterBuilders.nestedFilter(
+                                                    Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+                                                            + SubjectSet.FieldMetadata.SUBJECTS.getThriftProtocolKey()
+                                                            + '.' + Subject.FieldMetadata.TERMS.getThriftProtocolKey(),
+                                                    FilterBuilders.termFilter(
+                                                            Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+                                                                    + SubjectSet.FieldMetadata.SUBJECTS
+                                                                            .getThriftProtocolKey()
+                                                                    + '.'
+                                                                    + Subject.FieldMetadata.TERMS.getThriftProtocolKey()
+                                                                    + '.'
+                                                                    + SubjectTerm.FieldMetadata.TEXT
+                                                                            .getThriftProtocolKey(),
+                                                            query.get().getIncludeSubjectTermText().get()))));
+            filters.add(filter);
+        }
+
         if (filters.size() == 1) {
             queryTranslated = QueryBuilders.filteredQuery(queryTranslated, filters.get(0));
         } else if (filters.size() > 1) {
@@ -280,17 +324,38 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             .terms(ObjectFacets.FieldMetadata.COLLECTION_HITS.getThriftName())
             .field(Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey());
     private final static ObjectFacets EMPTY_OBJECT_FACETS = ObjectFacets.builder().setCollectionHits(ImmutableMap.of())
-			.setInstitutionHits(ImmutableMap.of()).setSubjectTermTexts(ImmutableMap.of()).build();
+            .setInstitutionHits(ImmutableMap.of()).setSubjectTermTexts(ImmutableMap.of()).build();
     private final static TermsBuilder INSTITUTION_HITS_AGGREGATION = AggregationBuilders
             .terms(ObjectFacets.FieldMetadata.INSTITUTION_HITS.getThriftName())
             .field(Object.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey());
-	private final static TermsBuilder SUBJECT_TERM_TEXTS_AGGREGATION = AggregationBuilders
-			.terms(ObjectFacets.FieldMetadata.SUBJECT_TERM_TEXTS.getThriftName())
-			.field(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
-					+ SubjectSet.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
-					+ Subject.FieldMetadata.TERMS.getThriftProtocolKey() + '.'
-					+ SubjectTerm.FieldMetadata.TEXT.getThriftProtocolKey());
+    private final static AggregationBuilder<?> SUBJECT_TERM_TEXTS_AGGREGATION;
+
+    static {
+        final TermsBuilder subjectTermTextAggregation = AggregationBuilders
+                .terms(SubjectTerm.FieldMetadata.TEXT.getThriftName())
+                .field(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+                        + SubjectSet.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+                        + Subject.FieldMetadata.TERMS.getThriftProtocolKey() + '.'
+                        + SubjectTerm.FieldMetadata.TEXT.getThriftProtocolKey());
+        final NestedBuilder subjectTermsAggregation = AggregationBuilders
+                .nested(Subject.FieldMetadata.TERMS.getThriftName())
+                .path(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+                        + SubjectSet.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+                        + Subject.FieldMetadata.TERMS.getThriftProtocolKey())
+                .subAggregation(subjectTermTextAggregation);
+        final NestedBuilder subjectSetSubjectsAggregation = AggregationBuilders
+                .nested(SubjectSet.FieldMetadata.SUBJECTS.getThriftName())
+                .path(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+                        + SubjectSet.FieldMetadata.SUBJECTS.getThriftProtocolKey())
+                .subAggregation(subjectTermsAggregation);
+        final NestedBuilder objectSubjectsAggregation = AggregationBuilders
+                .nested(Object.FieldMetadata.SUBJECTS.getThriftName())
+                .path(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey())
+                .subAggregation(subjectSetSubjectsAggregation);
+        SUBJECT_TERM_TEXTS_AGGREGATION = objectSubjectsAggregation;
+    }
+
     private final static ImmutableList<AggregationBuilder<?>> AGGREGATIONS = ImmutableList
-			.of(COLLECTION_HITS_AGGREGATION, INSTITUTION_HITS_AGGREGATION, SUBJECT_TERM_TEXTS_AGGREGATION);
+            .of(COLLECTION_HITS_AGGREGATION, INSTITUTION_HITS_AGGREGATION, SUBJECT_TERM_TEXTS_AGGREGATION);
     private final static Logger logger = LoggerFactory.getLogger(ElasticSearchObjectQueryService.class);
 }

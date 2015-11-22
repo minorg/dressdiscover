@@ -224,6 +224,7 @@
                     "type": "nested", 
                     "properties": {
                       "1:text": {
+                        "index": "not_analyzed", 
                         "type": "string"
                       }, 
                       "2:type": {

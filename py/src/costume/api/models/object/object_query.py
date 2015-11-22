@@ -7,23 +7,26 @@ class ObjectQuery(object):
             self,
             include_collection_id=None,
             include_institution_id=None,
+            include_subject_term_text=None,
             more_like_object_id=None,
             query_string=None,
         ):
             '''
             :type include_collection_id: str or None
             :type include_institution_id: str or None
+            :type include_subject_term_text: str or None
             :type more_like_object_id: str or None
             :type query_string: str or None
             '''
 
             self.__include_collection_id = include_collection_id
             self.__include_institution_id = include_institution_id
+            self.__include_subject_term_text = include_subject_term_text
             self.__more_like_object_id = more_like_object_id
             self.__query_string = query_string
 
         def build(self):
-            return ObjectQuery(include_collection_id=self.__include_collection_id, include_institution_id=self.__include_institution_id, more_like_object_id=self.__more_like_object_id, query_string=self.__query_string)
+            return ObjectQuery(include_collection_id=self.__include_collection_id, include_institution_id=self.__include_institution_id, include_subject_term_text=self.__include_subject_term_text, more_like_object_id=self.__more_like_object_id, query_string=self.__query_string)
 
         @property
         def include_collection_id(self):
@@ -40,6 +43,14 @@ class ObjectQuery(object):
             '''
 
             return self.__include_institution_id
+
+        @property
+        def include_subject_term_text(self):
+            '''
+            :rtype: str
+            '''
+
+            return self.__include_subject_term_text
 
         @property
         def more_like_object_id(self):
@@ -73,6 +84,14 @@ class ObjectQuery(object):
             self.__include_institution_id = include_institution_id
             return self
 
+        def set_include_subject_term_text(self, include_subject_term_text):
+            '''
+            :type include_subject_term_text: str or None
+            '''
+
+            self.__include_subject_term_text = include_subject_term_text
+            return self
+
         def set_more_like_object_id(self, more_like_object_id):
             '''
             :type more_like_object_id: str or None
@@ -93,6 +112,7 @@ class ObjectQuery(object):
             '''
             :type include_collection_id: str or None
             :type include_institution_id: str or None
+            :type include_subject_term_text: str or None
             :type more_like_object_id: str or None
             :type query_string: str or None
             '''
@@ -100,6 +120,7 @@ class ObjectQuery(object):
             if isinstance(object_query, ObjectQuery):
                 self.set_include_collection_id(object_query.include_collection_id)
                 self.set_include_institution_id(object_query.include_institution_id)
+                self.set_include_subject_term_text(object_query.include_subject_term_text)
                 self.set_more_like_object_id(object_query.more_like_object_id)
                 self.set_query_string(object_query.query_string)
             elif isinstance(object_query, dict):
@@ -125,6 +146,14 @@ class ObjectQuery(object):
 
             self.set_include_institution_id(include_institution_id)
 
+        @include_subject_term_text.setter
+        def include_subject_term_text(self, include_subject_term_text):
+            '''
+            :type include_subject_term_text: str or None
+            '''
+
+            self.set_include_subject_term_text(include_subject_term_text)
+
         @more_like_object_id.setter
         def more_like_object_id(self, more_like_object_id):
             '''
@@ -145,12 +174,14 @@ class ObjectQuery(object):
         self,
         include_collection_id=None,
         include_institution_id=None,
+        include_subject_term_text=None,
         more_like_object_id=None,
         query_string=None,
     ):
         '''
         :type include_collection_id: str or None
         :type include_institution_id: str or None
+        :type include_subject_term_text: str or None
         :type more_like_object_id: str or None
         :type query_string: str or None
         '''
@@ -164,6 +195,13 @@ class ObjectQuery(object):
             if not isinstance(include_institution_id, basestring):
                 raise TypeError("expected include_institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(include_institution_id))
         self.__include_institution_id = include_institution_id
+
+        if include_subject_term_text is not None:
+            if not isinstance(include_subject_term_text, basestring):
+                raise TypeError("expected include_subject_term_text to be a str but it is a %s" % getattr(__builtin__, 'type')(include_subject_term_text))
+            if len(include_subject_term_text) < 1:
+                raise ValueError("expected len(include_subject_term_text) to be >= 1, was %d" % len(include_subject_term_text))
+        self.__include_subject_term_text = include_subject_term_text
 
         if more_like_object_id is not None:
             if not isinstance(more_like_object_id, basestring):
@@ -182,6 +220,8 @@ class ObjectQuery(object):
             return False
         if self.include_institution_id != other.include_institution_id:
             return False
+        if self.include_subject_term_text != other.include_subject_term_text:
+            return False
         if self.more_like_object_id != other.more_like_object_id:
             return False
         if self.query_string != other.query_string:
@@ -189,7 +229,7 @@ class ObjectQuery(object):
         return True
 
     def __hash__(self):
-        return hash((self.include_collection_id,self.include_institution_id,self.more_like_object_id,self.query_string,))
+        return hash((self.include_collection_id,self.include_institution_id,self.include_subject_term_text,self.more_like_object_id,self.query_string,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -203,6 +243,8 @@ class ObjectQuery(object):
             field_reprs.append('include_collection_id=' + "'" + self.include_collection_id.encode('ascii', 'replace') + "'")
         if self.include_institution_id is not None:
             field_reprs.append('include_institution_id=' + "'" + self.include_institution_id.encode('ascii', 'replace') + "'")
+        if self.include_subject_term_text is not None:
+            field_reprs.append('include_subject_term_text=' + "'" + self.include_subject_term_text.encode('ascii', 'replace') + "'")
         if self.more_like_object_id is not None:
             field_reprs.append('more_like_object_id=' + "'" + self.more_like_object_id.encode('ascii', 'replace') + "'")
         if self.query_string is not None:
@@ -215,6 +257,8 @@ class ObjectQuery(object):
             field_reprs.append('include_collection_id=' + "'" + self.include_collection_id.encode('ascii', 'replace') + "'")
         if self.include_institution_id is not None:
             field_reprs.append('include_institution_id=' + "'" + self.include_institution_id.encode('ascii', 'replace') + "'")
+        if self.include_subject_term_text is not None:
+            field_reprs.append('include_subject_term_text=' + "'" + self.include_subject_term_text.encode('ascii', 'replace') + "'")
         if self.more_like_object_id is not None:
             field_reprs.append('more_like_object_id=' + "'" + self.more_like_object_id.encode('ascii', 'replace') + "'")
         if self.query_string is not None:
@@ -228,7 +272,7 @@ class ObjectQuery(object):
         :rtype: dict
         '''
 
-        return {'include_collection_id': self.include_collection_id, 'include_institution_id': self.include_institution_id, 'more_like_object_id': self.more_like_object_id, 'query_string': self.query_string}
+        return {'include_collection_id': self.include_collection_id, 'include_institution_id': self.include_institution_id, 'include_subject_term_text': self.include_subject_term_text, 'more_like_object_id': self.more_like_object_id, 'query_string': self.query_string}
 
     def as_tuple(self):
         '''
@@ -237,7 +281,7 @@ class ObjectQuery(object):
         :rtype: tuple
         '''
 
-        return (self.include_collection_id, self.include_institution_id, self.more_like_object_id, self.query_string,)
+        return (self.include_collection_id, self.include_institution_id, self.include_subject_term_text, self.more_like_object_id, self.query_string,)
 
     @property
     def include_collection_id(self):
@@ -254,6 +298,14 @@ class ObjectQuery(object):
         '''
 
         return self.__include_institution_id
+
+    @property
+    def include_subject_term_text(self):
+        '''
+        :rtype: str
+        '''
+
+        return self.__include_subject_term_text
 
     @property
     def more_like_object_id(self):
@@ -297,6 +349,11 @@ class ObjectQuery(object):
                     init_kwds['include_institution_id'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
+            elif ifield_name == 'include_subject_term_text':
+                try:
+                    init_kwds['include_subject_term_text'] = iprot.read_string()
+                except (TypeError, ValueError,):
+                    pass
             elif ifield_name == 'more_like_object_id':
                 try:
                     init_kwds['more_like_object_id'] = iprot.read_string()
@@ -316,6 +373,7 @@ class ObjectQuery(object):
         self,
         include_collection_id=None,
         include_institution_id=None,
+        include_subject_term_text=None,
         more_like_object_id=None,
         query_string=None,
     ):
@@ -324,6 +382,7 @@ class ObjectQuery(object):
 
         :type include_collection_id: str or None
         :type include_institution_id: str or None
+        :type include_subject_term_text: str or None
         :type more_like_object_id: str or None
         :type query_string: str or None
         :rtype: costume.api.models.object.object_query.ObjectQuery
@@ -333,11 +392,13 @@ class ObjectQuery(object):
             include_collection_id = self.include_collection_id
         if include_institution_id is None:
             include_institution_id = self.include_institution_id
+        if include_subject_term_text is None:
+            include_subject_term_text = self.include_subject_term_text
         if more_like_object_id is None:
             more_like_object_id = self.more_like_object_id
         if query_string is None:
             query_string = self.query_string
-        return self.__class__(include_collection_id=include_collection_id, include_institution_id=include_institution_id, more_like_object_id=more_like_object_id, query_string=query_string)
+        return self.__class__(include_collection_id=include_collection_id, include_institution_id=include_institution_id, include_subject_term_text=include_subject_term_text, more_like_object_id=more_like_object_id, query_string=query_string)
 
     def write(self, oprot):
         '''
@@ -357,6 +418,11 @@ class ObjectQuery(object):
         if self.include_institution_id is not None:
             oprot.write_field_begin(name='include_institution_id', type=11, id=None)
             oprot.write_string(self.include_institution_id)
+            oprot.write_field_end()
+
+        if self.include_subject_term_text is not None:
+            oprot.write_field_begin(name='include_subject_term_text', type=11, id=None)
+            oprot.write_string(self.include_subject_term_text)
             oprot.write_field_end()
 
         if self.more_like_object_id is not None:

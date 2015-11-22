@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.primitives.UnsignedInteger;
 
@@ -53,13 +54,14 @@ public final class ElasticSearchObjectQueryServiceTest extends ObjectServiceTest
         final ObjectFacets actual = objectQueryService.getObjectFacets();
         assertEquals(TestData.getInstance().getCollections().size(), actual.getCollectionHits().size());
         assertEquals(TestData.getInstance().getInstitutions().size(), actual.getInstitutionHits().size());
+        assertEquals(TestData.getInstance().getSubjects().size(), actual.getSubjectTermTexts().size());
     }
 
     @Test
     public void testGetObjects() throws Exception {
         final ImmutableList<ObjectEntry> expected = _putObjects();
-        final ImmutableList<ObjectEntry> actual = objectQueryService.getObjects(
-                GetObjectsOptions.builder().setFrom(UnsignedInteger.ZERO).setSize(UnsignedInteger.MAX_VALUE).build());
+        final ImmutableList<ObjectEntry> actual = objectQueryService.getObjects(Optional.of(
+                GetObjectsOptions.builder().setFrom(UnsignedInteger.ZERO).setSize(UnsignedInteger.MAX_VALUE).build()));
         assertEquals(TestData.getInstance().getObjects().size(), actual.size());
         for (final ObjectEntry expectedEntry : expected) {
             boolean found = false;

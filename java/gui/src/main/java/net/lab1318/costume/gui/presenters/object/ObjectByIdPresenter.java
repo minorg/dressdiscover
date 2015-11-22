@@ -4,7 +4,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.notaweb.gui.EventBus;
 
-import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -26,8 +25,6 @@ import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
 import net.lab1318.costume.api.services.object.NoSuchObjectException;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
-import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectsRequest;
-import net.lab1318.costume.gui.GuiUI;
 import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.object.ObjectByIdView;
 
@@ -43,57 +40,52 @@ public class ObjectByIdPresenter extends Presenter<ObjectByIdView> {
         this.objectQueryService = checkNotNull(objectQueryService);
     }
 
-    @Subscribe
-    public void onGetObjectsRequest(final GetObjectsRequest request) {
-    	GuiUI.navigateTo(request.getQuery().get());
+    @Override
+    protected void _onViewEnter(final ViewChangeEvent event) {
+        final ObjectId objectId;
+        try {
+            objectId = ObjectId.parse(event.getParameters());
+        } catch (final InvalidObjectIdException e) {
+            _getView().setComponentError(new UserError("no such object " + event.getParameters()));
+            return;
+        }
+
+        Object object;
+        try {
+            object = objectQueryService.getObjectById(objectId);
+        } catch (final IoException e) {
+            _getView().setComponentError(new SystemError("I/O exception", e));
+            return;
+        } catch (final NoSuchObjectException e) {
+            _getView().setComponentError(new UserError("no such object " + objectId));
+            return;
+        }
+
+        Collection collection;
+        try {
+            collection = collectionQueryService.getCollectionById(object.getCollectionId());
+        } catch (final IoException e) {
+            _getView().setComponentError(new SystemError("I/O exception", e));
+            return;
+        } catch (final NoSuchCollectionException e) {
+            _getView().setComponentError(new UserError("no such collection " + object.getCollectionId()));
+            return;
+        }
+
+        Institution institution;
+        try {
+            institution = institutionQueryService.getInstitutionById(collection.getInstitutionId());
+        } catch (final IoException e) {
+            _getView().setComponentError(new SystemError("I/O exception", e));
+            return;
+        } catch (final NoSuchInstitutionException e) {
+            _getView().setComponentError(new UserError("no such institution " + collection.getInstitutionId()));
+            return;
+        }
+
+        _getView().setModels(new CollectionEntry(object.getCollectionId(), collection),
+                new InstitutionEntry(collection.getInstitutionId(), institution), new ObjectEntry(objectId, object));
     }
-
-	@Override
-	protected void _onViewEnter(final ViewChangeEvent event) {
-		final ObjectId objectId;
-		try {
-			objectId = ObjectId.parse(event.getParameters());
-		} catch (final InvalidObjectIdException e) {
-			_getView().setComponentError(new UserError("no such object " + event.getParameters()));
-			return;
-		}
-
-		Object object;
-		try {
-			object = objectQueryService.getObjectById(objectId);
-		} catch (final IoException e) {
-			_getView().setComponentError(new SystemError("I/O exception", e));
-			return;
-		} catch (final NoSuchObjectException e) {
-			_getView().setComponentError(new UserError("no such object " + objectId));
-			return;
-		}
-
-		Collection collection;
-		try {
-			collection = collectionQueryService.getCollectionById(object.getCollectionId());
-		} catch (final IoException e) {
-			_getView().setComponentError(new SystemError("I/O exception", e));
-			return;
-		} catch (final NoSuchCollectionException e) {
-			_getView().setComponentError(new UserError("no such collection " + object.getCollectionId()));
-			return;
-		}
-
-		Institution institution;
-		try {
-			institution = institutionQueryService.getInstitutionById(collection.getInstitutionId());
-		} catch (final IoException e) {
-			_getView().setComponentError(new SystemError("I/O exception", e));
-			return;
-		} catch (final NoSuchInstitutionException e) {
-			_getView().setComponentError(new UserError("no such institution " + collection.getInstitutionId()));
-			return;
-		}
-
-		_getView().setModels(new CollectionEntry(object.getCollectionId(), collection),
-				new InstitutionEntry(collection.getInstitutionId(), institution), new ObjectEntry(objectId, object));
-	}
 
     private final CollectionQueryService collectionQueryService;
     private final InstitutionQueryService institutionQueryService;

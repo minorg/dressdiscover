@@ -3,8 +3,8 @@ package net.lab1318.costume.api.services.object;
 public class GetObjectsOptions implements org.thryft.Struct {
     public static class Builder {
         public Builder() {
-            from = com.google.common.primitives.UnsignedInteger.ZERO;
-            size = com.google.common.primitives.UnsignedInteger.ZERO;
+            from = com.google.common.base.Optional.absent();
+            size = com.google.common.base.Optional.absent();
             sorts = com.google.common.base.Optional.absent();
         }
 
@@ -14,7 +14,7 @@ public class GetObjectsOptions implements org.thryft.Struct {
             this.sorts = other.getSorts();
         }
 
-        protected GetObjectsOptions _build(final com.google.common.primitives.UnsignedInteger from, final com.google.common.primitives.UnsignedInteger size, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSort>> sorts) {
+        protected GetObjectsOptions _build(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSort>> sorts) {
             return new GetObjectsOptions(from, size, sorts);
         }
 
@@ -22,11 +22,11 @@ public class GetObjectsOptions implements org.thryft.Struct {
             return _build(com.google.common.base.Preconditions.checkNotNull(from, "net.lab1318.costume.api.services.object.GetObjectsOptions: missing from"), com.google.common.base.Preconditions.checkNotNull(size, "net.lab1318.costume.api.services.object.GetObjectsOptions: missing size"), com.google.common.base.Preconditions.checkNotNull(sorts, "net.lab1318.costume.api.services.object.GetObjectsOptions: missing sorts"));
         }
 
-        public final com.google.common.primitives.UnsignedInteger getFrom() {
+        public final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> getFrom() {
             return from;
         }
 
-        public final com.google.common.primitives.UnsignedInteger getSize() {
+        public final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> getSize() {
             return size;
         }
 
@@ -47,8 +47,18 @@ public class GetObjectsOptions implements org.thryft.Struct {
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            from = iprot.readU32();
-            size = iprot.readU32();
+            if (__list.getSize() > 0) {
+                try {
+                    from = com.google.common.base.Optional.of(iprot.readU32());
+                } catch (final NumberFormatException e) {
+                }
+            }
+            if (__list.getSize() > 1) {
+                try {
+                    size = com.google.common.base.Optional.of(iprot.readU32());
+                } catch (final NumberFormatException e) {
+                }
+            }
             if (__list.getSize() > 2) {
                 try {
                     sorts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSort>>() {
@@ -83,11 +93,17 @@ public class GetObjectsOptions implements org.thryft.Struct {
                 }
                 switch (ifield.getName()) {
                 case "from_": {
-                    from = iprot.readU32();
+                    try {
+                        from = com.google.common.base.Optional.of(iprot.readU32());
+                    } catch (final NumberFormatException e) {
+                    }
                     break;
                 }
                 case "size": {
-                    size = iprot.readU32();
+                    try {
+                        size = com.google.common.base.Optional.of(iprot.readU32());
+                    } catch (final NumberFormatException e) {
+                    }
                     break;
                 }
                 case "sorts": {
@@ -119,16 +135,25 @@ public class GetObjectsOptions implements org.thryft.Struct {
             return this;
         }
 
-        public Builder setFrom(final com.google.common.primitives.UnsignedInteger from) {
+        public Builder setFrom(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from) {
             this.from = com.google.common.base.Preconditions.checkNotNull(from);
+            return this;
+        }
+
+        public Builder setFrom(@javax.annotation.Nullable final com.google.common.primitives.UnsignedInteger from) {
+            this.from = com.google.common.base.Optional.fromNullable(from);
             return this;
         }
 
         public Builder setIfPresent(final GetObjectsOptions other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
-            setFrom(other.getFrom());
-            setSize(other.getSize());
+            if (other.getFrom().isPresent()) {
+                setFrom(other.getFrom());
+            }
+            if (other.getSize().isPresent()) {
+                setSize(other.getSize());
+            }
             if (other.getSorts().isPresent()) {
                 setSorts(other.getSorts());
             }
@@ -136,8 +161,13 @@ public class GetObjectsOptions implements org.thryft.Struct {
             return this;
         }
 
-        public Builder setSize(final com.google.common.primitives.UnsignedInteger size) {
+        public Builder setSize(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size) {
             this.size = com.google.common.base.Preconditions.checkNotNull(size);
+            return this;
+        }
+
+        public Builder setSize(@javax.annotation.Nullable final com.google.common.primitives.UnsignedInteger size) {
+            this.size = com.google.common.base.Optional.fromNullable(size);
             return this;
         }
 
@@ -165,12 +195,12 @@ public class GetObjectsOptions implements org.thryft.Struct {
         }
 
         public Builder unsetFrom() {
-            this.from = com.google.common.primitives.UnsignedInteger.ZERO;
+            this.from = com.google.common.base.Optional.absent();
             return this;
         }
 
         public Builder unsetSize() {
-            this.size = com.google.common.primitives.UnsignedInteger.ZERO;
+            this.size = com.google.common.base.Optional.absent();
             return this;
         }
 
@@ -179,15 +209,15 @@ public class GetObjectsOptions implements org.thryft.Struct {
             return this;
         }
 
-        private com.google.common.primitives.UnsignedInteger from;
-        private com.google.common.primitives.UnsignedInteger size;
+        private com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from;
+        private com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSort>> sorts;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        FROM_("from", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, true, 0, "from_", org.thryft.protocol.Type.I32),
-        SIZE("size", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, true, 0, "size", org.thryft.protocol.Type.I32),
+        FROM_("from", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, false, 0, "from_", org.thryft.protocol.Type.I32),
+        SIZE("size", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, false, 0, "size", org.thryft.protocol.Type.I32),
         SORTS("sorts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSort>>() {}, false, 0, "sorts", org.thryft.protocol.Type.LIST);
 
         @Override
@@ -274,6 +304,15 @@ public class GetObjectsOptions implements org.thryft.Struct {
     }
 
     /**
+     * Default constructor
+     */
+    public GetObjectsOptions() {
+        from = com.google.common.base.Optional.absent();
+        size = com.google.common.base.Optional.absent();
+        sorts = com.google.common.base.Optional.absent();
+    }
+
+    /**
      * Copy constructor
      */
     public GetObjectsOptions(final GetObjectsOptions other) {
@@ -281,27 +320,18 @@ public class GetObjectsOptions implements org.thryft.Struct {
     }
 
     /**
-     * Required constructor
-     */
-    public GetObjectsOptions(final com.google.common.primitives.UnsignedInteger from, final com.google.common.primitives.UnsignedInteger size) {
-        this.from = com.google.common.base.Preconditions.checkNotNull(from, "net.lab1318.costume.api.services.object.GetObjectsOptions: missing from");
-        this.size = com.google.common.base.Preconditions.checkNotNull(size, "net.lab1318.costume.api.services.object.GetObjectsOptions: missing size");
-        this.sorts = com.google.common.base.Optional.absent();
-    }
-
-    /**
      * Total Nullable constructor
      */
-    public GetObjectsOptions(final com.google.common.primitives.UnsignedInteger from, final com.google.common.primitives.UnsignedInteger size, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSort> sorts) {
-        this.from = com.google.common.base.Preconditions.checkNotNull(from, "net.lab1318.costume.api.services.object.GetObjectsOptions: missing from");
-        this.size = com.google.common.base.Preconditions.checkNotNull(size, "net.lab1318.costume.api.services.object.GetObjectsOptions: missing size");
+    public GetObjectsOptions(final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger from, final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger size, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSort> sorts) {
+        this.from = com.google.common.base.Optional.fromNullable(from);
+        this.size = com.google.common.base.Optional.fromNullable(size);
         this.sorts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(sorts), "net.lab1318.costume.api.services.object.GetObjectsOptions: sorts is empty");
     }
 
     /**
      * Optional constructor
      */
-    public GetObjectsOptions(final com.google.common.primitives.UnsignedInteger from, final com.google.common.primitives.UnsignedInteger size, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSort>> sorts) {
+    public GetObjectsOptions(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSort>> sorts) {
         this.from = com.google.common.base.Preconditions.checkNotNull(from, "net.lab1318.costume.api.services.object.GetObjectsOptions: missing from");
         this.size = com.google.common.base.Preconditions.checkNotNull(size, "net.lab1318.costume.api.services.object.GetObjectsOptions: missing size");
         this.sorts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(sorts, "net.lab1318.costume.api.services.object.GetObjectsOptions: missing sorts"), "net.lab1318.costume.api.services.object.GetObjectsOptions: sorts is empty");
@@ -345,11 +375,11 @@ public class GetObjectsOptions implements org.thryft.Struct {
         }
     }
 
-    public final com.google.common.primitives.UnsignedInteger getFrom() {
+    public final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> getFrom() {
         return from;
     }
 
-    public final com.google.common.primitives.UnsignedInteger getSize() {
+    public final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> getSize() {
         return size;
     }
 
@@ -360,8 +390,12 @@ public class GetObjectsOptions implements org.thryft.Struct {
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getFrom().hashCode();
-        hashCode = 31 * hashCode + getSize().hashCode();
+        if (getFrom().isPresent()) {
+            hashCode = 31 * hashCode + getFrom().get().hashCode();
+        }
+        if (getSize().isPresent()) {
+            hashCode = 31 * hashCode + getSize().get().hashCode();
+        }
         if (getSorts().isPresent()) {
             hashCode = 31 * hashCode + getSorts().get().hashCode();
         }
@@ -380,13 +414,23 @@ public class GetObjectsOptions implements org.thryft.Struct {
     }
 
     public static GetObjectsOptions readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.primitives.UnsignedInteger from = com.google.common.primitives.UnsignedInteger.ZERO;
-        com.google.common.primitives.UnsignedInteger size = com.google.common.primitives.UnsignedInteger.ZERO;
+        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSort>> sorts = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        from = iprot.readU32();
-        size = iprot.readU32();
+        if (__list.getSize() > 0) {
+            try {
+                from = com.google.common.base.Optional.of(iprot.readU32());
+            } catch (final NumberFormatException e) {
+            }
+        }
+        if (__list.getSize() > 1) {
+            try {
+                size = com.google.common.base.Optional.of(iprot.readU32());
+            } catch (final NumberFormatException e) {
+            }
+        }
         if (__list.getSize() > 2) {
             try {
                 sorts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSort>>() {
@@ -417,8 +461,8 @@ public class GetObjectsOptions implements org.thryft.Struct {
     }
 
     public static GetObjectsOptions readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.primitives.UnsignedInteger from = com.google.common.primitives.UnsignedInteger.ZERO;
-        com.google.common.primitives.UnsignedInteger size = com.google.common.primitives.UnsignedInteger.ZERO;
+        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSort>> sorts = com.google.common.base.Optional.absent();
 
         iprot.readStructBegin();
@@ -429,11 +473,17 @@ public class GetObjectsOptions implements org.thryft.Struct {
             }
             switch (ifield.getName()) {
             case "from_": {
-                from = iprot.readU32();
+                try {
+                    from = com.google.common.base.Optional.of(iprot.readU32());
+                } catch (final NumberFormatException e) {
+                }
                 break;
             }
             case "size": {
-                size = iprot.readU32();
+                try {
+                    size = com.google.common.base.Optional.of(iprot.readU32());
+                } catch (final NumberFormatException e) {
+                }
                 break;
             }
             case "sorts": {
@@ -469,12 +519,20 @@ public class GetObjectsOptions implements org.thryft.Struct {
         }
     }
 
-    public GetObjectsOptions replaceFrom(final com.google.common.primitives.UnsignedInteger from) {
+    public GetObjectsOptions replaceFrom(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from) {
         return new GetObjectsOptions(from, this.size, this.sorts);
     }
 
-    public GetObjectsOptions replaceSize(final com.google.common.primitives.UnsignedInteger size) {
+    public GetObjectsOptions replaceFrom(final com.google.common.primitives.UnsignedInteger from) {
+        return replaceFrom(com.google.common.base.Optional.fromNullable(from));
+    }
+
+    public GetObjectsOptions replaceSize(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size) {
         return new GetObjectsOptions(this.from, size, this.sorts);
+    }
+
+    public GetObjectsOptions replaceSize(final com.google.common.primitives.UnsignedInteger size) {
+        return replaceSize(com.google.common.base.Optional.fromNullable(size));
     }
 
     public GetObjectsOptions replaceSorts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSort>> sorts) {
@@ -487,16 +545,24 @@ public class GetObjectsOptions implements org.thryft.Struct {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("from_", getFrom()).add("size", getSize()).add("sorts", getSorts().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("from_", getFrom().orNull()).add("size", getSize().orNull()).add("sorts", getSorts().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
 
-        oprot.writeU32(getFrom());
+        if (getFrom().isPresent()) {
+            oprot.writeU32(getFrom().get());
+        } else {
+            oprot.writeNull();
+        }
 
-        oprot.writeU32(getSize());
+        if (getSize().isPresent()) {
+            oprot.writeU32(getSize().get());
+        } else {
+            oprot.writeNull();
+        }
 
         if (getSorts().isPresent()) {
             oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getSorts().get().size());
@@ -520,13 +586,17 @@ public class GetObjectsOptions implements org.thryft.Struct {
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("from_", org.thryft.protocol.Type.I32, (short)0);
-        oprot.writeU32(getFrom());
-        oprot.writeFieldEnd();
+        if (getFrom().isPresent()) {
+            oprot.writeFieldBegin("from_", org.thryft.protocol.Type.I32, (short)0);
+            oprot.writeU32(getFrom().get());
+            oprot.writeFieldEnd();
+        }
 
-        oprot.writeFieldBegin("size", org.thryft.protocol.Type.I32, (short)0);
-        oprot.writeU32(getSize());
-        oprot.writeFieldEnd();
+        if (getSize().isPresent()) {
+            oprot.writeFieldBegin("size", org.thryft.protocol.Type.I32, (short)0);
+            oprot.writeU32(getSize().get());
+            oprot.writeFieldEnd();
+        }
 
         if (getSorts().isPresent()) {
             oprot.writeFieldBegin("sorts", org.thryft.protocol.Type.LIST, (short)0);
@@ -541,9 +611,9 @@ public class GetObjectsOptions implements org.thryft.Struct {
         oprot.writeFieldStop();
     }
 
-    private final com.google.common.primitives.UnsignedInteger from;
+    private final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from;
 
-    private final com.google.common.primitives.UnsignedInteger size;
+    private final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size;
 
     private final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSort>> sorts;
 }

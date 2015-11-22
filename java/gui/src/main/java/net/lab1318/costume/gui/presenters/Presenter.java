@@ -10,6 +10,7 @@ import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.collection.CollectionQueryService.Messages.GetCollectionByIdRequest;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService.Messages.GetInstitutionByIdRequest;
 import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectByIdRequest;
+import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectsRequest;
 import net.lab1318.costume.gui.GuiUI;
 import net.lab1318.costume.gui.views.object.ObjectByIdView;
 
@@ -31,5 +32,10 @@ public abstract class Presenter<ViewT extends View> extends org.notaweb.gui.pres
     @Subscribe
     public void onGetObjectByIdRequest(final GetObjectByIdRequest request) {
         UI.getCurrent().getNavigator().navigateTo(ObjectByIdView.NAME + "/" + request.getId().toString());
+    }
+
+    @Subscribe
+    public void onGetObjectsRequest(final GetObjectsRequest request) {
+        GuiUI.navigateTo(request.getQuery().get());
     }
 }

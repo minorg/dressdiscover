@@ -169,9 +169,10 @@ class ObjectQueryServiceJsonRpcClient(costume.api.services.object.object_query_s
     ):
         oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
         oprot.write_struct_begin()
-        oprot.write_field_begin(name='options', type=12, id=None)
-        options.write(oprot)
-        oprot.write_field_end()
+        if options is not None:
+            oprot.write_field_begin(name='options', type=12, id=None)
+            options.write(oprot)
+            oprot.write_field_end()
         if query is not None:
             oprot.write_field_begin(name='query', type=12, id=None)
             query.write(oprot)

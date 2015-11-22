@@ -2020,7 +2020,7 @@ public interface ObjectQueryService {
         public final static class GetObjectsRequest implements org.thryft.Struct {
             public static class Builder {
                 public Builder() {
-                    options = null;
+                    options = com.google.common.base.Optional.absent();
                     query = com.google.common.base.Optional.absent();
                 }
 
@@ -2029,7 +2029,7 @@ public interface ObjectQueryService {
                     this.query = other.getQuery();
                 }
 
-                protected GetObjectsRequest _build(final net.lab1318.costume.api.services.object.GetObjectsOptions options, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query) {
+                protected GetObjectsRequest _build(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectsOptions> options, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query) {
                     return new GetObjectsRequest(options, query);
                 }
 
@@ -2037,7 +2037,7 @@ public interface ObjectQueryService {
                     return _build(com.google.common.base.Preconditions.checkNotNull(options, "net.lab1318.costume.api.services.object.GetObjectsRequest: missing options"), com.google.common.base.Preconditions.checkNotNull(query, "net.lab1318.costume.api.services.object.GetObjectsRequest: missing query"));
                 }
 
-                public final net.lab1318.costume.api.services.object.GetObjectsOptions getOptions() {
+                public final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectsOptions> getOptions() {
                     return options;
                 }
 
@@ -2058,7 +2058,9 @@ public interface ObjectQueryService {
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-                    options = net.lab1318.costume.api.services.object.GetObjectsOptions.readAsStruct(iprot);
+                    if (__list.getSize() > 0) {
+                        options = com.google.common.base.Optional.of(net.lab1318.costume.api.services.object.GetObjectsOptions.readAsStruct(iprot));
+                    }
                     if (__list.getSize() > 1) {
                         query = com.google.common.base.Optional.of(net.lab1318.costume.api.models.object.ObjectQuery.readAsStruct(iprot));
                     }
@@ -2075,7 +2077,7 @@ public interface ObjectQueryService {
                         }
                         switch (ifield.getName()) {
                         case "options": {
-                            options = net.lab1318.costume.api.services.object.GetObjectsOptions.readAsStruct(iprot);
+                            options = com.google.common.base.Optional.of(net.lab1318.costume.api.services.object.GetObjectsOptions.readAsStruct(iprot));
                             break;
                         }
                         case "query": {
@@ -2092,7 +2094,9 @@ public interface ObjectQueryService {
                 public Builder setIfPresent(final GetObjectsRequest other) {
                     com.google.common.base.Preconditions.checkNotNull(other);
 
-                    setOptions(other.getOptions());
+                    if (other.getOptions().isPresent()) {
+                        setOptions(other.getOptions());
+                    }
                     if (other.getQuery().isPresent()) {
                         setQuery(other.getQuery());
                     }
@@ -2100,8 +2104,13 @@ public interface ObjectQueryService {
                     return this;
                 }
 
-                public Builder setOptions(final net.lab1318.costume.api.services.object.GetObjectsOptions options) {
+                public Builder setOptions(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectsOptions> options) {
                     this.options = com.google.common.base.Preconditions.checkNotNull(options);
+                    return this;
+                }
+
+                public Builder setOptions(@javax.annotation.Nullable final net.lab1318.costume.api.services.object.GetObjectsOptions options) {
+                    this.options = com.google.common.base.Optional.fromNullable(options);
                     return this;
                 }
 
@@ -2127,7 +2136,7 @@ public interface ObjectQueryService {
                 }
 
                 public Builder unsetOptions() {
-                    this.options = null;
+                    this.options = com.google.common.base.Optional.absent();
                     return this;
                 }
 
@@ -2136,13 +2145,13 @@ public interface ObjectQueryService {
                     return this;
                 }
 
-                private net.lab1318.costume.api.services.object.GetObjectsOptions options;
+                private com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectsOptions> options;
                 private com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query;
             }
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                OPTIONS("options", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.services.object.GetObjectsOptions>() {}, true, 0, "options", org.thryft.protocol.Type.STRUCT),
+                OPTIONS("options", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.services.object.GetObjectsOptions>() {}, false, 0, "options", org.thryft.protocol.Type.STRUCT),
                 QUERY("query", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.object.ObjectQuery>() {}, false, 0, "query", org.thryft.protocol.Type.STRUCT);
 
                 @Override
@@ -2227,6 +2236,14 @@ public interface ObjectQueryService {
             }
 
             /**
+             * Default constructor
+             */
+            public GetObjectsRequest() {
+                options = com.google.common.base.Optional.absent();
+                query = com.google.common.base.Optional.absent();
+            }
+
+            /**
              * Copy constructor
              */
             public GetObjectsRequest(final GetObjectsRequest other) {
@@ -2234,25 +2251,17 @@ public interface ObjectQueryService {
             }
 
             /**
-             * Required constructor
-             */
-            public GetObjectsRequest(final net.lab1318.costume.api.services.object.GetObjectsOptions options) {
-                this.options = com.google.common.base.Preconditions.checkNotNull(options, "net.lab1318.costume.api.services.object.GetObjectsRequest: missing options");
-                this.query = com.google.common.base.Optional.absent();
-            }
-
-            /**
              * Total Nullable constructor
              */
-            public GetObjectsRequest(final net.lab1318.costume.api.services.object.GetObjectsOptions options, final @javax.annotation.Nullable net.lab1318.costume.api.models.object.ObjectQuery query) {
-                this.options = com.google.common.base.Preconditions.checkNotNull(options, "net.lab1318.costume.api.services.object.GetObjectsRequest: missing options");
+            public GetObjectsRequest(final @javax.annotation.Nullable net.lab1318.costume.api.services.object.GetObjectsOptions options, final @javax.annotation.Nullable net.lab1318.costume.api.models.object.ObjectQuery query) {
+                this.options = com.google.common.base.Optional.fromNullable(options);
                 this.query = com.google.common.base.Optional.fromNullable(query);
             }
 
             /**
              * Optional constructor
              */
-            public GetObjectsRequest(final net.lab1318.costume.api.services.object.GetObjectsOptions options, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query) {
+            public GetObjectsRequest(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectsOptions> options, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query) {
                 this.options = com.google.common.base.Preconditions.checkNotNull(options, "net.lab1318.costume.api.services.object.GetObjectsRequest: missing options");
                 this.query = com.google.common.base.Preconditions.checkNotNull(query, "net.lab1318.costume.api.services.object.GetObjectsRequest: missing query");
             }
@@ -2293,7 +2302,7 @@ public interface ObjectQueryService {
                 }
             }
 
-            public final net.lab1318.costume.api.services.object.GetObjectsOptions getOptions() {
+            public final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectsOptions> getOptions() {
                 return options;
             }
 
@@ -2304,7 +2313,9 @@ public interface ObjectQueryService {
             @Override
             public int hashCode() {
                 int hashCode = 17;
-                hashCode = 31 * hashCode + getOptions().hashCode();
+                if (getOptions().isPresent()) {
+                    hashCode = 31 * hashCode + getOptions().get().hashCode();
+                }
                 if (getQuery().isPresent()) {
                     hashCode = 31 * hashCode + getQuery().get().hashCode();
                 }
@@ -2323,11 +2334,13 @@ public interface ObjectQueryService {
             }
 
             public static GetObjectsRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.services.object.GetObjectsOptions options = null;
+                com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectsOptions> options = com.google.common.base.Optional.absent();
                 com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query = com.google.common.base.Optional.absent();
 
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-                options = net.lab1318.costume.api.services.object.GetObjectsOptions.readAsStruct(iprot);
+                if (__list.getSize() > 0) {
+                    options = com.google.common.base.Optional.of(net.lab1318.costume.api.services.object.GetObjectsOptions.readAsStruct(iprot));
+                }
                 if (__list.getSize() > 1) {
                     query = com.google.common.base.Optional.of(net.lab1318.costume.api.models.object.ObjectQuery.readAsStruct(iprot));
                 }
@@ -2340,7 +2353,7 @@ public interface ObjectQueryService {
             }
 
             public static GetObjectsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.services.object.GetObjectsOptions options = null;
+                com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectsOptions> options = com.google.common.base.Optional.absent();
                 com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query = com.google.common.base.Optional.absent();
 
                 iprot.readStructBegin();
@@ -2351,7 +2364,7 @@ public interface ObjectQueryService {
                     }
                     switch (ifield.getName()) {
                     case "options": {
-                        options = net.lab1318.costume.api.services.object.GetObjectsOptions.readAsStruct(iprot);
+                        options = com.google.common.base.Optional.of(net.lab1318.costume.api.services.object.GetObjectsOptions.readAsStruct(iprot));
                         break;
                     }
                     case "query": {
@@ -2369,8 +2382,12 @@ public interface ObjectQueryService {
                 }
             }
 
-            public GetObjectsRequest replaceOptions(final net.lab1318.costume.api.services.object.GetObjectsOptions options) {
+            public GetObjectsRequest replaceOptions(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectsOptions> options) {
                 return new GetObjectsRequest(options, this.query);
+            }
+
+            public GetObjectsRequest replaceOptions(final net.lab1318.costume.api.services.object.GetObjectsOptions options) {
+                return replaceOptions(com.google.common.base.Optional.fromNullable(options));
             }
 
             public GetObjectsRequest replaceQuery(final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query) {
@@ -2383,14 +2400,18 @@ public interface ObjectQueryService {
 
             @Override
             public String toString() {
-                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("options", getOptions()).add("query", getQuery().orNull()).toString();
+                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("options", getOptions().orNull()).add("query", getQuery().orNull()).toString();
             }
 
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
 
-                getOptions().writeAsStruct(oprot);
+                if (getOptions().isPresent()) {
+                    getOptions().get().writeAsStruct(oprot);
+                } else {
+                    oprot.writeNull();
+                }
 
                 if (getQuery().isPresent()) {
                     getQuery().get().writeAsStruct(oprot);
@@ -2410,9 +2431,11 @@ public interface ObjectQueryService {
 
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeFieldBegin("options", org.thryft.protocol.Type.STRUCT, (short)0);
-                getOptions().writeAsStruct(oprot);
-                oprot.writeFieldEnd();
+                if (getOptions().isPresent()) {
+                    oprot.writeFieldBegin("options", org.thryft.protocol.Type.STRUCT, (short)0);
+                    getOptions().get().writeAsStruct(oprot);
+                    oprot.writeFieldEnd();
+                }
 
                 if (getQuery().isPresent()) {
                     oprot.writeFieldBegin("query", org.thryft.protocol.Type.STRUCT, (short)0);
@@ -2423,7 +2446,7 @@ public interface ObjectQueryService {
                 oprot.writeFieldStop();
             }
 
-            private final net.lab1318.costume.api.services.object.GetObjectsOptions options;
+            private final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectsOptions> options;
 
             private final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query;
         }
@@ -2830,9 +2853,13 @@ public interface ObjectQueryService {
 
     public net.lab1318.costume.api.services.object.ObjectFacets getObjectFacets(final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query) throws net.lab1318.costume.api.services.IoException;
 
-    public default com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> getObjects(final net.lab1318.costume.api.services.object.GetObjectsOptions options) throws net.lab1318.costume.api.services.IoException {
-        return getObjects(options, com.google.common.base.Optional.<net.lab1318.costume.api.models.object.ObjectQuery> absent());
+    public default com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> getObjects() throws net.lab1318.costume.api.services.IoException {
+        return getObjects(com.google.common.base.Optional.<net.lab1318.costume.api.services.object.GetObjectsOptions> absent());
     }
 
-    public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> getObjects(final net.lab1318.costume.api.services.object.GetObjectsOptions options, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query) throws net.lab1318.costume.api.services.IoException;
+    public default com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> getObjects(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectsOptions> options) throws net.lab1318.costume.api.services.IoException {
+        return getObjects(com.google.common.base.Optional.<net.lab1318.costume.api.services.object.GetObjectsOptions> absent(), com.google.common.base.Optional.<net.lab1318.costume.api.models.object.ObjectQuery> absent());
+    }
+
+    public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> getObjects(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectsOptions> options, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query) throws net.lab1318.costume.api.services.IoException;
 }

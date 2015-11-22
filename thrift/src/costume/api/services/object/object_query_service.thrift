@@ -40,7 +40,7 @@ service ObjectQueryService {
 
 	list<object_entry.ObjectEntry>
 	get_objects(
-		get_objects_options.GetObjectsOptions options,
+		optional get_objects_options.GetObjectsOptions options,
 		optional object_query.ObjectQuery query
 	) throws (
 		io_exception.IoException e
