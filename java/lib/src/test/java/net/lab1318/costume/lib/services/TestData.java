@@ -24,9 +24,16 @@ import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.models.rights.Rights;
 import net.lab1318.costume.api.models.rights.RightsSet;
 import net.lab1318.costume.api.models.rights.RightsType;
+import net.lab1318.costume.api.models.subject.Subject;
+import net.lab1318.costume.api.models.subject.SubjectSet;
+import net.lab1318.costume.api.models.subject.SubjectTerm;
+import net.lab1318.costume.api.models.subject.SubjectTermType;
 
 public final class TestData {
-    public static TestData getInstance() {
+    public static synchronized TestData getInstance() {
+        if (instance == null) {
+            instance = new TestData();
+        }
         return instance;
     }
 
@@ -42,6 +49,13 @@ public final class TestData {
         final ImmutableTable.Builder<InstitutionId, CollectionId, ObjectEntry> objectsBuilder = ImmutableTable
                 .builder();
 
+        {
+            subjects = ImmutableList.<Subject> builder()
+                    .add(Subject.builder().setTerms(ImmutableList.of(
+                            SubjectTerm.builder().setText("Test subject").setType(SubjectTermType.FAMILY_NAME).build()))
+                    .build()).build();
+        }
+
         try {
             for (final InstitutionId institutionId : new InstitutionId[] { InstitutionId.parse("test_institution") }) {
                 institutionsBuilder.add(new InstitutionEntry(institutionId,
@@ -50,16 +64,21 @@ public final class TestData {
                                         .setText("Test rights text").setType(RightsType.COPYRIGHTED).build()))
                                 .build()).setModelMetadata(__newModelMetadata()).setTitle("Test institution")
                         .setUrl(Url.parse("http://example.com")).build()));
+
                 final Collection collection = Collection.builder().setInstitutionId(institutionId)
                         .setModelMetadata(__newModelMetadata()).setTitle("Test collection").build();
                 final CollectionId collectionId = CollectionId.parse(institutionId.toString() + "/test_collection");
+
                 collectionsBuilder.put(institutionId, new CollectionEntry(collectionId, collection));
-                objectsBuilder
-                        .put(institutionId, collectionId,
-                                new ObjectEntry(ObjectId.parse(collectionId.toString() + "/test_object"),
-                                        Object.builder().setCollectionId(collectionId).setInstitutionId(institutionId)
-                                                .setModelMetadata(__newModelMetadata()).setTitle("Test object")
-                                                .build()));
+
+                {
+                    final Object.Builder objectBuilder = Object.builder().setCollectionId(collectionId)
+                            .setInstitutionId(institutionId).setModelMetadata(__newModelMetadata())
+                            .setSubjects(new SubjectSet(subjects)).setTitle("Test object");
+
+                    objectsBuilder.put(institutionId, collectionId, new ObjectEntry(
+                            ObjectId.parse(collectionId.toString() + "/test_object"), objectBuilder.build()));
+                }
             }
         } catch (final InvalidCollectionIdException | InvalidInstitutionIdException | InvalidObjectIdException e) {
             throw new IllegalStateException();
@@ -81,8 +100,13 @@ public final class TestData {
         return objects;
     }
 
+    public ImmutableList<Subject> getSubjects() {
+        return subjects;
+    }
+
     private final ImmutableMultimap<InstitutionId, CollectionEntry> collections;
     private final ImmutableList<InstitutionEntry> institutions;
     private final ImmutableTable<InstitutionId, CollectionId, ObjectEntry> objects;
-    private final static TestData instance = new TestData();
+    private final ImmutableList<Subject> subjects;
+    private static TestData instance = null;
 }

@@ -8,6 +8,7 @@ include "costume/api/models/subject/subject_term_type.thrift"
 
 // VRA Core 4.0 subject term element
 struct SubjectTerm {
+	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	1: string text;
 
