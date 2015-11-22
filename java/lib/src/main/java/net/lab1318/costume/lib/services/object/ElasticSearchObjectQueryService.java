@@ -49,6 +49,9 @@ import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.models.object.ObjectQuery;
+import net.lab1318.costume.api.models.subject.Subject;
+import net.lab1318.costume.api.models.subject.SubjectSet;
+import net.lab1318.costume.api.models.subject.SubjectTerm;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.GetObjectsOptions;
 import net.lab1318.costume.api.services.object.NoSuchObjectException;
@@ -171,6 +174,16 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             resultBuilder.setInstitutionHits(institutionHitsBuilder.build());
         }
 
+		{
+			final ImmutableMap.Builder<String, UnsignedInteger> subjectTermTextsBuilder = ImmutableMap.builder();
+			for (final Bucket bucket : ((StringTerms) searchResponse.getAggregations()
+					.get(SUBJECT_TERM_TEXTS_AGGREGATION.getName())).getBuckets()) {
+				subjectTermTextsBuilder.put(bucket.getKey(),
+						UnsignedInteger.valueOf(bucket.getDocCount()));
+			}
+			resultBuilder.setSubjectTermTexts(subjectTermTextsBuilder.build());
+		}
+
         return resultBuilder.build();
     }
 
@@ -267,11 +280,17 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             .terms(ObjectFacets.FieldMetadata.COLLECTION_HITS.getThriftName())
             .field(Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey());
     private final static ObjectFacets EMPTY_OBJECT_FACETS = ObjectFacets.builder().setCollectionHits(ImmutableMap.of())
-            .setInstitutionHits(ImmutableMap.of()).build();
+			.setInstitutionHits(ImmutableMap.of()).setSubjectTermTexts(ImmutableMap.of()).build();
     private final static TermsBuilder INSTITUTION_HITS_AGGREGATION = AggregationBuilders
             .terms(ObjectFacets.FieldMetadata.INSTITUTION_HITS.getThriftName())
             .field(Object.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey());
+	private final static TermsBuilder SUBJECT_TERM_TEXTS_AGGREGATION = AggregationBuilders
+			.terms(ObjectFacets.FieldMetadata.SUBJECT_TERM_TEXTS.getThriftName())
+			.field(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+					+ SubjectSet.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+					+ Subject.FieldMetadata.TERMS.getThriftProtocolKey() + '.'
+					+ SubjectTerm.FieldMetadata.TEXT.getThriftProtocolKey());
     private final static ImmutableList<AggregationBuilder<?>> AGGREGATIONS = ImmutableList
-            .of(COLLECTION_HITS_AGGREGATION, INSTITUTION_HITS_AGGREGATION);
+			.of(COLLECTION_HITS_AGGREGATION, INSTITUTION_HITS_AGGREGATION, SUBJECT_TERM_TEXTS_AGGREGATION);
     private final static Logger logger = LoggerFactory.getLogger(ElasticSearchObjectQueryService.class);
 }
