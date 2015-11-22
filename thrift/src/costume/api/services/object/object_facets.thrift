@@ -8,4 +8,5 @@ include "thryft/native/u32.thrift"
 struct ObjectFacets {
 	map<collection_id.CollectionId, u32.u32> collection_hits;
 	map<institution_id.InstitutionId, u32.u32> institution_hits;
+	map<string, u32.u32> subject_term_texts;
 }

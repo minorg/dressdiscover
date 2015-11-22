@@ -5,19 +5,21 @@ public class ObjectFacets implements org.thryft.Struct {
         public Builder() {
             collectionHits = null;
             institutionHits = null;
+            subjectTermTexts = null;
         }
 
         public Builder(final ObjectFacets other) {
             this.collectionHits = other.getCollectionHits();
             this.institutionHits = other.getInstitutionHits();
+            this.subjectTermTexts = other.getSubjectTermTexts();
         }
 
-        protected ObjectFacets _build(final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits) {
-            return new ObjectFacets(collectionHits, institutionHits);
+        protected ObjectFacets _build(final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts) {
+            return new ObjectFacets(collectionHits, institutionHits, subjectTermTexts);
         }
 
         public ObjectFacets build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(collectionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing collectionHits"), com.google.common.base.Preconditions.checkNotNull(institutionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing institutionHits"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(collectionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing collectionHits"), com.google.common.base.Preconditions.checkNotNull(institutionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing institutionHits"), com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing subjectTermTexts"));
         }
 
         public final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> getCollectionHits() {
@@ -26,6 +28,10 @@ public class ObjectFacets implements org.thryft.Struct {
 
         public final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> getInstitutionHits() {
             return institutionHits;
+        }
+
+        public final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> getSubjectTermTexts() {
+            return subjectTermTexts;
         }
 
         public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -82,6 +88,30 @@ public class ObjectFacets implements org.thryft.Struct {
                             } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
                                  throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
+                            final com.google.common.primitives.UnsignedInteger value;
+                            try {
+                                value = iprot.readU32();
+                            } catch (final NumberFormatException e) {
+                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                            }
+                            map.put(key, value);
+                        }
+                        iprot.readMapEnd();
+                        return map.build();
+                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                        return com.google.common.collect.ImmutableMap.of();
+                    }
+                }
+            }).apply(iprot);
+            subjectTermTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                @Override
+                public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                    try {
+                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                        final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                            final String key;
+                            key = iprot.readString();
                             final com.google.common.primitives.UnsignedInteger value;
                             try {
                                 value = iprot.readU32();
@@ -171,6 +201,33 @@ public class ObjectFacets implements org.thryft.Struct {
                     }).apply(iprot);
                     break;
                 }
+                case "subject_term_texts": {
+                    subjectTermTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                        @Override
+                        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            try {
+                                final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                    final String key;
+                                    key = iprot.readString();
+                                    final com.google.common.primitives.UnsignedInteger value;
+                                    try {
+                                        value = iprot.readU32();
+                                    } catch (final NumberFormatException e) {
+                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                    map.put(key, value);
+                                }
+                                iprot.readMapEnd();
+                                return map.build();
+                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                return com.google.common.collect.ImmutableMap.of();
+                            }
+                        }
+                    }).apply(iprot);
+                    break;
+                }
                 }
                 iprot.readFieldEnd();
             }
@@ -188,12 +245,18 @@ public class ObjectFacets implements org.thryft.Struct {
 
             setCollectionHits(other.getCollectionHits());
             setInstitutionHits(other.getInstitutionHits());
+            setSubjectTermTexts(other.getSubjectTermTexts());
 
             return this;
         }
 
         public Builder setInstitutionHits(final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits) {
             this.institutionHits = com.google.common.base.Preconditions.checkNotNull(institutionHits);
+            return this;
+        }
+
+        public Builder setSubjectTermTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts) {
+            this.subjectTermTexts = com.google.common.base.Preconditions.checkNotNull(subjectTermTexts);
             return this;
         }
 
@@ -204,6 +267,7 @@ public class ObjectFacets implements org.thryft.Struct {
             switch (name.toLowerCase()) {
             case "collection_hits": setCollectionHits((com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger>)value); return this;
             case "institution_hits": setInstitutionHits((com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger>)value); return this;
+            case "subject_term_texts": setSubjectTermTexts((com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>)value); return this;
             default:
                 throw new IllegalArgumentException(name);
             }
@@ -219,14 +283,21 @@ public class ObjectFacets implements org.thryft.Struct {
             return this;
         }
 
+        public Builder unsetSubjectTermTexts() {
+            this.subjectTermTexts = null;
+            return this;
+        }
+
         private com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits;
         private com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits;
+        private com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         COLLECTION_HITS("collectionHits", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger>>() {}, true, 0, "collection_hits", org.thryft.protocol.Type.MAP),
-        INSTITUTION_HITS("institutionHits", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger>>() {}, true, 0, "institution_hits", org.thryft.protocol.Type.MAP);
+        INSTITUTION_HITS("institutionHits", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger>>() {}, true, 0, "institution_hits", org.thryft.protocol.Type.MAP),
+        SUBJECT_TERM_TEXTS("subjectTermTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {}, true, 0, "subject_term_texts", org.thryft.protocol.Type.MAP);
 
         @Override
         public String getJavaName() {
@@ -272,6 +343,7 @@ public class ObjectFacets implements org.thryft.Struct {
             switch (javaName) {
             case "collectionHits": return COLLECTION_HITS;
             case "institutionHits": return INSTITUTION_HITS;
+            case "subjectTermTexts": return SUBJECT_TERM_TEXTS;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -281,6 +353,7 @@ public class ObjectFacets implements org.thryft.Struct {
             switch (thriftName) {
             case "collection_hits": return COLLECTION_HITS;
             case "institution_hits": return INSTITUTION_HITS;
+            case "subject_term_texts": return SUBJECT_TERM_TEXTS;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -313,15 +386,16 @@ public class ObjectFacets implements org.thryft.Struct {
      * Copy constructor
      */
     public ObjectFacets(final ObjectFacets other) {
-        this(other.getCollectionHits(), other.getInstitutionHits());
+        this(other.getCollectionHits(), other.getInstitutionHits(), other.getSubjectTermTexts());
     }
 
     /**
      * Optional constructor
      */
-    public ObjectFacets(final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits) {
+    public ObjectFacets(final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts) {
         this.collectionHits = com.google.common.base.Preconditions.checkNotNull(collectionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing collectionHits");
         this.institutionHits = com.google.common.base.Preconditions.checkNotNull(institutionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing institutionHits");
+        this.subjectTermTexts = com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing subjectTermTexts");
     }
 
     public static Builder builder() {
@@ -347,7 +421,8 @@ public class ObjectFacets implements org.thryft.Struct {
         final ObjectFacets other = (ObjectFacets)otherObject;
         return
             getCollectionHits().equals(other.getCollectionHits()) &&
-            getInstitutionHits().equals(other.getInstitutionHits());
+            getInstitutionHits().equals(other.getInstitutionHits()) &&
+            getSubjectTermTexts().equals(other.getSubjectTermTexts());
     }
 
     @Override
@@ -355,6 +430,7 @@ public class ObjectFacets implements org.thryft.Struct {
         switch (fieldName) {
         case "collection_hits": return getCollectionHits();
         case "institution_hits": return getInstitutionHits();
+        case "subject_term_texts": return getSubjectTermTexts();
         default:
             throw new IllegalArgumentException(fieldName);
         }
@@ -368,11 +444,16 @@ public class ObjectFacets implements org.thryft.Struct {
         return institutionHits;
     }
 
+    public final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> getSubjectTermTexts() {
+        return subjectTermTexts;
+    }
+
     @Override
     public int hashCode() {
         int hashCode = 17;
         hashCode = 31 * hashCode + getCollectionHits().hashCode();
         hashCode = 31 * hashCode + getInstitutionHits().hashCode();
+        hashCode = 31 * hashCode + getSubjectTermTexts().hashCode();
         return hashCode;
     }
 
@@ -390,6 +471,7 @@ public class ObjectFacets implements org.thryft.Struct {
     public static ObjectFacets readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits = null;
         com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits = null;
+        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts = null;
 
         iprot.readListBegin();
         collectionHits = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger>>() {
@@ -448,9 +530,33 @@ public class ObjectFacets implements org.thryft.Struct {
                 }
             }
         }).apply(iprot);
+        subjectTermTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+            @Override
+            public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                try {
+                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                    final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                        final String key;
+                        key = iprot.readString();
+                        final com.google.common.primitives.UnsignedInteger value;
+                        try {
+                            value = iprot.readU32();
+                        } catch (final NumberFormatException e) {
+                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                        }
+                        map.put(key, value);
+                    }
+                    iprot.readMapEnd();
+                    return map.build();
+                } catch (final org.thryft.protocol.InputProtocolException e) {
+                    return com.google.common.collect.ImmutableMap.of();
+                }
+            }
+        }).apply(iprot);
         iprot.readListEnd();
         try {
-            return new ObjectFacets(collectionHits, institutionHits);
+            return new ObjectFacets(collectionHits, institutionHits, subjectTermTexts);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -459,6 +565,7 @@ public class ObjectFacets implements org.thryft.Struct {
     public static ObjectFacets readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits = null;
         com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits = null;
+        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts = null;
 
         iprot.readStructBegin();
         while (true) {
@@ -529,33 +636,64 @@ public class ObjectFacets implements org.thryft.Struct {
                 }).apply(iprot);
                 break;
             }
+            case "subject_term_texts": {
+                subjectTermTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                    @Override
+                    public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                        try {
+                            final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                            final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                            for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                final String key;
+                                key = iprot.readString();
+                                final com.google.common.primitives.UnsignedInteger value;
+                                try {
+                                    value = iprot.readU32();
+                                } catch (final NumberFormatException e) {
+                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                                map.put(key, value);
+                            }
+                            iprot.readMapEnd();
+                            return map.build();
+                        } catch (final org.thryft.protocol.InputProtocolException e) {
+                            return com.google.common.collect.ImmutableMap.of();
+                        }
+                    }
+                }).apply(iprot);
+                break;
+            }
             }
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
         try {
-            return new ObjectFacets(collectionHits, institutionHits);
+            return new ObjectFacets(collectionHits, institutionHits, subjectTermTexts);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public ObjectFacets replaceCollectionHits(final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits) {
-        return new ObjectFacets(collectionHits, this.institutionHits);
+        return new ObjectFacets(collectionHits, this.institutionHits, this.subjectTermTexts);
     }
 
     public ObjectFacets replaceInstitutionHits(final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits) {
-        return new ObjectFacets(this.collectionHits, institutionHits);
+        return new ObjectFacets(this.collectionHits, institutionHits, this.subjectTermTexts);
+    }
+
+    public ObjectFacets replaceSubjectTermTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts) {
+        return new ObjectFacets(this.collectionHits, this.institutionHits, subjectTermTexts);
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_hits", getCollectionHits()).add("institution_hits", getInstitutionHits()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_hits", getCollectionHits()).add("institution_hits", getInstitutionHits()).add("subject_term_texts", getSubjectTermTexts()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
 
         oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getCollectionHits().size());
         for (com.google.common.collect.ImmutableMap.Entry<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> _iter0 : getCollectionHits().entrySet()) {
@@ -567,6 +705,13 @@ public class ObjectFacets implements org.thryft.Struct {
         oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getInstitutionHits().size());
         for (com.google.common.collect.ImmutableMap.Entry<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> _iter0 : getInstitutionHits().entrySet()) {
             oprot.writeString(_iter0.getKey().toString());
+            oprot.writeU32(_iter0.getValue());
+        }
+        oprot.writeMapEnd();
+
+        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getSubjectTermTexts().size());
+        for (com.google.common.collect.ImmutableMap.Entry<String, com.google.common.primitives.UnsignedInteger> _iter0 : getSubjectTermTexts().entrySet()) {
+            oprot.writeString(_iter0.getKey());
             oprot.writeU32(_iter0.getValue());
         }
         oprot.writeMapEnd();
@@ -601,10 +746,21 @@ public class ObjectFacets implements org.thryft.Struct {
         oprot.writeMapEnd();
         oprot.writeFieldEnd();
 
+        oprot.writeFieldBegin("subject_term_texts", org.thryft.protocol.Type.MAP, (short)0);
+        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getSubjectTermTexts().size());
+        for (com.google.common.collect.ImmutableMap.Entry<String, com.google.common.primitives.UnsignedInteger> _iter0 : getSubjectTermTexts().entrySet()) {
+            oprot.writeString(_iter0.getKey());
+            oprot.writeU32(_iter0.getValue());
+        }
+        oprot.writeMapEnd();
+        oprot.writeFieldEnd();
+
         oprot.writeFieldStop();
     }
 
     private final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits;
 
     private final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits;
+
+    private final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts;
 }

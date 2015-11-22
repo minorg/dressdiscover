@@ -23,7 +23,6 @@ public final class ObjectForm extends CustomComponent {
         titleLabel.setStyleName("h3");
         rootLayout.addComponent(titleLabel);
 
-
         final HorizontalLayout twoPaneLayout = new HorizontalLayout();
         twoPaneLayout.setSizeFull();
 
