@@ -23,7 +23,6 @@ public final class ObjectForm extends CustomComponent {
         titleLabel.setStyleName("h3");
         rootLayout.addComponent(titleLabel);
 
-        rootLayout.addComponent(new RightsLabel(institution.getDataRights()));
 
         final HorizontalLayout twoPaneLayout = new HorizontalLayout();
         twoPaneLayout.setSizeFull();
@@ -85,6 +84,8 @@ public final class ObjectForm extends CustomComponent {
             }
 
             leftPaneLayout.addComponent(formLayout);
+
+			leftPaneLayout.addComponent(new RightsLabel(institution.getDataRights()));
         }
 
         if (objectEntry.getModel().getThumbnail().isPresent()) {
