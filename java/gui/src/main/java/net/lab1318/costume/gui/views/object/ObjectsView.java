@@ -258,7 +258,7 @@ public class ObjectsView extends TopLevelView {
 
             twoPaneLayout.addComponent(rightPaneLayout);
             twoPaneLayout.setComponentAlignment(rightPaneLayout, Alignment.MIDDLE_CENTER);
-            twoPaneLayout.setExpandRatio(rightPaneLayout, 9);
+			twoPaneLayout.setExpandRatio(rightPaneLayout, 7);
         }
 
         setCompositionRoot(twoPaneLayout);

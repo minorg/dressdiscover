@@ -2,13 +2,22 @@ package net.lab1318.costume.gui.views.object;
 
 import org.notaweb.gui.EventBus;
 
+import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.models.object.ObjectEntry;
+import net.lab1318.costume.api.models.object.ObjectQuery;
+import net.lab1318.costume.api.services.object.GetObjectsOptions;
+import net.lab1318.costume.api.services.object.ObjectQueryService;
+import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectsRequest;
 import net.lab1318.costume.gui.components.CollectionButton;
 import net.lab1318.costume.gui.components.InstitutionButton;
 import net.lab1318.costume.gui.components.ObjectForm;
@@ -26,8 +35,34 @@ public class ObjectByIdView extends TopLevelView {
             final ObjectEntry objectEntry) {
         final VerticalLayout rootLayout = new VerticalLayout();
 
-        rootLayout.addComponent(new InstitutionButton("Institution: ", _getEventBus(), institutionEntry));
-        rootLayout.addComponent(new CollectionButton("Collection: ", collectionEntry, _getEventBus()));
+		{
+			final HorizontalLayout headerLayout = new HorizontalLayout();
+			headerLayout.setSizeFull();
+
+			{
+				final VerticalLayout leftHeaderLayout = new VerticalLayout();
+				leftHeaderLayout.addComponent(new InstitutionButton("Institution: ", _getEventBus(), institutionEntry));
+				leftHeaderLayout.addComponent(new CollectionButton("Collection: ", collectionEntry, _getEventBus()));
+				headerLayout.addComponent(leftHeaderLayout);
+				headerLayout.setExpandRatio(leftHeaderLayout, 1);
+			}
+
+			{
+				final Button moreLikeThisButton = new Button("More like this", new Button.ClickListener() {
+					@Override
+					public void buttonClick(final ClickEvent event) {
+						_getEventBus().post(new ObjectQueryService.Messages.GetObjectsRequest(new GetObjectsRequest(
+new GetObjectsOptions(UnsignedInteger.ZERO, UnsignedInteger.ZERO),
+										ObjectQuery.builder().setMoreLikeObjectId(objectEntry.getId()).build())));
+					}
+				});
+				headerLayout.addComponent(moreLikeThisButton);
+				headerLayout.setComponentAlignment(moreLikeThisButton, Alignment.MIDDLE_CENTER);
+				headerLayout.setExpandRatio(moreLikeThisButton, 1);
+			}
+
+			rootLayout.addComponent(headerLayout);
+		}
 
         rootLayout.addComponent(new ObjectForm(objectEntry, institutionEntry.getModel()));
 
