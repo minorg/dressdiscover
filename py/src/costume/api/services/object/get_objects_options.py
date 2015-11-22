@@ -12,8 +12,8 @@ class GetObjectsOptions(object):
             sorts=None,
         ):
             '''
-            :type from_: int
-            :type size: int
+            :type from_: int or None
+            :type size: int or None
             :type sorts: tuple(costume.api.services.object.object_sort.ObjectSort) or None
             '''
 
@@ -34,7 +34,7 @@ class GetObjectsOptions(object):
 
         def set_from_(self, from_):
             '''
-            :type from_: int
+            :type from_: int or None
             '''
 
             self.__from_ = from_
@@ -42,7 +42,7 @@ class GetObjectsOptions(object):
 
         def set_size(self, size):
             '''
-            :type size: int
+            :type size: int or None
             '''
 
             self.__size = size
@@ -74,8 +74,8 @@ class GetObjectsOptions(object):
 
         def update(self, get_objects_options):
             '''
-            :type from_: int
-            :type size: int
+            :type from_: int or None
+            :type size: int or None
             :type sorts: tuple(costume.api.services.object.object_sort.ObjectSort) or None
             '''
 
@@ -93,7 +93,7 @@ class GetObjectsOptions(object):
         @from_.setter
         def from_(self, from_):
             '''
-            :type from_: int
+            :type from_: int or None
             '''
 
             self.set_from_(from_)
@@ -101,7 +101,7 @@ class GetObjectsOptions(object):
         @size.setter
         def size(self, size):
             '''
-            :type size: int
+            :type size: int or None
             '''
 
             self.set_size(size)
@@ -116,26 +116,24 @@ class GetObjectsOptions(object):
 
     def __init__(
         self,
-        from_,
-        size,
+        from_=None,
+        size=None,
         sorts=None,
     ):
         '''
-        :type from_: int
-        :type size: int
+        :type from_: int or None
+        :type size: int or None
         :type sorts: tuple(costume.api.services.object.object_sort.ObjectSort) or None
         '''
 
-        if from_ is None:
-            raise ValueError('from_ is required')
-        if not isinstance(from_, (int, long)) and from_ >= 0:
-            raise TypeError("expected from_ to be a int but it is a %s" % getattr(__builtin__, 'type')(from_))
+        if from_ is not None:
+            if not isinstance(from_, (int, long)) and from_ >= 0:
+                raise TypeError("expected from_ to be a int but it is a %s" % getattr(__builtin__, 'type')(from_))
         self.__from_ = from_
 
-        if size is None:
-            raise ValueError('size is required')
-        if not isinstance(size, (int, long)) and size >= 0:
-            raise TypeError("expected size to be a int but it is a %s" % getattr(__builtin__, 'type')(size))
+        if size is not None:
+            if not isinstance(size, (int, long)) and size >= 0:
+                raise TypeError("expected size to be a int but it is a %s" % getattr(__builtin__, 'type')(size))
         self.__size = size
 
         if sorts is not None:
@@ -165,16 +163,20 @@ class GetObjectsOptions(object):
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('from_=' + repr(self.from_))
-        field_reprs.append('size=' + repr(self.size))
+        if self.from_ is not None:
+            field_reprs.append('from_=' + repr(self.from_))
+        if self.size is not None:
+            field_reprs.append('size=' + repr(self.size))
         if self.sorts is not None:
             field_reprs.append('sorts=' + repr(self.sorts))
         return 'GetObjectsOptions(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('from_=' + repr(self.from_))
-        field_reprs.append('size=' + repr(self.size))
+        if self.from_ is not None:
+            field_reprs.append('from_=' + repr(self.from_))
+        if self.size is not None:
+            field_reprs.append('size=' + repr(self.size))
         if self.sorts is not None:
             field_reprs.append('sorts=' + repr(self.sorts))
         return 'GetObjectsOptions(' + ', '.join(field_reprs) + ')'
@@ -222,9 +224,15 @@ class GetObjectsOptions(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'from_':
-                init_kwds['from_'] = iprot.read_u32()
+                try:
+                    init_kwds['from_'] = iprot.read_u32()
+                except (TypeError,):
+                    pass
             elif ifield_name == 'size':
-                init_kwds['size'] = iprot.read_u32()
+                try:
+                    init_kwds['size'] = iprot.read_u32()
+                except (TypeError,):
+                    pass
             elif ifield_name == 'sorts':
                 init_kwds['sorts'] = tuple([costume.api.services.object.object_sort.ObjectSort.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             iprot.read_field_end()
@@ -281,13 +289,15 @@ class GetObjectsOptions(object):
 
         oprot.write_struct_begin('GetObjectsOptions')
 
-        oprot.write_field_begin(name='from_', type=8, id=None)
-        oprot.write_u32(self.from_)
-        oprot.write_field_end()
+        if self.from_ is not None:
+            oprot.write_field_begin(name='from_', type=8, id=None)
+            oprot.write_u32(self.from_)
+            oprot.write_field_end()
 
-        oprot.write_field_begin(name='size', type=8, id=None)
-        oprot.write_u32(self.size)
-        oprot.write_field_end()
+        if self.size is not None:
+            oprot.write_field_begin(name='size', type=8, id=None)
+            oprot.write_u32(self.size)
+            oprot.write_field_end()
 
         if self.sorts is not None:
             oprot.write_field_begin(name='sorts', type=15, id=None)

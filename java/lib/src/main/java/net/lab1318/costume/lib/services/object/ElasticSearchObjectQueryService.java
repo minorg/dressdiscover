@@ -14,6 +14,7 @@ import org.elasticsearch.index.query.AndFilterBuilder;
 import org.elasticsearch.index.query.FilterBuilder;
 import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.MoreLikeThisQueryBuilder;
+import org.elasticsearch.index.query.NestedFilterBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.indices.IndexMissingException;
@@ -200,18 +201,25 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     }
 
     @Override
-    public ImmutableList<ObjectEntry> getObjects(final GetObjectsOptions options, final Optional<ObjectQuery> query)
-            throws IoException {
-        final SearchRequestBuilder searchRequestBuilder = elasticSearchIndex.prepareSearchModels()
-                .setQuery(__translateQuery(query)).setFrom(options.getFrom().intValue())
-                .setSize(options.getSize().intValue());
-        if (options.getSorts().isPresent()) {
-            for (final ObjectSort sort : options.getSorts().get()) {
-                searchRequestBuilder.addSort(SortBuilders
-                        .fieldSort(Object.FieldMetadata.valueOfThriftName(sort.getField().name().toLowerCase())
-                                .getThriftProtocolKey())
-                        .order(sort.getOrder() == net.lab1318.costume.api.models.SortOrder.ASC ? SortOrder.ASC
-                                : SortOrder.DESC));
+    public ImmutableList<ObjectEntry> getObjects(final Optional<GetObjectsOptions> options,
+            final Optional<ObjectQuery> query) throws IoException {
+        SearchRequestBuilder searchRequestBuilder = elasticSearchIndex.prepareSearchModels()
+                .setQuery(__translateQuery(query));
+        if (options.isPresent()) {
+            if (options.get().getFrom().isPresent()) {
+                searchRequestBuilder = searchRequestBuilder.setFrom(options.get().getFrom().get().intValue());
+            }
+            if (options.get().getSize().isPresent()) {
+                searchRequestBuilder = searchRequestBuilder.setSize(options.get().getSize().get().intValue());
+            }
+            if (options.get().getSorts().isPresent()) {
+                for (final ObjectSort sort : options.get().getSorts().get()) {
+                    searchRequestBuilder = searchRequestBuilder.addSort(SortBuilders
+                            .fieldSort(Object.FieldMetadata.valueOfThriftName(sort.getField().name().toLowerCase())
+                                    .getThriftProtocolKey())
+                            .order(sort.getOrder() == net.lab1318.costume.api.models.SortOrder.ASC ? SortOrder.ASC
+                                    : SortOrder.DESC));
+                }
             }
         }
 
@@ -272,6 +280,30 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         if (query.get().getIncludeInstitutionId().isPresent()) {
             filters.add(FilterBuilders.termFilter(Object.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
                     query.get().getIncludeInstitutionId().get().toString()));
+        }
+
+        if (query.get().getIncludeSubjectTermText().isPresent()) {
+            final NestedFilterBuilder filter = FilterBuilders
+                    .nestedFilter(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey(),
+                            FilterBuilders
+                                    .nestedFilter(
+                                            Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+                                                    + SubjectSet.FieldMetadata.SUBJECTS.getThriftProtocolKey(),
+                                            FilterBuilders.nestedFilter(
+                                                    Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+                                                            + SubjectSet.FieldMetadata.SUBJECTS.getThriftProtocolKey()
+                                                            + '.' + Subject.FieldMetadata.TERMS.getThriftProtocolKey(),
+                                                    FilterBuilders.termFilter(
+                                                            Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+                                                                    + SubjectSet.FieldMetadata.SUBJECTS
+                                                                            .getThriftProtocolKey()
+                                                                    + '.'
+                                                                    + Subject.FieldMetadata.TERMS.getThriftProtocolKey()
+                                                                    + '.'
+                                                                    + SubjectTerm.FieldMetadata.TEXT
+                                                                            .getThriftProtocolKey(),
+                                                            query.get().getIncludeSubjectTermText().get()))));
+            filters.add(filter);
         }
 
         if (filters.size() == 1) {

@@ -63,7 +63,8 @@ public final class ObjectBeanQuery extends AbstractBeanQuery<ObjectBeanWithId> {
 
         final List<ObjectBeanWithId> beans = new ArrayList<>();
         try {
-            for (final ObjectEntry entry : objectQueryService.getObjects(optionsBuilder.build(), objectQuery)) {
+            for (final ObjectEntry entry : objectQueryService.getObjects(Optional.of(optionsBuilder.build()),
+                    objectQuery)) {
                 beans.add(new ObjectBeanWithId(entry));
             }
         } catch (final IoException e) {
