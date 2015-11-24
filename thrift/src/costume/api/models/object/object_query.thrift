@@ -6,6 +6,9 @@ include "costume/api/models/institution/institution_id.thrift"
 include "costume/api/models/object/object_id.thrift"
 
 struct ObjectQuery {
+	// @validation {"minLength": 1}
+	optional string include_agent_name_text;
+
 	optional collection_id.CollectionId include_collection_id;
 
 	optional institution_id.InstitutionId include_institution_id;

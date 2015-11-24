@@ -5,6 +5,7 @@ class ObjectQuery(object):
     class Builder(object):
         def __init__(
             self,
+            include_agent_name_text=None,
             include_collection_id=None,
             include_institution_id=None,
             include_subject_term_text=None,
@@ -12,6 +13,7 @@ class ObjectQuery(object):
             query_string=None,
         ):
             '''
+            :type include_agent_name_text: str or None
             :type include_collection_id: str or None
             :type include_institution_id: str or None
             :type include_subject_term_text: str or None
@@ -19,6 +21,7 @@ class ObjectQuery(object):
             :type query_string: str or None
             '''
 
+            self.__include_agent_name_text = include_agent_name_text
             self.__include_collection_id = include_collection_id
             self.__include_institution_id = include_institution_id
             self.__include_subject_term_text = include_subject_term_text
@@ -26,7 +29,15 @@ class ObjectQuery(object):
             self.__query_string = query_string
 
         def build(self):
-            return ObjectQuery(include_collection_id=self.__include_collection_id, include_institution_id=self.__include_institution_id, include_subject_term_text=self.__include_subject_term_text, more_like_object_id=self.__more_like_object_id, query_string=self.__query_string)
+            return ObjectQuery(include_agent_name_text=self.__include_agent_name_text, include_collection_id=self.__include_collection_id, include_institution_id=self.__include_institution_id, include_subject_term_text=self.__include_subject_term_text, more_like_object_id=self.__more_like_object_id, query_string=self.__query_string)
+
+        @property
+        def include_agent_name_text(self):
+            '''
+            :rtype: str
+            '''
+
+            return self.__include_agent_name_text
 
         @property
         def include_collection_id(self):
@@ -67,6 +78,14 @@ class ObjectQuery(object):
             '''
 
             return self.__query_string
+
+        def set_include_agent_name_text(self, include_agent_name_text):
+            '''
+            :type include_agent_name_text: str or None
+            '''
+
+            self.__include_agent_name_text = include_agent_name_text
+            return self
 
         def set_include_collection_id(self, include_collection_id):
             '''
@@ -110,6 +129,7 @@ class ObjectQuery(object):
 
         def update(self, object_query):
             '''
+            :type include_agent_name_text: str or None
             :type include_collection_id: str or None
             :type include_institution_id: str or None
             :type include_subject_term_text: str or None
@@ -118,6 +138,7 @@ class ObjectQuery(object):
             '''
 
             if isinstance(object_query, ObjectQuery):
+                self.set_include_agent_name_text(object_query.include_agent_name_text)
                 self.set_include_collection_id(object_query.include_collection_id)
                 self.set_include_institution_id(object_query.include_institution_id)
                 self.set_include_subject_term_text(object_query.include_subject_term_text)
@@ -129,6 +150,14 @@ class ObjectQuery(object):
             else:
                 raise TypeError(object_query)
             return self
+
+        @include_agent_name_text.setter
+        def include_agent_name_text(self, include_agent_name_text):
+            '''
+            :type include_agent_name_text: str or None
+            '''
+
+            self.set_include_agent_name_text(include_agent_name_text)
 
         @include_collection_id.setter
         def include_collection_id(self, include_collection_id):
@@ -172,6 +201,7 @@ class ObjectQuery(object):
 
     def __init__(
         self,
+        include_agent_name_text=None,
         include_collection_id=None,
         include_institution_id=None,
         include_subject_term_text=None,
@@ -179,12 +209,20 @@ class ObjectQuery(object):
         query_string=None,
     ):
         '''
+        :type include_agent_name_text: str or None
         :type include_collection_id: str or None
         :type include_institution_id: str or None
         :type include_subject_term_text: str or None
         :type more_like_object_id: str or None
         :type query_string: str or None
         '''
+
+        if include_agent_name_text is not None:
+            if not isinstance(include_agent_name_text, basestring):
+                raise TypeError("expected include_agent_name_text to be a str but it is a %s" % getattr(__builtin__, 'type')(include_agent_name_text))
+            if len(include_agent_name_text) < 1:
+                raise ValueError("expected len(include_agent_name_text) to be >= 1, was %d" % len(include_agent_name_text))
+        self.__include_agent_name_text = include_agent_name_text
 
         if include_collection_id is not None:
             if not isinstance(include_collection_id, basestring):
@@ -216,6 +254,8 @@ class ObjectQuery(object):
         self.__query_string = query_string
 
     def __eq__(self, other):
+        if self.include_agent_name_text != other.include_agent_name_text:
+            return False
         if self.include_collection_id != other.include_collection_id:
             return False
         if self.include_institution_id != other.include_institution_id:
@@ -229,7 +269,7 @@ class ObjectQuery(object):
         return True
 
     def __hash__(self):
-        return hash((self.include_collection_id,self.include_institution_id,self.include_subject_term_text,self.more_like_object_id,self.query_string,))
+        return hash((self.include_agent_name_text,self.include_collection_id,self.include_institution_id,self.include_subject_term_text,self.more_like_object_id,self.query_string,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -239,6 +279,8 @@ class ObjectQuery(object):
 
     def __repr__(self):
         field_reprs = []
+        if self.include_agent_name_text is not None:
+            field_reprs.append('include_agent_name_text=' + "'" + self.include_agent_name_text.encode('ascii', 'replace') + "'")
         if self.include_collection_id is not None:
             field_reprs.append('include_collection_id=' + "'" + self.include_collection_id.encode('ascii', 'replace') + "'")
         if self.include_institution_id is not None:
@@ -253,6 +295,8 @@ class ObjectQuery(object):
 
     def __str__(self):
         field_reprs = []
+        if self.include_agent_name_text is not None:
+            field_reprs.append('include_agent_name_text=' + "'" + self.include_agent_name_text.encode('ascii', 'replace') + "'")
         if self.include_collection_id is not None:
             field_reprs.append('include_collection_id=' + "'" + self.include_collection_id.encode('ascii', 'replace') + "'")
         if self.include_institution_id is not None:
@@ -272,7 +316,7 @@ class ObjectQuery(object):
         :rtype: dict
         '''
 
-        return {'include_collection_id': self.include_collection_id, 'include_institution_id': self.include_institution_id, 'include_subject_term_text': self.include_subject_term_text, 'more_like_object_id': self.more_like_object_id, 'query_string': self.query_string}
+        return {'include_agent_name_text': self.include_agent_name_text, 'include_collection_id': self.include_collection_id, 'include_institution_id': self.include_institution_id, 'include_subject_term_text': self.include_subject_term_text, 'more_like_object_id': self.more_like_object_id, 'query_string': self.query_string}
 
     def as_tuple(self):
         '''
@@ -281,7 +325,15 @@ class ObjectQuery(object):
         :rtype: tuple
         '''
 
-        return (self.include_collection_id, self.include_institution_id, self.include_subject_term_text, self.more_like_object_id, self.query_string,)
+        return (self.include_agent_name_text, self.include_collection_id, self.include_institution_id, self.include_subject_term_text, self.more_like_object_id, self.query_string,)
+
+    @property
+    def include_agent_name_text(self):
+        '''
+        :rtype: str
+        '''
+
+        return self.__include_agent_name_text
 
     @property
     def include_collection_id(self):
@@ -339,6 +391,11 @@ class ObjectQuery(object):
             ifield_name, ifield_type, _ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
+            elif ifield_name == 'include_agent_name_text':
+                try:
+                    init_kwds['include_agent_name_text'] = iprot.read_string()
+                except (TypeError, ValueError,):
+                    pass
             elif ifield_name == 'include_collection_id':
                 try:
                     init_kwds['include_collection_id'] = iprot.read_string()
@@ -371,6 +428,7 @@ class ObjectQuery(object):
 
     def replace(
         self,
+        include_agent_name_text=None,
         include_collection_id=None,
         include_institution_id=None,
         include_subject_term_text=None,
@@ -380,6 +438,7 @@ class ObjectQuery(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
+        :type include_agent_name_text: str or None
         :type include_collection_id: str or None
         :type include_institution_id: str or None
         :type include_subject_term_text: str or None
@@ -388,6 +447,8 @@ class ObjectQuery(object):
         :rtype: costume.api.models.object.object_query.ObjectQuery
         '''
 
+        if include_agent_name_text is None:
+            include_agent_name_text = self.include_agent_name_text
         if include_collection_id is None:
             include_collection_id = self.include_collection_id
         if include_institution_id is None:
@@ -398,7 +459,7 @@ class ObjectQuery(object):
             more_like_object_id = self.more_like_object_id
         if query_string is None:
             query_string = self.query_string
-        return self.__class__(include_collection_id=include_collection_id, include_institution_id=include_institution_id, include_subject_term_text=include_subject_term_text, more_like_object_id=more_like_object_id, query_string=query_string)
+        return self.__class__(include_agent_name_text=include_agent_name_text, include_collection_id=include_collection_id, include_institution_id=include_institution_id, include_subject_term_text=include_subject_term_text, more_like_object_id=more_like_object_id, query_string=query_string)
 
     def write(self, oprot):
         '''
@@ -409,6 +470,11 @@ class ObjectQuery(object):
         '''
 
         oprot.write_struct_begin('ObjectQuery')
+
+        if self.include_agent_name_text is not None:
+            oprot.write_field_begin(name='include_agent_name_text', type=11, id=None)
+            oprot.write_string(self.include_agent_name_text)
+            oprot.write_field_end()
 
         if self.include_collection_id is not None:
             oprot.write_field_begin(name='include_collection_id', type=11, id=None)

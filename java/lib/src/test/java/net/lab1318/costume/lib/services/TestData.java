@@ -9,6 +9,10 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableTable;
 
 import net.lab1318.costume.api.models.ModelMetadata;
+import net.lab1318.costume.api.models.agent.Agent;
+import net.lab1318.costume.api.models.agent.AgentName;
+import net.lab1318.costume.api.models.agent.AgentNameType;
+import net.lab1318.costume.api.models.agent.AgentSet;
 import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.collection.CollectionId;
@@ -50,6 +54,14 @@ public final class TestData {
                 .builder();
 
         {
+            agents = ImmutableList.<Agent> builder()
+                    .add(Agent.builder()
+                            .setName(AgentName.builder().setText("Test agent").setType(AgentNameType.PERSONAL).build())
+                            .build())
+                    .build();
+        }
+
+        {
             subjects = ImmutableList.<Subject> builder()
                     .add(Subject.builder().setTerms(ImmutableList.of(
                             SubjectTerm.builder().setText("Test subject").setType(SubjectTermType.FAMILY_NAME).build()))
@@ -72,9 +84,10 @@ public final class TestData {
                 collectionsBuilder.put(institutionId, new CollectionEntry(collectionId, collection));
 
                 {
-                    final Object.Builder objectBuilder = Object.builder().setCollectionId(collectionId)
-                            .setInstitutionId(institutionId).setModelMetadata(__newModelMetadata())
-                            .setSubjects(new SubjectSet(subjects)).setTitle("Test object");
+                    final Object.Builder objectBuilder = Object.builder().setAgents(new AgentSet(agents))
+                            .setCollectionId(collectionId).setInstitutionId(institutionId)
+                            .setModelMetadata(__newModelMetadata()).setSubjects(new SubjectSet(subjects))
+                            .setTitle("Test object");
 
                     objectsBuilder.put(institutionId, collectionId, new ObjectEntry(
                             ObjectId.parse(collectionId.toString() + "/test_object"), objectBuilder.build()));
@@ -86,6 +99,10 @@ public final class TestData {
         collections = collectionsBuilder.build();
         institutions = institutionsBuilder.build();
         objects = objectsBuilder.build();
+    }
+
+    public ImmutableList<Agent> getAgents() {
+        return agents;
     }
 
     public ImmutableMultimap<InstitutionId, CollectionEntry> getCollections() {
@@ -104,6 +121,7 @@ public final class TestData {
         return subjects;
     }
 
+    private final ImmutableList<Agent> agents;
     private final ImmutableMultimap<InstitutionId, CollectionEntry> collections;
     private final ImmutableList<InstitutionEntry> institutions;
     private final ImmutableTable<InstitutionId, CollectionId, ObjectEntry> objects;
