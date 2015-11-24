@@ -18,24 +18,25 @@ public final class MaterialsTable extends Table {
         } else {
             setCaption("Materials");
         }
-        boolean haveVocab = false;
         final BeanItemContainer<MaterialBean> container = new BeanItemContainer<>(MaterialBean.class);
-        for (final Material material : materials.getMaterials()) {
-            container.addBean(new MaterialBean(material));
-            if (material.getVocab().isPresent()) {
-                haveVocab = true;
-                break;
-            }
-        }
+        // boolean haveVocab = false;
+        // for (final Material material : materials.getMaterials()) {
+        // container.addBean(new MaterialBean(material));
+        // if (material.getVocabRef().isPresent()) {
+        // haveVocab = true;
+        // break;
+        // }
+        // }
         setContainerDataSource(container);
         setPageLength(materials.getMaterials().size());
         setColumnHeader(Material.FieldMetadata.TEXT.getJavaName(), "Name");
-        setColumnHeader(Material.FieldMetadata.VOCAB.getJavaName(), "Vocabulary");
+        // setColumnHeader(Material.FieldMetadata.VOCAB.getJavaName(),
+        // "Vocabulary");
         final List<Object> visibleColumns = new ArrayList<>();
         visibleColumns.add(Material.FieldMetadata.TEXT.getJavaName());
-        if (haveVocab) {
-            visibleColumns.add(Material.FieldMetadata.VOCAB.getJavaName());
-        }
+        // if (haveVocab) {
+        // visibleColumns.add(Material.FieldMetadata.VOCAB.getJavaName());
+        // }
         setVisibleColumns(visibleColumns.toArray());
     }
 }

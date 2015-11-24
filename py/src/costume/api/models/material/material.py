@@ -1,6 +1,6 @@
 import __builtin__
 import costume.api.models.material.material_type
-import costume.api.models.vocab
+import costume.api.models.vocab_ref
 
 
 class Material(object):
@@ -9,39 +9,20 @@ class Material(object):
             self,
             type=None,  # @ReservedAssignment
             text=None,
-            refid=None,
-            vocab=None,
+            vocab_ref=None,
         ):
             '''
             :type type: costume.api.models.material.material_type.MaterialType
             :type text: str
-            :type refid: str or None
-            :type vocab: costume.api.models.vocab.Vocab or None
+            :type vocab_ref: costume.api.models.vocab_ref.VocabRef or None
             '''
 
             self.__type = type
             self.__text = text
-            self.__refid = refid
-            self.__vocab = vocab
+            self.__vocab_ref = vocab_ref
 
         def build(self):
-            return Material(type=self.__type, text=self.__text, refid=self.__refid, vocab=self.__vocab)
-
-        @property
-        def refid(self):
-            '''
-            :rtype: str
-            '''
-
-            return self.__refid
-
-        def set_refid(self, refid):
-            '''
-            :type refid: str or None
-            '''
-
-            self.__refid = refid
-            return self
+            return Material(type=self.__type, text=self.__text, vocab_ref=self.__vocab_ref)
 
         def set_text(self, text):
             '''
@@ -59,12 +40,12 @@ class Material(object):
             self.__type = type
             return self
 
-        def set_vocab(self, vocab):
+        def set_vocab_ref(self, vocab_ref):
             '''
-            :type vocab: costume.api.models.vocab.Vocab or None
+            :type vocab_ref: costume.api.models.vocab_ref.VocabRef or None
             '''
 
-            self.__vocab = vocab
+            self.__vocab_ref = vocab_ref
             return self
 
         @property
@@ -87,15 +68,13 @@ class Material(object):
             '''
             :type type: costume.api.models.material.material_type.MaterialType
             :type text: str
-            :type refid: str or None
-            :type vocab: costume.api.models.vocab.Vocab or None
+            :type vocab_ref: costume.api.models.vocab_ref.VocabRef or None
             '''
 
             if isinstance(material, Material):
                 self.set_type(material.type)
                 self.set_text(material.text)
-                self.set_refid(material.refid)
-                self.set_vocab(material.vocab)
+                self.set_vocab_ref(material.vocab_ref)
             elif isinstance(material, dict):
                 for key, value in material.iteritems():
                     getattr(self, 'set_' + key)(value)
@@ -104,20 +83,12 @@ class Material(object):
             return self
 
         @property
-        def vocab(self):
+        def vocab_ref(self):
             '''
-            :rtype: costume.api.models.vocab.Vocab
-            '''
-
-            return self.__vocab
-
-        @refid.setter
-        def refid(self, refid):
-            '''
-            :type refid: str or None
+            :rtype: costume.api.models.vocab_ref.VocabRef
             '''
 
-            self.set_refid(refid)
+            return self.__vocab_ref
 
         @text.setter
         def text(self, text):
@@ -135,26 +106,24 @@ class Material(object):
 
             self.set_type(type)
 
-        @vocab.setter
-        def vocab(self, vocab):
+        @vocab_ref.setter
+        def vocab_ref(self, vocab_ref):
             '''
-            :type vocab: costume.api.models.vocab.Vocab or None
+            :type vocab_ref: costume.api.models.vocab_ref.VocabRef or None
             '''
 
-            self.set_vocab(vocab)
+            self.set_vocab_ref(vocab_ref)
 
     def __init__(
         self,
         type,  # @ReservedAssignment
         text,
-        refid=None,
-        vocab=None,
+        vocab_ref=None,
     ):
         '''
         :type type: costume.api.models.material.material_type.MaterialType
         :type text: str
-        :type refid: str or None
-        :type vocab: costume.api.models.vocab.Vocab or None
+        :type vocab_ref: costume.api.models.vocab_ref.VocabRef or None
         '''
 
         if type is None:
@@ -171,29 +140,22 @@ class Material(object):
             raise ValueError("expected len(text) to be >= 1, was %d" % len(text))
         self.__text = text
 
-        if refid is not None:
-            if not isinstance(refid, basestring):
-                raise TypeError("expected refid to be a str but it is a %s" % getattr(__builtin__, 'type')(refid))
-        self.__refid = refid
-
-        if vocab is not None:
-            if not isinstance(vocab, costume.api.models.vocab.Vocab):
-                raise TypeError("expected vocab to be a costume.api.models.vocab.Vocab but it is a %s" % getattr(__builtin__, 'type')(vocab))
-        self.__vocab = vocab
+        if vocab_ref is not None:
+            if not isinstance(vocab_ref, costume.api.models.vocab_ref.VocabRef):
+                raise TypeError("expected vocab_ref to be a costume.api.models.vocab_ref.VocabRef but it is a %s" % getattr(__builtin__, 'type')(vocab_ref))
+        self.__vocab_ref = vocab_ref
 
     def __eq__(self, other):
         if self.type != other.type:
             return False
         if self.text != other.text:
             return False
-        if self.refid != other.refid:
-            return False
-        if self.vocab != other.vocab:
+        if self.vocab_ref != other.vocab_ref:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.type,self.text,self.refid,self.vocab,))
+        return hash((self.type,self.text,self.vocab_ref,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -205,20 +167,16 @@ class Material(object):
         field_reprs = []
         field_reprs.append('type=' + repr(self.type))
         field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace') + "'")
-        if self.refid is not None:
-            field_reprs.append('refid=' + "'" + self.refid.encode('ascii', 'replace') + "'")
-        if self.vocab is not None:
-            field_reprs.append('vocab=' + repr(self.vocab))
+        if self.vocab_ref is not None:
+            field_reprs.append('vocab_ref=' + repr(self.vocab_ref))
         return 'Material(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
         field_reprs.append('type=' + repr(self.type))
         field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace') + "'")
-        if self.refid is not None:
-            field_reprs.append('refid=' + "'" + self.refid.encode('ascii', 'replace') + "'")
-        if self.vocab is not None:
-            field_reprs.append('vocab=' + repr(self.vocab))
+        if self.vocab_ref is not None:
+            field_reprs.append('vocab_ref=' + repr(self.vocab_ref))
         return 'Material(' + ', '.join(field_reprs) + ')'
 
     def as_dict(self):
@@ -228,7 +186,7 @@ class Material(object):
         :rtype: dict
         '''
 
-        return {'type': self.type, 'text': self.text, 'refid': self.refid, 'vocab': self.vocab}
+        return {'type': self.type, 'text': self.text, 'vocab_ref': self.vocab_ref}
 
     def as_tuple(self):
         '''
@@ -237,7 +195,7 @@ class Material(object):
         :rtype: tuple
         '''
 
-        return (self.type, self.text, self.refid, self.vocab,)
+        return (self.type, self.text, self.vocab_ref,)
 
     @classmethod
     def read(cls, iprot):
@@ -259,43 +217,25 @@ class Material(object):
                 init_kwds['type'] = costume.api.models.material.material_type.MaterialType.value_of(iprot.read_string().strip().upper())
             elif ifield_name == 'text' and ifield_id == 2:
                 init_kwds['text'] = iprot.read_string()
-            elif ifield_name == 'refid' and ifield_id == 3:
-                try:
-                    init_kwds['refid'] = iprot.read_string()
-                except (TypeError, ValueError,):
-                    pass
-            elif ifield_name == 'vocab' and ifield_id == 4:
-                try:
-                    init_kwds['vocab'] = costume.api.models.vocab.Vocab.value_of(iprot.read_string().strip().upper())
-                except (TypeError,):
-                    pass
+            elif ifield_name == 'vocab_ref' and ifield_id == 5:
+                init_kwds['vocab_ref'] = costume.api.models.vocab_ref.VocabRef.read(iprot)
             iprot.read_field_end()
         iprot.read_struct_end()
 
         return cls(**init_kwds)
 
-    @property
-    def refid(self):
-        '''
-        :rtype: str
-        '''
-
-        return self.__refid
-
     def replace(
         self,
         type=None,  # @ReservedAssignment
         text=None,
-        refid=None,
-        vocab=None,
+        vocab_ref=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
         :type type: costume.api.models.material.material_type.MaterialType or None
         :type text: str or None
-        :type refid: str or None
-        :type vocab: costume.api.models.vocab.Vocab or None
+        :type vocab_ref: costume.api.models.vocab_ref.VocabRef or None
         :rtype: costume.api.models.material.material.Material
         '''
 
@@ -303,11 +243,9 @@ class Material(object):
             type = self.type  # @ReservedAssignment
         if text is None:
             text = self.text
-        if refid is None:
-            refid = self.refid
-        if vocab is None:
-            vocab = self.vocab
-        return self.__class__(type=type, text=text, refid=refid, vocab=vocab)
+        if vocab_ref is None:
+            vocab_ref = self.vocab_ref
+        return self.__class__(type=type, text=text, vocab_ref=vocab_ref)
 
     @property
     def text(self):
@@ -326,12 +264,12 @@ class Material(object):
         return self.__type
 
     @property
-    def vocab(self):
+    def vocab_ref(self):
         '''
-        :rtype: costume.api.models.vocab.Vocab
+        :rtype: costume.api.models.vocab_ref.VocabRef
         '''
 
-        return self.__vocab
+        return self.__vocab_ref
 
     def write(self, oprot):
         '''
@@ -351,14 +289,9 @@ class Material(object):
         oprot.write_string(self.text)
         oprot.write_field_end()
 
-        if self.refid is not None:
-            oprot.write_field_begin(name='refid', type=11, id=3)
-            oprot.write_string(self.refid)
-            oprot.write_field_end()
-
-        if self.vocab is not None:
-            oprot.write_field_begin(name='vocab', type=11, id=4)
-            oprot.write_string(str(self.vocab))
+        if self.vocab_ref is not None:
+            oprot.write_field_begin(name='vocab_ref', type=12, id=5)
+            self.vocab_ref.write(oprot)
             oprot.write_field_end()
 
         oprot.write_field_stop()

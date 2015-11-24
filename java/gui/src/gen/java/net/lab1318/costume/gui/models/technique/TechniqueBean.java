@@ -7,8 +7,7 @@ public class TechniqueBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "text", org.thryft.protocol.Type.STRING),
-        REFID("refid", new com.google.common.reflect.TypeToken<String>() {}, false, 2, "refid", org.thryft.protocol.Type.STRING),
-        VOCAB("vocab", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.Vocab>() {}, false, 3, "vocab", org.thryft.protocol.Type.STRING);
+        VOCAB_REF("vocabRef", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.VocabRefBean>() {}, false, 4, "vocab_ref", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -53,8 +52,7 @@ public class TechniqueBean {
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
             case "text": return TEXT;
-            case "refid": return REFID;
-            case "vocab": return VOCAB;
+            case "vocabRef": return VOCAB_REF;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -63,8 +61,7 @@ public class TechniqueBean {
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
             case "text": return TEXT;
-            case "refid": return REFID;
-            case "vocab": return VOCAB;
+            case "vocab_ref": return VOCAB_REF;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -95,14 +92,12 @@ public class TechniqueBean {
 
     public TechniqueBean() {
         text = null;
-        refid = null;
-        vocab = null;
+        vocabRef = null;
     }
 
     public TechniqueBean(final net.lab1318.costume.api.models.technique.Technique other) {
         this.text = other.getText();
-        this.refid = other.getRefid().isPresent() ? other.getRefid().get() : null;
-        this.vocab = other.getVocab().isPresent() ? other.getVocab().get() : null;
+        this.vocabRef = other.getVocabRef().isPresent() ? new net.lab1318.costume.gui.models.VocabRefBean(other.getVocabRef().get()) : null;
     }
 
     @Override
@@ -116,55 +111,41 @@ public class TechniqueBean {
         final TechniqueBean other = (TechniqueBean)otherObject;
         return
             getText().equals(other.getText()) &&
-            getRefid().equals(other.getRefid()) &&
-            getVocab().equals(other.getVocab());
-    }
-
-    public String getRefid() {
-        return refid;
+            getVocabRef().equals(other.getVocabRef());
     }
 
     public String getText() {
         return text;
     }
 
-    public net.lab1318.costume.api.models.Vocab getVocab() {
-        return vocab;
+    public net.lab1318.costume.gui.models.VocabRefBean getVocabRef() {
+        return vocabRef;
     }
 
     @Override
     public int hashCode() {
         int hashCode = 17;
         hashCode = 31 * hashCode + getText().hashCode();
-        if (getRefid() != null) {
-            hashCode = 31 * hashCode + getRefid().hashCode();
-        }
-        if (getVocab() != null) {
-            hashCode = 31 * hashCode + getVocab().ordinal();
+        if (getVocabRef() != null) {
+            hashCode = 31 * hashCode + getVocabRef().hashCode();
         }
         return hashCode;
-    }
-
-    public void setRefid(final String refid) {
-        this.refid = refid;
     }
 
     public void setText(final String text) {
         this.text = text;
     }
 
-    public void setVocab(final net.lab1318.costume.api.models.Vocab vocab) {
-        this.vocab = vocab;
+    public void setVocabRef(final net.lab1318.costume.gui.models.VocabRefBean vocabRef) {
+        this.vocabRef = vocabRef;
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("refid", getRefid()).add("vocab", getVocab()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("vocab_ref", getVocabRef()).toString();
     }
 
     private String text;
 
-    private String refid;
-
-    private net.lab1318.costume.api.models.Vocab vocab;
+    private net.lab1318.costume.gui.models.VocabRefBean vocabRef;
 }

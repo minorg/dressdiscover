@@ -12,30 +12,31 @@ import net.lab1318.costume.gui.models.technique.TechniqueBean;
 
 @SuppressWarnings("serial")
 public final class TechniquesTable extends Table {
-    public TechniquesTable(final TechniqueSet materials) {
-        if (materials.getDisplay().isPresent()) {
-            setCaption("Techniques: " + materials.getDisplay().get());
+    public TechniquesTable(final TechniqueSet techniques) {
+        if (techniques.getDisplay().isPresent()) {
+            setCaption("Techniques: " + techniques.getDisplay().get());
         } else {
             setCaption("Techniques");
         }
-        boolean haveVocab = false;
         final BeanItemContainer<TechniqueBean> container = new BeanItemContainer<>(TechniqueBean.class);
-        for (final Technique material : materials.getTechniques()) {
-            container.addBean(new TechniqueBean(material));
-            if (material.getVocab().isPresent()) {
-                haveVocab = true;
-                break;
-            }
-        }
+        // boolean haveVocab = false;
+        // for (final Technique technique : techniques.getTechniques()) {
+        // container.addBean(new TechniqueBean(technique));
+        // if (technique.getVocab().isPresent()) {
+        // haveVocab = true;
+        // break;
+        // }
+        // }
         setContainerDataSource(container);
-        setPageLength(materials.getTechniques().size());
+        setPageLength(techniques.getTechniques().size());
         setColumnHeader(Technique.FieldMetadata.TEXT.getJavaName(), "Name");
-        setColumnHeader(Technique.FieldMetadata.VOCAB.getJavaName(), "Vocabulary");
+        // setColumnHeader(Technique.FieldMetadata.VOCAB.getJavaName(),
+        // "Vocabulary");
         final List<Object> visibleColumns = new ArrayList<>();
         visibleColumns.add(Technique.FieldMetadata.TEXT.getJavaName());
-        if (haveVocab) {
-            visibleColumns.add(Technique.FieldMetadata.VOCAB.getJavaName());
-        }
+        // if (haveVocab) {
+        // visibleColumns.add(Technique.FieldMetadata.VOCAB.getJavaName());
+        // }
         setVisibleColumns(visibleColumns.toArray());
     }
 }

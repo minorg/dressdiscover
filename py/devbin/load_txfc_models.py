@@ -1,4 +1,5 @@
 import os.path
+import sys
 import urllib
 from xml.etree import ElementTree
 
@@ -10,22 +11,22 @@ from costume.api.models.agent.agent_name_type import AgentNameType
 from costume.api.models.agent.agent_role import AgentRole
 from costume.api.models.agent.agent_set import AgentSet
 from costume.api.models.collection.collection import Collection
+from costume.api.models.image.image import Image
 from costume.api.models.institution.institution import Institution
 from costume.api.models.object.object import Object
 from costume.api.models.rights.rights import Rights
 from costume.api.models.rights.rights_set import RightsSet
 from costume.api.models.rights.rights_type import RightsType
 from costume.api.models.subject.subject import Subject
+from costume.api.models.subject.subject_set import SubjectSet
 from costume.api.models.subject.subject_term import SubjectTerm
 from costume.api.models.subject.subject_term_type import SubjectTermType
 from costume.api.models.vocab import Vocab
+from costume.api.models.vocab_ref import VocabRef
 from costume.api.services.institution.no_such_institution_exception import NoSuchInstitutionException
 from costume.lib.costume_properties import CostumeProperties
 from model_utils import new_model_metadata
 from services import Services
-from costume.api.models.image.image import Image
-from costume.api.models.subject.subject_set import SubjectSet
-import sys
 
 
 INSTITUTION_ID = 'untvca'
@@ -142,7 +143,7 @@ def parse_record(record_etree):
                     SubjectTerm.Builder()
                         .set_text(subject_etree.text)
                         .set_type(SubjectTermType.OTHER_TOPIC)
-                        .set_vocab(vocab)
+                        .set_vocab_ref(VocabRef.Builder().set_vocab(vocab).build())
                         .build()
                 ,))
                 .build()

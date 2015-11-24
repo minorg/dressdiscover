@@ -8,8 +8,7 @@ public class AgentNameBean {
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "text", org.thryft.protocol.Type.STRING),
         TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.agent.AgentNameType>() {}, true, 2, "type", org.thryft.protocol.Type.STRING),
-        REFID("refid", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "refid", org.thryft.protocol.Type.STRING),
-        VOCAB("vocab", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.Vocab>() {}, false, 4, "vocab", org.thryft.protocol.Type.STRING);
+        VOCAB_REF("vocabRef", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.VocabRefBean>() {}, false, 5, "vocab_ref", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -55,8 +54,7 @@ public class AgentNameBean {
             switch (javaName) {
             case "text": return TEXT;
             case "type": return TYPE;
-            case "refid": return REFID;
-            case "vocab": return VOCAB;
+            case "vocabRef": return VOCAB_REF;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -66,8 +64,7 @@ public class AgentNameBean {
             switch (thriftName) {
             case "text": return TEXT;
             case "type": return TYPE;
-            case "refid": return REFID;
-            case "vocab": return VOCAB;
+            case "vocab_ref": return VOCAB_REF;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -99,15 +96,13 @@ public class AgentNameBean {
     public AgentNameBean() {
         text = null;
         type = null;
-        refid = null;
-        vocab = null;
+        vocabRef = null;
     }
 
     public AgentNameBean(final net.lab1318.costume.api.models.agent.AgentName other) {
         this.text = other.getText();
         this.type = other.getType();
-        this.refid = other.getRefid().isPresent() ? other.getRefid().get() : null;
-        this.vocab = other.getVocab().isPresent() ? other.getVocab().get() : null;
+        this.vocabRef = other.getVocabRef().isPresent() ? new net.lab1318.costume.gui.models.VocabRefBean(other.getVocabRef().get()) : null;
     }
 
     @Override
@@ -122,12 +117,7 @@ public class AgentNameBean {
         return
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
-            getRefid().equals(other.getRefid()) &&
-            getVocab().equals(other.getVocab());
-    }
-
-    public String getRefid() {
-        return refid;
+            getVocabRef().equals(other.getVocabRef());
     }
 
     public String getText() {
@@ -138,8 +128,8 @@ public class AgentNameBean {
         return type;
     }
 
-    public net.lab1318.costume.api.models.Vocab getVocab() {
-        return vocab;
+    public net.lab1318.costume.gui.models.VocabRefBean getVocabRef() {
+        return vocabRef;
     }
 
     @Override
@@ -147,17 +137,10 @@ public class AgentNameBean {
         int hashCode = 17;
         hashCode = 31 * hashCode + getText().hashCode();
         hashCode = 31 * hashCode + getType().ordinal();
-        if (getRefid() != null) {
-            hashCode = 31 * hashCode + getRefid().hashCode();
-        }
-        if (getVocab() != null) {
-            hashCode = 31 * hashCode + getVocab().ordinal();
+        if (getVocabRef() != null) {
+            hashCode = 31 * hashCode + getVocabRef().hashCode();
         }
         return hashCode;
-    }
-
-    public void setRefid(final String refid) {
-        this.refid = refid;
     }
 
     public void setText(final String text) {
@@ -168,20 +151,18 @@ public class AgentNameBean {
         this.type = type;
     }
 
-    public void setVocab(final net.lab1318.costume.api.models.Vocab vocab) {
-        this.vocab = vocab;
+    public void setVocabRef(final net.lab1318.costume.gui.models.VocabRefBean vocabRef) {
+        this.vocabRef = vocabRef;
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("type", getType()).add("refid", getRefid()).add("vocab", getVocab()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("type", getType()).add("vocab_ref", getVocabRef()).toString();
     }
 
     private String text;
 
     private net.lab1318.costume.api.models.agent.AgentNameType type;
 
-    private String refid;
-
-    private net.lab1318.costume.api.models.Vocab vocab;
+    private net.lab1318.costume.gui.models.VocabRefBean vocabRef;
 }
