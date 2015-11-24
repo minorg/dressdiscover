@@ -83,8 +83,10 @@ public class ObjectsView extends TopLevelView {
                 institutionFacetsLayout.addComponent(new Label("Institutions"));
                 for (final Map.Entry<InstitutionId, UnsignedInteger> institutionHitsEntry : objectFacets
                         .getInstitutionHits().entrySet()) {
-                    institutionFacetsLayout.addComponent(new InstitutionButton("", _getEventBus(), new InstitutionEntry(
-                            institutionHitsEntry.getKey(), institutions.get(institutionHitsEntry.getKey()))));
+                    institutionFacetsLayout.addComponent(new InstitutionButton("",
+                            String.format(" (%d objects)", institutionHitsEntry.getValue().intValue()), _getEventBus(),
+                            new InstitutionEntry(institutionHitsEntry.getKey(),
+                                    institutions.get(institutionHitsEntry.getKey()))));
                 }
                 leftPaneLayout.addComponent(institutionFacetsLayout);
             }
@@ -94,7 +96,8 @@ public class ObjectsView extends TopLevelView {
                 subjectTermTextsLayout.addComponent(new Label("Subject terms"));
                 for (final Map.Entry<String, UnsignedInteger> subjectTermTextsEntry : objectFacets.getSubjectTermTexts()
                         .entrySet()) {
-                    final Button subjectTermTextButton = new Button(subjectTermTextsEntry.getKey(),
+                    final Button subjectTermTextButton = new Button(String.format("%s (%d objects)",
+                            subjectTermTextsEntry.getKey(), subjectTermTextsEntry.getValue().intValue()),
                             new Button.ClickListener() {
                                 @Override
                                 public void buttonClick(final ClickEvent event) {
@@ -282,7 +285,7 @@ public class ObjectsView extends TopLevelView {
 
             twoPaneLayout.addComponent(rightPaneLayout);
             twoPaneLayout.setComponentAlignment(rightPaneLayout, Alignment.MIDDLE_CENTER);
-            twoPaneLayout.setExpandRatio(rightPaneLayout, 7);
+            twoPaneLayout.setExpandRatio(rightPaneLayout, 6);
         }
 
         setCompositionRoot(twoPaneLayout);

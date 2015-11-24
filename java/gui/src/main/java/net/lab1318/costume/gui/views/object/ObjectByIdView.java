@@ -38,7 +38,8 @@ public class ObjectByIdView extends TopLevelView {
 
             {
                 final VerticalLayout leftHeaderLayout = new VerticalLayout();
-                leftHeaderLayout.addComponent(new InstitutionButton("Institution: ", _getEventBus(), institutionEntry));
+                leftHeaderLayout
+                        .addComponent(new InstitutionButton("Institution: ", "", _getEventBus(), institutionEntry));
                 leftHeaderLayout.addComponent(new CollectionButton("Collection: ", collectionEntry, _getEventBus()));
                 headerLayout.addComponent(leftHeaderLayout);
                 headerLayout.setExpandRatio(leftHeaderLayout, 1);

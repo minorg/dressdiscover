@@ -11,10 +11,10 @@ import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 
 @SuppressWarnings("serial")
 public final class InstitutionButton extends CustomComponent {
-    public InstitutionButton(final String captionPrefix, final EventBus eventBus,
+    public InstitutionButton(final String captionPrefix, final String captionSuffix, final EventBus eventBus,
             final InstitutionEntry institutionEntry) {
-        final Button institutionButton = new Button(captionPrefix + institutionEntry.getModel().getTitle(),
-                new Button.ClickListener() {
+        final Button institutionButton = new Button(
+                captionPrefix + institutionEntry.getModel().getTitle() + captionSuffix, new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {
                         eventBus.post(new InstitutionQueryService.Messages.GetInstitutionByIdRequest(
