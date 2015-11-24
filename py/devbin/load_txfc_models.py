@@ -129,22 +129,24 @@ def parse_record(record_etree):
             qualifier = subject_etree.attrib['qualifier']
         except KeyError:
             continue
-        if qualifier == 'AAT':
-            subjects.append(
-                Subject.Builder()
-                    .set_terms((
-                        SubjectTerm.Builder()
-                            .set_text(subject_etree.text)
-                            .set_type(SubjectTermType.OTHER_TOPIC)
-                            .set_vocab(Vocab.AAT)
-                            .build()
-                    ,))
-                    .build()
-            )
-        elif qualifier in ('UNTL-BS',):
-            continue
-        else:
+        try:
+            vocab = getattr(Vocab, qualifier)
+        except AttributeError:
+            if qualifier in ('named_person', 'UNTL-BS',):
+                continue
             print >>sys.stderr, 'unknown vocabulary', qualifier
+            continue
+        subjects.append(
+            Subject.Builder()
+                .set_terms((
+                    SubjectTerm.Builder()
+                        .set_text(subject_etree.text)
+                        .set_type(SubjectTermType.OTHER_TOPIC)
+                        .set_vocab(vocab)
+                        .build()
+                ,))
+                .build()
+        )
     if len(subjects) > 0:
         object_builder.set_subjects(SubjectSet.Builder().set_subjects(tuple(subjects)).build())
 
