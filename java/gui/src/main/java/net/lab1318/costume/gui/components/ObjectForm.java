@@ -1,5 +1,6 @@
 package net.lab1318.costume.gui.components;
 
+import com.google.common.base.Optional;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.CustomComponent;
@@ -18,6 +19,7 @@ import net.lab1318.costume.api.models.object.ObjectEntry;
 public final class ObjectForm extends CustomComponent {
     public ObjectForm(final ObjectEntry objectEntry, final Institution institution) {
         final VerticalLayout rootLayout = new VerticalLayout();
+        rootLayout.setSizeFull();
 
         final Label titleLabel = new Label(objectEntry.getModel().getTitle());
         titleLabel.setStyleName("h3");
@@ -29,6 +31,7 @@ public final class ObjectForm extends CustomComponent {
         final VerticalLayout leftPaneLayout = new VerticalLayout();
         twoPaneLayout.addComponent(leftPaneLayout);
         twoPaneLayout.setComponentAlignment(leftPaneLayout, Alignment.TOP_LEFT);
+
         final VerticalLayout rightPaneLayout = new VerticalLayout();
         twoPaneLayout.addComponent(rightPaneLayout);
         twoPaneLayout.setComponentAlignment(rightPaneLayout, Alignment.TOP_CENTER);
@@ -52,21 +55,29 @@ public final class ObjectForm extends CustomComponent {
                 formLayout.addComponent(__createTextArea("Description", objectEntry.getModel().getDescription().get()));
             }
 
+            if (objectEntry.getModel().getAgents().isPresent()) {
+                formLayout.addComponent(new AgentSetTable(objectEntry.getModel().getAgents().get()));
+            }
+
             if (objectEntry.getModel().getHistoryNotes().isPresent()) {
                 formLayout.addComponent(
                         __createTextArea("History notes", objectEntry.getModel().getHistoryNotes().get()));
             }
 
             if (objectEntry.getModel().getInscriptions().isPresent()) {
-                formLayout.addComponent(new InscriptionsTable(objectEntry.getModel().getInscriptions().get()));
+                formLayout.addComponent(new InscriptionSetTable(objectEntry.getModel().getInscriptions().get()));
             }
 
             if (objectEntry.getModel().getMaterials().isPresent()) {
-                formLayout.addComponent(new MaterialsTable(objectEntry.getModel().getMaterials().get()));
+                formLayout.addComponent(new MaterialSetTable(objectEntry.getModel().getMaterials().get()));
             }
 
             if (objectEntry.getModel().getProvenance().isPresent()) {
                 formLayout.addComponent(__createTextField("Provenance", objectEntry.getModel().getProvenance().get()));
+            }
+
+            if (objectEntry.getModel().getSubjects().isPresent()) {
+                formLayout.addComponent(new SubjectSetTable(objectEntry.getModel().getSubjects().get()));
             }
 
             if (objectEntry.getModel().getSummary().isPresent()) {
@@ -74,7 +85,7 @@ public final class ObjectForm extends CustomComponent {
             }
 
             if (objectEntry.getModel().getTechniques().isPresent()) {
-                formLayout.addComponent(new TechniquesTable(objectEntry.getModel().getTechniques().get()));
+                formLayout.addComponent(new TechniqueSetTable(objectEntry.getModel().getTechniques().get()));
             }
 
             if (objectEntry.getModel().getUrl().isPresent()) {
@@ -84,11 +95,12 @@ public final class ObjectForm extends CustomComponent {
 
             leftPaneLayout.addComponent(formLayout);
 
-			leftPaneLayout.addComponent(new RightsLabel(institution.getDataRights()));
+            leftPaneLayout.addComponent(new RightsLabel(institution.getDataRights()));
         }
 
         if (objectEntry.getModel().getThumbnail().isPresent()) {
-            final Image thumbnail = new Image("", objectEntry.getModel().getThumbnail().get());
+            final Image thumbnail = new Image("", Optional.absent(), objectEntry.getModel().getThumbnail().get(),
+                    Optional.absent());
             rightPaneLayout.addComponent(thumbnail);
         }
 

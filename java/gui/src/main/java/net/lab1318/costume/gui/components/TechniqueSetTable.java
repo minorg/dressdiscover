@@ -11,8 +11,8 @@ import net.lab1318.costume.api.models.technique.TechniqueSet;
 import net.lab1318.costume.gui.models.technique.TechniqueBean;
 
 @SuppressWarnings("serial")
-public final class TechniquesTable extends Table {
-    public TechniquesTable(final TechniqueSet techniques) {
+public final class TechniqueSetTable extends Table {
+    public TechniqueSetTable(final TechniqueSet techniques) {
         if (techniques.getDisplay().isPresent()) {
             setCaption("Techniques: " + techniques.getDisplay().get());
         } else {
@@ -20,13 +20,13 @@ public final class TechniquesTable extends Table {
         }
         final BeanItemContainer<TechniqueBean> container = new BeanItemContainer<>(TechniqueBean.class);
         // boolean haveVocab = false;
-        // for (final Technique technique : techniques.getTechniques()) {
-        // container.addBean(new TechniqueBean(technique));
-        // if (technique.getVocab().isPresent()) {
-        // haveVocab = true;
-        // break;
-        // }
-        // }
+        for (final Technique technique : techniques.getTechniques()) {
+            container.addBean(new TechniqueBean(technique));
+            // if (technique.getVocab().isPresent()) {
+            // haveVocab = true;
+            // break;
+            // }
+        }
         setContainerDataSource(container);
         setPageLength(techniques.getTechniques().size());
         setColumnHeader(Technique.FieldMetadata.TEXT.getJavaName(), "Name");

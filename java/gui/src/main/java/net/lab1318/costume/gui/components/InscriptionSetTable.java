@@ -8,9 +8,9 @@ import net.lab1318.costume.api.models.inscription.InscriptionSet;
 import net.lab1318.costume.api.models.inscription.InscriptionText;
 
 @SuppressWarnings("serial")
-public final class InscriptionsTable extends Table {
+public final class InscriptionSetTable extends Table {
     @SuppressWarnings("unchecked")
-    public InscriptionsTable(final InscriptionSet inscriptions) {
+    public InscriptionSetTable(final InscriptionSet inscriptions) {
         if (inscriptions.getDisplay().isPresent()) {
             setCaption("Inscription: " + inscriptions.getDisplay().get());
         } else {
