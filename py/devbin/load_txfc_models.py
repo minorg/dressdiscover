@@ -132,7 +132,7 @@ def parse_record(record_etree):
         try:
             vocab = getattr(Vocab, qualifier)
         except AttributeError:
-            if qualifier in ('UNTL-BS',):
+            if qualifier in ('named_person', 'UNTL-BS',):
                 continue
             print >>sys.stderr, 'unknown vocabulary', qualifier
             continue
