@@ -6,6 +6,7 @@ include "costume/api/models/institution/institution_id.thrift"
 include "thryft/native/u32.thrift"
 
 struct ObjectFacets {
+	map<string, u32.u32> agent_name_texts;
 	map<collection_id.CollectionId, u32.u32> collection_hits;
 	map<institution_id.InstitutionId, u32.u32> institution_hits;
 	map<string, u32.u32> subject_term_texts;

@@ -9,6 +9,7 @@ import org.notaweb.gui.EventBus;
 import org.notaweb.gui.utils.StringToUrlConverter;
 import org.thryft.native_.Url;
 import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
+import org.vaadin.viritin.components.DisclosurePanel;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.primitives.UnsignedInteger;
@@ -76,11 +77,34 @@ public class ObjectsView extends TopLevelView {
 
         {
             final VerticalLayout leftPaneLayout = new VerticalLayout();
-            leftPaneLayout.setSizeFull();
+
+            if (!objectFacets.getAgentNameTexts().isEmpty()) {
+                final VerticalLayout agentNameTextFacetsLayout = new VerticalLayout();
+                for (final Map.Entry<String, UnsignedInteger> agentNameTextsEntry : objectFacets.getAgentNameTexts()
+                        .entrySet()) {
+                    final Button agentNameTextButton = new Button(String.format("%s (%d objects)",
+                            agentNameTextsEntry.getKey(), agentNameTextsEntry.getValue().intValue()),
+                            new Button.ClickListener() {
+                                @Override
+                                public void buttonClick(final ClickEvent event) {
+                                    _getEventBus().post(ObjectQueryService.Messages.GetObjectsRequest.builder()
+                                            .setQuery(ObjectQuery.builder()
+                                                    .setIncludeAgentNameText(agentNameTextsEntry.getKey()).build())
+                                            .build());
+                                }
+                            });
+                    agentNameTextButton.addStyleName("borderlessButton");
+                    agentNameTextFacetsLayout.addComponent(agentNameTextButton);
+                }
+                final DisclosurePanel disclosurePanel = new DisclosurePanel();
+                disclosurePanel.setCaption("Agent names");
+                disclosurePanel.setContent(agentNameTextFacetsLayout);
+                disclosurePanel.setOpen(false);
+                leftPaneLayout.addComponent(disclosurePanel);
+            }
 
             if (!objectFacets.getInstitutionHits().isEmpty()) {
                 final VerticalLayout institutionFacetsLayout = new VerticalLayout();
-                institutionFacetsLayout.addComponent(new Label("Institutions"));
                 for (final Map.Entry<InstitutionId, UnsignedInteger> institutionHitsEntry : objectFacets
                         .getInstitutionHits().entrySet()) {
                     institutionFacetsLayout.addComponent(new InstitutionButton("",
@@ -88,12 +112,16 @@ public class ObjectsView extends TopLevelView {
                             new InstitutionEntry(institutionHitsEntry.getKey(),
                                     institutions.get(institutionHitsEntry.getKey()))));
                 }
-                leftPaneLayout.addComponent(institutionFacetsLayout);
+                final DisclosurePanel disclosurePanel = new DisclosurePanel();
+                disclosurePanel.setCaption("Institutions");
+                disclosurePanel.setContent(institutionFacetsLayout);
+                disclosurePanel.setOpen(false);
+                leftPaneLayout.addComponent(disclosurePanel);
             }
 
             if (!objectFacets.getSubjectTermTexts().isEmpty()) {
-                final VerticalLayout subjectTermTextsLayout = new VerticalLayout();
-                subjectTermTextsLayout.addComponent(new Label("Subject terms"));
+                final VerticalLayout subjectTermTextFacetsLayout = new VerticalLayout();
+                subjectTermTextFacetsLayout.addComponent(new Label());
                 for (final Map.Entry<String, UnsignedInteger> subjectTermTextsEntry : objectFacets.getSubjectTermTexts()
                         .entrySet()) {
                     final Button subjectTermTextButton = new Button(String.format("%s (%d objects)",
@@ -109,9 +137,13 @@ public class ObjectsView extends TopLevelView {
                                 }
                             });
                     subjectTermTextButton.addStyleName("borderlessButton");
-                    subjectTermTextsLayout.addComponent(subjectTermTextButton);
+                    subjectTermTextFacetsLayout.addComponent(subjectTermTextButton);
                 }
-                leftPaneLayout.addComponent(subjectTermTextsLayout);
+                final DisclosurePanel disclosurePanel = new DisclosurePanel();
+                disclosurePanel.setCaption("Subject terms");
+                disclosurePanel.setContent(subjectTermTextFacetsLayout);
+                disclosurePanel.setOpen(false);
+                leftPaneLayout.addComponent(disclosurePanel);
             }
 
             twoPaneLayout.addComponent(leftPaneLayout);

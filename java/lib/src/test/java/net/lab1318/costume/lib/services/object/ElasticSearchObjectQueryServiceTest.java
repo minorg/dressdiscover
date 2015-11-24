@@ -52,6 +52,7 @@ public final class ElasticSearchObjectQueryServiceTest extends ObjectServiceTest
     public void testGetObjectFacets() throws Exception {
         _putObjects();
         final ObjectFacets actual = objectQueryService.getObjectFacets();
+        assertEquals(TestData.getInstance().getAgents().size(), actual.getAgentNameTexts().size());
         assertEquals(TestData.getInstance().getCollections().size(), actual.getCollectionHits().size());
         assertEquals(TestData.getInstance().getInstitutions().size(), actual.getInstitutionHits().size());
         assertEquals(TestData.getInstance().getSubjects().size(), actual.getSubjectTermTexts().size());
