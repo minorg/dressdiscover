@@ -52,17 +52,21 @@ public final class ObjectForm extends CustomComponent {
                 formLayout.addComponent(__createTextArea("Description", objectEntry.getModel().getDescription().get()));
             }
 
+            if (objectEntry.getModel().getAgents().isPresent()) {
+                formLayout.addComponent(new AgentSetTable(objectEntry.getModel().getAgents().get()));
+            }
+
             if (objectEntry.getModel().getHistoryNotes().isPresent()) {
                 formLayout.addComponent(
                         __createTextArea("History notes", objectEntry.getModel().getHistoryNotes().get()));
             }
 
             if (objectEntry.getModel().getInscriptions().isPresent()) {
-                formLayout.addComponent(new InscriptionsTable(objectEntry.getModel().getInscriptions().get()));
+                formLayout.addComponent(new InscriptionSetTable(objectEntry.getModel().getInscriptions().get()));
             }
 
             if (objectEntry.getModel().getMaterials().isPresent()) {
-                formLayout.addComponent(new MaterialsTable(objectEntry.getModel().getMaterials().get()));
+                formLayout.addComponent(new MaterialSetTable(objectEntry.getModel().getMaterials().get()));
             }
 
             if (objectEntry.getModel().getProvenance().isPresent()) {
@@ -74,7 +78,7 @@ public final class ObjectForm extends CustomComponent {
             }
 
             if (objectEntry.getModel().getTechniques().isPresent()) {
-                formLayout.addComponent(new TechniquesTable(objectEntry.getModel().getTechniques().get()));
+                formLayout.addComponent(new TechniqueSetTable(objectEntry.getModel().getTechniques().get()));
             }
 
             if (objectEntry.getModel().getUrl().isPresent()) {
@@ -84,7 +88,7 @@ public final class ObjectForm extends CustomComponent {
 
             leftPaneLayout.addComponent(formLayout);
 
-			leftPaneLayout.addComponent(new RightsLabel(institution.getDataRights()));
+            leftPaneLayout.addComponent(new RightsLabel(institution.getDataRights()));
         }
 
         if (objectEntry.getModel().getThumbnail().isPresent()) {

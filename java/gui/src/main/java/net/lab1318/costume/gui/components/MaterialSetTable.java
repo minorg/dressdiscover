@@ -11,8 +11,8 @@ import net.lab1318.costume.api.models.material.MaterialSet;
 import net.lab1318.costume.gui.models.material.MaterialBean;
 
 @SuppressWarnings("serial")
-public final class MaterialsTable extends Table {
-    public MaterialsTable(final MaterialSet materials) {
+public final class MaterialSetTable extends Table {
+    public MaterialSetTable(final MaterialSet materials) {
         if (materials.getDisplay().isPresent()) {
             setCaption("Materials: " + materials.getDisplay().get());
         } else {
@@ -20,13 +20,13 @@ public final class MaterialsTable extends Table {
         }
         final BeanItemContainer<MaterialBean> container = new BeanItemContainer<>(MaterialBean.class);
         // boolean haveVocab = false;
-        // for (final Material material : materials.getMaterials()) {
-        // container.addBean(new MaterialBean(material));
-        // if (material.getVocabRef().isPresent()) {
-        // haveVocab = true;
-        // break;
-        // }
-        // }
+        for (final Material material : materials.getMaterials()) {
+            container.addBean(new MaterialBean(material));
+            // if (material.getVocabRef().isPresent()) {
+            // haveVocab = true;
+            // break;
+            // }
+        }
         setContainerDataSource(container);
         setPageLength(materials.getMaterials().size());
         setColumnHeader(Material.FieldMetadata.TEXT.getJavaName(), "Name");
