@@ -59,12 +59,20 @@
                         "index": "not_analyzed", 
                         "type": "string"
                       }, 
-                      "3:refid": {
-                        "type": "string"
-                      }, 
-                      "4:vocab": {
-                        "index": "not_analyzed", 
-                        "type": "string"
+                      "5:vocab_ref": {
+                        "type": "nested", 
+                        "properties": {
+                          "2:vocab": {
+                            "index": "not_analyzed", 
+                            "type": "string"
+                          }, 
+                          "1:refid": {
+                            "type": "string"
+                          }, 
+                          "3:uri": {
+                            "type": "string"
+                          }
+                        }
                       }
                     }
                   }, 
@@ -95,12 +103,20 @@
                       "1:text": {
                         "type": "string"
                       }, 
-                      "2:refid": {
-                        "type": "string"
-                      }, 
-                      "3:vocab": {
-                        "index": "not_analyzed", 
-                        "type": "string"
+                      "4:vocab_ref": {
+                        "type": "nested", 
+                        "properties": {
+                          "2:vocab": {
+                            "index": "not_analyzed", 
+                            "type": "string"
+                          }, 
+                          "1:refid": {
+                            "type": "string"
+                          }, 
+                          "3:uri": {
+                            "type": "string"
+                          }
+                        }
                       }
                     }
                   }
@@ -156,12 +172,20 @@
                       "1:text": {
                         "type": "string"
                       }, 
-                      "2:refid": {
-                        "type": "string"
-                      }, 
-                      "3:vocab": {
-                        "index": "not_analyzed", 
-                        "type": "string"
+                      "4:vocab_ref": {
+                        "type": "nested", 
+                        "properties": {
+                          "2:vocab": {
+                            "index": "not_analyzed", 
+                            "type": "string"
+                          }, 
+                          "1:refid": {
+                            "type": "string"
+                          }, 
+                          "3:uri": {
+                            "type": "string"
+                          }
+                        }
                       }
                     }
                   }, 
@@ -191,12 +215,20 @@
                   "2:text": {
                     "type": "string"
                   }, 
-                  "3:refid": {
-                    "type": "string"
-                  }, 
-                  "4:vocab": {
-                    "index": "not_analyzed", 
-                    "type": "string"
+                  "5:vocab_ref": {
+                    "type": "nested", 
+                    "properties": {
+                      "2:vocab": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }, 
+                      "1:refid": {
+                        "type": "string"
+                      }, 
+                      "3:uri": {
+                        "type": "string"
+                      }
+                    }
                   }
                 }
               }, 
@@ -231,12 +263,20 @@
                         "index": "not_analyzed", 
                         "type": "string"
                       }, 
-                      "3:refid": {
-                        "type": "string"
-                      }, 
-                      "4:vocab": {
-                        "index": "not_analyzed", 
-                        "type": "string"
+                      "5:vocab_ref": {
+                        "type": "nested", 
+                        "properties": {
+                          "2:vocab": {
+                            "index": "not_analyzed", 
+                            "type": "string"
+                          }, 
+                          "1:refid": {
+                            "type": "string"
+                          }, 
+                          "3:uri": {
+                            "type": "string"
+                          }
+                        }
                       }
                     }
                   }
@@ -262,12 +302,20 @@
                   "1:text": {
                     "type": "string"
                   }, 
-                  "2:refid": {
-                    "type": "string"
-                  }, 
-                  "3:vocab": {
-                    "index": "not_analyzed", 
-                    "type": "string"
+                  "4:vocab_ref": {
+                    "type": "nested", 
+                    "properties": {
+                      "2:vocab": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }, 
+                      "1:refid": {
+                        "type": "string"
+                      }, 
+                      "3:uri": {
+                        "type": "string"
+                      }
+                    }
                   }
                 }
               }, 

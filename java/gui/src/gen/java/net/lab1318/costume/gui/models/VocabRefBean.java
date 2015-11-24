@@ -1,13 +1,11 @@
-package net.lab1318.costume.gui.models.agent;
+package net.lab1318.costume.gui.models;
 
-/**
- * VRA Core 4.0 agent role= attribute
- */
-public class AgentRoleBean {
+public class VocabRefBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "text", org.thryft.protocol.Type.STRING),
-        VOCAB_REF("vocabRef", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.VocabRefBean>() {}, false, 4, "vocab_ref", org.thryft.protocol.Type.STRUCT);
+        VOCAB("vocab", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.Vocab>() {}, true, 2, "vocab", org.thryft.protocol.Type.STRING),
+        REFID("refid", new com.google.common.reflect.TypeToken<String>() {}, false, 1, "refid", org.thryft.protocol.Type.STRING),
+        URI("uri", new com.google.common.reflect.TypeToken<org.thryft.native_.Uri>() {}, false, 3, "uri", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -51,8 +49,9 @@ public class AgentRoleBean {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "text": return TEXT;
-            case "vocabRef": return VOCAB_REF;
+            case "vocab": return VOCAB;
+            case "refid": return REFID;
+            case "uri": return URI;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -60,8 +59,9 @@ public class AgentRoleBean {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "text": return TEXT;
-            case "vocab_ref": return VOCAB_REF;
+            case "vocab": return VOCAB;
+            case "refid": return REFID;
+            case "uri": return URI;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -90,62 +90,78 @@ public class AgentRoleBean {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public AgentRoleBean() {
-        text = null;
-        vocabRef = null;
+    public VocabRefBean() {
+        vocab = null;
+        refid = null;
+        uri = null;
     }
 
-    public AgentRoleBean(final net.lab1318.costume.api.models.agent.AgentRole other) {
-        this.text = other.getText();
-        this.vocabRef = other.getVocabRef().isPresent() ? new net.lab1318.costume.gui.models.VocabRefBean(other.getVocabRef().get()) : null;
+    public VocabRefBean(final net.lab1318.costume.api.models.VocabRef other) {
+        this.vocab = other.getVocab();
+        this.refid = other.getRefid().isPresent() ? other.getRefid().get() : null;
+        this.uri = other.getUri().isPresent() ? other.getUri().get() : null;
     }
 
     @Override
     public boolean equals(final java.lang.Object otherObject) {
         if (otherObject == this) {
             return true;
-        } else if (!(otherObject instanceof AgentRoleBean)) {
+        } else if (!(otherObject instanceof VocabRefBean)) {
             return false;
         }
 
-        final AgentRoleBean other = (AgentRoleBean)otherObject;
+        final VocabRefBean other = (VocabRefBean)otherObject;
         return
-            getText().equals(other.getText()) &&
-            getVocabRef().equals(other.getVocabRef());
+            getVocab().equals(other.getVocab()) &&
+            getRefid().equals(other.getRefid()) &&
+            getUri().equals(other.getUri());
     }
 
-    public String getText() {
-        return text;
+    public String getRefid() {
+        return refid;
     }
 
-    public net.lab1318.costume.gui.models.VocabRefBean getVocabRef() {
-        return vocabRef;
+    public org.thryft.native_.Uri getUri() {
+        return uri;
+    }
+
+    public net.lab1318.costume.api.models.Vocab getVocab() {
+        return vocab;
     }
 
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getText().hashCode();
-        if (getVocabRef() != null) {
-            hashCode = 31 * hashCode + getVocabRef().hashCode();
+        hashCode = 31 * hashCode + getVocab().ordinal();
+        if (getRefid() != null) {
+            hashCode = 31 * hashCode + getRefid().hashCode();
+        }
+        if (getUri() != null) {
+            hashCode = 31 * hashCode + getUri().hashCode();
         }
         return hashCode;
     }
 
-    public void setText(final String text) {
-        this.text = text;
+    public void setRefid(final String refid) {
+        this.refid = refid;
     }
 
-    public void setVocabRef(final net.lab1318.costume.gui.models.VocabRefBean vocabRef) {
-        this.vocabRef = vocabRef;
+    public void setUri(final org.thryft.native_.Uri uri) {
+        this.uri = uri;
+    }
+
+    public void setVocab(final net.lab1318.costume.api.models.Vocab vocab) {
+        this.vocab = vocab;
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("vocab_ref", getVocabRef()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("vocab", getVocab()).add("refid", getRefid()).add("uri", getUri()).toString();
     }
 
-    private String text;
+    private net.lab1318.costume.api.models.Vocab vocab;
 
-    private net.lab1318.costume.gui.models.VocabRefBean vocabRef;
+    private String refid;
+
+    private org.thryft.native_.Uri uri;
 }

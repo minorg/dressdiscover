@@ -8,27 +8,21 @@ public class Material implements org.thryft.Struct {
         public Builder() {
             type = null;
             text = null;
-            refid = com.google.common.base.Optional.absent();
-            vocab = com.google.common.base.Optional.absent();
+            vocabRef = com.google.common.base.Optional.absent();
         }
 
         public Builder(final Material other) {
             this.type = other.getType();
             this.text = other.getText();
-            this.refid = other.getRefid();
-            this.vocab = other.getVocab();
+            this.vocabRef = other.getVocabRef();
         }
 
-        protected Material _build(final net.lab1318.costume.api.models.material.MaterialType type, final String text, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab) {
-            return new Material(type, text, refid, vocab);
+        protected Material _build(final net.lab1318.costume.api.models.material.MaterialType type, final String text, final com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> vocabRef) {
+            return new Material(type, text, vocabRef);
         }
 
         public Material build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.material.Material: missing type"), com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.material.Material: missing text"), com.google.common.base.Preconditions.checkNotNull(refid, "net.lab1318.costume.api.models.material.Material: missing refid"), com.google.common.base.Preconditions.checkNotNull(vocab, "net.lab1318.costume.api.models.material.Material: missing vocab"));
-        }
-
-        public final com.google.common.base.Optional<String> getRefid() {
-            return refid;
+            return _build(com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.material.Material: missing type"), com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.material.Material: missing text"), com.google.common.base.Preconditions.checkNotNull(vocabRef, "net.lab1318.costume.api.models.material.Material: missing vocabRef"));
         }
 
         public final String getText() {
@@ -39,8 +33,8 @@ public class Material implements org.thryft.Struct {
             return type;
         }
 
-        public final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> getVocab() {
-            return vocab;
+        public final com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> getVocabRef() {
+            return vocabRef;
         }
 
         public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -59,13 +53,7 @@ public class Material implements org.thryft.Struct {
             type = iprot.readEnum(net.lab1318.costume.api.models.material.MaterialType.class);
             text = iprot.readString();
             if (__list.getSize() > 2) {
-                refid = com.google.common.base.Optional.of(iprot.readString());
-            }
-            if (__list.getSize() > 3) {
-                try {
-                    vocab = com.google.common.base.Optional.of(iprot.readEnum(net.lab1318.costume.api.models.Vocab.class));
-                } catch (final IllegalArgumentException e) {
-                }
+                vocabRef = com.google.common.base.Optional.of(net.lab1318.costume.api.models.VocabRef.readAsStruct(iprot));
             }
             iprot.readListEnd();
             return this;
@@ -91,18 +79,9 @@ public class Material implements org.thryft.Struct {
                     }
                     break;
                 }
-                case "refid": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        refid = com.google.common.base.Optional.of(iprot.readString());
-                    }
-                    break;
-                }
-                case "vocab": {
-                    if (!ifield.hasId() || ifield.getId() == 4) {
-                        try {
-                            vocab = com.google.common.base.Optional.of(iprot.readEnum(net.lab1318.costume.api.models.Vocab.class));
-                        } catch (final IllegalArgumentException e) {
-                        }
+                case "vocab_ref": {
+                    if (!ifield.hasId() || ifield.getId() == 5) {
+                        vocabRef = com.google.common.base.Optional.of(net.lab1318.costume.api.models.VocabRef.readAsStruct(iprot));
                     }
                     break;
                 }
@@ -118,23 +97,10 @@ public class Material implements org.thryft.Struct {
 
             setType(other.getType());
             setText(other.getText());
-            if (other.getRefid().isPresent()) {
-                setRefid(other.getRefid());
-            }
-            if (other.getVocab().isPresent()) {
-                setVocab(other.getVocab());
+            if (other.getVocabRef().isPresent()) {
+                setVocabRef(other.getVocabRef());
             }
 
-            return this;
-        }
-
-        public Builder setRefid(final com.google.common.base.Optional<String> refid) {
-            this.refid = com.google.common.base.Preconditions.checkNotNull(refid);
-            return this;
-        }
-
-        public Builder setRefid(@javax.annotation.Nullable final String refid) {
-            this.refid = com.google.common.base.Optional.fromNullable(refid);
             return this;
         }
 
@@ -148,13 +114,13 @@ public class Material implements org.thryft.Struct {
             return this;
         }
 
-        public Builder setVocab(final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab) {
-            this.vocab = com.google.common.base.Preconditions.checkNotNull(vocab);
+        public Builder setVocabRef(final com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> vocabRef) {
+            this.vocabRef = com.google.common.base.Preconditions.checkNotNull(vocabRef);
             return this;
         }
 
-        public Builder setVocab(@javax.annotation.Nullable final net.lab1318.costume.api.models.Vocab vocab) {
-            this.vocab = com.google.common.base.Optional.fromNullable(vocab);
+        public Builder setVocabRef(@javax.annotation.Nullable final net.lab1318.costume.api.models.VocabRef vocabRef) {
+            this.vocabRef = com.google.common.base.Optional.fromNullable(vocabRef);
             return this;
         }
 
@@ -164,16 +130,10 @@ public class Material implements org.thryft.Struct {
             switch (name.toLowerCase()) {
             case "type": setType((net.lab1318.costume.api.models.material.MaterialType)value); return this;
             case "text": setText((String)value); return this;
-            case "refid": setRefid((String)value); return this;
-            case "vocab": setVocab((net.lab1318.costume.api.models.Vocab)value); return this;
+            case "vocab_ref": setVocabRef((net.lab1318.costume.api.models.VocabRef)value); return this;
             default:
                 throw new IllegalArgumentException(name);
             }
-        }
-
-        public Builder unsetRefid() {
-            this.refid = com.google.common.base.Optional.absent();
-            return this;
         }
 
         public Builder unsetText() {
@@ -186,23 +146,21 @@ public class Material implements org.thryft.Struct {
             return this;
         }
 
-        public Builder unsetVocab() {
-            this.vocab = com.google.common.base.Optional.absent();
+        public Builder unsetVocabRef() {
+            this.vocabRef = com.google.common.base.Optional.absent();
             return this;
         }
 
         private net.lab1318.costume.api.models.material.MaterialType type;
         private String text;
-        private com.google.common.base.Optional<String> refid;
-        private com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab;
+        private com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> vocabRef;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.material.MaterialType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "text", org.thryft.protocol.Type.STRING),
-        REFID("refid", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "refid", org.thryft.protocol.Type.STRING),
-        VOCAB("vocab", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.Vocab>() {}, false, 4, "vocab", org.thryft.protocol.Type.STRING);
+        VOCAB_REF("vocabRef", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.VocabRef>() {}, false, 5, "vocab_ref", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -248,8 +206,7 @@ public class Material implements org.thryft.Struct {
             switch (javaName) {
             case "type": return TYPE;
             case "text": return TEXT;
-            case "refid": return REFID;
-            case "vocab": return VOCAB;
+            case "vocabRef": return VOCAB_REF;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -259,8 +216,7 @@ public class Material implements org.thryft.Struct {
             switch (thriftName) {
             case "type": return TYPE;
             case "text": return TEXT;
-            case "refid": return REFID;
-            case "vocab": return VOCAB;
+            case "vocab_ref": return VOCAB_REF;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -293,7 +249,7 @@ public class Material implements org.thryft.Struct {
      * Copy constructor
      */
     public Material(final Material other) {
-        this(other.getType(), other.getText(), other.getRefid(), other.getVocab());
+        this(other.getType(), other.getText(), other.getVocabRef());
     }
 
     /**
@@ -302,28 +258,25 @@ public class Material implements org.thryft.Struct {
     public Material(final net.lab1318.costume.api.models.material.MaterialType type, final String text) {
         this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.material.Material: missing type");
         this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.material.Material: missing text"), "net.lab1318.costume.api.models.material.Material: text is empty");
-        this.refid = com.google.common.base.Optional.absent();
-        this.vocab = com.google.common.base.Optional.absent();
+        this.vocabRef = com.google.common.base.Optional.absent();
     }
 
     /**
      * Total Nullable constructor
      */
-    public Material(final net.lab1318.costume.api.models.material.MaterialType type, final String text, final @javax.annotation.Nullable String refid, final @javax.annotation.Nullable net.lab1318.costume.api.models.Vocab vocab) {
+    public Material(final net.lab1318.costume.api.models.material.MaterialType type, final String text, final @javax.annotation.Nullable net.lab1318.costume.api.models.VocabRef vocabRef) {
         this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.material.Material: missing type");
         this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.material.Material: missing text"), "net.lab1318.costume.api.models.material.Material: text is empty");
-        this.refid = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(refid), "net.lab1318.costume.api.models.material.Material: refid is empty");
-        this.vocab = com.google.common.base.Optional.fromNullable(vocab);
+        this.vocabRef = com.google.common.base.Optional.fromNullable(vocabRef);
     }
 
     /**
      * Optional constructor
      */
-    public Material(final net.lab1318.costume.api.models.material.MaterialType type, final String text, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab) {
+    public Material(final net.lab1318.costume.api.models.material.MaterialType type, final String text, final com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> vocabRef) {
         this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.material.Material: missing type");
         this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.material.Material: missing text"), "net.lab1318.costume.api.models.material.Material: text is empty");
-        this.refid = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(refid, "net.lab1318.costume.api.models.material.Material: missing refid"), "net.lab1318.costume.api.models.material.Material: refid is empty");
-        this.vocab = com.google.common.base.Preconditions.checkNotNull(vocab, "net.lab1318.costume.api.models.material.Material: missing vocab");
+        this.vocabRef = com.google.common.base.Preconditions.checkNotNull(vocabRef, "net.lab1318.costume.api.models.material.Material: missing vocabRef");
     }
 
     public static Builder builder() {
@@ -350,8 +303,7 @@ public class Material implements org.thryft.Struct {
         return
             getType().equals(other.getType()) &&
             getText().equals(other.getText()) &&
-            getRefid().equals(other.getRefid()) &&
-            getVocab().equals(other.getVocab());
+            getVocabRef().equals(other.getVocabRef());
     }
 
     @Override
@@ -359,15 +311,10 @@ public class Material implements org.thryft.Struct {
         switch (fieldName) {
         case "type": return getType();
         case "text": return getText();
-        case "refid": return getRefid();
-        case "vocab": return getVocab();
+        case "vocab_ref": return getVocabRef();
         default:
             throw new IllegalArgumentException(fieldName);
         }
-    }
-
-    public final com.google.common.base.Optional<String> getRefid() {
-        return refid;
     }
 
     public final String getText() {
@@ -378,8 +325,8 @@ public class Material implements org.thryft.Struct {
         return type;
     }
 
-    public final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> getVocab() {
-        return vocab;
+    public final com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> getVocabRef() {
+        return vocabRef;
     }
 
     @Override
@@ -387,11 +334,8 @@ public class Material implements org.thryft.Struct {
         int hashCode = 17;
         hashCode = 31 * hashCode + getType().ordinal();
         hashCode = 31 * hashCode + getText().hashCode();
-        if (getRefid().isPresent()) {
-            hashCode = 31 * hashCode + getRefid().get().hashCode();
-        }
-        if (getVocab().isPresent()) {
-            hashCode = 31 * hashCode + getVocab().get().ordinal();
+        if (getVocabRef().isPresent()) {
+            hashCode = 31 * hashCode + getVocabRef().get().hashCode();
         }
         return hashCode;
     }
@@ -410,24 +354,17 @@ public class Material implements org.thryft.Struct {
     public static Material readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         net.lab1318.costume.api.models.material.MaterialType type = null;
         String text = null;
-        com.google.common.base.Optional<String> refid = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> vocabRef = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         type = iprot.readEnum(net.lab1318.costume.api.models.material.MaterialType.class);
         text = iprot.readString();
         if (__list.getSize() > 2) {
-            refid = com.google.common.base.Optional.of(iprot.readString());
-        }
-        if (__list.getSize() > 3) {
-            try {
-                vocab = com.google.common.base.Optional.of(iprot.readEnum(net.lab1318.costume.api.models.Vocab.class));
-            } catch (final IllegalArgumentException e) {
-            }
+            vocabRef = com.google.common.base.Optional.of(net.lab1318.costume.api.models.VocabRef.readAsStruct(iprot));
         }
         iprot.readListEnd();
         try {
-            return new Material(type, text, refid, vocab);
+            return new Material(type, text, vocabRef);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -436,8 +373,7 @@ public class Material implements org.thryft.Struct {
     public static Material readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         net.lab1318.costume.api.models.material.MaterialType type = null;
         String text = null;
-        com.google.common.base.Optional<String> refid = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> vocabRef = com.google.common.base.Optional.absent();
 
         iprot.readStructBegin();
         while (true) {
@@ -458,18 +394,9 @@ public class Material implements org.thryft.Struct {
                 }
                 break;
             }
-            case "refid": {
-                if (!ifield.hasId() || ifield.getId() == 3) {
-                    refid = com.google.common.base.Optional.of(iprot.readString());
-                }
-                break;
-            }
-            case "vocab": {
-                if (!ifield.hasId() || ifield.getId() == 4) {
-                    try {
-                        vocab = com.google.common.base.Optional.of(iprot.readEnum(net.lab1318.costume.api.models.Vocab.class));
-                    } catch (final IllegalArgumentException e) {
-                    }
+            case "vocab_ref": {
+                if (!ifield.hasId() || ifield.getId() == 5) {
+                    vocabRef = com.google.common.base.Optional.of(net.lab1318.costume.api.models.VocabRef.readAsStruct(iprot));
                 }
                 break;
             }
@@ -478,57 +405,43 @@ public class Material implements org.thryft.Struct {
         }
         iprot.readStructEnd();
         try {
-            return new Material(type, text, refid, vocab);
+            return new Material(type, text, vocabRef);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
-    public Material replaceRefid(final com.google.common.base.Optional<String> refid) {
-        return new Material(this.type, this.text, refid, this.vocab);
-    }
-
-    public Material replaceRefid(final String refid) {
-        return replaceRefid(com.google.common.base.Optional.fromNullable(refid));
-    }
-
     public Material replaceText(final String text) {
-        return new Material(this.type, text, this.refid, this.vocab);
+        return new Material(this.type, text, this.vocabRef);
     }
 
     public Material replaceType(final net.lab1318.costume.api.models.material.MaterialType type) {
-        return new Material(type, this.text, this.refid, this.vocab);
+        return new Material(type, this.text, this.vocabRef);
     }
 
-    public Material replaceVocab(final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab) {
-        return new Material(this.type, this.text, this.refid, vocab);
+    public Material replaceVocabRef(final com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> vocabRef) {
+        return new Material(this.type, this.text, vocabRef);
     }
 
-    public Material replaceVocab(final net.lab1318.costume.api.models.Vocab vocab) {
-        return replaceVocab(com.google.common.base.Optional.fromNullable(vocab));
+    public Material replaceVocabRef(final net.lab1318.costume.api.models.VocabRef vocabRef) {
+        return replaceVocabRef(com.google.common.base.Optional.fromNullable(vocabRef));
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("type", getType()).add("text", getText()).add("refid", getRefid().orNull()).add("vocab", getVocab().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("type", getType()).add("text", getText()).add("vocab_ref", getVocabRef().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 4);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
 
         oprot.writeEnum(getType());
 
         oprot.writeString(getText());
 
-        if (getRefid().isPresent()) {
-            oprot.writeString(getRefid().get());
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getVocab().isPresent()) {
-            oprot.writeEnum(getVocab().get());
+        if (getVocabRef().isPresent()) {
+            getVocabRef().get().writeAsStruct(oprot);
         } else {
             oprot.writeNull();
         }
@@ -553,15 +466,9 @@ public class Material implements org.thryft.Struct {
         oprot.writeString(getText());
         oprot.writeFieldEnd();
 
-        if (getRefid().isPresent()) {
-            oprot.writeFieldBegin("refid", org.thryft.protocol.Type.STRING, (short)3);
-            oprot.writeString(getRefid().get());
-            oprot.writeFieldEnd();
-        }
-
-        if (getVocab().isPresent()) {
-            oprot.writeFieldBegin("vocab", org.thryft.protocol.Type.STRING, (short)4);
-            oprot.writeEnum(getVocab().get());
+        if (getVocabRef().isPresent()) {
+            oprot.writeFieldBegin("vocab_ref", org.thryft.protocol.Type.STRUCT, (short)5);
+            getVocabRef().get().writeAsStruct(oprot);
             oprot.writeFieldEnd();
         }
 
@@ -572,7 +479,5 @@ public class Material implements org.thryft.Struct {
 
     private final String text;
 
-    private final com.google.common.base.Optional<String> refid;
-
-    private final com.google.common.base.Optional<net.lab1318.costume.api.models.Vocab> vocab;
+    private final com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> vocabRef;
 }
