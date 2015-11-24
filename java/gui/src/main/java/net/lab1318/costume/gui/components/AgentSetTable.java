@@ -36,17 +36,21 @@ public final class AgentSetTable extends Table {
                     public Object generateCell(final Table source, final Object itemId, final Object columnId) {
                         final String agentNameText = (String) container.getItem(itemId).getItemProperty(columnId)
                                 .getValue();
-                        return new Button(agentNameText, new Button.ClickListener() {
+                        final Button button = new Button(agentNameText, new Button.ClickListener() {
                             @Override
                             public void buttonClick(final ClickEvent event) {
                                 GuiUI.navigateTo(ObjectQuery.builder().setIncludeAgentNameText(agentNameText).build());
                             }
                         });
+                        button.addStyleName("borderlessButton");
+                        return button;
                     }
                 });
         setPageLength(agents.getAgents().size());
-        setColumnHeader(Agent.FieldMetadata.NAME.getJavaName() + '.' + AgentName.FieldMetadata.TEXT.getJavaName(),
-                "Name");
+        // setColumnHeader(Agent.FieldMetadata.NAME.getJavaName() + '.' +
+        // AgentName.FieldMetadata.TEXT.getJavaName(),
+        // "Name");
+        setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
         final List<Object> visibleColumns = new ArrayList<>();
         visibleColumns.add(Agent.FieldMetadata.NAME.getJavaName() + '.' + AgentName.FieldMetadata.TEXT.getJavaName());
         setVisibleColumns(visibleColumns.toArray());

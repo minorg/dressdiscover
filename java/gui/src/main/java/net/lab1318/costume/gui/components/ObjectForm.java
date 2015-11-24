@@ -1,5 +1,6 @@
 package net.lab1318.costume.gui.components;
 
+import com.google.common.base.Optional;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.CustomComponent;
@@ -18,6 +19,7 @@ import net.lab1318.costume.api.models.object.ObjectEntry;
 public final class ObjectForm extends CustomComponent {
     public ObjectForm(final ObjectEntry objectEntry, final Institution institution) {
         final VerticalLayout rootLayout = new VerticalLayout();
+        rootLayout.setSizeFull();
 
         final Label titleLabel = new Label(objectEntry.getModel().getTitle());
         titleLabel.setStyleName("h3");
@@ -29,6 +31,7 @@ public final class ObjectForm extends CustomComponent {
         final VerticalLayout leftPaneLayout = new VerticalLayout();
         twoPaneLayout.addComponent(leftPaneLayout);
         twoPaneLayout.setComponentAlignment(leftPaneLayout, Alignment.TOP_LEFT);
+
         final VerticalLayout rightPaneLayout = new VerticalLayout();
         twoPaneLayout.addComponent(rightPaneLayout);
         twoPaneLayout.setComponentAlignment(rightPaneLayout, Alignment.TOP_CENTER);
@@ -73,6 +76,10 @@ public final class ObjectForm extends CustomComponent {
                 formLayout.addComponent(__createTextField("Provenance", objectEntry.getModel().getProvenance().get()));
             }
 
+            if (objectEntry.getModel().getSubjects().isPresent()) {
+                formLayout.addComponent(new SubjectSetTable(objectEntry.getModel().getSubjects().get()));
+            }
+
             if (objectEntry.getModel().getSummary().isPresent()) {
                 formLayout.addComponent(__createTextArea("Summary", objectEntry.getModel().getSummary().get()));
             }
@@ -92,7 +99,8 @@ public final class ObjectForm extends CustomComponent {
         }
 
         if (objectEntry.getModel().getThumbnail().isPresent()) {
-            final Image thumbnail = new Image("", objectEntry.getModel().getThumbnail().get());
+            final Image thumbnail = new Image("", Optional.absent(), objectEntry.getModel().getThumbnail().get(),
+                    Optional.absent());
             rightPaneLayout.addComponent(thumbnail);
         }
 
