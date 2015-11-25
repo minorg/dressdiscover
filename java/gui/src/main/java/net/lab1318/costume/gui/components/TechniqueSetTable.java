@@ -4,20 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.Table;
 
 import net.lab1318.costume.api.models.technique.Technique;
 import net.lab1318.costume.api.models.technique.TechniqueSet;
 import net.lab1318.costume.gui.models.technique.TechniqueBean;
 
 @SuppressWarnings("serial")
-public final class TechniqueSetTable extends Table {
+public final class TechniqueSetTable extends ElementSetTable {
     public TechniqueSetTable(final TechniqueSet techniques) {
-        if (techniques.getDisplay().isPresent()) {
-            setCaption("Techniques: " + techniques.getDisplay().get());
-        } else {
-            setCaption("Techniques");
-        }
+        super("Techniques", techniques);
+
         final BeanItemContainer<TechniqueBean> container = new BeanItemContainer<>(TechniqueBean.class);
         // boolean haveVocab = false;
         for (final Technique technique : techniques.getTechniques()) {

@@ -307,7 +307,8 @@ public class ObjectsView extends TopLevelView {
                         public String convertToPresentation(final Url value, final Class<? extends String> targetType,
                                 final Locale locale)
                                         throws com.vaadin.data.util.converter.Converter.ConversionException {
-                            return String.format("<a href=\"%s\">%s</a>", value.toString(), value.toString());
+                            return String.format("<a href=\"%s\" target=\"_blank\">%s</a>", value.toString(),
+                                    value.toString());
                         }
                     });
                 }

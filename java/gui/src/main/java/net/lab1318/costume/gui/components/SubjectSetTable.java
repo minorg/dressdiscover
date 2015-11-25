@@ -16,13 +16,10 @@ import net.lab1318.costume.gui.GuiUI;
 import net.lab1318.costume.gui.models.subject.SubjectTermBean;
 
 @SuppressWarnings("serial")
-public final class SubjectSetTable extends Table {
+public final class SubjectSetTable extends ElementSetTable {
     public SubjectSetTable(final SubjectSet subjects) {
-        if (subjects.getDisplay().isPresent()) {
-            setCaption("Subjects: " + subjects.getDisplay().get());
-        } else {
-            setCaption("Subjects");
-        }
+        super("Subjects", subjects);
+
         final BeanItemContainer<SubjectTermBean> container = new BeanItemContainer<>(SubjectTermBean.class);
         for (final Subject subject : subjects.getSubjects()) {
             for (final SubjectTerm term : subject.getTerms()) {

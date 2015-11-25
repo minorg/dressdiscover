@@ -16,13 +16,10 @@ import net.lab1318.costume.gui.GuiUI;
 import net.lab1318.costume.gui.models.agent.AgentBean;
 
 @SuppressWarnings("serial")
-public final class AgentSetTable extends Table {
+public final class AgentSetTable extends ElementSetTable {
     public AgentSetTable(final AgentSet agents) {
-        if (agents.getDisplay().isPresent()) {
-            setCaption("Agents: " + agents.getDisplay().get());
-        } else {
-            setCaption("Agents");
-        }
+        super("Agents", agents);
+
         final BeanItemContainer<AgentBean> container = new BeanItemContainer<>(AgentBean.class);
         for (final Agent agent : agents.getAgents()) {
             container.addBean(new AgentBean(agent));
