@@ -1,21 +1,16 @@
 package net.lab1318.costume.gui.components;
 
 import com.vaadin.data.Item;
-import com.vaadin.ui.Table;
 
 import net.lab1318.costume.api.models.inscription.Inscription;
 import net.lab1318.costume.api.models.inscription.InscriptionSet;
 import net.lab1318.costume.api.models.inscription.InscriptionText;
 
 @SuppressWarnings("serial")
-public final class InscriptionSetTable extends Table {
+public final class InscriptionSetTable extends ElementSetTable {
     @SuppressWarnings("unchecked")
     public InscriptionSetTable(final InscriptionSet inscriptions) {
-        if (inscriptions.getDisplay().isPresent()) {
-            setCaption("Inscription: " + inscriptions.getDisplay().get());
-        } else {
-            setCaption("Inscription");
-        }
+        super("Inscriptions", inscriptions);
 
         boolean haveAuthor = false;
         for (final Inscription inscription : inscriptions.getInscriptions()) {

@@ -5,6 +5,7 @@ namespace * costume.api.models.rights
 include "costume/api/models/rights/rights.thrift"
 
 // VRA Core 4.0 rightsSet element
+// @java_implements net.lab1318.costume.api.models.ElementSet
 struct RightsSet {
 	// @validation {"minLength": 1}
 	1: list<rights.Rights> rights;

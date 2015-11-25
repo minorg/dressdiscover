@@ -5,6 +5,7 @@ namespace * costume.api.models.material
 include "costume/api/models/material/material.thrift"
 
 // VRA Core 4.0 materialSet element
+// @java_implements net.lab1318.costume.api.models.ElementSet
 struct MaterialSet {
 	// @validation {"minLength": 1}
 	1: list<material.Material> materials;

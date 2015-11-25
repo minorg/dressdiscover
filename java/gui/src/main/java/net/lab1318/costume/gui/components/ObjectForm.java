@@ -89,8 +89,10 @@ public final class ObjectForm extends CustomComponent {
             }
 
             if (objectEntry.getModel().getUrl().isPresent()) {
-                formLayout.addComponent(new Link(objectEntry.getModel().getUrl().get().toString(),
-                        new ExternalResource(objectEntry.getModel().getUrl().get().toString())));
+                final Link link = new Link(objectEntry.getModel().getUrl().get().toString(),
+                        new ExternalResource(objectEntry.getModel().getUrl().get().toString()));
+                link.setTargetName("_blank");
+                formLayout.addComponent(link);
             }
 
             leftPaneLayout.addComponent(formLayout);
