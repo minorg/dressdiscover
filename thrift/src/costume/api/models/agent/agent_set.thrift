@@ -5,6 +5,7 @@ namespace * costume.api.models.agent
 include "costume/api/models/agent/agent.thrift"
 
 // VRA Core 4.0 agentSet element
+// @java_implements net.lab1318.costume.api.models.ElementSet
 struct AgentSet {
 	// @validation {"minLength": 1}
 	1: list<agent.Agent> agents;

@@ -3,7 +3,7 @@ package net.lab1318.costume.api.models.inscription;
 /**
  * VRA Core 4.0 inscriptionSet element
  */
-public class InscriptionSet implements org.thryft.Struct {
+public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.api.models.ElementSet {
     public static class Builder {
         public Builder() {
             inscriptions = null;

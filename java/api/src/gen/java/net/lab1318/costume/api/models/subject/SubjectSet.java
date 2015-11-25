@@ -3,7 +3,7 @@ package net.lab1318.costume.api.models.subject;
 /**
  * VRA Core 4.0 subjectSet element
  */
-public class SubjectSet implements org.thryft.Struct {
+public class SubjectSet implements org.thryft.Struct, net.lab1318.costume.api.models.ElementSet {
     public static class Builder {
         public Builder() {
             subjects = null;

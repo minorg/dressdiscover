@@ -3,7 +3,7 @@ package net.lab1318.costume.api.models.agent;
 /**
  * VRA Core 4.0 agentSet element
  */
-public class AgentSet implements org.thryft.Struct {
+public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.models.ElementSet {
     public static class Builder {
         public Builder() {
             agents = null;
