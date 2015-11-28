@@ -396,6 +396,11 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 			filters.add(filter);
 		}
 
+		if (query.get().getIncludeCategory().isPresent()) {
+			filters.add(FilterBuilders.termFilter(Object.FieldMetadata.CATEGORIES.getThriftProtocolKey(),
+					query.get().getIncludeCategory().get().toString()));
+		}
+
 		if (query.get().getIncludeCollectionId().isPresent()) {
 			filters.add(FilterBuilders.termFilter(Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
 					query.get().getIncludeCollectionId().get().toString()));
