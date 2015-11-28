@@ -3,6 +3,7 @@ package net.lab1318.costume.gui.components;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.collect.ImmutableSet;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
@@ -17,34 +18,35 @@ import net.lab1318.costume.gui.models.subject.SubjectTermBean;
 
 @SuppressWarnings("serial")
 public final class SubjectSetTable extends ElementSetTable {
-    public SubjectSetTable(final SubjectSet subjects) {
-        super("Subjects", subjects);
+	public SubjectSetTable(final SubjectSet subjects) {
+		super("Subjects", subjects);
 
-        final BeanItemContainer<SubjectTermBean> container = new BeanItemContainer<>(SubjectTermBean.class);
-        for (final Subject subject : subjects.getSubjects()) {
-            for (final SubjectTerm term : subject.getTerms()) {
-                container.addBean(new SubjectTermBean(term));
-            }
-        }
-        setContainerDataSource(container);
-        addGeneratedColumn(SubjectTerm.FieldMetadata.TEXT.getJavaName(), new ColumnGenerator() {
-            @Override
-            public Object generateCell(final Table source, final Object itemId, final Object columnId) {
-                final String subjectTermText = (String) container.getItem(itemId).getItemProperty(columnId).getValue();
-                final Button button = new Button(subjectTermText, new Button.ClickListener() {
-                    @Override
-                    public void buttonClick(final ClickEvent event) {
-                        GuiUI.navigateTo(ObjectQuery.builder().setIncludeSubjectTermText(subjectTermText).build());
-                    }
-                });
-                button.addStyleName("borderlessButton");
-                return button;
-            }
-        });
-        setPageLength(subjects.getSubjects().size());
-        setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
-        final List<Object> visibleColumns = new ArrayList<>();
-        visibleColumns.add(SubjectTerm.FieldMetadata.TEXT.getJavaName());
-        setVisibleColumns(visibleColumns.toArray());
-    }
+		final BeanItemContainer<SubjectTermBean> container = new BeanItemContainer<>(SubjectTermBean.class);
+		for (final Subject subject : subjects.getSubjects()) {
+			for (final SubjectTerm term : subject.getTerms()) {
+				container.addBean(new SubjectTermBean(term));
+			}
+		}
+		setContainerDataSource(container);
+		addGeneratedColumn(SubjectTerm.FieldMetadata.TEXT.getJavaName(), new ColumnGenerator() {
+			@Override
+			public Object generateCell(final Table source, final Object itemId, final Object columnId) {
+				final String subjectTermText = (String) container.getItem(itemId).getItemProperty(columnId).getValue();
+				final Button button = new Button(subjectTermText, new Button.ClickListener() {
+					@Override
+					public void buttonClick(final ClickEvent event) {
+						GuiUI.navigateTo(ObjectQuery.builder()
+								.setIncludeSubjectTermTexts(ImmutableSet.of(subjectTermText)).build());
+					}
+				});
+				button.addStyleName("borderlessButton");
+				return button;
+			}
+		});
+		setPageLength(subjects.getSubjects().size());
+		setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
+		final List<Object> visibleColumns = new ArrayList<>();
+		visibleColumns.add(SubjectTerm.FieldMetadata.TEXT.getJavaName());
+		setVisibleColumns(visibleColumns.toArray());
+	}
 }
