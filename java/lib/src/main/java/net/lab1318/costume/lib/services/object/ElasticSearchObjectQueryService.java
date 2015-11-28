@@ -432,8 +432,8 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 				if (category.isEmpty()) {
 					continue;
 				}
-				categoryFilters.add(
-						FilterBuilders.termFilter(Object.FieldMetadata.CATEGORIES.getThriftProtocolKey(), category));
+				categoryFilters.add(FilterBuilders.termFilter(
+						Object.FieldMetadata.CATEGORIES.getThriftProtocolKey() + ".not_analyzed", category));
 			}
 			if (!categoryFilters.isEmpty()) {
 				if (categories == query.get().getExcludeCategories()) {
