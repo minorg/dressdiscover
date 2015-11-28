@@ -53,276 +53,307 @@ import net.lab1318.costume.gui.views.TopLevelView;
 @SuppressWarnings("serial")
 @SessionScoped
 public class ObjectsView extends TopLevelView {
-    @Inject
-    public ObjectsView(final EventBus eventBus) {
-        super(eventBus);
-    }
+	@Inject
+	public ObjectsView(final EventBus eventBus) {
+		super(eventBus);
+	}
 
-    public void setModels(final ImmutableMap<CollectionId, Collection> collections,
-            final ImmutableMap<InstitutionId, Institution> institutions, final ObjectFacets objectFacets,
-            final ObjectQuery objectQuery, final LazyQueryContainer objects) {
-        if (objectQuery.getQueryString().isPresent()) {
-            _getNavbar().getSearchTextField().setValue(objectQuery.getQueryString().get());
-        }
+	public void setModels(final ImmutableMap<CollectionId, Collection> collections,
+			final ImmutableMap<InstitutionId, Institution> institutions, final ObjectFacets objectFacets,
+			final ObjectQuery objectQuery, final LazyQueryContainer objects) {
+		if (objectQuery.getQueryString().isPresent()) {
+			_getNavbar().getSearchTextField().setValue(objectQuery.getQueryString().get());
+		}
 
-        final int objectsSize = objects.size();
-        if (objectsSize == 0) {
-            setCompositionRoot(new Label("No objects found."));
-            return;
-        }
+		final int objectsSize = objects.size();
+		if (objectsSize == 0) {
+			setCompositionRoot(new Label("No objects found."));
+			return;
+		}
 
-        final HorizontalLayout twoPaneLayout = new HorizontalLayout();
-        twoPaneLayout.setSizeFull();
-        twoPaneLayout.setHeight(700, Unit.PIXELS);
+		final HorizontalLayout twoPaneLayout = new HorizontalLayout();
+		twoPaneLayout.setSizeFull();
+		twoPaneLayout.setHeight(700, Unit.PIXELS);
 
-        {
-            final VerticalLayout leftPaneLayout = new VerticalLayout();
+		{
+			final VerticalLayout leftPaneLayout = new VerticalLayout();
 
-            if (!objectFacets.getAgentNameTexts().isEmpty()) {
-                final VerticalLayout agentNameTextFacetsLayout = new VerticalLayout();
-                for (final Map.Entry<String, UnsignedInteger> agentNameTextsEntry : objectFacets.getAgentNameTexts()
-                        .entrySet()) {
-                    final Button agentNameTextButton = new Button(String.format("%s (%d objects)",
-                            agentNameTextsEntry.getKey(), agentNameTextsEntry.getValue().intValue()),
-                            new Button.ClickListener() {
-                                @Override
-                                public void buttonClick(final ClickEvent event) {
-                                    _getEventBus().post(ObjectQueryService.Messages.GetObjectsRequest.builder()
-                                            .setQuery(ObjectQuery.builder()
-                                                    .setIncludeAgentNameText(agentNameTextsEntry.getKey()).build())
-                                            .build());
-                                }
-                            });
-                    agentNameTextButton.addStyleName("borderlessButton");
-                    agentNameTextFacetsLayout.addComponent(agentNameTextButton);
-                }
-                final DisclosurePanel disclosurePanel = new DisclosurePanel();
-                disclosurePanel.setCaption("Agent names");
-                disclosurePanel.setContent(agentNameTextFacetsLayout);
-                disclosurePanel.setOpen(false);
-                leftPaneLayout.addComponent(disclosurePanel);
-            }
+			if (!objectFacets.getAgentNameTexts().isEmpty()) {
+				final VerticalLayout agentNameTextFacetsLayout = new VerticalLayout();
+				for (final Map.Entry<String, UnsignedInteger> agentNameTextsEntry : objectFacets.getAgentNameTexts()
+						.entrySet()) {
+					final Button agentNameTextButton = new Button(String.format("%s (%d objects)",
+							agentNameTextsEntry.getKey(), agentNameTextsEntry.getValue().intValue()),
+							new Button.ClickListener() {
+								@Override
+								public void buttonClick(final ClickEvent event) {
+									_getEventBus().post(ObjectQueryService.Messages.GetObjectsRequest.builder()
+											.setQuery(ObjectQuery.builder()
+													.setIncludeAgentNameText(agentNameTextsEntry.getKey()).build())
+											.build());
+								}
+							});
+					agentNameTextButton.addStyleName("borderlessButton");
+					agentNameTextFacetsLayout.addComponent(agentNameTextButton);
+				}
+				final DisclosurePanel disclosurePanel = new DisclosurePanel();
+				disclosurePanel.setCaption("Agent names");
+				disclosurePanel.setContent(agentNameTextFacetsLayout);
+				disclosurePanel.setOpen(false);
+				leftPaneLayout.addComponent(disclosurePanel);
+			}
 
-            if (!objectFacets.getInstitutionHits().isEmpty()) {
-                final VerticalLayout institutionFacetsLayout = new VerticalLayout();
-                for (final Map.Entry<InstitutionId, UnsignedInteger> institutionHitsEntry : objectFacets
-                        .getInstitutionHits().entrySet()) {
-                    institutionFacetsLayout.addComponent(new InstitutionButton("",
-                            String.format(" (%d objects)", institutionHitsEntry.getValue().intValue()), _getEventBus(),
-                            new InstitutionEntry(institutionHitsEntry.getKey(),
-                                    institutions.get(institutionHitsEntry.getKey()))));
-                }
-                final DisclosurePanel disclosurePanel = new DisclosurePanel();
-                disclosurePanel.setCaption("Institutions");
-                disclosurePanel.setContent(institutionFacetsLayout);
-                disclosurePanel.setOpen(false);
-                leftPaneLayout.addComponent(disclosurePanel);
-            }
+			if (!objectFacets.getCategories().isEmpty()) {
+				final VerticalLayout categoryFacetsLayout = new VerticalLayout();
+				for (final Map.Entry<String, UnsignedInteger> categoriesEntry : objectFacets.getCategories()
+						.entrySet()) {
+					final Button categoryButton = new Button(String.format("%s (%d objects)", categoriesEntry.getKey(),
+							categoriesEntry.getValue().intValue()), new Button.ClickListener() {
+								@Override
+								public void buttonClick(final ClickEvent event) {
+									_getEventBus()
+											.post(ObjectQueryService.Messages.GetObjectsRequest.builder()
+													.setQuery(ObjectQuery.builder()
+															.setIncludeCategory(categoriesEntry.getKey()).build())
+											.build());
+								}
+							});
+					categoryButton.addStyleName("borderlessButton");
+					categoryFacetsLayout.addComponent(categoryButton);
+				}
+				final DisclosurePanel disclosurePanel = new DisclosurePanel();
+				disclosurePanel.setCaption("Categories");
+				disclosurePanel.setContent(categoryFacetsLayout);
+				disclosurePanel.setOpen(false);
+				leftPaneLayout.addComponent(disclosurePanel);
+			}
 
-            if (!objectFacets.getSubjectTermTexts().isEmpty()) {
-                final VerticalLayout subjectTermTextFacetsLayout = new VerticalLayout();
-                subjectTermTextFacetsLayout.addComponent(new Label());
-                for (final Map.Entry<String, UnsignedInteger> subjectTermTextsEntry : objectFacets.getSubjectTermTexts()
-                        .entrySet()) {
-                    final Button subjectTermTextButton = new Button(String.format("%s (%d objects)",
-                            subjectTermTextsEntry.getKey(), subjectTermTextsEntry.getValue().intValue()),
-                            new Button.ClickListener() {
-                                @Override
-                                public void buttonClick(final ClickEvent event) {
-                                    _getEventBus().post(ObjectQueryService.Messages.GetObjectsRequest.builder()
-                                            .setQuery(ObjectQuery.builder()
-                                                    .setIncludeSubjectTermText(subjectTermTextsEntry.getKey()).build())
-                                            .build());
-                                    ;
-                                }
-                            });
-                    subjectTermTextButton.addStyleName("borderlessButton");
-                    subjectTermTextFacetsLayout.addComponent(subjectTermTextButton);
-                }
-                final DisclosurePanel disclosurePanel = new DisclosurePanel();
-                disclosurePanel.setCaption("Subject terms");
-                disclosurePanel.setContent(subjectTermTextFacetsLayout);
-                disclosurePanel.setOpen(false);
-                leftPaneLayout.addComponent(disclosurePanel);
-            }
+			if (!objectFacets.getInstitutionHits().isEmpty()) {
+				final VerticalLayout institutionFacetsLayout = new VerticalLayout();
+				for (final Map.Entry<InstitutionId, UnsignedInteger> institutionHitsEntry : objectFacets
+						.getInstitutionHits().entrySet()) {
+					institutionFacetsLayout.addComponent(new InstitutionButton("",
+							String.format(" (%d objects)", institutionHitsEntry.getValue().intValue()), _getEventBus(),
+							new InstitutionEntry(institutionHitsEntry.getKey(),
+									institutions.get(institutionHitsEntry.getKey()))));
+				}
+				final DisclosurePanel disclosurePanel = new DisclosurePanel();
+				disclosurePanel.setCaption("Institutions");
+				disclosurePanel.setContent(institutionFacetsLayout);
+				disclosurePanel.setOpen(false);
+				leftPaneLayout.addComponent(disclosurePanel);
+			}
 
-            twoPaneLayout.addComponent(leftPaneLayout);
-            twoPaneLayout.setComponentAlignment(leftPaneLayout, Alignment.TOP_LEFT);
-            twoPaneLayout.setExpandRatio(leftPaneLayout, 1);
-        }
+			if (!objectFacets.getSubjectTermTexts().isEmpty()) {
+				final VerticalLayout subjectTermTextFacetsLayout = new VerticalLayout();
+				subjectTermTextFacetsLayout.addComponent(new Label());
+				for (final Map.Entry<String, UnsignedInteger> subjectTermTextsEntry : objectFacets.getSubjectTermTexts()
+						.entrySet()) {
+					final Button subjectTermTextButton = new Button(String.format("%s (%d objects)",
+							subjectTermTextsEntry.getKey(), subjectTermTextsEntry.getValue().intValue()),
+							new Button.ClickListener() {
+								@Override
+								public void buttonClick(final ClickEvent event) {
+									_getEventBus().post(ObjectQueryService.Messages.GetObjectsRequest.builder()
+											.setQuery(ObjectQuery.builder()
+													.setIncludeSubjectTermText(subjectTermTextsEntry.getKey()).build())
+											.build());
+									;
+								}
+							});
+					subjectTermTextButton.addStyleName("borderlessButton");
+					subjectTermTextFacetsLayout.addComponent(subjectTermTextButton);
+				}
+				final DisclosurePanel disclosurePanel = new DisclosurePanel();
+				disclosurePanel.setCaption("Subject terms");
+				disclosurePanel.setContent(subjectTermTextFacetsLayout);
+				disclosurePanel.setOpen(false);
+				leftPaneLayout.addComponent(disclosurePanel);
+			}
 
-        {
-            final VerticalLayout rightPaneLayout = new VerticalLayout();
+			twoPaneLayout.addComponent(leftPaneLayout);
+			twoPaneLayout.setComponentAlignment(leftPaneLayout, Alignment.TOP_LEFT);
+			twoPaneLayout.setExpandRatio(leftPaneLayout, 1);
+		}
 
-            {
-                final Label hitCountsLabel = new Label(
-                        String.format("%d object(s) in %d collection(s)", objectsSize, collections.size()));
-                hitCountsLabel.setWidth(100, Unit.PERCENTAGE);
-                rightPaneLayout.addComponent(hitCountsLabel);
-                rightPaneLayout.setComponentAlignment(hitCountsLabel, Alignment.MIDDLE_CENTER);
-            }
+		{
+			final VerticalLayout rightPaneLayout = new VerticalLayout();
 
-            {
-                final Grid grid = new Grid(objects);
-                grid.setHeightMode(HeightMode.ROW);
-                grid.setHeightByRows(4.0);
-                grid.setSizeFull();
-                grid.setCellStyleGenerator(new Grid.CellStyleGenerator() {
-                    @Override
-                    public String getStyle(final CellReference cellReference) {
-                        return cellReference.getPropertyId().equals(Object.FieldMetadata.THUMBNAIL.getJavaName())
-                                ? "thumbnailGridCell" : "borderlessButton";
-                    }
-                });
-                grid.setStyleName("objectGrid");
+			{
+				final Label hitCountsLabel = new Label(
+						String.format("%d object(s) in %d collection(s)", objectsSize, collections.size()));
+				hitCountsLabel.setWidth(100, Unit.PERCENTAGE);
+				rightPaneLayout.addComponent(hitCountsLabel);
+				rightPaneLayout.setComponentAlignment(hitCountsLabel, Alignment.MIDDLE_CENTER);
+			}
 
-                final RendererClickListener getObjectByIdClickListener = new RendererClickListener() {
-                    @Override
-                    public void click(final RendererClickEvent event) {
-                        _getEventBus().post(
-                                new ObjectQueryService.Messages.GetObjectByIdRequest((ObjectId) event.getItemId()));
-                    }
-                };
+			{
+				final Grid grid = new Grid(objects);
+				grid.setHeightMode(HeightMode.ROW);
+				grid.setHeightByRows(4.0);
+				grid.setSizeFull();
+				grid.setCellStyleGenerator(new Grid.CellStyleGenerator() {
+					@Override
+					public String getStyle(final CellReference cellReference) {
+						return cellReference.getPropertyId().equals(Object.FieldMetadata.THUMBNAIL.getJavaName())
+								? "thumbnailGridCell" : "borderlessButton";
+					}
+				});
+				grid.setStyleName("objectGrid");
 
-                grid.setColumns(Object.FieldMetadata.THUMBNAIL.getJavaName(), Object.FieldMetadata.TITLE.getJavaName(),
-                        Object.FieldMetadata.DATE_TEXT.getJavaName(), Object.FieldMetadata.INSTITUTION_ID.getJavaName(),
-                        Object.FieldMetadata.COLLECTION_ID.getJavaName(), Object.FieldMetadata.URL.getJavaName());
-                {
-                    final Column collectionIdColumn = grid.getColumn(Object.FieldMetadata.COLLECTION_ID.getJavaName());
-                    collectionIdColumn.setHeaderCaption("Collection");
-                    collectionIdColumn.setRenderer(new ButtonRenderer(new RendererClickListener() {
-                        @Override
-                        public void click(final RendererClickEvent event) {
-                            final CollectionId collectionId = (CollectionId) objects.getItem(event.getItemId())
-                                    .getItemProperty(Object.FieldMetadata.COLLECTION_ID.getJavaName()).getValue();
-                            _getEventBus()
-                                    .post(new CollectionQueryService.Messages.GetCollectionByIdRequest(collectionId));
-                        }
-                    }), new Converter<String, CollectionId>() {
-                        @Override
-                        public CollectionId convertToModel(final String value,
-                                final Class<? extends CollectionId> targetType, final Locale locale)
-                                        throws com.vaadin.data.util.converter.Converter.ConversionException {
-                            throw new UnsupportedOperationException();
-                        }
+				final RendererClickListener getObjectByIdClickListener = new RendererClickListener() {
+					@Override
+					public void click(final RendererClickEvent event) {
+						_getEventBus().post(
+								new ObjectQueryService.Messages.GetObjectByIdRequest((ObjectId) event.getItemId()));
+					}
+				};
 
-                        @Override
-                        public String convertToPresentation(final CollectionId value,
-                                final Class<? extends String> targetType, final Locale locale)
-                                        throws com.vaadin.data.util.converter.Converter.ConversionException {
-                            return checkNotNull(collections.get(value)).getTitle();
-                        }
+				grid.setColumns(Object.FieldMetadata.THUMBNAIL.getJavaName(), Object.FieldMetadata.TITLE.getJavaName(),
+						Object.FieldMetadata.DATE_TEXT.getJavaName(), Object.FieldMetadata.INSTITUTION_ID.getJavaName(),
+						Object.FieldMetadata.COLLECTION_ID.getJavaName(), Object.FieldMetadata.URL.getJavaName());
+				{
+					final Column collectionIdColumn = grid.getColumn(Object.FieldMetadata.COLLECTION_ID.getJavaName());
+					collectionIdColumn.setHeaderCaption("Collection");
+					collectionIdColumn.setRenderer(new ButtonRenderer(new RendererClickListener() {
+						@Override
+						public void click(final RendererClickEvent event) {
+							final CollectionId collectionId = (CollectionId) objects.getItem(event.getItemId())
+									.getItemProperty(Object.FieldMetadata.COLLECTION_ID.getJavaName()).getValue();
+							_getEventBus()
+									.post(new CollectionQueryService.Messages.GetCollectionByIdRequest(collectionId));
+						}
+					}), new Converter<String, CollectionId>() {
+						@Override
+						public CollectionId convertToModel(final String value,
+								final Class<? extends CollectionId> targetType, final Locale locale)
+										throws com.vaadin.data.util.converter.Converter.ConversionException {
+							throw new UnsupportedOperationException();
+						}
 
-                        @Override
-                        public Class<CollectionId> getModelType() {
-                            return CollectionId.class;
-                        }
+						@Override
+						public String convertToPresentation(final CollectionId value,
+								final Class<? extends String> targetType, final Locale locale)
+										throws com.vaadin.data.util.converter.Converter.ConversionException {
+							return checkNotNull(collections.get(value)).getTitle();
+						}
 
-                        @Override
-                        public Class<String> getPresentationType() {
-                            return String.class;
-                        }
-                    });
-                }
-                {
-                    grid.getColumn(Object.FieldMetadata.DATE_TEXT.getJavaName()).setHeaderCaption("Date");
-                }
-                {
-                    final Column institutionIdColumn = grid
-                            .getColumn(Object.FieldMetadata.INSTITUTION_ID.getJavaName());
-                    institutionIdColumn.setHeaderCaption("Institution");
-                    institutionIdColumn.setRenderer(new ButtonRenderer(new RendererClickListener() {
-                        @Override
-                        public void click(final RendererClickEvent event) {
-                            final InstitutionId institutionId = (InstitutionId) objects.getItem(event.getItemId())
-                                    .getItemProperty(Object.FieldMetadata.INSTITUTION_ID.getJavaName()).getValue();
-                            _getEventBus().post(
-                                    new InstitutionQueryService.Messages.GetInstitutionByIdRequest(institutionId));
-                        }
-                    }), new Converter<String, InstitutionId>() {
-                        @Override
-                        public InstitutionId convertToModel(final String value,
-                                final Class<? extends InstitutionId> targetType, final Locale locale)
-                                        throws com.vaadin.data.util.converter.Converter.ConversionException {
-                            throw new UnsupportedOperationException();
-                        }
+						@Override
+						public Class<CollectionId> getModelType() {
+							return CollectionId.class;
+						}
 
-                        @Override
-                        public String convertToPresentation(final InstitutionId value,
-                                final Class<? extends String> targetType, final Locale locale)
-                                        throws com.vaadin.data.util.converter.Converter.ConversionException {
-                            return checkNotNull(institutions.get(value)).getTitle();
-                        }
+						@Override
+						public Class<String> getPresentationType() {
+							return String.class;
+						}
+					});
+				}
+				{
+					grid.getColumn(Object.FieldMetadata.DATE_TEXT.getJavaName()).setHeaderCaption("Date");
+				}
+				{
+					final Column institutionIdColumn = grid
+							.getColumn(Object.FieldMetadata.INSTITUTION_ID.getJavaName());
+					institutionIdColumn.setHeaderCaption("Institution");
+					institutionIdColumn.setRenderer(new ButtonRenderer(new RendererClickListener() {
+						@Override
+						public void click(final RendererClickEvent event) {
+							final InstitutionId institutionId = (InstitutionId) objects.getItem(event.getItemId())
+									.getItemProperty(Object.FieldMetadata.INSTITUTION_ID.getJavaName()).getValue();
+							_getEventBus().post(
+									new InstitutionQueryService.Messages.GetInstitutionByIdRequest(institutionId));
+						}
+					}), new Converter<String, InstitutionId>() {
+						@Override
+						public InstitutionId convertToModel(final String value,
+								final Class<? extends InstitutionId> targetType, final Locale locale)
+										throws com.vaadin.data.util.converter.Converter.ConversionException {
+							throw new UnsupportedOperationException();
+						}
 
-                        @Override
-                        public Class<InstitutionId> getModelType() {
-                            return InstitutionId.class;
-                        }
+						@Override
+						public String convertToPresentation(final InstitutionId value,
+								final Class<? extends String> targetType, final Locale locale)
+										throws com.vaadin.data.util.converter.Converter.ConversionException {
+							return checkNotNull(institutions.get(value)).getTitle();
+						}
 
-                        @Override
-                        public Class<String> getPresentationType() {
-                            return String.class;
-                        }
-                    });
-                }
-                {
-                    grid.getColumn(Object.FieldMetadata.TITLE.getJavaName())
-                            .setRenderer(new ButtonRenderer(getObjectByIdClickListener));
-                }
-                {
-                    final Column thumbnailColumn = grid.getColumn(Object.FieldMetadata.THUMBNAIL.getJavaName());
-                    thumbnailColumn.setHeaderCaption("");
-                    thumbnailColumn.setRenderer(new ImageRenderer(getObjectByIdClickListener),
-                            new Converter<Resource, ImageBean>() {
-                                @Override
-                                public ImageBean convertToModel(final Resource value,
-                                        final Class<? extends ImageBean> targetType, final Locale locale)
-                                                throws com.vaadin.data.util.converter.Converter.ConversionException {
-                                    throw new UnsupportedOperationException();
-                                }
+						@Override
+						public Class<InstitutionId> getModelType() {
+							return InstitutionId.class;
+						}
 
-                                @Override
-                                public Resource convertToPresentation(final ImageBean value,
-                                        final Class<? extends Resource> targetType, final Locale locale)
-                                                throws com.vaadin.data.util.converter.Converter.ConversionException {
-                                    return new ExternalResource(value.getUrl().toString());
-                                }
+						@Override
+						public Class<String> getPresentationType() {
+							return String.class;
+						}
+					});
+				}
+				{
+					grid.getColumn(Object.FieldMetadata.TITLE.getJavaName())
+							.setRenderer(new ButtonRenderer(getObjectByIdClickListener));
+				}
+				{
+					final Column thumbnailColumn = grid.getColumn(Object.FieldMetadata.THUMBNAIL.getJavaName());
+					thumbnailColumn.setHeaderCaption("");
+					thumbnailColumn.setRenderer(new ImageRenderer(getObjectByIdClickListener),
+							new Converter<Resource, ImageBean>() {
+								@Override
+								public ImageBean convertToModel(final Resource value,
+										final Class<? extends ImageBean> targetType, final Locale locale)
+												throws com.vaadin.data.util.converter.Converter.ConversionException {
+									throw new UnsupportedOperationException();
+								}
 
-                                @Override
-                                public Class<ImageBean> getModelType() {
-                                    return ImageBean.class;
-                                }
+								@Override
+								public Resource convertToPresentation(final ImageBean value,
+										final Class<? extends Resource> targetType, final Locale locale)
+												throws com.vaadin.data.util.converter.Converter.ConversionException {
+									if (value == null) {
+										return null;
+									}
+									return new ExternalResource(value.getUrl().toString());
+								}
 
-                                @Override
-                                public Class<Resource> getPresentationType() {
-                                    return Resource.class;
-                                }
-                            });
-                }
-                {
-                    final Column urlColumn = grid.getColumn(Object.FieldMetadata.URL.getJavaName());
-                    urlColumn.setHeaderCaption("URL");
-                    urlColumn.setRenderer(new HtmlRenderer(), new StringToUrlConverter() {
-                        @Override
-                        public String convertToPresentation(final Url value, final Class<? extends String> targetType,
-                                final Locale locale)
-                                        throws com.vaadin.data.util.converter.Converter.ConversionException {
-                            return String.format("<a href=\"%s\" target=\"_blank\">%s</a>", value.toString(),
-                                    value.toString());
-                        }
-                    });
-                }
+								@Override
+								public Class<ImageBean> getModelType() {
+									return ImageBean.class;
+								}
 
-                rightPaneLayout.addComponent(grid);
-            }
+								@Override
+								public Class<Resource> getPresentationType() {
+									return Resource.class;
+								}
+							});
+				}
+				{
+					final Column urlColumn = grid.getColumn(Object.FieldMetadata.URL.getJavaName());
+					urlColumn.setHeaderCaption("URL");
+					urlColumn.setRenderer(new HtmlRenderer(), new StringToUrlConverter() {
+						@Override
+						public String convertToPresentation(final Url value, final Class<? extends String> targetType,
+								final Locale locale)
+										throws com.vaadin.data.util.converter.Converter.ConversionException {
+							if (value == null) {
+								return null;
+							}
+							return String.format("<a href=\"%s\" target=\"_blank\">%s</a>", value.toString(),
+									value.toString());
+						}
+					});
+				}
 
-            twoPaneLayout.addComponent(rightPaneLayout);
-            twoPaneLayout.setComponentAlignment(rightPaneLayout, Alignment.MIDDLE_CENTER);
-            twoPaneLayout.setExpandRatio(rightPaneLayout, 6);
-        }
+				rightPaneLayout.addComponent(grid);
+			}
 
-        setCompositionRoot(twoPaneLayout);
-    }
+			twoPaneLayout.addComponent(rightPaneLayout);
+			twoPaneLayout.setComponentAlignment(rightPaneLayout, Alignment.MIDDLE_CENTER);
+			twoPaneLayout.setExpandRatio(rightPaneLayout, 5);
+		}
 
-    public final static String NAME = "objects";
+		setCompositionRoot(twoPaneLayout);
+	}
+
+	public final static String NAME = "objects";
 }

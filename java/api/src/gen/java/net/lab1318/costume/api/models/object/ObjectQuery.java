@@ -4,6 +4,7 @@ public class ObjectQuery implements org.thryft.Struct {
     public static class Builder {
         public Builder() {
             includeAgentNameText = com.google.common.base.Optional.absent();
+            includeCategory = com.google.common.base.Optional.absent();
             includeCollectionId = com.google.common.base.Optional.absent();
             includeInstitutionId = com.google.common.base.Optional.absent();
             includeSubjectTermText = com.google.common.base.Optional.absent();
@@ -13,6 +14,7 @@ public class ObjectQuery implements org.thryft.Struct {
 
         public Builder(final ObjectQuery other) {
             this.includeAgentNameText = other.getIncludeAgentNameText();
+            this.includeCategory = other.getIncludeCategory();
             this.includeCollectionId = other.getIncludeCollectionId();
             this.includeInstitutionId = other.getIncludeInstitutionId();
             this.includeSubjectTermText = other.getIncludeSubjectTermText();
@@ -20,16 +22,20 @@ public class ObjectQuery implements org.thryft.Struct {
             this.queryString = other.getQueryString();
         }
 
-        protected ObjectQuery _build(final com.google.common.base.Optional<String> includeAgentNameText, final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> includeCollectionId, final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> includeInstitutionId, final com.google.common.base.Optional<String> includeSubjectTermText, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<String> queryString) {
-            return new ObjectQuery(includeAgentNameText, includeCollectionId, includeInstitutionId, includeSubjectTermText, moreLikeObjectId, queryString);
+        protected ObjectQuery _build(final com.google.common.base.Optional<String> includeAgentNameText, final com.google.common.base.Optional<String> includeCategory, final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> includeCollectionId, final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> includeInstitutionId, final com.google.common.base.Optional<String> includeSubjectTermText, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<String> queryString) {
+            return new ObjectQuery(includeAgentNameText, includeCategory, includeCollectionId, includeInstitutionId, includeSubjectTermText, moreLikeObjectId, queryString);
         }
 
         public ObjectQuery build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(includeAgentNameText, "net.lab1318.costume.api.models.object.ObjectQuery: missing includeAgentNameText"), com.google.common.base.Preconditions.checkNotNull(includeCollectionId, "net.lab1318.costume.api.models.object.ObjectQuery: missing includeCollectionId"), com.google.common.base.Preconditions.checkNotNull(includeInstitutionId, "net.lab1318.costume.api.models.object.ObjectQuery: missing includeInstitutionId"), com.google.common.base.Preconditions.checkNotNull(includeSubjectTermText, "net.lab1318.costume.api.models.object.ObjectQuery: missing includeSubjectTermText"), com.google.common.base.Preconditions.checkNotNull(moreLikeObjectId, "net.lab1318.costume.api.models.object.ObjectQuery: missing moreLikeObjectId"), com.google.common.base.Preconditions.checkNotNull(queryString, "net.lab1318.costume.api.models.object.ObjectQuery: missing queryString"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(includeAgentNameText, "net.lab1318.costume.api.models.object.ObjectQuery: missing includeAgentNameText"), com.google.common.base.Preconditions.checkNotNull(includeCategory, "net.lab1318.costume.api.models.object.ObjectQuery: missing includeCategory"), com.google.common.base.Preconditions.checkNotNull(includeCollectionId, "net.lab1318.costume.api.models.object.ObjectQuery: missing includeCollectionId"), com.google.common.base.Preconditions.checkNotNull(includeInstitutionId, "net.lab1318.costume.api.models.object.ObjectQuery: missing includeInstitutionId"), com.google.common.base.Preconditions.checkNotNull(includeSubjectTermText, "net.lab1318.costume.api.models.object.ObjectQuery: missing includeSubjectTermText"), com.google.common.base.Preconditions.checkNotNull(moreLikeObjectId, "net.lab1318.costume.api.models.object.ObjectQuery: missing moreLikeObjectId"), com.google.common.base.Preconditions.checkNotNull(queryString, "net.lab1318.costume.api.models.object.ObjectQuery: missing queryString"));
         }
 
         public final com.google.common.base.Optional<String> getIncludeAgentNameText() {
             return includeAgentNameText;
+        }
+
+        public final com.google.common.base.Optional<String> getIncludeCategory() {
+            return includeCategory;
         }
 
         public final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> getIncludeCollectionId() {
@@ -69,27 +75,30 @@ public class ObjectQuery implements org.thryft.Struct {
                 includeAgentNameText = com.google.common.base.Optional.of(iprot.readString());
             }
             if (__list.getSize() > 1) {
+                includeCategory = com.google.common.base.Optional.of(iprot.readString());
+            }
+            if (__list.getSize() > 2) {
                 try {
                     includeCollectionId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
                 } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                 }
             }
-            if (__list.getSize() > 2) {
+            if (__list.getSize() > 3) {
                 try {
                     includeInstitutionId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
                 } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
                 }
             }
-            if (__list.getSize() > 3) {
+            if (__list.getSize() > 4) {
                 includeSubjectTermText = com.google.common.base.Optional.of(iprot.readString());
             }
-            if (__list.getSize() > 4) {
+            if (__list.getSize() > 5) {
                 try {
                     moreLikeObjectId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString()));
                 } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
                 }
             }
-            if (__list.getSize() > 5) {
+            if (__list.getSize() > 6) {
                 queryString = com.google.common.base.Optional.of(iprot.readString());
             }
             iprot.readListEnd();
@@ -106,6 +115,10 @@ public class ObjectQuery implements org.thryft.Struct {
                 switch (ifield.getName()) {
                 case "include_agent_name_text": {
                     includeAgentNameText = com.google.common.base.Optional.of(iprot.readString());
+                    break;
+                }
+                case "include_category": {
+                    includeCategory = com.google.common.base.Optional.of(iprot.readString());
                     break;
                 }
                 case "include_collection_id": {
@@ -150,6 +163,9 @@ public class ObjectQuery implements org.thryft.Struct {
             if (other.getIncludeAgentNameText().isPresent()) {
                 setIncludeAgentNameText(other.getIncludeAgentNameText());
             }
+            if (other.getIncludeCategory().isPresent()) {
+                setIncludeCategory(other.getIncludeCategory());
+            }
             if (other.getIncludeCollectionId().isPresent()) {
                 setIncludeCollectionId(other.getIncludeCollectionId());
             }
@@ -176,6 +192,16 @@ public class ObjectQuery implements org.thryft.Struct {
 
         public Builder setIncludeAgentNameText(@javax.annotation.Nullable final String includeAgentNameText) {
             this.includeAgentNameText = com.google.common.base.Optional.fromNullable(includeAgentNameText);
+            return this;
+        }
+
+        public Builder setIncludeCategory(final com.google.common.base.Optional<String> includeCategory) {
+            this.includeCategory = com.google.common.base.Preconditions.checkNotNull(includeCategory);
+            return this;
+        }
+
+        public Builder setIncludeCategory(@javax.annotation.Nullable final String includeCategory) {
+            this.includeCategory = com.google.common.base.Optional.fromNullable(includeCategory);
             return this;
         }
 
@@ -234,6 +260,7 @@ public class ObjectQuery implements org.thryft.Struct {
 
             switch (name.toLowerCase()) {
             case "include_agent_name_text": setIncludeAgentNameText((String)value); return this;
+            case "include_category": setIncludeCategory((String)value); return this;
             case "include_collection_id": setIncludeCollectionId((net.lab1318.costume.api.models.collection.CollectionId)value); return this;
             case "include_institution_id": setIncludeInstitutionId((net.lab1318.costume.api.models.institution.InstitutionId)value); return this;
             case "include_subject_term_text": setIncludeSubjectTermText((String)value); return this;
@@ -246,6 +273,11 @@ public class ObjectQuery implements org.thryft.Struct {
 
         public Builder unsetIncludeAgentNameText() {
             this.includeAgentNameText = com.google.common.base.Optional.absent();
+            return this;
+        }
+
+        public Builder unsetIncludeCategory() {
+            this.includeCategory = com.google.common.base.Optional.absent();
             return this;
         }
 
@@ -275,6 +307,7 @@ public class ObjectQuery implements org.thryft.Struct {
         }
 
         private com.google.common.base.Optional<String> includeAgentNameText;
+        private com.google.common.base.Optional<String> includeCategory;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> includeCollectionId;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> includeInstitutionId;
         private com.google.common.base.Optional<String> includeSubjectTermText;
@@ -285,6 +318,7 @@ public class ObjectQuery implements org.thryft.Struct {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         INCLUDE_AGENT_NAME_TEXT("includeAgentNameText", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "include_agent_name_text", org.thryft.protocol.Type.STRING),
+        INCLUDE_CATEGORY("includeCategory", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "include_category", org.thryft.protocol.Type.STRING),
         INCLUDE_COLLECTION_ID("includeCollectionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.CollectionId>() {}, false, 0, "include_collection_id", org.thryft.protocol.Type.STRING),
         INCLUDE_INSTITUTION_ID("includeInstitutionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, false, 0, "include_institution_id", org.thryft.protocol.Type.STRING),
         INCLUDE_SUBJECT_TERM_TEXT("includeSubjectTermText", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "include_subject_term_text", org.thryft.protocol.Type.STRING),
@@ -334,6 +368,7 @@ public class ObjectQuery implements org.thryft.Struct {
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
             case "includeAgentNameText": return INCLUDE_AGENT_NAME_TEXT;
+            case "includeCategory": return INCLUDE_CATEGORY;
             case "includeCollectionId": return INCLUDE_COLLECTION_ID;
             case "includeInstitutionId": return INCLUDE_INSTITUTION_ID;
             case "includeSubjectTermText": return INCLUDE_SUBJECT_TERM_TEXT;
@@ -347,6 +382,7 @@ public class ObjectQuery implements org.thryft.Struct {
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
             case "include_agent_name_text": return INCLUDE_AGENT_NAME_TEXT;
+            case "include_category": return INCLUDE_CATEGORY;
             case "include_collection_id": return INCLUDE_COLLECTION_ID;
             case "include_institution_id": return INCLUDE_INSTITUTION_ID;
             case "include_subject_term_text": return INCLUDE_SUBJECT_TERM_TEXT;
@@ -385,6 +421,7 @@ public class ObjectQuery implements org.thryft.Struct {
      */
     public ObjectQuery() {
         includeAgentNameText = com.google.common.base.Optional.absent();
+        includeCategory = com.google.common.base.Optional.absent();
         includeCollectionId = com.google.common.base.Optional.absent();
         includeInstitutionId = com.google.common.base.Optional.absent();
         includeSubjectTermText = com.google.common.base.Optional.absent();
@@ -396,14 +433,15 @@ public class ObjectQuery implements org.thryft.Struct {
      * Copy constructor
      */
     public ObjectQuery(final ObjectQuery other) {
-        this(other.getIncludeAgentNameText(), other.getIncludeCollectionId(), other.getIncludeInstitutionId(), other.getIncludeSubjectTermText(), other.getMoreLikeObjectId(), other.getQueryString());
+        this(other.getIncludeAgentNameText(), other.getIncludeCategory(), other.getIncludeCollectionId(), other.getIncludeInstitutionId(), other.getIncludeSubjectTermText(), other.getMoreLikeObjectId(), other.getQueryString());
     }
 
     /**
      * Total Nullable constructor
      */
-    public ObjectQuery(final @javax.annotation.Nullable String includeAgentNameText, final @javax.annotation.Nullable net.lab1318.costume.api.models.collection.CollectionId includeCollectionId, final @javax.annotation.Nullable net.lab1318.costume.api.models.institution.InstitutionId includeInstitutionId, final @javax.annotation.Nullable String includeSubjectTermText, final @javax.annotation.Nullable net.lab1318.costume.api.models.object.ObjectId moreLikeObjectId, final @javax.annotation.Nullable String queryString) {
+    public ObjectQuery(final @javax.annotation.Nullable String includeAgentNameText, final @javax.annotation.Nullable String includeCategory, final @javax.annotation.Nullable net.lab1318.costume.api.models.collection.CollectionId includeCollectionId, final @javax.annotation.Nullable net.lab1318.costume.api.models.institution.InstitutionId includeInstitutionId, final @javax.annotation.Nullable String includeSubjectTermText, final @javax.annotation.Nullable net.lab1318.costume.api.models.object.ObjectId moreLikeObjectId, final @javax.annotation.Nullable String queryString) {
         this.includeAgentNameText = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(includeAgentNameText), "net.lab1318.costume.api.models.object.ObjectQuery: includeAgentNameText is empty");
+        this.includeCategory = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(includeCategory), "net.lab1318.costume.api.models.object.ObjectQuery: includeCategory is empty");
         this.includeCollectionId = com.google.common.base.Optional.fromNullable(includeCollectionId);
         this.includeInstitutionId = com.google.common.base.Optional.fromNullable(includeInstitutionId);
         this.includeSubjectTermText = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(includeSubjectTermText), "net.lab1318.costume.api.models.object.ObjectQuery: includeSubjectTermText is empty");
@@ -414,8 +452,9 @@ public class ObjectQuery implements org.thryft.Struct {
     /**
      * Optional constructor
      */
-    public ObjectQuery(final com.google.common.base.Optional<String> includeAgentNameText, final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> includeCollectionId, final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> includeInstitutionId, final com.google.common.base.Optional<String> includeSubjectTermText, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<String> queryString) {
+    public ObjectQuery(final com.google.common.base.Optional<String> includeAgentNameText, final com.google.common.base.Optional<String> includeCategory, final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> includeCollectionId, final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> includeInstitutionId, final com.google.common.base.Optional<String> includeSubjectTermText, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<String> queryString) {
         this.includeAgentNameText = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeAgentNameText, "net.lab1318.costume.api.models.object.ObjectQuery: missing includeAgentNameText"), "net.lab1318.costume.api.models.object.ObjectQuery: includeAgentNameText is empty");
+        this.includeCategory = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeCategory, "net.lab1318.costume.api.models.object.ObjectQuery: missing includeCategory"), "net.lab1318.costume.api.models.object.ObjectQuery: includeCategory is empty");
         this.includeCollectionId = com.google.common.base.Preconditions.checkNotNull(includeCollectionId, "net.lab1318.costume.api.models.object.ObjectQuery: missing includeCollectionId");
         this.includeInstitutionId = com.google.common.base.Preconditions.checkNotNull(includeInstitutionId, "net.lab1318.costume.api.models.object.ObjectQuery: missing includeInstitutionId");
         this.includeSubjectTermText = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeSubjectTermText, "net.lab1318.costume.api.models.object.ObjectQuery: missing includeSubjectTermText"), "net.lab1318.costume.api.models.object.ObjectQuery: includeSubjectTermText is empty");
@@ -446,6 +485,7 @@ public class ObjectQuery implements org.thryft.Struct {
         final ObjectQuery other = (ObjectQuery)otherObject;
         return
             getIncludeAgentNameText().equals(other.getIncludeAgentNameText()) &&
+            getIncludeCategory().equals(other.getIncludeCategory()) &&
             getIncludeCollectionId().equals(other.getIncludeCollectionId()) &&
             getIncludeInstitutionId().equals(other.getIncludeInstitutionId()) &&
             getIncludeSubjectTermText().equals(other.getIncludeSubjectTermText()) &&
@@ -457,6 +497,7 @@ public class ObjectQuery implements org.thryft.Struct {
     public java.lang.Object get(final String fieldName) {
         switch (fieldName) {
         case "include_agent_name_text": return getIncludeAgentNameText();
+        case "include_category": return getIncludeCategory();
         case "include_collection_id": return getIncludeCollectionId();
         case "include_institution_id": return getIncludeInstitutionId();
         case "include_subject_term_text": return getIncludeSubjectTermText();
@@ -469,6 +510,10 @@ public class ObjectQuery implements org.thryft.Struct {
 
     public final com.google.common.base.Optional<String> getIncludeAgentNameText() {
         return includeAgentNameText;
+    }
+
+    public final com.google.common.base.Optional<String> getIncludeCategory() {
+        return includeCategory;
     }
 
     public final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> getIncludeCollectionId() {
@@ -496,6 +541,9 @@ public class ObjectQuery implements org.thryft.Struct {
         int hashCode = 17;
         if (getIncludeAgentNameText().isPresent()) {
             hashCode = 31 * hashCode + getIncludeAgentNameText().get().hashCode();
+        }
+        if (getIncludeCategory().isPresent()) {
+            hashCode = 31 * hashCode + getIncludeCategory().get().hashCode();
         }
         if (getIncludeCollectionId().isPresent()) {
             hashCode = 31 * hashCode + getIncludeCollectionId().get().hashCode();
@@ -528,6 +576,7 @@ public class ObjectQuery implements org.thryft.Struct {
 
     public static ObjectQuery readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         com.google.common.base.Optional<String> includeAgentNameText = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> includeCategory = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> includeCollectionId = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> includeInstitutionId = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> includeSubjectTermText = com.google.common.base.Optional.absent();
@@ -539,32 +588,35 @@ public class ObjectQuery implements org.thryft.Struct {
             includeAgentNameText = com.google.common.base.Optional.of(iprot.readString());
         }
         if (__list.getSize() > 1) {
+            includeCategory = com.google.common.base.Optional.of(iprot.readString());
+        }
+        if (__list.getSize() > 2) {
             try {
                 includeCollectionId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
             } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
             }
         }
-        if (__list.getSize() > 2) {
+        if (__list.getSize() > 3) {
             try {
                 includeInstitutionId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
             } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
             }
         }
-        if (__list.getSize() > 3) {
+        if (__list.getSize() > 4) {
             includeSubjectTermText = com.google.common.base.Optional.of(iprot.readString());
         }
-        if (__list.getSize() > 4) {
+        if (__list.getSize() > 5) {
             try {
                 moreLikeObjectId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString()));
             } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
             }
         }
-        if (__list.getSize() > 5) {
+        if (__list.getSize() > 6) {
             queryString = com.google.common.base.Optional.of(iprot.readString());
         }
         iprot.readListEnd();
         try {
-            return new ObjectQuery(includeAgentNameText, includeCollectionId, includeInstitutionId, includeSubjectTermText, moreLikeObjectId, queryString);
+            return new ObjectQuery(includeAgentNameText, includeCategory, includeCollectionId, includeInstitutionId, includeSubjectTermText, moreLikeObjectId, queryString);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -572,6 +624,7 @@ public class ObjectQuery implements org.thryft.Struct {
 
     public static ObjectQuery readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         com.google.common.base.Optional<String> includeAgentNameText = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> includeCategory = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> includeCollectionId = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> includeInstitutionId = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> includeSubjectTermText = com.google.common.base.Optional.absent();
@@ -587,6 +640,10 @@ public class ObjectQuery implements org.thryft.Struct {
             switch (ifield.getName()) {
             case "include_agent_name_text": {
                 includeAgentNameText = com.google.common.base.Optional.of(iprot.readString());
+                break;
+            }
+            case "include_category": {
+                includeCategory = com.google.common.base.Optional.of(iprot.readString());
                 break;
             }
             case "include_collection_id": {
@@ -623,22 +680,30 @@ public class ObjectQuery implements org.thryft.Struct {
         }
         iprot.readStructEnd();
         try {
-            return new ObjectQuery(includeAgentNameText, includeCollectionId, includeInstitutionId, includeSubjectTermText, moreLikeObjectId, queryString);
+            return new ObjectQuery(includeAgentNameText, includeCategory, includeCollectionId, includeInstitutionId, includeSubjectTermText, moreLikeObjectId, queryString);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public ObjectQuery replaceIncludeAgentNameText(final com.google.common.base.Optional<String> includeAgentNameText) {
-        return new ObjectQuery(includeAgentNameText, this.includeCollectionId, this.includeInstitutionId, this.includeSubjectTermText, this.moreLikeObjectId, this.queryString);
+        return new ObjectQuery(includeAgentNameText, this.includeCategory, this.includeCollectionId, this.includeInstitutionId, this.includeSubjectTermText, this.moreLikeObjectId, this.queryString);
     }
 
     public ObjectQuery replaceIncludeAgentNameText(final String includeAgentNameText) {
         return replaceIncludeAgentNameText(com.google.common.base.Optional.fromNullable(includeAgentNameText));
     }
 
+    public ObjectQuery replaceIncludeCategory(final com.google.common.base.Optional<String> includeCategory) {
+        return new ObjectQuery(this.includeAgentNameText, includeCategory, this.includeCollectionId, this.includeInstitutionId, this.includeSubjectTermText, this.moreLikeObjectId, this.queryString);
+    }
+
+    public ObjectQuery replaceIncludeCategory(final String includeCategory) {
+        return replaceIncludeCategory(com.google.common.base.Optional.fromNullable(includeCategory));
+    }
+
     public ObjectQuery replaceIncludeCollectionId(final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> includeCollectionId) {
-        return new ObjectQuery(this.includeAgentNameText, includeCollectionId, this.includeInstitutionId, this.includeSubjectTermText, this.moreLikeObjectId, this.queryString);
+        return new ObjectQuery(this.includeAgentNameText, this.includeCategory, includeCollectionId, this.includeInstitutionId, this.includeSubjectTermText, this.moreLikeObjectId, this.queryString);
     }
 
     public ObjectQuery replaceIncludeCollectionId(final net.lab1318.costume.api.models.collection.CollectionId includeCollectionId) {
@@ -646,7 +711,7 @@ public class ObjectQuery implements org.thryft.Struct {
     }
 
     public ObjectQuery replaceIncludeInstitutionId(final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> includeInstitutionId) {
-        return new ObjectQuery(this.includeAgentNameText, this.includeCollectionId, includeInstitutionId, this.includeSubjectTermText, this.moreLikeObjectId, this.queryString);
+        return new ObjectQuery(this.includeAgentNameText, this.includeCategory, this.includeCollectionId, includeInstitutionId, this.includeSubjectTermText, this.moreLikeObjectId, this.queryString);
     }
 
     public ObjectQuery replaceIncludeInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId includeInstitutionId) {
@@ -654,7 +719,7 @@ public class ObjectQuery implements org.thryft.Struct {
     }
 
     public ObjectQuery replaceIncludeSubjectTermText(final com.google.common.base.Optional<String> includeSubjectTermText) {
-        return new ObjectQuery(this.includeAgentNameText, this.includeCollectionId, this.includeInstitutionId, includeSubjectTermText, this.moreLikeObjectId, this.queryString);
+        return new ObjectQuery(this.includeAgentNameText, this.includeCategory, this.includeCollectionId, this.includeInstitutionId, includeSubjectTermText, this.moreLikeObjectId, this.queryString);
     }
 
     public ObjectQuery replaceIncludeSubjectTermText(final String includeSubjectTermText) {
@@ -662,7 +727,7 @@ public class ObjectQuery implements org.thryft.Struct {
     }
 
     public ObjectQuery replaceMoreLikeObjectId(final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId) {
-        return new ObjectQuery(this.includeAgentNameText, this.includeCollectionId, this.includeInstitutionId, this.includeSubjectTermText, moreLikeObjectId, this.queryString);
+        return new ObjectQuery(this.includeAgentNameText, this.includeCategory, this.includeCollectionId, this.includeInstitutionId, this.includeSubjectTermText, moreLikeObjectId, this.queryString);
     }
 
     public ObjectQuery replaceMoreLikeObjectId(final net.lab1318.costume.api.models.object.ObjectId moreLikeObjectId) {
@@ -670,7 +735,7 @@ public class ObjectQuery implements org.thryft.Struct {
     }
 
     public ObjectQuery replaceQueryString(final com.google.common.base.Optional<String> queryString) {
-        return new ObjectQuery(this.includeAgentNameText, this.includeCollectionId, this.includeInstitutionId, this.includeSubjectTermText, this.moreLikeObjectId, queryString);
+        return new ObjectQuery(this.includeAgentNameText, this.includeCategory, this.includeCollectionId, this.includeInstitutionId, this.includeSubjectTermText, this.moreLikeObjectId, queryString);
     }
 
     public ObjectQuery replaceQueryString(final String queryString) {
@@ -679,15 +744,21 @@ public class ObjectQuery implements org.thryft.Struct {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("include_agent_name_text", getIncludeAgentNameText().orNull()).add("include_collection_id", getIncludeCollectionId().orNull()).add("include_institution_id", getIncludeInstitutionId().orNull()).add("include_subject_term_text", getIncludeSubjectTermText().orNull()).add("more_like_object_id", getMoreLikeObjectId().orNull()).add("query_string", getQueryString().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("include_agent_name_text", getIncludeAgentNameText().orNull()).add("include_category", getIncludeCategory().orNull()).add("include_collection_id", getIncludeCollectionId().orNull()).add("include_institution_id", getIncludeInstitutionId().orNull()).add("include_subject_term_text", getIncludeSubjectTermText().orNull()).add("more_like_object_id", getMoreLikeObjectId().orNull()).add("query_string", getQueryString().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 6);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 7);
 
         if (getIncludeAgentNameText().isPresent()) {
             oprot.writeString(getIncludeAgentNameText().get());
+        } else {
+            oprot.writeNull();
+        }
+
+        if (getIncludeCategory().isPresent()) {
+            oprot.writeString(getIncludeCategory().get());
         } else {
             oprot.writeNull();
         }
@@ -740,6 +811,12 @@ public class ObjectQuery implements org.thryft.Struct {
             oprot.writeFieldEnd();
         }
 
+        if (getIncludeCategory().isPresent()) {
+            oprot.writeFieldBegin("include_category", org.thryft.protocol.Type.STRING, (short)0);
+            oprot.writeString(getIncludeCategory().get());
+            oprot.writeFieldEnd();
+        }
+
         if (getIncludeCollectionId().isPresent()) {
             oprot.writeFieldBegin("include_collection_id", org.thryft.protocol.Type.STRING, (short)0);
             oprot.writeString(getIncludeCollectionId().get().toString());
@@ -774,6 +851,8 @@ public class ObjectQuery implements org.thryft.Struct {
     }
 
     private final com.google.common.base.Optional<String> includeAgentNameText;
+
+    private final com.google.common.base.Optional<String> includeCategory;
 
     private final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> includeCollectionId;
 

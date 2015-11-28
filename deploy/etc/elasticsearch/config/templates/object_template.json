@@ -140,7 +140,16 @@
             }
           }, 
           "18:categories": {
-            "type": "string"
+            "fields": {
+              "text": {
+                "type": "string"
+              }, 
+              "not_analyzed": {
+                "index": "not_analyzed", 
+                "type": "string"
+              }
+            }, 
+            "type": "multi_field"
           }, 
           "10:date": {
             "type": "date"
