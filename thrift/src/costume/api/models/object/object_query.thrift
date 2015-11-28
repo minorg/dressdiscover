@@ -7,17 +7,34 @@ include "costume/api/models/object/object_id.thrift"
 
 struct ObjectQuery {
 	// @validation {"minLength": 1}
-	optional string include_agent_name_text;
+	optional set<string> exclude_agent_name_texts;
 
 	// @validation {"minLength": 1}
-	optional string include_category;
-
-	optional collection_id.CollectionId include_collection_id;
-
-	optional institution_id.InstitutionId include_institution_id;
+	optional set<string> exclude_categories;
 
 	// @validation {"minLength": 1}
-	optional string include_subject_term_text;
+	optional set<collection_id.CollectionId> exclude_collection_ids;
+
+	// @validation {"minLength": 1}
+	optional set<institution_id.InstitutionId> exclude_institution_ids;
+
+	// @validation {"minLength": 1}
+	optional set<string> exclude_subject_term_texts;
+
+	// @validation {"minLength": 1}
+	optional set<string> include_agent_name_texts;
+
+	// @validation {"minLength": 1}
+	optional set<string> include_categories;
+
+	// @validation {"minLength": 1}
+	optional set<collection_id.CollectionId> include_collection_ids;
+
+	// @validation {"minLength": 1}
+	optional set<institution_id.InstitutionId> include_institution_ids;
+
+	// @validation {"minLength": 1}
+	optional set<string> include_subject_term_texts;
 
 	optional object_id.ObjectId more_like_object_id;
 
