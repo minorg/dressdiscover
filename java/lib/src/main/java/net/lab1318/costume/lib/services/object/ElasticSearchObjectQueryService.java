@@ -14,7 +14,6 @@ import org.elasticsearch.index.query.AndFilterBuilder;
 import org.elasticsearch.index.query.FilterBuilder;
 import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.MoreLikeThisQueryBuilder;
-import org.elasticsearch.index.query.NestedFilterBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.indices.IndexMissingException;
@@ -39,6 +38,7 @@ import org.thryft.protocol.InputProtocolException;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -97,6 +97,22 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 		}
 
 		private final static ObjectElasticSearchModelFactory instance = new ObjectElasticSearchModelFactory();
+	}
+
+	private static FilterBuilder __excludeAllFilters(final List<FilterBuilder> filters) {
+		final FilterBuilder[] filtersArray = new FilterBuilder[filters.size()];
+		for (int filterI = 0; filterI < filters.size(); filterI++) {
+			filtersArray[filterI] = FilterBuilders.notFilter(filters.get(filterI));
+		}
+		// !match AND !match AND !match
+		return FilterBuilders.andFilter(filtersArray);
+	}
+
+	private static FilterBuilder __includeAnyFilter(final List<FilterBuilder> filters) {
+		final FilterBuilder[] filtersArray = new FilterBuilder[filters.size()];
+		filters.toArray(filtersArray);
+		// match OR match OR match
+		return FilterBuilders.orFilter(filtersArray);
 	}
 
 	@Inject
@@ -371,69 +387,132 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
 		final List<FilterBuilder> filters = new ArrayList<>();
 
-		if (query.get().getIncludeAgentNameText().isPresent()) {
-			final NestedFilterBuilder filter = FilterBuilders
-					.nestedFilter(Object.FieldMetadata.AGENTS.getThriftProtocolKey(),
-							FilterBuilders
-									.nestedFilter(
-											Object.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
-													+ AgentSet.FieldMetadata.AGENTS.getThriftProtocolKey(),
-											FilterBuilders.nestedFilter(
-													Object.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
-															+ AgentSet.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
-															+ Agent.FieldMetadata.NAME.getThriftProtocolKey(),
-													FilterBuilders.termFilter(
-															Object.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
-																	+ AgentSet.FieldMetadata.AGENTS
-																			.getThriftProtocolKey()
-																	+ '.'
-																	+ Agent.FieldMetadata.NAME.getThriftProtocolKey()
-																	+ '.'
-																	+ AgentName.FieldMetadata.TEXT
-																			.getThriftProtocolKey()
-																	+ ".not_analyzed",
-															query.get().getIncludeAgentNameText().get()))));
-			filters.add(filter);
+		for (final Optional<ImmutableSet<String>> agentNameTexts : ImmutableList
+				.of(query.get().getExcludeAgentNameTexts(), query.get().getIncludeAgentNameTexts())) {
+			if (!agentNameTexts.isPresent()) {
+				continue;
+			}
+			final List<FilterBuilder> agentNameTextFilters = new ArrayList<>();
+			for (final String agentNameText : agentNameTexts.get()) {
+				if (agentNameText.isEmpty()) {
+					continue;
+				}
+				agentNameTextFilters
+						.add(FilterBuilders.nestedFilter(Object.FieldMetadata.AGENTS.getThriftProtocolKey(),
+								FilterBuilders.nestedFilter(
+										Object.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
+												+ AgentSet.FieldMetadata.AGENTS.getThriftProtocolKey(),
+										FilterBuilders.nestedFilter(
+												Object.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
+														+ AgentSet.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
+														+ Agent.FieldMetadata.NAME
+																.getThriftProtocolKey(),
+										FilterBuilders.termFilter(Object.FieldMetadata.AGENTS.getThriftProtocolKey()
+												+ '.' + AgentSet.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
+												+ Agent.FieldMetadata.NAME.getThriftProtocolKey() + '.'
+												+ AgentName.FieldMetadata.TEXT.getThriftProtocolKey() + ".not_analyzed",
+												agentNameText)))));
+			}
+			if (!agentNameTextFilters.isEmpty()) {
+				if (agentNameTexts == query.get().getExcludeAgentNameTexts()) {
+					filters.add(__excludeAllFilters(agentNameTextFilters));
+				} else {
+					filters.add(__includeAnyFilter(agentNameTextFilters));
+				}
+			}
 		}
 
-		if (query.get().getIncludeCategory().isPresent()) {
-			filters.add(FilterBuilders.termFilter(Object.FieldMetadata.CATEGORIES.getThriftProtocolKey(),
-					query.get().getIncludeCategory().get().toString()));
+		for (final Optional<ImmutableSet<String>> categories : ImmutableList.of(query.get().getExcludeCategories(),
+				query.get().getIncludeCategories())) {
+			if (!categories.isPresent()) {
+				continue;
+			}
+			final List<FilterBuilder> categoryFilters = new ArrayList<>();
+			for (final String category : categories.get()) {
+				if (category.isEmpty()) {
+					continue;
+				}
+				categoryFilters.add(FilterBuilders.termFilter(
+						Object.FieldMetadata.CATEGORIES.getThriftProtocolKey() + ".not_analyzed", category));
+			}
+			if (!categoryFilters.isEmpty()) {
+				if (categories == query.get().getExcludeCategories()) {
+					filters.add(__excludeAllFilters(categoryFilters));
+				} else {
+					filters.add(__includeAnyFilter(categoryFilters));
+				}
+			}
 		}
 
-		if (query.get().getIncludeCollectionId().isPresent()) {
-			filters.add(FilterBuilders.termFilter(Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
-					query.get().getIncludeCollectionId().get().toString()));
+		for (final Optional<ImmutableSet<CollectionId>> collectionIds : ImmutableList
+				.of(query.get().getExcludeCollectionIds(), query.get().getIncludeCollectionIds())) {
+			if (!collectionIds.isPresent()) {
+				continue;
+			}
+			final List<FilterBuilder> collectionIdFilters = new ArrayList<>();
+			for (final CollectionId collectionId : collectionIds.get()) {
+				collectionIdFilters.add(FilterBuilders.termFilter(
+						Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(), collectionId.toString()));
+			}
+			if (!collectionIdFilters.isEmpty()) {
+				if (collectionIds == query.get().getExcludeCollectionIds()) {
+					filters.add(__excludeAllFilters(collectionIdFilters));
+				} else {
+					filters.add(__includeAnyFilter(collectionIdFilters));
+				}
+			}
 		}
 
-		if (query.get().getIncludeInstitutionId().isPresent()) {
-			filters.add(FilterBuilders.termFilter(Object.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
-					query.get().getIncludeInstitutionId().get().toString()));
+		for (final Optional<ImmutableSet<InstitutionId>> institutionIds : ImmutableList
+				.of(query.get().getExcludeInstitutionIds(), query.get().getIncludeInstitutionIds())) {
+			if (!institutionIds.isPresent()) {
+				continue;
+			}
+			final List<FilterBuilder> institutionIdFilters = new ArrayList<>();
+			for (final InstitutionId institutionId : institutionIds.get()) {
+				institutionIdFilters.add(FilterBuilders.termFilter(
+						Object.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(), institutionId.toString()));
+			}
+			if (!institutionIdFilters.isEmpty()) {
+				if (institutionIds == query.get().getExcludeInstitutionIds()) {
+					filters.add(__excludeAllFilters(institutionIdFilters));
+				} else {
+					filters.add(__includeAnyFilter(institutionIdFilters));
+				}
+			}
 		}
 
-		if (query.get().getIncludeSubjectTermText().isPresent()) {
-			final NestedFilterBuilder filter = FilterBuilders
-					.nestedFilter(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey(),
-							FilterBuilders
-									.nestedFilter(
-											Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
-													+ SubjectSet.FieldMetadata.SUBJECTS.getThriftProtocolKey(),
-											FilterBuilders.nestedFilter(
-													Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
-															+ SubjectSet.FieldMetadata.SUBJECTS.getThriftProtocolKey()
-															+ '.' + Subject.FieldMetadata.TERMS.getThriftProtocolKey(),
-													FilterBuilders.termFilter(
-															Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
-																	+ SubjectSet.FieldMetadata.SUBJECTS
-																			.getThriftProtocolKey()
-																	+ '.'
-																	+ Subject.FieldMetadata.TERMS.getThriftProtocolKey()
-																	+ '.'
-																	+ SubjectTerm.FieldMetadata.TEXT
-																			.getThriftProtocolKey()
-																	+ ".not_analyzed",
-															query.get().getIncludeSubjectTermText().get()))));
-			filters.add(filter);
+		for (final Optional<ImmutableSet<String>> subjectTermTexts : ImmutableList
+				.of(query.get().getExcludeSubjectTermTexts(), query.get().getIncludeSubjectTermTexts())) {
+			if (!subjectTermTexts.isPresent()) {
+				continue;
+			}
+			final List<FilterBuilder> subjectTermTextFilters = new ArrayList<>();
+			for (final String subjectTermText : subjectTermTexts.get()) {
+				if (subjectTermText.isEmpty()) {
+					continue;
+				}
+				subjectTermTextFilters
+						.add(FilterBuilders.nestedFilter(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey(),
+								FilterBuilders.nestedFilter(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+										+ SubjectSet.FieldMetadata.SUBJECTS.getThriftProtocolKey(),
+								FilterBuilders.nestedFilter(
+										Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+												+ SubjectSet.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+												+ Subject.FieldMetadata.TERMS.getThriftProtocolKey(),
+										FilterBuilders.termFilter(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey()
+												+ '.' + SubjectSet.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+												+ Subject.FieldMetadata.TERMS.getThriftProtocolKey() + '.'
+												+ SubjectTerm.FieldMetadata.TEXT.getThriftProtocolKey()
+												+ ".not_analyzed", subjectTermText)))));
+			}
+			if (!subjectTermTextFilters.isEmpty()) {
+				if (subjectTermTexts == query.get().getExcludeSubjectTermTexts()) {
+					filters.add(__excludeAllFilters(subjectTermTextFilters));
+				} else {
+					filters.add(__includeAnyFilter(subjectTermTextFilters));
+				}
+			}
 		}
 
 		if (filters.size() == 1) {

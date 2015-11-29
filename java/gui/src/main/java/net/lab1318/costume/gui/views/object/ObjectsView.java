@@ -12,6 +12,7 @@ import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
 import org.vaadin.viritin.components.DisclosurePanel;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
@@ -89,7 +90,9 @@ public class ObjectsView extends TopLevelView {
 								public void buttonClick(final ClickEvent event) {
 									_getEventBus().post(ObjectQueryService.Messages.GetObjectsRequest.builder()
 											.setQuery(ObjectQuery.builder()
-													.setIncludeAgentNameText(agentNameTextsEntry.getKey()).build())
+													.setIncludeAgentNameTexts(
+															ImmutableSet.of(agentNameTextsEntry.getKey()))
+													.build())
 											.build());
 								}
 							});
@@ -114,8 +117,10 @@ public class ObjectsView extends TopLevelView {
 									_getEventBus()
 											.post(ObjectQueryService.Messages.GetObjectsRequest.builder()
 													.setQuery(ObjectQuery.builder()
-															.setIncludeCategory(categoriesEntry.getKey()).build())
-											.build());
+															.setIncludeCategories(
+																	ImmutableSet.of(categoriesEntry.getKey()))
+															.build())
+													.build());
 								}
 							});
 					categoryButton.addStyleName("borderlessButton");
@@ -156,7 +161,9 @@ public class ObjectsView extends TopLevelView {
 								public void buttonClick(final ClickEvent event) {
 									_getEventBus().post(ObjectQueryService.Messages.GetObjectsRequest.builder()
 											.setQuery(ObjectQuery.builder()
-													.setIncludeSubjectTermText(subjectTermTextsEntry.getKey()).build())
+													.setIncludeSubjectTermTexts(
+															ImmutableSet.of(subjectTermTextsEntry.getKey()))
+													.build())
 											.build());
 									;
 								}
