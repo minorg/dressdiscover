@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.components;
+package net.lab1318.costume.gui.views.object;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import net.lab1318.costume.gui.GuiUI;
 import net.lab1318.costume.gui.models.subject.SubjectTermBean;
 
 @SuppressWarnings("serial")
-public final class SubjectSetTable extends ElementSetTable {
+final class SubjectSetTable extends ElementSetTable {
 	public SubjectSetTable(final SubjectSet subjects) {
 		super("Subjects", subjects);
 
