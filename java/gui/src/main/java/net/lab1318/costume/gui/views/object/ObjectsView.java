@@ -3,17 +3,14 @@ package net.lab1318.costume.gui.views.object;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Locale;
-import java.util.Map;
 
 import org.notaweb.gui.EventBus;
 import org.notaweb.gui.utils.StringToUrlConverter;
 import org.thryft.native_.Url;
 import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
-import org.vaadin.viritin.components.DisclosurePanel;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
 import com.vaadin.data.util.converter.Converter;
@@ -21,13 +18,12 @@ import com.vaadin.server.ExternalResource;
 import com.vaadin.server.Resource;
 import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Grid.CellReference;
 import com.vaadin.ui.Grid.Column;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.renderers.ButtonRenderer;
 import com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent;
@@ -38,16 +34,16 @@ import com.vaadin.ui.renderers.ImageRenderer;
 import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.Institution;
-import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.object.Object;
+import net.lab1318.costume.api.models.object.ObjectFilters;
 import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
-import net.lab1318.costume.gui.components.InstitutionButton;
+import net.lab1318.costume.gui.components.ObjectFacetPicker;
 import net.lab1318.costume.gui.models.image.ImageBean;
 import net.lab1318.costume.gui.views.TopLevelView;
 
@@ -77,121 +73,143 @@ public class ObjectsView extends TopLevelView {
 		twoPaneLayout.setHeight(700, Unit.PIXELS);
 
 		{
-			final VerticalLayout leftPaneLayout = new VerticalLayout();
+			final VerticalLayout leftPaneContentLayout = new VerticalLayout();
 
 			if (!objectFacets.getAgentNameTexts().isEmpty()) {
-				final VerticalLayout agentNameTextFacetsLayout = new VerticalLayout();
-				for (final Map.Entry<String, UnsignedInteger> agentNameTextsEntry : objectFacets.getAgentNameTexts()
-						.entrySet()) {
-					final Button agentNameTextButton = new Button(String.format("%s (%d objects)",
-							agentNameTextsEntry.getKey(), agentNameTextsEntry.getValue().intValue()),
-							new Button.ClickListener() {
-								@Override
-								public void buttonClick(final ClickEvent event) {
-									_getEventBus().post(ObjectQueryService.Messages.GetObjectsRequest.builder()
-											.setQuery(ObjectQuery.builder()
-													.setIncludeAgentNameTexts(
-															ImmutableSet.of(agentNameTextsEntry.getKey()))
-													.build())
-											.build());
+				leftPaneContentLayout
+						.addComponent(new ObjectFacetPicker<String>(objectFacets.getAgentNameTexts(), "Agent names",
+								objectQuery.getFilters().isPresent()
+										&& objectQuery.getFilters().get().getExcludeAgentNameTexts().isPresent()
+												? objectQuery.getFilters().get().getExcludeAgentNameTexts().get()
+												: ImmutableSet.of(),
+								objectQuery.getFilters().isPresent()
+										&& objectQuery.getFilters().get().getIncludeAgentNameTexts().isPresent()
+												? objectQuery.getFilters().get().getIncludeAgentNameTexts().get()
+												: ImmutableSet.of()) {
+							@Override
+							protected void _valueChange(final ImmutableSet<String> excludeFacetKeys,
+									final ImmutableSet<String> includeFacetKeys) {
+								final ObjectFilters.Builder filtersBuilder = ObjectFilters.builder();
+								if (!excludeFacetKeys.isEmpty()) {
+									filtersBuilder.setExcludeAgentNameTexts(excludeFacetKeys);
 								}
-							});
-					agentNameTextButton.addStyleName("borderlessButton");
-					agentNameTextFacetsLayout.addComponent(agentNameTextButton);
-				}
-				final DisclosurePanel disclosurePanel = new DisclosurePanel();
-				disclosurePanel.setCaption("Agent names");
-				disclosurePanel.setContent(agentNameTextFacetsLayout);
-				disclosurePanel.setOpen(false);
-				leftPaneLayout.addComponent(disclosurePanel);
+								if (!includeFacetKeys.isEmpty()) {
+									filtersBuilder.setIncludeAgentNameTexts(includeFacetKeys);
+								}
+								_getEventBus().post(ObjectQueryService.Messages.GetObjectsRequest.builder()
+										.setQuery(ObjectQuery.builder().setFilters(filtersBuilder.build()).build())
+										.build());
+							}
+						});
 			}
 
 			if (!objectFacets.getCategories().isEmpty()) {
-				final VerticalLayout categoryFacetsLayout = new VerticalLayout();
-				for (final Map.Entry<String, UnsignedInteger> categoriesEntry : objectFacets.getCategories()
-						.entrySet()) {
-					final Button categoryButton = new Button(String.format("%s (%d objects)", categoriesEntry.getKey(),
-							categoriesEntry.getValue().intValue()), new Button.ClickListener() {
-								@Override
-								public void buttonClick(final ClickEvent event) {
-									_getEventBus()
-											.post(ObjectQueryService.Messages.GetObjectsRequest.builder()
-													.setQuery(ObjectQuery.builder()
-															.setIncludeCategories(
-																	ImmutableSet.of(categoriesEntry.getKey()))
-															.build())
-													.build());
+				leftPaneContentLayout
+						.addComponent(new ObjectFacetPicker<String>(objectFacets.getCategories(), "Categories",
+								objectQuery.getFilters().isPresent()
+										&& objectQuery.getFilters().get().getExcludeCategories().isPresent()
+												? objectQuery.getFilters().get().getExcludeCategories().get()
+												: ImmutableSet.of(),
+								objectQuery.getFilters().isPresent()
+										&& objectQuery.getFilters().get().getIncludeCategories().isPresent()
+												? objectQuery.getFilters().get().getIncludeCategories().get()
+												: ImmutableSet.of()) {
+							@Override
+							protected void _valueChange(final ImmutableSet<String> excludeFacetKeys,
+									final ImmutableSet<String> includeFacetKeys) {
+								final ObjectFilters.Builder filtersBuilder = ObjectFilters.builder();
+								if (!excludeFacetKeys.isEmpty()) {
+									filtersBuilder.setExcludeCategories(excludeFacetKeys);
 								}
-							});
-					categoryButton.addStyleName("borderlessButton");
-					categoryFacetsLayout.addComponent(categoryButton);
-				}
-				final DisclosurePanel disclosurePanel = new DisclosurePanel();
-				disclosurePanel.setCaption("Categories");
-				disclosurePanel.setContent(categoryFacetsLayout);
-				disclosurePanel.setOpen(false);
-				leftPaneLayout.addComponent(disclosurePanel);
+								if (!includeFacetKeys.isEmpty()) {
+									filtersBuilder.setIncludeCategories(includeFacetKeys);
+								}
+								_getEventBus().post(ObjectQueryService.Messages.GetObjectsRequest.builder()
+										.setQuery(ObjectQuery.builder().setFilters(filtersBuilder.build()).build())
+										.build());
+							}
+						});
 			}
 
 			if (!objectFacets.getInstitutionHits().isEmpty()) {
-				final VerticalLayout institutionFacetsLayout = new VerticalLayout();
-				for (final Map.Entry<InstitutionId, UnsignedInteger> institutionHitsEntry : objectFacets
-						.getInstitutionHits().entrySet()) {
-					institutionFacetsLayout.addComponent(new InstitutionButton("",
-							String.format(" (%d objects)", institutionHitsEntry.getValue().intValue()), _getEventBus(),
-							new InstitutionEntry(institutionHitsEntry.getKey(),
-									institutions.get(institutionHitsEntry.getKey()))));
-				}
-				final DisclosurePanel disclosurePanel = new DisclosurePanel();
-				disclosurePanel.setCaption("Institutions");
-				disclosurePanel.setContent(institutionFacetsLayout);
-				disclosurePanel.setOpen(false);
-				leftPaneLayout.addComponent(disclosurePanel);
+				leftPaneContentLayout.addComponent(
+						new ObjectFacetPicker<InstitutionId>(objectFacets.getInstitutionHits(), "Institutions",
+								objectQuery.getFilters().isPresent()
+										&& objectQuery.getFilters().get().getExcludeInstitutionIds().isPresent()
+												? objectQuery.getFilters().get().getExcludeInstitutionIds().get()
+												: ImmutableSet.of(),
+								objectQuery.getFilters().isPresent()
+										&& objectQuery.getFilters().get().getIncludeInstitutionIds().isPresent()
+												? objectQuery.getFilters().get().getIncludeInstitutionIds().get()
+												: ImmutableSet.of()) {
+							@Override
+							protected String _getCheckBoxCaption(final InstitutionId facetKey) {
+								return institutions.get(facetKey).getTitle();
+							}
+
+							@Override
+							protected void _valueChange(final ImmutableSet<InstitutionId> excludeFacetKeys,
+									final ImmutableSet<InstitutionId> includeFacetKeys) {
+								final ObjectFilters.Builder filtersBuilder = ObjectFilters.builder();
+								if (!excludeFacetKeys.isEmpty()) {
+									filtersBuilder.setExcludeInstitutionIds(excludeFacetKeys);
+								}
+								if (!includeFacetKeys.isEmpty()) {
+									filtersBuilder.setIncludeInstitutionIds(includeFacetKeys);
+								}
+								_getEventBus().post(ObjectQueryService.Messages.GetObjectsRequest.builder()
+										.setQuery(ObjectQuery.builder().setFilters(filtersBuilder.build()).build())
+										.build());
+							}
+						});
 			}
 
 			if (!objectFacets.getSubjectTermTexts().isEmpty()) {
-				final VerticalLayout subjectTermTextFacetsLayout = new VerticalLayout();
-				subjectTermTextFacetsLayout.addComponent(new Label());
-				for (final Map.Entry<String, UnsignedInteger> subjectTermTextsEntry : objectFacets.getSubjectTermTexts()
-						.entrySet()) {
-					final Button subjectTermTextButton = new Button(String.format("%s (%d objects)",
-							subjectTermTextsEntry.getKey(), subjectTermTextsEntry.getValue().intValue()),
-							new Button.ClickListener() {
-								@Override
-								public void buttonClick(final ClickEvent event) {
-									_getEventBus().post(ObjectQueryService.Messages.GetObjectsRequest.builder()
-											.setQuery(ObjectQuery.builder()
-													.setIncludeSubjectTermTexts(
-															ImmutableSet.of(subjectTermTextsEntry.getKey()))
-													.build())
-											.build());
-									;
+				leftPaneContentLayout
+						.addComponent(new ObjectFacetPicker<String>(objectFacets.getSubjectTermTexts(), "Subject terms",
+								objectQuery.getFilters().isPresent()
+										&& objectQuery.getFilters().get().getExcludeSubjectTermTexts().isPresent()
+												? objectQuery.getFilters().get().getExcludeSubjectTermTexts().get()
+												: ImmutableSet.of(),
+								objectQuery.getFilters().isPresent()
+										&& objectQuery.getFilters().get().getIncludeSubjectTermTexts().isPresent()
+												? objectQuery.getFilters().get().getIncludeSubjectTermTexts().get()
+												: ImmutableSet.of()) {
+							@Override
+							protected void _valueChange(final ImmutableSet<String> excludeFacetKeys,
+									final ImmutableSet<String> includeFacetKeys) {
+								final ObjectFilters.Builder filtersBuilder = ObjectFilters.builder();
+								if (!excludeFacetKeys.isEmpty()) {
+									filtersBuilder.setExcludeSubjectTermTexts(excludeFacetKeys);
 								}
-							});
-					subjectTermTextButton.addStyleName("borderlessButton");
-					subjectTermTextFacetsLayout.addComponent(subjectTermTextButton);
-				}
-				final DisclosurePanel disclosurePanel = new DisclosurePanel();
-				disclosurePanel.setCaption("Subject terms");
-				disclosurePanel.setContent(subjectTermTextFacetsLayout);
-				disclosurePanel.setOpen(false);
-				leftPaneLayout.addComponent(disclosurePanel);
+								if (!includeFacetKeys.isEmpty()) {
+									filtersBuilder.setIncludeSubjectTermTexts(includeFacetKeys);
+								}
+								_getEventBus().post(ObjectQueryService.Messages.GetObjectsRequest.builder()
+										.setQuery(ObjectQuery.builder().setFilters(filtersBuilder.build()).build())
+										.build());
+							}
+						});
 			}
 
-			twoPaneLayout.addComponent(leftPaneLayout);
-			twoPaneLayout.setComponentAlignment(leftPaneLayout, Alignment.TOP_LEFT);
-			twoPaneLayout.setExpandRatio(leftPaneLayout, 1);
+			final Panel leftPanePanel = new Panel();
+			leftPanePanel.setContent(leftPaneContentLayout);
+			leftPanePanel.setSizeFull();
+
+			twoPaneLayout.addComponent(leftPanePanel);
+			twoPaneLayout.setComponentAlignment(leftPanePanel, Alignment.TOP_LEFT);
+			twoPaneLayout.setExpandRatio(leftPanePanel, 1);
 		}
 
 		{
-			final VerticalLayout rightPaneLayout = new VerticalLayout();
+			final VerticalLayout rightPaneContentLayout = new VerticalLayout();
 
 			{
 				final Label hitCountsLabel = new Label(
 						String.format("%d object(s) in %d collection(s)", objectsSize, collections.size()));
 				hitCountsLabel.setWidth(100, Unit.PERCENTAGE);
-				rightPaneLayout.addComponent(hitCountsLabel);
-				rightPaneLayout.setComponentAlignment(hitCountsLabel, Alignment.MIDDLE_CENTER);
+				rightPaneContentLayout.addComponent(hitCountsLabel);
+				rightPaneContentLayout.setComponentAlignment(hitCountsLabel, Alignment.MIDDLE_CENTER);
 			}
 
 			{
@@ -351,12 +369,12 @@ public class ObjectsView extends TopLevelView {
 					});
 				}
 
-				rightPaneLayout.addComponent(grid);
+				rightPaneContentLayout.addComponent(grid);
 			}
 
-			twoPaneLayout.addComponent(rightPaneLayout);
-			twoPaneLayout.setComponentAlignment(rightPaneLayout, Alignment.MIDDLE_CENTER);
-			twoPaneLayout.setExpandRatio(rightPaneLayout, 5);
+			twoPaneLayout.addComponent(rightPaneContentLayout);
+			twoPaneLayout.setComponentAlignment(rightPaneContentLayout, Alignment.MIDDLE_CENTER);
+			twoPaneLayout.setExpandRatio(rightPaneContentLayout, 5);
 		}
 
 		setCompositionRoot(twoPaneLayout);

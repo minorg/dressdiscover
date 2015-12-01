@@ -9,6 +9,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Table;
 
+import net.lab1318.costume.api.models.object.ObjectFilters;
 import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.models.subject.Subject;
 import net.lab1318.costume.api.models.subject.SubjectSet;
@@ -35,8 +36,11 @@ public final class SubjectSetTable extends ElementSetTable {
 				final Button button = new Button(subjectTermText, new Button.ClickListener() {
 					@Override
 					public void buttonClick(final ClickEvent event) {
-						GuiUI.navigateTo(ObjectQuery.builder()
-								.setIncludeSubjectTermTexts(ImmutableSet.of(subjectTermText)).build());
+						GuiUI.navigateTo(
+								ObjectQuery.builder()
+										.setFilters(ObjectFilters.builder()
+												.setIncludeSubjectTermTexts(ImmutableSet.of(subjectTermText)).build())
+								.build());
 					}
 				});
 				button.addStyleName("borderlessButton");
