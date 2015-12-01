@@ -53,6 +53,7 @@ import net.lab1318.costume.api.models.institution.InvalidInstitutionIdException;
 import net.lab1318.costume.api.models.object.InvalidObjectIdException;
 import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectEntry;
+import net.lab1318.costume.api.models.object.ObjectFilters;
 import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.models.subject.Subject;
@@ -385,10 +386,15 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 			queryTranslated = QueryBuilders.matchAllQuery();
 		}
 
-		final List<FilterBuilder> filters = new ArrayList<>();
+		if (!query.get().getFilters().isPresent()) {
+			return queryTranslated;
+		}
 
-		for (final Optional<ImmutableSet<String>> agentNameTexts : ImmutableList
-				.of(query.get().getExcludeAgentNameTexts(), query.get().getIncludeAgentNameTexts())) {
+		final ObjectFilters filters = query.get().getFilters().get();
+		final List<FilterBuilder> filtersTranslated = new ArrayList<>();
+
+		for (final Optional<ImmutableSet<String>> agentNameTexts : ImmutableList.of(filters.getExcludeAgentNameTexts(),
+				filters.getIncludeAgentNameTexts())) {
 			if (!agentNameTexts.isPresent()) {
 				continue;
 			}
@@ -414,16 +420,16 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 												agentNameText)))));
 			}
 			if (!agentNameTextFilters.isEmpty()) {
-				if (agentNameTexts == query.get().getExcludeAgentNameTexts()) {
-					filters.add(__excludeAllFilters(agentNameTextFilters));
+				if (agentNameTexts == filters.getExcludeAgentNameTexts()) {
+					filtersTranslated.add(__excludeAllFilters(agentNameTextFilters));
 				} else {
-					filters.add(__includeAnyFilter(agentNameTextFilters));
+					filtersTranslated.add(__includeAnyFilter(agentNameTextFilters));
 				}
 			}
 		}
 
-		for (final Optional<ImmutableSet<String>> categories : ImmutableList.of(query.get().getExcludeCategories(),
-				query.get().getIncludeCategories())) {
+		for (final Optional<ImmutableSet<String>> categories : ImmutableList.of(filters.getExcludeCategories(),
+				filters.getIncludeCategories())) {
 			if (!categories.isPresent()) {
 				continue;
 			}
@@ -436,16 +442,16 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 						Object.FieldMetadata.CATEGORIES.getThriftProtocolKey() + ".not_analyzed", category));
 			}
 			if (!categoryFilters.isEmpty()) {
-				if (categories == query.get().getExcludeCategories()) {
-					filters.add(__excludeAllFilters(categoryFilters));
+				if (categories == filters.getExcludeCategories()) {
+					filtersTranslated.add(__excludeAllFilters(categoryFilters));
 				} else {
-					filters.add(__includeAnyFilter(categoryFilters));
+					filtersTranslated.add(__includeAnyFilter(categoryFilters));
 				}
 			}
 		}
 
 		for (final Optional<ImmutableSet<CollectionId>> collectionIds : ImmutableList
-				.of(query.get().getExcludeCollectionIds(), query.get().getIncludeCollectionIds())) {
+				.of(filters.getExcludeCollectionIds(), filters.getIncludeCollectionIds())) {
 			if (!collectionIds.isPresent()) {
 				continue;
 			}
@@ -455,16 +461,16 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 						Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(), collectionId.toString()));
 			}
 			if (!collectionIdFilters.isEmpty()) {
-				if (collectionIds == query.get().getExcludeCollectionIds()) {
-					filters.add(__excludeAllFilters(collectionIdFilters));
+				if (collectionIds == filters.getExcludeCollectionIds()) {
+					filtersTranslated.add(__excludeAllFilters(collectionIdFilters));
 				} else {
-					filters.add(__includeAnyFilter(collectionIdFilters));
+					filtersTranslated.add(__includeAnyFilter(collectionIdFilters));
 				}
 			}
 		}
 
 		for (final Optional<ImmutableSet<InstitutionId>> institutionIds : ImmutableList
-				.of(query.get().getExcludeInstitutionIds(), query.get().getIncludeInstitutionIds())) {
+				.of(filters.getExcludeInstitutionIds(), filters.getIncludeInstitutionIds())) {
 			if (!institutionIds.isPresent()) {
 				continue;
 			}
@@ -474,16 +480,16 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 						Object.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(), institutionId.toString()));
 			}
 			if (!institutionIdFilters.isEmpty()) {
-				if (institutionIds == query.get().getExcludeInstitutionIds()) {
-					filters.add(__excludeAllFilters(institutionIdFilters));
+				if (institutionIds == filters.getExcludeInstitutionIds()) {
+					filtersTranslated.add(__excludeAllFilters(institutionIdFilters));
 				} else {
-					filters.add(__includeAnyFilter(institutionIdFilters));
+					filtersTranslated.add(__includeAnyFilter(institutionIdFilters));
 				}
 			}
 		}
 
 		for (final Optional<ImmutableSet<String>> subjectTermTexts : ImmutableList
-				.of(query.get().getExcludeSubjectTermTexts(), query.get().getIncludeSubjectTermTexts())) {
+				.of(filters.getExcludeSubjectTermTexts(), filters.getIncludeSubjectTermTexts())) {
 			if (!subjectTermTexts.isPresent()) {
 				continue;
 			}
@@ -507,19 +513,19 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 												+ ".not_analyzed", subjectTermText)))));
 			}
 			if (!subjectTermTextFilters.isEmpty()) {
-				if (subjectTermTexts == query.get().getExcludeSubjectTermTexts()) {
-					filters.add(__excludeAllFilters(subjectTermTextFilters));
+				if (subjectTermTexts == filters.getExcludeSubjectTermTexts()) {
+					filtersTranslated.add(__excludeAllFilters(subjectTermTextFilters));
 				} else {
-					filters.add(__includeAnyFilter(subjectTermTextFilters));
+					filtersTranslated.add(__includeAnyFilter(subjectTermTextFilters));
 				}
 			}
 		}
 
-		if (filters.size() == 1) {
-			queryTranslated = QueryBuilders.filteredQuery(queryTranslated, filters.get(0));
-		} else if (filters.size() > 1) {
+		if (filtersTranslated.size() == 1) {
+			queryTranslated = QueryBuilders.filteredQuery(queryTranslated, filtersTranslated.get(0));
+		} else if (filtersTranslated.size() > 1) {
 			AndFilterBuilder andFilter = FilterBuilders.andFilter();
-			for (final FilterBuilder filter : filters) {
+			for (final FilterBuilder filter : filtersTranslated) {
 				andFilter = andFilter.add(filter);
 			}
 			queryTranslated = QueryBuilders.filteredQuery(queryTranslated, andFilter);

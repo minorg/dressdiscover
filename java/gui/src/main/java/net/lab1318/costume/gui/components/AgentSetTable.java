@@ -12,6 +12,7 @@ import com.vaadin.ui.Table;
 import net.lab1318.costume.api.models.agent.Agent;
 import net.lab1318.costume.api.models.agent.AgentName;
 import net.lab1318.costume.api.models.agent.AgentSet;
+import net.lab1318.costume.api.models.object.ObjectFilters;
 import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.gui.GuiUI;
 import net.lab1318.costume.gui.models.agent.AgentBean;
@@ -38,7 +39,9 @@ public final class AgentSetTable extends ElementSetTable {
 							@Override
 							public void buttonClick(final ClickEvent event) {
 								GuiUI.navigateTo(ObjectQuery.builder()
-										.setIncludeAgentNameTexts(ImmutableSet.of(agentNameText)).build());
+										.setFilters(ObjectFilters.builder()
+												.setIncludeAgentNameTexts(ImmutableSet.of(agentNameText)).build())
+										.build());
 							}
 						});
 						button.addStyleName("borderlessButton");

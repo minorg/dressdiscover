@@ -10,6 +10,7 @@ import com.google.common.collect.ImmutableSet;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.object.ObjectEntry;
+import net.lab1318.costume.api.models.object.ObjectFilters;
 import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.collection.CollectionCommandService;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
@@ -39,15 +40,21 @@ public abstract class ObjectServiceTest extends ServiceTest {
 
 	protected final int _getObjectCountByCollectionId(final CollectionId collectionId) throws Exception {
 		return objectQueryService
-				.getObjectCount(Optional
-						.of(ObjectQuery.builder().setIncludeCollectionIds(ImmutableSet.of(collectionId)).build()))
+				.getObjectCount(
+						Optional.of(ObjectQuery.builder()
+								.setFilters(ObjectFilters.builder()
+										.setIncludeCollectionIds(ImmutableSet.of(collectionId)).build())
+								.build()))
 				.intValue();
 	}
 
 	protected final int _getObjectCountByInstitutionId(final InstitutionId institutionId) throws Exception {
 		return objectQueryService
-				.getObjectCount(Optional
-						.of(ObjectQuery.builder().setIncludeInstitutionIds(ImmutableSet.of(institutionId)).build()))
+				.getObjectCount(
+						Optional.of(ObjectQuery.builder()
+								.setFilters(ObjectFilters.builder()
+										.setIncludeInstitutionIds(ImmutableSet.of(institutionId)).build())
+								.build()))
 				.intValue();
 	}
 
