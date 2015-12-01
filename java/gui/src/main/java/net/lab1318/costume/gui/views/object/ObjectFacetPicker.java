@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.components;
+package net.lab1318.costume.gui.views.object;
 
 import static com.google.common.base.Preconditions.checkState;
 
@@ -18,7 +18,7 @@ import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.VerticalLayout;
 
 @SuppressWarnings("serial")
-public abstract class ObjectFacetPicker<KeyT> extends CustomComponent {
+abstract class ObjectFacetPicker<KeyT> extends CustomComponent {
 	public ObjectFacetPicker(final ImmutableMap<KeyT, UnsignedInteger> availableFacets, final String caption,
 			final ImmutableSet<KeyT> excludeFacetKeys, final ImmutableSet<KeyT> includeFacetKeys) {
 		final VerticalLayout checkBoxesLayout = new VerticalLayout();

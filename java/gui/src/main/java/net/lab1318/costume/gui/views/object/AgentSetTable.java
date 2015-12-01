@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.components;
+package net.lab1318.costume.gui.views.object;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import net.lab1318.costume.gui.GuiUI;
 import net.lab1318.costume.gui.models.agent.AgentBean;
 
 @SuppressWarnings("serial")
-public final class AgentSetTable extends ElementSetTable {
+final class AgentSetTable extends ElementSetTable {
 	public AgentSetTable(final AgentSet agents) {
 		super("Agents", agents);
 

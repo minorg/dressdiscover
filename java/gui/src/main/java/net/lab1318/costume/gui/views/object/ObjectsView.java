@@ -43,7 +43,6 @@ import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
-import net.lab1318.costume.gui.components.ObjectFacetPicker;
 import net.lab1318.costume.gui.models.image.ImageBean;
 import net.lab1318.costume.gui.views.TopLevelView;
 

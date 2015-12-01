@@ -15,9 +15,6 @@ import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
-import net.lab1318.costume.gui.components.CollectionButton;
-import net.lab1318.costume.gui.components.InstitutionButton;
-import net.lab1318.costume.gui.components.ObjectForm;
 import net.lab1318.costume.gui.views.TopLevelView;
 
 @SuppressWarnings("serial")

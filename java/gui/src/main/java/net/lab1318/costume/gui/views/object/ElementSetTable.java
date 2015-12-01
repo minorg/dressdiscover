@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.components;
+package net.lab1318.costume.gui.views.object;
 
 import com.vaadin.ui.Table;
 
