@@ -44,7 +44,6 @@ final class AgentSetTable extends ElementSetTable {
 										.build());
 							}
 						});
-						button.addStyleName("borderlessButton");
 						return button;
 					}
 				});

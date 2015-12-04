@@ -8,6 +8,7 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.api.models.collection.CollectionEntry;
@@ -37,8 +38,9 @@ public class ObjectByIdView extends TopLevelView {
 
 			{
 				final VerticalLayout leftHeaderLayout = new VerticalLayout();
+				leftHeaderLayout.setSpacing(true);
 				{
-					final Button institutionButton = new Button(
+					final Button institutionButton = new NativeButton(
 							"Institution: " + institutionEntry.getModel().getTitle(), new Button.ClickListener() {
 								@Override
 								public void buttonClick(final ClickEvent event) {
@@ -46,19 +48,17 @@ public class ObjectByIdView extends TopLevelView {
 											institutionEntry.getId()));
 								}
 							});
-					institutionButton.addStyleName("borderlessButton");
 					leftHeaderLayout.addComponent(institutionButton);
 				}
 				{
-					final Button collectionButton = new Button("Collection: " + collectionEntry.getModel().getTitle(),
-							new Button.ClickListener() {
+					final Button collectionButton = new NativeButton(
+							"Collection: " + collectionEntry.getModel().getTitle(), new Button.ClickListener() {
 								@Override
 								public void buttonClick(final ClickEvent event) {
 									_getEventBus().post(new CollectionQueryService.Messages.GetCollectionByIdRequest(
 											collectionEntry.getId()));
 								}
 							});
-					collectionButton.addStyleName("borderlessButton");
 					leftHeaderLayout.addComponent(collectionButton);
 				}
 
@@ -67,7 +67,7 @@ public class ObjectByIdView extends TopLevelView {
 			}
 
 			{
-				final Button moreLikeThisButton = new Button("More like this", new Button.ClickListener() {
+				final Button moreLikeThisButton = new NativeButton("More like this", new Button.ClickListener() {
 					@Override
 					public void buttonClick(final ClickEvent event) {
 						_getEventBus().post(ObjectQueryService.Messages.GetObjectsRequest.builder()

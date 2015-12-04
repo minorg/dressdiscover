@@ -43,7 +43,6 @@ final class SubjectSetTable extends ElementSetTable {
 								.build());
 					}
 				});
-				button.addStyleName("borderlessButton");
 				return button;
 			}
 		});
