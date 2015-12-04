@@ -7,6 +7,7 @@ import com.google.common.collect.ImmutableSet;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.Table;
 
 import net.lab1318.costume.api.models.object.ObjectFilters;
@@ -33,7 +34,7 @@ final class SubjectSetTable extends ElementSetTable {
 			@Override
 			public Object generateCell(final Table source, final Object itemId, final Object columnId) {
 				final String subjectTermText = (String) container.getItem(itemId).getItemProperty(columnId).getValue();
-				final Button button = new Button(subjectTermText, new Button.ClickListener() {
+				final Button button = new NativeButton(subjectTermText, new Button.ClickListener() {
 					@Override
 					public void buttonClick(final ClickEvent event) {
 						GuiUI.navigateTo(
@@ -43,7 +44,6 @@ final class SubjectSetTable extends ElementSetTable {
 								.build());
 					}
 				});
-				button.addStyleName("borderlessButton");
 				return button;
 			}
 		});

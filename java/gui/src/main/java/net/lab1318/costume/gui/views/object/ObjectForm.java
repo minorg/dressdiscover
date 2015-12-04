@@ -21,20 +21,19 @@ final class ObjectForm extends CustomComponent {
 		final VerticalLayout rootLayout = new VerticalLayout();
 		rootLayout.setSizeFull();
 
-		final Label titleLabel = new Label(objectEntry.getModel().getTitle());
-		titleLabel.setStyleName("h3");
-		rootLayout.addComponent(titleLabel);
-
 		final HorizontalLayout twoPaneLayout = new HorizontalLayout();
 		twoPaneLayout.setSizeFull();
 
 		final VerticalLayout leftPaneLayout = new VerticalLayout();
+		leftPaneLayout.setSpacing(false);
 		twoPaneLayout.addComponent(leftPaneLayout);
 		twoPaneLayout.setComponentAlignment(leftPaneLayout, Alignment.TOP_LEFT);
 
-		final VerticalLayout rightPaneLayout = new VerticalLayout();
-		twoPaneLayout.addComponent(rightPaneLayout);
-		twoPaneLayout.setComponentAlignment(rightPaneLayout, Alignment.TOP_CENTER);
+		{
+			final Label titleLabel = new Label(objectEntry.getModel().getTitle());
+			titleLabel.setStyleName("h3");
+			leftPaneLayout.addComponent(titleLabel);
+		}
 
 		{
 			final FormLayout formLayout = new FormLayout();
@@ -99,6 +98,10 @@ final class ObjectForm extends CustomComponent {
 
 			leftPaneLayout.addComponent(new RightsLabel(institution.getDataRights()));
 		}
+
+		final VerticalLayout rightPaneLayout = new VerticalLayout();
+		twoPaneLayout.addComponent(rightPaneLayout);
+		twoPaneLayout.setComponentAlignment(rightPaneLayout, Alignment.TOP_CENTER);
 
 		if (objectEntry.getModel().getThumbnail().isPresent()) {
 			final Image thumbnail = new Image("", Optional.absent(), objectEntry.getModel().getThumbnail().get(),

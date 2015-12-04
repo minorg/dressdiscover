@@ -192,8 +192,8 @@ public class ObjectsView extends TopLevelView {
 			}
 
 			final Panel leftPanePanel = new Panel();
+			leftPanePanel.addStyleName("borderless");
 			leftPanePanel.setContent(leftPaneContentLayout);
-			leftPanePanel.setSizeFull();
 
 			twoPaneLayout.addComponent(leftPanePanel);
 			twoPaneLayout.setComponentAlignment(leftPanePanel, Alignment.TOP_LEFT);
@@ -220,7 +220,7 @@ public class ObjectsView extends TopLevelView {
 					@Override
 					public String getStyle(final CellReference cellReference) {
 						return cellReference.getPropertyId().equals(Object.FieldMetadata.THUMBNAIL.getJavaName())
-								? "thumbnailGridCell" : "borderlessButton";
+								? "thumbnailGridCell" : "borderless";
 					}
 				});
 				grid.setStyleName("objectGrid");
@@ -371,9 +371,13 @@ public class ObjectsView extends TopLevelView {
 				rightPaneContentLayout.addComponent(grid);
 			}
 
-			twoPaneLayout.addComponent(rightPaneContentLayout);
-			twoPaneLayout.setComponentAlignment(rightPaneContentLayout, Alignment.MIDDLE_CENTER);
-			twoPaneLayout.setExpandRatio(rightPaneContentLayout, 5);
+			final Panel rightPanePanel = new Panel();
+			rightPanePanel.addStyleName("borderless");
+			rightPanePanel.setContent(rightPaneContentLayout);
+
+			twoPaneLayout.addComponent(rightPanePanel);
+			twoPaneLayout.setComponentAlignment(rightPanePanel, Alignment.MIDDLE_CENTER);
+			twoPaneLayout.setExpandRatio(rightPanePanel, 3);
 		}
 
 		setCompositionRoot(twoPaneLayout);
