@@ -2,6 +2,8 @@ package net.lab1318.costume.gui.views.object;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import org.notaweb.gui.EventBus;
@@ -69,7 +71,7 @@ public class ObjectsView extends TopLevelView {
 
 		final HorizontalLayout twoPaneLayout = new HorizontalLayout();
 		twoPaneLayout.setSizeFull();
-		twoPaneLayout.setHeight(700, Unit.PIXELS);
+		// twoPaneLayout.setHeight(700, Unit.PIXELS);
 
 		{
 			final VerticalLayout leftPaneContentLayout = new VerticalLayout();
@@ -212,19 +214,33 @@ public class ObjectsView extends TopLevelView {
 			}
 
 			{
+				final List<String> gridColumns = new ArrayList<>();
+				{
+					if (objectFacets.getThumbnailExists()) {
+						gridColumns.add(Object.FieldMetadata.THUMBNAIL.getJavaName());
+					}
+					gridColumns.add(Object.FieldMetadata.TITLE.getJavaName());
+					gridColumns.add(Object.FieldMetadata.DATE_TEXT.getJavaName());
+					gridColumns.add(Object.FieldMetadata.INSTITUTION_ID.getJavaName());
+					gridColumns.add(Object.FieldMetadata.COLLECTION_ID.getJavaName());
+					gridColumns.add(Object.FieldMetadata.URL.getJavaName());
+				}
+
 				final Grid grid = new Grid(objects);
+				grid.setColumns(gridColumns.toArray());
 				grid.setHeightMode(HeightMode.ROW);
 				grid.setHeightByRows(4.0);
 				grid.setSizeFull();
-				grid.setCellStyleGenerator(new Grid.CellStyleGenerator() {
-					@Override
-					public String getStyle(final CellReference cellReference) {
-						return cellReference.getPropertyId().equals(Object.FieldMetadata.THUMBNAIL.getJavaName())
-								? "thumbnailGridCell" : "borderless";
-					}
-				});
+				if (gridColumns.contains(Object.FieldMetadata.THUMBNAIL.getJavaName())) {
+					grid.setCellStyleGenerator(new Grid.CellStyleGenerator() {
+						@Override
+						public String getStyle(final CellReference cellReference) {
+							return cellReference.getPropertyId().equals(Object.FieldMetadata.THUMBNAIL.getJavaName())
+									? "thumbnailGridCell" : "borderless";
+						}
+					});
+				}
 				grid.setStyleName("objectGrid");
-
 				final RendererClickListener getObjectByIdClickListener = new RendererClickListener() {
 					@Override
 					public void click(final RendererClickEvent event) {
@@ -232,10 +248,6 @@ public class ObjectsView extends TopLevelView {
 								new ObjectQueryService.Messages.GetObjectByIdRequest((ObjectId) event.getItemId()));
 					}
 				};
-
-				grid.setColumns(Object.FieldMetadata.THUMBNAIL.getJavaName(), Object.FieldMetadata.TITLE.getJavaName(),
-						Object.FieldMetadata.DATE_TEXT.getJavaName(), Object.FieldMetadata.INSTITUTION_ID.getJavaName(),
-						Object.FieldMetadata.COLLECTION_ID.getJavaName(), Object.FieldMetadata.URL.getJavaName());
 				{
 					final Column collectionIdColumn = grid.getColumn(Object.FieldMetadata.COLLECTION_ID.getJavaName());
 					collectionIdColumn.setHeaderCaption("Collection");
@@ -318,7 +330,7 @@ public class ObjectsView extends TopLevelView {
 					grid.getColumn(Object.FieldMetadata.TITLE.getJavaName())
 							.setRenderer(new ButtonRenderer(getObjectByIdClickListener));
 				}
-				{
+				if (gridColumns.contains(Object.FieldMetadata.THUMBNAIL.getJavaName())) {
 					final Column thumbnailColumn = grid.getColumn(Object.FieldMetadata.THUMBNAIL.getJavaName());
 					thumbnailColumn.setHeaderCaption("");
 					thumbnailColumn.setRenderer(new ImageRenderer(getObjectByIdClickListener),
@@ -376,7 +388,7 @@ public class ObjectsView extends TopLevelView {
 			rightPanePanel.setContent(rightPaneContentLayout);
 
 			twoPaneLayout.addComponent(rightPanePanel);
-			twoPaneLayout.setComponentAlignment(rightPanePanel, Alignment.MIDDLE_CENTER);
+			twoPaneLayout.setComponentAlignment(rightPanePanel, Alignment.TOP_CENTER);
 			twoPaneLayout.setExpandRatio(rightPanePanel, 3);
 		}
 

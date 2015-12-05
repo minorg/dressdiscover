@@ -8,6 +8,9 @@ public class ObjectFacets implements org.thryft.Struct {
             collectionHits = null;
             institutionHits = null;
             subjectTermTexts = null;
+            thumbnailExists = false;
+            thumbnailHeightMaxPx = com.google.common.base.Optional.absent();
+            thumbnailWidthMaxPx = com.google.common.base.Optional.absent();
         }
 
         public Builder(final ObjectFacets other) {
@@ -16,14 +19,17 @@ public class ObjectFacets implements org.thryft.Struct {
             this.collectionHits = other.getCollectionHits();
             this.institutionHits = other.getInstitutionHits();
             this.subjectTermTexts = other.getSubjectTermTexts();
+            this.thumbnailExists = other.getThumbnailExists();
+            this.thumbnailHeightMaxPx = other.getThumbnailHeightMaxPx();
+            this.thumbnailWidthMaxPx = other.getThumbnailWidthMaxPx();
         }
 
-        protected ObjectFacets _build(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts) {
-            return new ObjectFacets(agentNameTexts, categories, collectionHits, institutionHits, subjectTermTexts);
+        protected ObjectFacets _build(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final boolean thumbnailExists, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> thumbnailHeightMaxPx, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> thumbnailWidthMaxPx) {
+            return new ObjectFacets(agentNameTexts, categories, collectionHits, institutionHits, subjectTermTexts, thumbnailExists, thumbnailHeightMaxPx, thumbnailWidthMaxPx);
         }
 
         public ObjectFacets build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(agentNameTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing agentNameTexts"), com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.services.object.ObjectFacets: missing categories"), com.google.common.base.Preconditions.checkNotNull(collectionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing collectionHits"), com.google.common.base.Preconditions.checkNotNull(institutionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing institutionHits"), com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing subjectTermTexts"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(agentNameTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing agentNameTexts"), com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.services.object.ObjectFacets: missing categories"), com.google.common.base.Preconditions.checkNotNull(collectionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing collectionHits"), com.google.common.base.Preconditions.checkNotNull(institutionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing institutionHits"), com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing subjectTermTexts"), com.google.common.base.Preconditions.checkNotNull(thumbnailExists, "net.lab1318.costume.api.services.object.ObjectFacets: missing thumbnailExists"), com.google.common.base.Preconditions.checkNotNull(thumbnailHeightMaxPx, "net.lab1318.costume.api.services.object.ObjectFacets: missing thumbnailHeightMaxPx"), com.google.common.base.Preconditions.checkNotNull(thumbnailWidthMaxPx, "net.lab1318.costume.api.services.object.ObjectFacets: missing thumbnailWidthMaxPx"));
         }
 
         public final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> getAgentNameTexts() {
@@ -46,6 +52,18 @@ public class ObjectFacets implements org.thryft.Struct {
             return subjectTermTexts;
         }
 
+        public final boolean getThumbnailExists() {
+            return thumbnailExists;
+        }
+
+        public final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> getThumbnailHeightMaxPx() {
+            return thumbnailHeightMaxPx;
+        }
+
+        public final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> getThumbnailWidthMaxPx() {
+            return thumbnailWidthMaxPx;
+        }
+
         public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
             switch (type) {
             case LIST:
@@ -58,7 +76,7 @@ public class ObjectFacets implements org.thryft.Struct {
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            iprot.readListBegin();
+            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             agentNameTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
                 @Override
                 public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -187,6 +205,19 @@ public class ObjectFacets implements org.thryft.Struct {
                     }
                 }
             }).apply(iprot);
+            thumbnailExists = iprot.readBool();
+            if (__list.getSize() > 6) {
+                try {
+                    thumbnailHeightMaxPx = com.google.common.base.Optional.of(iprot.readU32());
+                } catch (final NumberFormatException e) {
+                }
+            }
+            if (__list.getSize() > 7) {
+                try {
+                    thumbnailWidthMaxPx = com.google.common.base.Optional.of(iprot.readU32());
+                } catch (final NumberFormatException e) {
+                }
+            }
             iprot.readListEnd();
             return this;
         }
@@ -342,6 +373,24 @@ public class ObjectFacets implements org.thryft.Struct {
                     }).apply(iprot);
                     break;
                 }
+                case "thumbnail_exists": {
+                    thumbnailExists = iprot.readBool();
+                    break;
+                }
+                case "thumbnail_height_max_px": {
+                    try {
+                        thumbnailHeightMaxPx = com.google.common.base.Optional.of(iprot.readU32());
+                    } catch (final NumberFormatException e) {
+                    }
+                    break;
+                }
+                case "thumbnail_width_max_px": {
+                    try {
+                        thumbnailWidthMaxPx = com.google.common.base.Optional.of(iprot.readU32());
+                    } catch (final NumberFormatException e) {
+                    }
+                    break;
+                }
                 }
                 iprot.readFieldEnd();
             }
@@ -372,6 +421,13 @@ public class ObjectFacets implements org.thryft.Struct {
             setCollectionHits(other.getCollectionHits());
             setInstitutionHits(other.getInstitutionHits());
             setSubjectTermTexts(other.getSubjectTermTexts());
+            setThumbnailExists(other.getThumbnailExists());
+            if (other.getThumbnailHeightMaxPx().isPresent()) {
+                setThumbnailHeightMaxPx(other.getThumbnailHeightMaxPx());
+            }
+            if (other.getThumbnailWidthMaxPx().isPresent()) {
+                setThumbnailWidthMaxPx(other.getThumbnailWidthMaxPx());
+            }
 
             return this;
         }
@@ -386,6 +442,31 @@ public class ObjectFacets implements org.thryft.Struct {
             return this;
         }
 
+        public Builder setThumbnailExists(final boolean thumbnailExists) {
+            this.thumbnailExists = com.google.common.base.Preconditions.checkNotNull(thumbnailExists);
+            return this;
+        }
+
+        public Builder setThumbnailHeightMaxPx(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> thumbnailHeightMaxPx) {
+            this.thumbnailHeightMaxPx = com.google.common.base.Preconditions.checkNotNull(thumbnailHeightMaxPx);
+            return this;
+        }
+
+        public Builder setThumbnailHeightMaxPx(@javax.annotation.Nullable final com.google.common.primitives.UnsignedInteger thumbnailHeightMaxPx) {
+            this.thumbnailHeightMaxPx = com.google.common.base.Optional.fromNullable(thumbnailHeightMaxPx);
+            return this;
+        }
+
+        public Builder setThumbnailWidthMaxPx(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> thumbnailWidthMaxPx) {
+            this.thumbnailWidthMaxPx = com.google.common.base.Preconditions.checkNotNull(thumbnailWidthMaxPx);
+            return this;
+        }
+
+        public Builder setThumbnailWidthMaxPx(@javax.annotation.Nullable final com.google.common.primitives.UnsignedInteger thumbnailWidthMaxPx) {
+            this.thumbnailWidthMaxPx = com.google.common.base.Optional.fromNullable(thumbnailWidthMaxPx);
+            return this;
+        }
+
         @SuppressWarnings({"unchecked"})
         public Builder set(final String name, @javax.annotation.Nullable final java.lang.Object value) {
             com.google.common.base.Preconditions.checkNotNull(name);
@@ -396,6 +477,9 @@ public class ObjectFacets implements org.thryft.Struct {
             case "collection_hits": setCollectionHits((com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger>)value); return this;
             case "institution_hits": setInstitutionHits((com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger>)value); return this;
             case "subject_term_texts": setSubjectTermTexts((com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>)value); return this;
+            case "thumbnail_exists": setThumbnailExists((boolean)value); return this;
+            case "thumbnail_height_max_px": setThumbnailHeightMaxPx((com.google.common.primitives.UnsignedInteger)value); return this;
+            case "thumbnail_width_max_px": setThumbnailWidthMaxPx((com.google.common.primitives.UnsignedInteger)value); return this;
             default:
                 throw new IllegalArgumentException(name);
             }
@@ -426,11 +510,29 @@ public class ObjectFacets implements org.thryft.Struct {
             return this;
         }
 
+        public Builder unsetThumbnailExists() {
+            this.thumbnailExists = false;
+            return this;
+        }
+
+        public Builder unsetThumbnailHeightMaxPx() {
+            this.thumbnailHeightMaxPx = com.google.common.base.Optional.absent();
+            return this;
+        }
+
+        public Builder unsetThumbnailWidthMaxPx() {
+            this.thumbnailWidthMaxPx = com.google.common.base.Optional.absent();
+            return this;
+        }
+
         private com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts;
         private com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories;
         private com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits;
         private com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits;
         private com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts;
+        private Boolean thumbnailExists;
+        private com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> thumbnailHeightMaxPx;
+        private com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> thumbnailWidthMaxPx;
     }
 
     @SuppressWarnings("serial")
@@ -439,7 +541,10 @@ public class ObjectFacets implements org.thryft.Struct {
         CATEGORIES("categories", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {}, true, 0, "categories", org.thryft.protocol.Type.MAP),
         COLLECTION_HITS("collectionHits", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger>>() {}, true, 0, "collection_hits", org.thryft.protocol.Type.MAP),
         INSTITUTION_HITS("institutionHits", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger>>() {}, true, 0, "institution_hits", org.thryft.protocol.Type.MAP),
-        SUBJECT_TERM_TEXTS("subjectTermTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {}, true, 0, "subject_term_texts", org.thryft.protocol.Type.MAP);
+        SUBJECT_TERM_TEXTS("subjectTermTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {}, true, 0, "subject_term_texts", org.thryft.protocol.Type.MAP),
+        THUMBNAIL_EXISTS("thumbnailExists", new com.google.common.reflect.TypeToken<Boolean>() {}, true, 0, "thumbnail_exists", org.thryft.protocol.Type.BOOL),
+        THUMBNAIL_HEIGHT_MAX_PX("thumbnailHeightMaxPx", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, false, 0, "thumbnail_height_max_px", org.thryft.protocol.Type.I32),
+        THUMBNAIL_WIDTH_MAX_PX("thumbnailWidthMaxPx", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, false, 0, "thumbnail_width_max_px", org.thryft.protocol.Type.I32);
 
         @Override
         public String getJavaName() {
@@ -488,6 +593,9 @@ public class ObjectFacets implements org.thryft.Struct {
             case "collectionHits": return COLLECTION_HITS;
             case "institutionHits": return INSTITUTION_HITS;
             case "subjectTermTexts": return SUBJECT_TERM_TEXTS;
+            case "thumbnailExists": return THUMBNAIL_EXISTS;
+            case "thumbnailHeightMaxPx": return THUMBNAIL_HEIGHT_MAX_PX;
+            case "thumbnailWidthMaxPx": return THUMBNAIL_WIDTH_MAX_PX;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -500,6 +608,9 @@ public class ObjectFacets implements org.thryft.Struct {
             case "collection_hits": return COLLECTION_HITS;
             case "institution_hits": return INSTITUTION_HITS;
             case "subject_term_texts": return SUBJECT_TERM_TEXTS;
+            case "thumbnail_exists": return THUMBNAIL_EXISTS;
+            case "thumbnail_height_max_px": return THUMBNAIL_HEIGHT_MAX_PX;
+            case "thumbnail_width_max_px": return THUMBNAIL_WIDTH_MAX_PX;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -532,18 +643,63 @@ public class ObjectFacets implements org.thryft.Struct {
      * Copy constructor
      */
     public ObjectFacets(final ObjectFacets other) {
-        this(other.getAgentNameTexts(), other.getCategories(), other.getCollectionHits(), other.getInstitutionHits(), other.getSubjectTermTexts());
+        this(other.getAgentNameTexts(), other.getCategories(), other.getCollectionHits(), other.getInstitutionHits(), other.getSubjectTermTexts(), other.getThumbnailExists(), other.getThumbnailHeightMaxPx(), other.getThumbnailWidthMaxPx());
     }
 
     /**
-     * Optional constructor
+     * Required constructor
      */
-    public ObjectFacets(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts) {
+    public ObjectFacets(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final boolean thumbnailExists) {
         this.agentNameTexts = com.google.common.base.Preconditions.checkNotNull(agentNameTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing agentNameTexts");
         this.categories = com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.services.object.ObjectFacets: missing categories");
         this.collectionHits = com.google.common.base.Preconditions.checkNotNull(collectionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing collectionHits");
         this.institutionHits = com.google.common.base.Preconditions.checkNotNull(institutionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing institutionHits");
         this.subjectTermTexts = com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing subjectTermTexts");
+        this.thumbnailExists = thumbnailExists;
+        this.thumbnailHeightMaxPx = com.google.common.base.Optional.absent();
+        this.thumbnailWidthMaxPx = com.google.common.base.Optional.absent();
+    }
+
+    /**
+     * Total boxed constructor
+     */
+    public ObjectFacets(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final Boolean thumbnailExists, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> thumbnailHeightMaxPx, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> thumbnailWidthMaxPx) {
+        this.agentNameTexts = com.google.common.base.Preconditions.checkNotNull(agentNameTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing agentNameTexts");
+        this.categories = com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.services.object.ObjectFacets: missing categories");
+        this.collectionHits = com.google.common.base.Preconditions.checkNotNull(collectionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing collectionHits");
+        this.institutionHits = com.google.common.base.Preconditions.checkNotNull(institutionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing institutionHits");
+        this.subjectTermTexts = com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing subjectTermTexts");
+        this.thumbnailExists = com.google.common.base.Preconditions.checkNotNull(thumbnailExists, "net.lab1318.costume.api.services.object.ObjectFacets: missing thumbnailExists");
+        this.thumbnailHeightMaxPx = com.google.common.base.Preconditions.checkNotNull(thumbnailHeightMaxPx, "net.lab1318.costume.api.services.object.ObjectFacets: missing thumbnailHeightMaxPx");
+        this.thumbnailWidthMaxPx = com.google.common.base.Preconditions.checkNotNull(thumbnailWidthMaxPx, "net.lab1318.costume.api.services.object.ObjectFacets: missing thumbnailWidthMaxPx");
+    }
+
+    /**
+     * Total Nullable constructor
+     */
+    public ObjectFacets(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final boolean thumbnailExists, final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger thumbnailHeightMaxPx, final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger thumbnailWidthMaxPx) {
+        this.agentNameTexts = com.google.common.base.Preconditions.checkNotNull(agentNameTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing agentNameTexts");
+        this.categories = com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.services.object.ObjectFacets: missing categories");
+        this.collectionHits = com.google.common.base.Preconditions.checkNotNull(collectionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing collectionHits");
+        this.institutionHits = com.google.common.base.Preconditions.checkNotNull(institutionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing institutionHits");
+        this.subjectTermTexts = com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing subjectTermTexts");
+        this.thumbnailExists = thumbnailExists;
+        this.thumbnailHeightMaxPx = com.google.common.base.Optional.fromNullable(thumbnailHeightMaxPx);
+        this.thumbnailWidthMaxPx = com.google.common.base.Optional.fromNullable(thumbnailWidthMaxPx);
+    }
+
+    /**
+     * Optional constructor
+     */
+    public ObjectFacets(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final boolean thumbnailExists, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> thumbnailHeightMaxPx, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> thumbnailWidthMaxPx) {
+        this.agentNameTexts = com.google.common.base.Preconditions.checkNotNull(agentNameTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing agentNameTexts");
+        this.categories = com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.services.object.ObjectFacets: missing categories");
+        this.collectionHits = com.google.common.base.Preconditions.checkNotNull(collectionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing collectionHits");
+        this.institutionHits = com.google.common.base.Preconditions.checkNotNull(institutionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing institutionHits");
+        this.subjectTermTexts = com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing subjectTermTexts");
+        this.thumbnailExists = thumbnailExists;
+        this.thumbnailHeightMaxPx = com.google.common.base.Preconditions.checkNotNull(thumbnailHeightMaxPx, "net.lab1318.costume.api.services.object.ObjectFacets: missing thumbnailHeightMaxPx");
+        this.thumbnailWidthMaxPx = com.google.common.base.Preconditions.checkNotNull(thumbnailWidthMaxPx, "net.lab1318.costume.api.services.object.ObjectFacets: missing thumbnailWidthMaxPx");
     }
 
     public static Builder builder() {
@@ -572,7 +728,10 @@ public class ObjectFacets implements org.thryft.Struct {
             getCategories().equals(other.getCategories()) &&
             getCollectionHits().equals(other.getCollectionHits()) &&
             getInstitutionHits().equals(other.getInstitutionHits()) &&
-            getSubjectTermTexts().equals(other.getSubjectTermTexts());
+            getSubjectTermTexts().equals(other.getSubjectTermTexts()) &&
+            getThumbnailExists() == other.getThumbnailExists() &&
+            getThumbnailHeightMaxPx().equals(other.getThumbnailHeightMaxPx()) &&
+            getThumbnailWidthMaxPx().equals(other.getThumbnailWidthMaxPx());
     }
 
     @Override
@@ -583,6 +742,9 @@ public class ObjectFacets implements org.thryft.Struct {
         case "collection_hits": return getCollectionHits();
         case "institution_hits": return getInstitutionHits();
         case "subject_term_texts": return getSubjectTermTexts();
+        case "thumbnail_exists": return getThumbnailExists();
+        case "thumbnail_height_max_px": return getThumbnailHeightMaxPx();
+        case "thumbnail_width_max_px": return getThumbnailWidthMaxPx();
         default:
             throw new IllegalArgumentException(fieldName);
         }
@@ -608,6 +770,18 @@ public class ObjectFacets implements org.thryft.Struct {
         return subjectTermTexts;
     }
 
+    public final boolean getThumbnailExists() {
+        return thumbnailExists;
+    }
+
+    public final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> getThumbnailHeightMaxPx() {
+        return thumbnailHeightMaxPx;
+    }
+
+    public final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> getThumbnailWidthMaxPx() {
+        return thumbnailWidthMaxPx;
+    }
+
     @Override
     public int hashCode() {
         int hashCode = 17;
@@ -616,6 +790,13 @@ public class ObjectFacets implements org.thryft.Struct {
         hashCode = 31 * hashCode + getCollectionHits().hashCode();
         hashCode = 31 * hashCode + getInstitutionHits().hashCode();
         hashCode = 31 * hashCode + getSubjectTermTexts().hashCode();
+        hashCode = 31 * hashCode + (getThumbnailExists() ? 1 : 0);
+        if (getThumbnailHeightMaxPx().isPresent()) {
+            hashCode = 31 * hashCode + getThumbnailHeightMaxPx().get().hashCode();
+        }
+        if (getThumbnailWidthMaxPx().isPresent()) {
+            hashCode = 31 * hashCode + getThumbnailWidthMaxPx().get().hashCode();
+        }
         return hashCode;
     }
 
@@ -636,8 +817,11 @@ public class ObjectFacets implements org.thryft.Struct {
         com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits = null;
         com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits = null;
         com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts = null;
+        boolean thumbnailExists = false;
+        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> thumbnailHeightMaxPx = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> thumbnailWidthMaxPx = com.google.common.base.Optional.absent();
 
-        iprot.readListBegin();
+        final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         agentNameTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
             @Override
             public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -766,9 +950,22 @@ public class ObjectFacets implements org.thryft.Struct {
                 }
             }
         }).apply(iprot);
+        thumbnailExists = iprot.readBool();
+        if (__list.getSize() > 6) {
+            try {
+                thumbnailHeightMaxPx = com.google.common.base.Optional.of(iprot.readU32());
+            } catch (final NumberFormatException e) {
+            }
+        }
+        if (__list.getSize() > 7) {
+            try {
+                thumbnailWidthMaxPx = com.google.common.base.Optional.of(iprot.readU32());
+            } catch (final NumberFormatException e) {
+            }
+        }
         iprot.readListEnd();
         try {
-            return new ObjectFacets(agentNameTexts, categories, collectionHits, institutionHits, subjectTermTexts);
+            return new ObjectFacets(agentNameTexts, categories, collectionHits, institutionHits, subjectTermTexts, thumbnailExists, thumbnailHeightMaxPx, thumbnailWidthMaxPx);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -780,6 +977,9 @@ public class ObjectFacets implements org.thryft.Struct {
         com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits = null;
         com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits = null;
         com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts = null;
+        boolean thumbnailExists = false;
+        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> thumbnailHeightMaxPx = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> thumbnailWidthMaxPx = com.google.common.base.Optional.absent();
 
         iprot.readStructBegin();
         while (true) {
@@ -931,45 +1131,83 @@ public class ObjectFacets implements org.thryft.Struct {
                 }).apply(iprot);
                 break;
             }
+            case "thumbnail_exists": {
+                thumbnailExists = iprot.readBool();
+                break;
+            }
+            case "thumbnail_height_max_px": {
+                try {
+                    thumbnailHeightMaxPx = com.google.common.base.Optional.of(iprot.readU32());
+                } catch (final NumberFormatException e) {
+                }
+                break;
+            }
+            case "thumbnail_width_max_px": {
+                try {
+                    thumbnailWidthMaxPx = com.google.common.base.Optional.of(iprot.readU32());
+                } catch (final NumberFormatException e) {
+                }
+                break;
+            }
             }
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
         try {
-            return new ObjectFacets(agentNameTexts, categories, collectionHits, institutionHits, subjectTermTexts);
+            return new ObjectFacets(agentNameTexts, categories, collectionHits, institutionHits, subjectTermTexts, thumbnailExists, thumbnailHeightMaxPx, thumbnailWidthMaxPx);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public ObjectFacets replaceAgentNameTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts) {
-        return new ObjectFacets(agentNameTexts, this.categories, this.collectionHits, this.institutionHits, this.subjectTermTexts);
+        return new ObjectFacets(agentNameTexts, this.categories, this.collectionHits, this.institutionHits, this.subjectTermTexts, this.thumbnailExists, this.thumbnailHeightMaxPx, this.thumbnailWidthMaxPx);
     }
 
     public ObjectFacets replaceCategories(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories) {
-        return new ObjectFacets(this.agentNameTexts, categories, this.collectionHits, this.institutionHits, this.subjectTermTexts);
+        return new ObjectFacets(this.agentNameTexts, categories, this.collectionHits, this.institutionHits, this.subjectTermTexts, this.thumbnailExists, this.thumbnailHeightMaxPx, this.thumbnailWidthMaxPx);
     }
 
     public ObjectFacets replaceCollectionHits(final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits) {
-        return new ObjectFacets(this.agentNameTexts, this.categories, collectionHits, this.institutionHits, this.subjectTermTexts);
+        return new ObjectFacets(this.agentNameTexts, this.categories, collectionHits, this.institutionHits, this.subjectTermTexts, this.thumbnailExists, this.thumbnailHeightMaxPx, this.thumbnailWidthMaxPx);
     }
 
     public ObjectFacets replaceInstitutionHits(final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits) {
-        return new ObjectFacets(this.agentNameTexts, this.categories, this.collectionHits, institutionHits, this.subjectTermTexts);
+        return new ObjectFacets(this.agentNameTexts, this.categories, this.collectionHits, institutionHits, this.subjectTermTexts, this.thumbnailExists, this.thumbnailHeightMaxPx, this.thumbnailWidthMaxPx);
     }
 
     public ObjectFacets replaceSubjectTermTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts) {
-        return new ObjectFacets(this.agentNameTexts, this.categories, this.collectionHits, this.institutionHits, subjectTermTexts);
+        return new ObjectFacets(this.agentNameTexts, this.categories, this.collectionHits, this.institutionHits, subjectTermTexts, this.thumbnailExists, this.thumbnailHeightMaxPx, this.thumbnailWidthMaxPx);
+    }
+
+    public ObjectFacets replaceThumbnailExists(final boolean thumbnailExists) {
+        return new ObjectFacets(this.agentNameTexts, this.categories, this.collectionHits, this.institutionHits, this.subjectTermTexts, thumbnailExists, this.thumbnailHeightMaxPx, this.thumbnailWidthMaxPx);
+    }
+
+    public ObjectFacets replaceThumbnailHeightMaxPx(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> thumbnailHeightMaxPx) {
+        return new ObjectFacets(this.agentNameTexts, this.categories, this.collectionHits, this.institutionHits, this.subjectTermTexts, this.thumbnailExists, thumbnailHeightMaxPx, this.thumbnailWidthMaxPx);
+    }
+
+    public ObjectFacets replaceThumbnailHeightMaxPx(final com.google.common.primitives.UnsignedInteger thumbnailHeightMaxPx) {
+        return replaceThumbnailHeightMaxPx(com.google.common.base.Optional.fromNullable(thumbnailHeightMaxPx));
+    }
+
+    public ObjectFacets replaceThumbnailWidthMaxPx(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> thumbnailWidthMaxPx) {
+        return new ObjectFacets(this.agentNameTexts, this.categories, this.collectionHits, this.institutionHits, this.subjectTermTexts, this.thumbnailExists, this.thumbnailHeightMaxPx, thumbnailWidthMaxPx);
+    }
+
+    public ObjectFacets replaceThumbnailWidthMaxPx(final com.google.common.primitives.UnsignedInteger thumbnailWidthMaxPx) {
+        return replaceThumbnailWidthMaxPx(com.google.common.base.Optional.fromNullable(thumbnailWidthMaxPx));
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("collection_hits", getCollectionHits()).add("institution_hits", getInstitutionHits()).add("subject_term_texts", getSubjectTermTexts()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("collection_hits", getCollectionHits()).add("institution_hits", getInstitutionHits()).add("subject_term_texts", getSubjectTermTexts()).add("thumbnail_exists", getThumbnailExists()).add("thumbnail_height_max_px", getThumbnailHeightMaxPx().orNull()).add("thumbnail_width_max_px", getThumbnailWidthMaxPx().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 5);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 8);
 
         oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getAgentNameTexts().size());
         for (com.google.common.collect.ImmutableMap.Entry<String, com.google.common.primitives.UnsignedInteger> _iter0 : getAgentNameTexts().entrySet()) {
@@ -1005,6 +1243,20 @@ public class ObjectFacets implements org.thryft.Struct {
             oprot.writeU32(_iter0.getValue());
         }
         oprot.writeMapEnd();
+
+        oprot.writeBool(getThumbnailExists());
+
+        if (getThumbnailHeightMaxPx().isPresent()) {
+            oprot.writeU32(getThumbnailHeightMaxPx().get());
+        } else {
+            oprot.writeNull();
+        }
+
+        if (getThumbnailWidthMaxPx().isPresent()) {
+            oprot.writeU32(getThumbnailWidthMaxPx().get());
+        } else {
+            oprot.writeNull();
+        }
 
         oprot.writeListEnd();
     }
@@ -1063,6 +1315,22 @@ public class ObjectFacets implements org.thryft.Struct {
         oprot.writeMapEnd();
         oprot.writeFieldEnd();
 
+        oprot.writeFieldBegin("thumbnail_exists", org.thryft.protocol.Type.BOOL, (short)0);
+        oprot.writeBool(getThumbnailExists());
+        oprot.writeFieldEnd();
+
+        if (getThumbnailHeightMaxPx().isPresent()) {
+            oprot.writeFieldBegin("thumbnail_height_max_px", org.thryft.protocol.Type.I32, (short)0);
+            oprot.writeU32(getThumbnailHeightMaxPx().get());
+            oprot.writeFieldEnd();
+        }
+
+        if (getThumbnailWidthMaxPx().isPresent()) {
+            oprot.writeFieldBegin("thumbnail_width_max_px", org.thryft.protocol.Type.I32, (short)0);
+            oprot.writeU32(getThumbnailWidthMaxPx().get());
+            oprot.writeFieldEnd();
+        }
+
         oprot.writeFieldStop();
     }
 
@@ -1075,4 +1343,10 @@ public class ObjectFacets implements org.thryft.Struct {
     private final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits;
 
     private final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts;
+
+    private final boolean thumbnailExists;
+
+    private final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> thumbnailHeightMaxPx;
+
+    private final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> thumbnailWidthMaxPx;
 }

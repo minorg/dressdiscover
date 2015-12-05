@@ -36,7 +36,10 @@ services = Services(properties=properties)
 
 
 def parse_record(record_etree):
-    object_id = COLLECTION_ID + '/' + urllib.quote(record_etree.find('header').find('identifier').text, '')
+    # info:ark/67531/metadc114731
+    record_identifier = record_etree.find('header').find('identifier').text
+    assert record_identifier.startswith('info:ark/')
+    object_id = COLLECTION_ID + '/' + urllib.quote(record_identifier, '')
 
     untl_ns = '{http://digital2.library.unt.edu/untl/}'
     metadata_etree = record_etree.find('metadata').find(untl_ns + 'metadata')
@@ -169,7 +172,16 @@ def parse_record(record_etree):
         if qualifier == 'itemURL':
             object_builder.url = identifier_etree.text
         elif qualifier == 'thumbnailURL':
-            object_builder.thumbnail = Image.Builder().set_url(identifier_etree.text).build()
+            # http://digital.library.unt.edu/ark:/67531/metadc114750/m1/1/square/           
+            # object_builder.thumbnail = Image.Builder().set_url(identifier_etree.text).build()
+            # info:ark/67531/metadc114731            
+            # Use uniformly-size square images rather than the variable-sized thumbnails in the OAI record
+            object_builder.thumbnail = \
+                Image.Builder()\
+                    .set_height_px(75)\
+                    .set_width_px(75)\
+                    .set_url("http://digital.library.unt.edu/ark:" + record_identifier[len('info:ark'):] + '/m1/1/square/')\
+                    .build()
 
     return object_id, object_builder.build()
 
