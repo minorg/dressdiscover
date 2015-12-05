@@ -1,6 +1,5 @@
 package net.lab1318.costume.gui.views.object;
 
-import com.google.common.base.Optional;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.CustomComponent;
@@ -104,8 +103,9 @@ final class ObjectForm extends CustomComponent {
 		twoPaneLayout.setComponentAlignment(rightPaneLayout, Alignment.TOP_CENTER);
 
 		if (objectEntry.getModel().getThumbnail().isPresent()) {
-			final Image thumbnail = new Image("", Optional.absent(), objectEntry.getModel().getThumbnail().get(),
-					Optional.absent());
+			final Image thumbnail = new Image("", objectEntry.getModel().getThumbnail().get().getHeightPx(),
+					objectEntry.getModel().getThumbnail().get().getUrl(),
+					objectEntry.getModel().getThumbnail().get().getWidthPx());
 			rightPaneLayout.addComponent(thumbnail);
 		}
 

@@ -42,17 +42,6 @@ $v-layout-spacing-vertical: 0.5em;
 	padding-top: 4px;
 	vertical-align: middle;
   }
-
-  .objectGrid td {
-    background-color: white;
-  	padding: 0px;
-  	text-align: left;
-  	vertical-align: middle;
-  }
-
-  .objectGrid .thumbnailGridCell {
-  	width: 160px;
-  }
     
   .v-nativebutton {
     // background: transparent;
@@ -61,6 +50,16 @@ $v-layout-spacing-vertical: 0.5em;
   }
   
   .v-align-center > .v-widget {
+  	text-align: center;
+  }
+
+  .v-table-cell-content-thumbnail > .v-table-cell-wrapper {
+    padding: 0px;
+    text-align: center;
+  }
+  
+  .v-table-cell-content-thumbnail > .v-table-cell-wrapper > .v-widget {
+    margin: 0px;
   	text-align: center;
   }
     

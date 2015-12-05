@@ -1,51 +1,24 @@
 package net.lab1318.costume.gui.views.object;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
 import org.notaweb.gui.EventBus;
-import org.notaweb.gui.utils.StringToUrlConverter;
-import org.thryft.native_.Url;
 import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
-import com.vaadin.data.util.converter.Converter;
-import com.vaadin.server.ExternalResource;
-import com.vaadin.server.Resource;
-import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Grid.CellReference;
-import com.vaadin.ui.Grid.Column;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.renderers.ButtonRenderer;
-import com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent;
-import com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener;
-import com.vaadin.ui.renderers.HtmlRenderer;
-import com.vaadin.ui.renderers.ImageRenderer;
 
 import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionId;
-import net.lab1318.costume.api.models.object.Object;
-import net.lab1318.costume.api.models.object.ObjectFilters;
-import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.models.object.ObjectQuery;
-import net.lab1318.costume.api.services.collection.CollectionQueryService;
-import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.object.ObjectFacets;
-import net.lab1318.costume.api.services.object.ObjectQueryService;
-import net.lab1318.costume.gui.models.image.ImageBean;
 import net.lab1318.costume.gui.views.TopLevelView;
 
 @SuppressWarnings("serial")
@@ -74,124 +47,8 @@ public class ObjectsView extends TopLevelView {
 		// twoPaneLayout.setHeight(700, Unit.PIXELS);
 
 		{
-			final VerticalLayout leftPaneContentLayout = new VerticalLayout();
-
-			if (!objectFacets.getAgentNameTexts().isEmpty()) {
-				leftPaneContentLayout
-						.addComponent(new ObjectFacetPicker<String>(objectFacets.getAgentNameTexts(), "Agent names",
-								objectQuery.getFilters().isPresent()
-										&& objectQuery.getFilters().get().getExcludeAgentNameTexts().isPresent()
-												? objectQuery.getFilters().get().getExcludeAgentNameTexts().get()
-												: ImmutableSet.of(),
-								objectQuery.getFilters().isPresent()
-										&& objectQuery.getFilters().get().getIncludeAgentNameTexts().isPresent()
-												? objectQuery.getFilters().get().getIncludeAgentNameTexts().get()
-												: ImmutableSet.of()) {
-							@Override
-							protected void _valueChange(final ImmutableSet<String> excludeFacetKeys,
-									final ImmutableSet<String> includeFacetKeys) {
-								final ObjectFilters.Builder filtersBuilder = ObjectFilters.builder();
-								if (!excludeFacetKeys.isEmpty()) {
-									filtersBuilder.setExcludeAgentNameTexts(excludeFacetKeys);
-								}
-								if (!includeFacetKeys.isEmpty()) {
-									filtersBuilder.setIncludeAgentNameTexts(includeFacetKeys);
-								}
-								_getEventBus().post(ObjectQueryService.Messages.GetObjectsRequest.builder()
-										.setQuery(ObjectQuery.builder().setFilters(filtersBuilder.build()).build())
-										.build());
-							}
-						});
-			}
-
-			if (!objectFacets.getCategories().isEmpty()) {
-				leftPaneContentLayout
-						.addComponent(new ObjectFacetPicker<String>(objectFacets.getCategories(), "Categories",
-								objectQuery.getFilters().isPresent()
-										&& objectQuery.getFilters().get().getExcludeCategories().isPresent()
-												? objectQuery.getFilters().get().getExcludeCategories().get()
-												: ImmutableSet.of(),
-								objectQuery.getFilters().isPresent()
-										&& objectQuery.getFilters().get().getIncludeCategories().isPresent()
-												? objectQuery.getFilters().get().getIncludeCategories().get()
-												: ImmutableSet.of()) {
-							@Override
-							protected void _valueChange(final ImmutableSet<String> excludeFacetKeys,
-									final ImmutableSet<String> includeFacetKeys) {
-								final ObjectFilters.Builder filtersBuilder = ObjectFilters.builder();
-								if (!excludeFacetKeys.isEmpty()) {
-									filtersBuilder.setExcludeCategories(excludeFacetKeys);
-								}
-								if (!includeFacetKeys.isEmpty()) {
-									filtersBuilder.setIncludeCategories(includeFacetKeys);
-								}
-								_getEventBus().post(ObjectQueryService.Messages.GetObjectsRequest.builder()
-										.setQuery(ObjectQuery.builder().setFilters(filtersBuilder.build()).build())
-										.build());
-							}
-						});
-			}
-
-			if (!objectFacets.getInstitutionHits().isEmpty()) {
-				leftPaneContentLayout.addComponent(
-						new ObjectFacetPicker<InstitutionId>(objectFacets.getInstitutionHits(), "Institutions",
-								objectQuery.getFilters().isPresent()
-										&& objectQuery.getFilters().get().getExcludeInstitutionIds().isPresent()
-												? objectQuery.getFilters().get().getExcludeInstitutionIds().get()
-												: ImmutableSet.of(),
-								objectQuery.getFilters().isPresent()
-										&& objectQuery.getFilters().get().getIncludeInstitutionIds().isPresent()
-												? objectQuery.getFilters().get().getIncludeInstitutionIds().get()
-												: ImmutableSet.of()) {
-							@Override
-							protected String _getCheckBoxCaption(final InstitutionId facetKey) {
-								return institutions.get(facetKey).getTitle();
-							}
-
-							@Override
-							protected void _valueChange(final ImmutableSet<InstitutionId> excludeFacetKeys,
-									final ImmutableSet<InstitutionId> includeFacetKeys) {
-								final ObjectFilters.Builder filtersBuilder = ObjectFilters.builder();
-								if (!excludeFacetKeys.isEmpty()) {
-									filtersBuilder.setExcludeInstitutionIds(excludeFacetKeys);
-								}
-								if (!includeFacetKeys.isEmpty()) {
-									filtersBuilder.setIncludeInstitutionIds(includeFacetKeys);
-								}
-								_getEventBus().post(ObjectQueryService.Messages.GetObjectsRequest.builder()
-										.setQuery(ObjectQuery.builder().setFilters(filtersBuilder.build()).build())
-										.build());
-							}
-						});
-			}
-
-			if (!objectFacets.getSubjectTermTexts().isEmpty()) {
-				leftPaneContentLayout
-						.addComponent(new ObjectFacetPicker<String>(objectFacets.getSubjectTermTexts(), "Subject terms",
-								objectQuery.getFilters().isPresent()
-										&& objectQuery.getFilters().get().getExcludeSubjectTermTexts().isPresent()
-												? objectQuery.getFilters().get().getExcludeSubjectTermTexts().get()
-												: ImmutableSet.of(),
-								objectQuery.getFilters().isPresent()
-										&& objectQuery.getFilters().get().getIncludeSubjectTermTexts().isPresent()
-												? objectQuery.getFilters().get().getIncludeSubjectTermTexts().get()
-												: ImmutableSet.of()) {
-							@Override
-							protected void _valueChange(final ImmutableSet<String> excludeFacetKeys,
-									final ImmutableSet<String> includeFacetKeys) {
-								final ObjectFilters.Builder filtersBuilder = ObjectFilters.builder();
-								if (!excludeFacetKeys.isEmpty()) {
-									filtersBuilder.setExcludeSubjectTermTexts(excludeFacetKeys);
-								}
-								if (!includeFacetKeys.isEmpty()) {
-									filtersBuilder.setIncludeSubjectTermTexts(includeFacetKeys);
-								}
-								_getEventBus().post(ObjectQueryService.Messages.GetObjectsRequest.builder()
-										.setQuery(ObjectQuery.builder().setFilters(filtersBuilder.build()).build())
-										.build());
-							}
-						});
-			}
+			final Component leftPaneContentLayout = new ObjectFacetsLayout(_getEventBus(), institutions, objectFacets,
+					objectQuery);
 
 			final Panel leftPanePanel = new Panel();
 			leftPanePanel.addStyleName("borderless");
@@ -213,175 +70,8 @@ public class ObjectsView extends TopLevelView {
 				rightPaneContentLayout.setComponentAlignment(hitCountsLabel, Alignment.MIDDLE_CENTER);
 			}
 
-			{
-				final List<String> gridColumns = new ArrayList<>();
-				{
-					if (objectFacets.getThumbnailExists()) {
-						gridColumns.add(Object.FieldMetadata.THUMBNAIL.getJavaName());
-					}
-					gridColumns.add(Object.FieldMetadata.TITLE.getJavaName());
-					gridColumns.add(Object.FieldMetadata.DATE_TEXT.getJavaName());
-					gridColumns.add(Object.FieldMetadata.INSTITUTION_ID.getJavaName());
-					gridColumns.add(Object.FieldMetadata.COLLECTION_ID.getJavaName());
-					gridColumns.add(Object.FieldMetadata.URL.getJavaName());
-				}
-
-				final Grid grid = new Grid(objects);
-				grid.setColumns(gridColumns.toArray());
-				grid.setHeightMode(HeightMode.ROW);
-				grid.setHeightByRows(4.0);
-				grid.setSizeFull();
-				if (gridColumns.contains(Object.FieldMetadata.THUMBNAIL.getJavaName())) {
-					grid.setCellStyleGenerator(new Grid.CellStyleGenerator() {
-						@Override
-						public String getStyle(final CellReference cellReference) {
-							return cellReference.getPropertyId().equals(Object.FieldMetadata.THUMBNAIL.getJavaName())
-									? "thumbnailGridCell" : "borderless";
-						}
-					});
-				}
-				grid.setStyleName("objectGrid");
-				final RendererClickListener getObjectByIdClickListener = new RendererClickListener() {
-					@Override
-					public void click(final RendererClickEvent event) {
-						_getEventBus().post(
-								new ObjectQueryService.Messages.GetObjectByIdRequest((ObjectId) event.getItemId()));
-					}
-				};
-				{
-					final Column collectionIdColumn = grid.getColumn(Object.FieldMetadata.COLLECTION_ID.getJavaName());
-					collectionIdColumn.setHeaderCaption("Collection");
-					collectionIdColumn.setRenderer(new ButtonRenderer(new RendererClickListener() {
-						@Override
-						public void click(final RendererClickEvent event) {
-							final CollectionId collectionId = (CollectionId) objects.getItem(event.getItemId())
-									.getItemProperty(Object.FieldMetadata.COLLECTION_ID.getJavaName()).getValue();
-							_getEventBus()
-									.post(new CollectionQueryService.Messages.GetCollectionByIdRequest(collectionId));
-						}
-					}), new Converter<String, CollectionId>() {
-						@Override
-						public CollectionId convertToModel(final String value,
-								final Class<? extends CollectionId> targetType, final Locale locale)
-										throws com.vaadin.data.util.converter.Converter.ConversionException {
-							throw new UnsupportedOperationException();
-						}
-
-						@Override
-						public String convertToPresentation(final CollectionId value,
-								final Class<? extends String> targetType, final Locale locale)
-										throws com.vaadin.data.util.converter.Converter.ConversionException {
-							return checkNotNull(collections.get(value)).getTitle();
-						}
-
-						@Override
-						public Class<CollectionId> getModelType() {
-							return CollectionId.class;
-						}
-
-						@Override
-						public Class<String> getPresentationType() {
-							return String.class;
-						}
-					});
-				}
-				{
-					grid.getColumn(Object.FieldMetadata.DATE_TEXT.getJavaName()).setHeaderCaption("Date");
-				}
-				{
-					final Column institutionIdColumn = grid
-							.getColumn(Object.FieldMetadata.INSTITUTION_ID.getJavaName());
-					institutionIdColumn.setHeaderCaption("Institution");
-					institutionIdColumn.setRenderer(new ButtonRenderer(new RendererClickListener() {
-						@Override
-						public void click(final RendererClickEvent event) {
-							final InstitutionId institutionId = (InstitutionId) objects.getItem(event.getItemId())
-									.getItemProperty(Object.FieldMetadata.INSTITUTION_ID.getJavaName()).getValue();
-							_getEventBus().post(
-									new InstitutionQueryService.Messages.GetInstitutionByIdRequest(institutionId));
-						}
-					}), new Converter<String, InstitutionId>() {
-						@Override
-						public InstitutionId convertToModel(final String value,
-								final Class<? extends InstitutionId> targetType, final Locale locale)
-										throws com.vaadin.data.util.converter.Converter.ConversionException {
-							throw new UnsupportedOperationException();
-						}
-
-						@Override
-						public String convertToPresentation(final InstitutionId value,
-								final Class<? extends String> targetType, final Locale locale)
-										throws com.vaadin.data.util.converter.Converter.ConversionException {
-							return checkNotNull(institutions.get(value)).getTitle();
-						}
-
-						@Override
-						public Class<InstitutionId> getModelType() {
-							return InstitutionId.class;
-						}
-
-						@Override
-						public Class<String> getPresentationType() {
-							return String.class;
-						}
-					});
-				}
-				{
-					grid.getColumn(Object.FieldMetadata.TITLE.getJavaName())
-							.setRenderer(new ButtonRenderer(getObjectByIdClickListener));
-				}
-				if (gridColumns.contains(Object.FieldMetadata.THUMBNAIL.getJavaName())) {
-					final Column thumbnailColumn = grid.getColumn(Object.FieldMetadata.THUMBNAIL.getJavaName());
-					thumbnailColumn.setHeaderCaption("");
-					thumbnailColumn.setRenderer(new ImageRenderer(getObjectByIdClickListener),
-							new Converter<Resource, ImageBean>() {
-								@Override
-								public ImageBean convertToModel(final Resource value,
-										final Class<? extends ImageBean> targetType, final Locale locale)
-												throws com.vaadin.data.util.converter.Converter.ConversionException {
-									throw new UnsupportedOperationException();
-								}
-
-								@Override
-								public Resource convertToPresentation(final ImageBean value,
-										final Class<? extends Resource> targetType, final Locale locale)
-												throws com.vaadin.data.util.converter.Converter.ConversionException {
-									if (value == null) {
-										return null;
-									}
-									return new ExternalResource(value.getUrl().toString());
-								}
-
-								@Override
-								public Class<ImageBean> getModelType() {
-									return ImageBean.class;
-								}
-
-								@Override
-								public Class<Resource> getPresentationType() {
-									return Resource.class;
-								}
-							});
-				}
-				{
-					final Column urlColumn = grid.getColumn(Object.FieldMetadata.URL.getJavaName());
-					urlColumn.setHeaderCaption("URL");
-					urlColumn.setRenderer(new HtmlRenderer(), new StringToUrlConverter() {
-						@Override
-						public String convertToPresentation(final Url value, final Class<? extends String> targetType,
-								final Locale locale)
-										throws com.vaadin.data.util.converter.Converter.ConversionException {
-							if (value == null) {
-								return null;
-							}
-							return String.format("<a href=\"%s\" target=\"_blank\">%s</a>", value.toString(),
-									value.toString());
-						}
-					});
-				}
-
-				rightPaneContentLayout.addComponent(grid);
-			}
+			rightPaneContentLayout
+					.addComponent(new ObjectsTable(collections, _getEventBus(), institutions, objectFacets, objects));
 
 			final Panel rightPanePanel = new Panel();
 			rightPanePanel.addStyleName("borderless");
