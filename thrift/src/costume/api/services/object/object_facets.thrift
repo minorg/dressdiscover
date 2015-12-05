@@ -12,6 +12,5 @@ struct ObjectFacets {
 	map<institution_id.InstitutionId, u32.u32> institution_hits;
 	map<string, u32.u32> subject_term_texts;
 	bool thumbnail_exists;
-	optional u32.u32 thumbnail_height_max_px;
-	optional u32.u32 thumbnail_width_max_px;
+	bool url_exists;
 }

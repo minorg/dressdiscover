@@ -11,6 +11,7 @@ import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 import com.vaadin.event.MouseEvents;
 import com.vaadin.server.ExternalResource;
+import com.vaadin.shared.MouseEventDetails.MouseButton;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.CustomComponent;
@@ -46,7 +47,9 @@ final class ObjectsTable extends CustomComponent {
 			columns.put(Object.FieldMetadata.DATE_TEXT.getJavaName(), "Date");
 			columns.put(Object.FieldMetadata.INSTITUTION_ID.getJavaName(), "Institution");
 			columns.put(Object.FieldMetadata.COLLECTION_ID.getJavaName(), "Collection");
-			columns.put(Object.FieldMetadata.URL.getJavaName(), "URL");
+			if (objectFacets.getUrlExists()) {
+				columns.put(Object.FieldMetadata.URL.getJavaName(), "URL");
+			}
 		}
 
 		final Table table = new Table();
@@ -109,12 +112,29 @@ final class ObjectsTable extends CustomComponent {
 					imageView.addClickListener(new MouseEvents.ClickListener() {
 						@Override
 						public void click(final com.vaadin.event.MouseEvents.ClickEvent event) {
+							if (event.getButton() != MouseButton.LEFT) {
+								return;
+							}
 							final ObjectId objectId = (ObjectId) source.getContainerDataSource()
 									.getContainerProperty(itemId, "id").getValue();
 							eventBus.post(new ObjectQueryService.Messages.GetObjectByIdRequest(objectId));
 						}
 					});
 					return imageView;
+				}
+			});
+
+			table.setCellStyleGenerator(new Table.CellStyleGenerator() {
+				@Override
+				public String getStyle(final Table source, final java.lang.Object itemId,
+						final java.lang.Object propertyId) {
+					if (propertyId == null) {
+						return null;
+					} else if (propertyId.equals(Object.FieldMetadata.THUMBNAIL.getJavaName())) {
+						return "thumbnail";
+					} else {
+						return null;
+					}
 				}
 			});
 		}
@@ -136,16 +156,22 @@ final class ObjectsTable extends CustomComponent {
 			}
 		});
 
-		table.addGeneratedColumn(Object.FieldMetadata.URL.getJavaName(), new ColumnGenerator() {
-			@Override
-			public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
-					final java.lang.Object columnId) {
-				final Url url = (Url) source.getContainerDataSource().getContainerProperty(itemId, columnId).getValue();
-				final Link link = new Link("Institution object page", new ExternalResource(url.toString()));
-				link.setTargetName("_blank");
-				return link;
-			}
-		});
+		if (columns.containsKey(Object.FieldMetadata.URL.getJavaName())) {
+			table.addGeneratedColumn(Object.FieldMetadata.URL.getJavaName(), new ColumnGenerator() {
+				@Override
+				public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
+						final java.lang.Object columnId) {
+					final Url url = (Url) source.getContainerDataSource().getContainerProperty(itemId, columnId)
+							.getValue();
+					if (url == null) {
+						return new Label();
+					}
+					final Link link = new Link("Institution object page", new ExternalResource(url.toString()));
+					link.setTargetName("_blank");
+					return link;
+				}
+			});
+		}
 
 		setCompositionRoot(table);
 	}
