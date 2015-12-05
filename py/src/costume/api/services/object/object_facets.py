@@ -11,6 +11,9 @@ class ObjectFacets(object):
             collection_hits=None,
             institution_hits=None,
             subject_term_texts=None,
+            thumbnail_exists=None,
+            thumbnail_height_max_px=None,
+            thumbnail_width_max_px=None,
         ):
             '''
             :type agent_name_texts: dict(str: int)
@@ -18,6 +21,9 @@ class ObjectFacets(object):
             :type collection_hits: dict(str: int)
             :type institution_hits: dict(str: int)
             :type subject_term_texts: dict(str: int)
+            :type thumbnail_exists: bool
+            :type thumbnail_height_max_px: int or None
+            :type thumbnail_width_max_px: int or None
             '''
 
             self.__agent_name_texts = agent_name_texts
@@ -25,9 +31,12 @@ class ObjectFacets(object):
             self.__collection_hits = collection_hits
             self.__institution_hits = institution_hits
             self.__subject_term_texts = subject_term_texts
+            self.__thumbnail_exists = thumbnail_exists
+            self.__thumbnail_height_max_px = thumbnail_height_max_px
+            self.__thumbnail_width_max_px = thumbnail_width_max_px
 
         def build(self):
-            return ObjectFacets(agent_name_texts=self.__agent_name_texts, categories=self.__categories, collection_hits=self.__collection_hits, institution_hits=self.__institution_hits, subject_term_texts=self.__subject_term_texts)
+            return ObjectFacets(agent_name_texts=self.__agent_name_texts, categories=self.__categories, collection_hits=self.__collection_hits, institution_hits=self.__institution_hits, subject_term_texts=self.__subject_term_texts, thumbnail_exists=self.__thumbnail_exists, thumbnail_height_max_px=self.__thumbnail_height_max_px, thumbnail_width_max_px=self.__thumbnail_width_max_px)
 
         @property
         def agent_name_texts(self):
@@ -101,6 +110,30 @@ class ObjectFacets(object):
             self.__subject_term_texts = subject_term_texts
             return self
 
+        def set_thumbnail_exists(self, thumbnail_exists):
+            '''
+            :type thumbnail_exists: bool
+            '''
+
+            self.__thumbnail_exists = thumbnail_exists
+            return self
+
+        def set_thumbnail_height_max_px(self, thumbnail_height_max_px):
+            '''
+            :type thumbnail_height_max_px: int or None
+            '''
+
+            self.__thumbnail_height_max_px = thumbnail_height_max_px
+            return self
+
+        def set_thumbnail_width_max_px(self, thumbnail_width_max_px):
+            '''
+            :type thumbnail_width_max_px: int or None
+            '''
+
+            self.__thumbnail_width_max_px = thumbnail_width_max_px
+            return self
+
         @property
         def subject_term_texts(self):
             '''
@@ -109,6 +142,30 @@ class ObjectFacets(object):
 
             return self.__subject_term_texts.copy() if self.__subject_term_texts is not None else None
 
+        @property
+        def thumbnail_exists(self):
+            '''
+            :rtype: bool
+            '''
+
+            return self.__thumbnail_exists
+
+        @property
+        def thumbnail_height_max_px(self):
+            '''
+            :rtype: int
+            '''
+
+            return self.__thumbnail_height_max_px
+
+        @property
+        def thumbnail_width_max_px(self):
+            '''
+            :rtype: int
+            '''
+
+            return self.__thumbnail_width_max_px
+
         def update(self, object_facets):
             '''
             :type agent_name_texts: dict(str: int)
@@ -116,6 +173,9 @@ class ObjectFacets(object):
             :type collection_hits: dict(str: int)
             :type institution_hits: dict(str: int)
             :type subject_term_texts: dict(str: int)
+            :type thumbnail_exists: bool
+            :type thumbnail_height_max_px: int or None
+            :type thumbnail_width_max_px: int or None
             '''
 
             if isinstance(object_facets, ObjectFacets):
@@ -124,6 +184,9 @@ class ObjectFacets(object):
                 self.set_collection_hits(object_facets.collection_hits)
                 self.set_institution_hits(object_facets.institution_hits)
                 self.set_subject_term_texts(object_facets.subject_term_texts)
+                self.set_thumbnail_exists(object_facets.thumbnail_exists)
+                self.set_thumbnail_height_max_px(object_facets.thumbnail_height_max_px)
+                self.set_thumbnail_width_max_px(object_facets.thumbnail_width_max_px)
             elif isinstance(object_facets, dict):
                 for key, value in object_facets.iteritems():
                     getattr(self, 'set_' + key)(value)
@@ -171,6 +234,30 @@ class ObjectFacets(object):
 
             self.set_subject_term_texts(subject_term_texts)
 
+        @thumbnail_exists.setter
+        def thumbnail_exists(self, thumbnail_exists):
+            '''
+            :type thumbnail_exists: bool
+            '''
+
+            self.set_thumbnail_exists(thumbnail_exists)
+
+        @thumbnail_height_max_px.setter
+        def thumbnail_height_max_px(self, thumbnail_height_max_px):
+            '''
+            :type thumbnail_height_max_px: int or None
+            '''
+
+            self.set_thumbnail_height_max_px(thumbnail_height_max_px)
+
+        @thumbnail_width_max_px.setter
+        def thumbnail_width_max_px(self, thumbnail_width_max_px):
+            '''
+            :type thumbnail_width_max_px: int or None
+            '''
+
+            self.set_thumbnail_width_max_px(thumbnail_width_max_px)
+
     def __init__(
         self,
         agent_name_texts,
@@ -178,6 +265,9 @@ class ObjectFacets(object):
         collection_hits,
         institution_hits,
         subject_term_texts,
+        thumbnail_exists,
+        thumbnail_height_max_px=None,
+        thumbnail_width_max_px=None,
     ):
         '''
         :type agent_name_texts: dict(str: int)
@@ -185,6 +275,9 @@ class ObjectFacets(object):
         :type collection_hits: dict(str: int)
         :type institution_hits: dict(str: int)
         :type subject_term_texts: dict(str: int)
+        :type thumbnail_exists: bool
+        :type thumbnail_height_max_px: int or None
+        :type thumbnail_width_max_px: int or None
         '''
 
         if agent_name_texts is None:
@@ -217,6 +310,22 @@ class ObjectFacets(object):
             raise TypeError("expected subject_term_texts to be a dict(str: int) but it is a %s" % getattr(__builtin__, 'type')(subject_term_texts))
         self.__subject_term_texts = subject_term_texts.copy() if subject_term_texts is not None else None
 
+        if thumbnail_exists is None:
+            raise ValueError('thumbnail_exists is required')
+        if not isinstance(thumbnail_exists, bool):
+            raise TypeError("expected thumbnail_exists to be a bool but it is a %s" % getattr(__builtin__, 'type')(thumbnail_exists))
+        self.__thumbnail_exists = thumbnail_exists
+
+        if thumbnail_height_max_px is not None:
+            if not isinstance(thumbnail_height_max_px, (int, long)) and thumbnail_height_max_px >= 0:
+                raise TypeError("expected thumbnail_height_max_px to be a int but it is a %s" % getattr(__builtin__, 'type')(thumbnail_height_max_px))
+        self.__thumbnail_height_max_px = thumbnail_height_max_px
+
+        if thumbnail_width_max_px is not None:
+            if not isinstance(thumbnail_width_max_px, (int, long)) and thumbnail_width_max_px >= 0:
+                raise TypeError("expected thumbnail_width_max_px to be a int but it is a %s" % getattr(__builtin__, 'type')(thumbnail_width_max_px))
+        self.__thumbnail_width_max_px = thumbnail_width_max_px
+
     def __eq__(self, other):
         if self.agent_name_texts != other.agent_name_texts:
             return False
@@ -228,10 +337,16 @@ class ObjectFacets(object):
             return False
         if self.subject_term_texts != other.subject_term_texts:
             return False
+        if self.thumbnail_exists != other.thumbnail_exists:
+            return False
+        if self.thumbnail_height_max_px != other.thumbnail_height_max_px:
+            return False
+        if self.thumbnail_width_max_px != other.thumbnail_width_max_px:
+            return False
         return True
 
     def __hash__(self):
-        return hash((self.agent_name_texts,self.categories,self.collection_hits,self.institution_hits,self.subject_term_texts,))
+        return hash((self.agent_name_texts,self.categories,self.collection_hits,self.institution_hits,self.subject_term_texts,self.thumbnail_exists,self.thumbnail_height_max_px,self.thumbnail_width_max_px,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -246,6 +361,11 @@ class ObjectFacets(object):
         field_reprs.append('collection_hits=' + repr(self.collection_hits))
         field_reprs.append('institution_hits=' + repr(self.institution_hits))
         field_reprs.append('subject_term_texts=' + repr(self.subject_term_texts))
+        field_reprs.append('thumbnail_exists=' + repr(self.thumbnail_exists))
+        if self.thumbnail_height_max_px is not None:
+            field_reprs.append('thumbnail_height_max_px=' + repr(self.thumbnail_height_max_px))
+        if self.thumbnail_width_max_px is not None:
+            field_reprs.append('thumbnail_width_max_px=' + repr(self.thumbnail_width_max_px))
         return 'ObjectFacets(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
@@ -255,6 +375,11 @@ class ObjectFacets(object):
         field_reprs.append('collection_hits=' + repr(self.collection_hits))
         field_reprs.append('institution_hits=' + repr(self.institution_hits))
         field_reprs.append('subject_term_texts=' + repr(self.subject_term_texts))
+        field_reprs.append('thumbnail_exists=' + repr(self.thumbnail_exists))
+        if self.thumbnail_height_max_px is not None:
+            field_reprs.append('thumbnail_height_max_px=' + repr(self.thumbnail_height_max_px))
+        if self.thumbnail_width_max_px is not None:
+            field_reprs.append('thumbnail_width_max_px=' + repr(self.thumbnail_width_max_px))
         return 'ObjectFacets(' + ', '.join(field_reprs) + ')'
 
     @property
@@ -272,7 +397,7 @@ class ObjectFacets(object):
         :rtype: dict
         '''
 
-        return {'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'collection_hits': self.collection_hits, 'institution_hits': self.institution_hits, 'subject_term_texts': self.subject_term_texts}
+        return {'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'collection_hits': self.collection_hits, 'institution_hits': self.institution_hits, 'subject_term_texts': self.subject_term_texts, 'thumbnail_exists': self.thumbnail_exists, 'thumbnail_height_max_px': self.thumbnail_height_max_px, 'thumbnail_width_max_px': self.thumbnail_width_max_px}
 
     def as_tuple(self):
         '''
@@ -281,7 +406,7 @@ class ObjectFacets(object):
         :rtype: tuple
         '''
 
-        return (self.agent_name_texts, self.categories, self.collection_hits, self.institution_hits, self.subject_term_texts,)
+        return (self.agent_name_texts, self.categories, self.collection_hits, self.institution_hits, self.subject_term_texts, self.thumbnail_exists, self.thumbnail_height_max_px, self.thumbnail_width_max_px,)
 
     @property
     def categories(self):
@@ -333,6 +458,18 @@ class ObjectFacets(object):
                 init_kwds['institution_hits'] = dict([(iprot.read_string(), iprot.read_u32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'subject_term_texts':
                 init_kwds['subject_term_texts'] = dict([(iprot.read_string(), iprot.read_u32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
+            elif ifield_name == 'thumbnail_exists':
+                init_kwds['thumbnail_exists'] = iprot.read_bool()
+            elif ifield_name == 'thumbnail_height_max_px':
+                try:
+                    init_kwds['thumbnail_height_max_px'] = iprot.read_u32()
+                except (TypeError,):
+                    pass
+            elif ifield_name == 'thumbnail_width_max_px':
+                try:
+                    init_kwds['thumbnail_width_max_px'] = iprot.read_u32()
+                except (TypeError,):
+                    pass
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -345,6 +482,9 @@ class ObjectFacets(object):
         collection_hits=None,
         institution_hits=None,
         subject_term_texts=None,
+        thumbnail_exists=None,
+        thumbnail_height_max_px=None,
+        thumbnail_width_max_px=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
@@ -354,6 +494,9 @@ class ObjectFacets(object):
         :type collection_hits: dict(str: int) or None
         :type institution_hits: dict(str: int) or None
         :type subject_term_texts: dict(str: int) or None
+        :type thumbnail_exists: bool or None
+        :type thumbnail_height_max_px: int or None
+        :type thumbnail_width_max_px: int or None
         :rtype: costume.api.services.object.object_facets.ObjectFacets
         '''
 
@@ -367,7 +510,13 @@ class ObjectFacets(object):
             institution_hits = self.institution_hits
         if subject_term_texts is None:
             subject_term_texts = self.subject_term_texts
-        return self.__class__(agent_name_texts=agent_name_texts, categories=categories, collection_hits=collection_hits, institution_hits=institution_hits, subject_term_texts=subject_term_texts)
+        if thumbnail_exists is None:
+            thumbnail_exists = self.thumbnail_exists
+        if thumbnail_height_max_px is None:
+            thumbnail_height_max_px = self.thumbnail_height_max_px
+        if thumbnail_width_max_px is None:
+            thumbnail_width_max_px = self.thumbnail_width_max_px
+        return self.__class__(agent_name_texts=agent_name_texts, categories=categories, collection_hits=collection_hits, institution_hits=institution_hits, subject_term_texts=subject_term_texts, thumbnail_exists=thumbnail_exists, thumbnail_height_max_px=thumbnail_height_max_px, thumbnail_width_max_px=thumbnail_width_max_px)
 
     @property
     def subject_term_texts(self):
@@ -376,6 +525,30 @@ class ObjectFacets(object):
         '''
 
         return self.__subject_term_texts.copy() if self.__subject_term_texts is not None else None
+
+    @property
+    def thumbnail_exists(self):
+        '''
+        :rtype: bool
+        '''
+
+        return self.__thumbnail_exists
+
+    @property
+    def thumbnail_height_max_px(self):
+        '''
+        :rtype: int
+        '''
+
+        return self.__thumbnail_height_max_px
+
+    @property
+    def thumbnail_width_max_px(self):
+        '''
+        :rtype: int
+        '''
+
+        return self.__thumbnail_width_max_px
 
     def write(self, oprot):
         '''
@@ -426,6 +599,20 @@ class ObjectFacets(object):
             oprot.write_u32(__value0)
         oprot.write_map_end()
         oprot.write_field_end()
+
+        oprot.write_field_begin(name='thumbnail_exists', type=2, id=None)
+        oprot.write_bool(self.thumbnail_exists)
+        oprot.write_field_end()
+
+        if self.thumbnail_height_max_px is not None:
+            oprot.write_field_begin(name='thumbnail_height_max_px', type=8, id=None)
+            oprot.write_u32(self.thumbnail_height_max_px)
+            oprot.write_field_end()
+
+        if self.thumbnail_width_max_px is not None:
+            oprot.write_field_begin(name='thumbnail_width_max_px', type=8, id=None)
+            oprot.write_u32(self.thumbnail_width_max_px)
+            oprot.write_field_end()
 
         oprot.write_field_stop()
 

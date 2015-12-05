@@ -21,7 +21,8 @@ public abstract class Presenter<ViewT extends View> extends org.notaweb.gui.pres
 	@Subscribe
 	public void onGetCollectionByIdRequest(final GetCollectionByIdRequest request) {
 		GuiUI.navigateTo(ObjectQuery.builder()
-				.setFilters(ObjectFilters.builder().setIncludeCollectionIds(ImmutableSet.of(request.getId())).build())
+				.setFilters(ObjectFilters.builder().setIncludeCollectionIds(ImmutableSet.of(request.getId()))
+						.setIncludeInstitutionIds(ImmutableSet.of(request.getId().getInstitutionId())).build())
 				.build());
 	}
 

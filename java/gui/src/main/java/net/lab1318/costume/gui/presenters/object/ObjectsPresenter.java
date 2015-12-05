@@ -31,6 +31,7 @@ import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionId;
+import net.lab1318.costume.api.models.object.ObjectFilters;
 import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
@@ -77,10 +78,24 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
 
 		final ObjectFacets objectFacets;
 		try {
-			// Get facets for the query without any filters, so we can display
+			// Get facets for the query without most filters, so we can display
 			// unchecked boxes
-			objectFacets = objectQueryService.getObjectFacets(Optional.of(objectQuery.getFilters().isPresent()
-					? ObjectQuery.builder(objectQuery).unsetFilters().build() : objectQuery));
+			ObjectQuery objectFacetsQuery;
+			if (objectQuery.getFilters().isPresent()) {
+				// Still include/exclude collections and institutions
+				objectFacetsQuery = ObjectQuery.builder(objectQuery)
+						.setFilters(ObjectFilters.builder()
+								.setExcludeCollectionIds(objectQuery.getFilters().get().getExcludeCollectionIds())
+								.setExcludeInstitutionIds(objectQuery.getFilters().get().getExcludeInstitutionIds())
+								.setIncludeCollectionIds(objectQuery.getFilters().get().getIncludeCollectionIds())
+								.setIncludeInstitutionIds(objectQuery.getFilters().get().getIncludeInstitutionIds())
+								.build())
+						.build();
+			} else {
+				objectFacetsQuery = objectQuery;
+			}
+
+			objectFacets = objectQueryService.getObjectFacets(Optional.of(objectFacetsQuery));
 		} catch (final IoException e) {
 			_getView().setComponentError(new SystemError("I/O exception", e));
 			return;
