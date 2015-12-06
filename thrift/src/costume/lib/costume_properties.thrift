@@ -17,6 +17,4 @@ struct CostumeProperties {
 	string home_directory_path;
 
 	optional string logback_xml_file_path;
-
-	optional string powerhouse_museum_api_key;
 }
