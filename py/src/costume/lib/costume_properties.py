@@ -12,7 +12,6 @@ class CostumeProperties(object):
             elastic_search_port=9300,
             home_directory_path=None,
             logback_xml_file_path=None,
-            powerhouse_museum_api_key=None,
         ):
             '''
             :type api_url: str
@@ -21,7 +20,6 @@ class CostumeProperties(object):
             :type elastic_search_port: int
             :type home_directory_path: str
             :type logback_xml_file_path: str or None
-            :type powerhouse_museum_api_key: str or None
             '''
 
             self.__api_url = api_url
@@ -30,10 +28,9 @@ class CostumeProperties(object):
             self.__elastic_search_port = elastic_search_port
             self.__home_directory_path = home_directory_path
             self.__logback_xml_file_path = logback_xml_file_path
-            self.__powerhouse_museum_api_key = powerhouse_museum_api_key
 
         def build(self):
-            return CostumeProperties(api_url=self.__api_url, environment=self.__environment, elastic_search_host=self.__elastic_search_host, elastic_search_port=self.__elastic_search_port, home_directory_path=self.__home_directory_path, logback_xml_file_path=self.__logback_xml_file_path, powerhouse_museum_api_key=self.__powerhouse_museum_api_key)
+            return CostumeProperties(api_url=self.__api_url, environment=self.__environment, elastic_search_host=self.__elastic_search_host, elastic_search_port=self.__elastic_search_port, home_directory_path=self.__home_directory_path, logback_xml_file_path=self.__logback_xml_file_path)
 
         @property
         def api_url(self):
@@ -83,14 +80,6 @@ class CostumeProperties(object):
 
             return self.__logback_xml_file_path
 
-        @property
-        def powerhouse_museum_api_key(self):
-            '''
-            :rtype: str
-            '''
-
-            return self.__powerhouse_museum_api_key
-
         def set_api_url(self, api_url):
             '''
             :type api_url: str
@@ -139,14 +128,6 @@ class CostumeProperties(object):
             self.__logback_xml_file_path = logback_xml_file_path
             return self
 
-        def set_powerhouse_museum_api_key(self, powerhouse_museum_api_key):
-            '''
-            :type powerhouse_museum_api_key: str or None
-            '''
-
-            self.__powerhouse_museum_api_key = powerhouse_museum_api_key
-            return self
-
         def update(self, costume_properties):
             '''
             :type api_url: str
@@ -155,7 +136,6 @@ class CostumeProperties(object):
             :type elastic_search_port: int
             :type home_directory_path: str
             :type logback_xml_file_path: str or None
-            :type powerhouse_museum_api_key: str or None
             '''
 
             if isinstance(costume_properties, CostumeProperties):
@@ -165,7 +145,6 @@ class CostumeProperties(object):
                 self.set_elastic_search_port(costume_properties.elastic_search_port)
                 self.set_home_directory_path(costume_properties.home_directory_path)
                 self.set_logback_xml_file_path(costume_properties.logback_xml_file_path)
-                self.set_powerhouse_museum_api_key(costume_properties.powerhouse_museum_api_key)
             elif isinstance(costume_properties, dict):
                 for key, value in costume_properties.iteritems():
                     getattr(self, 'set_' + key)(value)
@@ -221,14 +200,6 @@ class CostumeProperties(object):
 
             self.set_logback_xml_file_path(logback_xml_file_path)
 
-        @powerhouse_museum_api_key.setter
-        def powerhouse_museum_api_key(self, powerhouse_museum_api_key):
-            '''
-            :type powerhouse_museum_api_key: str or None
-            '''
-
-            self.set_powerhouse_museum_api_key(powerhouse_museum_api_key)
-
     def __init__(
         self,
         environment,
@@ -237,7 +208,6 @@ class CostumeProperties(object):
         elastic_search_host="elasticsearch",
         elastic_search_port=9300,
         logback_xml_file_path=None,
-        powerhouse_museum_api_key=None,
     ):
         '''
         :type api_url: str
@@ -246,7 +216,6 @@ class CostumeProperties(object):
         :type elastic_search_port: int
         :type home_directory_path: str
         :type logback_xml_file_path: str or None
-        :type powerhouse_museum_api_key: str or None
         '''
 
         if api_url is None:
@@ -284,11 +253,6 @@ class CostumeProperties(object):
                 raise TypeError("expected logback_xml_file_path to be a str but it is a %s" % getattr(__builtin__, 'type')(logback_xml_file_path))
         self.__logback_xml_file_path = logback_xml_file_path
 
-        if powerhouse_museum_api_key is not None:
-            if not isinstance(powerhouse_museum_api_key, basestring):
-                raise TypeError("expected powerhouse_museum_api_key to be a str but it is a %s" % getattr(__builtin__, 'type')(powerhouse_museum_api_key))
-        self.__powerhouse_museum_api_key = powerhouse_museum_api_key
-
     def __eq__(self, other):
         if self.api_url != other.api_url:
             return False
@@ -302,12 +266,10 @@ class CostumeProperties(object):
             return False
         if self.logback_xml_file_path != other.logback_xml_file_path:
             return False
-        if self.powerhouse_museum_api_key != other.powerhouse_museum_api_key:
-            return False
         return True
 
     def __hash__(self):
-        return hash((self.api_url,self.environment,self.elastic_search_host,self.elastic_search_port,self.home_directory_path,self.logback_xml_file_path,self.powerhouse_museum_api_key,))
+        return hash((self.api_url,self.environment,self.elastic_search_host,self.elastic_search_port,self.home_directory_path,self.logback_xml_file_path,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -324,8 +286,6 @@ class CostumeProperties(object):
         field_reprs.append('home_directory_path=' + "'" + self.home_directory_path.encode('ascii', 'replace') + "'")
         if self.logback_xml_file_path is not None:
             field_reprs.append('logback_xml_file_path=' + "'" + self.logback_xml_file_path.encode('ascii', 'replace') + "'")
-        if self.powerhouse_museum_api_key is not None:
-            field_reprs.append('powerhouse_museum_api_key=' + "'" + self.powerhouse_museum_api_key.encode('ascii', 'replace') + "'")
         return 'CostumeProperties(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
@@ -337,8 +297,6 @@ class CostumeProperties(object):
         field_reprs.append('home_directory_path=' + "'" + self.home_directory_path.encode('ascii', 'replace') + "'")
         if self.logback_xml_file_path is not None:
             field_reprs.append('logback_xml_file_path=' + "'" + self.logback_xml_file_path.encode('ascii', 'replace') + "'")
-        if self.powerhouse_museum_api_key is not None:
-            field_reprs.append('powerhouse_museum_api_key=' + "'" + self.powerhouse_museum_api_key.encode('ascii', 'replace') + "'")
         return 'CostumeProperties(' + ', '.join(field_reprs) + ')'
 
     @property
@@ -356,7 +314,7 @@ class CostumeProperties(object):
         :rtype: dict
         '''
 
-        return {'api_url': self.api_url, 'environment': self.environment, 'elastic_search_host': self.elastic_search_host, 'elastic_search_port': self.elastic_search_port, 'home_directory_path': self.home_directory_path, 'logback_xml_file_path': self.logback_xml_file_path, 'powerhouse_museum_api_key': self.powerhouse_museum_api_key}
+        return {'api_url': self.api_url, 'environment': self.environment, 'elastic_search_host': self.elastic_search_host, 'elastic_search_port': self.elastic_search_port, 'home_directory_path': self.home_directory_path, 'logback_xml_file_path': self.logback_xml_file_path}
 
     def as_tuple(self):
         '''
@@ -365,7 +323,7 @@ class CostumeProperties(object):
         :rtype: tuple
         '''
 
-        return (self.api_url, self.environment, self.elastic_search_host, self.elastic_search_port, self.home_directory_path, self.logback_xml_file_path, self.powerhouse_museum_api_key,)
+        return (self.api_url, self.environment, self.elastic_search_host, self.elastic_search_port, self.home_directory_path, self.logback_xml_file_path,)
 
     @property
     def elastic_search_host(self):
@@ -411,7 +369,7 @@ class CostumeProperties(object):
 
         properties = {}
 
-        for property_name in ('api_url', 'environment', 'elastic_search_host', 'elastic_search_port', 'home_directory_path', 'logback_xml_file_path', 'powerhouse_museum_api_key',):
+        for property_name in ('api_url', 'environment', 'elastic_search_host', 'elastic_search_port', 'home_directory_path', 'logback_xml_file_path',):
             property_value = os.getenv('COSTUME_' + property_name.upper())
             if property_value is not None and len(property_value) > 0:
                 properties[property_name] = property_value
@@ -450,14 +408,6 @@ class CostumeProperties(object):
 
         return self.__logback_xml_file_path
 
-    @property
-    def powerhouse_museum_api_key(self):
-        '''
-        :rtype: str
-        '''
-
-        return self.__powerhouse_museum_api_key
-
     @classmethod
     def read(cls, iprot):
         '''
@@ -489,11 +439,6 @@ class CostumeProperties(object):
                     init_kwds['logback_xml_file_path'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
-            elif ifield_name == 'powerhouse_museum_api_key':
-                try:
-                    init_kwds['powerhouse_museum_api_key'] = iprot.read_string()
-                except (TypeError, ValueError,):
-                    pass
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -507,7 +452,6 @@ class CostumeProperties(object):
         elastic_search_port=9300,
         home_directory_path=None,
         logback_xml_file_path=None,
-        powerhouse_museum_api_key=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
@@ -518,7 +462,6 @@ class CostumeProperties(object):
         :type elastic_search_port: int or None
         :type home_directory_path: str or None
         :type logback_xml_file_path: str or None
-        :type powerhouse_museum_api_key: str or None
         :rtype: costume.lib.costume_properties.CostumeProperties
         '''
 
@@ -534,9 +477,7 @@ class CostumeProperties(object):
             home_directory_path = self.home_directory_path
         if logback_xml_file_path is None:
             logback_xml_file_path = self.logback_xml_file_path
-        if powerhouse_museum_api_key is None:
-            powerhouse_museum_api_key = self.powerhouse_museum_api_key
-        return self.__class__(api_url=api_url, environment=environment, elastic_search_host=elastic_search_host, elastic_search_port=elastic_search_port, home_directory_path=home_directory_path, logback_xml_file_path=logback_xml_file_path, powerhouse_museum_api_key=powerhouse_museum_api_key)
+        return self.__class__(api_url=api_url, environment=environment, elastic_search_host=elastic_search_host, elastic_search_port=elastic_search_port, home_directory_path=home_directory_path, logback_xml_file_path=logback_xml_file_path)
 
     def write(self, oprot):
         '''
@@ -571,11 +512,6 @@ class CostumeProperties(object):
         if self.logback_xml_file_path is not None:
             oprot.write_field_begin(name='logback_xml_file_path', type=11, id=None)
             oprot.write_string(self.logback_xml_file_path)
-            oprot.write_field_end()
-
-        if self.powerhouse_museum_api_key is not None:
-            oprot.write_field_begin(name='powerhouse_museum_api_key', type=11, id=None)
-            oprot.write_string(self.powerhouse_museum_api_key)
             oprot.write_field_end()
 
         oprot.write_field_stop()

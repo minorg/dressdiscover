@@ -1,4 +1,4 @@
-
+import argparse
 import json
 import os.path
 import urllib2
@@ -6,7 +6,6 @@ import urllib2
 from costume.lib.costume_properties import CostumeProperties
 
 
-API_KEY = CostumeProperties.load().powerhouse_museum_api_key
 DATA_DIR_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data'))
 assert os.path.isdir(DATA_DIR_PATH)
 ITEMS_DIR_PATH = os.path.join(DATA_DIR_PATH, 'powerhouse_museum', 'item')
@@ -15,13 +14,19 @@ if not os.path.isdir(ITEMS_DIR_PATH):
     os.makedirs(ITEMS_DIR_PATH)
 
 
+argument_parser = argparse.ArgumentParser()
+argument_parser.add_argument('--api-key', required=True)
+args = argument_parser.parse_args()
+
+
 api_call_count = 0
+api_key = args.api_key
 if not os.path.exists(CATEGORY_ITEMS_FILE_PATH):
     category_item_dicts = []
     for category in ('10', '80'):
         start = 0
         while True:
-            url = urllib2.urlopen("http://api.powerhousemuseum.com/api/v1/category/%(category)s/items/json/?api_key=%(API_KEY)s&start=%(start)d&limit=100" % locals())
+            url = urllib2.urlopen("http://api.powerhousemuseum.com/api/v1/category/%(category)s/items/json/?api_key=%(api_key)s&start=%(start)d&limit=100" % locals())
             try:
                 url_json = url.read()
             finally:
@@ -48,7 +53,7 @@ for category_item_dict in category_item_dicts:
         print 'skipping', item_id
         continue
 
-    url = urllib2.urlopen("http://api.powerhousemuseum.com/api/v1/item/%(item_id)s/json/?api_key=%(API_KEY)s" % locals())
+    url = urllib2.urlopen("http://api.powerhousemuseum.com/api/v1/item/%(item_id)s/json/?api_key=%(api_key)s" % locals())
     try:
         url_json = url.read()
     finally:
