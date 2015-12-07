@@ -264,6 +264,35 @@
           "5:provenance": {
             "type": "string"
           }, 
+          "22:rights": {
+            "type": "nested", 
+            "properties": {
+              "1:rights": {
+                "type": "nested", 
+                "properties": {
+                  "1:rights_holder": {
+                    "type": "string"
+                  }, 
+                  "2:text": {
+                    "type": "string"
+                  }, 
+                  "3:type": {
+                    "index": "not_analyzed", 
+                    "type": "string"
+                  }, 
+                  "4:notes": {
+                    "type": "string"
+                  }
+                }
+              }, 
+              "2:display": {
+                "type": "string"
+              }, 
+              "3:notes": {
+                "type": "string"
+              }
+            }
+          }, 
           "21:subjects": {
             "type": "nested", 
             "properties": {

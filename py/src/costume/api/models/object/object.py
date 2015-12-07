@@ -6,6 +6,7 @@ import costume.api.models.image.image
 import costume.api.models.inscription.inscription_set
 import costume.api.models.material.material_set
 import costume.api.models.model_metadata
+import costume.api.models.rights.rights_set
 import costume.api.models.subject.subject_set
 import costume.api.models.technique.technique_set
 
@@ -28,6 +29,7 @@ class Object(object):
             materials=None,
             physical_description=None,
             provenance=None,
+            rights=None,
             subjects=None,
             summary=None,
             techniques=None,
@@ -49,6 +51,7 @@ class Object(object):
             :type materials: costume.api.models.material.material_set.MaterialSet or None
             :type physical_description: str or None
             :type provenance: str or None
+            :type rights: costume.api.models.rights.rights_set.RightsSet or None
             :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
             :type summary: str or None
             :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
@@ -70,6 +73,7 @@ class Object(object):
             self.__materials = materials
             self.__physical_description = physical_description
             self.__provenance = provenance
+            self.__rights = rights
             self.__subjects = subjects
             self.__summary = summary
             self.__techniques = techniques
@@ -77,7 +81,7 @@ class Object(object):
             self.__url = url
 
         def build(self):
-            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, agents=self.__agents, categories=self.__categories, date=self.__date, date_text=self.__date_text, description=self.__description, history_notes=self.__history_notes, inscriptions=self.__inscriptions, materials=self.__materials, physical_description=self.__physical_description, provenance=self.__provenance, subjects=self.__subjects, summary=self.__summary, techniques=self.__techniques, thumbnail=self.__thumbnail, url=self.__url)
+            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, agents=self.__agents, categories=self.__categories, date=self.__date, date_text=self.__date_text, description=self.__description, history_notes=self.__history_notes, inscriptions=self.__inscriptions, materials=self.__materials, physical_description=self.__physical_description, provenance=self.__provenance, rights=self.__rights, subjects=self.__subjects, summary=self.__summary, techniques=self.__techniques, thumbnail=self.__thumbnail, url=self.__url)
 
         @property
         def agents(self):
@@ -183,6 +187,14 @@ class Object(object):
 
             return self.__provenance
 
+        @property
+        def rights(self):
+            '''
+            :rtype: costume.api.models.rights.rights_set.RightsSet
+            '''
+
+            return self.__rights
+
         def set_agents(self, agents):
             '''
             :type agents: costume.api.models.agent.agent_set.AgentSet or None
@@ -285,6 +297,14 @@ class Object(object):
             '''
 
             self.__provenance = provenance
+            return self
+
+        def set_rights(self, rights):
+            '''
+            :type rights: costume.api.models.rights.rights_set.RightsSet or None
+            '''
+
+            self.__rights = rights
             return self
 
         def set_subjects(self, subjects):
@@ -391,6 +411,7 @@ class Object(object):
             :type materials: costume.api.models.material.material_set.MaterialSet or None
             :type physical_description: str or None
             :type provenance: str or None
+            :type rights: costume.api.models.rights.rights_set.RightsSet or None
             :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
             :type summary: str or None
             :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
@@ -413,6 +434,7 @@ class Object(object):
                 self.set_materials(object.materials)
                 self.set_physical_description(object.physical_description)
                 self.set_provenance(object.provenance)
+                self.set_rights(object.rights)
                 self.set_subjects(object.subjects)
                 self.set_summary(object.summary)
                 self.set_techniques(object.techniques)
@@ -537,6 +559,14 @@ class Object(object):
 
             self.set_provenance(provenance)
 
+        @rights.setter
+        def rights(self, rights):
+            '''
+            :type rights: costume.api.models.rights.rights_set.RightsSet or None
+            '''
+
+            self.set_rights(rights)
+
         @subjects.setter
         def subjects(self, subjects):
             '''
@@ -601,6 +631,7 @@ class Object(object):
         materials=None,
         physical_description=None,
         provenance=None,
+        rights=None,
         subjects=None,
         summary=None,
         techniques=None,
@@ -622,6 +653,7 @@ class Object(object):
         :type materials: costume.api.models.material.material_set.MaterialSet or None
         :type physical_description: str or None
         :type provenance: str or None
+        :type rights: costume.api.models.rights.rights_set.RightsSet or None
         :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
         :type summary: str or None
         :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
@@ -717,6 +749,11 @@ class Object(object):
                 raise ValueError("expected len(provenance) to be >= 1, was %d" % len(provenance))
         self.__provenance = provenance
 
+        if rights is not None:
+            if not isinstance(rights, costume.api.models.rights.rights_set.RightsSet):
+                raise TypeError("expected rights to be a costume.api.models.rights.rights_set.RightsSet but it is a %s" % getattr(__builtin__, 'type')(rights))
+        self.__rights = rights
+
         if subjects is not None:
             if not isinstance(subjects, costume.api.models.subject.subject_set.SubjectSet):
                 raise TypeError("expected subjects to be a costume.api.models.subject.subject_set.SubjectSet but it is a %s" % getattr(__builtin__, 'type')(subjects))
@@ -773,6 +810,8 @@ class Object(object):
             return False
         if self.provenance != other.provenance:
             return False
+        if self.rights != other.rights:
+            return False
         if self.subjects != other.subjects:
             return False
         if self.summary != other.summary:
@@ -786,7 +825,7 @@ class Object(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.agents,self.categories,self.date,self.date_text,self.description,self.history_notes,self.inscriptions,self.materials,self.physical_description,self.provenance,self.subjects,self.summary,self.techniques,self.thumbnail,self.url,))
+        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.agents,self.categories,self.date,self.date_text,self.description,self.history_notes,self.inscriptions,self.materials,self.physical_description,self.provenance,self.rights,self.subjects,self.summary,self.techniques,self.thumbnail,self.url,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -820,6 +859,8 @@ class Object(object):
             field_reprs.append('physical_description=' + "'" + self.physical_description.encode('ascii', 'replace') + "'")
         if self.provenance is not None:
             field_reprs.append('provenance=' + "'" + self.provenance.encode('ascii', 'replace') + "'")
+        if self.rights is not None:
+            field_reprs.append('rights=' + repr(self.rights))
         if self.subjects is not None:
             field_reprs.append('subjects=' + repr(self.subjects))
         if self.summary is not None:
@@ -858,6 +899,8 @@ class Object(object):
             field_reprs.append('physical_description=' + "'" + self.physical_description.encode('ascii', 'replace') + "'")
         if self.provenance is not None:
             field_reprs.append('provenance=' + "'" + self.provenance.encode('ascii', 'replace') + "'")
+        if self.rights is not None:
+            field_reprs.append('rights=' + repr(self.rights))
         if self.subjects is not None:
             field_reprs.append('subjects=' + repr(self.subjects))
         if self.summary is not None:
@@ -885,7 +928,7 @@ class Object(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'agents': self.agents, 'categories': self.categories, 'date': self.date, 'date_text': self.date_text, 'description': self.description, 'history_notes': self.history_notes, 'inscriptions': self.inscriptions, 'materials': self.materials, 'physical_description': self.physical_description, 'provenance': self.provenance, 'subjects': self.subjects, 'summary': self.summary, 'techniques': self.techniques, 'thumbnail': self.thumbnail, 'url': self.url}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'agents': self.agents, 'categories': self.categories, 'date': self.date, 'date_text': self.date_text, 'description': self.description, 'history_notes': self.history_notes, 'inscriptions': self.inscriptions, 'materials': self.materials, 'physical_description': self.physical_description, 'provenance': self.provenance, 'rights': self.rights, 'subjects': self.subjects, 'summary': self.summary, 'techniques': self.techniques, 'thumbnail': self.thumbnail, 'url': self.url}
 
     def as_tuple(self):
         '''
@@ -894,7 +937,7 @@ class Object(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.agents, self.categories, self.date, self.date_text, self.description, self.history_notes, self.inscriptions, self.materials, self.physical_description, self.provenance, self.subjects, self.summary, self.techniques, self.thumbnail, self.url,)
+        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.agents, self.categories, self.date, self.date_text, self.description, self.history_notes, self.inscriptions, self.materials, self.physical_description, self.provenance, self.rights, self.subjects, self.summary, self.techniques, self.thumbnail, self.url,)
 
     @property
     def categories(self):
@@ -1054,6 +1097,8 @@ class Object(object):
                     init_kwds['provenance'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
+            elif ifield_name == 'rights' and ifield_id == 22:
+                init_kwds['rights'] = costume.api.models.rights.rights_set.RightsSet.read(iprot)
             elif ifield_name == 'subjects' and ifield_id == 21:
                 init_kwds['subjects'] = costume.api.models.subject.subject_set.SubjectSet.read(iprot)
             elif ifield_name == 'summary' and ifield_id == 7:
@@ -1091,6 +1136,7 @@ class Object(object):
         materials=None,
         physical_description=None,
         provenance=None,
+        rights=None,
         subjects=None,
         summary=None,
         techniques=None,
@@ -1114,6 +1160,7 @@ class Object(object):
         :type materials: costume.api.models.material.material_set.MaterialSet or None
         :type physical_description: str or None
         :type provenance: str or None
+        :type rights: costume.api.models.rights.rights_set.RightsSet or None
         :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
         :type summary: str or None
         :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
@@ -1150,6 +1197,8 @@ class Object(object):
             physical_description = self.physical_description
         if provenance is None:
             provenance = self.provenance
+        if rights is None:
+            rights = self.rights
         if subjects is None:
             subjects = self.subjects
         if summary is None:
@@ -1160,7 +1209,15 @@ class Object(object):
             thumbnail = self.thumbnail
         if url is None:
             url = self.url
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, agents=agents, categories=categories, date=date, date_text=date_text, description=description, history_notes=history_notes, inscriptions=inscriptions, materials=materials, physical_description=physical_description, provenance=provenance, subjects=subjects, summary=summary, techniques=techniques, thumbnail=thumbnail, url=url)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, agents=agents, categories=categories, date=date, date_text=date_text, description=description, history_notes=history_notes, inscriptions=inscriptions, materials=materials, physical_description=physical_description, provenance=provenance, rights=rights, subjects=subjects, summary=summary, techniques=techniques, thumbnail=thumbnail, url=url)
+
+    @property
+    def rights(self):
+        '''
+        :rtype: costume.api.models.rights.rights_set.RightsSet
+        '''
+
+        return self.__rights
 
     @property
     def subjects(self):
@@ -1287,6 +1344,11 @@ class Object(object):
         if self.provenance is not None:
             oprot.write_field_begin(name='provenance', type=11, id=5)
             oprot.write_string(self.provenance)
+            oprot.write_field_end()
+
+        if self.rights is not None:
+            oprot.write_field_begin(name='rights', type=12, id=22)
+            self.rights.write(oprot)
             oprot.write_field_end()
 
         if self.subjects is not None:

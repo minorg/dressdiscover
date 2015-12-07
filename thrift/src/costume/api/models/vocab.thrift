@@ -3,6 +3,7 @@ namespace * costume.api.models
 
 enum Vocab {
 	AAT,
+	DC,
 	KWD,
 	OTH,
 	LCSH
