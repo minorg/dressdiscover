@@ -38,6 +38,9 @@
           }, 
           "2:title": {
             "type": "string"
+          }, 
+          "4:description": {
+            "type": "string"
           }
         }
       }

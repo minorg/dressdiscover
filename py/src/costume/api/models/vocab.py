@@ -1,5 +1,6 @@
 class Vocab(object):
     AAT = None
+    DC = None
     KWD = None
     OTH = None
     LCSH = None
@@ -22,19 +23,22 @@ class Vocab(object):
     def value_of(cls, name):
         if name == 'AAT' or name == '0':
             return getattr(Vocab, 'AAT')
-        elif name == 'KWD' or name == '1':
+        elif name == 'DC' or name == '1':
+            return getattr(Vocab, 'DC')
+        elif name == 'KWD' or name == '2':
             return getattr(Vocab, 'KWD')
-        elif name == 'OTH' or name == '2':
+        elif name == 'OTH' or name == '3':
             return getattr(Vocab, 'OTH')
-        elif name == 'LCSH' or name == '3':
+        elif name == 'LCSH' or name == '4':
             return getattr(Vocab, 'LCSH')
         raise ValueError(name)
 
     @classmethod
     def values(cls):
-        return (Vocab.AAT, Vocab.KWD, Vocab.OTH, Vocab.LCSH,)
+        return (Vocab.AAT, Vocab.DC, Vocab.KWD, Vocab.OTH, Vocab.LCSH,)
 
 Vocab.AAT = Vocab('AAT', 0)
-Vocab.KWD = Vocab('KWD', 1)
-Vocab.OTH = Vocab('OTH', 2)
-Vocab.LCSH = Vocab('LCSH', 3)
+Vocab.DC = Vocab('DC', 1)
+Vocab.KWD = Vocab('KWD', 2)
+Vocab.OTH = Vocab('OTH', 3)
+Vocab.LCSH = Vocab('LCSH', 4)

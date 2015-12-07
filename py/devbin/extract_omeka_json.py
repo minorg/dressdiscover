@@ -64,4 +64,3 @@ for collection_dict in json.loads(collections_json):
     with open(items_file_path, 'w+b') as f:
         f.write(json.dumps(item_dicts, indent=4))
         print 'wrote', len(item_dicts), 'items to', items_file_path
-    break

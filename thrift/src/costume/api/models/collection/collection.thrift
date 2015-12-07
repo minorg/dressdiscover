@@ -13,4 +13,7 @@ struct Collection {
 
 	// @validation {"minLength": 1}
 	2: string title;
+
+	// @validation {"minLength": 1}
+	4: optional string description;
 }

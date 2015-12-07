@@ -9,19 +9,30 @@ class Collection(object):
             institution_id=None,
             model_metadata=None,
             title=None,
+            description=None,
         ):
             '''
             :type institution_id: str
             :type model_metadata: costume.api.models.model_metadata.ModelMetadata
             :type title: str
+            :type description: str or None
             '''
 
             self.__institution_id = institution_id
             self.__model_metadata = model_metadata
             self.__title = title
+            self.__description = description
 
         def build(self):
-            return Collection(institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title)
+            return Collection(institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, description=self.__description)
+
+        @property
+        def description(self):
+            '''
+            :rtype: str
+            '''
+
+            return self.__description
 
         @property
         def institution_id(self):
@@ -38,6 +49,14 @@ class Collection(object):
             '''
 
             return self.__model_metadata
+
+        def set_description(self, description):
+            '''
+            :type description: str or None
+            '''
+
+            self.__description = description
+            return self
 
         def set_institution_id(self, institution_id):
             '''
@@ -76,18 +95,28 @@ class Collection(object):
             :type institution_id: str
             :type model_metadata: costume.api.models.model_metadata.ModelMetadata
             :type title: str
+            :type description: str or None
             '''
 
             if isinstance(collection, Collection):
                 self.set_institution_id(collection.institution_id)
                 self.set_model_metadata(collection.model_metadata)
                 self.set_title(collection.title)
+                self.set_description(collection.description)
             elif isinstance(collection, dict):
                 for key, value in collection.iteritems():
                     getattr(self, 'set_' + key)(value)
             else:
                 raise TypeError(collection)
             return self
+
+        @description.setter
+        def description(self, description):
+            '''
+            :type description: str or None
+            '''
+
+            self.set_description(description)
 
         @institution_id.setter
         def institution_id(self, institution_id):
@@ -118,11 +147,13 @@ class Collection(object):
         institution_id,
         model_metadata,
         title,
+        description=None,
     ):
         '''
         :type institution_id: str
         :type model_metadata: costume.api.models.model_metadata.ModelMetadata
         :type title: str
+        :type description: str or None
         '''
 
         if institution_id is None:
@@ -145,6 +176,13 @@ class Collection(object):
             raise ValueError("expected len(title) to be >= 1, was %d" % len(title))
         self.__title = title
 
+        if description is not None:
+            if not isinstance(description, basestring):
+                raise TypeError("expected description to be a str but it is a %s" % getattr(__builtin__, 'type')(description))
+            if len(description) < 1:
+                raise ValueError("expected len(description) to be >= 1, was %d" % len(description))
+        self.__description = description
+
     def __eq__(self, other):
         if self.institution_id != other.institution_id:
             return False
@@ -152,10 +190,12 @@ class Collection(object):
             return False
         if self.title != other.title:
             return False
+        if self.description != other.description:
+            return False
         return True
 
     def __hash__(self):
-        return hash((self.institution_id,self.model_metadata,self.title,))
+        return hash((self.institution_id,self.model_metadata,self.title,self.description,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -168,6 +208,8 @@ class Collection(object):
         field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
         field_reprs.append('model_metadata=' + repr(self.model_metadata))
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
+        if self.description is not None:
+            field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
         return 'Collection(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
@@ -175,6 +217,8 @@ class Collection(object):
         field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
         field_reprs.append('model_metadata=' + repr(self.model_metadata))
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
+        if self.description is not None:
+            field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
         return 'Collection(' + ', '.join(field_reprs) + ')'
 
     def as_dict(self):
@@ -184,7 +228,7 @@ class Collection(object):
         :rtype: dict
         '''
 
-        return {'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title}
+        return {'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'description': self.description}
 
     def as_tuple(self):
         '''
@@ -193,7 +237,15 @@ class Collection(object):
         :rtype: tuple
         '''
 
-        return (self.institution_id, self.model_metadata, self.title,)
+        return (self.institution_id, self.model_metadata, self.title, self.description,)
+
+    @property
+    def description(self):
+        '''
+        :rtype: str
+        '''
+
+        return self.__description
 
     @property
     def institution_id(self):
@@ -233,6 +285,11 @@ class Collection(object):
                 init_kwds['model_metadata'] = costume.api.models.model_metadata.ModelMetadata.read(iprot)
             elif ifield_name == 'title' and ifield_id == 2:
                 init_kwds['title'] = iprot.read_string()
+            elif ifield_name == 'description' and ifield_id == 4:
+                try:
+                    init_kwds['description'] = iprot.read_string()
+                except (TypeError, ValueError,):
+                    pass
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -243,6 +300,7 @@ class Collection(object):
         institution_id=None,
         model_metadata=None,
         title=None,
+        description=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
@@ -250,6 +308,7 @@ class Collection(object):
         :type institution_id: str or None
         :type model_metadata: costume.api.models.model_metadata.ModelMetadata or None
         :type title: str or None
+        :type description: str or None
         :rtype: costume.api.models.collection.collection.Collection
         '''
 
@@ -259,7 +318,9 @@ class Collection(object):
             model_metadata = self.model_metadata
         if title is None:
             title = self.title
-        return self.__class__(institution_id=institution_id, model_metadata=model_metadata, title=title)
+        if description is None:
+            description = self.description
+        return self.__class__(institution_id=institution_id, model_metadata=model_metadata, title=title, description=description)
 
     @property
     def title(self):
@@ -290,6 +351,11 @@ class Collection(object):
         oprot.write_field_begin(name='title', type=11, id=2)
         oprot.write_string(self.title)
         oprot.write_field_end()
+
+        if self.description is not None:
+            oprot.write_field_begin(name='description', type=11, id=4)
+            oprot.write_string(self.description)
+            oprot.write_field_end()
 
         oprot.write_field_stop()
 

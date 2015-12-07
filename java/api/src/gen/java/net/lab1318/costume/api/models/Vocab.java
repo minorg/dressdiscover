@@ -2,9 +2,10 @@ package net.lab1318.costume.api.models;
 
 public enum Vocab {
     AAT(0),
-    KWD(1),
-    OTH(2),
-    LCSH(3);
+    DC(1),
+    KWD(2),
+    OTH(3),
+    LCSH(4);
 
     private Vocab(int value) {
         this.value = value;
@@ -13,9 +14,10 @@ public enum Vocab {
     public static Vocab valueOf(final int value) {
         switch (value) {
         case 0: return AAT;
-        case 1: return KWD;
-        case 2: return OTH;
-        case 3: return LCSH;
+        case 1: return DC;
+        case 2: return KWD;
+        case 3: return OTH;
+        case 4: return LCSH;
         default: throw new IllegalArgumentException();
         }
     }

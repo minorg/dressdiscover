@@ -5,7 +5,8 @@ public class CollectionBean {
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, true, 1, "institution_id", org.thryft.protocol.Type.STRING),
         MODEL_METADATA("modelMetadata", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.ModelMetadataBean>() {}, true, 3, "model_metadata", org.thryft.protocol.Type.STRUCT),
-        TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "title", org.thryft.protocol.Type.STRING);
+        TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "title", org.thryft.protocol.Type.STRING),
+        DESCRIPTION("description", new com.google.common.reflect.TypeToken<String>() {}, false, 4, "description", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -52,6 +53,7 @@ public class CollectionBean {
             case "institutionId": return INSTITUTION_ID;
             case "modelMetadata": return MODEL_METADATA;
             case "title": return TITLE;
+            case "description": return DESCRIPTION;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -62,6 +64,7 @@ public class CollectionBean {
             case "institution_id": return INSTITUTION_ID;
             case "model_metadata": return MODEL_METADATA;
             case "title": return TITLE;
+            case "description": return DESCRIPTION;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -94,12 +97,14 @@ public class CollectionBean {
         institutionId = null;
         modelMetadata = null;
         title = null;
+        description = null;
     }
 
     public CollectionBean(final net.lab1318.costume.api.models.collection.Collection other) {
         this.institutionId = other.getInstitutionId();
         this.modelMetadata = new net.lab1318.costume.gui.models.ModelMetadataBean(other.getModelMetadata());
         this.title = other.getTitle();
+        this.description = other.getDescription().isPresent() ? other.getDescription().get() : null;
     }
 
     @Override
@@ -114,7 +119,12 @@ public class CollectionBean {
         return
             getInstitutionId().equals(other.getInstitutionId()) &&
             getModelMetadata().equals(other.getModelMetadata()) &&
-            getTitle().equals(other.getTitle());
+            getTitle().equals(other.getTitle()) &&
+            getDescription().equals(other.getDescription());
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public net.lab1318.costume.api.models.institution.InstitutionId getInstitutionId() {
@@ -135,7 +145,14 @@ public class CollectionBean {
         hashCode = 31 * hashCode + getInstitutionId().hashCode();
         hashCode = 31 * hashCode + getModelMetadata().hashCode();
         hashCode = 31 * hashCode + getTitle().hashCode();
+        if (getDescription() != null) {
+            hashCode = 31 * hashCode + getDescription().hashCode();
+        }
         return hashCode;
+    }
+
+    public void setDescription(final String description) {
+        this.description = description;
     }
 
     public void setInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
@@ -152,7 +169,7 @@ public class CollectionBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("description", getDescription()).toString();
     }
 
     private net.lab1318.costume.api.models.institution.InstitutionId institutionId;
@@ -160,4 +177,6 @@ public class CollectionBean {
     private net.lab1318.costume.gui.models.ModelMetadataBean modelMetadata;
 
     private String title;
+
+    private String description;
 }
