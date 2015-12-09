@@ -2,7 +2,7 @@ from itertools import ifilterfalse
 import __builtin__
 
 
-class ObjectFilters(object):
+class ObjectFacetFilters(object):
     class Builder(object):
         def __init__(
             self,
@@ -42,7 +42,7 @@ class ObjectFilters(object):
             self.__include_subject_term_texts = include_subject_term_texts
 
         def build(self):
-            return ObjectFilters(exclude_agent_name_texts=self.__exclude_agent_name_texts, exclude_categories=self.__exclude_categories, exclude_collection_ids=self.__exclude_collection_ids, exclude_institution_ids=self.__exclude_institution_ids, exclude_subject_term_texts=self.__exclude_subject_term_texts, include_agent_name_texts=self.__include_agent_name_texts, include_categories=self.__include_categories, include_collection_ids=self.__include_collection_ids, include_institution_ids=self.__include_institution_ids, include_subject_term_texts=self.__include_subject_term_texts)
+            return ObjectFacetFilters(exclude_agent_name_texts=self.__exclude_agent_name_texts, exclude_categories=self.__exclude_categories, exclude_collection_ids=self.__exclude_collection_ids, exclude_institution_ids=self.__exclude_institution_ids, exclude_subject_term_texts=self.__exclude_subject_term_texts, include_agent_name_texts=self.__include_agent_name_texts, include_categories=self.__include_categories, include_collection_ids=self.__include_collection_ids, include_institution_ids=self.__include_institution_ids, include_subject_term_texts=self.__include_subject_term_texts)
 
         @property
         def exclude_agent_name_texts(self):
@@ -204,7 +204,7 @@ class ObjectFilters(object):
             self.__include_subject_term_texts = include_subject_term_texts
             return self
 
-        def update(self, object_filters):
+        def update(self, object_facet_filters):
             '''
             :type exclude_agent_name_texts: frozenset(str) or None
             :type exclude_categories: frozenset(str) or None
@@ -218,22 +218,22 @@ class ObjectFilters(object):
             :type include_subject_term_texts: frozenset(str) or None
             '''
 
-            if isinstance(object_filters, ObjectFilters):
-                self.set_exclude_agent_name_texts(object_filters.exclude_agent_name_texts)
-                self.set_exclude_categories(object_filters.exclude_categories)
-                self.set_exclude_collection_ids(object_filters.exclude_collection_ids)
-                self.set_exclude_institution_ids(object_filters.exclude_institution_ids)
-                self.set_exclude_subject_term_texts(object_filters.exclude_subject_term_texts)
-                self.set_include_agent_name_texts(object_filters.include_agent_name_texts)
-                self.set_include_categories(object_filters.include_categories)
-                self.set_include_collection_ids(object_filters.include_collection_ids)
-                self.set_include_institution_ids(object_filters.include_institution_ids)
-                self.set_include_subject_term_texts(object_filters.include_subject_term_texts)
-            elif isinstance(object_filters, dict):
-                for key, value in object_filters.iteritems():
+            if isinstance(object_facet_filters, ObjectFacetFilters):
+                self.set_exclude_agent_name_texts(object_facet_filters.exclude_agent_name_texts)
+                self.set_exclude_categories(object_facet_filters.exclude_categories)
+                self.set_exclude_collection_ids(object_facet_filters.exclude_collection_ids)
+                self.set_exclude_institution_ids(object_facet_filters.exclude_institution_ids)
+                self.set_exclude_subject_term_texts(object_facet_filters.exclude_subject_term_texts)
+                self.set_include_agent_name_texts(object_facet_filters.include_agent_name_texts)
+                self.set_include_categories(object_facet_filters.include_categories)
+                self.set_include_collection_ids(object_facet_filters.include_collection_ids)
+                self.set_include_institution_ids(object_facet_filters.include_institution_ids)
+                self.set_include_subject_term_texts(object_facet_filters.include_subject_term_texts)
+            elif isinstance(object_facet_filters, dict):
+                for key, value in object_facet_filters.iteritems():
                     getattr(self, 'set_' + key)(value)
             else:
-                raise TypeError(object_filters)
+                raise TypeError(object_facet_filters)
             return self
 
         @exclude_agent_name_texts.setter
@@ -466,7 +466,7 @@ class ObjectFilters(object):
             field_reprs.append('include_institution_ids=' + repr(self.include_institution_ids))
         if self.include_subject_term_texts is not None:
             field_reprs.append('include_subject_term_texts=' + repr(self.include_subject_term_texts))
-        return 'ObjectFilters(' + ', '.join(field_reprs) + ')'
+        return 'ObjectFacetFilters(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
@@ -490,7 +490,7 @@ class ObjectFilters(object):
             field_reprs.append('include_institution_ids=' + repr(self.include_institution_ids))
         if self.include_subject_term_texts is not None:
             field_reprs.append('include_subject_term_texts=' + repr(self.include_subject_term_texts))
-        return 'ObjectFilters(' + ', '.join(field_reprs) + ')'
+        return 'ObjectFacetFilters(' + ', '.join(field_reprs) + ')'
 
     def as_dict(self):
         '''
@@ -596,7 +596,7 @@ class ObjectFilters(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.object.object_filters.ObjectFilters
+        :rtype: costume.api.services.object.object_facet_filters.ObjectFacetFilters
         '''
 
         init_kwds = {}
@@ -657,7 +657,7 @@ class ObjectFilters(object):
         :type include_collection_ids: frozenset(str) or None
         :type include_institution_ids: frozenset(str) or None
         :type include_subject_term_texts: frozenset(str) or None
-        :rtype: costume.api.models.object.object_filters.ObjectFilters
+        :rtype: costume.api.services.object.object_facet_filters.ObjectFacetFilters
         '''
 
         if exclude_agent_name_texts is None:
@@ -687,10 +687,10 @@ class ObjectFilters(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.object.object_filters.ObjectFilters
+        :rtype: costume.api.services.object.object_facet_filters.ObjectFacetFilters
         '''
 
-        oprot.write_struct_begin('ObjectFilters')
+        oprot.write_struct_begin('ObjectFacetFilters')
 
         if self.exclude_agent_name_texts is not None:
             oprot.write_field_begin(name='exclude_agent_name_texts', type=14, id=None)

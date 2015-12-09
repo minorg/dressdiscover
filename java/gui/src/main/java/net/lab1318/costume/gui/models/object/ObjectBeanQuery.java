@@ -14,9 +14,9 @@ import com.google.common.primitives.UnsignedInteger;
 
 import net.lab1318.costume.api.models.SortOrder;
 import net.lab1318.costume.api.models.object.ObjectEntry;
-import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.GetObjectsOptions;
+import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.object.ObjectSort;
 import net.lab1318.costume.api.services.object.ObjectSortField;

@@ -16,7 +16,7 @@ import com.vaadin.server.VaadinServletRequest;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.UI;
 
-import net.lab1318.costume.api.models.object.ObjectQuery;
+import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.gui.controllers.GuiServlet;
 import net.lab1318.costume.gui.converters.CustomConverterFactory;
 import net.lab1318.costume.gui.presenters.institution.InstitutionsPresenter;
