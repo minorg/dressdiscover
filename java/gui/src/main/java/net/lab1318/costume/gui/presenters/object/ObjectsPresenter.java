@@ -31,14 +31,13 @@ import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionId;
-import net.lab1318.costume.api.models.object.ObjectFilters;
-import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
 import net.lab1318.costume.api.services.object.ObjectFacets;
+import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectByIdRequest;
 import net.lab1318.costume.api.services.object.ObjectSortField;
@@ -50,125 +49,109 @@ import net.lab1318.costume.gui.views.object.ObjectsView;
 
 @SessionScoped
 public class ObjectsPresenter extends Presenter<ObjectsView> {
-	@Inject
-	public ObjectsPresenter(final CollectionQueryService collectionQueryService, final EventBus eventBus,
-			final InstitutionQueryService institutionQueryService, final ObjectQueryService objectQueryService,
-			final ObjectsView view) {
-		super(eventBus, view);
-		this.collectionQueryService = checkNotNull(collectionQueryService);
-		this.institutionQueryService = checkNotNull(institutionQueryService);
-		this.objectQueryService = checkNotNull(objectQueryService);
-	}
+    @Inject
+    public ObjectsPresenter(final CollectionQueryService collectionQueryService, final EventBus eventBus,
+            final InstitutionQueryService institutionQueryService, final ObjectQueryService objectQueryService,
+            final ObjectsView view) {
+        super(eventBus, view);
+        this.collectionQueryService = checkNotNull(collectionQueryService);
+        this.institutionQueryService = checkNotNull(institutionQueryService);
+        this.objectQueryService = checkNotNull(objectQueryService);
+    }
 
-	@Subscribe
-	public void onGetObjectByIdRequest(final GetObjectByIdRequest request) {
-		UI.getCurrent().getNavigator().navigateTo(ObjectByIdView.NAME + "/" + request.getId().toString());
-	}
+    @Subscribe
+    public void onGetObjectByIdRequest(final GetObjectByIdRequest request) {
+        UI.getCurrent().getNavigator().navigateTo(ObjectByIdView.NAME + "/" + request.getId().toString());
+    }
 
-	@Override
-	protected void _onViewEnter(final ViewChangeEvent event) {
-		final ObjectQuery objectQuery;
-		try {
-			objectQuery = ObjectQuery.readAsStruct(
-					new JacksonJsonInputProtocol(URLDecoder.decode(event.getParameters(), Charsets.UTF_8.toString())));
-		} catch (final InputProtocolException | UnsupportedEncodingException e) {
-			_getView().setComponentError(new UserError("invalid query " + event.getParameters()));
-			return;
-		}
+    @Override
+    protected void _onViewEnter(final ViewChangeEvent event) {
+        final ObjectQuery objectQuery;
+        try {
+            objectQuery = ObjectQuery.readAsStruct(
+                    new JacksonJsonInputProtocol(URLDecoder.decode(event.getParameters(), Charsets.UTF_8.toString())));
+        } catch (final InputProtocolException | UnsupportedEncodingException e) {
+            _getView().setComponentError(new UserError("invalid query " + event.getParameters()));
+            return;
+        }
 
-		final ObjectFacets objectFacets;
-		try {
-			// Get facets for the query without most filters, so we can display
-			// unchecked boxes
-			ObjectQuery objectFacetsQuery;
-			if (objectQuery.getFilters().isPresent()) {
-				// Still include/exclude collections and institutions
-				objectFacetsQuery = ObjectQuery.builder(objectQuery)
-						.setFilters(ObjectFilters.builder()
-								.setExcludeCollectionIds(objectQuery.getFilters().get().getExcludeCollectionIds())
-								.setExcludeInstitutionIds(objectQuery.getFilters().get().getExcludeInstitutionIds())
-								.setIncludeCollectionIds(objectQuery.getFilters().get().getIncludeCollectionIds())
-								.setIncludeInstitutionIds(objectQuery.getFilters().get().getIncludeInstitutionIds())
-								.build())
-						.build();
-			} else {
-				objectFacetsQuery = objectQuery;
-			}
+        final ObjectFacets objectFacets;
+        try {
+            objectFacets = objectQueryService
+                    .getObjectFacets(Optional.of(ObjectQuery.builder(objectQuery).unsetFacetFilters().build()));
+        } catch (final IoException e) {
+            _getView().setComponentError(new SystemError("I/O exception", e));
+            return;
+        }
 
-			objectFacets = objectQueryService.getObjectFacets(Optional.of(objectFacetsQuery));
-		} catch (final IoException e) {
-			_getView().setComponentError(new SystemError("I/O exception", e));
-			return;
-		}
+        ImmutableMap<CollectionId, Collection> collectionMap;
+        {
+            final ImmutableList<CollectionId> collectionIds = ImmutableList
+                    .copyOf(objectFacets.getCollectionHits().keySet());
+            final ImmutableList<Collection> collections;
+            try {
+                collections = collectionQueryService.getCollectionsByIds(collectionIds);
+            } catch (final IoException e) {
+                _getView().setComponentError(new SystemError("I/O exception", e));
+                return;
+            } catch (final NoSuchCollectionException e) {
+                _getView().setComponentError(new SystemError("no such collection " + e.getId().get(), e));
+                return;
+            }
+            checkState(collectionIds.size() == collections.size());
+            final ImmutableMap.Builder<CollectionId, Collection> collectionMapBuilder = ImmutableMap.builder();
+            for (int collectionI = 0; collectionI < collectionIds.size(); collectionI++) {
+                collectionMapBuilder.put(collectionIds.get(collectionI), collections.get(collectionI));
+            }
+            collectionMap = collectionMapBuilder.build();
+        }
 
-		ImmutableMap<CollectionId, Collection> collectionMap;
-		{
-			final ImmutableList<CollectionId> collectionIds = ImmutableList
-					.copyOf(objectFacets.getCollectionHits().keySet());
-			final ImmutableList<Collection> collections;
-			try {
-				collections = collectionQueryService.getCollectionsByIds(collectionIds);
-			} catch (final IoException e) {
-				_getView().setComponentError(new SystemError("I/O exception", e));
-				return;
-			} catch (final NoSuchCollectionException e) {
-				_getView().setComponentError(new SystemError("no such collection " + e.getId().get(), e));
-				return;
-			}
-			checkState(collectionIds.size() == collections.size());
-			final ImmutableMap.Builder<CollectionId, Collection> collectionMapBuilder = ImmutableMap.builder();
-			for (int collectionI = 0; collectionI < collectionIds.size(); collectionI++) {
-				collectionMapBuilder.put(collectionIds.get(collectionI), collections.get(collectionI));
-			}
-			collectionMap = collectionMapBuilder.build();
-		}
+        ImmutableMap<InstitutionId, Institution> institutionMap;
+        {
+            final ImmutableList<InstitutionId> institutionIds = ImmutableList
+                    .copyOf(objectFacets.getInstitutionHits().keySet());
+            final ImmutableList<Institution> institutions;
+            try {
+                institutions = institutionQueryService.getInstitutionsByIds(institutionIds);
+            } catch (final IoException e) {
+                _getView().setComponentError(new SystemError("I/O exception", e));
+                return;
+            } catch (final NoSuchInstitutionException e) {
+                _getView().setComponentError(new SystemError("no such institution " + e.getId().get(), e));
+                return;
+            }
+            checkState(institutionIds.size() == institutions.size());
+            final ImmutableMap.Builder<InstitutionId, Institution> institutionMapBuilder = ImmutableMap.builder();
+            for (int institutionI = 0; institutionI < institutionIds.size(); institutionI++) {
+                institutionMapBuilder.put(institutionIds.get(institutionI), institutions.get(institutionI));
+            }
+            institutionMap = institutionMapBuilder.build();
+        }
 
-		ImmutableMap<InstitutionId, Institution> institutionMap;
-		{
-			final ImmutableList<InstitutionId> institutionIds = ImmutableList
-					.copyOf(objectFacets.getInstitutionHits().keySet());
-			final ImmutableList<Institution> institutions;
-			try {
-				institutions = institutionQueryService.getInstitutionsByIds(institutionIds);
-			} catch (final IoException e) {
-				_getView().setComponentError(new SystemError("I/O exception", e));
-				return;
-			} catch (final NoSuchInstitutionException e) {
-				_getView().setComponentError(new SystemError("no such institution " + e.getId().get(), e));
-				return;
-			}
-			checkState(institutionIds.size() == institutions.size());
-			final ImmutableMap.Builder<InstitutionId, Institution> institutionMapBuilder = ImmutableMap.builder();
-			for (int institutionI = 0; institutionI < institutionIds.size(); institutionI++) {
-				institutionMapBuilder.put(institutionIds.get(institutionI), institutions.get(institutionI));
-			}
-			institutionMap = institutionMapBuilder.build();
-		}
+        final BeanQueryFactory<ObjectBeanQuery> objectBeanQueryFactory = new BeanQueryFactory<ObjectBeanQuery>(
+                ObjectBeanQuery.class);
+        final Map<String, java.lang.Object> queryConfiguration = new HashMap<>();
+        queryConfiguration.put("objectQuery", objectQuery);
+        queryConfiguration.put("objectQueryService", objectQueryService);
+        objectBeanQueryFactory.setQueryConfiguration(queryConfiguration);
 
-		final BeanQueryFactory<ObjectBeanQuery> objectBeanQueryFactory = new BeanQueryFactory<ObjectBeanQuery>(
-				ObjectBeanQuery.class);
-		final Map<String, java.lang.Object> queryConfiguration = new HashMap<>();
-		queryConfiguration.put("objectQuery", objectQuery);
-		queryConfiguration.put("objectQueryService", objectQueryService);
-		objectBeanQueryFactory.setQueryConfiguration(queryConfiguration);
+        final LazyQueryDefinition queryDefinition = new LazyQueryDefinition(true, 10, "id");
+        for (final ObjectBean.FieldMetadata field : ObjectBean.FieldMetadata.values()) {
+            boolean sortable = false;
+            try {
+                ObjectSortField.valueOf(field.getThriftName().toUpperCase());
+                sortable = true;
+            } catch (final IllegalArgumentException e) {
+            }
 
-		final LazyQueryDefinition queryDefinition = new LazyQueryDefinition(true, 10, "id");
-		for (final ObjectBean.FieldMetadata field : ObjectBean.FieldMetadata.values()) {
-			boolean sortable = false;
-			try {
-				ObjectSortField.valueOf(field.getThriftName().toUpperCase());
-				sortable = true;
-			} catch (final IllegalArgumentException e) {
-			}
+            queryDefinition.addProperty(field.getJavaName(), field.getJavaType().getRawType(), null, true, sortable);
+        }
 
-			queryDefinition.addProperty(field.getJavaName(), field.getJavaType().getRawType(), null, true, sortable);
-		}
+        _getView().setModels(collectionMap, institutionMap, objectFacets, objectQuery,
+                new LazyQueryContainer(queryDefinition, objectBeanQueryFactory));
+    }
 
-		_getView().setModels(collectionMap, institutionMap, objectFacets, objectQuery,
-				new LazyQueryContainer(queryDefinition, objectBeanQueryFactory));
-	}
-
-	private final CollectionQueryService collectionQueryService;
-	private final InstitutionQueryService institutionQueryService;
-	private final ObjectQueryService objectQueryService;
+    private final CollectionQueryService collectionQueryService;
+    private final InstitutionQueryService institutionQueryService;
+    private final ObjectQueryService objectQueryService;
 }

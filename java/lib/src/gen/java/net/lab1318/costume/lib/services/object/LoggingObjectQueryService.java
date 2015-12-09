@@ -55,7 +55,7 @@ public class LoggingObjectQueryService implements net.lab1318.costume.api.servic
         }
     }
 
-    public com.google.common.primitives.UnsignedInteger getObjectCount(final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query) throws net.lab1318.costume.api.services.IoException {
+    public com.google.common.primitives.UnsignedInteger getObjectCount(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query) throws net.lab1318.costume.api.services.IoException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -81,7 +81,7 @@ public class LoggingObjectQueryService implements net.lab1318.costume.api.servic
         }
     }
 
-    public net.lab1318.costume.api.services.object.ObjectFacets getObjectFacets(final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query) throws net.lab1318.costume.api.services.IoException {
+    public net.lab1318.costume.api.services.object.ObjectFacets getObjectFacets(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query) throws net.lab1318.costume.api.services.IoException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -107,7 +107,7 @@ public class LoggingObjectQueryService implements net.lab1318.costume.api.servic
         }
     }
 
-    public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> getObjects(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectsOptions> options, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query) throws net.lab1318.costume.api.services.IoException {
+    public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> getObjects(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectsOptions> options, final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query) throws net.lab1318.costume.api.services.IoException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 

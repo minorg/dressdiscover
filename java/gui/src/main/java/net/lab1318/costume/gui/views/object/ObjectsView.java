@@ -17,73 +17,73 @@ import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionId;
-import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectFacets;
+import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.gui.views.TopLevelView;
 
 @SuppressWarnings("serial")
 @SessionScoped
 public class ObjectsView extends TopLevelView {
-	@Inject
-	public ObjectsView(final EventBus eventBus) {
-		super(eventBus);
-	}
+    @Inject
+    public ObjectsView(final EventBus eventBus) {
+        super(eventBus);
+    }
 
-	public void setModels(final ImmutableMap<CollectionId, Collection> collections,
-			final ImmutableMap<InstitutionId, Institution> institutions, final ObjectFacets objectFacets,
-			final ObjectQuery objectQuery, final LazyQueryContainer objects) {
-		if (objectQuery.getQueryString().isPresent()) {
-			_getNavbar().getSearchTextField().setValue(objectQuery.getQueryString().get());
-		}
+    public void setModels(final ImmutableMap<CollectionId, Collection> collections,
+            final ImmutableMap<InstitutionId, Institution> institutions, final ObjectFacets objectFacets,
+            final ObjectQuery objectQuery, final LazyQueryContainer objects) {
+        if (objectQuery.getQueryString().isPresent()) {
+            _getNavbar().getSearchTextField().setValue(objectQuery.getQueryString().get());
+        }
 
-		final int objectsSize = objects.size();
-		if (objectsSize == 0) {
-			setCompositionRoot(new Label("No objects found."));
-			return;
-		}
+        final int objectsSize = objects.size();
+        if (objectsSize == 0) {
+            setCompositionRoot(new Label("No objects found."));
+            return;
+        }
 
-		final HorizontalLayout twoPaneLayout = new HorizontalLayout();
-		twoPaneLayout.setSizeFull();
-		// twoPaneLayout.setHeight(700, Unit.PIXELS);
+        final HorizontalLayout twoPaneLayout = new HorizontalLayout();
+        twoPaneLayout.setSizeFull();
+        // twoPaneLayout.setHeight(700, Unit.PIXELS);
 
-		{
-			final Component leftPaneContentLayout = new ObjectFacetsLayout(_getEventBus(), institutions, objectFacets,
-					objectQuery);
+        {
+            final Component leftPaneContentLayout = new ObjectFacetsLayout(_getEventBus(), institutions, objectFacets,
+                    objectQuery);
 
-			final Panel leftPanePanel = new Panel();
-			leftPanePanel.addStyleName("borderless");
-			leftPanePanel.setContent(leftPaneContentLayout);
+            final Panel leftPanePanel = new Panel();
+            leftPanePanel.addStyleName("borderless");
+            leftPanePanel.setContent(leftPaneContentLayout);
 
-			twoPaneLayout.addComponent(leftPanePanel);
-			twoPaneLayout.setComponentAlignment(leftPanePanel, Alignment.TOP_LEFT);
-			twoPaneLayout.setExpandRatio(leftPanePanel, 1);
-		}
+            twoPaneLayout.addComponent(leftPanePanel);
+            twoPaneLayout.setComponentAlignment(leftPanePanel, Alignment.TOP_LEFT);
+            twoPaneLayout.setExpandRatio(leftPanePanel, 1);
+        }
 
-		{
-			final VerticalLayout rightPaneContentLayout = new VerticalLayout();
+        {
+            final VerticalLayout rightPaneContentLayout = new VerticalLayout();
 
-			{
-				final Label hitCountsLabel = new Label(
-						String.format("%d object(s) in %d collection(s)", objectsSize, collections.size()));
-				hitCountsLabel.setWidth(100, Unit.PERCENTAGE);
-				rightPaneContentLayout.addComponent(hitCountsLabel);
-				rightPaneContentLayout.setComponentAlignment(hitCountsLabel, Alignment.MIDDLE_CENTER);
-			}
+            {
+                final Label hitCountsLabel = new Label(
+                        String.format("%d object(s) in %d collection(s)", objectsSize, collections.size()));
+                hitCountsLabel.setWidth(100, Unit.PERCENTAGE);
+                rightPaneContentLayout.addComponent(hitCountsLabel);
+                rightPaneContentLayout.setComponentAlignment(hitCountsLabel, Alignment.MIDDLE_CENTER);
+            }
 
-			rightPaneContentLayout
-					.addComponent(new ObjectsTable(collections, _getEventBus(), institutions, objectFacets, objects));
+            rightPaneContentLayout
+                    .addComponent(new ObjectsTable(collections, _getEventBus(), institutions, objectFacets, objects));
 
-			final Panel rightPanePanel = new Panel();
-			rightPanePanel.addStyleName("borderless");
-			rightPanePanel.setContent(rightPaneContentLayout);
+            final Panel rightPanePanel = new Panel();
+            rightPanePanel.addStyleName("borderless");
+            rightPanePanel.setContent(rightPaneContentLayout);
 
-			twoPaneLayout.addComponent(rightPanePanel);
-			twoPaneLayout.setComponentAlignment(rightPanePanel, Alignment.TOP_CENTER);
-			twoPaneLayout.setExpandRatio(rightPanePanel, 3);
-		}
+            twoPaneLayout.addComponent(rightPanePanel);
+            twoPaneLayout.setComponentAlignment(rightPanePanel, Alignment.TOP_CENTER);
+            twoPaneLayout.setExpandRatio(rightPanePanel, 3);
+        }
 
-		setCompositionRoot(twoPaneLayout);
-	}
+        setCompositionRoot(twoPaneLayout);
+    }
 
-	public final static String NAME = "objects";
+    public final static String NAME = "objects";
 }

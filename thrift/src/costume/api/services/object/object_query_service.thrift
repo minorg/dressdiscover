@@ -8,10 +8,10 @@ namespace * costume.api.services.object
 include "costume/api/models/object/object.thrift"
 include "costume/api/models/object/object_entry.thrift"
 include "costume/api/models/object/object_id.thrift"
-include "costume/api/models/object/object_query.thrift"
 include "costume/api/services/io_exception.thrift"
 include "costume/api/services/object/get_objects_options.thrift"
 include "costume/api/services/object/object_facets.thrift"
+include "costume/api/services/object/object_query.thrift"
 include "costume/api/services/object/no_such_object_exception.thrift"
 include "thryft/native/u32.thrift"
 

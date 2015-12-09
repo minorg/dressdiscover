@@ -2,9 +2,9 @@ from itertools import ifilterfalse
 import __builtin__
 import costume.api.models.object.object
 import costume.api.models.object.object_entry
-import costume.api.models.object.object_query
 import costume.api.services.object.get_objects_options
 import costume.api.services.object.object_facets
+import costume.api.services.object.object_query
 
 
 class ObjectQueryService(object):
@@ -40,13 +40,13 @@ class ObjectQueryService(object):
         query=None,
     ):
         '''
-        :type query: costume.api.models.object.object_query.ObjectQuery or None
+        :type query: costume.api.services.object.object_query.ObjectQuery or None
         :rtype: int
         '''
 
         if query is not None:
-            if not isinstance(query, costume.api.models.object.object_query.ObjectQuery):
-                raise TypeError("expected query to be a costume.api.models.object.object_query.ObjectQuery but it is a %s" % getattr(__builtin__, 'type')(query))
+            if not isinstance(query, costume.api.services.object.object_query.ObjectQuery):
+                raise TypeError("expected query to be a costume.api.services.object.object_query.ObjectQuery but it is a %s" % getattr(__builtin__, 'type')(query))
 
         get_object_count_return_value = self._get_object_count(query=query)
 
@@ -66,13 +66,13 @@ class ObjectQueryService(object):
         query=None,
     ):
         '''
-        :type query: costume.api.models.object.object_query.ObjectQuery or None
+        :type query: costume.api.services.object.object_query.ObjectQuery or None
         :rtype: costume.api.services.object.object_facets.ObjectFacets
         '''
 
         if query is not None:
-            if not isinstance(query, costume.api.models.object.object_query.ObjectQuery):
-                raise TypeError("expected query to be a costume.api.models.object.object_query.ObjectQuery but it is a %s" % getattr(__builtin__, 'type')(query))
+            if not isinstance(query, costume.api.services.object.object_query.ObjectQuery):
+                raise TypeError("expected query to be a costume.api.services.object.object_query.ObjectQuery but it is a %s" % getattr(__builtin__, 'type')(query))
 
         get_object_facets_return_value = self._get_object_facets(query=query)
 
@@ -94,7 +94,7 @@ class ObjectQueryService(object):
     ):
         '''
         :type options: costume.api.services.object.get_objects_options.GetObjectsOptions or None
-        :type query: costume.api.models.object.object_query.ObjectQuery or None
+        :type query: costume.api.services.object.object_query.ObjectQuery or None
         :rtype: tuple(costume.api.models.object.object_entry.ObjectEntry)
         '''
 
@@ -102,8 +102,8 @@ class ObjectQueryService(object):
             if not isinstance(options, costume.api.services.object.get_objects_options.GetObjectsOptions):
                 raise TypeError("expected options to be a costume.api.services.object.get_objects_options.GetObjectsOptions but it is a %s" % getattr(__builtin__, 'type')(options))
         if query is not None:
-            if not isinstance(query, costume.api.models.object.object_query.ObjectQuery):
-                raise TypeError("expected query to be a costume.api.models.object.object_query.ObjectQuery but it is a %s" % getattr(__builtin__, 'type')(query))
+            if not isinstance(query, costume.api.services.object.object_query.ObjectQuery):
+                raise TypeError("expected query to be a costume.api.services.object.object_query.ObjectQuery but it is a %s" % getattr(__builtin__, 'type')(query))
 
         get_objects_return_value = self._get_objects(options=options, query=query)
 

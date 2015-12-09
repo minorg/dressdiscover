@@ -1,10 +1,10 @@
-namespace java net.lab1318.costume.api.models.object
-namespace * costume.api.models.object
+namespace java net.lab1318.costume.api.services.object
+namespace * costume.api.services.object
 
 include "costume/api/models/collection/collection_id.thrift"
 include "costume/api/models/institution/institution_id.thrift"
 
-struct ObjectFilters {
+struct ObjectFacetFilters {
 	// @validation {"minLength": 1}
 	optional set<string> exclude_agent_name_texts;
 
