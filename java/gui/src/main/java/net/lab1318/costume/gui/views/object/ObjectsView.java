@@ -37,10 +37,6 @@ public class ObjectsView extends TopLevelView {
         }
 
         final int objectsSize = objects.size();
-        if (objectsSize == 0) {
-            setCompositionRoot(new Label("No objects found."));
-            return;
-        }
 
         final HorizontalLayout twoPaneLayout = new HorizontalLayout();
         twoPaneLayout.setSizeFull();
@@ -62,16 +58,18 @@ public class ObjectsView extends TopLevelView {
         {
             final VerticalLayout rightPaneContentLayout = new VerticalLayout();
 
-            {
+            if (objectsSize > 0) {
                 final Label hitCountsLabel = new Label(
                         String.format("%d object(s) in %d collection(s)", objectsSize, collections.size()));
                 hitCountsLabel.setWidth(100, Unit.PERCENTAGE);
                 rightPaneContentLayout.addComponent(hitCountsLabel);
                 rightPaneContentLayout.setComponentAlignment(hitCountsLabel, Alignment.MIDDLE_CENTER);
-            }
 
-            rightPaneContentLayout
-                    .addComponent(new ObjectsTable(collections, _getEventBus(), institutions, objectFacets, objects));
+                rightPaneContentLayout.addComponent(
+                        new ObjectsTable(collections, _getEventBus(), institutions, objectFacets, objects));
+            } else {
+                rightPaneContentLayout.addComponent(new Label("No objects match your criteria."));
+            }
 
             final Panel rightPanePanel = new Panel();
             rightPanePanel.addStyleName("borderless");
