@@ -37,12 +37,29 @@ abstract class ObjectFacetPicker<KeyT> extends CustomComponent {
             }
         });
 
-        for (final Map.Entry<KeyT, UnsignedInteger> availableFacetsEntry : availableFacetsEntrySet) {
-            final CheckBox checkBox = new CheckBox(String.format("%s (%s objects)",
-                    _getCheckBoxCaption(availableFacetsEntry.getKey()), availableFacetsEntry.getValue()));
+        final CheckBox allCheckBox = new CheckBox("Select all");
+        if (includeFacetKeys.isEmpty() && excludeFacetKeys.isEmpty()) {
+            allCheckBox.setValue(true);
+        }
+        allCheckBox.addValueChangeListener(new ValueChangeListener() {
+            @Override
+            public void valueChange(final ValueChangeEvent event) {
+                currentlySelectedFacetKeys.clear();
+                _valueChange(ImmutableSet.of(), ImmutableSet.of());
+            }
+        });
+        checkBoxesLayout.addComponent(allCheckBox);
 
-            if (!excludeFacetKeys.contains(availableFacetsEntry.getKey())
-                    || includeFacetKeys.contains(availableFacetsEntry.getKey())) {
+        for (final Map.Entry<KeyT, UnsignedInteger> availableFacetsEntry : availableFacetsEntrySet) {
+            final CheckBox checkBox = new CheckBox(_getCheckBoxCaption(availableFacetsEntry.getKey()));
+
+            // Box is checked if it's in the include set OR if the exclude set
+            // is not empty and it's not in the exclude set
+            // A non-empty include set means "include only these"
+            // A non-empty exclude set means "include all except these"
+            // Two empty sets mean include everything
+            if (includeFacetKeys.contains(availableFacetsEntry.getKey())
+                    || !excludeFacetKeys.contains(availableFacetsEntry.getKey())) {
                 checkBox.setValue(true);
                 currentlySelectedFacetKeys.add(availableFacetsEntry.getKey());
             }
