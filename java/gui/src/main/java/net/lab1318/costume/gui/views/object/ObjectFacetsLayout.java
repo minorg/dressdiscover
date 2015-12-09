@@ -37,9 +37,13 @@ final class ObjectFacetsLayout extends CustomComponent {
                             .builder(objectQuery.getFacetFilters());
                     if (!excludeFacetKeys.isEmpty()) {
                         filtersBuilder.setExcludeAgentNameTexts(excludeFacetKeys);
+                    } else {
+                        filtersBuilder.unsetExcludeAgentNameTexts();
                     }
                     if (!includeFacetKeys.isEmpty()) {
                         filtersBuilder.setIncludeAgentNameTexts(includeFacetKeys);
+                    } else {
+                        filtersBuilder.unsetIncludeAgentNameTexts();
                     }
                     eventBus.post(ObjectQueryService.Messages.GetObjectsRequest.builder()
                             .setQuery(ObjectQuery.builder().setFacetFilters(filtersBuilder.build()).build()).build());
@@ -64,9 +68,13 @@ final class ObjectFacetsLayout extends CustomComponent {
                             .builder(objectQuery.getFacetFilters());
                     if (!excludeFacetKeys.isEmpty()) {
                         filtersBuilder.setExcludeCategories(excludeFacetKeys);
+                    } else {
+                        filtersBuilder.unsetExcludeCategories();
                     }
                     if (!includeFacetKeys.isEmpty()) {
                         filtersBuilder.setIncludeCategories(includeFacetKeys);
+                    } else {
+                        filtersBuilder.unsetIncludeCategories();
                     }
                     eventBus.post(ObjectQueryService.Messages.GetObjectsRequest.builder()
                             .setQuery(ObjectQuery.builder().setFacetFilters(filtersBuilder.build()).build()).build());
@@ -97,9 +105,13 @@ final class ObjectFacetsLayout extends CustomComponent {
                                     .builder(objectQuery.getFacetFilters());
                             if (!excludeFacetKeys.isEmpty()) {
                                 filtersBuilder.setExcludeInstitutionIds(excludeFacetKeys);
+                            } else {
+                                filtersBuilder.unsetExcludeInstitutionIds();
                             }
                             if (!includeFacetKeys.isEmpty()) {
                                 filtersBuilder.setIncludeInstitutionIds(includeFacetKeys);
+                            } else {
+                                filtersBuilder.unsetIncludeInstitutionIds();
                             }
                             eventBus.post(ObjectQueryService.Messages.GetObjectsRequest.builder()
                                     .setQuery(ObjectQuery.builder().setFacetFilters(filtersBuilder.build()).build())
@@ -125,9 +137,13 @@ final class ObjectFacetsLayout extends CustomComponent {
                             .builder(objectQuery.getFacetFilters());
                     if (!excludeFacetKeys.isEmpty()) {
                         filtersBuilder.setExcludeSubjectTermTexts(excludeFacetKeys);
+                    } else {
+                        filtersBuilder.unsetExcludeSubjectTermTexts();
                     }
                     if (!includeFacetKeys.isEmpty()) {
                         filtersBuilder.setIncludeSubjectTermTexts(includeFacetKeys);
+                    } else {
+                        filtersBuilder.unsetIncludeSubjectTermTexts();
                     }
                     eventBus.post(ObjectQueryService.Messages.GetObjectsRequest.builder()
                             .setQuery(ObjectQuery.builder().setFacetFilters(filtersBuilder.build()).build()).build());
