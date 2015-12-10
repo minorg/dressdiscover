@@ -404,6 +404,40 @@
           "9:url": {
             "type": "string", 
             "analyzer": "email_and_url"
+          }, 
+          "24:work_types": {
+            "type": "nested", 
+            "properties": {
+              "1:work_types": {
+                "type": "nested", 
+                "properties": {
+                  "1:text": {
+                    "type": "string"
+                  }, 
+                  "2:vocab_ref": {
+                    "type": "nested", 
+                    "properties": {
+                      "2:vocab": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }, 
+                      "1:refid": {
+                        "type": "string"
+                      }, 
+                      "3:uri": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }, 
+              "2:display": {
+                "type": "string"
+              }, 
+              "3:notes": {
+                "type": "string"
+              }
+            }
           }
         }
       }
