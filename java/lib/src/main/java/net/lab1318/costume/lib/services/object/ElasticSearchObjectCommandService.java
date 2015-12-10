@@ -9,6 +9,7 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -25,57 +26,66 @@ import net.lab1318.costume.lib.stores.object.ObjectElasticSearchIndex;
 
 @Singleton
 public class ElasticSearchObjectCommandService implements ObjectCommandService {
-    @Inject
-    public ElasticSearchObjectCommandService(final ObjectElasticSearchIndex elasticSearchIndex) {
-        this.elasticSearchIndex = checkNotNull(elasticSearchIndex);
-    }
+	@Inject
+	public ElasticSearchObjectCommandService(final ObjectElasticSearchIndex elasticSearchIndex) {
+		this.elasticSearchIndex = checkNotNull(elasticSearchIndex);
+	}
 
-    @Override
-    public void deleteObjects() throws IoException {
-        try {
-            elasticSearchIndex.deleteIndex(logger, Markers.DELETE_OBJECTS);
-            elasticSearchIndex.createIndex(logger, Markers.DELETE_OBJECTS);
-        } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error deleting objects");
-        }
-    }
+	@Override
+	public void deleteObjects() throws IoException {
+		try {
+			elasticSearchIndex.deleteIndex(logger, Markers.DELETE_OBJECTS);
+			elasticSearchIndex.createIndex(logger, Markers.DELETE_OBJECTS);
+		} catch (final IOException e) {
+			throw ServiceExceptionHelper.wrapException(e, "error deleting objects");
+		}
+	}
 
-    @Override
-    public void deleteObjectsByCollectionId(final CollectionId collectionId) throws IoException {
-        try {
-            elasticSearchIndex
-                    .deleteModels(logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID,
-                            QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
-                                    FilterBuilders.termFilter(Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
-                                            collectionId.toString())));
-        } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error deleting objects by collection id");
-        }
-    }
+	@Override
+	public void deleteObjectsByCollectionId(final CollectionId collectionId) throws IoException {
+		try {
+			elasticSearchIndex
+					.deleteModels(logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID,
+							QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
+									FilterBuilders.termFilter(Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
+											collectionId.toString())));
+		} catch (final IOException e) {
+			throw ServiceExceptionHelper.wrapException(e, "error deleting objects by collection id");
+		}
+	}
 
-    @Override
-    public void deleteObjectsByInstitutionId(final InstitutionId institutionId) throws IoException {
-        try {
-            elasticSearchIndex
-                    .deleteModels(logger, Markers.DELETE_OBJECTS_BY_INSTITUTION_ID,
-                            QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
-                                    FilterBuilders.termFilter(
-                                            Object.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
-                                            institutionId.toString())));
-        } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error deleting objects by institution id");
-        }
-    }
+	@Override
+	public void deleteObjectsByInstitutionId(final InstitutionId institutionId) throws IoException {
+		try {
+			elasticSearchIndex
+					.deleteModels(logger, Markers.DELETE_OBJECTS_BY_INSTITUTION_ID,
+							QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
+									FilterBuilders.termFilter(
+											Object.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
+											institutionId.toString())));
+		} catch (final IOException e) {
+			throw ServiceExceptionHelper.wrapException(e, "error deleting objects by institution id");
+		}
+	}
 
-    @Override
-    public void putObject(final ObjectId id, final Object object) throws IoException {
-        try {
-            elasticSearchIndex.putModel(logger, Markers.PUT_OBJECT, new ObjectEntry(id, object));
-        } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error posting object");
-        }
-    }
+	@Override
+	public void putObject(final ObjectId id, final Object object) throws IoException {
+		try {
+			elasticSearchIndex.putModel(logger, Markers.PUT_OBJECT, new ObjectEntry(id, object));
+		} catch (final IOException e) {
+			throw ServiceExceptionHelper.wrapException(e, "error putting object");
+		}
+	}
 
-    private final ObjectElasticSearchIndex elasticSearchIndex;
-    private final static Logger logger = LoggerFactory.getLogger(ElasticSearchObjectCommandService.class);
+	@Override
+	public void putObjects(final ImmutableList<ObjectEntry> objects) throws IoException {
+		try {
+			elasticSearchIndex.putModels(logger, Markers.PUT_OBJECTS, objects);
+		} catch (final IOException e) {
+			throw ServiceExceptionHelper.wrapException(e, "error putting objects");
+		}
+	}
+
+	private final ObjectElasticSearchIndex elasticSearchIndex;
+	private final static Logger logger = LoggerFactory.getLogger(ElasticSearchObjectCommandService.class);
 }

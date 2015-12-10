@@ -8,6 +8,7 @@ namespace * costume.api.services.object
 include "costume/api/models/collection/collection_id.thrift"
 include "costume/api/models/institution/institution_id.thrift"
 include "costume/api/models/object/object.thrift"
+include "costume/api/models/object/object_entry.thrift"
 include "costume/api/models/object/object_id.thrift"
 include "costume/api/services/io_exception.thrift"
 
@@ -39,4 +40,11 @@ service ObjectCommandService {
 	) throws (
 		io_exception.IoException e
 	);
+	
+	void
+	put_objects(
+		list<object_entry.ObjectEntry> objects
+	) throws (
+		io_exception.IoException e
+	);	
 }

@@ -1,11 +1,10 @@
+import argparse
 from collections import OrderedDict
 from datetime import datetime
 import json
 import os.path
 import sys
 import traceback
-
-import argparse
 
 from costume.api.models.agent.agent import Agent
 from costume.api.models.agent.agent_name import AgentName
@@ -17,6 +16,7 @@ from costume.api.models.image.image import Image
 from costume.api.models.image.image_type import ImageType
 from costume.api.models.institution.institution import Institution
 from costume.api.models.object.object import Object
+from costume.api.models.object.object_entry import ObjectEntry
 from costume.api.models.rights.rights import Rights
 from costume.api.models.rights.rights_set import RightsSet
 from costume.api.models.rights.rights_type import RightsType
@@ -41,6 +41,8 @@ argument_parser.add_argument('--clean', action='store_true')
 argument_parser.add_argument('--institution-id', required=True)
 argument_parser.add_argument('--institution-title', required=True)
 argument_parser.add_argument('--institution-url', required=True)
+argument_parser.add_argument('--square-thumbnail-height-px', default=150)
+argument_parser.add_argument('--square-thumbnail-width-px', default=150)
 args = argument_parser.parse_args()
 
 
@@ -295,7 +297,9 @@ for collection_dict in collection_dicts:
                             image_builder.set_width_px(original_image_width)
                         image_builder.set_type(ImageType.ORIGINAL)
                     elif name == 'square_thumbnail':
+                        image_builder.set_height_px(args.square_thumbnail_height_px)
                         image_builder.set_type(ImageType.SQUARE_THUMBNAIL)
+                        image_builder.set_width_px(args.square_thumbnail_width_px)
                     elif name == 'thumbnail':
                         image_builder.set_type(ImageType.THUMBNAIL)
                     else:
@@ -323,5 +327,7 @@ for collection_dict in collection_dicts:
     services.collection_command_service.put_collection(collection_id, collection)
 
     print 'putting', len(objects_by_id), 'objects to collection', omeka_collection_id
-    for object_id, object_ in objects_by_id.iteritems():
-        services.object_command_service.put_object(object_id, object_)
+    services.object_command_service.put_objects(
+        tuple(ObjectEntry(object_id, object_)
+              for object_id, object_ in objects_by_id.iteritems())
+    )

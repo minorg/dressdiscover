@@ -19,44 +19,51 @@ import net.lab1318.costume.lib.services.ServiceTest;
 import net.lab1318.costume.lib.services.TestData;
 
 public abstract class ObjectServiceTest extends ServiceTest {
-    @Before
-    public void setUp() throws Exception {
-        collectionCommandService = _getInjector().getInstance(CollectionCommandService.class);
-        collectionQueryService = _getInjector().getInstance(CollectionQueryService.class);
-        institutionCommandService = _getInjector().getInstance(InstitutionCommandService.class);
-        objectCommandService = _getInjector().getInstance(ObjectCommandService.class);
-        objectQueryService = _getInjector().getInstance(ObjectQueryService.class);
-        tearDown();
-    }
+	@Before
+	public void setUp() throws Exception {
+		collectionCommandService = _getInjector().getInstance(CollectionCommandService.class);
+		collectionQueryService = _getInjector().getInstance(CollectionQueryService.class);
+		institutionCommandService = _getInjector().getInstance(InstitutionCommandService.class);
+		objectCommandService = _getInjector().getInstance(ObjectCommandService.class);
+		objectQueryService = _getInjector().getInstance(ObjectQueryService.class);
+		tearDown();
+	}
 
-    @After
-    public void tearDown() throws Exception {
-        objectCommandService.deleteObjects();
-        collectionCommandService.deleteCollections();
-        institutionCommandService.deleteInstitutions();
-    }
+	@After
+	public void tearDown() throws Exception {
+		objectCommandService.deleteObjects();
+		collectionCommandService.deleteCollections();
+		institutionCommandService.deleteInstitutions();
+	}
 
-    protected final int _getObjectCountByCollectionId(final CollectionId collectionId) throws Exception {
-        return objectQueryService
-                .getObjectCount(Optional.of(ObjectQuery.builder().setCollectionId(collectionId).build())).intValue();
-    }
+	protected final int _getObjectCountByCollectionId(final CollectionId collectionId) throws Exception {
+		return objectQueryService
+				.getObjectCount(Optional.of(ObjectQuery.builder().setCollectionId(collectionId).build())).intValue();
+	}
 
-    protected final int _getObjectCountByInstitutionId(final InstitutionId institutionId) throws Exception {
-        return objectQueryService
-                .getObjectCount(Optional.of(ObjectQuery.builder().setInstitutionId(institutionId).build())).intValue();
-    }
+	protected final int _getObjectCountByInstitutionId(final InstitutionId institutionId) throws Exception {
+		return objectQueryService
+				.getObjectCount(Optional.of(ObjectQuery.builder().setInstitutionId(institutionId).build())).intValue();
+	}
 
-    protected final ImmutableList<ObjectEntry> _putObjects() throws Exception {
-        for (final ObjectEntry objectEntry : TestData.getInstance().getObjects().values()) {
-            objectCommandService.putObject(objectEntry.getId(), objectEntry.getModel());
-        }
-        Thread.sleep(1000); // Let writes settle
-        return ImmutableList.copyOf(TestData.getInstance().getObjects().values());
-    }
+	protected final ObjectEntry _putObject() throws Exception {
+		for (final ObjectEntry objectEntry : TestData.getInstance().getObjects().values()) {
+			objectCommandService.putObject(objectEntry.getId(), objectEntry.getModel());
+			Thread.sleep(1000); // Let writes settle
+			return objectEntry;
+		}
+		throw new IllegalStateException();
+	}
 
-    private CollectionCommandService collectionCommandService;
-    protected CollectionQueryService collectionQueryService;
-    private InstitutionCommandService institutionCommandService;
-    protected ObjectCommandService objectCommandService;
-    protected ObjectQueryService objectQueryService;
+	protected final ImmutableList<ObjectEntry> _putObjects() throws Exception {
+		objectCommandService.putObjects(ImmutableList.copyOf(TestData.getInstance().getObjects().values()));
+		Thread.sleep(1000); // Let writes settle
+		return ImmutableList.copyOf(TestData.getInstance().getObjects().values());
+	}
+
+	private CollectionCommandService collectionCommandService;
+	protected CollectionQueryService collectionQueryService;
+	private InstitutionCommandService institutionCommandService;
+	protected ObjectCommandService objectCommandService;
+	protected ObjectQueryService objectQueryService;
 }

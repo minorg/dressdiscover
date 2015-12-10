@@ -1,5 +1,7 @@
+from itertools import ifilterfalse
 import __builtin__
 import costume.api.models.object.object
+import costume.api.models.object.object_entry
 
 
 class ObjectCommandService(object):
@@ -82,3 +84,24 @@ class ObjectCommandService(object):
         object,  # @ReservedAssignment
     ):
         raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._put_object')
+
+    def put_objects(
+        self,
+        objects=None,
+    ):
+        '''
+        :type objects: tuple(costume.api.models.object.object_entry.ObjectEntry)
+        '''
+
+        if objects is None:
+            raise ValueError('objects is required')
+        if not (isinstance(objects, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.object.object_entry.ObjectEntry), objects))) == 0):
+            raise TypeError("expected objects to be a tuple(costume.api.models.object.object_entry.ObjectEntry) but it is a %s" % getattr(__builtin__, 'type')(objects))
+
+        self._put_objects(objects=objects)
+
+    def _put_objects(
+        self,
+        objects,
+    ):
+        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._put_objects')
