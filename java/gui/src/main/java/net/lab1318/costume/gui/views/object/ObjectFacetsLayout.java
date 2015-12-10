@@ -151,6 +151,37 @@ final class ObjectFacetsLayout extends CustomComponent {
             });
         }
 
+        if (!objectFacets.getWorkTypeTexts().isEmpty()) {
+            rootLayout.addComponent(new ObjectFacetPicker<String>(objectFacets.getWorkTypeTexts(), "Work type",
+                    objectQuery.getFacetFilters().isPresent()
+                            && objectQuery.getFacetFilters().get().getExcludeWorkTypeTexts().isPresent()
+                                    ? objectQuery.getFacetFilters().get().getExcludeWorkTypeTexts().get()
+                                    : ImmutableSet.of(),
+                    objectQuery.getFacetFilters().isPresent()
+                            && objectQuery.getFacetFilters().get().getIncludeWorkTypeTexts().isPresent()
+                                    ? objectQuery.getFacetFilters().get().getIncludeWorkTypeTexts().get()
+                                    : ImmutableSet.of()) {
+                @Override
+                protected void _valueChange(final ImmutableSet<String> excludeFacetKeys,
+                        final ImmutableSet<String> includeFacetKeys) {
+                    final ObjectFacetFilters.Builder filtersBuilder = ObjectFacetFilters
+                            .builder(objectQuery.getFacetFilters());
+                    if (!excludeFacetKeys.isEmpty()) {
+                        filtersBuilder.setExcludeWorkTypeTexts(excludeFacetKeys);
+                    } else {
+                        filtersBuilder.unsetExcludeWorkTypeTexts();
+                    }
+                    if (!includeFacetKeys.isEmpty()) {
+                        filtersBuilder.setIncludeWorkTypeTexts(includeFacetKeys);
+                    } else {
+                        filtersBuilder.unsetIncludeWorkTypeTexts();
+                    }
+                    eventBus.post(ObjectQueryService.Messages.GetObjectsRequest.builder()
+                            .setQuery(ObjectQuery.builder().setFacetFilters(filtersBuilder.build()).build()).build());
+                }
+            });
+        }
+
         setCompositionRoot(rootLayout);
     }
 }

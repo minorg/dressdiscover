@@ -412,7 +412,16 @@
                 "type": "nested", 
                 "properties": {
                   "1:text": {
-                    "type": "string"
+                    "fields": {
+                      "text": {
+                        "type": "string"
+                      }, 
+                      "not_analyzed": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }
+                    }, 
+                    "type": "multi_field"
                   }, 
                   "2:vocab_ref": {
                     "type": "nested", 

@@ -33,6 +33,7 @@ import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.gui.models.image.ImageBean;
+import net.lab1318.costume.gui.models.work_type.WorkTypeSetBean;
 
 @SuppressWarnings("serial")
 final class ObjectsTable extends CustomComponent {
@@ -43,6 +44,9 @@ final class ObjectsTable extends CustomComponent {
         {
             columns.put(Object.FieldMetadata.IMAGES.getJavaName(), "");
             columns.put(Object.FieldMetadata.TITLE.getJavaName(), "Title");
+            if (!objectFacets.getWorkTypeTexts().isEmpty()) {
+                columns.put(Object.FieldMetadata.WORK_TYPES.getJavaName(), "Type");
+            }
             columns.put(Object.FieldMetadata.DATE_TEXT.getJavaName(), "Date");
             columns.put(Object.FieldMetadata.INSTITUTION_ID.getJavaName(), "Institution");
             columns.put(Object.FieldMetadata.COLLECTION_ID.getJavaName(), "Collection");
@@ -166,7 +170,6 @@ final class ObjectsTable extends CustomComponent {
         });
 
         table.addGeneratedColumn(Object.FieldMetadata.TITLE.getJavaName(), new ColumnGenerator() {
-
             @Override
             public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
                     final java.lang.Object columnId) {
@@ -197,6 +200,24 @@ final class ObjectsTable extends CustomComponent {
                     final Link link = new Link("Institution object page", new ExternalResource(url.toString()));
                     link.setTargetName("_blank");
                     return link;
+                }
+            });
+        }
+
+        if (!objectFacets.getWorkTypeTexts().isEmpty()) {
+            table.addGeneratedColumn(Object.FieldMetadata.WORK_TYPES.getJavaName(), new ColumnGenerator() {
+                @Override
+                public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
+                        final java.lang.Object columnId) {
+                    final WorkTypeSetBean workTypeSetBean = (WorkTypeSetBean) source.getContainerDataSource()
+                            .getContainerProperty(itemId, columnId).getValue();
+                    if (workTypeSetBean == null) {
+                        return new Label();
+                    }
+                    if (workTypeSetBean.getDisplay() != null) {
+                        return new Label(workTypeSetBean.getDisplay());
+                    }
+                    return new Label(workTypeSetBean.getWorkTypes().get(0).getText());
                 }
             });
         }

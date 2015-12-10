@@ -6,6 +6,7 @@ include "costume/api/models/vocab_ref.thrift"
 
 // VRA Core 4.0 workType element
 struct WorkType {
+	// @elastic_search_mapping {"type": "multi_field", "fields": {"text": {"type": "string"}, "not_analyzed": {"type": "string", "index": "not_analyzed"}}}
 	// @validation {"minLength": 1}
 	1: string text;
 

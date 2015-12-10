@@ -5,5 +5,6 @@ enum ObjectSortField {
 	COLLECTION_ID,
 	DATE_TEXT,
 	INSTITUTION_ID,
-	TITLE
+	TITLE,
+	WORK_TYPES
 }
