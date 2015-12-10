@@ -27,6 +27,7 @@ from costume.api.services.institution.no_such_institution_exception import NoSuc
 from costume.lib.costume_properties import CostumeProperties
 from model_utils import new_model_metadata
 from services import Services
+from collections import OrderedDict
 
 
 DATA_DIR_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data'))
@@ -81,7 +82,6 @@ with open(os.path.join(DATA_DIR_PATH, institution_id, 'collections.json')) as f:
 
 seen_omeka_item_ids = {}
 
-
 for collection_dict in collection_dicts:
     omeka_collection_id = collection_dict['id']
 
@@ -112,15 +112,15 @@ for collection_dict in collection_dicts:
             elif element_name == 'Title':
                 collection_builder.set_title(text)
 
-    services.collection_command_service.put_collection(
-        collection_id,
-        collection_builder.build()
-    )
+    collection = collection_builder.build()
+
+    # Don't put the collection until we're sure it has objects
 
     with open(os.path.join(DATA_DIR_PATH, institution_id, 'collection', str(omeka_collection_id), 'items.json')) as f:
         item_dicts = json.loads(f.read())
     print 'loading', len(item_dicts), 'items from collection', omeka_collection_id
 
+    objects_by_id = OrderedDict()
     for item_i, item_dict in enumerate(item_dicts):
         omeka_item_id = item_dict['id']
         if omeka_item_id in seen_omeka_item_ids:
@@ -246,7 +246,16 @@ for collection_dict in collection_dicts:
             traceback.print_exc()
             continue
 
-        services.object_command_service.put_object(object_id, object_)
+        objects_by_id[object_id] = object_
 
         print 'loaded %d/%d' % (item_i + 1, len(item_dicts)), 'items from collection', omeka_collection_id
 
+    if len(objects_by_id) == 0:
+        print 'collection', omeka_collection_id, 'has no objects, skipping'
+        continue
+
+    services.collection_command_service.put_collection(collection_id, collection)
+
+    print 'putting', len(objects_by_id), 'objects to collection', omeka_collection_id
+    for object_id, object_ in objects_by_id.iteritems():
+        services.object_command_service.put_object(object_id, object_)
