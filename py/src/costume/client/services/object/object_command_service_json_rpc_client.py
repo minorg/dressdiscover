@@ -159,3 +159,19 @@ class ObjectCommandServiceJsonRpcClient(costume.api.services.object.object_comma
 
         self.__request(method='put_object', params=oprot.value)
 
+    def _put_objects(
+        self,
+        objects,
+    ):
+        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot.write_struct_begin()
+        oprot.write_field_begin(name='objects', type=15, id=None)
+        oprot.write_list_begin(12, len(objects))
+        for _0 in objects:
+            _0.write(oprot)
+        oprot.write_list_end()
+        oprot.write_field_end()
+        oprot.write_struct_end()
+
+        self.__request(method='put_objects', params=oprot.value)
+

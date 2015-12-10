@@ -45,5 +45,15 @@ public class ValidatingObjectCommandService implements net.lab1318.costume.api.s
         com.google.common.base.Preconditions.checkNotNull(object, "net.lab1318.costume.api.services.object.ObjectCommandService.putObject: missing object");
     }
 
+    @Override
+    public final void putObjects(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> objects) throws net.lab1318.costume.api.services.IoException {
+        _validatePutObjectsParameters(objects);
+        delegate.putObjects(objects);
+    }
+
+    protected void _validatePutObjectsParameters(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> objects) {
+        com.google.common.base.Preconditions.checkNotNull(objects, "net.lab1318.costume.api.services.object.ObjectCommandService.putObjects: missing objects");
+    }
+
     private final net.lab1318.costume.api.services.object.ObjectCommandService delegate;
 }
