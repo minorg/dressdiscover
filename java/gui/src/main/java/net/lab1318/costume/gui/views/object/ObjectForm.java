@@ -89,6 +89,10 @@ final class ObjectForm extends CustomComponent {
                 formLayout.addComponent(new TechniqueSetTable(objectEntry.getModel().getTechniques().get()));
             }
 
+            if (objectEntry.getModel().getWorkTypes().isPresent()) {
+                formLayout.addComponent(new WorkTypeSetTable(objectEntry.getModel().getWorkTypes().get()));
+            }
+
             if (objectEntry.getModel().getUrl().isPresent()) {
                 final Link link = new Link(objectEntry.getModel().getUrl().get().toString(),
                         new ExternalResource(objectEntry.getModel().getUrl().get().toString()));
