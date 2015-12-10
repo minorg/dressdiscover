@@ -8,8 +8,8 @@ public class ObjectFacets implements org.thryft.Struct {
             collectionHits = null;
             institutionHits = null;
             subjectTermTexts = null;
-            thumbnailExists = false;
             urlExists = false;
+            workTypeTexts = null;
         }
 
         public Builder(final ObjectFacets other) {
@@ -18,16 +18,16 @@ public class ObjectFacets implements org.thryft.Struct {
             this.collectionHits = other.getCollectionHits();
             this.institutionHits = other.getInstitutionHits();
             this.subjectTermTexts = other.getSubjectTermTexts();
-            this.thumbnailExists = other.getThumbnailExists();
             this.urlExists = other.getUrlExists();
+            this.workTypeTexts = other.getWorkTypeTexts();
         }
 
-        protected ObjectFacets _build(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final boolean thumbnailExists, final boolean urlExists) {
-            return new ObjectFacets(agentNameTexts, categories, collectionHits, institutionHits, subjectTermTexts, thumbnailExists, urlExists);
+        protected ObjectFacets _build(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final boolean urlExists, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
+            return new ObjectFacets(agentNameTexts, categories, collectionHits, institutionHits, subjectTermTexts, urlExists, workTypeTexts);
         }
 
         public ObjectFacets build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(agentNameTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing agentNameTexts"), com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.services.object.ObjectFacets: missing categories"), com.google.common.base.Preconditions.checkNotNull(collectionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing collectionHits"), com.google.common.base.Preconditions.checkNotNull(institutionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing institutionHits"), com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing subjectTermTexts"), com.google.common.base.Preconditions.checkNotNull(thumbnailExists, "net.lab1318.costume.api.services.object.ObjectFacets: missing thumbnailExists"), com.google.common.base.Preconditions.checkNotNull(urlExists, "net.lab1318.costume.api.services.object.ObjectFacets: missing urlExists"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(agentNameTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing agentNameTexts"), com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.services.object.ObjectFacets: missing categories"), com.google.common.base.Preconditions.checkNotNull(collectionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing collectionHits"), com.google.common.base.Preconditions.checkNotNull(institutionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing institutionHits"), com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing subjectTermTexts"), com.google.common.base.Preconditions.checkNotNull(urlExists, "net.lab1318.costume.api.services.object.ObjectFacets: missing urlExists"), com.google.common.base.Preconditions.checkNotNull(workTypeTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing workTypeTexts"));
         }
 
         public final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> getAgentNameTexts() {
@@ -50,12 +50,12 @@ public class ObjectFacets implements org.thryft.Struct {
             return subjectTermTexts;
         }
 
-        public final boolean getThumbnailExists() {
-            return thumbnailExists;
-        }
-
         public final boolean getUrlExists() {
             return urlExists;
+        }
+
+        public final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> getWorkTypeTexts() {
+            return workTypeTexts;
         }
 
         public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -199,8 +199,31 @@ public class ObjectFacets implements org.thryft.Struct {
                     }
                 }
             }).apply(iprot);
-            thumbnailExists = iprot.readBool();
             urlExists = iprot.readBool();
+            workTypeTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                @Override
+                public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                    try {
+                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                        final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                            final String key;
+                            key = iprot.readString();
+                            final com.google.common.primitives.UnsignedInteger value;
+                            try {
+                                value = iprot.readU32();
+                            } catch (final NumberFormatException e) {
+                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                            }
+                            map.put(key, value);
+                        }
+                        iprot.readMapEnd();
+                        return map.build();
+                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                        return com.google.common.collect.ImmutableMap.of();
+                    }
+                }
+            }).apply(iprot);
             iprot.readListEnd();
             return this;
         }
@@ -356,12 +379,35 @@ public class ObjectFacets implements org.thryft.Struct {
                     }).apply(iprot);
                     break;
                 }
-                case "thumbnail_exists": {
-                    thumbnailExists = iprot.readBool();
-                    break;
-                }
                 case "url_exists": {
                     urlExists = iprot.readBool();
+                    break;
+                }
+                case "work_type_texts": {
+                    workTypeTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                        @Override
+                        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            try {
+                                final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                    final String key;
+                                    key = iprot.readString();
+                                    final com.google.common.primitives.UnsignedInteger value;
+                                    try {
+                                        value = iprot.readU32();
+                                    } catch (final NumberFormatException e) {
+                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                    map.put(key, value);
+                                }
+                                iprot.readMapEnd();
+                                return map.build();
+                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                return com.google.common.collect.ImmutableMap.of();
+                            }
+                        }
+                    }).apply(iprot);
                     break;
                 }
                 }
@@ -394,8 +440,8 @@ public class ObjectFacets implements org.thryft.Struct {
             setCollectionHits(other.getCollectionHits());
             setInstitutionHits(other.getInstitutionHits());
             setSubjectTermTexts(other.getSubjectTermTexts());
-            setThumbnailExists(other.getThumbnailExists());
             setUrlExists(other.getUrlExists());
+            setWorkTypeTexts(other.getWorkTypeTexts());
 
             return this;
         }
@@ -410,13 +456,13 @@ public class ObjectFacets implements org.thryft.Struct {
             return this;
         }
 
-        public Builder setThumbnailExists(final boolean thumbnailExists) {
-            this.thumbnailExists = com.google.common.base.Preconditions.checkNotNull(thumbnailExists);
+        public Builder setUrlExists(final boolean urlExists) {
+            this.urlExists = com.google.common.base.Preconditions.checkNotNull(urlExists);
             return this;
         }
 
-        public Builder setUrlExists(final boolean urlExists) {
-            this.urlExists = com.google.common.base.Preconditions.checkNotNull(urlExists);
+        public Builder setWorkTypeTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
+            this.workTypeTexts = com.google.common.base.Preconditions.checkNotNull(workTypeTexts);
             return this;
         }
 
@@ -430,8 +476,8 @@ public class ObjectFacets implements org.thryft.Struct {
             case "collection_hits": setCollectionHits((com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger>)value); return this;
             case "institution_hits": setInstitutionHits((com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger>)value); return this;
             case "subject_term_texts": setSubjectTermTexts((com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>)value); return this;
-            case "thumbnail_exists": setThumbnailExists((boolean)value); return this;
             case "url_exists": setUrlExists((boolean)value); return this;
+            case "work_type_texts": setWorkTypeTexts((com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>)value); return this;
             default:
                 throw new IllegalArgumentException(name);
             }
@@ -462,13 +508,13 @@ public class ObjectFacets implements org.thryft.Struct {
             return this;
         }
 
-        public Builder unsetThumbnailExists() {
-            this.thumbnailExists = false;
+        public Builder unsetUrlExists() {
+            this.urlExists = false;
             return this;
         }
 
-        public Builder unsetUrlExists() {
-            this.urlExists = false;
+        public Builder unsetWorkTypeTexts() {
+            this.workTypeTexts = null;
             return this;
         }
 
@@ -477,8 +523,8 @@ public class ObjectFacets implements org.thryft.Struct {
         private com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits;
         private com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits;
         private com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts;
-        private Boolean thumbnailExists;
         private Boolean urlExists;
+        private com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts;
     }
 
     @SuppressWarnings("serial")
@@ -488,8 +534,8 @@ public class ObjectFacets implements org.thryft.Struct {
         COLLECTION_HITS("collectionHits", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger>>() {}, true, 0, "collection_hits", org.thryft.protocol.Type.MAP),
         INSTITUTION_HITS("institutionHits", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger>>() {}, true, 0, "institution_hits", org.thryft.protocol.Type.MAP),
         SUBJECT_TERM_TEXTS("subjectTermTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {}, true, 0, "subject_term_texts", org.thryft.protocol.Type.MAP),
-        THUMBNAIL_EXISTS("thumbnailExists", new com.google.common.reflect.TypeToken<Boolean>() {}, true, 0, "thumbnail_exists", org.thryft.protocol.Type.BOOL),
-        URL_EXISTS("urlExists", new com.google.common.reflect.TypeToken<Boolean>() {}, true, 0, "url_exists", org.thryft.protocol.Type.BOOL);
+        URL_EXISTS("urlExists", new com.google.common.reflect.TypeToken<Boolean>() {}, true, 0, "url_exists", org.thryft.protocol.Type.BOOL),
+        WORK_TYPE_TEXTS("workTypeTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {}, true, 0, "work_type_texts", org.thryft.protocol.Type.MAP);
 
         @Override
         public String getJavaName() {
@@ -538,8 +584,8 @@ public class ObjectFacets implements org.thryft.Struct {
             case "collectionHits": return COLLECTION_HITS;
             case "institutionHits": return INSTITUTION_HITS;
             case "subjectTermTexts": return SUBJECT_TERM_TEXTS;
-            case "thumbnailExists": return THUMBNAIL_EXISTS;
             case "urlExists": return URL_EXISTS;
+            case "workTypeTexts": return WORK_TYPE_TEXTS;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -552,8 +598,8 @@ public class ObjectFacets implements org.thryft.Struct {
             case "collection_hits": return COLLECTION_HITS;
             case "institution_hits": return INSTITUTION_HITS;
             case "subject_term_texts": return SUBJECT_TERM_TEXTS;
-            case "thumbnail_exists": return THUMBNAIL_EXISTS;
             case "url_exists": return URL_EXISTS;
+            case "work_type_texts": return WORK_TYPE_TEXTS;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -586,33 +632,33 @@ public class ObjectFacets implements org.thryft.Struct {
      * Copy constructor
      */
     public ObjectFacets(final ObjectFacets other) {
-        this(other.getAgentNameTexts(), other.getCategories(), other.getCollectionHits(), other.getInstitutionHits(), other.getSubjectTermTexts(), other.getThumbnailExists(), other.getUrlExists());
+        this(other.getAgentNameTexts(), other.getCategories(), other.getCollectionHits(), other.getInstitutionHits(), other.getSubjectTermTexts(), other.getUrlExists(), other.getWorkTypeTexts());
     }
 
     /**
      * Total boxed constructor
      */
-    public ObjectFacets(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final Boolean thumbnailExists, final Boolean urlExists) {
+    public ObjectFacets(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final Boolean urlExists, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
         this.agentNameTexts = com.google.common.base.Preconditions.checkNotNull(agentNameTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing agentNameTexts");
         this.categories = com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.services.object.ObjectFacets: missing categories");
         this.collectionHits = com.google.common.base.Preconditions.checkNotNull(collectionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing collectionHits");
         this.institutionHits = com.google.common.base.Preconditions.checkNotNull(institutionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing institutionHits");
         this.subjectTermTexts = com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing subjectTermTexts");
-        this.thumbnailExists = com.google.common.base.Preconditions.checkNotNull(thumbnailExists, "net.lab1318.costume.api.services.object.ObjectFacets: missing thumbnailExists");
         this.urlExists = com.google.common.base.Preconditions.checkNotNull(urlExists, "net.lab1318.costume.api.services.object.ObjectFacets: missing urlExists");
+        this.workTypeTexts = com.google.common.base.Preconditions.checkNotNull(workTypeTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing workTypeTexts");
     }
 
     /**
      * Optional constructor
      */
-    public ObjectFacets(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final boolean thumbnailExists, final boolean urlExists) {
+    public ObjectFacets(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final boolean urlExists, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
         this.agentNameTexts = com.google.common.base.Preconditions.checkNotNull(agentNameTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing agentNameTexts");
         this.categories = com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.services.object.ObjectFacets: missing categories");
         this.collectionHits = com.google.common.base.Preconditions.checkNotNull(collectionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing collectionHits");
         this.institutionHits = com.google.common.base.Preconditions.checkNotNull(institutionHits, "net.lab1318.costume.api.services.object.ObjectFacets: missing institutionHits");
         this.subjectTermTexts = com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing subjectTermTexts");
-        this.thumbnailExists = thumbnailExists;
         this.urlExists = urlExists;
+        this.workTypeTexts = com.google.common.base.Preconditions.checkNotNull(workTypeTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing workTypeTexts");
     }
 
     public static Builder builder() {
@@ -642,8 +688,8 @@ public class ObjectFacets implements org.thryft.Struct {
             getCollectionHits().equals(other.getCollectionHits()) &&
             getInstitutionHits().equals(other.getInstitutionHits()) &&
             getSubjectTermTexts().equals(other.getSubjectTermTexts()) &&
-            getThumbnailExists() == other.getThumbnailExists() &&
-            getUrlExists() == other.getUrlExists();
+            getUrlExists() == other.getUrlExists() &&
+            getWorkTypeTexts().equals(other.getWorkTypeTexts());
     }
 
     @Override
@@ -654,8 +700,8 @@ public class ObjectFacets implements org.thryft.Struct {
         case "collection_hits": return getCollectionHits();
         case "institution_hits": return getInstitutionHits();
         case "subject_term_texts": return getSubjectTermTexts();
-        case "thumbnail_exists": return getThumbnailExists();
         case "url_exists": return getUrlExists();
+        case "work_type_texts": return getWorkTypeTexts();
         default:
             throw new IllegalArgumentException(fieldName);
         }
@@ -681,12 +727,12 @@ public class ObjectFacets implements org.thryft.Struct {
         return subjectTermTexts;
     }
 
-    public final boolean getThumbnailExists() {
-        return thumbnailExists;
-    }
-
     public final boolean getUrlExists() {
         return urlExists;
+    }
+
+    public final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> getWorkTypeTexts() {
+        return workTypeTexts;
     }
 
     @Override
@@ -697,8 +743,8 @@ public class ObjectFacets implements org.thryft.Struct {
         hashCode = 31 * hashCode + getCollectionHits().hashCode();
         hashCode = 31 * hashCode + getInstitutionHits().hashCode();
         hashCode = 31 * hashCode + getSubjectTermTexts().hashCode();
-        hashCode = 31 * hashCode + (getThumbnailExists() ? 1 : 0);
         hashCode = 31 * hashCode + (getUrlExists() ? 1 : 0);
+        hashCode = 31 * hashCode + getWorkTypeTexts().hashCode();
         return hashCode;
     }
 
@@ -719,8 +765,8 @@ public class ObjectFacets implements org.thryft.Struct {
         com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits = null;
         com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits = null;
         com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts = null;
-        boolean thumbnailExists = false;
         boolean urlExists = false;
+        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts = null;
 
         iprot.readListBegin();
         agentNameTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
@@ -851,11 +897,34 @@ public class ObjectFacets implements org.thryft.Struct {
                 }
             }
         }).apply(iprot);
-        thumbnailExists = iprot.readBool();
         urlExists = iprot.readBool();
+        workTypeTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+            @Override
+            public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                try {
+                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                    final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                        final String key;
+                        key = iprot.readString();
+                        final com.google.common.primitives.UnsignedInteger value;
+                        try {
+                            value = iprot.readU32();
+                        } catch (final NumberFormatException e) {
+                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                        }
+                        map.put(key, value);
+                    }
+                    iprot.readMapEnd();
+                    return map.build();
+                } catch (final org.thryft.protocol.InputProtocolException e) {
+                    return com.google.common.collect.ImmutableMap.of();
+                }
+            }
+        }).apply(iprot);
         iprot.readListEnd();
         try {
-            return new ObjectFacets(agentNameTexts, categories, collectionHits, institutionHits, subjectTermTexts, thumbnailExists, urlExists);
+            return new ObjectFacets(agentNameTexts, categories, collectionHits, institutionHits, subjectTermTexts, urlExists, workTypeTexts);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -867,8 +936,8 @@ public class ObjectFacets implements org.thryft.Struct {
         com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits = null;
         com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits = null;
         com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts = null;
-        boolean thumbnailExists = false;
         boolean urlExists = false;
+        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts = null;
 
         iprot.readStructBegin();
         while (true) {
@@ -1020,12 +1089,35 @@ public class ObjectFacets implements org.thryft.Struct {
                 }).apply(iprot);
                 break;
             }
-            case "thumbnail_exists": {
-                thumbnailExists = iprot.readBool();
-                break;
-            }
             case "url_exists": {
                 urlExists = iprot.readBool();
+                break;
+            }
+            case "work_type_texts": {
+                workTypeTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                    @Override
+                    public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                        try {
+                            final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                            final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                            for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                final String key;
+                                key = iprot.readString();
+                                final com.google.common.primitives.UnsignedInteger value;
+                                try {
+                                    value = iprot.readU32();
+                                } catch (final NumberFormatException e) {
+                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                                map.put(key, value);
+                            }
+                            iprot.readMapEnd();
+                            return map.build();
+                        } catch (final org.thryft.protocol.InputProtocolException e) {
+                            return com.google.common.collect.ImmutableMap.of();
+                        }
+                    }
+                }).apply(iprot);
                 break;
             }
             }
@@ -1033,43 +1125,43 @@ public class ObjectFacets implements org.thryft.Struct {
         }
         iprot.readStructEnd();
         try {
-            return new ObjectFacets(agentNameTexts, categories, collectionHits, institutionHits, subjectTermTexts, thumbnailExists, urlExists);
+            return new ObjectFacets(agentNameTexts, categories, collectionHits, institutionHits, subjectTermTexts, urlExists, workTypeTexts);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public ObjectFacets replaceAgentNameTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts) {
-        return new ObjectFacets(agentNameTexts, this.categories, this.collectionHits, this.institutionHits, this.subjectTermTexts, this.thumbnailExists, this.urlExists);
+        return new ObjectFacets(agentNameTexts, this.categories, this.collectionHits, this.institutionHits, this.subjectTermTexts, this.urlExists, this.workTypeTexts);
     }
 
     public ObjectFacets replaceCategories(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories) {
-        return new ObjectFacets(this.agentNameTexts, categories, this.collectionHits, this.institutionHits, this.subjectTermTexts, this.thumbnailExists, this.urlExists);
+        return new ObjectFacets(this.agentNameTexts, categories, this.collectionHits, this.institutionHits, this.subjectTermTexts, this.urlExists, this.workTypeTexts);
     }
 
     public ObjectFacets replaceCollectionHits(final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collectionHits) {
-        return new ObjectFacets(this.agentNameTexts, this.categories, collectionHits, this.institutionHits, this.subjectTermTexts, this.thumbnailExists, this.urlExists);
+        return new ObjectFacets(this.agentNameTexts, this.categories, collectionHits, this.institutionHits, this.subjectTermTexts, this.urlExists, this.workTypeTexts);
     }
 
     public ObjectFacets replaceInstitutionHits(final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutionHits) {
-        return new ObjectFacets(this.agentNameTexts, this.categories, this.collectionHits, institutionHits, this.subjectTermTexts, this.thumbnailExists, this.urlExists);
+        return new ObjectFacets(this.agentNameTexts, this.categories, this.collectionHits, institutionHits, this.subjectTermTexts, this.urlExists, this.workTypeTexts);
     }
 
     public ObjectFacets replaceSubjectTermTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts) {
-        return new ObjectFacets(this.agentNameTexts, this.categories, this.collectionHits, this.institutionHits, subjectTermTexts, this.thumbnailExists, this.urlExists);
-    }
-
-    public ObjectFacets replaceThumbnailExists(final boolean thumbnailExists) {
-        return new ObjectFacets(this.agentNameTexts, this.categories, this.collectionHits, this.institutionHits, this.subjectTermTexts, thumbnailExists, this.urlExists);
+        return new ObjectFacets(this.agentNameTexts, this.categories, this.collectionHits, this.institutionHits, subjectTermTexts, this.urlExists, this.workTypeTexts);
     }
 
     public ObjectFacets replaceUrlExists(final boolean urlExists) {
-        return new ObjectFacets(this.agentNameTexts, this.categories, this.collectionHits, this.institutionHits, this.subjectTermTexts, this.thumbnailExists, urlExists);
+        return new ObjectFacets(this.agentNameTexts, this.categories, this.collectionHits, this.institutionHits, this.subjectTermTexts, urlExists, this.workTypeTexts);
+    }
+
+    public ObjectFacets replaceWorkTypeTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
+        return new ObjectFacets(this.agentNameTexts, this.categories, this.collectionHits, this.institutionHits, this.subjectTermTexts, this.urlExists, workTypeTexts);
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("collection_hits", getCollectionHits()).add("institution_hits", getInstitutionHits()).add("subject_term_texts", getSubjectTermTexts()).add("thumbnail_exists", getThumbnailExists()).add("url_exists", getUrlExists()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("collection_hits", getCollectionHits()).add("institution_hits", getInstitutionHits()).add("subject_term_texts", getSubjectTermTexts()).add("url_exists", getUrlExists()).add("work_type_texts", getWorkTypeTexts()).toString();
     }
 
     @Override
@@ -1111,9 +1203,14 @@ public class ObjectFacets implements org.thryft.Struct {
         }
         oprot.writeMapEnd();
 
-        oprot.writeBool(getThumbnailExists());
-
         oprot.writeBool(getUrlExists());
+
+        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getWorkTypeTexts().size());
+        for (com.google.common.collect.ImmutableMap.Entry<String, com.google.common.primitives.UnsignedInteger> _iter0 : getWorkTypeTexts().entrySet()) {
+            oprot.writeString(_iter0.getKey());
+            oprot.writeU32(_iter0.getValue());
+        }
+        oprot.writeMapEnd();
 
         oprot.writeListEnd();
     }
@@ -1172,12 +1269,17 @@ public class ObjectFacets implements org.thryft.Struct {
         oprot.writeMapEnd();
         oprot.writeFieldEnd();
 
-        oprot.writeFieldBegin("thumbnail_exists", org.thryft.protocol.Type.BOOL, (short)0);
-        oprot.writeBool(getThumbnailExists());
-        oprot.writeFieldEnd();
-
         oprot.writeFieldBegin("url_exists", org.thryft.protocol.Type.BOOL, (short)0);
         oprot.writeBool(getUrlExists());
+        oprot.writeFieldEnd();
+
+        oprot.writeFieldBegin("work_type_texts", org.thryft.protocol.Type.MAP, (short)0);
+        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getWorkTypeTexts().size());
+        for (com.google.common.collect.ImmutableMap.Entry<String, com.google.common.primitives.UnsignedInteger> _iter0 : getWorkTypeTexts().entrySet()) {
+            oprot.writeString(_iter0.getKey());
+            oprot.writeU32(_iter0.getValue());
+        }
+        oprot.writeMapEnd();
         oprot.writeFieldEnd();
 
         oprot.writeFieldStop();
@@ -1193,7 +1295,7 @@ public class ObjectFacets implements org.thryft.Struct {
 
     private final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts;
 
-    private final boolean thumbnailExists;
-
     private final boolean urlExists;
+
+    private final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts;
 }

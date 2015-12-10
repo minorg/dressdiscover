@@ -3,6 +3,7 @@ class ObjectSortField(object):
     DATE_TEXT = None
     INSTITUTION_ID = None
     TITLE = None
+    WORK_TYPES = None
 
     def __init__(self, name, value):
         object.__init__(self)
@@ -28,13 +29,16 @@ class ObjectSortField(object):
             return getattr(ObjectSortField, 'INSTITUTION_ID')
         elif name == 'TITLE' or name == '3':
             return getattr(ObjectSortField, 'TITLE')
+        elif name == 'WORK_TYPES' or name == '4':
+            return getattr(ObjectSortField, 'WORK_TYPES')
         raise ValueError(name)
 
     @classmethod
     def values(cls):
-        return (ObjectSortField.COLLECTION_ID, ObjectSortField.DATE_TEXT, ObjectSortField.INSTITUTION_ID, ObjectSortField.TITLE,)
+        return (ObjectSortField.COLLECTION_ID, ObjectSortField.DATE_TEXT, ObjectSortField.INSTITUTION_ID, ObjectSortField.TITLE, ObjectSortField.WORK_TYPES,)
 
 ObjectSortField.COLLECTION_ID = ObjectSortField('COLLECTION_ID', 0)
 ObjectSortField.DATE_TEXT = ObjectSortField('DATE_TEXT', 1)
 ObjectSortField.INSTITUTION_ID = ObjectSortField('INSTITUTION_ID', 2)
 ObjectSortField.TITLE = ObjectSortField('TITLE', 3)
+ObjectSortField.WORK_TYPES = ObjectSortField('WORK_TYPES', 4)

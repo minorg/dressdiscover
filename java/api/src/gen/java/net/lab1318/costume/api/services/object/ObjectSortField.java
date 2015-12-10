@@ -4,7 +4,8 @@ public enum ObjectSortField {
     COLLECTION_ID(0),
     DATE_TEXT(1),
     INSTITUTION_ID(2),
-    TITLE(3);
+    TITLE(3),
+    WORK_TYPES(4);
 
     private ObjectSortField(int value) {
         this.value = value;
@@ -16,6 +17,7 @@ public enum ObjectSortField {
         case 1: return DATE_TEXT;
         case 2: return INSTITUTION_ID;
         case 3: return TITLE;
+        case 4: return WORK_TYPES;
         default: throw new IllegalArgumentException();
         }
     }

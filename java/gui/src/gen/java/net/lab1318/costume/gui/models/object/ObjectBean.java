@@ -22,7 +22,8 @@ public class ObjectBean {
         SUMMARY("summary", new com.google.common.reflect.TypeToken<String>() {}, false, 7, "summary", org.thryft.protocol.Type.STRING),
         TECHNIQUES("techniques", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.technique.TechniqueSetBean>() {}, false, 16, "techniques", org.thryft.protocol.Type.STRUCT),
         IMAGES("images", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.image.ImageBean>>() {}, false, 23, "images", org.thryft.protocol.Type.LIST),
-        URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 9, "url", org.thryft.protocol.Type.STRING);
+        URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 9, "url", org.thryft.protocol.Type.STRING),
+        WORK_TYPES("workTypes", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.work_type.WorkTypeSetBean>() {}, false, 24, "work_types", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -86,6 +87,7 @@ public class ObjectBean {
             case "techniques": return TECHNIQUES;
             case "images": return IMAGES;
             case "url": return URL;
+            case "workTypes": return WORK_TYPES;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -113,6 +115,7 @@ public class ObjectBean {
             case "techniques": return TECHNIQUES;
             case "images": return IMAGES;
             case "url": return URL;
+            case "work_types": return WORK_TYPES;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -162,6 +165,7 @@ public class ObjectBean {
         techniques = null;
         images = null;
         url = null;
+        workTypes = null;
     }
 
     public ObjectBean(final net.lab1318.costume.api.models.object.Object other) {
@@ -194,6 +198,7 @@ public class ObjectBean {
             }
         }).apply(other.getImages().get()) : null;
         this.url = other.getUrl().isPresent() ? other.getUrl().get() : null;
+        this.workTypes = other.getWorkTypes().isPresent() ? new net.lab1318.costume.gui.models.work_type.WorkTypeSetBean(other.getWorkTypes().get()) : null;
     }
 
     @Override
@@ -225,7 +230,8 @@ public class ObjectBean {
             getSummary().equals(other.getSummary()) &&
             getTechniques().equals(other.getTechniques()) &&
             getImages().equals(other.getImages()) &&
-            getUrl().equals(other.getUrl());
+            getUrl().equals(other.getUrl()) &&
+            getWorkTypes().equals(other.getWorkTypes());
     }
 
     public net.lab1318.costume.gui.models.agent.AgentSetBean getAgents() {
@@ -320,6 +326,10 @@ public class ObjectBean {
         return url;
     }
 
+    public net.lab1318.costume.gui.models.work_type.WorkTypeSetBean getWorkTypes() {
+        return workTypes;
+    }
+
     @Override
     public int hashCode() {
         int hashCode = 17;
@@ -374,6 +384,9 @@ public class ObjectBean {
         }
         if (getUrl() != null) {
             hashCode = 31 * hashCode + getUrl().hashCode();
+        }
+        if (getWorkTypes() != null) {
+            hashCode = 31 * hashCode + getWorkTypes().hashCode();
         }
         return hashCode;
     }
@@ -458,9 +471,13 @@ public class ObjectBean {
         this.url = url;
     }
 
+    public void setWorkTypes(final net.lab1318.costume.gui.models.work_type.WorkTypeSetBean workTypes) {
+        this.workTypes = workTypes;
+    }
+
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agents", getAgents()).add("categories", getCategories()).add("date", getDate()).add("date_text", getDateText()).add("description", getDescription()).add("history_notes", getHistoryNotes()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("physical_description", getPhysicalDescription()).add("provenance", getProvenance()).add("rights", getRights()).add("subjects", getSubjects()).add("summary", getSummary()).add("techniques", getTechniques()).add("images", getImages()).add("url", getUrl()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agents", getAgents()).add("categories", getCategories()).add("date", getDate()).add("date_text", getDateText()).add("description", getDescription()).add("history_notes", getHistoryNotes()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("physical_description", getPhysicalDescription()).add("provenance", getProvenance()).add("rights", getRights()).add("subjects", getSubjects()).add("summary", getSummary()).add("techniques", getTechniques()).add("images", getImages()).add("url", getUrl()).add("work_types", getWorkTypes()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -514,4 +531,6 @@ public class ObjectBean {
     private java.util.List<net.lab1318.costume.gui.models.image.ImageBean> images;
 
     private org.thryft.native_.Url url;
+
+    private net.lab1318.costume.gui.models.work_type.WorkTypeSetBean workTypes;
 }

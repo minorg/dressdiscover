@@ -1,6 +1,7 @@
 class Vocab(object):
     AAT = None
     DC = None
+    DCMI_TYPE = None
     KWD = None
     OTH = None
     LCSH = None
@@ -25,20 +26,23 @@ class Vocab(object):
             return getattr(Vocab, 'AAT')
         elif name == 'DC' or name == '1':
             return getattr(Vocab, 'DC')
-        elif name == 'KWD' or name == '2':
+        elif name == 'DCMI_TYPE' or name == '2':
+            return getattr(Vocab, 'DCMI_TYPE')
+        elif name == 'KWD' or name == '3':
             return getattr(Vocab, 'KWD')
-        elif name == 'OTH' or name == '3':
+        elif name == 'OTH' or name == '4':
             return getattr(Vocab, 'OTH')
-        elif name == 'LCSH' or name == '4':
+        elif name == 'LCSH' or name == '5':
             return getattr(Vocab, 'LCSH')
         raise ValueError(name)
 
     @classmethod
     def values(cls):
-        return (Vocab.AAT, Vocab.DC, Vocab.KWD, Vocab.OTH, Vocab.LCSH,)
+        return (Vocab.AAT, Vocab.DC, Vocab.DCMI_TYPE, Vocab.KWD, Vocab.OTH, Vocab.LCSH,)
 
 Vocab.AAT = Vocab('AAT', 0)
 Vocab.DC = Vocab('DC', 1)
-Vocab.KWD = Vocab('KWD', 2)
-Vocab.OTH = Vocab('OTH', 3)
-Vocab.LCSH = Vocab('LCSH', 4)
+Vocab.DCMI_TYPE = Vocab('DCMI_TYPE', 2)
+Vocab.KWD = Vocab('KWD', 3)
+Vocab.OTH = Vocab('OTH', 4)
+Vocab.LCSH = Vocab('LCSH', 5)

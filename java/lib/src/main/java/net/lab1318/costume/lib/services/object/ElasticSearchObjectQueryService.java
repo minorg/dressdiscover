@@ -28,6 +28,7 @@ import org.elasticsearch.search.aggregations.bucket.terms.StringTerms;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms.Bucket;
 import org.elasticsearch.search.aggregations.bucket.terms.TermsBuilder;
 import org.elasticsearch.search.aggregations.metrics.valuecount.ValueCount;
+import org.elasticsearch.search.sort.SortBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.notaweb.lib.protocols.ElasticSearchInputProtocol;
@@ -60,6 +61,8 @@ import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.models.subject.Subject;
 import net.lab1318.costume.api.models.subject.SubjectSet;
 import net.lab1318.costume.api.models.subject.SubjectTerm;
+import net.lab1318.costume.api.models.work_type.WorkType;
+import net.lab1318.costume.api.models.work_type.WorkTypeSet;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.GetObjectsOptions;
 import net.lab1318.costume.api.services.object.NoSuchObjectException;
@@ -165,7 +168,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
         emptyObjectFacets = ObjectFacets.builder().setAgentNameTexts(ImmutableMap.of()).setCategories(ImmutableMap.of())
                 .setCollectionHits(ImmutableMap.of()).setInstitutionHits(ImmutableMap.of())
-                .setSubjectTermTexts(ImmutableMap.of()).build();
+                .setSubjectTermTexts(ImmutableMap.of()).setWorkTypeTexts(ImmutableMap.of()).build();
 
         institutionHitsAggregation = AggregationBuilders
                 .terms(ObjectFacets.FieldMetadata.INSTITUTION_HITS.getThriftName())
@@ -199,8 +202,27 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         urlExistsAggregation = AggregationBuilders.count(ObjectFacets.FieldMetadata.URL_EXISTS.getThriftName())
                 .field(Object.FieldMetadata.URL.getThriftProtocolKey());
 
+        {
+            final TermsBuilder workTypeTextAggregation = AggregationBuilders
+                    .terms(WorkType.FieldMetadata.TEXT.getThriftName())
+                    .field(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
+                            + WorkTypeSet.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
+                            + WorkType.FieldMetadata.TEXT.getThriftProtocolKey() + ".not_analyzed");
+            final NestedBuilder workTypeSetsWorkTypesAggregation = AggregationBuilders
+                    .nested(WorkTypeSet.FieldMetadata.WORK_TYPES.getThriftName())
+                    .path(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
+                            + WorkTypeSet.FieldMetadata.WORK_TYPES.getThriftProtocolKey())
+                    .subAggregation(workTypeTextAggregation);
+            final NestedBuilder objectWorkTypesAggregation = AggregationBuilders
+                    .nested(Object.FieldMetadata.WORK_TYPES.getThriftName())
+                    .path(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey())
+                    .subAggregation(workTypeSetsWorkTypesAggregation);
+            this.workTypeTextsAggregation = objectWorkTypesAggregation;
+        }
+
         aggregations = ImmutableList.of(agentNameTextsAggregation, categoriesAggregation, collectionHitsAggregation,
-                institutionHitsAggregation, subjectTermTextsAggregation, urlExistsAggregation);
+                institutionHitsAggregation, subjectTermTextsAggregation, urlExistsAggregation,
+                workTypeTextsAggregation);
     }
 
     @Override
@@ -331,6 +353,20 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                 .get(this.urlExistsAggregation.getName());
         resultBuilder.setUrlExists(urlExistsAggregation.getValue() > 0);
 
+        {
+            final ImmutableMap.Builder<String, UnsignedInteger> workTypeTextsBuilder = ImmutableMap.builder();
+            final Nested workTypeTextsAggregation = searchResponse.getAggregations()
+                    .get(this.workTypeTextsAggregation.getName());
+            final Nested objectWorkTypesAggregation = workTypeTextsAggregation.getAggregations()
+                    .get(Object.FieldMetadata.WORK_TYPES.getThriftName());
+            final StringTerms workTypeTextAggregation = objectWorkTypesAggregation.getAggregations()
+                    .get(WorkType.FieldMetadata.TEXT.getThriftName());
+            for (final Bucket bucket : workTypeTextAggregation.getBuckets()) {
+                workTypeTextsBuilder.put(bucket.getKey(), UnsignedInteger.valueOf(bucket.getDocCount()));
+            }
+            resultBuilder.setWorkTypeTexts(workTypeTextsBuilder.build());
+        }
+
         return resultBuilder.build();
     }
 
@@ -348,11 +384,25 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             }
             if (options.get().getSorts().isPresent()) {
                 for (final ObjectSort sort : options.get().getSorts().get()) {
-                    searchRequestBuilder = searchRequestBuilder.addSort(SortBuilders
-                            .fieldSort(Object.FieldMetadata.valueOfThriftName(sort.getField().name().toLowerCase())
-                                    .getThriftProtocolKey())
+                    SortBuilder sortBuilder;
+                    switch (sort.getField()) {
+                    case WORK_TYPES:
+                        sortBuilder = SortBuilders
+                                .fieldSort(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
+                                        + WorkTypeSet.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
+                                        + WorkType.FieldMetadata.TEXT.getThriftProtocolKey() + ".not_analyzed")
+                                .setNestedPath(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
+                                        + WorkTypeSet.FieldMetadata.WORK_TYPES.getThriftProtocolKey());
+                        break;
+                    default:
+                        sortBuilder = SortBuilders.fieldSort(Object.FieldMetadata
+                                .valueOfThriftName(sort.getField().name().toLowerCase()).getThriftProtocolKey());
+                        break;
+                    }
+                    sortBuilder = sortBuilder.missing("_last")
                             .order(sort.getOrder() == net.lab1318.costume.api.models.SortOrder.ASC ? SortOrder.ASC
-                                    : SortOrder.DESC));
+                                    : SortOrder.DESC);
+                    searchRequestBuilder = searchRequestBuilder.addSort(sortBuilder);
                 }
             }
         }
@@ -554,6 +604,35 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                     }
                 }
             }
+
+            for (final Optional<ImmutableSet<String>> workTypeTexts : ImmutableList
+                    .of(facetFilters.getExcludeWorkTypeTexts(), facetFilters.getIncludeWorkTypeTexts())) {
+                if (!workTypeTexts.isPresent()) {
+                    continue;
+                }
+                final List<FilterBuilder> workTypeTextFilters = new ArrayList<>();
+                for (final String workTypeText : workTypeTexts.get()) {
+                    if (workTypeText.isEmpty()) {
+                        continue;
+                    }
+                    workTypeTextFilters.add(FilterBuilders.nestedFilter(
+                            Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey(),
+                            FilterBuilders.nestedFilter(
+                                    Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
+                                            + WorkTypeSet.FieldMetadata.WORK_TYPES.getThriftProtocolKey(),
+                                    FilterBuilders.termFilter(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey()
+                                            + '.' + WorkTypeSet.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
+                                            + WorkType.FieldMetadata.TEXT.getThriftProtocolKey() + ".not_analyzed",
+                                            workTypeText))));
+                }
+                if (!workTypeTextFilters.isEmpty()) {
+                    if (workTypeTexts == facetFilters.getExcludeWorkTypeTexts()) {
+                        filtersTranslated.add(__excludeAllFilters(workTypeTextFilters));
+                    } else {
+                        filtersTranslated.add(__includeAnyFilter(workTypeTextFilters));
+                    }
+                }
+            }
         }
 
         if (query.get().getInstitutionId().isPresent()) {
@@ -583,5 +662,6 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     private final TermsBuilder institutionHitsAggregation;
     private final AggregationBuilder<?> subjectTermTextsAggregation;
     private final AbstractAggregationBuilder urlExistsAggregation;
+    private NestedBuilder workTypeTextsAggregation;
     private final static Logger logger = LoggerFactory.getLogger(ElasticSearchObjectQueryService.class);
 }

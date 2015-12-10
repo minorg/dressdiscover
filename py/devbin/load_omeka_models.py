@@ -1,10 +1,11 @@
-import argparse
 from collections import OrderedDict
 from datetime import datetime
 import json
 import os.path
 import sys
 import traceback
+
+import argparse
 
 from costume.api.models.agent.agent import Agent
 from costume.api.models.agent.agent_name import AgentName
@@ -26,6 +27,8 @@ from costume.api.models.subject.subject_term import SubjectTerm
 from costume.api.models.subject.subject_term_type import SubjectTermType
 from costume.api.models.vocab import Vocab
 from costume.api.models.vocab_ref import VocabRef
+from costume.api.models.work_type.work_type import WorkType
+from costume.api.models.work_type.work_type_set import WorkTypeSet
 from costume.api.services.institution.no_such_institution_exception import NoSuchInstitutionException
 from costume.lib.costume_properties import CostumeProperties
 from model_utils import new_model_metadata
@@ -34,6 +37,24 @@ from services import Services
 
 DATA_DIR_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data'))
 assert os.path.isdir(DATA_DIR_PATH)
+
+
+DCMI_TYPES = (
+    'Collection',
+    'Dataset',
+    'Event',
+    'Image',
+    'InteractiveResource',
+    'MovingImage',
+    'PhysicalObject',
+    'Service',
+    'Software',
+    'Sound',
+    'StillImage',
+    'Text',
+)
+
+DCMI_TYPES_BASE_URL = 'http://purl.org/dc/dcmitype/'
 
 
 argument_parser = argparse.ArgumentParser()
@@ -140,7 +161,8 @@ for collection_dict in collection_dicts:
                 .set_model_metadata(new_model_metadata())
 
         agents = []
-        item_type = None
+        include_object = True
+        work_types = []
 
         for element_text_dict in item_dict['element_texts']:
             text = element_text_dict['text']
@@ -217,7 +239,30 @@ for collection_dict in collection_dicts:
                 elif element_name == 'Title':
                     object_builder.set_title(text)
                 elif element_name == 'Type':
-                    item_type = text
+                    type_ = text.strip().replace(' ', '')
+                    if type_ in DCMI_TYPES:
+                        if type_ in ('Image', 'PhysicalObject', 'StillImage'):
+                            work_types.append(
+                                WorkType.Builder()
+                                    .set_text(type_)
+                                    .set_vocab_ref(
+                                        VocabRef.Builder()
+                                            .set_refid(type_)
+                                            .set_vocab(Vocab.DCMI_TYPE)
+                                            .set_uri(DCMI_TYPES_BASE_URL + type_)
+                                            .build()
+                                    )
+                                    .build()
+                            )
+                        else:
+                            include_object = False
+                            break
+                    else:
+                        work_types.append(
+                            WorkType.Builder()
+                                .set_text(text)
+                                .build()
+                        )
                 elif element_name in (
                     'Alternative Title',
                     'Date Created',
@@ -238,11 +283,14 @@ for collection_dict in collection_dicts:
             else:
                 print 'skipping item', element_set_name, 'element set'
 
-        if item_type != 'Physical Object':
-            print 'item', omeka_item_id, 'is not a physical object, skipping'
+        if not include_object:
+            print 'excluding item', omeka_item_id
+            continue
 
         if len(agents) > 0:
             object_builder.set_agents(AgentSet.Builder().set_agents(tuple(agents)).build())
+        if len(work_types) > 0:
+            object_builder.set_work_types(WorkTypeSet.Builder().set_work_types(tuple(work_types)).build())
 
         try:
             files_count = item_dict['files']['count']

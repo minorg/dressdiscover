@@ -9,6 +9,7 @@ import costume.api.models.model_metadata
 import costume.api.models.rights.rights_set
 import costume.api.models.subject.subject_set
 import costume.api.models.technique.technique_set
+import costume.api.models.work_type.work_type_set
 
 
 class Object(object):
@@ -35,6 +36,7 @@ class Object(object):
             techniques=None,
             images=None,
             url=None,
+            work_types=None,
         ):
             '''
             :type collection_id: str
@@ -57,6 +59,7 @@ class Object(object):
             :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
             :type images: tuple(costume.api.models.image.image.Image) or None
             :type url: str or None
+            :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
             '''
 
             self.__collection_id = collection_id
@@ -79,9 +82,10 @@ class Object(object):
             self.__techniques = techniques
             self.__images = images
             self.__url = url
+            self.__work_types = work_types
 
         def build(self):
-            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, agents=self.__agents, categories=self.__categories, date=self.__date, date_text=self.__date_text, description=self.__description, history_notes=self.__history_notes, inscriptions=self.__inscriptions, materials=self.__materials, physical_description=self.__physical_description, provenance=self.__provenance, rights=self.__rights, subjects=self.__subjects, summary=self.__summary, techniques=self.__techniques, images=self.__images, url=self.__url)
+            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, agents=self.__agents, categories=self.__categories, date=self.__date, date_text=self.__date_text, description=self.__description, history_notes=self.__history_notes, inscriptions=self.__inscriptions, materials=self.__materials, physical_description=self.__physical_description, provenance=self.__provenance, rights=self.__rights, subjects=self.__subjects, summary=self.__summary, techniques=self.__techniques, images=self.__images, url=self.__url, work_types=self.__work_types)
 
         @property
         def agents(self):
@@ -363,6 +367,14 @@ class Object(object):
             self.__url = url
             return self
 
+        def set_work_types(self, work_types):
+            '''
+            :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
+            '''
+
+            self.__work_types = work_types
+            return self
+
         @property
         def subjects(self):
             '''
@@ -417,6 +429,7 @@ class Object(object):
             :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
             :type images: tuple(costume.api.models.image.image.Image) or None
             :type url: str or None
+            :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
             '''
 
             if isinstance(object, Object):
@@ -440,6 +453,7 @@ class Object(object):
                 self.set_techniques(object.techniques)
                 self.set_images(object.images)
                 self.set_url(object.url)
+                self.set_work_types(object.work_types)
             elif isinstance(object, dict):
                 for key, value in object.iteritems():
                     getattr(self, 'set_' + key)(value)
@@ -454,6 +468,14 @@ class Object(object):
             '''
 
             return self.__url
+
+        @property
+        def work_types(self):
+            '''
+            :rtype: costume.api.models.work_type.work_type_set.WorkTypeSet
+            '''
+
+            return self.__work_types
 
         @agents.setter
         def agents(self, agents):
@@ -615,6 +637,14 @@ class Object(object):
 
             self.set_url(url)
 
+        @work_types.setter
+        def work_types(self, work_types):
+            '''
+            :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
+            '''
+
+            self.set_work_types(work_types)
+
     def __init__(
         self,
         collection_id,
@@ -637,6 +667,7 @@ class Object(object):
         techniques=None,
         images=None,
         url=None,
+        work_types=None,
     ):
         '''
         :type collection_id: str
@@ -659,6 +690,7 @@ class Object(object):
         :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
         :type images: tuple(costume.api.models.image.image.Image) or None
         :type url: str or None
+        :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
         '''
 
         if collection_id is None:
@@ -783,6 +815,11 @@ class Object(object):
                 raise TypeError("expected url to be a str but it is a %s" % getattr(__builtin__, 'type')(url))
         self.__url = url
 
+        if work_types is not None:
+            if not isinstance(work_types, costume.api.models.work_type.work_type_set.WorkTypeSet):
+                raise TypeError("expected work_types to be a costume.api.models.work_type.work_type_set.WorkTypeSet but it is a %s" % getattr(__builtin__, 'type')(work_types))
+        self.__work_types = work_types
+
     def __eq__(self, other):
         if self.collection_id != other.collection_id:
             return False
@@ -824,10 +861,12 @@ class Object(object):
             return False
         if self.url != other.url:
             return False
+        if self.work_types != other.work_types:
+            return False
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.agents,self.categories,self.date,self.date_text,self.description,self.history_notes,self.inscriptions,self.materials,self.physical_description,self.provenance,self.rights,self.subjects,self.summary,self.techniques,self.images,self.url,))
+        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.agents,self.categories,self.date,self.date_text,self.description,self.history_notes,self.inscriptions,self.materials,self.physical_description,self.provenance,self.rights,self.subjects,self.summary,self.techniques,self.images,self.url,self.work_types,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -873,6 +912,8 @@ class Object(object):
             field_reprs.append('images=' + repr(self.images))
         if self.url is not None:
             field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
+        if self.work_types is not None:
+            field_reprs.append('work_types=' + repr(self.work_types))
         return 'Object(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
@@ -913,6 +954,8 @@ class Object(object):
             field_reprs.append('images=' + repr(self.images))
         if self.url is not None:
             field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
+        if self.work_types is not None:
+            field_reprs.append('work_types=' + repr(self.work_types))
         return 'Object(' + ', '.join(field_reprs) + ')'
 
     @property
@@ -930,7 +973,7 @@ class Object(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'agents': self.agents, 'categories': self.categories, 'date': self.date, 'date_text': self.date_text, 'description': self.description, 'history_notes': self.history_notes, 'inscriptions': self.inscriptions, 'materials': self.materials, 'physical_description': self.physical_description, 'provenance': self.provenance, 'rights': self.rights, 'subjects': self.subjects, 'summary': self.summary, 'techniques': self.techniques, 'images': self.images, 'url': self.url}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'agents': self.agents, 'categories': self.categories, 'date': self.date, 'date_text': self.date_text, 'description': self.description, 'history_notes': self.history_notes, 'inscriptions': self.inscriptions, 'materials': self.materials, 'physical_description': self.physical_description, 'provenance': self.provenance, 'rights': self.rights, 'subjects': self.subjects, 'summary': self.summary, 'techniques': self.techniques, 'images': self.images, 'url': self.url, 'work_types': self.work_types}
 
     def as_tuple(self):
         '''
@@ -939,7 +982,7 @@ class Object(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.agents, self.categories, self.date, self.date_text, self.description, self.history_notes, self.inscriptions, self.materials, self.physical_description, self.provenance, self.rights, self.subjects, self.summary, self.techniques, self.images, self.url,)
+        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.agents, self.categories, self.date, self.date_text, self.description, self.history_notes, self.inscriptions, self.materials, self.physical_description, self.provenance, self.rights, self.subjects, self.summary, self.techniques, self.images, self.url, self.work_types,)
 
     @property
     def categories(self):
@@ -1125,6 +1168,8 @@ class Object(object):
                     init_kwds['url'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
+            elif ifield_name == 'work_types' and ifield_id == 24:
+                init_kwds['work_types'] = costume.api.models.work_type.work_type_set.WorkTypeSet.read(iprot)
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -1152,6 +1197,7 @@ class Object(object):
         techniques=None,
         images=None,
         url=None,
+        work_types=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
@@ -1176,6 +1222,7 @@ class Object(object):
         :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
         :type images: tuple(costume.api.models.image.image.Image) or None
         :type url: str or None
+        :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
         :rtype: costume.api.models.object.object.Object
         '''
 
@@ -1219,7 +1266,9 @@ class Object(object):
             images = self.images
         if url is None:
             url = self.url
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, agents=agents, categories=categories, date=date, date_text=date_text, description=description, history_notes=history_notes, inscriptions=inscriptions, materials=materials, physical_description=physical_description, provenance=provenance, rights=rights, subjects=subjects, summary=summary, techniques=techniques, images=images, url=url)
+        if work_types is None:
+            work_types = self.work_types
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, agents=agents, categories=categories, date=date, date_text=date_text, description=description, history_notes=history_notes, inscriptions=inscriptions, materials=materials, physical_description=physical_description, provenance=provenance, rights=rights, subjects=subjects, summary=summary, techniques=techniques, images=images, url=url, work_types=work_types)
 
     @property
     def rights(self):
@@ -1268,6 +1317,14 @@ class Object(object):
         '''
 
         return self.__url
+
+    @property
+    def work_types(self):
+        '''
+        :rtype: costume.api.models.work_type.work_type_set.WorkTypeSet
+        '''
+
+        return self.__work_types
 
     def write(self, oprot):
         '''
@@ -1379,6 +1436,11 @@ class Object(object):
         if self.url is not None:
             oprot.write_field_begin(name='url', type=11, id=9)
             oprot.write_string(self.url)
+            oprot.write_field_end()
+
+        if self.work_types is not None:
+            oprot.write_field_begin(name='work_types', type=12, id=24)
+            self.work_types.write(oprot)
             oprot.write_field_end()
 
         oprot.write_field_stop()

@@ -12,6 +12,7 @@ include "costume/api/models/material/material_set.thrift"
 include "costume/api/models/rights/rights_set.thrift"
 include "costume/api/models/subject/subject_set.thrift"
 include "costume/api/models/technique/technique_set.thrift"
+include "costume/api/models/work_type/work_type_set.thrift"
 include "thryft/native/date_time.thrift"
 include "thryft/native/url.thrift"
 
@@ -70,4 +71,6 @@ struct Object {
 	23: optional list<image.Image> images;
 
 	9: optional url.Url url;
+
+	24: optional work_type_set.WorkTypeSet work_types;
 }
