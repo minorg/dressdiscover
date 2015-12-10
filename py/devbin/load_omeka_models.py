@@ -1,3 +1,4 @@
+from collections import OrderedDict
 from datetime import datetime
 import json
 import os.path
@@ -12,6 +13,8 @@ from costume.api.models.agent.agent_name_type import AgentNameType
 from costume.api.models.agent.agent_role import AgentRole
 from costume.api.models.agent.agent_set import AgentSet
 from costume.api.models.collection.collection import Collection
+from costume.api.models.image.image import Image
+from costume.api.models.image.image_type import ImageType
 from costume.api.models.institution.institution import Institution
 from costume.api.models.object.object import Object
 from costume.api.models.rights.rights import Rights
@@ -27,7 +30,6 @@ from costume.api.services.institution.no_such_institution_exception import NoSuc
 from costume.lib.costume_properties import CostumeProperties
 from model_utils import new_model_metadata
 from services import Services
-from collections import OrderedDict
 
 
 DATA_DIR_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data'))
@@ -79,6 +81,7 @@ services.institution_command_service.put_institution(
 
 with open(os.path.join(DATA_DIR_PATH, institution_id, 'collections.json')) as f:
     collection_dicts = json.loads(f.read())
+
 
 seen_omeka_item_ids = {}
 
@@ -238,6 +241,69 @@ for collection_dict in collection_dicts:
 
         if len(agents) > 0:
             object_builder.set_agents(AgentSet.Builder().set_agents(tuple(agents)).build())
+
+        try:
+            files_count = item_dict['files']['count']
+        except KeyError:
+            files_count = 0
+
+        if files_count > 0:
+            file_dicts = []
+            files_dir_path = os.path.join(DATA_DIR_PATH, institution_id, 'files_by_item_id', str(omeka_item_id))
+            if os.path.isdir(files_dir_path):
+                for file_file_path in os.listdir(files_dir_path):
+                    if not file_file_path.endswith('.json'):
+                        continue
+                    file_file_path = os.path.join(files_dir_path, file_file_path)
+                    if not os.path.isfile(file_file_path):
+                        continue
+                    with open(file_file_path, 'rb') as f:
+                        file_dict = json.load(f)
+                        file_dicts.append(file_dict)
+            images = []
+            for file_dict in file_dicts:
+                file_id = file_dict['id']
+                file_mime_type = file_dict['mime_type']
+                if not file_mime_type.startswith('image/'):
+                    continue
+
+                original_image_height = original_image_width = None
+                for element_text_dict in file_dict['element_texts']:
+                    text = element_text_dict['text']
+                    if len(text) == 0:
+                        continue
+                    element_set_name = element_text_dict['element_set']['name']
+                    element_name = element_text_dict['element']['name']
+                    if element_set_name == 'Omeka Image File':
+                        if element_name == 'Height':
+                            original_image_height = int(text)
+                        elif element_name == 'Width':
+                            original_image_width = int(text)
+#                             else:
+#                                 print 'skipping image file element', element_name
+
+                for name, file_url in file_dict['file_urls'].iteritems():
+                    if file_url is None or len(file_url) == 0:
+                        continue
+                    image_builder = Image.Builder().set_url(file_url)
+                    if name == 'fullsize':
+                        image_builder.set_type(ImageType.FULL_SIZE)
+                    elif name == 'original':
+                        if original_image_height is not None:
+                            image_builder.set_height_px(original_image_height)
+                        if original_image_width is not None:
+                            image_builder.set_width_px(original_image_width)
+                        image_builder.set_type(ImageType.ORIGINAL)
+                    elif name == 'square_thumbnail':
+                        image_builder.set_type(ImageType.SQUARE_THUMBNAIL)
+                    elif name == 'thumbnail':
+                        image_builder.set_type(ImageType.THUMBNAIL)
+                    else:
+                        raise NotImplementedError(name)
+                    images.append(image_builder.build())
+
+            if len(images) > 0:
+                object_builder.set_images(tuple(images))
 
         try:
             object_ = object_builder.build()

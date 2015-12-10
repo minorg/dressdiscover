@@ -382,17 +382,21 @@
               }
             }
           }, 
-          "8:thumbnail": {
+          "23:images": {
             "type": "nested", 
             "properties": {
-              "url": {
+              "1:url": {
                 "type": "string", 
                 "analyzer": "email_and_url"
               }, 
-              "height_px": {
+              "2:height_px": {
                 "type": "integer"
               }, 
-              "width_px": {
+              "4:type": {
+                "index": "not_analyzed", 
+                "type": "string"
+              }, 
+              "3:width_px": {
                 "type": "integer"
               }
             }

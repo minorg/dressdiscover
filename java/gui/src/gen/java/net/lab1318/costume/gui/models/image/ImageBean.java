@@ -3,9 +3,10 @@ package net.lab1318.costume.gui.models.image;
 public class ImageBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, true, 0, "url", org.thryft.protocol.Type.STRING),
-        HEIGHT_PX("heightPx", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, false, 0, "height_px", org.thryft.protocol.Type.I32),
-        WIDTH_PX("widthPx", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, false, 0, "width_px", org.thryft.protocol.Type.I32);
+        URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, true, 1, "url", org.thryft.protocol.Type.STRING),
+        HEIGHT_PX("heightPx", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, false, 2, "height_px", org.thryft.protocol.Type.I32),
+        TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.image.ImageType>() {}, false, 4, "type", org.thryft.protocol.Type.STRING),
+        WIDTH_PX("widthPx", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, false, 3, "width_px", org.thryft.protocol.Type.I32);
 
         @Override
         public String getJavaName() {
@@ -51,6 +52,7 @@ public class ImageBean {
             switch (javaName) {
             case "url": return URL;
             case "heightPx": return HEIGHT_PX;
+            case "type": return TYPE;
             case "widthPx": return WIDTH_PX;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -61,6 +63,7 @@ public class ImageBean {
             switch (thriftName) {
             case "url": return URL;
             case "height_px": return HEIGHT_PX;
+            case "type": return TYPE;
             case "width_px": return WIDTH_PX;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -93,12 +96,14 @@ public class ImageBean {
     public ImageBean() {
         url = null;
         heightPx = null;
+        type = null;
         widthPx = null;
     }
 
     public ImageBean(final net.lab1318.costume.api.models.image.Image other) {
         this.url = other.getUrl();
         this.heightPx = other.getHeightPx().isPresent() ? other.getHeightPx().get() : null;
+        this.type = other.getType().isPresent() ? other.getType().get() : null;
         this.widthPx = other.getWidthPx().isPresent() ? other.getWidthPx().get() : null;
     }
 
@@ -114,11 +119,16 @@ public class ImageBean {
         return
             getUrl().equals(other.getUrl()) &&
             getHeightPx().equals(other.getHeightPx()) &&
+            getType().equals(other.getType()) &&
             getWidthPx().equals(other.getWidthPx());
     }
 
     public com.google.common.primitives.UnsignedInteger getHeightPx() {
         return heightPx;
+    }
+
+    public net.lab1318.costume.api.models.image.ImageType getType() {
+        return type;
     }
 
     public org.thryft.native_.Url getUrl() {
@@ -136,6 +146,9 @@ public class ImageBean {
         if (getHeightPx() != null) {
             hashCode = 31 * hashCode + getHeightPx().hashCode();
         }
+        if (getType() != null) {
+            hashCode = 31 * hashCode + getType().ordinal();
+        }
         if (getWidthPx() != null) {
             hashCode = 31 * hashCode + getWidthPx().hashCode();
         }
@@ -144,6 +157,10 @@ public class ImageBean {
 
     public void setHeightPx(final com.google.common.primitives.UnsignedInteger heightPx) {
         this.heightPx = heightPx;
+    }
+
+    public void setType(final net.lab1318.costume.api.models.image.ImageType type) {
+        this.type = type;
     }
 
     public void setUrl(final org.thryft.native_.Url url) {
@@ -156,12 +173,14 @@ public class ImageBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("url", getUrl()).add("height_px", getHeightPx()).add("width_px", getWidthPx()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("url", getUrl()).add("height_px", getHeightPx()).add("type", getType()).add("width_px", getWidthPx()).toString();
     }
 
     private org.thryft.native_.Url url;
 
     private com.google.common.primitives.UnsignedInteger heightPx;
+
+    private net.lab1318.costume.api.models.image.ImageType type;
 
     private com.google.common.primitives.UnsignedInteger widthPx;
 }

@@ -5,25 +5,31 @@ public class Image implements org.thryft.Struct {
         public Builder() {
             url = null;
             heightPx = com.google.common.base.Optional.absent();
+            type = com.google.common.base.Optional.absent();
             widthPx = com.google.common.base.Optional.absent();
         }
 
         public Builder(final Image other) {
             this.url = other.getUrl();
             this.heightPx = other.getHeightPx();
+            this.type = other.getType();
             this.widthPx = other.getWidthPx();
         }
 
-        protected Image _build(final org.thryft.native_.Url url, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> heightPx, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> widthPx) {
-            return new Image(url, heightPx, widthPx);
+        protected Image _build(final org.thryft.native_.Url url, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> heightPx, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageType> type, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> widthPx) {
+            return new Image(url, heightPx, type, widthPx);
         }
 
         public Image build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.image.Image: missing url"), com.google.common.base.Preconditions.checkNotNull(heightPx, "net.lab1318.costume.api.models.image.Image: missing heightPx"), com.google.common.base.Preconditions.checkNotNull(widthPx, "net.lab1318.costume.api.models.image.Image: missing widthPx"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.image.Image: missing url"), com.google.common.base.Preconditions.checkNotNull(heightPx, "net.lab1318.costume.api.models.image.Image: missing heightPx"), com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.image.Image: missing type"), com.google.common.base.Preconditions.checkNotNull(widthPx, "net.lab1318.costume.api.models.image.Image: missing widthPx"));
         }
 
         public final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> getHeightPx() {
             return heightPx;
+        }
+
+        public final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageType> getType() {
+            return type;
         }
 
         public final org.thryft.native_.Url getUrl() {
@@ -56,6 +62,12 @@ public class Image implements org.thryft.Struct {
             }
             if (__list.getSize() > 2) {
                 try {
+                    type = com.google.common.base.Optional.of(iprot.readEnum(net.lab1318.costume.api.models.image.ImageType.class));
+                } catch (final IllegalArgumentException e) {
+                }
+            }
+            if (__list.getSize() > 3) {
+                try {
                     widthPx = com.google.common.base.Optional.of(iprot.readU32());
                 } catch (final NumberFormatException e) {
                 }
@@ -73,20 +85,35 @@ public class Image implements org.thryft.Struct {
                 }
                 switch (ifield.getName()) {
                 case "url": {
-                    url = org.thryft.native_.Url.parse(iprot.readString());
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        url = org.thryft.native_.Url.parse(iprot.readString());
+                    }
                     break;
                 }
                 case "height_px": {
-                    try {
-                        heightPx = com.google.common.base.Optional.of(iprot.readU32());
-                    } catch (final NumberFormatException e) {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        try {
+                            heightPx = com.google.common.base.Optional.of(iprot.readU32());
+                        } catch (final NumberFormatException e) {
+                        }
+                    }
+                    break;
+                }
+                case "type": {
+                    if (!ifield.hasId() || ifield.getId() == 4) {
+                        try {
+                            type = com.google.common.base.Optional.of(iprot.readEnum(net.lab1318.costume.api.models.image.ImageType.class));
+                        } catch (final IllegalArgumentException e) {
+                        }
                     }
                     break;
                 }
                 case "width_px": {
-                    try {
-                        widthPx = com.google.common.base.Optional.of(iprot.readU32());
-                    } catch (final NumberFormatException e) {
+                    if (!ifield.hasId() || ifield.getId() == 3) {
+                        try {
+                            widthPx = com.google.common.base.Optional.of(iprot.readU32());
+                        } catch (final NumberFormatException e) {
+                        }
                     }
                     break;
                 }
@@ -114,10 +141,23 @@ public class Image implements org.thryft.Struct {
             if (other.getHeightPx().isPresent()) {
                 setHeightPx(other.getHeightPx());
             }
+            if (other.getType().isPresent()) {
+                setType(other.getType());
+            }
             if (other.getWidthPx().isPresent()) {
                 setWidthPx(other.getWidthPx());
             }
 
+            return this;
+        }
+
+        public Builder setType(final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageType> type) {
+            this.type = com.google.common.base.Preconditions.checkNotNull(type);
+            return this;
+        }
+
+        public Builder setType(@javax.annotation.Nullable final net.lab1318.costume.api.models.image.ImageType type) {
+            this.type = com.google.common.base.Optional.fromNullable(type);
             return this;
         }
 
@@ -142,6 +182,7 @@ public class Image implements org.thryft.Struct {
             switch (name.toLowerCase()) {
             case "url": setUrl((org.thryft.native_.Url)value); return this;
             case "height_px": setHeightPx((com.google.common.primitives.UnsignedInteger)value); return this;
+            case "type": setType((net.lab1318.costume.api.models.image.ImageType)value); return this;
             case "width_px": setWidthPx((com.google.common.primitives.UnsignedInteger)value); return this;
             default:
                 throw new IllegalArgumentException(name);
@@ -150,6 +191,11 @@ public class Image implements org.thryft.Struct {
 
         public Builder unsetHeightPx() {
             this.heightPx = com.google.common.base.Optional.absent();
+            return this;
+        }
+
+        public Builder unsetType() {
+            this.type = com.google.common.base.Optional.absent();
             return this;
         }
 
@@ -165,14 +211,16 @@ public class Image implements org.thryft.Struct {
 
         private org.thryft.native_.Url url;
         private com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> heightPx;
+        private com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageType> type;
         private com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> widthPx;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, true, 0, "url", org.thryft.protocol.Type.STRING),
-        HEIGHT_PX("heightPx", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, false, 0, "height_px", org.thryft.protocol.Type.I32),
-        WIDTH_PX("widthPx", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, false, 0, "width_px", org.thryft.protocol.Type.I32);
+        URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, true, 1, "url", org.thryft.protocol.Type.STRING),
+        HEIGHT_PX("heightPx", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, false, 2, "height_px", org.thryft.protocol.Type.I32),
+        TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.image.ImageType>() {}, false, 4, "type", org.thryft.protocol.Type.STRING),
+        WIDTH_PX("widthPx", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, false, 3, "width_px", org.thryft.protocol.Type.I32);
 
         @Override
         public String getJavaName() {
@@ -218,6 +266,7 @@ public class Image implements org.thryft.Struct {
             switch (javaName) {
             case "url": return URL;
             case "heightPx": return HEIGHT_PX;
+            case "type": return TYPE;
             case "widthPx": return WIDTH_PX;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -228,6 +277,7 @@ public class Image implements org.thryft.Struct {
             switch (thriftName) {
             case "url": return URL;
             case "height_px": return HEIGHT_PX;
+            case "type": return TYPE;
             case "width_px": return WIDTH_PX;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -261,7 +311,7 @@ public class Image implements org.thryft.Struct {
      * Copy constructor
      */
     public Image(final Image other) {
-        this(other.getUrl(), other.getHeightPx(), other.getWidthPx());
+        this(other.getUrl(), other.getHeightPx(), other.getType(), other.getWidthPx());
     }
 
     /**
@@ -270,24 +320,27 @@ public class Image implements org.thryft.Struct {
     public Image(final org.thryft.native_.Url url) {
         this.url = com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.image.Image: missing url");
         this.heightPx = com.google.common.base.Optional.absent();
+        this.type = com.google.common.base.Optional.absent();
         this.widthPx = com.google.common.base.Optional.absent();
     }
 
     /**
      * Total Nullable constructor
      */
-    public Image(final org.thryft.native_.Url url, final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger heightPx, final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger widthPx) {
+    public Image(final org.thryft.native_.Url url, final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger heightPx, final @javax.annotation.Nullable net.lab1318.costume.api.models.image.ImageType type, final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger widthPx) {
         this.url = com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.image.Image: missing url");
         this.heightPx = com.google.common.base.Optional.fromNullable(heightPx);
+        this.type = com.google.common.base.Optional.fromNullable(type);
         this.widthPx = com.google.common.base.Optional.fromNullable(widthPx);
     }
 
     /**
      * Optional constructor
      */
-    public Image(final org.thryft.native_.Url url, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> heightPx, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> widthPx) {
+    public Image(final org.thryft.native_.Url url, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> heightPx, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageType> type, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> widthPx) {
         this.url = com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.image.Image: missing url");
         this.heightPx = com.google.common.base.Preconditions.checkNotNull(heightPx, "net.lab1318.costume.api.models.image.Image: missing heightPx");
+        this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.image.Image: missing type");
         this.widthPx = com.google.common.base.Preconditions.checkNotNull(widthPx, "net.lab1318.costume.api.models.image.Image: missing widthPx");
     }
 
@@ -315,6 +368,7 @@ public class Image implements org.thryft.Struct {
         return
             getUrl().equals(other.getUrl()) &&
             getHeightPx().equals(other.getHeightPx()) &&
+            getType().equals(other.getType()) &&
             getWidthPx().equals(other.getWidthPx());
     }
 
@@ -323,6 +377,7 @@ public class Image implements org.thryft.Struct {
         switch (fieldName) {
         case "url": return getUrl();
         case "height_px": return getHeightPx();
+        case "type": return getType();
         case "width_px": return getWidthPx();
         default:
             throw new IllegalArgumentException(fieldName);
@@ -331,6 +386,10 @@ public class Image implements org.thryft.Struct {
 
     public final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> getHeightPx() {
         return heightPx;
+    }
+
+    public final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageType> getType() {
+        return type;
     }
 
     public final org.thryft.native_.Url getUrl() {
@@ -347,6 +406,9 @@ public class Image implements org.thryft.Struct {
         hashCode = 31 * hashCode + getUrl().hashCode();
         if (getHeightPx().isPresent()) {
             hashCode = 31 * hashCode + getHeightPx().get().hashCode();
+        }
+        if (getType().isPresent()) {
+            hashCode = 31 * hashCode + getType().get().ordinal();
         }
         if (getWidthPx().isPresent()) {
             hashCode = 31 * hashCode + getWidthPx().get().hashCode();
@@ -368,6 +430,7 @@ public class Image implements org.thryft.Struct {
     public static Image readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         org.thryft.native_.Url url = null;
         com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> heightPx = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageType> type = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> widthPx = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
@@ -380,13 +443,19 @@ public class Image implements org.thryft.Struct {
         }
         if (__list.getSize() > 2) {
             try {
+                type = com.google.common.base.Optional.of(iprot.readEnum(net.lab1318.costume.api.models.image.ImageType.class));
+            } catch (final IllegalArgumentException e) {
+            }
+        }
+        if (__list.getSize() > 3) {
+            try {
                 widthPx = com.google.common.base.Optional.of(iprot.readU32());
             } catch (final NumberFormatException e) {
             }
         }
         iprot.readListEnd();
         try {
-            return new Image(url, heightPx, widthPx);
+            return new Image(url, heightPx, type, widthPx);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -395,6 +464,7 @@ public class Image implements org.thryft.Struct {
     public static Image readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         org.thryft.native_.Url url = null;
         com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> heightPx = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageType> type = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> widthPx = com.google.common.base.Optional.absent();
 
         iprot.readStructBegin();
@@ -405,20 +475,35 @@ public class Image implements org.thryft.Struct {
             }
             switch (ifield.getName()) {
             case "url": {
-                url = org.thryft.native_.Url.parse(iprot.readString());
+                if (!ifield.hasId() || ifield.getId() == 1) {
+                    url = org.thryft.native_.Url.parse(iprot.readString());
+                }
                 break;
             }
             case "height_px": {
-                try {
-                    heightPx = com.google.common.base.Optional.of(iprot.readU32());
-                } catch (final NumberFormatException e) {
+                if (!ifield.hasId() || ifield.getId() == 2) {
+                    try {
+                        heightPx = com.google.common.base.Optional.of(iprot.readU32());
+                    } catch (final NumberFormatException e) {
+                    }
+                }
+                break;
+            }
+            case "type": {
+                if (!ifield.hasId() || ifield.getId() == 4) {
+                    try {
+                        type = com.google.common.base.Optional.of(iprot.readEnum(net.lab1318.costume.api.models.image.ImageType.class));
+                    } catch (final IllegalArgumentException e) {
+                    }
                 }
                 break;
             }
             case "width_px": {
-                try {
-                    widthPx = com.google.common.base.Optional.of(iprot.readU32());
-                } catch (final NumberFormatException e) {
+                if (!ifield.hasId() || ifield.getId() == 3) {
+                    try {
+                        widthPx = com.google.common.base.Optional.of(iprot.readU32());
+                    } catch (final NumberFormatException e) {
+                    }
                 }
                 break;
             }
@@ -427,26 +512,34 @@ public class Image implements org.thryft.Struct {
         }
         iprot.readStructEnd();
         try {
-            return new Image(url, heightPx, widthPx);
+            return new Image(url, heightPx, type, widthPx);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public Image replaceHeightPx(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> heightPx) {
-        return new Image(this.url, heightPx, this.widthPx);
+        return new Image(this.url, heightPx, this.type, this.widthPx);
     }
 
     public Image replaceHeightPx(final com.google.common.primitives.UnsignedInteger heightPx) {
         return replaceHeightPx(com.google.common.base.Optional.fromNullable(heightPx));
     }
 
+    public Image replaceType(final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageType> type) {
+        return new Image(this.url, this.heightPx, type, this.widthPx);
+    }
+
+    public Image replaceType(final net.lab1318.costume.api.models.image.ImageType type) {
+        return replaceType(com.google.common.base.Optional.fromNullable(type));
+    }
+
     public Image replaceUrl(final org.thryft.native_.Url url) {
-        return new Image(url, this.heightPx, this.widthPx);
+        return new Image(url, this.heightPx, this.type, this.widthPx);
     }
 
     public Image replaceWidthPx(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> widthPx) {
-        return new Image(this.url, this.heightPx, widthPx);
+        return new Image(this.url, this.heightPx, this.type, widthPx);
     }
 
     public Image replaceWidthPx(final com.google.common.primitives.UnsignedInteger widthPx) {
@@ -455,17 +548,23 @@ public class Image implements org.thryft.Struct {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("url", getUrl()).add("height_px", getHeightPx().orNull()).add("width_px", getWidthPx().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("url", getUrl()).add("height_px", getHeightPx().orNull()).add("type", getType().orNull()).add("width_px", getWidthPx().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 4);
 
         oprot.writeString(getUrl().toString());
 
         if (getHeightPx().isPresent()) {
             oprot.writeU32(getHeightPx().get());
+        } else {
+            oprot.writeNull();
+        }
+
+        if (getType().isPresent()) {
+            oprot.writeEnum(getType().get());
         } else {
             oprot.writeNull();
         }
@@ -488,18 +587,24 @@ public class Image implements org.thryft.Struct {
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("url", org.thryft.protocol.Type.STRING, (short)0);
+        oprot.writeFieldBegin("url", org.thryft.protocol.Type.STRING, (short)1);
         oprot.writeString(getUrl().toString());
         oprot.writeFieldEnd();
 
         if (getHeightPx().isPresent()) {
-            oprot.writeFieldBegin("height_px", org.thryft.protocol.Type.I32, (short)0);
+            oprot.writeFieldBegin("height_px", org.thryft.protocol.Type.I32, (short)2);
             oprot.writeU32(getHeightPx().get());
             oprot.writeFieldEnd();
         }
 
+        if (getType().isPresent()) {
+            oprot.writeFieldBegin("type", org.thryft.protocol.Type.STRING, (short)4);
+            oprot.writeEnum(getType().get());
+            oprot.writeFieldEnd();
+        }
+
         if (getWidthPx().isPresent()) {
-            oprot.writeFieldBegin("width_px", org.thryft.protocol.Type.I32, (short)0);
+            oprot.writeFieldBegin("width_px", org.thryft.protocol.Type.I32, (short)3);
             oprot.writeU32(getWidthPx().get());
             oprot.writeFieldEnd();
         }
@@ -510,6 +615,8 @@ public class Image implements org.thryft.Struct {
     private final org.thryft.native_.Url url;
 
     private final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> heightPx;
+
+    private final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageType> type;
 
     private final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> widthPx;
 }

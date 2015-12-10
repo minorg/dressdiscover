@@ -21,7 +21,7 @@ public class ObjectBean {
         SUBJECTS("subjects", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.subject.SubjectSetBean>() {}, false, 21, "subjects", org.thryft.protocol.Type.STRUCT),
         SUMMARY("summary", new com.google.common.reflect.TypeToken<String>() {}, false, 7, "summary", org.thryft.protocol.Type.STRING),
         TECHNIQUES("techniques", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.technique.TechniqueSetBean>() {}, false, 16, "techniques", org.thryft.protocol.Type.STRUCT),
-        THUMBNAIL("thumbnail", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.image.ImageBean>() {}, false, 8, "thumbnail", org.thryft.protocol.Type.STRUCT),
+        IMAGES("images", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.image.ImageBean>>() {}, false, 23, "images", org.thryft.protocol.Type.LIST),
         URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 9, "url", org.thryft.protocol.Type.STRING);
 
         @Override
@@ -84,7 +84,7 @@ public class ObjectBean {
             case "subjects": return SUBJECTS;
             case "summary": return SUMMARY;
             case "techniques": return TECHNIQUES;
-            case "thumbnail": return THUMBNAIL;
+            case "images": return IMAGES;
             case "url": return URL;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -111,7 +111,7 @@ public class ObjectBean {
             case "subjects": return SUBJECTS;
             case "summary": return SUMMARY;
             case "techniques": return TECHNIQUES;
-            case "thumbnail": return THUMBNAIL;
+            case "images": return IMAGES;
             case "url": return URL;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -160,7 +160,7 @@ public class ObjectBean {
         subjects = null;
         summary = null;
         techniques = null;
-        thumbnail = null;
+        images = null;
         url = null;
     }
 
@@ -183,7 +183,16 @@ public class ObjectBean {
         this.subjects = other.getSubjects().isPresent() ? new net.lab1318.costume.gui.models.subject.SubjectSetBean(other.getSubjects().get()) : null;
         this.summary = other.getSummary().isPresent() ? other.getSummary().get() : null;
         this.techniques = other.getTechniques().isPresent() ? new net.lab1318.costume.gui.models.technique.TechniqueSetBean(other.getTechniques().get()) : null;
-        this.thumbnail = other.getThumbnail().isPresent() ? new net.lab1318.costume.gui.models.image.ImageBean(other.getThumbnail().get()) : null;
+        this.images = other.getImages().isPresent() ? (new com.google.common.base.Function<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image>, java.util.List<net.lab1318.costume.gui.models.image.ImageBean>>() {
+            @Override
+            public java.util.List<net.lab1318.costume.gui.models.image.ImageBean> apply(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image> other) {
+                final java.util.List<net.lab1318.costume.gui.models.image.ImageBean> copy = new java.util.ArrayList<net.lab1318.costume.gui.models.image.ImageBean>();
+                for (final net.lab1318.costume.api.models.image.Image element : other) {
+                    copy.add(new net.lab1318.costume.gui.models.image.ImageBean(element));
+                }
+                return copy;
+            }
+        }).apply(other.getImages().get()) : null;
         this.url = other.getUrl().isPresent() ? other.getUrl().get() : null;
     }
 
@@ -215,7 +224,7 @@ public class ObjectBean {
             getSubjects().equals(other.getSubjects()) &&
             getSummary().equals(other.getSummary()) &&
             getTechniques().equals(other.getTechniques()) &&
-            getThumbnail().equals(other.getThumbnail()) &&
+            getImages().equals(other.getImages()) &&
             getUrl().equals(other.getUrl());
     }
 
@@ -251,6 +260,10 @@ public class ObjectBean {
 
     public String getHistoryNotes() {
         return historyNotes;
+    }
+
+    public java.util.List<net.lab1318.costume.gui.models.image.ImageBean> getImages() {
+        return images;
     }
 
     public net.lab1318.costume.gui.models.inscription.InscriptionSetBean getInscriptions() {
@@ -294,10 +307,6 @@ public class ObjectBean {
 
     public net.lab1318.costume.gui.models.technique.TechniqueSetBean getTechniques() {
         return techniques;
-    }
-
-    public net.lab1318.costume.gui.models.image.ImageBean getThumbnail() {
-        return thumbnail;
     }
 
     /**
@@ -360,8 +369,8 @@ public class ObjectBean {
         if (getTechniques() != null) {
             hashCode = 31 * hashCode + getTechniques().hashCode();
         }
-        if (getThumbnail() != null) {
-            hashCode = 31 * hashCode + getThumbnail().hashCode();
+        if (getImages() != null) {
+            hashCode = 31 * hashCode + getImages().hashCode();
         }
         if (getUrl() != null) {
             hashCode = 31 * hashCode + getUrl().hashCode();
@@ -395,6 +404,10 @@ public class ObjectBean {
 
     public void setHistoryNotes(final String historyNotes) {
         this.historyNotes = historyNotes;
+    }
+
+    public void setImages(final java.util.List<net.lab1318.costume.gui.models.image.ImageBean> images) {
+        this.images = images;
     }
 
     public void setInscriptions(final net.lab1318.costume.gui.models.inscription.InscriptionSetBean inscriptions) {
@@ -437,10 +450,6 @@ public class ObjectBean {
         this.techniques = techniques;
     }
 
-    public void setThumbnail(final net.lab1318.costume.gui.models.image.ImageBean thumbnail) {
-        this.thumbnail = thumbnail;
-    }
-
     public void setTitle(final String title) {
         this.title = title;
     }
@@ -451,7 +460,7 @@ public class ObjectBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agents", getAgents()).add("categories", getCategories()).add("date", getDate()).add("date_text", getDateText()).add("description", getDescription()).add("history_notes", getHistoryNotes()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("physical_description", getPhysicalDescription()).add("provenance", getProvenance()).add("rights", getRights()).add("subjects", getSubjects()).add("summary", getSummary()).add("techniques", getTechniques()).add("thumbnail", getThumbnail()).add("url", getUrl()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agents", getAgents()).add("categories", getCategories()).add("date", getDate()).add("date_text", getDateText()).add("description", getDescription()).add("history_notes", getHistoryNotes()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("physical_description", getPhysicalDescription()).add("provenance", getProvenance()).add("rights", getRights()).add("subjects", getSubjects()).add("summary", getSummary()).add("techniques", getTechniques()).add("images", getImages()).add("url", getUrl()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -502,7 +511,7 @@ public class ObjectBean {
 
     private net.lab1318.costume.gui.models.technique.TechniqueSetBean techniques;
 
-    private net.lab1318.costume.gui.models.image.ImageBean thumbnail;
+    private java.util.List<net.lab1318.costume.gui.models.image.ImageBean> images;
 
     private org.thryft.native_.Url url;
 }
