@@ -51,7 +51,6 @@ import net.lab1318.costume.api.models.agent.AgentName;
 import net.lab1318.costume.api.models.agent.AgentSet;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.collection.InvalidCollectionIdException;
-import net.lab1318.costume.api.models.image.Image;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.institution.InvalidInstitutionIdException;
 import net.lab1318.costume.api.models.object.InvalidObjectIdException;
@@ -197,30 +196,11 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             subjectTermTextsAggregation = objectSubjectsAggregation;
         }
 
-        {
-            thumbnailExistsAggregation = AggregationBuilders
-                    .nested(ObjectFacets.FieldMetadata.THUMBNAIL_EXISTS.getThriftName())
-                    .path(Object.FieldMetadata.THUMBNAIL.getThriftProtocolKey())
-                    .subAggregation(AggregationBuilders.count(Image.FieldMetadata.URL.getThriftName())
-                            .field(Image.FieldMetadata.URL.getThriftProtocolKey()));
-            // thumbnailHeightMaxAggregation = AggregationBuilders
-            // .nested(ObjectFacets.FieldMetadata.THUMBNAIL_HEIGHT_MAX_PX.getThriftName())
-            // .path(Object.FieldMetadata.THUMBNAIL.getThriftProtocolKey())
-            // .subAggregation(AggregationBuilders.max(Image.FieldMetadata.HEIGHT_PX.getThriftName())
-            // .field(Image.FieldMetadata.HEIGHT_PX.getThriftProtocolKey()));
-            // thumbnailWidthMaxAggregation = AggregationBuilders
-            // .nested(ObjectFacets.FieldMetadata.THUMBNAIL_WIDTH_MAX_PX.getThriftName())
-            // .path(Object.FieldMetadata.THUMBNAIL.getThriftProtocolKey())
-            // .subAggregation(AggregationBuilders.max(Image.FieldMetadata.WIDTH_PX.getThriftName())
-            // .field(Image.FieldMetadata.WIDTH_PX.getThriftProtocolKey()));
-        }
-
         urlExistsAggregation = AggregationBuilders.count(ObjectFacets.FieldMetadata.URL_EXISTS.getThriftName())
                 .field(Object.FieldMetadata.URL.getThriftProtocolKey());
 
         aggregations = ImmutableList.of(agentNameTextsAggregation, categoriesAggregation, collectionHitsAggregation,
-                institutionHitsAggregation, subjectTermTextsAggregation, thumbnailExistsAggregation,
-                urlExistsAggregation);
+                institutionHitsAggregation, subjectTermTextsAggregation, urlExistsAggregation);
     }
 
     @Override
@@ -345,35 +325,6 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                 subjectTermTextsBuilder.put(bucket.getKey(), UnsignedInteger.valueOf(bucket.getDocCount()));
             }
             resultBuilder.setSubjectTermTexts(subjectTermTextsBuilder.build());
-        }
-
-        {
-            final ValueCount thumbnailExistsAggregation = ((Nested) searchResponse.getAggregations()
-                    .get(this.thumbnailExistsAggregation.getName())).getAggregations()
-                            .get(Image.FieldMetadata.URL.getThriftName());
-            resultBuilder.setThumbnailExists(thumbnailExistsAggregation.getValue() > 0);
-
-            // final Max thumbnailHeightMaxAggregation = ((Nested)
-            // searchResponse.getAggregations()
-            // .get(this.thumbnailHeightMaxAggregation.getName())).getAggregations()
-            // .get(Image.FieldMetadata.HEIGHT_PX.getThriftName());
-            // if (!Double.isInfinite(thumbnailHeightMaxAggregation.getValue()))
-            // {
-            // resultBuilder.setThumbnailHeightMaxPx(
-            // UnsignedInteger.valueOf((int)
-            // thumbnailHeightMaxAggregation.getValue()));
-            // }
-            //
-            // final Max thumbnailWidthMaxAggregation = ((Nested)
-            // searchResponse.getAggregations()
-            // .get(this.thumbnailWidthMaxAggregation.getName())).getAggregations()
-            // .get(Image.FieldMetadata.WIDTH_PX.getThriftName());
-            // if (!Double.isInfinite(thumbnailWidthMaxAggregation.getValue()))
-            // {
-            // resultBuilder
-            // .setThumbnailWidthMaxPx(UnsignedInteger.valueOf((int)
-            // thumbnailWidthMaxAggregation.getValue()));
-            // }
         }
 
         final ValueCount urlExistsAggregation = (ValueCount) searchResponse.getAggregations()
@@ -631,9 +582,6 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     private final ObjectFacets emptyObjectFacets;
     private final TermsBuilder institutionHitsAggregation;
     private final AggregationBuilder<?> subjectTermTextsAggregation;
-    private final AggregationBuilder<?> thumbnailExistsAggregation;
-    // private final AggregationBuilder<?> thumbnailHeightMaxAggregation;
-    // private final AggregationBuilder<?> thumbnailWidthMaxAggregation;
     private final AbstractAggregationBuilder urlExistsAggregation;
     private final static Logger logger = LoggerFactory.getLogger(ElasticSearchObjectQueryService.class);
 }

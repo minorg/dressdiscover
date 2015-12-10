@@ -66,7 +66,8 @@ struct Object {
 
 	16: optional technique_set.TechniqueSet techniques;
 
-	8: optional image.Image thumbnail;
+	// @validation {"minLength": 1}
+	23: optional list<image.Image> images;
 
 	9: optional url.Url url;
 }

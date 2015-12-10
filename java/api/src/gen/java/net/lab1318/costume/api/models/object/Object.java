@@ -21,7 +21,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             subjects = com.google.common.base.Optional.absent();
             summary = com.google.common.base.Optional.absent();
             techniques = com.google.common.base.Optional.absent();
-            thumbnail = com.google.common.base.Optional.absent();
+            images = com.google.common.base.Optional.absent();
             url = com.google.common.base.Optional.absent();
         }
 
@@ -44,16 +44,16 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             this.subjects = other.getSubjects();
             this.summary = other.getSummary();
             this.techniques = other.getTechniques();
-            this.thumbnail = other.getThumbnail();
+            this.images = other.getImages();
             this.url = other.getUrl();
         }
 
-        protected Object _build(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final com.google.common.base.Optional<net.lab1318.costume.api.models.agent.AgentSet> agents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<java.util.Date> date, final com.google.common.base.Optional<String> dateText, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<String> historyNotes, final com.google.common.base.Optional<net.lab1318.costume.api.models.inscription.InscriptionSet> inscriptions, final com.google.common.base.Optional<net.lab1318.costume.api.models.material.MaterialSet> materials, final com.google.common.base.Optional<String> physicalDescription, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<net.lab1318.costume.api.models.rights.RightsSet> rights, final com.google.common.base.Optional<net.lab1318.costume.api.models.subject.SubjectSet> subjects, final com.google.common.base.Optional<String> summary, final com.google.common.base.Optional<net.lab1318.costume.api.models.technique.TechniqueSet> techniques, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.Image> thumbnail, final com.google.common.base.Optional<org.thryft.native_.Url> url) {
-            return new Object(collectionId, institutionId, modelMetadata, title, agents, categories, date, dateText, description, historyNotes, inscriptions, materials, physicalDescription, provenance, rights, subjects, summary, techniques, thumbnail, url);
+        protected Object _build(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final com.google.common.base.Optional<net.lab1318.costume.api.models.agent.AgentSet> agents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<java.util.Date> date, final com.google.common.base.Optional<String> dateText, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<String> historyNotes, final com.google.common.base.Optional<net.lab1318.costume.api.models.inscription.InscriptionSet> inscriptions, final com.google.common.base.Optional<net.lab1318.costume.api.models.material.MaterialSet> materials, final com.google.common.base.Optional<String> physicalDescription, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<net.lab1318.costume.api.models.rights.RightsSet> rights, final com.google.common.base.Optional<net.lab1318.costume.api.models.subject.SubjectSet> subjects, final com.google.common.base.Optional<String> summary, final com.google.common.base.Optional<net.lab1318.costume.api.models.technique.TechniqueSet> techniques, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image>> images, final com.google.common.base.Optional<org.thryft.native_.Url> url) {
+            return new Object(collectionId, institutionId, modelMetadata, title, agents, categories, date, dateText, description, historyNotes, inscriptions, materials, physicalDescription, provenance, rights, subjects, summary, techniques, images, url);
         }
 
         public Object build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(collectionId, "net.lab1318.costume.api.models.object.Object: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.object.Object: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.object.Object: missing modelMetadata"), com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.object.Object: missing title"), com.google.common.base.Preconditions.checkNotNull(agents, "net.lab1318.costume.api.models.object.Object: missing agents"), com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.models.object.Object: missing categories"), com.google.common.base.Preconditions.checkNotNull(date, "net.lab1318.costume.api.models.object.Object: missing date"), com.google.common.base.Preconditions.checkNotNull(dateText, "net.lab1318.costume.api.models.object.Object: missing dateText"), com.google.common.base.Preconditions.checkNotNull(description, "net.lab1318.costume.api.models.object.Object: missing description"), com.google.common.base.Preconditions.checkNotNull(historyNotes, "net.lab1318.costume.api.models.object.Object: missing historyNotes"), com.google.common.base.Preconditions.checkNotNull(inscriptions, "net.lab1318.costume.api.models.object.Object: missing inscriptions"), com.google.common.base.Preconditions.checkNotNull(materials, "net.lab1318.costume.api.models.object.Object: missing materials"), com.google.common.base.Preconditions.checkNotNull(physicalDescription, "net.lab1318.costume.api.models.object.Object: missing physicalDescription"), com.google.common.base.Preconditions.checkNotNull(provenance, "net.lab1318.costume.api.models.object.Object: missing provenance"), com.google.common.base.Preconditions.checkNotNull(rights, "net.lab1318.costume.api.models.object.Object: missing rights"), com.google.common.base.Preconditions.checkNotNull(subjects, "net.lab1318.costume.api.models.object.Object: missing subjects"), com.google.common.base.Preconditions.checkNotNull(summary, "net.lab1318.costume.api.models.object.Object: missing summary"), com.google.common.base.Preconditions.checkNotNull(techniques, "net.lab1318.costume.api.models.object.Object: missing techniques"), com.google.common.base.Preconditions.checkNotNull(thumbnail, "net.lab1318.costume.api.models.object.Object: missing thumbnail"), com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.object.Object: missing url"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(collectionId, "net.lab1318.costume.api.models.object.Object: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.object.Object: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.object.Object: missing modelMetadata"), com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.object.Object: missing title"), com.google.common.base.Preconditions.checkNotNull(agents, "net.lab1318.costume.api.models.object.Object: missing agents"), com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.models.object.Object: missing categories"), com.google.common.base.Preconditions.checkNotNull(date, "net.lab1318.costume.api.models.object.Object: missing date"), com.google.common.base.Preconditions.checkNotNull(dateText, "net.lab1318.costume.api.models.object.Object: missing dateText"), com.google.common.base.Preconditions.checkNotNull(description, "net.lab1318.costume.api.models.object.Object: missing description"), com.google.common.base.Preconditions.checkNotNull(historyNotes, "net.lab1318.costume.api.models.object.Object: missing historyNotes"), com.google.common.base.Preconditions.checkNotNull(inscriptions, "net.lab1318.costume.api.models.object.Object: missing inscriptions"), com.google.common.base.Preconditions.checkNotNull(materials, "net.lab1318.costume.api.models.object.Object: missing materials"), com.google.common.base.Preconditions.checkNotNull(physicalDescription, "net.lab1318.costume.api.models.object.Object: missing physicalDescription"), com.google.common.base.Preconditions.checkNotNull(provenance, "net.lab1318.costume.api.models.object.Object: missing provenance"), com.google.common.base.Preconditions.checkNotNull(rights, "net.lab1318.costume.api.models.object.Object: missing rights"), com.google.common.base.Preconditions.checkNotNull(subjects, "net.lab1318.costume.api.models.object.Object: missing subjects"), com.google.common.base.Preconditions.checkNotNull(summary, "net.lab1318.costume.api.models.object.Object: missing summary"), com.google.common.base.Preconditions.checkNotNull(techniques, "net.lab1318.costume.api.models.object.Object: missing techniques"), com.google.common.base.Preconditions.checkNotNull(images, "net.lab1318.costume.api.models.object.Object: missing images"), com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.object.Object: missing url"));
         }
 
         public final com.google.common.base.Optional<net.lab1318.costume.api.models.agent.AgentSet> getAgents() {
@@ -88,6 +88,10 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
 
         public final com.google.common.base.Optional<String> getHistoryNotes() {
             return historyNotes;
+        }
+
+        public final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image>> getImages() {
+            return images;
         }
 
         public final com.google.common.base.Optional<net.lab1318.costume.api.models.inscription.InscriptionSet> getInscriptions() {
@@ -131,10 +135,6 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
 
         public final com.google.common.base.Optional<net.lab1318.costume.api.models.technique.TechniqueSet> getTechniques() {
             return techniques;
-        }
-
-        public final com.google.common.base.Optional<net.lab1318.costume.api.models.image.Image> getThumbnail() {
-            return thumbnail;
         }
 
         /**
@@ -237,7 +237,25 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
                 techniques = com.google.common.base.Optional.of(net.lab1318.costume.api.models.technique.TechniqueSet.readAsStruct(iprot));
             }
             if (__list.getSize() > 18) {
-                thumbnail = com.google.common.base.Optional.of(net.lab1318.costume.api.models.image.Image.readAsStruct(iprot));
+                try {
+                    images = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image>>() {
+                        @Override
+                        public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            try {
+                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.image.Image> sequence = com.google.common.collect.ImmutableList.builder();
+                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                    sequence.add(net.lab1318.costume.api.models.image.Image.readAsStruct(iprot));
+                                }
+                                iprot.readListEnd();
+                                return sequence.build();
+                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                            }
+                        }
+                    }).apply(iprot));
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                }
             }
             if (__list.getSize() > 19) {
                 try {
@@ -394,9 +412,27 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
                     }
                     break;
                 }
-                case "thumbnail": {
-                    if (!ifield.hasId() || ifield.getId() == 8) {
-                        thumbnail = com.google.common.base.Optional.of(net.lab1318.costume.api.models.image.Image.readAsStruct(iprot));
+                case "images": {
+                    if (!ifield.hasId() || ifield.getId() == 23) {
+                        try {
+                            images = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                        final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.image.Image> sequence = com.google.common.collect.ImmutableList.builder();
+                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                            sequence.add(net.lab1318.costume.api.models.image.Image.readAsStruct(iprot));
+                                        }
+                                        iprot.readListEnd();
+                                        return sequence.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                            }).apply(iprot));
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                        }
                     }
                     break;
                 }
@@ -530,13 +566,23 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             if (other.getTechniques().isPresent()) {
                 setTechniques(other.getTechniques());
             }
-            if (other.getThumbnail().isPresent()) {
-                setThumbnail(other.getThumbnail());
+            if (other.getImages().isPresent()) {
+                setImages(other.getImages());
             }
             if (other.getUrl().isPresent()) {
                 setUrl(other.getUrl());
             }
 
+            return this;
+        }
+
+        public Builder setImages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image>> images) {
+            this.images = com.google.common.base.Preconditions.checkNotNull(images);
+            return this;
+        }
+
+        public Builder setImages(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image> images) {
+            this.images = com.google.common.base.Optional.fromNullable(images);
             return this;
         }
 
@@ -630,16 +676,6 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             return this;
         }
 
-        public Builder setThumbnail(final com.google.common.base.Optional<net.lab1318.costume.api.models.image.Image> thumbnail) {
-            this.thumbnail = com.google.common.base.Preconditions.checkNotNull(thumbnail);
-            return this;
-        }
-
-        public Builder setThumbnail(@javax.annotation.Nullable final net.lab1318.costume.api.models.image.Image thumbnail) {
-            this.thumbnail = com.google.common.base.Optional.fromNullable(thumbnail);
-            return this;
-        }
-
         public Builder setTitle(final String title) {
             this.title = com.google.common.base.Preconditions.checkNotNull(title);
             return this;
@@ -678,7 +714,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             case "subjects": setSubjects((net.lab1318.costume.api.models.subject.SubjectSet)value); return this;
             case "summary": setSummary((String)value); return this;
             case "techniques": setTechniques((net.lab1318.costume.api.models.technique.TechniqueSet)value); return this;
-            case "thumbnail": setThumbnail((net.lab1318.costume.api.models.image.Image)value); return this;
+            case "images": setImages((com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image>)value); return this;
             case "url": setUrl((org.thryft.native_.Url)value); return this;
             default:
                 throw new IllegalArgumentException(name);
@@ -717,6 +753,11 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
 
         public Builder unsetHistoryNotes() {
             this.historyNotes = com.google.common.base.Optional.absent();
+            return this;
+        }
+
+        public Builder unsetImages() {
+            this.images = com.google.common.base.Optional.absent();
             return this;
         }
 
@@ -770,11 +811,6 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             return this;
         }
 
-        public Builder unsetThumbnail() {
-            this.thumbnail = com.google.common.base.Optional.absent();
-            return this;
-        }
-
         public Builder unsetTitle() {
             this.title = null;
             return this;
@@ -815,7 +851,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         private com.google.common.base.Optional<net.lab1318.costume.api.models.subject.SubjectSet> subjects;
         private com.google.common.base.Optional<String> summary;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.technique.TechniqueSet> techniques;
-        private com.google.common.base.Optional<net.lab1318.costume.api.models.image.Image> thumbnail;
+        private com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image>> images;
         private com.google.common.base.Optional<org.thryft.native_.Url> url;
     }
 
@@ -839,7 +875,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         SUBJECTS("subjects", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.subject.SubjectSet>() {}, false, 21, "subjects", org.thryft.protocol.Type.STRUCT),
         SUMMARY("summary", new com.google.common.reflect.TypeToken<String>() {}, false, 7, "summary", org.thryft.protocol.Type.STRING),
         TECHNIQUES("techniques", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.technique.TechniqueSet>() {}, false, 16, "techniques", org.thryft.protocol.Type.STRUCT),
-        THUMBNAIL("thumbnail", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.image.Image>() {}, false, 8, "thumbnail", org.thryft.protocol.Type.STRUCT),
+        IMAGES("images", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image>>() {}, false, 23, "images", org.thryft.protocol.Type.LIST),
         URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 9, "url", org.thryft.protocol.Type.STRING);
 
         @Override
@@ -902,7 +938,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             case "subjects": return SUBJECTS;
             case "summary": return SUMMARY;
             case "techniques": return TECHNIQUES;
-            case "thumbnail": return THUMBNAIL;
+            case "images": return IMAGES;
             case "url": return URL;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -929,7 +965,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             case "subjects": return SUBJECTS;
             case "summary": return SUMMARY;
             case "techniques": return TECHNIQUES;
-            case "thumbnail": return THUMBNAIL;
+            case "images": return IMAGES;
             case "url": return URL;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -963,7 +999,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
      * Copy constructor
      */
     public Object(final Object other) {
-        this(other.getCollectionId(), other.getInstitutionId(), other.getModelMetadata(), other.getTitle(), other.getAgents(), other.getCategories(), other.getDate(), other.getDateText(), other.getDescription(), other.getHistoryNotes(), other.getInscriptions(), other.getMaterials(), other.getPhysicalDescription(), other.getProvenance(), other.getRights(), other.getSubjects(), other.getSummary(), other.getTechniques(), other.getThumbnail(), other.getUrl());
+        this(other.getCollectionId(), other.getInstitutionId(), other.getModelMetadata(), other.getTitle(), other.getAgents(), other.getCategories(), other.getDate(), other.getDateText(), other.getDescription(), other.getHistoryNotes(), other.getInscriptions(), other.getMaterials(), other.getPhysicalDescription(), other.getProvenance(), other.getRights(), other.getSubjects(), other.getSummary(), other.getTechniques(), other.getImages(), other.getUrl());
     }
 
     /**
@@ -988,14 +1024,14 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         this.subjects = com.google.common.base.Optional.absent();
         this.summary = com.google.common.base.Optional.absent();
         this.techniques = com.google.common.base.Optional.absent();
-        this.thumbnail = com.google.common.base.Optional.absent();
+        this.images = com.google.common.base.Optional.absent();
         this.url = com.google.common.base.Optional.absent();
     }
 
     /**
      * Total Nullable constructor
      */
-    public Object(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final @javax.annotation.Nullable net.lab1318.costume.api.models.agent.AgentSet agents, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> categories, final @javax.annotation.Nullable java.util.Date date, final @javax.annotation.Nullable String dateText, final @javax.annotation.Nullable String description, final @javax.annotation.Nullable String historyNotes, final @javax.annotation.Nullable net.lab1318.costume.api.models.inscription.InscriptionSet inscriptions, final @javax.annotation.Nullable net.lab1318.costume.api.models.material.MaterialSet materials, final @javax.annotation.Nullable String physicalDescription, final @javax.annotation.Nullable String provenance, final @javax.annotation.Nullable net.lab1318.costume.api.models.rights.RightsSet rights, final @javax.annotation.Nullable net.lab1318.costume.api.models.subject.SubjectSet subjects, final @javax.annotation.Nullable String summary, final @javax.annotation.Nullable net.lab1318.costume.api.models.technique.TechniqueSet techniques, final @javax.annotation.Nullable net.lab1318.costume.api.models.image.Image thumbnail, final @javax.annotation.Nullable org.thryft.native_.Url url) {
+    public Object(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final @javax.annotation.Nullable net.lab1318.costume.api.models.agent.AgentSet agents, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> categories, final @javax.annotation.Nullable java.util.Date date, final @javax.annotation.Nullable String dateText, final @javax.annotation.Nullable String description, final @javax.annotation.Nullable String historyNotes, final @javax.annotation.Nullable net.lab1318.costume.api.models.inscription.InscriptionSet inscriptions, final @javax.annotation.Nullable net.lab1318.costume.api.models.material.MaterialSet materials, final @javax.annotation.Nullable String physicalDescription, final @javax.annotation.Nullable String provenance, final @javax.annotation.Nullable net.lab1318.costume.api.models.rights.RightsSet rights, final @javax.annotation.Nullable net.lab1318.costume.api.models.subject.SubjectSet subjects, final @javax.annotation.Nullable String summary, final @javax.annotation.Nullable net.lab1318.costume.api.models.technique.TechniqueSet techniques, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image> images, final @javax.annotation.Nullable org.thryft.native_.Url url) {
         this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId, "net.lab1318.costume.api.models.object.Object: missing collectionId");
         this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.object.Object: missing institutionId");
         this.modelMetadata = com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.object.Object: missing modelMetadata");
@@ -1014,14 +1050,14 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         this.subjects = com.google.common.base.Optional.fromNullable(subjects);
         this.summary = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(summary), "net.lab1318.costume.api.models.object.Object: summary is empty");
         this.techniques = com.google.common.base.Optional.fromNullable(techniques);
-        this.thumbnail = com.google.common.base.Optional.fromNullable(thumbnail);
+        this.images = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(images), "net.lab1318.costume.api.models.object.Object: images is empty");
         this.url = com.google.common.base.Optional.fromNullable(url);
     }
 
     /**
      * Optional constructor
      */
-    public Object(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final com.google.common.base.Optional<net.lab1318.costume.api.models.agent.AgentSet> agents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<java.util.Date> date, final com.google.common.base.Optional<String> dateText, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<String> historyNotes, final com.google.common.base.Optional<net.lab1318.costume.api.models.inscription.InscriptionSet> inscriptions, final com.google.common.base.Optional<net.lab1318.costume.api.models.material.MaterialSet> materials, final com.google.common.base.Optional<String> physicalDescription, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<net.lab1318.costume.api.models.rights.RightsSet> rights, final com.google.common.base.Optional<net.lab1318.costume.api.models.subject.SubjectSet> subjects, final com.google.common.base.Optional<String> summary, final com.google.common.base.Optional<net.lab1318.costume.api.models.technique.TechniqueSet> techniques, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.Image> thumbnail, final com.google.common.base.Optional<org.thryft.native_.Url> url) {
+    public Object(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final com.google.common.base.Optional<net.lab1318.costume.api.models.agent.AgentSet> agents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<java.util.Date> date, final com.google.common.base.Optional<String> dateText, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<String> historyNotes, final com.google.common.base.Optional<net.lab1318.costume.api.models.inscription.InscriptionSet> inscriptions, final com.google.common.base.Optional<net.lab1318.costume.api.models.material.MaterialSet> materials, final com.google.common.base.Optional<String> physicalDescription, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<net.lab1318.costume.api.models.rights.RightsSet> rights, final com.google.common.base.Optional<net.lab1318.costume.api.models.subject.SubjectSet> subjects, final com.google.common.base.Optional<String> summary, final com.google.common.base.Optional<net.lab1318.costume.api.models.technique.TechniqueSet> techniques, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image>> images, final com.google.common.base.Optional<org.thryft.native_.Url> url) {
         this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId, "net.lab1318.costume.api.models.object.Object: missing collectionId");
         this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.object.Object: missing institutionId");
         this.modelMetadata = com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.object.Object: missing modelMetadata");
@@ -1040,7 +1076,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         this.subjects = com.google.common.base.Preconditions.checkNotNull(subjects, "net.lab1318.costume.api.models.object.Object: missing subjects");
         this.summary = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(summary, "net.lab1318.costume.api.models.object.Object: missing summary"), "net.lab1318.costume.api.models.object.Object: summary is empty");
         this.techniques = com.google.common.base.Preconditions.checkNotNull(techniques, "net.lab1318.costume.api.models.object.Object: missing techniques");
-        this.thumbnail = com.google.common.base.Preconditions.checkNotNull(thumbnail, "net.lab1318.costume.api.models.object.Object: missing thumbnail");
+        this.images = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(images, "net.lab1318.costume.api.models.object.Object: missing images"), "net.lab1318.costume.api.models.object.Object: images is empty");
         this.url = com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.object.Object: missing url");
     }
 
@@ -1084,7 +1120,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             getSubjects().equals(other.getSubjects()) &&
             getSummary().equals(other.getSummary()) &&
             getTechniques().equals(other.getTechniques()) &&
-            getThumbnail().equals(other.getThumbnail()) &&
+            getImages().equals(other.getImages()) &&
             getUrl().equals(other.getUrl());
     }
 
@@ -1109,7 +1145,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         case "subjects": return getSubjects();
         case "summary": return getSummary();
         case "techniques": return getTechniques();
-        case "thumbnail": return getThumbnail();
+        case "images": return getImages();
         case "url": return getUrl();
         default:
             throw new IllegalArgumentException(fieldName);
@@ -1148,6 +1184,10 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
 
     public final com.google.common.base.Optional<String> getHistoryNotes() {
         return historyNotes;
+    }
+
+    public final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image>> getImages() {
+        return images;
     }
 
     public final com.google.common.base.Optional<net.lab1318.costume.api.models.inscription.InscriptionSet> getInscriptions() {
@@ -1191,10 +1231,6 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
 
     public final com.google.common.base.Optional<net.lab1318.costume.api.models.technique.TechniqueSet> getTechniques() {
         return techniques;
-    }
-
-    public final com.google.common.base.Optional<net.lab1318.costume.api.models.image.Image> getThumbnail() {
-        return thumbnail;
     }
 
     /**
@@ -1257,8 +1293,8 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         if (getTechniques().isPresent()) {
             hashCode = 31 * hashCode + getTechniques().get().hashCode();
         }
-        if (getThumbnail().isPresent()) {
-            hashCode = 31 * hashCode + getThumbnail().get().hashCode();
+        if (getImages().isPresent()) {
+            hashCode = 31 * hashCode + getImages().get().hashCode();
         }
         if (getUrl().isPresent()) {
             hashCode = 31 * hashCode + getUrl().get().hashCode();
@@ -1296,7 +1332,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         com.google.common.base.Optional<net.lab1318.costume.api.models.subject.SubjectSet> subjects = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> summary = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.technique.TechniqueSet> techniques = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<net.lab1318.costume.api.models.image.Image> thumbnail = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image>> images = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
@@ -1376,7 +1412,25 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             techniques = com.google.common.base.Optional.of(net.lab1318.costume.api.models.technique.TechniqueSet.readAsStruct(iprot));
         }
         if (__list.getSize() > 18) {
-            thumbnail = com.google.common.base.Optional.of(net.lab1318.costume.api.models.image.Image.readAsStruct(iprot));
+            try {
+                images = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image>>() {
+                    @Override
+                    public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image> apply(final org.thryft.protocol.InputProtocol iprot) {
+                        try {
+                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                            final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.image.Image> sequence = com.google.common.collect.ImmutableList.builder();
+                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                sequence.add(net.lab1318.costume.api.models.image.Image.readAsStruct(iprot));
+                            }
+                            iprot.readListEnd();
+                            return sequence.build();
+                        } catch (final org.thryft.protocol.InputProtocolException e) {
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                        }
+                    }
+                }).apply(iprot));
+            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+            }
         }
         if (__list.getSize() > 19) {
             try {
@@ -1386,7 +1440,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         }
         iprot.readListEnd();
         try {
-            return new Object(collectionId, institutionId, modelMetadata, title, agents, categories, date, dateText, description, historyNotes, inscriptions, materials, physicalDescription, provenance, rights, subjects, summary, techniques, thumbnail, url);
+            return new Object(collectionId, institutionId, modelMetadata, title, agents, categories, date, dateText, description, historyNotes, inscriptions, materials, physicalDescription, provenance, rights, subjects, summary, techniques, images, url);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -1411,7 +1465,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         com.google.common.base.Optional<net.lab1318.costume.api.models.subject.SubjectSet> subjects = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> summary = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.technique.TechniqueSet> techniques = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<net.lab1318.costume.api.models.image.Image> thumbnail = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image>> images = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.absent();
 
         iprot.readStructBegin();
@@ -1558,9 +1612,27 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
                 }
                 break;
             }
-            case "thumbnail": {
-                if (!ifield.hasId() || ifield.getId() == 8) {
-                    thumbnail = com.google.common.base.Optional.of(net.lab1318.costume.api.models.image.Image.readAsStruct(iprot));
+            case "images": {
+                if (!ifield.hasId() || ifield.getId() == 23) {
+                    try {
+                        images = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                    final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.image.Image> sequence = com.google.common.collect.ImmutableList.builder();
+                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                        sequence.add(net.lab1318.costume.api.models.image.Image.readAsStruct(iprot));
+                                    }
+                                    iprot.readListEnd();
+                                    return sequence.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot));
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                    }
                 }
                 break;
             }
@@ -1578,14 +1650,14 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
         }
         iprot.readStructEnd();
         try {
-            return new Object(collectionId, institutionId, modelMetadata, title, agents, categories, date, dateText, description, historyNotes, inscriptions, materials, physicalDescription, provenance, rights, subjects, summary, techniques, thumbnail, url);
+            return new Object(collectionId, institutionId, modelMetadata, title, agents, categories, date, dateText, description, historyNotes, inscriptions, materials, physicalDescription, provenance, rights, subjects, summary, techniques, images, url);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public Object replaceAgents(final com.google.common.base.Optional<net.lab1318.costume.api.models.agent.AgentSet> agents) {
-        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.thumbnail, this.url);
+        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.images, this.url);
     }
 
     public Object replaceAgents(final net.lab1318.costume.api.models.agent.AgentSet agents) {
@@ -1593,7 +1665,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
     }
 
     public Object replaceCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories) {
-        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.thumbnail, this.url);
+        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.images, this.url);
     }
 
     public Object replaceCategories(final com.google.common.collect.ImmutableList<String> categories) {
@@ -1601,11 +1673,11 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
     }
 
     public Object replaceCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) {
-        return new Object(collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.thumbnail, this.url);
+        return new Object(collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.images, this.url);
     }
 
     public Object replaceDate(final com.google.common.base.Optional<java.util.Date> date) {
-        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.thumbnail, this.url);
+        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.images, this.url);
     }
 
     public Object replaceDate(final java.util.Date date) {
@@ -1613,7 +1685,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
     }
 
     public Object replaceDateText(final com.google.common.base.Optional<String> dateText) {
-        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.thumbnail, this.url);
+        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.images, this.url);
     }
 
     public Object replaceDateText(final String dateText) {
@@ -1621,7 +1693,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
     }
 
     public Object replaceDescription(final com.google.common.base.Optional<String> description) {
-        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.thumbnail, this.url);
+        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.images, this.url);
     }
 
     public Object replaceDescription(final String description) {
@@ -1629,15 +1701,23 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
     }
 
     public Object replaceHistoryNotes(final com.google.common.base.Optional<String> historyNotes) {
-        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.thumbnail, this.url);
+        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.images, this.url);
     }
 
     public Object replaceHistoryNotes(final String historyNotes) {
         return replaceHistoryNotes(com.google.common.base.Optional.fromNullable(historyNotes));
     }
 
+    public Object replaceImages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image>> images) {
+        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, images, this.url);
+    }
+
+    public Object replaceImages(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image> images) {
+        return replaceImages(com.google.common.base.Optional.fromNullable(images));
+    }
+
     public Object replaceInscriptions(final com.google.common.base.Optional<net.lab1318.costume.api.models.inscription.InscriptionSet> inscriptions) {
-        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.thumbnail, this.url);
+        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.images, this.url);
     }
 
     public Object replaceInscriptions(final net.lab1318.costume.api.models.inscription.InscriptionSet inscriptions) {
@@ -1645,11 +1725,11 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
     }
 
     public Object replaceInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
-        return new Object(this.collectionId, institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.thumbnail, this.url);
+        return new Object(this.collectionId, institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.images, this.url);
     }
 
     public Object replaceMaterials(final com.google.common.base.Optional<net.lab1318.costume.api.models.material.MaterialSet> materials) {
-        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.thumbnail, this.url);
+        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.images, this.url);
     }
 
     public Object replaceMaterials(final net.lab1318.costume.api.models.material.MaterialSet materials) {
@@ -1657,11 +1737,11 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
     }
 
     public Object replaceModelMetadata(final net.lab1318.costume.api.models.ModelMetadata modelMetadata) {
-        return new Object(this.collectionId, this.institutionId, modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.thumbnail, this.url);
+        return new Object(this.collectionId, this.institutionId, modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.images, this.url);
     }
 
     public Object replacePhysicalDescription(final com.google.common.base.Optional<String> physicalDescription) {
-        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.thumbnail, this.url);
+        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.images, this.url);
     }
 
     public Object replacePhysicalDescription(final String physicalDescription) {
@@ -1669,7 +1749,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
     }
 
     public Object replaceProvenance(final com.google.common.base.Optional<String> provenance) {
-        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, provenance, this.rights, this.subjects, this.summary, this.techniques, this.thumbnail, this.url);
+        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, provenance, this.rights, this.subjects, this.summary, this.techniques, this.images, this.url);
     }
 
     public Object replaceProvenance(final String provenance) {
@@ -1677,7 +1757,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
     }
 
     public Object replaceRights(final com.google.common.base.Optional<net.lab1318.costume.api.models.rights.RightsSet> rights) {
-        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, rights, this.subjects, this.summary, this.techniques, this.thumbnail, this.url);
+        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, rights, this.subjects, this.summary, this.techniques, this.images, this.url);
     }
 
     public Object replaceRights(final net.lab1318.costume.api.models.rights.RightsSet rights) {
@@ -1685,7 +1765,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
     }
 
     public Object replaceSubjects(final com.google.common.base.Optional<net.lab1318.costume.api.models.subject.SubjectSet> subjects) {
-        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, subjects, this.summary, this.techniques, this.thumbnail, this.url);
+        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, subjects, this.summary, this.techniques, this.images, this.url);
     }
 
     public Object replaceSubjects(final net.lab1318.costume.api.models.subject.SubjectSet subjects) {
@@ -1693,7 +1773,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
     }
 
     public Object replaceSummary(final com.google.common.base.Optional<String> summary) {
-        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, summary, this.techniques, this.thumbnail, this.url);
+        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, summary, this.techniques, this.images, this.url);
     }
 
     public Object replaceSummary(final String summary) {
@@ -1701,27 +1781,19 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
     }
 
     public Object replaceTechniques(final com.google.common.base.Optional<net.lab1318.costume.api.models.technique.TechniqueSet> techniques) {
-        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, techniques, this.thumbnail, this.url);
+        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, techniques, this.images, this.url);
     }
 
     public Object replaceTechniques(final net.lab1318.costume.api.models.technique.TechniqueSet techniques) {
         return replaceTechniques(com.google.common.base.Optional.fromNullable(techniques));
     }
 
-    public Object replaceThumbnail(final com.google.common.base.Optional<net.lab1318.costume.api.models.image.Image> thumbnail) {
-        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, thumbnail, this.url);
-    }
-
-    public Object replaceThumbnail(final net.lab1318.costume.api.models.image.Image thumbnail) {
-        return replaceThumbnail(com.google.common.base.Optional.fromNullable(thumbnail));
-    }
-
     public Object replaceTitle(final String title) {
-        return new Object(this.collectionId, this.institutionId, this.modelMetadata, title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.thumbnail, this.url);
+        return new Object(this.collectionId, this.institutionId, this.modelMetadata, title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.images, this.url);
     }
 
     public Object replaceUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) {
-        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.thumbnail, url);
+        return new Object(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agents, this.categories, this.date, this.dateText, this.description, this.historyNotes, this.inscriptions, this.materials, this.physicalDescription, this.provenance, this.rights, this.subjects, this.summary, this.techniques, this.images, url);
     }
 
     public Object replaceUrl(final org.thryft.native_.Url url) {
@@ -1730,7 +1802,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agents", getAgents().orNull()).add("categories", getCategories().orNull()).add("date", getDate().orNull()).add("date_text", getDateText().orNull()).add("description", getDescription().orNull()).add("history_notes", getHistoryNotes().orNull()).add("inscriptions", getInscriptions().orNull()).add("materials", getMaterials().orNull()).add("physical_description", getPhysicalDescription().orNull()).add("provenance", getProvenance().orNull()).add("rights", getRights().orNull()).add("subjects", getSubjects().orNull()).add("summary", getSummary().orNull()).add("techniques", getTechniques().orNull()).add("thumbnail", getThumbnail().orNull()).add("url", getUrl().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agents", getAgents().orNull()).add("categories", getCategories().orNull()).add("date", getDate().orNull()).add("date_text", getDateText().orNull()).add("description", getDescription().orNull()).add("history_notes", getHistoryNotes().orNull()).add("inscriptions", getInscriptions().orNull()).add("materials", getMaterials().orNull()).add("physical_description", getPhysicalDescription().orNull()).add("provenance", getProvenance().orNull()).add("rights", getRights().orNull()).add("subjects", getSubjects().orNull()).add("summary", getSummary().orNull()).add("techniques", getTechniques().orNull()).add("images", getImages().orNull()).add("url", getUrl().orNull()).toString();
     }
 
     @Override
@@ -1833,8 +1905,12 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             oprot.writeNull();
         }
 
-        if (getThumbnail().isPresent()) {
-            getThumbnail().get().writeAsStruct(oprot);
+        if (getImages().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getImages().get().size());
+            for (final net.lab1318.costume.api.models.image.Image _iter0 : getImages().get()) {
+                _iter0.writeAsStruct(oprot);
+            }
+            oprot.writeListEnd();
         } else {
             oprot.writeNull();
         }
@@ -1961,9 +2037,13 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
             oprot.writeFieldEnd();
         }
 
-        if (getThumbnail().isPresent()) {
-            oprot.writeFieldBegin("thumbnail", org.thryft.protocol.Type.STRUCT, (short)8);
-            getThumbnail().get().writeAsStruct(oprot);
+        if (getImages().isPresent()) {
+            oprot.writeFieldBegin("images", org.thryft.protocol.Type.LIST, (short)23);
+            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getImages().get().size());
+            for (final net.lab1318.costume.api.models.image.Image _iter0 : getImages().get()) {
+                _iter0.writeAsStruct(oprot);
+            }
+            oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
 
@@ -2024,7 +2104,7 @@ public class Object implements org.thryft.Struct, org.notaweb.api.models.Model {
 
     private final com.google.common.base.Optional<net.lab1318.costume.api.models.technique.TechniqueSet> techniques;
 
-    private final com.google.common.base.Optional<net.lab1318.costume.api.models.image.Image> thumbnail;
+    private final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image>> images;
 
     private final com.google.common.base.Optional<org.thryft.native_.Url> url;
 }

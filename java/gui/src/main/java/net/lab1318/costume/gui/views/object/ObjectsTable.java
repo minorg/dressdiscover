@@ -1,17 +1,17 @@
 package net.lab1318.costume.gui.views.object;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Nullable;
 
 import org.notaweb.gui.EventBus;
 import org.thryft.native_.Url;
 import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
 
-import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
-import com.vaadin.event.MouseEvents;
 import com.vaadin.server.ExternalResource;
-import com.vaadin.shared.MouseEventDetails.MouseButton;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.CustomComponent;
@@ -35,144 +35,163 @@ import net.lab1318.costume.gui.models.image.ImageBean;
 
 @SuppressWarnings("serial")
 final class ObjectsTable extends CustomComponent {
-	public ObjectsTable(final ImmutableMap<CollectionId, Collection> collections, final EventBus eventBus,
-			final ImmutableMap<InstitutionId, Institution> institutions, final ObjectFacets objectFacets,
-			final LazyQueryContainer objects) {
-		final Map<String, String> columns = new LinkedHashMap<>();
-		{
-			if (objectFacets.getThumbnailExists()) {
-				columns.put(Object.FieldMetadata.THUMBNAIL.getJavaName(), "");
-			}
-			columns.put(Object.FieldMetadata.TITLE.getJavaName(), "Title");
-			columns.put(Object.FieldMetadata.DATE_TEXT.getJavaName(), "Date");
-			columns.put(Object.FieldMetadata.INSTITUTION_ID.getJavaName(), "Institution");
-			columns.put(Object.FieldMetadata.COLLECTION_ID.getJavaName(), "Collection");
-			if (objectFacets.getUrlExists()) {
-				columns.put(Object.FieldMetadata.URL.getJavaName(), "URL");
-			}
-		}
+    public ObjectsTable(final ImmutableMap<CollectionId, Collection> collections, final EventBus eventBus,
+            final ImmutableMap<InstitutionId, Institution> institutions, final ObjectFacets objectFacets,
+            final LazyQueryContainer objects) {
+        final Map<String, String> columns = new LinkedHashMap<>();
+        {
+            columns.put(Object.FieldMetadata.IMAGES.getJavaName(), "");
+            columns.put(Object.FieldMetadata.TITLE.getJavaName(), "Title");
+            columns.put(Object.FieldMetadata.DATE_TEXT.getJavaName(), "Date");
+            columns.put(Object.FieldMetadata.INSTITUTION_ID.getJavaName(), "Institution");
+            columns.put(Object.FieldMetadata.COLLECTION_ID.getJavaName(), "Collection");
+            if (objectFacets.getUrlExists()) {
+                columns.put(Object.FieldMetadata.URL.getJavaName(), "URL");
+            }
+        }
 
-		final Table table = new Table();
-		table.setContainerDataSource(objects);
-		table.setPageLength(6);
-		table.setSizeFull();
-		table.setVisibleColumns(columns.keySet().toArray());
-		{
-			final String[] columnHeaders = new String[columns.size()];
-			columns.values().toArray(columnHeaders);
-			table.setColumnHeaders(columnHeaders);
-		}
+        final Table table = new Table();
+        table.setContainerDataSource(objects);
+        table.setPageLength(6);
+        table.setSizeFull();
+        table.setVisibleColumns(columns.keySet().toArray());
+        {
+            final String[] columnHeaders = new String[columns.size()];
+            columns.values().toArray(columnHeaders);
+            table.setColumnHeaders(columnHeaders);
+        }
 
-		table.addGeneratedColumn(Object.FieldMetadata.COLLECTION_ID.getJavaName(), new ColumnGenerator() {
-			@Override
-			public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
-					final java.lang.Object columnId) {
-				final CollectionId collectionId = (CollectionId) source.getContainerDataSource()
-						.getContainerProperty(itemId, columnId).getValue();
-				return new NativeButton(collections.get(collectionId).getTitle(), new Button.ClickListener() {
-					@Override
-					public void buttonClick(final ClickEvent event) {
-						eventBus.post(new CollectionQueryService.Messages.GetCollectionByIdRequest(collectionId));
-					}
-				});
-			}
-		});
+        table.addGeneratedColumn(Object.FieldMetadata.COLLECTION_ID.getJavaName(), new ColumnGenerator() {
+            @Override
+            public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
+                    final java.lang.Object columnId) {
+                final CollectionId collectionId = (CollectionId) source.getContainerDataSource()
+                        .getContainerProperty(itemId, columnId).getValue();
+                return new NativeButton(collections.get(collectionId).getTitle(), new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(final ClickEvent event) {
+                        eventBus.post(new CollectionQueryService.Messages.GetCollectionByIdRequest(collectionId));
+                    }
+                });
+            }
+        });
 
-		table.addGeneratedColumn(Object.FieldMetadata.INSTITUTION_ID.getJavaName(), new ColumnGenerator() {
-			@Override
-			public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
-					final java.lang.Object columnId) {
-				final InstitutionId institutionId = (InstitutionId) source.getContainerDataSource()
-						.getContainerProperty(itemId, columnId).getValue();
-				return new NativeButton(institutions.get(institutionId).getTitle(), new Button.ClickListener() {
-					@Override
-					public void buttonClick(final ClickEvent event) {
-						eventBus.post(new InstitutionQueryService.Messages.GetInstitutionByIdRequest(institutionId));
-					}
-				});
-			}
-		});
+        table.addGeneratedColumn(Object.FieldMetadata.IMAGES.getJavaName(), new ColumnGenerator() {
+            @Override
+            public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
+                    final java.lang.Object columnId) {
+                @SuppressWarnings("unchecked")
+                final List<ImageBean> images = (List<ImageBean>) source.getContainerDataSource()
+                        .getContainerProperty(itemId, columnId).getValue();
+                if (images == null || images.isEmpty()) {
+                    return new Label(); // TODO: return an empty image
+                }
+                @Nullable
+                ImageBean squareThumbnailModel = null;
+                @Nullable
+                ImageBean thumbnailModel = null;
+                for (final ImageBean imageModel : images) {
+                    if (imageModel.getType() == null) {
+                        continue;
+                    }
+                    switch (imageModel.getType()) {
+                    case SQUARE_THUMBNAIL:
+                        squareThumbnailModel = imageModel;
+                        break;
+                    case THUMBNAIL:
+                        thumbnailModel = imageModel;
+                        break;
+                    default:
+                        break;
+                    }
+                }
 
-		if (columns.containsKey(Object.FieldMetadata.THUMBNAIL.getJavaName())) {
-			table.addGeneratedColumn(Object.FieldMetadata.THUMBNAIL.getJavaName(), new ColumnGenerator() {
-				@Override
-				public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
-						final java.lang.Object columnId) {
-					final ImageBean imageBean = (ImageBean) source.getContainerDataSource()
-							.getContainerProperty(itemId, columnId).getValue();
-					if (imageBean == null) {
-						return new Label();
-					}
-					final net.lab1318.costume.gui.views.object.Image imageView = new net.lab1318.costume.gui.views.object.Image(
-							"",
-							imageBean != null && imageBean.getHeightPx() != null ? Optional.of(imageBean.getHeightPx())
-									: Optional.absent(),
-							imageBean.getUrl(), imageBean != null && imageBean.getWidthPx() != null
-									? Optional.of(imageBean.getWidthPx()) : Optional.absent());
-					imageView.addClickListener(new MouseEvents.ClickListener() {
-						@Override
-						public void click(final com.vaadin.event.MouseEvents.ClickEvent event) {
-							if (event.getButton() != MouseButton.LEFT) {
-								return;
-							}
-							final ObjectId objectId = (ObjectId) source.getContainerDataSource()
-									.getContainerProperty(itemId, "id").getValue();
-							eventBus.post(new ObjectQueryService.Messages.GetObjectByIdRequest(objectId));
-						}
-					});
-					return imageView;
-				}
-			});
+                @Nullable
+                ImageBean selectedThumbnailModel;
+                if (squareThumbnailModel != null) {
+                    selectedThumbnailModel = squareThumbnailModel;
+                } else if (thumbnailModel != null) {
+                    selectedThumbnailModel = thumbnailModel;
+                } else {
+                    selectedThumbnailModel = null;
+                }
 
-			table.setCellStyleGenerator(new Table.CellStyleGenerator() {
-				@Override
-				public String getStyle(final Table source, final java.lang.Object itemId,
-						final java.lang.Object propertyId) {
-					if (propertyId == null) {
-						return null;
-					} else if (propertyId.equals(Object.FieldMetadata.THUMBNAIL.getJavaName())) {
-						return "thumbnail";
-					} else {
-						return null;
-					}
-				}
-			});
-		}
+                if (selectedThumbnailModel != null) {
+                    final Image thumbnailView = new Image("", selectedThumbnailModel);
+                    thumbnailView.addStyleName("thumbnail");
+                    return thumbnailView;
+                } else {
+                    return new Label(); // TODO: return empty image
+                }
+            }
+        });
 
-		table.addGeneratedColumn(Object.FieldMetadata.TITLE.getJavaName(), new ColumnGenerator() {
-			@Override
-			public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
-					final java.lang.Object columnId) {
-				final String title = (String) source.getContainerDataSource().getContainerProperty(itemId, columnId)
-						.getValue();
-				return new NativeButton(title, new Button.ClickListener() {
-					@Override
-					public void buttonClick(final ClickEvent event) {
-						final ObjectId objectId = (ObjectId) source.getContainerDataSource()
-								.getContainerProperty(itemId, "id").getValue();
-						eventBus.post(new ObjectQueryService.Messages.GetObjectByIdRequest(objectId));
-					}
-				});
-			}
-		});
+        table.setCellStyleGenerator(new Table.CellStyleGenerator() {
+            @Override
+            public String getStyle(final Table source, final java.lang.Object itemId,
+                    final java.lang.Object propertyId) {
+                if (propertyId == null) {
+                    return null;
+                } else if (propertyId.equals(Object.FieldMetadata.IMAGES.getJavaName())) {
+                    return "thumbnail";
+                } else {
+                    return null;
+                }
+            }
+        });
 
-		if (columns.containsKey(Object.FieldMetadata.URL.getJavaName())) {
-			table.addGeneratedColumn(Object.FieldMetadata.URL.getJavaName(), new ColumnGenerator() {
-				@Override
-				public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
-						final java.lang.Object columnId) {
-					final Url url = (Url) source.getContainerDataSource().getContainerProperty(itemId, columnId)
-							.getValue();
-					if (url == null) {
-						return new Label();
-					}
-					final Link link = new Link("Institution object page", new ExternalResource(url.toString()));
-					link.setTargetName("_blank");
-					return link;
-				}
-			});
-		}
+        table.addGeneratedColumn(Object.FieldMetadata.INSTITUTION_ID.getJavaName(), new ColumnGenerator() {
 
-		setCompositionRoot(table);
-	}
+            @Override
+            public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
+                    final java.lang.Object columnId) {
+                final InstitutionId institutionId = (InstitutionId) source.getContainerDataSource()
+                        .getContainerProperty(itemId, columnId).getValue();
+                return new NativeButton(institutions.get(institutionId).getTitle(), new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(final ClickEvent event) {
+                        eventBus.post(new InstitutionQueryService.Messages.GetInstitutionByIdRequest(institutionId));
+                    }
+                });
+            }
+        });
+
+        table.addGeneratedColumn(Object.FieldMetadata.TITLE.getJavaName(), new ColumnGenerator() {
+
+            @Override
+            public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
+                    final java.lang.Object columnId) {
+                final String title = (String) source.getContainerDataSource().getContainerProperty(itemId, columnId)
+                        .getValue();
+                return new NativeButton(title, new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(final ClickEvent event) {
+                        final ObjectId objectId = (ObjectId) source.getContainerDataSource()
+                                .getContainerProperty(itemId, "id").getValue();
+                        eventBus.post(new ObjectQueryService.Messages.GetObjectByIdRequest(objectId));
+                    }
+                });
+            }
+        });
+
+        if (columns.containsKey(Object.FieldMetadata.URL.getJavaName())) {
+            table.addGeneratedColumn(Object.FieldMetadata.URL.getJavaName(), new ColumnGenerator() {
+
+                @Override
+                public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
+                        final java.lang.Object columnId) {
+                    final Url url = (Url) source.getContainerDataSource().getContainerProperty(itemId, columnId)
+                            .getValue();
+                    if (url == null) {
+                        return new Label();
+                    }
+                    final Link link = new Link("Institution object page", new ExternalResource(url.toString()));
+                    link.setTargetName("_blank");
+                    return link;
+                }
+            });
+        }
+
+        setCompositionRoot(table);
+    }
 }

@@ -1,4 +1,5 @@
 import __builtin__
+import costume.api.models.image.image_type
 
 
 class Image(object):
@@ -7,20 +8,23 @@ class Image(object):
             self,
             url=None,
             height_px=None,
+            type=None,  # @ReservedAssignment
             width_px=None,
         ):
             '''
             :type url: str
             :type height_px: int or None
+            :type type: costume.api.models.image.image_type.ImageType or None
             :type width_px: int or None
             '''
 
             self.__url = url
             self.__height_px = height_px
+            self.__type = type
             self.__width_px = width_px
 
         def build(self):
-            return Image(url=self.__url, height_px=self.__height_px, width_px=self.__width_px)
+            return Image(url=self.__url, height_px=self.__height_px, type=self.__type, width_px=self.__width_px)
 
         @property
         def height_px(self):
@@ -36,6 +40,14 @@ class Image(object):
             '''
 
             self.__height_px = height_px
+            return self
+
+        def set_type(self, type):  # @ReservedAssignment
+            '''
+            :type type: costume.api.models.image.image_type.ImageType or None
+            '''
+
+            self.__type = type
             return self
 
         def set_url(self, url):
@@ -54,16 +66,26 @@ class Image(object):
             self.__width_px = width_px
             return self
 
+        @property
+        def type(self):  # @ReservedAssignment
+            '''
+            :rtype: costume.api.models.image.image_type.ImageType
+            '''
+
+            return self.__type
+
         def update(self, image):
             '''
             :type url: str
             :type height_px: int or None
+            :type type: costume.api.models.image.image_type.ImageType or None
             :type width_px: int or None
             '''
 
             if isinstance(image, Image):
                 self.set_url(image.url)
                 self.set_height_px(image.height_px)
+                self.set_type(image.type)
                 self.set_width_px(image.width_px)
             elif isinstance(image, dict):
                 for key, value in image.iteritems():
@@ -96,6 +118,14 @@ class Image(object):
 
             self.set_height_px(height_px)
 
+        @type.setter
+        def type(self, type):  # @ReservedAssignment
+            '''
+            :type type: costume.api.models.image.image_type.ImageType or None
+            '''
+
+            self.set_type(type)
+
         @url.setter
         def url(self, url):
             '''
@@ -116,11 +146,13 @@ class Image(object):
         self,
         url,
         height_px=None,
+        type=None,  # @ReservedAssignment
         width_px=None,
     ):
         '''
         :type url: str
         :type height_px: int or None
+        :type type: costume.api.models.image.image_type.ImageType or None
         :type width_px: int or None
         '''
 
@@ -135,6 +167,11 @@ class Image(object):
                 raise TypeError("expected height_px to be a int but it is a %s" % getattr(__builtin__, 'type')(height_px))
         self.__height_px = height_px
 
+        if type is not None:
+            if not isinstance(type, costume.api.models.image.image_type.ImageType):
+                raise TypeError("expected type to be a costume.api.models.image.image_type.ImageType but it is a %s" % getattr(__builtin__, 'type')(type))
+        self.__type = type
+
         if width_px is not None:
             if not isinstance(width_px, (int, long)) and width_px >= 0:
                 raise TypeError("expected width_px to be a int but it is a %s" % getattr(__builtin__, 'type')(width_px))
@@ -145,12 +182,14 @@ class Image(object):
             return False
         if self.height_px != other.height_px:
             return False
+        if self.type != other.type:
+            return False
         if self.width_px != other.width_px:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.url,self.height_px,self.width_px,))
+        return hash((self.url,self.height_px,self.type,self.width_px,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -163,6 +202,8 @@ class Image(object):
         field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
         if self.height_px is not None:
             field_reprs.append('height_px=' + repr(self.height_px))
+        if self.type is not None:
+            field_reprs.append('type=' + repr(self.type))
         if self.width_px is not None:
             field_reprs.append('width_px=' + repr(self.width_px))
         return 'Image(' + ', '.join(field_reprs) + ')'
@@ -172,6 +213,8 @@ class Image(object):
         field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
         if self.height_px is not None:
             field_reprs.append('height_px=' + repr(self.height_px))
+        if self.type is not None:
+            field_reprs.append('type=' + repr(self.type))
         if self.width_px is not None:
             field_reprs.append('width_px=' + repr(self.width_px))
         return 'Image(' + ', '.join(field_reprs) + ')'
@@ -183,7 +226,7 @@ class Image(object):
         :rtype: dict
         '''
 
-        return {'url': self.url, 'height_px': self.height_px, 'width_px': self.width_px}
+        return {'url': self.url, 'height_px': self.height_px, 'type': self.type, 'width_px': self.width_px}
 
     def as_tuple(self):
         '''
@@ -192,7 +235,7 @@ class Image(object):
         :rtype: tuple
         '''
 
-        return (self.url, self.height_px, self.width_px,)
+        return (self.url, self.height_px, self.type, self.width_px,)
 
     @property
     def height_px(self):
@@ -215,17 +258,22 @@ class Image(object):
 
         iprot.read_struct_begin()
         while True:
-            ifield_name, ifield_type, _ifield_id = iprot.read_field_begin()
+            ifield_name, ifield_type, ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
-            elif ifield_name == 'url':
+            elif ifield_name == 'url' and ifield_id == 1:
                 init_kwds['url'] = iprot.read_string()
-            elif ifield_name == 'height_px':
+            elif ifield_name == 'height_px' and ifield_id == 2:
                 try:
                     init_kwds['height_px'] = iprot.read_u32()
                 except (TypeError,):
                     pass
-            elif ifield_name == 'width_px':
+            elif ifield_name == 'type' and ifield_id == 4:
+                try:
+                    init_kwds['type'] = costume.api.models.image.image_type.ImageType.value_of(iprot.read_string().strip().upper())
+                except (TypeError,):
+                    pass
+            elif ifield_name == 'width_px' and ifield_id == 3:
                 try:
                     init_kwds['width_px'] = iprot.read_u32()
                 except (TypeError,):
@@ -239,6 +287,7 @@ class Image(object):
         self,
         url=None,
         height_px=None,
+        type=None,  # @ReservedAssignment
         width_px=None,
     ):
         '''
@@ -246,6 +295,7 @@ class Image(object):
 
         :type url: str or None
         :type height_px: int or None
+        :type type: costume.api.models.image.image_type.ImageType or None
         :type width_px: int or None
         :rtype: costume.api.models.image.image.Image
         '''
@@ -254,9 +304,19 @@ class Image(object):
             url = self.url
         if height_px is None:
             height_px = self.height_px
+        if type is None:
+            type = self.type  # @ReservedAssignment
         if width_px is None:
             width_px = self.width_px
-        return self.__class__(url=url, height_px=height_px, width_px=width_px)
+        return self.__class__(url=url, height_px=height_px, type=type, width_px=width_px)
+
+    @property
+    def type(self):  # @ReservedAssignment
+        '''
+        :rtype: costume.api.models.image.image_type.ImageType
+        '''
+
+        return self.__type
 
     @property
     def url(self):
@@ -284,17 +344,22 @@ class Image(object):
 
         oprot.write_struct_begin('Image')
 
-        oprot.write_field_begin(name='url', type=11, id=None)
+        oprot.write_field_begin(name='url', type=11, id=1)
         oprot.write_string(self.url)
         oprot.write_field_end()
 
         if self.height_px is not None:
-            oprot.write_field_begin(name='height_px', type=8, id=None)
+            oprot.write_field_begin(name='height_px', type=8, id=2)
             oprot.write_u32(self.height_px)
             oprot.write_field_end()
 
+        if self.type is not None:
+            oprot.write_field_begin(name='type', type=11, id=4)
+            oprot.write_string(str(self.type))
+            oprot.write_field_end()
+
         if self.width_px is not None:
-            oprot.write_field_begin(name='width_px', type=8, id=None)
+            oprot.write_field_begin(name='width_px', type=8, id=3)
             oprot.write_u32(self.width_px)
             oprot.write_field_end()
 
