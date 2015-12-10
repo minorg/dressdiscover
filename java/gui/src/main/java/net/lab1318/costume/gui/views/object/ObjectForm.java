@@ -13,6 +13,7 @@ import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
+import net.lab1318.costume.api.models.image.ImageType;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 
@@ -106,36 +107,38 @@ final class ObjectForm extends CustomComponent {
 
         if (objectEntry.getModel().getImages().isPresent()) {
             @Nullable
-            net.lab1318.costume.api.models.image.Image squareThumbnailModel = null;
-            @Nullable
-            net.lab1318.costume.api.models.image.Image thumbnailModel = null;
+            net.lab1318.costume.api.models.image.Image bestImageModel = null;
             for (final net.lab1318.costume.api.models.image.Image imageModel : objectEntry.getModel().getImages()
                     .get()) {
-                if (!imageModel.getType().isPresent()) {
+                if (bestImageModel == null) {
+                    bestImageModel = imageModel;
                     continue;
                 }
-                switch (imageModel.getType().get()) {
-                case SQUARE_THUMBNAIL:
-                    squareThumbnailModel = imageModel;
-                    break;
-                case THUMBNAIL:
-                    thumbnailModel = imageModel;
-                    break;
-                default:
-                    break;
+
+                // if (imageModel.getHeightPx().isPresent() &&
+                // imageModel.getWidthPx().isPresent()
+                // && (!bestImageModel.getHeightPx().isPresent() ||
+                // !bestImageModel.getWidthPx().isPresent())) {
+                // bestImageModel = imageModel;
+                // continue;
+                // }
+
+                if (imageModel.getType().isPresent()) {
+                    if (!bestImageModel.getType().isPresent()) {
+                        bestImageModel = imageModel;
+                        continue;
+                    }
+
+                    if (imageModel.getType().get() == ImageType.FULL_SIZE
+                            && bestImageModel.getType().get() != ImageType.FULL_SIZE) {
+                        bestImageModel = imageModel;
+                        continue;
+                    }
                 }
             }
 
-            Image thumbnailView;
-            if (squareThumbnailModel != null) {
-                thumbnailView = new Image("", squareThumbnailModel);
-            } else if (thumbnailModel != null) {
-                thumbnailView = new Image("", thumbnailModel);
-            } else {
-                thumbnailView = null;
-            }
-            if (thumbnailView != null) {
-                rightPaneLayout.addComponent(thumbnailView);
+            if (bestImageModel != null) {
+                rightPaneLayout.addComponent(new Image("", bestImageModel));
             }
         }
 
