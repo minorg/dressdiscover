@@ -11,6 +11,7 @@ import org.thryft.native_.Url;
 import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
 
 import com.google.common.collect.ImmutableMap;
+import com.vaadin.event.MouseEvents.ClickListener;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
@@ -119,6 +120,14 @@ final class ObjectsTable extends CustomComponent {
                 if (selectedThumbnailModel != null) {
                     final Image thumbnailView = new Image("", selectedThumbnailModel);
                     thumbnailView.addStyleName("thumbnail");
+                    thumbnailView.addClickListener(new ClickListener() {
+                        @Override
+                        public void click(final com.vaadin.event.MouseEvents.ClickEvent event) {
+                            final ObjectId objectId = (ObjectId) source.getContainerDataSource()
+                                    .getContainerProperty(itemId, "id").getValue();
+                            eventBus.post(new ObjectQueryService.Messages.GetObjectByIdRequest(objectId));
+                        }
+                    });
                     return thumbnailView;
                 } else {
                     return new Label(); // TODO: return empty image
