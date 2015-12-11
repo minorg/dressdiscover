@@ -6,15 +6,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.vaadin.viritin.components.DisclosurePanel;
 
-import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.primitives.UnsignedInteger;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.ui.CheckBox;
@@ -23,63 +19,56 @@ import com.vaadin.ui.VerticalLayout;
 
 @SuppressWarnings("serial")
 abstract class ObjectFacetPicker<KeyT> extends CustomComponent {
-    public ObjectFacetPicker(final ImmutableMap<KeyT, UnsignedInteger> availableFacets, final String caption,
-            final ImmutableSet<KeyT> excludeFacetKeys, final ImmutableSet<KeyT> includeFacetKeys) {
+    public ObjectFacetPicker(final ImmutableSet<KeyT> availableFacetKeys, final String caption,
+            final ImmutableSet<KeyT> excludeFacetKeys, final ImmutableSet<KeyT> includeFacetKeys,
+            final ImmutableSet<KeyT> resultFacetKeys) {
         final VerticalLayout checkBoxesLayout = new VerticalLayout();
+
+        final Set<KeyT> currentlyDisplayedFacetKeys = new LinkedHashSet<>();
         final Set<KeyT> currentlySelectedFacetKeys = new LinkedHashSet<>();
 
-        final List<Map.Entry<KeyT, UnsignedInteger>> availableFacetsEntrySet = new ArrayList<>(
-                availableFacets.entrySet());
-        availableFacetsEntrySet.sort(new Comparator<Map.Entry<KeyT, UnsignedInteger>>() {
+        final List<KeyT> availableFacetKeyList = new ArrayList<>(availableFacetKeys);
+        availableFacetKeyList.sort(new Comparator<KeyT>() {
             @Override
-            public int compare(final Entry<KeyT, UnsignedInteger> o1, final Entry<KeyT, UnsignedInteger> o2) {
-                return _getCheckBoxCaption(o1.getKey()).compareTo(_getCheckBoxCaption(o2.getKey()));
+            public int compare(final KeyT o1, final KeyT o2) {
+                return _getCheckBoxCaption(o1).compareTo(_getCheckBoxCaption(o2));
             }
         });
 
         final CheckBox allCheckBox = new CheckBox("Select all");
-        if (includeFacetKeys.isEmpty() && excludeFacetKeys.isEmpty()) {
-            allCheckBox.setValue(true);
-        }
-        allCheckBox.addValueChangeListener(new ValueChangeListener() {
-            @Override
-            public void valueChange(final ValueChangeEvent event) {
-                currentlySelectedFacetKeys.clear();
-                _valueChange(ImmutableSet.of(), ImmutableSet.of());
-            }
-        });
         checkBoxesLayout.addComponent(allCheckBox);
 
-        for (final Map.Entry<KeyT, UnsignedInteger> availableFacetsEntry : availableFacetsEntrySet) {
-            final CheckBox checkBox = new CheckBox(_getCheckBoxCaption(availableFacetsEntry.getKey()));
-
-            // Box is checked if it's in the include set OR if the exclude set
-            // is not empty and it's not in the exclude set
-            // A non-empty include set means "include only these"
-            // A non-empty exclude set means "include all except these"
-            // Two empty sets mean include everything
-            if (includeFacetKeys.contains(availableFacetsEntry.getKey())
-                    || !excludeFacetKeys.contains(availableFacetsEntry.getKey())) {
+        for (final KeyT availableFacetKey : availableFacetKeyList) {
+            final CheckBox checkBox;
+            if (resultFacetKeys.contains(availableFacetKey)) {
+                checkState(
+                        includeFacetKeys.contains(availableFacetKey) || !excludeFacetKeys.contains(availableFacetKey));
+                checkBox = new CheckBox(_getCheckBoxCaption(availableFacetKey));
                 checkBox.setValue(true);
-                currentlySelectedFacetKeys.add(availableFacetsEntry.getKey());
+                currentlySelectedFacetKeys.add(availableFacetKey);
+            } else if (excludeFacetKeys.contains(availableFacetKey)) {
+                checkBox = new CheckBox(_getCheckBoxCaption(availableFacetKey));
+            } else {
+                continue;
             }
+            currentlyDisplayedFacetKeys.add(availableFacetKey);
 
             checkBox.addValueChangeListener(new ValueChangeListener() {
                 @Override
                 public void valueChange(final ValueChangeEvent event) {
                     if (checkBox.getValue()) {
-                        checkState(currentlySelectedFacetKeys.add(availableFacetsEntry.getKey()));
+                        checkState(currentlySelectedFacetKeys.add(availableFacetKey));
                     } else {
-                        checkState(currentlySelectedFacetKeys.remove(availableFacetsEntry.getKey()));
+                        checkState(currentlySelectedFacetKeys.remove(availableFacetKey));
                     }
 
-                    if (currentlySelectedFacetKeys.size() < availableFacets.size() / 2) {
+                    if (currentlySelectedFacetKeys.size() < currentlyDisplayedFacetKeys.size() / 2) {
                         // Include only when number of selected < 50%
                         _valueChange(ImmutableSet.of(), ImmutableSet.copyOf(currentlySelectedFacetKeys));
                     } else {
                         // Exclude only when number of selected > 50%
                         final ImmutableSet.Builder<KeyT> excludeFacetKeysBuilder = ImmutableSet.builder();
-                        for (final KeyT facetKey : availableFacets.keySet()) {
+                        for (final KeyT facetKey : currentlyDisplayedFacetKeys) {
                             if (!currentlySelectedFacetKeys.contains(facetKey)) {
                                 excludeFacetKeysBuilder.add(facetKey);
                             }
@@ -91,12 +80,32 @@ abstract class ObjectFacetPicker<KeyT> extends CustomComponent {
             checkBoxesLayout.addComponent(checkBox);
         }
 
+        if (currentlyDisplayedFacetKeys.isEmpty()) {
+            return;
+        }
+
+        if (currentlySelectedFacetKeys.size() == currentlyDisplayedFacetKeys.size()) {
+            allCheckBox.setValue(true);
+        }
+        // Add ValueChangeListener after setting the initial value
+        allCheckBox.addValueChangeListener(new ValueChangeListener() {
+            @Override
+            public void valueChange(final ValueChangeEvent event) {
+                currentlySelectedFacetKeys.clear();
+                _valueChange(ImmutableSet.of(), ImmutableSet.of());
+            }
+        });
+
         final DisclosurePanel disclosurePanel = new DisclosurePanel();
         disclosurePanel.setCaption(caption);
         disclosurePanel.setContent(checkBoxesLayout);
         disclosurePanel.setOpen(true);
 
         setCompositionRoot(disclosurePanel);
+    }
+
+    public final boolean isEmpty() {
+        return getCompositionRoot() == null;
     }
 
     protected String _getCheckBoxCaption(final KeyT facetKey) {

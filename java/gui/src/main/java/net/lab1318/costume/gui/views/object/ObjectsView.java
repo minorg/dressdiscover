@@ -29,9 +29,10 @@ public class ObjectsView extends TopLevelView {
         super(eventBus);
     }
 
-    public void setModels(final ImmutableMap<CollectionId, Collection> collections,
-            final ImmutableMap<InstitutionId, Institution> institutions, final ObjectFacets objectFacets,
-            final ObjectQuery objectQuery, final LazyQueryContainer objects) {
+    public void setModels(final ObjectFacets availableObjectFacets,
+            final ImmutableMap<CollectionId, Collection> collections,
+            final ImmutableMap<InstitutionId, Institution> institutions, final ObjectQuery objectQuery,
+            final LazyQueryContainer objects, final ObjectFacets resultObjectFacets) {
         if (objectQuery.getQueryString().isPresent()) {
             _getNavbar().getSearchTextField().setValue(objectQuery.getQueryString().get());
         }
@@ -43,8 +44,8 @@ public class ObjectsView extends TopLevelView {
         // twoPaneLayout.setHeight(700, Unit.PIXELS);
 
         {
-            final Component leftPaneContentLayout = new ObjectFacetsLayout(_getEventBus(), institutions, objectFacets,
-                    objectQuery);
+            final Component leftPaneContentLayout = new ObjectFacetsLayout(availableObjectFacets, _getEventBus(),
+                    institutions, objectQuery, resultObjectFacets);
 
             final Panel leftPanePanel = new Panel();
             leftPanePanel.addStyleName("borderless");
@@ -66,7 +67,7 @@ public class ObjectsView extends TopLevelView {
                 rightPaneContentLayout.setComponentAlignment(hitCountsLabel, Alignment.MIDDLE_CENTER);
 
                 rightPaneContentLayout.addComponent(
-                        new ObjectsTable(collections, _getEventBus(), institutions, objectFacets, objects));
+                        new ObjectsTable(collections, _getEventBus(), institutions, availableObjectFacets, objects));
             } else {
                 rightPaneContentLayout.addComponent(new Label("No objects match your criteria."));
             }

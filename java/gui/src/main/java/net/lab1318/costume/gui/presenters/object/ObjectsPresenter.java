@@ -75,19 +75,31 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
             return;
         }
 
-        final ObjectFacets objectFacets;
+        final ObjectFacets availableObjectFacets;
         try {
-            objectFacets = objectQueryService
+            availableObjectFacets = objectQueryService
                     .getObjectFacets(Optional.of(ObjectQuery.builder(objectQuery).unsetFacetFilters().build()));
         } catch (final IoException e) {
             _getView().setComponentError(new SystemError("I/O exception", e));
             return;
         }
 
+        final ObjectFacets resultObjectFacets;
+        if (objectQuery.getFacetFilters().isPresent()) {
+            try {
+                resultObjectFacets = objectQueryService.getObjectFacets(Optional.of(objectQuery));
+            } catch (final IoException e) {
+                _getView().setComponentError(new SystemError("I/O exception", e));
+                return;
+            }
+        } else {
+            resultObjectFacets = availableObjectFacets;
+        }
+
         ImmutableMap<CollectionId, Collection> collectionMap;
         {
             final ImmutableList<CollectionId> collectionIds = ImmutableList
-                    .copyOf(objectFacets.getCollectionHits().keySet());
+                    .copyOf(availableObjectFacets.getCollectionHits().keySet());
             final ImmutableList<Collection> collections;
             try {
                 collections = collectionQueryService.getCollectionsByIds(collectionIds);
@@ -109,7 +121,7 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
         ImmutableMap<InstitutionId, Institution> institutionMap;
         {
             final ImmutableList<InstitutionId> institutionIds = ImmutableList
-                    .copyOf(objectFacets.getInstitutionHits().keySet());
+                    .copyOf(availableObjectFacets.getInstitutionHits().keySet());
             final ImmutableList<Institution> institutions;
             try {
                 institutions = institutionQueryService.getInstitutionsByIds(institutionIds);
@@ -147,8 +159,8 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
             queryDefinition.addProperty(field.getJavaName(), field.getJavaType().getRawType(), null, true, sortable);
         }
 
-        _getView().setModels(collectionMap, institutionMap, objectFacets, objectQuery,
-                new LazyQueryContainer(queryDefinition, objectBeanQueryFactory));
+        _getView().setModels(availableObjectFacets, collectionMap, institutionMap, objectQuery,
+                new LazyQueryContainer(queryDefinition, objectBeanQueryFactory), resultObjectFacets);
     }
 
     private final CollectionQueryService collectionQueryService;
