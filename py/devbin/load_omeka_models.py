@@ -279,7 +279,7 @@ for collection_dict in collection_dicts:
                 else:
                     print 'skipping item Dublin Core element', element_name, text.encode('ascii', 'ignore')
             elif element_set_name == 'Item Type Metadata':
-                pass
+                print 'skipping item Item Type Metadata element', element_name, text.encode('ascii', 'ignore')
             else:
                 print 'skipping item', element_set_name, 'element set'
 
