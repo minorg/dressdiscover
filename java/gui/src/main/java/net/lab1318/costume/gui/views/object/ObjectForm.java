@@ -102,6 +102,9 @@ final class ObjectForm extends CustomComponent {
 
             leftPaneLayout.addComponent(formLayout);
 
+            if (objectEntry.getModel().getRights().isPresent()) {
+                leftPaneLayout.addComponent(new RightsLabel(objectEntry.getModel().getRights().get()));
+            }
             leftPaneLayout.addComponent(new RightsLabel(institution.getDataRights()));
         }
 
