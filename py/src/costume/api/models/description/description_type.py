@@ -1,4 +1,5 @@
 class DescriptionType(object):
+    CONDITION = None
     EXHIBITION = None
     HISTORY = None
     PHYSICAL = None
@@ -22,27 +23,30 @@ class DescriptionType(object):
 
     @classmethod
     def value_of(cls, name):
-        if name == 'EXHIBITION' or name == '0':
+        if name == 'CONDITION' or name == '0':
+            return getattr(DescriptionType, 'CONDITION')
+        elif name == 'EXHIBITION' or name == '1':
             return getattr(DescriptionType, 'EXHIBITION')
-        elif name == 'HISTORY' or name == '1':
+        elif name == 'HISTORY' or name == '2':
             return getattr(DescriptionType, 'HISTORY')
-        elif name == 'PHYSICAL' or name == '2':
+        elif name == 'PHYSICAL' or name == '3':
             return getattr(DescriptionType, 'PHYSICAL')
-        elif name == 'PRIVATE' or name == '3':
+        elif name == 'PRIVATE' or name == '4':
             return getattr(DescriptionType, 'PRIVATE')
-        elif name == 'PUBLIC' or name == '4':
+        elif name == 'PUBLIC' or name == '5':
             return getattr(DescriptionType, 'PUBLIC')
-        elif name == 'SUMMARY' or name == '5':
+        elif name == 'SUMMARY' or name == '6':
             return getattr(DescriptionType, 'SUMMARY')
         raise ValueError(name)
 
     @classmethod
     def values(cls):
-        return (DescriptionType.EXHIBITION, DescriptionType.HISTORY, DescriptionType.PHYSICAL, DescriptionType.PRIVATE, DescriptionType.PUBLIC, DescriptionType.SUMMARY,)
+        return (DescriptionType.CONDITION, DescriptionType.EXHIBITION, DescriptionType.HISTORY, DescriptionType.PHYSICAL, DescriptionType.PRIVATE, DescriptionType.PUBLIC, DescriptionType.SUMMARY,)
 
-DescriptionType.EXHIBITION = DescriptionType('EXHIBITION', 0)
-DescriptionType.HISTORY = DescriptionType('HISTORY', 1)
-DescriptionType.PHYSICAL = DescriptionType('PHYSICAL', 2)
-DescriptionType.PRIVATE = DescriptionType('PRIVATE', 3)
-DescriptionType.PUBLIC = DescriptionType('PUBLIC', 4)
-DescriptionType.SUMMARY = DescriptionType('SUMMARY', 5)
+DescriptionType.CONDITION = DescriptionType('CONDITION', 0)
+DescriptionType.EXHIBITION = DescriptionType('EXHIBITION', 1)
+DescriptionType.HISTORY = DescriptionType('HISTORY', 2)
+DescriptionType.PHYSICAL = DescriptionType('PHYSICAL', 3)
+DescriptionType.PRIVATE = DescriptionType('PRIVATE', 4)
+DescriptionType.PUBLIC = DescriptionType('PUBLIC', 5)
+DescriptionType.SUMMARY = DescriptionType('SUMMARY', 6)

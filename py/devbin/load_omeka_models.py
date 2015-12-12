@@ -35,6 +35,7 @@ from costume.api.services.institution.no_such_institution_exception import NoSuc
 from costume.lib.costume_properties import CostumeProperties
 from model_utils import new_model_metadata
 from services import Services
+from costume.api.models.description.description_type import DescriptionType
 
 
 DATA_DIR_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data'))
@@ -163,7 +164,9 @@ for collection_dict in collection_dicts:
                 .set_model_metadata(new_model_metadata())
 
         agents = []
+        categories = []
         descriptions = []
+        description_display = None
         include_object = True
         subjects = []
         work_types = []
@@ -268,23 +271,96 @@ for collection_dict in collection_dicts:
                                 .set_text(text)
                                 .build()
                         )
-                elif element_name in (
-                    'Alternative Title',
-                    'Date Created',
-                    'Extent',
-                    'Identifier',
-                    'Language',
-                    'Medium',
-                    'References',
-                    'Relation',
-                    'Spatial Coverage',
-                    'Temporal Coverage',
-                ):
-                    pass
+#                 elif element_name in (
+#                     'Alternative Title',
+#                     'Date Created',
+#                     'Extent',
+#                     'Identifier',
+#                     'Language',
+#                     'Medium',
+#                     'References',
+#                     'Relation',
+#                     'Spatial Coverage',
+#                     'Temporal Coverage',
+#                 ):
+#                     pass
                 else:
-                    print 'skipping item Dublin Core element', element_name, text.encode('ascii', 'ignore')
+                    print 'skipping item Dublin Core element', element_name, ':', text.encode('ascii', 'ignore')
             elif element_set_name == 'Item Type Metadata':
-                print 'skipping item Item Type Metadata element', element_name, text.encode('ascii', 'ignore')
+                if element_name == 'Category':
+                    categories.append(text)
+                elif element_name == 'Classification':
+                    categories.append(text)
+                elif element_name == 'Condition':
+                    descriptions.append(
+                        Description.Builder()
+                            .set_text(text)
+                            .set_type(DescriptionType.CONDITION)
+                            .build()
+                    )
+                elif element_name == 'Description':
+                    descriptions.append(
+                        Description.Builder()
+                            .set_text(text)
+                            .build()
+                    )
+                elif element_name == 'Description Main':
+                    description_display = text
+                elif element_name == 'Donor':
+                    agents.append(
+                        Agent.Builder()
+                            .set_name(
+                                AgentName.Builder()
+                                    .set_text(text)
+                                    .set_type(AgentNameType.OTHER)
+                                    .build()
+                                )
+                            .set_role(
+                                AgentRole.Builder()
+                                    .set_text('donor')
+                                    .build()
+                                )
+                            .build()
+                    )
+                elif element_name == 'Exhibition Notes':
+                    descriptions.append(
+                        Description.Builder()
+                            .set_text(text)
+                            .set_type(DescriptionType.EXHIBITION)
+                            .build()
+                    )
+                elif element_name == 'Private Information':
+                    descriptions.append(
+                        Description.Builder()
+                            .set_text(text)
+                            .set_type(DescriptionType.PRIVATE)
+                            .build()
+                    )
+                elif element_name == 'Public Information':
+                    descriptions.append(
+                        Description.Builder()
+                            .set_text(text)
+                            .set_type(DescriptionType.PUBLIC)
+                            .build()
+                    )
+                elif element_name == 'Wearer':
+                    agents.append(
+                        Agent.Builder()
+                            .set_name(
+                                AgentName.Builder()
+                                    .set_text(text)
+                                    .set_type(AgentNameType.PERSONAL)
+                                    .build()
+                                )
+                            .set_role(
+                                AgentRole.Builder()
+                                    .set_text('wearer')
+                                    .build()
+                                )
+                            .build()
+                    )
+                else:
+                    print 'skipping item Item Type Metadata element', element_name, ':', text.encode('ascii', 'ignore')
             else:
                 print 'skipping item', element_set_name, 'element set'
 
@@ -294,8 +370,10 @@ for collection_dict in collection_dicts:
 
         if len(agents) > 0:
             object_builder.set_agents(AgentSet.Builder().set_elements(tuple(agents)).build())
+        if len(categories) > 0:
+            object_builder.set_categories(tuple(categories))
         if len(descriptions) > 0:
-            object_builder.set_descriptions(DescriptionSet.Builder().set_elements(tuple(descriptions)).build())
+            object_builder.set_descriptions(DescriptionSet.Builder().set_display(description_display).set_elements(tuple(descriptions)).build())
         if len(subjects) > 0:
             object_builder.set_subjects(SubjectSet.Builder().set_elements(tuple(subjects)).build())
         if len(work_types) > 0:
