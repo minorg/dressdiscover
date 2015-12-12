@@ -21,7 +21,7 @@ final class WorkTypeSetTable extends ElementSetTable {
         super("Work types", workTypes);
 
         final BeanItemContainer<WorkTypeBean> container = new BeanItemContainer<>(WorkTypeBean.class);
-        for (final WorkType workType : workTypes.getWorkTypes()) {
+        for (final WorkType workType : workTypes.getElements()) {
             container.addBean(new WorkTypeBean(workType));
         }
         setContainerDataSource(container);
@@ -40,7 +40,7 @@ final class WorkTypeSetTable extends ElementSetTable {
                 return button;
             }
         });
-        setPageLength(workTypes.getWorkTypes().size());
+        setPageLength(workTypes.getElements().size());
         setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
         setVisibleColumns(ImmutableList.of(WorkType.FieldMetadata.TEXT.getJavaName()).toArray());
     }

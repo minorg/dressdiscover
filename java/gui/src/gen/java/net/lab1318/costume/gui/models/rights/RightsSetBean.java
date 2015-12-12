@@ -6,7 +6,7 @@ package net.lab1318.costume.gui.models.rights;
 public class RightsSetBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        RIGHTS("rights", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.rights.RightsBean>>() {}, true, 1, "rights", org.thryft.protocol.Type.LIST),
+        ELEMENTS("elements", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.rights.RightsBean>>() {}, true, 1, "elements", org.thryft.protocol.Type.LIST),
         DISPLAY("display", new com.google.common.reflect.TypeToken<String>() {}, false, 2, "display", org.thryft.protocol.Type.STRING),
         NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "notes", org.thryft.protocol.Type.STRING);
 
@@ -52,7 +52,7 @@ public class RightsSetBean {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "rights": return RIGHTS;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -62,7 +62,7 @@ public class RightsSetBean {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "rights": return RIGHTS;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -94,13 +94,13 @@ public class RightsSetBean {
     }
 
     public RightsSetBean() {
-        rights = null;
+        elements = null;
         display = null;
         notes = null;
     }
 
     public RightsSetBean(final net.lab1318.costume.api.models.rights.RightsSet other) {
-        this.rights = (new com.google.common.base.Function<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights>, java.util.List<net.lab1318.costume.gui.models.rights.RightsBean>>() {
+        this.elements = (new com.google.common.base.Function<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights>, java.util.List<net.lab1318.costume.gui.models.rights.RightsBean>>() {
             @Override
             public java.util.List<net.lab1318.costume.gui.models.rights.RightsBean> apply(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> other) {
                 final java.util.List<net.lab1318.costume.gui.models.rights.RightsBean> copy = new java.util.ArrayList<net.lab1318.costume.gui.models.rights.RightsBean>();
@@ -109,7 +109,7 @@ public class RightsSetBean {
                 }
                 return copy;
             }
-        }).apply(other.getRights());
+        }).apply(other.getElements());
         this.display = other.getDisplay().isPresent() ? other.getDisplay().get() : null;
         this.notes = other.getNotes().isPresent() ? other.getNotes().get() : null;
     }
@@ -124,7 +124,7 @@ public class RightsSetBean {
 
         final RightsSetBean other = (RightsSetBean)otherObject;
         return
-            getRights().equals(other.getRights()) &&
+            getElements().equals(other.getElements()) &&
             getDisplay().equals(other.getDisplay()) &&
             getNotes().equals(other.getNotes());
     }
@@ -133,18 +133,18 @@ public class RightsSetBean {
         return display;
     }
 
-    public String getNotes() {
-        return notes;
+    public java.util.List<net.lab1318.costume.gui.models.rights.RightsBean> getElements() {
+        return elements;
     }
 
-    public java.util.List<net.lab1318.costume.gui.models.rights.RightsBean> getRights() {
-        return rights;
+    public String getNotes() {
+        return notes;
     }
 
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getRights().hashCode();
+        hashCode = 31 * hashCode + getElements().hashCode();
         if (getDisplay() != null) {
             hashCode = 31 * hashCode + getDisplay().hashCode();
         }
@@ -158,20 +158,20 @@ public class RightsSetBean {
         this.display = display;
     }
 
+    public void setElements(final java.util.List<net.lab1318.costume.gui.models.rights.RightsBean> elements) {
+        this.elements = elements;
+    }
+
     public void setNotes(final String notes) {
         this.notes = notes;
     }
 
-    public void setRights(final java.util.List<net.lab1318.costume.gui.models.rights.RightsBean> rights) {
-        this.rights = rights;
-    }
-
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("rights", getRights()).add("display", getDisplay()).add("notes", getNotes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("elements", getElements()).add("display", getDisplay()).add("notes", getNotes()).toString();
     }
 
-    private java.util.List<net.lab1318.costume.gui.models.rights.RightsBean> rights;
+    private java.util.List<net.lab1318.costume.gui.models.rights.RightsBean> elements;
 
     private String display;
 

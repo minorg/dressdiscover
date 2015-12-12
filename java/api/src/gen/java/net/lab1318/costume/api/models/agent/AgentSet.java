@@ -3,34 +3,34 @@ package net.lab1318.costume.api.models.agent;
 /**
  * VRA Core 4.0 agentSet element
  */
-public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.models.ElementSet {
+public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.agent.Agent> {
     public static class Builder {
         public Builder() {
-            agents = null;
+            elements = null;
             display = com.google.common.base.Optional.absent();
             notes = com.google.common.base.Optional.absent();
         }
 
         public Builder(final AgentSet other) {
-            this.agents = other.getAgents();
+            this.elements = other.getElements();
             this.display = other.getDisplay();
             this.notes = other.getNotes();
         }
 
-        protected AgentSet _build(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> agents, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-            return new AgentSet(agents, display, notes);
+        protected AgentSet _build(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+            return new AgentSet(elements, display, notes);
         }
 
         public AgentSet build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(agents, "net.lab1318.costume.api.models.agent.AgentSet: missing agents"), com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.agent.AgentSet: missing display"), com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.agent.AgentSet: missing notes"));
-        }
-
-        public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> getAgents() {
-            return agents;
+            return _build(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.agent.AgentSet: missing elements"), com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.agent.AgentSet: missing display"), com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.agent.AgentSet: missing notes"));
         }
 
         public final com.google.common.base.Optional<String> getDisplay() {
             return display;
+        }
+
+        public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> getElements() {
+            return elements;
         }
 
         public final com.google.common.base.Optional<String> getNotes() {
@@ -50,7 +50,7 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            agents = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent>>() {
+            elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent>>() {
                 @Override
                 public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> apply(final org.thryft.protocol.InputProtocol iprot) {
                     try {
@@ -84,9 +84,9 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
                     break;
                 }
                 switch (ifield.getName()) {
-                case "agents": {
+                case "elements": {
                     if (!ifield.hasId() || ifield.getId() == 1) {
-                        agents = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent>>() {
+                        elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -124,11 +124,6 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
             return this;
         }
 
-        public Builder setAgents(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> agents) {
-            this.agents = com.google.common.base.Preconditions.checkNotNull(agents);
-            return this;
-        }
-
         public Builder setDisplay(final com.google.common.base.Optional<String> display) {
             this.display = com.google.common.base.Preconditions.checkNotNull(display);
             return this;
@@ -139,10 +134,15 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
             return this;
         }
 
+        public Builder setElements(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> elements) {
+            this.elements = com.google.common.base.Preconditions.checkNotNull(elements);
+            return this;
+        }
+
         public Builder setIfPresent(final AgentSet other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
-            setAgents(other.getAgents());
+            setElements(other.getElements());
             if (other.getDisplay().isPresent()) {
                 setDisplay(other.getDisplay());
             }
@@ -168,7 +168,7 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
             com.google.common.base.Preconditions.checkNotNull(name);
 
             switch (name.toLowerCase()) {
-            case "agents": setAgents((com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent>)value); return this;
+            case "elements": setElements((com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent>)value); return this;
             case "display": setDisplay((String)value); return this;
             case "notes": setNotes((String)value); return this;
             default:
@@ -176,13 +176,13 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
             }
         }
 
-        public Builder unsetAgents() {
-            this.agents = null;
+        public Builder unsetDisplay() {
+            this.display = com.google.common.base.Optional.absent();
             return this;
         }
 
-        public Builder unsetDisplay() {
-            this.display = com.google.common.base.Optional.absent();
+        public Builder unsetElements() {
+            this.elements = null;
             return this;
         }
 
@@ -191,14 +191,14 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
             return this;
         }
 
-        private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> agents;
+        private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> elements;
         private com.google.common.base.Optional<String> display;
         private com.google.common.base.Optional<String> notes;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        AGENTS("agents", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent>>() {}, true, 1, "agents", org.thryft.protocol.Type.LIST),
+        ELEMENTS("elements", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent>>() {}, true, 1, "elements", org.thryft.protocol.Type.LIST),
         DISPLAY("display", new com.google.common.reflect.TypeToken<String>() {}, false, 2, "display", org.thryft.protocol.Type.STRING),
         NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "notes", org.thryft.protocol.Type.STRING);
 
@@ -244,7 +244,7 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "agents": return AGENTS;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -254,7 +254,7 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "agents": return AGENTS;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -289,14 +289,14 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
      * Copy constructor
      */
     public AgentSet(final AgentSet other) {
-        this(other.getAgents(), other.getDisplay(), other.getNotes());
+        this(other.getElements(), other.getDisplay(), other.getNotes());
     }
 
     /**
      * Required constructor
      */
-    public AgentSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> agents) {
-        this.agents = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(agents, "net.lab1318.costume.api.models.agent.AgentSet: missing agents"), "net.lab1318.costume.api.models.agent.AgentSet: agents is empty");
+    public AgentSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> elements) {
+        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.agent.AgentSet: missing elements"), "net.lab1318.costume.api.models.agent.AgentSet: elements is empty");
         this.display = com.google.common.base.Optional.absent();
         this.notes = com.google.common.base.Optional.absent();
     }
@@ -304,8 +304,8 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
     /**
      * Total Nullable constructor
      */
-    public AgentSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> agents, final @javax.annotation.Nullable String display, final @javax.annotation.Nullable String notes) {
-        this.agents = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(agents, "net.lab1318.costume.api.models.agent.AgentSet: missing agents"), "net.lab1318.costume.api.models.agent.AgentSet: agents is empty");
+    public AgentSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> elements, final @javax.annotation.Nullable String display, final @javax.annotation.Nullable String notes) {
+        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.agent.AgentSet: missing elements"), "net.lab1318.costume.api.models.agent.AgentSet: elements is empty");
         this.display = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(display), "net.lab1318.costume.api.models.agent.AgentSet: display is empty");
         this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(notes), "net.lab1318.costume.api.models.agent.AgentSet: notes is empty");
     }
@@ -313,8 +313,8 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
     /**
      * Optional constructor
      */
-    public AgentSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> agents, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-        this.agents = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(agents, "net.lab1318.costume.api.models.agent.AgentSet: missing agents"), "net.lab1318.costume.api.models.agent.AgentSet: agents is empty");
+    public AgentSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.agent.AgentSet: missing elements"), "net.lab1318.costume.api.models.agent.AgentSet: elements is empty");
         this.display = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.agent.AgentSet: missing display"), "net.lab1318.costume.api.models.agent.AgentSet: display is empty");
         this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.agent.AgentSet: missing notes"), "net.lab1318.costume.api.models.agent.AgentSet: notes is empty");
     }
@@ -341,7 +341,7 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
 
         final AgentSet other = (AgentSet)otherObject;
         return
-            getAgents().equals(other.getAgents()) &&
+            getElements().equals(other.getElements()) &&
             getDisplay().equals(other.getDisplay()) &&
             getNotes().equals(other.getNotes());
     }
@@ -349,7 +349,7 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
     @Override
     public java.lang.Object get(final String fieldName) {
         switch (fieldName) {
-        case "agents": return getAgents();
+        case "elements": return getElements();
         case "display": return getDisplay();
         case "notes": return getNotes();
         default:
@@ -357,12 +357,12 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
         }
     }
 
-    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> getAgents() {
-        return agents;
-    }
-
     public final com.google.common.base.Optional<String> getDisplay() {
         return display;
+    }
+
+    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> getElements() {
+        return elements;
     }
 
     public final com.google.common.base.Optional<String> getNotes() {
@@ -372,7 +372,7 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getAgents().hashCode();
+        hashCode = 31 * hashCode + getElements().hashCode();
         if (getDisplay().isPresent()) {
             hashCode = 31 * hashCode + getDisplay().get().hashCode();
         }
@@ -394,12 +394,12 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
     }
 
     public static AgentSet readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> agents = null;
+        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> elements = null;
         com.google.common.base.Optional<String> display = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        agents = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent>>() {
+        elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent>>() {
             @Override
             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> apply(final org.thryft.protocol.InputProtocol iprot) {
                 try {
@@ -423,14 +423,14 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
         }
         iprot.readListEnd();
         try {
-            return new AgentSet(agents, display, notes);
+            return new AgentSet(elements, display, notes);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public static AgentSet readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> agents = null;
+        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> elements = null;
         com.google.common.base.Optional<String> display = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
 
@@ -441,9 +441,9 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
                 break;
             }
             switch (ifield.getName()) {
-            case "agents": {
+            case "elements": {
                 if (!ifield.hasId() || ifield.getId() == 1) {
-                    agents = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent>>() {
+                    elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent>>() {
                         @Override
                         public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -479,26 +479,26 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
         }
         iprot.readStructEnd();
         try {
-            return new AgentSet(agents, display, notes);
+            return new AgentSet(elements, display, notes);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
-    public AgentSet replaceAgents(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> agents) {
-        return new AgentSet(agents, this.display, this.notes);
-    }
-
     public AgentSet replaceDisplay(final com.google.common.base.Optional<String> display) {
-        return new AgentSet(this.agents, display, this.notes);
+        return new AgentSet(this.elements, display, this.notes);
     }
 
     public AgentSet replaceDisplay(final String display) {
         return replaceDisplay(com.google.common.base.Optional.fromNullable(display));
     }
 
+    public AgentSet replaceElements(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> elements) {
+        return new AgentSet(elements, this.display, this.notes);
+    }
+
     public AgentSet replaceNotes(final com.google.common.base.Optional<String> notes) {
-        return new AgentSet(this.agents, this.display, notes);
+        return new AgentSet(this.elements, this.display, notes);
     }
 
     public AgentSet replaceNotes(final String notes) {
@@ -507,15 +507,15 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("agents", getAgents()).add("display", getDisplay().orNull()).add("notes", getNotes().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("elements", getElements()).add("display", getDisplay().orNull()).add("notes", getNotes().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
 
-        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getAgents().size());
-        for (final net.lab1318.costume.api.models.agent.Agent _iter0 : getAgents()) {
+        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getElements().size());
+        for (final net.lab1318.costume.api.models.agent.Agent _iter0 : getElements()) {
             _iter0.writeAsStruct(oprot);
         }
         oprot.writeListEnd();
@@ -544,9 +544,9 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("agents", org.thryft.protocol.Type.LIST, (short)1);
-        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getAgents().size());
-        for (final net.lab1318.costume.api.models.agent.Agent _iter0 : getAgents()) {
+        oprot.writeFieldBegin("elements", org.thryft.protocol.Type.LIST, (short)1);
+        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getElements().size());
+        for (final net.lab1318.costume.api.models.agent.Agent _iter0 : getElements()) {
             _iter0.writeAsStruct(oprot);
         }
         oprot.writeListEnd();
@@ -567,7 +567,7 @@ public class AgentSet implements org.thryft.Struct, net.lab1318.costume.api.mode
         oprot.writeFieldStop();
     }
 
-    private final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> agents;
+    private final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.agent.Agent> elements;
 
     private final com.google.common.base.Optional<String> display;
 

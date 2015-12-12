@@ -24,7 +24,7 @@
           "5:data_rights": {
             "type": "nested", 
             "properties": {
-              "1:rights": {
+              "1:elements": {
                 "type": "nested", 
                 "properties": {
                   "1:rights_holder": {

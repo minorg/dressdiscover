@@ -5,10 +5,10 @@ namespace * costume.api.models.description
 include "costume/api/models/description/description.thrift"
 
 // VRA Core 4.0 descriptionSet element
-// @java_implements net.lab1318.costume.api.models.ElementSet
+// @java_implements net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.description.Description>
 struct DescriptionSet {
 	// @validation {"minLength": 1}
-	1: list<description.Description> descriptions;
+	1: list<description.Description> elements;
 
 	// @validation {"minLength": 1}
 	2: optional string display;

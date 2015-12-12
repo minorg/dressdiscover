@@ -6,7 +6,7 @@ package net.lab1318.costume.gui.models.work_type;
 public class WorkTypeSetBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        WORK_TYPES("workTypes", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.work_type.WorkTypeBean>>() {}, true, 1, "work_types", org.thryft.protocol.Type.LIST),
+        ELEMENTS("elements", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.work_type.WorkTypeBean>>() {}, true, 1, "elements", org.thryft.protocol.Type.LIST),
         DISPLAY("display", new com.google.common.reflect.TypeToken<String>() {}, false, 2, "display", org.thryft.protocol.Type.STRING),
         NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "notes", org.thryft.protocol.Type.STRING);
 
@@ -52,7 +52,7 @@ public class WorkTypeSetBean {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "workTypes": return WORK_TYPES;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -62,7 +62,7 @@ public class WorkTypeSetBean {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "work_types": return WORK_TYPES;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -94,13 +94,13 @@ public class WorkTypeSetBean {
     }
 
     public WorkTypeSetBean() {
-        workTypes = null;
+        elements = null;
         display = null;
         notes = null;
     }
 
     public WorkTypeSetBean(final net.lab1318.costume.api.models.work_type.WorkTypeSet other) {
-        this.workTypes = (new com.google.common.base.Function<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType>, java.util.List<net.lab1318.costume.gui.models.work_type.WorkTypeBean>>() {
+        this.elements = (new com.google.common.base.Function<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType>, java.util.List<net.lab1318.costume.gui.models.work_type.WorkTypeBean>>() {
             @Override
             public java.util.List<net.lab1318.costume.gui.models.work_type.WorkTypeBean> apply(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> other) {
                 final java.util.List<net.lab1318.costume.gui.models.work_type.WorkTypeBean> copy = new java.util.ArrayList<net.lab1318.costume.gui.models.work_type.WorkTypeBean>();
@@ -109,7 +109,7 @@ public class WorkTypeSetBean {
                 }
                 return copy;
             }
-        }).apply(other.getWorkTypes());
+        }).apply(other.getElements());
         this.display = other.getDisplay().isPresent() ? other.getDisplay().get() : null;
         this.notes = other.getNotes().isPresent() ? other.getNotes().get() : null;
     }
@@ -124,7 +124,7 @@ public class WorkTypeSetBean {
 
         final WorkTypeSetBean other = (WorkTypeSetBean)otherObject;
         return
-            getWorkTypes().equals(other.getWorkTypes()) &&
+            getElements().equals(other.getElements()) &&
             getDisplay().equals(other.getDisplay()) &&
             getNotes().equals(other.getNotes());
     }
@@ -133,18 +133,18 @@ public class WorkTypeSetBean {
         return display;
     }
 
-    public String getNotes() {
-        return notes;
+    public java.util.List<net.lab1318.costume.gui.models.work_type.WorkTypeBean> getElements() {
+        return elements;
     }
 
-    public java.util.List<net.lab1318.costume.gui.models.work_type.WorkTypeBean> getWorkTypes() {
-        return workTypes;
+    public String getNotes() {
+        return notes;
     }
 
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getWorkTypes().hashCode();
+        hashCode = 31 * hashCode + getElements().hashCode();
         if (getDisplay() != null) {
             hashCode = 31 * hashCode + getDisplay().hashCode();
         }
@@ -158,20 +158,20 @@ public class WorkTypeSetBean {
         this.display = display;
     }
 
+    public void setElements(final java.util.List<net.lab1318.costume.gui.models.work_type.WorkTypeBean> elements) {
+        this.elements = elements;
+    }
+
     public void setNotes(final String notes) {
         this.notes = notes;
     }
 
-    public void setWorkTypes(final java.util.List<net.lab1318.costume.gui.models.work_type.WorkTypeBean> workTypes) {
-        this.workTypes = workTypes;
-    }
-
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("work_types", getWorkTypes()).add("display", getDisplay()).add("notes", getNotes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("elements", getElements()).add("display", getDisplay()).add("notes", getNotes()).toString();
     }
 
-    private java.util.List<net.lab1318.costume.gui.models.work_type.WorkTypeBean> workTypes;
+    private java.util.List<net.lab1318.costume.gui.models.work_type.WorkTypeBean> elements;
 
     private String display;
 

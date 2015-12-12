@@ -3,38 +3,38 @@ package net.lab1318.costume.api.models.rights;
 /**
  * VRA Core 4.0 rightsSet element
  */
-public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.models.ElementSet {
+public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.rights.Rights> {
     public static class Builder {
         public Builder() {
-            rights = null;
+            elements = null;
             display = com.google.common.base.Optional.absent();
             notes = com.google.common.base.Optional.absent();
         }
 
         public Builder(final RightsSet other) {
-            this.rights = other.getRights();
+            this.elements = other.getElements();
             this.display = other.getDisplay();
             this.notes = other.getNotes();
         }
 
-        protected RightsSet _build(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> rights, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-            return new RightsSet(rights, display, notes);
+        protected RightsSet _build(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+            return new RightsSet(elements, display, notes);
         }
 
         public RightsSet build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(rights, "net.lab1318.costume.api.models.rights.RightsSet: missing rights"), com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.rights.RightsSet: missing display"), com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.rights.RightsSet: missing notes"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.rights.RightsSet: missing elements"), com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.rights.RightsSet: missing display"), com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.rights.RightsSet: missing notes"));
         }
 
         public final com.google.common.base.Optional<String> getDisplay() {
             return display;
         }
 
-        public final com.google.common.base.Optional<String> getNotes() {
-            return notes;
+        public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> getElements() {
+            return elements;
         }
 
-        public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> getRights() {
-            return rights;
+        public final com.google.common.base.Optional<String> getNotes() {
+            return notes;
         }
 
         public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -50,7 +50,7 @@ public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.mod
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            rights = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights>>() {
+            elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights>>() {
                 @Override
                 public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> apply(final org.thryft.protocol.InputProtocol iprot) {
                     try {
@@ -84,9 +84,9 @@ public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.mod
                     break;
                 }
                 switch (ifield.getName()) {
-                case "rights": {
+                case "elements": {
                     if (!ifield.hasId() || ifield.getId() == 1) {
-                        rights = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights>>() {
+                        elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -134,10 +134,15 @@ public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.mod
             return this;
         }
 
+        public Builder setElements(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> elements) {
+            this.elements = com.google.common.base.Preconditions.checkNotNull(elements);
+            return this;
+        }
+
         public Builder setIfPresent(final RightsSet other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
-            setRights(other.getRights());
+            setElements(other.getElements());
             if (other.getDisplay().isPresent()) {
                 setDisplay(other.getDisplay());
             }
@@ -158,17 +163,12 @@ public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.mod
             return this;
         }
 
-        public Builder setRights(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> rights) {
-            this.rights = com.google.common.base.Preconditions.checkNotNull(rights);
-            return this;
-        }
-
         @SuppressWarnings({"unchecked"})
         public Builder set(final String name, @javax.annotation.Nullable final java.lang.Object value) {
             com.google.common.base.Preconditions.checkNotNull(name);
 
             switch (name.toLowerCase()) {
-            case "rights": setRights((com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights>)value); return this;
+            case "elements": setElements((com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights>)value); return this;
             case "display": setDisplay((String)value); return this;
             case "notes": setNotes((String)value); return this;
             default:
@@ -181,24 +181,24 @@ public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.mod
             return this;
         }
 
+        public Builder unsetElements() {
+            this.elements = null;
+            return this;
+        }
+
         public Builder unsetNotes() {
             this.notes = com.google.common.base.Optional.absent();
             return this;
         }
 
-        public Builder unsetRights() {
-            this.rights = null;
-            return this;
-        }
-
-        private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> rights;
+        private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> elements;
         private com.google.common.base.Optional<String> display;
         private com.google.common.base.Optional<String> notes;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        RIGHTS("rights", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights>>() {}, true, 1, "rights", org.thryft.protocol.Type.LIST),
+        ELEMENTS("elements", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights>>() {}, true, 1, "elements", org.thryft.protocol.Type.LIST),
         DISPLAY("display", new com.google.common.reflect.TypeToken<String>() {}, false, 2, "display", org.thryft.protocol.Type.STRING),
         NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "notes", org.thryft.protocol.Type.STRING);
 
@@ -244,7 +244,7 @@ public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.mod
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "rights": return RIGHTS;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -254,7 +254,7 @@ public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.mod
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "rights": return RIGHTS;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -289,14 +289,14 @@ public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.mod
      * Copy constructor
      */
     public RightsSet(final RightsSet other) {
-        this(other.getRights(), other.getDisplay(), other.getNotes());
+        this(other.getElements(), other.getDisplay(), other.getNotes());
     }
 
     /**
      * Required constructor
      */
-    public RightsSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> rights) {
-        this.rights = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(rights, "net.lab1318.costume.api.models.rights.RightsSet: missing rights"), "net.lab1318.costume.api.models.rights.RightsSet: rights is empty");
+    public RightsSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> elements) {
+        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.rights.RightsSet: missing elements"), "net.lab1318.costume.api.models.rights.RightsSet: elements is empty");
         this.display = com.google.common.base.Optional.absent();
         this.notes = com.google.common.base.Optional.absent();
     }
@@ -304,8 +304,8 @@ public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.mod
     /**
      * Total Nullable constructor
      */
-    public RightsSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> rights, final @javax.annotation.Nullable String display, final @javax.annotation.Nullable String notes) {
-        this.rights = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(rights, "net.lab1318.costume.api.models.rights.RightsSet: missing rights"), "net.lab1318.costume.api.models.rights.RightsSet: rights is empty");
+    public RightsSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> elements, final @javax.annotation.Nullable String display, final @javax.annotation.Nullable String notes) {
+        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.rights.RightsSet: missing elements"), "net.lab1318.costume.api.models.rights.RightsSet: elements is empty");
         this.display = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(display), "net.lab1318.costume.api.models.rights.RightsSet: display is empty");
         this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(notes), "net.lab1318.costume.api.models.rights.RightsSet: notes is empty");
     }
@@ -313,8 +313,8 @@ public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.mod
     /**
      * Optional constructor
      */
-    public RightsSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> rights, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-        this.rights = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(rights, "net.lab1318.costume.api.models.rights.RightsSet: missing rights"), "net.lab1318.costume.api.models.rights.RightsSet: rights is empty");
+    public RightsSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.rights.RightsSet: missing elements"), "net.lab1318.costume.api.models.rights.RightsSet: elements is empty");
         this.display = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.rights.RightsSet: missing display"), "net.lab1318.costume.api.models.rights.RightsSet: display is empty");
         this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.rights.RightsSet: missing notes"), "net.lab1318.costume.api.models.rights.RightsSet: notes is empty");
     }
@@ -341,7 +341,7 @@ public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.mod
 
         final RightsSet other = (RightsSet)otherObject;
         return
-            getRights().equals(other.getRights()) &&
+            getElements().equals(other.getElements()) &&
             getDisplay().equals(other.getDisplay()) &&
             getNotes().equals(other.getNotes());
     }
@@ -349,7 +349,7 @@ public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.mod
     @Override
     public java.lang.Object get(final String fieldName) {
         switch (fieldName) {
-        case "rights": return getRights();
+        case "elements": return getElements();
         case "display": return getDisplay();
         case "notes": return getNotes();
         default:
@@ -361,18 +361,18 @@ public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.mod
         return display;
     }
 
-    public final com.google.common.base.Optional<String> getNotes() {
-        return notes;
+    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> getElements() {
+        return elements;
     }
 
-    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> getRights() {
-        return rights;
+    public final com.google.common.base.Optional<String> getNotes() {
+        return notes;
     }
 
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getRights().hashCode();
+        hashCode = 31 * hashCode + getElements().hashCode();
         if (getDisplay().isPresent()) {
             hashCode = 31 * hashCode + getDisplay().get().hashCode();
         }
@@ -394,12 +394,12 @@ public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.mod
     }
 
     public static RightsSet readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> rights = null;
+        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> elements = null;
         com.google.common.base.Optional<String> display = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        rights = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights>>() {
+        elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights>>() {
             @Override
             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> apply(final org.thryft.protocol.InputProtocol iprot) {
                 try {
@@ -423,14 +423,14 @@ public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.mod
         }
         iprot.readListEnd();
         try {
-            return new RightsSet(rights, display, notes);
+            return new RightsSet(elements, display, notes);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public static RightsSet readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> rights = null;
+        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> elements = null;
         com.google.common.base.Optional<String> display = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
 
@@ -441,9 +441,9 @@ public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.mod
                 break;
             }
             switch (ifield.getName()) {
-            case "rights": {
+            case "elements": {
                 if (!ifield.hasId() || ifield.getId() == 1) {
-                    rights = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights>>() {
+                    elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights>>() {
                         @Override
                         public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -479,43 +479,43 @@ public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.mod
         }
         iprot.readStructEnd();
         try {
-            return new RightsSet(rights, display, notes);
+            return new RightsSet(elements, display, notes);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public RightsSet replaceDisplay(final com.google.common.base.Optional<String> display) {
-        return new RightsSet(this.rights, display, this.notes);
+        return new RightsSet(this.elements, display, this.notes);
     }
 
     public RightsSet replaceDisplay(final String display) {
         return replaceDisplay(com.google.common.base.Optional.fromNullable(display));
     }
 
+    public RightsSet replaceElements(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> elements) {
+        return new RightsSet(elements, this.display, this.notes);
+    }
+
     public RightsSet replaceNotes(final com.google.common.base.Optional<String> notes) {
-        return new RightsSet(this.rights, this.display, notes);
+        return new RightsSet(this.elements, this.display, notes);
     }
 
     public RightsSet replaceNotes(final String notes) {
         return replaceNotes(com.google.common.base.Optional.fromNullable(notes));
     }
 
-    public RightsSet replaceRights(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> rights) {
-        return new RightsSet(rights, this.display, this.notes);
-    }
-
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("rights", getRights()).add("display", getDisplay().orNull()).add("notes", getNotes().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("elements", getElements()).add("display", getDisplay().orNull()).add("notes", getNotes().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
 
-        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getRights().size());
-        for (final net.lab1318.costume.api.models.rights.Rights _iter0 : getRights()) {
+        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getElements().size());
+        for (final net.lab1318.costume.api.models.rights.Rights _iter0 : getElements()) {
             _iter0.writeAsStruct(oprot);
         }
         oprot.writeListEnd();
@@ -544,9 +544,9 @@ public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.mod
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("rights", org.thryft.protocol.Type.LIST, (short)1);
-        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getRights().size());
-        for (final net.lab1318.costume.api.models.rights.Rights _iter0 : getRights()) {
+        oprot.writeFieldBegin("elements", org.thryft.protocol.Type.LIST, (short)1);
+        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getElements().size());
+        for (final net.lab1318.costume.api.models.rights.Rights _iter0 : getElements()) {
             _iter0.writeAsStruct(oprot);
         }
         oprot.writeListEnd();
@@ -567,7 +567,7 @@ public class RightsSet implements org.thryft.Struct, net.lab1318.costume.api.mod
         oprot.writeFieldStop();
     }
 
-    private final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> rights;
+    private final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.rights.Rights> elements;
 
     private final com.google.common.base.Optional<String> display;
 

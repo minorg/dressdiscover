@@ -24,7 +24,7 @@ final class AgentSetTable extends ElementSetTable {
         super("Agents", agents);
 
         final BeanItemContainer<AgentBean> container = new BeanItemContainer<>(AgentBean.class);
-        for (final Agent agent : agents.getAgents()) {
+        for (final Agent agent : agents.getElements()) {
             container.addBean(new AgentBean(agent));
         }
         container.addNestedContainerBean(Agent.FieldMetadata.NAME.getJavaName());
@@ -48,7 +48,7 @@ final class AgentSetTable extends ElementSetTable {
                         return button;
                     }
                 });
-        setPageLength(agents.getAgents().size());
+        setPageLength(agents.getElements().size());
         // setColumnHeader(Agent.FieldMetadata.NAME.getJavaName() + '.' +
         // AgentName.FieldMetadata.TEXT.getJavaName(),
         // "Name");

@@ -6,7 +6,7 @@ package net.lab1318.costume.gui.models.technique;
 public class TechniqueSetBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TECHNIQUES("techniques", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.technique.TechniqueBean>>() {}, true, 1, "techniques", org.thryft.protocol.Type.LIST),
+        ELEMENTS("elements", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.technique.TechniqueBean>>() {}, true, 1, "elements", org.thryft.protocol.Type.LIST),
         DISPLAY("display", new com.google.common.reflect.TypeToken<String>() {}, false, 2, "display", org.thryft.protocol.Type.STRING),
         NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "notes", org.thryft.protocol.Type.STRING);
 
@@ -52,7 +52,7 @@ public class TechniqueSetBean {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "techniques": return TECHNIQUES;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -62,7 +62,7 @@ public class TechniqueSetBean {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "techniques": return TECHNIQUES;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -94,13 +94,13 @@ public class TechniqueSetBean {
     }
 
     public TechniqueSetBean() {
-        techniques = null;
+        elements = null;
         display = null;
         notes = null;
     }
 
     public TechniqueSetBean(final net.lab1318.costume.api.models.technique.TechniqueSet other) {
-        this.techniques = (new com.google.common.base.Function<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.technique.Technique>, java.util.List<net.lab1318.costume.gui.models.technique.TechniqueBean>>() {
+        this.elements = (new com.google.common.base.Function<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.technique.Technique>, java.util.List<net.lab1318.costume.gui.models.technique.TechniqueBean>>() {
             @Override
             public java.util.List<net.lab1318.costume.gui.models.technique.TechniqueBean> apply(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.technique.Technique> other) {
                 final java.util.List<net.lab1318.costume.gui.models.technique.TechniqueBean> copy = new java.util.ArrayList<net.lab1318.costume.gui.models.technique.TechniqueBean>();
@@ -109,7 +109,7 @@ public class TechniqueSetBean {
                 }
                 return copy;
             }
-        }).apply(other.getTechniques());
+        }).apply(other.getElements());
         this.display = other.getDisplay().isPresent() ? other.getDisplay().get() : null;
         this.notes = other.getNotes().isPresent() ? other.getNotes().get() : null;
     }
@@ -124,7 +124,7 @@ public class TechniqueSetBean {
 
         final TechniqueSetBean other = (TechniqueSetBean)otherObject;
         return
-            getTechniques().equals(other.getTechniques()) &&
+            getElements().equals(other.getElements()) &&
             getDisplay().equals(other.getDisplay()) &&
             getNotes().equals(other.getNotes());
     }
@@ -133,18 +133,18 @@ public class TechniqueSetBean {
         return display;
     }
 
-    public String getNotes() {
-        return notes;
+    public java.util.List<net.lab1318.costume.gui.models.technique.TechniqueBean> getElements() {
+        return elements;
     }
 
-    public java.util.List<net.lab1318.costume.gui.models.technique.TechniqueBean> getTechniques() {
-        return techniques;
+    public String getNotes() {
+        return notes;
     }
 
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getTechniques().hashCode();
+        hashCode = 31 * hashCode + getElements().hashCode();
         if (getDisplay() != null) {
             hashCode = 31 * hashCode + getDisplay().hashCode();
         }
@@ -158,20 +158,20 @@ public class TechniqueSetBean {
         this.display = display;
     }
 
+    public void setElements(final java.util.List<net.lab1318.costume.gui.models.technique.TechniqueBean> elements) {
+        this.elements = elements;
+    }
+
     public void setNotes(final String notes) {
         this.notes = notes;
     }
 
-    public void setTechniques(final java.util.List<net.lab1318.costume.gui.models.technique.TechniqueBean> techniques) {
-        this.techniques = techniques;
-    }
-
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("techniques", getTechniques()).add("display", getDisplay()).add("notes", getNotes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("elements", getElements()).add("display", getDisplay()).add("notes", getNotes()).toString();
     }
 
-    private java.util.List<net.lab1318.costume.gui.models.technique.TechniqueBean> techniques;
+    private java.util.List<net.lab1318.costume.gui.models.technique.TechniqueBean> elements;
 
     private String display;
 

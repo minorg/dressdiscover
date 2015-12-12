@@ -3,7 +3,7 @@ package net.lab1318.costume.api.models.description;
 /**
  * VRA Core 4.0 description element
  */
-public class Description implements org.thryft.Struct {
+public class Description implements org.thryft.Struct, net.lab1318.costume.api.models.Element {
     public static class Builder {
         public Builder() {
             text = null;

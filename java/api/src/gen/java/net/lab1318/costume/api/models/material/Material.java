@@ -3,7 +3,7 @@ package net.lab1318.costume.api.models.material;
 /**
  * VRA Core 4.0 material element
  */
-public class Material implements org.thryft.Struct {
+public class Material implements org.thryft.Struct, net.lab1318.costume.api.models.Element {
     public static class Builder {
         public Builder() {
             type = null;

@@ -3,7 +3,7 @@ package net.lab1318.costume.api.models.rights;
 /**
  * VRA Core 4.0 rights element
  */
-public class Rights implements org.thryft.Struct {
+public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models.Element {
     public static class Builder {
         public Builder() {
             rightsHolder = null;

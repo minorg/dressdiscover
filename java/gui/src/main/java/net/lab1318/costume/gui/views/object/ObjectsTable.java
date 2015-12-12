@@ -217,7 +217,7 @@ final class ObjectsTable extends CustomComponent {
                     if (workTypeSetBean.getDisplay() != null) {
                         return new Label(workTypeSetBean.getDisplay());
                     }
-                    return new Label(workTypeSetBean.getWorkTypes().get(0).getText());
+                    return new Label(workTypeSetBean.getElements().get(0).getText());
                 }
             });
         }

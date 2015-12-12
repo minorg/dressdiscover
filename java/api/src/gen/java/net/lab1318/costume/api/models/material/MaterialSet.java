@@ -3,34 +3,34 @@ package net.lab1318.costume.api.models.material;
 /**
  * VRA Core 4.0 materialSet element
  */
-public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.models.ElementSet {
+public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.material.Material> {
     public static class Builder {
         public Builder() {
-            materials = null;
+            elements = null;
             display = com.google.common.base.Optional.absent();
             notes = com.google.common.base.Optional.absent();
         }
 
         public Builder(final MaterialSet other) {
-            this.materials = other.getMaterials();
+            this.elements = other.getElements();
             this.display = other.getDisplay();
             this.notes = other.getNotes();
         }
 
-        protected MaterialSet _build(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> materials, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-            return new MaterialSet(materials, display, notes);
+        protected MaterialSet _build(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+            return new MaterialSet(elements, display, notes);
         }
 
         public MaterialSet build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(materials, "net.lab1318.costume.api.models.material.MaterialSet: missing materials"), com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.material.MaterialSet: missing display"), com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.material.MaterialSet: missing notes"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.material.MaterialSet: missing elements"), com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.material.MaterialSet: missing display"), com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.material.MaterialSet: missing notes"));
         }
 
         public final com.google.common.base.Optional<String> getDisplay() {
             return display;
         }
 
-        public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> getMaterials() {
-            return materials;
+        public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> getElements() {
+            return elements;
         }
 
         public final com.google.common.base.Optional<String> getNotes() {
@@ -50,7 +50,7 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            materials = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material>>() {
+            elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material>>() {
                 @Override
                 public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> apply(final org.thryft.protocol.InputProtocol iprot) {
                     try {
@@ -84,9 +84,9 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
                     break;
                 }
                 switch (ifield.getName()) {
-                case "materials": {
+                case "elements": {
                     if (!ifield.hasId() || ifield.getId() == 1) {
-                        materials = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material>>() {
+                        elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -134,10 +134,15 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
             return this;
         }
 
+        public Builder setElements(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> elements) {
+            this.elements = com.google.common.base.Preconditions.checkNotNull(elements);
+            return this;
+        }
+
         public Builder setIfPresent(final MaterialSet other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
-            setMaterials(other.getMaterials());
+            setElements(other.getElements());
             if (other.getDisplay().isPresent()) {
                 setDisplay(other.getDisplay());
             }
@@ -145,11 +150,6 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
                 setNotes(other.getNotes());
             }
 
-            return this;
-        }
-
-        public Builder setMaterials(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> materials) {
-            this.materials = com.google.common.base.Preconditions.checkNotNull(materials);
             return this;
         }
 
@@ -168,7 +168,7 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
             com.google.common.base.Preconditions.checkNotNull(name);
 
             switch (name.toLowerCase()) {
-            case "materials": setMaterials((com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material>)value); return this;
+            case "elements": setElements((com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material>)value); return this;
             case "display": setDisplay((String)value); return this;
             case "notes": setNotes((String)value); return this;
             default:
@@ -181,8 +181,8 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
             return this;
         }
 
-        public Builder unsetMaterials() {
-            this.materials = null;
+        public Builder unsetElements() {
+            this.elements = null;
             return this;
         }
 
@@ -191,14 +191,14 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
             return this;
         }
 
-        private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> materials;
+        private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> elements;
         private com.google.common.base.Optional<String> display;
         private com.google.common.base.Optional<String> notes;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        MATERIALS("materials", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material>>() {}, true, 1, "materials", org.thryft.protocol.Type.LIST),
+        ELEMENTS("elements", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material>>() {}, true, 1, "elements", org.thryft.protocol.Type.LIST),
         DISPLAY("display", new com.google.common.reflect.TypeToken<String>() {}, false, 2, "display", org.thryft.protocol.Type.STRING),
         NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "notes", org.thryft.protocol.Type.STRING);
 
@@ -244,7 +244,7 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "materials": return MATERIALS;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -254,7 +254,7 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "materials": return MATERIALS;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -289,14 +289,14 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
      * Copy constructor
      */
     public MaterialSet(final MaterialSet other) {
-        this(other.getMaterials(), other.getDisplay(), other.getNotes());
+        this(other.getElements(), other.getDisplay(), other.getNotes());
     }
 
     /**
      * Required constructor
      */
-    public MaterialSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> materials) {
-        this.materials = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(materials, "net.lab1318.costume.api.models.material.MaterialSet: missing materials"), "net.lab1318.costume.api.models.material.MaterialSet: materials is empty");
+    public MaterialSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> elements) {
+        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.material.MaterialSet: missing elements"), "net.lab1318.costume.api.models.material.MaterialSet: elements is empty");
         this.display = com.google.common.base.Optional.absent();
         this.notes = com.google.common.base.Optional.absent();
     }
@@ -304,8 +304,8 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
     /**
      * Total Nullable constructor
      */
-    public MaterialSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> materials, final @javax.annotation.Nullable String display, final @javax.annotation.Nullable String notes) {
-        this.materials = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(materials, "net.lab1318.costume.api.models.material.MaterialSet: missing materials"), "net.lab1318.costume.api.models.material.MaterialSet: materials is empty");
+    public MaterialSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> elements, final @javax.annotation.Nullable String display, final @javax.annotation.Nullable String notes) {
+        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.material.MaterialSet: missing elements"), "net.lab1318.costume.api.models.material.MaterialSet: elements is empty");
         this.display = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(display), "net.lab1318.costume.api.models.material.MaterialSet: display is empty");
         this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(notes), "net.lab1318.costume.api.models.material.MaterialSet: notes is empty");
     }
@@ -313,8 +313,8 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
     /**
      * Optional constructor
      */
-    public MaterialSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> materials, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-        this.materials = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(materials, "net.lab1318.costume.api.models.material.MaterialSet: missing materials"), "net.lab1318.costume.api.models.material.MaterialSet: materials is empty");
+    public MaterialSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.material.MaterialSet: missing elements"), "net.lab1318.costume.api.models.material.MaterialSet: elements is empty");
         this.display = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.material.MaterialSet: missing display"), "net.lab1318.costume.api.models.material.MaterialSet: display is empty");
         this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.material.MaterialSet: missing notes"), "net.lab1318.costume.api.models.material.MaterialSet: notes is empty");
     }
@@ -341,7 +341,7 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
 
         final MaterialSet other = (MaterialSet)otherObject;
         return
-            getMaterials().equals(other.getMaterials()) &&
+            getElements().equals(other.getElements()) &&
             getDisplay().equals(other.getDisplay()) &&
             getNotes().equals(other.getNotes());
     }
@@ -349,7 +349,7 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
     @Override
     public java.lang.Object get(final String fieldName) {
         switch (fieldName) {
-        case "materials": return getMaterials();
+        case "elements": return getElements();
         case "display": return getDisplay();
         case "notes": return getNotes();
         default:
@@ -361,8 +361,8 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
         return display;
     }
 
-    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> getMaterials() {
-        return materials;
+    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> getElements() {
+        return elements;
     }
 
     public final com.google.common.base.Optional<String> getNotes() {
@@ -372,7 +372,7 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getMaterials().hashCode();
+        hashCode = 31 * hashCode + getElements().hashCode();
         if (getDisplay().isPresent()) {
             hashCode = 31 * hashCode + getDisplay().get().hashCode();
         }
@@ -394,12 +394,12 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
     }
 
     public static MaterialSet readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> materials = null;
+        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> elements = null;
         com.google.common.base.Optional<String> display = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        materials = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material>>() {
+        elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material>>() {
             @Override
             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> apply(final org.thryft.protocol.InputProtocol iprot) {
                 try {
@@ -423,14 +423,14 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
         }
         iprot.readListEnd();
         try {
-            return new MaterialSet(materials, display, notes);
+            return new MaterialSet(elements, display, notes);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public static MaterialSet readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> materials = null;
+        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> elements = null;
         com.google.common.base.Optional<String> display = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
 
@@ -441,9 +441,9 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
                 break;
             }
             switch (ifield.getName()) {
-            case "materials": {
+            case "elements": {
                 if (!ifield.hasId() || ifield.getId() == 1) {
-                    materials = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material>>() {
+                    elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material>>() {
                         @Override
                         public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -479,26 +479,26 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
         }
         iprot.readStructEnd();
         try {
-            return new MaterialSet(materials, display, notes);
+            return new MaterialSet(elements, display, notes);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public MaterialSet replaceDisplay(final com.google.common.base.Optional<String> display) {
-        return new MaterialSet(this.materials, display, this.notes);
+        return new MaterialSet(this.elements, display, this.notes);
     }
 
     public MaterialSet replaceDisplay(final String display) {
         return replaceDisplay(com.google.common.base.Optional.fromNullable(display));
     }
 
-    public MaterialSet replaceMaterials(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> materials) {
-        return new MaterialSet(materials, this.display, this.notes);
+    public MaterialSet replaceElements(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> elements) {
+        return new MaterialSet(elements, this.display, this.notes);
     }
 
     public MaterialSet replaceNotes(final com.google.common.base.Optional<String> notes) {
-        return new MaterialSet(this.materials, this.display, notes);
+        return new MaterialSet(this.elements, this.display, notes);
     }
 
     public MaterialSet replaceNotes(final String notes) {
@@ -507,15 +507,15 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("materials", getMaterials()).add("display", getDisplay().orNull()).add("notes", getNotes().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("elements", getElements()).add("display", getDisplay().orNull()).add("notes", getNotes().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
 
-        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getMaterials().size());
-        for (final net.lab1318.costume.api.models.material.Material _iter0 : getMaterials()) {
+        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getElements().size());
+        for (final net.lab1318.costume.api.models.material.Material _iter0 : getElements()) {
             _iter0.writeAsStruct(oprot);
         }
         oprot.writeListEnd();
@@ -544,9 +544,9 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("materials", org.thryft.protocol.Type.LIST, (short)1);
-        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getMaterials().size());
-        for (final net.lab1318.costume.api.models.material.Material _iter0 : getMaterials()) {
+        oprot.writeFieldBegin("elements", org.thryft.protocol.Type.LIST, (short)1);
+        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getElements().size());
+        for (final net.lab1318.costume.api.models.material.Material _iter0 : getElements()) {
             _iter0.writeAsStruct(oprot);
         }
         oprot.writeListEnd();
@@ -567,7 +567,7 @@ public class MaterialSet implements org.thryft.Struct, net.lab1318.costume.api.m
         oprot.writeFieldStop();
     }
 
-    private final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> materials;
+    private final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> elements;
 
     private final com.google.common.base.Optional<String> display;
 

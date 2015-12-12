@@ -3,7 +3,7 @@ package net.lab1318.costume.api.models.work_type;
 /**
  * VRA Core 4.0 workType element
  */
-public class WorkType implements org.thryft.Struct {
+public class WorkType implements org.thryft.Struct, net.lab1318.costume.api.models.Element {
     public static class Builder {
         public Builder() {
             text = null;

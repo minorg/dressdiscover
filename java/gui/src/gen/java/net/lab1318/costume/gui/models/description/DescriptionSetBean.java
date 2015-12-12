@@ -6,7 +6,7 @@ package net.lab1318.costume.gui.models.description;
 public class DescriptionSetBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        DESCRIPTIONS("descriptions", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.description.DescriptionBean>>() {}, true, 1, "descriptions", org.thryft.protocol.Type.LIST),
+        ELEMENTS("elements", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.description.DescriptionBean>>() {}, true, 1, "elements", org.thryft.protocol.Type.LIST),
         DISPLAY("display", new com.google.common.reflect.TypeToken<String>() {}, false, 2, "display", org.thryft.protocol.Type.STRING),
         NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "notes", org.thryft.protocol.Type.STRING);
 
@@ -52,7 +52,7 @@ public class DescriptionSetBean {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "descriptions": return DESCRIPTIONS;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -62,7 +62,7 @@ public class DescriptionSetBean {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "descriptions": return DESCRIPTIONS;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -94,13 +94,13 @@ public class DescriptionSetBean {
     }
 
     public DescriptionSetBean() {
-        descriptions = null;
+        elements = null;
         display = null;
         notes = null;
     }
 
     public DescriptionSetBean(final net.lab1318.costume.api.models.description.DescriptionSet other) {
-        this.descriptions = (new com.google.common.base.Function<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description>, java.util.List<net.lab1318.costume.gui.models.description.DescriptionBean>>() {
+        this.elements = (new com.google.common.base.Function<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description>, java.util.List<net.lab1318.costume.gui.models.description.DescriptionBean>>() {
             @Override
             public java.util.List<net.lab1318.costume.gui.models.description.DescriptionBean> apply(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> other) {
                 final java.util.List<net.lab1318.costume.gui.models.description.DescriptionBean> copy = new java.util.ArrayList<net.lab1318.costume.gui.models.description.DescriptionBean>();
@@ -109,7 +109,7 @@ public class DescriptionSetBean {
                 }
                 return copy;
             }
-        }).apply(other.getDescriptions());
+        }).apply(other.getElements());
         this.display = other.getDisplay().isPresent() ? other.getDisplay().get() : null;
         this.notes = other.getNotes().isPresent() ? other.getNotes().get() : null;
     }
@@ -124,17 +124,17 @@ public class DescriptionSetBean {
 
         final DescriptionSetBean other = (DescriptionSetBean)otherObject;
         return
-            getDescriptions().equals(other.getDescriptions()) &&
+            getElements().equals(other.getElements()) &&
             getDisplay().equals(other.getDisplay()) &&
             getNotes().equals(other.getNotes());
     }
 
-    public java.util.List<net.lab1318.costume.gui.models.description.DescriptionBean> getDescriptions() {
-        return descriptions;
-    }
-
     public String getDisplay() {
         return display;
+    }
+
+    public java.util.List<net.lab1318.costume.gui.models.description.DescriptionBean> getElements() {
+        return elements;
     }
 
     public String getNotes() {
@@ -144,7 +144,7 @@ public class DescriptionSetBean {
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getDescriptions().hashCode();
+        hashCode = 31 * hashCode + getElements().hashCode();
         if (getDisplay() != null) {
             hashCode = 31 * hashCode + getDisplay().hashCode();
         }
@@ -154,12 +154,12 @@ public class DescriptionSetBean {
         return hashCode;
     }
 
-    public void setDescriptions(final java.util.List<net.lab1318.costume.gui.models.description.DescriptionBean> descriptions) {
-        this.descriptions = descriptions;
-    }
-
     public void setDisplay(final String display) {
         this.display = display;
+    }
+
+    public void setElements(final java.util.List<net.lab1318.costume.gui.models.description.DescriptionBean> elements) {
+        this.elements = elements;
     }
 
     public void setNotes(final String notes) {
@@ -168,10 +168,10 @@ public class DescriptionSetBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("descriptions", getDescriptions()).add("display", getDisplay()).add("notes", getNotes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("elements", getElements()).add("display", getDisplay()).add("notes", getNotes()).toString();
     }
 
-    private java.util.List<net.lab1318.costume.gui.models.description.DescriptionBean> descriptions;
+    private java.util.List<net.lab1318.costume.gui.models.description.DescriptionBean> elements;
 
     private String display;
 

@@ -3,38 +3,38 @@ package net.lab1318.costume.api.models.work_type;
 /**
  * VRA Core 4.0 workTypeSet element
  */
-public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.models.ElementSet {
+public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.work_type.WorkType> {
     public static class Builder {
         public Builder() {
-            workTypes = null;
+            elements = null;
             display = com.google.common.base.Optional.absent();
             notes = com.google.common.base.Optional.absent();
         }
 
         public Builder(final WorkTypeSet other) {
-            this.workTypes = other.getWorkTypes();
+            this.elements = other.getElements();
             this.display = other.getDisplay();
             this.notes = other.getNotes();
         }
 
-        protected WorkTypeSet _build(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> workTypes, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-            return new WorkTypeSet(workTypes, display, notes);
+        protected WorkTypeSet _build(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+            return new WorkTypeSet(elements, display, notes);
         }
 
         public WorkTypeSet build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(workTypes, "net.lab1318.costume.api.models.work_type.WorkTypeSet: missing workTypes"), com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.work_type.WorkTypeSet: missing display"), com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.work_type.WorkTypeSet: missing notes"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.work_type.WorkTypeSet: missing elements"), com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.work_type.WorkTypeSet: missing display"), com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.work_type.WorkTypeSet: missing notes"));
         }
 
         public final com.google.common.base.Optional<String> getDisplay() {
             return display;
         }
 
-        public final com.google.common.base.Optional<String> getNotes() {
-            return notes;
+        public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> getElements() {
+            return elements;
         }
 
-        public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> getWorkTypes() {
-            return workTypes;
+        public final com.google.common.base.Optional<String> getNotes() {
+            return notes;
         }
 
         public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -50,7 +50,7 @@ public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.m
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            workTypes = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType>>() {
+            elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType>>() {
                 @Override
                 public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> apply(final org.thryft.protocol.InputProtocol iprot) {
                     try {
@@ -84,9 +84,9 @@ public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.m
                     break;
                 }
                 switch (ifield.getName()) {
-                case "work_types": {
+                case "elements": {
                     if (!ifield.hasId() || ifield.getId() == 1) {
-                        workTypes = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType>>() {
+                        elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -134,10 +134,15 @@ public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.m
             return this;
         }
 
+        public Builder setElements(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> elements) {
+            this.elements = com.google.common.base.Preconditions.checkNotNull(elements);
+            return this;
+        }
+
         public Builder setIfPresent(final WorkTypeSet other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
-            setWorkTypes(other.getWorkTypes());
+            setElements(other.getElements());
             if (other.getDisplay().isPresent()) {
                 setDisplay(other.getDisplay());
             }
@@ -158,17 +163,12 @@ public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.m
             return this;
         }
 
-        public Builder setWorkTypes(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> workTypes) {
-            this.workTypes = com.google.common.base.Preconditions.checkNotNull(workTypes);
-            return this;
-        }
-
         @SuppressWarnings({"unchecked"})
         public Builder set(final String name, @javax.annotation.Nullable final java.lang.Object value) {
             com.google.common.base.Preconditions.checkNotNull(name);
 
             switch (name.toLowerCase()) {
-            case "work_types": setWorkTypes((com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType>)value); return this;
+            case "elements": setElements((com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType>)value); return this;
             case "display": setDisplay((String)value); return this;
             case "notes": setNotes((String)value); return this;
             default:
@@ -181,24 +181,24 @@ public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.m
             return this;
         }
 
+        public Builder unsetElements() {
+            this.elements = null;
+            return this;
+        }
+
         public Builder unsetNotes() {
             this.notes = com.google.common.base.Optional.absent();
             return this;
         }
 
-        public Builder unsetWorkTypes() {
-            this.workTypes = null;
-            return this;
-        }
-
-        private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> workTypes;
+        private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> elements;
         private com.google.common.base.Optional<String> display;
         private com.google.common.base.Optional<String> notes;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        WORK_TYPES("workTypes", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType>>() {}, true, 1, "work_types", org.thryft.protocol.Type.LIST),
+        ELEMENTS("elements", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType>>() {}, true, 1, "elements", org.thryft.protocol.Type.LIST),
         DISPLAY("display", new com.google.common.reflect.TypeToken<String>() {}, false, 2, "display", org.thryft.protocol.Type.STRING),
         NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "notes", org.thryft.protocol.Type.STRING);
 
@@ -244,7 +244,7 @@ public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.m
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "workTypes": return WORK_TYPES;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -254,7 +254,7 @@ public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.m
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "work_types": return WORK_TYPES;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -289,14 +289,14 @@ public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.m
      * Copy constructor
      */
     public WorkTypeSet(final WorkTypeSet other) {
-        this(other.getWorkTypes(), other.getDisplay(), other.getNotes());
+        this(other.getElements(), other.getDisplay(), other.getNotes());
     }
 
     /**
      * Required constructor
      */
-    public WorkTypeSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> workTypes) {
-        this.workTypes = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(workTypes, "net.lab1318.costume.api.models.work_type.WorkTypeSet: missing workTypes"), "net.lab1318.costume.api.models.work_type.WorkTypeSet: workTypes is empty");
+    public WorkTypeSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> elements) {
+        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.work_type.WorkTypeSet: missing elements"), "net.lab1318.costume.api.models.work_type.WorkTypeSet: elements is empty");
         this.display = com.google.common.base.Optional.absent();
         this.notes = com.google.common.base.Optional.absent();
     }
@@ -304,8 +304,8 @@ public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.m
     /**
      * Total Nullable constructor
      */
-    public WorkTypeSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> workTypes, final @javax.annotation.Nullable String display, final @javax.annotation.Nullable String notes) {
-        this.workTypes = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(workTypes, "net.lab1318.costume.api.models.work_type.WorkTypeSet: missing workTypes"), "net.lab1318.costume.api.models.work_type.WorkTypeSet: workTypes is empty");
+    public WorkTypeSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> elements, final @javax.annotation.Nullable String display, final @javax.annotation.Nullable String notes) {
+        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.work_type.WorkTypeSet: missing elements"), "net.lab1318.costume.api.models.work_type.WorkTypeSet: elements is empty");
         this.display = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(display), "net.lab1318.costume.api.models.work_type.WorkTypeSet: display is empty");
         this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(notes), "net.lab1318.costume.api.models.work_type.WorkTypeSet: notes is empty");
     }
@@ -313,8 +313,8 @@ public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.m
     /**
      * Optional constructor
      */
-    public WorkTypeSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> workTypes, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-        this.workTypes = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(workTypes, "net.lab1318.costume.api.models.work_type.WorkTypeSet: missing workTypes"), "net.lab1318.costume.api.models.work_type.WorkTypeSet: workTypes is empty");
+    public WorkTypeSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.work_type.WorkTypeSet: missing elements"), "net.lab1318.costume.api.models.work_type.WorkTypeSet: elements is empty");
         this.display = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.work_type.WorkTypeSet: missing display"), "net.lab1318.costume.api.models.work_type.WorkTypeSet: display is empty");
         this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.work_type.WorkTypeSet: missing notes"), "net.lab1318.costume.api.models.work_type.WorkTypeSet: notes is empty");
     }
@@ -341,7 +341,7 @@ public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.m
 
         final WorkTypeSet other = (WorkTypeSet)otherObject;
         return
-            getWorkTypes().equals(other.getWorkTypes()) &&
+            getElements().equals(other.getElements()) &&
             getDisplay().equals(other.getDisplay()) &&
             getNotes().equals(other.getNotes());
     }
@@ -349,7 +349,7 @@ public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.m
     @Override
     public java.lang.Object get(final String fieldName) {
         switch (fieldName) {
-        case "work_types": return getWorkTypes();
+        case "elements": return getElements();
         case "display": return getDisplay();
         case "notes": return getNotes();
         default:
@@ -361,18 +361,18 @@ public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.m
         return display;
     }
 
-    public final com.google.common.base.Optional<String> getNotes() {
-        return notes;
+    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> getElements() {
+        return elements;
     }
 
-    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> getWorkTypes() {
-        return workTypes;
+    public final com.google.common.base.Optional<String> getNotes() {
+        return notes;
     }
 
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getWorkTypes().hashCode();
+        hashCode = 31 * hashCode + getElements().hashCode();
         if (getDisplay().isPresent()) {
             hashCode = 31 * hashCode + getDisplay().get().hashCode();
         }
@@ -394,12 +394,12 @@ public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.m
     }
 
     public static WorkTypeSet readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> workTypes = null;
+        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> elements = null;
         com.google.common.base.Optional<String> display = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        workTypes = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType>>() {
+        elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType>>() {
             @Override
             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> apply(final org.thryft.protocol.InputProtocol iprot) {
                 try {
@@ -423,14 +423,14 @@ public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.m
         }
         iprot.readListEnd();
         try {
-            return new WorkTypeSet(workTypes, display, notes);
+            return new WorkTypeSet(elements, display, notes);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public static WorkTypeSet readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> workTypes = null;
+        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> elements = null;
         com.google.common.base.Optional<String> display = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
 
@@ -441,9 +441,9 @@ public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.m
                 break;
             }
             switch (ifield.getName()) {
-            case "work_types": {
+            case "elements": {
                 if (!ifield.hasId() || ifield.getId() == 1) {
-                    workTypes = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType>>() {
+                    elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType>>() {
                         @Override
                         public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -479,43 +479,43 @@ public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.m
         }
         iprot.readStructEnd();
         try {
-            return new WorkTypeSet(workTypes, display, notes);
+            return new WorkTypeSet(elements, display, notes);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public WorkTypeSet replaceDisplay(final com.google.common.base.Optional<String> display) {
-        return new WorkTypeSet(this.workTypes, display, this.notes);
+        return new WorkTypeSet(this.elements, display, this.notes);
     }
 
     public WorkTypeSet replaceDisplay(final String display) {
         return replaceDisplay(com.google.common.base.Optional.fromNullable(display));
     }
 
+    public WorkTypeSet replaceElements(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> elements) {
+        return new WorkTypeSet(elements, this.display, this.notes);
+    }
+
     public WorkTypeSet replaceNotes(final com.google.common.base.Optional<String> notes) {
-        return new WorkTypeSet(this.workTypes, this.display, notes);
+        return new WorkTypeSet(this.elements, this.display, notes);
     }
 
     public WorkTypeSet replaceNotes(final String notes) {
         return replaceNotes(com.google.common.base.Optional.fromNullable(notes));
     }
 
-    public WorkTypeSet replaceWorkTypes(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> workTypes) {
-        return new WorkTypeSet(workTypes, this.display, this.notes);
-    }
-
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("work_types", getWorkTypes()).add("display", getDisplay().orNull()).add("notes", getNotes().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("elements", getElements()).add("display", getDisplay().orNull()).add("notes", getNotes().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
 
-        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getWorkTypes().size());
-        for (final net.lab1318.costume.api.models.work_type.WorkType _iter0 : getWorkTypes()) {
+        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getElements().size());
+        for (final net.lab1318.costume.api.models.work_type.WorkType _iter0 : getElements()) {
             _iter0.writeAsStruct(oprot);
         }
         oprot.writeListEnd();
@@ -544,9 +544,9 @@ public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.m
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("work_types", org.thryft.protocol.Type.LIST, (short)1);
-        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getWorkTypes().size());
-        for (final net.lab1318.costume.api.models.work_type.WorkType _iter0 : getWorkTypes()) {
+        oprot.writeFieldBegin("elements", org.thryft.protocol.Type.LIST, (short)1);
+        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getElements().size());
+        for (final net.lab1318.costume.api.models.work_type.WorkType _iter0 : getElements()) {
             _iter0.writeAsStruct(oprot);
         }
         oprot.writeListEnd();
@@ -567,7 +567,7 @@ public class WorkTypeSet implements org.thryft.Struct, net.lab1318.costume.api.m
         oprot.writeFieldStop();
     }
 
-    private final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> workTypes;
+    private final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.work_type.WorkType> elements;
 
     private final com.google.common.base.Optional<String> display;
 

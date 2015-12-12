@@ -3,7 +3,7 @@ package net.lab1318.costume.api.models.technique;
 /**
  * VRA Core 4.0 technique element
  */
-public class Technique implements org.thryft.Struct {
+public class Technique implements org.thryft.Struct, net.lab1318.costume.api.models.Element {
     public static class Builder {
         public Builder() {
             text = null;

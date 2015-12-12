@@ -3,34 +3,34 @@ package net.lab1318.costume.api.models.description;
 /**
  * VRA Core 4.0 descriptionSet element
  */
-public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.api.models.ElementSet {
+public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.description.Description> {
     public static class Builder {
         public Builder() {
-            descriptions = null;
+            elements = null;
             display = com.google.common.base.Optional.absent();
             notes = com.google.common.base.Optional.absent();
         }
 
         public Builder(final DescriptionSet other) {
-            this.descriptions = other.getDescriptions();
+            this.elements = other.getElements();
             this.display = other.getDisplay();
             this.notes = other.getNotes();
         }
 
-        protected DescriptionSet _build(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> descriptions, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-            return new DescriptionSet(descriptions, display, notes);
+        protected DescriptionSet _build(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+            return new DescriptionSet(elements, display, notes);
         }
 
         public DescriptionSet build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(descriptions, "net.lab1318.costume.api.models.description.DescriptionSet: missing descriptions"), com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.description.DescriptionSet: missing display"), com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.description.DescriptionSet: missing notes"));
-        }
-
-        public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> getDescriptions() {
-            return descriptions;
+            return _build(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.description.DescriptionSet: missing elements"), com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.description.DescriptionSet: missing display"), com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.description.DescriptionSet: missing notes"));
         }
 
         public final com.google.common.base.Optional<String> getDisplay() {
             return display;
+        }
+
+        public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> getElements() {
+            return elements;
         }
 
         public final com.google.common.base.Optional<String> getNotes() {
@@ -50,7 +50,7 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            descriptions = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description>>() {
+            elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description>>() {
                 @Override
                 public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> apply(final org.thryft.protocol.InputProtocol iprot) {
                     try {
@@ -84,9 +84,9 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
                     break;
                 }
                 switch (ifield.getName()) {
-                case "descriptions": {
+                case "elements": {
                     if (!ifield.hasId() || ifield.getId() == 1) {
-                        descriptions = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description>>() {
+                        elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -124,11 +124,6 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
             return this;
         }
 
-        public Builder setDescriptions(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> descriptions) {
-            this.descriptions = com.google.common.base.Preconditions.checkNotNull(descriptions);
-            return this;
-        }
-
         public Builder setDisplay(final com.google.common.base.Optional<String> display) {
             this.display = com.google.common.base.Preconditions.checkNotNull(display);
             return this;
@@ -139,10 +134,15 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
             return this;
         }
 
+        public Builder setElements(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> elements) {
+            this.elements = com.google.common.base.Preconditions.checkNotNull(elements);
+            return this;
+        }
+
         public Builder setIfPresent(final DescriptionSet other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
-            setDescriptions(other.getDescriptions());
+            setElements(other.getElements());
             if (other.getDisplay().isPresent()) {
                 setDisplay(other.getDisplay());
             }
@@ -168,7 +168,7 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
             com.google.common.base.Preconditions.checkNotNull(name);
 
             switch (name.toLowerCase()) {
-            case "descriptions": setDescriptions((com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description>)value); return this;
+            case "elements": setElements((com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description>)value); return this;
             case "display": setDisplay((String)value); return this;
             case "notes": setNotes((String)value); return this;
             default:
@@ -176,13 +176,13 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
             }
         }
 
-        public Builder unsetDescriptions() {
-            this.descriptions = null;
+        public Builder unsetDisplay() {
+            this.display = com.google.common.base.Optional.absent();
             return this;
         }
 
-        public Builder unsetDisplay() {
-            this.display = com.google.common.base.Optional.absent();
+        public Builder unsetElements() {
+            this.elements = null;
             return this;
         }
 
@@ -191,14 +191,14 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
             return this;
         }
 
-        private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> descriptions;
+        private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> elements;
         private com.google.common.base.Optional<String> display;
         private com.google.common.base.Optional<String> notes;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        DESCRIPTIONS("descriptions", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description>>() {}, true, 1, "descriptions", org.thryft.protocol.Type.LIST),
+        ELEMENTS("elements", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description>>() {}, true, 1, "elements", org.thryft.protocol.Type.LIST),
         DISPLAY("display", new com.google.common.reflect.TypeToken<String>() {}, false, 2, "display", org.thryft.protocol.Type.STRING),
         NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "notes", org.thryft.protocol.Type.STRING);
 
@@ -244,7 +244,7 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "descriptions": return DESCRIPTIONS;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -254,7 +254,7 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "descriptions": return DESCRIPTIONS;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -289,14 +289,14 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
      * Copy constructor
      */
     public DescriptionSet(final DescriptionSet other) {
-        this(other.getDescriptions(), other.getDisplay(), other.getNotes());
+        this(other.getElements(), other.getDisplay(), other.getNotes());
     }
 
     /**
      * Required constructor
      */
-    public DescriptionSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> descriptions) {
-        this.descriptions = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(descriptions, "net.lab1318.costume.api.models.description.DescriptionSet: missing descriptions"), "net.lab1318.costume.api.models.description.DescriptionSet: descriptions is empty");
+    public DescriptionSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> elements) {
+        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.description.DescriptionSet: missing elements"), "net.lab1318.costume.api.models.description.DescriptionSet: elements is empty");
         this.display = com.google.common.base.Optional.absent();
         this.notes = com.google.common.base.Optional.absent();
     }
@@ -304,8 +304,8 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
     /**
      * Total Nullable constructor
      */
-    public DescriptionSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> descriptions, final @javax.annotation.Nullable String display, final @javax.annotation.Nullable String notes) {
-        this.descriptions = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(descriptions, "net.lab1318.costume.api.models.description.DescriptionSet: missing descriptions"), "net.lab1318.costume.api.models.description.DescriptionSet: descriptions is empty");
+    public DescriptionSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> elements, final @javax.annotation.Nullable String display, final @javax.annotation.Nullable String notes) {
+        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.description.DescriptionSet: missing elements"), "net.lab1318.costume.api.models.description.DescriptionSet: elements is empty");
         this.display = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(display), "net.lab1318.costume.api.models.description.DescriptionSet: display is empty");
         this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(notes), "net.lab1318.costume.api.models.description.DescriptionSet: notes is empty");
     }
@@ -313,8 +313,8 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
     /**
      * Optional constructor
      */
-    public DescriptionSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> descriptions, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-        this.descriptions = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(descriptions, "net.lab1318.costume.api.models.description.DescriptionSet: missing descriptions"), "net.lab1318.costume.api.models.description.DescriptionSet: descriptions is empty");
+    public DescriptionSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.description.DescriptionSet: missing elements"), "net.lab1318.costume.api.models.description.DescriptionSet: elements is empty");
         this.display = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.description.DescriptionSet: missing display"), "net.lab1318.costume.api.models.description.DescriptionSet: display is empty");
         this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.description.DescriptionSet: missing notes"), "net.lab1318.costume.api.models.description.DescriptionSet: notes is empty");
     }
@@ -341,7 +341,7 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
 
         final DescriptionSet other = (DescriptionSet)otherObject;
         return
-            getDescriptions().equals(other.getDescriptions()) &&
+            getElements().equals(other.getElements()) &&
             getDisplay().equals(other.getDisplay()) &&
             getNotes().equals(other.getNotes());
     }
@@ -349,7 +349,7 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
     @Override
     public java.lang.Object get(final String fieldName) {
         switch (fieldName) {
-        case "descriptions": return getDescriptions();
+        case "elements": return getElements();
         case "display": return getDisplay();
         case "notes": return getNotes();
         default:
@@ -357,12 +357,12 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
         }
     }
 
-    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> getDescriptions() {
-        return descriptions;
-    }
-
     public final com.google.common.base.Optional<String> getDisplay() {
         return display;
+    }
+
+    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> getElements() {
+        return elements;
     }
 
     public final com.google.common.base.Optional<String> getNotes() {
@@ -372,7 +372,7 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getDescriptions().hashCode();
+        hashCode = 31 * hashCode + getElements().hashCode();
         if (getDisplay().isPresent()) {
             hashCode = 31 * hashCode + getDisplay().get().hashCode();
         }
@@ -394,12 +394,12 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
     }
 
     public static DescriptionSet readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> descriptions = null;
+        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> elements = null;
         com.google.common.base.Optional<String> display = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        descriptions = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description>>() {
+        elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description>>() {
             @Override
             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> apply(final org.thryft.protocol.InputProtocol iprot) {
                 try {
@@ -423,14 +423,14 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
         }
         iprot.readListEnd();
         try {
-            return new DescriptionSet(descriptions, display, notes);
+            return new DescriptionSet(elements, display, notes);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public static DescriptionSet readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> descriptions = null;
+        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> elements = null;
         com.google.common.base.Optional<String> display = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
 
@@ -441,9 +441,9 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
                 break;
             }
             switch (ifield.getName()) {
-            case "descriptions": {
+            case "elements": {
                 if (!ifield.hasId() || ifield.getId() == 1) {
-                    descriptions = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description>>() {
+                    elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description>>() {
                         @Override
                         public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -479,26 +479,26 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
         }
         iprot.readStructEnd();
         try {
-            return new DescriptionSet(descriptions, display, notes);
+            return new DescriptionSet(elements, display, notes);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
-    public DescriptionSet replaceDescriptions(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> descriptions) {
-        return new DescriptionSet(descriptions, this.display, this.notes);
-    }
-
     public DescriptionSet replaceDisplay(final com.google.common.base.Optional<String> display) {
-        return new DescriptionSet(this.descriptions, display, this.notes);
+        return new DescriptionSet(this.elements, display, this.notes);
     }
 
     public DescriptionSet replaceDisplay(final String display) {
         return replaceDisplay(com.google.common.base.Optional.fromNullable(display));
     }
 
+    public DescriptionSet replaceElements(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> elements) {
+        return new DescriptionSet(elements, this.display, this.notes);
+    }
+
     public DescriptionSet replaceNotes(final com.google.common.base.Optional<String> notes) {
-        return new DescriptionSet(this.descriptions, this.display, notes);
+        return new DescriptionSet(this.elements, this.display, notes);
     }
 
     public DescriptionSet replaceNotes(final String notes) {
@@ -507,15 +507,15 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("descriptions", getDescriptions()).add("display", getDisplay().orNull()).add("notes", getNotes().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("elements", getElements()).add("display", getDisplay().orNull()).add("notes", getNotes().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
 
-        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getDescriptions().size());
-        for (final net.lab1318.costume.api.models.description.Description _iter0 : getDescriptions()) {
+        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getElements().size());
+        for (final net.lab1318.costume.api.models.description.Description _iter0 : getElements()) {
             _iter0.writeAsStruct(oprot);
         }
         oprot.writeListEnd();
@@ -544,9 +544,9 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("descriptions", org.thryft.protocol.Type.LIST, (short)1);
-        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getDescriptions().size());
-        for (final net.lab1318.costume.api.models.description.Description _iter0 : getDescriptions()) {
+        oprot.writeFieldBegin("elements", org.thryft.protocol.Type.LIST, (short)1);
+        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getElements().size());
+        for (final net.lab1318.costume.api.models.description.Description _iter0 : getElements()) {
             _iter0.writeAsStruct(oprot);
         }
         oprot.writeListEnd();
@@ -567,7 +567,7 @@ public class DescriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
         oprot.writeFieldStop();
     }
 
-    private final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> descriptions;
+    private final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.description.Description> elements;
 
     private final com.google.common.base.Optional<String> display;
 

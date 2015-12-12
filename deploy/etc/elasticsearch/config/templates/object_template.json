@@ -46,7 +46,7 @@
           "20:agents": {
             "type": "nested", 
             "properties": {
-              "1:agents": {
+              "1:elements": {
                 "type": "nested", 
                 "properties": {
                   "1:name": {
@@ -166,7 +166,7 @@
           "17:inscriptions": {
             "type": "nested", 
             "properties": {
-              "1:inscriptions": {
+              "1:elements": {
                 "type": "nested", 
                 "properties": {
                   "1:texts": {
@@ -223,7 +223,7 @@
           "15:materials": {
             "type": "nested", 
             "properties": {
-              "1:materials": {
+              "1:elements": {
                 "type": "nested", 
                 "properties": {
                   "1:type": {
@@ -267,7 +267,7 @@
           "22:rights": {
             "type": "nested", 
             "properties": {
-              "1:rights": {
+              "1:elements": {
                 "type": "nested", 
                 "properties": {
                   "1:rights_holder": {
@@ -296,7 +296,7 @@
           "21:subjects": {
             "type": "nested", 
             "properties": {
-              "1:subjects": {
+              "1:elements": {
                 "type": "nested", 
                 "properties": {
                   "1:terms": {
@@ -351,7 +351,7 @@
           "16:techniques": {
             "type": "nested", 
             "properties": {
-              "1:techniques": {
+              "1:elements": {
                 "type": "nested", 
                 "properties": {
                   "1:text": {
@@ -408,7 +408,7 @@
           "24:work_types": {
             "type": "nested", 
             "properties": {
-              "1:work_types": {
+              "1:elements": {
                 "type": "nested", 
                 "properties": {
                   "1:text": {

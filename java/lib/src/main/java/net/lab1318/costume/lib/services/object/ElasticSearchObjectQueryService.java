@@ -139,19 +139,19 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             final TermsBuilder agentNameTextAggregation = AggregationBuilders
                     .terms(AgentName.FieldMetadata.TEXT.getThriftName())
                     .field(Object.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
-                            + AgentSet.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
+                            + AgentSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
                             + Agent.FieldMetadata.NAME.getThriftProtocolKey() + '.'
                             + AgentName.FieldMetadata.TEXT.getThriftProtocolKey() + ".not_analyzed");
             final NestedBuilder agentNameAggregation = AggregationBuilders
                     .nested(Agent.FieldMetadata.NAME.getThriftName())
                     .path(Object.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
-                            + AgentSet.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
+                            + AgentSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
                             + Agent.FieldMetadata.NAME.getThriftProtocolKey())
                     .subAggregation(agentNameTextAggregation);
             final NestedBuilder agentSetAgentsAggregation = AggregationBuilders
-                    .nested(AgentSet.FieldMetadata.AGENTS.getThriftName())
+                    .nested(AgentSet.FieldMetadata.ELEMENTS.getThriftName())
                     .path(Object.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
-                            + AgentSet.FieldMetadata.AGENTS.getThriftProtocolKey())
+                            + AgentSet.FieldMetadata.ELEMENTS.getThriftProtocolKey())
                     .subAggregation(agentNameAggregation);
             final NestedBuilder objectAgentsAggregation = AggregationBuilders
                     .nested(Object.FieldMetadata.AGENTS.getThriftName())
@@ -178,19 +178,19 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             final TermsBuilder subjectTermTextAggregation = AggregationBuilders
                     .terms(SubjectTerm.FieldMetadata.TEXT.getThriftName())
                     .field(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
-                            + SubjectSet.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+                            + SubjectSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
                             + Subject.FieldMetadata.TERMS.getThriftProtocolKey() + '.'
                             + SubjectTerm.FieldMetadata.TEXT.getThriftProtocolKey() + ".not_analyzed");
             final NestedBuilder subjectTermsAggregation = AggregationBuilders
                     .nested(Subject.FieldMetadata.TERMS.getThriftName())
                     .path(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
-                            + SubjectSet.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+                            + SubjectSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
                             + Subject.FieldMetadata.TERMS.getThriftProtocolKey())
                     .subAggregation(subjectTermTextAggregation);
             final NestedBuilder subjectSetSubjectsAggregation = AggregationBuilders
-                    .nested(SubjectSet.FieldMetadata.SUBJECTS.getThriftName())
+                    .nested(SubjectSet.FieldMetadata.ELEMENTS.getThriftName())
                     .path(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
-                            + SubjectSet.FieldMetadata.SUBJECTS.getThriftProtocolKey())
+                            + SubjectSet.FieldMetadata.ELEMENTS.getThriftProtocolKey())
                     .subAggregation(subjectTermsAggregation);
             final NestedBuilder objectSubjectsAggregation = AggregationBuilders
                     .nested(Object.FieldMetadata.SUBJECTS.getThriftName())
@@ -206,12 +206,12 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             final TermsBuilder workTypeTextAggregation = AggregationBuilders
                     .terms(WorkType.FieldMetadata.TEXT.getThriftName())
                     .field(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
-                            + WorkTypeSet.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
+                            + WorkTypeSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
                             + WorkType.FieldMetadata.TEXT.getThriftProtocolKey() + ".not_analyzed");
             final NestedBuilder workTypeSetsWorkTypesAggregation = AggregationBuilders
-                    .nested(WorkTypeSet.FieldMetadata.WORK_TYPES.getThriftName())
+                    .nested(WorkTypeSet.FieldMetadata.ELEMENTS.getThriftName())
                     .path(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
-                            + WorkTypeSet.FieldMetadata.WORK_TYPES.getThriftProtocolKey())
+                            + WorkTypeSet.FieldMetadata.ELEMENTS.getThriftProtocolKey())
                     .subAggregation(workTypeTextAggregation);
             final NestedBuilder objectWorkTypesAggregation = AggregationBuilders
                     .nested(Object.FieldMetadata.WORK_TYPES.getThriftName())
@@ -389,10 +389,10 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                     case WORK_TYPES:
                         sortBuilder = SortBuilders
                                 .fieldSort(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
-                                        + WorkTypeSet.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
+                                        + WorkTypeSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
                                         + WorkType.FieldMetadata.TEXT.getThriftProtocolKey() + ".not_analyzed")
                                 .setNestedPath(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
-                                        + WorkTypeSet.FieldMetadata.WORK_TYPES.getThriftProtocolKey());
+                                        + WorkTypeSet.FieldMetadata.ELEMENTS.getThriftProtocolKey());
                         break;
                     default:
                         sortBuilder = SortBuilders.fieldSort(Object.FieldMetadata
@@ -479,14 +479,14 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                             .add(FilterBuilders.nestedFilter(Object.FieldMetadata.AGENTS.getThriftProtocolKey(),
                                     FilterBuilders.nestedFilter(
                                             Object.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
-                                                    + AgentSet.FieldMetadata.AGENTS.getThriftProtocolKey(),
+                                                    + AgentSet.FieldMetadata.ELEMENTS.getThriftProtocolKey(),
                                             FilterBuilders.nestedFilter(
                                                     Object.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
-                                                            + AgentSet.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
-                                                            + Agent.FieldMetadata.NAME.getThriftProtocolKey(),
+                                                            + AgentSet.FieldMetadata.ELEMENTS.getThriftProtocolKey()
+                                                            + '.' + Agent.FieldMetadata.NAME.getThriftProtocolKey(),
                                                     FilterBuilders.termFilter(
                                                             Object.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
-                                                                    + AgentSet.FieldMetadata.AGENTS
+                                                                    + AgentSet.FieldMetadata.ELEMENTS
                                                                             .getThriftProtocolKey()
                                                                     + '.'
                                                                     + Agent.FieldMetadata.NAME.getThriftProtocolKey()
@@ -579,14 +579,14 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                             .add(FilterBuilders.nestedFilter(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey(),
                                     FilterBuilders.nestedFilter(
                                             Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
-                                                    + SubjectSet.FieldMetadata.SUBJECTS.getThriftProtocolKey(),
+                                                    + SubjectSet.FieldMetadata.ELEMENTS.getThriftProtocolKey(),
                                             FilterBuilders.nestedFilter(
                                                     Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
-                                                            + SubjectSet.FieldMetadata.SUBJECTS.getThriftProtocolKey()
+                                                            + SubjectSet.FieldMetadata.ELEMENTS.getThriftProtocolKey()
                                                             + '.' + Subject.FieldMetadata.TERMS.getThriftProtocolKey(),
                                                     FilterBuilders.termFilter(
                                                             Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
-                                                                    + SubjectSet.FieldMetadata.SUBJECTS
+                                                                    + SubjectSet.FieldMetadata.ELEMENTS
                                                                             .getThriftProtocolKey()
                                                                     + '.'
                                                                     + Subject.FieldMetadata.TERMS.getThriftProtocolKey()
@@ -615,13 +615,12 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                     if (workTypeText.isEmpty()) {
                         continue;
                     }
-                    workTypeTextFilters.add(FilterBuilders.nestedFilter(
-                            Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey(),
-                            FilterBuilders.nestedFilter(
-                                    Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
-                                            + WorkTypeSet.FieldMetadata.WORK_TYPES.getThriftProtocolKey(),
+                    workTypeTextFilters
+                            .add(FilterBuilders.nestedFilter(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey(),
+                                    FilterBuilders.nestedFilter(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey()
+                                            + '.' + WorkTypeSet.FieldMetadata.ELEMENTS.getThriftProtocolKey(),
                                     FilterBuilders.termFilter(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey()
-                                            + '.' + WorkTypeSet.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
+                                            + '.' + WorkTypeSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
                                             + WorkType.FieldMetadata.TEXT.getThriftProtocolKey() + ".not_analyzed",
                                             workTypeText))));
                 }

@@ -6,7 +6,7 @@ package net.lab1318.costume.gui.models.material;
 public class MaterialSetBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        MATERIALS("materials", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.material.MaterialBean>>() {}, true, 1, "materials", org.thryft.protocol.Type.LIST),
+        ELEMENTS("elements", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.material.MaterialBean>>() {}, true, 1, "elements", org.thryft.protocol.Type.LIST),
         DISPLAY("display", new com.google.common.reflect.TypeToken<String>() {}, false, 2, "display", org.thryft.protocol.Type.STRING),
         NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "notes", org.thryft.protocol.Type.STRING);
 
@@ -52,7 +52,7 @@ public class MaterialSetBean {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "materials": return MATERIALS;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -62,7 +62,7 @@ public class MaterialSetBean {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "materials": return MATERIALS;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -94,13 +94,13 @@ public class MaterialSetBean {
     }
 
     public MaterialSetBean() {
-        materials = null;
+        elements = null;
         display = null;
         notes = null;
     }
 
     public MaterialSetBean(final net.lab1318.costume.api.models.material.MaterialSet other) {
-        this.materials = (new com.google.common.base.Function<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material>, java.util.List<net.lab1318.costume.gui.models.material.MaterialBean>>() {
+        this.elements = (new com.google.common.base.Function<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material>, java.util.List<net.lab1318.costume.gui.models.material.MaterialBean>>() {
             @Override
             public java.util.List<net.lab1318.costume.gui.models.material.MaterialBean> apply(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.material.Material> other) {
                 final java.util.List<net.lab1318.costume.gui.models.material.MaterialBean> copy = new java.util.ArrayList<net.lab1318.costume.gui.models.material.MaterialBean>();
@@ -109,7 +109,7 @@ public class MaterialSetBean {
                 }
                 return copy;
             }
-        }).apply(other.getMaterials());
+        }).apply(other.getElements());
         this.display = other.getDisplay().isPresent() ? other.getDisplay().get() : null;
         this.notes = other.getNotes().isPresent() ? other.getNotes().get() : null;
     }
@@ -124,7 +124,7 @@ public class MaterialSetBean {
 
         final MaterialSetBean other = (MaterialSetBean)otherObject;
         return
-            getMaterials().equals(other.getMaterials()) &&
+            getElements().equals(other.getElements()) &&
             getDisplay().equals(other.getDisplay()) &&
             getNotes().equals(other.getNotes());
     }
@@ -133,8 +133,8 @@ public class MaterialSetBean {
         return display;
     }
 
-    public java.util.List<net.lab1318.costume.gui.models.material.MaterialBean> getMaterials() {
-        return materials;
+    public java.util.List<net.lab1318.costume.gui.models.material.MaterialBean> getElements() {
+        return elements;
     }
 
     public String getNotes() {
@@ -144,7 +144,7 @@ public class MaterialSetBean {
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getMaterials().hashCode();
+        hashCode = 31 * hashCode + getElements().hashCode();
         if (getDisplay() != null) {
             hashCode = 31 * hashCode + getDisplay().hashCode();
         }
@@ -158,8 +158,8 @@ public class MaterialSetBean {
         this.display = display;
     }
 
-    public void setMaterials(final java.util.List<net.lab1318.costume.gui.models.material.MaterialBean> materials) {
-        this.materials = materials;
+    public void setElements(final java.util.List<net.lab1318.costume.gui.models.material.MaterialBean> elements) {
+        this.elements = elements;
     }
 
     public void setNotes(final String notes) {
@@ -168,10 +168,10 @@ public class MaterialSetBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("materials", getMaterials()).add("display", getDisplay()).add("notes", getNotes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("elements", getElements()).add("display", getDisplay()).add("notes", getNotes()).toString();
     }
 
-    private java.util.List<net.lab1318.costume.gui.models.material.MaterialBean> materials;
+    private java.util.List<net.lab1318.costume.gui.models.material.MaterialBean> elements;
 
     private String display;
 
