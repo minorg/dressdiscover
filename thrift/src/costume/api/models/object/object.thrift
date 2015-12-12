@@ -5,6 +5,7 @@ namespace * costume.api.models.object
 include "costume/api/models/model_metadata.thrift"
 include "costume/api/models/agent/agent_set.thrift"
 include "costume/api/models/collection/collection_id.thrift"
+include "costume/api/models/description/description_set.thrift"
 include "costume/api/models/image/image.thrift"
 include "costume/api/models/inscription/inscription_set.thrift"
 include "costume/api/models/institution/institution_id.thrift"
@@ -40,19 +41,14 @@ struct Object {
 	// @validation {"minLength": 1}
 	11: optional string date_text;
 
-	// Dublin Core description
-	// @validation {"minLength": 1}
-	4: optional string description;
+	4: optional description_set.DescriptionSet descriptions;
 
 	// @validation {"minLength": 1}
-	19: optional string history_notes;
+	23: optional list<image.Image> images;
 
 	17: optional inscription_set.InscriptionSet inscriptions;
 
 	15: optional material_set.MaterialSet materials;
-
-	// @validation {"minLength": 1}
-	12: optional string physical_description;
 
 	// Dublin Core freetext provenance
 	// @validation {"minLength": 1}
@@ -62,13 +58,7 @@ struct Object {
 
 	21: optional subject_set.SubjectSet subjects;
 
-	// @validation {"minLength": 1}
-	7: optional string summary;
-
 	16: optional technique_set.TechniqueSet techniques;
-
-	// @validation {"minLength": 1}
-	23: optional list<image.Image> images;
 
 	9: optional url.Url url;
 

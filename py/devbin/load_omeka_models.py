@@ -13,6 +13,8 @@ from costume.api.models.agent.agent_name_type import AgentNameType
 from costume.api.models.agent.agent_role import AgentRole
 from costume.api.models.agent.agent_set import AgentSet
 from costume.api.models.collection.collection import Collection
+from costume.api.models.description.description import Description
+from costume.api.models.description.description_set import DescriptionSet
 from costume.api.models.image.image import Image
 from costume.api.models.image.image_type import ImageType
 from costume.api.models.institution.institution import Institution
@@ -84,7 +86,7 @@ services.institution_command_service.put_institution(
     Institution.Builder()
         .set_data_rights(
             RightsSet.Builder()
-                .set_rights((
+                .set_elements((
                     Rights.Builder()
                         .set_rights_holder(args.institution_title)
                         .set_text("Copyright %s %s" % (datetime.now().year, args.institution_title))
@@ -161,11 +163,13 @@ for collection_dict in collection_dicts:
                 .set_model_metadata(new_model_metadata())
 
         agents = []
+        descriptions = []
         include_object = True
+        subjects = []
         work_types = []
 
         for element_text_dict in item_dict['element_texts']:
-            text = element_text_dict['text']
+            text = element_text_dict['text'].strip()
             if len(text) == 0:
                 continue
             element_set_name = element_text_dict['element_set']['name']
@@ -203,13 +207,17 @@ for collection_dict in collection_dicts:
                 elif element_name == 'Date':
                     object_builder.set_date_text(text)
                 elif element_name == 'Description':
-                    object_builder.set_description(text)
+                    descriptions.append(
+                        Description.Builder()
+                            .set_text(text)
+                            .build()
+                    )
                 elif element_name == 'Provenance':
                     object_builder.set_provenance(text)
                 elif element_name == 'Rights':
                     object_builder.set_rights(
                         RightsSet.Builder()
-                            .set_rights((
+                            .set_elements((
                                 Rights.Builder()
                                     .set_rights_holder(args.institution_title)
                                     .set_text(text)
@@ -219,7 +227,6 @@ for collection_dict in collection_dicts:
                             .build()
                     )
                 elif element_name == 'Subject':
-                    subjects = []
                     for text_split in text.split(';'):
                         text_split = text_split.strip()
                         if len(text_split) == 0:
@@ -234,8 +241,6 @@ for collection_dict in collection_dicts:
                                 ,))
                                 .build()
                         )
-                    if len(subjects) > 0:
-                        object_builder.set_subjects(SubjectSet.Builder().set_subjects(tuple(subjects)).build())
                 elif element_name == 'Title':
                     object_builder.set_title(text)
                 elif element_name == 'Type':
@@ -288,9 +293,13 @@ for collection_dict in collection_dicts:
             continue
 
         if len(agents) > 0:
-            object_builder.set_agents(AgentSet.Builder().set_agents(tuple(agents)).build())
+            object_builder.set_agents(AgentSet.Builder().set_elements(tuple(agents)).build())
+        if len(descriptions) > 0:
+            object_builder.set_descriptions(DescriptionSet.Builder().set_elements(tuple(descriptions)).build())
+        if len(subjects) > 0:
+            object_builder.set_subjects(SubjectSet.Builder().set_elements(tuple(subjects)).build())
         if len(work_types) > 0:
-            object_builder.set_work_types(WorkTypeSet.Builder().set_work_types(tuple(work_types)).build())
+            object_builder.set_work_types(WorkTypeSet.Builder().set_elements(tuple(work_types)).build())
 
         try:
             files_count = item_dict['files']['count']

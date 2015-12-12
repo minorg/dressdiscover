@@ -157,11 +157,50 @@
           "11:date_text": {
             "type": "string"
           }, 
-          "4:description": {
-            "type": "string"
+          "4:descriptions": {
+            "type": "nested", 
+            "properties": {
+              "1:elements": {
+                "type": "nested", 
+                "properties": {
+                  "1:text": {
+                    "type": "string"
+                  }, 
+                  "2:source": {
+                    "type": "string"
+                  }, 
+                  "3:type": {
+                    "index": "not_analyzed", 
+                    "type": "string"
+                  }
+                }
+              }, 
+              "2:display": {
+                "type": "string"
+              }, 
+              "3:notes": {
+                "type": "string"
+              }
+            }
           }, 
-          "19:history_notes": {
-            "type": "string"
+          "23:images": {
+            "type": "nested", 
+            "properties": {
+              "1:url": {
+                "type": "string", 
+                "analyzer": "email_and_url"
+              }, 
+              "2:height_px": {
+                "type": "integer"
+              }, 
+              "4:type": {
+                "index": "not_analyzed", 
+                "type": "string"
+              }, 
+              "3:width_px": {
+                "type": "integer"
+              }
+            }
           }, 
           "17:inscriptions": {
             "type": "nested", 
@@ -258,9 +297,6 @@
               }
             }
           }, 
-          "12:physical_description": {
-            "type": "string"
-          }, 
           "5:provenance": {
             "type": "string"
           }, 
@@ -345,9 +381,6 @@
               }
             }
           }, 
-          "7:summary": {
-            "type": "string"
-          }, 
           "16:techniques": {
             "type": "nested", 
             "properties": {
@@ -379,25 +412,6 @@
               }, 
               "3:notes": {
                 "type": "string"
-              }
-            }
-          }, 
-          "23:images": {
-            "type": "nested", 
-            "properties": {
-              "1:url": {
-                "type": "string", 
-                "analyzer": "email_and_url"
-              }, 
-              "2:height_px": {
-                "type": "integer"
-              }, 
-              "4:type": {
-                "index": "not_analyzed", 
-                "type": "string"
-              }, 
-              "3:width_px": {
-                "type": "integer"
               }
             }
           }, 

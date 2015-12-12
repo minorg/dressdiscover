@@ -11,17 +11,14 @@ public class ObjectBean {
         CATEGORIES("categories", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 18, "categories", org.thryft.protocol.Type.LIST),
         DATE("date", new com.google.common.reflect.TypeToken<java.util.Date>() {}, false, 10, "date", org.thryft.protocol.Type.I64),
         DATE_TEXT("dateText", new com.google.common.reflect.TypeToken<String>() {}, false, 11, "date_text", org.thryft.protocol.Type.STRING),
-        DESCRIPTION("description", new com.google.common.reflect.TypeToken<String>() {}, false, 4, "description", org.thryft.protocol.Type.STRING),
-        HISTORY_NOTES("historyNotes", new com.google.common.reflect.TypeToken<String>() {}, false, 19, "history_notes", org.thryft.protocol.Type.STRING),
+        DESCRIPTIONS("descriptions", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.description.DescriptionSetBean>() {}, false, 4, "descriptions", org.thryft.protocol.Type.STRUCT),
+        IMAGES("images", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.image.ImageBean>>() {}, false, 23, "images", org.thryft.protocol.Type.LIST),
         INSCRIPTIONS("inscriptions", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.inscription.InscriptionSetBean>() {}, false, 17, "inscriptions", org.thryft.protocol.Type.STRUCT),
         MATERIALS("materials", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.material.MaterialSetBean>() {}, false, 15, "materials", org.thryft.protocol.Type.STRUCT),
-        PHYSICAL_DESCRIPTION("physicalDescription", new com.google.common.reflect.TypeToken<String>() {}, false, 12, "physical_description", org.thryft.protocol.Type.STRING),
         PROVENANCE("provenance", new com.google.common.reflect.TypeToken<String>() {}, false, 5, "provenance", org.thryft.protocol.Type.STRING),
         RIGHTS("rights", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.rights.RightsSetBean>() {}, false, 22, "rights", org.thryft.protocol.Type.STRUCT),
         SUBJECTS("subjects", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.subject.SubjectSetBean>() {}, false, 21, "subjects", org.thryft.protocol.Type.STRUCT),
-        SUMMARY("summary", new com.google.common.reflect.TypeToken<String>() {}, false, 7, "summary", org.thryft.protocol.Type.STRING),
         TECHNIQUES("techniques", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.technique.TechniqueSetBean>() {}, false, 16, "techniques", org.thryft.protocol.Type.STRUCT),
-        IMAGES("images", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.image.ImageBean>>() {}, false, 23, "images", org.thryft.protocol.Type.LIST),
         URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 9, "url", org.thryft.protocol.Type.STRING),
         WORK_TYPES("workTypes", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.work_type.WorkTypeSetBean>() {}, false, 24, "work_types", org.thryft.protocol.Type.STRUCT);
 
@@ -75,17 +72,14 @@ public class ObjectBean {
             case "categories": return CATEGORIES;
             case "date": return DATE;
             case "dateText": return DATE_TEXT;
-            case "description": return DESCRIPTION;
-            case "historyNotes": return HISTORY_NOTES;
+            case "descriptions": return DESCRIPTIONS;
+            case "images": return IMAGES;
             case "inscriptions": return INSCRIPTIONS;
             case "materials": return MATERIALS;
-            case "physicalDescription": return PHYSICAL_DESCRIPTION;
             case "provenance": return PROVENANCE;
             case "rights": return RIGHTS;
             case "subjects": return SUBJECTS;
-            case "summary": return SUMMARY;
             case "techniques": return TECHNIQUES;
-            case "images": return IMAGES;
             case "url": return URL;
             case "workTypes": return WORK_TYPES;
             default:
@@ -103,17 +97,14 @@ public class ObjectBean {
             case "categories": return CATEGORIES;
             case "date": return DATE;
             case "date_text": return DATE_TEXT;
-            case "description": return DESCRIPTION;
-            case "history_notes": return HISTORY_NOTES;
+            case "descriptions": return DESCRIPTIONS;
+            case "images": return IMAGES;
             case "inscriptions": return INSCRIPTIONS;
             case "materials": return MATERIALS;
-            case "physical_description": return PHYSICAL_DESCRIPTION;
             case "provenance": return PROVENANCE;
             case "rights": return RIGHTS;
             case "subjects": return SUBJECTS;
-            case "summary": return SUMMARY;
             case "techniques": return TECHNIQUES;
-            case "images": return IMAGES;
             case "url": return URL;
             case "work_types": return WORK_TYPES;
             default:
@@ -153,17 +144,14 @@ public class ObjectBean {
         categories = null;
         date = null;
         dateText = null;
-        description = null;
-        historyNotes = null;
+        descriptions = null;
+        images = null;
         inscriptions = null;
         materials = null;
-        physicalDescription = null;
         provenance = null;
         rights = null;
         subjects = null;
-        summary = null;
         techniques = null;
-        images = null;
         url = null;
         workTypes = null;
     }
@@ -177,16 +165,7 @@ public class ObjectBean {
         this.categories = other.getCategories().isPresent() ? new java.util.ArrayList<String>(other.getCategories().get()) : null;
         this.date = other.getDate().isPresent() ? other.getDate().get() : null;
         this.dateText = other.getDateText().isPresent() ? other.getDateText().get() : null;
-        this.description = other.getDescription().isPresent() ? other.getDescription().get() : null;
-        this.historyNotes = other.getHistoryNotes().isPresent() ? other.getHistoryNotes().get() : null;
-        this.inscriptions = other.getInscriptions().isPresent() ? new net.lab1318.costume.gui.models.inscription.InscriptionSetBean(other.getInscriptions().get()) : null;
-        this.materials = other.getMaterials().isPresent() ? new net.lab1318.costume.gui.models.material.MaterialSetBean(other.getMaterials().get()) : null;
-        this.physicalDescription = other.getPhysicalDescription().isPresent() ? other.getPhysicalDescription().get() : null;
-        this.provenance = other.getProvenance().isPresent() ? other.getProvenance().get() : null;
-        this.rights = other.getRights().isPresent() ? new net.lab1318.costume.gui.models.rights.RightsSetBean(other.getRights().get()) : null;
-        this.subjects = other.getSubjects().isPresent() ? new net.lab1318.costume.gui.models.subject.SubjectSetBean(other.getSubjects().get()) : null;
-        this.summary = other.getSummary().isPresent() ? other.getSummary().get() : null;
-        this.techniques = other.getTechniques().isPresent() ? new net.lab1318.costume.gui.models.technique.TechniqueSetBean(other.getTechniques().get()) : null;
+        this.descriptions = other.getDescriptions().isPresent() ? new net.lab1318.costume.gui.models.description.DescriptionSetBean(other.getDescriptions().get()) : null;
         this.images = other.getImages().isPresent() ? (new com.google.common.base.Function<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image>, java.util.List<net.lab1318.costume.gui.models.image.ImageBean>>() {
             @Override
             public java.util.List<net.lab1318.costume.gui.models.image.ImageBean> apply(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image> other) {
@@ -197,6 +176,12 @@ public class ObjectBean {
                 return copy;
             }
         }).apply(other.getImages().get()) : null;
+        this.inscriptions = other.getInscriptions().isPresent() ? new net.lab1318.costume.gui.models.inscription.InscriptionSetBean(other.getInscriptions().get()) : null;
+        this.materials = other.getMaterials().isPresent() ? new net.lab1318.costume.gui.models.material.MaterialSetBean(other.getMaterials().get()) : null;
+        this.provenance = other.getProvenance().isPresent() ? other.getProvenance().get() : null;
+        this.rights = other.getRights().isPresent() ? new net.lab1318.costume.gui.models.rights.RightsSetBean(other.getRights().get()) : null;
+        this.subjects = other.getSubjects().isPresent() ? new net.lab1318.costume.gui.models.subject.SubjectSetBean(other.getSubjects().get()) : null;
+        this.techniques = other.getTechniques().isPresent() ? new net.lab1318.costume.gui.models.technique.TechniqueSetBean(other.getTechniques().get()) : null;
         this.url = other.getUrl().isPresent() ? other.getUrl().get() : null;
         this.workTypes = other.getWorkTypes().isPresent() ? new net.lab1318.costume.gui.models.work_type.WorkTypeSetBean(other.getWorkTypes().get()) : null;
     }
@@ -219,17 +204,14 @@ public class ObjectBean {
             getCategories().equals(other.getCategories()) &&
             getDate().equals(other.getDate()) &&
             getDateText().equals(other.getDateText()) &&
-            getDescription().equals(other.getDescription()) &&
-            getHistoryNotes().equals(other.getHistoryNotes()) &&
+            getDescriptions().equals(other.getDescriptions()) &&
+            getImages().equals(other.getImages()) &&
             getInscriptions().equals(other.getInscriptions()) &&
             getMaterials().equals(other.getMaterials()) &&
-            getPhysicalDescription().equals(other.getPhysicalDescription()) &&
             getProvenance().equals(other.getProvenance()) &&
             getRights().equals(other.getRights()) &&
             getSubjects().equals(other.getSubjects()) &&
-            getSummary().equals(other.getSummary()) &&
             getTechniques().equals(other.getTechniques()) &&
-            getImages().equals(other.getImages()) &&
             getUrl().equals(other.getUrl()) &&
             getWorkTypes().equals(other.getWorkTypes());
     }
@@ -257,15 +239,8 @@ public class ObjectBean {
         return dateText;
     }
 
-    /**
-     * Dublin Core description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    public String getHistoryNotes() {
-        return historyNotes;
+    public net.lab1318.costume.gui.models.description.DescriptionSetBean getDescriptions() {
+        return descriptions;
     }
 
     public java.util.List<net.lab1318.costume.gui.models.image.ImageBean> getImages() {
@@ -288,10 +263,6 @@ public class ObjectBean {
         return modelMetadata;
     }
 
-    public String getPhysicalDescription() {
-        return physicalDescription;
-    }
-
     /**
      * Dublin Core freetext provenance
      */
@@ -305,10 +276,6 @@ public class ObjectBean {
 
     public net.lab1318.costume.gui.models.subject.SubjectSetBean getSubjects() {
         return subjects;
-    }
-
-    public String getSummary() {
-        return summary;
     }
 
     public net.lab1318.costume.gui.models.technique.TechniqueSetBean getTechniques() {
@@ -349,20 +316,17 @@ public class ObjectBean {
         if (getDateText() != null) {
             hashCode = 31 * hashCode + getDateText().hashCode();
         }
-        if (getDescription() != null) {
-            hashCode = 31 * hashCode + getDescription().hashCode();
+        if (getDescriptions() != null) {
+            hashCode = 31 * hashCode + getDescriptions().hashCode();
         }
-        if (getHistoryNotes() != null) {
-            hashCode = 31 * hashCode + getHistoryNotes().hashCode();
+        if (getImages() != null) {
+            hashCode = 31 * hashCode + getImages().hashCode();
         }
         if (getInscriptions() != null) {
             hashCode = 31 * hashCode + getInscriptions().hashCode();
         }
         if (getMaterials() != null) {
             hashCode = 31 * hashCode + getMaterials().hashCode();
-        }
-        if (getPhysicalDescription() != null) {
-            hashCode = 31 * hashCode + getPhysicalDescription().hashCode();
         }
         if (getProvenance() != null) {
             hashCode = 31 * hashCode + getProvenance().hashCode();
@@ -373,14 +337,8 @@ public class ObjectBean {
         if (getSubjects() != null) {
             hashCode = 31 * hashCode + getSubjects().hashCode();
         }
-        if (getSummary() != null) {
-            hashCode = 31 * hashCode + getSummary().hashCode();
-        }
         if (getTechniques() != null) {
             hashCode = 31 * hashCode + getTechniques().hashCode();
-        }
-        if (getImages() != null) {
-            hashCode = 31 * hashCode + getImages().hashCode();
         }
         if (getUrl() != null) {
             hashCode = 31 * hashCode + getUrl().hashCode();
@@ -411,12 +369,8 @@ public class ObjectBean {
         this.dateText = dateText;
     }
 
-    public void setDescription(final String description) {
-        this.description = description;
-    }
-
-    public void setHistoryNotes(final String historyNotes) {
-        this.historyNotes = historyNotes;
+    public void setDescriptions(final net.lab1318.costume.gui.models.description.DescriptionSetBean descriptions) {
+        this.descriptions = descriptions;
     }
 
     public void setImages(final java.util.List<net.lab1318.costume.gui.models.image.ImageBean> images) {
@@ -439,10 +393,6 @@ public class ObjectBean {
         this.modelMetadata = modelMetadata;
     }
 
-    public void setPhysicalDescription(final String physicalDescription) {
-        this.physicalDescription = physicalDescription;
-    }
-
     public void setProvenance(final String provenance) {
         this.provenance = provenance;
     }
@@ -453,10 +403,6 @@ public class ObjectBean {
 
     public void setSubjects(final net.lab1318.costume.gui.models.subject.SubjectSetBean subjects) {
         this.subjects = subjects;
-    }
-
-    public void setSummary(final String summary) {
-        this.summary = summary;
     }
 
     public void setTechniques(final net.lab1318.costume.gui.models.technique.TechniqueSetBean techniques) {
@@ -477,7 +423,7 @@ public class ObjectBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agents", getAgents()).add("categories", getCategories()).add("date", getDate()).add("date_text", getDateText()).add("description", getDescription()).add("history_notes", getHistoryNotes()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("physical_description", getPhysicalDescription()).add("provenance", getProvenance()).add("rights", getRights()).add("subjects", getSubjects()).add("summary", getSummary()).add("techniques", getTechniques()).add("images", getImages()).add("url", getUrl()).add("work_types", getWorkTypes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agents", getAgents()).add("categories", getCategories()).add("date", getDate()).add("date_text", getDateText()).add("descriptions", getDescriptions()).add("images", getImages()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("provenance", getProvenance()).add("rights", getRights()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("url", getUrl()).add("work_types", getWorkTypes()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -502,18 +448,13 @@ public class ObjectBean {
      */
     private String dateText;
 
-    /**
-     * Dublin Core description
-     */
-    private String description;
+    private net.lab1318.costume.gui.models.description.DescriptionSetBean descriptions;
 
-    private String historyNotes;
+    private java.util.List<net.lab1318.costume.gui.models.image.ImageBean> images;
 
     private net.lab1318.costume.gui.models.inscription.InscriptionSetBean inscriptions;
 
     private net.lab1318.costume.gui.models.material.MaterialSetBean materials;
-
-    private String physicalDescription;
 
     /**
      * Dublin Core freetext provenance
@@ -524,11 +465,7 @@ public class ObjectBean {
 
     private net.lab1318.costume.gui.models.subject.SubjectSetBean subjects;
 
-    private String summary;
-
     private net.lab1318.costume.gui.models.technique.TechniqueSetBean techniques;
-
-    private java.util.List<net.lab1318.costume.gui.models.image.ImageBean> images;
 
     private org.thryft.native_.Url url;
 

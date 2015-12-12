@@ -1,5 +1,10 @@
 class DescriptionType(object):
+    EXHIBITION = None
+    HISTORY = None
     PHYSICAL = None
+    PRIVATE = None
+    PUBLIC = None
+    SUMMARY = None
 
     def __init__(self, name, value):
         object.__init__(self)
@@ -17,12 +22,27 @@ class DescriptionType(object):
 
     @classmethod
     def value_of(cls, name):
-        if name == 'PHYSICAL' or name == '0':
+        if name == 'EXHIBITION' or name == '0':
+            return getattr(DescriptionType, 'EXHIBITION')
+        elif name == 'HISTORY' or name == '1':
+            return getattr(DescriptionType, 'HISTORY')
+        elif name == 'PHYSICAL' or name == '2':
             return getattr(DescriptionType, 'PHYSICAL')
+        elif name == 'PRIVATE' or name == '3':
+            return getattr(DescriptionType, 'PRIVATE')
+        elif name == 'PUBLIC' or name == '4':
+            return getattr(DescriptionType, 'PUBLIC')
+        elif name == 'SUMMARY' or name == '5':
+            return getattr(DescriptionType, 'SUMMARY')
         raise ValueError(name)
 
     @classmethod
     def values(cls):
-        return (DescriptionType.PHYSICAL,)
+        return (DescriptionType.EXHIBITION, DescriptionType.HISTORY, DescriptionType.PHYSICAL, DescriptionType.PRIVATE, DescriptionType.PUBLIC, DescriptionType.SUMMARY,)
 
-DescriptionType.PHYSICAL = DescriptionType('PHYSICAL', 0)
+DescriptionType.EXHIBITION = DescriptionType('EXHIBITION', 0)
+DescriptionType.HISTORY = DescriptionType('HISTORY', 1)
+DescriptionType.PHYSICAL = DescriptionType('PHYSICAL', 2)
+DescriptionType.PRIVATE = DescriptionType('PRIVATE', 3)
+DescriptionType.PUBLIC = DescriptionType('PUBLIC', 4)
+DescriptionType.SUMMARY = DescriptionType('SUMMARY', 5)
