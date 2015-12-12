@@ -6,7 +6,7 @@ package net.lab1318.costume.gui.models.subject;
 public class SubjectSetBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        SUBJECTS("subjects", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.subject.SubjectBean>>() {}, true, 1, "subjects", org.thryft.protocol.Type.LIST),
+        ELEMENTS("elements", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.subject.SubjectBean>>() {}, true, 1, "elements", org.thryft.protocol.Type.LIST),
         DISPLAY("display", new com.google.common.reflect.TypeToken<String>() {}, false, 2, "display", org.thryft.protocol.Type.STRING),
         NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "notes", org.thryft.protocol.Type.STRING);
 
@@ -52,7 +52,7 @@ public class SubjectSetBean {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "subjects": return SUBJECTS;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -62,7 +62,7 @@ public class SubjectSetBean {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "subjects": return SUBJECTS;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -94,13 +94,13 @@ public class SubjectSetBean {
     }
 
     public SubjectSetBean() {
-        subjects = null;
+        elements = null;
         display = null;
         notes = null;
     }
 
     public SubjectSetBean(final net.lab1318.costume.api.models.subject.SubjectSet other) {
-        this.subjects = (new com.google.common.base.Function<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject>, java.util.List<net.lab1318.costume.gui.models.subject.SubjectBean>>() {
+        this.elements = (new com.google.common.base.Function<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject>, java.util.List<net.lab1318.costume.gui.models.subject.SubjectBean>>() {
             @Override
             public java.util.List<net.lab1318.costume.gui.models.subject.SubjectBean> apply(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.Subject> other) {
                 final java.util.List<net.lab1318.costume.gui.models.subject.SubjectBean> copy = new java.util.ArrayList<net.lab1318.costume.gui.models.subject.SubjectBean>();
@@ -109,7 +109,7 @@ public class SubjectSetBean {
                 }
                 return copy;
             }
-        }).apply(other.getSubjects());
+        }).apply(other.getElements());
         this.display = other.getDisplay().isPresent() ? other.getDisplay().get() : null;
         this.notes = other.getNotes().isPresent() ? other.getNotes().get() : null;
     }
@@ -124,7 +124,7 @@ public class SubjectSetBean {
 
         final SubjectSetBean other = (SubjectSetBean)otherObject;
         return
-            getSubjects().equals(other.getSubjects()) &&
+            getElements().equals(other.getElements()) &&
             getDisplay().equals(other.getDisplay()) &&
             getNotes().equals(other.getNotes());
     }
@@ -133,18 +133,18 @@ public class SubjectSetBean {
         return display;
     }
 
-    public String getNotes() {
-        return notes;
+    public java.util.List<net.lab1318.costume.gui.models.subject.SubjectBean> getElements() {
+        return elements;
     }
 
-    public java.util.List<net.lab1318.costume.gui.models.subject.SubjectBean> getSubjects() {
-        return subjects;
+    public String getNotes() {
+        return notes;
     }
 
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getSubjects().hashCode();
+        hashCode = 31 * hashCode + getElements().hashCode();
         if (getDisplay() != null) {
             hashCode = 31 * hashCode + getDisplay().hashCode();
         }
@@ -158,20 +158,20 @@ public class SubjectSetBean {
         this.display = display;
     }
 
+    public void setElements(final java.util.List<net.lab1318.costume.gui.models.subject.SubjectBean> elements) {
+        this.elements = elements;
+    }
+
     public void setNotes(final String notes) {
         this.notes = notes;
     }
 
-    public void setSubjects(final java.util.List<net.lab1318.costume.gui.models.subject.SubjectBean> subjects) {
-        this.subjects = subjects;
-    }
-
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("subjects", getSubjects()).add("display", getDisplay()).add("notes", getNotes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("elements", getElements()).add("display", getDisplay()).add("notes", getNotes()).toString();
     }
 
-    private java.util.List<net.lab1318.costume.gui.models.subject.SubjectBean> subjects;
+    private java.util.List<net.lab1318.costume.gui.models.subject.SubjectBean> elements;
 
     private String display;
 

@@ -35,20 +35,20 @@ $v-layout-spacing-vertical: 0.5em;
   .borderless {
   	border: none;
   }
-  
+
   .icon-button {
 	font-size: 1em;
 	padding-bottom: 4px;
 	padding-top: 4px;
 	vertical-align: middle;
   }
-    
+
   .v-nativebutton {
     // background: transparent;
     border: none;
     box-shadow: none;
   }
-  
+
   .v-align-center > .v-widget {
   	text-align: center;
   }
@@ -57,12 +57,20 @@ $v-layout-spacing-vertical: 0.5em;
     padding: 2px;
     text-align: center;
   }
-  
+
   .v-table-cell-content-thumbnail > .v-table-cell-wrapper > .v-widget {
     margin: 0px;
   	text-align: center;
   }
-    
+
+  .v-table-cell-wrapper{
+    white-space: normal;
+  }
+
+  .v-table-focus .v-table-cell-wrapper {
+    white-space: normal;
+  }
+
   [class*="margin-top"] > tbody > [class*="firstrow"] > td {
   	padding-top: 0px;
   }

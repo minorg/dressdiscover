@@ -7,22 +7,22 @@ class MaterialSet(object):
     class Builder(object):
         def __init__(
             self,
-            materials=None,
+            elements=None,
             display=None,
             notes=None,
         ):
             '''
-            :type materials: tuple(costume.api.models.material.material.Material)
+            :type elements: tuple(costume.api.models.material.material.Material)
             :type display: str or None
             :type notes: str or None
             '''
 
-            self.__materials = materials
+            self.__elements = elements
             self.__display = display
             self.__notes = notes
 
         def build(self):
-            return MaterialSet(materials=self.__materials, display=self.__display, notes=self.__notes)
+            return MaterialSet(elements=self.__elements, display=self.__display, notes=self.__notes)
 
         @property
         def display(self):
@@ -33,12 +33,12 @@ class MaterialSet(object):
             return self.__display
 
         @property
-        def materials(self):
+        def elements(self):
             '''
             :rtype: tuple(costume.api.models.material.material.Material)
             '''
 
-            return self.__materials
+            return self.__elements
 
         @property
         def notes(self):
@@ -56,12 +56,12 @@ class MaterialSet(object):
             self.__display = display
             return self
 
-        def set_materials(self, materials):
+        def set_elements(self, elements):
             '''
-            :type materials: tuple(costume.api.models.material.material.Material)
+            :type elements: tuple(costume.api.models.material.material.Material)
             '''
 
-            self.__materials = materials
+            self.__elements = elements
             return self
 
         def set_notes(self, notes):
@@ -74,13 +74,13 @@ class MaterialSet(object):
 
         def update(self, material_set):
             '''
-            :type materials: tuple(costume.api.models.material.material.Material)
+            :type elements: tuple(costume.api.models.material.material.Material)
             :type display: str or None
             :type notes: str or None
             '''
 
             if isinstance(material_set, MaterialSet):
-                self.set_materials(material_set.materials)
+                self.set_elements(material_set.elements)
                 self.set_display(material_set.display)
                 self.set_notes(material_set.notes)
             elif isinstance(material_set, dict):
@@ -98,13 +98,13 @@ class MaterialSet(object):
 
             self.set_display(display)
 
-        @materials.setter
-        def materials(self, materials):
+        @elements.setter
+        def elements(self, elements):
             '''
-            :type materials: tuple(costume.api.models.material.material.Material)
+            :type elements: tuple(costume.api.models.material.material.Material)
             '''
 
-            self.set_materials(materials)
+            self.set_elements(elements)
 
         @notes.setter
         def notes(self, notes):
@@ -116,23 +116,23 @@ class MaterialSet(object):
 
     def __init__(
         self,
-        materials,
+        elements,
         display=None,
         notes=None,
     ):
         '''
-        :type materials: tuple(costume.api.models.material.material.Material)
+        :type elements: tuple(costume.api.models.material.material.Material)
         :type display: str or None
         :type notes: str or None
         '''
 
-        if materials is None:
-            raise ValueError('materials is required')
-        if not (isinstance(materials, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.material.material.Material), materials))) == 0):
-            raise TypeError("expected materials to be a tuple(costume.api.models.material.material.Material) but it is a %s" % getattr(__builtin__, 'type')(materials))
-        if len(materials) < 1:
-            raise ValueError("expected len(materials) to be >= 1, was %d" % len(materials))
-        self.__materials = materials
+        if elements is None:
+            raise ValueError('elements is required')
+        if not (isinstance(elements, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.material.material.Material), elements))) == 0):
+            raise TypeError("expected elements to be a tuple(costume.api.models.material.material.Material) but it is a %s" % getattr(__builtin__, 'type')(elements))
+        if len(elements) < 1:
+            raise ValueError("expected len(elements) to be >= 1, was %d" % len(elements))
+        self.__elements = elements
 
         if display is not None:
             if not isinstance(display, basestring):
@@ -149,7 +149,7 @@ class MaterialSet(object):
         self.__notes = notes
 
     def __eq__(self, other):
-        if self.materials != other.materials:
+        if self.elements != other.elements:
             return False
         if self.display != other.display:
             return False
@@ -158,7 +158,7 @@ class MaterialSet(object):
         return True
 
     def __hash__(self):
-        return hash((self.materials,self.display,self.notes,))
+        return hash((self.elements,self.display,self.notes,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -168,7 +168,7 @@ class MaterialSet(object):
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('materials=' + repr(self.materials))
+        field_reprs.append('elements=' + repr(self.elements))
         if self.display is not None:
             field_reprs.append('display=' + "'" + self.display.encode('ascii', 'replace') + "'")
         if self.notes is not None:
@@ -177,7 +177,7 @@ class MaterialSet(object):
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('materials=' + repr(self.materials))
+        field_reprs.append('elements=' + repr(self.elements))
         if self.display is not None:
             field_reprs.append('display=' + "'" + self.display.encode('ascii', 'replace') + "'")
         if self.notes is not None:
@@ -191,7 +191,7 @@ class MaterialSet(object):
         :rtype: dict
         '''
 
-        return {'materials': self.materials, 'display': self.display, 'notes': self.notes}
+        return {'elements': self.elements, 'display': self.display, 'notes': self.notes}
 
     def as_tuple(self):
         '''
@@ -200,7 +200,7 @@ class MaterialSet(object):
         :rtype: tuple
         '''
 
-        return (self.materials, self.display, self.notes,)
+        return (self.elements, self.display, self.notes,)
 
     @property
     def display(self):
@@ -211,12 +211,12 @@ class MaterialSet(object):
         return self.__display
 
     @property
-    def materials(self):
+    def elements(self):
         '''
         :rtype: tuple(costume.api.models.material.material.Material)
         '''
 
-        return self.__materials
+        return self.__elements
 
     @property
     def notes(self):
@@ -242,8 +242,8 @@ class MaterialSet(object):
             ifield_name, ifield_type, ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
-            elif ifield_name == 'materials' and ifield_id == 1:
-                init_kwds['materials'] = tuple([costume.api.models.material.material.Material.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+            elif ifield_name == 'elements' and ifield_id == 1:
+                init_kwds['elements'] = tuple([costume.api.models.material.material.Material.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'display' and ifield_id == 2:
                 try:
                     init_kwds['display'] = iprot.read_string()
@@ -261,26 +261,26 @@ class MaterialSet(object):
 
     def replace(
         self,
-        materials=None,
+        elements=None,
         display=None,
         notes=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type materials: tuple(costume.api.models.material.material.Material) or None
+        :type elements: tuple(costume.api.models.material.material.Material) or None
         :type display: str or None
         :type notes: str or None
         :rtype: costume.api.models.material.material_set.MaterialSet
         '''
 
-        if materials is None:
-            materials = self.materials
+        if elements is None:
+            elements = self.elements
         if display is None:
             display = self.display
         if notes is None:
             notes = self.notes
-        return self.__class__(materials=materials, display=display, notes=notes)
+        return self.__class__(elements=elements, display=display, notes=notes)
 
     def write(self, oprot):
         '''
@@ -292,9 +292,9 @@ class MaterialSet(object):
 
         oprot.write_struct_begin('MaterialSet')
 
-        oprot.write_field_begin(name='materials', type=15, id=1)
-        oprot.write_list_begin(12, len(self.materials))
-        for _0 in self.materials:
+        oprot.write_field_begin(name='elements', type=15, id=1)
+        oprot.write_list_begin(12, len(self.elements))
+        for _0 in self.elements:
             _0.write(oprot)
         oprot.write_list_end()
         oprot.write_field_end()

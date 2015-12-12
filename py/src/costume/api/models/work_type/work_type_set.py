@@ -7,22 +7,22 @@ class WorkTypeSet(object):
     class Builder(object):
         def __init__(
             self,
-            work_types=None,
+            elements=None,
             display=None,
             notes=None,
         ):
             '''
-            :type work_types: tuple(costume.api.models.work_type.work_type.WorkType)
+            :type elements: tuple(costume.api.models.work_type.work_type.WorkType)
             :type display: str or None
             :type notes: str or None
             '''
 
-            self.__work_types = work_types
+            self.__elements = elements
             self.__display = display
             self.__notes = notes
 
         def build(self):
-            return WorkTypeSet(work_types=self.__work_types, display=self.__display, notes=self.__notes)
+            return WorkTypeSet(elements=self.__elements, display=self.__display, notes=self.__notes)
 
         @property
         def display(self):
@@ -31,6 +31,14 @@ class WorkTypeSet(object):
             '''
 
             return self.__display
+
+        @property
+        def elements(self):
+            '''
+            :rtype: tuple(costume.api.models.work_type.work_type.WorkType)
+            '''
+
+            return self.__elements
 
         @property
         def notes(self):
@@ -48,6 +56,14 @@ class WorkTypeSet(object):
             self.__display = display
             return self
 
+        def set_elements(self, elements):
+            '''
+            :type elements: tuple(costume.api.models.work_type.work_type.WorkType)
+            '''
+
+            self.__elements = elements
+            return self
+
         def set_notes(self, notes):
             '''
             :type notes: str or None
@@ -56,23 +72,15 @@ class WorkTypeSet(object):
             self.__notes = notes
             return self
 
-        def set_work_types(self, work_types):
-            '''
-            :type work_types: tuple(costume.api.models.work_type.work_type.WorkType)
-            '''
-
-            self.__work_types = work_types
-            return self
-
         def update(self, work_type_set):
             '''
-            :type work_types: tuple(costume.api.models.work_type.work_type.WorkType)
+            :type elements: tuple(costume.api.models.work_type.work_type.WorkType)
             :type display: str or None
             :type notes: str or None
             '''
 
             if isinstance(work_type_set, WorkTypeSet):
-                self.set_work_types(work_type_set.work_types)
+                self.set_elements(work_type_set.elements)
                 self.set_display(work_type_set.display)
                 self.set_notes(work_type_set.notes)
             elif isinstance(work_type_set, dict):
@@ -82,14 +90,6 @@ class WorkTypeSet(object):
                 raise TypeError(work_type_set)
             return self
 
-        @property
-        def work_types(self):
-            '''
-            :rtype: tuple(costume.api.models.work_type.work_type.WorkType)
-            '''
-
-            return self.__work_types
-
         @display.setter
         def display(self, display):
             '''
@@ -97,6 +97,14 @@ class WorkTypeSet(object):
             '''
 
             self.set_display(display)
+
+        @elements.setter
+        def elements(self, elements):
+            '''
+            :type elements: tuple(costume.api.models.work_type.work_type.WorkType)
+            '''
+
+            self.set_elements(elements)
 
         @notes.setter
         def notes(self, notes):
@@ -106,33 +114,25 @@ class WorkTypeSet(object):
 
             self.set_notes(notes)
 
-        @work_types.setter
-        def work_types(self, work_types):
-            '''
-            :type work_types: tuple(costume.api.models.work_type.work_type.WorkType)
-            '''
-
-            self.set_work_types(work_types)
-
     def __init__(
         self,
-        work_types,
+        elements,
         display=None,
         notes=None,
     ):
         '''
-        :type work_types: tuple(costume.api.models.work_type.work_type.WorkType)
+        :type elements: tuple(costume.api.models.work_type.work_type.WorkType)
         :type display: str or None
         :type notes: str or None
         '''
 
-        if work_types is None:
-            raise ValueError('work_types is required')
-        if not (isinstance(work_types, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.work_type.work_type.WorkType), work_types))) == 0):
-            raise TypeError("expected work_types to be a tuple(costume.api.models.work_type.work_type.WorkType) but it is a %s" % getattr(__builtin__, 'type')(work_types))
-        if len(work_types) < 1:
-            raise ValueError("expected len(work_types) to be >= 1, was %d" % len(work_types))
-        self.__work_types = work_types
+        if elements is None:
+            raise ValueError('elements is required')
+        if not (isinstance(elements, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.work_type.work_type.WorkType), elements))) == 0):
+            raise TypeError("expected elements to be a tuple(costume.api.models.work_type.work_type.WorkType) but it is a %s" % getattr(__builtin__, 'type')(elements))
+        if len(elements) < 1:
+            raise ValueError("expected len(elements) to be >= 1, was %d" % len(elements))
+        self.__elements = elements
 
         if display is not None:
             if not isinstance(display, basestring):
@@ -149,7 +149,7 @@ class WorkTypeSet(object):
         self.__notes = notes
 
     def __eq__(self, other):
-        if self.work_types != other.work_types:
+        if self.elements != other.elements:
             return False
         if self.display != other.display:
             return False
@@ -158,7 +158,7 @@ class WorkTypeSet(object):
         return True
 
     def __hash__(self):
-        return hash((self.work_types,self.display,self.notes,))
+        return hash((self.elements,self.display,self.notes,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -168,7 +168,7 @@ class WorkTypeSet(object):
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('work_types=' + repr(self.work_types))
+        field_reprs.append('elements=' + repr(self.elements))
         if self.display is not None:
             field_reprs.append('display=' + "'" + self.display.encode('ascii', 'replace') + "'")
         if self.notes is not None:
@@ -177,7 +177,7 @@ class WorkTypeSet(object):
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('work_types=' + repr(self.work_types))
+        field_reprs.append('elements=' + repr(self.elements))
         if self.display is not None:
             field_reprs.append('display=' + "'" + self.display.encode('ascii', 'replace') + "'")
         if self.notes is not None:
@@ -191,7 +191,7 @@ class WorkTypeSet(object):
         :rtype: dict
         '''
 
-        return {'work_types': self.work_types, 'display': self.display, 'notes': self.notes}
+        return {'elements': self.elements, 'display': self.display, 'notes': self.notes}
 
     def as_tuple(self):
         '''
@@ -200,7 +200,7 @@ class WorkTypeSet(object):
         :rtype: tuple
         '''
 
-        return (self.work_types, self.display, self.notes,)
+        return (self.elements, self.display, self.notes,)
 
     @property
     def display(self):
@@ -209,6 +209,14 @@ class WorkTypeSet(object):
         '''
 
         return self.__display
+
+    @property
+    def elements(self):
+        '''
+        :rtype: tuple(costume.api.models.work_type.work_type.WorkType)
+        '''
+
+        return self.__elements
 
     @property
     def notes(self):
@@ -234,8 +242,8 @@ class WorkTypeSet(object):
             ifield_name, ifield_type, ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
-            elif ifield_name == 'work_types' and ifield_id == 1:
-                init_kwds['work_types'] = tuple([costume.api.models.work_type.work_type.WorkType.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+            elif ifield_name == 'elements' and ifield_id == 1:
+                init_kwds['elements'] = tuple([costume.api.models.work_type.work_type.WorkType.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'display' and ifield_id == 2:
                 try:
                     init_kwds['display'] = iprot.read_string()
@@ -253,34 +261,26 @@ class WorkTypeSet(object):
 
     def replace(
         self,
-        work_types=None,
+        elements=None,
         display=None,
         notes=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type work_types: tuple(costume.api.models.work_type.work_type.WorkType) or None
+        :type elements: tuple(costume.api.models.work_type.work_type.WorkType) or None
         :type display: str or None
         :type notes: str or None
         :rtype: costume.api.models.work_type.work_type_set.WorkTypeSet
         '''
 
-        if work_types is None:
-            work_types = self.work_types
+        if elements is None:
+            elements = self.elements
         if display is None:
             display = self.display
         if notes is None:
             notes = self.notes
-        return self.__class__(work_types=work_types, display=display, notes=notes)
-
-    @property
-    def work_types(self):
-        '''
-        :rtype: tuple(costume.api.models.work_type.work_type.WorkType)
-        '''
-
-        return self.__work_types
+        return self.__class__(elements=elements, display=display, notes=notes)
 
     def write(self, oprot):
         '''
@@ -292,9 +292,9 @@ class WorkTypeSet(object):
 
         oprot.write_struct_begin('WorkTypeSet')
 
-        oprot.write_field_begin(name='work_types', type=15, id=1)
-        oprot.write_list_begin(12, len(self.work_types))
-        for _0 in self.work_types:
+        oprot.write_field_begin(name='elements', type=15, id=1)
+        oprot.write_list_begin(12, len(self.elements))
+        for _0 in self.elements:
             _0.write(oprot)
         oprot.write_list_end()
         oprot.write_field_end()

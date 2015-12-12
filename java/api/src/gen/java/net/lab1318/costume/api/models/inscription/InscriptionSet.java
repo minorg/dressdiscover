@@ -3,34 +3,34 @@ package net.lab1318.costume.api.models.inscription;
 /**
  * VRA Core 4.0 inscriptionSet element
  */
-public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.api.models.ElementSet {
+public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.inscription.Inscription> {
     public static class Builder {
         public Builder() {
-            inscriptions = null;
+            elements = null;
             display = com.google.common.base.Optional.absent();
             notes = com.google.common.base.Optional.absent();
         }
 
         public Builder(final InscriptionSet other) {
-            this.inscriptions = other.getInscriptions();
+            this.elements = other.getElements();
             this.display = other.getDisplay();
             this.notes = other.getNotes();
         }
 
-        protected InscriptionSet _build(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> inscriptions, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-            return new InscriptionSet(inscriptions, display, notes);
+        protected InscriptionSet _build(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+            return new InscriptionSet(elements, display, notes);
         }
 
         public InscriptionSet build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(inscriptions, "net.lab1318.costume.api.models.inscription.InscriptionSet: missing inscriptions"), com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.inscription.InscriptionSet: missing display"), com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.inscription.InscriptionSet: missing notes"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.inscription.InscriptionSet: missing elements"), com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.inscription.InscriptionSet: missing display"), com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.inscription.InscriptionSet: missing notes"));
         }
 
         public final com.google.common.base.Optional<String> getDisplay() {
             return display;
         }
 
-        public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> getInscriptions() {
-            return inscriptions;
+        public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> getElements() {
+            return elements;
         }
 
         public final com.google.common.base.Optional<String> getNotes() {
@@ -50,7 +50,7 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            inscriptions = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription>>() {
+            elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription>>() {
                 @Override
                 public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> apply(final org.thryft.protocol.InputProtocol iprot) {
                     try {
@@ -84,9 +84,9 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
                     break;
                 }
                 switch (ifield.getName()) {
-                case "inscriptions": {
+                case "elements": {
                     if (!ifield.hasId() || ifield.getId() == 1) {
-                        inscriptions = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription>>() {
+                        elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -134,10 +134,15 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
             return this;
         }
 
+        public Builder setElements(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> elements) {
+            this.elements = com.google.common.base.Preconditions.checkNotNull(elements);
+            return this;
+        }
+
         public Builder setIfPresent(final InscriptionSet other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
-            setInscriptions(other.getInscriptions());
+            setElements(other.getElements());
             if (other.getDisplay().isPresent()) {
                 setDisplay(other.getDisplay());
             }
@@ -145,11 +150,6 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
                 setNotes(other.getNotes());
             }
 
-            return this;
-        }
-
-        public Builder setInscriptions(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> inscriptions) {
-            this.inscriptions = com.google.common.base.Preconditions.checkNotNull(inscriptions);
             return this;
         }
 
@@ -168,7 +168,7 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
             com.google.common.base.Preconditions.checkNotNull(name);
 
             switch (name.toLowerCase()) {
-            case "inscriptions": setInscriptions((com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription>)value); return this;
+            case "elements": setElements((com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription>)value); return this;
             case "display": setDisplay((String)value); return this;
             case "notes": setNotes((String)value); return this;
             default:
@@ -181,8 +181,8 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
             return this;
         }
 
-        public Builder unsetInscriptions() {
-            this.inscriptions = null;
+        public Builder unsetElements() {
+            this.elements = null;
             return this;
         }
 
@@ -191,14 +191,14 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
             return this;
         }
 
-        private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> inscriptions;
+        private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> elements;
         private com.google.common.base.Optional<String> display;
         private com.google.common.base.Optional<String> notes;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        INSCRIPTIONS("inscriptions", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription>>() {}, true, 1, "inscriptions", org.thryft.protocol.Type.LIST),
+        ELEMENTS("elements", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription>>() {}, true, 1, "elements", org.thryft.protocol.Type.LIST),
         DISPLAY("display", new com.google.common.reflect.TypeToken<String>() {}, false, 2, "display", org.thryft.protocol.Type.STRING),
         NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "notes", org.thryft.protocol.Type.STRING);
 
@@ -244,7 +244,7 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "inscriptions": return INSCRIPTIONS;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -254,7 +254,7 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "inscriptions": return INSCRIPTIONS;
+            case "elements": return ELEMENTS;
             case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
@@ -289,14 +289,14 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
      * Copy constructor
      */
     public InscriptionSet(final InscriptionSet other) {
-        this(other.getInscriptions(), other.getDisplay(), other.getNotes());
+        this(other.getElements(), other.getDisplay(), other.getNotes());
     }
 
     /**
      * Required constructor
      */
-    public InscriptionSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> inscriptions) {
-        this.inscriptions = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(inscriptions, "net.lab1318.costume.api.models.inscription.InscriptionSet: missing inscriptions"), "net.lab1318.costume.api.models.inscription.InscriptionSet: inscriptions is empty");
+    public InscriptionSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> elements) {
+        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.inscription.InscriptionSet: missing elements"), "net.lab1318.costume.api.models.inscription.InscriptionSet: elements is empty");
         this.display = com.google.common.base.Optional.absent();
         this.notes = com.google.common.base.Optional.absent();
     }
@@ -304,8 +304,8 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
     /**
      * Total Nullable constructor
      */
-    public InscriptionSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> inscriptions, final @javax.annotation.Nullable String display, final @javax.annotation.Nullable String notes) {
-        this.inscriptions = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(inscriptions, "net.lab1318.costume.api.models.inscription.InscriptionSet: missing inscriptions"), "net.lab1318.costume.api.models.inscription.InscriptionSet: inscriptions is empty");
+    public InscriptionSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> elements, final @javax.annotation.Nullable String display, final @javax.annotation.Nullable String notes) {
+        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.inscription.InscriptionSet: missing elements"), "net.lab1318.costume.api.models.inscription.InscriptionSet: elements is empty");
         this.display = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(display), "net.lab1318.costume.api.models.inscription.InscriptionSet: display is empty");
         this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(notes), "net.lab1318.costume.api.models.inscription.InscriptionSet: notes is empty");
     }
@@ -313,8 +313,8 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
     /**
      * Optional constructor
      */
-    public InscriptionSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> inscriptions, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-        this.inscriptions = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(inscriptions, "net.lab1318.costume.api.models.inscription.InscriptionSet: missing inscriptions"), "net.lab1318.costume.api.models.inscription.InscriptionSet: inscriptions is empty");
+    public InscriptionSet(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "net.lab1318.costume.api.models.inscription.InscriptionSet: missing elements"), "net.lab1318.costume.api.models.inscription.InscriptionSet: elements is empty");
         this.display = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(display, "net.lab1318.costume.api.models.inscription.InscriptionSet: missing display"), "net.lab1318.costume.api.models.inscription.InscriptionSet: display is empty");
         this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.inscription.InscriptionSet: missing notes"), "net.lab1318.costume.api.models.inscription.InscriptionSet: notes is empty");
     }
@@ -341,7 +341,7 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
 
         final InscriptionSet other = (InscriptionSet)otherObject;
         return
-            getInscriptions().equals(other.getInscriptions()) &&
+            getElements().equals(other.getElements()) &&
             getDisplay().equals(other.getDisplay()) &&
             getNotes().equals(other.getNotes());
     }
@@ -349,7 +349,7 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
     @Override
     public java.lang.Object get(final String fieldName) {
         switch (fieldName) {
-        case "inscriptions": return getInscriptions();
+        case "elements": return getElements();
         case "display": return getDisplay();
         case "notes": return getNotes();
         default:
@@ -361,8 +361,8 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
         return display;
     }
 
-    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> getInscriptions() {
-        return inscriptions;
+    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> getElements() {
+        return elements;
     }
 
     public final com.google.common.base.Optional<String> getNotes() {
@@ -372,7 +372,7 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getInscriptions().hashCode();
+        hashCode = 31 * hashCode + getElements().hashCode();
         if (getDisplay().isPresent()) {
             hashCode = 31 * hashCode + getDisplay().get().hashCode();
         }
@@ -394,12 +394,12 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
     }
 
     public static InscriptionSet readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> inscriptions = null;
+        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> elements = null;
         com.google.common.base.Optional<String> display = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        inscriptions = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription>>() {
+        elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription>>() {
             @Override
             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> apply(final org.thryft.protocol.InputProtocol iprot) {
                 try {
@@ -423,14 +423,14 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
         }
         iprot.readListEnd();
         try {
-            return new InscriptionSet(inscriptions, display, notes);
+            return new InscriptionSet(elements, display, notes);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public static InscriptionSet readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> inscriptions = null;
+        com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> elements = null;
         com.google.common.base.Optional<String> display = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
 
@@ -441,9 +441,9 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
                 break;
             }
             switch (ifield.getName()) {
-            case "inscriptions": {
+            case "elements": {
                 if (!ifield.hasId() || ifield.getId() == 1) {
-                    inscriptions = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription>>() {
+                    elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription>>() {
                         @Override
                         public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -479,26 +479,26 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
         }
         iprot.readStructEnd();
         try {
-            return new InscriptionSet(inscriptions, display, notes);
+            return new InscriptionSet(elements, display, notes);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public InscriptionSet replaceDisplay(final com.google.common.base.Optional<String> display) {
-        return new InscriptionSet(this.inscriptions, display, this.notes);
+        return new InscriptionSet(this.elements, display, this.notes);
     }
 
     public InscriptionSet replaceDisplay(final String display) {
         return replaceDisplay(com.google.common.base.Optional.fromNullable(display));
     }
 
-    public InscriptionSet replaceInscriptions(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> inscriptions) {
-        return new InscriptionSet(inscriptions, this.display, this.notes);
+    public InscriptionSet replaceElements(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> elements) {
+        return new InscriptionSet(elements, this.display, this.notes);
     }
 
     public InscriptionSet replaceNotes(final com.google.common.base.Optional<String> notes) {
-        return new InscriptionSet(this.inscriptions, this.display, notes);
+        return new InscriptionSet(this.elements, this.display, notes);
     }
 
     public InscriptionSet replaceNotes(final String notes) {
@@ -507,15 +507,15 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("inscriptions", getInscriptions()).add("display", getDisplay().orNull()).add("notes", getNotes().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("elements", getElements()).add("display", getDisplay().orNull()).add("notes", getNotes().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
 
-        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getInscriptions().size());
-        for (final net.lab1318.costume.api.models.inscription.Inscription _iter0 : getInscriptions()) {
+        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getElements().size());
+        for (final net.lab1318.costume.api.models.inscription.Inscription _iter0 : getElements()) {
             _iter0.writeAsStruct(oprot);
         }
         oprot.writeListEnd();
@@ -544,9 +544,9 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("inscriptions", org.thryft.protocol.Type.LIST, (short)1);
-        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getInscriptions().size());
-        for (final net.lab1318.costume.api.models.inscription.Inscription _iter0 : getInscriptions()) {
+        oprot.writeFieldBegin("elements", org.thryft.protocol.Type.LIST, (short)1);
+        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getElements().size());
+        for (final net.lab1318.costume.api.models.inscription.Inscription _iter0 : getElements()) {
             _iter0.writeAsStruct(oprot);
         }
         oprot.writeListEnd();
@@ -567,7 +567,7 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
         oprot.writeFieldStop();
     }
 
-    private final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> inscriptions;
+    private final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> elements;
 
     private final com.google.common.base.Optional<String> display;
 

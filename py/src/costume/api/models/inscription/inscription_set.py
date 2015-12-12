@@ -7,22 +7,22 @@ class InscriptionSet(object):
     class Builder(object):
         def __init__(
             self,
-            inscriptions=None,
+            elements=None,
             display=None,
             notes=None,
         ):
             '''
-            :type inscriptions: tuple(costume.api.models.inscription.inscription.Inscription)
+            :type elements: tuple(costume.api.models.inscription.inscription.Inscription)
             :type display: str or None
             :type notes: str or None
             '''
 
-            self.__inscriptions = inscriptions
+            self.__elements = elements
             self.__display = display
             self.__notes = notes
 
         def build(self):
-            return InscriptionSet(inscriptions=self.__inscriptions, display=self.__display, notes=self.__notes)
+            return InscriptionSet(elements=self.__elements, display=self.__display, notes=self.__notes)
 
         @property
         def display(self):
@@ -33,12 +33,12 @@ class InscriptionSet(object):
             return self.__display
 
         @property
-        def inscriptions(self):
+        def elements(self):
             '''
             :rtype: tuple(costume.api.models.inscription.inscription.Inscription)
             '''
 
-            return self.__inscriptions
+            return self.__elements
 
         @property
         def notes(self):
@@ -56,12 +56,12 @@ class InscriptionSet(object):
             self.__display = display
             return self
 
-        def set_inscriptions(self, inscriptions):
+        def set_elements(self, elements):
             '''
-            :type inscriptions: tuple(costume.api.models.inscription.inscription.Inscription)
+            :type elements: tuple(costume.api.models.inscription.inscription.Inscription)
             '''
 
-            self.__inscriptions = inscriptions
+            self.__elements = elements
             return self
 
         def set_notes(self, notes):
@@ -74,13 +74,13 @@ class InscriptionSet(object):
 
         def update(self, inscription_set):
             '''
-            :type inscriptions: tuple(costume.api.models.inscription.inscription.Inscription)
+            :type elements: tuple(costume.api.models.inscription.inscription.Inscription)
             :type display: str or None
             :type notes: str or None
             '''
 
             if isinstance(inscription_set, InscriptionSet):
-                self.set_inscriptions(inscription_set.inscriptions)
+                self.set_elements(inscription_set.elements)
                 self.set_display(inscription_set.display)
                 self.set_notes(inscription_set.notes)
             elif isinstance(inscription_set, dict):
@@ -98,13 +98,13 @@ class InscriptionSet(object):
 
             self.set_display(display)
 
-        @inscriptions.setter
-        def inscriptions(self, inscriptions):
+        @elements.setter
+        def elements(self, elements):
             '''
-            :type inscriptions: tuple(costume.api.models.inscription.inscription.Inscription)
+            :type elements: tuple(costume.api.models.inscription.inscription.Inscription)
             '''
 
-            self.set_inscriptions(inscriptions)
+            self.set_elements(elements)
 
         @notes.setter
         def notes(self, notes):
@@ -116,23 +116,23 @@ class InscriptionSet(object):
 
     def __init__(
         self,
-        inscriptions,
+        elements,
         display=None,
         notes=None,
     ):
         '''
-        :type inscriptions: tuple(costume.api.models.inscription.inscription.Inscription)
+        :type elements: tuple(costume.api.models.inscription.inscription.Inscription)
         :type display: str or None
         :type notes: str or None
         '''
 
-        if inscriptions is None:
-            raise ValueError('inscriptions is required')
-        if not (isinstance(inscriptions, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.inscription.inscription.Inscription), inscriptions))) == 0):
-            raise TypeError("expected inscriptions to be a tuple(costume.api.models.inscription.inscription.Inscription) but it is a %s" % getattr(__builtin__, 'type')(inscriptions))
-        if len(inscriptions) < 1:
-            raise ValueError("expected len(inscriptions) to be >= 1, was %d" % len(inscriptions))
-        self.__inscriptions = inscriptions
+        if elements is None:
+            raise ValueError('elements is required')
+        if not (isinstance(elements, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.inscription.inscription.Inscription), elements))) == 0):
+            raise TypeError("expected elements to be a tuple(costume.api.models.inscription.inscription.Inscription) but it is a %s" % getattr(__builtin__, 'type')(elements))
+        if len(elements) < 1:
+            raise ValueError("expected len(elements) to be >= 1, was %d" % len(elements))
+        self.__elements = elements
 
         if display is not None:
             if not isinstance(display, basestring):
@@ -149,7 +149,7 @@ class InscriptionSet(object):
         self.__notes = notes
 
     def __eq__(self, other):
-        if self.inscriptions != other.inscriptions:
+        if self.elements != other.elements:
             return False
         if self.display != other.display:
             return False
@@ -158,7 +158,7 @@ class InscriptionSet(object):
         return True
 
     def __hash__(self):
-        return hash((self.inscriptions,self.display,self.notes,))
+        return hash((self.elements,self.display,self.notes,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -168,7 +168,7 @@ class InscriptionSet(object):
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('inscriptions=' + repr(self.inscriptions))
+        field_reprs.append('elements=' + repr(self.elements))
         if self.display is not None:
             field_reprs.append('display=' + "'" + self.display.encode('ascii', 'replace') + "'")
         if self.notes is not None:
@@ -177,7 +177,7 @@ class InscriptionSet(object):
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('inscriptions=' + repr(self.inscriptions))
+        field_reprs.append('elements=' + repr(self.elements))
         if self.display is not None:
             field_reprs.append('display=' + "'" + self.display.encode('ascii', 'replace') + "'")
         if self.notes is not None:
@@ -191,7 +191,7 @@ class InscriptionSet(object):
         :rtype: dict
         '''
 
-        return {'inscriptions': self.inscriptions, 'display': self.display, 'notes': self.notes}
+        return {'elements': self.elements, 'display': self.display, 'notes': self.notes}
 
     def as_tuple(self):
         '''
@@ -200,7 +200,7 @@ class InscriptionSet(object):
         :rtype: tuple
         '''
 
-        return (self.inscriptions, self.display, self.notes,)
+        return (self.elements, self.display, self.notes,)
 
     @property
     def display(self):
@@ -211,12 +211,12 @@ class InscriptionSet(object):
         return self.__display
 
     @property
-    def inscriptions(self):
+    def elements(self):
         '''
         :rtype: tuple(costume.api.models.inscription.inscription.Inscription)
         '''
 
-        return self.__inscriptions
+        return self.__elements
 
     @property
     def notes(self):
@@ -242,8 +242,8 @@ class InscriptionSet(object):
             ifield_name, ifield_type, ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
-            elif ifield_name == 'inscriptions' and ifield_id == 1:
-                init_kwds['inscriptions'] = tuple([costume.api.models.inscription.inscription.Inscription.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+            elif ifield_name == 'elements' and ifield_id == 1:
+                init_kwds['elements'] = tuple([costume.api.models.inscription.inscription.Inscription.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'display' and ifield_id == 2:
                 try:
                     init_kwds['display'] = iprot.read_string()
@@ -261,26 +261,26 @@ class InscriptionSet(object):
 
     def replace(
         self,
-        inscriptions=None,
+        elements=None,
         display=None,
         notes=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type inscriptions: tuple(costume.api.models.inscription.inscription.Inscription) or None
+        :type elements: tuple(costume.api.models.inscription.inscription.Inscription) or None
         :type display: str or None
         :type notes: str or None
         :rtype: costume.api.models.inscription.inscription_set.InscriptionSet
         '''
 
-        if inscriptions is None:
-            inscriptions = self.inscriptions
+        if elements is None:
+            elements = self.elements
         if display is None:
             display = self.display
         if notes is None:
             notes = self.notes
-        return self.__class__(inscriptions=inscriptions, display=display, notes=notes)
+        return self.__class__(elements=elements, display=display, notes=notes)
 
     def write(self, oprot):
         '''
@@ -292,9 +292,9 @@ class InscriptionSet(object):
 
         oprot.write_struct_begin('InscriptionSet')
 
-        oprot.write_field_begin(name='inscriptions', type=15, id=1)
-        oprot.write_list_begin(12, len(self.inscriptions))
-        for _0 in self.inscriptions:
+        oprot.write_field_begin(name='elements', type=15, id=1)
+        oprot.write_list_begin(12, len(self.elements))
+        for _0 in self.elements:
             _0.write(oprot)
         oprot.write_list_end()
         oprot.write_field_end()

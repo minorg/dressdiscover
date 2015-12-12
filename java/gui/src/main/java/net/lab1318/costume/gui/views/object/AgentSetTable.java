@@ -1,8 +1,6 @@
 package net.lab1318.costume.gui.views.object;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Button;
@@ -24,7 +22,7 @@ final class AgentSetTable extends ElementSetTable {
         super("Agents", agents);
 
         final BeanItemContainer<AgentBean> container = new BeanItemContainer<>(AgentBean.class);
-        for (final Agent agent : agents.getAgents()) {
+        for (final Agent agent : agents.getElements()) {
             container.addBean(new AgentBean(agent));
         }
         container.addNestedContainerBean(Agent.FieldMetadata.NAME.getJavaName());
@@ -48,13 +46,10 @@ final class AgentSetTable extends ElementSetTable {
                         return button;
                     }
                 });
-        setPageLength(agents.getAgents().size());
-        // setColumnHeader(Agent.FieldMetadata.NAME.getJavaName() + '.' +
-        // AgentName.FieldMetadata.TEXT.getJavaName(),
-        // "Name");
+        setPageLength(agents.getElements().size());
         setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
-        final List<Object> visibleColumns = new ArrayList<>();
-        visibleColumns.add(Agent.FieldMetadata.NAME.getJavaName() + '.' + AgentName.FieldMetadata.TEXT.getJavaName());
-        setVisibleColumns(visibleColumns.toArray());
+        setVisibleColumns(ImmutableList
+                .of(Agent.FieldMetadata.NAME.getJavaName() + '.' + AgentName.FieldMetadata.TEXT.getJavaName())
+                .toArray());
     }
 }

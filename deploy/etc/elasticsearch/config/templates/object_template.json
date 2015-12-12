@@ -46,7 +46,7 @@
           "20:agents": {
             "type": "nested", 
             "properties": {
-              "1:agents": {
+              "1:elements": {
                 "type": "nested", 
                 "properties": {
                   "1:name": {
@@ -157,16 +157,55 @@
           "11:date_text": {
             "type": "string"
           }, 
-          "4:description": {
-            "type": "string"
+          "4:descriptions": {
+            "type": "nested", 
+            "properties": {
+              "1:elements": {
+                "type": "nested", 
+                "properties": {
+                  "1:text": {
+                    "type": "string"
+                  }, 
+                  "2:source": {
+                    "type": "string"
+                  }, 
+                  "3:type": {
+                    "index": "not_analyzed", 
+                    "type": "string"
+                  }
+                }
+              }, 
+              "2:display": {
+                "type": "string"
+              }, 
+              "3:notes": {
+                "type": "string"
+              }
+            }
           }, 
-          "19:history_notes": {
-            "type": "string"
+          "23:images": {
+            "type": "nested", 
+            "properties": {
+              "1:url": {
+                "type": "string", 
+                "analyzer": "email_and_url"
+              }, 
+              "2:height_px": {
+                "type": "integer"
+              }, 
+              "4:type": {
+                "index": "not_analyzed", 
+                "type": "string"
+              }, 
+              "3:width_px": {
+                "type": "integer"
+              }
+            }
           }, 
           "17:inscriptions": {
             "type": "nested", 
             "properties": {
-              "1:inscriptions": {
+              "1:elements": {
                 "type": "nested", 
                 "properties": {
                   "1:texts": {
@@ -223,7 +262,7 @@
           "15:materials": {
             "type": "nested", 
             "properties": {
-              "1:materials": {
+              "1:elements": {
                 "type": "nested", 
                 "properties": {
                   "1:type": {
@@ -258,16 +297,13 @@
               }
             }
           }, 
-          "12:physical_description": {
-            "type": "string"
-          }, 
           "5:provenance": {
             "type": "string"
           }, 
           "22:rights": {
             "type": "nested", 
             "properties": {
-              "1:rights": {
+              "1:elements": {
                 "type": "nested", 
                 "properties": {
                   "1:rights_holder": {
@@ -296,7 +332,7 @@
           "21:subjects": {
             "type": "nested", 
             "properties": {
-              "1:subjects": {
+              "1:elements": {
                 "type": "nested", 
                 "properties": {
                   "1:terms": {
@@ -345,13 +381,10 @@
               }
             }
           }, 
-          "7:summary": {
-            "type": "string"
-          }, 
           "16:techniques": {
             "type": "nested", 
             "properties": {
-              "1:techniques": {
+              "1:elements": {
                 "type": "nested", 
                 "properties": {
                   "1:text": {
@@ -382,25 +415,6 @@
               }
             }
           }, 
-          "23:images": {
-            "type": "nested", 
-            "properties": {
-              "1:url": {
-                "type": "string", 
-                "analyzer": "email_and_url"
-              }, 
-              "2:height_px": {
-                "type": "integer"
-              }, 
-              "4:type": {
-                "index": "not_analyzed", 
-                "type": "string"
-              }, 
-              "3:width_px": {
-                "type": "integer"
-              }
-            }
-          }, 
           "9:url": {
             "type": "string", 
             "analyzer": "email_and_url"
@@ -408,7 +422,7 @@
           "24:work_types": {
             "type": "nested", 
             "properties": {
-              "1:work_types": {
+              "1:elements": {
                 "type": "nested", 
                 "properties": {
                   "1:text": {

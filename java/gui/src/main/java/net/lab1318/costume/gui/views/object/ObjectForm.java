@@ -9,7 +9,6 @@ import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
-import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
@@ -48,21 +47,16 @@ final class ObjectForm extends CustomComponent {
                 formLayout.addComponent(__createTextField("Date", objectEntry.getModel().getDate().get().toString()));
             }
 
-            if (objectEntry.getModel().getCategories().isPresent()) {
-                formLayout.addComponent(new CategoriesTable(objectEntry.getModel().getCategories().get()));
-            }
-
-            if (objectEntry.getModel().getDescription().isPresent()) {
-                formLayout.addComponent(__createTextArea("Description", objectEntry.getModel().getDescription().get()));
-            }
-
             if (objectEntry.getModel().getAgents().isPresent()) {
                 formLayout.addComponent(new AgentSetTable(objectEntry.getModel().getAgents().get()));
             }
 
-            if (objectEntry.getModel().getHistoryNotes().isPresent()) {
-                formLayout.addComponent(
-                        __createTextArea("History notes", objectEntry.getModel().getHistoryNotes().get()));
+            if (objectEntry.getModel().getCategories().isPresent()) {
+                formLayout.addComponent(new CategoriesTable(objectEntry.getModel().getCategories().get()));
+            }
+
+            if (objectEntry.getModel().getDescriptions().isPresent()) {
+                formLayout.addComponent(new DescriptionSetTable(objectEntry.getModel().getDescriptions().get()));
             }
 
             if (objectEntry.getModel().getInscriptions().isPresent()) {
@@ -79,10 +73,6 @@ final class ObjectForm extends CustomComponent {
 
             if (objectEntry.getModel().getSubjects().isPresent()) {
                 formLayout.addComponent(new SubjectSetTable(objectEntry.getModel().getSubjects().get()));
-            }
-
-            if (objectEntry.getModel().getSummary().isPresent()) {
-                formLayout.addComponent(__createTextArea("Summary", objectEntry.getModel().getSummary().get()));
             }
 
             if (objectEntry.getModel().getTechniques().isPresent()) {
@@ -154,14 +144,17 @@ final class ObjectForm extends CustomComponent {
         setCompositionRoot(rootLayout);
     }
 
-    private TextArea __createTextArea(final String caption, final String value) {
-        final TextArea textArea = new TextArea(caption, value);
-        textArea.addStyleName("borderlessTextField");
-        textArea.setReadOnly(true);
-        textArea.setHeight((float) value.length() / (float) 80 * (float) 2.0, Unit.EM);
-        textArea.setWidth((float) ((value.length() <= 80 ? value.length() : 80) * 0.5), Unit.EM);
-        return textArea;
-    }
+    // private TextArea __createTextArea(final String caption, final String
+    // value) {
+    // final TextArea textArea = new TextArea(caption, value);
+    // textArea.addStyleName("borderlessTextField");
+    // textArea.setReadOnly(true);
+    // textArea.setHeight((float) value.length() / (float) 80 * (float) 2.0,
+    // Unit.EM);
+    // textArea.setWidth((float) ((value.length() <= 80 ? value.length() : 80) *
+    // 0.5), Unit.EM);
+    // return textArea;
+    // }
 
     private TextField __createTextField(final String caption, final String value) {
         final TextField textField = new TextField(caption, value);

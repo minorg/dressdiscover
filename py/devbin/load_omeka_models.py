@@ -13,6 +13,8 @@ from costume.api.models.agent.agent_name_type import AgentNameType
 from costume.api.models.agent.agent_role import AgentRole
 from costume.api.models.agent.agent_set import AgentSet
 from costume.api.models.collection.collection import Collection
+from costume.api.models.description.description import Description
+from costume.api.models.description.description_set import DescriptionSet
 from costume.api.models.image.image import Image
 from costume.api.models.image.image_type import ImageType
 from costume.api.models.institution.institution import Institution
@@ -33,6 +35,7 @@ from costume.api.services.institution.no_such_institution_exception import NoSuc
 from costume.lib.costume_properties import CostumeProperties
 from model_utils import new_model_metadata
 from services import Services
+from costume.api.models.description.description_type import DescriptionType
 
 
 DATA_DIR_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data'))
@@ -84,7 +87,7 @@ services.institution_command_service.put_institution(
     Institution.Builder()
         .set_data_rights(
             RightsSet.Builder()
-                .set_rights((
+                .set_elements((
                     Rights.Builder()
                         .set_rights_holder(args.institution_title)
                         .set_text("Copyright %s %s" % (datetime.now().year, args.institution_title))
@@ -161,11 +164,14 @@ for collection_dict in collection_dicts:
                 .set_model_metadata(new_model_metadata())
 
         agents = []
+        categories = []
+        descriptions = []
         include_object = True
+        subjects = []
         work_types = []
 
         for element_text_dict in item_dict['element_texts']:
-            text = element_text_dict['text']
+            text = element_text_dict['text'].strip()
             if len(text) == 0:
                 continue
             element_set_name = element_text_dict['element_set']['name']
@@ -203,13 +209,17 @@ for collection_dict in collection_dicts:
                 elif element_name == 'Date':
                     object_builder.set_date_text(text)
                 elif element_name == 'Description':
-                    object_builder.set_description(text)
+                    descriptions.append(
+                        Description.Builder()
+                            .set_text(text)
+                            .build()
+                    )
                 elif element_name == 'Provenance':
                     object_builder.set_provenance(text)
                 elif element_name == 'Rights':
                     object_builder.set_rights(
                         RightsSet.Builder()
-                            .set_rights((
+                            .set_elements((
                                 Rights.Builder()
                                     .set_rights_holder(args.institution_title)
                                     .set_text(text)
@@ -219,7 +229,6 @@ for collection_dict in collection_dicts:
                             .build()
                     )
                 elif element_name == 'Subject':
-                    subjects = []
                     for text_split in text.split(';'):
                         text_split = text_split.strip()
                         if len(text_split) == 0:
@@ -234,8 +243,6 @@ for collection_dict in collection_dicts:
                                 ,))
                                 .build()
                         )
-                    if len(subjects) > 0:
-                        object_builder.set_subjects(SubjectSet.Builder().set_subjects(tuple(subjects)).build())
                 elif element_name == 'Title':
                     object_builder.set_title(text)
                 elif element_name == 'Type':
@@ -263,23 +270,100 @@ for collection_dict in collection_dicts:
                                 .set_text(text)
                                 .build()
                         )
-                elif element_name in (
-                    'Alternative Title',
-                    'Date Created',
-                    'Extent',
-                    'Identifier',
-                    'Language',
-                    'Medium',
-                    'References',
-                    'Relation',
-                    'Spatial Coverage',
-                    'Temporal Coverage',
-                ):
-                    pass
+#                 elif element_name in (
+#                     'Alternative Title',
+#                     'Date Created',
+#                     'Extent',
+#                     'Identifier',
+#                     'Language',
+#                     'Medium',
+#                     'References',
+#                     'Relation',
+#                     'Spatial Coverage',
+#                     'Temporal Coverage',
+#                 ):
+#                     pass
                 else:
-                    print 'skipping item Dublin Core element', element_name, text.encode('ascii', 'ignore')
+                    print 'skipping item Dublin Core element', element_name, ':', text.encode('ascii', 'ignore')
             elif element_set_name == 'Item Type Metadata':
-                print 'skipping item Item Type Metadata element', element_name, text.encode('ascii', 'ignore')
+                if element_name == 'Category':
+                    categories.append(text)
+                elif element_name == 'Classification':
+                    categories.append(text)
+                elif element_name == 'Condition':
+                    descriptions.append(
+                        Description.Builder()
+                            .set_text(text)
+                            .set_type(DescriptionType.CONDITION)
+                            .build()
+                    )
+                elif element_name == 'Description':
+                    descriptions.append(
+                        Description.Builder()
+                            .set_text(text)
+                            .build()
+                    )
+                elif element_name == 'Description Main':
+                    descriptions.append(
+                        Description.Builder()
+                            .set_text(text)
+                            .build()
+                    )
+                elif element_name == 'Donor':
+                    agents.append(
+                        Agent.Builder()
+                            .set_name(
+                                AgentName.Builder()
+                                    .set_text(text)
+                                    .set_type(AgentNameType.OTHER)
+                                    .build()
+                                )
+                            .set_role(
+                                AgentRole.Builder()
+                                    .set_text('donor')
+                                    .build()
+                                )
+                            .build()
+                    )
+                elif element_name == 'Exhibition Notes':
+                    descriptions.append(
+                        Description.Builder()
+                            .set_text(text)
+                            .set_type(DescriptionType.EXHIBITION)
+                            .build()
+                    )
+                elif element_name == 'Private Information':
+                    descriptions.append(
+                        Description.Builder()
+                            .set_text(text)
+                            .set_type(DescriptionType.PRIVATE)
+                            .build()
+                    )
+                elif element_name == 'Public Information':
+                    descriptions.append(
+                        Description.Builder()
+                            .set_text(text)
+                            .set_type(DescriptionType.PUBLIC)
+                            .build()
+                    )
+                elif element_name == 'Wearer':
+                    agents.append(
+                        Agent.Builder()
+                            .set_name(
+                                AgentName.Builder()
+                                    .set_text(text)
+                                    .set_type(AgentNameType.PERSONAL)
+                                    .build()
+                                )
+                            .set_role(
+                                AgentRole.Builder()
+                                    .set_text('wearer')
+                                    .build()
+                                )
+                            .build()
+                    )
+                else:
+                    print 'skipping item Item Type Metadata element', element_name, ':', text.encode('ascii', 'ignore')
             else:
                 print 'skipping item', element_set_name, 'element set'
 
@@ -288,9 +372,15 @@ for collection_dict in collection_dicts:
             continue
 
         if len(agents) > 0:
-            object_builder.set_agents(AgentSet.Builder().set_agents(tuple(agents)).build())
+            object_builder.set_agents(AgentSet.Builder().set_elements(tuple(agents)).build())
+        if len(categories) > 0:
+            object_builder.set_categories(tuple(categories))
+        if len(descriptions) > 0:
+            object_builder.set_descriptions(DescriptionSet.Builder().set_elements(tuple(descriptions)).build())
+        if len(subjects) > 0:
+            object_builder.set_subjects(SubjectSet.Builder().set_elements(tuple(subjects)).build())
         if len(work_types) > 0:
-            object_builder.set_work_types(WorkTypeSet.Builder().set_work_types(tuple(work_types)).build())
+            object_builder.set_work_types(WorkTypeSet.Builder().set_elements(tuple(work_types)).build())
 
         try:
             files_count = item_dict['files']['count']

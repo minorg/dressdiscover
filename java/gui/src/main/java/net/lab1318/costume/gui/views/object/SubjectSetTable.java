@@ -24,7 +24,7 @@ final class SubjectSetTable extends ElementSetTable {
         super("Subjects", subjects);
 
         final BeanItemContainer<SubjectTermBean> container = new BeanItemContainer<>(SubjectTermBean.class);
-        for (final Subject subject : subjects.getSubjects()) {
+        for (final Subject subject : subjects.getElements()) {
             for (final SubjectTerm term : subject.getTerms()) {
                 container.addBean(new SubjectTermBean(term));
             }
@@ -47,7 +47,7 @@ final class SubjectSetTable extends ElementSetTable {
                 return button;
             }
         });
-        setPageLength(subjects.getSubjects().size());
+        setPageLength(subjects.getElements().size());
         setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
         final List<Object> visibleColumns = new ArrayList<>();
         visibleColumns.add(SubjectTerm.FieldMetadata.TEXT.getJavaName());
