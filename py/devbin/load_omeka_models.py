@@ -166,7 +166,6 @@ for collection_dict in collection_dicts:
         agents = []
         categories = []
         descriptions = []
-        description_display = None
         include_object = True
         subjects = []
         work_types = []
@@ -305,7 +304,11 @@ for collection_dict in collection_dicts:
                             .build()
                     )
                 elif element_name == 'Description Main':
-                    description_display = text
+                    descriptions.append(
+                        Description.Builder()
+                            .set_text(text)
+                            .build()
+                    )
                 elif element_name == 'Donor':
                     agents.append(
                         Agent.Builder()
@@ -373,7 +376,7 @@ for collection_dict in collection_dicts:
         if len(categories) > 0:
             object_builder.set_categories(tuple(categories))
         if len(descriptions) > 0:
-            object_builder.set_descriptions(DescriptionSet.Builder().set_display(description_display).set_elements(tuple(descriptions)).build())
+            object_builder.set_descriptions(DescriptionSet.Builder().set_elements(tuple(descriptions)).build())
         if len(subjects) > 0:
             object_builder.set_subjects(SubjectSet.Builder().set_elements(tuple(subjects)).build())
         if len(work_types) > 0:
