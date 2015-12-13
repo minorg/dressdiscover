@@ -15,6 +15,7 @@ from costume.api.models.agent.agent_set import AgentSet
 from costume.api.models.collection.collection import Collection
 from costume.api.models.description.description import Description
 from costume.api.models.description.description_set import DescriptionSet
+from costume.api.models.description.description_type import DescriptionType
 from costume.api.models.image.image import Image
 from costume.api.models.image.image_type import ImageType
 from costume.api.models.institution.institution import Institution
@@ -27,6 +28,12 @@ from costume.api.models.subject.subject import Subject
 from costume.api.models.subject.subject_set import SubjectSet
 from costume.api.models.subject.subject_term import SubjectTerm
 from costume.api.models.subject.subject_term_type import SubjectTermType
+from costume.api.models.textref.textref import Textref
+from costume.api.models.textref.textref_name import TextrefName
+from costume.api.models.textref.textref_name_type import TextrefNameType
+from costume.api.models.textref.textref_refid import TextrefRefid
+from costume.api.models.textref.textref_refid_type import TextrefRefidType
+from costume.api.models.textref.textref_set import TextrefSet
 from costume.api.models.vocab import Vocab
 from costume.api.models.vocab_ref import VocabRef
 from costume.api.models.work_type.work_type import WorkType
@@ -35,7 +42,6 @@ from costume.api.services.institution.no_such_institution_exception import NoSuc
 from costume.lib.costume_properties import CostumeProperties
 from model_utils import new_model_metadata
 from services import Services
-from costume.api.models.description.description_type import DescriptionType
 
 
 DATA_DIR_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data'))
@@ -62,6 +68,7 @@ DCMI_TYPES_BASE_URL = 'http://purl.org/dc/dcmitype/'
 
 argument_parser = argparse.ArgumentParser()
 argument_parser.add_argument('--clean', action='store_true')
+argument_parser.add_argument('--endpoint-url', required=True)
 argument_parser.add_argument('--institution-id', required=True)
 argument_parser.add_argument('--institution-title', required=True)
 argument_parser.add_argument('--institution-url', required=True)
@@ -70,6 +77,9 @@ argument_parser.add_argument('--square-thumbnail-width-px', default=150)
 args = argument_parser.parse_args()
 
 
+endpoint_url = args.endpoint_url
+if not endpoint_url.endswith('/'):
+    endpoint_url = endpoint_url + '/'
 institution_id = args.institution_id
 properties = CostumeProperties.load()
 services = Services(properties=properties)
@@ -166,9 +176,29 @@ for collection_dict in collection_dicts:
         agents = []
         categories = []
         descriptions = []
+        identifiers = []
         include_object = True
         subjects = []
+        textrefs = []
         work_types = []
+
+        textrefs.append(
+            Textref.Builder()
+                .set_name(
+                    TextrefName.Builder()
+                        .set_text("Omeka item URL")
+                        .set_type(TextrefNameType.ELECTRONIC)
+                        .build()
+                )
+                .set_refid(
+                    TextrefRefid.Builder()
+                        .set_href(endpoint_url + 'items/show/' + str(omeka_item_id))
+                        .set_text(endpoint_url + 'items/show/' + str(omeka_item_id))
+                        .set_type(TextrefRefidType.URI)
+                        .build()
+                )
+                .build()
+        )
 
         for element_text_dict in item_dict['element_texts']:
             text = element_text_dict['text'].strip()
@@ -214,6 +244,9 @@ for collection_dict in collection_dicts:
                             .set_text(text)
                             .build()
                     )
+                elif element_name == 'Identifier':
+                    if not text in identifiers:
+                        identifiers.append(text)
                 elif element_name == 'Provenance':
                     object_builder.set_provenance(text)
                 elif element_name == 'Rights':
@@ -286,7 +319,24 @@ for collection_dict in collection_dicts:
                 else:
                     print 'skipping item Dublin Core element', element_name, ':', text.encode('ascii', 'ignore')
             elif element_set_name == 'Item Type Metadata':
-                if element_name == 'Category':
+                if element_name == 'Accession Number':
+                    textrefs.append(
+                        Textref.Builder()
+                            .set_name(
+                                TextrefName.Builder()
+                                    .set_text("Accession number")
+                                    .set_type(TextrefNameType.CATALOG)
+                                    .build()
+                            )
+                            .set_refid(
+                                TextrefRefid.Builder()
+                                    .set_text(text)
+                                    .set_type(TextrefRefidType.OTHER)
+                                    .build()
+                            )
+                            .build()
+                    )
+                elif element_name == 'Category':
                     categories.append(text)
                 elif element_name == 'Classification':
                     categories.append(text)
@@ -307,6 +357,7 @@ for collection_dict in collection_dicts:
                     descriptions.append(
                         Description.Builder()
                             .set_text(text)
+                            .set_type(DescriptionType.SUMMARY)
                             .build()
                     )
                 elif element_name == 'Donor':
@@ -346,6 +397,26 @@ for collection_dict in collection_dicts:
                             .set_type(DescriptionType.PUBLIC)
                             .build()
                     )
+                elif element_name == 'References':
+                    textrefs.append(
+                        Textref.Builder()
+                            .set_name(
+                                TextrefName.Builder()
+                                    .set_text(text)
+                                    .set_type(TextrefNameType.CORPUS)
+                                    .build()
+                            )
+                            .set_refid(
+                                TextrefRefid.Builder()
+                                    .set_text("unparsed")
+                                    .set_type(TextrefRefidType.CITATION)
+                                    .build()
+                            )
+                            .build()
+                    )
+                elif element_name == 'Source Identifier':
+                    if not text in identifiers:
+                        identifiers.append(text)
                 elif element_name == 'Wearer':
                     agents.append(
                         Agent.Builder()
@@ -377,8 +448,27 @@ for collection_dict in collection_dicts:
             object_builder.set_categories(tuple(categories))
         if len(descriptions) > 0:
             object_builder.set_descriptions(DescriptionSet.Builder().set_elements(tuple(descriptions)).build())
+        for identifier in identifiers:
+            textrefs.append(
+                Textref.Builder()
+                    .set_name(
+                        TextrefName.Builder()
+                            .set_text("Identifier")
+                            .set_type(TextrefNameType.CATALOG)
+                            .build()
+                    )
+                    .set_refid(
+                        TextrefRefid.Builder()
+                            .set_text(text)
+                            .set_type(TextrefRefidType.OTHER)
+                            .build()
+                    )
+                    .build()
+            )
         if len(subjects) > 0:
             object_builder.set_subjects(SubjectSet.Builder().set_elements(tuple(subjects)).build())
+        if len(textrefs) > 0:
+            object_builder.set_textrefs(TextrefSet.Builder().set_elements(tuple(textrefs)).build())
         if len(work_types) > 0:
             object_builder.set_work_types(WorkTypeSet.Builder().set_elements(tuple(work_types)).build())
 

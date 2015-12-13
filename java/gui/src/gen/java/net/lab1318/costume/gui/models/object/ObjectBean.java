@@ -19,7 +19,7 @@ public class ObjectBean {
         RIGHTS("rights", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.rights.RightsSetBean>() {}, false, 22, "rights", org.thryft.protocol.Type.STRUCT),
         SUBJECTS("subjects", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.subject.SubjectSetBean>() {}, false, 21, "subjects", org.thryft.protocol.Type.STRUCT),
         TECHNIQUES("techniques", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.technique.TechniqueSetBean>() {}, false, 16, "techniques", org.thryft.protocol.Type.STRUCT),
-        URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 9, "url", org.thryft.protocol.Type.STRING),
+        TEXTREFS("textrefs", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.textref.TextrefSetBean>() {}, false, 9, "textrefs", org.thryft.protocol.Type.STRUCT),
         WORK_TYPES("workTypes", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.work_type.WorkTypeSetBean>() {}, false, 24, "work_types", org.thryft.protocol.Type.STRUCT);
 
         @Override
@@ -80,7 +80,7 @@ public class ObjectBean {
             case "rights": return RIGHTS;
             case "subjects": return SUBJECTS;
             case "techniques": return TECHNIQUES;
-            case "url": return URL;
+            case "textrefs": return TEXTREFS;
             case "workTypes": return WORK_TYPES;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -105,7 +105,7 @@ public class ObjectBean {
             case "rights": return RIGHTS;
             case "subjects": return SUBJECTS;
             case "techniques": return TECHNIQUES;
-            case "url": return URL;
+            case "textrefs": return TEXTREFS;
             case "work_types": return WORK_TYPES;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -152,7 +152,7 @@ public class ObjectBean {
         rights = null;
         subjects = null;
         techniques = null;
-        url = null;
+        textrefs = null;
         workTypes = null;
     }
 
@@ -182,7 +182,7 @@ public class ObjectBean {
         this.rights = other.getRights().isPresent() ? new net.lab1318.costume.gui.models.rights.RightsSetBean(other.getRights().get()) : null;
         this.subjects = other.getSubjects().isPresent() ? new net.lab1318.costume.gui.models.subject.SubjectSetBean(other.getSubjects().get()) : null;
         this.techniques = other.getTechniques().isPresent() ? new net.lab1318.costume.gui.models.technique.TechniqueSetBean(other.getTechniques().get()) : null;
-        this.url = other.getUrl().isPresent() ? other.getUrl().get() : null;
+        this.textrefs = other.getTextrefs().isPresent() ? new net.lab1318.costume.gui.models.textref.TextrefSetBean(other.getTextrefs().get()) : null;
         this.workTypes = other.getWorkTypes().isPresent() ? new net.lab1318.costume.gui.models.work_type.WorkTypeSetBean(other.getWorkTypes().get()) : null;
     }
 
@@ -212,7 +212,7 @@ public class ObjectBean {
             getRights().equals(other.getRights()) &&
             getSubjects().equals(other.getSubjects()) &&
             getTechniques().equals(other.getTechniques()) &&
-            getUrl().equals(other.getUrl()) &&
+            getTextrefs().equals(other.getTextrefs()) &&
             getWorkTypes().equals(other.getWorkTypes());
     }
 
@@ -282,15 +282,15 @@ public class ObjectBean {
         return techniques;
     }
 
+    public net.lab1318.costume.gui.models.textref.TextrefSetBean getTextrefs() {
+        return textrefs;
+    }
+
     /**
      * Dublin Core title
      */
     public String getTitle() {
         return title;
-    }
-
-    public org.thryft.native_.Url getUrl() {
-        return url;
     }
 
     public net.lab1318.costume.gui.models.work_type.WorkTypeSetBean getWorkTypes() {
@@ -340,8 +340,8 @@ public class ObjectBean {
         if (getTechniques() != null) {
             hashCode = 31 * hashCode + getTechniques().hashCode();
         }
-        if (getUrl() != null) {
-            hashCode = 31 * hashCode + getUrl().hashCode();
+        if (getTextrefs() != null) {
+            hashCode = 31 * hashCode + getTextrefs().hashCode();
         }
         if (getWorkTypes() != null) {
             hashCode = 31 * hashCode + getWorkTypes().hashCode();
@@ -409,12 +409,12 @@ public class ObjectBean {
         this.techniques = techniques;
     }
 
-    public void setTitle(final String title) {
-        this.title = title;
+    public void setTextrefs(final net.lab1318.costume.gui.models.textref.TextrefSetBean textrefs) {
+        this.textrefs = textrefs;
     }
 
-    public void setUrl(final org.thryft.native_.Url url) {
-        this.url = url;
+    public void setTitle(final String title) {
+        this.title = title;
     }
 
     public void setWorkTypes(final net.lab1318.costume.gui.models.work_type.WorkTypeSetBean workTypes) {
@@ -423,7 +423,7 @@ public class ObjectBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agents", getAgents()).add("categories", getCategories()).add("date", getDate()).add("date_text", getDateText()).add("descriptions", getDescriptions()).add("images", getImages()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("provenance", getProvenance()).add("rights", getRights()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("url", getUrl()).add("work_types", getWorkTypes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agents", getAgents()).add("categories", getCategories()).add("date", getDate()).add("date_text", getDateText()).add("descriptions", getDescriptions()).add("images", getImages()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("provenance", getProvenance()).add("rights", getRights()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("work_types", getWorkTypes()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -467,7 +467,7 @@ public class ObjectBean {
 
     private net.lab1318.costume.gui.models.technique.TechniqueSetBean techniques;
 
-    private org.thryft.native_.Url url;
+    private net.lab1318.costume.gui.models.textref.TextrefSetBean textrefs;
 
     private net.lab1318.costume.gui.models.work_type.WorkTypeSetBean workTypes;
 }

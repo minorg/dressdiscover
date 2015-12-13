@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.annotation.Nullable;
 
 import org.notaweb.gui.EventBus;
-import org.thryft.native_.Url;
 import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
 
 import com.google.common.collect.ImmutableMap;
@@ -28,11 +27,14 @@ import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectId;
+import net.lab1318.costume.api.models.textref.TextrefRefidType;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.gui.models.image.ImageBean;
+import net.lab1318.costume.gui.models.textref.TextrefBean;
+import net.lab1318.costume.gui.models.textref.TextrefSetBean;
 import net.lab1318.costume.gui.models.work_type.WorkTypeSetBean;
 
 @SuppressWarnings("serial")
@@ -50,9 +52,7 @@ final class ObjectsTable extends CustomComponent {
             columns.put(Object.FieldMetadata.DATE_TEXT.getJavaName(), "Date");
             columns.put(Object.FieldMetadata.INSTITUTION_ID.getJavaName(), "Institution");
             columns.put(Object.FieldMetadata.COLLECTION_ID.getJavaName(), "Collection");
-            if (objectFacets.getUrlExists()) {
-                columns.put(Object.FieldMetadata.URL.getJavaName(), "URL");
-            }
+            columns.put(Object.FieldMetadata.TEXTREFS.getJavaName(), "URL");
         }
 
         final Table table = new Table();
@@ -186,18 +186,30 @@ final class ObjectsTable extends CustomComponent {
             }
         });
 
-        if (columns.containsKey(Object.FieldMetadata.URL.getJavaName())) {
-            table.addGeneratedColumn(Object.FieldMetadata.URL.getJavaName(), new ColumnGenerator() {
-
+        if (columns.containsKey(Object.FieldMetadata.TEXTREFS.getJavaName())) {
+            table.addGeneratedColumn(Object.FieldMetadata.TEXTREFS.getJavaName(), new ColumnGenerator() {
                 @Override
                 public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
                         final java.lang.Object columnId) {
-                    final Url url = (Url) source.getContainerDataSource().getContainerProperty(itemId, columnId)
-                            .getValue();
-                    if (url == null) {
+                    final TextrefSetBean textrefs = (TextrefSetBean) source.getContainerDataSource()
+                            .getContainerProperty(itemId, columnId).getValue();
+                    if (textrefs == null) {
                         return new Label();
                     }
-                    final Link link = new Link("Institution object page", new ExternalResource(url.toString()));
+                    @Nullable
+                    TextrefBean uriTextref = null;
+                    for (final TextrefBean textref : textrefs.getElements()) {
+                        if (textref.getRefid().getType() == TextrefRefidType.URI
+                                && textref.getRefid().getHref() != null) {
+                            uriTextref = textref;
+                            break;
+                        }
+                    }
+                    if (uriTextref == null) {
+                        return new Label();
+                    }
+                    final Link link = new Link(uriTextref.getRefid().getText(),
+                            new ExternalResource(uriTextref.getRefid().getHref().toString()));
                     link.setTargetName("_blank");
                     return link;
                 }

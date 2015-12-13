@@ -415,9 +415,50 @@
               }
             }
           }, 
-          "9:url": {
-            "type": "string", 
-            "analyzer": "email_and_url"
+          "9:textrefs": {
+            "type": "nested", 
+            "properties": {
+              "1:elements": {
+                "type": "nested", 
+                "properties": {
+                  "1:name": {
+                    "type": "nested", 
+                    "properties": {
+                      "1:text": {
+                        "type": "string"
+                      }, 
+                      "2:type": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }
+                    }
+                  }, 
+                  "2:refid": {
+                    "type": "nested", 
+                    "properties": {
+                      "1:text": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }, 
+                      "2:type": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }, 
+                      "3:href": {
+                        "type": "string", 
+                        "analyzer": "email_and_url"
+                      }
+                    }
+                  }
+                }
+              }, 
+              "2:display": {
+                "type": "string"
+              }, 
+              "3:notes": {
+                "type": "string"
+              }
+            }
           }, 
           "24:work_types": {
             "type": "nested", 

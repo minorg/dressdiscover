@@ -13,9 +13,9 @@ include "costume/api/models/material/material_set.thrift"
 include "costume/api/models/rights/rights_set.thrift"
 include "costume/api/models/subject/subject_set.thrift"
 include "costume/api/models/technique/technique_set.thrift"
+include "costume/api/models/textref/textref_set.thrift"
 include "costume/api/models/work_type/work_type_set.thrift"
 include "thryft/native/date_time.thrift"
-include "thryft/native/url.thrift"
 
 // @java_implements org.notaweb.api.models.Model
 struct Object {
@@ -60,7 +60,7 @@ struct Object {
 
 	16: optional technique_set.TechniqueSet techniques;
 
-	9: optional url.Url url;
+	9: optional textref_set.TextrefSet textrefs;
 
 	24: optional work_type_set.WorkTypeSet work_types;
 }
