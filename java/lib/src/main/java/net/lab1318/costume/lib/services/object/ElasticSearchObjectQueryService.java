@@ -69,6 +69,8 @@ import net.lab1318.costume.api.models.subject.SubjectTerm;
 import net.lab1318.costume.api.models.textref.Textref;
 import net.lab1318.costume.api.models.textref.TextrefRefid;
 import net.lab1318.costume.api.models.textref.TextrefSet;
+import net.lab1318.costume.api.models.title.Title;
+import net.lab1318.costume.api.models.title.TitleSet;
 import net.lab1318.costume.api.models.work_type.WorkType;
 import net.lab1318.costume.api.models.work_type.WorkTypeSet;
 import net.lab1318.costume.api.services.IoException;
@@ -471,8 +473,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             // Root fields
             boolQuery.should(QueryBuilders.queryStringQuery(query.get().getQueryString().get())
                     .field(Object.FieldMetadata.CATEGORIES.getThriftProtocolKey())
-                    .field(Object.FieldMetadata.DATE_TEXT.getThriftProtocolKey())
-                    .field(Object.FieldMetadata.TITLE.getThriftProtocolKey()));
+                    .field(Object.FieldMetadata.DATE_TEXT.getThriftProtocolKey()));
 
             // Nested fields
             // Description text
@@ -493,6 +494,14 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                                     + TextrefSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
                                     + Textref.FieldMetadata.REFID.getThriftProtocolKey() + '.'
                                     + TextrefRefid.FieldMetadata.TEXT.getThriftProtocolKey())));
+            // Title text
+            boolQuery.should(QueryBuilders.nestedQuery(
+                    Object.FieldMetadata.TITLES.getThriftProtocolKey() + '.'
+                            + TitleSet.FieldMetadata.ELEMENTS.getThriftProtocolKey(),
+                    QueryBuilders.queryStringQuery(query.get().getQueryString().get())
+                            .field(Object.FieldMetadata.TITLES.getThriftProtocolKey() + '.'
+                                    + TitleSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
+                                    + Title.FieldMetadata.TEXT.getThriftProtocolKey())));
 
             queryTranslated = boolQuery;
         } else if (query.get().getMoreLikeObjectId().isPresent()) {
@@ -500,8 +509,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                     .moreLikeThisQuery(Object.FieldMetadata.CATEGORIES.getThriftProtocolKey(),
                             Object.FieldMetadata.DESCRIPTIONS.getThriftProtocolKey() + '.'
                                     + DescriptionSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
-                                    + Description.FieldMetadata.TEXT.getThriftProtocolKey(),
-                    Object.FieldMetadata.TITLE.getThriftProtocolKey())
+                                    + Description.FieldMetadata.TEXT.getThriftProtocolKey())
                     .docs(new MoreLikeThisQueryBuilder.Item(elasticSearchIndex.getIndexName(),
                             elasticSearchIndex.getDocumentType(), query.get().getMoreLikeObjectId().get().toString()));
         } else {

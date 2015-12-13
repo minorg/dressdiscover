@@ -32,6 +32,9 @@ import net.lab1318.costume.api.models.subject.Subject;
 import net.lab1318.costume.api.models.subject.SubjectSet;
 import net.lab1318.costume.api.models.subject.SubjectTerm;
 import net.lab1318.costume.api.models.subject.SubjectTermType;
+import net.lab1318.costume.api.models.title.Title;
+import net.lab1318.costume.api.models.title.TitleSet;
+import net.lab1318.costume.api.models.title.TitleType;
 
 public final class TestData {
     public static synchronized TestData getInstance() {
@@ -91,7 +94,9 @@ public final class TestData {
                     final Object.Builder objectBuilder = Object.builder().setAgents(new AgentSet(agents))
                             .setCategories(categories).setCollectionId(collectionId).setInstitutionId(institutionId)
                             .setModelMetadata(__newModelMetadata()).setSubjects(new SubjectSet(subjects))
-                            .setTitle("Test object");
+                            .setTitles(TitleSet.builder().setElements(ImmutableList
+                                    .of(Title.builder().setText("Test object").setType(TitleType.DESCRIPTIVE).build()))
+                                    .build());
 
                     objectsBuilder.put(institutionId, collectionId, new ObjectEntry(
                             ObjectId.parse(collectionId.toString() + "/test_object"), objectBuilder.build()));

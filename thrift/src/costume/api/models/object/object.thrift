@@ -15,6 +15,7 @@ include "costume/api/models/rights/rights_set.thrift"
 include "costume/api/models/subject/subject_set.thrift"
 include "costume/api/models/technique/technique_set.thrift"
 include "costume/api/models/textref/textref_set.thrift"
+include "costume/api/models/title/title_set.thrift"
 include "costume/api/models/work_type/work_type_set.thrift"
 include "thryft/native/date_time.thrift"
 include "thryft/native/u32.thrift"
@@ -27,9 +28,7 @@ struct Object {
 
 	14: model_metadata.ModelMetadata model_metadata;
 
-	// Dublin Core title
-	// @validation {"minLength": 1}
-	3: string title;
+	3: title_set.TitleSet titles;
 
 	20: optional agent_set.AgentSet agents;
 

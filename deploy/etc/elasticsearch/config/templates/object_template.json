@@ -40,8 +40,31 @@
               }
             }
           }, 
-          "3:title": {
-            "type": "string"
+          "3:titles": {
+            "type": "nested", 
+            "properties": {
+              "1:elements": {
+                "type": "nested", 
+                "properties": {
+                  "1:text": {
+                    "type": "string"
+                  }, 
+                  "2:type": {
+                    "index": "not_analyzed", 
+                    "type": "string"
+                  }, 
+                  "3:pref": {
+                    "type": "boolean"
+                  }
+                }
+              }, 
+              "2:display": {
+                "type": "string"
+              }, 
+              "3:notes": {
+                "type": "string"
+              }
+            }
           }, 
           "20:agents": {
             "type": "nested", 
