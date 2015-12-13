@@ -25,7 +25,8 @@ final class MaterialSetTable extends ElementSetTable {
         }
         setContainerDataSource(container);
         setPageLength(materials.getElements().size());
-        setColumnHeader(Material.FieldMetadata.TEXT.getJavaName(), "Name");
+        setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
+        // setColumnHeader(Material.FieldMetadata.TEXT.getJavaName(), "Name");
         // setColumnHeader(Material.FieldMetadata.VOCAB.getJavaName(),
         // "Vocabulary");
         final List<Object> visibleColumns = new ArrayList<>();
