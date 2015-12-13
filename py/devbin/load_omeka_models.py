@@ -33,6 +33,8 @@ from costume.api.models.subject.subject import Subject
 from costume.api.models.subject.subject_set import SubjectSet
 from costume.api.models.subject.subject_term import SubjectTerm
 from costume.api.models.subject.subject_term_type import SubjectTermType
+from costume.api.models.technique.technique import Technique
+from costume.api.models.technique.technique_set import TechniqueSet
 from costume.api.models.textref.textref import Textref
 from costume.api.models.textref.textref_name import TextrefName
 from costume.api.models.textref.textref_name_type import TextrefNameType
@@ -188,6 +190,7 @@ for collection_dict in collection_dicts:
         include_object = True
         inscriptions = []
         subjects = []
+        techniques = []
         textrefs = []
         titles = []
         work_types = []
@@ -264,6 +267,8 @@ for collection_dict in collection_dicts:
                 elif element_name == 'Identifier':
                     if not text in identifiers:
                         identifiers.append(text)
+                elif element_name == 'Medium':
+                    pass
                 elif element_name == 'Provenance':
                     object_builder.set_provenance(text)
                 elif element_name == 'Rights':
@@ -463,6 +468,16 @@ for collection_dict in collection_dicts:
                 elif element_name == 'Source Identifier':
                     if not text in identifiers:
                         identifiers.append(text)
+                elif element_name == 'Technique':
+                    for technique in text.split(','):
+                        technique = technique.strip()
+                        if len(technique) == 0:
+                            continue
+                        techniques.append(
+                            Technique.Builder()
+                                .set_text(technique)
+                                .build()
+                        )
                 elif element_name == 'Wearer':
                     agents.append(
                         Agent.Builder()
@@ -524,6 +539,8 @@ for collection_dict in collection_dicts:
             object_builder.set_inscriptions(InscriptionSet.Builder().set_elements(tuple(inscriptions)).build())
         if len(subjects) > 0:
             object_builder.set_subjects(SubjectSet.Builder().set_elements(tuple(subjects)).build())
+        if len(techniques) > 0:
+            object_builder.set_techniques(TechniqueSet.Builder().set_elements(tuple(techniques)).build())
         if len(textrefs) > 0:
             object_builder.set_textrefs(TextrefSet.Builder().set_elements(tuple(textrefs)).build())
         if len(titles) > 0:

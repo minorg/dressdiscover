@@ -25,7 +25,8 @@ final class TechniqueSetTable extends ElementSetTable {
         }
         setContainerDataSource(container);
         setPageLength(techniques.getElements().size());
-        setColumnHeader(Technique.FieldMetadata.TEXT.getJavaName(), "Name");
+        setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
+        // setColumnHeader(Technique.FieldMetadata.TEXT.getJavaName(), "Name");
         // setColumnHeader(Technique.FieldMetadata.VOCAB.getJavaName(),
         // "Vocabulary");
         final List<Object> visibleColumns = new ArrayList<>();
