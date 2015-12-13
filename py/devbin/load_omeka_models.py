@@ -469,15 +469,16 @@ for collection_dict in collection_dicts:
                     if not text in identifiers:
                         identifiers.append(text)
                 elif element_name == 'Technique':
-                    for technique in text.split(','):
-                        technique = technique.strip()
-                        if len(technique) == 0:
-                            continue
-                        techniques.append(
-                            Technique.Builder()
-                                .set_text(technique)
-                                .build()
-                        )
+                    for technique in text.split(';'):
+                        for technique in technique.split(','):
+                            technique = technique.strip()
+                            if len(technique) == 0:
+                                continue
+                            techniques.append(
+                                Technique.Builder()
+                                    .set_text(technique)
+                                    .build()
+                            )
                 elif element_name == 'Wearer':
                     agents.append(
                         Agent.Builder()
