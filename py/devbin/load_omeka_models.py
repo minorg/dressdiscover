@@ -16,6 +16,7 @@ from costume.api.models.collection.collection import Collection
 from costume.api.models.description.description import Description
 from costume.api.models.description.description_set import DescriptionSet
 from costume.api.models.description.description_type import DescriptionType
+from costume.api.models.gender.gender import Gender
 from costume.api.models.image.image import Image
 from costume.api.models.image.image_type import ImageType
 from costume.api.models.institution.institution import Institution
@@ -383,6 +384,15 @@ for collection_dict in collection_dicts:
                             .set_type(DescriptionType.EXHIBITION)
                             .build()
                     )
+                elif element_name == 'Gender':
+                    text = text.lower().split(',')[0]
+                    if text == 'female':
+                        gender = Gender.FEMALE
+                    elif text == 'male':
+                        gender = Gender.MALE
+                    else:
+                        raise NotImplementedError(text)
+                    object_builder.set_gender(gender)
                 elif element_name == 'Private Information':
                     descriptions.append(
                         Description.Builder()
