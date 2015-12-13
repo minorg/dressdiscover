@@ -6,12 +6,14 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             excludeAgentNameTexts = com.google.common.base.Optional.absent();
             excludeCategories = com.google.common.base.Optional.absent();
             excludeCollectionIds = com.google.common.base.Optional.absent();
+            excludeGenders = com.google.common.base.Optional.absent();
             excludeInstitutionIds = com.google.common.base.Optional.absent();
             excludeSubjectTermTexts = com.google.common.base.Optional.absent();
             excludeWorkTypeTexts = com.google.common.base.Optional.absent();
             includeAgentNameTexts = com.google.common.base.Optional.absent();
             includeCategories = com.google.common.base.Optional.absent();
             includeCollectionIds = com.google.common.base.Optional.absent();
+            includeGenders = com.google.common.base.Optional.absent();
             includeInstitutionIds = com.google.common.base.Optional.absent();
             includeSubjectTermTexts = com.google.common.base.Optional.absent();
             includeWorkTypeTexts = com.google.common.base.Optional.absent();
@@ -21,23 +23,25 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             this.excludeAgentNameTexts = other.getExcludeAgentNameTexts();
             this.excludeCategories = other.getExcludeCategories();
             this.excludeCollectionIds = other.getExcludeCollectionIds();
+            this.excludeGenders = other.getExcludeGenders();
             this.excludeInstitutionIds = other.getExcludeInstitutionIds();
             this.excludeSubjectTermTexts = other.getExcludeSubjectTermTexts();
             this.excludeWorkTypeTexts = other.getExcludeWorkTypeTexts();
             this.includeAgentNameTexts = other.getIncludeAgentNameTexts();
             this.includeCategories = other.getIncludeCategories();
             this.includeCollectionIds = other.getIncludeCollectionIds();
+            this.includeGenders = other.getIncludeGenders();
             this.includeInstitutionIds = other.getIncludeInstitutionIds();
             this.includeSubjectTermTexts = other.getIncludeSubjectTermTexts();
             this.includeWorkTypeTexts = other.getIncludeWorkTypeTexts();
         }
 
-        protected ObjectFacetFilters _build(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeAgentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> excludeCollectionIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> excludeInstitutionIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeAgentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> includeCollectionIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> includeInstitutionIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
-            return new ObjectFacetFilters(excludeAgentNameTexts, excludeCategories, excludeCollectionIds, excludeInstitutionIds, excludeSubjectTermTexts, excludeWorkTypeTexts, includeAgentNameTexts, includeCategories, includeCollectionIds, includeInstitutionIds, includeSubjectTermTexts, includeWorkTypeTexts);
+        protected ObjectFacetFilters _build(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeAgentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> excludeCollectionIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>> excludeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> excludeInstitutionIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeAgentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> includeCollectionIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>> includeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> includeInstitutionIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
+            return new ObjectFacetFilters(excludeAgentNameTexts, excludeCategories, excludeCollectionIds, excludeGenders, excludeInstitutionIds, excludeSubjectTermTexts, excludeWorkTypeTexts, includeAgentNameTexts, includeCategories, includeCollectionIds, includeGenders, includeInstitutionIds, includeSubjectTermTexts, includeWorkTypeTexts);
         }
 
         public ObjectFacetFilters build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(excludeAgentNameTexts, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing excludeAgentNameTexts"), com.google.common.base.Preconditions.checkNotNull(excludeCategories, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing excludeCategories"), com.google.common.base.Preconditions.checkNotNull(excludeCollectionIds, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing excludeCollectionIds"), com.google.common.base.Preconditions.checkNotNull(excludeInstitutionIds, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing excludeInstitutionIds"), com.google.common.base.Preconditions.checkNotNull(excludeSubjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing excludeSubjectTermTexts"), com.google.common.base.Preconditions.checkNotNull(excludeWorkTypeTexts, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing excludeWorkTypeTexts"), com.google.common.base.Preconditions.checkNotNull(includeAgentNameTexts, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing includeAgentNameTexts"), com.google.common.base.Preconditions.checkNotNull(includeCategories, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing includeCategories"), com.google.common.base.Preconditions.checkNotNull(includeCollectionIds, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing includeCollectionIds"), com.google.common.base.Preconditions.checkNotNull(includeInstitutionIds, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing includeInstitutionIds"), com.google.common.base.Preconditions.checkNotNull(includeSubjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing includeSubjectTermTexts"), com.google.common.base.Preconditions.checkNotNull(includeWorkTypeTexts, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing includeWorkTypeTexts"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(excludeAgentNameTexts, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing excludeAgentNameTexts"), com.google.common.base.Preconditions.checkNotNull(excludeCategories, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing excludeCategories"), com.google.common.base.Preconditions.checkNotNull(excludeCollectionIds, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing excludeCollectionIds"), com.google.common.base.Preconditions.checkNotNull(excludeGenders, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing excludeGenders"), com.google.common.base.Preconditions.checkNotNull(excludeInstitutionIds, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing excludeInstitutionIds"), com.google.common.base.Preconditions.checkNotNull(excludeSubjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing excludeSubjectTermTexts"), com.google.common.base.Preconditions.checkNotNull(excludeWorkTypeTexts, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing excludeWorkTypeTexts"), com.google.common.base.Preconditions.checkNotNull(includeAgentNameTexts, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing includeAgentNameTexts"), com.google.common.base.Preconditions.checkNotNull(includeCategories, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing includeCategories"), com.google.common.base.Preconditions.checkNotNull(includeCollectionIds, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing includeCollectionIds"), com.google.common.base.Preconditions.checkNotNull(includeGenders, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing includeGenders"), com.google.common.base.Preconditions.checkNotNull(includeInstitutionIds, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing includeInstitutionIds"), com.google.common.base.Preconditions.checkNotNull(includeSubjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing includeSubjectTermTexts"), com.google.common.base.Preconditions.checkNotNull(includeWorkTypeTexts, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing includeWorkTypeTexts"));
         }
 
         public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> getExcludeAgentNameTexts() {
@@ -50,6 +54,10 @@ public class ObjectFacetFilters implements org.thryft.Struct {
 
         public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> getExcludeCollectionIds() {
             return excludeCollectionIds;
+        }
+
+        public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>> getExcludeGenders() {
+            return excludeGenders;
         }
 
         public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> getExcludeInstitutionIds() {
@@ -74,6 +82,10 @@ public class ObjectFacetFilters implements org.thryft.Struct {
 
         public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> getIncludeCollectionIds() {
             return includeCollectionIds;
+        }
+
+        public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>> getIncludeGenders() {
+            return includeGenders;
         }
 
         public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> getIncludeInstitutionIds() {
@@ -170,6 +182,31 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             }
             if (__list.getSize() > 3) {
                 try {
+                    excludeGenders = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>>() {
+                        @Override
+                        public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            try {
+                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
+                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequence = com.google.common.collect.ImmutableSet.builder();
+                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                    try {
+                                        sequence.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
+                                    } catch (final IllegalArgumentException e) {
+                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                                iprot.readSetEnd();
+                                return sequence.build();
+                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                            }
+                        }
+                    }).apply(iprot));
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                }
+            }
+            if (__list.getSize() > 4) {
+                try {
                     excludeInstitutionIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>>() {
                         @Override
                         public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -193,7 +230,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                 }
             }
-            if (__list.getSize() > 4) {
+            if (__list.getSize() > 5) {
                 try {
                     excludeSubjectTermTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                         @Override
@@ -214,7 +251,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                 }
             }
-            if (__list.getSize() > 5) {
+            if (__list.getSize() > 6) {
                 try {
                     excludeWorkTypeTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                         @Override
@@ -235,7 +272,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                 }
             }
-            if (__list.getSize() > 6) {
+            if (__list.getSize() > 7) {
                 try {
                     includeAgentNameTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                         @Override
@@ -256,7 +293,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                 }
             }
-            if (__list.getSize() > 7) {
+            if (__list.getSize() > 8) {
                 try {
                     includeCategories = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                         @Override
@@ -277,7 +314,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                 }
             }
-            if (__list.getSize() > 8) {
+            if (__list.getSize() > 9) {
                 try {
                     includeCollectionIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>>() {
                         @Override
@@ -302,7 +339,32 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                 }
             }
-            if (__list.getSize() > 9) {
+            if (__list.getSize() > 10) {
+                try {
+                    includeGenders = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>>() {
+                        @Override
+                        public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            try {
+                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
+                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequence = com.google.common.collect.ImmutableSet.builder();
+                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                    try {
+                                        sequence.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
+                                    } catch (final IllegalArgumentException e) {
+                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                                iprot.readSetEnd();
+                                return sequence.build();
+                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                            }
+                        }
+                    }).apply(iprot));
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                }
+            }
+            if (__list.getSize() > 11) {
                 try {
                     includeInstitutionIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>>() {
                         @Override
@@ -327,7 +389,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                 }
             }
-            if (__list.getSize() > 10) {
+            if (__list.getSize() > 12) {
                 try {
                     includeSubjectTermTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                         @Override
@@ -348,7 +410,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                 }
             }
-            if (__list.getSize() > 11) {
+            if (__list.getSize() > 13) {
                 try {
                     includeWorkTypeTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                         @Override
@@ -437,6 +499,32 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                                         try {
                                             sequence.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
                                         } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                        }
+                                    }
+                                    iprot.readSetEnd();
+                                    return sequence.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot));
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                    }
+                    break;
+                }
+                case "exclude_genders": {
+                    try {
+                        excludeGenders = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
+                                    final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequence = com.google.common.collect.ImmutableSet.builder();
+                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                        try {
+                                            sequence.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
+                                        } catch (final IllegalArgumentException e) {
                                              throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
                                     }
@@ -591,6 +679,32 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     break;
                 }
+                case "include_genders": {
+                    try {
+                        includeGenders = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
+                                    final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequence = com.google.common.collect.ImmutableSet.builder();
+                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                        try {
+                                            sequence.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
+                                        } catch (final IllegalArgumentException e) {
+                                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                        }
+                                    }
+                                    iprot.readSetEnd();
+                                    return sequence.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot));
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                    }
+                    break;
+                }
                 case "include_institution_ids": {
                     try {
                         includeInstitutionIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>>() {
@@ -698,6 +812,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             return this;
         }
 
+        public Builder setExcludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>> excludeGenders) {
+            this.excludeGenders = com.google.common.base.Preconditions.checkNotNull(excludeGenders);
+            return this;
+        }
+
+        public Builder setExcludeGenders(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> excludeGenders) {
+            this.excludeGenders = com.google.common.base.Optional.fromNullable(excludeGenders);
+            return this;
+        }
+
         public Builder setExcludeInstitutionIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> excludeInstitutionIds) {
             this.excludeInstitutionIds = com.google.common.base.Preconditions.checkNotNull(excludeInstitutionIds);
             return this;
@@ -740,6 +864,9 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             if (other.getExcludeCollectionIds().isPresent()) {
                 setExcludeCollectionIds(other.getExcludeCollectionIds());
             }
+            if (other.getExcludeGenders().isPresent()) {
+                setExcludeGenders(other.getExcludeGenders());
+            }
             if (other.getExcludeInstitutionIds().isPresent()) {
                 setExcludeInstitutionIds(other.getExcludeInstitutionIds());
             }
@@ -757,6 +884,9 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             }
             if (other.getIncludeCollectionIds().isPresent()) {
                 setIncludeCollectionIds(other.getIncludeCollectionIds());
+            }
+            if (other.getIncludeGenders().isPresent()) {
+                setIncludeGenders(other.getIncludeGenders());
             }
             if (other.getIncludeInstitutionIds().isPresent()) {
                 setIncludeInstitutionIds(other.getIncludeInstitutionIds());
@@ -801,6 +931,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             return this;
         }
 
+        public Builder setIncludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>> includeGenders) {
+            this.includeGenders = com.google.common.base.Preconditions.checkNotNull(includeGenders);
+            return this;
+        }
+
+        public Builder setIncludeGenders(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> includeGenders) {
+            this.includeGenders = com.google.common.base.Optional.fromNullable(includeGenders);
+            return this;
+        }
+
         public Builder setIncludeInstitutionIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> includeInstitutionIds) {
             this.includeInstitutionIds = com.google.common.base.Preconditions.checkNotNull(includeInstitutionIds);
             return this;
@@ -839,12 +979,14 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             case "exclude_agent_name_texts": setExcludeAgentNameTexts((com.google.common.collect.ImmutableSet<String>)value); return this;
             case "exclude_categories": setExcludeCategories((com.google.common.collect.ImmutableSet<String>)value); return this;
             case "exclude_collection_ids": setExcludeCollectionIds((com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>)value); return this;
+            case "exclude_genders": setExcludeGenders((com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>)value); return this;
             case "exclude_institution_ids": setExcludeInstitutionIds((com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>)value); return this;
             case "exclude_subject_term_texts": setExcludeSubjectTermTexts((com.google.common.collect.ImmutableSet<String>)value); return this;
             case "exclude_work_type_texts": setExcludeWorkTypeTexts((com.google.common.collect.ImmutableSet<String>)value); return this;
             case "include_agent_name_texts": setIncludeAgentNameTexts((com.google.common.collect.ImmutableSet<String>)value); return this;
             case "include_categories": setIncludeCategories((com.google.common.collect.ImmutableSet<String>)value); return this;
             case "include_collection_ids": setIncludeCollectionIds((com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>)value); return this;
+            case "include_genders": setIncludeGenders((com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>)value); return this;
             case "include_institution_ids": setIncludeInstitutionIds((com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>)value); return this;
             case "include_subject_term_texts": setIncludeSubjectTermTexts((com.google.common.collect.ImmutableSet<String>)value); return this;
             case "include_work_type_texts": setIncludeWorkTypeTexts((com.google.common.collect.ImmutableSet<String>)value); return this;
@@ -865,6 +1007,11 @@ public class ObjectFacetFilters implements org.thryft.Struct {
 
         public Builder unsetExcludeCollectionIds() {
             this.excludeCollectionIds = com.google.common.base.Optional.absent();
+            return this;
+        }
+
+        public Builder unsetExcludeGenders() {
+            this.excludeGenders = com.google.common.base.Optional.absent();
             return this;
         }
 
@@ -898,6 +1045,11 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             return this;
         }
 
+        public Builder unsetIncludeGenders() {
+            this.includeGenders = com.google.common.base.Optional.absent();
+            return this;
+        }
+
         public Builder unsetIncludeInstitutionIds() {
             this.includeInstitutionIds = com.google.common.base.Optional.absent();
             return this;
@@ -916,12 +1068,14 @@ public class ObjectFacetFilters implements org.thryft.Struct {
         private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeAgentNameTexts;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> excludeCollectionIds;
+        private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>> excludeGenders;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> excludeInstitutionIds;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeAgentNameTexts;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> includeCollectionIds;
+        private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>> includeGenders;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> includeInstitutionIds;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts;
@@ -932,12 +1086,14 @@ public class ObjectFacetFilters implements org.thryft.Struct {
         EXCLUDE_AGENT_NAME_TEXTS("excludeAgentNameTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "exclude_agent_name_texts", org.thryft.protocol.Type.SET),
         EXCLUDE_CATEGORIES("excludeCategories", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "exclude_categories", org.thryft.protocol.Type.SET),
         EXCLUDE_COLLECTION_IDS("excludeCollectionIds", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>>() {}, false, 0, "exclude_collection_ids", org.thryft.protocol.Type.SET),
+        EXCLUDE_GENDERS("excludeGenders", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>>() {}, false, 0, "exclude_genders", org.thryft.protocol.Type.SET),
         EXCLUDE_INSTITUTION_IDS("excludeInstitutionIds", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>>() {}, false, 0, "exclude_institution_ids", org.thryft.protocol.Type.SET),
         EXCLUDE_SUBJECT_TERM_TEXTS("excludeSubjectTermTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "exclude_subject_term_texts", org.thryft.protocol.Type.SET),
         EXCLUDE_WORK_TYPE_TEXTS("excludeWorkTypeTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "exclude_work_type_texts", org.thryft.protocol.Type.SET),
         INCLUDE_AGENT_NAME_TEXTS("includeAgentNameTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "include_agent_name_texts", org.thryft.protocol.Type.SET),
         INCLUDE_CATEGORIES("includeCategories", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "include_categories", org.thryft.protocol.Type.SET),
         INCLUDE_COLLECTION_IDS("includeCollectionIds", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>>() {}, false, 0, "include_collection_ids", org.thryft.protocol.Type.SET),
+        INCLUDE_GENDERS("includeGenders", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>>() {}, false, 0, "include_genders", org.thryft.protocol.Type.SET),
         INCLUDE_INSTITUTION_IDS("includeInstitutionIds", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>>() {}, false, 0, "include_institution_ids", org.thryft.protocol.Type.SET),
         INCLUDE_SUBJECT_TERM_TEXTS("includeSubjectTermTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "include_subject_term_texts", org.thryft.protocol.Type.SET),
         INCLUDE_WORK_TYPE_TEXTS("includeWorkTypeTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "include_work_type_texts", org.thryft.protocol.Type.SET);
@@ -987,12 +1143,14 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             case "excludeAgentNameTexts": return EXCLUDE_AGENT_NAME_TEXTS;
             case "excludeCategories": return EXCLUDE_CATEGORIES;
             case "excludeCollectionIds": return EXCLUDE_COLLECTION_IDS;
+            case "excludeGenders": return EXCLUDE_GENDERS;
             case "excludeInstitutionIds": return EXCLUDE_INSTITUTION_IDS;
             case "excludeSubjectTermTexts": return EXCLUDE_SUBJECT_TERM_TEXTS;
             case "excludeWorkTypeTexts": return EXCLUDE_WORK_TYPE_TEXTS;
             case "includeAgentNameTexts": return INCLUDE_AGENT_NAME_TEXTS;
             case "includeCategories": return INCLUDE_CATEGORIES;
             case "includeCollectionIds": return INCLUDE_COLLECTION_IDS;
+            case "includeGenders": return INCLUDE_GENDERS;
             case "includeInstitutionIds": return INCLUDE_INSTITUTION_IDS;
             case "includeSubjectTermTexts": return INCLUDE_SUBJECT_TERM_TEXTS;
             case "includeWorkTypeTexts": return INCLUDE_WORK_TYPE_TEXTS;
@@ -1006,12 +1164,14 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             case "exclude_agent_name_texts": return EXCLUDE_AGENT_NAME_TEXTS;
             case "exclude_categories": return EXCLUDE_CATEGORIES;
             case "exclude_collection_ids": return EXCLUDE_COLLECTION_IDS;
+            case "exclude_genders": return EXCLUDE_GENDERS;
             case "exclude_institution_ids": return EXCLUDE_INSTITUTION_IDS;
             case "exclude_subject_term_texts": return EXCLUDE_SUBJECT_TERM_TEXTS;
             case "exclude_work_type_texts": return EXCLUDE_WORK_TYPE_TEXTS;
             case "include_agent_name_texts": return INCLUDE_AGENT_NAME_TEXTS;
             case "include_categories": return INCLUDE_CATEGORIES;
             case "include_collection_ids": return INCLUDE_COLLECTION_IDS;
+            case "include_genders": return INCLUDE_GENDERS;
             case "include_institution_ids": return INCLUDE_INSTITUTION_IDS;
             case "include_subject_term_texts": return INCLUDE_SUBJECT_TERM_TEXTS;
             case "include_work_type_texts": return INCLUDE_WORK_TYPE_TEXTS;
@@ -1050,12 +1210,14 @@ public class ObjectFacetFilters implements org.thryft.Struct {
         excludeAgentNameTexts = com.google.common.base.Optional.absent();
         excludeCategories = com.google.common.base.Optional.absent();
         excludeCollectionIds = com.google.common.base.Optional.absent();
+        excludeGenders = com.google.common.base.Optional.absent();
         excludeInstitutionIds = com.google.common.base.Optional.absent();
         excludeSubjectTermTexts = com.google.common.base.Optional.absent();
         excludeWorkTypeTexts = com.google.common.base.Optional.absent();
         includeAgentNameTexts = com.google.common.base.Optional.absent();
         includeCategories = com.google.common.base.Optional.absent();
         includeCollectionIds = com.google.common.base.Optional.absent();
+        includeGenders = com.google.common.base.Optional.absent();
         includeInstitutionIds = com.google.common.base.Optional.absent();
         includeSubjectTermTexts = com.google.common.base.Optional.absent();
         includeWorkTypeTexts = com.google.common.base.Optional.absent();
@@ -1065,22 +1227,24 @@ public class ObjectFacetFilters implements org.thryft.Struct {
      * Copy constructor
      */
     public ObjectFacetFilters(final ObjectFacetFilters other) {
-        this(other.getExcludeAgentNameTexts(), other.getExcludeCategories(), other.getExcludeCollectionIds(), other.getExcludeInstitutionIds(), other.getExcludeSubjectTermTexts(), other.getExcludeWorkTypeTexts(), other.getIncludeAgentNameTexts(), other.getIncludeCategories(), other.getIncludeCollectionIds(), other.getIncludeInstitutionIds(), other.getIncludeSubjectTermTexts(), other.getIncludeWorkTypeTexts());
+        this(other.getExcludeAgentNameTexts(), other.getExcludeCategories(), other.getExcludeCollectionIds(), other.getExcludeGenders(), other.getExcludeInstitutionIds(), other.getExcludeSubjectTermTexts(), other.getExcludeWorkTypeTexts(), other.getIncludeAgentNameTexts(), other.getIncludeCategories(), other.getIncludeCollectionIds(), other.getIncludeGenders(), other.getIncludeInstitutionIds(), other.getIncludeSubjectTermTexts(), other.getIncludeWorkTypeTexts());
     }
 
     /**
      * Total Nullable constructor
      */
-    public ObjectFacetFilters(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeAgentNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeCategories, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId> excludeCollectionIds, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId> excludeInstitutionIds, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeSubjectTermTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeWorkTypeTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeAgentNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeCategories, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId> includeCollectionIds, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId> includeInstitutionIds, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeSubjectTermTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeWorkTypeTexts) {
+    public ObjectFacetFilters(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeAgentNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeCategories, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId> excludeCollectionIds, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> excludeGenders, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId> excludeInstitutionIds, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeSubjectTermTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeWorkTypeTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeAgentNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeCategories, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId> includeCollectionIds, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> includeGenders, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId> includeInstitutionIds, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeSubjectTermTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeWorkTypeTexts) {
         this.excludeAgentNameTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeAgentNameTexts), "net.lab1318.costume.api.services.object.ObjectFacetFilters: excludeAgentNameTexts is empty");
         this.excludeCategories = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeCategories), "net.lab1318.costume.api.services.object.ObjectFacetFilters: excludeCategories is empty");
         this.excludeCollectionIds = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeCollectionIds), "net.lab1318.costume.api.services.object.ObjectFacetFilters: excludeCollectionIds is empty");
+        this.excludeGenders = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeGenders), "net.lab1318.costume.api.services.object.ObjectFacetFilters: excludeGenders is empty");
         this.excludeInstitutionIds = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeInstitutionIds), "net.lab1318.costume.api.services.object.ObjectFacetFilters: excludeInstitutionIds is empty");
         this.excludeSubjectTermTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeSubjectTermTexts), "net.lab1318.costume.api.services.object.ObjectFacetFilters: excludeSubjectTermTexts is empty");
         this.excludeWorkTypeTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeWorkTypeTexts), "net.lab1318.costume.api.services.object.ObjectFacetFilters: excludeWorkTypeTexts is empty");
         this.includeAgentNameTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeAgentNameTexts), "net.lab1318.costume.api.services.object.ObjectFacetFilters: includeAgentNameTexts is empty");
         this.includeCategories = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeCategories), "net.lab1318.costume.api.services.object.ObjectFacetFilters: includeCategories is empty");
         this.includeCollectionIds = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeCollectionIds), "net.lab1318.costume.api.services.object.ObjectFacetFilters: includeCollectionIds is empty");
+        this.includeGenders = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeGenders), "net.lab1318.costume.api.services.object.ObjectFacetFilters: includeGenders is empty");
         this.includeInstitutionIds = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeInstitutionIds), "net.lab1318.costume.api.services.object.ObjectFacetFilters: includeInstitutionIds is empty");
         this.includeSubjectTermTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeSubjectTermTexts), "net.lab1318.costume.api.services.object.ObjectFacetFilters: includeSubjectTermTexts is empty");
         this.includeWorkTypeTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeWorkTypeTexts), "net.lab1318.costume.api.services.object.ObjectFacetFilters: includeWorkTypeTexts is empty");
@@ -1089,16 +1253,18 @@ public class ObjectFacetFilters implements org.thryft.Struct {
     /**
      * Optional constructor
      */
-    public ObjectFacetFilters(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeAgentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> excludeCollectionIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> excludeInstitutionIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeAgentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> includeCollectionIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> includeInstitutionIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
+    public ObjectFacetFilters(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeAgentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> excludeCollectionIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>> excludeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> excludeInstitutionIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeAgentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> includeCollectionIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>> includeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> includeInstitutionIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
         this.excludeAgentNameTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeAgentNameTexts, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing excludeAgentNameTexts"), "net.lab1318.costume.api.services.object.ObjectFacetFilters: excludeAgentNameTexts is empty");
         this.excludeCategories = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeCategories, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing excludeCategories"), "net.lab1318.costume.api.services.object.ObjectFacetFilters: excludeCategories is empty");
         this.excludeCollectionIds = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeCollectionIds, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing excludeCollectionIds"), "net.lab1318.costume.api.services.object.ObjectFacetFilters: excludeCollectionIds is empty");
+        this.excludeGenders = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeGenders, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing excludeGenders"), "net.lab1318.costume.api.services.object.ObjectFacetFilters: excludeGenders is empty");
         this.excludeInstitutionIds = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeInstitutionIds, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing excludeInstitutionIds"), "net.lab1318.costume.api.services.object.ObjectFacetFilters: excludeInstitutionIds is empty");
         this.excludeSubjectTermTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeSubjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing excludeSubjectTermTexts"), "net.lab1318.costume.api.services.object.ObjectFacetFilters: excludeSubjectTermTexts is empty");
         this.excludeWorkTypeTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeWorkTypeTexts, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing excludeWorkTypeTexts"), "net.lab1318.costume.api.services.object.ObjectFacetFilters: excludeWorkTypeTexts is empty");
         this.includeAgentNameTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeAgentNameTexts, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing includeAgentNameTexts"), "net.lab1318.costume.api.services.object.ObjectFacetFilters: includeAgentNameTexts is empty");
         this.includeCategories = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeCategories, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing includeCategories"), "net.lab1318.costume.api.services.object.ObjectFacetFilters: includeCategories is empty");
         this.includeCollectionIds = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeCollectionIds, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing includeCollectionIds"), "net.lab1318.costume.api.services.object.ObjectFacetFilters: includeCollectionIds is empty");
+        this.includeGenders = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeGenders, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing includeGenders"), "net.lab1318.costume.api.services.object.ObjectFacetFilters: includeGenders is empty");
         this.includeInstitutionIds = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeInstitutionIds, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing includeInstitutionIds"), "net.lab1318.costume.api.services.object.ObjectFacetFilters: includeInstitutionIds is empty");
         this.includeSubjectTermTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeSubjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing includeSubjectTermTexts"), "net.lab1318.costume.api.services.object.ObjectFacetFilters: includeSubjectTermTexts is empty");
         this.includeWorkTypeTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeWorkTypeTexts, "net.lab1318.costume.api.services.object.ObjectFacetFilters: missing includeWorkTypeTexts"), "net.lab1318.costume.api.services.object.ObjectFacetFilters: includeWorkTypeTexts is empty");
@@ -1129,12 +1295,14 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             getExcludeAgentNameTexts().equals(other.getExcludeAgentNameTexts()) &&
             getExcludeCategories().equals(other.getExcludeCategories()) &&
             getExcludeCollectionIds().equals(other.getExcludeCollectionIds()) &&
+            getExcludeGenders().equals(other.getExcludeGenders()) &&
             getExcludeInstitutionIds().equals(other.getExcludeInstitutionIds()) &&
             getExcludeSubjectTermTexts().equals(other.getExcludeSubjectTermTexts()) &&
             getExcludeWorkTypeTexts().equals(other.getExcludeWorkTypeTexts()) &&
             getIncludeAgentNameTexts().equals(other.getIncludeAgentNameTexts()) &&
             getIncludeCategories().equals(other.getIncludeCategories()) &&
             getIncludeCollectionIds().equals(other.getIncludeCollectionIds()) &&
+            getIncludeGenders().equals(other.getIncludeGenders()) &&
             getIncludeInstitutionIds().equals(other.getIncludeInstitutionIds()) &&
             getIncludeSubjectTermTexts().equals(other.getIncludeSubjectTermTexts()) &&
             getIncludeWorkTypeTexts().equals(other.getIncludeWorkTypeTexts());
@@ -1146,12 +1314,14 @@ public class ObjectFacetFilters implements org.thryft.Struct {
         case "exclude_agent_name_texts": return getExcludeAgentNameTexts();
         case "exclude_categories": return getExcludeCategories();
         case "exclude_collection_ids": return getExcludeCollectionIds();
+        case "exclude_genders": return getExcludeGenders();
         case "exclude_institution_ids": return getExcludeInstitutionIds();
         case "exclude_subject_term_texts": return getExcludeSubjectTermTexts();
         case "exclude_work_type_texts": return getExcludeWorkTypeTexts();
         case "include_agent_name_texts": return getIncludeAgentNameTexts();
         case "include_categories": return getIncludeCategories();
         case "include_collection_ids": return getIncludeCollectionIds();
+        case "include_genders": return getIncludeGenders();
         case "include_institution_ids": return getIncludeInstitutionIds();
         case "include_subject_term_texts": return getIncludeSubjectTermTexts();
         case "include_work_type_texts": return getIncludeWorkTypeTexts();
@@ -1170,6 +1340,10 @@ public class ObjectFacetFilters implements org.thryft.Struct {
 
     public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> getExcludeCollectionIds() {
         return excludeCollectionIds;
+    }
+
+    public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>> getExcludeGenders() {
+        return excludeGenders;
     }
 
     public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> getExcludeInstitutionIds() {
@@ -1196,6 +1370,10 @@ public class ObjectFacetFilters implements org.thryft.Struct {
         return includeCollectionIds;
     }
 
+    public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>> getIncludeGenders() {
+        return includeGenders;
+    }
+
     public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> getIncludeInstitutionIds() {
         return includeInstitutionIds;
     }
@@ -1220,6 +1398,9 @@ public class ObjectFacetFilters implements org.thryft.Struct {
         if (getExcludeCollectionIds().isPresent()) {
             hashCode = 31 * hashCode + getExcludeCollectionIds().get().hashCode();
         }
+        if (getExcludeGenders().isPresent()) {
+            hashCode = 31 * hashCode + getExcludeGenders().get().hashCode();
+        }
         if (getExcludeInstitutionIds().isPresent()) {
             hashCode = 31 * hashCode + getExcludeInstitutionIds().get().hashCode();
         }
@@ -1237,6 +1418,9 @@ public class ObjectFacetFilters implements org.thryft.Struct {
         }
         if (getIncludeCollectionIds().isPresent()) {
             hashCode = 31 * hashCode + getIncludeCollectionIds().get().hashCode();
+        }
+        if (getIncludeGenders().isPresent()) {
+            hashCode = 31 * hashCode + getIncludeGenders().get().hashCode();
         }
         if (getIncludeInstitutionIds().isPresent()) {
             hashCode = 31 * hashCode + getIncludeInstitutionIds().get().hashCode();
@@ -1265,12 +1449,14 @@ public class ObjectFacetFilters implements org.thryft.Struct {
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeAgentNameTexts = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> excludeCollectionIds = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>> excludeGenders = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> excludeInstitutionIds = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeAgentNameTexts = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> includeCollectionIds = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>> includeGenders = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> includeInstitutionIds = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts = com.google.common.base.Optional.absent();
@@ -1345,6 +1531,31 @@ public class ObjectFacetFilters implements org.thryft.Struct {
         }
         if (__list.getSize() > 3) {
             try {
+                excludeGenders = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>>() {
+                    @Override
+                    public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
+                        try {
+                            final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
+                            final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequence = com.google.common.collect.ImmutableSet.builder();
+                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                try {
+                                    sequence.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
+                                } catch (final IllegalArgumentException e) {
+                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                            iprot.readSetEnd();
+                            return sequence.build();
+                        } catch (final org.thryft.protocol.InputProtocolException e) {
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                        }
+                    }
+                }).apply(iprot));
+            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+            }
+        }
+        if (__list.getSize() > 4) {
+            try {
                 excludeInstitutionIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>>() {
                     @Override
                     public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -1368,7 +1579,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
             }
         }
-        if (__list.getSize() > 4) {
+        if (__list.getSize() > 5) {
             try {
                 excludeSubjectTermTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                     @Override
@@ -1389,7 +1600,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
             }
         }
-        if (__list.getSize() > 5) {
+        if (__list.getSize() > 6) {
             try {
                 excludeWorkTypeTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                     @Override
@@ -1410,7 +1621,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
             }
         }
-        if (__list.getSize() > 6) {
+        if (__list.getSize() > 7) {
             try {
                 includeAgentNameTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                     @Override
@@ -1431,7 +1642,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
             }
         }
-        if (__list.getSize() > 7) {
+        if (__list.getSize() > 8) {
             try {
                 includeCategories = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                     @Override
@@ -1452,7 +1663,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
             }
         }
-        if (__list.getSize() > 8) {
+        if (__list.getSize() > 9) {
             try {
                 includeCollectionIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>>() {
                     @Override
@@ -1477,7 +1688,32 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
             }
         }
-        if (__list.getSize() > 9) {
+        if (__list.getSize() > 10) {
+            try {
+                includeGenders = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>>() {
+                    @Override
+                    public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
+                        try {
+                            final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
+                            final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequence = com.google.common.collect.ImmutableSet.builder();
+                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                try {
+                                    sequence.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
+                                } catch (final IllegalArgumentException e) {
+                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                            iprot.readSetEnd();
+                            return sequence.build();
+                        } catch (final org.thryft.protocol.InputProtocolException e) {
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                        }
+                    }
+                }).apply(iprot));
+            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+            }
+        }
+        if (__list.getSize() > 11) {
             try {
                 includeInstitutionIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>>() {
                     @Override
@@ -1502,7 +1738,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
             }
         }
-        if (__list.getSize() > 10) {
+        if (__list.getSize() > 12) {
             try {
                 includeSubjectTermTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                     @Override
@@ -1523,7 +1759,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
             }
         }
-        if (__list.getSize() > 11) {
+        if (__list.getSize() > 13) {
             try {
                 includeWorkTypeTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                     @Override
@@ -1546,7 +1782,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
         }
         iprot.readListEnd();
         try {
-            return new ObjectFacetFilters(excludeAgentNameTexts, excludeCategories, excludeCollectionIds, excludeInstitutionIds, excludeSubjectTermTexts, excludeWorkTypeTexts, includeAgentNameTexts, includeCategories, includeCollectionIds, includeInstitutionIds, includeSubjectTermTexts, includeWorkTypeTexts);
+            return new ObjectFacetFilters(excludeAgentNameTexts, excludeCategories, excludeCollectionIds, excludeGenders, excludeInstitutionIds, excludeSubjectTermTexts, excludeWorkTypeTexts, includeAgentNameTexts, includeCategories, includeCollectionIds, includeGenders, includeInstitutionIds, includeSubjectTermTexts, includeWorkTypeTexts);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -1556,12 +1792,14 @@ public class ObjectFacetFilters implements org.thryft.Struct {
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeAgentNameTexts = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> excludeCollectionIds = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>> excludeGenders = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> excludeInstitutionIds = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeAgentNameTexts = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> includeCollectionIds = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>> includeGenders = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> includeInstitutionIds = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts = com.google.common.base.Optional.absent();
@@ -1629,6 +1867,32 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                                     try {
                                         sequence.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
                                     } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                                iprot.readSetEnd();
+                                return sequence.build();
+                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                            }
+                        }
+                    }).apply(iprot));
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                }
+                break;
+            }
+            case "exclude_genders": {
+                try {
+                    excludeGenders = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>>() {
+                        @Override
+                        public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            try {
+                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
+                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequence = com.google.common.collect.ImmutableSet.builder();
+                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                    try {
+                                        sequence.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
+                                    } catch (final IllegalArgumentException e) {
                                          throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
@@ -1783,6 +2047,32 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                 }
                 break;
             }
+            case "include_genders": {
+                try {
+                    includeGenders = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>>() {
+                        @Override
+                        public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            try {
+                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
+                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequence = com.google.common.collect.ImmutableSet.builder();
+                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                    try {
+                                        sequence.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
+                                    } catch (final IllegalArgumentException e) {
+                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                                iprot.readSetEnd();
+                                return sequence.build();
+                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                            }
+                        }
+                    }).apply(iprot));
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                }
+                break;
+            }
             case "include_institution_ids": {
                 try {
                     includeInstitutionIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>>() {
@@ -1858,14 +2148,14 @@ public class ObjectFacetFilters implements org.thryft.Struct {
         }
         iprot.readStructEnd();
         try {
-            return new ObjectFacetFilters(excludeAgentNameTexts, excludeCategories, excludeCollectionIds, excludeInstitutionIds, excludeSubjectTermTexts, excludeWorkTypeTexts, includeAgentNameTexts, includeCategories, includeCollectionIds, includeInstitutionIds, includeSubjectTermTexts, includeWorkTypeTexts);
+            return new ObjectFacetFilters(excludeAgentNameTexts, excludeCategories, excludeCollectionIds, excludeGenders, excludeInstitutionIds, excludeSubjectTermTexts, excludeWorkTypeTexts, includeAgentNameTexts, includeCategories, includeCollectionIds, includeGenders, includeInstitutionIds, includeSubjectTermTexts, includeWorkTypeTexts);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public ObjectFacetFilters replaceExcludeAgentNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeAgentNameTexts) {
-        return new ObjectFacetFilters(excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, this.excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, this.includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
+        return new ObjectFacetFilters(excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, this.excludeGenders, this.excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, this.includeGenders, this.includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
     }
 
     public ObjectFacetFilters replaceExcludeAgentNameTexts(final com.google.common.collect.ImmutableSet<String> excludeAgentNameTexts) {
@@ -1873,7 +2163,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceExcludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories) {
-        return new ObjectFacetFilters(this.excludeAgentNameTexts, excludeCategories, this.excludeCollectionIds, this.excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, this.includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
+        return new ObjectFacetFilters(this.excludeAgentNameTexts, excludeCategories, this.excludeCollectionIds, this.excludeGenders, this.excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, this.includeGenders, this.includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
     }
 
     public ObjectFacetFilters replaceExcludeCategories(final com.google.common.collect.ImmutableSet<String> excludeCategories) {
@@ -1881,15 +2171,23 @@ public class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceExcludeCollectionIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> excludeCollectionIds) {
-        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, excludeCollectionIds, this.excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, this.includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
+        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, excludeCollectionIds, this.excludeGenders, this.excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, this.includeGenders, this.includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
     }
 
     public ObjectFacetFilters replaceExcludeCollectionIds(final com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId> excludeCollectionIds) {
         return replaceExcludeCollectionIds(com.google.common.base.Optional.fromNullable(excludeCollectionIds));
     }
 
+    public ObjectFacetFilters replaceExcludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>> excludeGenders) {
+        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, excludeGenders, this.excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, this.includeGenders, this.includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
+    }
+
+    public ObjectFacetFilters replaceExcludeGenders(final com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> excludeGenders) {
+        return replaceExcludeGenders(com.google.common.base.Optional.fromNullable(excludeGenders));
+    }
+
     public ObjectFacetFilters replaceExcludeInstitutionIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> excludeInstitutionIds) {
-        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, this.includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
+        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, this.excludeGenders, excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, this.includeGenders, this.includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
     }
 
     public ObjectFacetFilters replaceExcludeInstitutionIds(final com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId> excludeInstitutionIds) {
@@ -1897,7 +2195,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceExcludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts) {
-        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, this.excludeInstitutionIds, excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, this.includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
+        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, this.excludeGenders, this.excludeInstitutionIds, excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, this.includeGenders, this.includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
     }
 
     public ObjectFacetFilters replaceExcludeSubjectTermTexts(final com.google.common.collect.ImmutableSet<String> excludeSubjectTermTexts) {
@@ -1905,7 +2203,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceExcludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts) {
-        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, this.excludeInstitutionIds, this.excludeSubjectTermTexts, excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, this.includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
+        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, this.excludeGenders, this.excludeInstitutionIds, this.excludeSubjectTermTexts, excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, this.includeGenders, this.includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
     }
 
     public ObjectFacetFilters replaceExcludeWorkTypeTexts(final com.google.common.collect.ImmutableSet<String> excludeWorkTypeTexts) {
@@ -1913,7 +2211,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceIncludeAgentNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeAgentNameTexts) {
-        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, this.excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, this.includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
+        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, this.excludeGenders, this.excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, this.includeGenders, this.includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
     }
 
     public ObjectFacetFilters replaceIncludeAgentNameTexts(final com.google.common.collect.ImmutableSet<String> includeAgentNameTexts) {
@@ -1921,7 +2219,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceIncludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories) {
-        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, this.excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, includeCategories, this.includeCollectionIds, this.includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
+        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, this.excludeGenders, this.excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, includeCategories, this.includeCollectionIds, this.includeGenders, this.includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
     }
 
     public ObjectFacetFilters replaceIncludeCategories(final com.google.common.collect.ImmutableSet<String> includeCategories) {
@@ -1929,15 +2227,23 @@ public class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceIncludeCollectionIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> includeCollectionIds) {
-        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, this.excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, includeCollectionIds, this.includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
+        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, this.excludeGenders, this.excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, includeCollectionIds, this.includeGenders, this.includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
     }
 
     public ObjectFacetFilters replaceIncludeCollectionIds(final com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId> includeCollectionIds) {
         return replaceIncludeCollectionIds(com.google.common.base.Optional.fromNullable(includeCollectionIds));
     }
 
+    public ObjectFacetFilters replaceIncludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>> includeGenders) {
+        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, this.excludeGenders, this.excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, includeGenders, this.includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
+    }
+
+    public ObjectFacetFilters replaceIncludeGenders(final com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> includeGenders) {
+        return replaceIncludeGenders(com.google.common.base.Optional.fromNullable(includeGenders));
+    }
+
     public ObjectFacetFilters replaceIncludeInstitutionIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> includeInstitutionIds) {
-        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, this.excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
+        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, this.excludeGenders, this.excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, this.includeGenders, includeInstitutionIds, this.includeSubjectTermTexts, this.includeWorkTypeTexts);
     }
 
     public ObjectFacetFilters replaceIncludeInstitutionIds(final com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId> includeInstitutionIds) {
@@ -1945,7 +2251,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceIncludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts) {
-        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, this.excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, this.includeInstitutionIds, includeSubjectTermTexts, this.includeWorkTypeTexts);
+        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, this.excludeGenders, this.excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, this.includeGenders, this.includeInstitutionIds, includeSubjectTermTexts, this.includeWorkTypeTexts);
     }
 
     public ObjectFacetFilters replaceIncludeSubjectTermTexts(final com.google.common.collect.ImmutableSet<String> includeSubjectTermTexts) {
@@ -1953,7 +2259,7 @@ public class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceIncludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
-        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, this.excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, this.includeInstitutionIds, this.includeSubjectTermTexts, includeWorkTypeTexts);
+        return new ObjectFacetFilters(this.excludeAgentNameTexts, this.excludeCategories, this.excludeCollectionIds, this.excludeGenders, this.excludeInstitutionIds, this.excludeSubjectTermTexts, this.excludeWorkTypeTexts, this.includeAgentNameTexts, this.includeCategories, this.includeCollectionIds, this.includeGenders, this.includeInstitutionIds, this.includeSubjectTermTexts, includeWorkTypeTexts);
     }
 
     public ObjectFacetFilters replaceIncludeWorkTypeTexts(final com.google.common.collect.ImmutableSet<String> includeWorkTypeTexts) {
@@ -1962,12 +2268,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("exclude_agent_name_texts", getExcludeAgentNameTexts().orNull()).add("exclude_categories", getExcludeCategories().orNull()).add("exclude_collection_ids", getExcludeCollectionIds().orNull()).add("exclude_institution_ids", getExcludeInstitutionIds().orNull()).add("exclude_subject_term_texts", getExcludeSubjectTermTexts().orNull()).add("exclude_work_type_texts", getExcludeWorkTypeTexts().orNull()).add("include_agent_name_texts", getIncludeAgentNameTexts().orNull()).add("include_categories", getIncludeCategories().orNull()).add("include_collection_ids", getIncludeCollectionIds().orNull()).add("include_institution_ids", getIncludeInstitutionIds().orNull()).add("include_subject_term_texts", getIncludeSubjectTermTexts().orNull()).add("include_work_type_texts", getIncludeWorkTypeTexts().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("exclude_agent_name_texts", getExcludeAgentNameTexts().orNull()).add("exclude_categories", getExcludeCategories().orNull()).add("exclude_collection_ids", getExcludeCollectionIds().orNull()).add("exclude_genders", getExcludeGenders().orNull()).add("exclude_institution_ids", getExcludeInstitutionIds().orNull()).add("exclude_subject_term_texts", getExcludeSubjectTermTexts().orNull()).add("exclude_work_type_texts", getExcludeWorkTypeTexts().orNull()).add("include_agent_name_texts", getIncludeAgentNameTexts().orNull()).add("include_categories", getIncludeCategories().orNull()).add("include_collection_ids", getIncludeCollectionIds().orNull()).add("include_genders", getIncludeGenders().orNull()).add("include_institution_ids", getIncludeInstitutionIds().orNull()).add("include_subject_term_texts", getIncludeSubjectTermTexts().orNull()).add("include_work_type_texts", getIncludeWorkTypeTexts().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 12);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 14);
 
         if (getExcludeAgentNameTexts().isPresent()) {
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeAgentNameTexts().get().size());
@@ -1993,6 +2299,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeCollectionIds().get().size());
             for (final net.lab1318.costume.api.models.collection.CollectionId _iter0 : getExcludeCollectionIds().get()) {
                 oprot.writeString(_iter0.toString());
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+
+        if (getExcludeGenders().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeGenders().get().size());
+            for (final net.lab1318.costume.api.models.gender.Gender _iter0 : getExcludeGenders().get()) {
+                oprot.writeEnum(_iter0);
             }
             oprot.writeSetEnd();
         } else {
@@ -2053,6 +2369,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeCollectionIds().get().size());
             for (final net.lab1318.costume.api.models.collection.CollectionId _iter0 : getIncludeCollectionIds().get()) {
                 oprot.writeString(_iter0.toString());
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+
+        if (getIncludeGenders().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeGenders().get().size());
+            for (final net.lab1318.costume.api.models.gender.Gender _iter0 : getIncludeGenders().get()) {
+                oprot.writeEnum(_iter0);
             }
             oprot.writeSetEnd();
         } else {
@@ -2131,6 +2457,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeFieldEnd();
         }
 
+        if (getExcludeGenders().isPresent()) {
+            oprot.writeFieldBegin("exclude_genders", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeGenders().get().size());
+            for (final net.lab1318.costume.api.models.gender.Gender _iter0 : getExcludeGenders().get()) {
+                oprot.writeEnum(_iter0);
+            }
+            oprot.writeSetEnd();
+            oprot.writeFieldEnd();
+        }
+
         if (getExcludeInstitutionIds().isPresent()) {
             oprot.writeFieldBegin("exclude_institution_ids", org.thryft.protocol.Type.SET, (short)0);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeInstitutionIds().get().size());
@@ -2191,6 +2527,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeFieldEnd();
         }
 
+        if (getIncludeGenders().isPresent()) {
+            oprot.writeFieldBegin("include_genders", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeGenders().get().size());
+            for (final net.lab1318.costume.api.models.gender.Gender _iter0 : getIncludeGenders().get()) {
+                oprot.writeEnum(_iter0);
+            }
+            oprot.writeSetEnd();
+            oprot.writeFieldEnd();
+        }
+
         if (getIncludeInstitutionIds().isPresent()) {
             oprot.writeFieldBegin("include_institution_ids", org.thryft.protocol.Type.SET, (short)0);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeInstitutionIds().get().size());
@@ -2230,6 +2576,8 @@ public class ObjectFacetFilters implements org.thryft.Struct {
 
     private final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> excludeCollectionIds;
 
+    private final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>> excludeGenders;
+
     private final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> excludeInstitutionIds;
 
     private final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts;
@@ -2241,6 +2589,8 @@ public class ObjectFacetFilters implements org.thryft.Struct {
     private final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories;
 
     private final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId>> includeCollectionIds;
+
+    private final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender>> includeGenders;
 
     private final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId>> includeInstitutionIds;
 

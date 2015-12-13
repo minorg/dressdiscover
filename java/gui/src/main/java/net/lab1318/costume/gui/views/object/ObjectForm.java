@@ -13,6 +13,7 @@ import com.vaadin.ui.VerticalLayout;
 import net.lab1318.costume.api.models.image.ImageType;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.object.ObjectEntry;
+import net.lab1318.costume.gui.models.gender.Genders;
 
 @SuppressWarnings("serial")
 final class ObjectForm extends CustomComponent {
@@ -55,6 +56,11 @@ final class ObjectForm extends CustomComponent {
 
             if (objectEntry.getModel().getDescriptions().isPresent()) {
                 formLayout.addComponent(new DescriptionSetTable(objectEntry.getModel().getDescriptions().get()));
+            }
+
+            if (objectEntry.getModel().getGender().isPresent()) {
+                formLayout.addComponent(
+                        __createTextField("Gender", Genders.getCaption(objectEntry.getModel().getGender().get())));
             }
 
             if (objectEntry.getModel().getInscriptions().isPresent()) {

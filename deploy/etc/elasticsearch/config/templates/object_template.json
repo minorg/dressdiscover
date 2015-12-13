@@ -183,6 +183,10 @@
               }
             }
           }, 
+          "25:gender": {
+            "index": "not_analyzed", 
+            "type": "string"
+          }, 
           "23:images": {
             "type": "nested", 
             "properties": {

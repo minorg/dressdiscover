@@ -12,6 +12,7 @@ public class ObjectBean {
         DATE("date", new com.google.common.reflect.TypeToken<java.util.Date>() {}, false, 10, "date", org.thryft.protocol.Type.I64),
         DATE_TEXT("dateText", new com.google.common.reflect.TypeToken<String>() {}, false, 11, "date_text", org.thryft.protocol.Type.STRING),
         DESCRIPTIONS("descriptions", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.description.DescriptionSetBean>() {}, false, 4, "descriptions", org.thryft.protocol.Type.STRUCT),
+        GENDER("gender", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.gender.Gender>() {}, false, 25, "gender", org.thryft.protocol.Type.STRING),
         IMAGES("images", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.image.ImageBean>>() {}, false, 23, "images", org.thryft.protocol.Type.LIST),
         INSCRIPTIONS("inscriptions", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.inscription.InscriptionSetBean>() {}, false, 17, "inscriptions", org.thryft.protocol.Type.STRUCT),
         MATERIALS("materials", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.material.MaterialSetBean>() {}, false, 15, "materials", org.thryft.protocol.Type.STRUCT),
@@ -73,6 +74,7 @@ public class ObjectBean {
             case "date": return DATE;
             case "dateText": return DATE_TEXT;
             case "descriptions": return DESCRIPTIONS;
+            case "gender": return GENDER;
             case "images": return IMAGES;
             case "inscriptions": return INSCRIPTIONS;
             case "materials": return MATERIALS;
@@ -98,6 +100,7 @@ public class ObjectBean {
             case "date": return DATE;
             case "date_text": return DATE_TEXT;
             case "descriptions": return DESCRIPTIONS;
+            case "gender": return GENDER;
             case "images": return IMAGES;
             case "inscriptions": return INSCRIPTIONS;
             case "materials": return MATERIALS;
@@ -145,6 +148,7 @@ public class ObjectBean {
         date = null;
         dateText = null;
         descriptions = null;
+        gender = null;
         images = null;
         inscriptions = null;
         materials = null;
@@ -166,6 +170,7 @@ public class ObjectBean {
         this.date = other.getDate().isPresent() ? other.getDate().get() : null;
         this.dateText = other.getDateText().isPresent() ? other.getDateText().get() : null;
         this.descriptions = other.getDescriptions().isPresent() ? new net.lab1318.costume.gui.models.description.DescriptionSetBean(other.getDescriptions().get()) : null;
+        this.gender = other.getGender().isPresent() ? other.getGender().get() : null;
         this.images = other.getImages().isPresent() ? (new com.google.common.base.Function<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image>, java.util.List<net.lab1318.costume.gui.models.image.ImageBean>>() {
             @Override
             public java.util.List<net.lab1318.costume.gui.models.image.ImageBean> apply(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image> other) {
@@ -205,6 +210,7 @@ public class ObjectBean {
             getDate().equals(other.getDate()) &&
             getDateText().equals(other.getDateText()) &&
             getDescriptions().equals(other.getDescriptions()) &&
+            getGender().equals(other.getGender()) &&
             getImages().equals(other.getImages()) &&
             getInscriptions().equals(other.getInscriptions()) &&
             getMaterials().equals(other.getMaterials()) &&
@@ -241,6 +247,10 @@ public class ObjectBean {
 
     public net.lab1318.costume.gui.models.description.DescriptionSetBean getDescriptions() {
         return descriptions;
+    }
+
+    public net.lab1318.costume.api.models.gender.Gender getGender() {
+        return gender;
     }
 
     public java.util.List<net.lab1318.costume.gui.models.image.ImageBean> getImages() {
@@ -319,6 +329,9 @@ public class ObjectBean {
         if (getDescriptions() != null) {
             hashCode = 31 * hashCode + getDescriptions().hashCode();
         }
+        if (getGender() != null) {
+            hashCode = 31 * hashCode + getGender().ordinal();
+        }
         if (getImages() != null) {
             hashCode = 31 * hashCode + getImages().hashCode();
         }
@@ -373,6 +386,10 @@ public class ObjectBean {
         this.descriptions = descriptions;
     }
 
+    public void setGender(final net.lab1318.costume.api.models.gender.Gender gender) {
+        this.gender = gender;
+    }
+
     public void setImages(final java.util.List<net.lab1318.costume.gui.models.image.ImageBean> images) {
         this.images = images;
     }
@@ -423,7 +440,7 @@ public class ObjectBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agents", getAgents()).add("categories", getCategories()).add("date", getDate()).add("date_text", getDateText()).add("descriptions", getDescriptions()).add("images", getImages()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("provenance", getProvenance()).add("rights", getRights()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("work_types", getWorkTypes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agents", getAgents()).add("categories", getCategories()).add("date", getDate()).add("date_text", getDateText()).add("descriptions", getDescriptions()).add("gender", getGender()).add("images", getImages()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("provenance", getProvenance()).add("rights", getRights()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("work_types", getWorkTypes()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -449,6 +466,8 @@ public class ObjectBean {
     private String dateText;
 
     private net.lab1318.costume.gui.models.description.DescriptionSetBean descriptions;
+
+    private net.lab1318.costume.api.models.gender.Gender gender;
 
     private java.util.List<net.lab1318.costume.gui.models.image.ImageBean> images;
 

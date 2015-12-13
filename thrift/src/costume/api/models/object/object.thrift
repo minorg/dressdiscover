@@ -6,6 +6,7 @@ include "costume/api/models/model_metadata.thrift"
 include "costume/api/models/agent/agent_set.thrift"
 include "costume/api/models/collection/collection_id.thrift"
 include "costume/api/models/description/description_set.thrift"
+include "costume/api/models/gender/gender.thrift"
 include "costume/api/models/image/image.thrift"
 include "costume/api/models/inscription/inscription_set.thrift"
 include "costume/api/models/institution/institution_id.thrift"
@@ -42,6 +43,8 @@ struct Object {
 	11: optional string date_text;
 
 	4: optional description_set.DescriptionSet descriptions;
+
+	25: optional gender.Gender gender;
 
 	// @validation {"minLength": 1}
 	23: optional list<image.Image> images;
