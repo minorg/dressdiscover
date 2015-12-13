@@ -23,6 +23,7 @@ import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.aggregations.AbstractAggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.Aggregations;
 import org.elasticsearch.search.aggregations.bucket.nested.Nested;
 import org.elasticsearch.search.aggregations.bucket.nested.NestedBuilder;
 import org.elasticsearch.search.aggregations.bucket.terms.StringTerms;
@@ -40,6 +41,7 @@ import org.slf4j.LoggerFactory;
 import org.thryft.protocol.InputProtocolException;
 
 import com.google.common.base.Optional;
+import com.google.common.collect.ForwardingList;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -111,6 +113,194 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         private final static ObjectElasticSearchModelFactory instance = new ObjectElasticSearchModelFactory();
     }
 
+    private final static class ObjectFacetAggregations extends ForwardingList<AbstractAggregationBuilder> {
+        private ObjectFacetAggregations() {
+            {
+                final TermsBuilder agentNameTextAggregation = AggregationBuilders
+                        .terms(AgentName.FieldMetadata.TEXT.getThriftName())
+                        .field(Object.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
+                                + AgentSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
+                                + Agent.FieldMetadata.NAME.getThriftProtocolKey() + '.'
+                                + AgentName.FieldMetadata.TEXT.getThriftProtocolKey() + ".not_analyzed");
+                final NestedBuilder agentNameAggregation = AggregationBuilders
+                        .nested(Agent.FieldMetadata.NAME.getThriftName())
+                        .path(Object.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
+                                + AgentSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
+                                + Agent.FieldMetadata.NAME.getThriftProtocolKey())
+                        .subAggregation(agentNameTextAggregation);
+                final NestedBuilder agentSetAgentsAggregation = AggregationBuilders
+                        .nested(AgentSet.FieldMetadata.ELEMENTS.getThriftName())
+                        .path(Object.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
+                                + AgentSet.FieldMetadata.ELEMENTS.getThriftProtocolKey())
+                        .subAggregation(agentNameAggregation);
+                final NestedBuilder objectAgentsAggregation = AggregationBuilders
+                        .nested(Object.FieldMetadata.AGENTS.getThriftName())
+                        .path(Object.FieldMetadata.AGENTS.getThriftProtocolKey())
+                        .subAggregation(agentSetAgentsAggregation);
+                this.agentNameTextsAggregation = objectAgentsAggregation;
+            }
+
+            categoriesAggregation = AggregationBuilders.terms(ObjectFacets.FieldMetadata.CATEGORIES.getThriftName())
+                    .field(Object.FieldMetadata.CATEGORIES.getThriftProtocolKey() + ".not_analyzed");
+
+            collectionHitsAggregation = AggregationBuilders
+                    .terms(ObjectFacets.FieldMetadata.COLLECTION_HITS.getThriftName())
+                    .field(Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey());
+
+            institutionHitsAggregation = AggregationBuilders
+                    .terms(ObjectFacets.FieldMetadata.INSTITUTION_HITS.getThriftName())
+                    .field(Object.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey());
+
+            {
+                final TermsBuilder subjectTermTextAggregation = AggregationBuilders
+                        .terms(SubjectTerm.FieldMetadata.TEXT.getThriftName())
+                        .field(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+                                + SubjectSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
+                                + Subject.FieldMetadata.TERMS.getThriftProtocolKey() + '.'
+                                + SubjectTerm.FieldMetadata.TEXT.getThriftProtocolKey() + ".not_analyzed");
+                final NestedBuilder subjectTermsAggregation = AggregationBuilders
+                        .nested(Subject.FieldMetadata.TERMS.getThriftName())
+                        .path(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+                                + SubjectSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
+                                + Subject.FieldMetadata.TERMS.getThriftProtocolKey())
+                        .subAggregation(subjectTermTextAggregation);
+                final NestedBuilder subjectSetSubjectsAggregation = AggregationBuilders
+                        .nested(SubjectSet.FieldMetadata.ELEMENTS.getThriftName())
+                        .path(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
+                                + SubjectSet.FieldMetadata.ELEMENTS.getThriftProtocolKey())
+                        .subAggregation(subjectTermsAggregation);
+                final NestedBuilder objectSubjectsAggregation = AggregationBuilders
+                        .nested(Object.FieldMetadata.SUBJECTS.getThriftName())
+                        .path(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey())
+                        .subAggregation(subjectSetSubjectsAggregation);
+                subjectTermTextsAggregation = objectSubjectsAggregation;
+            }
+
+            {
+                final TermsBuilder workTypeTextAggregation = AggregationBuilders
+                        .terms(WorkType.FieldMetadata.TEXT.getThriftName())
+                        .field(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
+                                + WorkTypeSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
+                                + WorkType.FieldMetadata.TEXT.getThriftProtocolKey() + ".not_analyzed");
+                final NestedBuilder workTypeSetsWorkTypesAggregation = AggregationBuilders
+                        .nested(WorkTypeSet.FieldMetadata.ELEMENTS.getThriftName())
+                        .path(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
+                                + WorkTypeSet.FieldMetadata.ELEMENTS.getThriftProtocolKey())
+                        .subAggregation(workTypeTextAggregation);
+                final NestedBuilder objectWorkTypesAggregation = AggregationBuilders
+                        .nested(Object.FieldMetadata.WORK_TYPES.getThriftName())
+                        .path(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey())
+                        .subAggregation(workTypeSetsWorkTypesAggregation);
+                this.workTypeTextsAggregation = objectWorkTypesAggregation;
+            }
+
+            aggregations = ImmutableList.of(agentNameTextsAggregation, categoriesAggregation, collectionHitsAggregation,
+                    institutionHitsAggregation, subjectTermTextsAggregation, workTypeTextsAggregation);
+        }
+
+        public ObjectFacets getObjectFacets(final Aggregations aggregations) {
+            final ObjectFacets.Builder resultBuilder = ObjectFacets.builder();
+
+            {
+                final ImmutableMap.Builder<String, UnsignedInteger> agentNameTextsBuilder = ImmutableMap.builder();
+                final Nested agentNameTextsAggregation = aggregations.get(this.agentNameTextsAggregation.getName());
+                final Nested agentSetElementsAggregation = agentNameTextsAggregation.getAggregations()
+                        .get(AgentSet.FieldMetadata.ELEMENTS.getThriftName());
+                final Nested agentNameAggregation = agentSetElementsAggregation.getAggregations()
+                        .get(Agent.FieldMetadata.NAME.getThriftName());
+                final StringTerms agentNameTextAggregation = agentNameAggregation.getAggregations()
+                        .get(AgentName.FieldMetadata.TEXT.getThriftName());
+                for (final Bucket bucket : agentNameTextAggregation.getBuckets()) {
+                    agentNameTextsBuilder.put(bucket.getKey(), UnsignedInteger.valueOf(bucket.getDocCount()));
+                }
+                resultBuilder.setAgentNameTexts(agentNameTextsBuilder.build());
+            }
+
+            {
+                final ImmutableMap.Builder<String, UnsignedInteger> categoriesBuilder = ImmutableMap.builder();
+                for (final Bucket bucket : ((StringTerms) aggregations.get(categoriesAggregation.getName()))
+                        .getBuckets()) {
+                    categoriesBuilder.put(bucket.getKey(), UnsignedInteger.valueOf(bucket.getDocCount()));
+                }
+                resultBuilder.setCategories(categoriesBuilder.build());
+            }
+
+            {
+                final ImmutableMap.Builder<CollectionId, UnsignedInteger> collectionHitsBuilder = ImmutableMap
+                        .builder();
+                for (final Bucket bucket : ((StringTerms) aggregations.get(collectionHitsAggregation.getName()))
+                        .getBuckets()) {
+                    try {
+                        collectionHitsBuilder.put(CollectionId.parse(bucket.getKey()),
+                                UnsignedInteger.valueOf(bucket.getDocCount()));
+                    } catch (final InvalidCollectionIdException e) {
+                        throw new IllegalStateException(e);
+                    }
+                }
+                resultBuilder.setCollectionHits(collectionHitsBuilder.build());
+            }
+
+            {
+                final ImmutableMap.Builder<InstitutionId, UnsignedInteger> institutionHitsBuilder = ImmutableMap
+                        .builder();
+                for (final Bucket bucket : ((StringTerms) aggregations.get(institutionHitsAggregation.getName()))
+                        .getBuckets()) {
+                    try {
+                        institutionHitsBuilder.put(InstitutionId.parse(bucket.getKey()),
+                                UnsignedInteger.valueOf(bucket.getDocCount()));
+                    } catch (final InvalidInstitutionIdException e) {
+                        throw new IllegalStateException(e);
+                    }
+                }
+                resultBuilder.setInstitutionHits(institutionHitsBuilder.build());
+            }
+
+            {
+                final ImmutableMap.Builder<String, UnsignedInteger> subjectTermTextsBuilder = ImmutableMap.builder();
+                final Nested subjectTermTextsAggregation = aggregations.get(this.subjectTermTextsAggregation.getName());
+                final Nested subjectSetElementsAggregation = subjectTermTextsAggregation.getAggregations()
+                        .get(SubjectSet.FieldMetadata.ELEMENTS.getThriftName());
+                final Nested subjectTermsAggregation = subjectSetElementsAggregation.getAggregations()
+                        .get(Subject.FieldMetadata.TERMS.getThriftName());
+                final StringTerms subjectTermTextAggregation = subjectTermsAggregation.getAggregations()
+                        .get(SubjectTerm.FieldMetadata.TEXT.getThriftName());
+
+                for (final Bucket bucket : subjectTermTextAggregation.getBuckets()) {
+                    subjectTermTextsBuilder.put(bucket.getKey(), UnsignedInteger.valueOf(bucket.getDocCount()));
+                }
+                resultBuilder.setSubjectTermTexts(subjectTermTextsBuilder.build());
+            }
+
+            {
+                final ImmutableMap.Builder<String, UnsignedInteger> workTypeTextsBuilder = ImmutableMap.builder();
+                final Nested workTypeTextsAggregation = aggregations.get(this.workTypeTextsAggregation.getName());
+                final Nested workTypeSetElementsAggregation = workTypeTextsAggregation.getAggregations()
+                        .get(WorkTypeSet.FieldMetadata.ELEMENTS.getThriftName());
+                final StringTerms workTypeTextAggregation = workTypeSetElementsAggregation.getAggregations()
+                        .get(WorkType.FieldMetadata.TEXT.getThriftName());
+                for (final Bucket bucket : workTypeTextAggregation.getBuckets()) {
+                    workTypeTextsBuilder.put(bucket.getKey(), UnsignedInteger.valueOf(bucket.getDocCount()));
+                }
+                resultBuilder.setWorkTypeTexts(workTypeTextsBuilder.build());
+            }
+
+            return resultBuilder.build();
+        }
+
+        @Override
+        protected List<AbstractAggregationBuilder> delegate() {
+            return aggregations;
+        }
+
+        private final AggregationBuilder<?> agentNameTextsAggregation;
+        private final ImmutableList<AbstractAggregationBuilder> aggregations;
+        private final TermsBuilder categoriesAggregation;
+        private final TermsBuilder collectionHitsAggregation;
+        private final TermsBuilder institutionHitsAggregation;
+        private final AggregationBuilder<?> subjectTermTextsAggregation;
+        private NestedBuilder workTypeTextsAggregation;
+    }
+
     private static FilterBuilder __excludeAllFilters(final List<FilterBuilder> filters) {
         checkArgument(!filters.isEmpty());
         final FilterBuilder[] filtersArray = new FilterBuilder[filters.size()];
@@ -139,91 +329,9 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     @Inject
     public ElasticSearchObjectQueryService(final ObjectElasticSearchIndex elasticSearchIndex) {
         this.elasticSearchIndex = checkNotNull(elasticSearchIndex);
-
-        {
-            final TermsBuilder agentNameTextAggregation = AggregationBuilders
-                    .terms(AgentName.FieldMetadata.TEXT.getThriftName())
-                    .field(Object.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
-                            + AgentSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
-                            + Agent.FieldMetadata.NAME.getThriftProtocolKey() + '.'
-                            + AgentName.FieldMetadata.TEXT.getThriftProtocolKey() + ".not_analyzed");
-            final NestedBuilder agentNameAggregation = AggregationBuilders
-                    .nested(Agent.FieldMetadata.NAME.getThriftName())
-                    .path(Object.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
-                            + AgentSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
-                            + Agent.FieldMetadata.NAME.getThriftProtocolKey())
-                    .subAggregation(agentNameTextAggregation);
-            final NestedBuilder agentSetAgentsAggregation = AggregationBuilders
-                    .nested(AgentSet.FieldMetadata.ELEMENTS.getThriftName())
-                    .path(Object.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
-                            + AgentSet.FieldMetadata.ELEMENTS.getThriftProtocolKey())
-                    .subAggregation(agentNameAggregation);
-            final NestedBuilder objectAgentsAggregation = AggregationBuilders
-                    .nested(Object.FieldMetadata.AGENTS.getThriftName())
-                    .path(Object.FieldMetadata.AGENTS.getThriftProtocolKey()).subAggregation(agentSetAgentsAggregation);
-            this.agentNameTextsAggregation = objectAgentsAggregation;
-        }
-
-        categoriesAggregation = AggregationBuilders.terms(ObjectFacets.FieldMetadata.CATEGORIES.getThriftName())
-                .field(Object.FieldMetadata.CATEGORIES.getThriftProtocolKey() + ".not_analyzed");
-
-        collectionHitsAggregation = AggregationBuilders
-                .terms(ObjectFacets.FieldMetadata.COLLECTION_HITS.getThriftName())
-                .field(Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey());
-
         emptyObjectFacets = ObjectFacets.builder().setAgentNameTexts(ImmutableMap.of()).setCategories(ImmutableMap.of())
                 .setCollectionHits(ImmutableMap.of()).setInstitutionHits(ImmutableMap.of())
                 .setSubjectTermTexts(ImmutableMap.of()).setWorkTypeTexts(ImmutableMap.of()).build();
-
-        institutionHitsAggregation = AggregationBuilders
-                .terms(ObjectFacets.FieldMetadata.INSTITUTION_HITS.getThriftName())
-                .field(Object.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey());
-
-        {
-            final TermsBuilder subjectTermTextAggregation = AggregationBuilders
-                    .terms(SubjectTerm.FieldMetadata.TEXT.getThriftName())
-                    .field(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
-                            + SubjectSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
-                            + Subject.FieldMetadata.TERMS.getThriftProtocolKey() + '.'
-                            + SubjectTerm.FieldMetadata.TEXT.getThriftProtocolKey() + ".not_analyzed");
-            final NestedBuilder subjectTermsAggregation = AggregationBuilders
-                    .nested(Subject.FieldMetadata.TERMS.getThriftName())
-                    .path(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
-                            + SubjectSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
-                            + Subject.FieldMetadata.TERMS.getThriftProtocolKey())
-                    .subAggregation(subjectTermTextAggregation);
-            final NestedBuilder subjectSetSubjectsAggregation = AggregationBuilders
-                    .nested(SubjectSet.FieldMetadata.ELEMENTS.getThriftName())
-                    .path(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
-                            + SubjectSet.FieldMetadata.ELEMENTS.getThriftProtocolKey())
-                    .subAggregation(subjectTermsAggregation);
-            final NestedBuilder objectSubjectsAggregation = AggregationBuilders
-                    .nested(Object.FieldMetadata.SUBJECTS.getThriftName())
-                    .path(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey())
-                    .subAggregation(subjectSetSubjectsAggregation);
-            subjectTermTextsAggregation = objectSubjectsAggregation;
-        }
-
-        {
-            final TermsBuilder workTypeTextAggregation = AggregationBuilders
-                    .terms(WorkType.FieldMetadata.TEXT.getThriftName())
-                    .field(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
-                            + WorkTypeSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
-                            + WorkType.FieldMetadata.TEXT.getThriftProtocolKey() + ".not_analyzed");
-            final NestedBuilder workTypeSetsWorkTypesAggregation = AggregationBuilders
-                    .nested(WorkTypeSet.FieldMetadata.ELEMENTS.getThriftName())
-                    .path(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
-                            + WorkTypeSet.FieldMetadata.ELEMENTS.getThriftProtocolKey())
-                    .subAggregation(workTypeTextAggregation);
-            final NestedBuilder objectWorkTypesAggregation = AggregationBuilders
-                    .nested(Object.FieldMetadata.WORK_TYPES.getThriftName())
-                    .path(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey())
-                    .subAggregation(workTypeSetsWorkTypesAggregation);
-            this.workTypeTextsAggregation = objectWorkTypesAggregation;
-        }
-
-        aggregations = ImmutableList.of(agentNameTextsAggregation, categoriesAggregation, collectionHitsAggregation,
-                institutionHitsAggregation, subjectTermTextsAggregation, workTypeTextsAggregation);
     }
 
     @Override
@@ -258,7 +366,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     public ObjectFacets getObjectFacets(final Optional<ObjectQuery> query) throws IoException {
         final SearchRequestBuilder searchRequestBuilder = elasticSearchIndex.prepareSearchModels()
                 .setQuery(__translateQuery(query)).setFrom(0).setSize(0);
-        for (final AbstractAggregationBuilder aggregation : aggregations) {
+        for (final AbstractAggregationBuilder aggregation : objectFacetAggregations) {
             searchRequestBuilder.addAggregation(aggregation);
         }
 
@@ -272,93 +380,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             throw ServiceExceptionHelper.wrapException(e, "error getting objects");
         }
 
-        final ObjectFacets.Builder resultBuilder = ObjectFacets.builder();
-
-        {
-            final ImmutableMap.Builder<String, UnsignedInteger> agentNameTextsBuilder = ImmutableMap.builder();
-            final Nested agentNameTextsAggregation = searchResponse.getAggregations()
-                    .get(this.agentNameTextsAggregation.getName());
-            final Nested agentSetElementsAggregation = agentNameTextsAggregation.getAggregations()
-                    .get(AgentSet.FieldMetadata.ELEMENTS.getThriftName());
-            final Nested agentNameAggregation = agentSetElementsAggregation.getAggregations()
-                    .get(Agent.FieldMetadata.NAME.getThriftName());
-            final StringTerms agentNameTextAggregation = agentNameAggregation.getAggregations()
-                    .get(AgentName.FieldMetadata.TEXT.getThriftName());
-            for (final Bucket bucket : agentNameTextAggregation.getBuckets()) {
-                agentNameTextsBuilder.put(bucket.getKey(), UnsignedInteger.valueOf(bucket.getDocCount()));
-            }
-            resultBuilder.setAgentNameTexts(agentNameTextsBuilder.build());
-        }
-
-        {
-            final ImmutableMap.Builder<String, UnsignedInteger> categoriesBuilder = ImmutableMap.builder();
-            for (final Bucket bucket : ((StringTerms) searchResponse.getAggregations()
-                    .get(categoriesAggregation.getName())).getBuckets()) {
-                categoriesBuilder.put(bucket.getKey(), UnsignedInteger.valueOf(bucket.getDocCount()));
-            }
-            resultBuilder.setCategories(categoriesBuilder.build());
-        }
-
-        {
-            final ImmutableMap.Builder<CollectionId, UnsignedInteger> collectionHitsBuilder = ImmutableMap.builder();
-            for (final Bucket bucket : ((StringTerms) searchResponse.getAggregations()
-                    .get(collectionHitsAggregation.getName())).getBuckets()) {
-                try {
-                    collectionHitsBuilder.put(CollectionId.parse(bucket.getKey()),
-                            UnsignedInteger.valueOf(bucket.getDocCount()));
-                } catch (final InvalidCollectionIdException e) {
-                    throw new IllegalStateException(e);
-                }
-            }
-            resultBuilder.setCollectionHits(collectionHitsBuilder.build());
-        }
-
-        {
-            final ImmutableMap.Builder<InstitutionId, UnsignedInteger> institutionHitsBuilder = ImmutableMap.builder();
-            for (final Bucket bucket : ((StringTerms) searchResponse.getAggregations()
-                    .get(institutionHitsAggregation.getName())).getBuckets()) {
-                try {
-                    institutionHitsBuilder.put(InstitutionId.parse(bucket.getKey()),
-                            UnsignedInteger.valueOf(bucket.getDocCount()));
-                } catch (final InvalidInstitutionIdException e) {
-                    throw new IllegalStateException(e);
-                }
-            }
-            resultBuilder.setInstitutionHits(institutionHitsBuilder.build());
-        }
-
-        {
-            final ImmutableMap.Builder<String, UnsignedInteger> subjectTermTextsBuilder = ImmutableMap.builder();
-            final Nested subjectTermTextsAggregation = searchResponse.getAggregations()
-                    .get(this.subjectTermTextsAggregation.getName());
-            final Nested subjectSetElementsAggregation = subjectTermTextsAggregation.getAggregations()
-                    .get(SubjectSet.FieldMetadata.ELEMENTS.getThriftName());
-            final Nested subjectTermsAggregation = subjectSetElementsAggregation.getAggregations()
-                    .get(Subject.FieldMetadata.TERMS.getThriftName());
-            final StringTerms subjectTermTextAggregation = subjectTermsAggregation.getAggregations()
-                    .get(SubjectTerm.FieldMetadata.TEXT.getThriftName());
-
-            for (final Bucket bucket : subjectTermTextAggregation.getBuckets()) {
-                subjectTermTextsBuilder.put(bucket.getKey(), UnsignedInteger.valueOf(bucket.getDocCount()));
-            }
-            resultBuilder.setSubjectTermTexts(subjectTermTextsBuilder.build());
-        }
-
-        {
-            final ImmutableMap.Builder<String, UnsignedInteger> workTypeTextsBuilder = ImmutableMap.builder();
-            final Nested workTypeTextsAggregation = searchResponse.getAggregations()
-                    .get(this.workTypeTextsAggregation.getName());
-            final Nested workTypeSetElementsAggregation = workTypeTextsAggregation.getAggregations()
-                    .get(WorkTypeSet.FieldMetadata.ELEMENTS.getThriftName());
-            final StringTerms workTypeTextAggregation = workTypeSetElementsAggregation.getAggregations()
-                    .get(WorkType.FieldMetadata.TEXT.getThriftName());
-            for (final Bucket bucket : workTypeTextAggregation.getBuckets()) {
-                workTypeTextsBuilder.put(bucket.getKey(), UnsignedInteger.valueOf(bucket.getDocCount()));
-            }
-            resultBuilder.setWorkTypeTexts(workTypeTextsBuilder.build());
-        }
-
-        return resultBuilder.build();
+        return objectFacetAggregations.getObjectFacets(searchResponse.getAggregations());
     }
 
     @Override
@@ -668,13 +690,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     }
 
     private final ObjectElasticSearchIndex elasticSearchIndex;
-    private final AggregationBuilder<?> agentNameTextsAggregation;
-    private final ImmutableList<AbstractAggregationBuilder> aggregations;
-    private final TermsBuilder categoriesAggregation;
-    private final TermsBuilder collectionHitsAggregation;
     private final ObjectFacets emptyObjectFacets;
-    private final TermsBuilder institutionHitsAggregation;
-    private final AggregationBuilder<?> subjectTermTextsAggregation;
-    private NestedBuilder workTypeTextsAggregation;
+    private final ObjectFacetAggregations objectFacetAggregations = new ObjectFacetAggregations();
     private final static Logger logger = LoggerFactory.getLogger(ElasticSearchObjectQueryService.class);
 }
