@@ -8,7 +8,7 @@
 	<parent>
 		<groupId>net.lab1318.costume</groupId>
 		<artifactId>costume-parent</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 
 	<build>
