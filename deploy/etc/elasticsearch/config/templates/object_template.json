@@ -213,19 +213,71 @@
           "23:images": {
             "type": "nested", 
             "properties": {
-              "1:url": {
-                "type": "string", 
-                "analyzer": "email_and_url"
-              }, 
-              "2:height_px": {
-                "type": "integer"
-              }, 
-              "4:type": {
-                "index": "not_analyzed", 
+              "1:alt": {
                 "type": "string"
               }, 
-              "3:width_px": {
-                "type": "integer"
+              "2:full_size": {
+                "type": "nested", 
+                "properties": {
+                  "1:url": {
+                    "type": "string", 
+                    "analyzer": "email_and_url"
+                  }, 
+                  "2:height_px": {
+                    "type": "integer"
+                  }, 
+                  "3:width_px": {
+                    "type": "integer"
+                  }
+                }
+              }, 
+              "3:original": {
+                "type": "nested", 
+                "properties": {
+                  "1:url": {
+                    "type": "string", 
+                    "analyzer": "email_and_url"
+                  }, 
+                  "2:height_px": {
+                    "type": "integer"
+                  }, 
+                  "3:width_px": {
+                    "type": "integer"
+                  }
+                }
+              }, 
+              "4:square_thumbnail": {
+                "type": "nested", 
+                "properties": {
+                  "1:url": {
+                    "type": "string", 
+                    "analyzer": "email_and_url"
+                  }, 
+                  "2:height_px": {
+                    "type": "integer"
+                  }, 
+                  "3:width_px": {
+                    "type": "integer"
+                  }
+                }
+              }, 
+              "5:thumbnail": {
+                "type": "nested", 
+                "properties": {
+                  "1:url": {
+                    "type": "string", 
+                    "analyzer": "email_and_url"
+                  }, 
+                  "2:height_px": {
+                    "type": "integer"
+                  }, 
+                  "3:width_px": {
+                    "type": "integer"
+                  }
+                }
+              }, 
+              "6:title": {
+                "type": "string"
               }
             }
           }, 

@@ -33,6 +33,7 @@ import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.gui.models.image.ImageBean;
+import net.lab1318.costume.gui.models.image.ImageVersionBean;
 import net.lab1318.costume.gui.models.textref.TextrefBean;
 import net.lab1318.costume.gui.models.textref.TextrefSetBean;
 import net.lab1318.costume.gui.models.title.TitleBean;
@@ -93,38 +94,25 @@ final class ObjectsTable extends CustomComponent {
                 if (images == null || images.isEmpty()) {
                     return new Label(); // TODO: return an empty image
                 }
-                @Nullable
-                ImageBean squareThumbnailModel = null;
-                @Nullable
-                ImageBean thumbnailModel = null;
-                for (final ImageBean imageModel : images) {
-                    if (imageModel.getType() == null) {
-                        continue;
-                    }
-                    switch (imageModel.getType()) {
-                    case SQUARE_THUMBNAIL:
-                        squareThumbnailModel = imageModel;
-                        break;
-                    case THUMBNAIL:
-                        thumbnailModel = imageModel;
-                        break;
-                    default:
+
+                ImageVersionBean thumbnailModel = null;
+                for (final ImageBean image : images) {
+                    if (image.getSquareThumbnail() != null) {
+                        thumbnailModel = image.getSquareThumbnail();
                         break;
                     }
                 }
-
-                @Nullable
-                ImageBean selectedThumbnailModel;
-                if (squareThumbnailModel != null) {
-                    selectedThumbnailModel = squareThumbnailModel;
-                } else if (thumbnailModel != null) {
-                    selectedThumbnailModel = thumbnailModel;
-                } else {
-                    selectedThumbnailModel = null;
+                if (thumbnailModel == null) {
+                    for (final ImageBean image : images) {
+                        if (image.getThumbnail() != null) {
+                            thumbnailModel = image.getThumbnail();
+                            break;
+                        }
+                    }
                 }
 
-                if (selectedThumbnailModel != null) {
-                    final Image thumbnailView = new Image("", selectedThumbnailModel);
+                if (thumbnailModel != null) {
+                    final Image thumbnailView = new Image("", thumbnailModel);
                     thumbnailView.addStyleName("thumbnail");
                     thumbnailView.addClickListener(new ClickListener() {
                         @Override
