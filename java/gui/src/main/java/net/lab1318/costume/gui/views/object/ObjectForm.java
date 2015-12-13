@@ -1,7 +1,7 @@
 package net.lab1318.costume.gui.views.object;
 
-import javax.annotation.Nullable;
-
+import com.vaadin.event.MouseEvents.ClickEvent;
+import com.vaadin.event.MouseEvents.ClickListener;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.FormLayout;
@@ -10,7 +10,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
-import net.lab1318.costume.api.models.image.ImageType;
+import net.lab1318.costume.api.models.image.ImageVersion;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.title.Title;
@@ -130,39 +130,28 @@ final class ObjectForm extends CustomComponent {
         twoPaneLayout.setComponentAlignment(rightPaneLayout, Alignment.TOP_CENTER);
 
         if (objectEntry.getModel().getImages().isPresent()) {
-            @Nullable
-            net.lab1318.costume.api.models.image.Image bestImageModel = null;
             for (final net.lab1318.costume.api.models.image.Image imageModel : objectEntry.getModel().getImages()
                     .get()) {
-                if (bestImageModel == null) {
-                    bestImageModel = imageModel;
+                final ImageVersion bestImageModel;
+                if (imageModel.getFullSize().isPresent()) {
+                    bestImageModel = imageModel.getFullSize().get();
+                } else if (imageModel.getThumbnail().isPresent()) {
+                    bestImageModel = imageModel.getThumbnail().get();
+                } else if (imageModel.getSquareThumbnail().isPresent()) {
+                    bestImageModel = imageModel.getSquareThumbnail().get();
+                } else {
                     continue;
                 }
-
-                // if (imageModel.getHeightPx().isPresent() &&
-                // imageModel.getWidthPx().isPresent()
-                // && (!bestImageModel.getHeightPx().isPresent() ||
-                // !bestImageModel.getWidthPx().isPresent())) {
-                // bestImageModel = imageModel;
-                // continue;
-                // }
-
-                if (imageModel.getType().isPresent()) {
-                    if (!bestImageModel.getType().isPresent()) {
-                        bestImageModel = imageModel;
-                        continue;
-                    }
-
-                    if (imageModel.getType().get() == ImageType.FULL_SIZE
-                            && bestImageModel.getType().get() != ImageType.FULL_SIZE) {
-                        bestImageModel = imageModel;
-                        continue;
-                    }
+                final Image imageView = new Image("", bestImageModel);
+                if (imageModel.getOriginal().isPresent()) {
+                    imageView.addClickListener(new ClickListener() {
+                        @Override
+                        public void click(final ClickEvent event) {
+                            getUI().getPage().open(imageModel.getFullSize().get().getUrl().toString(), "_blank");
+                        }
+                    });
                 }
-            }
-
-            if (bestImageModel != null) {
-                rightPaneLayout.addComponent(new Image("", bestImageModel));
+                rightPaneLayout.addComponent(imageView);
             }
         }
 

@@ -1,92 +1,150 @@
 import __builtin__
-import costume.api.models.image.image_type
+import costume.api.models.image.image_version
 
 
 class Image(object):
     class Builder(object):
         def __init__(
             self,
-            url=None,
-            height_px=None,
-            type=None,  # @ReservedAssignment
-            width_px=None,
+            alt=None,
+            full_size=None,
+            original=None,
+            square_thumbnail=None,
+            thumbnail=None,
+            title=None,
         ):
             '''
-            :type url: str
-            :type height_px: int or None
-            :type type: costume.api.models.image.image_type.ImageType or None
-            :type width_px: int or None
+            :type alt: str or None
+            :type full_size: costume.api.models.image.image_version.ImageVersion or None
+            :type original: costume.api.models.image.image_version.ImageVersion or None
+            :type square_thumbnail: costume.api.models.image.image_version.ImageVersion or None
+            :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
+            :type title: str or None
             '''
 
-            self.__url = url
-            self.__height_px = height_px
-            self.__type = type
-            self.__width_px = width_px
+            self.__alt = alt
+            self.__full_size = full_size
+            self.__original = original
+            self.__square_thumbnail = square_thumbnail
+            self.__thumbnail = thumbnail
+            self.__title = title
 
         def build(self):
-            return Image(url=self.__url, height_px=self.__height_px, type=self.__type, width_px=self.__width_px)
+            return Image(alt=self.__alt, full_size=self.__full_size, original=self.__original, square_thumbnail=self.__square_thumbnail, thumbnail=self.__thumbnail, title=self.__title)
 
         @property
-        def height_px(self):
+        def alt(self):
             '''
-            :rtype: int
-            '''
-
-            return self.__height_px
-
-        def set_height_px(self, height_px):
-            '''
-            :type height_px: int or None
+            :rtype: str
             '''
 
-            self.__height_px = height_px
+            return self.__alt
+
+        @property
+        def full_size(self):
+            '''
+            :rtype: costume.api.models.image.image_version.ImageVersion
+            '''
+
+            return self.__full_size
+
+        @property
+        def original(self):
+            '''
+            :rtype: costume.api.models.image.image_version.ImageVersion
+            '''
+
+            return self.__original
+
+        def set_alt(self, alt):
+            '''
+            :type alt: str or None
+            '''
+
+            self.__alt = alt
             return self
 
-        def set_type(self, type):  # @ReservedAssignment
+        def set_full_size(self, full_size):
             '''
-            :type type: costume.api.models.image.image_type.ImageType or None
+            :type full_size: costume.api.models.image.image_version.ImageVersion or None
             '''
 
-            self.__type = type
+            self.__full_size = full_size
             return self
 
-        def set_url(self, url):
+        def set_original(self, original):
             '''
-            :type url: str
+            :type original: costume.api.models.image.image_version.ImageVersion or None
             '''
 
-            self.__url = url
+            self.__original = original
             return self
 
-        def set_width_px(self, width_px):
+        def set_square_thumbnail(self, square_thumbnail):
             '''
-            :type width_px: int or None
+            :type square_thumbnail: costume.api.models.image.image_version.ImageVersion or None
             '''
 
-            self.__width_px = width_px
+            self.__square_thumbnail = square_thumbnail
+            return self
+
+        def set_thumbnail(self, thumbnail):
+            '''
+            :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
+            '''
+
+            self.__thumbnail = thumbnail
+            return self
+
+        def set_title(self, title):
+            '''
+            :type title: str or None
+            '''
+
+            self.__title = title
             return self
 
         @property
-        def type(self):  # @ReservedAssignment
+        def square_thumbnail(self):
             '''
-            :rtype: costume.api.models.image.image_type.ImageType
+            :rtype: costume.api.models.image.image_version.ImageVersion
             '''
 
-            return self.__type
+            return self.__square_thumbnail
+
+        @property
+        def thumbnail(self):
+            '''
+            :rtype: costume.api.models.image.image_version.ImageVersion
+            '''
+
+            return self.__thumbnail
+
+        @property
+        def title(self):
+            '''
+            :rtype: str
+            '''
+
+            return self.__title
 
         def update(self, image):
             '''
-            :type url: str
-            :type height_px: int or None
-            :type type: costume.api.models.image.image_type.ImageType or None
-            :type width_px: int or None
+            :type alt: str or None
+            :type full_size: costume.api.models.image.image_version.ImageVersion or None
+            :type original: costume.api.models.image.image_version.ImageVersion or None
+            :type square_thumbnail: costume.api.models.image.image_version.ImageVersion or None
+            :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
+            :type title: str or None
             '''
 
             if isinstance(image, Image):
-                self.set_url(image.url)
-                self.set_height_px(image.height_px)
-                self.set_type(image.type)
-                self.set_width_px(image.width_px)
+                self.set_alt(image.alt)
+                self.set_full_size(image.full_size)
+                self.set_original(image.original)
+                self.set_square_thumbnail(image.square_thumbnail)
+                self.set_thumbnail(image.thumbnail)
+                self.set_title(image.title)
             elif isinstance(image, dict):
                 for key, value in image.iteritems():
                     getattr(self, 'set_' + key)(value)
@@ -94,102 +152,123 @@ class Image(object):
                 raise TypeError(image)
             return self
 
-        @property
-        def url(self):
+        @alt.setter
+        def alt(self, alt):
             '''
-            :rtype: str
-            '''
-
-            return self.__url
-
-        @property
-        def width_px(self):
-            '''
-            :rtype: int
+            :type alt: str or None
             '''
 
-            return self.__width_px
+            self.set_alt(alt)
 
-        @height_px.setter
-        def height_px(self, height_px):
+        @full_size.setter
+        def full_size(self, full_size):
             '''
-            :type height_px: int or None
-            '''
-
-            self.set_height_px(height_px)
-
-        @type.setter
-        def type(self, type):  # @ReservedAssignment
-            '''
-            :type type: costume.api.models.image.image_type.ImageType or None
+            :type full_size: costume.api.models.image.image_version.ImageVersion or None
             '''
 
-            self.set_type(type)
+            self.set_full_size(full_size)
 
-        @url.setter
-        def url(self, url):
+        @original.setter
+        def original(self, original):
             '''
-            :type url: str
-            '''
-
-            self.set_url(url)
-
-        @width_px.setter
-        def width_px(self, width_px):
-            '''
-            :type width_px: int or None
+            :type original: costume.api.models.image.image_version.ImageVersion or None
             '''
 
-            self.set_width_px(width_px)
+            self.set_original(original)
+
+        @square_thumbnail.setter
+        def square_thumbnail(self, square_thumbnail):
+            '''
+            :type square_thumbnail: costume.api.models.image.image_version.ImageVersion or None
+            '''
+
+            self.set_square_thumbnail(square_thumbnail)
+
+        @thumbnail.setter
+        def thumbnail(self, thumbnail):
+            '''
+            :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
+            '''
+
+            self.set_thumbnail(thumbnail)
+
+        @title.setter
+        def title(self, title):
+            '''
+            :type title: str or None
+            '''
+
+            self.set_title(title)
 
     def __init__(
         self,
-        url,
-        height_px=None,
-        type=None,  # @ReservedAssignment
-        width_px=None,
+        alt=None,
+        full_size=None,
+        original=None,
+        square_thumbnail=None,
+        thumbnail=None,
+        title=None,
     ):
         '''
-        :type url: str
-        :type height_px: int or None
-        :type type: costume.api.models.image.image_type.ImageType or None
-        :type width_px: int or None
+        :type alt: str or None
+        :type full_size: costume.api.models.image.image_version.ImageVersion or None
+        :type original: costume.api.models.image.image_version.ImageVersion or None
+        :type square_thumbnail: costume.api.models.image.image_version.ImageVersion or None
+        :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
+        :type title: str or None
         '''
 
-        if url is None:
-            raise ValueError('url is required')
-        if not isinstance(url, basestring):
-            raise TypeError("expected url to be a str but it is a %s" % getattr(__builtin__, 'type')(url))
-        self.__url = url
+        if alt is not None:
+            if not isinstance(alt, basestring):
+                raise TypeError("expected alt to be a str but it is a %s" % getattr(__builtin__, 'type')(alt))
+            if len(alt) < 1:
+                raise ValueError("expected len(alt) to be >= 1, was %d" % len(alt))
+        self.__alt = alt
 
-        if height_px is not None:
-            if not isinstance(height_px, (int, long)) and height_px >= 0:
-                raise TypeError("expected height_px to be a int but it is a %s" % getattr(__builtin__, 'type')(height_px))
-        self.__height_px = height_px
+        if full_size is not None:
+            if not isinstance(full_size, costume.api.models.image.image_version.ImageVersion):
+                raise TypeError("expected full_size to be a costume.api.models.image.image_version.ImageVersion but it is a %s" % getattr(__builtin__, 'type')(full_size))
+        self.__full_size = full_size
 
-        if type is not None:
-            if not isinstance(type, costume.api.models.image.image_type.ImageType):
-                raise TypeError("expected type to be a costume.api.models.image.image_type.ImageType but it is a %s" % getattr(__builtin__, 'type')(type))
-        self.__type = type
+        if original is not None:
+            if not isinstance(original, costume.api.models.image.image_version.ImageVersion):
+                raise TypeError("expected original to be a costume.api.models.image.image_version.ImageVersion but it is a %s" % getattr(__builtin__, 'type')(original))
+        self.__original = original
 
-        if width_px is not None:
-            if not isinstance(width_px, (int, long)) and width_px >= 0:
-                raise TypeError("expected width_px to be a int but it is a %s" % getattr(__builtin__, 'type')(width_px))
-        self.__width_px = width_px
+        if square_thumbnail is not None:
+            if not isinstance(square_thumbnail, costume.api.models.image.image_version.ImageVersion):
+                raise TypeError("expected square_thumbnail to be a costume.api.models.image.image_version.ImageVersion but it is a %s" % getattr(__builtin__, 'type')(square_thumbnail))
+        self.__square_thumbnail = square_thumbnail
+
+        if thumbnail is not None:
+            if not isinstance(thumbnail, costume.api.models.image.image_version.ImageVersion):
+                raise TypeError("expected thumbnail to be a costume.api.models.image.image_version.ImageVersion but it is a %s" % getattr(__builtin__, 'type')(thumbnail))
+        self.__thumbnail = thumbnail
+
+        if title is not None:
+            if not isinstance(title, basestring):
+                raise TypeError("expected title to be a str but it is a %s" % getattr(__builtin__, 'type')(title))
+            if len(title) < 1:
+                raise ValueError("expected len(title) to be >= 1, was %d" % len(title))
+        self.__title = title
 
     def __eq__(self, other):
-        if self.url != other.url:
+        if self.alt != other.alt:
             return False
-        if self.height_px != other.height_px:
+        if self.full_size != other.full_size:
             return False
-        if self.type != other.type:
+        if self.original != other.original:
             return False
-        if self.width_px != other.width_px:
+        if self.square_thumbnail != other.square_thumbnail:
+            return False
+        if self.thumbnail != other.thumbnail:
+            return False
+        if self.title != other.title:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.url,self.height_px,self.type,self.width_px,))
+        return hash((self.alt,self.full_size,self.original,self.square_thumbnail,self.thumbnail,self.title,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -199,25 +278,43 @@ class Image(object):
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
-        if self.height_px is not None:
-            field_reprs.append('height_px=' + repr(self.height_px))
-        if self.type is not None:
-            field_reprs.append('type=' + repr(self.type))
-        if self.width_px is not None:
-            field_reprs.append('width_px=' + repr(self.width_px))
+        if self.alt is not None:
+            field_reprs.append('alt=' + "'" + self.alt.encode('ascii', 'replace') + "'")
+        if self.full_size is not None:
+            field_reprs.append('full_size=' + repr(self.full_size))
+        if self.original is not None:
+            field_reprs.append('original=' + repr(self.original))
+        if self.square_thumbnail is not None:
+            field_reprs.append('square_thumbnail=' + repr(self.square_thumbnail))
+        if self.thumbnail is not None:
+            field_reprs.append('thumbnail=' + repr(self.thumbnail))
+        if self.title is not None:
+            field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
         return 'Image(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
-        if self.height_px is not None:
-            field_reprs.append('height_px=' + repr(self.height_px))
-        if self.type is not None:
-            field_reprs.append('type=' + repr(self.type))
-        if self.width_px is not None:
-            field_reprs.append('width_px=' + repr(self.width_px))
+        if self.alt is not None:
+            field_reprs.append('alt=' + "'" + self.alt.encode('ascii', 'replace') + "'")
+        if self.full_size is not None:
+            field_reprs.append('full_size=' + repr(self.full_size))
+        if self.original is not None:
+            field_reprs.append('original=' + repr(self.original))
+        if self.square_thumbnail is not None:
+            field_reprs.append('square_thumbnail=' + repr(self.square_thumbnail))
+        if self.thumbnail is not None:
+            field_reprs.append('thumbnail=' + repr(self.thumbnail))
+        if self.title is not None:
+            field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
         return 'Image(' + ', '.join(field_reprs) + ')'
+
+    @property
+    def alt(self):
+        '''
+        :rtype: str
+        '''
+
+        return self.__alt
 
     def as_dict(self):
         '''
@@ -226,7 +323,7 @@ class Image(object):
         :rtype: dict
         '''
 
-        return {'url': self.url, 'height_px': self.height_px, 'type': self.type, 'width_px': self.width_px}
+        return {'alt': self.alt, 'full_size': self.full_size, 'original': self.original, 'square_thumbnail': self.square_thumbnail, 'thumbnail': self.thumbnail, 'title': self.title}
 
     def as_tuple(self):
         '''
@@ -235,15 +332,23 @@ class Image(object):
         :rtype: tuple
         '''
 
-        return (self.url, self.height_px, self.type, self.width_px,)
+        return (self.alt, self.full_size, self.original, self.square_thumbnail, self.thumbnail, self.title,)
 
     @property
-    def height_px(self):
+    def full_size(self):
         '''
-        :rtype: int
+        :rtype: costume.api.models.image.image_version.ImageVersion
         '''
 
-        return self.__height_px
+        return self.__full_size
+
+    @property
+    def original(self):
+        '''
+        :rtype: costume.api.models.image.image_version.ImageVersion
+        '''
+
+        return self.__original
 
     @classmethod
     def read(cls, iprot):
@@ -261,22 +366,23 @@ class Image(object):
             ifield_name, ifield_type, ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
-            elif ifield_name == 'url' and ifield_id == 1:
-                init_kwds['url'] = iprot.read_string()
-            elif ifield_name == 'height_px' and ifield_id == 2:
+            elif ifield_name == 'alt' and ifield_id == 1:
                 try:
-                    init_kwds['height_px'] = iprot.read_u32()
-                except (TypeError,):
+                    init_kwds['alt'] = iprot.read_string()
+                except (TypeError, ValueError,):
                     pass
-            elif ifield_name == 'type' and ifield_id == 4:
+            elif ifield_name == 'full_size' and ifield_id == 2:
+                init_kwds['full_size'] = costume.api.models.image.image_version.ImageVersion.read(iprot)
+            elif ifield_name == 'original' and ifield_id == 3:
+                init_kwds['original'] = costume.api.models.image.image_version.ImageVersion.read(iprot)
+            elif ifield_name == 'square_thumbnail' and ifield_id == 4:
+                init_kwds['square_thumbnail'] = costume.api.models.image.image_version.ImageVersion.read(iprot)
+            elif ifield_name == 'thumbnail' and ifield_id == 5:
+                init_kwds['thumbnail'] = costume.api.models.image.image_version.ImageVersion.read(iprot)
+            elif ifield_name == 'title' and ifield_id == 6:
                 try:
-                    init_kwds['type'] = costume.api.models.image.image_type.ImageType.value_of(iprot.read_string().strip().upper())
-                except (TypeError,):
-                    pass
-            elif ifield_name == 'width_px' and ifield_id == 3:
-                try:
-                    init_kwds['width_px'] = iprot.read_u32()
-                except (TypeError,):
+                    init_kwds['title'] = iprot.read_string()
+                except (TypeError, ValueError,):
                     pass
             iprot.read_field_end()
         iprot.read_struct_end()
@@ -285,54 +391,62 @@ class Image(object):
 
     def replace(
         self,
-        url=None,
-        height_px=None,
-        type=None,  # @ReservedAssignment
-        width_px=None,
+        alt=None,
+        full_size=None,
+        original=None,
+        square_thumbnail=None,
+        thumbnail=None,
+        title=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type url: str or None
-        :type height_px: int or None
-        :type type: costume.api.models.image.image_type.ImageType or None
-        :type width_px: int or None
+        :type alt: str or None
+        :type full_size: costume.api.models.image.image_version.ImageVersion or None
+        :type original: costume.api.models.image.image_version.ImageVersion or None
+        :type square_thumbnail: costume.api.models.image.image_version.ImageVersion or None
+        :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
+        :type title: str or None
         :rtype: costume.api.models.image.image.Image
         '''
 
-        if url is None:
-            url = self.url
-        if height_px is None:
-            height_px = self.height_px
-        if type is None:
-            type = self.type  # @ReservedAssignment
-        if width_px is None:
-            width_px = self.width_px
-        return self.__class__(url=url, height_px=height_px, type=type, width_px=width_px)
+        if alt is None:
+            alt = self.alt
+        if full_size is None:
+            full_size = self.full_size
+        if original is None:
+            original = self.original
+        if square_thumbnail is None:
+            square_thumbnail = self.square_thumbnail
+        if thumbnail is None:
+            thumbnail = self.thumbnail
+        if title is None:
+            title = self.title
+        return self.__class__(alt=alt, full_size=full_size, original=original, square_thumbnail=square_thumbnail, thumbnail=thumbnail, title=title)
 
     @property
-    def type(self):  # @ReservedAssignment
+    def square_thumbnail(self):
         '''
-        :rtype: costume.api.models.image.image_type.ImageType
+        :rtype: costume.api.models.image.image_version.ImageVersion
         '''
 
-        return self.__type
+        return self.__square_thumbnail
 
     @property
-    def url(self):
+    def thumbnail(self):
+        '''
+        :rtype: costume.api.models.image.image_version.ImageVersion
+        '''
+
+        return self.__thumbnail
+
+    @property
+    def title(self):
         '''
         :rtype: str
         '''
 
-        return self.__url
-
-    @property
-    def width_px(self):
-        '''
-        :rtype: int
-        '''
-
-        return self.__width_px
+        return self.__title
 
     def write(self, oprot):
         '''
@@ -344,23 +458,34 @@ class Image(object):
 
         oprot.write_struct_begin('Image')
 
-        oprot.write_field_begin(name='url', type=11, id=1)
-        oprot.write_string(self.url)
-        oprot.write_field_end()
-
-        if self.height_px is not None:
-            oprot.write_field_begin(name='height_px', type=8, id=2)
-            oprot.write_u32(self.height_px)
+        if self.alt is not None:
+            oprot.write_field_begin(name='alt', type=11, id=1)
+            oprot.write_string(self.alt)
             oprot.write_field_end()
 
-        if self.type is not None:
-            oprot.write_field_begin(name='type', type=11, id=4)
-            oprot.write_string(str(self.type))
+        if self.full_size is not None:
+            oprot.write_field_begin(name='full_size', type=12, id=2)
+            self.full_size.write(oprot)
             oprot.write_field_end()
 
-        if self.width_px is not None:
-            oprot.write_field_begin(name='width_px', type=8, id=3)
-            oprot.write_u32(self.width_px)
+        if self.original is not None:
+            oprot.write_field_begin(name='original', type=12, id=3)
+            self.original.write(oprot)
+            oprot.write_field_end()
+
+        if self.square_thumbnail is not None:
+            oprot.write_field_begin(name='square_thumbnail', type=12, id=4)
+            self.square_thumbnail.write(oprot)
+            oprot.write_field_end()
+
+        if self.thumbnail is not None:
+            oprot.write_field_begin(name='thumbnail', type=12, id=5)
+            self.thumbnail.write(oprot)
+            oprot.write_field_end()
+
+        if self.title is not None:
+            oprot.write_field_begin(name='title', type=11, id=6)
+            oprot.write_string(self.title)
             oprot.write_field_end()
 
         oprot.write_field_stop()

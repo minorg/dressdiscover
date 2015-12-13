@@ -2,13 +2,20 @@ namespace bean_java net.lab1318.costume.gui.models.image
 namespace java net.lab1318.costume.api.models.image
 namespace * costume.api.models.image
 
-include "costume/api/models/image/image_type.thrift"
-include "thryft/native/u32.thrift"
-include "thryft/native/url.thrift"
+include "costume/api/models/image/image_version.thrift"
 
 struct Image {
-	1: url.Url url;
-	2: optional u32.u32 height_px;
-	4: optional image_type.ImageType type;
-	3: optional u32.u32 width_px;
+	// @validation {"minLength": 1}
+	1: optional string alt;
+
+	2: optional image_version.ImageVersion full_size;
+
+	3: optional image_version.ImageVersion original;
+
+	4: optional image_version.ImageVersion square_thumbnail;
+
+	5: optional image_version.ImageVersion thumbnail;
+
+	// @validation {"minLength": 1}
+	6: optional string title;
 }

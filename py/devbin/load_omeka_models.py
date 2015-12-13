@@ -18,7 +18,7 @@ from costume.api.models.description.description_set import DescriptionSet
 from costume.api.models.description.description_type import DescriptionType
 from costume.api.models.gender.gender import Gender
 from costume.api.models.image.image import Image
-from costume.api.models.image.image_type import ImageType
+from costume.api.models.image.image_version import ImageVersion
 from costume.api.models.institution.institution import Institution
 from costume.api.models.object.object import Object
 from costume.api.models.object.object_entry import ObjectEntry
@@ -555,28 +555,34 @@ for collection_dict in collection_dicts:
 #                             else:
 #                                 print 'skipping image file element', element_name
 
+                image_builder = Image.Builder()
+                image_versions_count = 0
                 for name, file_url in file_dict['file_urls'].iteritems():
                     if file_url is None or len(file_url) == 0:
                         continue
-                    image_builder = Image.Builder().set_url(file_url)
+                    image_version_builder = ImageVersion.Builder().set_url(file_url)
                     if name == 'fullsize':
-                        image_builder.set_type(ImageType.FULL_SIZE)
+                        image_builder.set_full_size(image_version_builder.build())
+                        image_versions_count = image_versions_count + 1
                     elif name == 'original':
                         if original_image_height is not None:
-                            image_builder.set_height_px(original_image_height)
+                            image_version_builder.set_height_px(original_image_height)
                         if original_image_width is not None:
-                            image_builder.set_width_px(original_image_width)
-                        image_builder.set_type(ImageType.ORIGINAL)
+                            image_version_builder.set_width_px(original_image_width)
+                        image_builder.set_original(image_version_builder.build())
+                        image_versions_count = image_versions_count + 1
                     elif name == 'square_thumbnail':
-                        image_builder.set_height_px(args.square_thumbnail_height_px)
-                        image_builder.set_type(ImageType.SQUARE_THUMBNAIL)
-                        image_builder.set_width_px(args.square_thumbnail_width_px)
+                        image_version_builder.set_height_px(args.square_thumbnail_height_px)
+                        image_version_builder.set_width_px(args.square_thumbnail_width_px)
+                        image_builder.set_square_thumbnail(image_version_builder.build())
+                        image_versions_count = image_versions_count + 1
                     elif name == 'thumbnail':
-                        image_builder.set_type(ImageType.THUMBNAIL)
+                        image_builder.set_thumbnail(image_version_builder.build())
+                        image_versions_count = image_versions_count + 1
                     else:
                         raise NotImplementedError(name)
+                if image_versions_count > 0:
                     images.append(image_builder.build())
-
             if len(images) > 0:
                 object_builder.set_images(tuple(images))
 
