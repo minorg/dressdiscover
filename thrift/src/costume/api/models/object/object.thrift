@@ -17,6 +17,7 @@ include "costume/api/models/technique/technique_set.thrift"
 include "costume/api/models/textref/textref_set.thrift"
 include "costume/api/models/work_type/work_type_set.thrift"
 include "thryft/native/date_time.thrift"
+include "thryft/native/u32.thrift"
 
 // @java_implements org.notaweb.api.models.Model
 struct Object {
@@ -56,6 +57,8 @@ struct Object {
 	// Dublin Core freetext provenance
 	// @validation {"minLength": 1}
 	5: optional string provenance;
+
+	26: optional u32.u32 quantity;
 
 	22: optional rights_set.RightsSet rights;
 

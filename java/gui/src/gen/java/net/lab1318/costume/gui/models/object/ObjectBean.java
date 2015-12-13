@@ -17,6 +17,7 @@ public class ObjectBean {
         INSCRIPTIONS("inscriptions", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.inscription.InscriptionSetBean>() {}, false, 17, "inscriptions", org.thryft.protocol.Type.STRUCT),
         MATERIALS("materials", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.material.MaterialSetBean>() {}, false, 15, "materials", org.thryft.protocol.Type.STRUCT),
         PROVENANCE("provenance", new com.google.common.reflect.TypeToken<String>() {}, false, 5, "provenance", org.thryft.protocol.Type.STRING),
+        QUANTITY("quantity", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, false, 26, "quantity", org.thryft.protocol.Type.I32),
         RIGHTS("rights", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.rights.RightsSetBean>() {}, false, 22, "rights", org.thryft.protocol.Type.STRUCT),
         SUBJECTS("subjects", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.subject.SubjectSetBean>() {}, false, 21, "subjects", org.thryft.protocol.Type.STRUCT),
         TECHNIQUES("techniques", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.technique.TechniqueSetBean>() {}, false, 16, "techniques", org.thryft.protocol.Type.STRUCT),
@@ -79,6 +80,7 @@ public class ObjectBean {
             case "inscriptions": return INSCRIPTIONS;
             case "materials": return MATERIALS;
             case "provenance": return PROVENANCE;
+            case "quantity": return QUANTITY;
             case "rights": return RIGHTS;
             case "subjects": return SUBJECTS;
             case "techniques": return TECHNIQUES;
@@ -105,6 +107,7 @@ public class ObjectBean {
             case "inscriptions": return INSCRIPTIONS;
             case "materials": return MATERIALS;
             case "provenance": return PROVENANCE;
+            case "quantity": return QUANTITY;
             case "rights": return RIGHTS;
             case "subjects": return SUBJECTS;
             case "techniques": return TECHNIQUES;
@@ -153,6 +156,7 @@ public class ObjectBean {
         inscriptions = null;
         materials = null;
         provenance = null;
+        quantity = null;
         rights = null;
         subjects = null;
         techniques = null;
@@ -184,6 +188,7 @@ public class ObjectBean {
         this.inscriptions = other.getInscriptions().isPresent() ? new net.lab1318.costume.gui.models.inscription.InscriptionSetBean(other.getInscriptions().get()) : null;
         this.materials = other.getMaterials().isPresent() ? new net.lab1318.costume.gui.models.material.MaterialSetBean(other.getMaterials().get()) : null;
         this.provenance = other.getProvenance().isPresent() ? other.getProvenance().get() : null;
+        this.quantity = other.getQuantity().isPresent() ? other.getQuantity().get() : null;
         this.rights = other.getRights().isPresent() ? new net.lab1318.costume.gui.models.rights.RightsSetBean(other.getRights().get()) : null;
         this.subjects = other.getSubjects().isPresent() ? new net.lab1318.costume.gui.models.subject.SubjectSetBean(other.getSubjects().get()) : null;
         this.techniques = other.getTechniques().isPresent() ? new net.lab1318.costume.gui.models.technique.TechniqueSetBean(other.getTechniques().get()) : null;
@@ -215,6 +220,7 @@ public class ObjectBean {
             getInscriptions().equals(other.getInscriptions()) &&
             getMaterials().equals(other.getMaterials()) &&
             getProvenance().equals(other.getProvenance()) &&
+            getQuantity().equals(other.getQuantity()) &&
             getRights().equals(other.getRights()) &&
             getSubjects().equals(other.getSubjects()) &&
             getTechniques().equals(other.getTechniques()) &&
@@ -280,6 +286,10 @@ public class ObjectBean {
         return provenance;
     }
 
+    public com.google.common.primitives.UnsignedInteger getQuantity() {
+        return quantity;
+    }
+
     public net.lab1318.costume.gui.models.rights.RightsSetBean getRights() {
         return rights;
     }
@@ -343,6 +353,9 @@ public class ObjectBean {
         }
         if (getProvenance() != null) {
             hashCode = 31 * hashCode + getProvenance().hashCode();
+        }
+        if (getQuantity() != null) {
+            hashCode = 31 * hashCode + getQuantity().hashCode();
         }
         if (getRights() != null) {
             hashCode = 31 * hashCode + getRights().hashCode();
@@ -414,6 +427,10 @@ public class ObjectBean {
         this.provenance = provenance;
     }
 
+    public void setQuantity(final com.google.common.primitives.UnsignedInteger quantity) {
+        this.quantity = quantity;
+    }
+
     public void setRights(final net.lab1318.costume.gui.models.rights.RightsSetBean rights) {
         this.rights = rights;
     }
@@ -440,7 +457,7 @@ public class ObjectBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agents", getAgents()).add("categories", getCategories()).add("date", getDate()).add("date_text", getDateText()).add("descriptions", getDescriptions()).add("gender", getGender()).add("images", getImages()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("provenance", getProvenance()).add("rights", getRights()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("work_types", getWorkTypes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agents", getAgents()).add("categories", getCategories()).add("date", getDate()).add("date_text", getDateText()).add("descriptions", getDescriptions()).add("gender", getGender()).add("images", getImages()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("provenance", getProvenance()).add("quantity", getQuantity()).add("rights", getRights()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("work_types", getWorkTypes()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -479,6 +496,8 @@ public class ObjectBean {
      * Dublin Core freetext provenance
      */
     private String provenance;
+
+    private com.google.common.primitives.UnsignedInteger quantity;
 
     private net.lab1318.costume.gui.models.rights.RightsSetBean rights;
 

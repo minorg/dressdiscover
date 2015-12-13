@@ -33,6 +33,7 @@ class Object(object):
             inscriptions=None,
             materials=None,
             provenance=None,
+            quantity=None,
             rights=None,
             subjects=None,
             techniques=None,
@@ -54,6 +55,7 @@ class Object(object):
             :type inscriptions: costume.api.models.inscription.inscription_set.InscriptionSet or None
             :type materials: costume.api.models.material.material_set.MaterialSet or None
             :type provenance: str or None
+            :type quantity: int or None
             :type rights: costume.api.models.rights.rights_set.RightsSet or None
             :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
             :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
@@ -75,6 +77,7 @@ class Object(object):
             self.__inscriptions = inscriptions
             self.__materials = materials
             self.__provenance = provenance
+            self.__quantity = quantity
             self.__rights = rights
             self.__subjects = subjects
             self.__techniques = techniques
@@ -82,7 +85,7 @@ class Object(object):
             self.__work_types = work_types
 
         def build(self):
-            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, agents=self.__agents, categories=self.__categories, date=self.__date, date_text=self.__date_text, descriptions=self.__descriptions, gender=self.__gender, images=self.__images, inscriptions=self.__inscriptions, materials=self.__materials, provenance=self.__provenance, rights=self.__rights, subjects=self.__subjects, techniques=self.__techniques, textrefs=self.__textrefs, work_types=self.__work_types)
+            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, agents=self.__agents, categories=self.__categories, date=self.__date, date_text=self.__date_text, descriptions=self.__descriptions, gender=self.__gender, images=self.__images, inscriptions=self.__inscriptions, materials=self.__materials, provenance=self.__provenance, quantity=self.__quantity, rights=self.__rights, subjects=self.__subjects, techniques=self.__techniques, textrefs=self.__textrefs, work_types=self.__work_types)
 
         @property
         def agents(self):
@@ -187,6 +190,14 @@ class Object(object):
             '''
 
             return self.__provenance
+
+        @property
+        def quantity(self):
+            '''
+            :rtype: int
+            '''
+
+            return self.__quantity
 
         @property
         def rights(self):
@@ -300,6 +311,14 @@ class Object(object):
             self.__provenance = provenance
             return self
 
+        def set_quantity(self, quantity):
+            '''
+            :type quantity: int or None
+            '''
+
+            self.__quantity = quantity
+            return self
+
         def set_rights(self, rights):
             '''
             :type rights: costume.api.models.rights.rights_set.RightsSet or None
@@ -396,6 +415,7 @@ class Object(object):
             :type inscriptions: costume.api.models.inscription.inscription_set.InscriptionSet or None
             :type materials: costume.api.models.material.material_set.MaterialSet or None
             :type provenance: str or None
+            :type quantity: int or None
             :type rights: costume.api.models.rights.rights_set.RightsSet or None
             :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
             :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
@@ -418,6 +438,7 @@ class Object(object):
                 self.set_inscriptions(object.inscriptions)
                 self.set_materials(object.materials)
                 self.set_provenance(object.provenance)
+                self.set_quantity(object.quantity)
                 self.set_rights(object.rights)
                 self.set_subjects(object.subjects)
                 self.set_techniques(object.techniques)
@@ -542,6 +563,14 @@ class Object(object):
 
             self.set_provenance(provenance)
 
+        @quantity.setter
+        def quantity(self, quantity):
+            '''
+            :type quantity: int or None
+            '''
+
+            self.set_quantity(quantity)
+
         @rights.setter
         def rights(self, rights):
             '''
@@ -606,6 +635,7 @@ class Object(object):
         inscriptions=None,
         materials=None,
         provenance=None,
+        quantity=None,
         rights=None,
         subjects=None,
         techniques=None,
@@ -627,6 +657,7 @@ class Object(object):
         :type inscriptions: costume.api.models.inscription.inscription_set.InscriptionSet or None
         :type materials: costume.api.models.material.material_set.MaterialSet or None
         :type provenance: str or None
+        :type quantity: int or None
         :type rights: costume.api.models.rights.rights_set.RightsSet or None
         :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
         :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
@@ -718,6 +749,11 @@ class Object(object):
                 raise ValueError("expected len(provenance) to be >= 1, was %d" % len(provenance))
         self.__provenance = provenance
 
+        if quantity is not None:
+            if not isinstance(quantity, (int, long)) and quantity >= 0:
+                raise TypeError("expected quantity to be a int but it is a %s" % getattr(__builtin__, 'type')(quantity))
+        self.__quantity = quantity
+
         if rights is not None:
             if not isinstance(rights, costume.api.models.rights.rights_set.RightsSet):
                 raise TypeError("expected rights to be a costume.api.models.rights.rights_set.RightsSet but it is a %s" % getattr(__builtin__, 'type')(rights))
@@ -772,6 +808,8 @@ class Object(object):
             return False
         if self.provenance != other.provenance:
             return False
+        if self.quantity != other.quantity:
+            return False
         if self.rights != other.rights:
             return False
         if self.subjects != other.subjects:
@@ -785,7 +823,7 @@ class Object(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.agents,self.categories,self.date,self.date_text,self.descriptions,self.gender,self.images,self.inscriptions,self.materials,self.provenance,self.rights,self.subjects,self.techniques,self.textrefs,self.work_types,))
+        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.agents,self.categories,self.date,self.date_text,self.descriptions,self.gender,self.images,self.inscriptions,self.materials,self.provenance,self.quantity,self.rights,self.subjects,self.techniques,self.textrefs,self.work_types,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -819,6 +857,8 @@ class Object(object):
             field_reprs.append('materials=' + repr(self.materials))
         if self.provenance is not None:
             field_reprs.append('provenance=' + "'" + self.provenance.encode('ascii', 'replace') + "'")
+        if self.quantity is not None:
+            field_reprs.append('quantity=' + repr(self.quantity))
         if self.rights is not None:
             field_reprs.append('rights=' + repr(self.rights))
         if self.subjects is not None:
@@ -857,6 +897,8 @@ class Object(object):
             field_reprs.append('materials=' + repr(self.materials))
         if self.provenance is not None:
             field_reprs.append('provenance=' + "'" + self.provenance.encode('ascii', 'replace') + "'")
+        if self.quantity is not None:
+            field_reprs.append('quantity=' + repr(self.quantity))
         if self.rights is not None:
             field_reprs.append('rights=' + repr(self.rights))
         if self.subjects is not None:
@@ -884,7 +926,7 @@ class Object(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'agents': self.agents, 'categories': self.categories, 'date': self.date, 'date_text': self.date_text, 'descriptions': self.descriptions, 'gender': self.gender, 'images': self.images, 'inscriptions': self.inscriptions, 'materials': self.materials, 'provenance': self.provenance, 'rights': self.rights, 'subjects': self.subjects, 'techniques': self.techniques, 'textrefs': self.textrefs, 'work_types': self.work_types}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'agents': self.agents, 'categories': self.categories, 'date': self.date, 'date_text': self.date_text, 'descriptions': self.descriptions, 'gender': self.gender, 'images': self.images, 'inscriptions': self.inscriptions, 'materials': self.materials, 'provenance': self.provenance, 'quantity': self.quantity, 'rights': self.rights, 'subjects': self.subjects, 'techniques': self.techniques, 'textrefs': self.textrefs, 'work_types': self.work_types}
 
     def as_tuple(self):
         '''
@@ -893,7 +935,7 @@ class Object(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.agents, self.categories, self.date, self.date_text, self.descriptions, self.gender, self.images, self.inscriptions, self.materials, self.provenance, self.rights, self.subjects, self.techniques, self.textrefs, self.work_types,)
+        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.agents, self.categories, self.date, self.date_text, self.descriptions, self.gender, self.images, self.inscriptions, self.materials, self.provenance, self.quantity, self.rights, self.subjects, self.techniques, self.textrefs, self.work_types,)
 
     @property
     def categories(self):
@@ -991,6 +1033,14 @@ class Object(object):
 
         return self.__provenance
 
+    @property
+    def quantity(self):
+        '''
+        :rtype: int
+        '''
+
+        return self.__quantity
+
     @classmethod
     def read(cls, iprot):
         '''
@@ -1047,6 +1097,11 @@ class Object(object):
                     init_kwds['provenance'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
+            elif ifield_name == 'quantity' and ifield_id == 26:
+                try:
+                    init_kwds['quantity'] = iprot.read_u32()
+                except (TypeError,):
+                    pass
             elif ifield_name == 'rights' and ifield_id == 22:
                 init_kwds['rights'] = costume.api.models.rights.rights_set.RightsSet.read(iprot)
             elif ifield_name == 'subjects' and ifield_id == 21:
@@ -1078,6 +1133,7 @@ class Object(object):
         inscriptions=None,
         materials=None,
         provenance=None,
+        quantity=None,
         rights=None,
         subjects=None,
         techniques=None,
@@ -1101,6 +1157,7 @@ class Object(object):
         :type inscriptions: costume.api.models.inscription.inscription_set.InscriptionSet or None
         :type materials: costume.api.models.material.material_set.MaterialSet or None
         :type provenance: str or None
+        :type quantity: int or None
         :type rights: costume.api.models.rights.rights_set.RightsSet or None
         :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
         :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
@@ -1137,6 +1194,8 @@ class Object(object):
             materials = self.materials
         if provenance is None:
             provenance = self.provenance
+        if quantity is None:
+            quantity = self.quantity
         if rights is None:
             rights = self.rights
         if subjects is None:
@@ -1147,7 +1206,7 @@ class Object(object):
             textrefs = self.textrefs
         if work_types is None:
             work_types = self.work_types
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, agents=agents, categories=categories, date=date, date_text=date_text, descriptions=descriptions, gender=gender, images=images, inscriptions=inscriptions, materials=materials, provenance=provenance, rights=rights, subjects=subjects, techniques=techniques, textrefs=textrefs, work_types=work_types)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, agents=agents, categories=categories, date=date, date_text=date_text, descriptions=descriptions, gender=gender, images=images, inscriptions=inscriptions, materials=materials, provenance=provenance, quantity=quantity, rights=rights, subjects=subjects, techniques=techniques, textrefs=textrefs, work_types=work_types)
 
     @property
     def rights(self):
@@ -1277,6 +1336,11 @@ class Object(object):
         if self.provenance is not None:
             oprot.write_field_begin(name='provenance', type=11, id=5)
             oprot.write_string(self.provenance)
+            oprot.write_field_end()
+
+        if self.quantity is not None:
+            oprot.write_field_begin(name='quantity', type=8, id=26)
+            oprot.write_u32(self.quantity)
             oprot.write_field_end()
 
         if self.rights is not None:

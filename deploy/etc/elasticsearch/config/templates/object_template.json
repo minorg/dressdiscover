@@ -304,6 +304,9 @@
           "5:provenance": {
             "type": "string"
           }, 
+          "26:quantity": {
+            "type": "integer"
+          }, 
           "22:rights": {
             "type": "nested", 
             "properties": {
