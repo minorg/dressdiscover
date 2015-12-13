@@ -392,6 +392,8 @@ for collection_dict in collection_dicts:
                         gender = Gender.MALE
                     else:
                         raise NotImplementedError(text)
+                    if object_builder.gender is not None:
+                        assert object_builder.gender == gender, "%s vs. %s" % (object_builder.gender, gender)
                     object_builder.set_gender(gender)
                 elif element_name == 'Private Information':
                     descriptions.append(
@@ -457,6 +459,15 @@ for collection_dict in collection_dicts:
         if len(categories) > 0:
             object_builder.set_categories(tuple(categories))
         if len(descriptions) > 0:
+            description_texts = {}
+            description_i = 0
+            while description_i < len(descriptions):
+                description = descriptions[description_i]
+                if description.text in description_texts:
+                    del descriptions[description_i]
+                else:
+                    description_texts[description.text] = None
+                    description_i = description_i + 1
             object_builder.set_descriptions(DescriptionSet.Builder().set_elements(tuple(descriptions)).build())
         for identifier in identifiers:
             textrefs.append(

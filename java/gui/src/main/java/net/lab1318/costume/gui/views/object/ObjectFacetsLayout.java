@@ -7,12 +7,14 @@ import com.google.common.collect.ImmutableSet;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.VerticalLayout;
 
+import net.lab1318.costume.api.models.gender.Gender;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.services.object.ObjectFacetFilters;
 import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
+import net.lab1318.costume.gui.models.gender.Genders;
 
 @SuppressWarnings("serial")
 final class ObjectFacetsLayout extends CustomComponent {
@@ -90,6 +92,45 @@ final class ObjectFacetsLayout extends CustomComponent {
             };
             if (!categoryFacetPicker.isEmpty()) {
                 rootLayout.addComponent(categoryFacetPicker);
+            }
+        }
+
+        if (!availableObjectFacets.getGenders().isEmpty()) {
+            final ObjectFacetPicker<Gender> genderFacetPicker = new ObjectFacetPicker<Gender>(
+                    availableObjectFacets.getGenders().keySet(), "Gender",
+                    objectQuery.getFacetFilters().isPresent()
+                            && objectQuery.getFacetFilters().get().getExcludeGenders().isPresent()
+                                    ? objectQuery.getFacetFilters().get().getExcludeGenders().get() : ImmutableSet.of(),
+                    objectQuery.getFacetFilters().isPresent()
+                            && objectQuery.getFacetFilters().get().getIncludeGenders().isPresent()
+                                    ? objectQuery.getFacetFilters().get().getIncludeGenders().get() : ImmutableSet.of(),
+                    resultObjectFacets.getGenders().keySet()) {
+                @Override
+                protected String _getCheckBoxCaption(final Gender facetKey) {
+                    return Genders.getCaption(facetKey);
+                }
+
+                @Override
+                protected void _valueChange(final ImmutableSet<Gender> excludeFacetKeys,
+                        final ImmutableSet<Gender> includeFacetKeys) {
+                    final ObjectFacetFilters.Builder filtersBuilder = ObjectFacetFilters
+                            .builder(objectQuery.getFacetFilters());
+                    if (!excludeFacetKeys.isEmpty()) {
+                        filtersBuilder.setExcludeGenders(excludeFacetKeys);
+                    } else {
+                        filtersBuilder.unsetExcludeGenders();
+                    }
+                    if (!includeFacetKeys.isEmpty()) {
+                        filtersBuilder.setIncludeGenders(includeFacetKeys);
+                    } else {
+                        filtersBuilder.unsetIncludeGenders();
+                    }
+                    eventBus.post(ObjectQueryService.Messages.GetObjectsRequest.builder()
+                            .setQuery(ObjectQuery.builder().setFacetFilters(filtersBuilder.build()).build()).build());
+                }
+            };
+            if (!genderFacetPicker.isEmpty()) {
+                rootLayout.addComponent(genderFacetPicker);
             }
         }
 

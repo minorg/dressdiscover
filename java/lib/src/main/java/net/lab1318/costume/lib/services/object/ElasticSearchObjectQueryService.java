@@ -56,6 +56,7 @@ import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.collection.InvalidCollectionIdException;
 import net.lab1318.costume.api.models.description.Description;
 import net.lab1318.costume.api.models.description.DescriptionSet;
+import net.lab1318.costume.api.models.gender.Gender;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.institution.InvalidInstitutionIdException;
 import net.lab1318.costume.api.models.object.InvalidObjectIdException;
@@ -147,6 +148,9 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                     .terms(ObjectFacets.FieldMetadata.COLLECTION_HITS.getThriftName())
                     .field(Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey());
 
+            gendersAggregation = AggregationBuilders.terms(ObjectFacets.FieldMetadata.GENDERS.getThriftName())
+                    .field(Object.FieldMetadata.GENDER.getThriftProtocolKey());
+
             institutionHitsAggregation = AggregationBuilders
                     .terms(ObjectFacets.FieldMetadata.INSTITUTION_HITS.getThriftName())
                     .field(Object.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey());
@@ -195,7 +199,8 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             }
 
             aggregations = ImmutableList.of(agentNameTextsAggregation, categoriesAggregation, collectionHitsAggregation,
-                    institutionHitsAggregation, subjectTermTextsAggregation, workTypeTextsAggregation);
+                    gendersAggregation, institutionHitsAggregation, subjectTermTextsAggregation,
+                    workTypeTextsAggregation);
         }
 
         public ObjectFacets getObjectFacets(final Aggregations aggregations) {
@@ -238,6 +243,15 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                     }
                 }
                 resultBuilder.setCollectionHits(collectionHitsBuilder.build());
+            }
+
+            {
+                final ImmutableMap.Builder<Gender, UnsignedInteger> gendersBuilder = ImmutableMap.builder();
+                for (final Bucket bucket : ((StringTerms) aggregations.get(gendersAggregation.getName()))
+                        .getBuckets()) {
+                    gendersBuilder.put(Gender.valueOf(bucket.getKey()), UnsignedInteger.valueOf(bucket.getDocCount()));
+                }
+                resultBuilder.setGenders(gendersBuilder.build());
             }
 
             {
@@ -296,6 +310,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         private final ImmutableList<AbstractAggregationBuilder> aggregations;
         private final TermsBuilder categoriesAggregation;
         private final TermsBuilder collectionHitsAggregation;
+        private final TermsBuilder gendersAggregation;
         private final TermsBuilder institutionHitsAggregation;
         private final AggregationBuilder<?> subjectTermTextsAggregation;
         private NestedBuilder workTypeTextsAggregation;
@@ -330,8 +345,9 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     public ElasticSearchObjectQueryService(final ObjectElasticSearchIndex elasticSearchIndex) {
         this.elasticSearchIndex = checkNotNull(elasticSearchIndex);
         emptyObjectFacets = ObjectFacets.builder().setAgentNameTexts(ImmutableMap.of()).setCategories(ImmutableMap.of())
-                .setCollectionHits(ImmutableMap.of()).setInstitutionHits(ImmutableMap.of())
-                .setSubjectTermTexts(ImmutableMap.of()).setWorkTypeTexts(ImmutableMap.of()).build();
+                .setCollectionHits(ImmutableMap.of()).setGenders(ImmutableMap.of())
+                .setInstitutionHits(ImmutableMap.of()).setSubjectTermTexts(ImmutableMap.of())
+                .setWorkTypeTexts(ImmutableMap.of()).build();
     }
 
     @Override
@@ -579,6 +595,25 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                         filtersTranslated.add(__excludeAllFilters(collectionIdFilters));
                     } else {
                         filtersTranslated.add(__includeAnyFilter(collectionIdFilters));
+                    }
+                }
+            }
+
+            for (final Optional<ImmutableSet<Gender>> genders : ImmutableList.of(facetFilters.getExcludeGenders(),
+                    facetFilters.getIncludeGenders())) {
+                if (!genders.isPresent()) {
+                    continue;
+                }
+                final List<FilterBuilder> genderFilters = new ArrayList<>();
+                for (final Gender gender : genders.get()) {
+                    genderFilters
+                            .add(FilterBuilders.termFilter(Object.FieldMetadata.GENDER.getThriftProtocolKey(), gender));
+                }
+                if (!genderFilters.isEmpty()) {
+                    if (genders == facetFilters.getExcludeGenders()) {
+                        filtersTranslated.add(__excludeAllFilters(genderFilters));
+                    } else {
+                        filtersTranslated.add(__includeAnyFilter(genderFilters));
                     }
                 }
             }
