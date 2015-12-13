@@ -147,7 +147,7 @@ final class ObjectForm extends CustomComponent {
                     imageView.addClickListener(new ClickListener() {
                         @Override
                         public void click(final ClickEvent event) {
-                            getUI().getPage().open(imageModel.getFullSize().get().getUrl().toString(), "_blank");
+                            getUI().getPage().open(imageModel.getOriginal().get().getUrl().toString(), "_blank");
                         }
                     });
                 }
