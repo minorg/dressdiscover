@@ -19,6 +19,10 @@ from costume.api.models.description.description_type import DescriptionType
 from costume.api.models.gender.gender import Gender
 from costume.api.models.image.image import Image
 from costume.api.models.image.image_version import ImageVersion
+from costume.api.models.inscription.inscription import Inscription
+from costume.api.models.inscription.inscription_set import InscriptionSet
+from costume.api.models.inscription.inscription_text import InscriptionText
+from costume.api.models.inscription.inscription_text_type import InscriptionTextType
 from costume.api.models.institution.institution import Institution
 from costume.api.models.object.object import Object
 from costume.api.models.object.object_entry import ObjectEntry
@@ -182,6 +186,7 @@ for collection_dict in collection_dicts:
         descriptions = []
         identifiers = []
         include_object = True
+        inscriptions = []
         subjects = []
         textrefs = []
         titles = []
@@ -401,6 +406,20 @@ for collection_dict in collection_dicts:
                     if object_builder.gender is not None:
                         assert object_builder.gender == gender, "%s vs. %s" % (object_builder.gender, gender)
                     object_builder.set_gender(gender)
+                elif element_name == 'Label':
+                    text = text.strip("'").strip()
+                    if len(text) == 0:
+                        continue
+                    inscriptions.append(
+                        Inscription.Builder()
+                            .set_texts((
+                                InscriptionText.Builder()
+                                    .set_text(text)
+                                    .set_type(InscriptionTextType.LABEL)
+                                    .build()
+                            ,))
+                            .build()
+                    )
                 elif element_name == 'Private Information':
                     descriptions.append(
                         Description.Builder()
@@ -501,6 +520,8 @@ for collection_dict in collection_dicts:
                     )
                     .build()
             )
+        if len(inscriptions) > 0:
+            object_builder.set_inscriptions(InscriptionSet.Builder().set_elements(tuple(inscriptions)).build())
         if len(subjects) > 0:
             object_builder.set_subjects(SubjectSet.Builder().set_elements(tuple(subjects)).build())
         if len(textrefs) > 0:

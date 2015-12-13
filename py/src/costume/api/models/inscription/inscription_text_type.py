@@ -3,6 +3,7 @@ class InscriptionTextType(object):
     MARK = None
     CAPTION = None
     DATE = None
+    LABEL = None
     TEXT = None
     TRANSLATION = None
     OTHER = None
@@ -31,22 +32,25 @@ class InscriptionTextType(object):
             return getattr(InscriptionTextType, 'CAPTION')
         elif name == 'DATE' or name == '3':
             return getattr(InscriptionTextType, 'DATE')
-        elif name == 'TEXT' or name == '4':
+        elif name == 'LABEL' or name == '4':
+            return getattr(InscriptionTextType, 'LABEL')
+        elif name == 'TEXT' or name == '5':
             return getattr(InscriptionTextType, 'TEXT')
-        elif name == 'TRANSLATION' or name == '5':
+        elif name == 'TRANSLATION' or name == '6':
             return getattr(InscriptionTextType, 'TRANSLATION')
-        elif name == 'OTHER' or name == '6':
+        elif name == 'OTHER' or name == '7':
             return getattr(InscriptionTextType, 'OTHER')
         raise ValueError(name)
 
     @classmethod
     def values(cls):
-        return (InscriptionTextType.SIGNATURE, InscriptionTextType.MARK, InscriptionTextType.CAPTION, InscriptionTextType.DATE, InscriptionTextType.TEXT, InscriptionTextType.TRANSLATION, InscriptionTextType.OTHER,)
+        return (InscriptionTextType.SIGNATURE, InscriptionTextType.MARK, InscriptionTextType.CAPTION, InscriptionTextType.DATE, InscriptionTextType.LABEL, InscriptionTextType.TEXT, InscriptionTextType.TRANSLATION, InscriptionTextType.OTHER,)
 
 InscriptionTextType.SIGNATURE = InscriptionTextType('SIGNATURE', 0)
 InscriptionTextType.MARK = InscriptionTextType('MARK', 1)
 InscriptionTextType.CAPTION = InscriptionTextType('CAPTION', 2)
 InscriptionTextType.DATE = InscriptionTextType('DATE', 3)
-InscriptionTextType.TEXT = InscriptionTextType('TEXT', 4)
-InscriptionTextType.TRANSLATION = InscriptionTextType('TRANSLATION', 5)
-InscriptionTextType.OTHER = InscriptionTextType('OTHER', 6)
+InscriptionTextType.LABEL = InscriptionTextType('LABEL', 4)
+InscriptionTextType.TEXT = InscriptionTextType('TEXT', 5)
+InscriptionTextType.TRANSLATION = InscriptionTextType('TRANSLATION', 6)
+InscriptionTextType.OTHER = InscriptionTextType('OTHER', 7)

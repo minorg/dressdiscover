@@ -6,6 +6,7 @@ enum InscriptionTextType {
 	MARK,
 	CAPTION,
 	DATE,
+	LABEL,
 	TEXT,
 	TRANSLATION,
 	OTHER
