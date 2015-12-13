@@ -5,9 +5,10 @@ public enum InscriptionTextType {
     MARK(1),
     CAPTION(2),
     DATE(3),
-    TEXT(4),
-    TRANSLATION(5),
-    OTHER(6);
+    LABEL(4),
+    TEXT(5),
+    TRANSLATION(6),
+    OTHER(7);
 
     private InscriptionTextType(int value) {
         this.value = value;
@@ -19,9 +20,10 @@ public enum InscriptionTextType {
         case 1: return MARK;
         case 2: return CAPTION;
         case 3: return DATE;
-        case 4: return TEXT;
-        case 5: return TRANSLATION;
-        case 6: return OTHER;
+        case 4: return LABEL;
+        case 5: return TEXT;
+        case 6: return TRANSLATION;
+        case 7: return OTHER;
         default: throw new IllegalArgumentException();
         }
     }

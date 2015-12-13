@@ -1,5 +1,6 @@
 package net.lab1318.costume.gui.views.object;
 
+import com.google.common.base.CaseFormat;
 import com.vaadin.data.Item;
 
 import net.lab1318.costume.api.models.inscription.Inscription;
@@ -25,6 +26,7 @@ final class InscriptionSetTable extends ElementSetTable {
         addContainerProperty("Text", String.class, null);
         addContainerProperty("Text Type", String.class, null);
 
+        int rowCount = 0;
         for (final Inscription inscription : inscriptions.getElements()) {
             for (final InscriptionText text : inscription.getTexts()) {
                 final Object itemId = addItem();
@@ -33,8 +35,11 @@ final class InscriptionSetTable extends ElementSetTable {
                     row.getItemProperty("Author").setValue(inscription.getAuthor().get().getText());
                 }
                 row.getItemProperty("Text").setValue(text.getText());
-                row.getItemProperty("Text Type").setValue(text.getType().name());
+                row.getItemProperty("Text Type")
+                        .setValue(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, text.getType().name()));
+                rowCount++;
             }
         }
+        setPageLength(rowCount);
     }
 }
