@@ -34,7 +34,7 @@ final class AgentSetTable extends ElementSetTable {
                     public Object generateCell(final Table source, final Object itemId, final Object columnId) {
                         final String agentNameText = (String) container.getItem(itemId).getItemProperty(columnId)
                                 .getValue();
-                        final Button button = new NativeButton(agentNameText, new Button.ClickListener() {
+                        return new NativeButton(agentNameText, new Button.ClickListener() {
                             @Override
                             public void buttonClick(final ClickEvent event) {
                                 GuiUI.navigateTo(ObjectQuery.builder()
@@ -43,7 +43,6 @@ final class AgentSetTable extends ElementSetTable {
                                         .build());
                             }
                         });
-                        return button;
                     }
                 });
         setPageLength(agents.getElements().size());
