@@ -24,6 +24,9 @@ from costume.api.models.inscription.inscription_set import InscriptionSet
 from costume.api.models.inscription.inscription_text import InscriptionText
 from costume.api.models.inscription.inscription_text_type import InscriptionTextType
 from costume.api.models.institution.institution import Institution
+from costume.api.models.material.material import Material
+from costume.api.models.material.material_set import MaterialSet
+from costume.api.models.material.material_type import MaterialType
 from costume.api.models.object.object import Object
 from costume.api.models.object.object_entry import ObjectEntry
 from costume.api.models.rights.rights import Rights
@@ -189,6 +192,7 @@ for collection_dict in collection_dicts:
         identifiers = []
         include_object = True
         inscriptions = []
+        materials = []
         subjects = []
         techniques = []
         textrefs = []
@@ -268,7 +272,18 @@ for collection_dict in collection_dicts:
                     if not text in identifiers:
                         identifiers.append(text)
                 elif element_name == 'Medium':
-                    pass
+                    text = text.strip("'")
+                    for medium in text.split(';'):
+                        for medium in medium.split(','):
+                            medium = medium.strip()
+                            if len(medium) == 0:
+                                continue
+                            materials.append(
+                                Material.Builder()
+                                    .set_text(medium)
+                                    .set_type(MaterialType.MEDIUM)
+                                    .build()
+                            )
                 elif element_name == 'Provenance':
                     object_builder.set_provenance(text)
                 elif element_name == 'Rights':
@@ -538,6 +553,8 @@ for collection_dict in collection_dicts:
             )
         if len(inscriptions) > 0:
             object_builder.set_inscriptions(InscriptionSet.Builder().set_elements(tuple(inscriptions)).build())
+        if len(materials) > 0:
+            object_builder.set_materials(MaterialSet.Builder().set_elements(tuple(materials)).build())
         if len(subjects) > 0:
             object_builder.set_subjects(SubjectSet.Builder().set_elements(tuple(subjects)).build())
         if len(techniques) > 0:
