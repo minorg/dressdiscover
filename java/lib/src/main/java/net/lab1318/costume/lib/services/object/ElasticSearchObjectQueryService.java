@@ -12,6 +12,7 @@ import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.common.bytes.BytesReference;
 import org.elasticsearch.index.query.AndFilterBuilder;
+import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.FilterBuilder;
 import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.MoreLikeThisQueryBuilder;
@@ -27,7 +28,6 @@ import org.elasticsearch.search.aggregations.bucket.nested.NestedBuilder;
 import org.elasticsearch.search.aggregations.bucket.terms.StringTerms;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms.Bucket;
 import org.elasticsearch.search.aggregations.bucket.terms.TermsBuilder;
-import org.elasticsearch.search.aggregations.metrics.valuecount.ValueCount;
 import org.elasticsearch.search.sort.SortBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
@@ -63,6 +63,9 @@ import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.models.subject.Subject;
 import net.lab1318.costume.api.models.subject.SubjectSet;
 import net.lab1318.costume.api.models.subject.SubjectTerm;
+import net.lab1318.costume.api.models.textref.Textref;
+import net.lab1318.costume.api.models.textref.TextrefRefid;
+import net.lab1318.costume.api.models.textref.TextrefSet;
 import net.lab1318.costume.api.models.work_type.WorkType;
 import net.lab1318.costume.api.models.work_type.WorkTypeSet;
 import net.lab1318.costume.api.services.IoException;
@@ -201,9 +204,6 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             subjectTermTextsAggregation = objectSubjectsAggregation;
         }
 
-        urlExistsAggregation = AggregationBuilders.count(ObjectFacets.FieldMetadata.URL_EXISTS.getThriftName())
-                .field(Object.FieldMetadata.URL.getThriftProtocolKey());
-
         {
             final TermsBuilder workTypeTextAggregation = AggregationBuilders
                     .terms(WorkType.FieldMetadata.TEXT.getThriftName())
@@ -223,8 +223,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         }
 
         aggregations = ImmutableList.of(agentNameTextsAggregation, categoriesAggregation, collectionHitsAggregation,
-                institutionHitsAggregation, subjectTermTextsAggregation, urlExistsAggregation,
-                workTypeTextsAggregation);
+                institutionHitsAggregation, subjectTermTextsAggregation, workTypeTextsAggregation);
     }
 
     @Override
@@ -345,10 +344,6 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             resultBuilder.setSubjectTermTexts(subjectTermTextsBuilder.build());
         }
 
-        final ValueCount urlExistsAggregation = (ValueCount) searchResponse.getAggregations()
-                .get(this.urlExistsAggregation.getName());
-        resultBuilder.setUrlExists(urlExistsAggregation.getValue() > 0);
-
         {
             final ImmutableMap.Builder<String, UnsignedInteger> workTypeTextsBuilder = ImmutableMap.builder();
             final Nested workTypeTextsAggregation = searchResponse.getAggregations()
@@ -433,13 +428,35 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
         QueryBuilder queryTranslated;
         if (query.get().getQueryString().isPresent()) {
-            queryTranslated = QueryBuilders.queryStringQuery(query.get().getQueryString().get())
+            final BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
+
+            // Root fields
+            boolQuery.should(QueryBuilders.queryStringQuery(query.get().getQueryString().get())
                     .field(Object.FieldMetadata.CATEGORIES.getThriftProtocolKey())
                     .field(Object.FieldMetadata.DATE_TEXT.getThriftProtocolKey())
-                    .field(Object.FieldMetadata.DESCRIPTIONS.getThriftProtocolKey() + '.'
-                            + DescriptionSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
-                            + Description.FieldMetadata.TEXT.getThriftProtocolKey())
-                    .field(Object.FieldMetadata.TITLE.getThriftProtocolKey());
+                    .field(Object.FieldMetadata.TITLE.getThriftProtocolKey()));
+
+            // Nested fields
+            // Description text
+            boolQuery.should(QueryBuilders.nestedQuery(
+                    Object.FieldMetadata.DESCRIPTIONS.getThriftProtocolKey() + '.'
+                            + DescriptionSet.FieldMetadata.ELEMENTS.getThriftProtocolKey(),
+                    QueryBuilders.queryStringQuery(query.get().getQueryString().get())
+                            .field(Object.FieldMetadata.DESCRIPTIONS.getThriftProtocolKey() + '.'
+                                    + DescriptionSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
+                                    + Description.FieldMetadata.TEXT.getThriftProtocolKey())));
+            // Textref refid text
+            boolQuery.should(QueryBuilders.nestedQuery(
+                    Object.FieldMetadata.TEXTREFS.getThriftProtocolKey() + '.'
+                            + TextrefSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
+                            + Textref.FieldMetadata.REFID.getThriftProtocolKey(),
+                    QueryBuilders.queryStringQuery(query.get().getQueryString().get())
+                            .field(Object.FieldMetadata.TEXTREFS.getThriftProtocolKey() + '.'
+                                    + TextrefSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
+                                    + Textref.FieldMetadata.REFID.getThriftProtocolKey() + '.'
+                                    + TextrefRefid.FieldMetadata.TEXT.getThriftProtocolKey())));
+
+            queryTranslated = boolQuery;
         } else if (query.get().getMoreLikeObjectId().isPresent()) {
             queryTranslated = QueryBuilders
                     .moreLikeThisQuery(Object.FieldMetadata.CATEGORIES.getThriftProtocolKey(),
@@ -658,7 +675,6 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     private final ObjectFacets emptyObjectFacets;
     private final TermsBuilder institutionHitsAggregation;
     private final AggregationBuilder<?> subjectTermTextsAggregation;
-    private final AbstractAggregationBuilder urlExistsAggregation;
     private NestedBuilder workTypeTextsAggregation;
     private final static Logger logger = LoggerFactory.getLogger(ElasticSearchObjectQueryService.class);
 }

@@ -2,13 +2,11 @@ package net.lab1318.costume.gui.views.object;
 
 import javax.annotation.Nullable;
 
-import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Link;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
@@ -79,16 +77,22 @@ final class ObjectForm extends CustomComponent {
                 formLayout.addComponent(new TechniqueSetTable(objectEntry.getModel().getTechniques().get()));
             }
 
+            if (objectEntry.getModel().getTextrefs().isPresent()) {
+                formLayout.addComponent(new TextrefsTable(objectEntry.getModel().getTextrefs().get()));
+            }
+
             if (objectEntry.getModel().getWorkTypes().isPresent()) {
                 formLayout.addComponent(new WorkTypeSetTable(objectEntry.getModel().getWorkTypes().get()));
             }
-
-            if (objectEntry.getModel().getUrl().isPresent()) {
-                final Link link = new Link(objectEntry.getModel().getUrl().get().toString(),
-                        new ExternalResource(objectEntry.getModel().getUrl().get().toString()));
-                link.setTargetName("_blank");
-                formLayout.addComponent(link);
-            }
+            //
+            // if (objectEntry.getModel().getUrl().isPresent()) {
+            // final Link link = new
+            // Link(objectEntry.getModel().getUrl().get().toString(),
+            // new
+            // ExternalResource(objectEntry.getModel().getUrl().get().toString()));
+            // link.setTargetName("_blank");
+            // formLayout.addComponent(link);
+            // }
 
             leftPaneLayout.addComponent(formLayout);
 
