@@ -409,6 +409,15 @@ for collection_dict in collection_dicts:
                             .set_type(DescriptionType.PUBLIC)
                             .build()
                     )
+                elif element_name == 'Quantity':
+                    try:
+                        quantity = int(text)
+                    except ValueError:
+                        print 'unparseable quantity', text
+                        continue
+                    if object_builder.quantity is not None:
+                        assert object_builder.quantity == quantity, "%d vs. %d" % (object_builder.quantity, quantity)
+                    object_builder.set_quantity(quantity)
                 elif element_name == 'References':
                     textrefs.append(
                         Textref.Builder()

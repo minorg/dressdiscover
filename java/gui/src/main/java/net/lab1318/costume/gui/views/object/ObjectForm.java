@@ -75,6 +75,11 @@ final class ObjectForm extends CustomComponent {
                 formLayout.addComponent(__createTextField("Provenance", objectEntry.getModel().getProvenance().get()));
             }
 
+            if (objectEntry.getModel().getQuantity().isPresent()) {
+                formLayout.addComponent(
+                        __createTextField("Quantity", objectEntry.getModel().getQuantity().get().toString()));
+            }
+
             if (objectEntry.getModel().getSubjects().isPresent()) {
                 formLayout.addComponent(new SubjectSetTable(objectEntry.getModel().getSubjects().get()));
             }
@@ -170,7 +175,11 @@ final class ObjectForm extends CustomComponent {
         final TextField textField = new TextField(caption, value);
         textField.addStyleName("borderlessTextField");
         textField.setReadOnly(true);
-        textField.setWidth((float) (value.length() * 1.0), Unit.EM);
+        if (value.length() > 1) {
+            textField.setWidth((float) (value.length() * 1.0), Unit.EM);
+        } else {
+            textField.setWidth((float) 2.0, Unit.EM);
+        }
         return textField;
     }
 }
