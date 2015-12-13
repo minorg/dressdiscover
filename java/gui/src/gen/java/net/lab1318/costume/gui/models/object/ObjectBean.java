@@ -6,7 +6,7 @@ public class ObjectBean {
         COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.CollectionId>() {}, true, 1, "collection_id", org.thryft.protocol.Type.STRING),
         INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, true, 2, "institution_id", org.thryft.protocol.Type.STRING),
         MODEL_METADATA("modelMetadata", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.ModelMetadataBean>() {}, true, 14, "model_metadata", org.thryft.protocol.Type.STRUCT),
-        TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 3, "title", org.thryft.protocol.Type.STRING),
+        TITLES("titles", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.title.TitleSetBean>() {}, true, 3, "titles", org.thryft.protocol.Type.STRUCT),
         AGENTS("agents", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.agent.AgentSetBean>() {}, false, 20, "agents", org.thryft.protocol.Type.STRUCT),
         CATEGORIES("categories", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 18, "categories", org.thryft.protocol.Type.LIST),
         DATE("date", new com.google.common.reflect.TypeToken<java.util.Date>() {}, false, 10, "date", org.thryft.protocol.Type.I64),
@@ -69,7 +69,7 @@ public class ObjectBean {
             case "collectionId": return COLLECTION_ID;
             case "institutionId": return INSTITUTION_ID;
             case "modelMetadata": return MODEL_METADATA;
-            case "title": return TITLE;
+            case "titles": return TITLES;
             case "agents": return AGENTS;
             case "categories": return CATEGORIES;
             case "date": return DATE;
@@ -96,7 +96,7 @@ public class ObjectBean {
             case "collection_id": return COLLECTION_ID;
             case "institution_id": return INSTITUTION_ID;
             case "model_metadata": return MODEL_METADATA;
-            case "title": return TITLE;
+            case "titles": return TITLES;
             case "agents": return AGENTS;
             case "categories": return CATEGORIES;
             case "date": return DATE;
@@ -145,7 +145,7 @@ public class ObjectBean {
         collectionId = null;
         institutionId = null;
         modelMetadata = null;
-        title = null;
+        titles = null;
         agents = null;
         categories = null;
         date = null;
@@ -168,7 +168,7 @@ public class ObjectBean {
         this.collectionId = other.getCollectionId();
         this.institutionId = other.getInstitutionId();
         this.modelMetadata = new net.lab1318.costume.gui.models.ModelMetadataBean(other.getModelMetadata());
-        this.title = other.getTitle();
+        this.titles = new net.lab1318.costume.gui.models.title.TitleSetBean(other.getTitles());
         this.agents = other.getAgents().isPresent() ? new net.lab1318.costume.gui.models.agent.AgentSetBean(other.getAgents().get()) : null;
         this.categories = other.getCategories().isPresent() ? new java.util.ArrayList<String>(other.getCategories().get()) : null;
         this.date = other.getDate().isPresent() ? other.getDate().get() : null;
@@ -209,7 +209,7 @@ public class ObjectBean {
             getCollectionId().equals(other.getCollectionId()) &&
             getInstitutionId().equals(other.getInstitutionId()) &&
             getModelMetadata().equals(other.getModelMetadata()) &&
-            getTitle().equals(other.getTitle()) &&
+            getTitles().equals(other.getTitles()) &&
             getAgents().equals(other.getAgents()) &&
             getCategories().equals(other.getCategories()) &&
             getDate().equals(other.getDate()) &&
@@ -306,11 +306,8 @@ public class ObjectBean {
         return textrefs;
     }
 
-    /**
-     * Dublin Core title
-     */
-    public String getTitle() {
-        return title;
+    public net.lab1318.costume.gui.models.title.TitleSetBean getTitles() {
+        return titles;
     }
 
     public net.lab1318.costume.gui.models.work_type.WorkTypeSetBean getWorkTypes() {
@@ -323,7 +320,7 @@ public class ObjectBean {
         hashCode = 31 * hashCode + getCollectionId().hashCode();
         hashCode = 31 * hashCode + getInstitutionId().hashCode();
         hashCode = 31 * hashCode + getModelMetadata().hashCode();
-        hashCode = 31 * hashCode + getTitle().hashCode();
+        hashCode = 31 * hashCode + getTitles().hashCode();
         if (getAgents() != null) {
             hashCode = 31 * hashCode + getAgents().hashCode();
         }
@@ -447,8 +444,8 @@ public class ObjectBean {
         this.textrefs = textrefs;
     }
 
-    public void setTitle(final String title) {
-        this.title = title;
+    public void setTitles(final net.lab1318.costume.gui.models.title.TitleSetBean titles) {
+        this.titles = titles;
     }
 
     public void setWorkTypes(final net.lab1318.costume.gui.models.work_type.WorkTypeSetBean workTypes) {
@@ -457,7 +454,7 @@ public class ObjectBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agents", getAgents()).add("categories", getCategories()).add("date", getDate()).add("date_text", getDateText()).add("descriptions", getDescriptions()).add("gender", getGender()).add("images", getImages()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("provenance", getProvenance()).add("quantity", getQuantity()).add("rights", getRights()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("work_types", getWorkTypes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("titles", getTitles()).add("agents", getAgents()).add("categories", getCategories()).add("date", getDate()).add("date_text", getDateText()).add("descriptions", getDescriptions()).add("gender", getGender()).add("images", getImages()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("provenance", getProvenance()).add("quantity", getQuantity()).add("rights", getRights()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("work_types", getWorkTypes()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -466,10 +463,7 @@ public class ObjectBean {
 
     private net.lab1318.costume.gui.models.ModelMetadataBean modelMetadata;
 
-    /**
-     * Dublin Core title
-     */
-    private String title;
+    private net.lab1318.costume.gui.models.title.TitleSetBean titles;
 
     private net.lab1318.costume.gui.models.agent.AgentSetBean agents;
 
