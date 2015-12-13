@@ -13,6 +13,7 @@ import com.vaadin.ui.VerticalLayout;
 import net.lab1318.costume.api.models.image.ImageType;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.object.ObjectEntry;
+import net.lab1318.costume.api.models.title.Title;
 import net.lab1318.costume.gui.models.gender.Genders;
 
 @SuppressWarnings("serial")
@@ -30,7 +31,14 @@ final class ObjectForm extends CustomComponent {
         twoPaneLayout.setComponentAlignment(leftPaneLayout, Alignment.TOP_LEFT);
 
         {
-            final Label titleLabel = new Label(objectEntry.getModel().getTitle());
+            Title preferredTitle = objectEntry.getModel().getTitles().getElements().get(0);
+            for (final Title title : objectEntry.getModel().getTitles().getElements()) {
+                if (title.getPref().or(Boolean.FALSE)) {
+                    preferredTitle = title;
+                    break;
+                }
+            }
+            final Label titleLabel = new Label(preferredTitle.getText());
             titleLabel.setStyleName("h3");
             leftPaneLayout.addComponent(titleLabel);
         }
@@ -90,6 +98,10 @@ final class ObjectForm extends CustomComponent {
 
             if (objectEntry.getModel().getTextrefs().isPresent()) {
                 formLayout.addComponent(new TextrefsTable(objectEntry.getModel().getTextrefs().get()));
+            }
+
+            if (objectEntry.getModel().getTitles().getElements().size() > 1) {
+                formLayout.addComponent(new TitleSetTable(objectEntry.getModel().getTitles()));
             }
 
             if (objectEntry.getModel().getWorkTypes().isPresent()) {

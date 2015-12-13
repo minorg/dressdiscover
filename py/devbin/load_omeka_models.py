@@ -35,6 +35,9 @@ from costume.api.models.textref.textref_name_type import TextrefNameType
 from costume.api.models.textref.textref_refid import TextrefRefid
 from costume.api.models.textref.textref_refid_type import TextrefRefidType
 from costume.api.models.textref.textref_set import TextrefSet
+from costume.api.models.title.title import Title
+from costume.api.models.title.title_set import TitleSet
+from costume.api.models.title.title_type import TitleType
 from costume.api.models.vocab import Vocab
 from costume.api.models.vocab_ref import VocabRef
 from costume.api.models.work_type.work_type import WorkType
@@ -181,6 +184,7 @@ for collection_dict in collection_dicts:
         include_object = True
         subjects = []
         textrefs = []
+        titles = []
         work_types = []
 
         textrefs.append(
@@ -209,7 +213,14 @@ for collection_dict in collection_dicts:
             element_name = element_text_dict['element']['name']
 
             if element_set_name == 'Dublin Core':
-                if element_name == 'Contributor':
+                if element_name == 'Alternative Title':
+                    titles.append(
+                        Title.Builder()
+                            .set_text(text)
+                            .set_type(TitleType.DESCRIPTIVE)
+                            .build()
+                    )
+                elif element_name == 'Contributor':
                     agents.append(
                         Agent.Builder()
                             .set_name(AgentName.Builder().set_text(text).set_type(AgentNameType.OTHER).build())
@@ -278,7 +289,13 @@ for collection_dict in collection_dicts:
                                 .build()
                         )
                 elif element_name == 'Title':
-                    object_builder.set_title(text)
+                    titles.append(
+                        Title.Builder()
+                            .set_pref(True)
+                            .set_text(text)
+                            .set_type(TitleType.DESCRIPTIVE)
+                            .build()
+                    )
                 elif element_name == 'Type':
                     type_ = text.strip().replace(' ', '')
                     if type_ in DCMI_TYPES:
@@ -299,24 +316,13 @@ for collection_dict in collection_dicts:
                             include_object = False
                             break
                     else:
-                        work_types.append(
-                            WorkType.Builder()
-                                .set_text(text)
-                                .build()
-                        )
-#                 elif element_name in (
-#                     'Alternative Title',
-#                     'Date Created',
-#                     'Extent',
-#                     'Identifier',
-#                     'Language',
-#                     'Medium',
-#                     'References',
-#                     'Relation',
-#                     'Spatial Coverage',
-#                     'Temporal Coverage',
-#                 ):
-#                     pass
+#                         work_types.append(
+#                             WorkType.Builder()
+#                                 .set_text(text)
+#                                 .build()
+#                         )
+                        include_object = False
+                        break
                 else:
                     print 'skipping item Dublin Core element', element_name, ':', text.encode('ascii', 'ignore')
             elif element_set_name == 'Item Type Metadata':
@@ -499,8 +505,15 @@ for collection_dict in collection_dicts:
             object_builder.set_subjects(SubjectSet.Builder().set_elements(tuple(subjects)).build())
         if len(textrefs) > 0:
             object_builder.set_textrefs(TextrefSet.Builder().set_elements(tuple(textrefs)).build())
+        if len(titles) > 0:
+            object_builder.set_titles(TitleSet.Builder().set_elements(tuple(titles)).build())
+        else:
+            print 'item', omeka_item_id, 'has no titles, excluding'
+            continue
         if len(work_types) > 0:
             object_builder.set_work_types(WorkTypeSet.Builder().set_elements(tuple(work_types)).build())
+        else:
+            print 'item', omeka_item_id, 'has no work types, excluding'
 
         try:
             files_count = item_dict['files']['count']

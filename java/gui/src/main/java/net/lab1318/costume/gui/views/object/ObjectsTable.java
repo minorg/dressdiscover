@@ -35,6 +35,8 @@ import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.gui.models.image.ImageBean;
 import net.lab1318.costume.gui.models.textref.TextrefBean;
 import net.lab1318.costume.gui.models.textref.TextrefSetBean;
+import net.lab1318.costume.gui.models.title.TitleBean;
+import net.lab1318.costume.gui.models.title.TitleSetBean;
 import net.lab1318.costume.gui.models.work_type.WorkTypeSetBean;
 
 @SuppressWarnings("serial")
@@ -45,7 +47,7 @@ final class ObjectsTable extends CustomComponent {
         final Map<String, String> columns = new LinkedHashMap<>();
         {
             columns.put(Object.FieldMetadata.IMAGES.getJavaName(), "");
-            columns.put(Object.FieldMetadata.TITLE.getJavaName(), "Title");
+            columns.put(Object.FieldMetadata.TITLES.getJavaName(), "Title");
             if (!objectFacets.getWorkTypeTexts().isEmpty()) {
                 columns.put(Object.FieldMetadata.WORK_TYPES.getJavaName(), "Type");
             }
@@ -169,13 +171,21 @@ final class ObjectsTable extends CustomComponent {
             }
         });
 
-        table.addGeneratedColumn(Object.FieldMetadata.TITLE.getJavaName(), new ColumnGenerator() {
+        table.addGeneratedColumn(Object.FieldMetadata.TITLES.getJavaName(), new ColumnGenerator() {
             @Override
             public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
                     final java.lang.Object columnId) {
-                final String title = (String) source.getContainerDataSource().getContainerProperty(itemId, columnId)
-                        .getValue();
-                return new NativeButton(title, new Button.ClickListener() {
+                final TitleSetBean titles = (TitleSetBean) source.getContainerDataSource()
+                        .getContainerProperty(itemId, columnId).getValue();
+                @Nullable
+                TitleBean preferredTitle = titles.getElements().get(0);
+                for (final TitleBean title : titles.getElements()) {
+                    if (title.getPref() != null && title.getPref()) {
+                        preferredTitle = title;
+                        break;
+                    }
+                }
+                return new NativeButton(preferredTitle.getText(), new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {
                         final ObjectId objectId = (ObjectId) source.getContainerDataSource()
