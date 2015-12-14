@@ -7,12 +7,12 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 
-import net.lab1318.costume.api.models.object.Object;
-import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.object.ObjectId;
+import net.lab1318.costume.api.models.object.ObjectSummary;
+import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 
 @Singleton
-public class ObjectSummaryElasticSearchIndex extends ElasticSearchIndex<Object, ObjectEntry, ObjectId> {
+public class ObjectSummaryElasticSearchIndex extends ElasticSearchIndex<ObjectSummary, ObjectSummaryEntry, ObjectId> {
     @Inject
     public ObjectSummaryElasticSearchIndex(final ElasticSearchClient client,
             @Named("environment") final String environment) {

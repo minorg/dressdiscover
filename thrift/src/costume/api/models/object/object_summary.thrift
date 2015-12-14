@@ -7,6 +7,7 @@ include "costume/api/models/collection/collection_id.thrift"
 include "costume/api/models/gender/gender.thrift"
 include "costume/api/models/image/image_version.thrift"
 include "costume/api/models/institution/institution_id.thrift"
+include "thryft/native/url.thrift"
 
 // @java_implements org.notaweb.api.models.Model
 struct ObjectSummary {
@@ -43,6 +44,8 @@ struct ObjectSummary {
 	9: optional list<string> subject_term_texts;
 
 	10: optional image_version.ImageVersion thumbnail;
+
+	13: optional url.Url url;
 
 	// @elastic_search_mapping {"type": "multi_field", "fields": {"text": {"type": "string"}, "not_analyzed": {"type": "string", "index": "not_analyzed"}}}
 	// @validation {"minLength": 1}

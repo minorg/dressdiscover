@@ -14,6 +14,7 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
             gender = com.google.common.base.Optional.absent();
             subjectTermTexts = com.google.common.base.Optional.absent();
             thumbnail = com.google.common.base.Optional.absent();
+            url = com.google.common.base.Optional.absent();
             workTypeTexts = com.google.common.base.Optional.absent();
         }
 
@@ -29,15 +30,16 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
             this.gender = other.getGender();
             this.subjectTermTexts = other.getSubjectTermTexts();
             this.thumbnail = other.getThumbnail();
+            this.url = other.getUrl();
             this.workTypeTexts = other.getWorkTypeTexts();
         }
 
-        protected ObjectSummary _build(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<String> date, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<net.lab1318.costume.api.models.gender.Gender> gender, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> thumbnail, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
-            return new ObjectSummary(collectionId, institutionId, modelMetadata, title, agentNameTexts, categories, date, description, gender, subjectTermTexts, thumbnail, workTypeTexts);
+        protected ObjectSummary _build(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<String> date, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<net.lab1318.costume.api.models.gender.Gender> gender, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> thumbnail, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
+            return new ObjectSummary(collectionId, institutionId, modelMetadata, title, agentNameTexts, categories, date, description, gender, subjectTermTexts, thumbnail, url, workTypeTexts);
         }
 
         public ObjectSummary build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(collectionId, "net.lab1318.costume.api.models.object.ObjectSummary: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.object.ObjectSummary: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.object.ObjectSummary: missing modelMetadata"), com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.object.ObjectSummary: missing title"), com.google.common.base.Preconditions.checkNotNull(agentNameTexts, "net.lab1318.costume.api.models.object.ObjectSummary: missing agentNameTexts"), com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.models.object.ObjectSummary: missing categories"), com.google.common.base.Preconditions.checkNotNull(date, "net.lab1318.costume.api.models.object.ObjectSummary: missing date"), com.google.common.base.Preconditions.checkNotNull(description, "net.lab1318.costume.api.models.object.ObjectSummary: missing description"), com.google.common.base.Preconditions.checkNotNull(gender, "net.lab1318.costume.api.models.object.ObjectSummary: missing gender"), com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.models.object.ObjectSummary: missing subjectTermTexts"), com.google.common.base.Preconditions.checkNotNull(thumbnail, "net.lab1318.costume.api.models.object.ObjectSummary: missing thumbnail"), com.google.common.base.Preconditions.checkNotNull(workTypeTexts, "net.lab1318.costume.api.models.object.ObjectSummary: missing workTypeTexts"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(collectionId, "net.lab1318.costume.api.models.object.ObjectSummary: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.object.ObjectSummary: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.object.ObjectSummary: missing modelMetadata"), com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.object.ObjectSummary: missing title"), com.google.common.base.Preconditions.checkNotNull(agentNameTexts, "net.lab1318.costume.api.models.object.ObjectSummary: missing agentNameTexts"), com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.models.object.ObjectSummary: missing categories"), com.google.common.base.Preconditions.checkNotNull(date, "net.lab1318.costume.api.models.object.ObjectSummary: missing date"), com.google.common.base.Preconditions.checkNotNull(description, "net.lab1318.costume.api.models.object.ObjectSummary: missing description"), com.google.common.base.Preconditions.checkNotNull(gender, "net.lab1318.costume.api.models.object.ObjectSummary: missing gender"), com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.models.object.ObjectSummary: missing subjectTermTexts"), com.google.common.base.Preconditions.checkNotNull(thumbnail, "net.lab1318.costume.api.models.object.ObjectSummary: missing thumbnail"), com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.object.ObjectSummary: missing url"), com.google.common.base.Preconditions.checkNotNull(workTypeTexts, "net.lab1318.costume.api.models.object.ObjectSummary: missing workTypeTexts"));
         }
 
         public final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> getAgentNameTexts() {
@@ -91,6 +93,10 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
          */
         public final String getTitle() {
             return title;
+        }
+
+        public final com.google.common.base.Optional<org.thryft.native_.Url> getUrl() {
+            return url;
         }
 
         public final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> getWorkTypeTexts() {
@@ -201,6 +207,12 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
                 thumbnail = com.google.common.base.Optional.of(net.lab1318.costume.api.models.image.ImageVersion.readAsStruct(iprot));
             }
             if (__list.getSize() > 11) {
+                try {
+                    url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                } catch (final java.lang.IllegalArgumentException e) {
+                }
+            }
+            if (__list.getSize() > 12) {
                 try {
                     workTypeTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                         @Override
@@ -364,6 +376,15 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
                     }
                     break;
                 }
+                case "url": {
+                    if (!ifield.hasId() || ifield.getId() == 13) {
+                        try {
+                            url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                        } catch (final java.lang.IllegalArgumentException e) {
+                        }
+                    }
+                    break;
+                }
                 case "work_type_texts": {
                     if (!ifield.hasId() || ifield.getId() == 11) {
                         try {
@@ -478,6 +499,9 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
             if (other.getThumbnail().isPresent()) {
                 setThumbnail(other.getThumbnail());
             }
+            if (other.getUrl().isPresent()) {
+                setUrl(other.getUrl());
+            }
             if (other.getWorkTypeTexts().isPresent()) {
                 setWorkTypeTexts(other.getWorkTypeTexts());
             }
@@ -520,6 +544,16 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
             return this;
         }
 
+        public Builder setUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) {
+            this.url = com.google.common.base.Preconditions.checkNotNull(url);
+            return this;
+        }
+
+        public Builder setUrl(@javax.annotation.Nullable final org.thryft.native_.Url url) {
+            this.url = com.google.common.base.Optional.fromNullable(url);
+            return this;
+        }
+
         public Builder setWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
             this.workTypeTexts = com.google.common.base.Preconditions.checkNotNull(workTypeTexts);
             return this;
@@ -546,6 +580,7 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
             case "gender": setGender((net.lab1318.costume.api.models.gender.Gender)value); return this;
             case "subject_term_texts": setSubjectTermTexts((com.google.common.collect.ImmutableList<String>)value); return this;
             case "thumbnail": setThumbnail((net.lab1318.costume.api.models.image.ImageVersion)value); return this;
+            case "url": setUrl((org.thryft.native_.Url)value); return this;
             case "work_type_texts": setWorkTypeTexts((com.google.common.collect.ImmutableList<String>)value); return this;
             default:
                 throw new IllegalArgumentException(name);
@@ -607,6 +642,11 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
             return this;
         }
 
+        public Builder unsetUrl() {
+            this.url = com.google.common.base.Optional.absent();
+            return this;
+        }
+
         public Builder unsetWorkTypeTexts() {
             this.workTypeTexts = com.google.common.base.Optional.absent();
             return this;
@@ -632,6 +672,7 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
         private com.google.common.base.Optional<net.lab1318.costume.api.models.gender.Gender> gender;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> thumbnail;
+        private com.google.common.base.Optional<org.thryft.native_.Url> url;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts;
     }
 
@@ -648,6 +689,7 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
         GENDER("gender", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.gender.Gender>() {}, false, 8, "gender", org.thryft.protocol.Type.STRING),
         SUBJECT_TERM_TEXTS("subjectTermTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 9, "subject_term_texts", org.thryft.protocol.Type.LIST),
         THUMBNAIL("thumbnail", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.image.ImageVersion>() {}, false, 10, "thumbnail", org.thryft.protocol.Type.STRUCT),
+        URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 13, "url", org.thryft.protocol.Type.STRING),
         WORK_TYPE_TEXTS("workTypeTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 11, "work_type_texts", org.thryft.protocol.Type.LIST);
 
         @Override
@@ -703,6 +745,7 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
             case "gender": return GENDER;
             case "subjectTermTexts": return SUBJECT_TERM_TEXTS;
             case "thumbnail": return THUMBNAIL;
+            case "url": return URL;
             case "workTypeTexts": return WORK_TYPE_TEXTS;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -722,6 +765,7 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
             case "gender": return GENDER;
             case "subject_term_texts": return SUBJECT_TERM_TEXTS;
             case "thumbnail": return THUMBNAIL;
+            case "url": return URL;
             case "work_type_texts": return WORK_TYPE_TEXTS;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -755,7 +799,7 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
      * Copy constructor
      */
     public ObjectSummary(final ObjectSummary other) {
-        this(other.getCollectionId(), other.getInstitutionId(), other.getModelMetadata(), other.getTitle(), other.getAgentNameTexts(), other.getCategories(), other.getDate(), other.getDescription(), other.getGender(), other.getSubjectTermTexts(), other.getThumbnail(), other.getWorkTypeTexts());
+        this(other.getCollectionId(), other.getInstitutionId(), other.getModelMetadata(), other.getTitle(), other.getAgentNameTexts(), other.getCategories(), other.getDate(), other.getDescription(), other.getGender(), other.getSubjectTermTexts(), other.getThumbnail(), other.getUrl(), other.getWorkTypeTexts());
     }
 
     /**
@@ -773,13 +817,14 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
         this.gender = com.google.common.base.Optional.absent();
         this.subjectTermTexts = com.google.common.base.Optional.absent();
         this.thumbnail = com.google.common.base.Optional.absent();
+        this.url = com.google.common.base.Optional.absent();
         this.workTypeTexts = com.google.common.base.Optional.absent();
     }
 
     /**
      * Total Nullable constructor
      */
-    public ObjectSummary(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> agentNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> categories, final @javax.annotation.Nullable String date, final @javax.annotation.Nullable String description, final @javax.annotation.Nullable net.lab1318.costume.api.models.gender.Gender gender, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> subjectTermTexts, final @javax.annotation.Nullable net.lab1318.costume.api.models.image.ImageVersion thumbnail, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> workTypeTexts) {
+    public ObjectSummary(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> agentNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> categories, final @javax.annotation.Nullable String date, final @javax.annotation.Nullable String description, final @javax.annotation.Nullable net.lab1318.costume.api.models.gender.Gender gender, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> subjectTermTexts, final @javax.annotation.Nullable net.lab1318.costume.api.models.image.ImageVersion thumbnail, final @javax.annotation.Nullable org.thryft.native_.Url url, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> workTypeTexts) {
         this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId, "net.lab1318.costume.api.models.object.ObjectSummary: missing collectionId");
         this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.object.ObjectSummary: missing institutionId");
         this.modelMetadata = com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.object.ObjectSummary: missing modelMetadata");
@@ -791,13 +836,14 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
         this.gender = com.google.common.base.Optional.fromNullable(gender);
         this.subjectTermTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(subjectTermTexts), "net.lab1318.costume.api.models.object.ObjectSummary: subjectTermTexts is empty");
         this.thumbnail = com.google.common.base.Optional.fromNullable(thumbnail);
+        this.url = com.google.common.base.Optional.fromNullable(url);
         this.workTypeTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(workTypeTexts), "net.lab1318.costume.api.models.object.ObjectSummary: workTypeTexts is empty");
     }
 
     /**
      * Optional constructor
      */
-    public ObjectSummary(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<String> date, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<net.lab1318.costume.api.models.gender.Gender> gender, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> thumbnail, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
+    public ObjectSummary(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<String> date, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<net.lab1318.costume.api.models.gender.Gender> gender, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> thumbnail, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
         this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId, "net.lab1318.costume.api.models.object.ObjectSummary: missing collectionId");
         this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.object.ObjectSummary: missing institutionId");
         this.modelMetadata = com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.object.ObjectSummary: missing modelMetadata");
@@ -809,6 +855,7 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
         this.gender = com.google.common.base.Preconditions.checkNotNull(gender, "net.lab1318.costume.api.models.object.ObjectSummary: missing gender");
         this.subjectTermTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.models.object.ObjectSummary: missing subjectTermTexts"), "net.lab1318.costume.api.models.object.ObjectSummary: subjectTermTexts is empty");
         this.thumbnail = com.google.common.base.Preconditions.checkNotNull(thumbnail, "net.lab1318.costume.api.models.object.ObjectSummary: missing thumbnail");
+        this.url = com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.object.ObjectSummary: missing url");
         this.workTypeTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(workTypeTexts, "net.lab1318.costume.api.models.object.ObjectSummary: missing workTypeTexts"), "net.lab1318.costume.api.models.object.ObjectSummary: workTypeTexts is empty");
     }
 
@@ -845,6 +892,7 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
             getGender().equals(other.getGender()) &&
             getSubjectTermTexts().equals(other.getSubjectTermTexts()) &&
             getThumbnail().equals(other.getThumbnail()) &&
+            getUrl().equals(other.getUrl()) &&
             getWorkTypeTexts().equals(other.getWorkTypeTexts());
     }
 
@@ -862,6 +910,7 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
         case "gender": return getGender();
         case "subject_term_texts": return getSubjectTermTexts();
         case "thumbnail": return getThumbnail();
+        case "url": return getUrl();
         case "work_type_texts": return getWorkTypeTexts();
         default:
             throw new IllegalArgumentException(fieldName);
@@ -921,6 +970,10 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
         return title;
     }
 
+    public final com.google.common.base.Optional<org.thryft.native_.Url> getUrl() {
+        return url;
+    }
+
     public final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> getWorkTypeTexts() {
         return workTypeTexts;
     }
@@ -953,6 +1006,9 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
         if (getThumbnail().isPresent()) {
             hashCode = 31 * hashCode + getThumbnail().get().hashCode();
         }
+        if (getUrl().isPresent()) {
+            hashCode = 31 * hashCode + getUrl().get().hashCode();
+        }
         if (getWorkTypeTexts().isPresent()) {
             hashCode = 31 * hashCode + getWorkTypeTexts().get().hashCode();
         }
@@ -982,6 +1038,7 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
         com.google.common.base.Optional<net.lab1318.costume.api.models.gender.Gender> gender = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> thumbnail = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
@@ -1077,6 +1134,12 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
         }
         if (__list.getSize() > 11) {
             try {
+                url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+            } catch (final java.lang.IllegalArgumentException e) {
+            }
+        }
+        if (__list.getSize() > 12) {
+            try {
                 workTypeTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                     @Override
                     public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -1098,7 +1161,7 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
         }
         iprot.readListEnd();
         try {
-            return new ObjectSummary(collectionId, institutionId, modelMetadata, title, agentNameTexts, categories, date, description, gender, subjectTermTexts, thumbnail, workTypeTexts);
+            return new ObjectSummary(collectionId, institutionId, modelMetadata, title, agentNameTexts, categories, date, description, gender, subjectTermTexts, thumbnail, url, workTypeTexts);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -1116,6 +1179,7 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
         com.google.common.base.Optional<net.lab1318.costume.api.models.gender.Gender> gender = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> thumbnail = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts = com.google.common.base.Optional.absent();
 
         iprot.readStructBegin();
@@ -1256,6 +1320,15 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
                 }
                 break;
             }
+            case "url": {
+                if (!ifield.hasId() || ifield.getId() == 13) {
+                    try {
+                        url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                    } catch (final java.lang.IllegalArgumentException e) {
+                    }
+                }
+                break;
+            }
             case "work_type_texts": {
                 if (!ifield.hasId() || ifield.getId() == 11) {
                     try {
@@ -1285,14 +1358,14 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
         }
         iprot.readStructEnd();
         try {
-            return new ObjectSummary(collectionId, institutionId, modelMetadata, title, agentNameTexts, categories, date, description, gender, subjectTermTexts, thumbnail, workTypeTexts);
+            return new ObjectSummary(collectionId, institutionId, modelMetadata, title, agentNameTexts, categories, date, description, gender, subjectTermTexts, thumbnail, url, workTypeTexts);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public ObjectSummary replaceAgentNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.modelMetadata, this.title, agentNameTexts, this.categories, this.date, this.description, this.gender, this.subjectTermTexts, this.thumbnail, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.modelMetadata, this.title, agentNameTexts, this.categories, this.date, this.description, this.gender, this.subjectTermTexts, this.thumbnail, this.url, this.workTypeTexts);
     }
 
     public ObjectSummary replaceAgentNameTexts(final com.google.common.collect.ImmutableList<String> agentNameTexts) {
@@ -1300,7 +1373,7 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
     }
 
     public ObjectSummary replaceCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agentNameTexts, categories, this.date, this.description, this.gender, this.subjectTermTexts, this.thumbnail, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agentNameTexts, categories, this.date, this.description, this.gender, this.subjectTermTexts, this.thumbnail, this.url, this.workTypeTexts);
     }
 
     public ObjectSummary replaceCategories(final com.google.common.collect.ImmutableList<String> categories) {
@@ -1308,11 +1381,11 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
     }
 
     public ObjectSummary replaceCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) {
-        return new ObjectSummary(collectionId, this.institutionId, this.modelMetadata, this.title, this.agentNameTexts, this.categories, this.date, this.description, this.gender, this.subjectTermTexts, this.thumbnail, this.workTypeTexts);
+        return new ObjectSummary(collectionId, this.institutionId, this.modelMetadata, this.title, this.agentNameTexts, this.categories, this.date, this.description, this.gender, this.subjectTermTexts, this.thumbnail, this.url, this.workTypeTexts);
     }
 
     public ObjectSummary replaceDate(final com.google.common.base.Optional<String> date) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agentNameTexts, this.categories, date, this.description, this.gender, this.subjectTermTexts, this.thumbnail, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agentNameTexts, this.categories, date, this.description, this.gender, this.subjectTermTexts, this.thumbnail, this.url, this.workTypeTexts);
     }
 
     public ObjectSummary replaceDate(final String date) {
@@ -1320,7 +1393,7 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
     }
 
     public ObjectSummary replaceDescription(final com.google.common.base.Optional<String> description) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agentNameTexts, this.categories, this.date, description, this.gender, this.subjectTermTexts, this.thumbnail, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agentNameTexts, this.categories, this.date, description, this.gender, this.subjectTermTexts, this.thumbnail, this.url, this.workTypeTexts);
     }
 
     public ObjectSummary replaceDescription(final String description) {
@@ -1328,7 +1401,7 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
     }
 
     public ObjectSummary replaceGender(final com.google.common.base.Optional<net.lab1318.costume.api.models.gender.Gender> gender) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agentNameTexts, this.categories, this.date, this.description, gender, this.subjectTermTexts, this.thumbnail, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agentNameTexts, this.categories, this.date, this.description, gender, this.subjectTermTexts, this.thumbnail, this.url, this.workTypeTexts);
     }
 
     public ObjectSummary replaceGender(final net.lab1318.costume.api.models.gender.Gender gender) {
@@ -1336,15 +1409,15 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
     }
 
     public ObjectSummary replaceInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
-        return new ObjectSummary(this.collectionId, institutionId, this.modelMetadata, this.title, this.agentNameTexts, this.categories, this.date, this.description, this.gender, this.subjectTermTexts, this.thumbnail, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, institutionId, this.modelMetadata, this.title, this.agentNameTexts, this.categories, this.date, this.description, this.gender, this.subjectTermTexts, this.thumbnail, this.url, this.workTypeTexts);
     }
 
     public ObjectSummary replaceModelMetadata(final net.lab1318.costume.api.models.ModelMetadata modelMetadata) {
-        return new ObjectSummary(this.collectionId, this.institutionId, modelMetadata, this.title, this.agentNameTexts, this.categories, this.date, this.description, this.gender, this.subjectTermTexts, this.thumbnail, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, modelMetadata, this.title, this.agentNameTexts, this.categories, this.date, this.description, this.gender, this.subjectTermTexts, this.thumbnail, this.url, this.workTypeTexts);
     }
 
     public ObjectSummary replaceSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agentNameTexts, this.categories, this.date, this.description, this.gender, subjectTermTexts, this.thumbnail, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agentNameTexts, this.categories, this.date, this.description, this.gender, subjectTermTexts, this.thumbnail, this.url, this.workTypeTexts);
     }
 
     public ObjectSummary replaceSubjectTermTexts(final com.google.common.collect.ImmutableList<String> subjectTermTexts) {
@@ -1352,7 +1425,7 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
     }
 
     public ObjectSummary replaceThumbnail(final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> thumbnail) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agentNameTexts, this.categories, this.date, this.description, this.gender, this.subjectTermTexts, thumbnail, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agentNameTexts, this.categories, this.date, this.description, this.gender, this.subjectTermTexts, thumbnail, this.url, this.workTypeTexts);
     }
 
     public ObjectSummary replaceThumbnail(final net.lab1318.costume.api.models.image.ImageVersion thumbnail) {
@@ -1360,11 +1433,19 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
     }
 
     public ObjectSummary replaceTitle(final String title) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.modelMetadata, title, this.agentNameTexts, this.categories, this.date, this.description, this.gender, this.subjectTermTexts, this.thumbnail, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.modelMetadata, title, this.agentNameTexts, this.categories, this.date, this.description, this.gender, this.subjectTermTexts, this.thumbnail, this.url, this.workTypeTexts);
+    }
+
+    public ObjectSummary replaceUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) {
+        return new ObjectSummary(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agentNameTexts, this.categories, this.date, this.description, this.gender, this.subjectTermTexts, this.thumbnail, url, this.workTypeTexts);
+    }
+
+    public ObjectSummary replaceUrl(final org.thryft.native_.Url url) {
+        return replaceUrl(com.google.common.base.Optional.fromNullable(url));
     }
 
     public ObjectSummary replaceWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agentNameTexts, this.categories, this.date, this.description, this.gender, this.subjectTermTexts, this.thumbnail, workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.modelMetadata, this.title, this.agentNameTexts, this.categories, this.date, this.description, this.gender, this.subjectTermTexts, this.thumbnail, this.url, workTypeTexts);
     }
 
     public ObjectSummary replaceWorkTypeTexts(final com.google.common.collect.ImmutableList<String> workTypeTexts) {
@@ -1373,12 +1454,12 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agent_name_texts", getAgentNameTexts().orNull()).add("categories", getCategories().orNull()).add("date", getDate().orNull()).add("description", getDescription().orNull()).add("gender", getGender().orNull()).add("subject_term_texts", getSubjectTermTexts().orNull()).add("thumbnail", getThumbnail().orNull()).add("work_type_texts", getWorkTypeTexts().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agent_name_texts", getAgentNameTexts().orNull()).add("categories", getCategories().orNull()).add("date", getDate().orNull()).add("description", getDescription().orNull()).add("gender", getGender().orNull()).add("subject_term_texts", getSubjectTermTexts().orNull()).add("thumbnail", getThumbnail().orNull()).add("url", getUrl().orNull()).add("work_type_texts", getWorkTypeTexts().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 12);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 13);
 
         oprot.writeString(getCollectionId().toString());
 
@@ -1438,6 +1519,12 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
 
         if (getThumbnail().isPresent()) {
             getThumbnail().get().writeAsStruct(oprot);
+        } else {
+            oprot.writeNull();
+        }
+
+        if (getUrl().isPresent()) {
+            oprot.writeString(getUrl().get().toString());
         } else {
             oprot.writeNull();
         }
@@ -1534,6 +1621,12 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
             oprot.writeFieldEnd();
         }
 
+        if (getUrl().isPresent()) {
+            oprot.writeFieldBegin("url", org.thryft.protocol.Type.STRING, (short)13);
+            oprot.writeString(getUrl().get().toString());
+            oprot.writeFieldEnd();
+        }
+
         if (getWorkTypeTexts().isPresent()) {
             oprot.writeFieldBegin("work_type_texts", org.thryft.protocol.Type.LIST, (short)11);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getWorkTypeTexts().get().size());
@@ -1577,6 +1670,8 @@ public class ObjectSummary implements org.thryft.Struct, org.notaweb.api.models.
     private final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts;
 
     private final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> thumbnail;
+
+    private final com.google.common.base.Optional<org.thryft.native_.Url> url;
 
     private final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts;
 }

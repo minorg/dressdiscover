@@ -20,6 +20,7 @@ class ObjectSummary(object):
             gender=None,
             subject_term_texts=None,
             thumbnail=None,
+            url=None,
             work_type_texts=None,
         ):
             '''
@@ -34,6 +35,7 @@ class ObjectSummary(object):
             :type gender: costume.api.models.gender.gender.Gender or None
             :type subject_term_texts: tuple(str) or None
             :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
+            :type url: str or None
             :type work_type_texts: tuple(str) or None
             '''
 
@@ -48,10 +50,11 @@ class ObjectSummary(object):
             self.__gender = gender
             self.__subject_term_texts = subject_term_texts
             self.__thumbnail = thumbnail
+            self.__url = url
             self.__work_type_texts = work_type_texts
 
         def build(self):
-            return ObjectSummary(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, agent_name_texts=self.__agent_name_texts, categories=self.__categories, date=self.__date, description=self.__description, gender=self.__gender, subject_term_texts=self.__subject_term_texts, thumbnail=self.__thumbnail, work_type_texts=self.__work_type_texts)
+            return ObjectSummary(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, agent_name_texts=self.__agent_name_texts, categories=self.__categories, date=self.__date, description=self.__description, gender=self.__gender, subject_term_texts=self.__subject_term_texts, thumbnail=self.__thumbnail, url=self.__url, work_type_texts=self.__work_type_texts)
 
         @property
         def agent_name_texts(self):
@@ -205,6 +208,14 @@ class ObjectSummary(object):
             self.__title = title
             return self
 
+        def set_url(self, url):
+            '''
+            :type url: str or None
+            '''
+
+            self.__url = url
+            return self
+
         def set_work_type_texts(self, work_type_texts):
             '''
             :type work_type_texts: tuple(str) or None
@@ -250,6 +261,7 @@ class ObjectSummary(object):
             :type gender: costume.api.models.gender.gender.Gender or None
             :type subject_term_texts: tuple(str) or None
             :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
+            :type url: str or None
             :type work_type_texts: tuple(str) or None
             '''
 
@@ -265,6 +277,7 @@ class ObjectSummary(object):
                 self.set_gender(object_summary.gender)
                 self.set_subject_term_texts(object_summary.subject_term_texts)
                 self.set_thumbnail(object_summary.thumbnail)
+                self.set_url(object_summary.url)
                 self.set_work_type_texts(object_summary.work_type_texts)
             elif isinstance(object_summary, dict):
                 for key, value in object_summary.iteritems():
@@ -272,6 +285,14 @@ class ObjectSummary(object):
             else:
                 raise TypeError(object_summary)
             return self
+
+        @property
+        def url(self):
+            '''
+            :rtype: str
+            '''
+
+            return self.__url
 
         @property
         def work_type_texts(self):
@@ -369,6 +390,14 @@ class ObjectSummary(object):
 
             self.set_title(title)
 
+        @url.setter
+        def url(self, url):
+            '''
+            :type url: str or None
+            '''
+
+            self.set_url(url)
+
         @work_type_texts.setter
         def work_type_texts(self, work_type_texts):
             '''
@@ -390,6 +419,7 @@ class ObjectSummary(object):
         gender=None,
         subject_term_texts=None,
         thumbnail=None,
+        url=None,
         work_type_texts=None,
     ):
         '''
@@ -404,6 +434,7 @@ class ObjectSummary(object):
         :type gender: costume.api.models.gender.gender.Gender or None
         :type subject_term_texts: tuple(str) or None
         :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
+        :type url: str or None
         :type work_type_texts: tuple(str) or None
         '''
 
@@ -478,6 +509,11 @@ class ObjectSummary(object):
                 raise TypeError("expected thumbnail to be a costume.api.models.image.image_version.ImageVersion but it is a %s" % getattr(__builtin__, 'type')(thumbnail))
         self.__thumbnail = thumbnail
 
+        if url is not None:
+            if not isinstance(url, basestring):
+                raise TypeError("expected url to be a str but it is a %s" % getattr(__builtin__, 'type')(url))
+        self.__url = url
+
         if work_type_texts is not None:
             if not (isinstance(work_type_texts, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), work_type_texts))) == 0):
                 raise TypeError("expected work_type_texts to be a tuple(str) but it is a %s" % getattr(__builtin__, 'type')(work_type_texts))
@@ -508,12 +544,14 @@ class ObjectSummary(object):
             return False
         if self.thumbnail != other.thumbnail:
             return False
+        if self.url != other.url:
+            return False
         if self.work_type_texts != other.work_type_texts:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.agent_name_texts,self.categories,self.date,self.description,self.gender,self.subject_term_texts,self.thumbnail,self.work_type_texts,))
+        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.agent_name_texts,self.categories,self.date,self.description,self.gender,self.subject_term_texts,self.thumbnail,self.url,self.work_type_texts,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -541,6 +579,8 @@ class ObjectSummary(object):
             field_reprs.append('subject_term_texts=' + repr(self.subject_term_texts))
         if self.thumbnail is not None:
             field_reprs.append('thumbnail=' + repr(self.thumbnail))
+        if self.url is not None:
+            field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
         if self.work_type_texts is not None:
             field_reprs.append('work_type_texts=' + repr(self.work_type_texts))
         return 'ObjectSummary(' + ', '.join(field_reprs) + ')'
@@ -565,6 +605,8 @@ class ObjectSummary(object):
             field_reprs.append('subject_term_texts=' + repr(self.subject_term_texts))
         if self.thumbnail is not None:
             field_reprs.append('thumbnail=' + repr(self.thumbnail))
+        if self.url is not None:
+            field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
         if self.work_type_texts is not None:
             field_reprs.append('work_type_texts=' + repr(self.work_type_texts))
         return 'ObjectSummary(' + ', '.join(field_reprs) + ')'
@@ -584,7 +626,7 @@ class ObjectSummary(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'date': self.date, 'description': self.description, 'gender': self.gender, 'subject_term_texts': self.subject_term_texts, 'thumbnail': self.thumbnail, 'work_type_texts': self.work_type_texts}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'date': self.date, 'description': self.description, 'gender': self.gender, 'subject_term_texts': self.subject_term_texts, 'thumbnail': self.thumbnail, 'url': self.url, 'work_type_texts': self.work_type_texts}
 
     def as_tuple(self):
         '''
@@ -593,7 +635,7 @@ class ObjectSummary(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.agent_name_texts, self.categories, self.date, self.description, self.gender, self.subject_term_texts, self.thumbnail, self.work_type_texts,)
+        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.agent_name_texts, self.categories, self.date, self.description, self.gender, self.subject_term_texts, self.thumbnail, self.url, self.work_type_texts,)
 
     @property
     def categories(self):
@@ -698,6 +740,11 @@ class ObjectSummary(object):
                 init_kwds['subject_term_texts'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'thumbnail' and ifield_id == 10:
                 init_kwds['thumbnail'] = costume.api.models.image.image_version.ImageVersion.read(iprot)
+            elif ifield_name == 'url' and ifield_id == 13:
+                try:
+                    init_kwds['url'] = iprot.read_string()
+                except (TypeError, ValueError,):
+                    pass
             elif ifield_name == 'work_type_texts' and ifield_id == 11:
                 init_kwds['work_type_texts'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             iprot.read_field_end()
@@ -718,6 +765,7 @@ class ObjectSummary(object):
         gender=None,
         subject_term_texts=None,
         thumbnail=None,
+        url=None,
         work_type_texts=None,
     ):
         '''
@@ -734,6 +782,7 @@ class ObjectSummary(object):
         :type gender: costume.api.models.gender.gender.Gender or None
         :type subject_term_texts: tuple(str) or None
         :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
+        :type url: str or None
         :type work_type_texts: tuple(str) or None
         :rtype: costume.api.models.object.object_summary.ObjectSummary
         '''
@@ -760,9 +809,11 @@ class ObjectSummary(object):
             subject_term_texts = self.subject_term_texts
         if thumbnail is None:
             thumbnail = self.thumbnail
+        if url is None:
+            url = self.url
         if work_type_texts is None:
             work_type_texts = self.work_type_texts
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, agent_name_texts=agent_name_texts, categories=categories, date=date, description=description, gender=gender, subject_term_texts=subject_term_texts, thumbnail=thumbnail, work_type_texts=work_type_texts)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, agent_name_texts=agent_name_texts, categories=categories, date=date, description=description, gender=gender, subject_term_texts=subject_term_texts, thumbnail=thumbnail, url=url, work_type_texts=work_type_texts)
 
     @property
     def subject_term_texts(self):
@@ -787,6 +838,14 @@ class ObjectSummary(object):
         '''
 
         return self.__title
+
+    @property
+    def url(self):
+        '''
+        :rtype: str
+        '''
+
+        return self.__url
 
     @property
     def work_type_texts(self):
@@ -864,6 +923,11 @@ class ObjectSummary(object):
         if self.thumbnail is not None:
             oprot.write_field_begin(name='thumbnail', type=12, id=10)
             self.thumbnail.write(oprot)
+            oprot.write_field_end()
+
+        if self.url is not None:
+            oprot.write_field_begin(name='url', type=11, id=13)
+            oprot.write_string(self.url)
             oprot.write_field_end()
 
         if self.work_type_texts is not None:

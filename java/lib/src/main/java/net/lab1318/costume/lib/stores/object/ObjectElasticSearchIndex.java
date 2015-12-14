@@ -19,5 +19,5 @@ public class ObjectElasticSearchIndex extends ElasticSearchIndex<Object, ObjectE
     }
 
     public final static String DOCUMENT_TYPE = "object";
-    public final static String INDEX_NAME_PREFIX = "object";
+    public final static String INDEX_NAME_PREFIX = "object_detail";
 }

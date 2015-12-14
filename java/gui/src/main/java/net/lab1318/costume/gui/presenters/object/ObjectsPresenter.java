@@ -41,7 +41,7 @@ import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectByIdRequest;
 import net.lab1318.costume.api.services.object.ObjectSummarySortField;
-import net.lab1318.costume.gui.models.object.ObjectBean;
+import net.lab1318.costume.gui.models.object.ObjectSummaryBean;
 import net.lab1318.costume.gui.models.object.ObjectSummaryBeanQuery;
 import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.object.ObjectByIdView;
@@ -148,7 +148,7 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
         objectBeanQueryFactory.setQueryConfiguration(queryConfiguration);
 
         final LazyQueryDefinition queryDefinition = new LazyQueryDefinition(true, 10, "id");
-        for (final ObjectBean.FieldMetadata field : ObjectBean.FieldMetadata.values()) {
+        for (final ObjectSummaryBean.FieldMetadata field : ObjectSummaryBean.FieldMetadata.values()) {
             boolean sortable = false;
             try {
                 ObjectSummarySortField.valueOf(field.getThriftName().toUpperCase());

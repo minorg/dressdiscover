@@ -2,6 +2,8 @@ package net.lab1318.costume.lib.services.object;
 
 import javax.annotation.Nullable;
 
+import org.thryft.native_.Url;
+
 import com.google.common.collect.ImmutableList;
 
 import net.lab1318.costume.api.models.agent.Agent;
@@ -13,6 +15,8 @@ import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectSummary;
 import net.lab1318.costume.api.models.subject.Subject;
 import net.lab1318.costume.api.models.subject.SubjectTerm;
+import net.lab1318.costume.api.models.textref.Textref;
+import net.lab1318.costume.api.models.textref.TextrefRefidType;
 import net.lab1318.costume.api.models.title.Title;
 import net.lab1318.costume.api.models.work_type.WorkType;
 
@@ -118,6 +122,21 @@ public final class ObjectSummarizer {
                 titleText = object.getTitles().getElements().get(0).getText();
             }
             builder.setTitle(titleText);
+        }
+
+        // URL
+        if (object.getTextrefs().isPresent()) {
+            @Nullable
+            Url url = null;
+            for (final Textref textref : object.getTextrefs().get().getElements()) {
+                if (textref.getRefid().getType() == TextrefRefidType.URI && textref.getRefid().getHref().isPresent()) {
+                    url = textref.getRefid().getHref().get();
+                    break;
+                }
+            }
+            if (url != null) {
+                builder.setUrl(url);
+            }
         }
 
         if (object.getWorkTypes().isPresent()) {
