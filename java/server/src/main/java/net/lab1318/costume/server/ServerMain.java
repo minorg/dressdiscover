@@ -1,5 +1,7 @@
 package net.lab1318.costume.server;
 
+import static com.google.common.base.Preconditions.checkState;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.notaweb.lib.PropertiesModule;
@@ -31,6 +33,7 @@ public final class ServerMain extends AbstractMain {
         final Args args = new Args();
         new JCommander(args, argv);
         final CostumeProperties properties = _parseArgs(args);
+        checkState(!properties.getEnvironment().equals("dev"), "running in dev environment?");
 
         final Server server = new Server();
         {

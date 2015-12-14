@@ -14,6 +14,7 @@ public class ObjectSummaryBean {
         GENDER("gender", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.gender.Gender>() {}, false, 8, "gender", org.thryft.protocol.Type.STRING),
         SUBJECT_TERM_TEXTS("subjectTermTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 9, "subject_term_texts", org.thryft.protocol.Type.LIST),
         THUMBNAIL("thumbnail", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.image.ImageVersionBean>() {}, false, 10, "thumbnail", org.thryft.protocol.Type.STRUCT),
+        URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 13, "url", org.thryft.protocol.Type.STRING),
         WORK_TYPE_TEXTS("workTypeTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 11, "work_type_texts", org.thryft.protocol.Type.LIST);
 
         @Override
@@ -69,6 +70,7 @@ public class ObjectSummaryBean {
             case "gender": return GENDER;
             case "subjectTermTexts": return SUBJECT_TERM_TEXTS;
             case "thumbnail": return THUMBNAIL;
+            case "url": return URL;
             case "workTypeTexts": return WORK_TYPE_TEXTS;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -88,6 +90,7 @@ public class ObjectSummaryBean {
             case "gender": return GENDER;
             case "subject_term_texts": return SUBJECT_TERM_TEXTS;
             case "thumbnail": return THUMBNAIL;
+            case "url": return URL;
             case "work_type_texts": return WORK_TYPE_TEXTS;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -129,6 +132,7 @@ public class ObjectSummaryBean {
         gender = null;
         subjectTermTexts = null;
         thumbnail = null;
+        url = null;
         workTypeTexts = null;
     }
 
@@ -144,6 +148,7 @@ public class ObjectSummaryBean {
         this.gender = other.getGender().isPresent() ? other.getGender().get() : null;
         this.subjectTermTexts = other.getSubjectTermTexts().isPresent() ? new java.util.ArrayList<String>(other.getSubjectTermTexts().get()) : null;
         this.thumbnail = other.getThumbnail().isPresent() ? new net.lab1318.costume.gui.models.image.ImageVersionBean(other.getThumbnail().get()) : null;
+        this.url = other.getUrl().isPresent() ? other.getUrl().get() : null;
         this.workTypeTexts = other.getWorkTypeTexts().isPresent() ? new java.util.ArrayList<String>(other.getWorkTypeTexts().get()) : null;
     }
 
@@ -168,6 +173,7 @@ public class ObjectSummaryBean {
             getGender().equals(other.getGender()) &&
             getSubjectTermTexts().equals(other.getSubjectTermTexts()) &&
             getThumbnail().equals(other.getThumbnail()) &&
+            getUrl().equals(other.getUrl()) &&
             getWorkTypeTexts().equals(other.getWorkTypeTexts());
     }
 
@@ -224,6 +230,10 @@ public class ObjectSummaryBean {
         return title;
     }
 
+    public org.thryft.native_.Url getUrl() {
+        return url;
+    }
+
     public java.util.List<String> getWorkTypeTexts() {
         return workTypeTexts;
     }
@@ -255,6 +265,9 @@ public class ObjectSummaryBean {
         }
         if (getThumbnail() != null) {
             hashCode = 31 * hashCode + getThumbnail().hashCode();
+        }
+        if (getUrl() != null) {
+            hashCode = 31 * hashCode + getUrl().hashCode();
         }
         if (getWorkTypeTexts() != null) {
             hashCode = 31 * hashCode + getWorkTypeTexts().hashCode();
@@ -306,13 +319,17 @@ public class ObjectSummaryBean {
         this.title = title;
     }
 
+    public void setUrl(final org.thryft.native_.Url url) {
+        this.url = url;
+    }
+
     public void setWorkTypeTexts(final java.util.List<String> workTypeTexts) {
         this.workTypeTexts = workTypeTexts;
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("date", getDate()).add("description", getDescription()).add("gender", getGender()).add("subject_term_texts", getSubjectTermTexts()).add("thumbnail", getThumbnail()).add("work_type_texts", getWorkTypeTexts()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("date", getDate()).add("description", getDescription()).add("gender", getGender()).add("subject_term_texts", getSubjectTermTexts()).add("thumbnail", getThumbnail()).add("url", getUrl()).add("work_type_texts", getWorkTypeTexts()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -345,6 +362,8 @@ public class ObjectSummaryBean {
     private java.util.List<String> subjectTermTexts;
 
     private net.lab1318.costume.gui.models.image.ImageVersionBean thumbnail;
+
+    private org.thryft.native_.Url url;
 
     private java.util.List<String> workTypeTexts;
 }

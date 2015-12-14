@@ -1,6 +1,6 @@
 {
-  "object_template": {
-    "template": "object_*", 
+  "object_detail_template": {
+    "template": "object_detail_*", 
     "settings": {
       "analysis": {
         "analyzer": {

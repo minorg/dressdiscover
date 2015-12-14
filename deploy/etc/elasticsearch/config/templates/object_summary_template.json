@@ -104,6 +104,10 @@
               }
             }
           }, 
+          "13:url": {
+            "type": "string", 
+            "analyzer": "email_and_url"
+          }, 
           "11:work_type_texts": {
             "fields": {
               "text": {

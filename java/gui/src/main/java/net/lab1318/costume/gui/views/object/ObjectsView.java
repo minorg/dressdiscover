@@ -32,12 +32,12 @@ public class ObjectsView extends TopLevelView {
     public void setModels(final ObjectFacets availableObjectFacets,
             final ImmutableMap<CollectionId, Collection> collections,
             final ImmutableMap<InstitutionId, Institution> institutions, final ObjectQuery objectQuery,
-            final LazyQueryContainer objects, final ObjectFacets resultObjectFacets) {
+            final LazyQueryContainer objectSummaries, final ObjectFacets resultObjectFacets) {
         if (objectQuery.getQueryString().isPresent()) {
             _getNavbar().getSearchTextField().setValue(objectQuery.getQueryString().get());
         }
 
-        final int objectsSize = objects.size();
+        final int objectSummariesSize = objectSummaries.size();
 
         final HorizontalLayout twoPaneLayout = new HorizontalLayout();
         twoPaneLayout.setSizeFull();
@@ -59,15 +59,15 @@ public class ObjectsView extends TopLevelView {
         {
             final VerticalLayout rightPaneContentLayout = new VerticalLayout();
 
-            if (objectsSize > 0) {
+            if (objectSummariesSize > 0) {
                 final Label hitCountsLabel = new Label(
-                        String.format("%d object(s) in %d collection(s)", objectsSize, collections.size()));
+                        String.format("%d object(s) in %d collection(s)", objectSummariesSize, collections.size()));
                 hitCountsLabel.setWidth(100, Unit.PERCENTAGE);
                 rightPaneContentLayout.addComponent(hitCountsLabel);
                 rightPaneContentLayout.setComponentAlignment(hitCountsLabel, Alignment.MIDDLE_CENTER);
 
                 rightPaneContentLayout.addComponent(
-                        new ObjectsTable(collections, _getEventBus(), institutions, availableObjectFacets, objects));
+                        new ObjectSummariesTable(collections, _getEventBus(), institutions, availableObjectFacets, objectSummaries));
             } else {
                 rightPaneContentLayout.addComponent(new Label("No objects match your criteria."));
             }
