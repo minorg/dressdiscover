@@ -40,11 +40,11 @@ service ObjectCommandService {
 	) throws (
 		io_exception.IoException e
 	);
-	
+
 	void
 	put_objects(
 		list<object_entry.ObjectEntry> objects
 	) throws (
 		io_exception.IoException e
-	);	
+	);
 }

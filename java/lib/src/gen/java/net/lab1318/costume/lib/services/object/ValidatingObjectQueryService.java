@@ -40,14 +40,14 @@ public class ValidatingObjectQueryService implements net.lab1318.costume.api.ser
     }
 
     @Override
-    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> getObjects(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectsOptions> options, final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query) throws net.lab1318.costume.api.services.IoException {
-        _validateGetObjectsParameters(options, query);
-        return com.google.common.base.Preconditions.checkNotNull(delegate.getObjects(options, query), "net.lab1318.costume.api.services.object.ObjectQueryService.getObjects: missing returnValue");
+    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectSummaryEntry> getObjectSummaries(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query) throws net.lab1318.costume.api.services.IoException {
+        _validateGetObjectSummariesParameters(options, query);
+        return com.google.common.base.Preconditions.checkNotNull(delegate.getObjectSummaries(options, query), "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectSummaries: missing returnValue");
     }
 
-    protected void _validateGetObjectsParameters(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectsOptions> options, final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query) {
-        com.google.common.base.Preconditions.checkNotNull(options, "net.lab1318.costume.api.services.object.ObjectQueryService.getObjects: missing options");
-        com.google.common.base.Preconditions.checkNotNull(query, "net.lab1318.costume.api.services.object.ObjectQueryService.getObjects: missing query");
+    protected void _validateGetObjectSummariesParameters(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query) {
+        com.google.common.base.Preconditions.checkNotNull(options, "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectSummaries: missing options");
+        com.google.common.base.Preconditions.checkNotNull(query, "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectSummaries: missing query");
     }
 
     private final net.lab1318.costume.api.services.object.ObjectQueryService delegate;

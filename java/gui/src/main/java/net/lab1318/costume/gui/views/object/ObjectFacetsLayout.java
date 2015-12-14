@@ -50,7 +50,7 @@ final class ObjectFacetsLayout extends CustomComponent {
                     } else {
                         filtersBuilder.unsetIncludeAgentNameTexts();
                     }
-                    eventBus.post(ObjectQueryService.Messages.GetObjectsRequest.builder()
+                    eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
                             .setQuery(ObjectQuery.builder().setFacetFilters(filtersBuilder.build()).build()).build());
                 }
             };
@@ -86,7 +86,7 @@ final class ObjectFacetsLayout extends CustomComponent {
                     } else {
                         filtersBuilder.unsetIncludeCategories();
                     }
-                    eventBus.post(ObjectQueryService.Messages.GetObjectsRequest.builder()
+                    eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
                             .setQuery(ObjectQuery.builder().setFacetFilters(filtersBuilder.build()).build()).build());
                 }
             };
@@ -125,7 +125,7 @@ final class ObjectFacetsLayout extends CustomComponent {
                     } else {
                         filtersBuilder.unsetIncludeGenders();
                     }
-                    eventBus.post(ObjectQueryService.Messages.GetObjectsRequest.builder()
+                    eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
                             .setQuery(ObjectQuery.builder().setFacetFilters(filtersBuilder.build()).build()).build());
                 }
             };
@@ -166,7 +166,7 @@ final class ObjectFacetsLayout extends CustomComponent {
                     } else {
                         filtersBuilder.unsetIncludeInstitutionIds();
                     }
-                    eventBus.post(ObjectQueryService.Messages.GetObjectsRequest.builder()
+                    eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
                             .setQuery(ObjectQuery.builder().setFacetFilters(filtersBuilder.build()).build()).build());
                 }
             };
@@ -202,7 +202,7 @@ final class ObjectFacetsLayout extends CustomComponent {
                     } else {
                         filtersBuilder.unsetIncludeSubjectTermTexts();
                     }
-                    eventBus.post(ObjectQueryService.Messages.GetObjectsRequest.builder()
+                    eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
                             .setQuery(ObjectQuery.builder().setFacetFilters(filtersBuilder.build()).build()).build());
                 }
             };
@@ -238,7 +238,7 @@ final class ObjectFacetsLayout extends CustomComponent {
                     } else {
                         filtersBuilder.unsetIncludeWorkTypeTexts();
                     }
-                    eventBus.post(ObjectQueryService.Messages.GetObjectsRequest.builder()
+                    eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
                             .setQuery(ObjectQuery.builder().setFacetFilters(filtersBuilder.build()).build()).build());
                 }
             };

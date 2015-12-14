@@ -10,7 +10,7 @@ import net.lab1318.costume.api.services.collection.CollectionQueryService.Messag
 import net.lab1318.costume.api.services.institution.InstitutionQueryService.Messages.GetInstitutionByIdRequest;
 import net.lab1318.costume.api.services.object.ObjectFacetFilters;
 import net.lab1318.costume.api.services.object.ObjectQuery;
-import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectsRequest;
+import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectSummariesRequest;
 import net.lab1318.costume.gui.GuiUI;
 
 public abstract class Presenter<ViewT extends View> extends org.notaweb.gui.presenters.Presenter<ViewT> {
@@ -36,7 +36,7 @@ public abstract class Presenter<ViewT extends View> extends org.notaweb.gui.pres
     }
 
     @Subscribe
-    public void onGetObjectsRequest(final GetObjectsRequest request) {
+    public void onGetObjectSummariesRequest(final GetObjectSummariesRequest request) {
         GuiUI.navigateTo(request.getQuery().get());
     }
 }

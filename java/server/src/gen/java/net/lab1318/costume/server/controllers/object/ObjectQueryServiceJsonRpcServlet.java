@@ -52,8 +52,8 @@ public class ObjectQueryServiceJsonRpcServlet extends javax.servlet.http.HttpSer
                 doPostGetObjectCount(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
             } else if (messageBegin.getName().equals("get_object_facets")) {
                 doPostGetObjectFacets(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
-            } else if (messageBegin.getName().equals("get_objects")) {
-                doPostGetObjects(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
+            } else if (messageBegin.getName().equals("get_object_summaries")) {
+                doPostGetObjectSummaries(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
             } else {
                 __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(-32601, String.format("the method '%s' does not exist / is not available", messageBegin.getName())), messageBegin.getId());
                 return;
@@ -261,19 +261,19 @@ public class ObjectQueryServiceJsonRpcServlet extends javax.servlet.http.HttpSer
         __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
     }
 
-    public void doPostGetObjects(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectsRequest serviceRequest;
+    public void doPostGetObjectSummaries(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
+        final net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectSummariesRequest serviceRequest;
         try {
-            serviceRequest = net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectsRequest.readAs(iprot, iprot.getCurrentFieldType());
+            serviceRequest = net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectSummariesRequest.readAs(iprot, iprot.getCurrentFieldType());
         } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
             logger.debug("error deserializing service request: ", e);
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, -32602, "invalid JSON-RPC request method parameters: " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
         }
 
-        final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> result;
+        final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectSummaryEntry> result;
         try {
-            result = service.getObjects(serviceRequest.getOptions(), serviceRequest.getQuery());
+            result = service.getObjectSummaries(serviceRequest.getOptions(), serviceRequest.getQuery());
         } catch (final net.lab1318.costume.api.services.IoException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
@@ -286,7 +286,7 @@ public class ObjectQueryServiceJsonRpcServlet extends javax.servlet.http.HttpSer
                 final org.thryft.protocol.JsonRpcOutputProtocol oprot = new org.thryft.protocol.JsonRpcOutputProtocol(new org.thryft.protocol.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
                 oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
                 oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, result.size());
-                for (final net.lab1318.costume.api.models.object.ObjectEntry _iter0 : result) {
+                for (final net.lab1318.costume.api.models.object.ObjectSummaryEntry _iter0 : result) {
                     _iter0.writeAsStruct(oprot);
                 }
                 oprot.writeListEnd();

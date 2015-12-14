@@ -40,9 +40,9 @@ import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectByIdRequest;
-import net.lab1318.costume.api.services.object.ObjectSortField;
+import net.lab1318.costume.api.services.object.ObjectSummarySortField;
 import net.lab1318.costume.gui.models.object.ObjectBean;
-import net.lab1318.costume.gui.models.object.ObjectBeanQuery;
+import net.lab1318.costume.gui.models.object.ObjectSummaryBeanQuery;
 import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.object.ObjectByIdView;
 import net.lab1318.costume.gui.views.object.ObjectsView;
@@ -140,8 +140,8 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
             institutionMap = institutionMapBuilder.build();
         }
 
-        final BeanQueryFactory<ObjectBeanQuery> objectBeanQueryFactory = new BeanQueryFactory<ObjectBeanQuery>(
-                ObjectBeanQuery.class);
+        final BeanQueryFactory<ObjectSummaryBeanQuery> objectBeanQueryFactory = new BeanQueryFactory<ObjectSummaryBeanQuery>(
+                ObjectSummaryBeanQuery.class);
         final Map<String, java.lang.Object> queryConfiguration = new HashMap<>();
         queryConfiguration.put("objectQuery", objectQuery);
         queryConfiguration.put("objectQueryService", objectQueryService);
@@ -151,7 +151,7 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
         for (final ObjectBean.FieldMetadata field : ObjectBean.FieldMetadata.values()) {
             boolean sortable = false;
             try {
-                ObjectSortField.valueOf(field.getThriftName().toUpperCase());
+                ObjectSummarySortField.valueOf(field.getThriftName().toUpperCase());
                 sortable = true;
             } catch (final IllegalArgumentException e) {
             }

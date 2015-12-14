@@ -1,9 +1,9 @@
 import __builtin__
 import costume.api.models.sort_order
-import costume.api.services.object.object_sort_field
+import costume.api.services.object.object_summary_sort_field
 
 
-class ObjectSort(object):
+class ObjectSummarySort(object):
     class Builder(object):
         def __init__(
             self,
@@ -11,7 +11,7 @@ class ObjectSort(object):
             order=None,
         ):
             '''
-            :type field: costume.api.services.object.object_sort_field.ObjectSortField
+            :type field: costume.api.services.object.object_summary_sort_field.ObjectSummarySortField
             :type order: costume.api.models.sort_order.SortOrder
             '''
 
@@ -19,12 +19,12 @@ class ObjectSort(object):
             self.__order = order
 
         def build(self):
-            return ObjectSort(field=self.__field, order=self.__order)
+            return ObjectSummarySort(field=self.__field, order=self.__order)
 
         @property
         def field(self):
             '''
-            :rtype: costume.api.services.object.object_sort_field.ObjectSortField
+            :rtype: costume.api.services.object.object_summary_sort_field.ObjectSummarySortField
             '''
 
             return self.__field
@@ -39,7 +39,7 @@ class ObjectSort(object):
 
         def set_field(self, field):
             '''
-            :type field: costume.api.services.object.object_sort_field.ObjectSortField
+            :type field: costume.api.services.object.object_summary_sort_field.ObjectSummarySortField
             '''
 
             self.__field = field
@@ -53,26 +53,26 @@ class ObjectSort(object):
             self.__order = order
             return self
 
-        def update(self, object_sort):
+        def update(self, object_summary_sort):
             '''
-            :type field: costume.api.services.object.object_sort_field.ObjectSortField
+            :type field: costume.api.services.object.object_summary_sort_field.ObjectSummarySortField
             :type order: costume.api.models.sort_order.SortOrder
             '''
 
-            if isinstance(object_sort, ObjectSort):
-                self.set_field(object_sort.field)
-                self.set_order(object_sort.order)
-            elif isinstance(object_sort, dict):
-                for key, value in object_sort.iteritems():
+            if isinstance(object_summary_sort, ObjectSummarySort):
+                self.set_field(object_summary_sort.field)
+                self.set_order(object_summary_sort.order)
+            elif isinstance(object_summary_sort, dict):
+                for key, value in object_summary_sort.iteritems():
                     getattr(self, 'set_' + key)(value)
             else:
-                raise TypeError(object_sort)
+                raise TypeError(object_summary_sort)
             return self
 
         @field.setter
         def field(self, field):
             '''
-            :type field: costume.api.services.object.object_sort_field.ObjectSortField
+            :type field: costume.api.services.object.object_summary_sort_field.ObjectSummarySortField
             '''
 
             self.set_field(field)
@@ -91,14 +91,14 @@ class ObjectSort(object):
         order,
     ):
         '''
-        :type field: costume.api.services.object.object_sort_field.ObjectSortField
+        :type field: costume.api.services.object.object_summary_sort_field.ObjectSummarySortField
         :type order: costume.api.models.sort_order.SortOrder
         '''
 
         if field is None:
             raise ValueError('field is required')
-        if not isinstance(field, costume.api.services.object.object_sort_field.ObjectSortField):
-            raise TypeError("expected field to be a costume.api.services.object.object_sort_field.ObjectSortField but it is a %s" % getattr(__builtin__, 'type')(field))
+        if not isinstance(field, costume.api.services.object.object_summary_sort_field.ObjectSummarySortField):
+            raise TypeError("expected field to be a costume.api.services.object.object_summary_sort_field.ObjectSummarySortField but it is a %s" % getattr(__builtin__, 'type')(field))
         self.__field = field
 
         if order is None:
@@ -127,13 +127,13 @@ class ObjectSort(object):
         field_reprs = []
         field_reprs.append('field=' + repr(self.field))
         field_reprs.append('order=' + repr(self.order))
-        return 'ObjectSort(' + ', '.join(field_reprs) + ')'
+        return 'ObjectSummarySort(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
         field_reprs.append('field=' + repr(self.field))
         field_reprs.append('order=' + repr(self.order))
-        return 'ObjectSort(' + ', '.join(field_reprs) + ')'
+        return 'ObjectSummarySort(' + ', '.join(field_reprs) + ')'
 
     def as_dict(self):
         '''
@@ -156,7 +156,7 @@ class ObjectSort(object):
     @property
     def field(self):
         '''
-        :rtype: costume.api.services.object.object_sort_field.ObjectSortField
+        :rtype: costume.api.services.object.object_summary_sort_field.ObjectSummarySortField
         '''
 
         return self.__field
@@ -175,7 +175,7 @@ class ObjectSort(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.services.object.object_sort.ObjectSort
+        :rtype: costume.api.services.object.object_summary_sort.ObjectSummarySort
         '''
 
         init_kwds = {}
@@ -186,7 +186,7 @@ class ObjectSort(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'field':
-                init_kwds['field'] = costume.api.services.object.object_sort_field.ObjectSortField.value_of(iprot.read_string().strip().upper())
+                init_kwds['field'] = costume.api.services.object.object_summary_sort_field.ObjectSummarySortField.value_of(iprot.read_string().strip().upper())
             elif ifield_name == 'order':
                 init_kwds['order'] = costume.api.models.sort_order.SortOrder.value_of(iprot.read_string().strip().upper())
             iprot.read_field_end()
@@ -202,9 +202,9 @@ class ObjectSort(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type field: costume.api.services.object.object_sort_field.ObjectSortField or None
+        :type field: costume.api.services.object.object_summary_sort_field.ObjectSummarySortField or None
         :type order: costume.api.models.sort_order.SortOrder or None
-        :rtype: costume.api.services.object.object_sort.ObjectSort
+        :rtype: costume.api.services.object.object_summary_sort.ObjectSummarySort
         '''
 
         if field is None:
@@ -218,10 +218,10 @@ class ObjectSort(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.services.object.object_sort.ObjectSort
+        :rtype: costume.api.services.object.object_summary_sort.ObjectSummarySort
         '''
 
-        oprot.write_struct_begin('ObjectSort')
+        oprot.write_struct_begin('ObjectSummarySort')
 
         oprot.write_field_begin(name='field', type=11, id=None)
         oprot.write_string(str(self.field))

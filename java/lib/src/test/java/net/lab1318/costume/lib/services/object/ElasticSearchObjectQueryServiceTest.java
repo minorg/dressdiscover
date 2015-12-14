@@ -14,7 +14,8 @@ import com.google.common.primitives.UnsignedInteger;
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.models.object.ObjectEntry;
-import net.lab1318.costume.api.services.object.GetObjectsOptions;
+import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
+import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
 import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.lib.services.TestData;
 
@@ -61,17 +62,17 @@ public final class ElasticSearchObjectQueryServiceTest extends ObjectServiceTest
     }
 
     @Test
-    public void testGetObjects() throws Exception {
+    public void testGetObjectSummaries() throws Exception {
         final ImmutableList<ObjectEntry> expected = _putObjects();
-        final ImmutableList<ObjectEntry> actual = objectQueryService.getObjects(Optional.of(
-                GetObjectsOptions.builder().setFrom(UnsignedInteger.ZERO).setSize(UnsignedInteger.MAX_VALUE).build()));
+        final ImmutableList<ObjectSummaryEntry> actual = objectQueryService
+                .getObjectSummaries(Optional.of(GetObjectSummariesOptions.builder().setFrom(UnsignedInteger.ZERO)
+                        .setSize(UnsignedInteger.MAX_VALUE).build()));
         assertEquals(TestData.getInstance().getObjects().size(), actual.size());
         for (final ObjectEntry expectedEntry : expected) {
             boolean found = false;
-            for (final ObjectEntry actualEntry : actual) {
+            for (final ObjectSummaryEntry actualEntry : actual) {
                 if (actualEntry.getId().equals(expectedEntry.getId())) {
                     found = true;
-                    assertEquals(expectedEntry.getModel(), actualEntry.getModel());
                     break;
                 }
             }

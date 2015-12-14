@@ -7,12 +7,14 @@ public class ObjectSummaryBean {
         INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, true, 2, "institution_id", org.thryft.protocol.Type.STRING),
         MODEL_METADATA("modelMetadata", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.ModelMetadataBean>() {}, true, 3, "model_metadata", org.thryft.protocol.Type.STRUCT),
         TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 4, "title", org.thryft.protocol.Type.STRING),
-        DESCRIPTION("description", new com.google.common.reflect.TypeToken<String>() {}, false, 5, "description", org.thryft.protocol.Type.STRING),
         AGENT_NAME_TEXTS("agentNameTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 6, "agent_name_texts", org.thryft.protocol.Type.LIST),
         CATEGORIES("categories", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 7, "categories", org.thryft.protocol.Type.LIST),
+        DATE("date", new com.google.common.reflect.TypeToken<String>() {}, false, 12, "date", org.thryft.protocol.Type.STRING),
+        DESCRIPTION("description", new com.google.common.reflect.TypeToken<String>() {}, false, 5, "description", org.thryft.protocol.Type.STRING),
         GENDER("gender", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.gender.Gender>() {}, false, 8, "gender", org.thryft.protocol.Type.STRING),
         SUBJECT_TERM_TEXTS("subjectTermTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 9, "subject_term_texts", org.thryft.protocol.Type.LIST),
-        WORK_TYPE_TEXTS("workTypeTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 10, "work_type_texts", org.thryft.protocol.Type.LIST);
+        THUMBNAIL("thumbnail", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.image.ImageVersionBean>() {}, false, 10, "thumbnail", org.thryft.protocol.Type.STRUCT),
+        WORK_TYPE_TEXTS("workTypeTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 11, "work_type_texts", org.thryft.protocol.Type.LIST);
 
         @Override
         public String getJavaName() {
@@ -60,11 +62,13 @@ public class ObjectSummaryBean {
             case "institutionId": return INSTITUTION_ID;
             case "modelMetadata": return MODEL_METADATA;
             case "title": return TITLE;
-            case "description": return DESCRIPTION;
             case "agentNameTexts": return AGENT_NAME_TEXTS;
             case "categories": return CATEGORIES;
+            case "date": return DATE;
+            case "description": return DESCRIPTION;
             case "gender": return GENDER;
             case "subjectTermTexts": return SUBJECT_TERM_TEXTS;
+            case "thumbnail": return THUMBNAIL;
             case "workTypeTexts": return WORK_TYPE_TEXTS;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -77,11 +81,13 @@ public class ObjectSummaryBean {
             case "institution_id": return INSTITUTION_ID;
             case "model_metadata": return MODEL_METADATA;
             case "title": return TITLE;
-            case "description": return DESCRIPTION;
             case "agent_name_texts": return AGENT_NAME_TEXTS;
             case "categories": return CATEGORIES;
+            case "date": return DATE;
+            case "description": return DESCRIPTION;
             case "gender": return GENDER;
             case "subject_term_texts": return SUBJECT_TERM_TEXTS;
+            case "thumbnail": return THUMBNAIL;
             case "work_type_texts": return WORK_TYPE_TEXTS;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -116,11 +122,13 @@ public class ObjectSummaryBean {
         institutionId = null;
         modelMetadata = null;
         title = null;
-        description = null;
         agentNameTexts = null;
         categories = null;
+        date = null;
+        description = null;
         gender = null;
         subjectTermTexts = null;
+        thumbnail = null;
         workTypeTexts = null;
     }
 
@@ -129,11 +137,13 @@ public class ObjectSummaryBean {
         this.institutionId = other.getInstitutionId();
         this.modelMetadata = new net.lab1318.costume.gui.models.ModelMetadataBean(other.getModelMetadata());
         this.title = other.getTitle();
-        this.description = other.getDescription().isPresent() ? other.getDescription().get() : null;
         this.agentNameTexts = other.getAgentNameTexts().isPresent() ? new java.util.ArrayList<String>(other.getAgentNameTexts().get()) : null;
         this.categories = other.getCategories().isPresent() ? new java.util.ArrayList<String>(other.getCategories().get()) : null;
+        this.date = other.getDate().isPresent() ? other.getDate().get() : null;
+        this.description = other.getDescription().isPresent() ? other.getDescription().get() : null;
         this.gender = other.getGender().isPresent() ? other.getGender().get() : null;
         this.subjectTermTexts = other.getSubjectTermTexts().isPresent() ? new java.util.ArrayList<String>(other.getSubjectTermTexts().get()) : null;
+        this.thumbnail = other.getThumbnail().isPresent() ? new net.lab1318.costume.gui.models.image.ImageVersionBean(other.getThumbnail().get()) : null;
         this.workTypeTexts = other.getWorkTypeTexts().isPresent() ? new java.util.ArrayList<String>(other.getWorkTypeTexts().get()) : null;
     }
 
@@ -151,11 +161,13 @@ public class ObjectSummaryBean {
             getInstitutionId().equals(other.getInstitutionId()) &&
             getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
-            getDescription().equals(other.getDescription()) &&
             getAgentNameTexts().equals(other.getAgentNameTexts()) &&
             getCategories().equals(other.getCategories()) &&
+            getDate().equals(other.getDate()) &&
+            getDescription().equals(other.getDescription()) &&
             getGender().equals(other.getGender()) &&
             getSubjectTermTexts().equals(other.getSubjectTermTexts()) &&
+            getThumbnail().equals(other.getThumbnail()) &&
             getWorkTypeTexts().equals(other.getWorkTypeTexts());
     }
 
@@ -169,6 +181,13 @@ public class ObjectSummaryBean {
 
     public net.lab1318.costume.api.models.collection.CollectionId getCollectionId() {
         return collectionId;
+    }
+
+    /**
+     * Dublin Core date
+     */
+    public String getDate() {
+        return date;
     }
 
     /**
@@ -194,6 +213,10 @@ public class ObjectSummaryBean {
         return subjectTermTexts;
     }
 
+    public net.lab1318.costume.gui.models.image.ImageVersionBean getThumbnail() {
+        return thumbnail;
+    }
+
     /**
      * Dublin Core title
      */
@@ -212,20 +235,26 @@ public class ObjectSummaryBean {
         hashCode = 31 * hashCode + getInstitutionId().hashCode();
         hashCode = 31 * hashCode + getModelMetadata().hashCode();
         hashCode = 31 * hashCode + getTitle().hashCode();
-        if (getDescription() != null) {
-            hashCode = 31 * hashCode + getDescription().hashCode();
-        }
         if (getAgentNameTexts() != null) {
             hashCode = 31 * hashCode + getAgentNameTexts().hashCode();
         }
         if (getCategories() != null) {
             hashCode = 31 * hashCode + getCategories().hashCode();
         }
+        if (getDate() != null) {
+            hashCode = 31 * hashCode + getDate().hashCode();
+        }
+        if (getDescription() != null) {
+            hashCode = 31 * hashCode + getDescription().hashCode();
+        }
         if (getGender() != null) {
             hashCode = 31 * hashCode + getGender().ordinal();
         }
         if (getSubjectTermTexts() != null) {
             hashCode = 31 * hashCode + getSubjectTermTexts().hashCode();
+        }
+        if (getThumbnail() != null) {
+            hashCode = 31 * hashCode + getThumbnail().hashCode();
         }
         if (getWorkTypeTexts() != null) {
             hashCode = 31 * hashCode + getWorkTypeTexts().hashCode();
@@ -243,6 +272,10 @@ public class ObjectSummaryBean {
 
     public void setCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) {
         this.collectionId = collectionId;
+    }
+
+    public void setDate(final String date) {
+        this.date = date;
     }
 
     public void setDescription(final String description) {
@@ -265,6 +298,10 @@ public class ObjectSummaryBean {
         this.subjectTermTexts = subjectTermTexts;
     }
 
+    public void setThumbnail(final net.lab1318.costume.gui.models.image.ImageVersionBean thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
     public void setTitle(final String title) {
         this.title = title;
     }
@@ -275,7 +312,7 @@ public class ObjectSummaryBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("description", getDescription()).add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("gender", getGender()).add("subject_term_texts", getSubjectTermTexts()).add("work_type_texts", getWorkTypeTexts()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("date", getDate()).add("description", getDescription()).add("gender", getGender()).add("subject_term_texts", getSubjectTermTexts()).add("thumbnail", getThumbnail()).add("work_type_texts", getWorkTypeTexts()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -289,18 +326,25 @@ public class ObjectSummaryBean {
      */
     private String title;
 
+    private java.util.List<String> agentNameTexts;
+
+    private java.util.List<String> categories;
+
+    /**
+     * Dublin Core date
+     */
+    private String date;
+
     /**
      * Dublin Core description
      */
     private String description;
 
-    private java.util.List<String> agentNameTexts;
-
-    private java.util.List<String> categories;
-
     private net.lab1318.costume.api.models.gender.Gender gender;
 
     private java.util.List<String> subjectTermTexts;
+
+    private net.lab1318.costume.gui.models.image.ImageVersionBean thumbnail;
 
     private java.util.List<String> workTypeTexts;
 }

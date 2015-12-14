@@ -162,7 +162,7 @@ class ObjectQueryServiceJsonRpcClient(costume.api.services.object.object_query_s
         iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
         return costume.api.services.object.object_facets.ObjectFacets.read(iprot)
 
-    def _get_objects(
+    def _get_object_summaries(
         self,
         options,
         query,
@@ -179,7 +179,7 @@ class ObjectQueryServiceJsonRpcClient(costume.api.services.object.object_query_s
             oprot.write_field_end()
         oprot.write_struct_end()
 
-        return_value = self.__request(method='get_objects', params=oprot.value)
+        return_value = self.__request(method='get_object_summaries', params=oprot.value)
         iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
-        return tuple([costume.api.models.object.object_entry.ObjectEntry.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+        return tuple([costume.api.models.object.object_summary_entry.ObjectSummaryEntry.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
 

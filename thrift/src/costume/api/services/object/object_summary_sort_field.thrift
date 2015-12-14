@@ -1,10 +1,10 @@
 namespace java net.lab1318.costume.api.services.object
 namespace * costume.api.services.object
 
-enum ObjectSortField {
+enum ObjectSummarySortField {
 	COLLECTION_ID,
-	DATE_TEXT,
+	DATE,
 	INSTITUTION_ID,
 	TITLE,
-	WORK_TYPES
+	WORK_TYPE_TEXTS
 }
