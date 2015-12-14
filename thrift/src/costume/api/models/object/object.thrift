@@ -32,7 +32,7 @@ struct Object {
 
 	20: optional agent_set.AgentSet agents;
 
-	// @elastic_search_mapping {"type": "multi_field", "fields": {"text": {"type": "string"}, "not_analyzed": {"type": "string", "index": "not_analyzed"}}}
+	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	18: optional list<string> categories;
 

@@ -1,0 +1,123 @@
+{
+  "object_summary_template": {
+    "template": "object_summary_*", 
+    "settings": {
+      "analysis": {
+        "analyzer": {
+          "email_and_url": {
+            "filter": [
+              "standard", 
+              "lowercase"
+            ], 
+            "tokenizer": "uax_url_email"
+          }
+        }
+      }
+    }, 
+    "mappings": {
+      "object_summary": {
+        "_all": {
+          "enabled": false
+        }, 
+        "dynamic": "strict", 
+        "properties": {
+          "1:collection_id": {
+            "index": "not_analyzed", 
+            "type": "string"
+          }, 
+          "2:institution_id": {
+            "index": "not_analyzed", 
+            "type": "string"
+          }, 
+          "3:model_metadata": {
+            "type": "nested", 
+            "properties": {
+              "1:ctime": {
+                "type": "date"
+              }, 
+              "2:mtime": {
+                "type": "date"
+              }
+            }
+          }, 
+          "4:title": {
+            "type": "string"
+          }, 
+          "6:agent_name_texts": {
+            "fields": {
+              "text": {
+                "type": "string"
+              }, 
+              "not_analyzed": {
+                "index": "not_analyzed", 
+                "type": "string"
+              }
+            }, 
+            "type": "multi_field"
+          }, 
+          "7:categories": {
+            "fields": {
+              "text": {
+                "type": "string"
+              }, 
+              "not_analyzed": {
+                "index": "not_analyzed", 
+                "type": "string"
+              }
+            }, 
+            "type": "multi_field"
+          }, 
+          "12:date": {
+            "type": "string"
+          }, 
+          "5:description": {
+            "type": "string"
+          }, 
+          "8:gender": {
+            "index": "not_analyzed", 
+            "type": "string"
+          }, 
+          "9:subject_term_texts": {
+            "fields": {
+              "text": {
+                "type": "string"
+              }, 
+              "not_analyzed": {
+                "index": "not_analyzed", 
+                "type": "string"
+              }
+            }, 
+            "type": "multi_field"
+          }, 
+          "10:thumbnail": {
+            "type": "nested", 
+            "properties": {
+              "1:url": {
+                "type": "string", 
+                "analyzer": "email_and_url"
+              }, 
+              "2:height_px": {
+                "type": "integer"
+              }, 
+              "3:width_px": {
+                "type": "integer"
+              }
+            }
+          }, 
+          "11:work_type_texts": {
+            "fields": {
+              "text": {
+                "type": "string"
+              }, 
+              "not_analyzed": {
+                "index": "not_analyzed", 
+                "type": "string"
+              }
+            }, 
+            "type": "multi_field"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,28 +1,28 @@
 package net.lab1318.costume.api.services.object;
 
-public enum ObjectSortField {
+public enum ObjectSummarySortField {
     COLLECTION_ID(0),
-    DATE_TEXT(1),
+    DATE(1),
     INSTITUTION_ID(2),
     TITLE(3),
-    WORK_TYPES(4);
+    WORK_TYPE_TEXTS(4);
 
-    private ObjectSortField(int value) {
+    private ObjectSummarySortField(int value) {
         this.value = value;
     }
 
-    public static ObjectSortField valueOf(final int value) {
+    public static ObjectSummarySortField valueOf(final int value) {
         switch (value) {
         case 0: return COLLECTION_ID;
-        case 1: return DATE_TEXT;
+        case 1: return DATE;
         case 2: return INSTITUTION_ID;
         case 3: return TITLE;
-        case 4: return WORK_TYPES;
+        case 4: return WORK_TYPE_TEXTS;
         default: throw new IllegalArgumentException();
         }
     }
 
-    public static ObjectSortField valueOf(final Integer value) {
+    public static ObjectSummarySortField valueOf(final Integer value) {
         return valueOf(value.intValue());
     }
 

@@ -7,12 +7,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.common.bytes.BytesReference;
 import org.elasticsearch.index.query.AndFilterBuilder;
-import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.FilterBuilder;
 import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.MoreLikeThisQueryBuilder;
@@ -29,7 +29,6 @@ import org.elasticsearch.search.aggregations.bucket.nested.NestedBuilder;
 import org.elasticsearch.search.aggregations.bucket.terms.StringTerms;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms.Bucket;
 import org.elasticsearch.search.aggregations.bucket.terms.TermsBuilder;
-import org.elasticsearch.search.sort.SortBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.notaweb.lib.protocols.ElasticSearchInputProtocol;
@@ -38,6 +37,7 @@ import org.notaweb.lib.stores.InvalidModelException;
 import org.notaweb.lib.stores.NoSuchModelException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
 import org.thryft.protocol.InputProtocolException;
 
 import com.google.common.base.Optional;
@@ -46,6 +46,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.primitives.UnsignedInteger;
+import com.google.common.primitives.UnsignedLong;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -54,8 +55,6 @@ import net.lab1318.costume.api.models.agent.AgentName;
 import net.lab1318.costume.api.models.agent.AgentSet;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.collection.InvalidCollectionIdException;
-import net.lab1318.costume.api.models.description.Description;
-import net.lab1318.costume.api.models.description.DescriptionSet;
 import net.lab1318.costume.api.models.gender.Gender;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.institution.InvalidInstitutionIdException;
@@ -63,27 +62,25 @@ import net.lab1318.costume.api.models.object.InvalidObjectIdException;
 import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.object.ObjectId;
+import net.lab1318.costume.api.models.object.ObjectSummary;
+import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 import net.lab1318.costume.api.models.subject.Subject;
 import net.lab1318.costume.api.models.subject.SubjectSet;
 import net.lab1318.costume.api.models.subject.SubjectTerm;
-import net.lab1318.costume.api.models.textref.Textref;
-import net.lab1318.costume.api.models.textref.TextrefRefid;
-import net.lab1318.costume.api.models.textref.TextrefSet;
-import net.lab1318.costume.api.models.title.Title;
-import net.lab1318.costume.api.models.title.TitleSet;
 import net.lab1318.costume.api.models.work_type.WorkType;
 import net.lab1318.costume.api.models.work_type.WorkTypeSet;
 import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.object.GetObjectsOptions;
+import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
 import net.lab1318.costume.api.services.object.NoSuchObjectException;
 import net.lab1318.costume.api.services.object.ObjectFacetFilters;
 import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
-import net.lab1318.costume.api.services.object.ObjectSort;
+import net.lab1318.costume.api.services.object.ObjectSummarySort;
 import net.lab1318.costume.lib.services.ServiceExceptionHelper;
 import net.lab1318.costume.lib.services.object.LoggingObjectQueryService.Markers;
 import net.lab1318.costume.lib.stores.object.ObjectElasticSearchIndex;
+import net.lab1318.costume.lib.stores.object.ObjectSummaryElasticSearchIndex;
 
 @Singleton
 public class ElasticSearchObjectQueryService implements ObjectQueryService {
@@ -318,6 +315,36 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         private NestedBuilder workTypeTextsAggregation;
     }
 
+    private final static class ObjectSummaryElasticSearchModelFactory
+            implements ElasticSearchIndex.ModelFactory<ObjectSummaryEntry> {
+        public static ObjectSummaryElasticSearchModelFactory getInstance() {
+            return instance;
+        }
+
+        private ObjectSummaryElasticSearchModelFactory() {
+        }
+
+        @Override
+        public ObjectSummaryEntry createModelEntryFromFields(final String id, final Map<String, List<?>> fields)
+                throws InvalidModelException {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public ObjectSummaryEntry createModelEntryFromSource(final String id, final BytesReference document)
+                throws InvalidModelException {
+            try {
+                return new ObjectSummaryEntry(ObjectId.parse(id),
+                        ObjectSummary.readAsStruct(new ElasticSearchInputProtocol(document)));
+            } catch (final InputProtocolException | InvalidObjectIdException e) {
+                throw new InvalidModelException(id, ServiceExceptionHelper.combineMessages(e,
+                        "error deserializing model document from ElasticSearch"), e);
+            }
+        }
+
+        private final static ObjectSummaryElasticSearchModelFactory instance = new ObjectSummaryElasticSearchModelFactory();
+    }
+
     private static FilterBuilder __excludeAllFilters(final List<FilterBuilder> filters) {
         checkArgument(!filters.isEmpty());
         final FilterBuilder[] filtersArray = new FilterBuilder[filters.size()];
@@ -344,8 +371,10 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     }
 
     @Inject
-    public ElasticSearchObjectQueryService(final ObjectElasticSearchIndex elasticSearchIndex) {
-        this.elasticSearchIndex = checkNotNull(elasticSearchIndex);
+    public ElasticSearchObjectQueryService(final ObjectElasticSearchIndex objectElasticSearchIndex,
+            final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex) {
+        this.objectElasticSearchIndex = checkNotNull(objectElasticSearchIndex);
+        this.objectSummaryElasticSearchIndex = checkNotNull(objectSummaryElasticSearchIndex);
         emptyObjectFacets = ObjectFacets.builder().setAgentNameTexts(ImmutableMap.of()).setCategories(ImmutableMap.of())
                 .setCollectionHits(ImmutableMap.of()).setGenders(ImmutableMap.of())
                 .setInstitutionHits(ImmutableMap.of()).setSubjectTermTexts(ImmutableMap.of())
@@ -355,7 +384,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     @Override
     public Object getObjectById(final ObjectId id) throws IoException, NoSuchObjectException {
         try {
-            return elasticSearchIndex.getModelById(id, Optional.absent(), logger, Markers.GET_OBJECT_BY_ID,
+            return objectElasticSearchIndex.getModelById(id, Optional.absent(), logger, Markers.GET_OBJECT_BY_ID,
                     ObjectElasticSearchModelFactory.getInstance());
         } catch (final InvalidModelException e) {
             logger.warn(Markers.GET_OBJECT_BY_ID, "invalid object model {}: ", id, e);
@@ -369,11 +398,14 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
     @Override
     public UnsignedInteger getObjectCount(final Optional<ObjectQuery> query) throws IoException {
+        __checkIndexConsistency(Markers.GET_OBJECT_COUNT);
+
         try {
             return UnsignedInteger
-                    .valueOf(elasticSearchIndex
-                            .countModels(logger, Markers.GET_OBJECT_COUNT,
-                                    elasticSearchIndex.prepareCountModels().setQuery(__translateQuery(query)))
+                    .valueOf(
+                            objectElasticSearchIndex
+                                    .countModels(logger, Markers.GET_OBJECT_COUNT, objectElasticSearchIndex
+                                            .prepareCountModels().setQuery(__translateObjectSummaryQuery(query)))
                             .longValue());
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error getting object count");
@@ -382,17 +414,20 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
     @Override
     public ObjectFacets getObjectFacets(final Optional<ObjectQuery> query) throws IoException {
-        final SearchRequestBuilder searchRequestBuilder = elasticSearchIndex.prepareSearchModels()
-                .setQuery(__translateQuery(query)).setFrom(0).setSize(0);
+        __checkIndexConsistency(Markers.GET_OBJECT_FACETS);
+
+        final SearchRequestBuilder searchRequestBuilder = objectElasticSearchIndex.prepareSearchModels()
+                .setQuery(__translateObjectSummaryQuery(query)).setFrom(0).setSize(0);
         for (final AbstractAggregationBuilder aggregation : objectFacetAggregations) {
             searchRequestBuilder.addAggregation(aggregation);
         }
 
         SearchResponse searchResponse;
         try {
-            searchResponse = elasticSearchIndex.getModels(logger, Markers.GET_OBJECTS, searchRequestBuilder);
+            searchResponse = objectElasticSearchIndex.getModels(logger, Markers.GET_OBJECT_FACETS,
+                    searchRequestBuilder);
         } catch (final IndexMissingException e) {
-            logger.warn(Markers.GET_OBJECTS, "objects index does not exist, returning empty results");
+            logger.warn(Markers.GET_OBJECT_FACETS, "objects index does not exist, returning empty results");
             return emptyObjectFacets;
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error getting objects");
@@ -402,10 +437,12 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     }
 
     @Override
-    public ImmutableList<ObjectEntry> getObjects(final Optional<GetObjectsOptions> options,
+    public ImmutableList<ObjectSummaryEntry> getObjectSummaries(final Optional<GetObjectSummariesOptions> options,
             final Optional<ObjectQuery> query) throws IoException {
-        SearchRequestBuilder searchRequestBuilder = elasticSearchIndex.prepareSearchModels()
-                .setQuery(__translateQuery(query));
+        __checkIndexConsistency(Markers.GET_OBJECT_SUMMARIES);
+
+        SearchRequestBuilder searchRequestBuilder = objectElasticSearchIndex.prepareSearchModels()
+                .setQuery(__translateObjectSummaryQuery(query));
         if (options.isPresent()) {
             if (options.get().getFrom().isPresent()) {
                 searchRequestBuilder = searchRequestBuilder.setFrom(options.get().getFrom().get().intValue());
@@ -414,104 +451,85 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                 searchRequestBuilder = searchRequestBuilder.setSize(options.get().getSize().get().intValue());
             }
             if (options.get().getSorts().isPresent()) {
-                for (final ObjectSort sort : options.get().getSorts().get()) {
-                    SortBuilder sortBuilder;
-                    switch (sort.getField()) {
-                    case WORK_TYPES:
-                        sortBuilder = SortBuilders
-                                .fieldSort(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
-                                        + WorkTypeSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
-                                        + WorkType.FieldMetadata.TEXT.getThriftProtocolKey() + ".not_analyzed")
-                                .setNestedPath(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey() + '.'
-                                        + WorkTypeSet.FieldMetadata.ELEMENTS.getThriftProtocolKey());
-                        break;
-                    default:
-                        sortBuilder = SortBuilders.fieldSort(Object.FieldMetadata
-                                .valueOfThriftName(sort.getField().name().toLowerCase()).getThriftProtocolKey());
-                        break;
-                    }
-                    sortBuilder = sortBuilder.missing("_last")
-                            .order(sort.getOrder() == net.lab1318.costume.api.models.SortOrder.ASC ? SortOrder.ASC
-                                    : SortOrder.DESC);
-                    searchRequestBuilder = searchRequestBuilder.addSort(sortBuilder);
+                for (final ObjectSummarySort sort : options.get().getSorts().get()) {
+                    searchRequestBuilder = searchRequestBuilder.addSort(SortBuilders
+                            .fieldSort(Object.FieldMetadata.valueOfThriftName(sort.getField().name().toLowerCase())
+                                    .getThriftProtocolKey())
+                            .missing("_last").order(sort.getOrder() == net.lab1318.costume.api.models.SortOrder.ASC
+                                    ? SortOrder.ASC : SortOrder.DESC));
                 }
             }
         }
 
         SearchResponse searchResponse;
         try {
-            searchResponse = elasticSearchIndex.getModels(logger, Markers.GET_OBJECTS, searchRequestBuilder);
+            searchResponse = objectElasticSearchIndex.getModels(logger, Markers.GET_OBJECT_SUMMARIES,
+                    searchRequestBuilder);
         } catch (final IndexMissingException e) {
-            logger.warn(Markers.GET_OBJECTS, "objects index does not exist, returning empty results");
+            logger.warn(Markers.GET_OBJECT_SUMMARIES, "object summaries index does not exist, returning empty results");
             return ImmutableList.of();
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting objects");
+            throw ServiceExceptionHelper.wrapException(e, "error getting object summaries");
         }
 
-        final ImmutableList.Builder<ObjectEntry> resultBuilder = ImmutableList.builder();
+        final ImmutableList.Builder<ObjectSummaryEntry> resultBuilder = ImmutableList.builder();
         for (final SearchHit searchHit : searchResponse.getHits().getHits()) {
             try {
-                resultBuilder.add(ObjectElasticSearchModelFactory.getInstance()
+                resultBuilder.add(ObjectSummaryElasticSearchModelFactory.getInstance()
                         .createModelEntryFromSource(searchHit.getId(), searchHit.getSourceRef()));
             } catch (final InvalidModelException e) {
-                logger.warn(Markers.GET_OBJECTS, "invalid object from inedx {}", e.getId());
+                logger.warn(Markers.GET_OBJECT_SUMMARIES, "invalid object summary from index {}", e.getId());
                 continue;
             }
         }
         return resultBuilder.build();
     }
 
-    private QueryBuilder __translateQuery(final Optional<ObjectQuery> query) {
+    private void __checkIndexConsistency(final Marker logMarker) throws IoException {
+        if (!checkedIndexConsistency.compareAndSet(false, true)) {
+            return;
+        }
+
+        UnsignedLong objectCount;
+        final UnsignedLong objectSummaryCount;
+        try {
+            objectCount = objectElasticSearchIndex.countModels(logger, logMarker);
+            objectSummaryCount = objectSummaryElasticSearchIndex.countModels(logger, logMarker);
+        } catch (final IOException e) {
+            throw ServiceExceptionHelper.wrapException(e, "error checking object indices for consistency");
+        }
+        if (!objectCount.equals(objectSummaryCount)) {
+            throw new IllegalStateException(String.format("object count (%d) is not the same as the summary count (%d)",
+                    objectCount.longValue(), objectSummaryCount.longValue()));
+        }
+    }
+
+    private QueryBuilder __translateObjectSummaryQuery(final Optional<ObjectQuery> query) {
         if (!query.isPresent()) {
             return QueryBuilders.matchAllQuery();
         }
 
         QueryBuilder queryTranslated;
         if (query.get().getQueryString().isPresent()) {
-            final BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
+            queryTranslated = QueryBuilders.queryStringQuery(query.get().getQueryString().get())
+                    .field(ObjectSummary.FieldMetadata.AGENT_NAME_TEXTS.getThriftProtocolKey())
+                    .field(ObjectSummary.FieldMetadata.CATEGORIES.getThriftProtocolKey())
+                    .field(ObjectSummary.FieldMetadata.DATE.getThriftProtocolKey())
+                    .field(ObjectSummary.FieldMetadata.DESCRIPTION.getThriftProtocolKey())
+                    .field(ObjectSummary.FieldMetadata.SUBJECT_TERM_TEXTS.getThriftProtocolKey())
+                    .field(ObjectSummary.FieldMetadata.TITLE.getThriftProtocolKey(), (float) 2.0);
 
-            // Root fields
-            boolQuery.should(QueryBuilders.queryStringQuery(query.get().getQueryString().get())
-                    .field(Object.FieldMetadata.CATEGORIES.getThriftProtocolKey())
-                    .field(Object.FieldMetadata.DATE_TEXT.getThriftProtocolKey()));
-
-            // Nested fields
-            // Description text
-            boolQuery.should(QueryBuilders.nestedQuery(
-                    Object.FieldMetadata.DESCRIPTIONS.getThriftProtocolKey() + '.'
-                            + DescriptionSet.FieldMetadata.ELEMENTS.getThriftProtocolKey(),
-                    QueryBuilders.queryStringQuery(query.get().getQueryString().get())
-                            .field(Object.FieldMetadata.DESCRIPTIONS.getThriftProtocolKey() + '.'
-                                    + DescriptionSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
-                                    + Description.FieldMetadata.TEXT.getThriftProtocolKey())));
-            // Textref refid text
-            boolQuery.should(QueryBuilders.nestedQuery(
-                    Object.FieldMetadata.TEXTREFS.getThriftProtocolKey() + '.'
-                            + TextrefSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
-                            + Textref.FieldMetadata.REFID.getThriftProtocolKey(),
-                    QueryBuilders.queryStringQuery(query.get().getQueryString().get())
-                            .field(Object.FieldMetadata.TEXTREFS.getThriftProtocolKey() + '.'
-                                    + TextrefSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
-                                    + Textref.FieldMetadata.REFID.getThriftProtocolKey() + '.'
-                                    + TextrefRefid.FieldMetadata.TEXT.getThriftProtocolKey())));
-            // Title text
-            boolQuery.should(QueryBuilders.nestedQuery(
-                    Object.FieldMetadata.TITLES.getThriftProtocolKey() + '.'
-                            + TitleSet.FieldMetadata.ELEMENTS.getThriftProtocolKey(),
-                    QueryBuilders.queryStringQuery(query.get().getQueryString().get())
-                            .field(Object.FieldMetadata.TITLES.getThriftProtocolKey() + '.'
-                                    + TitleSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
-                                    + Title.FieldMetadata.TEXT.getThriftProtocolKey())));
-
-            queryTranslated = boolQuery;
         } else if (query.get().getMoreLikeObjectId().isPresent()) {
             queryTranslated = QueryBuilders
-                    .moreLikeThisQuery(Object.FieldMetadata.CATEGORIES.getThriftProtocolKey(),
-                            Object.FieldMetadata.DESCRIPTIONS.getThriftProtocolKey() + '.'
-                                    + DescriptionSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
-                                    + Description.FieldMetadata.TEXT.getThriftProtocolKey())
-                    .docs(new MoreLikeThisQueryBuilder.Item(elasticSearchIndex.getIndexName(),
-                            elasticSearchIndex.getDocumentType(), query.get().getMoreLikeObjectId().get().toString()));
+                    .moreLikeThisQuery(ObjectSummary.FieldMetadata.AGENT_NAME_TEXTS.getThriftProtocolKey(),
+                            ObjectSummary.FieldMetadata.CATEGORIES.getThriftProtocolKey(),
+                            ObjectSummary.FieldMetadata.DATE.getThriftProtocolKey(),
+                            ObjectSummary.FieldMetadata.DESCRIPTION.getThriftProtocolKey(),
+                            ObjectSummary.FieldMetadata.SUBJECT_TERM_TEXTS.getThriftProtocolKey(),
+                            ObjectSummary.FieldMetadata.TITLE.getThriftProtocolKey())
+                    .docs(new MoreLikeThisQueryBuilder.Item(objectSummaryElasticSearchIndex.getIndexName(),
+                            objectSummaryElasticSearchIndex.getDocumentType(),
+                            query.get().getMoreLikeObjectId().get().toString()));
         } else {
             queryTranslated = QueryBuilders.matchAllQuery();
         }
@@ -536,26 +554,9 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                     if (agentNameText.isEmpty()) {
                         continue;
                     }
-                    agentNameTextFilters
-                            .add(FilterBuilders.nestedFilter(Object.FieldMetadata.AGENTS.getThriftProtocolKey(),
-                                    FilterBuilders.nestedFilter(
-                                            Object.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
-                                                    + AgentSet.FieldMetadata.ELEMENTS.getThriftProtocolKey(),
-                                            FilterBuilders.nestedFilter(
-                                                    Object.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
-                                                            + AgentSet.FieldMetadata.ELEMENTS.getThriftProtocolKey()
-                                                            + '.' + Agent.FieldMetadata.NAME.getThriftProtocolKey(),
-                                                    FilterBuilders.termFilter(
-                                                            Object.FieldMetadata.AGENTS.getThriftProtocolKey() + '.'
-                                                                    + AgentSet.FieldMetadata.ELEMENTS
-                                                                            .getThriftProtocolKey()
-                                                                    + '.'
-                                                                    + Agent.FieldMetadata.NAME.getThriftProtocolKey()
-                                                                    + '.'
-                                                                    + AgentName.FieldMetadata.TEXT
-                                                                            .getThriftProtocolKey()
-                                                                    + ".not_analyzed",
-                                                            agentNameText)))));
+                    agentNameTextFilters.add(FilterBuilders.termFilter(
+                            ObjectSummary.FieldMetadata.AGENT_NAME_TEXTS.getThriftProtocolKey() + ".not_analyzed",
+                            agentNameText));
                 }
                 if (!agentNameTextFilters.isEmpty()) {
                     if (agentNameTexts == facetFilters.getExcludeAgentNameTexts()) {
@@ -577,7 +578,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                         continue;
                     }
                     categoryFilters.add(FilterBuilders.termFilter(
-                            Object.FieldMetadata.CATEGORIES.getThriftProtocolKey() + ".not_analyzed", category));
+                            ObjectSummary.FieldMetadata.CATEGORIES.getThriftProtocolKey() + ".not_analyzed", category));
                 }
                 if (!categoryFilters.isEmpty()) {
                     if (categories == facetFilters.getExcludeCategories()) {
@@ -596,7 +597,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                 final List<FilterBuilder> collectionIdFilters = new ArrayList<>();
                 for (final CollectionId collectionId : collectionIds.get()) {
                     collectionIdFilters.add(FilterBuilders.termFilter(
-                            Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(), collectionId.toString()));
+                            ObjectSummary.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(), collectionId.toString()));
                 }
                 if (!collectionIdFilters.isEmpty()) {
                     if (collectionIds == facetFilters.getExcludeCollectionIds()) {
@@ -614,8 +615,8 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                 }
                 final List<FilterBuilder> genderFilters = new ArrayList<>();
                 for (final Gender gender : genders.get()) {
-                    genderFilters
-                            .add(FilterBuilders.termFilter(Object.FieldMetadata.GENDER.getThriftProtocolKey(), gender));
+                    genderFilters.add(FilterBuilders
+                            .termFilter(ObjectSummary.FieldMetadata.GENDER.getThriftProtocolKey(), gender));
                 }
                 if (!genderFilters.isEmpty()) {
                     if (genders == facetFilters.getExcludeGenders()) {
@@ -633,8 +634,9 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                 }
                 final List<FilterBuilder> institutionIdFilters = new ArrayList<>();
                 for (final InstitutionId institutionId : institutionIds.get()) {
-                    institutionIdFilters.add(FilterBuilders.termFilter(
-                            Object.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(), institutionId.toString()));
+                    institutionIdFilters.add(
+                            FilterBuilders.termFilter(ObjectSummary.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
+                                    institutionId.toString()));
                 }
                 if (!institutionIdFilters.isEmpty()) {
                     if (institutionIds == facetFilters.getExcludeInstitutionIds()) {
@@ -655,26 +657,9 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                     if (subjectTermText.isEmpty()) {
                         continue;
                     }
-                    subjectTermTextFilters
-                            .add(FilterBuilders.nestedFilter(Object.FieldMetadata.SUBJECTS.getThriftProtocolKey(),
-                                    FilterBuilders.nestedFilter(
-                                            Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
-                                                    + SubjectSet.FieldMetadata.ELEMENTS.getThriftProtocolKey(),
-                                            FilterBuilders.nestedFilter(
-                                                    Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
-                                                            + SubjectSet.FieldMetadata.ELEMENTS.getThriftProtocolKey()
-                                                            + '.' + Subject.FieldMetadata.TERMS.getThriftProtocolKey(),
-                                                    FilterBuilders.termFilter(
-                                                            Object.FieldMetadata.SUBJECTS.getThriftProtocolKey() + '.'
-                                                                    + SubjectSet.FieldMetadata.ELEMENTS
-                                                                            .getThriftProtocolKey()
-                                                                    + '.'
-                                                                    + Subject.FieldMetadata.TERMS.getThriftProtocolKey()
-                                                                    + '.'
-                                                                    + SubjectTerm.FieldMetadata.TEXT
-                                                                            .getThriftProtocolKey()
-                                                                    + ".not_analyzed",
-                                                            subjectTermText)))));
+                    subjectTermTextFilters.add(FilterBuilders.termFilter(
+                            ObjectSummary.FieldMetadata.SUBJECT_TERM_TEXTS.getThriftProtocolKey() + ".not_analyzed",
+                            subjectTermText));
                 }
                 if (!subjectTermTextFilters.isEmpty()) {
                     if (subjectTermTexts == facetFilters.getExcludeSubjectTermTexts()) {
@@ -695,14 +680,9 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                     if (workTypeText.isEmpty()) {
                         continue;
                     }
-                    workTypeTextFilters
-                            .add(FilterBuilders.nestedFilter(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey(),
-                                    FilterBuilders.nestedFilter(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey()
-                                            + '.' + WorkTypeSet.FieldMetadata.ELEMENTS.getThriftProtocolKey(),
-                                    FilterBuilders.termFilter(Object.FieldMetadata.WORK_TYPES.getThriftProtocolKey()
-                                            + '.' + WorkTypeSet.FieldMetadata.ELEMENTS.getThriftProtocolKey() + '.'
-                                            + WorkType.FieldMetadata.TEXT.getThriftProtocolKey() + ".not_analyzed",
-                                            workTypeText))));
+                    workTypeTextFilters.add(FilterBuilders.termFilter(
+                            ObjectSummary.FieldMetadata.WORK_TYPE_TEXTS.getThriftProtocolKey() + ".not_analyzed",
+                            workTypeText));
                 }
                 if (!workTypeTextFilters.isEmpty()) {
                     if (workTypeTexts == facetFilters.getExcludeWorkTypeTexts()) {
@@ -732,8 +712,10 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         return queryTranslated;
     }
 
-    private final ObjectElasticSearchIndex elasticSearchIndex;
+    private final AtomicBoolean checkedIndexConsistency = new AtomicBoolean(false);
     private final ObjectFacets emptyObjectFacets;
     private final ObjectFacetAggregations objectFacetAggregations = new ObjectFacetAggregations();
+    private final ObjectElasticSearchIndex objectElasticSearchIndex;
+    private final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex;
     private final static Logger logger = LoggerFactory.getLogger(ElasticSearchObjectQueryService.class);
 }

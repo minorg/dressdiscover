@@ -7,7 +7,7 @@ include "costume/api/models/agent/agent_name_type.thrift"
 
 // VRA Core 4.0 agent.name element
 struct AgentName {
-	// @elastic_search_mapping {"type": "multi_field", "fields": {"text": {"type": "string"}, "not_analyzed": {"type": "string", "index": "not_analyzed"}}}
+	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	1: string text;
 

@@ -131,7 +131,7 @@ class Main(thryft.main.Main):
                     )
 
                     elastic_search_templates_dir_path = os.path.join(ROOT_DIR_PATH, 'deploy', 'etc', 'elasticsearch', 'config', 'templates')
-                    if thrift_file_base_name in ('collection', 'institution', 'object'):
+                    if thrift_file_base_name in ('collection', 'institution', 'object', 'object_summary'):
                         self._compile_thrift_file(
                             generator=ElasticSearchMappingsGenerator(
                                 index_name="%s_template" % thrift_file_base_name,

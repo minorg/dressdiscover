@@ -70,7 +70,7 @@ public class ObjectByIdView extends TopLevelView {
                 final Button moreLikeThisButton = new NativeButton("More like this", new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {
-                        _getEventBus().post(ObjectQueryService.Messages.GetObjectsRequest.builder()
+                        _getEventBus().post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
                                 .setQuery(ObjectQuery.builder().setMoreLikeObjectId(objectEntry.getId()).build())
                                 .build());
                     }

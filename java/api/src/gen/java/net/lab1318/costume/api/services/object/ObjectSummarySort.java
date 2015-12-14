@@ -1,26 +1,26 @@
 package net.lab1318.costume.api.services.object;
 
-public class ObjectSort implements org.thryft.Struct {
+public class ObjectSummarySort implements org.thryft.Struct {
     public static class Builder {
         public Builder() {
             field = null;
             order = null;
         }
 
-        public Builder(final ObjectSort other) {
+        public Builder(final ObjectSummarySort other) {
             this.field = other.getField();
             this.order = other.getOrder();
         }
 
-        protected ObjectSort _build(final net.lab1318.costume.api.services.object.ObjectSortField field, final net.lab1318.costume.api.models.SortOrder order) {
-            return new ObjectSort(field, order);
+        protected ObjectSummarySort _build(final net.lab1318.costume.api.services.object.ObjectSummarySortField field, final net.lab1318.costume.api.models.SortOrder order) {
+            return new ObjectSummarySort(field, order);
         }
 
-        public ObjectSort build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(field, "net.lab1318.costume.api.services.object.ObjectSort: missing field"), com.google.common.base.Preconditions.checkNotNull(order, "net.lab1318.costume.api.services.object.ObjectSort: missing order"));
+        public ObjectSummarySort build() {
+            return _build(com.google.common.base.Preconditions.checkNotNull(field, "net.lab1318.costume.api.services.object.ObjectSummarySort: missing field"), com.google.common.base.Preconditions.checkNotNull(order, "net.lab1318.costume.api.services.object.ObjectSummarySort: missing order"));
         }
 
-        public final net.lab1318.costume.api.services.object.ObjectSortField getField() {
+        public final net.lab1318.costume.api.services.object.ObjectSummarySortField getField() {
             return field;
         }
 
@@ -41,7 +41,7 @@ public class ObjectSort implements org.thryft.Struct {
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             iprot.readListBegin();
-            field = iprot.readEnum(net.lab1318.costume.api.services.object.ObjectSortField.class);
+            field = iprot.readEnum(net.lab1318.costume.api.services.object.ObjectSummarySortField.class);
             order = iprot.readEnum(net.lab1318.costume.api.models.SortOrder.class);
             iprot.readListEnd();
             return this;
@@ -56,7 +56,7 @@ public class ObjectSort implements org.thryft.Struct {
                 }
                 switch (ifield.getName()) {
                 case "field": {
-                    field = iprot.readEnum(net.lab1318.costume.api.services.object.ObjectSortField.class);
+                    field = iprot.readEnum(net.lab1318.costume.api.services.object.ObjectSummarySortField.class);
                     break;
                 }
                 case "order": {
@@ -70,12 +70,12 @@ public class ObjectSort implements org.thryft.Struct {
             return this;
         }
 
-        public Builder setField(final net.lab1318.costume.api.services.object.ObjectSortField field) {
+        public Builder setField(final net.lab1318.costume.api.services.object.ObjectSummarySortField field) {
             this.field = com.google.common.base.Preconditions.checkNotNull(field);
             return this;
         }
 
-        public Builder setIfPresent(final ObjectSort other) {
+        public Builder setIfPresent(final ObjectSummarySort other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
             setField(other.getField());
@@ -93,7 +93,7 @@ public class ObjectSort implements org.thryft.Struct {
             com.google.common.base.Preconditions.checkNotNull(name);
 
             switch (name.toLowerCase()) {
-            case "field": setField((net.lab1318.costume.api.services.object.ObjectSortField)value); return this;
+            case "field": setField((net.lab1318.costume.api.services.object.ObjectSummarySortField)value); return this;
             case "order": setOrder((net.lab1318.costume.api.models.SortOrder)value); return this;
             default:
                 throw new IllegalArgumentException(name);
@@ -110,13 +110,13 @@ public class ObjectSort implements org.thryft.Struct {
             return this;
         }
 
-        private net.lab1318.costume.api.services.object.ObjectSortField field;
+        private net.lab1318.costume.api.services.object.ObjectSummarySortField field;
         private net.lab1318.costume.api.models.SortOrder order;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        FIELD("field", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.services.object.ObjectSortField>() {}, true, 0, "field", org.thryft.protocol.Type.STRING),
+        FIELD("field", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.services.object.ObjectSummarySortField>() {}, true, 0, "field", org.thryft.protocol.Type.STRING),
         ORDER("order", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.SortOrder>() {}, true, 0, "order", org.thryft.protocol.Type.STRING);
 
         @Override
@@ -203,27 +203,27 @@ public class ObjectSort implements org.thryft.Struct {
     /**
      * Copy constructor
      */
-    public ObjectSort(final ObjectSort other) {
+    public ObjectSummarySort(final ObjectSummarySort other) {
         this(other.getField(), other.getOrder());
     }
 
     /**
      * Optional constructor
      */
-    public ObjectSort(final net.lab1318.costume.api.services.object.ObjectSortField field, final net.lab1318.costume.api.models.SortOrder order) {
-        this.field = com.google.common.base.Preconditions.checkNotNull(field, "net.lab1318.costume.api.services.object.ObjectSort: missing field");
-        this.order = com.google.common.base.Preconditions.checkNotNull(order, "net.lab1318.costume.api.services.object.ObjectSort: missing order");
+    public ObjectSummarySort(final net.lab1318.costume.api.services.object.ObjectSummarySortField field, final net.lab1318.costume.api.models.SortOrder order) {
+        this.field = com.google.common.base.Preconditions.checkNotNull(field, "net.lab1318.costume.api.services.object.ObjectSummarySort: missing field");
+        this.order = com.google.common.base.Preconditions.checkNotNull(order, "net.lab1318.costume.api.services.object.ObjectSummarySort: missing order");
     }
 
     public static Builder builder() {
         return new Builder();
     }
 
-    public static Builder builder(final ObjectSort other) {
+    public static Builder builder(final ObjectSummarySort other) {
         return new Builder(other);
     }
 
-    public static Builder builder(final com.google.common.base.Optional<ObjectSort> other) {
+    public static Builder builder(final com.google.common.base.Optional<ObjectSummarySort> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
     }
 
@@ -231,11 +231,11 @@ public class ObjectSort implements org.thryft.Struct {
     public boolean equals(final java.lang.Object otherObject) {
         if (otherObject == this) {
             return true;
-        } else if (!(otherObject instanceof ObjectSort)) {
+        } else if (!(otherObject instanceof ObjectSummarySort)) {
             return false;
         }
 
-        final ObjectSort other = (ObjectSort)otherObject;
+        final ObjectSummarySort other = (ObjectSummarySort)otherObject;
         return
             getField().equals(other.getField()) &&
             getOrder().equals(other.getOrder());
@@ -251,7 +251,7 @@ public class ObjectSort implements org.thryft.Struct {
         }
     }
 
-    public final net.lab1318.costume.api.services.object.ObjectSortField getField() {
+    public final net.lab1318.costume.api.services.object.ObjectSummarySortField getField() {
         return field;
     }
 
@@ -267,7 +267,7 @@ public class ObjectSort implements org.thryft.Struct {
         return hashCode;
     }
 
-    public static ObjectSort readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+    public static ObjectSummarySort readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
         switch (type) {
         case LIST:
             return readAsList(iprot);
@@ -278,23 +278,23 @@ public class ObjectSort implements org.thryft.Struct {
         }
     }
 
-    public static ObjectSort readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        net.lab1318.costume.api.services.object.ObjectSortField field = null;
+    public static ObjectSummarySort readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+        net.lab1318.costume.api.services.object.ObjectSummarySortField field = null;
         net.lab1318.costume.api.models.SortOrder order = null;
 
         iprot.readListBegin();
-        field = iprot.readEnum(net.lab1318.costume.api.services.object.ObjectSortField.class);
+        field = iprot.readEnum(net.lab1318.costume.api.services.object.ObjectSummarySortField.class);
         order = iprot.readEnum(net.lab1318.costume.api.models.SortOrder.class);
         iprot.readListEnd();
         try {
-            return new ObjectSort(field, order);
+            return new ObjectSummarySort(field, order);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
-    public static ObjectSort readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        net.lab1318.costume.api.services.object.ObjectSortField field = null;
+    public static ObjectSummarySort readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+        net.lab1318.costume.api.services.object.ObjectSummarySortField field = null;
         net.lab1318.costume.api.models.SortOrder order = null;
 
         iprot.readStructBegin();
@@ -305,7 +305,7 @@ public class ObjectSort implements org.thryft.Struct {
             }
             switch (ifield.getName()) {
             case "field": {
-                field = iprot.readEnum(net.lab1318.costume.api.services.object.ObjectSortField.class);
+                field = iprot.readEnum(net.lab1318.costume.api.services.object.ObjectSummarySortField.class);
                 break;
             }
             case "order": {
@@ -317,18 +317,18 @@ public class ObjectSort implements org.thryft.Struct {
         }
         iprot.readStructEnd();
         try {
-            return new ObjectSort(field, order);
+            return new ObjectSummarySort(field, order);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
-    public ObjectSort replaceField(final net.lab1318.costume.api.services.object.ObjectSortField field) {
-        return new ObjectSort(field, this.order);
+    public ObjectSummarySort replaceField(final net.lab1318.costume.api.services.object.ObjectSummarySortField field) {
+        return new ObjectSummarySort(field, this.order);
     }
 
-    public ObjectSort replaceOrder(final net.lab1318.costume.api.models.SortOrder order) {
-        return new ObjectSort(this.field, order);
+    public ObjectSummarySort replaceOrder(final net.lab1318.costume.api.models.SortOrder order) {
+        return new ObjectSummarySort(this.field, order);
     }
 
     @Override
@@ -349,7 +349,7 @@ public class ObjectSort implements org.thryft.Struct {
 
     @Override
     public void writeAsStruct(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeStructBegin("net.lab1318.costume.api.services.object.ObjectSort");
+        oprot.writeStructBegin("net.lab1318.costume.api.services.object.ObjectSummarySort");
         writeFields(oprot);
         oprot.writeStructEnd();
     }
@@ -367,7 +367,7 @@ public class ObjectSort implements org.thryft.Struct {
         oprot.writeFieldStop();
     }
 
-    private final net.lab1318.costume.api.services.object.ObjectSortField field;
+    private final net.lab1318.costume.api.services.object.ObjectSummarySortField field;
 
     private final net.lab1318.costume.api.models.SortOrder order;
 }

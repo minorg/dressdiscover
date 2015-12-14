@@ -3,12 +3,10 @@ package net.lab1318.costume.gui.models.image;
 public class ImageBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        ALT("alt", new com.google.common.reflect.TypeToken<String>() {}, false, 1, "alt", org.thryft.protocol.Type.STRING),
         FULL_SIZE("fullSize", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.image.ImageVersionBean>() {}, false, 2, "full_size", org.thryft.protocol.Type.STRUCT),
         ORIGINAL("original", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.image.ImageVersionBean>() {}, false, 3, "original", org.thryft.protocol.Type.STRUCT),
         SQUARE_THUMBNAIL("squareThumbnail", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.image.ImageVersionBean>() {}, false, 4, "square_thumbnail", org.thryft.protocol.Type.STRUCT),
-        THUMBNAIL("thumbnail", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.image.ImageVersionBean>() {}, false, 5, "thumbnail", org.thryft.protocol.Type.STRUCT),
-        TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, false, 6, "title", org.thryft.protocol.Type.STRING);
+        THUMBNAIL("thumbnail", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.image.ImageVersionBean>() {}, false, 5, "thumbnail", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -52,12 +50,10 @@ public class ImageBean {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "alt": return ALT;
             case "fullSize": return FULL_SIZE;
             case "original": return ORIGINAL;
             case "squareThumbnail": return SQUARE_THUMBNAIL;
             case "thumbnail": return THUMBNAIL;
-            case "title": return TITLE;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -65,12 +61,10 @@ public class ImageBean {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "alt": return ALT;
             case "full_size": return FULL_SIZE;
             case "original": return ORIGINAL;
             case "square_thumbnail": return SQUARE_THUMBNAIL;
             case "thumbnail": return THUMBNAIL;
-            case "title": return TITLE;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -100,21 +94,17 @@ public class ImageBean {
     }
 
     public ImageBean() {
-        alt = null;
         fullSize = null;
         original = null;
         squareThumbnail = null;
         thumbnail = null;
-        title = null;
     }
 
     public ImageBean(final net.lab1318.costume.api.models.image.Image other) {
-        this.alt = other.getAlt().isPresent() ? other.getAlt().get() : null;
         this.fullSize = other.getFullSize().isPresent() ? new net.lab1318.costume.gui.models.image.ImageVersionBean(other.getFullSize().get()) : null;
         this.original = other.getOriginal().isPresent() ? new net.lab1318.costume.gui.models.image.ImageVersionBean(other.getOriginal().get()) : null;
         this.squareThumbnail = other.getSquareThumbnail().isPresent() ? new net.lab1318.costume.gui.models.image.ImageVersionBean(other.getSquareThumbnail().get()) : null;
         this.thumbnail = other.getThumbnail().isPresent() ? new net.lab1318.costume.gui.models.image.ImageVersionBean(other.getThumbnail().get()) : null;
-        this.title = other.getTitle().isPresent() ? other.getTitle().get() : null;
     }
 
     @Override
@@ -127,16 +117,10 @@ public class ImageBean {
 
         final ImageBean other = (ImageBean)otherObject;
         return
-            getAlt().equals(other.getAlt()) &&
             getFullSize().equals(other.getFullSize()) &&
             getOriginal().equals(other.getOriginal()) &&
             getSquareThumbnail().equals(other.getSquareThumbnail()) &&
-            getThumbnail().equals(other.getThumbnail()) &&
-            getTitle().equals(other.getTitle());
-    }
-
-    public String getAlt() {
-        return alt;
+            getThumbnail().equals(other.getThumbnail());
     }
 
     public net.lab1318.costume.gui.models.image.ImageVersionBean getFullSize() {
@@ -155,16 +139,9 @@ public class ImageBean {
         return thumbnail;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
     @Override
     public int hashCode() {
         int hashCode = 17;
-        if (getAlt() != null) {
-            hashCode = 31 * hashCode + getAlt().hashCode();
-        }
         if (getFullSize() != null) {
             hashCode = 31 * hashCode + getFullSize().hashCode();
         }
@@ -177,14 +154,7 @@ public class ImageBean {
         if (getThumbnail() != null) {
             hashCode = 31 * hashCode + getThumbnail().hashCode();
         }
-        if (getTitle() != null) {
-            hashCode = 31 * hashCode + getTitle().hashCode();
-        }
         return hashCode;
-    }
-
-    public void setAlt(final String alt) {
-        this.alt = alt;
     }
 
     public void setFullSize(final net.lab1318.costume.gui.models.image.ImageVersionBean fullSize) {
@@ -203,16 +173,10 @@ public class ImageBean {
         this.thumbnail = thumbnail;
     }
 
-    public void setTitle(final String title) {
-        this.title = title;
-    }
-
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("alt", getAlt()).add("full_size", getFullSize()).add("original", getOriginal()).add("square_thumbnail", getSquareThumbnail()).add("thumbnail", getThumbnail()).add("title", getTitle()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("full_size", getFullSize()).add("original", getOriginal()).add("square_thumbnail", getSquareThumbnail()).add("thumbnail", getThumbnail()).toString();
     }
-
-    private String alt;
 
     private net.lab1318.costume.gui.models.image.ImageVersionBean fullSize;
 
@@ -221,6 +185,4 @@ public class ImageBean {
     private net.lab1318.costume.gui.models.image.ImageVersionBean squareThumbnail;
 
     private net.lab1318.costume.gui.models.image.ImageVersionBean thumbnail;
-
-    private String title;
 }

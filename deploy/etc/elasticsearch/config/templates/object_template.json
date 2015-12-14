@@ -76,16 +76,8 @@
                     "type": "nested", 
                     "properties": {
                       "1:text": {
-                        "fields": {
-                          "text": {
-                            "type": "string"
-                          }, 
-                          "not_analyzed": {
-                            "index": "not_analyzed", 
-                            "type": "string"
-                          }
-                        }, 
-                        "type": "multi_field"
+                        "index": "not_analyzed", 
+                        "type": "string"
                       }, 
                       "2:type": {
                         "index": "not_analyzed", 
@@ -163,16 +155,8 @@
             }
           }, 
           "18:categories": {
-            "fields": {
-              "text": {
-                "type": "string"
-              }, 
-              "not_analyzed": {
-                "index": "not_analyzed", 
-                "type": "string"
-              }
-            }, 
-            "type": "multi_field"
+            "index": "not_analyzed", 
+            "type": "string"
           }, 
           "10:date": {
             "type": "date"
@@ -213,9 +197,6 @@
           "23:images": {
             "type": "nested", 
             "properties": {
-              "1:alt": {
-                "type": "string"
-              }, 
               "2:full_size": {
                 "type": "nested", 
                 "properties": {
@@ -275,9 +256,6 @@
                     "type": "integer"
                   }
                 }
-              }, 
-              "6:title": {
-                "type": "string"
               }
             }
           }, 
@@ -421,16 +399,8 @@
                     "type": "nested", 
                     "properties": {
                       "1:text": {
-                        "fields": {
-                          "text": {
-                            "type": "string"
-                          }, 
-                          "not_analyzed": {
-                            "index": "not_analyzed", 
-                            "type": "string"
-                          }
-                        }, 
-                        "type": "multi_field"
+                        "index": "not_analyzed", 
+                        "type": "string"
                       }, 
                       "2:type": {
                         "index": "not_analyzed", 
@@ -549,16 +519,8 @@
                 "type": "nested", 
                 "properties": {
                   "1:text": {
-                    "fields": {
-                      "text": {
-                        "type": "string"
-                      }, 
-                      "not_analyzed": {
-                        "index": "not_analyzed", 
-                        "type": "string"
-                      }
-                    }, 
-                    "type": "multi_field"
+                    "index": "not_analyzed", 
+                    "type": "string"
                   }, 
                   "2:vocab_ref": {
                     "type": "nested", 

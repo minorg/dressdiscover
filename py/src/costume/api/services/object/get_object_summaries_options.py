@@ -1,9 +1,9 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.services.object.object_sort
+import costume.api.services.object.object_summary_sort
 
 
-class GetObjectsOptions(object):
+class GetObjectSummariesOptions(object):
     class Builder(object):
         def __init__(
             self,
@@ -14,7 +14,7 @@ class GetObjectsOptions(object):
             '''
             :type from_: int or None
             :type size: int or None
-            :type sorts: tuple(costume.api.services.object.object_sort.ObjectSort) or None
+            :type sorts: tuple(costume.api.services.object.object_summary_sort.ObjectSummarySort) or None
             '''
 
             self.__from_ = from_
@@ -22,7 +22,7 @@ class GetObjectsOptions(object):
             self.__sorts = sorts
 
         def build(self):
-            return GetObjectsOptions(from_=self.__from_, size=self.__size, sorts=self.__sorts)
+            return GetObjectSummariesOptions(from_=self.__from_, size=self.__size, sorts=self.__sorts)
 
         @property
         def from_(self):
@@ -50,7 +50,7 @@ class GetObjectsOptions(object):
 
         def set_sorts(self, sorts):
             '''
-            :type sorts: tuple(costume.api.services.object.object_sort.ObjectSort) or None
+            :type sorts: tuple(costume.api.services.object.object_summary_sort.ObjectSummarySort) or None
             '''
 
             self.__sorts = sorts
@@ -67,27 +67,27 @@ class GetObjectsOptions(object):
         @property
         def sorts(self):
             '''
-            :rtype: tuple(costume.api.services.object.object_sort.ObjectSort)
+            :rtype: tuple(costume.api.services.object.object_summary_sort.ObjectSummarySort)
             '''
 
             return self.__sorts
 
-        def update(self, get_objects_options):
+        def update(self, get_object_summaries_options):
             '''
             :type from_: int or None
             :type size: int or None
-            :type sorts: tuple(costume.api.services.object.object_sort.ObjectSort) or None
+            :type sorts: tuple(costume.api.services.object.object_summary_sort.ObjectSummarySort) or None
             '''
 
-            if isinstance(get_objects_options, GetObjectsOptions):
-                self.set_from_(get_objects_options.from_)
-                self.set_size(get_objects_options.size)
-                self.set_sorts(get_objects_options.sorts)
-            elif isinstance(get_objects_options, dict):
-                for key, value in get_objects_options.iteritems():
+            if isinstance(get_object_summaries_options, GetObjectSummariesOptions):
+                self.set_from_(get_object_summaries_options.from_)
+                self.set_size(get_object_summaries_options.size)
+                self.set_sorts(get_object_summaries_options.sorts)
+            elif isinstance(get_object_summaries_options, dict):
+                for key, value in get_object_summaries_options.iteritems():
                     getattr(self, 'set_' + key)(value)
             else:
-                raise TypeError(get_objects_options)
+                raise TypeError(get_object_summaries_options)
             return self
 
         @from_.setter
@@ -109,7 +109,7 @@ class GetObjectsOptions(object):
         @sorts.setter
         def sorts(self, sorts):
             '''
-            :type sorts: tuple(costume.api.services.object.object_sort.ObjectSort) or None
+            :type sorts: tuple(costume.api.services.object.object_summary_sort.ObjectSummarySort) or None
             '''
 
             self.set_sorts(sorts)
@@ -123,7 +123,7 @@ class GetObjectsOptions(object):
         '''
         :type from_: int or None
         :type size: int or None
-        :type sorts: tuple(costume.api.services.object.object_sort.ObjectSort) or None
+        :type sorts: tuple(costume.api.services.object.object_summary_sort.ObjectSummarySort) or None
         '''
 
         if from_ is not None:
@@ -137,8 +137,8 @@ class GetObjectsOptions(object):
         self.__size = size
 
         if sorts is not None:
-            if not (isinstance(sorts, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.services.object.object_sort.ObjectSort), sorts))) == 0):
-                raise TypeError("expected sorts to be a tuple(costume.api.services.object.object_sort.ObjectSort) but it is a %s" % getattr(__builtin__, 'type')(sorts))
+            if not (isinstance(sorts, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.services.object.object_summary_sort.ObjectSummarySort), sorts))) == 0):
+                raise TypeError("expected sorts to be a tuple(costume.api.services.object.object_summary_sort.ObjectSummarySort) but it is a %s" % getattr(__builtin__, 'type')(sorts))
             if len(sorts) < 1:
                 raise ValueError("expected len(sorts) to be >= 1, was %d" % len(sorts))
         self.__sorts = sorts
@@ -169,7 +169,7 @@ class GetObjectsOptions(object):
             field_reprs.append('size=' + repr(self.size))
         if self.sorts is not None:
             field_reprs.append('sorts=' + repr(self.sorts))
-        return 'GetObjectsOptions(' + ', '.join(field_reprs) + ')'
+        return 'GetObjectSummariesOptions(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
@@ -179,7 +179,7 @@ class GetObjectsOptions(object):
             field_reprs.append('size=' + repr(self.size))
         if self.sorts is not None:
             field_reprs.append('sorts=' + repr(self.sorts))
-        return 'GetObjectsOptions(' + ', '.join(field_reprs) + ')'
+        return 'GetObjectSummariesOptions(' + ', '.join(field_reprs) + ')'
 
     def as_dict(self):
         '''
@@ -213,7 +213,7 @@ class GetObjectsOptions(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.services.object.get_objects_options.GetObjectsOptions
+        :rtype: costume.api.services.object.get_object_summaries_options.GetObjectSummariesOptions
         '''
 
         init_kwds = {}
@@ -234,7 +234,7 @@ class GetObjectsOptions(object):
                 except (TypeError,):
                     pass
             elif ifield_name == 'sorts':
-                init_kwds['sorts'] = tuple([costume.api.services.object.object_sort.ObjectSort.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+                init_kwds['sorts'] = tuple([costume.api.services.object.object_summary_sort.ObjectSummarySort.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -251,8 +251,8 @@ class GetObjectsOptions(object):
 
         :type from_: int or None
         :type size: int or None
-        :type sorts: tuple(costume.api.services.object.object_sort.ObjectSort) or None
-        :rtype: costume.api.services.object.get_objects_options.GetObjectsOptions
+        :type sorts: tuple(costume.api.services.object.object_summary_sort.ObjectSummarySort) or None
+        :rtype: costume.api.services.object.get_object_summaries_options.GetObjectSummariesOptions
         '''
 
         if from_ is None:
@@ -274,7 +274,7 @@ class GetObjectsOptions(object):
     @property
     def sorts(self):
         '''
-        :rtype: tuple(costume.api.services.object.object_sort.ObjectSort)
+        :rtype: tuple(costume.api.services.object.object_summary_sort.ObjectSummarySort)
         '''
 
         return self.__sorts
@@ -284,10 +284,10 @@ class GetObjectsOptions(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.services.object.get_objects_options.GetObjectsOptions
+        :rtype: costume.api.services.object.get_object_summaries_options.GetObjectSummariesOptions
         '''
 
-        oprot.write_struct_begin('GetObjectsOptions')
+        oprot.write_struct_begin('GetObjectSummariesOptions')
 
         if self.from_ is not None:
             oprot.write_field_begin(name='from_', type=8, id=None)

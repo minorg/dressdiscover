@@ -1,10 +1,10 @@
 package net.lab1318.costume.gui.models.object;
 
-import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.object.ObjectId;
+import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 
-public final class ObjectBeanWithId extends ObjectBean {
-    public ObjectBeanWithId(final ObjectEntry other) {
+public final class ObjectSummaryBeanWithId extends ObjectSummaryBean {
+    public ObjectSummaryBeanWithId(final ObjectSummaryEntry other) {
         super(other.getModel());
         this.id = other.getId();
     }
@@ -20,7 +20,7 @@ public final class ObjectBeanWithId extends ObjectBean {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final ObjectBeanWithId other = (ObjectBeanWithId) obj;
+        final ObjectSummaryBeanWithId other = (ObjectSummaryBeanWithId) obj;
         if (!id.equals(other.id)) {
             return false;
         }
