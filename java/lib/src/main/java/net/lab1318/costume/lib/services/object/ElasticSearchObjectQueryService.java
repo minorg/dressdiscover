@@ -73,7 +73,7 @@ import net.lab1318.costume.lib.stores.object.ObjectSummaryElasticSearchIndex;
 
 @Singleton
 public class ElasticSearchObjectQueryService implements ObjectQueryService {
-    private final static class ObjectElasticSearchModelFactory implements ElasticSearchIndex.ModelFactory<ObjectEntry> {
+    public final static class ObjectElasticSearchModelFactory implements ElasticSearchIndex.ModelFactory<ObjectEntry> {
         public static ObjectElasticSearchModelFactory getInstance() {
             return instance;
         }
@@ -100,6 +100,36 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         }
 
         private final static ObjectElasticSearchModelFactory instance = new ObjectElasticSearchModelFactory();
+    }
+
+    public final static class ObjectSummaryElasticSearchModelFactory
+            implements ElasticSearchIndex.ModelFactory<ObjectSummaryEntry> {
+        public static ObjectSummaryElasticSearchModelFactory getInstance() {
+            return instance;
+        }
+
+        private ObjectSummaryElasticSearchModelFactory() {
+        }
+
+        @Override
+        public ObjectSummaryEntry createModelEntryFromFields(final String id, final Map<String, List<?>> fields)
+                throws InvalidModelException {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public ObjectSummaryEntry createModelEntryFromSource(final String id, final BytesReference document)
+                throws InvalidModelException {
+            try {
+                return new ObjectSummaryEntry(ObjectId.parse(id),
+                        ObjectSummary.readAsStruct(new ElasticSearchInputProtocol(document)));
+            } catch (final InputProtocolException | InvalidObjectIdException e) {
+                throw new InvalidModelException(id, ServiceExceptionHelper.combineMessages(e,
+                        "error deserializing model document from ElasticSearch"), e);
+            }
+        }
+
+        private final static ObjectSummaryElasticSearchModelFactory instance = new ObjectSummaryElasticSearchModelFactory();
     }
 
     private final static class ObjectFacetAggregations extends ForwardingList<AbstractAggregationBuilder> {
@@ -229,36 +259,6 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         private final TermsBuilder institutionHitsAggregation;
         private final TermsBuilder subjectTermTextsAggregation;
         private final TermsBuilder workTypeTextsAggregation;
-    }
-
-    private final static class ObjectSummaryElasticSearchModelFactory
-            implements ElasticSearchIndex.ModelFactory<ObjectSummaryEntry> {
-        public static ObjectSummaryElasticSearchModelFactory getInstance() {
-            return instance;
-        }
-
-        private ObjectSummaryElasticSearchModelFactory() {
-        }
-
-        @Override
-        public ObjectSummaryEntry createModelEntryFromFields(final String id, final Map<String, List<?>> fields)
-                throws InvalidModelException {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public ObjectSummaryEntry createModelEntryFromSource(final String id, final BytesReference document)
-                throws InvalidModelException {
-            try {
-                return new ObjectSummaryEntry(ObjectId.parse(id),
-                        ObjectSummary.readAsStruct(new ElasticSearchInputProtocol(document)));
-            } catch (final InputProtocolException | InvalidObjectIdException e) {
-                throw new InvalidModelException(id, ServiceExceptionHelper.combineMessages(e,
-                        "error deserializing model document from ElasticSearch"), e);
-            }
-        }
-
-        private final static ObjectSummaryElasticSearchModelFactory instance = new ObjectSummaryElasticSearchModelFactory();
     }
 
     private static FilterBuilder __excludeAllFilters(final List<FilterBuilder> filters) {
