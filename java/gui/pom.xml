@@ -88,9 +88,9 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.notaweb</groupId>
-			<artifactId>notaweb-gui</artifactId>
-			<version>${notaweb.version}</version>
+			<groupId>org.thryft</groupId>
+			<artifactId>thryft-waf-gui</artifactId>
+			<version>${thryft-waf.version}</version>
 		</dependency>
 		<!-- Vaadin widgetset compilation fails because of an older asm in elasticsearch -->
 		<dependency>

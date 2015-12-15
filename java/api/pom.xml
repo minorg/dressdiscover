@@ -21,9 +21,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.notaweb</groupId>
-			<artifactId>notaweb-api</artifactId>
-			<version>${notaweb.version}</version>
+			<groupId>org.thryft</groupId>
+			<artifactId>thryft-waf-api</artifactId>
+			<version>${thryft-waf.version}</version>
 		</dependency>
 	</dependencies>
 </project>

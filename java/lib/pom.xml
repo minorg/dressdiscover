@@ -44,9 +44,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.notaweb</groupId>
-			<artifactId>notaweb-lib</artifactId>
-			<version>${notaweb.version}</version>
+			<groupId>org.thryft</groupId>
+			<artifactId>thryft-waf-lib</artifactId>
+			<version>${thryft-waf.version}</version>
 		</dependency>
 	</dependencies>
 
