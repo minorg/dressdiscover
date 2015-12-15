@@ -1,9 +1,9 @@
 
 package net.lab1318.costume.cli;
 
-import org.notaweb.cli.Command;
-import org.notaweb.cli.CommandParser;
-import org.notaweb.lib.PropertiesModule;
+import org.thryft.waf.cli.Command;
+import org.thryft.waf.cli.CommandParser;
+import org.thryft.waf.lib.PropertiesModule;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 

@@ -4,8 +4,8 @@ import static com.google.common.base.Preconditions.checkState;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
-import org.notaweb.lib.PropertiesModule;
-import org.notaweb.server.GuiceServletContextHandler;
+import org.thryft.waf.lib.PropertiesModule;
+import org.thryft.waf.server.GuiceServletContextHandler;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 

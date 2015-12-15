@@ -1,7 +1,7 @@
 package net.lab1318.costume.gui.presenters;
 
-import org.notaweb.gui.EventBus;
-import org.notaweb.gui.views.View;
+import org.thryft.waf.gui.EventBus;
+import org.thryft.waf.gui.views.View;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.eventbus.Subscribe;
@@ -13,7 +13,7 @@ import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectSummariesRequest;
 import net.lab1318.costume.gui.GuiUI;
 
-public abstract class Presenter<ViewT extends View> extends org.notaweb.gui.presenters.Presenter<ViewT> {
+public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.presenters.Presenter<ViewT> {
     protected Presenter(final EventBus eventBus, final ViewT view) {
         super(eventBus, view);
     }

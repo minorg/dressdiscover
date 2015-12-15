@@ -4,7 +4,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.IOException;
 
-import org.notaweb.lib.stores.NoSuchModelException;
+import org.thryft.waf.lib.stores.NoSuchModelException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,6 +1,6 @@
 package net.lab1318.costume.gui.converters;
 
-import org.notaweb.gui.utils.ThryftConverterFactory;
+import org.thryft.waf.gui.utils.ThryftConverterFactory;
 
 import com.vaadin.data.util.converter.Converter;
 

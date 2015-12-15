@@ -1,6 +1,6 @@
 package net.lab1318.costume.api.models.institution;
 
-import org.notaweb.api.models.StringModelId;
+import org.thryft.waf.api.models.StringModelId;
 
 public final class InstitutionId extends StringModelId {
     public static InstitutionId parse(final String value) throws InvalidInstitutionIdException {

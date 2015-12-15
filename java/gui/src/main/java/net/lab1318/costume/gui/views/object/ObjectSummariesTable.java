@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.notaweb.gui.EventBus;
+import org.thryft.waf.gui.EventBus;
 import org.thryft.native_.Url;
 import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
 

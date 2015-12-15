@@ -2,7 +2,7 @@ package net.lab1318.costume.gui.presenters.institution;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.notaweb.gui.EventBus;
+import org.thryft.waf.gui.EventBus;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMultimap;

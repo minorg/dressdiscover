@@ -1,6 +1,6 @@
 package net.lab1318.costume.gui;
 
-import org.notaweb.gui.EventBusModule;
+import org.thryft.waf.gui.EventBusModule;
 
 import com.google.inject.AbstractModule;
 

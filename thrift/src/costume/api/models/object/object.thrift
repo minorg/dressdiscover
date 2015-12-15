@@ -20,7 +20,7 @@ include "costume/api/models/work_type/work_type_set.thrift"
 include "thryft/native/date_time.thrift"
 include "thryft/native/u32.thrift"
 
-// @java_implements org.notaweb.api.models.Model
+// @java_implements org.thryft.waf.api.models.Model
 struct Object {
 	1: collection_id.CollectionId collection_id;
 

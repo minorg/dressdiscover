@@ -8,7 +8,7 @@ import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.notaweb.gui.EventBus;
+import org.thryft.waf.gui.EventBus;
 import org.thryft.protocol.InputProtocolException;
 import org.thryft.protocol.JacksonJsonInputProtocol;
 import org.vaadin.addons.lazyquerycontainer.BeanQueryFactory;

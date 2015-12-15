@@ -9,7 +9,7 @@ include "costume/api/models/image/image_version.thrift"
 include "costume/api/models/institution/institution_id.thrift"
 include "thryft/native/url.thrift"
 
-// @java_implements org.notaweb.api.models.Model
+// @java_implements org.thryft.waf.api.models.Model
 struct ObjectSummary {
 	1: collection_id.CollectionId collection_id;
 

@@ -4,7 +4,7 @@ namespace * costume.lib
 include "thryft/native/u32.thrift"
 include "thryft/native/url.thrift"
 
-// @java_implements org.notaweb.lib.Properties
+// @java_implements org.thryft.waf.lib.Properties
 struct CostumeProperties {
 	url.Url api_url = "http://middleware:8082/api/";
 

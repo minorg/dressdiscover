@@ -1,7 +1,7 @@
 package net.lab1318.costume.lib.stores.object;
 
-import org.notaweb.lib.clients.ElasticSearchClient;
-import org.notaweb.lib.stores.ElasticSearchIndex;
+import org.thryft.waf.lib.clients.ElasticSearchClient;
+import org.thryft.waf.lib.stores.ElasticSearchIndex;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;

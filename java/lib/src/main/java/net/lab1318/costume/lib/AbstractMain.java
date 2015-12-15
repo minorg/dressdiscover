@@ -6,7 +6,7 @@ import org.slf4j.Marker;
 
 import com.google.common.base.Optional;
 
-public abstract class AbstractMain extends org.notaweb.lib.AbstractMain {
+public abstract class AbstractMain extends org.thryft.waf.lib.AbstractMain {
     protected AbstractMain(final Marker logMarker) {
         super(logMarker);
     }

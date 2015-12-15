@@ -3,7 +3,7 @@ package net.lab1318.costume.lib.services;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
-import org.notaweb.lib.PropertiesModule;
+import org.thryft.waf.lib.PropertiesModule;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;

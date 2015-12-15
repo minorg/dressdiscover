@@ -5,7 +5,7 @@ namespace * costume.api.models.collection
 include "costume/api/models/model_metadata.thrift"
 include "costume/api/models/institution/institution_id.thrift"
 
-// @java_implements org.notaweb.api.models.Model
+// @java_implements org.thryft.waf.api.models.Model
 struct Collection {
 	1: institution_id.InstitutionId institution_id;
 

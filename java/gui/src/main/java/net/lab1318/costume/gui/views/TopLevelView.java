@@ -1,7 +1,7 @@
 package net.lab1318.costume.gui.views;
 
-import org.notaweb.gui.EventBus;
-import org.notaweb.gui.views.View;
+import org.thryft.waf.gui.EventBus;
+import org.thryft.waf.gui.views.View;
 
 import com.vaadin.server.ErrorMessage;
 import com.vaadin.server.Page;

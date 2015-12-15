@@ -1,6 +1,6 @@
 package net.lab1318.costume.api.models.collection;
 
-public class CollectionEntry implements org.thryft.Struct, org.notaweb.api.models.ModelEntry<net.lab1318.costume.api.models.collection.Collection, net.lab1318.costume.api.models.collection.CollectionId> {
+public class CollectionEntry implements org.thryft.Struct, org.thryft.waf.api.models.ModelEntry<net.lab1318.costume.api.models.collection.Collection, net.lab1318.costume.api.models.collection.CollectionId> {
     public static class Builder {
         public Builder() {
             id = null;

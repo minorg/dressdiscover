@@ -6,7 +6,7 @@ include "costume/api/models/model_metadata.thrift"
 include "costume/api/models/rights/rights_set.thrift"
 include "thryft/native/url.thrift"
 
-// @java_implements org.notaweb.api.models.Model
+// @java_implements org.thryft.waf.api.models.Model
 struct Institution {
 	5: rights_set.RightsSet	data_rights;
 

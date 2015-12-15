@@ -1,6 +1,6 @@
 package net.lab1318.costume.api.models.institution;
 
-public class Institution implements org.thryft.Struct, org.notaweb.api.models.Model {
+public class Institution implements org.thryft.Struct, org.thryft.waf.api.models.Model {
     public static class Builder {
         public Builder() {
             dataRights = null;

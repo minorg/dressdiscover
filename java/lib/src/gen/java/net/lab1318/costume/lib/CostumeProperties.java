@@ -1,6 +1,6 @@
 package net.lab1318.costume.lib;
 
-public class CostumeProperties implements org.thryft.Struct, org.notaweb.lib.Properties {
+public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.Properties {
     public static class Builder {
         public Builder() {
             apiUrl = org.thryft.native_.Url.parse("http://middleware:8082/api/");

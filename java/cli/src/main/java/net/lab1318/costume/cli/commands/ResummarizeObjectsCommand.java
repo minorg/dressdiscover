@@ -3,7 +3,7 @@ package net.lab1318.costume.cli.commands;
 import java.io.IOException;
 
 import org.elasticsearch.index.query.QueryBuilders;
-import org.notaweb.cli.Command;
+import org.thryft.waf.cli.Command;
 
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Injector;

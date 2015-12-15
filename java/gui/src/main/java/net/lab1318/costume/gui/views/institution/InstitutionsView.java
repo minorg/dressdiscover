@@ -3,7 +3,7 @@ package net.lab1318.costume.gui.views.institution;
 import java.util.Collection;
 import java.util.Map;
 
-import org.notaweb.gui.EventBus;
+import org.thryft.waf.gui.EventBus;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.inject.Inject;

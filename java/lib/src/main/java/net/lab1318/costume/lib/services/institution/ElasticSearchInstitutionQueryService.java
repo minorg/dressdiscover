@@ -8,10 +8,10 @@ import java.util.Map;
 
 import org.elasticsearch.common.bytes.BytesReference;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.notaweb.lib.protocols.ElasticSearchInputProtocol;
-import org.notaweb.lib.stores.ElasticSearchIndex;
-import org.notaweb.lib.stores.InvalidModelException;
-import org.notaweb.lib.stores.NoSuchModelException;
+import org.thryft.waf.lib.protocols.ElasticSearchInputProtocol;
+import org.thryft.waf.lib.stores.ElasticSearchIndex;
+import org.thryft.waf.lib.stores.InvalidModelException;
+import org.thryft.waf.lib.stores.NoSuchModelException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thryft.protocol.InputProtocolException;

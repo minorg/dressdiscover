@@ -1,6 +1,6 @@
 package net.lab1318.costume.gui.views.object;
 
-import org.notaweb.gui.EventBus;
+import org.thryft.waf.gui.EventBus;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;

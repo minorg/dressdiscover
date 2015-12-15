@@ -1,6 +1,6 @@
 package net.lab1318.costume.gui.views.object;
 
-import org.notaweb.gui.EventBus;
+import org.thryft.waf.gui.EventBus;
 import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
 
 import com.google.common.collect.ImmutableMap;

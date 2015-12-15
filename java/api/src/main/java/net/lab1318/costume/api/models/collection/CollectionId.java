@@ -2,7 +2,7 @@ package net.lab1318.costume.api.models.collection;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.notaweb.api.models.StringModelId;
+import org.thryft.waf.api.models.StringModelId;
 
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.institution.InvalidInstitutionIdException;
