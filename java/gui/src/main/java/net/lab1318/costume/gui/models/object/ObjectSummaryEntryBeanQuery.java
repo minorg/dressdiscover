@@ -22,8 +22,8 @@ import net.lab1318.costume.api.services.object.ObjectSummarySort;
 import net.lab1318.costume.api.services.object.ObjectSummarySortField;
 
 @SuppressWarnings("serial")
-public final class ObjectSummaryBeanQuery extends AbstractBeanQuery<ObjectSummaryBeanWithId> {
-    public ObjectSummaryBeanQuery(final QueryDefinition definition,
+public final class ObjectSummaryEntryBeanQuery extends AbstractBeanQuery<ObjectSummaryEntryBean> {
+    public ObjectSummaryEntryBeanQuery(final QueryDefinition definition,
             final Map<String, java.lang.Object> queryConfiguration, final java.lang.Object[] sortPropertyIds,
             final boolean[] sortStates) {
         super(definition, queryConfiguration, sortPropertyIds, sortStates);
@@ -41,12 +41,12 @@ public final class ObjectSummaryBeanQuery extends AbstractBeanQuery<ObjectSummar
     }
 
     @Override
-    protected ObjectSummaryBeanWithId constructBean() {
+    protected ObjectSummaryEntryBean constructBean() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected List<ObjectSummaryBeanWithId> loadBeans(final int startIndex, final int count) {
+    protected List<ObjectSummaryEntryBean> loadBeans(final int startIndex, final int count) {
         final GetObjectSummariesOptions.Builder optionsBuilder = GetObjectSummariesOptions.builder()
                 .setFrom(UnsignedInteger.valueOf(startIndex)).setSize(UnsignedInteger.valueOf(count));
 
@@ -62,11 +62,11 @@ public final class ObjectSummaryBeanQuery extends AbstractBeanQuery<ObjectSummar
             optionsBuilder.setSorts(sortsBuilder.build());
         }
 
-        final List<ObjectSummaryBeanWithId> beans = new ArrayList<>();
+        final List<ObjectSummaryEntryBean> beans = new ArrayList<>();
         try {
             for (final ObjectSummaryEntry entry : objectQueryService
                     .getObjectSummaries(Optional.of(optionsBuilder.build()), objectQuery)) {
-                beans.add(new ObjectSummaryBeanWithId(entry));
+                beans.add(new ObjectSummaryEntryBean(entry));
             }
         } catch (final IoException e) {
             throw new RuntimeException(e);
@@ -75,8 +75,8 @@ public final class ObjectSummaryBeanQuery extends AbstractBeanQuery<ObjectSummar
     }
 
     @Override
-    protected void saveBeans(final List<ObjectSummaryBeanWithId> added, final List<ObjectSummaryBeanWithId> modified,
-            final List<ObjectSummaryBeanWithId> removed) {
+    protected void saveBeans(final List<ObjectSummaryEntryBean> added, final List<ObjectSummaryEntryBean> modified,
+            final List<ObjectSummaryEntryBean> removed) {
         throw new UnsupportedOperationException();
     }
 
