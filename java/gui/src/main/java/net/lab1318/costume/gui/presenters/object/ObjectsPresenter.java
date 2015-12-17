@@ -5,15 +5,11 @@ import static com.google.common.base.Preconditions.checkState;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.HashMap;
-import java.util.Map;
 
-import org.thryft.waf.gui.EventBus;
 import org.thryft.protocol.InputProtocolException;
 import org.thryft.protocol.JacksonJsonInputProtocol;
-import org.vaadin.addons.lazyquerycontainer.BeanQueryFactory;
+import org.thryft.waf.gui.EventBus;
 import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
-import org.vaadin.addons.lazyquerycontainer.LazyQueryDefinition;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Optional;
@@ -40,9 +36,8 @@ import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectByIdRequest;
-import net.lab1318.costume.api.services.object.ObjectSummarySortField;
-import net.lab1318.costume.gui.models.object.ObjectSummaryBean;
-import net.lab1318.costume.gui.models.object.ObjectSummaryBeanQuery;
+import net.lab1318.costume.gui.models.object.ObjectSummaryEntryBeanQueryDefinition;
+import net.lab1318.costume.gui.models.object.ObjectSummaryEntryBeanQueryFactory;
 import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.object.ObjectByIdView;
 import net.lab1318.costume.gui.views.object.ObjectsView;
@@ -140,27 +135,10 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
             institutionMap = institutionMapBuilder.build();
         }
 
-        final BeanQueryFactory<ObjectSummaryBeanQuery> objectBeanQueryFactory = new BeanQueryFactory<ObjectSummaryBeanQuery>(
-                ObjectSummaryBeanQuery.class);
-        final Map<String, java.lang.Object> queryConfiguration = new HashMap<>();
-        queryConfiguration.put("objectQuery", objectQuery);
-        queryConfiguration.put("objectQueryService", objectQueryService);
-        objectBeanQueryFactory.setQueryConfiguration(queryConfiguration);
-
-        final LazyQueryDefinition queryDefinition = new LazyQueryDefinition(true, 10, "id");
-        for (final ObjectSummaryBean.FieldMetadata field : ObjectSummaryBean.FieldMetadata.values()) {
-            boolean sortable = false;
-            try {
-                ObjectSummarySortField.valueOf(field.getThriftName().toUpperCase());
-                sortable = true;
-            } catch (final IllegalArgumentException e) {
-            }
-
-            queryDefinition.addProperty(field.getJavaName(), field.getJavaType().getRawType(), null, true, sortable);
-        }
-
         _getView().setModels(availableObjectFacets, collectionMap, institutionMap, objectQuery,
-                new LazyQueryContainer(queryDefinition, objectBeanQueryFactory), resultObjectFacets);
+                new LazyQueryContainer(ObjectSummaryEntryBeanQueryDefinition.getInstance(),
+                        ObjectSummaryEntryBeanQueryFactory.create(objectQuery, objectQueryService)),
+                resultObjectFacets);
     }
 
     private final CollectionQueryService collectionQueryService;

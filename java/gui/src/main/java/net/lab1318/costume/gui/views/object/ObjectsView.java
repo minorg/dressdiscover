@@ -67,7 +67,7 @@ public class ObjectsView extends TopLevelView {
                 rightPaneContentLayout.setComponentAlignment(hitCountsLabel, Alignment.MIDDLE_CENTER);
 
                 rightPaneContentLayout.addComponent(
-                        new ObjectSummariesTable(collections, _getEventBus(), institutions, availableObjectFacets, objectSummaries));
+                        new ObjectSummaryEntriesTable(collections, _getEventBus(), institutions, availableObjectFacets, objectSummaries));
             } else {
                 rightPaneContentLayout.addComponent(new Label("No objects match your criteria."));
             }
