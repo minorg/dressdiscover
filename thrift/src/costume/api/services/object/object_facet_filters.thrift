@@ -28,6 +28,9 @@ struct ObjectFacetFilters {
 	optional set<string> exclude_subject_term_texts;
 
 	// @validation {"minLength": 1}
+	optional set<string> exclude_technique_texts;
+
+	// @validation {"minLength": 1}
 	optional set<string> exclude_work_type_texts;
 
 	// @validation {"minLength": 1}
@@ -50,6 +53,9 @@ struct ObjectFacetFilters {
 
 	// @validation {"minLength": 1}
 	optional set<string> include_subject_term_texts;
+
+	// @validation {"minLength": 1}
+	optional set<string> include_technique_texts;
 
 	// @validation {"minLength": 1}
 	optional set<string> include_work_type_texts;
