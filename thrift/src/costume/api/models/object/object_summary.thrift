@@ -41,6 +41,10 @@ struct ObjectSummary {
 
 	// @elastic_search_mapping {"type": "multi_field", "fields": {"text": {"type": "string"}, "not_analyzed": {"type": "string", "index": "not_analyzed"}}}
 	// @validation {"minLength": 1}
+	14: optional list<string> material_texts;
+
+	// @elastic_search_mapping {"type": "multi_field", "fields": {"text": {"type": "string"}, "not_analyzed": {"type": "string", "index": "not_analyzed"}}}
+	// @validation {"minLength": 1}
 	9: optional list<string> subject_term_texts;
 
 	10: optional image_version.ImageVersion thumbnail;

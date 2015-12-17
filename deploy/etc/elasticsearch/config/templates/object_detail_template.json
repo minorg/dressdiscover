@@ -327,6 +327,7 @@
                     "type": "string"
                   }, 
                   "2:text": {
+                    "index": "not_analyzed", 
                     "type": "string"
                   }, 
                   "5:vocab_ref": {

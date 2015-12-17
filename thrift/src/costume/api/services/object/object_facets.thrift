@@ -12,6 +12,7 @@ struct ObjectFacets {
 	map<collection_id.CollectionId, u32.u32> collection_hits;
 	map<gender.Gender, u32.u32> genders;
 	map<institution_id.InstitutionId, u32.u32> institution_hits;
+	map<string, u32.u32> material_texts;
 	map<string, u32.u32> subject_term_texts;
 	bool url_exists;
 	map<string, u32.u32> work_type_texts;

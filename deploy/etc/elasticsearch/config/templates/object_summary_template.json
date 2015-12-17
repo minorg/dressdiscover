@@ -77,6 +77,18 @@
             "index": "not_analyzed", 
             "type": "string"
           }, 
+          "14:material_texts": {
+            "fields": {
+              "text": {
+                "type": "string"
+              }, 
+              "not_analyzed": {
+                "index": "not_analyzed", 
+                "type": "string"
+              }
+            }, 
+            "type": "multi_field"
+          }, 
           "9:subject_term_texts": {
             "fields": {
               "text": {
