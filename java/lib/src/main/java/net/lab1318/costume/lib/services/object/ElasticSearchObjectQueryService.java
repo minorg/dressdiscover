@@ -143,6 +143,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                     __newIdAggregation(ObjectSummary.FieldMetadata.INSTITUTION_ID),
                     __newTextsAggregation(ObjectSummary.FieldMetadata.MATERIAL_TEXTS),
                     __newTextsAggregation(ObjectSummary.FieldMetadata.SUBJECT_TERM_TEXTS),
+                    __newTextsAggregation(ObjectSummary.FieldMetadata.TECHNIQUE_TEXTS),
                     __newTextsAggregation(ObjectSummary.FieldMetadata.WORK_TYPE_TEXTS));
         }
 
@@ -190,6 +191,8 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
             resultBuilder
                     .setSubjectTermTexts(__getTextsFacet(aggregations, ObjectSummary.FieldMetadata.SUBJECT_TERM_TEXTS));
+
+            resultBuilder.setTechniqueTexts(__getTextsFacet(aggregations, ObjectSummary.FieldMetadata.TECHNIQUE_TEXTS));
 
             resultBuilder.setWorkTypeTexts(__getTextsFacet(aggregations, ObjectSummary.FieldMetadata.WORK_TYPE_TEXTS));
 
@@ -264,7 +267,8 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         emptyObjectFacets = ObjectFacets.builder().setAgentNameTexts(ImmutableMap.of()).setCategories(ImmutableMap.of())
                 .setCollectionHits(ImmutableMap.of()).setGenders(ImmutableMap.of())
                 .setInstitutionHits(ImmutableMap.of()).setMaterialTexts(ImmutableMap.of())
-                .setSubjectTermTexts(ImmutableMap.of()).setWorkTypeTexts(ImmutableMap.of()).build();
+                .setSubjectTermTexts(ImmutableMap.of()).setTechniqueTexts(ImmutableMap.of())
+                .setWorkTypeTexts(ImmutableMap.of()).build();
     }
 
     @Override
@@ -385,8 +389,8 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             throw ServiceExceptionHelper.wrapException(e, "error checking object indices for consistency");
         }
         if (!objectCount.equals(objectSummaryCount)) {
-            throw new IllegalStateException(String.format("object count (%d) is not the same as the summary count (%d)",
-                    objectCount.longValue(), objectSummaryCount.longValue()));
+            logger.error(logMarker, "object count ({}) is not the same as the summary count ({})",
+                    objectCount.longValue(), objectSummaryCount.longValue());
         }
     }
 
@@ -425,6 +429,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                     .field(ObjectSummary.FieldMetadata.DESCRIPTION.getThriftProtocolKey())
                     .field(ObjectSummary.FieldMetadata.MATERIAL_TEXTS.getThriftProtocolKey())
                     .field(ObjectSummary.FieldMetadata.SUBJECT_TERM_TEXTS.getThriftProtocolKey())
+                    .field(ObjectSummary.FieldMetadata.TECHNIQUE_TEXTS.getThriftProtocolKey())
                     .field(ObjectSummary.FieldMetadata.TITLE.getThriftProtocolKey(), (float) 2.0);
 
         } else if (query.get().getMoreLikeObjectId().isPresent()) {
@@ -435,6 +440,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                             ObjectSummary.FieldMetadata.DESCRIPTION.getThriftProtocolKey(),
                             ObjectSummary.FieldMetadata.MATERIAL_TEXTS.getThriftProtocolKey(),
                             ObjectSummary.FieldMetadata.SUBJECT_TERM_TEXTS.getThriftProtocolKey(),
+                            ObjectSummary.FieldMetadata.TECHNIQUE_TEXTS.getThriftProtocolKey(),
                             ObjectSummary.FieldMetadata.TITLE.getThriftProtocolKey())
                     .docs(new MoreLikeThisQueryBuilder.Item(objectSummaryElasticSearchIndex.getIndexName(),
                             objectSummaryElasticSearchIndex.getDocumentType(),
@@ -478,6 +484,10 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
             __translateObjectSummaryTextFilters(facetFilters.getExcludeSubjectTermTexts(),
                     ObjectSummary.FieldMetadata.SUBJECT_TERM_TEXTS, facetFilters.getIncludeSubjectTermTexts(),
+                    filtersTranslated);
+
+            __translateObjectSummaryTextFilters(facetFilters.getExcludeTechniqueTexts(),
+                    ObjectSummary.FieldMetadata.TECHNIQUE_TEXTS, facetFilters.getIncludeTechniqueTexts(),
                     filtersTranslated);
 
             __translateObjectSummaryTextFilters(facetFilters.getExcludeWorkTypeTexts(),

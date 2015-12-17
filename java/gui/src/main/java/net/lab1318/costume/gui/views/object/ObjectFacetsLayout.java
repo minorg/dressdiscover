@@ -2,6 +2,7 @@ package net.lab1318.costume.gui.views.object;
 
 import org.thryft.waf.gui.EventBus;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.vaadin.ui.CustomComponent;
@@ -23,35 +24,24 @@ final class ObjectFacetsLayout extends CustomComponent {
             final ObjectFacets resultObjectFacets) {
         final VerticalLayout rootLayout = new VerticalLayout();
 
+        final ObjectFacetFilters facetFilters = objectQuery.getFacetFilters().isPresent()
+                ? objectQuery.getFacetFilters().get() : new ObjectFacetFilters();
+
         if (!availableObjectFacets.getAgentNameTexts().isEmpty()) {
             final ObjectFacetPicker<String> agentNameTextFacetPicker = new ObjectFacetPicker<String>(
                     availableObjectFacets.getAgentNameTexts().keySet(), "Agent names",
-                    objectQuery.getFacetFilters().isPresent()
-                            && objectQuery.getFacetFilters().get().getExcludeAgentNameTexts().isPresent()
-                                    ? objectQuery.getFacetFilters().get().getExcludeAgentNameTexts().get()
-                                    : ImmutableSet.of(),
-                    objectQuery.getFacetFilters().isPresent()
-                            && objectQuery.getFacetFilters().get().getIncludeAgentNameTexts().isPresent()
-                                    ? objectQuery.getFacetFilters().get().getIncludeAgentNameTexts().get()
-                                    : ImmutableSet.of(),
+                    facetFilters.getExcludeAgentNameTexts(), facetFilters.getIncludeAgentNameTexts(),
                     resultObjectFacets.getAgentNameTexts().keySet()) {
                 @Override
-                protected void _valueChange(final ImmutableSet<String> excludeFacetKeys,
-                        final ImmutableSet<String> includeFacetKeys) {
-                    final ObjectFacetFilters.Builder filtersBuilder = ObjectFacetFilters
-                            .builder(objectQuery.getFacetFilters());
-                    if (!excludeFacetKeys.isEmpty()) {
-                        filtersBuilder.setExcludeAgentNameTexts(excludeFacetKeys);
-                    } else {
-                        filtersBuilder.unsetExcludeAgentNameTexts();
-                    }
-                    if (!includeFacetKeys.isEmpty()) {
-                        filtersBuilder.setIncludeAgentNameTexts(includeFacetKeys);
-                    } else {
-                        filtersBuilder.unsetIncludeAgentNameTexts();
-                    }
+                protected void _valueChange(final Optional<ImmutableSet<String>> excludeFacetKeys,
+                        final Optional<ImmutableSet<String>> includeFacetKeys) {
                     eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
-                            .setQuery(ObjectQuery.builder().setFacetFilters(filtersBuilder.build()).build()).build());
+                            .setQuery(ObjectQuery.builder()
+                                    .setFacetFilters(ObjectFacetFilters.builder(objectQuery.getFacetFilters())
+                                            .setExcludeAgentNameTexts(excludeFacetKeys)
+                                            .setIncludeAgentNameTexts(includeFacetKeys).build())
+                                    .build())
+                            .build());
                 }
             };
             if (!agentNameTextFacetPicker.isEmpty()) {
@@ -61,33 +51,18 @@ final class ObjectFacetsLayout extends CustomComponent {
 
         if (!availableObjectFacets.getCategories().isEmpty()) {
             final ObjectFacetPicker<String> categoryFacetPicker = new ObjectFacetPicker<String>(
-                    availableObjectFacets.getCategories().keySet(), "Categories",
-                    objectQuery.getFacetFilters().isPresent()
-                            && objectQuery.getFacetFilters().get().getExcludeCategories().isPresent()
-                                    ? objectQuery.getFacetFilters().get().getExcludeCategories().get()
-                                    : ImmutableSet.of(),
-                    objectQuery.getFacetFilters().isPresent()
-                            && objectQuery.getFacetFilters().get().getIncludeCategories().isPresent()
-                                    ? objectQuery.getFacetFilters().get().getIncludeCategories().get()
-                                    : ImmutableSet.of(),
-                    resultObjectFacets.getCategories().keySet()) {
+                    availableObjectFacets.getCategories().keySet(), "Categories", facetFilters.getExcludeCategories(),
+                    facetFilters.getIncludeCategories(), resultObjectFacets.getCategories().keySet()) {
                 @Override
-                protected void _valueChange(final ImmutableSet<String> excludeFacetKeys,
-                        final ImmutableSet<String> includeFacetKeys) {
-                    final ObjectFacetFilters.Builder filtersBuilder = ObjectFacetFilters
-                            .builder(objectQuery.getFacetFilters());
-                    if (!excludeFacetKeys.isEmpty()) {
-                        filtersBuilder.setExcludeCategories(excludeFacetKeys);
-                    } else {
-                        filtersBuilder.unsetExcludeCategories();
-                    }
-                    if (!includeFacetKeys.isEmpty()) {
-                        filtersBuilder.setIncludeCategories(includeFacetKeys);
-                    } else {
-                        filtersBuilder.unsetIncludeCategories();
-                    }
+                protected void _valueChange(final Optional<ImmutableSet<String>> excludeFacetKeys,
+                        final Optional<ImmutableSet<String>> includeFacetKeys) {
                     eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
-                            .setQuery(ObjectQuery.builder().setFacetFilters(filtersBuilder.build()).build()).build());
+                            .setQuery(ObjectQuery.builder()
+                                    .setFacetFilters(ObjectFacetFilters.builder(objectQuery.getFacetFilters())
+                                            .setExcludeCategories(excludeFacetKeys)
+                                            .setIncludeCategories(includeFacetKeys).build())
+                                    .build())
+                            .build());
                 }
             };
             if (!categoryFacetPicker.isEmpty()) {
@@ -97,36 +72,21 @@ final class ObjectFacetsLayout extends CustomComponent {
 
         if (!availableObjectFacets.getGenders().isEmpty()) {
             final ObjectFacetPicker<Gender> genderFacetPicker = new ObjectFacetPicker<Gender>(
-                    availableObjectFacets.getGenders().keySet(), "Gender",
-                    objectQuery.getFacetFilters().isPresent()
-                            && objectQuery.getFacetFilters().get().getExcludeGenders().isPresent()
-                                    ? objectQuery.getFacetFilters().get().getExcludeGenders().get() : ImmutableSet.of(),
-                    objectQuery.getFacetFilters().isPresent()
-                            && objectQuery.getFacetFilters().get().getIncludeGenders().isPresent()
-                                    ? objectQuery.getFacetFilters().get().getIncludeGenders().get() : ImmutableSet.of(),
-                    resultObjectFacets.getGenders().keySet()) {
+                    availableObjectFacets.getGenders().keySet(), "Gender", facetFilters.getExcludeGenders(),
+                    facetFilters.getIncludeGenders(), resultObjectFacets.getGenders().keySet()) {
                 @Override
                 protected String _getCheckBoxCaption(final Gender facetKey) {
                     return Genders.getCaption(facetKey);
                 }
 
                 @Override
-                protected void _valueChange(final ImmutableSet<Gender> excludeFacetKeys,
-                        final ImmutableSet<Gender> includeFacetKeys) {
-                    final ObjectFacetFilters.Builder filtersBuilder = ObjectFacetFilters
-                            .builder(objectQuery.getFacetFilters());
-                    if (!excludeFacetKeys.isEmpty()) {
-                        filtersBuilder.setExcludeGenders(excludeFacetKeys);
-                    } else {
-                        filtersBuilder.unsetExcludeGenders();
-                    }
-                    if (!includeFacetKeys.isEmpty()) {
-                        filtersBuilder.setIncludeGenders(includeFacetKeys);
-                    } else {
-                        filtersBuilder.unsetIncludeGenders();
-                    }
-                    eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
-                            .setQuery(ObjectQuery.builder().setFacetFilters(filtersBuilder.build()).build()).build());
+                protected void _valueChange(final Optional<ImmutableSet<Gender>> excludeFacetKeys,
+                        final Optional<ImmutableSet<Gender>> includeFacetKeys) {
+                    eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder().setQuery(ObjectQuery
+                            .builder()
+                            .setFacetFilters(ObjectFacetFilters.builder(objectQuery.getFacetFilters())
+                                    .setExcludeGenders(excludeFacetKeys).setIncludeGenders(includeFacetKeys).build())
+                            .build()).build());
                 }
             };
             if (!genderFacetPicker.isEmpty()) {
@@ -137,14 +97,7 @@ final class ObjectFacetsLayout extends CustomComponent {
         if (!availableObjectFacets.getInstitutionHits().isEmpty()) {
             final ObjectFacetPicker<InstitutionId> institutionFacetPicker = new ObjectFacetPicker<InstitutionId>(
                     availableObjectFacets.getInstitutionHits().keySet(), "Institutions",
-                    objectQuery.getFacetFilters().isPresent()
-                            && objectQuery.getFacetFilters().get().getExcludeInstitutionIds().isPresent()
-                                    ? objectQuery.getFacetFilters().get().getExcludeInstitutionIds().get()
-                                    : ImmutableSet.of(),
-                    objectQuery.getFacetFilters().isPresent()
-                            && objectQuery.getFacetFilters().get().getIncludeInstitutionIds().isPresent()
-                                    ? objectQuery.getFacetFilters().get().getIncludeInstitutionIds().get()
-                                    : ImmutableSet.of(),
+                    facetFilters.getExcludeInstitutionIds(), facetFilters.getIncludeInstitutionIds(),
                     resultObjectFacets.getInstitutionHits().keySet()) {
                 @Override
                 protected String _getCheckBoxCaption(final InstitutionId facetKey) {
@@ -152,22 +105,15 @@ final class ObjectFacetsLayout extends CustomComponent {
                 }
 
                 @Override
-                protected void _valueChange(final ImmutableSet<InstitutionId> excludeFacetKeys,
-                        final ImmutableSet<InstitutionId> includeFacetKeys) {
-                    final ObjectFacetFilters.Builder filtersBuilder = ObjectFacetFilters
-                            .builder(objectQuery.getFacetFilters());
-                    if (!excludeFacetKeys.isEmpty()) {
-                        filtersBuilder.setExcludeInstitutionIds(excludeFacetKeys);
-                    } else {
-                        filtersBuilder.unsetExcludeInstitutionIds();
-                    }
-                    if (!includeFacetKeys.isEmpty()) {
-                        filtersBuilder.setIncludeInstitutionIds(includeFacetKeys);
-                    } else {
-                        filtersBuilder.unsetIncludeInstitutionIds();
-                    }
+                protected void _valueChange(final Optional<ImmutableSet<InstitutionId>> excludeFacetKeys,
+                        final Optional<ImmutableSet<InstitutionId>> includeFacetKeys) {
                     eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
-                            .setQuery(ObjectQuery.builder().setFacetFilters(filtersBuilder.build()).build()).build());
+                            .setQuery(ObjectQuery.builder()
+                                    .setFacetFilters(ObjectFacetFilters.builder(objectQuery.getFacetFilters())
+                                            .setExcludeInstitutionIds(excludeFacetKeys)
+                                            .setIncludeInstitutionIds(includeFacetKeys).build())
+                                    .build())
+                            .build());
                 }
             };
             if (!institutionFacetPicker.isEmpty()) {
@@ -178,32 +124,18 @@ final class ObjectFacetsLayout extends CustomComponent {
         if (!availableObjectFacets.getMaterialTexts().isEmpty()) {
             final ObjectFacetPicker<String> materialTextFacetPicker = new ObjectFacetPicker<String>(
                     availableObjectFacets.getMaterialTexts().keySet(), "Materials",
-                    objectQuery.getFacetFilters().isPresent()
-                            && objectQuery.getFacetFilters().get().getExcludeMaterialTexts().isPresent()
-                                    ? objectQuery.getFacetFilters().get().getExcludeMaterialTexts().get()
-                                    : ImmutableSet.of(),
-                    objectQuery.getFacetFilters().isPresent()
-                            && objectQuery.getFacetFilters().get().getIncludeMaterialTexts().isPresent()
-                                    ? objectQuery.getFacetFilters().get().getIncludeMaterialTexts().get()
-                                    : ImmutableSet.of(),
+                    facetFilters.getExcludeMaterialTexts(), facetFilters.getIncludeMaterialTexts(),
                     resultObjectFacets.getMaterialTexts().keySet()) {
                 @Override
-                protected void _valueChange(final ImmutableSet<String> excludeFacetKeys,
-                        final ImmutableSet<String> includeFacetKeys) {
-                    final ObjectFacetFilters.Builder filtersBuilder = ObjectFacetFilters
-                            .builder(objectQuery.getFacetFilters());
-                    if (!excludeFacetKeys.isEmpty()) {
-                        filtersBuilder.setExcludeMaterialTexts(excludeFacetKeys);
-                    } else {
-                        filtersBuilder.unsetExcludeMaterialTexts();
-                    }
-                    if (!includeFacetKeys.isEmpty()) {
-                        filtersBuilder.setIncludeMaterialTexts(includeFacetKeys);
-                    } else {
-                        filtersBuilder.unsetIncludeMaterialTexts();
-                    }
+                protected void _valueChange(final Optional<ImmutableSet<String>> excludeFacetKeys,
+                        final Optional<ImmutableSet<String>> includeFacetKeys) {
                     eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
-                            .setQuery(ObjectQuery.builder().setFacetFilters(filtersBuilder.build()).build()).build());
+                            .setQuery(ObjectQuery.builder()
+                                    .setFacetFilters(ObjectFacetFilters.builder(objectQuery.getFacetFilters())
+                                            .setExcludeMaterialTexts(excludeFacetKeys)
+                                            .setIncludeMaterialTexts(includeFacetKeys).build())
+                                    .build())
+                            .build());
                 }
             };
             if (!materialTextFacetPicker.isEmpty()) {
@@ -214,32 +146,18 @@ final class ObjectFacetsLayout extends CustomComponent {
         if (!availableObjectFacets.getSubjectTermTexts().isEmpty()) {
             final ObjectFacetPicker<String> subjectTermTextFacetPicker = new ObjectFacetPicker<String>(
                     availableObjectFacets.getSubjectTermTexts().keySet(), "Subject terms",
-                    objectQuery.getFacetFilters().isPresent()
-                            && objectQuery.getFacetFilters().get().getExcludeSubjectTermTexts().isPresent()
-                                    ? objectQuery.getFacetFilters().get().getExcludeSubjectTermTexts().get()
-                                    : ImmutableSet.of(),
-                    objectQuery.getFacetFilters().isPresent()
-                            && objectQuery.getFacetFilters().get().getIncludeSubjectTermTexts().isPresent()
-                                    ? objectQuery.getFacetFilters().get().getIncludeSubjectTermTexts().get()
-                                    : ImmutableSet.of(),
+                    facetFilters.getExcludeSubjectTermTexts(), facetFilters.getIncludeSubjectTermTexts(),
                     resultObjectFacets.getSubjectTermTexts().keySet()) {
                 @Override
-                protected void _valueChange(final ImmutableSet<String> excludeFacetKeys,
-                        final ImmutableSet<String> includeFacetKeys) {
-                    final ObjectFacetFilters.Builder filtersBuilder = ObjectFacetFilters
-                            .builder(objectQuery.getFacetFilters());
-                    if (!excludeFacetKeys.isEmpty()) {
-                        filtersBuilder.setExcludeSubjectTermTexts(excludeFacetKeys);
-                    } else {
-                        filtersBuilder.unsetExcludeSubjectTermTexts();
-                    }
-                    if (!includeFacetKeys.isEmpty()) {
-                        filtersBuilder.setIncludeSubjectTermTexts(includeFacetKeys);
-                    } else {
-                        filtersBuilder.unsetIncludeSubjectTermTexts();
-                    }
+                protected void _valueChange(final Optional<ImmutableSet<String>> excludeFacetKeys,
+                        final Optional<ImmutableSet<String>> includeFacetKeys) {
                     eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
-                            .setQuery(ObjectQuery.builder().setFacetFilters(filtersBuilder.build()).build()).build());
+                            .setQuery(ObjectQuery.builder()
+                                    .setFacetFilters(ObjectFacetFilters.builder(objectQuery.getFacetFilters())
+                                            .setExcludeSubjectTermTexts(excludeFacetKeys)
+                                            .setIncludeSubjectTermTexts(includeFacetKeys).build())
+                                    .build())
+                            .build());
                 }
             };
             if (!subjectTermTextFacetPicker.isEmpty()) {
@@ -247,35 +165,43 @@ final class ObjectFacetsLayout extends CustomComponent {
             }
         }
 
+        if (!availableObjectFacets.getTechniqueTexts().isEmpty()) {
+            final ObjectFacetPicker<String> techniqueTextFacetPicker = new ObjectFacetPicker<String>(
+                    availableObjectFacets.getTechniqueTexts().keySet(), "Techniques",
+                    facetFilters.getExcludeTechniqueTexts(), facetFilters.getIncludeTechniqueTexts(),
+                    resultObjectFacets.getTechniqueTexts().keySet()) {
+                @Override
+                protected void _valueChange(final Optional<ImmutableSet<String>> excludeFacetKeys,
+                        final Optional<ImmutableSet<String>> includeFacetKeys) {
+                    eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
+                            .setQuery(ObjectQuery.builder()
+                                    .setFacetFilters(ObjectFacetFilters.builder(objectQuery.getFacetFilters())
+                                            .setExcludeTechniqueTexts(excludeFacetKeys)
+                                            .setIncludeTechniqueTexts(includeFacetKeys).build())
+                                    .build())
+                            .build());
+                }
+            };
+            if (!techniqueTextFacetPicker.isEmpty()) {
+                rootLayout.addComponent(techniqueTextFacetPicker);
+            }
+        }
+
         if (!availableObjectFacets.getWorkTypeTexts().isEmpty()) {
             final ObjectFacetPicker<String> workTypeTextFacetPicker = new ObjectFacetPicker<String>(
                     availableObjectFacets.getWorkTypeTexts().keySet(), "Work type",
-                    objectQuery.getFacetFilters().isPresent()
-                            && objectQuery.getFacetFilters().get().getExcludeWorkTypeTexts().isPresent()
-                                    ? objectQuery.getFacetFilters().get().getExcludeWorkTypeTexts().get()
-                                    : ImmutableSet.of(),
-                    objectQuery.getFacetFilters().isPresent()
-                            && objectQuery.getFacetFilters().get().getIncludeWorkTypeTexts().isPresent()
-                                    ? objectQuery.getFacetFilters().get().getIncludeWorkTypeTexts().get()
-                                    : ImmutableSet.of(),
+                    facetFilters.getExcludeWorkTypeTexts(), facetFilters.getIncludeWorkTypeTexts(),
                     resultObjectFacets.getWorkTypeTexts().keySet()) {
                 @Override
-                protected void _valueChange(final ImmutableSet<String> excludeFacetKeys,
-                        final ImmutableSet<String> includeFacetKeys) {
-                    final ObjectFacetFilters.Builder filtersBuilder = ObjectFacetFilters
-                            .builder(objectQuery.getFacetFilters());
-                    if (!excludeFacetKeys.isEmpty()) {
-                        filtersBuilder.setExcludeWorkTypeTexts(excludeFacetKeys);
-                    } else {
-                        filtersBuilder.unsetExcludeWorkTypeTexts();
-                    }
-                    if (!includeFacetKeys.isEmpty()) {
-                        filtersBuilder.setIncludeWorkTypeTexts(includeFacetKeys);
-                    } else {
-                        filtersBuilder.unsetIncludeWorkTypeTexts();
-                    }
+                protected void _valueChange(final Optional<ImmutableSet<String>> excludeFacetKeys,
+                        final Optional<ImmutableSet<String>> includeFacetKeys) {
                     eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
-                            .setQuery(ObjectQuery.builder().setFacetFilters(filtersBuilder.build()).build()).build());
+                            .setQuery(ObjectQuery.builder()
+                                    .setFacetFilters(ObjectFacetFilters.builder(objectQuery.getFacetFilters())
+                                            .setExcludeWorkTypeTexts(excludeFacetKeys)
+                                            .setIncludeWorkTypeTexts(includeFacetKeys).build())
+                                    .build())
+                            .build());
                 }
             };
             if (!workTypeTextFacetPicker.isEmpty()) {

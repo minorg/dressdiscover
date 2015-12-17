@@ -101,6 +101,18 @@
             }, 
             "type": "multi_field"
           }, 
+          "15:technique_texts": {
+            "fields": {
+              "text": {
+                "type": "string"
+              }, 
+              "not_analyzed": {
+                "index": "not_analyzed", 
+                "type": "string"
+              }
+            }, 
+            "type": "multi_field"
+          }, 
           "10:thumbnail": {
             "type": "nested", 
             "properties": {

@@ -14,7 +14,7 @@ class ObjectFacets(object):
             institution_hits=None,
             material_texts=None,
             subject_term_texts=None,
-            url_exists=None,
+            technique_texts=None,
             work_type_texts=None,
         ):
             '''
@@ -25,7 +25,7 @@ class ObjectFacets(object):
             :type institution_hits: dict(str: int)
             :type material_texts: dict(str: int)
             :type subject_term_texts: dict(str: int)
-            :type url_exists: bool
+            :type technique_texts: dict(str: int)
             :type work_type_texts: dict(str: int)
             '''
 
@@ -36,11 +36,11 @@ class ObjectFacets(object):
             self.__institution_hits = institution_hits
             self.__material_texts = material_texts
             self.__subject_term_texts = subject_term_texts
-            self.__url_exists = url_exists
+            self.__technique_texts = technique_texts
             self.__work_type_texts = work_type_texts
 
         def build(self):
-            return ObjectFacets(agent_name_texts=self.__agent_name_texts, categories=self.__categories, collection_hits=self.__collection_hits, genders=self.__genders, institution_hits=self.__institution_hits, material_texts=self.__material_texts, subject_term_texts=self.__subject_term_texts, url_exists=self.__url_exists, work_type_texts=self.__work_type_texts)
+            return ObjectFacets(agent_name_texts=self.__agent_name_texts, categories=self.__categories, collection_hits=self.__collection_hits, genders=self.__genders, institution_hits=self.__institution_hits, material_texts=self.__material_texts, subject_term_texts=self.__subject_term_texts, technique_texts=self.__technique_texts, work_type_texts=self.__work_type_texts)
 
         @property
         def agent_name_texts(self):
@@ -146,12 +146,12 @@ class ObjectFacets(object):
             self.__subject_term_texts = subject_term_texts
             return self
 
-        def set_url_exists(self, url_exists):
+        def set_technique_texts(self, technique_texts):
             '''
-            :type url_exists: bool
+            :type technique_texts: dict(str: int)
             '''
 
-            self.__url_exists = url_exists
+            self.__technique_texts = technique_texts
             return self
 
         def set_work_type_texts(self, work_type_texts):
@@ -170,6 +170,14 @@ class ObjectFacets(object):
 
             return self.__subject_term_texts.copy() if self.__subject_term_texts is not None else None
 
+        @property
+        def technique_texts(self):
+            '''
+            :rtype: dict(str: int)
+            '''
+
+            return self.__technique_texts.copy() if self.__technique_texts is not None else None
+
         def update(self, object_facets):
             '''
             :type agent_name_texts: dict(str: int)
@@ -179,7 +187,7 @@ class ObjectFacets(object):
             :type institution_hits: dict(str: int)
             :type material_texts: dict(str: int)
             :type subject_term_texts: dict(str: int)
-            :type url_exists: bool
+            :type technique_texts: dict(str: int)
             :type work_type_texts: dict(str: int)
             '''
 
@@ -191,7 +199,7 @@ class ObjectFacets(object):
                 self.set_institution_hits(object_facets.institution_hits)
                 self.set_material_texts(object_facets.material_texts)
                 self.set_subject_term_texts(object_facets.subject_term_texts)
-                self.set_url_exists(object_facets.url_exists)
+                self.set_technique_texts(object_facets.technique_texts)
                 self.set_work_type_texts(object_facets.work_type_texts)
             elif isinstance(object_facets, dict):
                 for key, value in object_facets.iteritems():
@@ -199,14 +207,6 @@ class ObjectFacets(object):
             else:
                 raise TypeError(object_facets)
             return self
-
-        @property
-        def url_exists(self):
-            '''
-            :rtype: bool
-            '''
-
-            return self.__url_exists
 
         @property
         def work_type_texts(self):
@@ -272,13 +272,13 @@ class ObjectFacets(object):
 
             self.set_subject_term_texts(subject_term_texts)
 
-        @url_exists.setter
-        def url_exists(self, url_exists):
+        @technique_texts.setter
+        def technique_texts(self, technique_texts):
             '''
-            :type url_exists: bool
+            :type technique_texts: dict(str: int)
             '''
 
-            self.set_url_exists(url_exists)
+            self.set_technique_texts(technique_texts)
 
         @work_type_texts.setter
         def work_type_texts(self, work_type_texts):
@@ -297,7 +297,7 @@ class ObjectFacets(object):
         institution_hits,
         material_texts,
         subject_term_texts,
-        url_exists,
+        technique_texts,
         work_type_texts,
     ):
         '''
@@ -308,7 +308,7 @@ class ObjectFacets(object):
         :type institution_hits: dict(str: int)
         :type material_texts: dict(str: int)
         :type subject_term_texts: dict(str: int)
-        :type url_exists: bool
+        :type technique_texts: dict(str: int)
         :type work_type_texts: dict(str: int)
         '''
 
@@ -354,11 +354,11 @@ class ObjectFacets(object):
             raise TypeError("expected subject_term_texts to be a dict(str: int) but it is a %s" % getattr(__builtin__, 'type')(subject_term_texts))
         self.__subject_term_texts = subject_term_texts.copy() if subject_term_texts is not None else None
 
-        if url_exists is None:
-            raise ValueError('url_exists is required')
-        if not isinstance(url_exists, bool):
-            raise TypeError("expected url_exists to be a bool but it is a %s" % getattr(__builtin__, 'type')(url_exists))
-        self.__url_exists = url_exists
+        if technique_texts is None:
+            raise ValueError('technique_texts is required')
+        if not (isinstance(technique_texts, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], basestring) and isinstance(__item[1], (int, long)) and __item[1] >= 0, technique_texts.iteritems()))) == 0):
+            raise TypeError("expected technique_texts to be a dict(str: int) but it is a %s" % getattr(__builtin__, 'type')(technique_texts))
+        self.__technique_texts = technique_texts.copy() if technique_texts is not None else None
 
         if work_type_texts is None:
             raise ValueError('work_type_texts is required')
@@ -381,14 +381,14 @@ class ObjectFacets(object):
             return False
         if self.subject_term_texts != other.subject_term_texts:
             return False
-        if self.url_exists != other.url_exists:
+        if self.technique_texts != other.technique_texts:
             return False
         if self.work_type_texts != other.work_type_texts:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.agent_name_texts,self.categories,self.collection_hits,self.genders,self.institution_hits,self.material_texts,self.subject_term_texts,self.url_exists,self.work_type_texts,))
+        return hash((self.agent_name_texts,self.categories,self.collection_hits,self.genders,self.institution_hits,self.material_texts,self.subject_term_texts,self.technique_texts,self.work_type_texts,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -405,7 +405,7 @@ class ObjectFacets(object):
         field_reprs.append('institution_hits=' + repr(self.institution_hits))
         field_reprs.append('material_texts=' + repr(self.material_texts))
         field_reprs.append('subject_term_texts=' + repr(self.subject_term_texts))
-        field_reprs.append('url_exists=' + repr(self.url_exists))
+        field_reprs.append('technique_texts=' + repr(self.technique_texts))
         field_reprs.append('work_type_texts=' + repr(self.work_type_texts))
         return 'ObjectFacets(' + ', '.join(field_reprs) + ')'
 
@@ -418,7 +418,7 @@ class ObjectFacets(object):
         field_reprs.append('institution_hits=' + repr(self.institution_hits))
         field_reprs.append('material_texts=' + repr(self.material_texts))
         field_reprs.append('subject_term_texts=' + repr(self.subject_term_texts))
-        field_reprs.append('url_exists=' + repr(self.url_exists))
+        field_reprs.append('technique_texts=' + repr(self.technique_texts))
         field_reprs.append('work_type_texts=' + repr(self.work_type_texts))
         return 'ObjectFacets(' + ', '.join(field_reprs) + ')'
 
@@ -437,7 +437,7 @@ class ObjectFacets(object):
         :rtype: dict
         '''
 
-        return {'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'collection_hits': self.collection_hits, 'genders': self.genders, 'institution_hits': self.institution_hits, 'material_texts': self.material_texts, 'subject_term_texts': self.subject_term_texts, 'url_exists': self.url_exists, 'work_type_texts': self.work_type_texts}
+        return {'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'collection_hits': self.collection_hits, 'genders': self.genders, 'institution_hits': self.institution_hits, 'material_texts': self.material_texts, 'subject_term_texts': self.subject_term_texts, 'technique_texts': self.technique_texts, 'work_type_texts': self.work_type_texts}
 
     def as_tuple(self):
         '''
@@ -446,7 +446,7 @@ class ObjectFacets(object):
         :rtype: tuple
         '''
 
-        return (self.agent_name_texts, self.categories, self.collection_hits, self.genders, self.institution_hits, self.material_texts, self.subject_term_texts, self.url_exists, self.work_type_texts,)
+        return (self.agent_name_texts, self.categories, self.collection_hits, self.genders, self.institution_hits, self.material_texts, self.subject_term_texts, self.technique_texts, self.work_type_texts,)
 
     @property
     def categories(self):
@@ -518,8 +518,8 @@ class ObjectFacets(object):
                 init_kwds['material_texts'] = dict([(iprot.read_string(), iprot.read_u32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'subject_term_texts':
                 init_kwds['subject_term_texts'] = dict([(iprot.read_string(), iprot.read_u32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
-            elif ifield_name == 'url_exists':
-                init_kwds['url_exists'] = iprot.read_bool()
+            elif ifield_name == 'technique_texts':
+                init_kwds['technique_texts'] = dict([(iprot.read_string(), iprot.read_u32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'work_type_texts':
                 init_kwds['work_type_texts'] = dict([(iprot.read_string(), iprot.read_u32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             iprot.read_field_end()
@@ -536,7 +536,7 @@ class ObjectFacets(object):
         institution_hits=None,
         material_texts=None,
         subject_term_texts=None,
-        url_exists=None,
+        technique_texts=None,
         work_type_texts=None,
     ):
         '''
@@ -549,7 +549,7 @@ class ObjectFacets(object):
         :type institution_hits: dict(str: int) or None
         :type material_texts: dict(str: int) or None
         :type subject_term_texts: dict(str: int) or None
-        :type url_exists: bool or None
+        :type technique_texts: dict(str: int) or None
         :type work_type_texts: dict(str: int) or None
         :rtype: costume.api.services.object.object_facets.ObjectFacets
         '''
@@ -568,11 +568,11 @@ class ObjectFacets(object):
             material_texts = self.material_texts
         if subject_term_texts is None:
             subject_term_texts = self.subject_term_texts
-        if url_exists is None:
-            url_exists = self.url_exists
+        if technique_texts is None:
+            technique_texts = self.technique_texts
         if work_type_texts is None:
             work_type_texts = self.work_type_texts
-        return self.__class__(agent_name_texts=agent_name_texts, categories=categories, collection_hits=collection_hits, genders=genders, institution_hits=institution_hits, material_texts=material_texts, subject_term_texts=subject_term_texts, url_exists=url_exists, work_type_texts=work_type_texts)
+        return self.__class__(agent_name_texts=agent_name_texts, categories=categories, collection_hits=collection_hits, genders=genders, institution_hits=institution_hits, material_texts=material_texts, subject_term_texts=subject_term_texts, technique_texts=technique_texts, work_type_texts=work_type_texts)
 
     @property
     def subject_term_texts(self):
@@ -583,12 +583,12 @@ class ObjectFacets(object):
         return self.__subject_term_texts.copy() if self.__subject_term_texts is not None else None
 
     @property
-    def url_exists(self):
+    def technique_texts(self):
         '''
-        :rtype: bool
+        :rtype: dict(str: int)
         '''
 
-        return self.__url_exists
+        return self.__technique_texts.copy() if self.__technique_texts is not None else None
 
     @property
     def work_type_texts(self):
@@ -664,8 +664,12 @@ class ObjectFacets(object):
         oprot.write_map_end()
         oprot.write_field_end()
 
-        oprot.write_field_begin(name='url_exists', type=2, id=None)
-        oprot.write_bool(self.url_exists)
+        oprot.write_field_begin(name='technique_texts', type=13, id=None)
+        oprot.write_map_begin(11, len(self.technique_texts), 8)
+        for __key0, __value0 in self.technique_texts.iteritems():
+            oprot.write_string(__key0)
+            oprot.write_u32(__value0)
+        oprot.write_map_end()
         oprot.write_field_end()
 
         oprot.write_field_begin(name='work_type_texts', type=13, id=None)

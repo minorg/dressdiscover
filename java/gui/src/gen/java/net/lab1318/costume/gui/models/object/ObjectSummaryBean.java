@@ -14,6 +14,7 @@ public class ObjectSummaryBean {
         GENDER("gender", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.gender.Gender>() {}, false, 8, "gender", org.thryft.protocol.Type.STRING),
         MATERIAL_TEXTS("materialTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 14, "material_texts", org.thryft.protocol.Type.LIST),
         SUBJECT_TERM_TEXTS("subjectTermTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 9, "subject_term_texts", org.thryft.protocol.Type.LIST),
+        TECHNIQUE_TEXTS("techniqueTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 15, "technique_texts", org.thryft.protocol.Type.LIST),
         THUMBNAIL("thumbnail", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.image.ImageVersionBean>() {}, false, 10, "thumbnail", org.thryft.protocol.Type.STRUCT),
         URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 13, "url", org.thryft.protocol.Type.STRING),
         WORK_TYPE_TEXTS("workTypeTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 11, "work_type_texts", org.thryft.protocol.Type.LIST);
@@ -71,6 +72,7 @@ public class ObjectSummaryBean {
             case "gender": return GENDER;
             case "materialTexts": return MATERIAL_TEXTS;
             case "subjectTermTexts": return SUBJECT_TERM_TEXTS;
+            case "techniqueTexts": return TECHNIQUE_TEXTS;
             case "thumbnail": return THUMBNAIL;
             case "url": return URL;
             case "workTypeTexts": return WORK_TYPE_TEXTS;
@@ -92,6 +94,7 @@ public class ObjectSummaryBean {
             case "gender": return GENDER;
             case "material_texts": return MATERIAL_TEXTS;
             case "subject_term_texts": return SUBJECT_TERM_TEXTS;
+            case "technique_texts": return TECHNIQUE_TEXTS;
             case "thumbnail": return THUMBNAIL;
             case "url": return URL;
             case "work_type_texts": return WORK_TYPE_TEXTS;
@@ -135,6 +138,7 @@ public class ObjectSummaryBean {
         gender = null;
         materialTexts = null;
         subjectTermTexts = null;
+        techniqueTexts = null;
         thumbnail = null;
         url = null;
         workTypeTexts = null;
@@ -152,6 +156,7 @@ public class ObjectSummaryBean {
         this.gender = other.getGender().isPresent() ? other.getGender().get() : null;
         this.materialTexts = other.getMaterialTexts().isPresent() ? new java.util.ArrayList<String>(other.getMaterialTexts().get()) : null;
         this.subjectTermTexts = other.getSubjectTermTexts().isPresent() ? new java.util.ArrayList<String>(other.getSubjectTermTexts().get()) : null;
+        this.techniqueTexts = other.getTechniqueTexts().isPresent() ? new java.util.ArrayList<String>(other.getTechniqueTexts().get()) : null;
         this.thumbnail = other.getThumbnail().isPresent() ? new net.lab1318.costume.gui.models.image.ImageVersionBean(other.getThumbnail().get()) : null;
         this.url = other.getUrl().isPresent() ? other.getUrl().get() : null;
         this.workTypeTexts = other.getWorkTypeTexts().isPresent() ? new java.util.ArrayList<String>(other.getWorkTypeTexts().get()) : null;
@@ -178,6 +183,7 @@ public class ObjectSummaryBean {
             getGender().equals(other.getGender()) &&
             getMaterialTexts().equals(other.getMaterialTexts()) &&
             getSubjectTermTexts().equals(other.getSubjectTermTexts()) &&
+            getTechniqueTexts().equals(other.getTechniqueTexts()) &&
             getThumbnail().equals(other.getThumbnail()) &&
             getUrl().equals(other.getUrl()) &&
             getWorkTypeTexts().equals(other.getWorkTypeTexts());
@@ -229,6 +235,10 @@ public class ObjectSummaryBean {
         return subjectTermTexts;
     }
 
+    public java.util.List<String> getTechniqueTexts() {
+        return techniqueTexts;
+    }
+
     public net.lab1318.costume.gui.models.image.ImageVersionBean getThumbnail() {
         return thumbnail;
     }
@@ -275,6 +285,9 @@ public class ObjectSummaryBean {
         }
         if (getSubjectTermTexts() != null) {
             hashCode = 31 * hashCode + getSubjectTermTexts().hashCode();
+        }
+        if (getTechniqueTexts() != null) {
+            hashCode = 31 * hashCode + getTechniqueTexts().hashCode();
         }
         if (getThumbnail() != null) {
             hashCode = 31 * hashCode + getThumbnail().hashCode();
@@ -328,6 +341,10 @@ public class ObjectSummaryBean {
         this.subjectTermTexts = subjectTermTexts;
     }
 
+    public void setTechniqueTexts(final java.util.List<String> techniqueTexts) {
+        this.techniqueTexts = techniqueTexts;
+    }
+
     public void setThumbnail(final net.lab1318.costume.gui.models.image.ImageVersionBean thumbnail) {
         this.thumbnail = thumbnail;
     }
@@ -346,7 +363,7 @@ public class ObjectSummaryBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("date", getDate()).add("description", getDescription()).add("gender", getGender()).add("material_texts", getMaterialTexts()).add("subject_term_texts", getSubjectTermTexts()).add("thumbnail", getThumbnail()).add("url", getUrl()).add("work_type_texts", getWorkTypeTexts()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("date", getDate()).add("description", getDescription()).add("gender", getGender()).add("material_texts", getMaterialTexts()).add("subject_term_texts", getSubjectTermTexts()).add("technique_texts", getTechniqueTexts()).add("thumbnail", getThumbnail()).add("url", getUrl()).add("work_type_texts", getWorkTypeTexts()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -379,6 +396,8 @@ public class ObjectSummaryBean {
     private java.util.List<String> materialTexts;
 
     private java.util.List<String> subjectTermTexts;
+
+    private java.util.List<String> techniqueTexts;
 
     private net.lab1318.costume.gui.models.image.ImageVersionBean thumbnail;
 

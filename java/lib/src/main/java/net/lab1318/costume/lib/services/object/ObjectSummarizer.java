@@ -16,6 +16,7 @@ import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectSummary;
 import net.lab1318.costume.api.models.subject.Subject;
 import net.lab1318.costume.api.models.subject.SubjectTerm;
+import net.lab1318.costume.api.models.technique.Technique;
 import net.lab1318.costume.api.models.textref.Textref;
 import net.lab1318.costume.api.models.textref.TextrefRefidType;
 import net.lab1318.costume.api.models.title.Title;
@@ -92,6 +93,14 @@ public final class ObjectSummarizer {
                 }
             }
             builder.setSubjectTermTexts(subjectTermTextsBuilder.build());
+        }
+
+        if (object.getTechniques().isPresent()) {
+            final ImmutableList.Builder<String> techniqueTextsBuilder = ImmutableList.builder();
+            for (final Technique technique : object.getTechniques().get().getElements()) {
+                techniqueTextsBuilder.add(technique.getText());
+            }
+            builder.setTechniqueTexts(techniqueTextsBuilder.build());
         }
 
         // Thumbnail

@@ -441,6 +441,7 @@
                 "type": "nested", 
                 "properties": {
                   "1:text": {
+                    "index": "not_analyzed", 
                     "type": "string"
                   }, 
                   "4:vocab_ref": {

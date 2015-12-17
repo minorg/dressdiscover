@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.vaadin.viritin.components.DisclosurePanel;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableSet;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
@@ -20,7 +21,7 @@ import com.vaadin.ui.VerticalLayout;
 @SuppressWarnings("serial")
 abstract class ObjectFacetPicker<KeyT> extends CustomComponent {
     public ObjectFacetPicker(final ImmutableSet<KeyT> availableFacetKeys, final String caption,
-            final ImmutableSet<KeyT> excludeFacetKeys, final ImmutableSet<KeyT> includeFacetKeys,
+            final Optional<ImmutableSet<KeyT>> excludeFacetKeys, final Optional<ImmutableSet<KeyT>> includeFacetKeys,
             final ImmutableSet<KeyT> resultFacetKeys) {
         final VerticalLayout checkBoxesLayout = new VerticalLayout();
 
@@ -41,12 +42,12 @@ abstract class ObjectFacetPicker<KeyT> extends CustomComponent {
         for (final KeyT availableFacetKey : availableFacetKeyList) {
             final CheckBox checkBox;
             if (resultFacetKeys.contains(availableFacetKey)) {
-                checkState(
-                        includeFacetKeys.contains(availableFacetKey) || !excludeFacetKeys.contains(availableFacetKey));
+                checkState((includeFacetKeys.isPresent() && includeFacetKeys.get().contains(availableFacetKey))
+                        || !excludeFacetKeys.isPresent() || !excludeFacetKeys.get().contains(availableFacetKey));
                 checkBox = new CheckBox(_getCheckBoxCaption(availableFacetKey));
                 checkBox.setValue(true);
                 currentlySelectedFacetKeys.add(availableFacetKey);
-            } else if (excludeFacetKeys.contains(availableFacetKey)) {
+            } else if (excludeFacetKeys.isPresent() && excludeFacetKeys.get().contains(availableFacetKey)) {
                 checkBox = new CheckBox(_getCheckBoxCaption(availableFacetKey));
             } else {
                 continue;
@@ -62,9 +63,15 @@ abstract class ObjectFacetPicker<KeyT> extends CustomComponent {
                         checkState(currentlySelectedFacetKeys.remove(availableFacetKey));
                     }
 
-                    if (currentlySelectedFacetKeys.size() < currentlyDisplayedFacetKeys.size() / 2) {
+                    if (currentlySelectedFacetKeys.isEmpty()) {
+                        // Exclude all
+                        _valueChange(Optional.of(availableFacetKeys), Optional.absent());
+                    } else if (currentlySelectedFacetKeys.size() == currentlyDisplayedFacetKeys.size()) {
+                        // Include all
+                        _valueChange(Optional.absent(), Optional.absent());
+                    } else if (currentlySelectedFacetKeys.size() < currentlyDisplayedFacetKeys.size() / 2) {
                         // Include only when number of selected < 50%
-                        _valueChange(ImmutableSet.of(), ImmutableSet.copyOf(currentlySelectedFacetKeys));
+                        _valueChange(Optional.absent(), Optional.of(ImmutableSet.copyOf(currentlySelectedFacetKeys)));
                     } else {
                         // Exclude only when number of selected > 50%
                         final ImmutableSet.Builder<KeyT> excludeFacetKeysBuilder = ImmutableSet.builder();
@@ -73,7 +80,9 @@ abstract class ObjectFacetPicker<KeyT> extends CustomComponent {
                                 excludeFacetKeysBuilder.add(facetKey);
                             }
                         }
-                        _valueChange(excludeFacetKeysBuilder.build(), ImmutableSet.of());
+                        final ImmutableSet<KeyT> tempExcludeFacetKeys = excludeFacetKeysBuilder.build();
+                        checkState(!tempExcludeFacetKeys.isEmpty());
+                        _valueChange(Optional.of(tempExcludeFacetKeys), Optional.absent());
                     }
                 }
             });
@@ -92,7 +101,7 @@ abstract class ObjectFacetPicker<KeyT> extends CustomComponent {
             @Override
             public void valueChange(final ValueChangeEvent event) {
                 currentlySelectedFacetKeys.clear();
-                _valueChange(ImmutableSet.of(), ImmutableSet.of());
+                _valueChange(Optional.absent(), Optional.absent());
             }
         });
 
@@ -112,6 +121,6 @@ abstract class ObjectFacetPicker<KeyT> extends CustomComponent {
         return facetKey.toString();
     }
 
-    protected abstract void _valueChange(final ImmutableSet<KeyT> excludeFacetKeys,
-            final ImmutableSet<KeyT> includeFacetKeys);
+    protected abstract void _valueChange(final Optional<ImmutableSet<KeyT>> excludeFacetKeys,
+            final Optional<ImmutableSet<KeyT>> includeFacetKeys);
 }
