@@ -55,12 +55,12 @@ public class TextrefSet implements org.thryft.Struct, net.lab1318.costume.api.mo
                 public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.textref.Textref> apply(final org.thryft.protocol.InputProtocol iprot) {
                     try {
                         final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                        final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.textref.Textref> sequence = com.google.common.collect.ImmutableList.builder();
+                        final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.textref.Textref> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                            sequence.add(net.lab1318.costume.api.models.textref.Textref.readAsStruct(iprot));
+                            sequenceBuilder.add(net.lab1318.costume.api.models.textref.Textref.readAsStruct(iprot));
                         }
                         iprot.readListEnd();
-                        return sequence.build();
+                        return sequenceBuilder.build();
                     } catch (final org.thryft.protocol.InputProtocolException e) {
                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                     }
@@ -91,12 +91,12 @@ public class TextrefSet implements org.thryft.Struct, net.lab1318.costume.api.mo
                             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.textref.Textref> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                    final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.textref.Textref> sequence = com.google.common.collect.ImmutableList.builder();
+                                    final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.textref.Textref> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequence.add(net.lab1318.costume.api.models.textref.Textref.readAsStruct(iprot));
+                                        sequenceBuilder.add(net.lab1318.costume.api.models.textref.Textref.readAsStruct(iprot));
                                     }
                                     iprot.readListEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
@@ -404,12 +404,12 @@ public class TextrefSet implements org.thryft.Struct, net.lab1318.costume.api.mo
             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.textref.Textref> apply(final org.thryft.protocol.InputProtocol iprot) {
                 try {
                     final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                    final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.textref.Textref> sequence = com.google.common.collect.ImmutableList.builder();
+                    final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.textref.Textref> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                        sequence.add(net.lab1318.costume.api.models.textref.Textref.readAsStruct(iprot));
+                        sequenceBuilder.add(net.lab1318.costume.api.models.textref.Textref.readAsStruct(iprot));
                     }
                     iprot.readListEnd();
-                    return sequence.build();
+                    return sequenceBuilder.build();
                 } catch (final org.thryft.protocol.InputProtocolException e) {
                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                 }
@@ -448,12 +448,12 @@ public class TextrefSet implements org.thryft.Struct, net.lab1318.costume.api.mo
                         public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.textref.Textref> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.textref.Textref> sequence = com.google.common.collect.ImmutableList.builder();
+                                final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.textref.Textref> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(net.lab1318.costume.api.models.textref.Textref.readAsStruct(iprot));
+                                    sequenceBuilder.add(net.lab1318.costume.api.models.textref.Textref.readAsStruct(iprot));
                                 }
                                 iprot.readListEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }

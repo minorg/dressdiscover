@@ -120,12 +120,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(iprot.readString());
+                                    sequenceBuilder.add(iprot.readString());
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -141,12 +141,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(iprot.readString());
+                                    sequenceBuilder.add(iprot.readString());
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -162,16 +162,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                     try {
-                                        sequence.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
+                                        sequenceBuilder.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
                                     } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                                          throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -187,16 +187,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                     try {
-                                        sequence.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
+                                        sequenceBuilder.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
                                     } catch (final IllegalArgumentException e) {
                                          throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -212,16 +212,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.institution.InstitutionId> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.institution.InstitutionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                     try {
-                                        sequence.add(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
+                                        sequenceBuilder.add(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
                                     } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
                                          throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -237,12 +237,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(iprot.readString());
+                                    sequenceBuilder.add(iprot.readString());
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -258,12 +258,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(iprot.readString());
+                                    sequenceBuilder.add(iprot.readString());
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -279,12 +279,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(iprot.readString());
+                                    sequenceBuilder.add(iprot.readString());
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -300,12 +300,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(iprot.readString());
+                                    sequenceBuilder.add(iprot.readString());
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -321,16 +321,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                     try {
-                                        sequence.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
+                                        sequenceBuilder.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
                                     } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                                          throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -346,16 +346,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                     try {
-                                        sequence.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
+                                        sequenceBuilder.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
                                     } catch (final IllegalArgumentException e) {
                                          throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -371,16 +371,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.institution.InstitutionId> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.institution.InstitutionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                     try {
-                                        sequence.add(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
+                                        sequenceBuilder.add(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
                                     } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
                                          throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -396,12 +396,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(iprot.readString());
+                                    sequenceBuilder.add(iprot.readString());
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -417,12 +417,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(iprot.readString());
+                                    sequenceBuilder.add(iprot.readString());
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -450,12 +450,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequence.add(iprot.readString());
+                                        sequenceBuilder.add(iprot.readString());
                                     }
                                     iprot.readSetEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
@@ -472,12 +472,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequence.add(iprot.readString());
+                                        sequenceBuilder.add(iprot.readString());
                                     }
                                     iprot.readSetEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
@@ -494,16 +494,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                             public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequence = com.google.common.collect.ImmutableSet.builder();
+                                    final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                         try {
-                                            sequence.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
+                                            sequenceBuilder.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
                                         } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                                              throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
                                     }
                                     iprot.readSetEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
@@ -520,16 +520,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                             public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequence = com.google.common.collect.ImmutableSet.builder();
+                                    final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                         try {
-                                            sequence.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
+                                            sequenceBuilder.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
                                         } catch (final IllegalArgumentException e) {
                                              throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
                                     }
                                     iprot.readSetEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
@@ -546,16 +546,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                             public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.institution.InstitutionId> sequence = com.google.common.collect.ImmutableSet.builder();
+                                    final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.institution.InstitutionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                         try {
-                                            sequence.add(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
+                                            sequenceBuilder.add(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
                                         } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
                                              throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
                                     }
                                     iprot.readSetEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
@@ -572,12 +572,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequence.add(iprot.readString());
+                                        sequenceBuilder.add(iprot.readString());
                                     }
                                     iprot.readSetEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
@@ -594,12 +594,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequence.add(iprot.readString());
+                                        sequenceBuilder.add(iprot.readString());
                                     }
                                     iprot.readSetEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
@@ -616,12 +616,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequence.add(iprot.readString());
+                                        sequenceBuilder.add(iprot.readString());
                                     }
                                     iprot.readSetEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
@@ -638,12 +638,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequence.add(iprot.readString());
+                                        sequenceBuilder.add(iprot.readString());
                                     }
                                     iprot.readSetEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
@@ -660,16 +660,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                             public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequence = com.google.common.collect.ImmutableSet.builder();
+                                    final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                         try {
-                                            sequence.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
+                                            sequenceBuilder.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
                                         } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                                              throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
                                     }
                                     iprot.readSetEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
@@ -686,16 +686,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                             public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequence = com.google.common.collect.ImmutableSet.builder();
+                                    final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                         try {
-                                            sequence.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
+                                            sequenceBuilder.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
                                         } catch (final IllegalArgumentException e) {
                                              throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
                                     }
                                     iprot.readSetEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
@@ -712,16 +712,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                             public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.institution.InstitutionId> sequence = com.google.common.collect.ImmutableSet.builder();
+                                    final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.institution.InstitutionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                         try {
-                                            sequence.add(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
+                                            sequenceBuilder.add(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
                                         } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
                                              throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
                                     }
                                     iprot.readSetEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
@@ -738,12 +738,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequence.add(iprot.readString());
+                                        sequenceBuilder.add(iprot.readString());
                                     }
                                     iprot.readSetEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
@@ -760,12 +760,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequence.add(iprot.readString());
+                                        sequenceBuilder.add(iprot.readString());
                                     }
                                     iprot.readSetEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
@@ -1469,12 +1469,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                     public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                            final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                            final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                sequence.add(iprot.readString());
+                                sequenceBuilder.add(iprot.readString());
                             }
                             iprot.readSetEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -1490,12 +1490,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                     public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                            final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                            final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                sequence.add(iprot.readString());
+                                sequenceBuilder.add(iprot.readString());
                             }
                             iprot.readSetEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -1511,16 +1511,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                     public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                            final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequence = com.google.common.collect.ImmutableSet.builder();
+                            final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                 try {
-                                    sequence.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
+                                    sequenceBuilder.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
                                 } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                                      throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
                             iprot.readSetEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -1536,16 +1536,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                     public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                            final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequence = com.google.common.collect.ImmutableSet.builder();
+                            final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                 try {
-                                    sequence.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
+                                    sequenceBuilder.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
                                 } catch (final IllegalArgumentException e) {
                                      throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
                             iprot.readSetEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -1561,16 +1561,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                     public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                            final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.institution.InstitutionId> sequence = com.google.common.collect.ImmutableSet.builder();
+                            final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.institution.InstitutionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                 try {
-                                    sequence.add(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
+                                    sequenceBuilder.add(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
                                 } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
                                      throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
                             iprot.readSetEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -1586,12 +1586,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                     public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                            final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                            final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                sequence.add(iprot.readString());
+                                sequenceBuilder.add(iprot.readString());
                             }
                             iprot.readSetEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -1607,12 +1607,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                     public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                            final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                            final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                sequence.add(iprot.readString());
+                                sequenceBuilder.add(iprot.readString());
                             }
                             iprot.readSetEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -1628,12 +1628,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                     public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                            final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                            final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                sequence.add(iprot.readString());
+                                sequenceBuilder.add(iprot.readString());
                             }
                             iprot.readSetEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -1649,12 +1649,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                     public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                            final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                            final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                sequence.add(iprot.readString());
+                                sequenceBuilder.add(iprot.readString());
                             }
                             iprot.readSetEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -1670,16 +1670,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                     public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                            final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequence = com.google.common.collect.ImmutableSet.builder();
+                            final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                 try {
-                                    sequence.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
+                                    sequenceBuilder.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
                                 } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                                      throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
                             iprot.readSetEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -1695,16 +1695,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                     public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                            final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequence = com.google.common.collect.ImmutableSet.builder();
+                            final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                 try {
-                                    sequence.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
+                                    sequenceBuilder.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
                                 } catch (final IllegalArgumentException e) {
                                      throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
                             iprot.readSetEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -1720,16 +1720,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                     public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                            final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.institution.InstitutionId> sequence = com.google.common.collect.ImmutableSet.builder();
+                            final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.institution.InstitutionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                 try {
-                                    sequence.add(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
+                                    sequenceBuilder.add(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
                                 } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
                                      throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
                             iprot.readSetEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -1745,12 +1745,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                     public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                            final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                            final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                sequence.add(iprot.readString());
+                                sequenceBuilder.add(iprot.readString());
                             }
                             iprot.readSetEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -1766,12 +1766,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                     public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                            final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                            final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                sequence.add(iprot.readString());
+                                sequenceBuilder.add(iprot.readString());
                             }
                             iprot.readSetEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -1818,12 +1818,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(iprot.readString());
+                                    sequenceBuilder.add(iprot.readString());
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -1840,12 +1840,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(iprot.readString());
+                                    sequenceBuilder.add(iprot.readString());
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -1862,16 +1862,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                     try {
-                                        sequence.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
+                                        sequenceBuilder.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
                                     } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                                          throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -1888,16 +1888,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                     try {
-                                        sequence.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
+                                        sequenceBuilder.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
                                     } catch (final IllegalArgumentException e) {
                                          throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -1914,16 +1914,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.institution.InstitutionId> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.institution.InstitutionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                     try {
-                                        sequence.add(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
+                                        sequenceBuilder.add(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
                                     } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
                                          throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -1940,12 +1940,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(iprot.readString());
+                                    sequenceBuilder.add(iprot.readString());
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -1962,12 +1962,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(iprot.readString());
+                                    sequenceBuilder.add(iprot.readString());
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -1984,12 +1984,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(iprot.readString());
+                                    sequenceBuilder.add(iprot.readString());
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -2006,12 +2006,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(iprot.readString());
+                                    sequenceBuilder.add(iprot.readString());
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -2028,16 +2028,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                     try {
-                                        sequence.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
+                                        sequenceBuilder.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
                                     } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                                          throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -2054,16 +2054,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.gender.Gender> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                     try {
-                                        sequence.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
+                                        sequenceBuilder.add(iprot.readEnum(net.lab1318.costume.api.models.gender.Gender.class));
                                     } catch (final IllegalArgumentException e) {
                                          throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -2080,16 +2080,16 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.institution.InstitutionId> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.institution.InstitutionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                     try {
-                                        sequence.add(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
+                                        sequenceBuilder.add(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
                                     } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
                                          throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -2106,12 +2106,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(iprot.readString());
+                                    sequenceBuilder.add(iprot.readString());
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -2128,12 +2128,12 @@ public class ObjectFacetFilters implements org.thryft.Struct {
                         public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequence = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(iprot.readString());
+                                    sequenceBuilder.add(iprot.readString());
                                 }
                                 iprot.readSetEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }

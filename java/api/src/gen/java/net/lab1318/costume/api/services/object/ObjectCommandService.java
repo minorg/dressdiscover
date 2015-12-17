@@ -1996,12 +1996,12 @@ public interface ObjectCommandService {
                         public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.object.ObjectEntry> sequence = com.google.common.collect.ImmutableList.builder();
+                                final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.object.ObjectEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(net.lab1318.costume.api.models.object.ObjectEntry.readAsStruct(iprot));
+                                    sequenceBuilder.add(net.lab1318.costume.api.models.object.ObjectEntry.readAsStruct(iprot));
                                 }
                                 iprot.readListEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -2025,12 +2025,12 @@ public interface ObjectCommandService {
                                 public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
                                         final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.object.ObjectEntry> sequence = com.google.common.collect.ImmutableList.builder();
+                                        final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.object.ObjectEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequence.add(net.lab1318.costume.api.models.object.ObjectEntry.readAsStruct(iprot));
+                                            sequenceBuilder.add(net.lab1318.costume.api.models.object.ObjectEntry.readAsStruct(iprot));
                                         }
                                         iprot.readListEnd();
-                                        return sequence.build();
+                                        return sequenceBuilder.build();
                                     } catch (final org.thryft.protocol.InputProtocolException e) {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
@@ -2239,12 +2239,12 @@ public interface ObjectCommandService {
                     public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                            final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.object.ObjectEntry> sequence = com.google.common.collect.ImmutableList.builder();
+                            final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.object.ObjectEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                sequence.add(net.lab1318.costume.api.models.object.ObjectEntry.readAsStruct(iprot));
+                                sequenceBuilder.add(net.lab1318.costume.api.models.object.ObjectEntry.readAsStruct(iprot));
                             }
                             iprot.readListEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -2274,12 +2274,12 @@ public interface ObjectCommandService {
                             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                    final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.object.ObjectEntry> sequence = com.google.common.collect.ImmutableList.builder();
+                                    final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.object.ObjectEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequence.add(net.lab1318.costume.api.models.object.ObjectEntry.readAsStruct(iprot));
+                                        sequenceBuilder.add(net.lab1318.costume.api.models.object.ObjectEntry.readAsStruct(iprot));
                                     }
                                     iprot.readListEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }

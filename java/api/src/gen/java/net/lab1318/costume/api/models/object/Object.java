@@ -177,12 +177,12 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
                         public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequence = com.google.common.collect.ImmutableList.builder();
+                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(iprot.readString());
+                                    sequenceBuilder.add(iprot.readString());
                                 }
                                 iprot.readListEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -216,12 +216,12 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
                         public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.image.Image> sequence = com.google.common.collect.ImmutableList.builder();
+                                final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.image.Image> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(net.lab1318.costume.api.models.image.Image.readAsStruct(iprot));
+                                    sequenceBuilder.add(net.lab1318.costume.api.models.image.Image.readAsStruct(iprot));
                                 }
                                 iprot.readListEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -318,12 +318,12 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
                                 public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
                                         final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequence = com.google.common.collect.ImmutableList.builder();
+                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequence.add(iprot.readString());
+                                            sequenceBuilder.add(iprot.readString());
                                         }
                                         iprot.readListEnd();
-                                        return sequence.build();
+                                        return sequenceBuilder.build();
                                     } catch (final org.thryft.protocol.InputProtocolException e) {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
@@ -372,12 +372,12 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
                                 public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
                                         final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.image.Image> sequence = com.google.common.collect.ImmutableList.builder();
+                                        final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.image.Image> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequence.add(net.lab1318.costume.api.models.image.Image.readAsStruct(iprot));
+                                            sequenceBuilder.add(net.lab1318.costume.api.models.image.Image.readAsStruct(iprot));
                                         }
                                         iprot.readListEnd();
-                                        return sequence.build();
+                                        return sequenceBuilder.build();
                                     } catch (final org.thryft.protocol.InputProtocolException e) {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
@@ -1346,12 +1346,12 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
                     public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                            final com.google.common.collect.ImmutableList.Builder<String> sequence = com.google.common.collect.ImmutableList.builder();
+                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                sequence.add(iprot.readString());
+                                sequenceBuilder.add(iprot.readString());
                             }
                             iprot.readListEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -1385,12 +1385,12 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
                     public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                            final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.image.Image> sequence = com.google.common.collect.ImmutableList.builder();
+                            final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.image.Image> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                sequence.add(net.lab1318.costume.api.models.image.Image.readAsStruct(iprot));
+                                sequenceBuilder.add(net.lab1318.costume.api.models.image.Image.readAsStruct(iprot));
                             }
                             iprot.readListEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -1512,12 +1512,12 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                    final com.google.common.collect.ImmutableList.Builder<String> sequence = com.google.common.collect.ImmutableList.builder();
+                                    final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequence.add(iprot.readString());
+                                        sequenceBuilder.add(iprot.readString());
                                     }
                                     iprot.readListEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
@@ -1566,12 +1566,12 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
                             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                    final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.image.Image> sequence = com.google.common.collect.ImmutableList.builder();
+                                    final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.image.Image> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequence.add(net.lab1318.costume.api.models.image.Image.readAsStruct(iprot));
+                                        sequenceBuilder.add(net.lab1318.costume.api.models.image.Image.readAsStruct(iprot));
                                     }
                                     iprot.readListEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }

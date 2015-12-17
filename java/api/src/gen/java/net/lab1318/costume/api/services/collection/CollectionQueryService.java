@@ -887,12 +887,12 @@ public interface CollectionQueryService {
                         public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionEntry> sequence = com.google.common.collect.ImmutableList.builder();
+                                final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(net.lab1318.costume.api.models.collection.CollectionEntry.readAsStruct(iprot));
+                                    sequenceBuilder.add(net.lab1318.costume.api.models.collection.CollectionEntry.readAsStruct(iprot));
                                 }
                                 iprot.readListEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -916,12 +916,12 @@ public interface CollectionQueryService {
                                 public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
                                         final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionEntry> sequence = com.google.common.collect.ImmutableList.builder();
+                                        final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequence.add(net.lab1318.costume.api.models.collection.CollectionEntry.readAsStruct(iprot));
+                                            sequenceBuilder.add(net.lab1318.costume.api.models.collection.CollectionEntry.readAsStruct(iprot));
                                         }
                                         iprot.readListEnd();
-                                        return sequence.build();
+                                        return sequenceBuilder.build();
                                     } catch (final org.thryft.protocol.InputProtocolException e) {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
@@ -1130,12 +1130,12 @@ public interface CollectionQueryService {
                     public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                            final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionEntry> sequence = com.google.common.collect.ImmutableList.builder();
+                            final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                sequence.add(net.lab1318.costume.api.models.collection.CollectionEntry.readAsStruct(iprot));
+                                sequenceBuilder.add(net.lab1318.costume.api.models.collection.CollectionEntry.readAsStruct(iprot));
                             }
                             iprot.readListEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -1165,12 +1165,12 @@ public interface CollectionQueryService {
                             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                    final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionEntry> sequence = com.google.common.collect.ImmutableList.builder();
+                                    final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequence.add(net.lab1318.costume.api.models.collection.CollectionEntry.readAsStruct(iprot));
+                                        sequenceBuilder.add(net.lab1318.costume.api.models.collection.CollectionEntry.readAsStruct(iprot));
                                     }
                                     iprot.readListEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
@@ -1274,16 +1274,16 @@ public interface CollectionQueryService {
                         public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequence = com.google.common.collect.ImmutableList.builder();
+                                final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                     try {
-                                        sequence.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
+                                        sequenceBuilder.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
                                     } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                                          throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
                                 iprot.readListEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -1307,16 +1307,16 @@ public interface CollectionQueryService {
                                 public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
                                         final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequence = com.google.common.collect.ImmutableList.builder();
+                                        final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                             try {
-                                                sequence.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
+                                                sequenceBuilder.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
                                             } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                                                  throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
                                         }
                                         iprot.readListEnd();
-                                        return sequence.build();
+                                        return sequenceBuilder.build();
                                     } catch (final org.thryft.protocol.InputProtocolException e) {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
@@ -1525,16 +1525,16 @@ public interface CollectionQueryService {
                     public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                            final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequence = com.google.common.collect.ImmutableList.builder();
+                            final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                 try {
-                                    sequence.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
+                                    sequenceBuilder.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
                                 } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                                      throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
                             iprot.readListEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -1564,16 +1564,16 @@ public interface CollectionQueryService {
                             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                    final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequence = com.google.common.collect.ImmutableList.builder();
+                                    final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionId> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                         try {
-                                            sequence.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
+                                            sequenceBuilder.add(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
                                         } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
                                              throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
                                     }
                                     iprot.readListEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
@@ -1677,12 +1677,12 @@ public interface CollectionQueryService {
                         public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.Collection> sequence = com.google.common.collect.ImmutableList.builder();
+                                final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.Collection> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(net.lab1318.costume.api.models.collection.Collection.readAsStruct(iprot));
+                                    sequenceBuilder.add(net.lab1318.costume.api.models.collection.Collection.readAsStruct(iprot));
                                 }
                                 iprot.readListEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -1706,12 +1706,12 @@ public interface CollectionQueryService {
                                 public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
                                         final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.Collection> sequence = com.google.common.collect.ImmutableList.builder();
+                                        final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.Collection> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequence.add(net.lab1318.costume.api.models.collection.Collection.readAsStruct(iprot));
+                                            sequenceBuilder.add(net.lab1318.costume.api.models.collection.Collection.readAsStruct(iprot));
                                         }
                                         iprot.readListEnd();
-                                        return sequence.build();
+                                        return sequenceBuilder.build();
                                     } catch (final org.thryft.protocol.InputProtocolException e) {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
@@ -1920,12 +1920,12 @@ public interface CollectionQueryService {
                     public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                            final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.Collection> sequence = com.google.common.collect.ImmutableList.builder();
+                            final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.Collection> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                sequence.add(net.lab1318.costume.api.models.collection.Collection.readAsStruct(iprot));
+                                sequenceBuilder.add(net.lab1318.costume.api.models.collection.Collection.readAsStruct(iprot));
                             }
                             iprot.readListEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -1955,12 +1955,12 @@ public interface CollectionQueryService {
                             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                    final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.Collection> sequence = com.google.common.collect.ImmutableList.builder();
+                                    final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.Collection> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequence.add(net.lab1318.costume.api.models.collection.Collection.readAsStruct(iprot));
+                                        sequenceBuilder.add(net.lab1318.costume.api.models.collection.Collection.readAsStruct(iprot));
                                     }
                                     iprot.readListEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
@@ -2398,12 +2398,12 @@ public interface CollectionQueryService {
                         public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionEntry> sequence = com.google.common.collect.ImmutableList.builder();
+                                final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequence.add(net.lab1318.costume.api.models.collection.CollectionEntry.readAsStruct(iprot));
+                                    sequenceBuilder.add(net.lab1318.costume.api.models.collection.CollectionEntry.readAsStruct(iprot));
                                 }
                                 iprot.readListEnd();
-                                return sequence.build();
+                                return sequenceBuilder.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
@@ -2427,12 +2427,12 @@ public interface CollectionQueryService {
                                 public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
                                         final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionEntry> sequence = com.google.common.collect.ImmutableList.builder();
+                                        final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequence.add(net.lab1318.costume.api.models.collection.CollectionEntry.readAsStruct(iprot));
+                                            sequenceBuilder.add(net.lab1318.costume.api.models.collection.CollectionEntry.readAsStruct(iprot));
                                         }
                                         iprot.readListEnd();
-                                        return sequence.build();
+                                        return sequenceBuilder.build();
                                     } catch (final org.thryft.protocol.InputProtocolException e) {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
@@ -2641,12 +2641,12 @@ public interface CollectionQueryService {
                     public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                            final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionEntry> sequence = com.google.common.collect.ImmutableList.builder();
+                            final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                sequence.add(net.lab1318.costume.api.models.collection.CollectionEntry.readAsStruct(iprot));
+                                sequenceBuilder.add(net.lab1318.costume.api.models.collection.CollectionEntry.readAsStruct(iprot));
                             }
                             iprot.readListEnd();
-                            return sequence.build();
+                            return sequenceBuilder.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
@@ -2676,12 +2676,12 @@ public interface CollectionQueryService {
                             public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                    final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionEntry> sequence = com.google.common.collect.ImmutableList.builder();
+                                    final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.collection.CollectionEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequence.add(net.lab1318.costume.api.models.collection.CollectionEntry.readAsStruct(iprot));
+                                        sequenceBuilder.add(net.lab1318.costume.api.models.collection.CollectionEntry.readAsStruct(iprot));
                                     }
                                     iprot.readListEnd();
-                                    return sequence.build();
+                                    return sequenceBuilder.build();
                                 } catch (final org.thryft.protocol.InputProtocolException e) {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
