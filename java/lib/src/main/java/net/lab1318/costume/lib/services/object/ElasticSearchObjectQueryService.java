@@ -28,15 +28,16 @@ import org.elasticsearch.search.aggregations.bucket.terms.Terms.Bucket;
 import org.elasticsearch.search.aggregations.bucket.terms.TermsBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
-import org.thryft.waf.lib.protocols.ElasticSearchInputProtocol;
-import org.thryft.waf.lib.stores.ElasticSearchIndex;
-import org.thryft.waf.lib.stores.InvalidModelException;
-import org.thryft.waf.lib.stores.NoSuchModelException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.thryft.protocol.InputProtocolException;
+import org.thryft.waf.lib.protocols.ElasticSearchInputProtocol;
+import org.thryft.waf.lib.stores.ElasticSearchIndex;
+import org.thryft.waf.lib.stores.InvalidModelException;
+import org.thryft.waf.lib.stores.NoSuchModelException;
 
+import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.collect.ForwardingList;
 import com.google.common.collect.ImmutableList;
@@ -134,114 +135,63 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
     private final static class ObjectFacetAggregations extends ForwardingList<AbstractAggregationBuilder> {
         private ObjectFacetAggregations() {
-            agentNameTextsAggregation = AggregationBuilders
-                    .terms(ObjectFacets.FieldMetadata.AGENT_NAME_TEXTS.getThriftName())
-                    .field(ObjectSummary.FieldMetadata.AGENT_NAME_TEXTS.getThriftProtocolKey() + ".not_analyzed");
-
-            categoriesAggregation = AggregationBuilders.terms(ObjectFacets.FieldMetadata.CATEGORIES.getThriftName())
-                    .field(ObjectSummary.FieldMetadata.CATEGORIES.getThriftProtocolKey() + ".not_analyzed");
-
-            collectionHitsAggregation = AggregationBuilders
-                    .terms(ObjectFacets.FieldMetadata.COLLECTION_HITS.getThriftName())
-                    .field(ObjectSummary.FieldMetadata.COLLECTION_ID.getThriftProtocolKey());
-
-            gendersAggregation = AggregationBuilders.terms(ObjectFacets.FieldMetadata.GENDERS.getThriftName())
-                    .field(ObjectSummary.FieldMetadata.GENDER.getThriftProtocolKey());
-
-            institutionHitsAggregation = AggregationBuilders
-                    .terms(ObjectFacets.FieldMetadata.INSTITUTION_HITS.getThriftName())
-                    .field(ObjectSummary.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey());
-
-            subjectTermTextsAggregation = AggregationBuilders
-                    .terms(ObjectFacets.FieldMetadata.SUBJECT_TERM_TEXTS.getThriftName())
-                    .field(ObjectSummary.FieldMetadata.SUBJECT_TERM_TEXTS.getThriftProtocolKey() + ".not_analyzed");
-
-            workTypeTextsAggregation = AggregationBuilders
-                    .terms(ObjectFacets.FieldMetadata.WORK_TYPE_TEXTS.getThriftName())
-                    .field(ObjectSummary.FieldMetadata.WORK_TYPE_TEXTS.getThriftProtocolKey() + ".not_analyzed");
-
-            aggregations = ImmutableList.of(agentNameTextsAggregation, categoriesAggregation, collectionHitsAggregation,
-                    gendersAggregation, institutionHitsAggregation, subjectTermTextsAggregation,
-                    workTypeTextsAggregation);
+            aggregations = ImmutableList.<AbstractAggregationBuilder> of(
+                    __newTextsAggregation(ObjectSummary.FieldMetadata.AGENT_NAME_TEXTS),
+                    __newTextsAggregation(ObjectSummary.FieldMetadata.CATEGORIES),
+                    __newIdAggregation(ObjectSummary.FieldMetadata.COLLECTION_ID),
+                    __newIdAggregation(ObjectSummary.FieldMetadata.GENDER),
+                    __newIdAggregation(ObjectSummary.FieldMetadata.INSTITUTION_ID),
+                    __newTextsAggregation(ObjectSummary.FieldMetadata.MATERIAL_TEXTS),
+                    __newTextsAggregation(ObjectSummary.FieldMetadata.SUBJECT_TERM_TEXTS),
+                    __newTextsAggregation(ObjectSummary.FieldMetadata.WORK_TYPE_TEXTS));
         }
 
         public ObjectFacets getObjectFacets(final Aggregations aggregations) {
             final ObjectFacets.Builder resultBuilder = ObjectFacets.builder();
 
-            {
-                final ImmutableMap.Builder<String, UnsignedInteger> agentNameTextsBuilder = ImmutableMap.builder();
-                for (final Bucket bucket : ((StringTerms) aggregations.get(this.agentNameTextsAggregation.getName()))
-                        .getBuckets()) {
-                    agentNameTextsBuilder.put(bucket.getKey(), UnsignedInteger.valueOf(bucket.getDocCount()));
-                }
-                resultBuilder.setAgentNameTexts(agentNameTextsBuilder.build());
-            }
+            resultBuilder
+                    .setAgentNameTexts(__getTextsFacet(aggregations, ObjectSummary.FieldMetadata.AGENT_NAME_TEXTS));
 
-            {
-                final ImmutableMap.Builder<String, UnsignedInteger> categoriesBuilder = ImmutableMap.builder();
-                for (final Bucket bucket : ((StringTerms) aggregations.get(categoriesAggregation.getName()))
-                        .getBuckets()) {
-                    categoriesBuilder.put(bucket.getKey(), UnsignedInteger.valueOf(bucket.getDocCount()));
-                }
-                resultBuilder.setCategories(categoriesBuilder.build());
-            }
+            resultBuilder.setCategories(__getTextsFacet(aggregations, ObjectSummary.FieldMetadata.CATEGORIES));
 
-            {
-                final ImmutableMap.Builder<CollectionId, UnsignedInteger> collectionHitsBuilder = ImmutableMap
-                        .builder();
-                for (final Bucket bucket : ((StringTerms) aggregations.get(collectionHitsAggregation.getName()))
-                        .getBuckets()) {
-                    try {
-                        collectionHitsBuilder.put(CollectionId.parse(bucket.getKey()),
-                                UnsignedInteger.valueOf(bucket.getDocCount()));
-                    } catch (final InvalidCollectionIdException e) {
-                        throw new IllegalStateException(e);
-                    }
-                }
-                resultBuilder.setCollectionHits(collectionHitsBuilder.build());
-            }
+            resultBuilder.setCollectionHits(__getIdFacet(aggregations, ObjectSummary.FieldMetadata.COLLECTION_ID,
+                    new Function<String, CollectionId>() {
+                        @Override
+                        public CollectionId apply(final String input) {
+                            try {
+                                return CollectionId.parse(input);
+                            } catch (final InvalidCollectionIdException e) {
+                                throw new IllegalStateException(e);
+                            }
+                        }
+                    }));
 
-            {
-                final ImmutableMap.Builder<Gender, UnsignedInteger> gendersBuilder = ImmutableMap.builder();
-                for (final Bucket bucket : ((StringTerms) aggregations.get(gendersAggregation.getName()))
-                        .getBuckets()) {
-                    gendersBuilder.put(Gender.valueOf(bucket.getKey()), UnsignedInteger.valueOf(bucket.getDocCount()));
-                }
-                resultBuilder.setGenders(gendersBuilder.build());
-            }
+            resultBuilder.setGenders(
+                    __getIdFacet(aggregations, ObjectSummary.FieldMetadata.GENDER, new Function<String, Gender>() {
+                        @Override
+                        public Gender apply(final String input) {
+                            return Gender.valueOf(input);
+                        }
+                    }));
 
-            {
-                final ImmutableMap.Builder<InstitutionId, UnsignedInteger> institutionHitsBuilder = ImmutableMap
-                        .builder();
-                for (final Bucket bucket : ((StringTerms) aggregations.get(institutionHitsAggregation.getName()))
-                        .getBuckets()) {
-                    try {
-                        institutionHitsBuilder.put(InstitutionId.parse(bucket.getKey()),
-                                UnsignedInteger.valueOf(bucket.getDocCount()));
-                    } catch (final InvalidInstitutionIdException e) {
-                        throw new IllegalStateException(e);
-                    }
-                }
-                resultBuilder.setInstitutionHits(institutionHitsBuilder.build());
-            }
+            resultBuilder.setInstitutionHits(__getIdFacet(aggregations, ObjectSummary.FieldMetadata.INSTITUTION_ID,
+                    new Function<String, InstitutionId>() {
+                        @Override
+                        public InstitutionId apply(final String input) {
+                            try {
+                                return InstitutionId.parse(input);
+                            } catch (final InvalidInstitutionIdException e) {
+                                throw new IllegalStateException(e);
+                            }
+                        }
+                    }));
 
-            {
-                final ImmutableMap.Builder<String, UnsignedInteger> subjectTermTextsBuilder = ImmutableMap.builder();
-                for (final Bucket bucket : ((StringTerms) aggregations.get(subjectTermTextsAggregation.getName()))
-                        .getBuckets()) {
-                    subjectTermTextsBuilder.put(bucket.getKey(), UnsignedInteger.valueOf(bucket.getDocCount()));
-                }
-                resultBuilder.setSubjectTermTexts(subjectTermTextsBuilder.build());
-            }
+            resultBuilder.setMaterialTexts(__getTextsFacet(aggregations, ObjectSummary.FieldMetadata.MATERIAL_TEXTS));
 
-            {
-                final ImmutableMap.Builder<String, UnsignedInteger> workTypeTextsBuilder = ImmutableMap.builder();
-                for (final Bucket bucket : ((StringTerms) aggregations.get(workTypeTextsAggregation.getName()))
-                        .getBuckets()) {
-                    workTypeTextsBuilder.put(bucket.getKey(), UnsignedInteger.valueOf(bucket.getDocCount()));
-                }
-                resultBuilder.setWorkTypeTexts(workTypeTextsBuilder.build());
-            }
+            resultBuilder
+                    .setSubjectTermTexts(__getTextsFacet(aggregations, ObjectSummary.FieldMetadata.SUBJECT_TERM_TEXTS));
+
+            resultBuilder.setWorkTypeTexts(__getTextsFacet(aggregations, ObjectSummary.FieldMetadata.WORK_TYPE_TEXTS));
 
             return resultBuilder.build();
         }
@@ -251,14 +201,34 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             return aggregations;
         }
 
-        private final TermsBuilder agentNameTextsAggregation;
+        private <IdT> ImmutableMap<IdT, UnsignedInteger> __getIdFacet(final Aggregations aggregations,
+                final ObjectSummary.FieldMetadata field, final Function<String, IdT> idFactory) {
+            final ImmutableMap.Builder<IdT, UnsignedInteger> idsBuilder = ImmutableMap.builder();
+            for (final Bucket bucket : ((StringTerms) aggregations.get(field.getThriftName())).getBuckets()) {
+                idsBuilder.put(idFactory.apply(bucket.getKey()), UnsignedInteger.valueOf(bucket.getDocCount()));
+            }
+            return idsBuilder.build();
+        }
+
+        private ImmutableMap<String, UnsignedInteger> __getTextsFacet(final Aggregations aggregations,
+                final ObjectSummary.FieldMetadata field) {
+            final ImmutableMap.Builder<String, UnsignedInteger> textsBuilder = ImmutableMap.builder();
+            for (final Bucket bucket : ((StringTerms) aggregations.get(field.getThriftName())).getBuckets()) {
+                textsBuilder.put(bucket.getKey(), UnsignedInteger.valueOf(bucket.getDocCount()));
+            }
+            return textsBuilder.build();
+        }
+
+        private TermsBuilder __newIdAggregation(final ObjectSummary.FieldMetadata field) {
+            return AggregationBuilders.terms(field.getThriftName()).field(field.getThriftProtocolKey());
+        }
+
+        private TermsBuilder __newTextsAggregation(final ObjectSummary.FieldMetadata field) {
+            return AggregationBuilders.terms(field.getThriftName())
+                    .field(field.getThriftProtocolKey() + ".not_analyzed");
+        }
+
         private final ImmutableList<AbstractAggregationBuilder> aggregations;
-        private final TermsBuilder categoriesAggregation;
-        private final TermsBuilder collectionHitsAggregation;
-        private final TermsBuilder gendersAggregation;
-        private final TermsBuilder institutionHitsAggregation;
-        private final TermsBuilder subjectTermTextsAggregation;
-        private final TermsBuilder workTypeTextsAggregation;
     }
 
     private static FilterBuilder __excludeAllFilters(final List<FilterBuilder> filters) {
@@ -293,8 +263,8 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         this.objectSummaryElasticSearchIndex = checkNotNull(objectSummaryElasticSearchIndex);
         emptyObjectFacets = ObjectFacets.builder().setAgentNameTexts(ImmutableMap.of()).setCategories(ImmutableMap.of())
                 .setCollectionHits(ImmutableMap.of()).setGenders(ImmutableMap.of())
-                .setInstitutionHits(ImmutableMap.of()).setSubjectTermTexts(ImmutableMap.of())
-                .setWorkTypeTexts(ImmutableMap.of()).build();
+                .setInstitutionHits(ImmutableMap.of()).setMaterialTexts(ImmutableMap.of())
+                .setSubjectTermTexts(ImmutableMap.of()).setWorkTypeTexts(ImmutableMap.of()).build();
     }
 
     @Override
@@ -420,6 +390,27 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         }
     }
 
+    private <IdT> void __translateObjectSummaryIdFilters(final Optional<ImmutableSet<IdT>> excludeIds,
+            final ObjectSummary.FieldMetadata field, final Optional<ImmutableSet<IdT>> includeIds,
+            final List<FilterBuilder> outFilters) {
+        for (final Optional<ImmutableSet<IdT>> ids : ImmutableList.of(excludeIds, includeIds)) {
+            if (!ids.isPresent()) {
+                continue;
+            }
+            final List<FilterBuilder> filters = new ArrayList<>();
+            for (final IdT id : ids.get()) {
+                filters.add(FilterBuilders.termFilter(field.getThriftProtocolKey(), id.toString()));
+            }
+            if (!filters.isEmpty()) {
+                if (ids == excludeIds) {
+                    outFilters.add(__excludeAllFilters(filters));
+                } else {
+                    outFilters.add(__includeAnyFilter(filters));
+                }
+            }
+        }
+    }
+
     private QueryBuilder __translateObjectSummaryQuery(final Optional<ObjectQuery> query) {
         if (!query.isPresent()) {
             return QueryBuilders.matchAllQuery();
@@ -432,6 +423,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                     .field(ObjectSummary.FieldMetadata.CATEGORIES.getThriftProtocolKey())
                     .field(ObjectSummary.FieldMetadata.DATE.getThriftProtocolKey())
                     .field(ObjectSummary.FieldMetadata.DESCRIPTION.getThriftProtocolKey())
+                    .field(ObjectSummary.FieldMetadata.MATERIAL_TEXTS.getThriftProtocolKey())
                     .field(ObjectSummary.FieldMetadata.SUBJECT_TERM_TEXTS.getThriftProtocolKey())
                     .field(ObjectSummary.FieldMetadata.TITLE.getThriftProtocolKey(), (float) 2.0);
 
@@ -441,6 +433,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                             ObjectSummary.FieldMetadata.CATEGORIES.getThriftProtocolKey(),
                             ObjectSummary.FieldMetadata.DATE.getThriftProtocolKey(),
                             ObjectSummary.FieldMetadata.DESCRIPTION.getThriftProtocolKey(),
+                            ObjectSummary.FieldMetadata.MATERIAL_TEXTS.getThriftProtocolKey(),
                             ObjectSummary.FieldMetadata.SUBJECT_TERM_TEXTS.getThriftProtocolKey(),
                             ObjectSummary.FieldMetadata.TITLE.getThriftProtocolKey())
                     .docs(new MoreLikeThisQueryBuilder.Item(objectSummaryElasticSearchIndex.getIndexName(),
@@ -461,154 +454,35 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         if (query.get().getFacetFilters().isPresent()) {
             final ObjectFacetFilters facetFilters = query.get().getFacetFilters().get();
 
-            for (final Optional<ImmutableSet<String>> agentNameTexts : ImmutableList
-                    .of(facetFilters.getExcludeAgentNameTexts(), facetFilters.getIncludeAgentNameTexts())) {
-                if (!agentNameTexts.isPresent()) {
-                    continue;
-                }
-                final List<FilterBuilder> agentNameTextFilters = new ArrayList<>();
-                for (final String agentNameText : agentNameTexts.get()) {
-                    if (agentNameText.isEmpty()) {
-                        continue;
-                    }
-                    agentNameTextFilters.add(FilterBuilders.termFilter(
-                            ObjectSummary.FieldMetadata.AGENT_NAME_TEXTS.getThriftProtocolKey() + ".not_analyzed",
-                            agentNameText));
-                }
-                if (!agentNameTextFilters.isEmpty()) {
-                    if (agentNameTexts == facetFilters.getExcludeAgentNameTexts()) {
-                        filtersTranslated.add(__excludeAllFilters(agentNameTextFilters));
-                    } else {
-                        filtersTranslated.add(__includeAnyFilter(agentNameTextFilters));
-                    }
-                }
-            }
+            __translateObjectSummaryTextFilters(facetFilters.getExcludeAgentNameTexts(),
+                    ObjectSummary.FieldMetadata.AGENT_NAME_TEXTS, facetFilters.getIncludeAgentNameTexts(),
+                    filtersTranslated);
 
-            for (final Optional<ImmutableSet<String>> categories : ImmutableList.of(facetFilters.getExcludeCategories(),
-                    facetFilters.getIncludeCategories())) {
-                if (!categories.isPresent()) {
-                    continue;
-                }
-                final List<FilterBuilder> categoryFilters = new ArrayList<>();
-                for (final String category : categories.get()) {
-                    if (category.isEmpty()) {
-                        continue;
-                    }
-                    categoryFilters.add(FilterBuilders.termFilter(
-                            ObjectSummary.FieldMetadata.CATEGORIES.getThriftProtocolKey() + ".not_analyzed", category));
-                }
-                if (!categoryFilters.isEmpty()) {
-                    if (categories == facetFilters.getExcludeCategories()) {
-                        filtersTranslated.add(__excludeAllFilters(categoryFilters));
-                    } else {
-                        filtersTranslated.add(__includeAnyFilter(categoryFilters));
-                    }
-                }
-            }
+            __translateObjectSummaryTextFilters(facetFilters.getExcludeCategories(),
+                    ObjectSummary.FieldMetadata.CATEGORIES, facetFilters.getIncludeCategories(), filtersTranslated);
 
-            for (final Optional<ImmutableSet<CollectionId>> collectionIds : ImmutableList
-                    .of(facetFilters.getExcludeCollectionIds(), facetFilters.getIncludeCollectionIds())) {
-                if (!collectionIds.isPresent()) {
-                    continue;
-                }
-                final List<FilterBuilder> collectionIdFilters = new ArrayList<>();
-                for (final CollectionId collectionId : collectionIds.get()) {
-                    collectionIdFilters.add(FilterBuilders.termFilter(
-                            ObjectSummary.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(), collectionId.toString()));
-                }
-                if (!collectionIdFilters.isEmpty()) {
-                    if (collectionIds == facetFilters.getExcludeCollectionIds()) {
-                        filtersTranslated.add(__excludeAllFilters(collectionIdFilters));
-                    } else {
-                        filtersTranslated.add(__includeAnyFilter(collectionIdFilters));
-                    }
-                }
-            }
+            __translateObjectSummaryIdFilters(facetFilters.getExcludeCollectionIds(),
+                    ObjectSummary.FieldMetadata.COLLECTION_ID, facetFilters.getIncludeCollectionIds(),
+                    filtersTranslated);
 
-            for (final Optional<ImmutableSet<Gender>> genders : ImmutableList.of(facetFilters.getExcludeGenders(),
-                    facetFilters.getIncludeGenders())) {
-                if (!genders.isPresent()) {
-                    continue;
-                }
-                final List<FilterBuilder> genderFilters = new ArrayList<>();
-                for (final Gender gender : genders.get()) {
-                    genderFilters.add(FilterBuilders
-                            .termFilter(ObjectSummary.FieldMetadata.GENDER.getThriftProtocolKey(), gender));
-                }
-                if (!genderFilters.isEmpty()) {
-                    if (genders == facetFilters.getExcludeGenders()) {
-                        filtersTranslated.add(__excludeAllFilters(genderFilters));
-                    } else {
-                        filtersTranslated.add(__includeAnyFilter(genderFilters));
-                    }
-                }
-            }
+            __translateObjectSummaryIdFilters(facetFilters.getExcludeGenders(), ObjectSummary.FieldMetadata.GENDER,
+                    facetFilters.getIncludeGenders(), filtersTranslated);
 
-            for (final Optional<ImmutableSet<InstitutionId>> institutionIds : ImmutableList
-                    .of(facetFilters.getExcludeInstitutionIds(), facetFilters.getIncludeInstitutionIds())) {
-                if (!institutionIds.isPresent()) {
-                    continue;
-                }
-                final List<FilterBuilder> institutionIdFilters = new ArrayList<>();
-                for (final InstitutionId institutionId : institutionIds.get()) {
-                    institutionIdFilters.add(
-                            FilterBuilders.termFilter(ObjectSummary.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
-                                    institutionId.toString()));
-                }
-                if (!institutionIdFilters.isEmpty()) {
-                    if (institutionIds == facetFilters.getExcludeInstitutionIds()) {
-                        filtersTranslated.add(__excludeAllFilters(institutionIdFilters));
-                    } else {
-                        filtersTranslated.add(__includeAnyFilter(institutionIdFilters));
-                    }
-                }
-            }
+            __translateObjectSummaryIdFilters(facetFilters.getExcludeInstitutionIds(),
+                    ObjectSummary.FieldMetadata.INSTITUTION_ID, facetFilters.getIncludeInstitutionIds(),
+                    filtersTranslated);
 
-            for (final Optional<ImmutableSet<String>> subjectTermTexts : ImmutableList
-                    .of(facetFilters.getExcludeSubjectTermTexts(), facetFilters.getIncludeSubjectTermTexts())) {
-                if (!subjectTermTexts.isPresent()) {
-                    continue;
-                }
-                final List<FilterBuilder> subjectTermTextFilters = new ArrayList<>();
-                for (final String subjectTermText : subjectTermTexts.get()) {
-                    if (subjectTermText.isEmpty()) {
-                        continue;
-                    }
-                    subjectTermTextFilters.add(FilterBuilders.termFilter(
-                            ObjectSummary.FieldMetadata.SUBJECT_TERM_TEXTS.getThriftProtocolKey() + ".not_analyzed",
-                            subjectTermText));
-                }
-                if (!subjectTermTextFilters.isEmpty()) {
-                    if (subjectTermTexts == facetFilters.getExcludeSubjectTermTexts()) {
-                        filtersTranslated.add(__excludeAllFilters(subjectTermTextFilters));
-                    } else {
-                        filtersTranslated.add(__includeAnyFilter(subjectTermTextFilters));
-                    }
-                }
-            }
+            __translateObjectSummaryTextFilters(facetFilters.getExcludeMaterialTexts(),
+                    ObjectSummary.FieldMetadata.MATERIAL_TEXTS, facetFilters.getIncludeMaterialTexts(),
+                    filtersTranslated);
 
-            for (final Optional<ImmutableSet<String>> workTypeTexts : ImmutableList
-                    .of(facetFilters.getExcludeWorkTypeTexts(), facetFilters.getIncludeWorkTypeTexts())) {
-                if (!workTypeTexts.isPresent()) {
-                    continue;
-                }
-                final List<FilterBuilder> workTypeTextFilters = new ArrayList<>();
-                for (final String workTypeText : workTypeTexts.get()) {
-                    if (workTypeText.isEmpty()) {
-                        continue;
-                    }
-                    workTypeTextFilters.add(FilterBuilders.termFilter(
-                            ObjectSummary.FieldMetadata.WORK_TYPE_TEXTS.getThriftProtocolKey() + ".not_analyzed",
-                            workTypeText));
-                }
-                if (!workTypeTextFilters.isEmpty()) {
-                    if (workTypeTexts == facetFilters.getExcludeWorkTypeTexts()) {
-                        filtersTranslated.add(__excludeAllFilters(workTypeTextFilters));
-                    } else {
-                        filtersTranslated.add(__includeAnyFilter(workTypeTextFilters));
-                    }
-                }
-            }
+            __translateObjectSummaryTextFilters(facetFilters.getExcludeSubjectTermTexts(),
+                    ObjectSummary.FieldMetadata.SUBJECT_TERM_TEXTS, facetFilters.getIncludeSubjectTermTexts(),
+                    filtersTranslated);
+
+            __translateObjectSummaryTextFilters(facetFilters.getExcludeWorkTypeTexts(),
+                    ObjectSummary.FieldMetadata.WORK_TYPE_TEXTS, facetFilters.getIncludeWorkTypeTexts(),
+                    filtersTranslated);
         }
 
         if (query.get().getInstitutionId().isPresent()) {
@@ -628,6 +502,30 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         }
 
         return queryTranslated;
+    }
+
+    private void __translateObjectSummaryTextFilters(final Optional<ImmutableSet<String>> excludeTexts,
+            final ObjectSummary.FieldMetadata field, final Optional<ImmutableSet<String>> includeTexts,
+            final List<FilterBuilder> outFilters) {
+        for (final Optional<ImmutableSet<String>> texts : ImmutableList.of(excludeTexts, includeTexts)) {
+            if (!texts.isPresent()) {
+                continue;
+            }
+            final List<FilterBuilder> textFilters = new ArrayList<>();
+            for (final String text : texts.get()) {
+                if (text.isEmpty()) {
+                    continue;
+                }
+                textFilters.add(FilterBuilders.termFilter(field.getThriftProtocolKey() + ".not_analyzed", text));
+            }
+            if (!textFilters.isEmpty()) {
+                if (texts == excludeTexts) {
+                    outFilters.add(__excludeAllFilters(textFilters));
+                } else {
+                    outFilters.add(__includeAnyFilter(textFilters));
+                }
+            }
+        }
     }
 
     private final AtomicBoolean checkedIndexConsistency = new AtomicBoolean(false);

@@ -11,6 +11,7 @@ import net.lab1318.costume.api.models.description.Description;
 import net.lab1318.costume.api.models.description.DescriptionType;
 import net.lab1318.costume.api.models.image.Image;
 import net.lab1318.costume.api.models.image.ImageVersion;
+import net.lab1318.costume.api.models.material.Material;
 import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectSummary;
 import net.lab1318.costume.api.models.subject.Subject;
@@ -72,6 +73,14 @@ public final class ObjectSummarizer {
         builder.setGender(object.getGender());
 
         builder.setInstitutionId(object.getInstitutionId());
+
+        if (object.getMaterials().isPresent()) {
+            final ImmutableList.Builder<String> materialTextsBuilder = ImmutableList.builder();
+            for (final Material material : object.getMaterials().get().getElements()) {
+                materialTextsBuilder.add(material.getText());
+            }
+            builder.setMaterialTexts(materialTextsBuilder.build());
+        }
 
         builder.setModelMetadata(object.getModelMetadata());
 

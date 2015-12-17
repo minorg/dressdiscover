@@ -12,6 +12,7 @@ class ObjectFacets(object):
             collection_hits=None,
             genders=None,
             institution_hits=None,
+            material_texts=None,
             subject_term_texts=None,
             url_exists=None,
             work_type_texts=None,
@@ -22,6 +23,7 @@ class ObjectFacets(object):
             :type collection_hits: dict(str: int)
             :type genders: dict(costume.api.models.gender.gender.Gender: int)
             :type institution_hits: dict(str: int)
+            :type material_texts: dict(str: int)
             :type subject_term_texts: dict(str: int)
             :type url_exists: bool
             :type work_type_texts: dict(str: int)
@@ -32,12 +34,13 @@ class ObjectFacets(object):
             self.__collection_hits = collection_hits
             self.__genders = genders
             self.__institution_hits = institution_hits
+            self.__material_texts = material_texts
             self.__subject_term_texts = subject_term_texts
             self.__url_exists = url_exists
             self.__work_type_texts = work_type_texts
 
         def build(self):
-            return ObjectFacets(agent_name_texts=self.__agent_name_texts, categories=self.__categories, collection_hits=self.__collection_hits, genders=self.__genders, institution_hits=self.__institution_hits, subject_term_texts=self.__subject_term_texts, url_exists=self.__url_exists, work_type_texts=self.__work_type_texts)
+            return ObjectFacets(agent_name_texts=self.__agent_name_texts, categories=self.__categories, collection_hits=self.__collection_hits, genders=self.__genders, institution_hits=self.__institution_hits, material_texts=self.__material_texts, subject_term_texts=self.__subject_term_texts, url_exists=self.__url_exists, work_type_texts=self.__work_type_texts)
 
         @property
         def agent_name_texts(self):
@@ -79,6 +82,14 @@ class ObjectFacets(object):
 
             return self.__institution_hits.copy() if self.__institution_hits is not None else None
 
+        @property
+        def material_texts(self):
+            '''
+            :rtype: dict(str: int)
+            '''
+
+            return self.__material_texts.copy() if self.__material_texts is not None else None
+
         def set_agent_name_texts(self, agent_name_texts):
             '''
             :type agent_name_texts: dict(str: int)
@@ -117,6 +128,14 @@ class ObjectFacets(object):
             '''
 
             self.__institution_hits = institution_hits
+            return self
+
+        def set_material_texts(self, material_texts):
+            '''
+            :type material_texts: dict(str: int)
+            '''
+
+            self.__material_texts = material_texts
             return self
 
         def set_subject_term_texts(self, subject_term_texts):
@@ -158,6 +177,7 @@ class ObjectFacets(object):
             :type collection_hits: dict(str: int)
             :type genders: dict(costume.api.models.gender.gender.Gender: int)
             :type institution_hits: dict(str: int)
+            :type material_texts: dict(str: int)
             :type subject_term_texts: dict(str: int)
             :type url_exists: bool
             :type work_type_texts: dict(str: int)
@@ -169,6 +189,7 @@ class ObjectFacets(object):
                 self.set_collection_hits(object_facets.collection_hits)
                 self.set_genders(object_facets.genders)
                 self.set_institution_hits(object_facets.institution_hits)
+                self.set_material_texts(object_facets.material_texts)
                 self.set_subject_term_texts(object_facets.subject_term_texts)
                 self.set_url_exists(object_facets.url_exists)
                 self.set_work_type_texts(object_facets.work_type_texts)
@@ -235,6 +256,14 @@ class ObjectFacets(object):
 
             self.set_institution_hits(institution_hits)
 
+        @material_texts.setter
+        def material_texts(self, material_texts):
+            '''
+            :type material_texts: dict(str: int)
+            '''
+
+            self.set_material_texts(material_texts)
+
         @subject_term_texts.setter
         def subject_term_texts(self, subject_term_texts):
             '''
@@ -266,6 +295,7 @@ class ObjectFacets(object):
         collection_hits,
         genders,
         institution_hits,
+        material_texts,
         subject_term_texts,
         url_exists,
         work_type_texts,
@@ -276,6 +306,7 @@ class ObjectFacets(object):
         :type collection_hits: dict(str: int)
         :type genders: dict(costume.api.models.gender.gender.Gender: int)
         :type institution_hits: dict(str: int)
+        :type material_texts: dict(str: int)
         :type subject_term_texts: dict(str: int)
         :type url_exists: bool
         :type work_type_texts: dict(str: int)
@@ -311,6 +342,12 @@ class ObjectFacets(object):
             raise TypeError("expected institution_hits to be a dict(str: int) but it is a %s" % getattr(__builtin__, 'type')(institution_hits))
         self.__institution_hits = institution_hits.copy() if institution_hits is not None else None
 
+        if material_texts is None:
+            raise ValueError('material_texts is required')
+        if not (isinstance(material_texts, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], basestring) and isinstance(__item[1], (int, long)) and __item[1] >= 0, material_texts.iteritems()))) == 0):
+            raise TypeError("expected material_texts to be a dict(str: int) but it is a %s" % getattr(__builtin__, 'type')(material_texts))
+        self.__material_texts = material_texts.copy() if material_texts is not None else None
+
         if subject_term_texts is None:
             raise ValueError('subject_term_texts is required')
         if not (isinstance(subject_term_texts, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], basestring) and isinstance(__item[1], (int, long)) and __item[1] >= 0, subject_term_texts.iteritems()))) == 0):
@@ -340,6 +377,8 @@ class ObjectFacets(object):
             return False
         if self.institution_hits != other.institution_hits:
             return False
+        if self.material_texts != other.material_texts:
+            return False
         if self.subject_term_texts != other.subject_term_texts:
             return False
         if self.url_exists != other.url_exists:
@@ -349,7 +388,7 @@ class ObjectFacets(object):
         return True
 
     def __hash__(self):
-        return hash((self.agent_name_texts,self.categories,self.collection_hits,self.genders,self.institution_hits,self.subject_term_texts,self.url_exists,self.work_type_texts,))
+        return hash((self.agent_name_texts,self.categories,self.collection_hits,self.genders,self.institution_hits,self.material_texts,self.subject_term_texts,self.url_exists,self.work_type_texts,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -364,6 +403,7 @@ class ObjectFacets(object):
         field_reprs.append('collection_hits=' + repr(self.collection_hits))
         field_reprs.append('genders=' + repr(self.genders))
         field_reprs.append('institution_hits=' + repr(self.institution_hits))
+        field_reprs.append('material_texts=' + repr(self.material_texts))
         field_reprs.append('subject_term_texts=' + repr(self.subject_term_texts))
         field_reprs.append('url_exists=' + repr(self.url_exists))
         field_reprs.append('work_type_texts=' + repr(self.work_type_texts))
@@ -376,6 +416,7 @@ class ObjectFacets(object):
         field_reprs.append('collection_hits=' + repr(self.collection_hits))
         field_reprs.append('genders=' + repr(self.genders))
         field_reprs.append('institution_hits=' + repr(self.institution_hits))
+        field_reprs.append('material_texts=' + repr(self.material_texts))
         field_reprs.append('subject_term_texts=' + repr(self.subject_term_texts))
         field_reprs.append('url_exists=' + repr(self.url_exists))
         field_reprs.append('work_type_texts=' + repr(self.work_type_texts))
@@ -396,7 +437,7 @@ class ObjectFacets(object):
         :rtype: dict
         '''
 
-        return {'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'collection_hits': self.collection_hits, 'genders': self.genders, 'institution_hits': self.institution_hits, 'subject_term_texts': self.subject_term_texts, 'url_exists': self.url_exists, 'work_type_texts': self.work_type_texts}
+        return {'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'collection_hits': self.collection_hits, 'genders': self.genders, 'institution_hits': self.institution_hits, 'material_texts': self.material_texts, 'subject_term_texts': self.subject_term_texts, 'url_exists': self.url_exists, 'work_type_texts': self.work_type_texts}
 
     def as_tuple(self):
         '''
@@ -405,7 +446,7 @@ class ObjectFacets(object):
         :rtype: tuple
         '''
 
-        return (self.agent_name_texts, self.categories, self.collection_hits, self.genders, self.institution_hits, self.subject_term_texts, self.url_exists, self.work_type_texts,)
+        return (self.agent_name_texts, self.categories, self.collection_hits, self.genders, self.institution_hits, self.material_texts, self.subject_term_texts, self.url_exists, self.work_type_texts,)
 
     @property
     def categories(self):
@@ -439,6 +480,14 @@ class ObjectFacets(object):
 
         return self.__institution_hits.copy() if self.__institution_hits is not None else None
 
+    @property
+    def material_texts(self):
+        '''
+        :rtype: dict(str: int)
+        '''
+
+        return self.__material_texts.copy() if self.__material_texts is not None else None
+
     @classmethod
     def read(cls, iprot):
         '''
@@ -465,6 +514,8 @@ class ObjectFacets(object):
                 init_kwds['genders'] = dict([(costume.api.models.gender.gender.Gender.value_of(iprot.read_string().strip().upper()), iprot.read_u32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'institution_hits':
                 init_kwds['institution_hits'] = dict([(iprot.read_string(), iprot.read_u32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
+            elif ifield_name == 'material_texts':
+                init_kwds['material_texts'] = dict([(iprot.read_string(), iprot.read_u32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'subject_term_texts':
                 init_kwds['subject_term_texts'] = dict([(iprot.read_string(), iprot.read_u32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'url_exists':
@@ -483,6 +534,7 @@ class ObjectFacets(object):
         collection_hits=None,
         genders=None,
         institution_hits=None,
+        material_texts=None,
         subject_term_texts=None,
         url_exists=None,
         work_type_texts=None,
@@ -495,6 +547,7 @@ class ObjectFacets(object):
         :type collection_hits: dict(str: int) or None
         :type genders: dict(costume.api.models.gender.gender.Gender: int) or None
         :type institution_hits: dict(str: int) or None
+        :type material_texts: dict(str: int) or None
         :type subject_term_texts: dict(str: int) or None
         :type url_exists: bool or None
         :type work_type_texts: dict(str: int) or None
@@ -511,13 +564,15 @@ class ObjectFacets(object):
             genders = self.genders
         if institution_hits is None:
             institution_hits = self.institution_hits
+        if material_texts is None:
+            material_texts = self.material_texts
         if subject_term_texts is None:
             subject_term_texts = self.subject_term_texts
         if url_exists is None:
             url_exists = self.url_exists
         if work_type_texts is None:
             work_type_texts = self.work_type_texts
-        return self.__class__(agent_name_texts=agent_name_texts, categories=categories, collection_hits=collection_hits, genders=genders, institution_hits=institution_hits, subject_term_texts=subject_term_texts, url_exists=url_exists, work_type_texts=work_type_texts)
+        return self.__class__(agent_name_texts=agent_name_texts, categories=categories, collection_hits=collection_hits, genders=genders, institution_hits=institution_hits, material_texts=material_texts, subject_term_texts=subject_term_texts, url_exists=url_exists, work_type_texts=work_type_texts)
 
     @property
     def subject_term_texts(self):
@@ -588,6 +643,14 @@ class ObjectFacets(object):
         oprot.write_field_begin(name='institution_hits', type=13, id=None)
         oprot.write_map_begin(11, len(self.institution_hits), 8)
         for __key0, __value0 in self.institution_hits.iteritems():
+            oprot.write_string(__key0)
+            oprot.write_u32(__value0)
+        oprot.write_map_end()
+        oprot.write_field_end()
+
+        oprot.write_field_begin(name='material_texts', type=13, id=None)
+        oprot.write_map_begin(11, len(self.material_texts), 8)
+        for __key0, __value0 in self.material_texts.iteritems():
             oprot.write_string(__key0)
             oprot.write_u32(__value0)
         oprot.write_map_end()

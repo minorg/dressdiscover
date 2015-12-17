@@ -12,6 +12,7 @@ class ObjectFacetFilters(object):
             exclude_collection_ids=None,
             exclude_genders=None,
             exclude_institution_ids=None,
+            exclude_material_texts=None,
             exclude_subject_term_texts=None,
             exclude_work_type_texts=None,
             include_agent_name_texts=None,
@@ -19,6 +20,7 @@ class ObjectFacetFilters(object):
             include_collection_ids=None,
             include_genders=None,
             include_institution_ids=None,
+            include_material_texts=None,
             include_subject_term_texts=None,
             include_work_type_texts=None,
         ):
@@ -28,6 +30,7 @@ class ObjectFacetFilters(object):
             :type exclude_collection_ids: frozenset(str) or None
             :type exclude_genders: frozenset(costume.api.models.gender.gender.Gender) or None
             :type exclude_institution_ids: frozenset(str) or None
+            :type exclude_material_texts: frozenset(str) or None
             :type exclude_subject_term_texts: frozenset(str) or None
             :type exclude_work_type_texts: frozenset(str) or None
             :type include_agent_name_texts: frozenset(str) or None
@@ -35,6 +38,7 @@ class ObjectFacetFilters(object):
             :type include_collection_ids: frozenset(str) or None
             :type include_genders: frozenset(costume.api.models.gender.gender.Gender) or None
             :type include_institution_ids: frozenset(str) or None
+            :type include_material_texts: frozenset(str) or None
             :type include_subject_term_texts: frozenset(str) or None
             :type include_work_type_texts: frozenset(str) or None
             '''
@@ -44,6 +48,7 @@ class ObjectFacetFilters(object):
             self.__exclude_collection_ids = exclude_collection_ids
             self.__exclude_genders = exclude_genders
             self.__exclude_institution_ids = exclude_institution_ids
+            self.__exclude_material_texts = exclude_material_texts
             self.__exclude_subject_term_texts = exclude_subject_term_texts
             self.__exclude_work_type_texts = exclude_work_type_texts
             self.__include_agent_name_texts = include_agent_name_texts
@@ -51,11 +56,12 @@ class ObjectFacetFilters(object):
             self.__include_collection_ids = include_collection_ids
             self.__include_genders = include_genders
             self.__include_institution_ids = include_institution_ids
+            self.__include_material_texts = include_material_texts
             self.__include_subject_term_texts = include_subject_term_texts
             self.__include_work_type_texts = include_work_type_texts
 
         def build(self):
-            return ObjectFacetFilters(exclude_agent_name_texts=self.__exclude_agent_name_texts, exclude_categories=self.__exclude_categories, exclude_collection_ids=self.__exclude_collection_ids, exclude_genders=self.__exclude_genders, exclude_institution_ids=self.__exclude_institution_ids, exclude_subject_term_texts=self.__exclude_subject_term_texts, exclude_work_type_texts=self.__exclude_work_type_texts, include_agent_name_texts=self.__include_agent_name_texts, include_categories=self.__include_categories, include_collection_ids=self.__include_collection_ids, include_genders=self.__include_genders, include_institution_ids=self.__include_institution_ids, include_subject_term_texts=self.__include_subject_term_texts, include_work_type_texts=self.__include_work_type_texts)
+            return ObjectFacetFilters(exclude_agent_name_texts=self.__exclude_agent_name_texts, exclude_categories=self.__exclude_categories, exclude_collection_ids=self.__exclude_collection_ids, exclude_genders=self.__exclude_genders, exclude_institution_ids=self.__exclude_institution_ids, exclude_material_texts=self.__exclude_material_texts, exclude_subject_term_texts=self.__exclude_subject_term_texts, exclude_work_type_texts=self.__exclude_work_type_texts, include_agent_name_texts=self.__include_agent_name_texts, include_categories=self.__include_categories, include_collection_ids=self.__include_collection_ids, include_genders=self.__include_genders, include_institution_ids=self.__include_institution_ids, include_material_texts=self.__include_material_texts, include_subject_term_texts=self.__include_subject_term_texts, include_work_type_texts=self.__include_work_type_texts)
 
         @property
         def exclude_agent_name_texts(self):
@@ -96,6 +102,14 @@ class ObjectFacetFilters(object):
             '''
 
             return self.__exclude_institution_ids
+
+        @property
+        def exclude_material_texts(self):
+            '''
+            :rtype: frozenset(str)
+            '''
+
+            return self.__exclude_material_texts
 
         @property
         def exclude_subject_term_texts(self):
@@ -154,6 +168,14 @@ class ObjectFacetFilters(object):
             return self.__include_institution_ids
 
         @property
+        def include_material_texts(self):
+            '''
+            :rtype: frozenset(str)
+            '''
+
+            return self.__include_material_texts
+
+        @property
         def include_subject_term_texts(self):
             '''
             :rtype: frozenset(str)
@@ -207,6 +229,14 @@ class ObjectFacetFilters(object):
             '''
 
             self.__exclude_institution_ids = exclude_institution_ids
+            return self
+
+        def set_exclude_material_texts(self, exclude_material_texts):
+            '''
+            :type exclude_material_texts: frozenset(str) or None
+            '''
+
+            self.__exclude_material_texts = exclude_material_texts
             return self
 
         def set_exclude_subject_term_texts(self, exclude_subject_term_texts):
@@ -265,6 +295,14 @@ class ObjectFacetFilters(object):
             self.__include_institution_ids = include_institution_ids
             return self
 
+        def set_include_material_texts(self, include_material_texts):
+            '''
+            :type include_material_texts: frozenset(str) or None
+            '''
+
+            self.__include_material_texts = include_material_texts
+            return self
+
         def set_include_subject_term_texts(self, include_subject_term_texts):
             '''
             :type include_subject_term_texts: frozenset(str) or None
@@ -288,6 +326,7 @@ class ObjectFacetFilters(object):
             :type exclude_collection_ids: frozenset(str) or None
             :type exclude_genders: frozenset(costume.api.models.gender.gender.Gender) or None
             :type exclude_institution_ids: frozenset(str) or None
+            :type exclude_material_texts: frozenset(str) or None
             :type exclude_subject_term_texts: frozenset(str) or None
             :type exclude_work_type_texts: frozenset(str) or None
             :type include_agent_name_texts: frozenset(str) or None
@@ -295,6 +334,7 @@ class ObjectFacetFilters(object):
             :type include_collection_ids: frozenset(str) or None
             :type include_genders: frozenset(costume.api.models.gender.gender.Gender) or None
             :type include_institution_ids: frozenset(str) or None
+            :type include_material_texts: frozenset(str) or None
             :type include_subject_term_texts: frozenset(str) or None
             :type include_work_type_texts: frozenset(str) or None
             '''
@@ -305,6 +345,7 @@ class ObjectFacetFilters(object):
                 self.set_exclude_collection_ids(object_facet_filters.exclude_collection_ids)
                 self.set_exclude_genders(object_facet_filters.exclude_genders)
                 self.set_exclude_institution_ids(object_facet_filters.exclude_institution_ids)
+                self.set_exclude_material_texts(object_facet_filters.exclude_material_texts)
                 self.set_exclude_subject_term_texts(object_facet_filters.exclude_subject_term_texts)
                 self.set_exclude_work_type_texts(object_facet_filters.exclude_work_type_texts)
                 self.set_include_agent_name_texts(object_facet_filters.include_agent_name_texts)
@@ -312,6 +353,7 @@ class ObjectFacetFilters(object):
                 self.set_include_collection_ids(object_facet_filters.include_collection_ids)
                 self.set_include_genders(object_facet_filters.include_genders)
                 self.set_include_institution_ids(object_facet_filters.include_institution_ids)
+                self.set_include_material_texts(object_facet_filters.include_material_texts)
                 self.set_include_subject_term_texts(object_facet_filters.include_subject_term_texts)
                 self.set_include_work_type_texts(object_facet_filters.include_work_type_texts)
             elif isinstance(object_facet_filters, dict):
@@ -360,6 +402,14 @@ class ObjectFacetFilters(object):
             '''
 
             self.set_exclude_institution_ids(exclude_institution_ids)
+
+        @exclude_material_texts.setter
+        def exclude_material_texts(self, exclude_material_texts):
+            '''
+            :type exclude_material_texts: frozenset(str) or None
+            '''
+
+            self.set_exclude_material_texts(exclude_material_texts)
 
         @exclude_subject_term_texts.setter
         def exclude_subject_term_texts(self, exclude_subject_term_texts):
@@ -417,6 +467,14 @@ class ObjectFacetFilters(object):
 
             self.set_include_institution_ids(include_institution_ids)
 
+        @include_material_texts.setter
+        def include_material_texts(self, include_material_texts):
+            '''
+            :type include_material_texts: frozenset(str) or None
+            '''
+
+            self.set_include_material_texts(include_material_texts)
+
         @include_subject_term_texts.setter
         def include_subject_term_texts(self, include_subject_term_texts):
             '''
@@ -440,6 +498,7 @@ class ObjectFacetFilters(object):
         exclude_collection_ids=None,
         exclude_genders=None,
         exclude_institution_ids=None,
+        exclude_material_texts=None,
         exclude_subject_term_texts=None,
         exclude_work_type_texts=None,
         include_agent_name_texts=None,
@@ -447,6 +506,7 @@ class ObjectFacetFilters(object):
         include_collection_ids=None,
         include_genders=None,
         include_institution_ids=None,
+        include_material_texts=None,
         include_subject_term_texts=None,
         include_work_type_texts=None,
     ):
@@ -456,6 +516,7 @@ class ObjectFacetFilters(object):
         :type exclude_collection_ids: frozenset(str) or None
         :type exclude_genders: frozenset(costume.api.models.gender.gender.Gender) or None
         :type exclude_institution_ids: frozenset(str) or None
+        :type exclude_material_texts: frozenset(str) or None
         :type exclude_subject_term_texts: frozenset(str) or None
         :type exclude_work_type_texts: frozenset(str) or None
         :type include_agent_name_texts: frozenset(str) or None
@@ -463,6 +524,7 @@ class ObjectFacetFilters(object):
         :type include_collection_ids: frozenset(str) or None
         :type include_genders: frozenset(costume.api.models.gender.gender.Gender) or None
         :type include_institution_ids: frozenset(str) or None
+        :type include_material_texts: frozenset(str) or None
         :type include_subject_term_texts: frozenset(str) or None
         :type include_work_type_texts: frozenset(str) or None
         '''
@@ -501,6 +563,13 @@ class ObjectFacetFilters(object):
             if len(exclude_institution_ids) < 1:
                 raise ValueError("expected len(exclude_institution_ids) to be >= 1, was %d" % len(exclude_institution_ids))
         self.__exclude_institution_ids = exclude_institution_ids
+
+        if exclude_material_texts is not None:
+            if not (isinstance(exclude_material_texts, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), exclude_material_texts))) == 0):
+                raise TypeError("expected exclude_material_texts to be a frozenset(str) but it is a %s" % getattr(__builtin__, 'type')(exclude_material_texts))
+            if len(exclude_material_texts) < 1:
+                raise ValueError("expected len(exclude_material_texts) to be >= 1, was %d" % len(exclude_material_texts))
+        self.__exclude_material_texts = exclude_material_texts
 
         if exclude_subject_term_texts is not None:
             if not (isinstance(exclude_subject_term_texts, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), exclude_subject_term_texts))) == 0):
@@ -551,6 +620,13 @@ class ObjectFacetFilters(object):
                 raise ValueError("expected len(include_institution_ids) to be >= 1, was %d" % len(include_institution_ids))
         self.__include_institution_ids = include_institution_ids
 
+        if include_material_texts is not None:
+            if not (isinstance(include_material_texts, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), include_material_texts))) == 0):
+                raise TypeError("expected include_material_texts to be a frozenset(str) but it is a %s" % getattr(__builtin__, 'type')(include_material_texts))
+            if len(include_material_texts) < 1:
+                raise ValueError("expected len(include_material_texts) to be >= 1, was %d" % len(include_material_texts))
+        self.__include_material_texts = include_material_texts
+
         if include_subject_term_texts is not None:
             if not (isinstance(include_subject_term_texts, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), include_subject_term_texts))) == 0):
                 raise TypeError("expected include_subject_term_texts to be a frozenset(str) but it is a %s" % getattr(__builtin__, 'type')(include_subject_term_texts))
@@ -576,6 +652,8 @@ class ObjectFacetFilters(object):
             return False
         if self.exclude_institution_ids != other.exclude_institution_ids:
             return False
+        if self.exclude_material_texts != other.exclude_material_texts:
+            return False
         if self.exclude_subject_term_texts != other.exclude_subject_term_texts:
             return False
         if self.exclude_work_type_texts != other.exclude_work_type_texts:
@@ -590,6 +668,8 @@ class ObjectFacetFilters(object):
             return False
         if self.include_institution_ids != other.include_institution_ids:
             return False
+        if self.include_material_texts != other.include_material_texts:
+            return False
         if self.include_subject_term_texts != other.include_subject_term_texts:
             return False
         if self.include_work_type_texts != other.include_work_type_texts:
@@ -597,7 +677,7 @@ class ObjectFacetFilters(object):
         return True
 
     def __hash__(self):
-        return hash((self.exclude_agent_name_texts,self.exclude_categories,self.exclude_collection_ids,self.exclude_genders,self.exclude_institution_ids,self.exclude_subject_term_texts,self.exclude_work_type_texts,self.include_agent_name_texts,self.include_categories,self.include_collection_ids,self.include_genders,self.include_institution_ids,self.include_subject_term_texts,self.include_work_type_texts,))
+        return hash((self.exclude_agent_name_texts,self.exclude_categories,self.exclude_collection_ids,self.exclude_genders,self.exclude_institution_ids,self.exclude_material_texts,self.exclude_subject_term_texts,self.exclude_work_type_texts,self.include_agent_name_texts,self.include_categories,self.include_collection_ids,self.include_genders,self.include_institution_ids,self.include_material_texts,self.include_subject_term_texts,self.include_work_type_texts,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -617,6 +697,8 @@ class ObjectFacetFilters(object):
             field_reprs.append('exclude_genders=' + repr(self.exclude_genders))
         if self.exclude_institution_ids is not None:
             field_reprs.append('exclude_institution_ids=' + repr(self.exclude_institution_ids))
+        if self.exclude_material_texts is not None:
+            field_reprs.append('exclude_material_texts=' + repr(self.exclude_material_texts))
         if self.exclude_subject_term_texts is not None:
             field_reprs.append('exclude_subject_term_texts=' + repr(self.exclude_subject_term_texts))
         if self.exclude_work_type_texts is not None:
@@ -631,6 +713,8 @@ class ObjectFacetFilters(object):
             field_reprs.append('include_genders=' + repr(self.include_genders))
         if self.include_institution_ids is not None:
             field_reprs.append('include_institution_ids=' + repr(self.include_institution_ids))
+        if self.include_material_texts is not None:
+            field_reprs.append('include_material_texts=' + repr(self.include_material_texts))
         if self.include_subject_term_texts is not None:
             field_reprs.append('include_subject_term_texts=' + repr(self.include_subject_term_texts))
         if self.include_work_type_texts is not None:
@@ -649,6 +733,8 @@ class ObjectFacetFilters(object):
             field_reprs.append('exclude_genders=' + repr(self.exclude_genders))
         if self.exclude_institution_ids is not None:
             field_reprs.append('exclude_institution_ids=' + repr(self.exclude_institution_ids))
+        if self.exclude_material_texts is not None:
+            field_reprs.append('exclude_material_texts=' + repr(self.exclude_material_texts))
         if self.exclude_subject_term_texts is not None:
             field_reprs.append('exclude_subject_term_texts=' + repr(self.exclude_subject_term_texts))
         if self.exclude_work_type_texts is not None:
@@ -663,6 +749,8 @@ class ObjectFacetFilters(object):
             field_reprs.append('include_genders=' + repr(self.include_genders))
         if self.include_institution_ids is not None:
             field_reprs.append('include_institution_ids=' + repr(self.include_institution_ids))
+        if self.include_material_texts is not None:
+            field_reprs.append('include_material_texts=' + repr(self.include_material_texts))
         if self.include_subject_term_texts is not None:
             field_reprs.append('include_subject_term_texts=' + repr(self.include_subject_term_texts))
         if self.include_work_type_texts is not None:
@@ -676,7 +764,7 @@ class ObjectFacetFilters(object):
         :rtype: dict
         '''
 
-        return {'exclude_agent_name_texts': self.exclude_agent_name_texts, 'exclude_categories': self.exclude_categories, 'exclude_collection_ids': self.exclude_collection_ids, 'exclude_genders': self.exclude_genders, 'exclude_institution_ids': self.exclude_institution_ids, 'exclude_subject_term_texts': self.exclude_subject_term_texts, 'exclude_work_type_texts': self.exclude_work_type_texts, 'include_agent_name_texts': self.include_agent_name_texts, 'include_categories': self.include_categories, 'include_collection_ids': self.include_collection_ids, 'include_genders': self.include_genders, 'include_institution_ids': self.include_institution_ids, 'include_subject_term_texts': self.include_subject_term_texts, 'include_work_type_texts': self.include_work_type_texts}
+        return {'exclude_agent_name_texts': self.exclude_agent_name_texts, 'exclude_categories': self.exclude_categories, 'exclude_collection_ids': self.exclude_collection_ids, 'exclude_genders': self.exclude_genders, 'exclude_institution_ids': self.exclude_institution_ids, 'exclude_material_texts': self.exclude_material_texts, 'exclude_subject_term_texts': self.exclude_subject_term_texts, 'exclude_work_type_texts': self.exclude_work_type_texts, 'include_agent_name_texts': self.include_agent_name_texts, 'include_categories': self.include_categories, 'include_collection_ids': self.include_collection_ids, 'include_genders': self.include_genders, 'include_institution_ids': self.include_institution_ids, 'include_material_texts': self.include_material_texts, 'include_subject_term_texts': self.include_subject_term_texts, 'include_work_type_texts': self.include_work_type_texts}
 
     def as_tuple(self):
         '''
@@ -685,7 +773,7 @@ class ObjectFacetFilters(object):
         :rtype: tuple
         '''
 
-        return (self.exclude_agent_name_texts, self.exclude_categories, self.exclude_collection_ids, self.exclude_genders, self.exclude_institution_ids, self.exclude_subject_term_texts, self.exclude_work_type_texts, self.include_agent_name_texts, self.include_categories, self.include_collection_ids, self.include_genders, self.include_institution_ids, self.include_subject_term_texts, self.include_work_type_texts,)
+        return (self.exclude_agent_name_texts, self.exclude_categories, self.exclude_collection_ids, self.exclude_genders, self.exclude_institution_ids, self.exclude_material_texts, self.exclude_subject_term_texts, self.exclude_work_type_texts, self.include_agent_name_texts, self.include_categories, self.include_collection_ids, self.include_genders, self.include_institution_ids, self.include_material_texts, self.include_subject_term_texts, self.include_work_type_texts,)
 
     @property
     def exclude_agent_name_texts(self):
@@ -726,6 +814,14 @@ class ObjectFacetFilters(object):
         '''
 
         return self.__exclude_institution_ids
+
+    @property
+    def exclude_material_texts(self):
+        '''
+        :rtype: frozenset(str)
+        '''
+
+        return self.__exclude_material_texts
 
     @property
     def exclude_subject_term_texts(self):
@@ -784,6 +880,14 @@ class ObjectFacetFilters(object):
         return self.__include_institution_ids
 
     @property
+    def include_material_texts(self):
+        '''
+        :rtype: frozenset(str)
+        '''
+
+        return self.__include_material_texts
+
+    @property
     def include_subject_term_texts(self):
         '''
         :rtype: frozenset(str)
@@ -825,6 +929,8 @@ class ObjectFacetFilters(object):
                 init_kwds['exclude_genders'] = frozenset([costume.api.models.gender.gender.Gender.value_of(iprot.read_string().strip().upper()) for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'exclude_institution_ids':
                 init_kwds['exclude_institution_ids'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
+            elif ifield_name == 'exclude_material_texts':
+                init_kwds['exclude_material_texts'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'exclude_subject_term_texts':
                 init_kwds['exclude_subject_term_texts'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'exclude_work_type_texts':
@@ -839,6 +945,8 @@ class ObjectFacetFilters(object):
                 init_kwds['include_genders'] = frozenset([costume.api.models.gender.gender.Gender.value_of(iprot.read_string().strip().upper()) for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'include_institution_ids':
                 init_kwds['include_institution_ids'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
+            elif ifield_name == 'include_material_texts':
+                init_kwds['include_material_texts'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'include_subject_term_texts':
                 init_kwds['include_subject_term_texts'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'include_work_type_texts':
@@ -855,6 +963,7 @@ class ObjectFacetFilters(object):
         exclude_collection_ids=None,
         exclude_genders=None,
         exclude_institution_ids=None,
+        exclude_material_texts=None,
         exclude_subject_term_texts=None,
         exclude_work_type_texts=None,
         include_agent_name_texts=None,
@@ -862,6 +971,7 @@ class ObjectFacetFilters(object):
         include_collection_ids=None,
         include_genders=None,
         include_institution_ids=None,
+        include_material_texts=None,
         include_subject_term_texts=None,
         include_work_type_texts=None,
     ):
@@ -873,6 +983,7 @@ class ObjectFacetFilters(object):
         :type exclude_collection_ids: frozenset(str) or None
         :type exclude_genders: frozenset(costume.api.models.gender.gender.Gender) or None
         :type exclude_institution_ids: frozenset(str) or None
+        :type exclude_material_texts: frozenset(str) or None
         :type exclude_subject_term_texts: frozenset(str) or None
         :type exclude_work_type_texts: frozenset(str) or None
         :type include_agent_name_texts: frozenset(str) or None
@@ -880,6 +991,7 @@ class ObjectFacetFilters(object):
         :type include_collection_ids: frozenset(str) or None
         :type include_genders: frozenset(costume.api.models.gender.gender.Gender) or None
         :type include_institution_ids: frozenset(str) or None
+        :type include_material_texts: frozenset(str) or None
         :type include_subject_term_texts: frozenset(str) or None
         :type include_work_type_texts: frozenset(str) or None
         :rtype: costume.api.services.object.object_facet_filters.ObjectFacetFilters
@@ -895,6 +1007,8 @@ class ObjectFacetFilters(object):
             exclude_genders = self.exclude_genders
         if exclude_institution_ids is None:
             exclude_institution_ids = self.exclude_institution_ids
+        if exclude_material_texts is None:
+            exclude_material_texts = self.exclude_material_texts
         if exclude_subject_term_texts is None:
             exclude_subject_term_texts = self.exclude_subject_term_texts
         if exclude_work_type_texts is None:
@@ -909,11 +1023,13 @@ class ObjectFacetFilters(object):
             include_genders = self.include_genders
         if include_institution_ids is None:
             include_institution_ids = self.include_institution_ids
+        if include_material_texts is None:
+            include_material_texts = self.include_material_texts
         if include_subject_term_texts is None:
             include_subject_term_texts = self.include_subject_term_texts
         if include_work_type_texts is None:
             include_work_type_texts = self.include_work_type_texts
-        return self.__class__(exclude_agent_name_texts=exclude_agent_name_texts, exclude_categories=exclude_categories, exclude_collection_ids=exclude_collection_ids, exclude_genders=exclude_genders, exclude_institution_ids=exclude_institution_ids, exclude_subject_term_texts=exclude_subject_term_texts, exclude_work_type_texts=exclude_work_type_texts, include_agent_name_texts=include_agent_name_texts, include_categories=include_categories, include_collection_ids=include_collection_ids, include_genders=include_genders, include_institution_ids=include_institution_ids, include_subject_term_texts=include_subject_term_texts, include_work_type_texts=include_work_type_texts)
+        return self.__class__(exclude_agent_name_texts=exclude_agent_name_texts, exclude_categories=exclude_categories, exclude_collection_ids=exclude_collection_ids, exclude_genders=exclude_genders, exclude_institution_ids=exclude_institution_ids, exclude_material_texts=exclude_material_texts, exclude_subject_term_texts=exclude_subject_term_texts, exclude_work_type_texts=exclude_work_type_texts, include_agent_name_texts=include_agent_name_texts, include_categories=include_categories, include_collection_ids=include_collection_ids, include_genders=include_genders, include_institution_ids=include_institution_ids, include_material_texts=include_material_texts, include_subject_term_texts=include_subject_term_texts, include_work_type_texts=include_work_type_texts)
 
     def write(self, oprot):
         '''
@@ -961,6 +1077,14 @@ class ObjectFacetFilters(object):
             oprot.write_field_begin(name='exclude_institution_ids', type=14, id=None)
             oprot.write_set_begin(11, len(self.exclude_institution_ids))
             for _0 in self.exclude_institution_ids:
+                oprot.write_string(_0)
+            oprot.write_set_end()
+            oprot.write_field_end()
+
+        if self.exclude_material_texts is not None:
+            oprot.write_field_begin(name='exclude_material_texts', type=14, id=None)
+            oprot.write_set_begin(11, len(self.exclude_material_texts))
+            for _0 in self.exclude_material_texts:
                 oprot.write_string(_0)
             oprot.write_set_end()
             oprot.write_field_end()
@@ -1017,6 +1141,14 @@ class ObjectFacetFilters(object):
             oprot.write_field_begin(name='include_institution_ids', type=14, id=None)
             oprot.write_set_begin(11, len(self.include_institution_ids))
             for _0 in self.include_institution_ids:
+                oprot.write_string(_0)
+            oprot.write_set_end()
+            oprot.write_field_end()
+
+        if self.include_material_texts is not None:
+            oprot.write_field_begin(name='include_material_texts', type=14, id=None)
+            oprot.write_set_begin(11, len(self.include_material_texts))
+            for _0 in self.include_material_texts:
                 oprot.write_string(_0)
             oprot.write_set_end()
             oprot.write_field_end()

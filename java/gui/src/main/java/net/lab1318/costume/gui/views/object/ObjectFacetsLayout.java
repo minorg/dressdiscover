@@ -175,6 +175,42 @@ final class ObjectFacetsLayout extends CustomComponent {
             }
         }
 
+        if (!availableObjectFacets.getMaterialTexts().isEmpty()) {
+            final ObjectFacetPicker<String> materialTextFacetPicker = new ObjectFacetPicker<String>(
+                    availableObjectFacets.getMaterialTexts().keySet(), "Materials",
+                    objectQuery.getFacetFilters().isPresent()
+                            && objectQuery.getFacetFilters().get().getExcludeMaterialTexts().isPresent()
+                                    ? objectQuery.getFacetFilters().get().getExcludeMaterialTexts().get()
+                                    : ImmutableSet.of(),
+                    objectQuery.getFacetFilters().isPresent()
+                            && objectQuery.getFacetFilters().get().getIncludeMaterialTexts().isPresent()
+                                    ? objectQuery.getFacetFilters().get().getIncludeMaterialTexts().get()
+                                    : ImmutableSet.of(),
+                    resultObjectFacets.getMaterialTexts().keySet()) {
+                @Override
+                protected void _valueChange(final ImmutableSet<String> excludeFacetKeys,
+                        final ImmutableSet<String> includeFacetKeys) {
+                    final ObjectFacetFilters.Builder filtersBuilder = ObjectFacetFilters
+                            .builder(objectQuery.getFacetFilters());
+                    if (!excludeFacetKeys.isEmpty()) {
+                        filtersBuilder.setExcludeMaterialTexts(excludeFacetKeys);
+                    } else {
+                        filtersBuilder.unsetExcludeMaterialTexts();
+                    }
+                    if (!includeFacetKeys.isEmpty()) {
+                        filtersBuilder.setIncludeMaterialTexts(includeFacetKeys);
+                    } else {
+                        filtersBuilder.unsetIncludeMaterialTexts();
+                    }
+                    eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
+                            .setQuery(ObjectQuery.builder().setFacetFilters(filtersBuilder.build()).build()).build());
+                }
+            };
+            if (!materialTextFacetPicker.isEmpty()) {
+                rootLayout.addComponent(materialTextFacetPicker);
+            }
+        }
+
         if (!availableObjectFacets.getSubjectTermTexts().isEmpty()) {
             final ObjectFacetPicker<String> subjectTermTextFacetPicker = new ObjectFacetPicker<String>(
                     availableObjectFacets.getSubjectTermTexts().keySet(), "Subject terms",
