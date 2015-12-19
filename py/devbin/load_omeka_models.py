@@ -6,6 +6,7 @@ import sys
 import traceback
 
 import argparse
+import pytz
 
 from costume.api.models.agent.agent import Agent
 from costume.api.models.agent.agent_name import AgentName
@@ -13,6 +14,11 @@ from costume.api.models.agent.agent_name_type import AgentNameType
 from costume.api.models.agent.agent_role import AgentRole
 from costume.api.models.agent.agent_set import AgentSet
 from costume.api.models.collection.collection import Collection
+from costume.api.models.date.date import Date
+from costume.api.models.date.date_bound import DateBound
+from costume.api.models.date.date_set import DateSet
+from costume.api.models.date.date_time_granularity import DateTimeGranularity
+from costume.api.models.date.date_type import DateType
 from costume.api.models.description.description import Description
 from costume.api.models.description.description_set import DescriptionSet
 from costume.api.models.description.description_type import DescriptionType
@@ -57,6 +63,12 @@ from model_utils import new_model_metadata
 from services import Services
 
 
+try:
+    import dateparser.date
+except ImportError:
+    dateparser = None
+
+
 DATA_DIR_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data'))
 assert os.path.isdir(DATA_DIR_PATH)
 
@@ -76,6 +88,8 @@ DCMI_TYPES = (
     'Text',
 )
 
+
+DATETIME_NOW = datetime.now()
 DCMI_TYPES_BASE_URL = 'http://purl.org/dc/dcmitype/'
 
 
@@ -126,6 +140,68 @@ services.institution_command_service.put_institution(
         .build()
 )
 
+
+def __parse_date(text):
+    builder = DateBound.Builder().set_text(text)
+
+    if text.endswith('?'):
+        builder.set_circa(True)
+        text = text[:-1]
+
+    parsed_date_time = None
+    parsed_date_time_granularity = None
+
+    try:
+        year = int(text)
+        parsed_date_time = datetime(year, 1, 1)
+        parsed_date_time_granularity = DateTimeGranularity.YEAR
+    except ValueError:
+        pass
+
+    if parsed_date_time is None:
+        if dateparser is not None:
+            parser = dateparser.date.DateDataParser(languages=('en',))
+            date_data = parser.get_date_data(text)
+            parsed_date_time = date_data['date_obj']
+            if parsed_date_time is not None:
+                period = date_data['period']
+                if period == 'day':
+                    parsed_date_time = parsed_date_time.replace(hour=0, minute=0, second=0, microsecond=0)
+                    parsed_date_time_granularity = DateTimeGranularity.DAY
+                elif period == 'month':
+                    parsed_date_time = parsed_date_time.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+                    parsed_date_time_granularity = DateTimeGranularity.MONTH
+                elif period == 'year':
+                    parsed_date_time = parsed_date_time.replace(day=1, month=1, hour=0, minute=0, second=0, microsecond=0)
+                    parsed_date_time_granularity = DateTimeGranularity.YEAR
+                else:
+                    raise NotImplementedError(period)
+
+    if parsed_date_time is not None:
+        parsed_date_time = parsed_date_time.replace(tzinfo=pytz.utc)
+
+        if parsed_date_time.year > DATETIME_NOW.year or parsed_date_time.year < 1000:
+            print 'Parsed date time has year out of range:', parsed_date_time, 'from', text
+            return builder.build()
+
+        builder.set_parsed_date_time(parsed_date_time)
+        if parsed_date_time_granularity is not None:
+            builder.set_parsed_date_time_granularity(parsed_date_time_granularity)
+        print 'Parsed date', parsed_date_time, 'from', text, 'at granularity', parsed_date_time_granularity
+
+    return builder.build()
+
+def __parse_date_range(text):
+    text_split = text.split('-', 1)
+    if len(text_split) == 1:
+        parsed_date = __parse_date(text)
+        date_range = parsed_date, parsed_date
+    elif len(text_split) == 2:
+        date_range = __parse_date(text_split[0]), __parse_date(text_split[1])
+    else:
+        raise NotImplementedError
+    print 'Parsed date range', date_range, 'from', text
+    return date_range
 
 
 with open(os.path.join(DATA_DIR_PATH, institution_id, 'collections.json')) as f:
@@ -188,6 +264,7 @@ for collection_dict in collection_dicts:
 
         agents = []
         categories = []
+        dates = []
         descriptions = []
         identifiers = []
         include_object = True
@@ -261,7 +338,14 @@ for collection_dict in collection_dicts:
                             .build()
                     )
                 elif element_name == 'Date':
-                    object_builder.set_date_text(text)
+                    earliest_date, latest_date = __parse_date_range(text)
+                    dates.append(
+                        Date.Builder()
+                            .set_earliest_date(earliest_date)
+                            .set_latest_date(latest_date)
+                            .set_type(DateType.CREATION)
+                            .build()
+                    )
                 elif element_name == 'Description':
                     descriptions.append(
                         Description.Builder()
@@ -390,6 +474,15 @@ for collection_dict in collection_dicts:
                         Description.Builder()
                             .set_text(text)
                             .set_type(DescriptionType.SUMMARY)
+                            .build()
+                    )
+                elif element_name == 'Donation Date':
+                    earliest_date = latest_date = __parse_date(text)
+                    dates.append(
+                        Date.Builder()
+                            .set_earliest_date(earliest_date)
+                            .set_latest_date(earliest_date)
+                            .set_type(DateType.DONATION)
                             .build()
                     )
                 elif element_name == 'Donor':
@@ -523,6 +616,8 @@ for collection_dict in collection_dicts:
             object_builder.set_agents(AgentSet.Builder().set_elements(tuple(agents)).build())
         if len(categories) > 0:
             object_builder.set_categories(tuple(categories))
+        if len(dates) > 0:
+            object_builder.set_dates(DateSet.Builder().set_elements(tuple(dates)).build())
         if len(descriptions) > 0:
             description_texts = {}
             description_i = 0

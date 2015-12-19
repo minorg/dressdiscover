@@ -9,20 +9,22 @@ public class DateBound implements org.thryft.Struct {
             text = null;
             circa = com.google.common.base.Optional.absent();
             parsedDateTime = com.google.common.base.Optional.absent();
+            parsedDateTimeGranularity = com.google.common.base.Optional.absent();
         }
 
         public Builder(final DateBound other) {
             this.text = other.getText();
             this.circa = other.getCirca();
             this.parsedDateTime = other.getParsedDateTime();
+            this.parsedDateTimeGranularity = other.getParsedDateTimeGranularity();
         }
 
-        protected DateBound _build(final String text, final com.google.common.base.Optional<Boolean> circa, final com.google.common.base.Optional<java.util.Date> parsedDateTime) {
-            return new DateBound(text, circa, parsedDateTime);
+        protected DateBound _build(final String text, final com.google.common.base.Optional<Boolean> circa, final com.google.common.base.Optional<java.util.Date> parsedDateTime, final com.google.common.base.Optional<net.lab1318.costume.api.models.date.DateTimeGranularity> parsedDateTimeGranularity) {
+            return new DateBound(text, circa, parsedDateTime, parsedDateTimeGranularity);
         }
 
         public DateBound build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.date.DateBound: missing text"), com.google.common.base.Preconditions.checkNotNull(circa, "net.lab1318.costume.api.models.date.DateBound: missing circa"), com.google.common.base.Preconditions.checkNotNull(parsedDateTime, "net.lab1318.costume.api.models.date.DateBound: missing parsedDateTime"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.date.DateBound: missing text"), com.google.common.base.Preconditions.checkNotNull(circa, "net.lab1318.costume.api.models.date.DateBound: missing circa"), com.google.common.base.Preconditions.checkNotNull(parsedDateTime, "net.lab1318.costume.api.models.date.DateBound: missing parsedDateTime"), com.google.common.base.Preconditions.checkNotNull(parsedDateTimeGranularity, "net.lab1318.costume.api.models.date.DateBound: missing parsedDateTimeGranularity"));
         }
 
         public final com.google.common.base.Optional<Boolean> getCirca() {
@@ -31,6 +33,10 @@ public class DateBound implements org.thryft.Struct {
 
         public final com.google.common.base.Optional<java.util.Date> getParsedDateTime() {
             return parsedDateTime;
+        }
+
+        public final com.google.common.base.Optional<net.lab1318.costume.api.models.date.DateTimeGranularity> getParsedDateTimeGranularity() {
+            return parsedDateTimeGranularity;
         }
 
         public final String getText() {
@@ -57,6 +63,12 @@ public class DateBound implements org.thryft.Struct {
             if (__list.getSize() > 2) {
                 try {
                     parsedDateTime = com.google.common.base.Optional.of(iprot.readDateTime());
+                } catch (final IllegalArgumentException e) {
+                }
+            }
+            if (__list.getSize() > 3) {
+                try {
+                    parsedDateTimeGranularity = com.google.common.base.Optional.of(iprot.readEnum(net.lab1318.costume.api.models.date.DateTimeGranularity.class));
                 } catch (final IllegalArgumentException e) {
                 }
             }
@@ -93,6 +105,15 @@ public class DateBound implements org.thryft.Struct {
                     }
                     break;
                 }
+                case "parsed_date_time_granularity": {
+                    if (!ifield.hasId() || ifield.getId() == 4) {
+                        try {
+                            parsedDateTimeGranularity = com.google.common.base.Optional.of(iprot.readEnum(net.lab1318.costume.api.models.date.DateTimeGranularity.class));
+                        } catch (final IllegalArgumentException e) {
+                        }
+                    }
+                    break;
+                }
                 }
                 iprot.readFieldEnd();
             }
@@ -120,6 +141,9 @@ public class DateBound implements org.thryft.Struct {
             if (other.getParsedDateTime().isPresent()) {
                 setParsedDateTime(other.getParsedDateTime());
             }
+            if (other.getParsedDateTimeGranularity().isPresent()) {
+                setParsedDateTimeGranularity(other.getParsedDateTimeGranularity());
+            }
 
             return this;
         }
@@ -131,6 +155,16 @@ public class DateBound implements org.thryft.Struct {
 
         public Builder setParsedDateTime(@javax.annotation.Nullable final java.util.Date parsedDateTime) {
             this.parsedDateTime = com.google.common.base.Optional.fromNullable(parsedDateTime);
+            return this;
+        }
+
+        public Builder setParsedDateTimeGranularity(final com.google.common.base.Optional<net.lab1318.costume.api.models.date.DateTimeGranularity> parsedDateTimeGranularity) {
+            this.parsedDateTimeGranularity = com.google.common.base.Preconditions.checkNotNull(parsedDateTimeGranularity);
+            return this;
+        }
+
+        public Builder setParsedDateTimeGranularity(@javax.annotation.Nullable final net.lab1318.costume.api.models.date.DateTimeGranularity parsedDateTimeGranularity) {
+            this.parsedDateTimeGranularity = com.google.common.base.Optional.fromNullable(parsedDateTimeGranularity);
             return this;
         }
 
@@ -146,6 +180,7 @@ public class DateBound implements org.thryft.Struct {
             case "text": setText((String)value); return this;
             case "circa": setCirca((Boolean)value); return this;
             case "parsed_date_time": setParsedDateTime((java.util.Date)value); return this;
+            case "parsed_date_time_granularity": setParsedDateTimeGranularity((net.lab1318.costume.api.models.date.DateTimeGranularity)value); return this;
             default:
                 throw new IllegalArgumentException(name);
             }
@@ -161,6 +196,11 @@ public class DateBound implements org.thryft.Struct {
             return this;
         }
 
+        public Builder unsetParsedDateTimeGranularity() {
+            this.parsedDateTimeGranularity = com.google.common.base.Optional.absent();
+            return this;
+        }
+
         public Builder unsetText() {
             this.text = null;
             return this;
@@ -169,13 +209,15 @@ public class DateBound implements org.thryft.Struct {
         private String text;
         private com.google.common.base.Optional<Boolean> circa;
         private com.google.common.base.Optional<java.util.Date> parsedDateTime;
+        private com.google.common.base.Optional<net.lab1318.costume.api.models.date.DateTimeGranularity> parsedDateTimeGranularity;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "text", org.thryft.protocol.Type.STRING),
         CIRCA("circa", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 2, "circa", org.thryft.protocol.Type.BOOL),
-        PARSED_DATE_TIME("parsedDateTime", new com.google.common.reflect.TypeToken<java.util.Date>() {}, false, 3, "parsed_date_time", org.thryft.protocol.Type.I64);
+        PARSED_DATE_TIME("parsedDateTime", new com.google.common.reflect.TypeToken<java.util.Date>() {}, false, 3, "parsed_date_time", org.thryft.protocol.Type.I64),
+        PARSED_DATE_TIME_GRANULARITY("parsedDateTimeGranularity", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.date.DateTimeGranularity>() {}, false, 4, "parsed_date_time_granularity", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -222,6 +264,7 @@ public class DateBound implements org.thryft.Struct {
             case "text": return TEXT;
             case "circa": return CIRCA;
             case "parsedDateTime": return PARSED_DATE_TIME;
+            case "parsedDateTimeGranularity": return PARSED_DATE_TIME_GRANULARITY;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -232,6 +275,7 @@ public class DateBound implements org.thryft.Struct {
             case "text": return TEXT;
             case "circa": return CIRCA;
             case "parsed_date_time": return PARSED_DATE_TIME;
+            case "parsed_date_time_granularity": return PARSED_DATE_TIME_GRANULARITY;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -264,7 +308,7 @@ public class DateBound implements org.thryft.Struct {
      * Copy constructor
      */
     public DateBound(final DateBound other) {
-        this(other.getText(), other.getCirca(), other.getParsedDateTime());
+        this(other.getText(), other.getCirca(), other.getParsedDateTime(), other.getParsedDateTimeGranularity());
     }
 
     /**
@@ -274,24 +318,27 @@ public class DateBound implements org.thryft.Struct {
         this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.date.DateBound: missing text"), "net.lab1318.costume.api.models.date.DateBound: text is empty");
         this.circa = com.google.common.base.Optional.absent();
         this.parsedDateTime = com.google.common.base.Optional.absent();
+        this.parsedDateTimeGranularity = com.google.common.base.Optional.absent();
     }
 
     /**
      * Total Nullable constructor
      */
-    public DateBound(final String text, final @javax.annotation.Nullable Boolean circa, final @javax.annotation.Nullable java.util.Date parsedDateTime) {
+    public DateBound(final String text, final @javax.annotation.Nullable Boolean circa, final @javax.annotation.Nullable java.util.Date parsedDateTime, final @javax.annotation.Nullable net.lab1318.costume.api.models.date.DateTimeGranularity parsedDateTimeGranularity) {
         this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.date.DateBound: missing text"), "net.lab1318.costume.api.models.date.DateBound: text is empty");
         this.circa = com.google.common.base.Optional.fromNullable(circa);
         this.parsedDateTime = com.google.common.base.Optional.fromNullable(parsedDateTime);
+        this.parsedDateTimeGranularity = com.google.common.base.Optional.fromNullable(parsedDateTimeGranularity);
     }
 
     /**
      * Optional constructor
      */
-    public DateBound(final String text, final com.google.common.base.Optional<Boolean> circa, final com.google.common.base.Optional<java.util.Date> parsedDateTime) {
+    public DateBound(final String text, final com.google.common.base.Optional<Boolean> circa, final com.google.common.base.Optional<java.util.Date> parsedDateTime, final com.google.common.base.Optional<net.lab1318.costume.api.models.date.DateTimeGranularity> parsedDateTimeGranularity) {
         this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.date.DateBound: missing text"), "net.lab1318.costume.api.models.date.DateBound: text is empty");
         this.circa = com.google.common.base.Preconditions.checkNotNull(circa, "net.lab1318.costume.api.models.date.DateBound: missing circa");
         this.parsedDateTime = com.google.common.base.Preconditions.checkNotNull(parsedDateTime, "net.lab1318.costume.api.models.date.DateBound: missing parsedDateTime");
+        this.parsedDateTimeGranularity = com.google.common.base.Preconditions.checkNotNull(parsedDateTimeGranularity, "net.lab1318.costume.api.models.date.DateBound: missing parsedDateTimeGranularity");
     }
 
     public static Builder builder() {
@@ -318,7 +365,8 @@ public class DateBound implements org.thryft.Struct {
         return
             getText().equals(other.getText()) &&
             getCirca().equals(other.getCirca()) &&
-            getParsedDateTime().equals(other.getParsedDateTime());
+            getParsedDateTime().equals(other.getParsedDateTime()) &&
+            getParsedDateTimeGranularity().equals(other.getParsedDateTimeGranularity());
     }
 
     @Override
@@ -327,6 +375,7 @@ public class DateBound implements org.thryft.Struct {
         case "text": return getText();
         case "circa": return getCirca();
         case "parsed_date_time": return getParsedDateTime();
+        case "parsed_date_time_granularity": return getParsedDateTimeGranularity();
         default:
             throw new IllegalArgumentException(fieldName);
         }
@@ -338,6 +387,10 @@ public class DateBound implements org.thryft.Struct {
 
     public final com.google.common.base.Optional<java.util.Date> getParsedDateTime() {
         return parsedDateTime;
+    }
+
+    public final com.google.common.base.Optional<net.lab1318.costume.api.models.date.DateTimeGranularity> getParsedDateTimeGranularity() {
+        return parsedDateTimeGranularity;
     }
 
     public final String getText() {
@@ -353,6 +406,9 @@ public class DateBound implements org.thryft.Struct {
         }
         if (getParsedDateTime().isPresent()) {
             hashCode = 31 * hashCode + getParsedDateTime().get().hashCode();
+        }
+        if (getParsedDateTimeGranularity().isPresent()) {
+            hashCode = 31 * hashCode + getParsedDateTimeGranularity().get().ordinal();
         }
         return hashCode;
     }
@@ -372,6 +428,7 @@ public class DateBound implements org.thryft.Struct {
         String text = null;
         com.google.common.base.Optional<Boolean> circa = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<java.util.Date> parsedDateTime = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<net.lab1318.costume.api.models.date.DateTimeGranularity> parsedDateTimeGranularity = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         text = iprot.readString();
@@ -384,9 +441,15 @@ public class DateBound implements org.thryft.Struct {
             } catch (final IllegalArgumentException e) {
             }
         }
+        if (__list.getSize() > 3) {
+            try {
+                parsedDateTimeGranularity = com.google.common.base.Optional.of(iprot.readEnum(net.lab1318.costume.api.models.date.DateTimeGranularity.class));
+            } catch (final IllegalArgumentException e) {
+            }
+        }
         iprot.readListEnd();
         try {
-            return new DateBound(text, circa, parsedDateTime);
+            return new DateBound(text, circa, parsedDateTime, parsedDateTimeGranularity);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -396,6 +459,7 @@ public class DateBound implements org.thryft.Struct {
         String text = null;
         com.google.common.base.Optional<Boolean> circa = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<java.util.Date> parsedDateTime = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<net.lab1318.costume.api.models.date.DateTimeGranularity> parsedDateTimeGranularity = com.google.common.base.Optional.absent();
 
         iprot.readStructBegin();
         while (true) {
@@ -425,19 +489,28 @@ public class DateBound implements org.thryft.Struct {
                 }
                 break;
             }
+            case "parsed_date_time_granularity": {
+                if (!ifield.hasId() || ifield.getId() == 4) {
+                    try {
+                        parsedDateTimeGranularity = com.google.common.base.Optional.of(iprot.readEnum(net.lab1318.costume.api.models.date.DateTimeGranularity.class));
+                    } catch (final IllegalArgumentException e) {
+                    }
+                }
+                break;
+            }
             }
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
         try {
-            return new DateBound(text, circa, parsedDateTime);
+            return new DateBound(text, circa, parsedDateTime, parsedDateTimeGranularity);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public DateBound replaceCirca(final com.google.common.base.Optional<Boolean> circa) {
-        return new DateBound(this.text, circa, this.parsedDateTime);
+        return new DateBound(this.text, circa, this.parsedDateTime, this.parsedDateTimeGranularity);
     }
 
     public DateBound replaceCirca(final boolean circa) {
@@ -445,25 +518,33 @@ public class DateBound implements org.thryft.Struct {
     }
 
     public DateBound replaceParsedDateTime(final com.google.common.base.Optional<java.util.Date> parsedDateTime) {
-        return new DateBound(this.text, this.circa, parsedDateTime);
+        return new DateBound(this.text, this.circa, parsedDateTime, this.parsedDateTimeGranularity);
     }
 
     public DateBound replaceParsedDateTime(final java.util.Date parsedDateTime) {
         return replaceParsedDateTime(com.google.common.base.Optional.fromNullable(parsedDateTime));
     }
 
+    public DateBound replaceParsedDateTimeGranularity(final com.google.common.base.Optional<net.lab1318.costume.api.models.date.DateTimeGranularity> parsedDateTimeGranularity) {
+        return new DateBound(this.text, this.circa, this.parsedDateTime, parsedDateTimeGranularity);
+    }
+
+    public DateBound replaceParsedDateTimeGranularity(final net.lab1318.costume.api.models.date.DateTimeGranularity parsedDateTimeGranularity) {
+        return replaceParsedDateTimeGranularity(com.google.common.base.Optional.fromNullable(parsedDateTimeGranularity));
+    }
+
     public DateBound replaceText(final String text) {
-        return new DateBound(text, this.circa, this.parsedDateTime);
+        return new DateBound(text, this.circa, this.parsedDateTime, this.parsedDateTimeGranularity);
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("circa", getCirca().orNull()).add("parsed_date_time", getParsedDateTime().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("circa", getCirca().orNull()).add("parsed_date_time", getParsedDateTime().orNull()).add("parsed_date_time_granularity", getParsedDateTimeGranularity().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 4);
 
         oprot.writeString(getText());
 
@@ -475,6 +556,12 @@ public class DateBound implements org.thryft.Struct {
 
         if (getParsedDateTime().isPresent()) {
             oprot.writeDateTime(getParsedDateTime().get());
+        } else {
+            oprot.writeNull();
+        }
+
+        if (getParsedDateTimeGranularity().isPresent()) {
+            oprot.writeEnum(getParsedDateTimeGranularity().get());
         } else {
             oprot.writeNull();
         }
@@ -507,6 +594,12 @@ public class DateBound implements org.thryft.Struct {
             oprot.writeFieldEnd();
         }
 
+        if (getParsedDateTimeGranularity().isPresent()) {
+            oprot.writeFieldBegin("parsed_date_time_granularity", org.thryft.protocol.Type.STRING, (short)4);
+            oprot.writeEnum(getParsedDateTimeGranularity().get());
+            oprot.writeFieldEnd();
+        }
+
         oprot.writeFieldStop();
     }
 
@@ -515,4 +608,6 @@ public class DateBound implements org.thryft.Struct {
     private final com.google.common.base.Optional<Boolean> circa;
 
     private final com.google.common.base.Optional<java.util.Date> parsedDateTime;
+
+    private final com.google.common.base.Optional<net.lab1318.costume.api.models.date.DateTimeGranularity> parsedDateTimeGranularity;
 }

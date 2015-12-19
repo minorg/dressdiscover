@@ -158,11 +158,68 @@
             "index": "not_analyzed", 
             "type": "string"
           }, 
-          "10:date": {
-            "type": "date"
-          }, 
-          "11:date_text": {
-            "type": "string"
+          "10:dates": {
+            "type": "nested", 
+            "properties": {
+              "1:elements": {
+                "type": "nested", 
+                "properties": {
+                  "1:earliest_date": {
+                    "type": "nested", 
+                    "properties": {
+                      "1:text": {
+                        "type": "string"
+                      }, 
+                      "2:circa": {
+                        "type": "boolean"
+                      }, 
+                      "3:parsed_date_time": {
+                        "type": "date"
+                      }, 
+                      "4:parsed_date_time_granularity": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }
+                    }
+                  }, 
+                  "2:latest_date": {
+                    "type": "nested", 
+                    "properties": {
+                      "1:text": {
+                        "type": "string"
+                      }, 
+                      "2:circa": {
+                        "type": "boolean"
+                      }, 
+                      "3:parsed_date_time": {
+                        "type": "date"
+                      }, 
+                      "4:parsed_date_time_granularity": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }
+                    }
+                  }, 
+                  "3:type": {
+                    "index": "not_analyzed", 
+                    "type": "string"
+                  }, 
+                  "4:href": {
+                    "type": "string", 
+                    "analyzer": "email_and_url"
+                  }, 
+                  "5:source": {
+                    "type": "string"
+                  }
+                }
+              }, 
+              "2:display": {
+                "type": "string"
+              }, 
+              "3:notes": {
+                "type": "string"
+              }
+            }
           }, 
           "4:descriptions": {
             "type": "nested", 

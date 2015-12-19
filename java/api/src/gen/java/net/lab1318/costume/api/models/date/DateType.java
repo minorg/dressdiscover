@@ -9,13 +9,14 @@ public enum DateType {
     DESIGN(5),
     DESTRUCTION(6),
     DISCOVERY(7),
-    EXHIBITION(8),
-    INCLUSIVE(9),
-    PERFORMANCE(10),
-    PUBLICATION(11),
-    RESTORATION(12),
-    VIEW(13),
-    OTHER(14);
+    DONATION(8),
+    EXHIBITION(9),
+    INCLUSIVE(10),
+    PERFORMANCE(11),
+    PUBLICATION(12),
+    RESTORATION(13),
+    VIEW(14),
+    OTHER(15);
 
     private DateType(int value) {
         this.value = value;
@@ -31,13 +32,14 @@ public enum DateType {
         case 5: return DESIGN;
         case 6: return DESTRUCTION;
         case 7: return DISCOVERY;
-        case 8: return EXHIBITION;
-        case 9: return INCLUSIVE;
-        case 10: return PERFORMANCE;
-        case 11: return PUBLICATION;
-        case 12: return RESTORATION;
-        case 13: return VIEW;
-        case 14: return OTHER;
+        case 8: return DONATION;
+        case 9: return EXHIBITION;
+        case 10: return INCLUSIVE;
+        case 11: return PERFORMANCE;
+        case 12: return PUBLICATION;
+        case 13: return RESTORATION;
+        case 14: return VIEW;
+        case 15: return OTHER;
         default: throw new IllegalArgumentException();
         }
     }

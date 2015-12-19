@@ -48,10 +48,8 @@ final class ObjectForm extends CustomComponent {
             formLayout.setSpacing(true);
             formLayout.setSizeFull();
 
-            if (objectEntry.getModel().getDateText().isPresent()) {
-                formLayout.addComponent(__createTextField("Date", objectEntry.getModel().getDateText().get()));
-            } else if (objectEntry.getModel().getDate().isPresent()) {
-                formLayout.addComponent(__createTextField("Date", objectEntry.getModel().getDate().get().toString()));
+            if (objectEntry.getModel().getDates().isPresent()) {
+                formLayout.addComponent(new DateSetTable(objectEntry.getModel().getDates().get()));
             }
 
             if (objectEntry.getModel().getAgents().isPresent()) {

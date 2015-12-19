@@ -7,6 +7,7 @@ class DateType(object):
     DESIGN = None
     DESTRUCTION = None
     DISCOVERY = None
+    DONATION = None
     EXHIBITION = None
     INCLUSIVE = None
     PERFORMANCE = None
@@ -47,25 +48,27 @@ class DateType(object):
             return getattr(DateType, 'DESTRUCTION')
         elif name == 'DISCOVERY' or name == '7':
             return getattr(DateType, 'DISCOVERY')
-        elif name == 'EXHIBITION' or name == '8':
+        elif name == 'DONATION' or name == '8':
+            return getattr(DateType, 'DONATION')
+        elif name == 'EXHIBITION' or name == '9':
             return getattr(DateType, 'EXHIBITION')
-        elif name == 'INCLUSIVE' or name == '9':
+        elif name == 'INCLUSIVE' or name == '10':
             return getattr(DateType, 'INCLUSIVE')
-        elif name == 'PERFORMANCE' or name == '10':
+        elif name == 'PERFORMANCE' or name == '11':
             return getattr(DateType, 'PERFORMANCE')
-        elif name == 'PUBLICATION' or name == '11':
+        elif name == 'PUBLICATION' or name == '12':
             return getattr(DateType, 'PUBLICATION')
-        elif name == 'RESTORATION' or name == '12':
+        elif name == 'RESTORATION' or name == '13':
             return getattr(DateType, 'RESTORATION')
-        elif name == 'VIEW' or name == '13':
+        elif name == 'VIEW' or name == '14':
             return getattr(DateType, 'VIEW')
-        elif name == 'OTHER' or name == '14':
+        elif name == 'OTHER' or name == '15':
             return getattr(DateType, 'OTHER')
         raise ValueError(name)
 
     @classmethod
     def values(cls):
-        return (DateType.ALTERATION, DateType.BROADCAST, DateType.BULK, DateType.COMMISSION, DateType.CREATION, DateType.DESIGN, DateType.DESTRUCTION, DateType.DISCOVERY, DateType.EXHIBITION, DateType.INCLUSIVE, DateType.PERFORMANCE, DateType.PUBLICATION, DateType.RESTORATION, DateType.VIEW, DateType.OTHER,)
+        return (DateType.ALTERATION, DateType.BROADCAST, DateType.BULK, DateType.COMMISSION, DateType.CREATION, DateType.DESIGN, DateType.DESTRUCTION, DateType.DISCOVERY, DateType.DONATION, DateType.EXHIBITION, DateType.INCLUSIVE, DateType.PERFORMANCE, DateType.PUBLICATION, DateType.RESTORATION, DateType.VIEW, DateType.OTHER,)
 
 DateType.ALTERATION = DateType('ALTERATION', 0)
 DateType.BROADCAST = DateType('BROADCAST', 1)
@@ -75,10 +78,11 @@ DateType.CREATION = DateType('CREATION', 4)
 DateType.DESIGN = DateType('DESIGN', 5)
 DateType.DESTRUCTION = DateType('DESTRUCTION', 6)
 DateType.DISCOVERY = DateType('DISCOVERY', 7)
-DateType.EXHIBITION = DateType('EXHIBITION', 8)
-DateType.INCLUSIVE = DateType('INCLUSIVE', 9)
-DateType.PERFORMANCE = DateType('PERFORMANCE', 10)
-DateType.PUBLICATION = DateType('PUBLICATION', 11)
-DateType.RESTORATION = DateType('RESTORATION', 12)
-DateType.VIEW = DateType('VIEW', 13)
-DateType.OTHER = DateType('OTHER', 14)
+DateType.DONATION = DateType('DONATION', 8)
+DateType.EXHIBITION = DateType('EXHIBITION', 9)
+DateType.INCLUSIVE = DateType('INCLUSIVE', 10)
+DateType.PERFORMANCE = DateType('PERFORMANCE', 11)
+DateType.PUBLICATION = DateType('PUBLICATION', 12)
+DateType.RESTORATION = DateType('RESTORATION', 13)
+DateType.VIEW = DateType('VIEW', 14)
+DateType.OTHER = DateType('OTHER', 15)

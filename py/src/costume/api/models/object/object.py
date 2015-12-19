@@ -1,7 +1,7 @@
-from datetime import datetime
 from itertools import ifilterfalse
 import __builtin__
 import costume.api.models.agent.agent_set
+import costume.api.models.date.date_set
 import costume.api.models.description.description_set
 import costume.api.models.gender.gender
 import costume.api.models.image.image
@@ -26,8 +26,7 @@ class Object(object):
             titles=None,
             agents=None,
             categories=None,
-            date=None,
-            date_text=None,
+            dates=None,
             descriptions=None,
             gender=None,
             images=None,
@@ -48,8 +47,7 @@ class Object(object):
             :type titles: costume.api.models.title.title_set.TitleSet
             :type agents: costume.api.models.agent.agent_set.AgentSet or None
             :type categories: tuple(str) or None
-            :type date: datetime or None
-            :type date_text: str or None
+            :type dates: costume.api.models.date.date_set.DateSet or None
             :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
             :type gender: costume.api.models.gender.gender.Gender or None
             :type images: tuple(costume.api.models.image.image.Image) or None
@@ -70,8 +68,7 @@ class Object(object):
             self.__titles = titles
             self.__agents = agents
             self.__categories = categories
-            self.__date = date
-            self.__date_text = date_text
+            self.__dates = dates
             self.__descriptions = descriptions
             self.__gender = gender
             self.__images = images
@@ -86,7 +83,7 @@ class Object(object):
             self.__work_types = work_types
 
         def build(self):
-            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, titles=self.__titles, agents=self.__agents, categories=self.__categories, date=self.__date, date_text=self.__date_text, descriptions=self.__descriptions, gender=self.__gender, images=self.__images, inscriptions=self.__inscriptions, materials=self.__materials, provenance=self.__provenance, quantity=self.__quantity, rights=self.__rights, subjects=self.__subjects, techniques=self.__techniques, textrefs=self.__textrefs, work_types=self.__work_types)
+            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, titles=self.__titles, agents=self.__agents, categories=self.__categories, dates=self.__dates, descriptions=self.__descriptions, gender=self.__gender, images=self.__images, inscriptions=self.__inscriptions, materials=self.__materials, provenance=self.__provenance, quantity=self.__quantity, rights=self.__rights, subjects=self.__subjects, techniques=self.__techniques, textrefs=self.__textrefs, work_types=self.__work_types)
 
         @property
         def agents(self):
@@ -113,20 +110,12 @@ class Object(object):
             return self.__collection_id
 
         @property
-        def date(self):
+        def dates(self):
             '''
-            :rtype: datetime
-            '''
-
-            return self.__date
-
-        @property
-        def date_text(self):
-            '''
-            :rtype: str
+            :rtype: costume.api.models.date.date_set.DateSet
             '''
 
-            return self.__date_text
+            return self.__dates
 
         @property
         def descriptions(self):
@@ -232,20 +221,12 @@ class Object(object):
             self.__collection_id = collection_id
             return self
 
-        def set_date(self, date):
+        def set_dates(self, dates):
             '''
-            :type date: datetime or None
-            '''
-
-            self.__date = date
-            return self
-
-        def set_date_text(self, date_text):
-            '''
-            :type date_text: str or None
+            :type dates: costume.api.models.date.date_set.DateSet or None
             '''
 
-            self.__date_text = date_text
+            self.__dates = dates
             return self
 
         def set_descriptions(self, descriptions):
@@ -408,8 +389,7 @@ class Object(object):
             :type titles: costume.api.models.title.title_set.TitleSet
             :type agents: costume.api.models.agent.agent_set.AgentSet or None
             :type categories: tuple(str) or None
-            :type date: datetime or None
-            :type date_text: str or None
+            :type dates: costume.api.models.date.date_set.DateSet or None
             :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
             :type gender: costume.api.models.gender.gender.Gender or None
             :type images: tuple(costume.api.models.image.image.Image) or None
@@ -431,8 +411,7 @@ class Object(object):
                 self.set_titles(object.titles)
                 self.set_agents(object.agents)
                 self.set_categories(object.categories)
-                self.set_date(object.date)
-                self.set_date_text(object.date_text)
+                self.set_dates(object.dates)
                 self.set_descriptions(object.descriptions)
                 self.set_gender(object.gender)
                 self.set_images(object.images)
@@ -484,21 +463,13 @@ class Object(object):
 
             self.set_collection_id(collection_id)
 
-        @date.setter
-        def date(self, date):
+        @dates.setter
+        def dates(self, dates):
             '''
-            :type date: datetime or None
-            '''
-
-            self.set_date(date)
-
-        @date_text.setter
-        def date_text(self, date_text):
-            '''
-            :type date_text: str or None
+            :type dates: costume.api.models.date.date_set.DateSet or None
             '''
 
-            self.set_date_text(date_text)
+            self.set_dates(dates)
 
         @descriptions.setter
         def descriptions(self, descriptions):
@@ -628,8 +599,7 @@ class Object(object):
         titles,
         agents=None,
         categories=None,
-        date=None,
-        date_text=None,
+        dates=None,
         descriptions=None,
         gender=None,
         images=None,
@@ -650,8 +620,7 @@ class Object(object):
         :type titles: costume.api.models.title.title_set.TitleSet
         :type agents: costume.api.models.agent.agent_set.AgentSet or None
         :type categories: tuple(str) or None
-        :type date: datetime or None
-        :type date_text: str or None
+        :type dates: costume.api.models.date.date_set.DateSet or None
         :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
         :type gender: costume.api.models.gender.gender.Gender or None
         :type images: tuple(costume.api.models.image.image.Image) or None
@@ -702,17 +671,10 @@ class Object(object):
                 raise ValueError("expected len(categories) to be >= 1, was %d" % len(categories))
         self.__categories = categories
 
-        if date is not None:
-            if not isinstance(date, datetime):
-                raise TypeError("expected date to be a datetime but it is a %s" % getattr(__builtin__, 'type')(date))
-        self.__date = date
-
-        if date_text is not None:
-            if not isinstance(date_text, basestring):
-                raise TypeError("expected date_text to be a str but it is a %s" % getattr(__builtin__, 'type')(date_text))
-            if len(date_text) < 1:
-                raise ValueError("expected len(date_text) to be >= 1, was %d" % len(date_text))
-        self.__date_text = date_text
+        if dates is not None:
+            if not isinstance(dates, costume.api.models.date.date_set.DateSet):
+                raise TypeError("expected dates to be a costume.api.models.date.date_set.DateSet but it is a %s" % getattr(__builtin__, 'type')(dates))
+        self.__dates = dates
 
         if descriptions is not None:
             if not isinstance(descriptions, costume.api.models.description.description_set.DescriptionSet):
@@ -791,9 +753,7 @@ class Object(object):
             return False
         if self.categories != other.categories:
             return False
-        if self.date != other.date:
-            return False
-        if self.date_text != other.date_text:
+        if self.dates != other.dates:
             return False
         if self.descriptions != other.descriptions:
             return False
@@ -822,7 +782,7 @@ class Object(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.model_metadata,self.titles,self.agents,self.categories,self.date,self.date_text,self.descriptions,self.gender,self.images,self.inscriptions,self.materials,self.provenance,self.quantity,self.rights,self.subjects,self.techniques,self.textrefs,self.work_types,))
+        return hash((self.collection_id,self.institution_id,self.model_metadata,self.titles,self.agents,self.categories,self.dates,self.descriptions,self.gender,self.images,self.inscriptions,self.materials,self.provenance,self.quantity,self.rights,self.subjects,self.techniques,self.textrefs,self.work_types,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -840,10 +800,8 @@ class Object(object):
             field_reprs.append('agents=' + repr(self.agents))
         if self.categories is not None:
             field_reprs.append('categories=' + repr(self.categories))
-        if self.date is not None:
-            field_reprs.append('date=' + repr(self.date))
-        if self.date_text is not None:
-            field_reprs.append('date_text=' + "'" + self.date_text.encode('ascii', 'replace') + "'")
+        if self.dates is not None:
+            field_reprs.append('dates=' + repr(self.dates))
         if self.descriptions is not None:
             field_reprs.append('descriptions=' + repr(self.descriptions))
         if self.gender is not None:
@@ -880,10 +838,8 @@ class Object(object):
             field_reprs.append('agents=' + repr(self.agents))
         if self.categories is not None:
             field_reprs.append('categories=' + repr(self.categories))
-        if self.date is not None:
-            field_reprs.append('date=' + repr(self.date))
-        if self.date_text is not None:
-            field_reprs.append('date_text=' + "'" + self.date_text.encode('ascii', 'replace') + "'")
+        if self.dates is not None:
+            field_reprs.append('dates=' + repr(self.dates))
         if self.descriptions is not None:
             field_reprs.append('descriptions=' + repr(self.descriptions))
         if self.gender is not None:
@@ -925,7 +881,7 @@ class Object(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'titles': self.titles, 'agents': self.agents, 'categories': self.categories, 'date': self.date, 'date_text': self.date_text, 'descriptions': self.descriptions, 'gender': self.gender, 'images': self.images, 'inscriptions': self.inscriptions, 'materials': self.materials, 'provenance': self.provenance, 'quantity': self.quantity, 'rights': self.rights, 'subjects': self.subjects, 'techniques': self.techniques, 'textrefs': self.textrefs, 'work_types': self.work_types}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'titles': self.titles, 'agents': self.agents, 'categories': self.categories, 'dates': self.dates, 'descriptions': self.descriptions, 'gender': self.gender, 'images': self.images, 'inscriptions': self.inscriptions, 'materials': self.materials, 'provenance': self.provenance, 'quantity': self.quantity, 'rights': self.rights, 'subjects': self.subjects, 'techniques': self.techniques, 'textrefs': self.textrefs, 'work_types': self.work_types}
 
     def as_tuple(self):
         '''
@@ -934,7 +890,7 @@ class Object(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.model_metadata, self.titles, self.agents, self.categories, self.date, self.date_text, self.descriptions, self.gender, self.images, self.inscriptions, self.materials, self.provenance, self.quantity, self.rights, self.subjects, self.techniques, self.textrefs, self.work_types,)
+        return (self.collection_id, self.institution_id, self.model_metadata, self.titles, self.agents, self.categories, self.dates, self.descriptions, self.gender, self.images, self.inscriptions, self.materials, self.provenance, self.quantity, self.rights, self.subjects, self.techniques, self.textrefs, self.work_types,)
 
     @property
     def categories(self):
@@ -953,20 +909,12 @@ class Object(object):
         return self.__collection_id
 
     @property
-    def date(self):
+    def dates(self):
         '''
-        :rtype: datetime
-        '''
-
-        return self.__date
-
-    @property
-    def date_text(self):
-        '''
-        :rtype: str
+        :rtype: costume.api.models.date.date_set.DateSet
         '''
 
-        return self.__date_text
+        return self.__dates
 
     @property
     def descriptions(self):
@@ -1068,16 +1016,8 @@ class Object(object):
                 init_kwds['agents'] = costume.api.models.agent.agent_set.AgentSet.read(iprot)
             elif ifield_name == 'categories' and ifield_id == 18:
                 init_kwds['categories'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
-            elif ifield_name == 'date' and ifield_id == 10:
-                try:
-                    init_kwds['date'] = iprot.read_date_time()
-                except (TypeError,):
-                    pass
-            elif ifield_name == 'date_text' and ifield_id == 11:
-                try:
-                    init_kwds['date_text'] = iprot.read_string()
-                except (TypeError, ValueError,):
-                    pass
+            elif ifield_name == 'dates' and ifield_id == 10:
+                init_kwds['dates'] = costume.api.models.date.date_set.DateSet.read(iprot)
             elif ifield_name == 'descriptions' and ifield_id == 4:
                 init_kwds['descriptions'] = costume.api.models.description.description_set.DescriptionSet.read(iprot)
             elif ifield_name == 'gender' and ifield_id == 25:
@@ -1124,8 +1064,7 @@ class Object(object):
         titles=None,
         agents=None,
         categories=None,
-        date=None,
-        date_text=None,
+        dates=None,
         descriptions=None,
         gender=None,
         images=None,
@@ -1148,8 +1087,7 @@ class Object(object):
         :type titles: costume.api.models.title.title_set.TitleSet or None
         :type agents: costume.api.models.agent.agent_set.AgentSet or None
         :type categories: tuple(str) or None
-        :type date: datetime or None
-        :type date_text: str or None
+        :type dates: costume.api.models.date.date_set.DateSet or None
         :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
         :type gender: costume.api.models.gender.gender.Gender or None
         :type images: tuple(costume.api.models.image.image.Image) or None
@@ -1177,10 +1115,8 @@ class Object(object):
             agents = self.agents
         if categories is None:
             categories = self.categories
-        if date is None:
-            date = self.date
-        if date_text is None:
-            date_text = self.date_text
+        if dates is None:
+            dates = self.dates
         if descriptions is None:
             descriptions = self.descriptions
         if gender is None:
@@ -1205,7 +1141,7 @@ class Object(object):
             textrefs = self.textrefs
         if work_types is None:
             work_types = self.work_types
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, titles=titles, agents=agents, categories=categories, date=date, date_text=date_text, descriptions=descriptions, gender=gender, images=images, inscriptions=inscriptions, materials=materials, provenance=provenance, quantity=quantity, rights=rights, subjects=subjects, techniques=techniques, textrefs=textrefs, work_types=work_types)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, titles=titles, agents=agents, categories=categories, dates=dates, descriptions=descriptions, gender=gender, images=images, inscriptions=inscriptions, materials=materials, provenance=provenance, quantity=quantity, rights=rights, subjects=subjects, techniques=techniques, textrefs=textrefs, work_types=work_types)
 
     @property
     def rights(self):
@@ -1294,14 +1230,9 @@ class Object(object):
             oprot.write_list_end()
             oprot.write_field_end()
 
-        if self.date is not None:
-            oprot.write_field_begin(name='date', type=10, id=10)
-            oprot.write_date_time(self.date)
-            oprot.write_field_end()
-
-        if self.date_text is not None:
-            oprot.write_field_begin(name='date_text', type=11, id=11)
-            oprot.write_string(self.date_text)
+        if self.dates is not None:
+            oprot.write_field_begin(name='dates', type=12, id=10)
+            self.dates.write(oprot)
             oprot.write_field_end()
 
         if self.descriptions is not None:

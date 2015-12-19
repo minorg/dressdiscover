@@ -1,5 +1,6 @@
 from datetime import datetime
 import __builtin__
+import costume.api.models.date.date_time_granularity
 
 
 class DateBound(object):
@@ -9,19 +10,22 @@ class DateBound(object):
             text=None,
             circa=None,
             parsed_date_time=None,
+            parsed_date_time_granularity=None,
         ):
             '''
             :type text: str
             :type circa: bool or None
             :type parsed_date_time: datetime or None
+            :type parsed_date_time_granularity: costume.api.models.date.date_time_granularity.DateTimeGranularity or None
             '''
 
             self.__text = text
             self.__circa = circa
             self.__parsed_date_time = parsed_date_time
+            self.__parsed_date_time_granularity = parsed_date_time_granularity
 
         def build(self):
-            return DateBound(text=self.__text, circa=self.__circa, parsed_date_time=self.__parsed_date_time)
+            return DateBound(text=self.__text, circa=self.__circa, parsed_date_time=self.__parsed_date_time, parsed_date_time_granularity=self.__parsed_date_time_granularity)
 
         @property
         def circa(self):
@@ -39,6 +43,14 @@ class DateBound(object):
 
             return self.__parsed_date_time
 
+        @property
+        def parsed_date_time_granularity(self):
+            '''
+            :rtype: costume.api.models.date.date_time_granularity.DateTimeGranularity
+            '''
+
+            return self.__parsed_date_time_granularity
+
         def set_circa(self, circa):
             '''
             :type circa: bool or None
@@ -53,6 +65,14 @@ class DateBound(object):
             '''
 
             self.__parsed_date_time = parsed_date_time
+            return self
+
+        def set_parsed_date_time_granularity(self, parsed_date_time_granularity):
+            '''
+            :type parsed_date_time_granularity: costume.api.models.date.date_time_granularity.DateTimeGranularity or None
+            '''
+
+            self.__parsed_date_time_granularity = parsed_date_time_granularity
             return self
 
         def set_text(self, text):
@@ -76,12 +96,14 @@ class DateBound(object):
             :type text: str
             :type circa: bool or None
             :type parsed_date_time: datetime or None
+            :type parsed_date_time_granularity: costume.api.models.date.date_time_granularity.DateTimeGranularity or None
             '''
 
             if isinstance(date_bound, DateBound):
                 self.set_text(date_bound.text)
                 self.set_circa(date_bound.circa)
                 self.set_parsed_date_time(date_bound.parsed_date_time)
+                self.set_parsed_date_time_granularity(date_bound.parsed_date_time_granularity)
             elif isinstance(date_bound, dict):
                 for key, value in date_bound.iteritems():
                     getattr(self, 'set_' + key)(value)
@@ -105,6 +127,14 @@ class DateBound(object):
 
             self.set_parsed_date_time(parsed_date_time)
 
+        @parsed_date_time_granularity.setter
+        def parsed_date_time_granularity(self, parsed_date_time_granularity):
+            '''
+            :type parsed_date_time_granularity: costume.api.models.date.date_time_granularity.DateTimeGranularity or None
+            '''
+
+            self.set_parsed_date_time_granularity(parsed_date_time_granularity)
+
         @text.setter
         def text(self, text):
             '''
@@ -118,11 +148,13 @@ class DateBound(object):
         text,
         circa=None,
         parsed_date_time=None,
+        parsed_date_time_granularity=None,
     ):
         '''
         :type text: str
         :type circa: bool or None
         :type parsed_date_time: datetime or None
+        :type parsed_date_time_granularity: costume.api.models.date.date_time_granularity.DateTimeGranularity or None
         '''
 
         if text is None:
@@ -143,6 +175,11 @@ class DateBound(object):
                 raise TypeError("expected parsed_date_time to be a datetime but it is a %s" % getattr(__builtin__, 'type')(parsed_date_time))
         self.__parsed_date_time = parsed_date_time
 
+        if parsed_date_time_granularity is not None:
+            if not isinstance(parsed_date_time_granularity, costume.api.models.date.date_time_granularity.DateTimeGranularity):
+                raise TypeError("expected parsed_date_time_granularity to be a costume.api.models.date.date_time_granularity.DateTimeGranularity but it is a %s" % getattr(__builtin__, 'type')(parsed_date_time_granularity))
+        self.__parsed_date_time_granularity = parsed_date_time_granularity
+
     def __eq__(self, other):
         if self.text != other.text:
             return False
@@ -150,10 +187,12 @@ class DateBound(object):
             return False
         if self.parsed_date_time != other.parsed_date_time:
             return False
+        if self.parsed_date_time_granularity != other.parsed_date_time_granularity:
+            return False
         return True
 
     def __hash__(self):
-        return hash((self.text,self.circa,self.parsed_date_time,))
+        return hash((self.text,self.circa,self.parsed_date_time,self.parsed_date_time_granularity,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -168,6 +207,8 @@ class DateBound(object):
             field_reprs.append('circa=' + repr(self.circa))
         if self.parsed_date_time is not None:
             field_reprs.append('parsed_date_time=' + repr(self.parsed_date_time))
+        if self.parsed_date_time_granularity is not None:
+            field_reprs.append('parsed_date_time_granularity=' + repr(self.parsed_date_time_granularity))
         return 'DateBound(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
@@ -177,6 +218,8 @@ class DateBound(object):
             field_reprs.append('circa=' + repr(self.circa))
         if self.parsed_date_time is not None:
             field_reprs.append('parsed_date_time=' + repr(self.parsed_date_time))
+        if self.parsed_date_time_granularity is not None:
+            field_reprs.append('parsed_date_time_granularity=' + repr(self.parsed_date_time_granularity))
         return 'DateBound(' + ', '.join(field_reprs) + ')'
 
     def as_dict(self):
@@ -186,7 +229,7 @@ class DateBound(object):
         :rtype: dict
         '''
 
-        return {'text': self.text, 'circa': self.circa, 'parsed_date_time': self.parsed_date_time}
+        return {'text': self.text, 'circa': self.circa, 'parsed_date_time': self.parsed_date_time, 'parsed_date_time_granularity': self.parsed_date_time_granularity}
 
     def as_tuple(self):
         '''
@@ -195,7 +238,7 @@ class DateBound(object):
         :rtype: tuple
         '''
 
-        return (self.text, self.circa, self.parsed_date_time,)
+        return (self.text, self.circa, self.parsed_date_time, self.parsed_date_time_granularity,)
 
     @property
     def circa(self):
@@ -212,6 +255,14 @@ class DateBound(object):
         '''
 
         return self.__parsed_date_time
+
+    @property
+    def parsed_date_time_granularity(self):
+        '''
+        :rtype: costume.api.models.date.date_time_granularity.DateTimeGranularity
+        '''
+
+        return self.__parsed_date_time_granularity
 
     @classmethod
     def read(cls, iprot):
@@ -241,6 +292,11 @@ class DateBound(object):
                     init_kwds['parsed_date_time'] = iprot.read_date_time()
                 except (TypeError,):
                     pass
+            elif ifield_name == 'parsed_date_time_granularity' and ifield_id == 4:
+                try:
+                    init_kwds['parsed_date_time_granularity'] = costume.api.models.date.date_time_granularity.DateTimeGranularity.value_of(iprot.read_string().strip().upper())
+                except (TypeError,):
+                    pass
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -251,6 +307,7 @@ class DateBound(object):
         text=None,
         circa=None,
         parsed_date_time=None,
+        parsed_date_time_granularity=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
@@ -258,6 +315,7 @@ class DateBound(object):
         :type text: str or None
         :type circa: bool or None
         :type parsed_date_time: datetime or None
+        :type parsed_date_time_granularity: costume.api.models.date.date_time_granularity.DateTimeGranularity or None
         :rtype: costume.api.models.date.date_bound.DateBound
         '''
 
@@ -267,7 +325,9 @@ class DateBound(object):
             circa = self.circa
         if parsed_date_time is None:
             parsed_date_time = self.parsed_date_time
-        return self.__class__(text=text, circa=circa, parsed_date_time=parsed_date_time)
+        if parsed_date_time_granularity is None:
+            parsed_date_time_granularity = self.parsed_date_time_granularity
+        return self.__class__(text=text, circa=circa, parsed_date_time=parsed_date_time, parsed_date_time_granularity=parsed_date_time_granularity)
 
     @property
     def text(self):
@@ -299,6 +359,11 @@ class DateBound(object):
         if self.parsed_date_time is not None:
             oprot.write_field_begin(name='parsed_date_time', type=10, id=3)
             oprot.write_date_time(self.parsed_date_time)
+            oprot.write_field_end()
+
+        if self.parsed_date_time_granularity is not None:
+            oprot.write_field_begin(name='parsed_date_time_granularity', type=11, id=4)
+            oprot.write_string(str(self.parsed_date_time_granularity))
             oprot.write_field_end()
 
         oprot.write_field_stop()

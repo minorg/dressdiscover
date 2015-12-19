@@ -31,7 +31,6 @@
 # -----------------------------------------------------------------------------
 
 
-from time import mktime
 from thryft.protocol._output_protocol import _OutputProtocol
 
 
@@ -41,9 +40,6 @@ class _AbstractOutputProtocol(_OutputProtocol):
 
     def write_byte(self, byte):
         self.write_i16(byte)
-
-    def write_date_time(self, date_time):
-        self.write_i64(long(mktime(date_time.timetuple())) * 1000l)
 
     def write_decimal(self, decimal):
         self.write_string(str(decimal))

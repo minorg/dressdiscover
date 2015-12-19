@@ -30,19 +30,24 @@
 # OF SUCH DAMAGE.
 # -----------------------------------------------------------------------------
 
+import datetime
 from decimal import Decimal
+
 from thryft.protocol._abstract_input_protocol import _AbstractInputProtocol
 from thryft.protocol._stacked_input_protocol import _StackedInputProtocol
 
 
 class BuiltinsInputProtocol(_StackedInputProtocol):
     class _InputProtocol(_AbstractInputProtocol):
-        def __init__(self, input_protocol_stack):
+        def __init__(self, stacked_input_protocol):
             _AbstractInputProtocol.__init__(self)
-            self.__input_protocol_stack = input_protocol_stack
+            self.__stacked_input_protocol = stacked_input_protocol
 
         def read_bool(self):
             return self._read_value(bool)
+
+        def read_date_time(self):
+            return self._read_value(datetime)
 
         def read_double(self):
             value = self._read_value()
@@ -73,12 +78,22 @@ class BuiltinsInputProtocol(_StackedInputProtocol):
 
         def read_list_begin(self):
             list_ = self._read_value(list)
-            self.__input_protocol_stack.append(BuiltinsInputProtocol._ListInputProtocol(list_, self.__input_protocol_stack))
+            self.__stacked_input_protocol._input_protocol_stack.append(
+                self.__stacked_input_protocol._ListInputProtocol(
+                    list_=list_,
+                    stacked_input_protocol=self.__stacked_input_protocol
+                )
+            )
             return None, len(list_)
 
         def read_map_begin(self):
             map_ = self._read_value(dict)
-            self.__input_protocol_stack.append(BuiltinsInputProtocol._MapInputProtocol(map_, self.__input_protocol_stack))
+            self.__stacked_input_protocol._input_protocol_stack.append(
+                self.__stacked_input_protocol._MapInputProtocol(
+                    dict_=map_,
+                    stacked_input_protocol=self.__stacked_input_protocol
+                )
+            )
             return None, None, len(map_)
 
         def read_string(self):
@@ -89,8 +104,13 @@ class BuiltinsInputProtocol(_StackedInputProtocol):
                 return str(value)
 
         def read_struct_begin(self):
-            struct = self.__input_protocol_stack[-1]._read_value(dict)
-            self.__input_protocol_stack.append(BuiltinsInputProtocol._StructInputProtocol(struct, self.__input_protocol_stack))
+            struct = self.__stacked_input_protocol._input_protocol_stack[-1]._read_value(dict)
+            self.__stacked_input_protocol._input_protocol_stack.append(
+                self.__stacked_input_protocol._StructInputProtocol(
+                    dict_=struct,
+                    stacked_input_protocol=self.__stacked_input_protocol
+                )
+            )
 
         def _read_value(self, expected_type=None):
             value = self._read_value_impl()
@@ -105,8 +125,8 @@ class BuiltinsInputProtocol(_StackedInputProtocol):
             return self._read_value()
 
     class _ListInputProtocol(_InputProtocol):
-        def __init__(self, list_, input_protocol_stack):
-            BuiltinsInputProtocol._InputProtocol.__init__(self, input_protocol_stack)
+        def __init__(self, list_, **kwds):
+            BuiltinsInputProtocol._InputProtocol.__init__(self, **kwds)
             if not isinstance(list_, (list, tuple)):
                 raise TypeError(type(list_))
             self.__index_stack = list(reversed(xrange(len(list_))))
@@ -116,8 +136,8 @@ class BuiltinsInputProtocol(_StackedInputProtocol):
             return self.__list[self.__index_stack.pop(-1)]
 
     class _MapInputProtocol(_InputProtocol):
-        def __init__(self, dict_, input_protocol_stack):
-            BuiltinsInputProtocol._InputProtocol.__init__(self, input_protocol_stack)
+        def __init__(self, dict_, **kwds):
+            BuiltinsInputProtocol._InputProtocol.__init__(self, **kwds)
             if not isinstance(dict_, dict):
                 raise TypeError(type(dict_))
             self.__dict = dict_
@@ -133,16 +153,16 @@ class BuiltinsInputProtocol(_StackedInputProtocol):
                 return self.__dict[self.__key_stack.pop(-1)]
 
     class _RootInputProtocol(_InputProtocol):
-        def __init__(self, input_protocol_stack, root_builtin_object=None):
-            BuiltinsInputProtocol._InputProtocol.__init__(self, input_protocol_stack)
+        def __init__(self, root_builtin_object=None, **kwds):
+            BuiltinsInputProtocol._InputProtocol.__init__(self, **kwds)
             self.__root_builtin_object = root_builtin_object
 
         def _read_value_impl(self):
             return self.__root_builtin_object
 
     class _StructInputProtocol(_InputProtocol):
-        def __init__(self, dict_, input_protocol_stack):
-            BuiltinsInputProtocol._InputProtocol.__init__(self, input_protocol_stack)
+        def __init__(self, dict_, **kwds):
+            BuiltinsInputProtocol._InputProtocol.__init__(self, **kwds)
             if not isinstance(dict_, dict):
                 raise TypeError(type(dict_))
             self.__dict = dict_
@@ -171,4 +191,8 @@ class BuiltinsInputProtocol(_StackedInputProtocol):
 
     def __init__(self, root_builtin_object=None):
         _StackedInputProtocol.__init__(self)
-        self._input_protocol_stack.append(BuiltinsInputProtocol._RootInputProtocol(self._input_protocol_stack, root_builtin_object))
+        self._input_protocol_stack.append(
+            BuiltinsInputProtocol._RootInputProtocol(
+                root_builtin_object=root_builtin_object,
+                stacked_input_protocol=self
+            ))

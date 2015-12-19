@@ -8,7 +8,8 @@ public class DateBoundBean {
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "text", org.thryft.protocol.Type.STRING),
         CIRCA("circa", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 2, "circa", org.thryft.protocol.Type.BOOL),
-        PARSED_DATE_TIME("parsedDateTime", new com.google.common.reflect.TypeToken<java.util.Date>() {}, false, 3, "parsed_date_time", org.thryft.protocol.Type.I64);
+        PARSED_DATE_TIME("parsedDateTime", new com.google.common.reflect.TypeToken<java.util.Date>() {}, false, 3, "parsed_date_time", org.thryft.protocol.Type.I64),
+        PARSED_DATE_TIME_GRANULARITY("parsedDateTimeGranularity", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.date.DateTimeGranularity>() {}, false, 4, "parsed_date_time_granularity", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -55,6 +56,7 @@ public class DateBoundBean {
             case "text": return TEXT;
             case "circa": return CIRCA;
             case "parsedDateTime": return PARSED_DATE_TIME;
+            case "parsedDateTimeGranularity": return PARSED_DATE_TIME_GRANULARITY;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -65,6 +67,7 @@ public class DateBoundBean {
             case "text": return TEXT;
             case "circa": return CIRCA;
             case "parsed_date_time": return PARSED_DATE_TIME;
+            case "parsed_date_time_granularity": return PARSED_DATE_TIME_GRANULARITY;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -97,12 +100,14 @@ public class DateBoundBean {
         text = null;
         circa = null;
         parsedDateTime = null;
+        parsedDateTimeGranularity = null;
     }
 
     public DateBoundBean(final net.lab1318.costume.api.models.date.DateBound other) {
         this.text = other.getText();
         this.circa = other.getCirca().isPresent() ? other.getCirca().get() : null;
         this.parsedDateTime = other.getParsedDateTime().isPresent() ? other.getParsedDateTime().get() : null;
+        this.parsedDateTimeGranularity = other.getParsedDateTimeGranularity().isPresent() ? other.getParsedDateTimeGranularity().get() : null;
     }
 
     @Override
@@ -117,7 +122,8 @@ public class DateBoundBean {
         return
             getText().equals(other.getText()) &&
             getCirca().equals(other.getCirca()) &&
-            getParsedDateTime().equals(other.getParsedDateTime());
+            getParsedDateTime().equals(other.getParsedDateTime()) &&
+            getParsedDateTimeGranularity().equals(other.getParsedDateTimeGranularity());
     }
 
     public Boolean getCirca() {
@@ -126,6 +132,10 @@ public class DateBoundBean {
 
     public java.util.Date getParsedDateTime() {
         return parsedDateTime;
+    }
+
+    public net.lab1318.costume.api.models.date.DateTimeGranularity getParsedDateTimeGranularity() {
+        return parsedDateTimeGranularity;
     }
 
     public String getText() {
@@ -142,6 +152,9 @@ public class DateBoundBean {
         if (getParsedDateTime() != null) {
             hashCode = 31 * hashCode + getParsedDateTime().hashCode();
         }
+        if (getParsedDateTimeGranularity() != null) {
+            hashCode = 31 * hashCode + getParsedDateTimeGranularity().ordinal();
+        }
         return hashCode;
     }
 
@@ -153,13 +166,17 @@ public class DateBoundBean {
         this.parsedDateTime = parsedDateTime;
     }
 
+    public void setParsedDateTimeGranularity(final net.lab1318.costume.api.models.date.DateTimeGranularity parsedDateTimeGranularity) {
+        this.parsedDateTimeGranularity = parsedDateTimeGranularity;
+    }
+
     public void setText(final String text) {
         this.text = text;
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("circa", getCirca()).add("parsed_date_time", getParsedDateTime()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("circa", getCirca()).add("parsed_date_time", getParsedDateTime()).add("parsed_date_time_granularity", getParsedDateTimeGranularity()).toString();
     }
 
     private String text;
@@ -167,4 +184,6 @@ public class DateBoundBean {
     private Boolean circa;
 
     private java.util.Date parsedDateTime;
+
+    private net.lab1318.costume.api.models.date.DateTimeGranularity parsedDateTimeGranularity;
 }

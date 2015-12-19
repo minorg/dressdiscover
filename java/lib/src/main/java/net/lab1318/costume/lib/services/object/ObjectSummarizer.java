@@ -7,6 +7,8 @@ import org.thryft.native_.Url;
 import com.google.common.collect.ImmutableList;
 
 import net.lab1318.costume.api.models.agent.Agent;
+import net.lab1318.costume.api.models.date.Date;
+import net.lab1318.costume.api.models.date.DateType;
 import net.lab1318.costume.api.models.description.Description;
 import net.lab1318.costume.api.models.description.DescriptionType;
 import net.lab1318.costume.api.models.image.Image;
@@ -45,7 +47,27 @@ public final class ObjectSummarizer {
 
         builder.setCollectionId(object.getCollectionId());
 
-        builder.setDate(object.getDateText());
+        if (object.getDates().isPresent()) {
+            @Nullable
+            Date representativeDate = null;
+            for (final Date date : object.getDates().get().getElements()) {
+                if (date.getType() == DateType.CREATION) {
+                    representativeDate = date;
+                    break;
+                }
+            }
+            if (representativeDate == null) {
+                representativeDate = object.getDates().get().getElements().get(0);
+            }
+            String representativeDateString;
+            if (representativeDate.getEarliestDate().getText().equals(representativeDate.getLatestDate().getText())) {
+                representativeDateString = representativeDate.getEarliestDate().getText();
+            } else {
+                representativeDateString = representativeDate.getEarliestDate().getText() + '-'
+                        + representativeDate.getLatestDate().getText();
+            }
+            builder.setDate(representativeDateString);
+        }
 
         if (object.getDescriptions().isPresent()) {
             @Nullable
