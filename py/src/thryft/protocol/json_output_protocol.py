@@ -34,9 +34,34 @@ try:
     import json
 except ImportError:
     import simplejson as json  # @UnusedImport
+from time import mktime
+
 from thryft.protocol.builtins_output_protocol import BuiltinsOutputProtocol
 
 
 class JsonOutputProtocol(BuiltinsOutputProtocol):
+    class _JsonOutputProtocol(object):
+        def write_date_time(self, value):
+            try:
+                self._write_value(long(mktime(value.timetuple())) * 1000l)
+            except (OverflowError, ValueError):
+                self._write_value(value.isoformat())
+
+    class _ListOutputProtocol(BuiltinsOutputProtocol._ListOutputProtocol, _JsonOutputProtocol):
+        def write_date_time(self, value):
+            JsonOutputProtocol._JsonOutputProtocol.write_date_time(self, value)
+
+    class _MapOutputProtocol(BuiltinsOutputProtocol._MapOutputProtocol, _JsonOutputProtocol):
+        def write_date_time(self, value):
+            JsonOutputProtocol._JsonOutputProtocol.write_date_time(self, value)
+
+    class _RootOutputProtocol(BuiltinsOutputProtocol._RootOutputProtocol, _JsonOutputProtocol):
+        def write_date_time(self, value):
+            JsonOutputProtocol._JsonOutputProtocol.write_date_time(self, value)
+
+    class _StructOutputProtocol(BuiltinsOutputProtocol._StructOutputProtocol, _JsonOutputProtocol):
+        def write_date_time(self, value):
+            JsonOutputProtocol._JsonOutputProtocol.write_date_time(self, value)
+
     def __str__(self):
         return json.dumps(self._output_protocol_stack[0].value)  # @UndefinedVariable

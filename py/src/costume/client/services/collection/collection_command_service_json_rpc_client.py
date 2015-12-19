@@ -4,8 +4,8 @@ import costume.api.services.collection.collection_command_service
 import costume.api.services.collection.no_such_collection_exception  # @UnusedImport
 import costume.api.services.io_exception  # @UnusedImport
 import json
-import thryft.protocol.builtins_input_protocol
-import thryft.protocol.builtins_output_protocol
+import thryft.protocol.json_input_protocol
+import thryft.protocol.json_output_protocol
 import urllib2
 
 
@@ -102,7 +102,7 @@ class CollectionCommandServiceJsonRpcClient(costume.api.services.collection.coll
                 if exception_class is not None and issubclass(exception_class, Exception):
                     data = error.get('data')
                     if isinstance(data, dict):
-                        data_iprot = thryft.protocol.builtins_input_protocol.BuiltinsInputProtocol(data)
+                        data_iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(data)
                         exception_ = exception_class.read(data_iprot)
                         raise exception_
                     else:
@@ -116,7 +116,7 @@ class CollectionCommandServiceJsonRpcClient(costume.api.services.collection.coll
         self,
         id,  # @ReservedAssignment
     ):
-        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='id', type=11, id=None)
         oprot.write_string(id)
@@ -134,7 +134,7 @@ class CollectionCommandServiceJsonRpcClient(costume.api.services.collection.coll
         self,
         institution_id,
     ):
-        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='institution_id', type=11, id=None)
         oprot.write_string(institution_id)
@@ -148,7 +148,7 @@ class CollectionCommandServiceJsonRpcClient(costume.api.services.collection.coll
         id,  # @ReservedAssignment
         collection,
     ):
-        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='id', type=11, id=None)
         oprot.write_string(id)

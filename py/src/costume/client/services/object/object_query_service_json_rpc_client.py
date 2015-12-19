@@ -6,9 +6,8 @@ import costume.api.services.object.no_such_object_exception  # @UnusedImport
 import costume.api.services.object.object_facets
 import costume.api.services.object.object_query_service
 import json
-import thryft.protocol.builtins_input_protocol
-import thryft.protocol.builtins_output_protocol
 import thryft.protocol.json_input_protocol
+import thryft.protocol.json_output_protocol
 import urllib2
 
 
@@ -105,7 +104,7 @@ class ObjectQueryServiceJsonRpcClient(costume.api.services.object.object_query_s
                 if exception_class is not None and issubclass(exception_class, Exception):
                     data = error.get('data')
                     if isinstance(data, dict):
-                        data_iprot = thryft.protocol.builtins_input_protocol.BuiltinsInputProtocol(data)
+                        data_iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(data)
                         exception_ = exception_class.read(data_iprot)
                         raise exception_
                     else:
@@ -119,7 +118,7 @@ class ObjectQueryServiceJsonRpcClient(costume.api.services.object.object_query_s
         self,
         id,  # @ReservedAssignment
     ):
-        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='id', type=11, id=None)
         oprot.write_string(id)
@@ -134,7 +133,7 @@ class ObjectQueryServiceJsonRpcClient(costume.api.services.object.object_query_s
         self,
         query,
     ):
-        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         if query is not None:
             oprot.write_field_begin(name='query', type=12, id=None)
@@ -150,7 +149,7 @@ class ObjectQueryServiceJsonRpcClient(costume.api.services.object.object_query_s
         self,
         query,
     ):
-        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         if query is not None:
             oprot.write_field_begin(name='query', type=12, id=None)
@@ -167,7 +166,7 @@ class ObjectQueryServiceJsonRpcClient(costume.api.services.object.object_query_s
         options,
         query,
     ):
-        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         if options is not None:
             oprot.write_field_begin(name='options', type=12, id=None)

@@ -5,9 +5,8 @@ import costume.api.services.institution.institution_query_service
 import costume.api.services.institution.no_such_institution_exception  # @UnusedImport
 import costume.api.services.io_exception  # @UnusedImport
 import json
-import thryft.protocol.builtins_input_protocol
-import thryft.protocol.builtins_output_protocol
 import thryft.protocol.json_input_protocol
+import thryft.protocol.json_output_protocol
 import urllib2
 
 
@@ -104,7 +103,7 @@ class InstitutionQueryServiceJsonRpcClient(costume.api.services.institution.inst
                 if exception_class is not None and issubclass(exception_class, Exception):
                     data = error.get('data')
                     if isinstance(data, dict):
-                        data_iprot = thryft.protocol.builtins_input_protocol.BuiltinsInputProtocol(data)
+                        data_iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(data)
                         exception_ = exception_class.read(data_iprot)
                         raise exception_
                     else:
@@ -118,7 +117,7 @@ class InstitutionQueryServiceJsonRpcClient(costume.api.services.institution.inst
         self,
         id,  # @ReservedAssignment
     ):
-        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='id', type=11, id=None)
         oprot.write_string(id)
@@ -140,7 +139,7 @@ class InstitutionQueryServiceJsonRpcClient(costume.api.services.institution.inst
         self,
         ids,
     ):
-        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='ids', type=15, id=None)
         oprot.write_list_begin(11, len(ids))

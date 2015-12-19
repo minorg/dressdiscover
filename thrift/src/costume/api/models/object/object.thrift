@@ -5,6 +5,7 @@ namespace * costume.api.models.object
 include "costume/api/models/model_metadata.thrift"
 include "costume/api/models/agent/agent_set.thrift"
 include "costume/api/models/collection/collection_id.thrift"
+include "costume/api/models/date/date_set.thrift"
 include "costume/api/models/description/description_set.thrift"
 include "costume/api/models/gender/gender.thrift"
 include "costume/api/models/image/image.thrift"
@@ -17,7 +18,6 @@ include "costume/api/models/technique/technique_set.thrift"
 include "costume/api/models/textref/textref_set.thrift"
 include "costume/api/models/title/title_set.thrift"
 include "costume/api/models/work_type/work_type_set.thrift"
-include "thryft/native/date_time.thrift"
 include "thryft/native/u32.thrift"
 
 // @java_implements org.thryft.waf.api.models.Model
@@ -36,11 +36,7 @@ struct Object {
 	// @validation {"minLength": 1}
 	18: optional list<string> categories;
 
-	10: optional date_time.DateTime date;
-
-	// Dublin Core freetext date
-	// @validation {"minLength": 1}
-	11: optional string date_text;
+	10: optional date_set.DateSet dates;
 
 	4: optional description_set.DescriptionSet descriptions;
 

@@ -3,8 +3,8 @@ import base64
 import costume.api.services.io_exception  # @UnusedImport
 import costume.api.services.object.object_command_service
 import json
-import thryft.protocol.builtins_input_protocol
-import thryft.protocol.builtins_output_protocol
+import thryft.protocol.json_input_protocol
+import thryft.protocol.json_output_protocol
 import urllib2
 
 
@@ -101,7 +101,7 @@ class ObjectCommandServiceJsonRpcClient(costume.api.services.object.object_comma
                 if exception_class is not None and issubclass(exception_class, Exception):
                     data = error.get('data')
                     if isinstance(data, dict):
-                        data_iprot = thryft.protocol.builtins_input_protocol.BuiltinsInputProtocol(data)
+                        data_iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(data)
                         exception_ = exception_class.read(data_iprot)
                         raise exception_
                     else:
@@ -120,7 +120,7 @@ class ObjectCommandServiceJsonRpcClient(costume.api.services.object.object_comma
         self,
         collection_id,
     ):
-        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='collection_id', type=11, id=None)
         oprot.write_string(collection_id)
@@ -133,7 +133,7 @@ class ObjectCommandServiceJsonRpcClient(costume.api.services.object.object_comma
         self,
         institution_id,
     ):
-        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='institution_id', type=11, id=None)
         oprot.write_string(institution_id)
@@ -147,7 +147,7 @@ class ObjectCommandServiceJsonRpcClient(costume.api.services.object.object_comma
         id,  # @ReservedAssignment
         object,  # @ReservedAssignment
     ):
-        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='id', type=11, id=None)
         oprot.write_string(id)
@@ -163,7 +163,7 @@ class ObjectCommandServiceJsonRpcClient(costume.api.services.object.object_comma
         self,
         objects,
     ):
-        oprot = thryft.protocol.builtins_output_protocol.BuiltinsOutputProtocol()
+        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='objects', type=15, id=None)
         oprot.write_list_begin(12, len(objects))

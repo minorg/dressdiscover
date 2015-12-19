@@ -30,15 +30,46 @@
 # OF SUCH DAMAGE.
 # -----------------------------------------------------------------------------
 
+from datetime import datetime
 from decimal import Decimal
+
+from thryft.protocol.builtins_input_protocol import BuiltinsInputProtocol
+
+
 try:
     import json
 except ImportError:
     import simplejson as json  # @UnusedImport
-from thryft.protocol.builtins_input_protocol import BuiltinsInputProtocol
 
 
 class JsonInputProtocol(BuiltinsInputProtocol):
+    class _JsonInputProtocol(object):
+        def read_date_time(self):
+            obj = self._read_value()
+            if isinstance(obj, (int, long)):
+                return datetime.fromtimestamp(obj / 1000.0)
+            elif isinstance(obj, basestring):
+                import iso8601
+                return iso8601.parse_date(obj, default_timezone=None)
+            else:
+                raise TypeError(type(obj))
+
+    class _ListInputProtocol(BuiltinsInputProtocol._ListInputProtocol, _JsonInputProtocol):
+        def read_date_time(self):
+            return JsonInputProtocol._JsonInputProtocol.read_date_time(self)
+
+    class _MapInputProtocol(BuiltinsInputProtocol._MapInputProtocol, _JsonInputProtocol):
+        def read_date_time(self):
+            return JsonInputProtocol._JsonInputProtocol.read_date_time(self)
+
+    class _RootInputProtocol(BuiltinsInputProtocol._RootInputProtocol, _JsonInputProtocol):
+        def read_date_time(self):
+            return JsonInputProtocol._JsonInputProtocol.read_date_time(self)
+
+    class _StructInputProtocol(BuiltinsInputProtocol._StructInputProtocol, _JsonInputProtocol):
+        def read_date_time(self):
+            return JsonInputProtocol._JsonInputProtocol.read_date_time(self)
+
     def __init__(self, json):
         if isinstance(json, str):
             builtin_object = globals()['json'].loads(json, parse_float=Decimal, strict=False)  # @UndefinedVariable

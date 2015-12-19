@@ -68,9 +68,6 @@ class _AbstractInputProtocol(_InputProtocol):
     def read_byte(self):
         return self.read_i16()
 
-    def read_date_time(self):
-        return datetime.fromtimestamp(self.read_i64() / 1000.0)
-
     def read_decimal(self):
         return Decimal(self.read_string())
 
