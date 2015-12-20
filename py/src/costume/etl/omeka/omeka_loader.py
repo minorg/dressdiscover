@@ -405,6 +405,28 @@ class OmekaLoader(_Loader):
                                 dc_date_builder.set_type(DateType.PERFORMANCE)
                             else:
                                 self._logger.warn("item %d in collection %d has unrecognized Date Certainty '%s'", omeka_item_id, omeka_collection_id, text)
+                        elif element_name == 'Date Earliest':
+                            earliest_date = self.__parse_date(text)
+                            if dc_date_builder.earliest_date is not None:
+                                self._logger.warn(
+                                    "replacing item %d's earliest date (%s) from Date with Date Earliest '%s' = %s",
+                                    omeka_item_id,
+                                    dc_date_builder.earliest_date,
+                                    text,
+                                    earliest_date
+                                )
+                            dc_date_builder.earliest_date = earliest_date
+                        elif element_name == 'Date Latest':
+                            latest_date = self.__parse_date(text)
+                            if dc_date_builder.latest_date is not None:
+                                self._logger.warn(
+                                    "replacing item %d's latest date (%s) from Date with Date Earliest '%s' = %s",
+                                    omeka_item_id,
+                                    dc_date_builder.latest_date,
+                                    text,
+                                    latest_date
+                                )
+                            dc_date_builder.latest_date = latest_date
                         elif element_name == 'Description':
                             descriptions.append(
                                 Description.Builder()
