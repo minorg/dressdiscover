@@ -42,7 +42,7 @@ class _Loader(_Main):
         raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__)
 
     @staticmethod
-    def __new_model_metadata():
+    def _new_model_metadata():
         datetime_now = datetime.now()
         return ModelMetadata.Builder().set_ctime(datetime_now).set_mtime(datetime_now).build()
 

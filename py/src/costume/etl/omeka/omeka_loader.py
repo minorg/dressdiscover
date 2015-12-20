@@ -678,7 +678,7 @@ class OmekaLoader(_Loader):
 
                 objects_by_id[object_id] = object_
 
-                logger.info("loaded %d/%d items from collection %d", item_i + 1, len(item_dicts), omeka_collection_id)
+                logger.debug("loaded %d/%d items from collection %d", item_i + 1, len(item_dicts), omeka_collection_id)
 
             if len(objects_by_id) == 0:
                 logger.info("collection %d has no objects, skipping", omeka_collection_id)
