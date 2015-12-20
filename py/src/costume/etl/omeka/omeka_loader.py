@@ -55,7 +55,6 @@ from costume.api.models.vocab_ref import VocabRef
 from costume.api.models.work_type.work_type import WorkType
 from costume.api.models.work_type.work_type_set import WorkTypeSet
 from costume.etl._loader import _Loader
-from model_utils import new_model_metadata
 
 
 try:
@@ -132,7 +131,7 @@ class OmekaLoader(_Loader):
                         ,))
                         .build()
                 )
-                .set_model_metadata(new_model_metadata())
+                .set_model_metadata(self._new_model_metadata())
                 .set_title(self.__institution_title)
                 .set_url(self.__institution_url)
                 .build()
@@ -157,7 +156,7 @@ class OmekaLoader(_Loader):
             collection_builder = \
                 Collection.Builder()\
                     .set_institution_id(institution_id)\
-                    .set_model_metadata(new_model_metadata())
+                    .set_model_metadata(self._new_model_metadata())
 
             for element_text_dict in collection_dict['element_texts']:
                 text = element_text_dict['text']
@@ -194,7 +193,7 @@ class OmekaLoader(_Loader):
                     Object.Builder()\
                         .set_collection_id(collection_id)\
                         .set_institution_id(institution_id)\
-                        .set_model_metadata(new_model_metadata())
+                        .set_model_metadata(self._new_model_metadata())
 
                 agents = []
                 categories = []

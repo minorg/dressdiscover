@@ -24,7 +24,6 @@ from costume.api.models.subject.subject_term_type import SubjectTermType
 from costume.api.models.vocab import Vocab
 from costume.api.models.vocab_ref import VocabRef
 from costume.etl._loader import _Loader
-from model_utils import new_model_metadata
 
 
 class TxfcLoader(_Loader):
@@ -48,7 +47,7 @@ class TxfcLoader(_Loader):
                         ,))
                         .build()
                 )
-                .set_model_metadata(new_model_metadata())
+                .set_model_metadata(self._new_model_metadata())
                 .set_title("University of North Texas")
                 .set_url('http://digital.library.unt.edu/explore/collections/TXFC/')
                 .build()
@@ -58,7 +57,7 @@ class TxfcLoader(_Loader):
             self._collection_id,
             Collection.Builder()
                 .set_institution_id(self._institution_id)
-                .set_model_metadata(new_model_metadata())
+                .set_model_metadata(self._new_model_metadata())
                 .set_title("Texas Fashion Collection")
                 .build()
         )
@@ -169,7 +168,7 @@ class TxfcLoader(_Loader):
                 object_builder.set_physical_description(description_etree.text)
 
         object_builder.institution_id = self._institution_id
-        object_builder.model_metadata = new_model_metadata()
+        object_builder.model_metadata = self._new_model_metadata()
 
         subjects = []
         for subject_etree in metadata_etree.iter(untl_ns + 'subject'):
