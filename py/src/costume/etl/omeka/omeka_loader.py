@@ -365,6 +365,8 @@ class OmekaLoader(_Loader):
         #                         )
                                 include_object = False
                                 break
+                        elif element_name in ('Language', 'Temporal Coverage',):
+                            self._logger.debug("ignoring item %d's %s", omeka_item_id, element_name)
                         else:
                             logger.warn("skipping item Dublin Core element %s: %s", element_name, text.encode('ascii', 'ignore'))
                     elif element_set_name == 'Item Type Metadata':
@@ -586,6 +588,8 @@ class OmekaLoader(_Loader):
                                         )
                                     .build()
                             )
+                        elif element_name in ('Donor Class Year',):
+                            self._logger.debug("ignoring item %d's %s", omeka_item_id, element_name)
                         else:
                             logger.warn("skipping item Item Type Metadata element %s: %s", element_name, text.encode('ascii', 'ignore'))
                     else:
@@ -801,7 +805,7 @@ class OmekaLoader(_Loader):
             builder.set_parsed_date_time(parsed_date_time)
             if parsed_date_time_granularity is not None:
                 builder.set_parsed_date_time_granularity(parsed_date_time_granularity)
-            self._logger.info("parsed date '%s' from %s at granularity '%s'", parsed_date_time, text, parsed_date_time_granularity)
+            self._logger.debug("parsed date '%s' from %s at granularity '%s'", parsed_date_time, text, parsed_date_time_granularity)
 
         return builder.build()
 
@@ -814,5 +818,5 @@ class OmekaLoader(_Loader):
             date_range = self.__parse_date(text_split[0]), self.__parse_date(text_split[1])
         else:
             raise NotImplementedError
-        self._logger.info("parsed date range '%s' from '%s'", date_range, text)
+        self._logger.debug("parsed date range '%s' from '%s'", date_range, text)
         return date_range
