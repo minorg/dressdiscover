@@ -23,4 +23,3 @@ class Services(object):
     @property
     def object_command_service(self):
         return self.__object_command_service
-
