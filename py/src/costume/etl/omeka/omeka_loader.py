@@ -417,6 +417,13 @@ class OmekaLoader(_Loader):
                                     .set_type(DescriptionType.CONDITION)
                                     .build()
                             )
+                        elif element_name == 'Credit Line':
+                            descriptions.append(
+                                Description.Builder()
+                                    .set_text(text)
+                                    .set_type(DescriptionType.CREDIT)
+                                    .build()
+                            )
                         elif element_name == 'Date Certainty':
                             if text == 'circa':
                                 dc_date_certainty = text

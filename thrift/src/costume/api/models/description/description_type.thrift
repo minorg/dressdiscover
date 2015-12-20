@@ -3,6 +3,7 @@ namespace * costume.api.models.description
 
 enum DescriptionType {
     CONDITION,
+    CREDIT,
 	EXHIBITION,
 	HISTORY,
 	PHYSICAL,
