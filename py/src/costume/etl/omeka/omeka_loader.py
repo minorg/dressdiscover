@@ -385,6 +385,25 @@ class OmekaLoader(_Loader):
                                     )
                                     .build()
                             )
+                        elif element_name == 'Accession Year':
+                            try:
+                                year = int(text)
+                            except ValueError:
+                                self._logger.warn("unable to parse Accession Year '%s'", text)
+                                continue
+                            earliest_date = latest_date = \
+                                DateBound.Builder()\
+                                    .set_parsed_date_time(datetime(year, 1, 1, tzinfo=pytz.UTC))\
+                                    .set_parsed_date_time_granularity(DateTimeGranularity.YEAR)\
+                                    .set_text(text)\
+                                    .build()
+                            dates.append(
+                                Date.Builder()
+                                    .set_earliest_date(earliest_date)
+                                    .set_latest_date(earliest_date)
+                                    .set_type(DateType.ACCESSION)
+                                    .build()
+                            )
                         elif element_name == 'Category':
                             categories.append(text)
                         elif element_name == 'Classification':
