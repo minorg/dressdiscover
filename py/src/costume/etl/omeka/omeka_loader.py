@@ -197,6 +197,8 @@ class OmekaLoader(_Loader):
 
                 agents = []
                 categories = []
+                dc_date_builder = Date.Builder().set_type(DateType.CREATION)
+                dc_date_certainty = None
                 dates = []
                 descriptions = []
                 identifiers = []
@@ -271,14 +273,12 @@ class OmekaLoader(_Loader):
                                     .build()
                             )
                         elif element_name == 'Date':
-                            earliest_date, latest_date = self.__parse_date_range(text)
-                            dates.append(
-                                Date.Builder()
-                                    .set_earliest_date(earliest_date)
-                                    .set_latest_date(latest_date)
-                                    .set_type(DateType.CREATION)
-                                    .build()
-                            )
+                            if dc_date_builder.earliest_date is None:
+                                assert dc_date_builder.earliest_date is None
+                                earliest_date, latest_date = self.__parse_date_range(text)
+                                dc_date_builder.set_earliest_date(earliest_date).set_latest_date(latest_date)
+                            else:
+                                self._logger.warn("item %d in collection %d has two dates: %s", omeka_item_id, omeka_collection_id, text)
                         elif element_name == 'Description':
                             descriptions.append(
                                 Description.Builder()
@@ -396,6 +396,15 @@ class OmekaLoader(_Loader):
                                     .set_type(DescriptionType.CONDITION)
                                     .build()
                             )
+                        elif element_name == 'Date Certainty':
+                            if text == 'circa':
+                                dc_date_certainty = text
+                            elif text == 'designed in':
+                                dc_date_builder.set_type(DateType.DESIGN)
+                            elif text == 'worn in':
+                                dc_date_builder.set_type(DateType.PERFORMANCE)
+                            else:
+                                self._logger.warn("item %d in collection %d has unrecognized Date Certainty '%s'", omeka_item_id, omeka_collection_id, text)
                         elif element_name == 'Description':
                             descriptions.append(
                                 Description.Builder()
@@ -549,6 +558,18 @@ class OmekaLoader(_Loader):
                     object_builder.set_agents(AgentSet.Builder().set_elements(tuple(agents)).build())
                 if len(categories) > 0:
                     object_builder.set_categories(tuple(categories))
+                if dc_date_builder.earliest_date is not None:
+                    if dc_date_certainty is not None:
+                        assert dc_date_certainty == 'circa'
+                        dc_date_builder.earliest_date =\
+                            DateBound.Builder(**dc_date_builder.earliest_date.as_dict())\
+                                .set_circa(True)\
+                                .build()
+                        dc_date_builder.latest_date =\
+                            DateBound.Builder(**dc_date_builder.latest_date.as_dict())\
+                                .set_circa(True)\
+                                .build()
+                    dates.append(dc_date_builder.build())
                 if len(dates) > 0:
                     object_builder.set_dates(DateSet.Builder().set_elements(tuple(dates)).build())
                 if len(descriptions) > 0:
