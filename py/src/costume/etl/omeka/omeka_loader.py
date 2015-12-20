@@ -588,7 +588,10 @@ class OmekaLoader(_Loader):
                                         )
                                     .build()
                             )
-                        elif element_name in ('Donor Class Year',):
+                        elif element_name in (
+                            'Donor Class Year',
+                            'CSV File',
+                        ):
                             self._logger.debug("ignoring item %d's %s", omeka_item_id, element_name)
                         else:
                             logger.warn("skipping item Item Type Metadata element %s: %s", element_name, text.encode('ascii', 'ignore'))
