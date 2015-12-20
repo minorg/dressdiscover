@@ -197,6 +197,8 @@ class OmekaLoader(_Loader):
 
                 agents = []
                 categories = []
+                dc_date_builder = Date.Builder().set_type(DateType.CREATION)
+                dc_date_certainty = None
                 dates = []
                 descriptions = []
                 identifiers = []
@@ -271,14 +273,12 @@ class OmekaLoader(_Loader):
                                     .build()
                             )
                         elif element_name == 'Date':
-                            earliest_date, latest_date = self.__parse_date_range(text)
-                            dates.append(
-                                Date.Builder()
-                                    .set_earliest_date(earliest_date)
-                                    .set_latest_date(latest_date)
-                                    .set_type(DateType.CREATION)
-                                    .build()
-                            )
+                            if dc_date_builder.earliest_date is None:
+                                assert dc_date_builder.earliest_date is None
+                                earliest_date, latest_date = self.__parse_date_range(text)
+                                dc_date_builder.set_earliest_date(earliest_date).set_latest_date(latest_date)
+                            else:
+                                self._logger.warn("item %d in collection %d has two dates: %s", omeka_item_id, omeka_collection_id, text)
                         elif element_name == 'Description':
                             descriptions.append(
                                 Description.Builder()
@@ -365,6 +365,8 @@ class OmekaLoader(_Loader):
         #                         )
                                 include_object = False
                                 break
+                        elif element_name in ('Language', 'Temporal Coverage',):
+                            self._logger.debug("ignoring item %d's %s", omeka_item_id, element_name)
                         else:
                             logger.warn("skipping item Dublin Core element %s: %s", element_name, text.encode('ascii', 'ignore'))
                     elif element_set_name == 'Item Type Metadata':
@@ -385,6 +387,25 @@ class OmekaLoader(_Loader):
                                     )
                                     .build()
                             )
+                        elif element_name == 'Accession Year':
+                            try:
+                                year = int(text)
+                            except ValueError:
+                                self._logger.warn("unable to parse Accession Year '%s'", text)
+                                continue
+                            earliest_date = latest_date = \
+                                DateBound.Builder()\
+                                    .set_parsed_date_time(datetime(year, 1, 1, tzinfo=pytz.UTC))\
+                                    .set_parsed_date_time_granularity(DateTimeGranularity.YEAR)\
+                                    .set_text(text)\
+                                    .build()
+                            dates.append(
+                                Date.Builder()
+                                    .set_earliest_date(earliest_date)
+                                    .set_latest_date(earliest_date)
+                                    .set_type(DateType.ACCESSION)
+                                    .build()
+                            )
                         elif element_name == 'Category':
                             categories.append(text)
                         elif element_name == 'Classification':
@@ -396,6 +417,37 @@ class OmekaLoader(_Loader):
                                     .set_type(DescriptionType.CONDITION)
                                     .build()
                             )
+                        elif element_name == 'Date Certainty':
+                            if text == 'circa':
+                                dc_date_certainty = text
+                            elif text == 'designed in':
+                                dc_date_builder.set_type(DateType.DESIGN)
+                            elif text == 'worn in':
+                                dc_date_builder.set_type(DateType.PERFORMANCE)
+                            else:
+                                self._logger.warn("item %d in collection %d has unrecognized Date Certainty '%s'", omeka_item_id, omeka_collection_id, text)
+                        elif element_name == 'Date Earliest':
+                            earliest_date = self.__parse_date(text)
+                            if dc_date_builder.earliest_date is not None:
+                                self._logger.warn(
+                                    "replacing item %d's earliest date (%s) from Date with Date Earliest '%s' = %s",
+                                    omeka_item_id,
+                                    dc_date_builder.earliest_date,
+                                    text,
+                                    earliest_date
+                                )
+                            dc_date_builder.earliest_date = earliest_date
+                        elif element_name == 'Date Latest':
+                            latest_date = self.__parse_date(text)
+                            if dc_date_builder.latest_date is not None:
+                                self._logger.warn(
+                                    "replacing item %d's latest date (%s) from Date with Date Earliest '%s' = %s",
+                                    omeka_item_id,
+                                    dc_date_builder.latest_date,
+                                    text,
+                                    latest_date
+                                )
+                            dc_date_builder.latest_date = latest_date
                         elif element_name == 'Description':
                             descriptions.append(
                                 Description.Builder()
@@ -536,6 +588,11 @@ class OmekaLoader(_Loader):
                                         )
                                     .build()
                             )
+                        elif element_name in (
+                            'Donor Class Year',
+                            'CSV File',
+                        ):
+                            self._logger.debug("ignoring item %d's %s", omeka_item_id, element_name)
                         else:
                             logger.warn("skipping item Item Type Metadata element %s: %s", element_name, text.encode('ascii', 'ignore'))
                     else:
@@ -549,6 +606,18 @@ class OmekaLoader(_Loader):
                     object_builder.set_agents(AgentSet.Builder().set_elements(tuple(agents)).build())
                 if len(categories) > 0:
                     object_builder.set_categories(tuple(categories))
+                if dc_date_builder.earliest_date is not None:
+                    if dc_date_certainty is not None:
+                        assert dc_date_certainty == 'circa'
+                        dc_date_builder.earliest_date =\
+                            DateBound.Builder(**dc_date_builder.earliest_date.as_dict())\
+                                .set_circa(True)\
+                                .build()
+                        dc_date_builder.latest_date =\
+                            DateBound.Builder(**dc_date_builder.latest_date.as_dict())\
+                                .set_circa(True)\
+                                .build()
+                    dates.append(dc_date_builder.build())
                 if len(dates) > 0:
                     object_builder.set_dates(DateSet.Builder().set_elements(tuple(dates)).build())
                 if len(descriptions) > 0:
@@ -739,7 +808,7 @@ class OmekaLoader(_Loader):
             builder.set_parsed_date_time(parsed_date_time)
             if parsed_date_time_granularity is not None:
                 builder.set_parsed_date_time_granularity(parsed_date_time_granularity)
-            self._logger.info("parsed date '%s' from %s at granularity '%s'", parsed_date_time, text, parsed_date_time_granularity)
+            self._logger.debug("parsed date '%s' from %s at granularity '%s'", parsed_date_time, text, parsed_date_time_granularity)
 
         return builder.build()
 
@@ -752,5 +821,5 @@ class OmekaLoader(_Loader):
             date_range = self.__parse_date(text_split[0]), self.__parse_date(text_split[1])
         else:
             raise NotImplementedError
-        self._logger.info("parsed date range '%s' from '%s'", date_range, text)
+        self._logger.debug("parsed date range '%s' from '%s'", date_range, text)
         return date_range
