@@ -49,7 +49,7 @@ class _Main(object):
         elif args.logging_level is not None:
             logging_level = getattr(logging, args.logging_level.upper())
         else:
-            logging_level = logging.ERROR
+            logging_level = logging.INFO
         logging.basicConfig(
             format='%(asctime)s:%(module)s:%(lineno)s:%(name)s:%(levelname)s: %(message)s', #@IgnorePep8
             level=logging_level

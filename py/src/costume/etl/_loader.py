@@ -5,8 +5,9 @@ from services import Services
 
 
 class _Loader(_Main):
-    def __init__(self, institution_id, **kwds):
+    def __init__(self, institution_id, clean=False, **kwds):
         _Main.__init__(self, **kwds)
+        self.__clean = clean
         self.__institution_id = institution_id
         self.__properties = CostumeProperties.load()
         self.__services = Services(properties=self.__properties)
@@ -17,9 +18,9 @@ class _Loader(_Main):
 
     def _clean(self):
         try:
-            self._services.institution_command_service.delete_institution_by_id(self.INSTITUTION_ID)
+            self._services.institution_command_service.delete_institution_by_id(self._institution_id)
         except NoSuchInstitutionException:
-            pass
+            self._logger.debug("institution %s does not exist (yet)", self._institution_id)
 
     @property
     def _institution_id(self):
@@ -32,8 +33,8 @@ class _Loader(_Main):
     def _properties(self):
         return self.__properties
 
-    def _run(self, clean=False):
-        if clean:
+    def _run(self):
+        if self.__clean:
             self._clean()
         self._load()
 
