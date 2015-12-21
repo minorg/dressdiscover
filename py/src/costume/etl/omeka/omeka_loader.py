@@ -606,7 +606,7 @@ class OmekaLoader(_Loader):
                         logger.warn("skipping item %s element set", element_set_name)
 
                 if not include_object:
-                    logger.info("excluding item %d", omeka_item_id)
+                    logger.debug("excluding item %d", omeka_item_id)
                     continue
 
                 if len(agents) > 0:
