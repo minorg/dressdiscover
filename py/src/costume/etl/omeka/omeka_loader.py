@@ -55,6 +55,7 @@ from costume.api.models.vocab_ref import VocabRef
 from costume.api.models.work_type.work_type import WorkType
 from costume.api.models.work_type.work_type_set import WorkTypeSet
 from costume.etl._loader import _Loader
+from costume.api.models.condition.condition import Condition
 
 
 try:
@@ -417,6 +418,10 @@ class OmekaLoader(_Loader):
                                     .set_type(DescriptionType.CONDITION)
                                     .build()
                             )
+                        elif element_name == 'Condition Term':
+                            condition_str = text.upper().replace(' ', '_').rstrip('.')
+                            condition = getattr(Condition, condition_str)
+                            object_builder.set_condition(condition)
                         elif element_name == 'Credit Line':
                             descriptions.append(
                                 Description.Builder()
