@@ -158,6 +158,10 @@
             "index": "not_analyzed", 
             "type": "string"
           }, 
+          "27:condition": {
+            "index": "not_analyzed", 
+            "type": "string"
+          }, 
           "10:dates": {
             "type": "nested", 
             "properties": {
