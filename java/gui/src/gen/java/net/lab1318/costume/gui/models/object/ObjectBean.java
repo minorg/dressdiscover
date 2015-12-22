@@ -22,6 +22,7 @@ public class ObjectBean {
         SUBJECTS("subjects", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.subject.SubjectSetBean>() {}, false, 21, "subjects", org.thryft.protocol.Type.STRUCT),
         TECHNIQUES("techniques", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.technique.TechniqueSetBean>() {}, false, 16, "techniques", org.thryft.protocol.Type.STRUCT),
         TEXTREFS("textrefs", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.textref.TextrefSetBean>() {}, false, 9, "textrefs", org.thryft.protocol.Type.STRUCT),
+        VIEW_TYPE("viewType", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.view_type.ViewType>() {}, false, 28, "view_type", org.thryft.protocol.Type.STRING),
         WORK_TYPES("workTypes", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.work_type.WorkTypeSetBean>() {}, false, 24, "work_types", org.thryft.protocol.Type.STRUCT);
 
         @Override
@@ -85,6 +86,7 @@ public class ObjectBean {
             case "subjects": return SUBJECTS;
             case "techniques": return TECHNIQUES;
             case "textrefs": return TEXTREFS;
+            case "viewType": return VIEW_TYPE;
             case "workTypes": return WORK_TYPES;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -112,6 +114,7 @@ public class ObjectBean {
             case "subjects": return SUBJECTS;
             case "techniques": return TECHNIQUES;
             case "textrefs": return TEXTREFS;
+            case "view_type": return VIEW_TYPE;
             case "work_types": return WORK_TYPES;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -161,6 +164,7 @@ public class ObjectBean {
         subjects = null;
         techniques = null;
         textrefs = null;
+        viewType = null;
         workTypes = null;
     }
 
@@ -193,6 +197,7 @@ public class ObjectBean {
         this.subjects = other.getSubjects().isPresent() ? new net.lab1318.costume.gui.models.subject.SubjectSetBean(other.getSubjects().get()) : null;
         this.techniques = other.getTechniques().isPresent() ? new net.lab1318.costume.gui.models.technique.TechniqueSetBean(other.getTechniques().get()) : null;
         this.textrefs = other.getTextrefs().isPresent() ? new net.lab1318.costume.gui.models.textref.TextrefSetBean(other.getTextrefs().get()) : null;
+        this.viewType = other.getViewType().isPresent() ? other.getViewType().get() : null;
         this.workTypes = other.getWorkTypes().isPresent() ? new net.lab1318.costume.gui.models.work_type.WorkTypeSetBean(other.getWorkTypes().get()) : null;
     }
 
@@ -225,6 +230,7 @@ public class ObjectBean {
             getSubjects().equals(other.getSubjects()) &&
             getTechniques().equals(other.getTechniques()) &&
             getTextrefs().equals(other.getTextrefs()) &&
+            getViewType().equals(other.getViewType()) &&
             getWorkTypes().equals(other.getWorkTypes());
     }
 
@@ -307,6 +313,10 @@ public class ObjectBean {
         return titles;
     }
 
+    public net.lab1318.costume.api.models.view_type.ViewType getViewType() {
+        return viewType;
+    }
+
     public net.lab1318.costume.gui.models.work_type.WorkTypeSetBean getWorkTypes() {
         return workTypes;
     }
@@ -362,6 +372,9 @@ public class ObjectBean {
         }
         if (getTextrefs() != null) {
             hashCode = 31 * hashCode + getTextrefs().hashCode();
+        }
+        if (getViewType() != null) {
+            hashCode = 31 * hashCode + getViewType().ordinal();
         }
         if (getWorkTypes() != null) {
             hashCode = 31 * hashCode + getWorkTypes().hashCode();
@@ -445,13 +458,17 @@ public class ObjectBean {
         this.titles = titles;
     }
 
+    public void setViewType(final net.lab1318.costume.api.models.view_type.ViewType viewType) {
+        this.viewType = viewType;
+    }
+
     public void setWorkTypes(final net.lab1318.costume.gui.models.work_type.WorkTypeSetBean workTypes) {
         this.workTypes = workTypes;
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("titles", getTitles()).add("agents", getAgents()).add("categories", getCategories()).add("condition", getCondition()).add("dates", getDates()).add("descriptions", getDescriptions()).add("gender", getGender()).add("images", getImages()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("provenance", getProvenance()).add("quantity", getQuantity()).add("rights", getRights()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("work_types", getWorkTypes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("titles", getTitles()).add("agents", getAgents()).add("categories", getCategories()).add("condition", getCondition()).add("dates", getDates()).add("descriptions", getDescriptions()).add("gender", getGender()).add("images", getImages()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("provenance", getProvenance()).add("quantity", getQuantity()).add("rights", getRights()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("view_type", getViewType()).add("work_types", getWorkTypes()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -494,6 +511,8 @@ public class ObjectBean {
     private net.lab1318.costume.gui.models.technique.TechniqueSetBean techniques;
 
     private net.lab1318.costume.gui.models.textref.TextrefSetBean textrefs;
+
+    private net.lab1318.costume.api.models.view_type.ViewType viewType;
 
     private net.lab1318.costume.gui.models.work_type.WorkTypeSetBean workTypes;
 }
