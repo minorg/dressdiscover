@@ -148,7 +148,7 @@ class OmekaLoader(_Loader):
             omeka_collection_id = collection_dict['id']
 
             if not collection_dict['public']:
-                logger.info("collection %d is not public, skipping", omeka_collection_id)
+                logger.debug("collection %d is not public, skipping", omeka_collection_id)
                 continue
 
             logger.debug("reading collection %d", omeka_collection_id)
@@ -275,11 +275,19 @@ class OmekaLoader(_Loader):
                             )
                         elif element_name == 'Date':
                             if dc_date_builder.earliest_date is None:
-                                assert dc_date_builder.earliest_date is None
                                 earliest_date, latest_date = self.__parse_date_range(text)
                                 dc_date_builder.set_earliest_date(earliest_date).set_latest_date(latest_date)
                             else:
                                 self._logger.warn("item %d in collection %d has two dates: %s", omeka_item_id, omeka_collection_id, text)
+                        elif element_name == 'Date Created':
+                            earliest_date = latest_date = self.__parse_date(text)
+                            dates.append(
+                                Date.Builder()
+                                    .set_earliest_date(earliest_date)
+                                    .set_latest_date(earliest_date)
+                                    .set_type(DateType.CREATION)
+                                    .build()
+                            )
                         elif element_name == 'Description':
                             descriptions.append(
                                 Description.Builder()
@@ -366,7 +374,12 @@ class OmekaLoader(_Loader):
         #                         )
                                 include_object = False
                                 break
-                        elif element_name in ('Language', 'Temporal Coverage',):
+                        elif element_name in (
+                            'Format', # Mostly bogus in VCCC
+                            'Language',
+                            'Spatial Coverage',
+                            'Temporal Coverage',
+                        ):
                             self._logger.debug("ignoring item %d's %s", omeka_item_id, element_name)
                         else:
                             logger.warn("skipping item Dublin Core element %s: %s", element_name, text.encode('ascii', 'ignore'))
@@ -601,8 +614,17 @@ class OmekaLoader(_Loader):
                                     .build()
                             )
                         elif element_name in (
+                            'Cataloguer with Date',
                             'Donor Class Year',
                             'CSV File',
+                            'ObjectVR Link',
+                            'Original Format', # For image items, the format of the subject of the image
+                            'Repository',
+                            'Status Score',
+                            'Storage Layer',
+                            'Storage Location',
+                            'Suffix', # Accession number suffix
+                            'URL', # ObjectVR URL
                         ):
                             self._logger.debug("ignoring item %d's %s", omeka_item_id, element_name)
                         else:
@@ -673,12 +695,12 @@ class OmekaLoader(_Loader):
                 if len(titles) > 0:
                     object_builder.set_titles(TitleSet.Builder().set_elements(tuple(titles)).build())
                 else:
-                    logger.warn("item %d has no titles, excluding", omeka_item_id)
+                    logger.debug("item %d has no titles, excluding", omeka_item_id)
                     continue
                 if len(work_types) > 0:
                     object_builder.set_work_types(WorkTypeSet.Builder().set_elements(tuple(work_types)).build())
                 else:
-                    logger.warn("item %d has no work types, excluding", omeka_item_id)
+                    logger.debug("item %d has no work types, excluding", omeka_item_id)
 
                 try:
                     files_count = item_dict['files']['count']
@@ -814,7 +836,7 @@ class OmekaLoader(_Loader):
             parsed_date_time = parsed_date_time.replace(tzinfo=pytz.utc)
 
             if parsed_date_time.year > datetime.now().year or parsed_date_time.year < 1000:
-                self._logger.warn("parsed date time has year out of range: '%s' from '%s'", parsed_date_time, text)
+                self._logger.debug("parsed date time has year out of range: '%s' from '%s'", parsed_date_time, text)
                 return builder.build()
 
             builder.set_parsed_date_time(parsed_date_time)
