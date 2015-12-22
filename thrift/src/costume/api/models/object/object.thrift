@@ -18,6 +18,7 @@ include "costume/api/models/subject/subject_set.thrift"
 include "costume/api/models/technique/technique_set.thrift"
 include "costume/api/models/textref/textref_set.thrift"
 include "costume/api/models/title/title_set.thrift"
+include "costume/api/models/view_type/view_type.thrift"
 include "costume/api/models/work_type/work_type_set.thrift"
 include "thryft/native/u32.thrift"
 
@@ -65,6 +66,8 @@ struct Object {
 	16: optional technique_set.TechniqueSet techniques;
 
 	9: optional textref_set.TextrefSet textrefs;
+
+	28: optional view_type.ViewType view_type;
 
 	24: optional work_type_set.WorkTypeSet work_types;
 }

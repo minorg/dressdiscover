@@ -14,6 +14,7 @@ import costume.api.models.subject.subject_set
 import costume.api.models.technique.technique_set
 import costume.api.models.textref.textref_set
 import costume.api.models.title.title_set
+import costume.api.models.view_type.view_type
 import costume.api.models.work_type.work_type_set
 
 
@@ -40,6 +41,7 @@ class Object(object):
             subjects=None,
             techniques=None,
             textrefs=None,
+            view_type=None,
             work_types=None,
         ):
             '''
@@ -62,6 +64,7 @@ class Object(object):
             :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
             :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
             :type textrefs: costume.api.models.textref.textref_set.TextrefSet or None
+            :type view_type: costume.api.models.view_type.view_type.ViewType or None
             :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
             '''
 
@@ -84,10 +87,11 @@ class Object(object):
             self.__subjects = subjects
             self.__techniques = techniques
             self.__textrefs = textrefs
+            self.__view_type = view_type
             self.__work_types = work_types
 
         def build(self):
-            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, titles=self.__titles, agents=self.__agents, categories=self.__categories, condition=self.__condition, dates=self.__dates, descriptions=self.__descriptions, gender=self.__gender, images=self.__images, inscriptions=self.__inscriptions, materials=self.__materials, provenance=self.__provenance, quantity=self.__quantity, rights=self.__rights, subjects=self.__subjects, techniques=self.__techniques, textrefs=self.__textrefs, work_types=self.__work_types)
+            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, titles=self.__titles, agents=self.__agents, categories=self.__categories, condition=self.__condition, dates=self.__dates, descriptions=self.__descriptions, gender=self.__gender, images=self.__images, inscriptions=self.__inscriptions, materials=self.__materials, provenance=self.__provenance, quantity=self.__quantity, rights=self.__rights, subjects=self.__subjects, techniques=self.__techniques, textrefs=self.__textrefs, view_type=self.__view_type, work_types=self.__work_types)
 
         @property
         def agents(self):
@@ -361,6 +365,14 @@ class Object(object):
             self.__titles = titles
             return self
 
+        def set_view_type(self, view_type):
+            '''
+            :type view_type: costume.api.models.view_type.view_type.ViewType or None
+            '''
+
+            self.__view_type = view_type
+            return self
+
         def set_work_types(self, work_types):
             '''
             :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
@@ -422,6 +434,7 @@ class Object(object):
             :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
             :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
             :type textrefs: costume.api.models.textref.textref_set.TextrefSet or None
+            :type view_type: costume.api.models.view_type.view_type.ViewType or None
             :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
             '''
 
@@ -445,6 +458,7 @@ class Object(object):
                 self.set_subjects(object.subjects)
                 self.set_techniques(object.techniques)
                 self.set_textrefs(object.textrefs)
+                self.set_view_type(object.view_type)
                 self.set_work_types(object.work_types)
             elif isinstance(object, dict):
                 for key, value in object.iteritems():
@@ -452,6 +466,14 @@ class Object(object):
             else:
                 raise TypeError(object)
             return self
+
+        @property
+        def view_type(self):
+            '''
+            :rtype: costume.api.models.view_type.view_type.ViewType
+            '''
+
+            return self.__view_type
 
         @property
         def work_types(self):
@@ -613,6 +635,14 @@ class Object(object):
 
             self.set_titles(titles)
 
+        @view_type.setter
+        def view_type(self, view_type):
+            '''
+            :type view_type: costume.api.models.view_type.view_type.ViewType or None
+            '''
+
+            self.set_view_type(view_type)
+
         @work_types.setter
         def work_types(self, work_types):
             '''
@@ -642,6 +672,7 @@ class Object(object):
         subjects=None,
         techniques=None,
         textrefs=None,
+        view_type=None,
         work_types=None,
     ):
         '''
@@ -664,6 +695,7 @@ class Object(object):
         :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
         :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
         :type textrefs: costume.api.models.textref.textref_set.TextrefSet or None
+        :type view_type: costume.api.models.view_type.view_type.ViewType or None
         :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
         '''
 
@@ -772,6 +804,11 @@ class Object(object):
                 raise TypeError("expected textrefs to be a costume.api.models.textref.textref_set.TextrefSet but it is a %s" % getattr(__builtin__, 'type')(textrefs))
         self.__textrefs = textrefs
 
+        if view_type is not None:
+            if not isinstance(view_type, costume.api.models.view_type.view_type.ViewType):
+                raise TypeError("expected view_type to be a costume.api.models.view_type.view_type.ViewType but it is a %s" % getattr(__builtin__, 'type')(view_type))
+        self.__view_type = view_type
+
         if work_types is not None:
             if not isinstance(work_types, costume.api.models.work_type.work_type_set.WorkTypeSet):
                 raise TypeError("expected work_types to be a costume.api.models.work_type.work_type_set.WorkTypeSet but it is a %s" % getattr(__builtin__, 'type')(work_types))
@@ -816,12 +853,14 @@ class Object(object):
             return False
         if self.textrefs != other.textrefs:
             return False
+        if self.view_type != other.view_type:
+            return False
         if self.work_types != other.work_types:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.model_metadata,self.titles,self.agents,self.categories,self.condition,self.dates,self.descriptions,self.gender,self.images,self.inscriptions,self.materials,self.provenance,self.quantity,self.rights,self.subjects,self.techniques,self.textrefs,self.work_types,))
+        return hash((self.collection_id,self.institution_id,self.model_metadata,self.titles,self.agents,self.categories,self.condition,self.dates,self.descriptions,self.gender,self.images,self.inscriptions,self.materials,self.provenance,self.quantity,self.rights,self.subjects,self.techniques,self.textrefs,self.view_type,self.work_types,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -865,6 +904,8 @@ class Object(object):
             field_reprs.append('techniques=' + repr(self.techniques))
         if self.textrefs is not None:
             field_reprs.append('textrefs=' + repr(self.textrefs))
+        if self.view_type is not None:
+            field_reprs.append('view_type=' + repr(self.view_type))
         if self.work_types is not None:
             field_reprs.append('work_types=' + repr(self.work_types))
         return 'Object(' + ', '.join(field_reprs) + ')'
@@ -905,6 +946,8 @@ class Object(object):
             field_reprs.append('techniques=' + repr(self.techniques))
         if self.textrefs is not None:
             field_reprs.append('textrefs=' + repr(self.textrefs))
+        if self.view_type is not None:
+            field_reprs.append('view_type=' + repr(self.view_type))
         if self.work_types is not None:
             field_reprs.append('work_types=' + repr(self.work_types))
         return 'Object(' + ', '.join(field_reprs) + ')'
@@ -924,7 +967,7 @@ class Object(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'titles': self.titles, 'agents': self.agents, 'categories': self.categories, 'condition': self.condition, 'dates': self.dates, 'descriptions': self.descriptions, 'gender': self.gender, 'images': self.images, 'inscriptions': self.inscriptions, 'materials': self.materials, 'provenance': self.provenance, 'quantity': self.quantity, 'rights': self.rights, 'subjects': self.subjects, 'techniques': self.techniques, 'textrefs': self.textrefs, 'work_types': self.work_types}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'titles': self.titles, 'agents': self.agents, 'categories': self.categories, 'condition': self.condition, 'dates': self.dates, 'descriptions': self.descriptions, 'gender': self.gender, 'images': self.images, 'inscriptions': self.inscriptions, 'materials': self.materials, 'provenance': self.provenance, 'quantity': self.quantity, 'rights': self.rights, 'subjects': self.subjects, 'techniques': self.techniques, 'textrefs': self.textrefs, 'view_type': self.view_type, 'work_types': self.work_types}
 
     def as_tuple(self):
         '''
@@ -933,7 +976,7 @@ class Object(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.model_metadata, self.titles, self.agents, self.categories, self.condition, self.dates, self.descriptions, self.gender, self.images, self.inscriptions, self.materials, self.provenance, self.quantity, self.rights, self.subjects, self.techniques, self.textrefs, self.work_types,)
+        return (self.collection_id, self.institution_id, self.model_metadata, self.titles, self.agents, self.categories, self.condition, self.dates, self.descriptions, self.gender, self.images, self.inscriptions, self.materials, self.provenance, self.quantity, self.rights, self.subjects, self.techniques, self.textrefs, self.view_type, self.work_types,)
 
     @property
     def categories(self):
@@ -1105,6 +1148,11 @@ class Object(object):
                 init_kwds['techniques'] = costume.api.models.technique.technique_set.TechniqueSet.read(iprot)
             elif ifield_name == 'textrefs' and ifield_id == 9:
                 init_kwds['textrefs'] = costume.api.models.textref.textref_set.TextrefSet.read(iprot)
+            elif ifield_name == 'view_type' and ifield_id == 28:
+                try:
+                    init_kwds['view_type'] = costume.api.models.view_type.view_type.ViewType.value_of(iprot.read_string().strip().upper())
+                except (TypeError,):
+                    pass
             elif ifield_name == 'work_types' and ifield_id == 24:
                 init_kwds['work_types'] = costume.api.models.work_type.work_type_set.WorkTypeSet.read(iprot)
             iprot.read_field_end()
@@ -1133,6 +1181,7 @@ class Object(object):
         subjects=None,
         techniques=None,
         textrefs=None,
+        view_type=None,
         work_types=None,
     ):
         '''
@@ -1157,6 +1206,7 @@ class Object(object):
         :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
         :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
         :type textrefs: costume.api.models.textref.textref_set.TextrefSet or None
+        :type view_type: costume.api.models.view_type.view_type.ViewType or None
         :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
         :rtype: costume.api.models.object.object.Object
         '''
@@ -1199,9 +1249,11 @@ class Object(object):
             techniques = self.techniques
         if textrefs is None:
             textrefs = self.textrefs
+        if view_type is None:
+            view_type = self.view_type
         if work_types is None:
             work_types = self.work_types
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, titles=titles, agents=agents, categories=categories, condition=condition, dates=dates, descriptions=descriptions, gender=gender, images=images, inscriptions=inscriptions, materials=materials, provenance=provenance, quantity=quantity, rights=rights, subjects=subjects, techniques=techniques, textrefs=textrefs, work_types=work_types)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, titles=titles, agents=agents, categories=categories, condition=condition, dates=dates, descriptions=descriptions, gender=gender, images=images, inscriptions=inscriptions, materials=materials, provenance=provenance, quantity=quantity, rights=rights, subjects=subjects, techniques=techniques, textrefs=textrefs, view_type=view_type, work_types=work_types)
 
     @property
     def rights(self):
@@ -1242,6 +1294,14 @@ class Object(object):
         '''
 
         return self.__titles
+
+    @property
+    def view_type(self):
+        '''
+        :rtype: costume.api.models.view_type.view_type.ViewType
+        '''
+
+        return self.__view_type
 
     @property
     def work_types(self):
@@ -1356,6 +1416,11 @@ class Object(object):
         if self.textrefs is not None:
             oprot.write_field_begin(name='textrefs', type=12, id=9)
             self.textrefs.write(oprot)
+            oprot.write_field_end()
+
+        if self.view_type is not None:
+            oprot.write_field_begin(name='view_type', type=11, id=28)
+            oprot.write_string(str(self.view_type))
             oprot.write_field_end()
 
         if self.work_types is not None:

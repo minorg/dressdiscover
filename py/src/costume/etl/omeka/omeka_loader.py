@@ -11,6 +11,7 @@ from costume.api.models.agent.agent_name_type import AgentNameType
 from costume.api.models.agent.agent_role import AgentRole
 from costume.api.models.agent.agent_set import AgentSet
 from costume.api.models.collection.collection import Collection
+from costume.api.models.condition.condition import Condition
 from costume.api.models.date.date import Date
 from costume.api.models.date.date_bound import DateBound
 from costume.api.models.date.date_set import DateSet
@@ -50,12 +51,12 @@ from costume.api.models.textref.textref_set import TextrefSet
 from costume.api.models.title.title import Title
 from costume.api.models.title.title_set import TitleSet
 from costume.api.models.title.title_type import TitleType
+from costume.api.models.view_type.view_type import ViewType
 from costume.api.models.vocab import Vocab
 from costume.api.models.vocab_ref import VocabRef
 from costume.api.models.work_type.work_type import WorkType
 from costume.api.models.work_type.work_type_set import WorkTypeSet
 from costume.etl._loader import _Loader
-from costume.api.models.condition.condition import Condition
 
 
 try:
@@ -148,7 +149,7 @@ class OmekaLoader(_Loader):
             omeka_collection_id = collection_dict['id']
 
             if not collection_dict['public']:
-                logger.debug("collection %d is not public, skipping", omeka_collection_id)
+                logger.info("collection %d is not public, skipping", omeka_collection_id)
                 continue
 
             logger.debug("reading collection %d", omeka_collection_id)
@@ -203,7 +204,6 @@ class OmekaLoader(_Loader):
                 dates = []
                 descriptions = []
                 identifiers = []
-                include_object = True
                 inscriptions = []
                 materials = []
                 subjects = []
@@ -229,6 +229,9 @@ class OmekaLoader(_Loader):
                         )
                         .build()
                 )
+
+                if omeka_item_id == 1500:
+                    x = 'test'
 
                 for element_text_dict in item_dict['element_texts']:
                     text = element_text_dict['text'].strip()
@@ -348,32 +351,9 @@ class OmekaLoader(_Loader):
                                     .build()
                             )
                         elif element_name == 'Type':
-                            type_ = text.strip().replace(' ', '')
-                            if type_ in DCMI_TYPES:
-                                if type_ in ('Image', 'PhysicalObject', 'StillImage'):
-                                    work_types.append(
-                                        WorkType.Builder()
-                                            .set_text(type_)
-                                            .set_vocab_ref(
-                                                VocabRef.Builder()
-                                                    .set_refid(type_)
-                                                    .set_vocab(Vocab.DCMI_TYPE)
-                                                    .set_uri(DCMI_TYPES_BASE_URL + type_)
-                                                    .build()
-                                            )
-                                            .build()
-                                    )
-                                else:
-                                    include_object = False
-                                    break
-                            else:
-        #                         work_types.append(
-        #                             WorkType.Builder()
-        #                                 .set_text(text)
-        #                                 .build()
-        #                         )
-                                include_object = False
-                                break
+                            work_type = self.__parse_work_type(text)
+                            if work_type is not None:
+                                work_types.append(work_type)
                         elif element_name in (
                             'Format', # Mostly bogus in VCCC
                             'Language',
@@ -597,6 +577,12 @@ class OmekaLoader(_Loader):
                                             .set_text(technique)
                                             .build()
                                     )
+                        elif element_name == 'View Type':
+                            assert object_builder.view_type is None
+                            try:
+                                object_builder.view_type = getattr(ViewType, text.upper().replace(' ', '_'))
+                            except AttributeError:
+                                self._logger.error("item %d has unknown View Type '%s'", omeka_item_id, text)
                         elif element_name == 'Wearer':
                             agents.append(
                                 Agent.Builder()
@@ -632,15 +618,11 @@ class OmekaLoader(_Loader):
                     else:
                         logger.warn("skipping item %s element set", element_set_name)
 
-                if not include_object:
-                    logger.debug("excluding item %d", omeka_item_id)
-                    continue
-
                 if len(agents) > 0:
                     object_builder.set_agents(AgentSet.Builder().set_elements(tuple(agents)).build())
                 if len(categories) > 0:
                     object_builder.set_categories(tuple(categories))
-                if dc_date_builder.earliest_date is not None:
+                if dc_date_builder.earliest_date is not None and dc_date_builder.latest_date is not None:
                     if dc_date_certainty is not None:
                         assert dc_date_certainty == 'circa'
                         dc_date_builder.earliest_date =\
@@ -697,10 +679,20 @@ class OmekaLoader(_Loader):
                 else:
                     logger.debug("item %d has no titles, excluding", omeka_item_id)
                     continue
+                if len(work_types) == 0:
+                    try:
+                        work_type_text = item_dict['item_type']['name']
+                    except (KeyError, TypeError):
+                        work_type_text = None
+                    if work_type_text is not None:
+                        work_type = self.__parse_work_type(work_type_text)
+                        if work_type is not None:
+                            work_types.append(work_type)
                 if len(work_types) > 0:
                     object_builder.set_work_types(WorkTypeSet.Builder().set_elements(tuple(work_types)).build())
                 else:
-                    logger.debug("item %d has no work types, excluding", omeka_item_id)
+                    logger.debug("item %d has no suitable work types, excluding", omeka_item_id)
+                    continue
 
                 try:
                     files_count = item_dict['files']['count']
@@ -795,7 +787,6 @@ class OmekaLoader(_Loader):
                       for object_id, object_ in objects_by_id.iteritems())
             )
 
-
     def __parse_date(self, text):
         builder = DateBound.Builder().set_text(text)
 
@@ -857,3 +848,19 @@ class OmekaLoader(_Loader):
             raise NotImplementedError
         self._logger.debug("parsed date range '%s' from '%s'", date_range, text)
         return date_range
+
+    def __parse_work_type(self, text):
+        text = text.strip().replace(' ', '')
+        if text in DCMI_TYPES:
+            if text in ('Image', 'PhysicalObject', 'StillImage'):
+                return \
+                    WorkType.Builder()\
+                        .set_text(text)\
+                        .set_vocab_ref(
+                            VocabRef.Builder()
+                                .set_refid(text)\
+                                .set_vocab(Vocab.DCMI_TYPE)\
+                                .set_uri(DCMI_TYPES_BASE_URL + text)\
+                                .build()
+                        )\
+                        .build()
