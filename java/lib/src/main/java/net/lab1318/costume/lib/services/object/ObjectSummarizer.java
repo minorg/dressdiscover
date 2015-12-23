@@ -16,6 +16,7 @@ import net.lab1318.costume.api.models.image.ImageVersion;
 import net.lab1318.costume.api.models.material.Material;
 import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectSummary;
+import net.lab1318.costume.api.models.relation.Relation;
 import net.lab1318.costume.api.models.subject.Subject;
 import net.lab1318.costume.api.models.subject.SubjectTerm;
 import net.lab1318.costume.api.models.technique.Technique;
@@ -115,6 +116,19 @@ public final class ObjectSummarizer {
                 }
             }
             builder.setSubjectTermTexts(subjectTermTextsBuilder.build());
+        }
+
+        if (object.getRelations().isPresent()) {
+            final ImmutableList.Builder<String> relationTextsBuilder = ImmutableList.builder();
+            for (final Relation relation : object.getRelations().get().getElements()) {
+                if (relation.getText().isPresent() && !relation.getText().get().isEmpty()) {
+                    relationTextsBuilder.add(relation.getText().get());
+                }
+            }
+            final ImmutableList<String> relationTexts = relationTextsBuilder.build();
+            if (!relationTexts.isEmpty()) {
+                builder.setRelationTexts(relationTexts);
+            }
         }
 
         if (object.getTechniques().isPresent()) {
