@@ -10,6 +10,7 @@ class ObjectQuery(object):
             facet_filters=None,
             institution_id=None,
             more_like_object_id=None,
+            relation_text=None,
             query_string=None,
         ):
             '''
@@ -17,6 +18,7 @@ class ObjectQuery(object):
             :type facet_filters: costume.api.services.object.object_facet_filters.ObjectFacetFilters or None
             :type institution_id: str or None
             :type more_like_object_id: str or None
+            :type relation_text: str or None
             :type query_string: str or None
             '''
 
@@ -24,10 +26,11 @@ class ObjectQuery(object):
             self.__facet_filters = facet_filters
             self.__institution_id = institution_id
             self.__more_like_object_id = more_like_object_id
+            self.__relation_text = relation_text
             self.__query_string = query_string
 
         def build(self):
-            return ObjectQuery(collection_id=self.__collection_id, facet_filters=self.__facet_filters, institution_id=self.__institution_id, more_like_object_id=self.__more_like_object_id, query_string=self.__query_string)
+            return ObjectQuery(collection_id=self.__collection_id, facet_filters=self.__facet_filters, institution_id=self.__institution_id, more_like_object_id=self.__more_like_object_id, relation_text=self.__relation_text, query_string=self.__query_string)
 
         @property
         def collection_id(self):
@@ -69,6 +72,14 @@ class ObjectQuery(object):
 
             return self.__query_string
 
+        @property
+        def relation_text(self):
+            '''
+            :rtype: str
+            '''
+
+            return self.__relation_text
+
         def set_collection_id(self, collection_id):
             '''
             :type collection_id: str or None
@@ -109,12 +120,21 @@ class ObjectQuery(object):
             self.__query_string = query_string
             return self
 
+        def set_relation_text(self, relation_text):
+            '''
+            :type relation_text: str or None
+            '''
+
+            self.__relation_text = relation_text
+            return self
+
         def update(self, object_query):
             '''
             :type collection_id: str or None
             :type facet_filters: costume.api.services.object.object_facet_filters.ObjectFacetFilters or None
             :type institution_id: str or None
             :type more_like_object_id: str or None
+            :type relation_text: str or None
             :type query_string: str or None
             '''
 
@@ -123,6 +143,7 @@ class ObjectQuery(object):
                 self.set_facet_filters(object_query.facet_filters)
                 self.set_institution_id(object_query.institution_id)
                 self.set_more_like_object_id(object_query.more_like_object_id)
+                self.set_relation_text(object_query.relation_text)
                 self.set_query_string(object_query.query_string)
             elif isinstance(object_query, dict):
                 for key, value in object_query.iteritems():
@@ -171,12 +192,21 @@ class ObjectQuery(object):
 
             self.set_query_string(query_string)
 
+        @relation_text.setter
+        def relation_text(self, relation_text):
+            '''
+            :type relation_text: str or None
+            '''
+
+            self.set_relation_text(relation_text)
+
     def __init__(
         self,
         collection_id=None,
         facet_filters=None,
         institution_id=None,
         more_like_object_id=None,
+        relation_text=None,
         query_string=None,
     ):
         '''
@@ -184,6 +214,7 @@ class ObjectQuery(object):
         :type facet_filters: costume.api.services.object.object_facet_filters.ObjectFacetFilters or None
         :type institution_id: str or None
         :type more_like_object_id: str or None
+        :type relation_text: str or None
         :type query_string: str or None
         '''
 
@@ -207,6 +238,13 @@ class ObjectQuery(object):
                 raise TypeError("expected more_like_object_id to be a str but it is a %s" % getattr(__builtin__, 'type')(more_like_object_id))
         self.__more_like_object_id = more_like_object_id
 
+        if relation_text is not None:
+            if not isinstance(relation_text, basestring):
+                raise TypeError("expected relation_text to be a str but it is a %s" % getattr(__builtin__, 'type')(relation_text))
+            if len(relation_text) < 1:
+                raise ValueError("expected len(relation_text) to be >= 1, was %d" % len(relation_text))
+        self.__relation_text = relation_text
+
         if query_string is not None:
             if not isinstance(query_string, basestring):
                 raise TypeError("expected query_string to be a str but it is a %s" % getattr(__builtin__, 'type')(query_string))
@@ -223,12 +261,14 @@ class ObjectQuery(object):
             return False
         if self.more_like_object_id != other.more_like_object_id:
             return False
+        if self.relation_text != other.relation_text:
+            return False
         if self.query_string != other.query_string:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.facet_filters,self.institution_id,self.more_like_object_id,self.query_string,))
+        return hash((self.collection_id,self.facet_filters,self.institution_id,self.more_like_object_id,self.relation_text,self.query_string,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -246,6 +286,8 @@ class ObjectQuery(object):
             field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
         if self.more_like_object_id is not None:
             field_reprs.append('more_like_object_id=' + "'" + self.more_like_object_id.encode('ascii', 'replace') + "'")
+        if self.relation_text is not None:
+            field_reprs.append('relation_text=' + "'" + self.relation_text.encode('ascii', 'replace') + "'")
         if self.query_string is not None:
             field_reprs.append('query_string=' + "'" + self.query_string.encode('ascii', 'replace') + "'")
         return 'ObjectQuery(' + ', '.join(field_reprs) + ')'
@@ -260,6 +302,8 @@ class ObjectQuery(object):
             field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
         if self.more_like_object_id is not None:
             field_reprs.append('more_like_object_id=' + "'" + self.more_like_object_id.encode('ascii', 'replace') + "'")
+        if self.relation_text is not None:
+            field_reprs.append('relation_text=' + "'" + self.relation_text.encode('ascii', 'replace') + "'")
         if self.query_string is not None:
             field_reprs.append('query_string=' + "'" + self.query_string.encode('ascii', 'replace') + "'")
         return 'ObjectQuery(' + ', '.join(field_reprs) + ')'
@@ -271,7 +315,7 @@ class ObjectQuery(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'facet_filters': self.facet_filters, 'institution_id': self.institution_id, 'more_like_object_id': self.more_like_object_id, 'query_string': self.query_string}
+        return {'collection_id': self.collection_id, 'facet_filters': self.facet_filters, 'institution_id': self.institution_id, 'more_like_object_id': self.more_like_object_id, 'relation_text': self.relation_text, 'query_string': self.query_string}
 
     def as_tuple(self):
         '''
@@ -280,7 +324,7 @@ class ObjectQuery(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.facet_filters, self.institution_id, self.more_like_object_id, self.query_string,)
+        return (self.collection_id, self.facet_filters, self.institution_id, self.more_like_object_id, self.relation_text, self.query_string,)
 
     @property
     def collection_id(self):
@@ -355,6 +399,11 @@ class ObjectQuery(object):
                     init_kwds['more_like_object_id'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
+            elif ifield_name == 'relation_text':
+                try:
+                    init_kwds['relation_text'] = iprot.read_string()
+                except (TypeError, ValueError,):
+                    pass
             elif ifield_name == 'query_string':
                 try:
                     init_kwds['query_string'] = iprot.read_string()
@@ -365,12 +414,21 @@ class ObjectQuery(object):
 
         return cls(**init_kwds)
 
+    @property
+    def relation_text(self):
+        '''
+        :rtype: str
+        '''
+
+        return self.__relation_text
+
     def replace(
         self,
         collection_id=None,
         facet_filters=None,
         institution_id=None,
         more_like_object_id=None,
+        relation_text=None,
         query_string=None,
     ):
         '''
@@ -380,6 +438,7 @@ class ObjectQuery(object):
         :type facet_filters: costume.api.services.object.object_facet_filters.ObjectFacetFilters or None
         :type institution_id: str or None
         :type more_like_object_id: str or None
+        :type relation_text: str or None
         :type query_string: str or None
         :rtype: costume.api.services.object.object_query.ObjectQuery
         '''
@@ -392,9 +451,11 @@ class ObjectQuery(object):
             institution_id = self.institution_id
         if more_like_object_id is None:
             more_like_object_id = self.more_like_object_id
+        if relation_text is None:
+            relation_text = self.relation_text
         if query_string is None:
             query_string = self.query_string
-        return self.__class__(collection_id=collection_id, facet_filters=facet_filters, institution_id=institution_id, more_like_object_id=more_like_object_id, query_string=query_string)
+        return self.__class__(collection_id=collection_id, facet_filters=facet_filters, institution_id=institution_id, more_like_object_id=more_like_object_id, relation_text=relation_text, query_string=query_string)
 
     def write(self, oprot):
         '''
@@ -424,6 +485,11 @@ class ObjectQuery(object):
         if self.more_like_object_id is not None:
             oprot.write_field_begin(name='more_like_object_id', type=11, id=None)
             oprot.write_string(self.more_like_object_id)
+            oprot.write_field_end()
+
+        if self.relation_text is not None:
+            oprot.write_field_begin(name='relation_text', type=11, id=None)
+            oprot.write_string(self.relation_text)
             oprot.write_field_end()
 
         if self.query_string is not None:

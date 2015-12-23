@@ -19,8 +19,8 @@ import net.lab1318.costume.api.models.title.Title;
 import net.lab1318.costume.gui.models.gender.Genders;
 
 @SuppressWarnings("serial")
-final class ObjectForm extends CustomComponent {
-    public ObjectForm(final ObjectEntry objectEntry, final Institution institution) {
+final class ObjectEntryForm extends CustomComponent {
+    public ObjectEntryForm(final ObjectEntry objectEntry, final Institution institution) {
         final VerticalLayout rootLayout = new VerticalLayout();
         rootLayout.setSizeFull();
 
@@ -97,6 +97,11 @@ final class ObjectForm extends CustomComponent {
 
             if (objectEntry.getModel().getSubjects().isPresent()) {
                 formLayout.addComponent(new SubjectSetTable(objectEntry.getModel().getSubjects().get()));
+            }
+
+            if (objectEntry.getModel().getRelations().isPresent()) {
+                formLayout.addComponent(new RelationSetTable(objectEntry.getModel().getInstitutionId(),
+                        objectEntry.getModel().getRelations().get()));
             }
 
             if (objectEntry.getModel().getTechniques().isPresent()) {

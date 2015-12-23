@@ -13,6 +13,7 @@ include "costume/api/models/image/image.thrift"
 include "costume/api/models/inscription/inscription_set.thrift"
 include "costume/api/models/institution/institution_id.thrift"
 include "costume/api/models/material/material_set.thrift"
+include "costume/api/models/relation/relation_set.thrift"
 include "costume/api/models/rights/rights_set.thrift"
 include "costume/api/models/subject/subject_set.thrift"
 include "costume/api/models/technique/technique_set.thrift"
@@ -58,6 +59,8 @@ struct Object {
 	5: optional string provenance;
 
 	26: optional u32.u32 quantity;
+
+	29: optional relation_set.RelationSet relations;
 
 	22: optional rights_set.RightsSet rights;
 

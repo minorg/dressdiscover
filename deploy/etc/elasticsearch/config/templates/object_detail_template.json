@@ -422,6 +422,37 @@
           "26:quantity": {
             "type": "integer"
           }, 
+          "29:relations": {
+            "type": "nested", 
+            "properties": {
+              "1:elements": {
+                "type": "nested", 
+                "properties": {
+                  "1:type": {
+                    "index": "not_analyzed", 
+                    "type": "string"
+                  }, 
+                  "2:href": {
+                    "type": "string", 
+                    "analyzer": "email_and_url"
+                  }, 
+                  "3:relids": {
+                    "index": "not_analyzed", 
+                    "type": "string"
+                  }, 
+                  "4:text": {
+                    "type": "string"
+                  }
+                }
+              }, 
+              "2:display": {
+                "type": "string"
+              }, 
+              "3:notes": {
+                "type": "string"
+              }
+            }
+          }, 
           "22:rights": {
             "type": "nested", 
             "properties": {

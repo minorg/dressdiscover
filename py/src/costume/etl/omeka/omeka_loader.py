@@ -33,6 +33,9 @@ from costume.api.models.material.material_set import MaterialSet
 from costume.api.models.material.material_type import MaterialType
 from costume.api.models.object.object import Object
 from costume.api.models.object.object_entry import ObjectEntry
+from costume.api.models.relation.relation import Relation
+from costume.api.models.relation.relation_set import RelationSet
+from costume.api.models.relation.relation_type import RelationType
 from costume.api.models.rights.rights import Rights
 from costume.api.models.rights.rights_set import RightsSet
 from costume.api.models.rights.rights_type import RightsType
@@ -206,6 +209,7 @@ class OmekaLoader(_Loader):
                 identifiers = []
                 inscriptions = []
                 materials = []
+                relations = []
                 subjects = []
                 techniques = []
                 textrefs = []
@@ -229,9 +233,6 @@ class OmekaLoader(_Loader):
                         )
                         .build()
                 )
-
-                if omeka_item_id == 1500:
-                    x = 'test'
 
                 for element_text_dict in item_dict['element_texts']:
                     text = element_text_dict['text'].strip()
@@ -300,6 +301,12 @@ class OmekaLoader(_Loader):
                         elif element_name == 'Identifier':
                             if not text in identifiers:
                                 identifiers.append(text)
+                            relations.append(
+                                Relation.Builder()
+                                    .set_text(text)
+                                    .set_type(RelationType.SOURCE_FOR)
+                                    .build()
+                            )
                         elif element_name == 'Medium':
                             text = text.strip("'")
                             for medium in text.split(';'):
@@ -315,6 +322,13 @@ class OmekaLoader(_Loader):
                                     )
                         elif element_name == 'Provenance':
                             object_builder.set_provenance(text)
+                        elif element_name == 'Relation':
+                            relations.append(
+                                Relation.Builder()
+                                    .set_text(text)
+                                    .set_type(RelationType.RELATED_TO)
+                                    .build()
+                            )
                         elif element_name == 'Rights':
                             object_builder.set_rights(
                                 RightsSet.Builder()
@@ -325,6 +339,13 @@ class OmekaLoader(_Loader):
                                             .set_type(RightsType.UNDETERMINED)
                                             .build()
                                     ,))
+                                    .build()
+                            )
+                        elif element_name == 'Source':
+                            relations.append(
+                                Relation.Builder()
+                                    .set_text(text)
+                                    .set_type(RelationType.DERIVED_FROM)
                                     .build()
                             )
                         elif element_name == 'Subject':
@@ -498,6 +519,13 @@ class OmekaLoader(_Loader):
                                     .set_type(DescriptionType.EXHIBITION)
                                     .build()
                             )
+                        elif element_name == 'Exhibitions':
+                            relations.append(
+                                Relation.Builder()
+                                    .set_text(text)
+                                    .set_type(RelationType.EXHIBITED_AT)
+                                    .build()
+                            )
                         elif element_name == 'Gender':
                             text = text.lower().split(',')[0]
                             if text == 'female':
@@ -566,6 +594,12 @@ class OmekaLoader(_Loader):
                         elif element_name == 'Source Identifier':
                             if not text in identifiers:
                                 identifiers.append(text)
+                            relations.append(
+                                Relation.Builder()
+                                    .set_text(text)
+                                    .set_type(RelationType.DERIVED_FROM)
+                                    .build()
+                            )
                         elif element_name == 'Technique':
                             for technique in text.split(';'):
                                 for technique in technique.split(','):
@@ -668,6 +702,16 @@ class OmekaLoader(_Loader):
                     object_builder.set_inscriptions(InscriptionSet.Builder().set_elements(tuple(inscriptions)).build())
                 if len(materials) > 0:
                     object_builder.set_materials(MaterialSet.Builder().set_elements(tuple(materials)).build())
+                if len(relations) > 0:
+                    relation_texts = {}
+                    unique_relations = []
+                    for relation in relations:
+                        if relation.text is None:
+                            unique_relations.append(relation)
+                        elif relation.text not in relation_texts:
+                            unique_relations.append(relation)
+                            relation_texts[relation.text] = None
+                    object_builder.set_relations(RelationSet.Builder().set_elements(tuple(unique_relations)).build())
                 if len(subjects) > 0:
                     object_builder.set_subjects(SubjectSet.Builder().set_elements(tuple(subjects)).build())
                 if len(techniques) > 0:
