@@ -18,6 +18,7 @@ class ObjectSummary(object):
             date=None,
             description=None,
             gender=None,
+            relation_texts=None,
             material_texts=None,
             subject_term_texts=None,
             technique_texts=None,
@@ -35,6 +36,7 @@ class ObjectSummary(object):
             :type date: str or None
             :type description: str or None
             :type gender: costume.api.models.gender.gender.Gender or None
+            :type relation_texts: tuple(str) or None
             :type material_texts: tuple(str) or None
             :type subject_term_texts: tuple(str) or None
             :type technique_texts: tuple(str) or None
@@ -52,6 +54,7 @@ class ObjectSummary(object):
             self.__date = date
             self.__description = description
             self.__gender = gender
+            self.__relation_texts = relation_texts
             self.__material_texts = material_texts
             self.__subject_term_texts = subject_term_texts
             self.__technique_texts = technique_texts
@@ -60,7 +63,7 @@ class ObjectSummary(object):
             self.__work_type_texts = work_type_texts
 
         def build(self):
-            return ObjectSummary(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, agent_name_texts=self.__agent_name_texts, categories=self.__categories, date=self.__date, description=self.__description, gender=self.__gender, material_texts=self.__material_texts, subject_term_texts=self.__subject_term_texts, technique_texts=self.__technique_texts, thumbnail=self.__thumbnail, url=self.__url, work_type_texts=self.__work_type_texts)
+            return ObjectSummary(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, agent_name_texts=self.__agent_name_texts, categories=self.__categories, date=self.__date, description=self.__description, gender=self.__gender, relation_texts=self.__relation_texts, material_texts=self.__material_texts, subject_term_texts=self.__subject_term_texts, technique_texts=self.__technique_texts, thumbnail=self.__thumbnail, url=self.__url, work_type_texts=self.__work_type_texts)
 
         @property
         def agent_name_texts(self):
@@ -134,6 +137,14 @@ class ObjectSummary(object):
 
             return self.__model_metadata
 
+        @property
+        def relation_texts(self):
+            '''
+            :rtype: tuple(str)
+            '''
+
+            return self.__relation_texts
+
         def set_agent_name_texts(self, agent_name_texts):
             '''
             :type agent_name_texts: tuple(str) or None
@@ -204,6 +215,14 @@ class ObjectSummary(object):
             '''
 
             self.__model_metadata = model_metadata
+            return self
+
+        def set_relation_texts(self, relation_texts):
+            '''
+            :type relation_texts: tuple(str) or None
+            '''
+
+            self.__relation_texts = relation_texts
             return self
 
         def set_subject_term_texts(self, subject_term_texts):
@@ -297,6 +316,7 @@ class ObjectSummary(object):
             :type date: str or None
             :type description: str or None
             :type gender: costume.api.models.gender.gender.Gender or None
+            :type relation_texts: tuple(str) or None
             :type material_texts: tuple(str) or None
             :type subject_term_texts: tuple(str) or None
             :type technique_texts: tuple(str) or None
@@ -315,6 +335,7 @@ class ObjectSummary(object):
                 self.set_date(object_summary.date)
                 self.set_description(object_summary.description)
                 self.set_gender(object_summary.gender)
+                self.set_relation_texts(object_summary.relation_texts)
                 self.set_material_texts(object_summary.material_texts)
                 self.set_subject_term_texts(object_summary.subject_term_texts)
                 self.set_technique_texts(object_summary.technique_texts)
@@ -416,6 +437,14 @@ class ObjectSummary(object):
 
             self.set_model_metadata(model_metadata)
 
+        @relation_texts.setter
+        def relation_texts(self, relation_texts):
+            '''
+            :type relation_texts: tuple(str) or None
+            '''
+
+            self.set_relation_texts(relation_texts)
+
         @subject_term_texts.setter
         def subject_term_texts(self, subject_term_texts):
             '''
@@ -475,6 +504,7 @@ class ObjectSummary(object):
         date=None,
         description=None,
         gender=None,
+        relation_texts=None,
         material_texts=None,
         subject_term_texts=None,
         technique_texts=None,
@@ -492,6 +522,7 @@ class ObjectSummary(object):
         :type date: str or None
         :type description: str or None
         :type gender: costume.api.models.gender.gender.Gender or None
+        :type relation_texts: tuple(str) or None
         :type material_texts: tuple(str) or None
         :type subject_term_texts: tuple(str) or None
         :type technique_texts: tuple(str) or None
@@ -559,6 +590,13 @@ class ObjectSummary(object):
                 raise TypeError("expected gender to be a costume.api.models.gender.gender.Gender but it is a %s" % getattr(__builtin__, 'type')(gender))
         self.__gender = gender
 
+        if relation_texts is not None:
+            if not (isinstance(relation_texts, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), relation_texts))) == 0):
+                raise TypeError("expected relation_texts to be a tuple(str) but it is a %s" % getattr(__builtin__, 'type')(relation_texts))
+            if len(relation_texts) < 1:
+                raise ValueError("expected len(relation_texts) to be >= 1, was %d" % len(relation_texts))
+        self.__relation_texts = relation_texts
+
         if material_texts is not None:
             if not (isinstance(material_texts, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), material_texts))) == 0):
                 raise TypeError("expected material_texts to be a tuple(str) but it is a %s" % getattr(__builtin__, 'type')(material_texts))
@@ -616,6 +654,8 @@ class ObjectSummary(object):
             return False
         if self.gender != other.gender:
             return False
+        if self.relation_texts != other.relation_texts:
+            return False
         if self.material_texts != other.material_texts:
             return False
         if self.subject_term_texts != other.subject_term_texts:
@@ -631,7 +671,7 @@ class ObjectSummary(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.agent_name_texts,self.categories,self.date,self.description,self.gender,self.material_texts,self.subject_term_texts,self.technique_texts,self.thumbnail,self.url,self.work_type_texts,))
+        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.agent_name_texts,self.categories,self.date,self.description,self.gender,self.relation_texts,self.material_texts,self.subject_term_texts,self.technique_texts,self.thumbnail,self.url,self.work_type_texts,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -655,6 +695,8 @@ class ObjectSummary(object):
             field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
         if self.gender is not None:
             field_reprs.append('gender=' + repr(self.gender))
+        if self.relation_texts is not None:
+            field_reprs.append('relation_texts=' + repr(self.relation_texts))
         if self.material_texts is not None:
             field_reprs.append('material_texts=' + repr(self.material_texts))
         if self.subject_term_texts is not None:
@@ -685,6 +727,8 @@ class ObjectSummary(object):
             field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
         if self.gender is not None:
             field_reprs.append('gender=' + repr(self.gender))
+        if self.relation_texts is not None:
+            field_reprs.append('relation_texts=' + repr(self.relation_texts))
         if self.material_texts is not None:
             field_reprs.append('material_texts=' + repr(self.material_texts))
         if self.subject_term_texts is not None:
@@ -714,7 +758,7 @@ class ObjectSummary(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'date': self.date, 'description': self.description, 'gender': self.gender, 'material_texts': self.material_texts, 'subject_term_texts': self.subject_term_texts, 'technique_texts': self.technique_texts, 'thumbnail': self.thumbnail, 'url': self.url, 'work_type_texts': self.work_type_texts}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'date': self.date, 'description': self.description, 'gender': self.gender, 'relation_texts': self.relation_texts, 'material_texts': self.material_texts, 'subject_term_texts': self.subject_term_texts, 'technique_texts': self.technique_texts, 'thumbnail': self.thumbnail, 'url': self.url, 'work_type_texts': self.work_type_texts}
 
     def as_tuple(self):
         '''
@@ -723,7 +767,7 @@ class ObjectSummary(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.agent_name_texts, self.categories, self.date, self.description, self.gender, self.material_texts, self.subject_term_texts, self.technique_texts, self.thumbnail, self.url, self.work_type_texts,)
+        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.agent_name_texts, self.categories, self.date, self.description, self.gender, self.relation_texts, self.material_texts, self.subject_term_texts, self.technique_texts, self.thumbnail, self.url, self.work_type_texts,)
 
     @property
     def categories(self):
@@ -832,6 +876,8 @@ class ObjectSummary(object):
                     init_kwds['gender'] = costume.api.models.gender.gender.Gender.value_of(iprot.read_string().strip().upper())
                 except (TypeError,):
                     pass
+            elif ifield_name == 'relation_texts' and ifield_id == 16:
+                init_kwds['relation_texts'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'material_texts' and ifield_id == 14:
                 init_kwds['material_texts'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'subject_term_texts' and ifield_id == 9:
@@ -852,6 +898,14 @@ class ObjectSummary(object):
 
         return cls(**init_kwds)
 
+    @property
+    def relation_texts(self):
+        '''
+        :rtype: tuple(str)
+        '''
+
+        return self.__relation_texts
+
     def replace(
         self,
         collection_id=None,
@@ -863,6 +917,7 @@ class ObjectSummary(object):
         date=None,
         description=None,
         gender=None,
+        relation_texts=None,
         material_texts=None,
         subject_term_texts=None,
         technique_texts=None,
@@ -882,6 +937,7 @@ class ObjectSummary(object):
         :type date: str or None
         :type description: str or None
         :type gender: costume.api.models.gender.gender.Gender or None
+        :type relation_texts: tuple(str) or None
         :type material_texts: tuple(str) or None
         :type subject_term_texts: tuple(str) or None
         :type technique_texts: tuple(str) or None
@@ -909,6 +965,8 @@ class ObjectSummary(object):
             description = self.description
         if gender is None:
             gender = self.gender
+        if relation_texts is None:
+            relation_texts = self.relation_texts
         if material_texts is None:
             material_texts = self.material_texts
         if subject_term_texts is None:
@@ -921,7 +979,7 @@ class ObjectSummary(object):
             url = self.url
         if work_type_texts is None:
             work_type_texts = self.work_type_texts
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, agent_name_texts=agent_name_texts, categories=categories, date=date, description=description, gender=gender, material_texts=material_texts, subject_term_texts=subject_term_texts, technique_texts=technique_texts, thumbnail=thumbnail, url=url, work_type_texts=work_type_texts)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, agent_name_texts=agent_name_texts, categories=categories, date=date, description=description, gender=gender, relation_texts=relation_texts, material_texts=material_texts, subject_term_texts=subject_term_texts, technique_texts=technique_texts, thumbnail=thumbnail, url=url, work_type_texts=work_type_texts)
 
     @property
     def subject_term_texts(self):
@@ -1026,6 +1084,14 @@ class ObjectSummary(object):
         if self.gender is not None:
             oprot.write_field_begin(name='gender', type=11, id=8)
             oprot.write_string(str(self.gender))
+            oprot.write_field_end()
+
+        if self.relation_texts is not None:
+            oprot.write_field_begin(name='relation_texts', type=15, id=16)
+            oprot.write_list_begin(11, len(self.relation_texts))
+            for _0 in self.relation_texts:
+                oprot.write_string(_0)
+            oprot.write_list_end()
             oprot.write_field_end()
 
         if self.material_texts is not None:

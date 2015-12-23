@@ -16,5 +16,8 @@ struct ObjectQuery {
 	optional object_id.ObjectId more_like_object_id;
 
 	// @validation {"minLength": 1}
+	optional string relation_text;
+
+	// @validation {"minLength": 1}
 	optional string query_string;
 }

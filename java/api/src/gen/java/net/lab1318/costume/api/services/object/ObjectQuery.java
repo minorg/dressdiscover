@@ -7,6 +7,7 @@ public class ObjectQuery implements org.thryft.Struct {
             facetFilters = com.google.common.base.Optional.absent();
             institutionId = com.google.common.base.Optional.absent();
             moreLikeObjectId = com.google.common.base.Optional.absent();
+            relationText = com.google.common.base.Optional.absent();
             queryString = com.google.common.base.Optional.absent();
         }
 
@@ -15,15 +16,16 @@ public class ObjectQuery implements org.thryft.Struct {
             this.facetFilters = other.getFacetFilters();
             this.institutionId = other.getInstitutionId();
             this.moreLikeObjectId = other.getMoreLikeObjectId();
+            this.relationText = other.getRelationText();
             this.queryString = other.getQueryString();
         }
 
-        protected ObjectQuery _build(final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> collectionId, final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectFacetFilters> facetFilters, final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> institutionId, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<String> queryString) {
-            return new ObjectQuery(collectionId, facetFilters, institutionId, moreLikeObjectId, queryString);
+        protected ObjectQuery _build(final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> collectionId, final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectFacetFilters> facetFilters, final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> institutionId, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<String> relationText, final com.google.common.base.Optional<String> queryString) {
+            return new ObjectQuery(collectionId, facetFilters, institutionId, moreLikeObjectId, relationText, queryString);
         }
 
         public ObjectQuery build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(collectionId, "net.lab1318.costume.api.services.object.ObjectQuery: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(facetFilters, "net.lab1318.costume.api.services.object.ObjectQuery: missing facetFilters"), com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.services.object.ObjectQuery: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(moreLikeObjectId, "net.lab1318.costume.api.services.object.ObjectQuery: missing moreLikeObjectId"), com.google.common.base.Preconditions.checkNotNull(queryString, "net.lab1318.costume.api.services.object.ObjectQuery: missing queryString"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(collectionId, "net.lab1318.costume.api.services.object.ObjectQuery: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(facetFilters, "net.lab1318.costume.api.services.object.ObjectQuery: missing facetFilters"), com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.services.object.ObjectQuery: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(moreLikeObjectId, "net.lab1318.costume.api.services.object.ObjectQuery: missing moreLikeObjectId"), com.google.common.base.Preconditions.checkNotNull(relationText, "net.lab1318.costume.api.services.object.ObjectQuery: missing relationText"), com.google.common.base.Preconditions.checkNotNull(queryString, "net.lab1318.costume.api.services.object.ObjectQuery: missing queryString"));
         }
 
         public final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> getCollectionId() {
@@ -44,6 +46,10 @@ public class ObjectQuery implements org.thryft.Struct {
 
         public final com.google.common.base.Optional<String> getQueryString() {
             return queryString;
+        }
+
+        public final com.google.common.base.Optional<String> getRelationText() {
+            return relationText;
         }
 
         public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -81,6 +87,9 @@ public class ObjectQuery implements org.thryft.Struct {
                 }
             }
             if (__list.getSize() > 4) {
+                relationText = com.google.common.base.Optional.of(iprot.readString());
+            }
+            if (__list.getSize() > 5) {
                 queryString = com.google.common.base.Optional.of(iprot.readString());
             }
             iprot.readListEnd();
@@ -118,6 +127,10 @@ public class ObjectQuery implements org.thryft.Struct {
                         moreLikeObjectId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString()));
                     } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
                     }
+                    break;
+                }
+                case "relation_text": {
+                    relationText = com.google.common.base.Optional.of(iprot.readString());
                     break;
                 }
                 case "query_string": {
@@ -166,6 +179,9 @@ public class ObjectQuery implements org.thryft.Struct {
             if (other.getMoreLikeObjectId().isPresent()) {
                 setMoreLikeObjectId(other.getMoreLikeObjectId());
             }
+            if (other.getRelationText().isPresent()) {
+                setRelationText(other.getRelationText());
+            }
             if (other.getQueryString().isPresent()) {
                 setQueryString(other.getQueryString());
             }
@@ -203,6 +219,16 @@ public class ObjectQuery implements org.thryft.Struct {
             return this;
         }
 
+        public Builder setRelationText(final com.google.common.base.Optional<String> relationText) {
+            this.relationText = com.google.common.base.Preconditions.checkNotNull(relationText);
+            return this;
+        }
+
+        public Builder setRelationText(@javax.annotation.Nullable final String relationText) {
+            this.relationText = com.google.common.base.Optional.fromNullable(relationText);
+            return this;
+        }
+
         public Builder set(final String name, @javax.annotation.Nullable final java.lang.Object value) {
             com.google.common.base.Preconditions.checkNotNull(name);
 
@@ -211,6 +237,7 @@ public class ObjectQuery implements org.thryft.Struct {
             case "facet_filters": setFacetFilters((net.lab1318.costume.api.services.object.ObjectFacetFilters)value); return this;
             case "institution_id": setInstitutionId((net.lab1318.costume.api.models.institution.InstitutionId)value); return this;
             case "more_like_object_id": setMoreLikeObjectId((net.lab1318.costume.api.models.object.ObjectId)value); return this;
+            case "relation_text": setRelationText((String)value); return this;
             case "query_string": setQueryString((String)value); return this;
             default:
                 throw new IllegalArgumentException(name);
@@ -242,10 +269,16 @@ public class ObjectQuery implements org.thryft.Struct {
             return this;
         }
 
+        public Builder unsetRelationText() {
+            this.relationText = com.google.common.base.Optional.absent();
+            return this;
+        }
+
         private com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> collectionId;
         private com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectFacetFilters> facetFilters;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> institutionId;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId;
+        private com.google.common.base.Optional<String> relationText;
         private com.google.common.base.Optional<String> queryString;
     }
 
@@ -255,6 +288,7 @@ public class ObjectQuery implements org.thryft.Struct {
         FACET_FILTERS("facetFilters", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.services.object.ObjectFacetFilters>() {}, false, 0, "facet_filters", org.thryft.protocol.Type.STRUCT),
         INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, false, 0, "institution_id", org.thryft.protocol.Type.STRING),
         MORE_LIKE_OBJECT_ID("moreLikeObjectId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.object.ObjectId>() {}, false, 0, "more_like_object_id", org.thryft.protocol.Type.STRING),
+        RELATION_TEXT("relationText", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "relation_text", org.thryft.protocol.Type.STRING),
         QUERY_STRING("queryString", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "query_string", org.thryft.protocol.Type.STRING);
 
         @Override
@@ -303,6 +337,7 @@ public class ObjectQuery implements org.thryft.Struct {
             case "facetFilters": return FACET_FILTERS;
             case "institutionId": return INSTITUTION_ID;
             case "moreLikeObjectId": return MORE_LIKE_OBJECT_ID;
+            case "relationText": return RELATION_TEXT;
             case "queryString": return QUERY_STRING;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -315,6 +350,7 @@ public class ObjectQuery implements org.thryft.Struct {
             case "facet_filters": return FACET_FILTERS;
             case "institution_id": return INSTITUTION_ID;
             case "more_like_object_id": return MORE_LIKE_OBJECT_ID;
+            case "relation_text": return RELATION_TEXT;
             case "query_string": return QUERY_STRING;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -352,6 +388,7 @@ public class ObjectQuery implements org.thryft.Struct {
         facetFilters = com.google.common.base.Optional.absent();
         institutionId = com.google.common.base.Optional.absent();
         moreLikeObjectId = com.google.common.base.Optional.absent();
+        relationText = com.google.common.base.Optional.absent();
         queryString = com.google.common.base.Optional.absent();
     }
 
@@ -359,28 +396,30 @@ public class ObjectQuery implements org.thryft.Struct {
      * Copy constructor
      */
     public ObjectQuery(final ObjectQuery other) {
-        this(other.getCollectionId(), other.getFacetFilters(), other.getInstitutionId(), other.getMoreLikeObjectId(), other.getQueryString());
+        this(other.getCollectionId(), other.getFacetFilters(), other.getInstitutionId(), other.getMoreLikeObjectId(), other.getRelationText(), other.getQueryString());
     }
 
     /**
      * Total Nullable constructor
      */
-    public ObjectQuery(final @javax.annotation.Nullable net.lab1318.costume.api.models.collection.CollectionId collectionId, final @javax.annotation.Nullable net.lab1318.costume.api.services.object.ObjectFacetFilters facetFilters, final @javax.annotation.Nullable net.lab1318.costume.api.models.institution.InstitutionId institutionId, final @javax.annotation.Nullable net.lab1318.costume.api.models.object.ObjectId moreLikeObjectId, final @javax.annotation.Nullable String queryString) {
+    public ObjectQuery(final @javax.annotation.Nullable net.lab1318.costume.api.models.collection.CollectionId collectionId, final @javax.annotation.Nullable net.lab1318.costume.api.services.object.ObjectFacetFilters facetFilters, final @javax.annotation.Nullable net.lab1318.costume.api.models.institution.InstitutionId institutionId, final @javax.annotation.Nullable net.lab1318.costume.api.models.object.ObjectId moreLikeObjectId, final @javax.annotation.Nullable String relationText, final @javax.annotation.Nullable String queryString) {
         this.collectionId = com.google.common.base.Optional.fromNullable(collectionId);
         this.facetFilters = com.google.common.base.Optional.fromNullable(facetFilters);
         this.institutionId = com.google.common.base.Optional.fromNullable(institutionId);
         this.moreLikeObjectId = com.google.common.base.Optional.fromNullable(moreLikeObjectId);
+        this.relationText = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(relationText), "net.lab1318.costume.api.services.object.ObjectQuery: relationText is empty");
         this.queryString = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(queryString), "net.lab1318.costume.api.services.object.ObjectQuery: queryString is empty");
     }
 
     /**
      * Optional constructor
      */
-    public ObjectQuery(final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> collectionId, final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectFacetFilters> facetFilters, final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> institutionId, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<String> queryString) {
+    public ObjectQuery(final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> collectionId, final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectFacetFilters> facetFilters, final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> institutionId, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<String> relationText, final com.google.common.base.Optional<String> queryString) {
         this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId, "net.lab1318.costume.api.services.object.ObjectQuery: missing collectionId");
         this.facetFilters = com.google.common.base.Preconditions.checkNotNull(facetFilters, "net.lab1318.costume.api.services.object.ObjectQuery: missing facetFilters");
         this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.services.object.ObjectQuery: missing institutionId");
         this.moreLikeObjectId = com.google.common.base.Preconditions.checkNotNull(moreLikeObjectId, "net.lab1318.costume.api.services.object.ObjectQuery: missing moreLikeObjectId");
+        this.relationText = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(relationText, "net.lab1318.costume.api.services.object.ObjectQuery: missing relationText"), "net.lab1318.costume.api.services.object.ObjectQuery: relationText is empty");
         this.queryString = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(queryString, "net.lab1318.costume.api.services.object.ObjectQuery: missing queryString"), "net.lab1318.costume.api.services.object.ObjectQuery: queryString is empty");
     }
 
@@ -410,6 +449,7 @@ public class ObjectQuery implements org.thryft.Struct {
             getFacetFilters().equals(other.getFacetFilters()) &&
             getInstitutionId().equals(other.getInstitutionId()) &&
             getMoreLikeObjectId().equals(other.getMoreLikeObjectId()) &&
+            getRelationText().equals(other.getRelationText()) &&
             getQueryString().equals(other.getQueryString());
     }
 
@@ -420,6 +460,7 @@ public class ObjectQuery implements org.thryft.Struct {
         case "facet_filters": return getFacetFilters();
         case "institution_id": return getInstitutionId();
         case "more_like_object_id": return getMoreLikeObjectId();
+        case "relation_text": return getRelationText();
         case "query_string": return getQueryString();
         default:
             throw new IllegalArgumentException(fieldName);
@@ -446,6 +487,10 @@ public class ObjectQuery implements org.thryft.Struct {
         return queryString;
     }
 
+    public final com.google.common.base.Optional<String> getRelationText() {
+        return relationText;
+    }
+
     @Override
     public int hashCode() {
         int hashCode = 17;
@@ -460,6 +505,9 @@ public class ObjectQuery implements org.thryft.Struct {
         }
         if (getMoreLikeObjectId().isPresent()) {
             hashCode = 31 * hashCode + getMoreLikeObjectId().get().hashCode();
+        }
+        if (getRelationText().isPresent()) {
+            hashCode = 31 * hashCode + getRelationText().get().hashCode();
         }
         if (getQueryString().isPresent()) {
             hashCode = 31 * hashCode + getQueryString().get().hashCode();
@@ -483,6 +531,7 @@ public class ObjectQuery implements org.thryft.Struct {
         com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectFacetFilters> facetFilters = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> institutionId = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> relationText = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> queryString = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
@@ -508,11 +557,14 @@ public class ObjectQuery implements org.thryft.Struct {
             }
         }
         if (__list.getSize() > 4) {
+            relationText = com.google.common.base.Optional.of(iprot.readString());
+        }
+        if (__list.getSize() > 5) {
             queryString = com.google.common.base.Optional.of(iprot.readString());
         }
         iprot.readListEnd();
         try {
-            return new ObjectQuery(collectionId, facetFilters, institutionId, moreLikeObjectId, queryString);
+            return new ObjectQuery(collectionId, facetFilters, institutionId, moreLikeObjectId, relationText, queryString);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -523,6 +575,7 @@ public class ObjectQuery implements org.thryft.Struct {
         com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectFacetFilters> facetFilters = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> institutionId = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> relationText = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> queryString = com.google.common.base.Optional.absent();
 
         iprot.readStructBegin();
@@ -557,6 +610,10 @@ public class ObjectQuery implements org.thryft.Struct {
                 }
                 break;
             }
+            case "relation_text": {
+                relationText = com.google.common.base.Optional.of(iprot.readString());
+                break;
+            }
             case "query_string": {
                 queryString = com.google.common.base.Optional.of(iprot.readString());
                 break;
@@ -566,14 +623,14 @@ public class ObjectQuery implements org.thryft.Struct {
         }
         iprot.readStructEnd();
         try {
-            return new ObjectQuery(collectionId, facetFilters, institutionId, moreLikeObjectId, queryString);
+            return new ObjectQuery(collectionId, facetFilters, institutionId, moreLikeObjectId, relationText, queryString);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public ObjectQuery replaceCollectionId(final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> collectionId) {
-        return new ObjectQuery(collectionId, this.facetFilters, this.institutionId, this.moreLikeObjectId, this.queryString);
+        return new ObjectQuery(collectionId, this.facetFilters, this.institutionId, this.moreLikeObjectId, this.relationText, this.queryString);
     }
 
     public ObjectQuery replaceCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) {
@@ -581,7 +638,7 @@ public class ObjectQuery implements org.thryft.Struct {
     }
 
     public ObjectQuery replaceFacetFilters(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectFacetFilters> facetFilters) {
-        return new ObjectQuery(this.collectionId, facetFilters, this.institutionId, this.moreLikeObjectId, this.queryString);
+        return new ObjectQuery(this.collectionId, facetFilters, this.institutionId, this.moreLikeObjectId, this.relationText, this.queryString);
     }
 
     public ObjectQuery replaceFacetFilters(final net.lab1318.costume.api.services.object.ObjectFacetFilters facetFilters) {
@@ -589,7 +646,7 @@ public class ObjectQuery implements org.thryft.Struct {
     }
 
     public ObjectQuery replaceInstitutionId(final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> institutionId) {
-        return new ObjectQuery(this.collectionId, this.facetFilters, institutionId, this.moreLikeObjectId, this.queryString);
+        return new ObjectQuery(this.collectionId, this.facetFilters, institutionId, this.moreLikeObjectId, this.relationText, this.queryString);
     }
 
     public ObjectQuery replaceInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
@@ -597,7 +654,7 @@ public class ObjectQuery implements org.thryft.Struct {
     }
 
     public ObjectQuery replaceMoreLikeObjectId(final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId) {
-        return new ObjectQuery(this.collectionId, this.facetFilters, this.institutionId, moreLikeObjectId, this.queryString);
+        return new ObjectQuery(this.collectionId, this.facetFilters, this.institutionId, moreLikeObjectId, this.relationText, this.queryString);
     }
 
     public ObjectQuery replaceMoreLikeObjectId(final net.lab1318.costume.api.models.object.ObjectId moreLikeObjectId) {
@@ -605,21 +662,29 @@ public class ObjectQuery implements org.thryft.Struct {
     }
 
     public ObjectQuery replaceQueryString(final com.google.common.base.Optional<String> queryString) {
-        return new ObjectQuery(this.collectionId, this.facetFilters, this.institutionId, this.moreLikeObjectId, queryString);
+        return new ObjectQuery(this.collectionId, this.facetFilters, this.institutionId, this.moreLikeObjectId, this.relationText, queryString);
     }
 
     public ObjectQuery replaceQueryString(final String queryString) {
         return replaceQueryString(com.google.common.base.Optional.fromNullable(queryString));
     }
 
+    public ObjectQuery replaceRelationText(final com.google.common.base.Optional<String> relationText) {
+        return new ObjectQuery(this.collectionId, this.facetFilters, this.institutionId, this.moreLikeObjectId, relationText, this.queryString);
+    }
+
+    public ObjectQuery replaceRelationText(final String relationText) {
+        return replaceRelationText(com.google.common.base.Optional.fromNullable(relationText));
+    }
+
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId().orNull()).add("facet_filters", getFacetFilters().orNull()).add("institution_id", getInstitutionId().orNull()).add("more_like_object_id", getMoreLikeObjectId().orNull()).add("query_string", getQueryString().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId().orNull()).add("facet_filters", getFacetFilters().orNull()).add("institution_id", getInstitutionId().orNull()).add("more_like_object_id", getMoreLikeObjectId().orNull()).add("relation_text", getRelationText().orNull()).add("query_string", getQueryString().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 5);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 6);
 
         if (getCollectionId().isPresent()) {
             oprot.writeString(getCollectionId().get().toString());
@@ -641,6 +706,12 @@ public class ObjectQuery implements org.thryft.Struct {
 
         if (getMoreLikeObjectId().isPresent()) {
             oprot.writeString(getMoreLikeObjectId().get().toString());
+        } else {
+            oprot.writeNull();
+        }
+
+        if (getRelationText().isPresent()) {
+            oprot.writeString(getRelationText().get());
         } else {
             oprot.writeNull();
         }
@@ -687,6 +758,12 @@ public class ObjectQuery implements org.thryft.Struct {
             oprot.writeFieldEnd();
         }
 
+        if (getRelationText().isPresent()) {
+            oprot.writeFieldBegin("relation_text", org.thryft.protocol.Type.STRING, (short)0);
+            oprot.writeString(getRelationText().get());
+            oprot.writeFieldEnd();
+        }
+
         if (getQueryString().isPresent()) {
             oprot.writeFieldBegin("query_string", org.thryft.protocol.Type.STRING, (short)0);
             oprot.writeString(getQueryString().get());
@@ -703,6 +780,8 @@ public class ObjectQuery implements org.thryft.Struct {
     private final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> institutionId;
 
     private final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId;
+
+    private final com.google.common.base.Optional<String> relationText;
 
     private final com.google.common.base.Optional<String> queryString;
 }
