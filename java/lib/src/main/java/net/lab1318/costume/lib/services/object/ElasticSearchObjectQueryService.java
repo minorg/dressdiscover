@@ -428,6 +428,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                     .field(ObjectSummary.FieldMetadata.DATE.getThriftProtocolKey())
                     .field(ObjectSummary.FieldMetadata.DESCRIPTION.getThriftProtocolKey())
                     .field(ObjectSummary.FieldMetadata.MATERIAL_TEXTS.getThriftProtocolKey())
+                    .field(ObjectSummary.FieldMetadata.RELATION_TEXTS.getThriftProtocolKey())
                     .field(ObjectSummary.FieldMetadata.SUBJECT_TERM_TEXTS.getThriftProtocolKey())
                     .field(ObjectSummary.FieldMetadata.TECHNIQUE_TEXTS.getThriftProtocolKey())
                     .field(ObjectSummary.FieldMetadata.TITLE.getThriftProtocolKey(), (float) 2.0);
@@ -439,6 +440,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                             ObjectSummary.FieldMetadata.DATE.getThriftProtocolKey(),
                             ObjectSummary.FieldMetadata.DESCRIPTION.getThriftProtocolKey(),
                             ObjectSummary.FieldMetadata.MATERIAL_TEXTS.getThriftProtocolKey(),
+                            ObjectSummary.FieldMetadata.RELATION_TEXTS.getThriftProtocolKey(),
                             ObjectSummary.FieldMetadata.SUBJECT_TERM_TEXTS.getThriftProtocolKey(),
                             ObjectSummary.FieldMetadata.TECHNIQUE_TEXTS.getThriftProtocolKey(),
                             ObjectSummary.FieldMetadata.TITLE.getThriftProtocolKey())
@@ -499,6 +501,12 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             filtersTranslated
                     .add(FilterBuilders.termFilter(ObjectSummary.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
                             query.get().getInstitutionId().get().toString()));
+        }
+
+        if (query.get().getRelationText().isPresent()) {
+            filtersTranslated.add(FilterBuilders.termFilter(
+                    ObjectSummary.FieldMetadata.RELATION_TEXTS.getThriftProtocolKey() + ".not_analyzed",
+                    query.get().getRelationText().get()));
         }
 
         if (filtersTranslated.size() == 1) {

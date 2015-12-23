@@ -108,16 +108,6 @@ public final class ObjectSummarizer {
 
         builder.setModelMetadata(object.getModelMetadata());
 
-        if (object.getSubjects().isPresent()) {
-            final ImmutableList.Builder<String> subjectTermTextsBuilder = ImmutableList.builder();
-            for (final Subject subject : object.getSubjects().get().getElements()) {
-                for (final SubjectTerm subjectTerm : subject.getTerms()) {
-                    subjectTermTextsBuilder.add(subjectTerm.getText());
-                }
-            }
-            builder.setSubjectTermTexts(subjectTermTextsBuilder.build());
-        }
-
         if (object.getRelations().isPresent()) {
             final ImmutableList.Builder<String> relationTextsBuilder = ImmutableList.builder();
             for (final Relation relation : object.getRelations().get().getElements()) {
@@ -129,6 +119,16 @@ public final class ObjectSummarizer {
             if (!relationTexts.isEmpty()) {
                 builder.setRelationTexts(relationTexts);
             }
+        }
+
+        if (object.getSubjects().isPresent()) {
+            final ImmutableList.Builder<String> subjectTermTextsBuilder = ImmutableList.builder();
+            for (final Subject subject : object.getSubjects().get().getElements()) {
+                for (final SubjectTerm subjectTerm : subject.getTerms()) {
+                    subjectTermTextsBuilder.add(subjectTerm.getText());
+                }
+            }
+            builder.setSubjectTermTexts(subjectTermTextsBuilder.build());
         }
 
         if (object.getTechniques().isPresent()) {

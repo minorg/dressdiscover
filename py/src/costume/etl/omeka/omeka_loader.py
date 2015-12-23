@@ -301,6 +301,12 @@ class OmekaLoader(_Loader):
                         elif element_name == 'Identifier':
                             if not text in identifiers:
                                 identifiers.append(text)
+                            relations.append(
+                                Relation.Builder()
+                                    .set_text(text)
+                                    .set_type(RelationType.SOURCE_FOR)
+                                    .build()
+                            )
                         elif element_name == 'Medium':
                             text = text.strip("'")
                             for medium in text.split(';'):
@@ -588,6 +594,12 @@ class OmekaLoader(_Loader):
                         elif element_name == 'Source Identifier':
                             if not text in identifiers:
                                 identifiers.append(text)
+                            relations.append(
+                                Relation.Builder()
+                                    .set_text(text)
+                                    .set_type(RelationType.DERIVED_FROM)
+                                    .build()
+                            )
                         elif element_name == 'Technique':
                             for technique in text.split(';'):
                                 for technique in technique.split(','):
@@ -670,12 +682,6 @@ class OmekaLoader(_Loader):
                             description_i = description_i + 1
                     object_builder.set_descriptions(DescriptionSet.Builder().set_elements(tuple(descriptions)).build())
                 for identifier in identifiers:
-                    relations.append(
-                        Relation.Builder()
-                            .set_text(identifier)
-                            .set_type(RelationType.SOURCE_FOR)
-                            .build()
-                    )
                     textrefs.append(
                         Textref.Builder()
                             .set_name(
@@ -697,7 +703,15 @@ class OmekaLoader(_Loader):
                 if len(materials) > 0:
                     object_builder.set_materials(MaterialSet.Builder().set_elements(tuple(materials)).build())
                 if len(relations) > 0:
-                    object_builder.set_relations(RelationSet.Builder().set_elements(tuple(relations)).build())
+                    relation_texts = {}
+                    unique_relations = []
+                    for relation in relations:
+                        if relation.text is None:
+                            unique_relations.append(relation)
+                        elif relation.text not in relation_texts:
+                            unique_relations.append(relation)
+                            relation_texts[relation.text] = None
+                    object_builder.set_relations(RelationSet.Builder().set_elements(tuple(unique_relations)).build())
                 if len(subjects) > 0:
                     object_builder.set_subjects(SubjectSet.Builder().set_elements(tuple(subjects)).build())
                 if len(techniques) > 0:
