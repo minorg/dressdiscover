@@ -2,6 +2,7 @@ package net.lab1318.costume.lib.services;
 
 import java.io.IOException;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.elasticsearch.ElasticsearchException;
 import org.thryft.protocol.OutputProtocolException;
 import org.xml.sax.SAXException;
@@ -10,8 +11,9 @@ import net.lab1318.costume.api.services.IoException;
 
 public final class ServiceExceptionHelper {
     public static String combineMessages(final Exception cause, final String message) {
-        if (cause.getMessage() != null && !cause.getMessage().equals(message)) {
-            return cause.getMessage() + ": " + message;
+        final String causeMessage = ExceptionUtils.getRootCauseMessage(cause);
+        if (causeMessage != null && !causeMessage.equals(message)) {
+            return causeMessage + ": " + message;
         } else {
             return message;
         }
