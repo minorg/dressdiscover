@@ -113,6 +113,16 @@ public interface InstitutionCommandService {
                     return this;
                 }
 
+                public Builder unset(final String name) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    case "id": return unsetId();
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
+                }
+
                 private net.lab1318.costume.api.models.institution.InstitutionId id;
             }
 
@@ -416,6 +426,15 @@ public interface InstitutionCommandService {
                         throw new IllegalArgumentException(name);
                     }
                 }
+
+                public Builder unset(final String name) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
+                }
             }
 
             public DeleteInstitutionByIdResponse() {
@@ -592,6 +611,15 @@ public interface InstitutionCommandService {
                         throw new IllegalArgumentException(name);
                     }
                 }
+
+                public Builder unset(final String name) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
+                }
             }
 
             public DeleteInstitutionsRequest() {
@@ -761,6 +789,15 @@ public interface InstitutionCommandService {
                 }
 
                 public Builder set(final String name, @javax.annotation.Nullable final java.lang.Object value) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
+                }
+
+                public Builder unset(final String name) {
                     com.google.common.base.Preconditions.checkNotNull(name);
 
                     switch (name.toLowerCase()) {
@@ -996,6 +1033,17 @@ public interface InstitutionCommandService {
                 public Builder unsetInstitution() {
                     this.institution = null;
                     return this;
+                }
+
+                public Builder unset(final String name) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    case "id": return unsetId();
+                    case "institution": return unsetInstitution();
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
                 }
 
                 private net.lab1318.costume.api.models.institution.InstitutionId id;
@@ -1325,6 +1373,15 @@ public interface InstitutionCommandService {
                 }
 
                 public Builder set(final String name, @javax.annotation.Nullable final java.lang.Object value) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
+                }
+
+                public Builder unset(final String name) {
                     com.google.common.base.Preconditions.checkNotNull(name);
 
                     switch (name.toLowerCase()) {

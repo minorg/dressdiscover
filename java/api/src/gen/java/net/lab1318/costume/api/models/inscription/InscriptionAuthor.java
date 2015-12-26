@@ -123,6 +123,17 @@ public class InscriptionAuthor implements org.thryft.Struct {
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "text": return unsetText();
+            case "vocab_ref": return unsetVocabRef();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private String text;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> vocabRef;
     }

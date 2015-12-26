@@ -191,6 +191,18 @@ public class InscriptionSet implements org.thryft.Struct, net.lab1318.costume.ap
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "elements": return unsetElements();
+            case "display": return unsetDisplay();
+            case "notes": return unsetNotes();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.Inscription> elements;
         private com.google.common.base.Optional<String> display;
         private com.google.common.base.Optional<String> notes;

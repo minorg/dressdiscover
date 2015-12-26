@@ -209,6 +209,18 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "from_": return unsetFrom();
+            case "size": return unsetSize();
+            case "sorts": return unsetSorts();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from;
         private com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSummarySort>> sorts;

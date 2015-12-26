@@ -20,10 +20,12 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
 
     @Subscribe
     public void onGetCollectionByIdRequest(final GetCollectionByIdRequest request) {
-        GuiUI.navigateTo(ObjectQuery.builder().setCollectionId(request.getId())
-                .setInstitutionId(request.getId().getInstitutionId())
-                .setFacetFilters(ObjectFacetFilters.builder().setIncludeCollectionIds(ImmutableSet.of(request.getId()))
-                        .setIncludeInstitutionIds(ImmutableSet.of(request.getId().getInstitutionId())).build())
+        GuiUI.navigateTo(
+                ObjectQuery.builder().setCollectionId(request.getId())
+                        .setInstitutionId(request.getId().getInstitutionId())
+                        .setFacetFilters(ObjectFacetFilters.builder()
+                                .setIncludeCollections(ImmutableSet.of(request.getId()))
+                                .setIncludeInstitutions(ImmutableSet.of(request.getId().getInstitutionId())).build())
                 .build());
     }
 
@@ -31,7 +33,7 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
     public void onGetInstitutionByIdRequest(final GetInstitutionByIdRequest request) {
         GuiUI.navigateTo(ObjectQuery.builder().setInstitutionId(request.getId())
                 .setFacetFilters(
-                        ObjectFacetFilters.builder().setIncludeInstitutionIds(ImmutableSet.of(request.getId())).build())
+                        ObjectFacetFilters.builder().setIncludeInstitutions(ImmutableSet.of(request.getId())).build())
                 .build());
     }
 

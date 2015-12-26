@@ -2,6 +2,7 @@ package net.lab1318.costume.lib.services.object;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -155,7 +156,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
             resultBuilder.setCategories(__getTextsFacet(aggregations, ObjectSummary.FieldMetadata.CATEGORIES));
 
-            resultBuilder.setCollectionHits(__getIdFacet(aggregations, ObjectSummary.FieldMetadata.COLLECTION_ID,
+            resultBuilder.setCollections(__getIdFacet(aggregations, ObjectSummary.FieldMetadata.COLLECTION_ID,
                     new Function<String, CollectionId>() {
                         @Override
                         public CollectionId apply(final String input) {
@@ -175,7 +176,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                         }
                     }));
 
-            resultBuilder.setInstitutionHits(__getIdFacet(aggregations, ObjectSummary.FieldMetadata.INSTITUTION_ID,
+            resultBuilder.setInstitutions(__getIdFacet(aggregations, ObjectSummary.FieldMetadata.INSTITUTION_ID,
                     new Function<String, InstitutionId>() {
                         @Override
                         public InstitutionId apply(final String input) {
@@ -223,12 +224,13 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         }
 
         private TermsBuilder __newIdAggregation(final ObjectSummary.FieldMetadata field) {
-            return AggregationBuilders.terms(field.getThriftName()).field(field.getThriftProtocolKey());
+            return AggregationBuilders.terms(field.getThriftName()).field(field.getThriftProtocolKey())
+                    .size(Integer.MAX_VALUE);
         }
 
         private TermsBuilder __newTextsAggregation(final ObjectSummary.FieldMetadata field) {
             return AggregationBuilders.terms(field.getThriftName())
-                    .field(field.getThriftProtocolKey() + ".not_analyzed");
+                    .field(field.getThriftProtocolKey() + ".not_analyzed").size(Integer.MAX_VALUE);
         }
 
         private final ImmutableList<AbstractAggregationBuilder> aggregations;
@@ -259,16 +261,20 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         return FilterBuilders.orFilter(filtersArray);
     }
 
+    private static boolean __isExcludeAllQuery(final Optional<ObjectQuery> query) {
+        return query.isPresent() && query.get().getFacetFilters().isPresent()
+                && query.get().getFacetFilters().get().getExcludeAll().or(Boolean.FALSE);
+    }
+
     @Inject
     public ElasticSearchObjectQueryService(final ObjectElasticSearchIndex objectElasticSearchIndex,
             final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex) {
         this.objectElasticSearchIndex = checkNotNull(objectElasticSearchIndex);
         this.objectSummaryElasticSearchIndex = checkNotNull(objectSummaryElasticSearchIndex);
         emptyObjectFacets = ObjectFacets.builder().setAgentNameTexts(ImmutableMap.of()).setCategories(ImmutableMap.of())
-                .setCollectionHits(ImmutableMap.of()).setGenders(ImmutableMap.of())
-                .setInstitutionHits(ImmutableMap.of()).setMaterialTexts(ImmutableMap.of())
-                .setSubjectTermTexts(ImmutableMap.of()).setTechniqueTexts(ImmutableMap.of())
-                .setWorkTypeTexts(ImmutableMap.of()).build();
+                .setCollections(ImmutableMap.of()).setGenders(ImmutableMap.of()).setInstitutions(ImmutableMap.of())
+                .setMaterialTexts(ImmutableMap.of()).setSubjectTermTexts(ImmutableMap.of())
+                .setTechniqueTexts(ImmutableMap.of()).setWorkTypeTexts(ImmutableMap.of()).build();
     }
 
     @Override
@@ -290,6 +296,10 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     public UnsignedInteger getObjectCount(final Optional<ObjectQuery> query) throws IoException {
         __checkIndexConsistency(Markers.GET_OBJECT_COUNT);
 
+        if (__isExcludeAllQuery(query)) {
+            return UnsignedInteger.ZERO;
+        }
+
         try {
             return UnsignedInteger
                     .valueOf(
@@ -305,6 +315,10 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     @Override
     public ObjectFacets getObjectFacets(final Optional<ObjectQuery> query) throws IoException {
         __checkIndexConsistency(Markers.GET_OBJECT_FACETS);
+
+        if (__isExcludeAllQuery(query)) {
+            return emptyObjectFacets;
+        }
 
         final SearchRequestBuilder searchRequestBuilder = objectSummaryElasticSearchIndex.prepareSearchModels()
                 .setQuery(__translateObjectSummaryQuery(query)).setFrom(0).setSize(0);
@@ -330,6 +344,10 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     public ImmutableList<ObjectSummaryEntry> getObjectSummaries(final Optional<GetObjectSummariesOptions> options,
             final Optional<ObjectQuery> query) throws IoException {
         __checkIndexConsistency(Markers.GET_OBJECT_SUMMARIES);
+
+        if (__isExcludeAllQuery(query)) {
+            return ImmutableList.of();
+        }
 
         SearchRequestBuilder searchRequestBuilder = objectSummaryElasticSearchIndex.prepareSearchModels()
                 .setQuery(__translateObjectSummaryQuery(query));
@@ -462,6 +480,8 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         if (query.get().getFacetFilters().isPresent()) {
             final ObjectFacetFilters facetFilters = query.get().getFacetFilters().get();
 
+            checkState(!facetFilters.getExcludeAll().or(Boolean.FALSE));
+
             __translateObjectSummaryTextFilters(facetFilters.getExcludeAgentNameTexts(),
                     ObjectSummary.FieldMetadata.AGENT_NAME_TEXTS, facetFilters.getIncludeAgentNameTexts(),
                     filtersTranslated);
@@ -469,15 +489,14 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             __translateObjectSummaryTextFilters(facetFilters.getExcludeCategories(),
                     ObjectSummary.FieldMetadata.CATEGORIES, facetFilters.getIncludeCategories(), filtersTranslated);
 
-            __translateObjectSummaryIdFilters(facetFilters.getExcludeCollectionIds(),
-                    ObjectSummary.FieldMetadata.COLLECTION_ID, facetFilters.getIncludeCollectionIds(),
-                    filtersTranslated);
+            __translateObjectSummaryIdFilters(facetFilters.getExcludeCollections(),
+                    ObjectSummary.FieldMetadata.COLLECTION_ID, facetFilters.getIncludeCollections(), filtersTranslated);
 
             __translateObjectSummaryIdFilters(facetFilters.getExcludeGenders(), ObjectSummary.FieldMetadata.GENDER,
                     facetFilters.getIncludeGenders(), filtersTranslated);
 
-            __translateObjectSummaryIdFilters(facetFilters.getExcludeInstitutionIds(),
-                    ObjectSummary.FieldMetadata.INSTITUTION_ID, facetFilters.getIncludeInstitutionIds(),
+            __translateObjectSummaryIdFilters(facetFilters.getExcludeInstitutions(),
+                    ObjectSummary.FieldMetadata.INSTITUTION_ID, facetFilters.getIncludeInstitutions(),
                     filtersTranslated);
 
             __translateObjectSummaryTextFilters(facetFilters.getExcludeMaterialTexts(),

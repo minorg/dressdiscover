@@ -265,6 +265,20 @@ public class Agent implements org.thryft.Struct, net.lab1318.costume.api.models.
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "name": return unsetName();
+            case "attribution": return unsetAttribution();
+            case "culture": return unsetCulture();
+            case "dates": return unsetDates();
+            case "role": return unsetRole();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private net.lab1318.costume.api.models.agent.AgentName name;
         private com.google.common.base.Optional<String> attribution;
         private com.google.common.base.Optional<String> culture;

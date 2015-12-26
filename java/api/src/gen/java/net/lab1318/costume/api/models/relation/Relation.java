@@ -245,6 +245,19 @@ public class Relation implements org.thryft.Struct, net.lab1318.costume.api.mode
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "type": return unsetType();
+            case "href": return unsetHref();
+            case "relids": return unsetRelids();
+            case "text": return unsetText();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private net.lab1318.costume.api.models.relation.RelationType type;
         private com.google.common.base.Optional<org.thryft.native_.Url> href;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> relids;

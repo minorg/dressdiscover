@@ -91,6 +91,16 @@ public class IoException extends org.thryft.Exception {
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "cause_message": return unsetCauseMessage();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         /**
          * validation {"minLength": 1}
          */

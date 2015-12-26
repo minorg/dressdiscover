@@ -157,6 +157,18 @@ public class TextrefRefid implements org.thryft.Struct {
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "text": return unsetText();
+            case "type": return unsetType();
+            case "href": return unsetHref();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private String text;
         private net.lab1318.costume.api.models.textref.TextrefRefidType type;
         private com.google.common.base.Optional<org.thryft.native_.Url> href;

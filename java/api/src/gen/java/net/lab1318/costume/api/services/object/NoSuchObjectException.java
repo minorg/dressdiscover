@@ -65,6 +65,15 @@ public class NoSuchObjectException extends org.thryft.Exception {
                 throw new IllegalArgumentException(name);
             }
         }
+
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
     }
 
     public NoSuchObjectException() {

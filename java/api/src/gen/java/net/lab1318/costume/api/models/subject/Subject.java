@@ -123,6 +123,16 @@ public class Subject implements org.thryft.Struct, net.lab1318.costume.api.model
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "terms": return unsetTerms();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.subject.SubjectTerm> terms;
     }
 

@@ -172,6 +172,18 @@ public class AgentDates implements org.thryft.Struct {
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "type": return unsetType();
+            case "earliest_date": return unsetEarliestDate();
+            case "latest_date": return unsetLatestDate();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private net.lab1318.costume.api.models.agent.AgentDatesType type;
         private com.google.common.base.Optional<java.util.Date> earliestDate;
         private com.google.common.base.Optional<java.util.Date> latestDate;

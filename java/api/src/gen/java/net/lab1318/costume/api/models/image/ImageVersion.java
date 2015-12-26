@@ -169,6 +169,18 @@ public class ImageVersion implements org.thryft.Struct {
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "url": return unsetUrl();
+            case "height_px": return unsetHeightPx();
+            case "width_px": return unsetWidthPx();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private org.thryft.native_.Url url;
         private com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> heightPx;
         private com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> widthPx;

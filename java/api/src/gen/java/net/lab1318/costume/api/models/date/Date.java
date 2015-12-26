@@ -216,6 +216,20 @@ public class Date implements org.thryft.Struct, net.lab1318.costume.api.models.E
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "earliest_date": return unsetEarliestDate();
+            case "latest_date": return unsetLatestDate();
+            case "type": return unsetType();
+            case "href": return unsetHref();
+            case "source": return unsetSource();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private net.lab1318.costume.api.models.date.DateBound earliestDate;
         private net.lab1318.costume.api.models.date.DateBound latestDate;
         private net.lab1318.costume.api.models.date.DateType type;

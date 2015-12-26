@@ -164,6 +164,19 @@ public class Institution implements org.thryft.Struct, org.thryft.waf.api.models
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "data_rights": return unsetDataRights();
+            case "model_metadata": return unsetModelMetadata();
+            case "title": return unsetTitle();
+            case "url": return unsetUrl();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private net.lab1318.costume.api.models.rights.RightsSet dataRights;
         private net.lab1318.costume.api.models.ModelMetadata modelMetadata;
         private String title;
