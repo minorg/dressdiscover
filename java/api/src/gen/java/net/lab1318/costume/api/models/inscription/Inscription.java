@@ -191,6 +191,18 @@ public class Inscription implements org.thryft.Struct, net.lab1318.costume.api.m
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "texts": return unsetTexts();
+            case "author": return unsetAuthor();
+            case "position": return unsetPosition();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.InscriptionText> texts;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.inscription.InscriptionAuthor> author;
         private com.google.common.base.Optional<String> position;

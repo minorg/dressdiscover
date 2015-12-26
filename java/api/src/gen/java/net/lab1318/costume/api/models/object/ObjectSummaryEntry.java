@@ -118,6 +118,17 @@ public class ObjectSummaryEntry implements org.thryft.Struct, org.thryft.waf.api
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "id": return unsetId();
+            case "model": return unsetModel();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private net.lab1318.costume.api.models.object.ObjectId id;
         private net.lab1318.costume.api.models.object.ObjectSummary model;
     }

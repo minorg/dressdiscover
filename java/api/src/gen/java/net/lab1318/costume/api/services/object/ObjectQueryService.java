@@ -114,6 +114,16 @@ public interface ObjectQueryService {
                     return this;
                 }
 
+                public Builder unset(final String name) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    case "id": return unsetId();
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
+                }
+
                 private net.lab1318.costume.api.models.object.ObjectId id;
             }
 
@@ -438,6 +448,16 @@ public interface ObjectQueryService {
                 public Builder unsetReturnValue() {
                     this.returnValue = null;
                     return this;
+                }
+
+                public Builder unset(final String name) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    case "return_value": return unsetReturnValue();
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
                 }
 
                 private net.lab1318.costume.api.models.object.Object returnValue;
@@ -765,6 +785,16 @@ public interface ObjectQueryService {
                 public Builder unsetQuery() {
                     this.query = com.google.common.base.Optional.absent();
                     return this;
+                }
+
+                public Builder unset(final String name) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    case "query": return unsetQuery();
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
                 }
 
                 private com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query;
@@ -1113,6 +1143,16 @@ public interface ObjectQueryService {
                     return this;
                 }
 
+                public Builder unset(final String name) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    case "return_value": return unsetReturnValue();
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
+                }
+
                 private com.google.common.primitives.UnsignedInteger returnValue;
             }
 
@@ -1438,6 +1478,16 @@ public interface ObjectQueryService {
                 public Builder unsetQuery() {
                     this.query = com.google.common.base.Optional.absent();
                     return this;
+                }
+
+                public Builder unset(final String name) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    case "query": return unsetQuery();
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
                 }
 
                 private com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query;
@@ -1784,6 +1834,16 @@ public interface ObjectQueryService {
                 public Builder unsetReturnValue() {
                     this.returnValue = null;
                     return this;
+                }
+
+                public Builder unset(final String name) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    case "return_value": return unsetReturnValue();
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
                 }
 
                 private net.lab1318.costume.api.services.object.ObjectFacets returnValue;
@@ -2143,6 +2203,17 @@ public interface ObjectQueryService {
                 public Builder unsetQuery() {
                     this.query = com.google.common.base.Optional.absent();
                     return this;
+                }
+
+                public Builder unset(final String name) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    case "options": return unsetOptions();
+                    case "query": return unsetQuery();
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
                 }
 
                 private com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options;
@@ -2567,6 +2638,16 @@ public interface ObjectQueryService {
                 public Builder unsetReturnValue() {
                     this.returnValue = null;
                     return this;
+                }
+
+                public Builder unset(final String name) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    case "return_value": return unsetReturnValue();
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
                 }
 
                 private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectSummaryEntry> returnValue;

@@ -9,17 +9,20 @@ struct ObjectFacetFilters {
 	// @validation {"minLength": 1}
 	optional set<string> exclude_agent_name_texts;
 
+	// @validation {"acceptance": true}
+	optional bool exclude_all;
+
 	// @validation {"minLength": 1}
 	optional set<string> exclude_categories;
 
 	// @validation {"minLength": 1}
-	optional set<collection_id.CollectionId> exclude_collection_ids;
+	optional set<collection_id.CollectionId> exclude_collections;
 
 	// @validation {"minLength": 1}
 	optional set<gender.Gender> exclude_genders;
 
 	// @validation {"minLength": 1}
-	optional set<institution_id.InstitutionId> exclude_institution_ids;
+	optional set<institution_id.InstitutionId> exclude_institutions;
 
 	// @validation {"minLength": 1}
 	optional set<string> exclude_material_texts;
@@ -40,13 +43,13 @@ struct ObjectFacetFilters {
 	optional set<string> include_categories;
 
 	// @validation {"minLength": 1}
-	optional set<collection_id.CollectionId> include_collection_ids;
+	optional set<collection_id.CollectionId> include_collections;
 
 	// @validation {"minLength": 1}
 	optional set<gender.Gender> include_genders;
 
 	// @validation {"minLength": 1}
-	optional set<institution_id.InstitutionId> include_institution_ids;
+	optional set<institution_id.InstitutionId> include_institutions;
 
 	// @validation {"minLength": 1}
 	optional set<string> include_material_texts;

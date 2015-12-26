@@ -274,6 +274,21 @@ public class ObjectQuery implements org.thryft.Struct {
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "collection_id": return unsetCollectionId();
+            case "facet_filters": return unsetFacetFilters();
+            case "institution_id": return unsetInstitutionId();
+            case "more_like_object_id": return unsetMoreLikeObjectId();
+            case "relation_text": return unsetRelationText();
+            case "query_string": return unsetQueryString();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> collectionId;
         private com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectFacetFilters> facetFilters;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> institutionId;

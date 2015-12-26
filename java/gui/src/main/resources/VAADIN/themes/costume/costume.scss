@@ -36,11 +36,19 @@ $v-layout-spacing-vertical: 0.5em;
   	border: none;
   }
 
+  .disclosure-panel-content-wrapper-object-facet-picker {
+  	padding: 10px;
+  }
+
   .icon-button {
 	font-size: 1em;
 	padding-bottom: 4px;
 	padding-top: 4px;
 	vertical-align: middle;
+  }
+
+  .v-checkbox-all {
+  	font-style: italic;
   }
 
   .v-nativebutton {

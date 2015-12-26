@@ -200,6 +200,19 @@ public class Image implements org.thryft.Struct {
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "full_size": return unsetFullSize();
+            case "original": return unsetOriginal();
+            case "square_thumbnail": return unsetSquareThumbnail();
+            case "thumbnail": return unsetThumbnail();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> fullSize;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> original;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> squareThumbnail;

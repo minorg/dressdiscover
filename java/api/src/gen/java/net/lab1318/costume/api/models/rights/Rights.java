@@ -176,6 +176,19 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "rights_holder": return unsetRightsHolder();
+            case "text": return unsetText();
+            case "type": return unsetType();
+            case "notes": return unsetNotes();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private String rightsHolder;
         private String text;
         private net.lab1318.costume.api.models.rights.RightsType type;

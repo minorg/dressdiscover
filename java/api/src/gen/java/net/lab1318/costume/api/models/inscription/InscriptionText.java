@@ -148,6 +148,18 @@ public class InscriptionText implements org.thryft.Struct {
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "type": return unsetType();
+            case "text": return unsetText();
+            case "lang": return unsetLang();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private net.lab1318.costume.api.models.inscription.InscriptionTextType type;
         private String text;
         private com.google.common.base.Optional<String> lang;

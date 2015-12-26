@@ -892,6 +892,37 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "collection_id": return unsetCollectionId();
+            case "institution_id": return unsetInstitutionId();
+            case "model_metadata": return unsetModelMetadata();
+            case "titles": return unsetTitles();
+            case "agents": return unsetAgents();
+            case "categories": return unsetCategories();
+            case "condition": return unsetCondition();
+            case "dates": return unsetDates();
+            case "descriptions": return unsetDescriptions();
+            case "gender": return unsetGender();
+            case "images": return unsetImages();
+            case "inscriptions": return unsetInscriptions();
+            case "materials": return unsetMaterials();
+            case "provenance": return unsetProvenance();
+            case "quantity": return unsetQuantity();
+            case "relations": return unsetRelations();
+            case "rights": return unsetRights();
+            case "subjects": return unsetSubjects();
+            case "techniques": return unsetTechniques();
+            case "textrefs": return unsetTextrefs();
+            case "view_type": return unsetViewType();
+            case "work_types": return unsetWorkTypes();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private net.lab1318.costume.api.models.collection.CollectionId collectionId;
         private net.lab1318.costume.api.models.institution.InstitutionId institutionId;
         private net.lab1318.costume.api.models.ModelMetadata modelMetadata;

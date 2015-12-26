@@ -103,6 +103,16 @@ public class NoSuchCollectionException extends org.thryft.Exception {
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "id": return unsetId();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> id;
     }
 

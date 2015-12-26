@@ -110,6 +110,17 @@ public class ObjectSummarySort implements org.thryft.Struct {
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "field": return unsetField();
+            case "order": return unsetOrder();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private net.lab1318.costume.api.services.object.ObjectSummarySortField field;
         private net.lab1318.costume.api.models.SortOrder order;
     }

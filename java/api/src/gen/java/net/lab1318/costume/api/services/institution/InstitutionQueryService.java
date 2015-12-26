@@ -113,6 +113,16 @@ public interface InstitutionQueryService {
                     return this;
                 }
 
+                public Builder unset(final String name) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    case "id": return unsetId();
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
+                }
+
                 private net.lab1318.costume.api.models.institution.InstitutionId id;
             }
 
@@ -439,6 +449,16 @@ public interface InstitutionQueryService {
                     return this;
                 }
 
+                public Builder unset(final String name) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    case "return_value": return unsetReturnValue();
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
+                }
+
                 private net.lab1318.costume.api.models.institution.Institution returnValue;
             }
 
@@ -734,6 +754,15 @@ public interface InstitutionQueryService {
                         throw new IllegalArgumentException(name);
                     }
                 }
+
+                public Builder unset(final String name) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
+                }
             }
 
             public GetInstitutionsRequest() {
@@ -962,6 +991,16 @@ public interface InstitutionQueryService {
                 public Builder unsetReturnValue() {
                     this.returnValue = null;
                     return this;
+                }
+
+                public Builder unset(final String name) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    case "return_value": return unsetReturnValue();
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
                 }
 
                 private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionEntry> returnValue;
@@ -1359,6 +1398,16 @@ public interface InstitutionQueryService {
                     return this;
                 }
 
+                public Builder unset(final String name) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    case "ids": return unsetIds();
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
+                }
+
                 private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId> ids;
             }
 
@@ -1752,6 +1801,16 @@ public interface InstitutionQueryService {
                 public Builder unsetReturnValue() {
                     this.returnValue = null;
                     return this;
+                }
+
+                public Builder unset(final String name) {
+                    com.google.common.base.Preconditions.checkNotNull(name);
+
+                    switch (name.toLowerCase()) {
+                    case "return_value": return unsetReturnValue();
+                    default:
+                        throw new IllegalArgumentException(name);
+                    }
                 }
 
                 private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.Institution> returnValue;

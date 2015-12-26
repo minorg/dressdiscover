@@ -117,6 +117,17 @@ public class Textref implements org.thryft.Struct, net.lab1318.costume.api.model
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "name": return unsetName();
+            case "refid": return unsetRefid();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private net.lab1318.costume.api.models.textref.TextrefName name;
         private net.lab1318.costume.api.models.textref.TextrefRefid refid;
     }

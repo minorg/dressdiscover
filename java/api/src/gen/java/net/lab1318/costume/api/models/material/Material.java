@@ -151,6 +151,18 @@ public class Material implements org.thryft.Struct, net.lab1318.costume.api.mode
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "type": return unsetType();
+            case "text": return unsetText();
+            case "vocab_ref": return unsetVocabRef();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private net.lab1318.costume.api.models.material.MaterialType type;
         private String text;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> vocabRef;

@@ -206,6 +206,19 @@ public class DateBound implements org.thryft.Struct {
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "text": return unsetText();
+            case "circa": return unsetCirca();
+            case "parsed_date_time": return unsetParsedDateTime();
+            case "parsed_date_time_granularity": return unsetParsedDateTimeGranularity();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private String text;
         private com.google.common.base.Optional<Boolean> circa;
         private com.google.common.base.Optional<java.util.Date> parsedDateTime;

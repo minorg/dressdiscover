@@ -94,7 +94,7 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
         ImmutableMap<CollectionId, Collection> collectionMap;
         {
             final ImmutableList<CollectionId> collectionIds = ImmutableList
-                    .copyOf(availableObjectFacets.getCollectionHits().keySet());
+                    .copyOf(availableObjectFacets.getCollections().keySet());
             final ImmutableList<Collection> collections;
             try {
                 collections = collectionQueryService.getCollectionsByIds(collectionIds);
@@ -116,7 +116,7 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
         ImmutableMap<InstitutionId, Institution> institutionMap;
         {
             final ImmutableList<InstitutionId> institutionIds = ImmutableList
-                    .copyOf(availableObjectFacets.getInstitutionHits().keySet());
+                    .copyOf(availableObjectFacets.getInstitutions().keySet());
             final ImmutableList<Institution> institutions;
             try {
                 institutions = institutionQueryService.getInstitutionsByIds(institutionIds);

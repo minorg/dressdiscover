@@ -166,6 +166,18 @@ public class Description implements org.thryft.Struct, net.lab1318.costume.api.m
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "text": return unsetText();
+            case "source": return unsetSource();
+            case "type": return unsetType();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private String text;
         private com.google.common.base.Optional<String> source;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.description.DescriptionType> type;

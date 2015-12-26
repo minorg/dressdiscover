@@ -862,6 +862,31 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "collection_id": return unsetCollectionId();
+            case "institution_id": return unsetInstitutionId();
+            case "model_metadata": return unsetModelMetadata();
+            case "title": return unsetTitle();
+            case "agent_name_texts": return unsetAgentNameTexts();
+            case "categories": return unsetCategories();
+            case "date": return unsetDate();
+            case "description": return unsetDescription();
+            case "gender": return unsetGender();
+            case "relation_texts": return unsetRelationTexts();
+            case "material_texts": return unsetMaterialTexts();
+            case "subject_term_texts": return unsetSubjectTermTexts();
+            case "technique_texts": return unsetTechniqueTexts();
+            case "thumbnail": return unsetThumbnail();
+            case "url": return unsetUrl();
+            case "work_type_texts": return unsetWorkTypeTexts();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private net.lab1318.costume.api.models.collection.CollectionId collectionId;
         private net.lab1318.costume.api.models.institution.InstitutionId institutionId;
         private net.lab1318.costume.api.models.ModelMetadata modelMetadata;

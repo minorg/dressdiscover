@@ -151,6 +151,18 @@ public class Title implements org.thryft.Struct, net.lab1318.costume.api.models.
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "text": return unsetText();
+            case "type": return unsetType();
+            case "pref": return unsetPref();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private String text;
         private net.lab1318.costume.api.models.title.TitleType type;
         private com.google.common.base.Optional<Boolean> pref;

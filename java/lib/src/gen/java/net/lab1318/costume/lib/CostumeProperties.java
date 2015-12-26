@@ -214,6 +214,21 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "api_url": return unsetApiUrl();
+            case "environment": return unsetEnvironment();
+            case "elastic_search_host": return unsetElasticSearchHost();
+            case "elastic_search_port": return unsetElasticSearchPort();
+            case "home_directory_path": return unsetHomeDirectoryPath();
+            case "logback_xml_file_path": return unsetLogbackXmlFilePath();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private org.thryft.native_.Url apiUrl;
         /**
          * dev, staging, production, etc.

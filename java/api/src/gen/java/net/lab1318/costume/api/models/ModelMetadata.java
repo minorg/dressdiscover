@@ -114,6 +114,17 @@ public class ModelMetadata implements org.thryft.Struct {
             return this;
         }
 
+        public Builder unset(final String name) {
+            com.google.common.base.Preconditions.checkNotNull(name);
+
+            switch (name.toLowerCase()) {
+            case "ctime": return unsetCtime();
+            case "mtime": return unsetMtime();
+            default:
+                throw new IllegalArgumentException(name);
+            }
+        }
+
         private java.util.Date ctime;
         private java.util.Date mtime;
     }
