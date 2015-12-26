@@ -447,19 +447,21 @@ class OmekaLoader(_Loader):
         )
 
     def _load_item_element_dc_contributor(self, object_builder, text):
-        object_builder.agents.append(
-            Agent.Builder()
-                .set_name(AgentName.Builder().set_text(text).set_type(AgentNameType.OTHER).build())
-                .set_role(
-                    AgentRole.Builder()
-                        .set_text('contributor')
-                        .set_vocab_ref(
-                                VocabRef.Builder().set_vocab(Vocab.DC).build()
-                        )
-                        .build()
-                    )
-                .build()
-        )
+        # Ignore dc:contributor, which is a cataloguer name
+        pass
+#         object_builder.agents.append(
+#             Agent.Builder()
+#                 .set_name(AgentName.Builder().set_text(text).set_type(AgentNameType.OTHER).build())
+#                 .set_role(
+#                     AgentRole.Builder()
+#                         .set_text('contributor')
+#                         .set_vocab_ref(
+#                                 VocabRef.Builder().set_vocab(Vocab.DC).build()
+#                         )
+#                         .build()
+#                     )
+#                 .build()
+#         )
 
     def _load_item_element_dc_creator(self, object_builder, text):
         object_builder.agents.append(

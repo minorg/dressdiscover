@@ -41,6 +41,7 @@ class ObjectFacetPicker<KeyT> extends CustomComponent {
         final ImmutableSet<KeyT> availableFacetKeys = ((ImmutableMap<KeyT, UnsignedInteger>) availableFacets
                 .get(facetThriftName)).keySet();
         if (availableFacetKeys.size() <= 1) {
+            setCompositionRoot(null);
             return;
         }
         final ImmutableSet<KeyT> resultFacetKeys = ((ImmutableMap<KeyT, UnsignedInteger>) resultFacets
