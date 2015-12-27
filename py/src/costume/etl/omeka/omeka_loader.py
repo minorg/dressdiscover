@@ -642,6 +642,14 @@ class OmekaLoader(_Loader):
                 .build()
         )
 
+    def _load_item_element_itm_biographical_text(self, object_builder, text):
+        object_builder.descriptions.append(
+            Description.Builder()
+                .set_text(text)
+                .set_type(DescriptionType.BIOGRAPHY)
+                .build()
+        )
+
     def _load_item_element_itm_cataloguer_with_date(self, object_builder, text):
         pass
 
