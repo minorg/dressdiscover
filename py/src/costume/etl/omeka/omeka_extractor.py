@@ -17,6 +17,10 @@ class OmekaExtractor(_Extractor):
     def _add_arguments(cls, argument_parser):
         _Extractor._add_arguments(cls)
         argument_parser.add_argument('--api-key', required=True)
+        cls._add_institution_arguments(argument_parser)
+
+    @classmethod
+    def _add_institution_arguments(cls, argument_parser):
         argument_parser.add_argument('--endpoint-url', required=True)
         argument_parser.add_argument('--institution-id', required=True)
 

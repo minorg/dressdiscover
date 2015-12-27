@@ -254,12 +254,16 @@ class OmekaLoader(_Loader):
     @classmethod
     def _add_arguments(cls, argument_parser):
         _Loader._add_arguments(argument_parser)
+        cls._add_institution_arguments(argument_parser)
+        argument_parser.add_argument('--square-thumbnail-height-px', default=150)
+        argument_parser.add_argument('--square-thumbnail-width-px', default=150)
+
+    @classmethod
+    def _add_institution_arguments(cls, argument_parser):
         argument_parser.add_argument('--endpoint-url', required=True)
         argument_parser.add_argument('--institution-id', required=True)
         argument_parser.add_argument('--institution-title', required=True)
         argument_parser.add_argument('--institution-url', required=True)
-        argument_parser.add_argument('--square-thumbnail-height-px', default=150)
-        argument_parser.add_argument('--square-thumbnail-width-px', default=150)
 
     def _load(self):
         self._load_institution()
@@ -600,7 +604,6 @@ class OmekaLoader(_Loader):
         if work_type is not None:
             object_builder.work_types.append(work_type)
 
-
     def _load_item_element_itm_accession_number(self, object_builder, text):
         object_builder.textrefs.append(
             Textref.Builder()
@@ -639,6 +642,14 @@ class OmekaLoader(_Loader):
                 .build()
         )
 
+    def _load_item_element_itm_biographical_text(self, object_builder, text):
+        object_builder.descriptions.append(
+            Description.Builder()
+                .set_text(text)
+                .set_type(DescriptionType.BIOGRAPHY)
+                .build()
+        )
+
     def _load_item_element_itm_cataloguer_with_date(self, object_builder, text):
         pass
 
@@ -668,9 +679,6 @@ class OmekaLoader(_Loader):
                 .set_type(DescriptionType.CREDIT)
                 .build()
         )
-
-    def _load_item_element_itm_csv_file(self, object_builder, text):
-        pass
 
     def _load_item_element_itm_date_certainty(self, object_builder, text):
         if text == 'circa':
@@ -747,9 +755,6 @@ class OmekaLoader(_Loader):
                     )
                 .build()
         )
-
-    def _load_item_element_itm_donor_class_year(self, object_builder, text):
-        pass
 
     def _load_item_element_itm_exhibition_notes(self, object_builder, text):
         object_builder.descriptions.append(

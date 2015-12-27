@@ -1,14 +1,15 @@
 package net.lab1318.costume.api.models.description;
 
 public enum DescriptionType {
-    CONDITION(0),
-    CREDIT(1),
-    EXHIBITION(2),
-    HISTORY(3),
-    PHYSICAL(4),
-    PRIVATE(5),
-    PUBLIC(6),
-    SUMMARY(7);
+    BIOGRAPHY(0),
+    CONDITION(1),
+    CREDIT(2),
+    EXHIBITION(3),
+    HISTORY(4),
+    PHYSICAL(5),
+    PRIVATE(6),
+    PUBLIC(7),
+    SUMMARY(8);
 
     private DescriptionType(int value) {
         this.value = value;
@@ -16,14 +17,15 @@ public enum DescriptionType {
 
     public static DescriptionType valueOf(final int value) {
         switch (value) {
-        case 0: return CONDITION;
-        case 1: return CREDIT;
-        case 2: return EXHIBITION;
-        case 3: return HISTORY;
-        case 4: return PHYSICAL;
-        case 5: return PRIVATE;
-        case 6: return PUBLIC;
-        case 7: return SUMMARY;
+        case 0: return BIOGRAPHY;
+        case 1: return CONDITION;
+        case 2: return CREDIT;
+        case 3: return EXHIBITION;
+        case 4: return HISTORY;
+        case 5: return PHYSICAL;
+        case 6: return PRIVATE;
+        case 7: return PUBLIC;
+        case 8: return SUMMARY;
         default: throw new IllegalArgumentException();
         }
     }
