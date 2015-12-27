@@ -1,6 +1,7 @@
 from itertools import ifilterfalse
 import __builtin__
 import costume.api.models.agent.agent_set
+import costume.api.models.color.color_set
 import costume.api.models.condition.condition
 import costume.api.models.date.date_set
 import costume.api.models.description.description_set
@@ -29,6 +30,7 @@ class Object(object):
             titles=None,
             agents=None,
             categories=None,
+            colors=None,
             condition=None,
             dates=None,
             descriptions=None,
@@ -53,6 +55,7 @@ class Object(object):
             :type titles: costume.api.models.title.title_set.TitleSet
             :type agents: costume.api.models.agent.agent_set.AgentSet or None
             :type categories: tuple(str) or None
+            :type colors: costume.api.models.color.color_set.ColorSet or None
             :type condition: costume.api.models.condition.condition.Condition or None
             :type dates: costume.api.models.date.date_set.DateSet or None
             :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
@@ -77,6 +80,7 @@ class Object(object):
             self.__titles = titles
             self.__agents = agents
             self.__categories = categories
+            self.__colors = colors
             self.__condition = condition
             self.__dates = dates
             self.__descriptions = descriptions
@@ -95,7 +99,7 @@ class Object(object):
             self.__work_types = work_types
 
         def build(self):
-            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, titles=self.__titles, agents=self.__agents, categories=self.__categories, condition=self.__condition, dates=self.__dates, descriptions=self.__descriptions, gender=self.__gender, images=self.__images, inscriptions=self.__inscriptions, materials=self.__materials, provenance=self.__provenance, quantity=self.__quantity, relations=self.__relations, rights=self.__rights, subjects=self.__subjects, techniques=self.__techniques, textrefs=self.__textrefs, view_type=self.__view_type, work_types=self.__work_types)
+            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, titles=self.__titles, agents=self.__agents, categories=self.__categories, colors=self.__colors, condition=self.__condition, dates=self.__dates, descriptions=self.__descriptions, gender=self.__gender, images=self.__images, inscriptions=self.__inscriptions, materials=self.__materials, provenance=self.__provenance, quantity=self.__quantity, relations=self.__relations, rights=self.__rights, subjects=self.__subjects, techniques=self.__techniques, textrefs=self.__textrefs, view_type=self.__view_type, work_types=self.__work_types)
 
         @property
         def agents(self):
@@ -120,6 +124,14 @@ class Object(object):
             '''
 
             return self.__collection_id
+
+        @property
+        def colors(self):
+            '''
+            :rtype: costume.api.models.color.color_set.ColorSet
+            '''
+
+            return self.__colors
 
         @property
         def condition(self):
@@ -247,6 +259,14 @@ class Object(object):
             '''
 
             self.__collection_id = collection_id
+            return self
+
+        def set_colors(self, colors):
+            '''
+            :type colors: costume.api.models.color.color_set.ColorSet or None
+            '''
+
+            self.__colors = colors
             return self
 
         def set_condition(self, condition):
@@ -441,6 +461,7 @@ class Object(object):
             :type titles: costume.api.models.title.title_set.TitleSet
             :type agents: costume.api.models.agent.agent_set.AgentSet or None
             :type categories: tuple(str) or None
+            :type colors: costume.api.models.color.color_set.ColorSet or None
             :type condition: costume.api.models.condition.condition.Condition or None
             :type dates: costume.api.models.date.date_set.DateSet or None
             :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
@@ -466,6 +487,7 @@ class Object(object):
                 self.set_titles(object.titles)
                 self.set_agents(object.agents)
                 self.set_categories(object.categories)
+                self.set_colors(object.colors)
                 self.set_condition(object.condition)
                 self.set_dates(object.dates)
                 self.set_descriptions(object.descriptions)
@@ -528,6 +550,14 @@ class Object(object):
             '''
 
             self.set_collection_id(collection_id)
+
+        @colors.setter
+        def colors(self, colors):
+            '''
+            :type colors: costume.api.models.color.color_set.ColorSet or None
+            '''
+
+            self.set_colors(colors)
 
         @condition.setter
         def condition(self, condition):
@@ -689,6 +719,7 @@ class Object(object):
         titles,
         agents=None,
         categories=None,
+        colors=None,
         condition=None,
         dates=None,
         descriptions=None,
@@ -713,6 +744,7 @@ class Object(object):
         :type titles: costume.api.models.title.title_set.TitleSet
         :type agents: costume.api.models.agent.agent_set.AgentSet or None
         :type categories: tuple(str) or None
+        :type colors: costume.api.models.color.color_set.ColorSet or None
         :type condition: costume.api.models.condition.condition.Condition or None
         :type dates: costume.api.models.date.date_set.DateSet or None
         :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
@@ -766,6 +798,11 @@ class Object(object):
             if len(categories) < 1:
                 raise ValueError("expected len(categories) to be >= 1, was %d" % len(categories))
         self.__categories = categories
+
+        if colors is not None:
+            if not isinstance(colors, costume.api.models.color.color_set.ColorSet):
+                raise TypeError("expected colors to be a costume.api.models.color.color_set.ColorSet but it is a %s" % getattr(__builtin__, 'type')(colors))
+        self.__colors = colors
 
         if condition is not None:
             if not isinstance(condition, costume.api.models.condition.condition.Condition):
@@ -864,6 +901,8 @@ class Object(object):
             return False
         if self.categories != other.categories:
             return False
+        if self.colors != other.colors:
+            return False
         if self.condition != other.condition:
             return False
         if self.dates != other.dates:
@@ -899,7 +938,7 @@ class Object(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.model_metadata,self.titles,self.agents,self.categories,self.condition,self.dates,self.descriptions,self.gender,self.images,self.inscriptions,self.materials,self.provenance,self.quantity,self.relations,self.rights,self.subjects,self.techniques,self.textrefs,self.view_type,self.work_types,))
+        return hash((self.collection_id,self.institution_id,self.model_metadata,self.titles,self.agents,self.categories,self.colors,self.condition,self.dates,self.descriptions,self.gender,self.images,self.inscriptions,self.materials,self.provenance,self.quantity,self.relations,self.rights,self.subjects,self.techniques,self.textrefs,self.view_type,self.work_types,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -917,6 +956,8 @@ class Object(object):
             field_reprs.append('agents=' + repr(self.agents))
         if self.categories is not None:
             field_reprs.append('categories=' + repr(self.categories))
+        if self.colors is not None:
+            field_reprs.append('colors=' + repr(self.colors))
         if self.condition is not None:
             field_reprs.append('condition=' + repr(self.condition))
         if self.dates is not None:
@@ -961,6 +1002,8 @@ class Object(object):
             field_reprs.append('agents=' + repr(self.agents))
         if self.categories is not None:
             field_reprs.append('categories=' + repr(self.categories))
+        if self.colors is not None:
+            field_reprs.append('colors=' + repr(self.colors))
         if self.condition is not None:
             field_reprs.append('condition=' + repr(self.condition))
         if self.dates is not None:
@@ -1010,7 +1053,7 @@ class Object(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'titles': self.titles, 'agents': self.agents, 'categories': self.categories, 'condition': self.condition, 'dates': self.dates, 'descriptions': self.descriptions, 'gender': self.gender, 'images': self.images, 'inscriptions': self.inscriptions, 'materials': self.materials, 'provenance': self.provenance, 'quantity': self.quantity, 'relations': self.relations, 'rights': self.rights, 'subjects': self.subjects, 'techniques': self.techniques, 'textrefs': self.textrefs, 'view_type': self.view_type, 'work_types': self.work_types}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'titles': self.titles, 'agents': self.agents, 'categories': self.categories, 'colors': self.colors, 'condition': self.condition, 'dates': self.dates, 'descriptions': self.descriptions, 'gender': self.gender, 'images': self.images, 'inscriptions': self.inscriptions, 'materials': self.materials, 'provenance': self.provenance, 'quantity': self.quantity, 'relations': self.relations, 'rights': self.rights, 'subjects': self.subjects, 'techniques': self.techniques, 'textrefs': self.textrefs, 'view_type': self.view_type, 'work_types': self.work_types}
 
     def as_tuple(self):
         '''
@@ -1019,7 +1062,7 @@ class Object(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.model_metadata, self.titles, self.agents, self.categories, self.condition, self.dates, self.descriptions, self.gender, self.images, self.inscriptions, self.materials, self.provenance, self.quantity, self.relations, self.rights, self.subjects, self.techniques, self.textrefs, self.view_type, self.work_types,)
+        return (self.collection_id, self.institution_id, self.model_metadata, self.titles, self.agents, self.categories, self.colors, self.condition, self.dates, self.descriptions, self.gender, self.images, self.inscriptions, self.materials, self.provenance, self.quantity, self.relations, self.rights, self.subjects, self.techniques, self.textrefs, self.view_type, self.work_types,)
 
     @property
     def categories(self):
@@ -1036,6 +1079,14 @@ class Object(object):
         '''
 
         return self.__collection_id
+
+    @property
+    def colors(self):
+        '''
+        :rtype: costume.api.models.color.color_set.ColorSet
+        '''
+
+        return self.__colors
 
     @property
     def condition(self):
@@ -1153,6 +1204,8 @@ class Object(object):
                 init_kwds['agents'] = costume.api.models.agent.agent_set.AgentSet.read(iprot)
             elif ifield_name == 'categories' and ifield_id == 18:
                 init_kwds['categories'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+            elif ifield_name == 'colors' and ifield_id == 30:
+                init_kwds['colors'] = costume.api.models.color.color_set.ColorSet.read(iprot)
             elif ifield_name == 'condition' and ifield_id == 27:
                 try:
                     init_kwds['condition'] = costume.api.models.condition.condition.Condition.value_of(iprot.read_string().strip().upper())
@@ -1221,6 +1274,7 @@ class Object(object):
         titles=None,
         agents=None,
         categories=None,
+        colors=None,
         condition=None,
         dates=None,
         descriptions=None,
@@ -1247,6 +1301,7 @@ class Object(object):
         :type titles: costume.api.models.title.title_set.TitleSet or None
         :type agents: costume.api.models.agent.agent_set.AgentSet or None
         :type categories: tuple(str) or None
+        :type colors: costume.api.models.color.color_set.ColorSet or None
         :type condition: costume.api.models.condition.condition.Condition or None
         :type dates: costume.api.models.date.date_set.DateSet or None
         :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
@@ -1278,6 +1333,8 @@ class Object(object):
             agents = self.agents
         if categories is None:
             categories = self.categories
+        if colors is None:
+            colors = self.colors
         if condition is None:
             condition = self.condition
         if dates is None:
@@ -1310,7 +1367,7 @@ class Object(object):
             view_type = self.view_type
         if work_types is None:
             work_types = self.work_types
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, titles=titles, agents=agents, categories=categories, condition=condition, dates=dates, descriptions=descriptions, gender=gender, images=images, inscriptions=inscriptions, materials=materials, provenance=provenance, quantity=quantity, relations=relations, rights=rights, subjects=subjects, techniques=techniques, textrefs=textrefs, view_type=view_type, work_types=work_types)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, titles=titles, agents=agents, categories=categories, colors=colors, condition=condition, dates=dates, descriptions=descriptions, gender=gender, images=images, inscriptions=inscriptions, materials=materials, provenance=provenance, quantity=quantity, relations=relations, rights=rights, subjects=subjects, techniques=techniques, textrefs=textrefs, view_type=view_type, work_types=work_types)
 
     @property
     def rights(self):
@@ -1405,6 +1462,11 @@ class Object(object):
             for _0 in self.categories:
                 oprot.write_string(_0)
             oprot.write_list_end()
+            oprot.write_field_end()
+
+        if self.colors is not None:
+            oprot.write_field_begin(name='colors', type=12, id=30)
+            self.colors.write(oprot)
             oprot.write_field_end()
 
         if self.condition is not None:

@@ -5,8 +5,9 @@ public enum Vocab {
     DC(1),
     DCMI_TYPE(2),
     KWD(3),
-    OTH(4),
-    LCSH(5);
+    LCSH(4),
+    OTH(5),
+    QUILT_INDEX(6);
 
     private Vocab(int value) {
         this.value = value;
@@ -18,8 +19,9 @@ public enum Vocab {
         case 1: return DC;
         case 2: return DCMI_TYPE;
         case 3: return KWD;
-        case 4: return OTH;
-        case 5: return LCSH;
+        case 4: return LCSH;
+        case 5: return OTH;
+        case 6: return QUILT_INDEX;
         default: throw new IllegalArgumentException();
         }
     }

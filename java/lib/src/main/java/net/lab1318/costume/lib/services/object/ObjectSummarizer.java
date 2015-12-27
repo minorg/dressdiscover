@@ -7,6 +7,7 @@ import org.thryft.native_.Url;
 import com.google.common.collect.ImmutableList;
 
 import net.lab1318.costume.api.models.agent.Agent;
+import net.lab1318.costume.api.models.color.Color;
 import net.lab1318.costume.api.models.date.Date;
 import net.lab1318.costume.api.models.date.DateType;
 import net.lab1318.costume.api.models.description.Description;
@@ -47,6 +48,14 @@ public final class ObjectSummarizer {
         builder.setCategories(object.getCategories());
 
         builder.setCollectionId(object.getCollectionId());
+
+        if (object.getColors().isPresent()) {
+            final ImmutableList.Builder<String> colorTextsBuilder = ImmutableList.builder();
+            for (final Color color : object.getColors().get().getElements()) {
+                colorTextsBuilder.add(color.getText());
+            }
+            builder.setColorTexts(colorTextsBuilder.build());
+        }
 
         if (object.getDates().isPresent()) {
             @Nullable

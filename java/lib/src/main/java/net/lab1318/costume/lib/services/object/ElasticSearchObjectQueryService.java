@@ -140,6 +140,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                     __newTextsAggregation(ObjectSummary.FieldMetadata.AGENT_NAME_TEXTS),
                     __newTextsAggregation(ObjectSummary.FieldMetadata.CATEGORIES),
                     __newIdAggregation(ObjectSummary.FieldMetadata.COLLECTION_ID),
+                    __newTextsAggregation(ObjectSummary.FieldMetadata.COLOR_TEXTS),
                     __newIdAggregation(ObjectSummary.FieldMetadata.GENDER),
                     __newIdAggregation(ObjectSummary.FieldMetadata.INSTITUTION_ID),
                     __newTextsAggregation(ObjectSummary.FieldMetadata.MATERIAL_TEXTS),
@@ -167,6 +168,8 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                             }
                         }
                     }));
+
+            resultBuilder.setColorTexts(__getTextsFacet(aggregations, ObjectSummary.FieldMetadata.COLOR_TEXTS));
 
             resultBuilder.setGenders(
                     __getIdFacet(aggregations, ObjectSummary.FieldMetadata.GENDER, new Function<String, Gender>() {
@@ -275,9 +278,10 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         this.objectElasticSearchIndex = checkNotNull(objectElasticSearchIndex);
         this.objectSummaryElasticSearchIndex = checkNotNull(objectSummaryElasticSearchIndex);
         emptyObjectFacets = ObjectFacets.builder().setAgentNameTexts(ImmutableMap.of()).setCategories(ImmutableMap.of())
-                .setCollections(ImmutableMap.of()).setGenders(ImmutableMap.of()).setInstitutions(ImmutableMap.of())
-                .setMaterialTexts(ImmutableMap.of()).setSubjectTermTexts(ImmutableMap.of())
-                .setTechniqueTexts(ImmutableMap.of()).setWorkTypeTexts(ImmutableMap.of()).build();
+                .setCollections(ImmutableMap.of()).setColorTexts(ImmutableMap.of()).setGenders(ImmutableMap.of())
+                .setInstitutions(ImmutableMap.of()).setMaterialTexts(ImmutableMap.of())
+                .setSubjectTermTexts(ImmutableMap.of()).setTechniqueTexts(ImmutableMap.of())
+                .setWorkTypeTexts(ImmutableMap.of()).build();
     }
 
     @Override
@@ -449,6 +453,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             queryTranslated = QueryBuilders.queryStringQuery(query.get().getQueryString().get())
                     .field(ObjectSummary.FieldMetadata.AGENT_NAME_TEXTS.getThriftProtocolKey())
                     .field(ObjectSummary.FieldMetadata.CATEGORIES.getThriftProtocolKey())
+                    .field(ObjectSummary.FieldMetadata.COLOR_TEXTS.getThriftProtocolKey())
                     .field(ObjectSummary.FieldMetadata.DATE.getThriftProtocolKey())
                     .field(ObjectSummary.FieldMetadata.DESCRIPTION.getThriftProtocolKey())
                     .field(ObjectSummary.FieldMetadata.MATERIAL_TEXTS.getThriftProtocolKey())
@@ -461,6 +466,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             queryTranslated = QueryBuilders
                     .moreLikeThisQuery(ObjectSummary.FieldMetadata.AGENT_NAME_TEXTS.getThriftProtocolKey(),
                             ObjectSummary.FieldMetadata.CATEGORIES.getThriftProtocolKey(),
+                            ObjectSummary.FieldMetadata.COLOR_TEXTS.getThriftProtocolKey(),
                             ObjectSummary.FieldMetadata.DATE.getThriftProtocolKey(),
                             ObjectSummary.FieldMetadata.DESCRIPTION.getThriftProtocolKey(),
                             ObjectSummary.FieldMetadata.MATERIAL_TEXTS.getThriftProtocolKey(),
@@ -498,6 +504,10 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
             __translateObjectSummaryIdFilters(facetFilters.getExcludeCollections(), Optional.absent(),
                     ObjectSummary.FieldMetadata.COLLECTION_ID, facetFilters.getIncludeCollections(), filtersTranslated);
+
+            __translateObjectSummaryTextFilters(facetFilters.getExcludeMissingColorTexts(),
+                    facetFilters.getExcludeColorTexts(), ObjectSummary.FieldMetadata.COLOR_TEXTS,
+                    facetFilters.getIncludeColorTexts(), filtersTranslated);
 
             __translateObjectSummaryIdFilters(facetFilters.getExcludeGenders(), facetFilters.getExcludeMissingGenders(),
                     ObjectSummary.FieldMetadata.GENDER, facetFilters.getIncludeGenders(), filtersTranslated);

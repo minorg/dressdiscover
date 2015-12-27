@@ -6,6 +6,7 @@ enum Vocab {
 	DC,
 	DCMI_TYPE,
 	KWD,
+	LCSH,
 	OTH,
-	LCSH
+	QUILT_INDEX
 }

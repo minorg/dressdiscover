@@ -11,11 +11,13 @@ class ObjectFacetFilters(object):
             exclude_all=None,
             exclude_categories=None,
             exclude_collections=None,
+            exclude_color_texts=None,
             exclude_genders=None,
             exclude_institutions=None,
             exclude_material_texts=None,
             exclude_missing_agent_name_texts=None,
             exclude_missing_categories=None,
+            exclude_missing_color_texts=None,
             exclude_missing_genders=None,
             exclude_missing_material_texts=None,
             exclude_missing_subject_term_texts=None,
@@ -27,6 +29,7 @@ class ObjectFacetFilters(object):
             include_agent_name_texts=None,
             include_categories=None,
             include_collections=None,
+            include_color_texts=None,
             include_genders=None,
             include_institutions=None,
             include_material_texts=None,
@@ -39,11 +42,13 @@ class ObjectFacetFilters(object):
             :type exclude_all: bool or None
             :type exclude_categories: frozenset(str) or None
             :type exclude_collections: frozenset(str) or None
+            :type exclude_color_texts: frozenset(str) or None
             :type exclude_genders: frozenset(costume.api.models.gender.gender.Gender) or None
             :type exclude_institutions: frozenset(str) or None
             :type exclude_material_texts: frozenset(str) or None
             :type exclude_missing_agent_name_texts: bool or None
             :type exclude_missing_categories: bool or None
+            :type exclude_missing_color_texts: bool or None
             :type exclude_missing_genders: bool or None
             :type exclude_missing_material_texts: bool or None
             :type exclude_missing_subject_term_texts: bool or None
@@ -55,6 +60,7 @@ class ObjectFacetFilters(object):
             :type include_agent_name_texts: frozenset(str) or None
             :type include_categories: frozenset(str) or None
             :type include_collections: frozenset(str) or None
+            :type include_color_texts: frozenset(str) or None
             :type include_genders: frozenset(costume.api.models.gender.gender.Gender) or None
             :type include_institutions: frozenset(str) or None
             :type include_material_texts: frozenset(str) or None
@@ -67,11 +73,13 @@ class ObjectFacetFilters(object):
             self.__exclude_all = exclude_all
             self.__exclude_categories = exclude_categories
             self.__exclude_collections = exclude_collections
+            self.__exclude_color_texts = exclude_color_texts
             self.__exclude_genders = exclude_genders
             self.__exclude_institutions = exclude_institutions
             self.__exclude_material_texts = exclude_material_texts
             self.__exclude_missing_agent_name_texts = exclude_missing_agent_name_texts
             self.__exclude_missing_categories = exclude_missing_categories
+            self.__exclude_missing_color_texts = exclude_missing_color_texts
             self.__exclude_missing_genders = exclude_missing_genders
             self.__exclude_missing_material_texts = exclude_missing_material_texts
             self.__exclude_missing_subject_term_texts = exclude_missing_subject_term_texts
@@ -83,6 +91,7 @@ class ObjectFacetFilters(object):
             self.__include_agent_name_texts = include_agent_name_texts
             self.__include_categories = include_categories
             self.__include_collections = include_collections
+            self.__include_color_texts = include_color_texts
             self.__include_genders = include_genders
             self.__include_institutions = include_institutions
             self.__include_material_texts = include_material_texts
@@ -91,7 +100,7 @@ class ObjectFacetFilters(object):
             self.__include_work_type_texts = include_work_type_texts
 
         def build(self):
-            return ObjectFacetFilters(exclude_agent_name_texts=self.__exclude_agent_name_texts, exclude_all=self.__exclude_all, exclude_categories=self.__exclude_categories, exclude_collections=self.__exclude_collections, exclude_genders=self.__exclude_genders, exclude_institutions=self.__exclude_institutions, exclude_material_texts=self.__exclude_material_texts, exclude_missing_agent_name_texts=self.__exclude_missing_agent_name_texts, exclude_missing_categories=self.__exclude_missing_categories, exclude_missing_genders=self.__exclude_missing_genders, exclude_missing_material_texts=self.__exclude_missing_material_texts, exclude_missing_subject_term_texts=self.__exclude_missing_subject_term_texts, exclude_missing_technique_texts=self.__exclude_missing_technique_texts, exclude_missing_work_type_texts=self.__exclude_missing_work_type_texts, exclude_subject_term_texts=self.__exclude_subject_term_texts, exclude_technique_texts=self.__exclude_technique_texts, exclude_work_type_texts=self.__exclude_work_type_texts, include_agent_name_texts=self.__include_agent_name_texts, include_categories=self.__include_categories, include_collections=self.__include_collections, include_genders=self.__include_genders, include_institutions=self.__include_institutions, include_material_texts=self.__include_material_texts, include_subject_term_texts=self.__include_subject_term_texts, include_technique_texts=self.__include_technique_texts, include_work_type_texts=self.__include_work_type_texts)
+            return ObjectFacetFilters(exclude_agent_name_texts=self.__exclude_agent_name_texts, exclude_all=self.__exclude_all, exclude_categories=self.__exclude_categories, exclude_collections=self.__exclude_collections, exclude_color_texts=self.__exclude_color_texts, exclude_genders=self.__exclude_genders, exclude_institutions=self.__exclude_institutions, exclude_material_texts=self.__exclude_material_texts, exclude_missing_agent_name_texts=self.__exclude_missing_agent_name_texts, exclude_missing_categories=self.__exclude_missing_categories, exclude_missing_color_texts=self.__exclude_missing_color_texts, exclude_missing_genders=self.__exclude_missing_genders, exclude_missing_material_texts=self.__exclude_missing_material_texts, exclude_missing_subject_term_texts=self.__exclude_missing_subject_term_texts, exclude_missing_technique_texts=self.__exclude_missing_technique_texts, exclude_missing_work_type_texts=self.__exclude_missing_work_type_texts, exclude_subject_term_texts=self.__exclude_subject_term_texts, exclude_technique_texts=self.__exclude_technique_texts, exclude_work_type_texts=self.__exclude_work_type_texts, include_agent_name_texts=self.__include_agent_name_texts, include_categories=self.__include_categories, include_collections=self.__include_collections, include_color_texts=self.__include_color_texts, include_genders=self.__include_genders, include_institutions=self.__include_institutions, include_material_texts=self.__include_material_texts, include_subject_term_texts=self.__include_subject_term_texts, include_technique_texts=self.__include_technique_texts, include_work_type_texts=self.__include_work_type_texts)
 
         @property
         def exclude_agent_name_texts(self):
@@ -124,6 +133,14 @@ class ObjectFacetFilters(object):
             '''
 
             return self.__exclude_collections
+
+        @property
+        def exclude_color_texts(self):
+            '''
+            :rtype: frozenset(str)
+            '''
+
+            return self.__exclude_color_texts
 
         @property
         def exclude_genders(self):
@@ -164,6 +181,14 @@ class ObjectFacetFilters(object):
             '''
 
             return self.__exclude_missing_categories
+
+        @property
+        def exclude_missing_color_texts(self):
+            '''
+            :rtype: bool
+            '''
+
+            return self.__exclude_missing_color_texts
 
         @property
         def exclude_missing_genders(self):
@@ -254,6 +279,14 @@ class ObjectFacetFilters(object):
             return self.__include_collections
 
         @property
+        def include_color_texts(self):
+            '''
+            :rtype: frozenset(str)
+            '''
+
+            return self.__include_color_texts
+
+        @property
         def include_genders(self):
             '''
             :rtype: frozenset(costume.api.models.gender.gender.Gender)
@@ -333,6 +366,14 @@ class ObjectFacetFilters(object):
             self.__exclude_collections = exclude_collections
             return self
 
+        def set_exclude_color_texts(self, exclude_color_texts):
+            '''
+            :type exclude_color_texts: frozenset(str) or None
+            '''
+
+            self.__exclude_color_texts = exclude_color_texts
+            return self
+
         def set_exclude_genders(self, exclude_genders):
             '''
             :type exclude_genders: frozenset(costume.api.models.gender.gender.Gender) or None
@@ -371,6 +412,14 @@ class ObjectFacetFilters(object):
             '''
 
             self.__exclude_missing_categories = exclude_missing_categories
+            return self
+
+        def set_exclude_missing_color_texts(self, exclude_missing_color_texts):
+            '''
+            :type exclude_missing_color_texts: bool or None
+            '''
+
+            self.__exclude_missing_color_texts = exclude_missing_color_texts
             return self
 
         def set_exclude_missing_genders(self, exclude_missing_genders):
@@ -461,6 +510,14 @@ class ObjectFacetFilters(object):
             self.__include_collections = include_collections
             return self
 
+        def set_include_color_texts(self, include_color_texts):
+            '''
+            :type include_color_texts: frozenset(str) or None
+            '''
+
+            self.__include_color_texts = include_color_texts
+            return self
+
         def set_include_genders(self, include_genders):
             '''
             :type include_genders: frozenset(costume.api.models.gender.gender.Gender) or None
@@ -515,11 +572,13 @@ class ObjectFacetFilters(object):
             :type exclude_all: bool or None
             :type exclude_categories: frozenset(str) or None
             :type exclude_collections: frozenset(str) or None
+            :type exclude_color_texts: frozenset(str) or None
             :type exclude_genders: frozenset(costume.api.models.gender.gender.Gender) or None
             :type exclude_institutions: frozenset(str) or None
             :type exclude_material_texts: frozenset(str) or None
             :type exclude_missing_agent_name_texts: bool or None
             :type exclude_missing_categories: bool or None
+            :type exclude_missing_color_texts: bool or None
             :type exclude_missing_genders: bool or None
             :type exclude_missing_material_texts: bool or None
             :type exclude_missing_subject_term_texts: bool or None
@@ -531,6 +590,7 @@ class ObjectFacetFilters(object):
             :type include_agent_name_texts: frozenset(str) or None
             :type include_categories: frozenset(str) or None
             :type include_collections: frozenset(str) or None
+            :type include_color_texts: frozenset(str) or None
             :type include_genders: frozenset(costume.api.models.gender.gender.Gender) or None
             :type include_institutions: frozenset(str) or None
             :type include_material_texts: frozenset(str) or None
@@ -544,11 +604,13 @@ class ObjectFacetFilters(object):
                 self.set_exclude_all(object_facet_filters.exclude_all)
                 self.set_exclude_categories(object_facet_filters.exclude_categories)
                 self.set_exclude_collections(object_facet_filters.exclude_collections)
+                self.set_exclude_color_texts(object_facet_filters.exclude_color_texts)
                 self.set_exclude_genders(object_facet_filters.exclude_genders)
                 self.set_exclude_institutions(object_facet_filters.exclude_institutions)
                 self.set_exclude_material_texts(object_facet_filters.exclude_material_texts)
                 self.set_exclude_missing_agent_name_texts(object_facet_filters.exclude_missing_agent_name_texts)
                 self.set_exclude_missing_categories(object_facet_filters.exclude_missing_categories)
+                self.set_exclude_missing_color_texts(object_facet_filters.exclude_missing_color_texts)
                 self.set_exclude_missing_genders(object_facet_filters.exclude_missing_genders)
                 self.set_exclude_missing_material_texts(object_facet_filters.exclude_missing_material_texts)
                 self.set_exclude_missing_subject_term_texts(object_facet_filters.exclude_missing_subject_term_texts)
@@ -560,6 +622,7 @@ class ObjectFacetFilters(object):
                 self.set_include_agent_name_texts(object_facet_filters.include_agent_name_texts)
                 self.set_include_categories(object_facet_filters.include_categories)
                 self.set_include_collections(object_facet_filters.include_collections)
+                self.set_include_color_texts(object_facet_filters.include_color_texts)
                 self.set_include_genders(object_facet_filters.include_genders)
                 self.set_include_institutions(object_facet_filters.include_institutions)
                 self.set_include_material_texts(object_facet_filters.include_material_texts)
@@ -605,6 +668,14 @@ class ObjectFacetFilters(object):
 
             self.set_exclude_collections(exclude_collections)
 
+        @exclude_color_texts.setter
+        def exclude_color_texts(self, exclude_color_texts):
+            '''
+            :type exclude_color_texts: frozenset(str) or None
+            '''
+
+            self.set_exclude_color_texts(exclude_color_texts)
+
         @exclude_genders.setter
         def exclude_genders(self, exclude_genders):
             '''
@@ -644,6 +715,14 @@ class ObjectFacetFilters(object):
             '''
 
             self.set_exclude_missing_categories(exclude_missing_categories)
+
+        @exclude_missing_color_texts.setter
+        def exclude_missing_color_texts(self, exclude_missing_color_texts):
+            '''
+            :type exclude_missing_color_texts: bool or None
+            '''
+
+            self.set_exclude_missing_color_texts(exclude_missing_color_texts)
 
         @exclude_missing_genders.setter
         def exclude_missing_genders(self, exclude_missing_genders):
@@ -733,6 +812,14 @@ class ObjectFacetFilters(object):
 
             self.set_include_collections(include_collections)
 
+        @include_color_texts.setter
+        def include_color_texts(self, include_color_texts):
+            '''
+            :type include_color_texts: frozenset(str) or None
+            '''
+
+            self.set_include_color_texts(include_color_texts)
+
         @include_genders.setter
         def include_genders(self, include_genders):
             '''
@@ -787,11 +874,13 @@ class ObjectFacetFilters(object):
         exclude_all=None,
         exclude_categories=None,
         exclude_collections=None,
+        exclude_color_texts=None,
         exclude_genders=None,
         exclude_institutions=None,
         exclude_material_texts=None,
         exclude_missing_agent_name_texts=None,
         exclude_missing_categories=None,
+        exclude_missing_color_texts=None,
         exclude_missing_genders=None,
         exclude_missing_material_texts=None,
         exclude_missing_subject_term_texts=None,
@@ -803,6 +892,7 @@ class ObjectFacetFilters(object):
         include_agent_name_texts=None,
         include_categories=None,
         include_collections=None,
+        include_color_texts=None,
         include_genders=None,
         include_institutions=None,
         include_material_texts=None,
@@ -815,11 +905,13 @@ class ObjectFacetFilters(object):
         :type exclude_all: bool or None
         :type exclude_categories: frozenset(str) or None
         :type exclude_collections: frozenset(str) or None
+        :type exclude_color_texts: frozenset(str) or None
         :type exclude_genders: frozenset(costume.api.models.gender.gender.Gender) or None
         :type exclude_institutions: frozenset(str) or None
         :type exclude_material_texts: frozenset(str) or None
         :type exclude_missing_agent_name_texts: bool or None
         :type exclude_missing_categories: bool or None
+        :type exclude_missing_color_texts: bool or None
         :type exclude_missing_genders: bool or None
         :type exclude_missing_material_texts: bool or None
         :type exclude_missing_subject_term_texts: bool or None
@@ -831,6 +923,7 @@ class ObjectFacetFilters(object):
         :type include_agent_name_texts: frozenset(str) or None
         :type include_categories: frozenset(str) or None
         :type include_collections: frozenset(str) or None
+        :type include_color_texts: frozenset(str) or None
         :type include_genders: frozenset(costume.api.models.gender.gender.Gender) or None
         :type include_institutions: frozenset(str) or None
         :type include_material_texts: frozenset(str) or None
@@ -865,6 +958,13 @@ class ObjectFacetFilters(object):
                 raise ValueError("expected len(exclude_collections) to be >= 1, was %d" % len(exclude_collections))
         self.__exclude_collections = exclude_collections
 
+        if exclude_color_texts is not None:
+            if not (isinstance(exclude_color_texts, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), exclude_color_texts))) == 0):
+                raise TypeError("expected exclude_color_texts to be a frozenset(str) but it is a %s" % getattr(__builtin__, 'type')(exclude_color_texts))
+            if len(exclude_color_texts) < 1:
+                raise ValueError("expected len(exclude_color_texts) to be >= 1, was %d" % len(exclude_color_texts))
+        self.__exclude_color_texts = exclude_color_texts
+
         if exclude_genders is not None:
             if not (isinstance(exclude_genders, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.gender.gender.Gender), exclude_genders))) == 0):
                 raise TypeError("expected exclude_genders to be a frozenset(costume.api.models.gender.gender.Gender) but it is a %s" % getattr(__builtin__, 'type')(exclude_genders))
@@ -895,6 +995,11 @@ class ObjectFacetFilters(object):
             if not isinstance(exclude_missing_categories, bool):
                 raise TypeError("expected exclude_missing_categories to be a bool but it is a %s" % getattr(__builtin__, 'type')(exclude_missing_categories))
         self.__exclude_missing_categories = exclude_missing_categories
+
+        if exclude_missing_color_texts is not None:
+            if not isinstance(exclude_missing_color_texts, bool):
+                raise TypeError("expected exclude_missing_color_texts to be a bool but it is a %s" % getattr(__builtin__, 'type')(exclude_missing_color_texts))
+        self.__exclude_missing_color_texts = exclude_missing_color_texts
 
         if exclude_missing_genders is not None:
             if not isinstance(exclude_missing_genders, bool):
@@ -963,6 +1068,13 @@ class ObjectFacetFilters(object):
                 raise ValueError("expected len(include_collections) to be >= 1, was %d" % len(include_collections))
         self.__include_collections = include_collections
 
+        if include_color_texts is not None:
+            if not (isinstance(include_color_texts, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), include_color_texts))) == 0):
+                raise TypeError("expected include_color_texts to be a frozenset(str) but it is a %s" % getattr(__builtin__, 'type')(include_color_texts))
+            if len(include_color_texts) < 1:
+                raise ValueError("expected len(include_color_texts) to be >= 1, was %d" % len(include_color_texts))
+        self.__include_color_texts = include_color_texts
+
         if include_genders is not None:
             if not (isinstance(include_genders, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.gender.gender.Gender), include_genders))) == 0):
                 raise TypeError("expected include_genders to be a frozenset(costume.api.models.gender.gender.Gender) but it is a %s" % getattr(__builtin__, 'type')(include_genders))
@@ -1014,6 +1126,8 @@ class ObjectFacetFilters(object):
             return False
         if self.exclude_collections != other.exclude_collections:
             return False
+        if self.exclude_color_texts != other.exclude_color_texts:
+            return False
         if self.exclude_genders != other.exclude_genders:
             return False
         if self.exclude_institutions != other.exclude_institutions:
@@ -1023,6 +1137,8 @@ class ObjectFacetFilters(object):
         if self.exclude_missing_agent_name_texts != other.exclude_missing_agent_name_texts:
             return False
         if self.exclude_missing_categories != other.exclude_missing_categories:
+            return False
+        if self.exclude_missing_color_texts != other.exclude_missing_color_texts:
             return False
         if self.exclude_missing_genders != other.exclude_missing_genders:
             return False
@@ -1046,6 +1162,8 @@ class ObjectFacetFilters(object):
             return False
         if self.include_collections != other.include_collections:
             return False
+        if self.include_color_texts != other.include_color_texts:
+            return False
         if self.include_genders != other.include_genders:
             return False
         if self.include_institutions != other.include_institutions:
@@ -1061,7 +1179,7 @@ class ObjectFacetFilters(object):
         return True
 
     def __hash__(self):
-        return hash((self.exclude_agent_name_texts,self.exclude_all,self.exclude_categories,self.exclude_collections,self.exclude_genders,self.exclude_institutions,self.exclude_material_texts,self.exclude_missing_agent_name_texts,self.exclude_missing_categories,self.exclude_missing_genders,self.exclude_missing_material_texts,self.exclude_missing_subject_term_texts,self.exclude_missing_technique_texts,self.exclude_missing_work_type_texts,self.exclude_subject_term_texts,self.exclude_technique_texts,self.exclude_work_type_texts,self.include_agent_name_texts,self.include_categories,self.include_collections,self.include_genders,self.include_institutions,self.include_material_texts,self.include_subject_term_texts,self.include_technique_texts,self.include_work_type_texts,))
+        return hash((self.exclude_agent_name_texts,self.exclude_all,self.exclude_categories,self.exclude_collections,self.exclude_color_texts,self.exclude_genders,self.exclude_institutions,self.exclude_material_texts,self.exclude_missing_agent_name_texts,self.exclude_missing_categories,self.exclude_missing_color_texts,self.exclude_missing_genders,self.exclude_missing_material_texts,self.exclude_missing_subject_term_texts,self.exclude_missing_technique_texts,self.exclude_missing_work_type_texts,self.exclude_subject_term_texts,self.exclude_technique_texts,self.exclude_work_type_texts,self.include_agent_name_texts,self.include_categories,self.include_collections,self.include_color_texts,self.include_genders,self.include_institutions,self.include_material_texts,self.include_subject_term_texts,self.include_technique_texts,self.include_work_type_texts,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -1079,6 +1197,8 @@ class ObjectFacetFilters(object):
             field_reprs.append('exclude_categories=' + repr(self.exclude_categories))
         if self.exclude_collections is not None:
             field_reprs.append('exclude_collections=' + repr(self.exclude_collections))
+        if self.exclude_color_texts is not None:
+            field_reprs.append('exclude_color_texts=' + repr(self.exclude_color_texts))
         if self.exclude_genders is not None:
             field_reprs.append('exclude_genders=' + repr(self.exclude_genders))
         if self.exclude_institutions is not None:
@@ -1089,6 +1209,8 @@ class ObjectFacetFilters(object):
             field_reprs.append('exclude_missing_agent_name_texts=' + repr(self.exclude_missing_agent_name_texts))
         if self.exclude_missing_categories is not None:
             field_reprs.append('exclude_missing_categories=' + repr(self.exclude_missing_categories))
+        if self.exclude_missing_color_texts is not None:
+            field_reprs.append('exclude_missing_color_texts=' + repr(self.exclude_missing_color_texts))
         if self.exclude_missing_genders is not None:
             field_reprs.append('exclude_missing_genders=' + repr(self.exclude_missing_genders))
         if self.exclude_missing_material_texts is not None:
@@ -1111,6 +1233,8 @@ class ObjectFacetFilters(object):
             field_reprs.append('include_categories=' + repr(self.include_categories))
         if self.include_collections is not None:
             field_reprs.append('include_collections=' + repr(self.include_collections))
+        if self.include_color_texts is not None:
+            field_reprs.append('include_color_texts=' + repr(self.include_color_texts))
         if self.include_genders is not None:
             field_reprs.append('include_genders=' + repr(self.include_genders))
         if self.include_institutions is not None:
@@ -1135,6 +1259,8 @@ class ObjectFacetFilters(object):
             field_reprs.append('exclude_categories=' + repr(self.exclude_categories))
         if self.exclude_collections is not None:
             field_reprs.append('exclude_collections=' + repr(self.exclude_collections))
+        if self.exclude_color_texts is not None:
+            field_reprs.append('exclude_color_texts=' + repr(self.exclude_color_texts))
         if self.exclude_genders is not None:
             field_reprs.append('exclude_genders=' + repr(self.exclude_genders))
         if self.exclude_institutions is not None:
@@ -1145,6 +1271,8 @@ class ObjectFacetFilters(object):
             field_reprs.append('exclude_missing_agent_name_texts=' + repr(self.exclude_missing_agent_name_texts))
         if self.exclude_missing_categories is not None:
             field_reprs.append('exclude_missing_categories=' + repr(self.exclude_missing_categories))
+        if self.exclude_missing_color_texts is not None:
+            field_reprs.append('exclude_missing_color_texts=' + repr(self.exclude_missing_color_texts))
         if self.exclude_missing_genders is not None:
             field_reprs.append('exclude_missing_genders=' + repr(self.exclude_missing_genders))
         if self.exclude_missing_material_texts is not None:
@@ -1167,6 +1295,8 @@ class ObjectFacetFilters(object):
             field_reprs.append('include_categories=' + repr(self.include_categories))
         if self.include_collections is not None:
             field_reprs.append('include_collections=' + repr(self.include_collections))
+        if self.include_color_texts is not None:
+            field_reprs.append('include_color_texts=' + repr(self.include_color_texts))
         if self.include_genders is not None:
             field_reprs.append('include_genders=' + repr(self.include_genders))
         if self.include_institutions is not None:
@@ -1188,7 +1318,7 @@ class ObjectFacetFilters(object):
         :rtype: dict
         '''
 
-        return {'exclude_agent_name_texts': self.exclude_agent_name_texts, 'exclude_all': self.exclude_all, 'exclude_categories': self.exclude_categories, 'exclude_collections': self.exclude_collections, 'exclude_genders': self.exclude_genders, 'exclude_institutions': self.exclude_institutions, 'exclude_material_texts': self.exclude_material_texts, 'exclude_missing_agent_name_texts': self.exclude_missing_agent_name_texts, 'exclude_missing_categories': self.exclude_missing_categories, 'exclude_missing_genders': self.exclude_missing_genders, 'exclude_missing_material_texts': self.exclude_missing_material_texts, 'exclude_missing_subject_term_texts': self.exclude_missing_subject_term_texts, 'exclude_missing_technique_texts': self.exclude_missing_technique_texts, 'exclude_missing_work_type_texts': self.exclude_missing_work_type_texts, 'exclude_subject_term_texts': self.exclude_subject_term_texts, 'exclude_technique_texts': self.exclude_technique_texts, 'exclude_work_type_texts': self.exclude_work_type_texts, 'include_agent_name_texts': self.include_agent_name_texts, 'include_categories': self.include_categories, 'include_collections': self.include_collections, 'include_genders': self.include_genders, 'include_institutions': self.include_institutions, 'include_material_texts': self.include_material_texts, 'include_subject_term_texts': self.include_subject_term_texts, 'include_technique_texts': self.include_technique_texts, 'include_work_type_texts': self.include_work_type_texts}
+        return {'exclude_agent_name_texts': self.exclude_agent_name_texts, 'exclude_all': self.exclude_all, 'exclude_categories': self.exclude_categories, 'exclude_collections': self.exclude_collections, 'exclude_color_texts': self.exclude_color_texts, 'exclude_genders': self.exclude_genders, 'exclude_institutions': self.exclude_institutions, 'exclude_material_texts': self.exclude_material_texts, 'exclude_missing_agent_name_texts': self.exclude_missing_agent_name_texts, 'exclude_missing_categories': self.exclude_missing_categories, 'exclude_missing_color_texts': self.exclude_missing_color_texts, 'exclude_missing_genders': self.exclude_missing_genders, 'exclude_missing_material_texts': self.exclude_missing_material_texts, 'exclude_missing_subject_term_texts': self.exclude_missing_subject_term_texts, 'exclude_missing_technique_texts': self.exclude_missing_technique_texts, 'exclude_missing_work_type_texts': self.exclude_missing_work_type_texts, 'exclude_subject_term_texts': self.exclude_subject_term_texts, 'exclude_technique_texts': self.exclude_technique_texts, 'exclude_work_type_texts': self.exclude_work_type_texts, 'include_agent_name_texts': self.include_agent_name_texts, 'include_categories': self.include_categories, 'include_collections': self.include_collections, 'include_color_texts': self.include_color_texts, 'include_genders': self.include_genders, 'include_institutions': self.include_institutions, 'include_material_texts': self.include_material_texts, 'include_subject_term_texts': self.include_subject_term_texts, 'include_technique_texts': self.include_technique_texts, 'include_work_type_texts': self.include_work_type_texts}
 
     def as_tuple(self):
         '''
@@ -1197,7 +1327,7 @@ class ObjectFacetFilters(object):
         :rtype: tuple
         '''
 
-        return (self.exclude_agent_name_texts, self.exclude_all, self.exclude_categories, self.exclude_collections, self.exclude_genders, self.exclude_institutions, self.exclude_material_texts, self.exclude_missing_agent_name_texts, self.exclude_missing_categories, self.exclude_missing_genders, self.exclude_missing_material_texts, self.exclude_missing_subject_term_texts, self.exclude_missing_technique_texts, self.exclude_missing_work_type_texts, self.exclude_subject_term_texts, self.exclude_technique_texts, self.exclude_work_type_texts, self.include_agent_name_texts, self.include_categories, self.include_collections, self.include_genders, self.include_institutions, self.include_material_texts, self.include_subject_term_texts, self.include_technique_texts, self.include_work_type_texts,)
+        return (self.exclude_agent_name_texts, self.exclude_all, self.exclude_categories, self.exclude_collections, self.exclude_color_texts, self.exclude_genders, self.exclude_institutions, self.exclude_material_texts, self.exclude_missing_agent_name_texts, self.exclude_missing_categories, self.exclude_missing_color_texts, self.exclude_missing_genders, self.exclude_missing_material_texts, self.exclude_missing_subject_term_texts, self.exclude_missing_technique_texts, self.exclude_missing_work_type_texts, self.exclude_subject_term_texts, self.exclude_technique_texts, self.exclude_work_type_texts, self.include_agent_name_texts, self.include_categories, self.include_collections, self.include_color_texts, self.include_genders, self.include_institutions, self.include_material_texts, self.include_subject_term_texts, self.include_technique_texts, self.include_work_type_texts,)
 
     @property
     def exclude_agent_name_texts(self):
@@ -1230,6 +1360,14 @@ class ObjectFacetFilters(object):
         '''
 
         return self.__exclude_collections
+
+    @property
+    def exclude_color_texts(self):
+        '''
+        :rtype: frozenset(str)
+        '''
+
+        return self.__exclude_color_texts
 
     @property
     def exclude_genders(self):
@@ -1270,6 +1408,14 @@ class ObjectFacetFilters(object):
         '''
 
         return self.__exclude_missing_categories
+
+    @property
+    def exclude_missing_color_texts(self):
+        '''
+        :rtype: bool
+        '''
+
+        return self.__exclude_missing_color_texts
 
     @property
     def exclude_missing_genders(self):
@@ -1360,6 +1506,14 @@ class ObjectFacetFilters(object):
         return self.__include_collections
 
     @property
+    def include_color_texts(self):
+        '''
+        :rtype: frozenset(str)
+        '''
+
+        return self.__include_color_texts
+
+    @property
     def include_genders(self):
         '''
         :rtype: frozenset(costume.api.models.gender.gender.Gender)
@@ -1434,6 +1588,8 @@ class ObjectFacetFilters(object):
                 init_kwds['exclude_categories'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'exclude_collections':
                 init_kwds['exclude_collections'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
+            elif ifield_name == 'exclude_color_texts':
+                init_kwds['exclude_color_texts'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'exclude_genders':
                 init_kwds['exclude_genders'] = frozenset([costume.api.models.gender.gender.Gender.value_of(iprot.read_string().strip().upper()) for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'exclude_institutions':
@@ -1448,6 +1604,11 @@ class ObjectFacetFilters(object):
             elif ifield_name == 'exclude_missing_categories':
                 try:
                     init_kwds['exclude_missing_categories'] = iprot.read_bool()
+                except (TypeError, ValueError,):
+                    pass
+            elif ifield_name == 'exclude_missing_color_texts':
+                try:
+                    init_kwds['exclude_missing_color_texts'] = iprot.read_bool()
                 except (TypeError, ValueError,):
                     pass
             elif ifield_name == 'exclude_missing_genders':
@@ -1487,6 +1648,8 @@ class ObjectFacetFilters(object):
                 init_kwds['include_categories'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'include_collections':
                 init_kwds['include_collections'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
+            elif ifield_name == 'include_color_texts':
+                init_kwds['include_color_texts'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'include_genders':
                 init_kwds['include_genders'] = frozenset([costume.api.models.gender.gender.Gender.value_of(iprot.read_string().strip().upper()) for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'include_institutions':
@@ -1510,11 +1673,13 @@ class ObjectFacetFilters(object):
         exclude_all=None,
         exclude_categories=None,
         exclude_collections=None,
+        exclude_color_texts=None,
         exclude_genders=None,
         exclude_institutions=None,
         exclude_material_texts=None,
         exclude_missing_agent_name_texts=None,
         exclude_missing_categories=None,
+        exclude_missing_color_texts=None,
         exclude_missing_genders=None,
         exclude_missing_material_texts=None,
         exclude_missing_subject_term_texts=None,
@@ -1526,6 +1691,7 @@ class ObjectFacetFilters(object):
         include_agent_name_texts=None,
         include_categories=None,
         include_collections=None,
+        include_color_texts=None,
         include_genders=None,
         include_institutions=None,
         include_material_texts=None,
@@ -1540,11 +1706,13 @@ class ObjectFacetFilters(object):
         :type exclude_all: bool or None
         :type exclude_categories: frozenset(str) or None
         :type exclude_collections: frozenset(str) or None
+        :type exclude_color_texts: frozenset(str) or None
         :type exclude_genders: frozenset(costume.api.models.gender.gender.Gender) or None
         :type exclude_institutions: frozenset(str) or None
         :type exclude_material_texts: frozenset(str) or None
         :type exclude_missing_agent_name_texts: bool or None
         :type exclude_missing_categories: bool or None
+        :type exclude_missing_color_texts: bool or None
         :type exclude_missing_genders: bool or None
         :type exclude_missing_material_texts: bool or None
         :type exclude_missing_subject_term_texts: bool or None
@@ -1556,6 +1724,7 @@ class ObjectFacetFilters(object):
         :type include_agent_name_texts: frozenset(str) or None
         :type include_categories: frozenset(str) or None
         :type include_collections: frozenset(str) or None
+        :type include_color_texts: frozenset(str) or None
         :type include_genders: frozenset(costume.api.models.gender.gender.Gender) or None
         :type include_institutions: frozenset(str) or None
         :type include_material_texts: frozenset(str) or None
@@ -1573,6 +1742,8 @@ class ObjectFacetFilters(object):
             exclude_categories = self.exclude_categories
         if exclude_collections is None:
             exclude_collections = self.exclude_collections
+        if exclude_color_texts is None:
+            exclude_color_texts = self.exclude_color_texts
         if exclude_genders is None:
             exclude_genders = self.exclude_genders
         if exclude_institutions is None:
@@ -1583,6 +1754,8 @@ class ObjectFacetFilters(object):
             exclude_missing_agent_name_texts = self.exclude_missing_agent_name_texts
         if exclude_missing_categories is None:
             exclude_missing_categories = self.exclude_missing_categories
+        if exclude_missing_color_texts is None:
+            exclude_missing_color_texts = self.exclude_missing_color_texts
         if exclude_missing_genders is None:
             exclude_missing_genders = self.exclude_missing_genders
         if exclude_missing_material_texts is None:
@@ -1605,6 +1778,8 @@ class ObjectFacetFilters(object):
             include_categories = self.include_categories
         if include_collections is None:
             include_collections = self.include_collections
+        if include_color_texts is None:
+            include_color_texts = self.include_color_texts
         if include_genders is None:
             include_genders = self.include_genders
         if include_institutions is None:
@@ -1617,7 +1792,7 @@ class ObjectFacetFilters(object):
             include_technique_texts = self.include_technique_texts
         if include_work_type_texts is None:
             include_work_type_texts = self.include_work_type_texts
-        return self.__class__(exclude_agent_name_texts=exclude_agent_name_texts, exclude_all=exclude_all, exclude_categories=exclude_categories, exclude_collections=exclude_collections, exclude_genders=exclude_genders, exclude_institutions=exclude_institutions, exclude_material_texts=exclude_material_texts, exclude_missing_agent_name_texts=exclude_missing_agent_name_texts, exclude_missing_categories=exclude_missing_categories, exclude_missing_genders=exclude_missing_genders, exclude_missing_material_texts=exclude_missing_material_texts, exclude_missing_subject_term_texts=exclude_missing_subject_term_texts, exclude_missing_technique_texts=exclude_missing_technique_texts, exclude_missing_work_type_texts=exclude_missing_work_type_texts, exclude_subject_term_texts=exclude_subject_term_texts, exclude_technique_texts=exclude_technique_texts, exclude_work_type_texts=exclude_work_type_texts, include_agent_name_texts=include_agent_name_texts, include_categories=include_categories, include_collections=include_collections, include_genders=include_genders, include_institutions=include_institutions, include_material_texts=include_material_texts, include_subject_term_texts=include_subject_term_texts, include_technique_texts=include_technique_texts, include_work_type_texts=include_work_type_texts)
+        return self.__class__(exclude_agent_name_texts=exclude_agent_name_texts, exclude_all=exclude_all, exclude_categories=exclude_categories, exclude_collections=exclude_collections, exclude_color_texts=exclude_color_texts, exclude_genders=exclude_genders, exclude_institutions=exclude_institutions, exclude_material_texts=exclude_material_texts, exclude_missing_agent_name_texts=exclude_missing_agent_name_texts, exclude_missing_categories=exclude_missing_categories, exclude_missing_color_texts=exclude_missing_color_texts, exclude_missing_genders=exclude_missing_genders, exclude_missing_material_texts=exclude_missing_material_texts, exclude_missing_subject_term_texts=exclude_missing_subject_term_texts, exclude_missing_technique_texts=exclude_missing_technique_texts, exclude_missing_work_type_texts=exclude_missing_work_type_texts, exclude_subject_term_texts=exclude_subject_term_texts, exclude_technique_texts=exclude_technique_texts, exclude_work_type_texts=exclude_work_type_texts, include_agent_name_texts=include_agent_name_texts, include_categories=include_categories, include_collections=include_collections, include_color_texts=include_color_texts, include_genders=include_genders, include_institutions=include_institutions, include_material_texts=include_material_texts, include_subject_term_texts=include_subject_term_texts, include_technique_texts=include_technique_texts, include_work_type_texts=include_work_type_texts)
 
     def write(self, oprot):
         '''
@@ -1658,6 +1833,14 @@ class ObjectFacetFilters(object):
             oprot.write_set_end()
             oprot.write_field_end()
 
+        if self.exclude_color_texts is not None:
+            oprot.write_field_begin(name='exclude_color_texts', type=14, id=None)
+            oprot.write_set_begin(11, len(self.exclude_color_texts))
+            for _0 in self.exclude_color_texts:
+                oprot.write_string(_0)
+            oprot.write_set_end()
+            oprot.write_field_end()
+
         if self.exclude_genders is not None:
             oprot.write_field_begin(name='exclude_genders', type=14, id=None)
             oprot.write_set_begin(11, len(self.exclude_genders))
@@ -1690,6 +1873,11 @@ class ObjectFacetFilters(object):
         if self.exclude_missing_categories is not None:
             oprot.write_field_begin(name='exclude_missing_categories', type=2, id=None)
             oprot.write_bool(self.exclude_missing_categories)
+            oprot.write_field_end()
+
+        if self.exclude_missing_color_texts is not None:
+            oprot.write_field_begin(name='exclude_missing_color_texts', type=2, id=None)
+            oprot.write_bool(self.exclude_missing_color_texts)
             oprot.write_field_end()
 
         if self.exclude_missing_genders is not None:
@@ -1761,6 +1949,14 @@ class ObjectFacetFilters(object):
             oprot.write_field_begin(name='include_collections', type=14, id=None)
             oprot.write_set_begin(11, len(self.include_collections))
             for _0 in self.include_collections:
+                oprot.write_string(_0)
+            oprot.write_set_end()
+            oprot.write_field_end()
+
+        if self.include_color_texts is not None:
+            oprot.write_field_begin(name='include_color_texts', type=14, id=None)
+            oprot.write_set_begin(11, len(self.include_color_texts))
+            for _0 in self.include_color_texts:
                 oprot.write_string(_0)
             oprot.write_set_end()
             oprot.write_field_end()

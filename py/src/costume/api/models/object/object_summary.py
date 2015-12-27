@@ -15,6 +15,7 @@ class ObjectSummary(object):
             title=None,
             agent_name_texts=None,
             categories=None,
+            color_texts=None,
             date=None,
             description=None,
             gender=None,
@@ -33,6 +34,7 @@ class ObjectSummary(object):
             :type title: str
             :type agent_name_texts: tuple(str) or None
             :type categories: tuple(str) or None
+            :type color_texts: tuple(str) or None
             :type date: str or None
             :type description: str or None
             :type gender: costume.api.models.gender.gender.Gender or None
@@ -51,6 +53,7 @@ class ObjectSummary(object):
             self.__title = title
             self.__agent_name_texts = agent_name_texts
             self.__categories = categories
+            self.__color_texts = color_texts
             self.__date = date
             self.__description = description
             self.__gender = gender
@@ -63,7 +66,7 @@ class ObjectSummary(object):
             self.__work_type_texts = work_type_texts
 
         def build(self):
-            return ObjectSummary(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, agent_name_texts=self.__agent_name_texts, categories=self.__categories, date=self.__date, description=self.__description, gender=self.__gender, relation_texts=self.__relation_texts, material_texts=self.__material_texts, subject_term_texts=self.__subject_term_texts, technique_texts=self.__technique_texts, thumbnail=self.__thumbnail, url=self.__url, work_type_texts=self.__work_type_texts)
+            return ObjectSummary(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, agent_name_texts=self.__agent_name_texts, categories=self.__categories, color_texts=self.__color_texts, date=self.__date, description=self.__description, gender=self.__gender, relation_texts=self.__relation_texts, material_texts=self.__material_texts, subject_term_texts=self.__subject_term_texts, technique_texts=self.__technique_texts, thumbnail=self.__thumbnail, url=self.__url, work_type_texts=self.__work_type_texts)
 
         @property
         def agent_name_texts(self):
@@ -88,6 +91,14 @@ class ObjectSummary(object):
             '''
 
             return self.__collection_id
+
+        @property
+        def color_texts(self):
+            '''
+            :rtype: tuple(str)
+            '''
+
+            return self.__color_texts
 
         @property
         def date(self):
@@ -167,6 +178,14 @@ class ObjectSummary(object):
             '''
 
             self.__collection_id = collection_id
+            return self
+
+        def set_color_texts(self, color_texts):
+            '''
+            :type color_texts: tuple(str) or None
+            '''
+
+            self.__color_texts = color_texts
             return self
 
         def set_date(self, date):
@@ -313,6 +332,7 @@ class ObjectSummary(object):
             :type title: str
             :type agent_name_texts: tuple(str) or None
             :type categories: tuple(str) or None
+            :type color_texts: tuple(str) or None
             :type date: str or None
             :type description: str or None
             :type gender: costume.api.models.gender.gender.Gender or None
@@ -332,6 +352,7 @@ class ObjectSummary(object):
                 self.set_title(object_summary.title)
                 self.set_agent_name_texts(object_summary.agent_name_texts)
                 self.set_categories(object_summary.categories)
+                self.set_color_texts(object_summary.color_texts)
                 self.set_date(object_summary.date)
                 self.set_description(object_summary.description)
                 self.set_gender(object_summary.gender)
@@ -388,6 +409,14 @@ class ObjectSummary(object):
             '''
 
             self.set_collection_id(collection_id)
+
+        @color_texts.setter
+        def color_texts(self, color_texts):
+            '''
+            :type color_texts: tuple(str) or None
+            '''
+
+            self.set_color_texts(color_texts)
 
         @date.setter
         def date(self, date):
@@ -501,6 +530,7 @@ class ObjectSummary(object):
         title,
         agent_name_texts=None,
         categories=None,
+        color_texts=None,
         date=None,
         description=None,
         gender=None,
@@ -519,6 +549,7 @@ class ObjectSummary(object):
         :type title: str
         :type agent_name_texts: tuple(str) or None
         :type categories: tuple(str) or None
+        :type color_texts: tuple(str) or None
         :type date: str or None
         :type description: str or None
         :type gender: costume.api.models.gender.gender.Gender or None
@@ -570,6 +601,13 @@ class ObjectSummary(object):
             if len(categories) < 1:
                 raise ValueError("expected len(categories) to be >= 1, was %d" % len(categories))
         self.__categories = categories
+
+        if color_texts is not None:
+            if not (isinstance(color_texts, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), color_texts))) == 0):
+                raise TypeError("expected color_texts to be a tuple(str) but it is a %s" % getattr(__builtin__, 'type')(color_texts))
+            if len(color_texts) < 1:
+                raise ValueError("expected len(color_texts) to be >= 1, was %d" % len(color_texts))
+        self.__color_texts = color_texts
 
         if date is not None:
             if not isinstance(date, basestring):
@@ -648,6 +686,8 @@ class ObjectSummary(object):
             return False
         if self.categories != other.categories:
             return False
+        if self.color_texts != other.color_texts:
+            return False
         if self.date != other.date:
             return False
         if self.description != other.description:
@@ -671,7 +711,7 @@ class ObjectSummary(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.agent_name_texts,self.categories,self.date,self.description,self.gender,self.relation_texts,self.material_texts,self.subject_term_texts,self.technique_texts,self.thumbnail,self.url,self.work_type_texts,))
+        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.agent_name_texts,self.categories,self.color_texts,self.date,self.description,self.gender,self.relation_texts,self.material_texts,self.subject_term_texts,self.technique_texts,self.thumbnail,self.url,self.work_type_texts,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -689,6 +729,8 @@ class ObjectSummary(object):
             field_reprs.append('agent_name_texts=' + repr(self.agent_name_texts))
         if self.categories is not None:
             field_reprs.append('categories=' + repr(self.categories))
+        if self.color_texts is not None:
+            field_reprs.append('color_texts=' + repr(self.color_texts))
         if self.date is not None:
             field_reprs.append('date=' + "'" + self.date.encode('ascii', 'replace') + "'")
         if self.description is not None:
@@ -721,6 +763,8 @@ class ObjectSummary(object):
             field_reprs.append('agent_name_texts=' + repr(self.agent_name_texts))
         if self.categories is not None:
             field_reprs.append('categories=' + repr(self.categories))
+        if self.color_texts is not None:
+            field_reprs.append('color_texts=' + repr(self.color_texts))
         if self.date is not None:
             field_reprs.append('date=' + "'" + self.date.encode('ascii', 'replace') + "'")
         if self.description is not None:
@@ -758,7 +802,7 @@ class ObjectSummary(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'date': self.date, 'description': self.description, 'gender': self.gender, 'relation_texts': self.relation_texts, 'material_texts': self.material_texts, 'subject_term_texts': self.subject_term_texts, 'technique_texts': self.technique_texts, 'thumbnail': self.thumbnail, 'url': self.url, 'work_type_texts': self.work_type_texts}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'color_texts': self.color_texts, 'date': self.date, 'description': self.description, 'gender': self.gender, 'relation_texts': self.relation_texts, 'material_texts': self.material_texts, 'subject_term_texts': self.subject_term_texts, 'technique_texts': self.technique_texts, 'thumbnail': self.thumbnail, 'url': self.url, 'work_type_texts': self.work_type_texts}
 
     def as_tuple(self):
         '''
@@ -767,7 +811,7 @@ class ObjectSummary(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.agent_name_texts, self.categories, self.date, self.description, self.gender, self.relation_texts, self.material_texts, self.subject_term_texts, self.technique_texts, self.thumbnail, self.url, self.work_type_texts,)
+        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.agent_name_texts, self.categories, self.color_texts, self.date, self.description, self.gender, self.relation_texts, self.material_texts, self.subject_term_texts, self.technique_texts, self.thumbnail, self.url, self.work_type_texts,)
 
     @property
     def categories(self):
@@ -784,6 +828,14 @@ class ObjectSummary(object):
         '''
 
         return self.__collection_id
+
+    @property
+    def color_texts(self):
+        '''
+        :rtype: tuple(str)
+        '''
+
+        return self.__color_texts
 
     @property
     def date(self):
@@ -861,6 +913,8 @@ class ObjectSummary(object):
                 init_kwds['agent_name_texts'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'categories' and ifield_id == 7:
                 init_kwds['categories'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+            elif ifield_name == 'color_texts' and ifield_id == 17:
+                init_kwds['color_texts'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'date' and ifield_id == 12:
                 try:
                     init_kwds['date'] = iprot.read_string()
@@ -914,6 +968,7 @@ class ObjectSummary(object):
         title=None,
         agent_name_texts=None,
         categories=None,
+        color_texts=None,
         date=None,
         description=None,
         gender=None,
@@ -934,6 +989,7 @@ class ObjectSummary(object):
         :type title: str or None
         :type agent_name_texts: tuple(str) or None
         :type categories: tuple(str) or None
+        :type color_texts: tuple(str) or None
         :type date: str or None
         :type description: str or None
         :type gender: costume.api.models.gender.gender.Gender or None
@@ -959,6 +1015,8 @@ class ObjectSummary(object):
             agent_name_texts = self.agent_name_texts
         if categories is None:
             categories = self.categories
+        if color_texts is None:
+            color_texts = self.color_texts
         if date is None:
             date = self.date
         if description is None:
@@ -979,7 +1037,7 @@ class ObjectSummary(object):
             url = self.url
         if work_type_texts is None:
             work_type_texts = self.work_type_texts
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, agent_name_texts=agent_name_texts, categories=categories, date=date, description=description, gender=gender, relation_texts=relation_texts, material_texts=material_texts, subject_term_texts=subject_term_texts, technique_texts=technique_texts, thumbnail=thumbnail, url=url, work_type_texts=work_type_texts)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, agent_name_texts=agent_name_texts, categories=categories, color_texts=color_texts, date=date, description=description, gender=gender, relation_texts=relation_texts, material_texts=material_texts, subject_term_texts=subject_term_texts, technique_texts=technique_texts, thumbnail=thumbnail, url=url, work_type_texts=work_type_texts)
 
     @property
     def subject_term_texts(self):
@@ -1067,6 +1125,14 @@ class ObjectSummary(object):
             oprot.write_field_begin(name='categories', type=15, id=7)
             oprot.write_list_begin(11, len(self.categories))
             for _0 in self.categories:
+                oprot.write_string(_0)
+            oprot.write_list_end()
+            oprot.write_field_end()
+
+        if self.color_texts is not None:
+            oprot.write_field_begin(name='color_texts', type=15, id=17)
+            oprot.write_list_begin(11, len(self.color_texts))
+            for _0 in self.color_texts:
                 oprot.write_string(_0)
             oprot.write_list_end()
             oprot.write_field_end()

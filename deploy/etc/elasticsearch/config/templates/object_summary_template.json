@@ -67,6 +67,18 @@
             }, 
             "type": "multi_field"
           }, 
+          "17:color_texts": {
+            "fields": {
+              "text": {
+                "type": "string"
+              }, 
+              "not_analyzed": {
+                "index": "not_analyzed", 
+                "type": "string"
+              }
+            }, 
+            "type": "multi_field"
+          }, 
           "12:date": {
             "type": "string"
           }, 

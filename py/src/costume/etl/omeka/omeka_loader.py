@@ -11,6 +11,9 @@ from costume.api.models.agent.agent_name_type import AgentNameType
 from costume.api.models.agent.agent_role import AgentRole
 from costume.api.models.agent.agent_set import AgentSet
 from costume.api.models.collection.collection import Collection
+from costume.api.models.color.color import Color
+from costume.api.models.color.color_set import ColorSet
+from costume.api.models.color.color_type import ColorType
 from costume.api.models.condition.condition import Condition
 from costume.api.models.date.date import Date
 from costume.api.models.date.date_bound import DateBound
@@ -109,6 +112,7 @@ class OmekaLoader(_Loader):
 
             self.agents = []
             self.categories = []
+            self.colors = []
             self.dc_date_builder = Date.Builder().set_type(DateType.CREATION)
             self.dc_date_certainty = None
             self.dates = []
@@ -147,6 +151,8 @@ class OmekaLoader(_Loader):
                 self.__object_builder.set_agents(AgentSet.Builder().set_elements(tuple(self.agents)).build())
             if len(self.categories) > 0:
                 self.__object_builder.set_categories(tuple(self.categories))
+            if len(self.colors) > 0:
+                self.__object_builder.set_colors(ColorSet.Builder().set_elements(tuple(self.colors)).build())
             if self.dc_date_builder.earliest_date is not None and self.dc_date_builder.latest_date is not None:
                 if self.dc_date_certainty is not None:
                     assert self.dc_date_certainty == 'circa'
@@ -658,6 +664,27 @@ class OmekaLoader(_Loader):
 
     def _load_item_element_itm_classification(self, object_builder, text):
         object_builder.categories.append(text)
+
+    def _load_item_element_itm_color_main(self, **kwds):
+        self.__load_item_element_itm_color(type_=ColorType.PRIMARY, **kwds)
+
+    def _load_item_element_itm_color_secondary(self, **kwds):
+        self.__load_item_element_itm_color(type_=ColorType.SECONDARY, **kwds)
+
+    def __load_item_element_itm_color(self, object_builder, text, type_):
+        text = text.lower()
+        object_builder.colors.append(
+            Color.Builder()
+                .set_text(text)
+                .set_type(type_)
+                .set_vocab_ref(
+                    VocabRef.Builder()
+                        .set_refid(text)
+                        .set_vocab(Vocab.QUILT_INDEX)
+                        .build()
+                )
+                .build()
+        )
 
     def _load_item_element_itm_condition(self, object_builder, text):
         object_builder.descriptions.append(

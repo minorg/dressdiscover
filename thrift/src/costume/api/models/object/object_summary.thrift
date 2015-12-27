@@ -29,6 +29,10 @@ struct ObjectSummary {
 	// @validation {"minLength": 1}
 	7: optional list<string> categories;
 
+	// @elastic_search_mapping {"type": "multi_field", "fields": {"text": {"type": "string"}, "not_analyzed": {"type": "string", "index": "not_analyzed"}}}
+	// @validation {"minLength": 1}
+	17: optional list<string> color_texts;
+
 	// Dublin Core date
 	// @validation {"minLength": 1}
 	12: optional string date;
