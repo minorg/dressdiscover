@@ -27,6 +27,29 @@ struct ObjectFacetFilters {
 	// @validation {"minLength": 1}
 	optional set<string> exclude_material_texts;
 
+	// true = exclude missing
+	// absent = include missing
+	// @validation {"acceptance": true}
+	optional bool exclude_missing_agent_name_texts;
+
+	// @validation {"acceptance": true}
+	optional bool exclude_missing_categories;
+
+	// @validation {"acceptance": true}
+	optional bool exclude_missing_genders;
+
+	// @validation {"acceptance": true}
+	optional bool exclude_missing_material_texts;
+
+	// @validation {"acceptance": true}
+	optional bool exclude_missing_subject_term_texts;
+
+	// @validation {"acceptance": true}
+	optional bool exclude_missing_technique_texts;
+
+	// @validation {"acceptance": true}
+	optional bool exclude_missing_work_type_texts;
+
 	// @validation {"minLength": 1}
 	optional set<string> exclude_subject_term_texts;
 
