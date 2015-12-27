@@ -1,10 +1,15 @@
 package net.lab1318.costume.gui.views.object;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
+
+import javax.annotation.Nullable;
+
 import org.thryft.waf.gui.EventBus;
 
 import com.google.common.collect.ImmutableMap;
 import com.vaadin.ui.CustomComponent;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.GridLayout;
 
 import net.lab1318.costume.api.models.gender.Gender;
 import net.lab1318.costume.api.models.institution.Institution;
@@ -15,92 +20,91 @@ import net.lab1318.costume.gui.models.gender.Genders;
 
 @SuppressWarnings("serial")
 final class ObjectFacetsLayout extends CustomComponent {
-    public ObjectFacetsLayout(final ObjectFacets availableObjectFacets, final EventBus eventBus,
-            final ImmutableMap<InstitutionId, Institution> institutions, final ObjectQuery objectQuery,
-            final ObjectFacets resultObjectFacets) {
-        final VerticalLayout rootLayout = new VerticalLayout();
-
-        if (!availableObjectFacets.getAgentNameTexts().isEmpty()) {
-            final ObjectFacetPicker<String> agentNameTextFacetPicker = new ObjectFacetPicker<String>(
-                    availableObjectFacets, "Agent names", eventBus, objectQuery.getFacetFilters(), "agent_name_texts",
-                    resultObjectFacets);
-            if (!agentNameTextFacetPicker.isEmpty()) {
-                rootLayout.addComponent(agentNameTextFacetPicker);
-            }
-        }
-
-        if (!availableObjectFacets.getCategories().isEmpty()) {
-            final ObjectFacetPicker<String> categoryFacetPicker = new ObjectFacetPicker<String>(availableObjectFacets,
-                    "Categories", eventBus, objectQuery.getFacetFilters(), "categories", resultObjectFacets);
-            if (!categoryFacetPicker.isEmpty()) {
-                rootLayout.addComponent(categoryFacetPicker);
-            }
-        }
-
-        if (!availableObjectFacets.getGenders().isEmpty()) {
-            final ObjectFacetPicker<Gender> genderFacetPicker = new ObjectFacetPicker<Gender>(availableObjectFacets,
-                    "Genders", eventBus, objectQuery.getFacetFilters(), "genders", resultObjectFacets) {
-                @Override
-                protected String _getCheckBoxCaption(final Gender facetKey) {
-                    return Genders.getCaption(facetKey);
-                }
-            };
-
-            if (!genderFacetPicker.isEmpty()) {
-                rootLayout.addComponent(genderFacetPicker);
-            }
-        }
-
-        if (!availableObjectFacets.getInstitutions().isEmpty()) {
-            final ObjectFacetPicker<InstitutionId> institutionFacetPicker = new ObjectFacetPicker<InstitutionId>(
-                    availableObjectFacets, "Institutions", eventBus, objectQuery.getFacetFilters(), "institutions",
-                    resultObjectFacets) {
-                @Override
-                protected String _getCheckBoxCaption(final InstitutionId facetKey) {
-                    return institutions.get(facetKey).getTitle();
-                }
-            };
-            if (!institutionFacetPicker.isEmpty()) {
-                rootLayout.addComponent(institutionFacetPicker);
-            }
-        }
-
-        if (!availableObjectFacets.getMaterialTexts().isEmpty()) {
-            final ObjectFacetPicker<String> materialTextFacetPicker = new ObjectFacetPicker<String>(
-                    availableObjectFacets, "Materials", eventBus, objectQuery.getFacetFilters(), "material_texts",
-                    resultObjectFacets);
-            if (!materialTextFacetPicker.isEmpty()) {
-                rootLayout.addComponent(materialTextFacetPicker);
-            }
-        }
-
-        if (!availableObjectFacets.getSubjectTermTexts().isEmpty()) {
-            final ObjectFacetPicker<String> subjectTermTextFacetPicker = new ObjectFacetPicker<String>(
-                    availableObjectFacets, "Subjects", eventBus, objectQuery.getFacetFilters(), "subject_term_texts",
-                    resultObjectFacets);
-            if (!subjectTermTextFacetPicker.isEmpty()) {
-                rootLayout.addComponent(subjectTermTextFacetPicker);
-            }
-        }
-
-        if (!availableObjectFacets.getTechniqueTexts().isEmpty()) {
-            final ObjectFacetPicker<String> techniqueTextFacetPicker = new ObjectFacetPicker<String>(
-                    availableObjectFacets, "Techniques", eventBus, objectQuery.getFacetFilters(), "technique_texts",
-                    resultObjectFacets);
-            if (!techniqueTextFacetPicker.isEmpty()) {
-                rootLayout.addComponent(techniqueTextFacetPicker);
-            }
-        }
-
-        if (!availableObjectFacets.getWorkTypeTexts().isEmpty()) {
-            final ObjectFacetPicker<String> workTypeTextFacetPicker = new ObjectFacetPicker<String>(
-                    availableObjectFacets, "Work types", eventBus, objectQuery.getFacetFilters(), "work_type_texts",
-                    resultObjectFacets);
-            if (!workTypeTextFacetPicker.isEmpty()) {
-                rootLayout.addComponent(workTypeTextFacetPicker);
-            }
-        }
-
+    public ObjectFacetsLayout(final EventBus eventBus) {
+        this.eventBus = checkNotNull(eventBus);
         setCompositionRoot(rootLayout);
     }
+
+    public void setModels(final ObjectFacets availableObjectFacets,
+            final ImmutableMap<InstitutionId, Institution> institutions, final ObjectQuery objectQuery,
+            final ObjectFacets resultObjectFacets) {
+        int rowI = 0;
+
+        __addFacetPicker(availableObjectFacets,
+                new ObjectFacetPicker<String>(availableObjectFacets, "Agent names", eventBus,
+                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.AGENT_NAME_TEXTS, resultObjectFacets),
+                rowI++);
+
+        __addFacetPicker(availableObjectFacets,
+                new ObjectFacetPicker<String>(availableObjectFacets, "Categories", eventBus,
+                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.CATEGORIES, resultObjectFacets),
+                rowI++);
+
+        __addFacetPicker(availableObjectFacets, new ObjectFacetPicker<Gender>(availableObjectFacets, "Genders",
+                eventBus, objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.GENDERS, resultObjectFacets) {
+            @Override
+            protected String _getCheckBoxCaption(final Gender facetKey) {
+                return Genders.getCaption(facetKey);
+            }
+        }, rowI++);
+
+        __addFacetPicker(availableObjectFacets,
+                new ObjectFacetPicker<InstitutionId>(availableObjectFacets, "Institutions", eventBus,
+                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.INSTITUTIONS, resultObjectFacets) {
+                    @Override
+                    protected String _getCheckBoxCaption(final InstitutionId facetKey) {
+                        return institutions.get(facetKey).getTitle();
+                    }
+                }, rowI++);
+
+        __addFacetPicker(availableObjectFacets,
+                new ObjectFacetPicker<String>(availableObjectFacets, "Materials", eventBus,
+                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.MATERIAL_TEXTS, resultObjectFacets),
+                rowI++);
+
+        __addFacetPicker(availableObjectFacets,
+                new ObjectFacetPicker<String>(availableObjectFacets, "Subjects", eventBus,
+                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.SUBJECT_TERM_TEXTS,
+                        resultObjectFacets),
+                rowI++);
+
+        __addFacetPicker(availableObjectFacets,
+                new ObjectFacetPicker<String>(availableObjectFacets, "Techniques", eventBus,
+                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.TECHNIQUE_TEXTS, resultObjectFacets),
+                rowI++);
+
+        __addFacetPicker(availableObjectFacets,
+                new ObjectFacetPicker<String>(availableObjectFacets, "Work types", eventBus,
+                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.WORK_TYPE_TEXTS, resultObjectFacets),
+                rowI++);
+
+        rootLayout.setSizeFull();
+    }
+
+    private void __addFacetPicker(final ObjectFacets availableObjectFacets, final ObjectFacetPicker<?> facetPicker,
+            final int rowI) {
+        @Nullable
+        final ObjectFacetPicker<?> existingFacetPicker = (ObjectFacetPicker<?>) rootLayout.getComponent(0, rowI);
+        if (existingFacetPicker != null) {
+            checkState(existingFacetPicker.getField().equals(facetPicker.getField()));
+        }
+
+        if (facetPicker.isEmpty()) {
+            rootLayout.removeComponent(0, rowI);
+        }
+
+        if (existingFacetPicker != null) {
+            if (existingFacetPicker.equivalent(facetPicker)) {
+                return;
+            }
+        }
+
+        if (existingFacetPicker != null) {
+            rootLayout.removeComponent(0, rowI);
+        }
+        rootLayout.addComponent(facetPicker, 0, rowI);
+    }
+
+    private final EventBus eventBus;
+    private final GridLayout rootLayout = new GridLayout(1, 8);
 }
