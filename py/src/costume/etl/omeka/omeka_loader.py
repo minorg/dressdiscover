@@ -254,12 +254,16 @@ class OmekaLoader(_Loader):
     @classmethod
     def _add_arguments(cls, argument_parser):
         _Loader._add_arguments(argument_parser)
+        cls._add_institution_arguments(argument_parser)
+        argument_parser.add_argument('--square-thumbnail-height-px', default=150)
+        argument_parser.add_argument('--square-thumbnail-width-px', default=150)
+
+    @classmethod
+    def _add_institution_arguments(cls, argument_parser):
         argument_parser.add_argument('--endpoint-url', required=True)
         argument_parser.add_argument('--institution-id', required=True)
         argument_parser.add_argument('--institution-title', required=True)
         argument_parser.add_argument('--institution-url', required=True)
-        argument_parser.add_argument('--square-thumbnail-height-px', default=150)
-        argument_parser.add_argument('--square-thumbnail-width-px', default=150)
 
     def _load(self):
         self._load_institution()
