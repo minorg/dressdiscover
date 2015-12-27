@@ -7,7 +7,6 @@ import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
 import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
@@ -27,25 +26,13 @@ public class ObjectsView extends TopLevelView {
     @Inject
     public ObjectsView(final EventBus eventBus) {
         super(eventBus);
-    }
-
-    public void setModels(final ObjectFacets availableObjectFacets,
-            final ImmutableMap<CollectionId, Collection> collections,
-            final ImmutableMap<InstitutionId, Institution> institutions, final ObjectQuery objectQuery,
-            final LazyQueryContainer objectSummaries, final ObjectFacets resultObjectFacets) {
-        if (objectQuery.getQueryString().isPresent()) {
-            _getNavbar().getSearchTextField().setValue(objectQuery.getQueryString().get());
-        }
-
-        final int objectSummariesSize = objectSummaries.size();
 
         final HorizontalLayout twoPaneLayout = new HorizontalLayout();
         twoPaneLayout.setSizeFull();
         // twoPaneLayout.setHeight(700, Unit.PIXELS);
 
         {
-            final Component leftPaneContentLayout = new ObjectFacetsLayout(availableObjectFacets, _getEventBus(),
-                    institutions, objectQuery, resultObjectFacets);
+            leftPaneContentLayout = new ObjectFacetsLayout(_getEventBus());
 
             final Panel leftPanePanel = new Panel();
             leftPanePanel.addStyleName("borderless");
@@ -57,21 +44,6 @@ public class ObjectsView extends TopLevelView {
         }
 
         {
-            final VerticalLayout rightPaneContentLayout = new VerticalLayout();
-
-            if (objectSummariesSize > 0) {
-                final Label hitCountsLabel = new Label(
-                        String.format("%d object(s) in %d collection(s)", objectSummariesSize, collections.size()));
-                hitCountsLabel.setWidth(100, Unit.PERCENTAGE);
-                rightPaneContentLayout.addComponent(hitCountsLabel);
-                rightPaneContentLayout.setComponentAlignment(hitCountsLabel, Alignment.MIDDLE_CENTER);
-
-                rightPaneContentLayout.addComponent(
-                        new ObjectSummaryEntriesTable(collections, _getEventBus(), institutions, availableObjectFacets, objectSummaries));
-            } else {
-                rightPaneContentLayout.addComponent(new Label("No objects match your criteria."));
-            }
-
             final Panel rightPanePanel = new Panel();
             rightPanePanel.addStyleName("borderless");
             rightPanePanel.setContent(rightPaneContentLayout);
@@ -84,5 +56,34 @@ public class ObjectsView extends TopLevelView {
         setCompositionRoot(twoPaneLayout);
     }
 
+    public void setModels(final ObjectFacets availableObjectFacets,
+            final ImmutableMap<CollectionId, Collection> collections,
+            final ImmutableMap<InstitutionId, Institution> institutions, final ObjectQuery objectQuery,
+            final LazyQueryContainer objectSummaries, final ObjectFacets resultObjectFacets) {
+        if (objectQuery.getQueryString().isPresent()) {
+            _getNavbar().getSearchTextField().setValue(objectQuery.getQueryString().get());
+        }
+
+        final int objectSummariesSize = objectSummaries.size();
+
+        leftPaneContentLayout.setModels(availableObjectFacets, institutions, objectQuery, resultObjectFacets);
+
+        rightPaneContentLayout.removeAllComponents();
+        if (objectSummariesSize > 0) {
+            final Label hitCountsLabel = new Label(
+                    String.format("%d object(s) in %d collection(s)", objectSummariesSize, collections.size()));
+            hitCountsLabel.setWidth(100, Unit.PERCENTAGE);
+            rightPaneContentLayout.addComponent(hitCountsLabel);
+            rightPaneContentLayout.setComponentAlignment(hitCountsLabel, Alignment.MIDDLE_CENTER);
+
+            rightPaneContentLayout.addComponent(new ObjectSummaryEntriesTable(collections, _getEventBus(), institutions,
+                    availableObjectFacets, objectSummaries));
+        } else {
+            rightPaneContentLayout.addComponent(new Label("No objects match your criteria."));
+        }
+    }
+
+    private final ObjectFacetsLayout leftPaneContentLayout;
+    private final VerticalLayout rightPaneContentLayout = new VerticalLayout();
     public final static String NAME = "objects";
 }

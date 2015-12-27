@@ -30,7 +30,6 @@ import net.lab1318.costume.api.services.object.ObjectQueryService;
 
 @SuppressWarnings("serial")
 class ObjectFacetPicker<KeyT> extends CustomComponent {
-
     @SuppressWarnings("unchecked")
     public ObjectFacetPicker(final ObjectFacets availableFacets, final String caption, final EventBus eventBus,
             final Optional<ObjectFacetFilters> facetFilters, final ObjectFacets.FieldMetadata field,
@@ -193,6 +192,38 @@ class ObjectFacetPicker<KeyT> extends CustomComponent {
         setCompositionRoot(disclosurePanel);
     }
 
+    public boolean equivalent(final ObjectFacetPicker<?> other) {
+        if (!currentlyDisplayedFacetKeys.equals(other.currentlyDisplayedFacetKeys)) {
+            return false;
+        }
+        if (!currentlySelectedFacetKeys.equals(other.currentlySelectedFacetKeys)) {
+            return false;
+        }
+        if (excludeAll != other.excludeAll) {
+            return false;
+        }
+        if (!excludeFacetKeys.equals(other.excludeFacetKeys)) {
+            return false;
+        }
+        if (excludeMissing != other.excludeMissing) {
+            return false;
+        }
+        if (field != other.field) {
+            return false;
+        }
+        if (haveExcludeMissingFilter != other.haveExcludeMissingFilter) {
+            return false;
+        }
+        if (!includeFacetKeys.equals(other.includeFacetKeys)) {
+            return false;
+        }
+        return true;
+    }
+
+    public final ObjectFacets.FieldMetadata getField() {
+        return field;
+    }
+
     public final boolean isEmpty() {
         return getCompositionRoot() == null;
     }
@@ -235,9 +266,9 @@ class ObjectFacetPicker<KeyT> extends CustomComponent {
     private final Set<KeyT> currentlyDisplayedFacetKeys = new LinkedHashSet<>();
     private final Set<KeyT> currentlySelectedFacetKeys = new LinkedHashSet<>();
     private EventBus eventBus;
-    private boolean excludeAll;
+    private boolean excludeAll = false;
     private final Set<KeyT> excludeFacetKeys = new LinkedHashSet<>();
-    private boolean excludeMissing;
+    private boolean excludeMissing = false;
     private ObjectFacets.FieldMetadata field;
     private final Set<KeyT> includeFacetKeys = new LinkedHashSet<>();
     private Optional<ObjectFacetFilters> facetFilters;
