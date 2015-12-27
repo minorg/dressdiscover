@@ -6,6 +6,7 @@ include "costume/api/models/model_metadata.thrift"
 include "costume/api/models/agent/agent_set.thrift"
 include "costume/api/models/collection/collection_id.thrift"
 include "costume/api/models/condition/condition.thrift"
+include "costume/api/models/color/color_set.thrift"
 include "costume/api/models/date/date_set.thrift"
 include "costume/api/models/description/description_set.thrift"
 include "costume/api/models/gender/gender.thrift"
@@ -38,6 +39,8 @@ struct Object {
 	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	18: optional list<string> categories;
+
+	30: optional color_set.ColorSet colors;
 
 	27: optional condition.Condition condition;
 

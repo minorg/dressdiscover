@@ -9,6 +9,7 @@ public class ObjectSummaryBean {
         TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 4, "title", org.thryft.protocol.Type.STRING),
         AGENT_NAME_TEXTS("agentNameTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 6, "agent_name_texts", org.thryft.protocol.Type.LIST),
         CATEGORIES("categories", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 7, "categories", org.thryft.protocol.Type.LIST),
+        COLOR_TEXTS("colorTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 17, "color_texts", org.thryft.protocol.Type.LIST),
         DATE("date", new com.google.common.reflect.TypeToken<String>() {}, false, 12, "date", org.thryft.protocol.Type.STRING),
         DESCRIPTION("description", new com.google.common.reflect.TypeToken<String>() {}, false, 5, "description", org.thryft.protocol.Type.STRING),
         GENDER("gender", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.gender.Gender>() {}, false, 8, "gender", org.thryft.protocol.Type.STRING),
@@ -68,6 +69,7 @@ public class ObjectSummaryBean {
             case "title": return TITLE;
             case "agentNameTexts": return AGENT_NAME_TEXTS;
             case "categories": return CATEGORIES;
+            case "colorTexts": return COLOR_TEXTS;
             case "date": return DATE;
             case "description": return DESCRIPTION;
             case "gender": return GENDER;
@@ -91,6 +93,7 @@ public class ObjectSummaryBean {
             case "title": return TITLE;
             case "agent_name_texts": return AGENT_NAME_TEXTS;
             case "categories": return CATEGORIES;
+            case "color_texts": return COLOR_TEXTS;
             case "date": return DATE;
             case "description": return DESCRIPTION;
             case "gender": return GENDER;
@@ -136,6 +139,7 @@ public class ObjectSummaryBean {
         title = null;
         agentNameTexts = null;
         categories = null;
+        colorTexts = null;
         date = null;
         description = null;
         gender = null;
@@ -155,6 +159,7 @@ public class ObjectSummaryBean {
         this.title = other.getTitle();
         this.agentNameTexts = other.getAgentNameTexts().isPresent() ? new java.util.ArrayList<String>(other.getAgentNameTexts().get()) : null;
         this.categories = other.getCategories().isPresent() ? new java.util.ArrayList<String>(other.getCategories().get()) : null;
+        this.colorTexts = other.getColorTexts().isPresent() ? new java.util.ArrayList<String>(other.getColorTexts().get()) : null;
         this.date = other.getDate().isPresent() ? other.getDate().get() : null;
         this.description = other.getDescription().isPresent() ? other.getDescription().get() : null;
         this.gender = other.getGender().isPresent() ? other.getGender().get() : null;
@@ -183,6 +188,7 @@ public class ObjectSummaryBean {
             getTitle().equals(other.getTitle()) &&
             getAgentNameTexts().equals(other.getAgentNameTexts()) &&
             getCategories().equals(other.getCategories()) &&
+            getColorTexts().equals(other.getColorTexts()) &&
             getDate().equals(other.getDate()) &&
             getDescription().equals(other.getDescription()) &&
             getGender().equals(other.getGender()) &&
@@ -205,6 +211,10 @@ public class ObjectSummaryBean {
 
     public net.lab1318.costume.api.models.collection.CollectionId getCollectionId() {
         return collectionId;
+    }
+
+    public java.util.List<String> getColorTexts() {
+        return colorTexts;
     }
 
     /**
@@ -281,6 +291,9 @@ public class ObjectSummaryBean {
         if (getCategories() != null) {
             hashCode = 31 * hashCode + getCategories().hashCode();
         }
+        if (getColorTexts() != null) {
+            hashCode = 31 * hashCode + getColorTexts().hashCode();
+        }
         if (getDate() != null) {
             hashCode = 31 * hashCode + getDate().hashCode();
         }
@@ -324,6 +337,10 @@ public class ObjectSummaryBean {
 
     public void setCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) {
         this.collectionId = collectionId;
+    }
+
+    public void setColorTexts(final java.util.List<String> colorTexts) {
+        this.colorTexts = colorTexts;
     }
 
     public void setDate(final String date) {
@@ -380,7 +397,7 @@ public class ObjectSummaryBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("date", getDate()).add("description", getDescription()).add("gender", getGender()).add("relation_texts", getRelationTexts()).add("material_texts", getMaterialTexts()).add("subject_term_texts", getSubjectTermTexts()).add("technique_texts", getTechniqueTexts()).add("thumbnail", getThumbnail()).add("url", getUrl()).add("work_type_texts", getWorkTypeTexts()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("color_texts", getColorTexts()).add("date", getDate()).add("description", getDescription()).add("gender", getGender()).add("relation_texts", getRelationTexts()).add("material_texts", getMaterialTexts()).add("subject_term_texts", getSubjectTermTexts()).add("technique_texts", getTechniqueTexts()).add("thumbnail", getThumbnail()).add("url", getUrl()).add("work_type_texts", getWorkTypeTexts()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -397,6 +414,8 @@ public class ObjectSummaryBean {
     private java.util.List<String> agentNameTexts;
 
     private java.util.List<String> categories;
+
+    private java.util.List<String> colorTexts;
 
     /**
      * Dublin Core date

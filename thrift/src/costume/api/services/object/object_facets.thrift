@@ -10,6 +10,7 @@ struct ObjectFacets {
 	map<string, u32.u32> agent_name_texts;
 	map<string, u32.u32> categories;
 	map<collection_id.CollectionId, u32.u32> collections;
+	map<string, u32.u32> color_texts;
 	map<gender.Gender, u32.u32> genders;
 	map<institution_id.InstitutionId, u32.u32> institutions;
 	map<string, u32.u32> material_texts;

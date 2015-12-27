@@ -40,6 +40,11 @@ final class ObjectFacetsLayout extends CustomComponent {
                         objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.CATEGORIES, resultObjectFacets),
                 rowI++);
 
+        __addFacetPicker(
+                availableObjectFacets, new ObjectFacetPicker<String>(availableObjectFacets, "Colors", eventBus,
+                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.COLOR_TEXTS, resultObjectFacets),
+                rowI++);
+
         __addFacetPicker(availableObjectFacets, new ObjectFacetPicker<Gender>(availableObjectFacets, "Genders",
                 eventBus, objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.GENDERS, resultObjectFacets) {
             @Override
@@ -106,5 +111,5 @@ final class ObjectFacetsLayout extends CustomComponent {
     }
 
     private final EventBus eventBus;
-    private final GridLayout rootLayout = new GridLayout(1, 8);
+    private final GridLayout rootLayout = new GridLayout(1, 9);
 }

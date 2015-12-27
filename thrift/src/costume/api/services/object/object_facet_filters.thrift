@@ -19,6 +19,9 @@ struct ObjectFacetFilters {
 	optional set<collection_id.CollectionId> exclude_collections;
 
 	// @validation {"minLength": 1}
+	optional set<string> exclude_color_texts;
+
+	// @validation {"minLength": 1}
 	optional set<gender.Gender> exclude_genders;
 
 	// @validation {"minLength": 1}
@@ -34,6 +37,9 @@ struct ObjectFacetFilters {
 
 	// @validation {"acceptance": true}
 	optional bool exclude_missing_categories;
+
+	// @validation {"acceptance": true}
+	optional bool exclude_missing_color_texts;
 
 	// @validation {"acceptance": true}
 	optional bool exclude_missing_genders;
@@ -67,6 +73,9 @@ struct ObjectFacetFilters {
 
 	// @validation {"minLength": 1}
 	optional set<collection_id.CollectionId> include_collections;
+
+	// @validation {"minLength": 1}
+	optional set<string> include_color_texts;
 
 	// @validation {"minLength": 1}
 	optional set<gender.Gender> include_genders;

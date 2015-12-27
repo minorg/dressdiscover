@@ -3,9 +3,11 @@ namespace * costume.api.models
 
 enum Vocab {
 	AAT,
+	COSTUME_CORE,
 	DC,
 	DCMI_TYPE,
 	KWD,
+	LCSH,
 	OTH,
-	LCSH
+	QUILT_INDEX
 }

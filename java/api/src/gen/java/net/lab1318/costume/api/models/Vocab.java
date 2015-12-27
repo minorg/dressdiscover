@@ -2,11 +2,13 @@ package net.lab1318.costume.api.models;
 
 public enum Vocab {
     AAT(0),
-    DC(1),
-    DCMI_TYPE(2),
-    KWD(3),
-    OTH(4),
-    LCSH(5);
+    COSTUME_CORE(1),
+    DC(2),
+    DCMI_TYPE(3),
+    KWD(4),
+    LCSH(5),
+    OTH(6),
+    QUILT_INDEX(7);
 
     private Vocab(int value) {
         this.value = value;
@@ -15,11 +17,13 @@ public enum Vocab {
     public static Vocab valueOf(final int value) {
         switch (value) {
         case 0: return AAT;
-        case 1: return DC;
-        case 2: return DCMI_TYPE;
-        case 3: return KWD;
-        case 4: return OTH;
+        case 1: return COSTUME_CORE;
+        case 2: return DC;
+        case 3: return DCMI_TYPE;
+        case 4: return KWD;
         case 5: return LCSH;
+        case 6: return OTH;
+        case 7: return QUILT_INDEX;
         default: throw new IllegalArgumentException();
         }
     }
