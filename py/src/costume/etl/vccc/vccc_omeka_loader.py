@@ -15,3 +15,19 @@ class VcccOmekaLoader(OmekaLoader):
     @classmethod
     def _add_institution_arguments(cls, argument_parser):
         pass
+
+    def _load_item_element_itm_csv_file(self, object_builder, text):
+        pass
+
+    def _load_item_element_itm_donor_class_year(self, object_builder, text):
+        pass
+
+    def _load_item_element_itm_interviewee(self, object_builder, text):
+        pass
+
+    def _load_item_element_itm_interviewer(self, object_builder, text):
+        pass
+
+    def _load_item_element_itm_transcription(self, object_builder, text):
+        # Interview transcriptions
+        pass

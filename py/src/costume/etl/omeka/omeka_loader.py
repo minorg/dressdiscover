@@ -604,7 +604,6 @@ class OmekaLoader(_Loader):
         if work_type is not None:
             object_builder.work_types.append(work_type)
 
-
     def _load_item_element_itm_accession_number(self, object_builder, text):
         object_builder.textrefs.append(
             Textref.Builder()
@@ -672,9 +671,6 @@ class OmekaLoader(_Loader):
                 .set_type(DescriptionType.CREDIT)
                 .build()
         )
-
-    def _load_item_element_itm_csv_file(self, object_builder, text):
-        pass
 
     def _load_item_element_itm_date_certainty(self, object_builder, text):
         if text == 'circa':
@@ -751,9 +747,6 @@ class OmekaLoader(_Loader):
                     )
                 .build()
         )
-
-    def _load_item_element_itm_donor_class_year(self, object_builder, text):
-        pass
 
     def _load_item_element_itm_exhibition_notes(self, object_builder, text):
         object_builder.descriptions.append(
