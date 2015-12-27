@@ -22,8 +22,8 @@ final class ObjectFacetsLayout extends CustomComponent {
 
         if (!availableObjectFacets.getAgentNameTexts().isEmpty()) {
             final ObjectFacetPicker<String> agentNameTextFacetPicker = new ObjectFacetPicker<String>(
-                    availableObjectFacets, "Agent names", eventBus, objectQuery.getFacetFilters(), "agent_name_texts",
-                    resultObjectFacets);
+                    availableObjectFacets, "Agent names", eventBus, objectQuery.getFacetFilters(),
+                    ObjectFacets.FieldMetadata.AGENT_NAME_TEXTS, resultObjectFacets);
             if (!agentNameTextFacetPicker.isEmpty()) {
                 rootLayout.addComponent(agentNameTextFacetPicker);
             }
@@ -31,7 +31,8 @@ final class ObjectFacetsLayout extends CustomComponent {
 
         if (!availableObjectFacets.getCategories().isEmpty()) {
             final ObjectFacetPicker<String> categoryFacetPicker = new ObjectFacetPicker<String>(availableObjectFacets,
-                    "Categories", eventBus, objectQuery.getFacetFilters(), "categories", resultObjectFacets);
+                    "Categories", eventBus, objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.CATEGORIES,
+                    resultObjectFacets);
             if (!categoryFacetPicker.isEmpty()) {
                 rootLayout.addComponent(categoryFacetPicker);
             }
@@ -39,7 +40,8 @@ final class ObjectFacetsLayout extends CustomComponent {
 
         if (!availableObjectFacets.getGenders().isEmpty()) {
             final ObjectFacetPicker<Gender> genderFacetPicker = new ObjectFacetPicker<Gender>(availableObjectFacets,
-                    "Genders", eventBus, objectQuery.getFacetFilters(), "genders", resultObjectFacets) {
+                    "Genders", eventBus, objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.GENDERS,
+                    resultObjectFacets) {
                 @Override
                 protected String _getCheckBoxCaption(final Gender facetKey) {
                     return Genders.getCaption(facetKey);
@@ -53,8 +55,8 @@ final class ObjectFacetsLayout extends CustomComponent {
 
         if (!availableObjectFacets.getInstitutions().isEmpty()) {
             final ObjectFacetPicker<InstitutionId> institutionFacetPicker = new ObjectFacetPicker<InstitutionId>(
-                    availableObjectFacets, "Institutions", eventBus, objectQuery.getFacetFilters(), "institutions",
-                    resultObjectFacets) {
+                    availableObjectFacets, "Institutions", eventBus, objectQuery.getFacetFilters(),
+                    ObjectFacets.FieldMetadata.INSTITUTIONS, resultObjectFacets) {
                 @Override
                 protected String _getCheckBoxCaption(final InstitutionId facetKey) {
                     return institutions.get(facetKey).getTitle();
@@ -67,8 +69,8 @@ final class ObjectFacetsLayout extends CustomComponent {
 
         if (!availableObjectFacets.getMaterialTexts().isEmpty()) {
             final ObjectFacetPicker<String> materialTextFacetPicker = new ObjectFacetPicker<String>(
-                    availableObjectFacets, "Materials", eventBus, objectQuery.getFacetFilters(), "material_texts",
-                    resultObjectFacets);
+                    availableObjectFacets, "Materials", eventBus, objectQuery.getFacetFilters(),
+                    ObjectFacets.FieldMetadata.MATERIAL_TEXTS, resultObjectFacets);
             if (!materialTextFacetPicker.isEmpty()) {
                 rootLayout.addComponent(materialTextFacetPicker);
             }
@@ -76,8 +78,8 @@ final class ObjectFacetsLayout extends CustomComponent {
 
         if (!availableObjectFacets.getSubjectTermTexts().isEmpty()) {
             final ObjectFacetPicker<String> subjectTermTextFacetPicker = new ObjectFacetPicker<String>(
-                    availableObjectFacets, "Subjects", eventBus, objectQuery.getFacetFilters(), "subject_term_texts",
-                    resultObjectFacets);
+                    availableObjectFacets, "Subjects", eventBus, objectQuery.getFacetFilters(),
+                    ObjectFacets.FieldMetadata.SUBJECT_TERM_TEXTS, resultObjectFacets);
             if (!subjectTermTextFacetPicker.isEmpty()) {
                 rootLayout.addComponent(subjectTermTextFacetPicker);
             }
@@ -85,8 +87,8 @@ final class ObjectFacetsLayout extends CustomComponent {
 
         if (!availableObjectFacets.getTechniqueTexts().isEmpty()) {
             final ObjectFacetPicker<String> techniqueTextFacetPicker = new ObjectFacetPicker<String>(
-                    availableObjectFacets, "Techniques", eventBus, objectQuery.getFacetFilters(), "technique_texts",
-                    resultObjectFacets);
+                    availableObjectFacets, "Techniques", eventBus, objectQuery.getFacetFilters(),
+                    ObjectFacets.FieldMetadata.TECHNIQUE_TEXTS, resultObjectFacets);
             if (!techniqueTextFacetPicker.isEmpty()) {
                 rootLayout.addComponent(techniqueTextFacetPicker);
             }
@@ -94,8 +96,8 @@ final class ObjectFacetsLayout extends CustomComponent {
 
         if (!availableObjectFacets.getWorkTypeTexts().isEmpty()) {
             final ObjectFacetPicker<String> workTypeTextFacetPicker = new ObjectFacetPicker<String>(
-                    availableObjectFacets, "Work types", eventBus, objectQuery.getFacetFilters(), "work_type_texts",
-                    resultObjectFacets);
+                    availableObjectFacets, "Work types", eventBus, objectQuery.getFacetFilters(),
+                    ObjectFacets.FieldMetadata.WORK_TYPE_TEXTS, resultObjectFacets);
             if (!workTypeTextFacetPicker.isEmpty()) {
                 rootLayout.addComponent(workTypeTextFacetPicker);
             }
