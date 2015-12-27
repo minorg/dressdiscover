@@ -1,4 +1,4 @@
-{'Age': {'adolescent': None,
+COSTUME_CORE_CONTROLLED_VOCABULARIES = {'Age': {'adolescent': None,
          'adult': None,
          'child': None,
          'infant': None,

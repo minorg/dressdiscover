@@ -1,5 +1,6 @@
 class Vocab(object):
     AAT = None
+    COSTUME_CORE = None
     DC = None
     DCMI_TYPE = None
     KWD = None
@@ -25,28 +26,31 @@ class Vocab(object):
     def value_of(cls, name):
         if name == 'AAT' or name == '0':
             return getattr(Vocab, 'AAT')
-        elif name == 'DC' or name == '1':
+        elif name == 'COSTUME_CORE' or name == '1':
+            return getattr(Vocab, 'COSTUME_CORE')
+        elif name == 'DC' or name == '2':
             return getattr(Vocab, 'DC')
-        elif name == 'DCMI_TYPE' or name == '2':
+        elif name == 'DCMI_TYPE' or name == '3':
             return getattr(Vocab, 'DCMI_TYPE')
-        elif name == 'KWD' or name == '3':
+        elif name == 'KWD' or name == '4':
             return getattr(Vocab, 'KWD')
-        elif name == 'LCSH' or name == '4':
+        elif name == 'LCSH' or name == '5':
             return getattr(Vocab, 'LCSH')
-        elif name == 'OTH' or name == '5':
+        elif name == 'OTH' or name == '6':
             return getattr(Vocab, 'OTH')
-        elif name == 'QUILT_INDEX' or name == '6':
+        elif name == 'QUILT_INDEX' or name == '7':
             return getattr(Vocab, 'QUILT_INDEX')
         raise ValueError(name)
 
     @classmethod
     def values(cls):
-        return (Vocab.AAT, Vocab.DC, Vocab.DCMI_TYPE, Vocab.KWD, Vocab.LCSH, Vocab.OTH, Vocab.QUILT_INDEX,)
+        return (Vocab.AAT, Vocab.COSTUME_CORE, Vocab.DC, Vocab.DCMI_TYPE, Vocab.KWD, Vocab.LCSH, Vocab.OTH, Vocab.QUILT_INDEX,)
 
 Vocab.AAT = Vocab('AAT', 0)
-Vocab.DC = Vocab('DC', 1)
-Vocab.DCMI_TYPE = Vocab('DCMI_TYPE', 2)
-Vocab.KWD = Vocab('KWD', 3)
-Vocab.LCSH = Vocab('LCSH', 4)
-Vocab.OTH = Vocab('OTH', 5)
-Vocab.QUILT_INDEX = Vocab('QUILT_INDEX', 6)
+Vocab.COSTUME_CORE = Vocab('COSTUME_CORE', 1)
+Vocab.DC = Vocab('DC', 2)
+Vocab.DCMI_TYPE = Vocab('DCMI_TYPE', 3)
+Vocab.KWD = Vocab('KWD', 4)
+Vocab.LCSH = Vocab('LCSH', 5)
+Vocab.OTH = Vocab('OTH', 6)
+Vocab.QUILT_INDEX = Vocab('QUILT_INDEX', 7)

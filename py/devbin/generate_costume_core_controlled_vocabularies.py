@@ -35,4 +35,4 @@ with open(CSV_FILE_PATH, 'rb') as f:
 
 
 with open(OUT_FILE_PATH, 'w+b') as f:
-    f.write(pformat(out))
+    f.write('COSTUME_CORE_CONTROLLED_VOCABULARIES = ' + pformat(out))

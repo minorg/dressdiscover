@@ -63,6 +63,7 @@ from costume.api.models.vocab_ref import VocabRef
 from costume.api.models.work_type.work_type import WorkType
 from costume.api.models.work_type.work_type_set import WorkTypeSet
 from costume.etl._loader import _Loader
+from costume.etl.costume_core_controlled_vocabularies import COSTUME_CORE_CONTROLLED_VOCABULARIES
 
 
 try:
@@ -673,18 +674,22 @@ class OmekaLoader(_Loader):
 
     def __load_item_element_itm_color(self, object_builder, text, type_):
         text = text.lower()
-        object_builder.colors.append(
-            Color.Builder()
-                .set_text(text)
+        builder = \
+            Color.Builder()\
+                .set_text(text)\
                 .set_type(type_)
-                .set_vocab_ref(
-                    VocabRef.Builder()
-                        .set_refid(text)
-                        .set_vocab(Vocab.QUILT_INDEX)
-                        .build()
-                )
-                .build()
-        )
+
+        if text in COSTUME_CORE_CONTROLLED_VOCABULARIES['Main Color']:
+            builder.set_vocab_ref(
+                VocabRef.Builder()
+                    .set_refid(text)
+                    .set_vocab(Vocab.QUILT_INDEX)
+                    .build()
+            )
+        else:
+            self._logger.warn("color '%s' is not in Quilt Index list", text)
+
+        object_builder.colors.append(builder.build())
 
     def _load_item_element_itm_condition(self, object_builder, text):
         object_builder.descriptions.append(
