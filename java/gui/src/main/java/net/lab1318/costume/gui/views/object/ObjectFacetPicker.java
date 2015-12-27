@@ -50,16 +50,20 @@ class ObjectFacetPicker<KeyT> extends CustomComponent {
         // for (final KeyT resultFacetKey : resultFacetKeys) {
         // checkState(availableFacetKeys.contains(resultFacetKey));
         // }
-        boolean excludeAll;
-        Optional<ImmutableSet<KeyT>> excludeFacetKeys;
-        Optional<ImmutableSet<KeyT>> includeFacetKeys;
         if (facetFilters.isPresent()) {
             excludeAll = facetFilters.get().getExcludeAll().or(Boolean.FALSE);
-            excludeFacetKeys = ((Optional<ImmutableSet<KeyT>>) facetFilters.get().get("exclude_" + facetThriftName));
-            includeFacetKeys = ((Optional<ImmutableSet<KeyT>>) facetFilters.get().get("include_" + facetThriftName));
+            final Optional<ImmutableSet<KeyT>> currentExcludeFacetKeys = ((Optional<ImmutableSet<KeyT>>) facetFilters
+                    .get().get("exclude_" + facetThriftName));
+            if (currentExcludeFacetKeys.isPresent()) {
+                excludeFacetKeys.addAll(currentExcludeFacetKeys.get());
+            }
+            final Optional<ImmutableSet<KeyT>> currentIncludeFacetKeys = ((Optional<ImmutableSet<KeyT>>) facetFilters
+                    .get().get("include_" + facetThriftName));
+            if (currentIncludeFacetKeys.isPresent()) {
+                includeFacetKeys.addAll(currentIncludeFacetKeys.get());
+            }
         } else {
             excludeAll = false;
-            excludeFacetKeys = includeFacetKeys = Optional.absent();
         }
 
         final VerticalLayout checkBoxesLayout = new VerticalLayout();
@@ -79,16 +83,44 @@ class ObjectFacetPicker<KeyT> extends CustomComponent {
         allCheckBox.addStyleName("all");
         checkBoxesLayout.addComponent(allCheckBox);
 
+        try {
+            ObjectFacetFilters.FieldMetadata.valueOfThriftName("exclude_missing_" + facetThriftName);
+            haveExcludeMissingFilter = true;
+        } catch (final IllegalArgumentException e) {
+            haveExcludeMissingFilter = false;
+        }
+        if (haveExcludeMissingFilter) {
+            final CheckBox unknownCheckBox = new CheckBox("Unknown");
+            unknownCheckBox.addStyleName("unknown");
+            checkBoxesLayout.addComponent(unknownCheckBox);
+            if (facetFilters.isPresent()) {
+                final Optional<Boolean> excludeMissingFilter = (Optional<Boolean>) facetFilters.get()
+                        .get("exclude_missing_" + facetThriftName);
+                excludeMissing = excludeMissingFilter.or(Boolean.FALSE);
+            } else {
+                excludeMissing = false;
+            }
+            unknownCheckBox.setValue(!excludeMissing);
+            unknownCheckBox.addValueChangeListener(new ValueChangeListener() {
+                @Override
+                public void valueChange(final ValueChangeEvent event) {
+                    excludeMissing = !unknownCheckBox.getValue();
+                    __refresh();
+                }
+            });
+        } else {
+            excludeMissing = false;
+        }
+
         for (final KeyT availableFacetKey : availableFacetKeyList) {
             final CheckBox checkBox;
             if (resultFacetKeys.contains(availableFacetKey)) {
-                checkState((includeFacetKeys.isPresent() && includeFacetKeys.get().contains(availableFacetKey))
-                        || !excludeFacetKeys.isPresent() || !excludeFacetKeys.get().contains(availableFacetKey));
+                checkState((includeFacetKeys.contains(availableFacetKey)) || excludeFacetKeys.isEmpty()
+                        || !excludeFacetKeys.contains(availableFacetKey));
                 checkBox = new CheckBox(_getCheckBoxCaption(availableFacetKey));
                 checkBox.setValue(true);
                 currentlySelectedFacetKeys.add(availableFacetKey);
-            } else if (excludeAll
-                    || (excludeFacetKeys.isPresent() && excludeFacetKeys.get().contains(availableFacetKey))) {
+            } else if (excludeAll || (!excludeFacetKeys.isEmpty() && excludeFacetKeys.contains(availableFacetKey))) {
                 checkBox = new CheckBox(_getCheckBoxCaption(availableFacetKey));
             } else {
                 continue;
@@ -104,25 +136,26 @@ class ObjectFacetPicker<KeyT> extends CustomComponent {
                         checkState(currentlySelectedFacetKeys.remove(availableFacetKey));
                     }
 
+                    excludeFacetKeys.clear();
+                    includeFacetKeys.clear();
+
                     if (currentlySelectedFacetKeys.isEmpty()) {
-                        __excludeAll();
+                        excludeAll = true;
                     } else if (currentlySelectedFacetKeys.size() == currentlyDisplayedFacetKeys.size()) {
-                        __includeAll();
+                        excludeAll = false;
                     } else if (currentlySelectedFacetKeys.size() < currentlyDisplayedFacetKeys.size() / 2) {
                         // Include only when number of selected < 50%
-                        __includeSome(ImmutableSet.copyOf(currentlySelectedFacetKeys));
+                        includeFacetKeys.addAll(currentlySelectedFacetKeys);
                     } else {
                         // Exclude only when number of selected > 50%
-                        final ImmutableSet.Builder<KeyT> excludeFacetKeysBuilder = ImmutableSet.builder();
                         for (final KeyT facetKey : currentlyDisplayedFacetKeys) {
                             if (!currentlySelectedFacetKeys.contains(facetKey)) {
-                                excludeFacetKeysBuilder.add(facetKey);
+                                excludeFacetKeys.add(facetKey);
                             }
                         }
-                        final ImmutableSet<KeyT> tempExcludeFacetKeys = excludeFacetKeysBuilder.build();
-                        checkState(!tempExcludeFacetKeys.isEmpty());
-                        __excludeSome(tempExcludeFacetKeys);
+                        checkState(!excludeFacetKeys.isEmpty());
                     }
+                    __refresh();
                 }
             });
             checkBoxesLayout.addComponent(checkBox);
@@ -132,19 +165,18 @@ class ObjectFacetPicker<KeyT> extends CustomComponent {
             return;
         }
 
-        if (!excludeAll && !excludeFacetKeys.isPresent() && !includeFacetKeys.isPresent()) {
-            allCheckBox.setValue(true);
-        }
+        allCheckBox
+                .setValue(!excludeAll && !excludeMissing && excludeFacetKeys.isEmpty() && includeFacetKeys.isEmpty());
         // Add ValueChangeListener after setting the initial value
         allCheckBox.addValueChangeListener(new ValueChangeListener() {
             @Override
             public void valueChange(final ValueChangeEvent event) {
                 currentlySelectedFacetKeys.clear();
-                if (allCheckBox.getValue()) {
-                    __includeAll();
-                } else {
-                    __excludeAll();
-                }
+                excludeFacetKeys.clear();
+                excludeMissing = false;
+                includeFacetKeys.clear();
+                excludeAll = !allCheckBox.getValue();
+                __refresh();
             }
         });
 
@@ -171,43 +203,43 @@ class ObjectFacetPicker<KeyT> extends CustomComponent {
         return facetKey.toString();
     }
 
-    private void __excludeAll() {
-        eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
-                .setQuery(ObjectQuery.builder()
-                        .setFacetFilters(ObjectFacetFilters.builder(facetFilters).setExcludeAll(true)
-                                .unset("exclude_" + facetThriftName).unset("include_" + facetThriftName).build())
-                .build()).build());
-    }
+    private void __refresh() {
+        final ObjectFacetFilters.Builder filters = ObjectFacetFilters.builder(facetFilters).unsetExcludeAll();
 
-    private void __excludeSome(final ImmutableSet<KeyT> excludeFacetKeys) {
-        eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
-                .setQuery(ObjectQuery.builder()
-                        .setFacetFilters(ObjectFacetFilters.builder(facetFilters).unsetExcludeAll()
-                                .set("exclude_" + facetThriftName, excludeFacetKeys).unset("include_" + facetThriftName)
-                                .build())
-                        .build())
-                .build());
-    }
+        if (excludeAll) {
+            filters.setExcludeAll(true);
+        } else {
+            filters.unsetExcludeAll();
+        }
 
-    private void __includeAll() {
-        eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
-                .setQuery(ObjectQuery.builder()
-                        .setFacetFilters(ObjectFacetFilters.builder(facetFilters).unsetExcludeAll()
-                                .unset("exclude_" + facetThriftName).unset("include_" + facetThriftName).build())
-                .build()).build());
-    }
+        if (!excludeFacetKeys.isEmpty() && !excludeAll) {
+            filters.set("exclude_" + facetThriftName, ImmutableSet.copyOf(excludeFacetKeys));
+        } else {
+            filters.unset("exclude_" + facetThriftName);
+        }
 
-    private void __includeSome(final ImmutableSet<KeyT> includeFacetKeys) {
+        if (excludeMissing && !excludeAll) {
+            filters.set("exclude_missing_" + facetThriftName, true);
+        } else if (haveExcludeMissingFilter) {
+            filters.unset("exclude_missing_" + facetThriftName);
+        }
+
+        if (!includeFacetKeys.isEmpty() && !excludeAll) {
+            filters.set("include_" + facetThriftName, ImmutableSet.copyOf(includeFacetKeys));
+        } else {
+            filters.unset("include_" + facetThriftName);
+        }
+
         eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
-                .setQuery(ObjectQuery.builder()
-                        .setFacetFilters(ObjectFacetFilters.builder(facetFilters).unsetExcludeAll()
-                                .unset("exclude_" + facetThriftName).set("include_" + facetThriftName, includeFacetKeys)
-                                .build())
-                        .build())
-                .build());
+                .setQuery(ObjectQuery.builder().setFacetFilters(filters.build()).build()).build());
     }
 
     private EventBus eventBus;
+    private boolean excludeAll;
+    private final Set<KeyT> excludeFacetKeys = new LinkedHashSet<>();
+    private boolean excludeMissing;
+    private final Set<KeyT> includeFacetKeys = new LinkedHashSet<>();
     private Optional<ObjectFacetFilters> facetFilters;
     private String facetThriftName;
+    private boolean haveExcludeMissingFilter;
 }
