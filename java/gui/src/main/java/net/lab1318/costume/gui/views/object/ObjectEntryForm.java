@@ -62,6 +62,10 @@ final class ObjectEntryForm extends CustomComponent {
                 formLayout.addComponent(new CategoriesTable(objectEntry.getModel().getCategories().get()));
             }
 
+            if (objectEntry.getModel().getColors().isPresent()) {
+                formLayout.addComponent(new ColorSetTable(objectEntry.getModel().getColors().get()));
+            }
+
             if (objectEntry.getModel().getCondition().isPresent()) {
                 String condition = objectEntry.getModel().getCondition().get().name();
                 condition = condition.replace('_', ' ');
