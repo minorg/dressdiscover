@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.views.object;
+package net.lab1318.costume.gui.views.objects;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -32,6 +32,7 @@ import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.gui.models.image.ImageVersionBean;
+import net.lab1318.costume.gui.views.Image;
 
 @SuppressWarnings("serial")
 final class ObjectSummaryEntriesTable extends CustomComponent {

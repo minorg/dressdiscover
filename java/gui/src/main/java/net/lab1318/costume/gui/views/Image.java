@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.views.object;
+package net.lab1318.costume.gui.views;
 
 import org.thryft.native_.Url;
 
@@ -10,7 +10,7 @@ import net.lab1318.costume.api.models.image.ImageVersion;
 import net.lab1318.costume.gui.models.image.ImageVersionBean;
 
 @SuppressWarnings("serial")
-final class Image extends com.vaadin.ui.Image {
+public final class Image extends com.vaadin.ui.Image {
     public Image(final String caption, final ImageVersion model) {
         this(caption, model.getHeightPx(), model.getUrl(), model.getWidthPx());
     }

@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.presenters.object;
+package net.lab1318.costume.gui.presenters.object_by_id;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -26,7 +26,7 @@ import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
 import net.lab1318.costume.api.services.object.NoSuchObjectException;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.gui.presenters.Presenter;
-import net.lab1318.costume.gui.views.object.ObjectByIdView;
+import net.lab1318.costume.gui.views.object_by_id.ObjectByIdView;
 
 @SessionScoped
 public class ObjectByIdPresenter extends Presenter<ObjectByIdView> {

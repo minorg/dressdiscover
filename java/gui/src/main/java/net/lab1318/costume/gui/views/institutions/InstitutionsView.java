@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.views.institution;
+package net.lab1318.costume.gui.views.institutions;
 
 import java.util.Collection;
 import java.util.Map;

@@ -20,12 +20,12 @@ import com.vaadin.ui.UI;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.gui.controllers.GuiServlet;
 import net.lab1318.costume.gui.converters.CustomConverterFactory;
-import net.lab1318.costume.gui.presenters.institution.InstitutionsPresenter;
-import net.lab1318.costume.gui.presenters.object.ObjectByIdPresenter;
-import net.lab1318.costume.gui.presenters.object.ObjectsPresenter;
-import net.lab1318.costume.gui.views.institution.InstitutionsView;
-import net.lab1318.costume.gui.views.object.ObjectByIdView;
-import net.lab1318.costume.gui.views.object.ObjectsView;
+import net.lab1318.costume.gui.presenters.institutions.InstitutionsPresenter;
+import net.lab1318.costume.gui.presenters.object_by_id.ObjectByIdPresenter;
+import net.lab1318.costume.gui.presenters.objects.ObjectsPresenter;
+import net.lab1318.costume.gui.views.institutions.InstitutionsView;
+import net.lab1318.costume.gui.views.object_by_id.ObjectByIdView;
+import net.lab1318.costume.gui.views.objects.ObjectsView;
 
 @SuppressWarnings("serial")
 @Theme("costume")

@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.presenters.object;
+package net.lab1318.costume.gui.presenters.objects;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
@@ -39,8 +39,8 @@ import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetOb
 import net.lab1318.costume.gui.models.object.ObjectSummaryEntryBeanQueryDefinition;
 import net.lab1318.costume.gui.models.object.ObjectSummaryEntryBeanQueryFactory;
 import net.lab1318.costume.gui.presenters.Presenter;
-import net.lab1318.costume.gui.views.object.ObjectByIdView;
-import net.lab1318.costume.gui.views.object.ObjectsView;
+import net.lab1318.costume.gui.views.object_by_id.ObjectByIdView;
+import net.lab1318.costume.gui.views.objects.ObjectsView;
 
 @SessionScoped
 public class ObjectsPresenter extends Presenter<ObjectsView> {

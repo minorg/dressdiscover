@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.views.object;
+package net.lab1318.costume.gui.views.object_by_id;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -17,6 +17,7 @@ import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.title.Title;
 import net.lab1318.costume.gui.models.gender.Genders;
+import net.lab1318.costume.gui.views.Image;
 
 @SuppressWarnings("serial")
 final class ObjectEntryForm extends CustomComponent {

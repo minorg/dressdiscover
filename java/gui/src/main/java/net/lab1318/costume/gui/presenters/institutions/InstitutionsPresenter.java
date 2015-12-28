@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.presenters.institution;
+package net.lab1318.costume.gui.presenters.institutions;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -17,7 +17,7 @@ import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.gui.presenters.Presenter;
-import net.lab1318.costume.gui.views.institution.InstitutionsView;
+import net.lab1318.costume.gui.views.institutions.InstitutionsView;
 
 @SessionScoped
 public class InstitutionsPresenter extends Presenter<InstitutionsView> {
