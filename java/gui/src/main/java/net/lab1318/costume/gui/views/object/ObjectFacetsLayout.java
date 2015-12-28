@@ -8,14 +8,18 @@ import javax.annotation.Nullable;
 import org.thryft.waf.gui.EventBus;
 
 import com.google.common.collect.ImmutableMap;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.GridLayout;
+import com.vaadin.ui.NativeButton;
 
 import net.lab1318.costume.api.models.gender.Gender;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQuery;
+import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.gui.models.gender.Genders;
 
 @SuppressWarnings("serial")
@@ -30,32 +34,47 @@ final class ObjectFacetsLayout extends CustomComponent {
             final ObjectFacets resultObjectFacets) {
         int rowI = 0;
 
+        final Button resetButton = new NativeButton("Reset filters", new Button.ClickListener() {
+            @Override
+            public void buttonClick(final ClickEvent event) {
+                eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
+                        .setQuery(ObjectQuery.builder(objectQuery).unsetFacetFilters().build()).build());
+            }
+        });
+        if (rootLayout.getComponent(0, rowI) != null) {
+            rootLayout.removeComponent(0, rowI);
+        }
+        rootLayout.addComponent(resetButton, 0, rowI++);
+
         __addFacetPicker(availableObjectFacets,
                 new ObjectFacetPicker<String>(availableObjectFacets, "Agent names", eventBus,
-                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.AGENT_NAME_TEXTS, resultObjectFacets),
+                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.AGENT_NAME_TEXTS, objectQuery,
+                        resultObjectFacets),
                 rowI++);
 
         __addFacetPicker(availableObjectFacets,
                 new ObjectFacetPicker<String>(availableObjectFacets, "Categories", eventBus,
-                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.CATEGORIES, resultObjectFacets),
+                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.CATEGORIES, objectQuery,
+                        resultObjectFacets),
                 rowI++);
 
-        __addFacetPicker(
-                availableObjectFacets, new ObjectFacetPicker<String>(availableObjectFacets, "Colors", eventBus,
-                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.COLOR_TEXTS, resultObjectFacets),
+        __addFacetPicker(availableObjectFacets, new ObjectFacetPicker<String>(availableObjectFacets, "Colors", eventBus,
+                objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.COLOR_TEXTS, objectQuery, resultObjectFacets),
                 rowI++);
 
-        __addFacetPicker(availableObjectFacets, new ObjectFacetPicker<Gender>(availableObjectFacets, "Genders",
-                eventBus, objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.GENDERS, resultObjectFacets) {
-            @Override
-            protected String _getCheckBoxCaption(final Gender facetKey) {
-                return Genders.getCaption(facetKey);
-            }
-        }, rowI++);
+        __addFacetPicker(availableObjectFacets,
+                new ObjectFacetPicker<Gender>(availableObjectFacets, "Genders", eventBus, objectQuery.getFacetFilters(),
+                        ObjectFacets.FieldMetadata.GENDERS, objectQuery, resultObjectFacets) {
+                    @Override
+                    protected String _getCheckBoxCaption(final Gender facetKey) {
+                        return Genders.getCaption(facetKey);
+                    }
+                }, rowI++);
 
         __addFacetPicker(availableObjectFacets,
                 new ObjectFacetPicker<InstitutionId>(availableObjectFacets, "Institutions", eventBus,
-                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.INSTITUTIONS, resultObjectFacets) {
+                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.INSTITUTIONS, objectQuery,
+                        resultObjectFacets) {
                     @Override
                     protected String _getCheckBoxCaption(final InstitutionId facetKey) {
                         return institutions.get(facetKey).getTitle();
@@ -64,23 +83,26 @@ final class ObjectFacetsLayout extends CustomComponent {
 
         __addFacetPicker(availableObjectFacets,
                 new ObjectFacetPicker<String>(availableObjectFacets, "Materials", eventBus,
-                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.MATERIAL_TEXTS, resultObjectFacets),
+                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.MATERIAL_TEXTS, objectQuery,
+                        resultObjectFacets),
                 rowI++);
 
         __addFacetPicker(availableObjectFacets,
                 new ObjectFacetPicker<String>(availableObjectFacets, "Subjects", eventBus,
-                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.SUBJECT_TERM_TEXTS,
+                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.SUBJECT_TERM_TEXTS, objectQuery,
                         resultObjectFacets),
                 rowI++);
 
         __addFacetPicker(availableObjectFacets,
                 new ObjectFacetPicker<String>(availableObjectFacets, "Techniques", eventBus,
-                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.TECHNIQUE_TEXTS, resultObjectFacets),
+                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.TECHNIQUE_TEXTS, objectQuery,
+                        resultObjectFacets),
                 rowI++);
 
         __addFacetPicker(availableObjectFacets,
                 new ObjectFacetPicker<String>(availableObjectFacets, "Work types", eventBus,
-                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.WORK_TYPE_TEXTS, resultObjectFacets),
+                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.WORK_TYPE_TEXTS, objectQuery,
+                        resultObjectFacets),
                 rowI++);
 
         rootLayout.setSizeFull();
@@ -111,5 +133,5 @@ final class ObjectFacetsLayout extends CustomComponent {
     }
 
     private final EventBus eventBus;
-    private final GridLayout rootLayout = new GridLayout(1, 9);
+    private final GridLayout rootLayout = new GridLayout(1, 10);
 }

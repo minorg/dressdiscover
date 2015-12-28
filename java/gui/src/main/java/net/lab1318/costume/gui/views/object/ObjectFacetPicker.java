@@ -33,10 +33,11 @@ class ObjectFacetPicker<KeyT> extends CustomComponent {
     @SuppressWarnings("unchecked")
     public ObjectFacetPicker(final ObjectFacets availableFacets, final String caption, final EventBus eventBus,
             final Optional<ObjectFacetFilters> facetFilters, final ObjectFacets.FieldMetadata field,
-            final ObjectFacets resultFacets) {
+            final ObjectQuery objectQuery, final ObjectFacets resultFacets) {
         this.eventBus = checkNotNull(eventBus);
         this.facetFilters = checkNotNull(facetFilters);
         this.field = checkNotNull(field);
+        this.objectQuery = checkNotNull(objectQuery);
 
         final ImmutableSet<KeyT> availableFacetKeys = ((ImmutableMap<KeyT, UnsignedInteger>) availableFacets
                 .get(field.getThriftName())).keySet();
@@ -260,7 +261,7 @@ class ObjectFacetPicker<KeyT> extends CustomComponent {
         }
 
         eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
-                .setQuery(ObjectQuery.builder().setFacetFilters(filters.build()).build()).build());
+                .setQuery(ObjectQuery.builder(objectQuery).setFacetFilters(filters.build()).build()).build());
     }
 
     private final Set<KeyT> currentlyDisplayedFacetKeys = new LinkedHashSet<>();
@@ -273,4 +274,5 @@ class ObjectFacetPicker<KeyT> extends CustomComponent {
     private final Set<KeyT> includeFacetKeys = new LinkedHashSet<>();
     private Optional<ObjectFacetFilters> facetFilters;
     private boolean haveExcludeMissingFilter;
+    private ObjectQuery objectQuery;
 }
