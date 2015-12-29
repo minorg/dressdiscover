@@ -34,6 +34,9 @@ from costume.api.models.institution.institution import Institution
 from costume.api.models.material.material import Material
 from costume.api.models.material.material_set import MaterialSet
 from costume.api.models.material.material_type import MaterialType
+from costume.api.models.measurements.measurements import Measurements
+from costume.api.models.measurements.measurements_set import MeasurementsSet
+from costume.api.models.measurements.measurements_type import MeasurementsType
 from costume.api.models.object.object import Object
 from costume.api.models.object.object_entry import ObjectEntry
 from costume.api.models.relation.relation import Relation
@@ -122,6 +125,7 @@ class OmekaLoader(_Loader):
             self.images = []
             self.inscriptions = []
             self.materials = []
+            self.measurements = []
             self.relations = []
             self.subjects = []
             self.techniques = []
@@ -202,6 +206,8 @@ class OmekaLoader(_Loader):
                 self.__object_builder.set_inscriptions(InscriptionSet.Builder().set_elements(tuple(self.inscriptions)).build())
             if len(self.materials) > 0:
                 self.__object_builder.set_materials(MaterialSet.Builder().set_elements(tuple(self.materials)).build())
+            if len(self.measurements) > 0:
+                self.__object_builder.set_measurements(MeasurementsSet.Builder().set_elements(tuple(self.measurements)).build())
             if len(self.relations) > 0:
                 relation_texts = {}
                 unique_relations = []
@@ -513,6 +519,14 @@ class OmekaLoader(_Loader):
                 .build()
         )
 
+    def _load_item_element_dc_extent(self, object_builder, text):
+        object_builder.measurements.append(
+            Measurements.Builder()
+                .set_text(text)
+                .set_type(MeasurementsType.OTHER)
+                .build()
+        )
+
     def _load_item_element_dc_format(self, object_builder, text):
         pass
 
@@ -760,6 +774,33 @@ class OmekaLoader(_Loader):
                 .set_type(DescriptionType.SUMMARY)
                 .build()
         )
+
+    def __load_item_element_itm_dimensions(self, object_builder, text, type_, extent=None):
+        builder = Measurements.Builder().set_text(text).set_type(type_)
+        if extent is not None:
+            builder.set_extent(extent)
+        object_builder.measurements.append(builder.build())
+
+    def _load_item_element_itm_dimensions_all(self, **kwds):
+        self.__load_item_element_itm_dimensions(extent='all', type_=MeasurementsType.OTHER, **kwds)
+
+    def _load_item_element_itm_dimensions_cb_length(self, **kwds):
+        self.__load_item_element_itm_dimensions(extent='center back', type_=MeasurementsType.LENGTH, **kwds)
+
+    def _load_item_element_itm_dimensions_cf_length(self, **kwds):
+        self.__load_item_element_itm_dimensions(extent='center front', type_=MeasurementsType.LENGTH, **kwds)
+
+    def _load_item_element_itm_dimensions_chest(self, **kwds):
+        self.__load_item_element_itm_dimensions(extent='chest', type_=MeasurementsType.WIDTH, **kwds)
+
+    def _load_item_element_itm_dimensions_hips(self, **kwds):
+        self.__load_item_element_itm_dimensions(extent='hips', type_=MeasurementsType.WIDTH, **kwds)
+
+    def _load_item_element_itm_dimensions_other(self, **kwds):
+        self.__load_item_element_itm_dimensions(type_=MeasurementsType.OTHER, **kwds)
+
+    def _load_item_element_itm_dimensions_waist(self, **kwds):
+        self.__load_item_element_itm_dimensions(extent='waist', type_=MeasurementsType.WIDTH, **kwds)
 
     def _load_item_element_itm_donation_date(self, object_builder, text):
         earliest_date = self.__parse_date(text)
