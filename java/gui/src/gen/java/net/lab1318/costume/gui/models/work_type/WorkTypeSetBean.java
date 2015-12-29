@@ -125,8 +125,8 @@ public class WorkTypeSetBean {
         final WorkTypeSetBean other = (WorkTypeSetBean)otherObject;
         return
             getElements().equals(other.getElements()) &&
-            getDisplay().equals(other.getDisplay()) &&
-            getNotes().equals(other.getNotes());
+            (getDisplay() != null ? getDisplay().equals(other.getDisplay()) : other.getDisplay() == null) &&
+            (getNotes() != null ? getNotes().equals(other.getNotes()) : other.getNotes() == null);
     }
 
     public String getDisplay() {

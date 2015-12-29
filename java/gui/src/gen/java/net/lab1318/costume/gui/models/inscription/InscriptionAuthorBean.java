@@ -108,7 +108,7 @@ public class InscriptionAuthorBean {
         final InscriptionAuthorBean other = (InscriptionAuthorBean)otherObject;
         return
             getText().equals(other.getText()) &&
-            getVocabRef().equals(other.getVocabRef());
+            (getVocabRef() != null ? getVocabRef().equals(other.getVocabRef()) : other.getVocabRef() == null);
     }
 
     public String getText() {

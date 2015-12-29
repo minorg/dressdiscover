@@ -111,7 +111,7 @@ public class WorkTypeBean {
         final WorkTypeBean other = (WorkTypeBean)otherObject;
         return
             getText().equals(other.getText()) &&
-            getVocabRef().equals(other.getVocabRef());
+            (getVocabRef() != null ? getVocabRef().equals(other.getVocabRef()) : other.getVocabRef() == null);
     }
 
     public String getText() {

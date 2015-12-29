@@ -121,9 +121,9 @@ public class DateBoundBean {
         final DateBoundBean other = (DateBoundBean)otherObject;
         return
             getText().equals(other.getText()) &&
-            getCirca().equals(other.getCirca()) &&
-            getParsedDateTime().equals(other.getParsedDateTime()) &&
-            getParsedDateTimeGranularity().equals(other.getParsedDateTimeGranularity());
+            (getCirca() != null ? getCirca().equals(other.getCirca()) : other.getCirca() == null) &&
+            (getParsedDateTime() != null ? getParsedDateTime().equals(other.getParsedDateTime()) : other.getParsedDateTime() == null) &&
+            (getParsedDateTimeGranularity() != null ? getParsedDateTimeGranularity().equals(other.getParsedDateTimeGranularity()) : other.getParsedDateTimeGranularity() == null);
     }
 
     public Boolean getCirca() {

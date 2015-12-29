@@ -116,8 +116,8 @@ public class AgentDatesBean {
         final AgentDatesBean other = (AgentDatesBean)otherObject;
         return
             getType().equals(other.getType()) &&
-            getEarliestDate().equals(other.getEarliestDate()) &&
-            getLatestDate().equals(other.getLatestDate());
+            (getEarliestDate() != null ? getEarliestDate().equals(other.getEarliestDate()) : other.getEarliestDate() == null) &&
+            (getLatestDate() != null ? getLatestDate().equals(other.getLatestDate()) : other.getLatestDate() == null);
     }
 
     public java.util.Date getEarliestDate() {

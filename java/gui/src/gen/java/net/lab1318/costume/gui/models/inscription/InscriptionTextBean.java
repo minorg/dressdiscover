@@ -114,7 +114,7 @@ public class InscriptionTextBean {
         return
             getType().equals(other.getType()) &&
             getText().equals(other.getText()) &&
-            getLang().equals(other.getLang());
+            (getLang() != null ? getLang().equals(other.getLang()) : other.getLang() == null);
     }
 
     public String getLang() {

@@ -117,7 +117,7 @@ public class SubjectTermBean {
         return
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
-            getVocabRef().equals(other.getVocabRef());
+            (getVocabRef() != null ? getVocabRef().equals(other.getVocabRef()) : other.getVocabRef() == null);
     }
 
     public String getText() {

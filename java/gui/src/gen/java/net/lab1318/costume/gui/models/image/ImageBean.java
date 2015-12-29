@@ -117,10 +117,10 @@ public class ImageBean {
 
         final ImageBean other = (ImageBean)otherObject;
         return
-            getFullSize().equals(other.getFullSize()) &&
-            getOriginal().equals(other.getOriginal()) &&
-            getSquareThumbnail().equals(other.getSquareThumbnail()) &&
-            getThumbnail().equals(other.getThumbnail());
+            (getFullSize() != null ? getFullSize().equals(other.getFullSize()) : other.getFullSize() == null) &&
+            (getOriginal() != null ? getOriginal().equals(other.getOriginal()) : other.getOriginal() == null) &&
+            (getSquareThumbnail() != null ? getSquareThumbnail().equals(other.getSquareThumbnail()) : other.getSquareThumbnail() == null) &&
+            (getThumbnail() != null ? getThumbnail().equals(other.getThumbnail()) : other.getThumbnail() == null);
     }
 
     public net.lab1318.costume.gui.models.image.ImageVersionBean getFullSize() {

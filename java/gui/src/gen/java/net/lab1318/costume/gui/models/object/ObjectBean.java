@@ -225,25 +225,25 @@ public class ObjectBean {
             getInstitutionId().equals(other.getInstitutionId()) &&
             getModelMetadata().equals(other.getModelMetadata()) &&
             getTitles().equals(other.getTitles()) &&
-            getAgents().equals(other.getAgents()) &&
-            getCategories().equals(other.getCategories()) &&
-            getColors().equals(other.getColors()) &&
-            getCondition().equals(other.getCondition()) &&
-            getDates().equals(other.getDates()) &&
-            getDescriptions().equals(other.getDescriptions()) &&
-            getGender().equals(other.getGender()) &&
-            getImages().equals(other.getImages()) &&
-            getInscriptions().equals(other.getInscriptions()) &&
-            getMaterials().equals(other.getMaterials()) &&
-            getProvenance().equals(other.getProvenance()) &&
-            getQuantity().equals(other.getQuantity()) &&
-            getRelations().equals(other.getRelations()) &&
-            getRights().equals(other.getRights()) &&
-            getSubjects().equals(other.getSubjects()) &&
-            getTechniques().equals(other.getTechniques()) &&
-            getTextrefs().equals(other.getTextrefs()) &&
-            getViewType().equals(other.getViewType()) &&
-            getWorkTypes().equals(other.getWorkTypes());
+            (getAgents() != null ? getAgents().equals(other.getAgents()) : other.getAgents() == null) &&
+            (getCategories() != null ? getCategories().equals(other.getCategories()) : other.getCategories() == null) &&
+            (getColors() != null ? getColors().equals(other.getColors()) : other.getColors() == null) &&
+            (getCondition() != null ? getCondition().equals(other.getCondition()) : other.getCondition() == null) &&
+            (getDates() != null ? getDates().equals(other.getDates()) : other.getDates() == null) &&
+            (getDescriptions() != null ? getDescriptions().equals(other.getDescriptions()) : other.getDescriptions() == null) &&
+            (getGender() != null ? getGender().equals(other.getGender()) : other.getGender() == null) &&
+            (getImages() != null ? getImages().equals(other.getImages()) : other.getImages() == null) &&
+            (getInscriptions() != null ? getInscriptions().equals(other.getInscriptions()) : other.getInscriptions() == null) &&
+            (getMaterials() != null ? getMaterials().equals(other.getMaterials()) : other.getMaterials() == null) &&
+            (getProvenance() != null ? getProvenance().equals(other.getProvenance()) : other.getProvenance() == null) &&
+            (getQuantity() != null ? getQuantity().equals(other.getQuantity()) : other.getQuantity() == null) &&
+            (getRelations() != null ? getRelations().equals(other.getRelations()) : other.getRelations() == null) &&
+            (getRights() != null ? getRights().equals(other.getRights()) : other.getRights() == null) &&
+            (getSubjects() != null ? getSubjects().equals(other.getSubjects()) : other.getSubjects() == null) &&
+            (getTechniques() != null ? getTechniques().equals(other.getTechniques()) : other.getTechniques() == null) &&
+            (getTextrefs() != null ? getTextrefs().equals(other.getTextrefs()) : other.getTextrefs() == null) &&
+            (getViewType() != null ? getViewType().equals(other.getViewType()) : other.getViewType() == null) &&
+            (getWorkTypes() != null ? getWorkTypes().equals(other.getWorkTypes()) : other.getWorkTypes() == null);
     }
 
     public net.lab1318.costume.gui.models.agent.AgentSetBean getAgents() {

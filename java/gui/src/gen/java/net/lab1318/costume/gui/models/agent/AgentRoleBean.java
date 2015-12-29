@@ -111,7 +111,7 @@ public class AgentRoleBean {
         final AgentRoleBean other = (AgentRoleBean)otherObject;
         return
             getText().equals(other.getText()) &&
-            getVocabRef().equals(other.getVocabRef());
+            (getVocabRef() != null ? getVocabRef().equals(other.getVocabRef()) : other.getVocabRef() == null);
     }
 
     public String getText() {
