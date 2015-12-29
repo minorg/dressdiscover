@@ -111,7 +111,7 @@ public class TechniqueBean {
         final TechniqueBean other = (TechniqueBean)otherObject;
         return
             getText().equals(other.getText()) &&
-            getVocabRef().equals(other.getVocabRef());
+            (getVocabRef() != null ? getVocabRef().equals(other.getVocabRef()) : other.getVocabRef() == null);
     }
 
     public String getText() {

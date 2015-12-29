@@ -117,7 +117,7 @@ public class TextrefRefidBean {
         return
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
-            getHref().equals(other.getHref());
+            (getHref() != null ? getHref().equals(other.getHref()) : other.getHref() == null);
     }
 
     public org.thryft.native_.Url getHref() {

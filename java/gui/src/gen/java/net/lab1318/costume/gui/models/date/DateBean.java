@@ -128,8 +128,8 @@ public class DateBean {
             getEarliestDate().equals(other.getEarliestDate()) &&
             getLatestDate().equals(other.getLatestDate()) &&
             getType().equals(other.getType()) &&
-            getHref().equals(other.getHref()) &&
-            getSource().equals(other.getSource());
+            (getHref() != null ? getHref().equals(other.getHref()) : other.getHref() == null) &&
+            (getSource() != null ? getSource().equals(other.getSource()) : other.getSource() == null);
     }
 
     public net.lab1318.costume.gui.models.date.DateBoundBean getEarliestDate() {

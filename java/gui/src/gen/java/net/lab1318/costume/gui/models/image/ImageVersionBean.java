@@ -113,8 +113,8 @@ public class ImageVersionBean {
         final ImageVersionBean other = (ImageVersionBean)otherObject;
         return
             getUrl().equals(other.getUrl()) &&
-            getHeightPx().equals(other.getHeightPx()) &&
-            getWidthPx().equals(other.getWidthPx());
+            (getHeightPx() != null ? getHeightPx().equals(other.getHeightPx()) : other.getHeightPx() == null) &&
+            (getWidthPx() != null ? getWidthPx().equals(other.getWidthPx()) : other.getWidthPx() == null);
     }
 
     public com.google.common.primitives.UnsignedInteger getHeightPx() {

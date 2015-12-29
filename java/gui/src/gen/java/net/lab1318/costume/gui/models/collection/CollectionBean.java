@@ -120,7 +120,7 @@ public class CollectionBean {
             getInstitutionId().equals(other.getInstitutionId()) &&
             getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
-            getDescription().equals(other.getDescription());
+            (getDescription() != null ? getDescription().equals(other.getDescription()) : other.getDescription() == null);
     }
 
     public String getDescription() {

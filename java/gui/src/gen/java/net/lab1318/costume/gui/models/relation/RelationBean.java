@@ -121,9 +121,9 @@ public class RelationBean {
         final RelationBean other = (RelationBean)otherObject;
         return
             getType().equals(other.getType()) &&
-            getHref().equals(other.getHref()) &&
-            getRelids().equals(other.getRelids()) &&
-            getText().equals(other.getText());
+            (getHref() != null ? getHref().equals(other.getHref()) : other.getHref() == null) &&
+            (getRelids() != null ? getRelids().equals(other.getRelids()) : other.getRelids() == null) &&
+            (getText() != null ? getText().equals(other.getText()) : other.getText() == null);
     }
 
     public org.thryft.native_.Url getHref() {

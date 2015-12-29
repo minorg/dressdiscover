@@ -113,8 +113,8 @@ public class VocabRefBean {
         final VocabRefBean other = (VocabRefBean)otherObject;
         return
             getVocab().equals(other.getVocab()) &&
-            getRefid().equals(other.getRefid()) &&
-            getUri().equals(other.getUri());
+            (getRefid() != null ? getRefid().equals(other.getRefid()) : other.getRefid() == null) &&
+            (getUri() != null ? getUri().equals(other.getUri()) : other.getUri() == null);
     }
 
     public String getRefid() {

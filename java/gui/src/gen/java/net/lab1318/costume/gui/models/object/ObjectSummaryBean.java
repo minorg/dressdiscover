@@ -186,19 +186,19 @@ public class ObjectSummaryBean {
             getInstitutionId().equals(other.getInstitutionId()) &&
             getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
-            getAgentNameTexts().equals(other.getAgentNameTexts()) &&
-            getCategories().equals(other.getCategories()) &&
-            getColorTexts().equals(other.getColorTexts()) &&
-            getDate().equals(other.getDate()) &&
-            getDescription().equals(other.getDescription()) &&
-            getGender().equals(other.getGender()) &&
-            getRelationTexts().equals(other.getRelationTexts()) &&
-            getMaterialTexts().equals(other.getMaterialTexts()) &&
-            getSubjectTermTexts().equals(other.getSubjectTermTexts()) &&
-            getTechniqueTexts().equals(other.getTechniqueTexts()) &&
-            getThumbnail().equals(other.getThumbnail()) &&
-            getUrl().equals(other.getUrl()) &&
-            getWorkTypeTexts().equals(other.getWorkTypeTexts());
+            (getAgentNameTexts() != null ? getAgentNameTexts().equals(other.getAgentNameTexts()) : other.getAgentNameTexts() == null) &&
+            (getCategories() != null ? getCategories().equals(other.getCategories()) : other.getCategories() == null) &&
+            (getColorTexts() != null ? getColorTexts().equals(other.getColorTexts()) : other.getColorTexts() == null) &&
+            (getDate() != null ? getDate().equals(other.getDate()) : other.getDate() == null) &&
+            (getDescription() != null ? getDescription().equals(other.getDescription()) : other.getDescription() == null) &&
+            (getGender() != null ? getGender().equals(other.getGender()) : other.getGender() == null) &&
+            (getRelationTexts() != null ? getRelationTexts().equals(other.getRelationTexts()) : other.getRelationTexts() == null) &&
+            (getMaterialTexts() != null ? getMaterialTexts().equals(other.getMaterialTexts()) : other.getMaterialTexts() == null) &&
+            (getSubjectTermTexts() != null ? getSubjectTermTexts().equals(other.getSubjectTermTexts()) : other.getSubjectTermTexts() == null) &&
+            (getTechniqueTexts() != null ? getTechniqueTexts().equals(other.getTechniqueTexts()) : other.getTechniqueTexts() == null) &&
+            (getThumbnail() != null ? getThumbnail().equals(other.getThumbnail()) : other.getThumbnail() == null) &&
+            (getUrl() != null ? getUrl().equals(other.getUrl()) : other.getUrl() == null) &&
+            (getWorkTypeTexts() != null ? getWorkTypeTexts().equals(other.getWorkTypeTexts()) : other.getWorkTypeTexts() == null);
     }
 
     public java.util.List<String> getAgentNameTexts() {

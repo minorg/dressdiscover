@@ -135,10 +135,10 @@ public class AgentBean {
         final AgentBean other = (AgentBean)otherObject;
         return
             getName().equals(other.getName()) &&
-            getAttribution().equals(other.getAttribution()) &&
-            getCulture().equals(other.getCulture()) &&
-            getDates().equals(other.getDates()) &&
-            getRole().equals(other.getRole());
+            (getAttribution() != null ? getAttribution().equals(other.getAttribution()) : other.getAttribution() == null) &&
+            (getCulture() != null ? getCulture().equals(other.getCulture()) : other.getCulture() == null) &&
+            (getDates() != null ? getDates().equals(other.getDates()) : other.getDates() == null) &&
+            (getRole() != null ? getRole().equals(other.getRole()) : other.getRole() == null);
     }
 
     public String getAttribution() {

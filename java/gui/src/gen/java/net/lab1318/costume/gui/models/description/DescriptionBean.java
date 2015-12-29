@@ -116,8 +116,8 @@ public class DescriptionBean {
         final DescriptionBean other = (DescriptionBean)otherObject;
         return
             getText().equals(other.getText()) &&
-            getSource().equals(other.getSource()) &&
-            getType().equals(other.getType());
+            (getSource() != null ? getSource().equals(other.getSource()) : other.getSource() == null) &&
+            (getType() != null ? getType().equals(other.getType()) : other.getType() == null);
     }
 
     public String getSource() {

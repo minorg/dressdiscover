@@ -123,7 +123,7 @@ public class RightsBean {
             getRightsHolder().equals(other.getRightsHolder()) &&
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
-            getNotes().equals(other.getNotes());
+            (getNotes() != null ? getNotes().equals(other.getNotes()) : other.getNotes() == null);
     }
 
     public String getNotes() {

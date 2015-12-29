@@ -117,7 +117,7 @@ public class MaterialBean {
         return
             getType().equals(other.getType()) &&
             getText().equals(other.getText()) &&
-            getVocabRef().equals(other.getVocabRef());
+            (getVocabRef() != null ? getVocabRef().equals(other.getVocabRef()) : other.getVocabRef() == null);
     }
 
     public String getText() {

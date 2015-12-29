@@ -117,7 +117,7 @@ public class TitleBean {
         return
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
-            getPref().equals(other.getPref());
+            (getPref() != null ? getPref().equals(other.getPref()) : other.getPref() == null);
     }
 
     public Boolean getPref() {

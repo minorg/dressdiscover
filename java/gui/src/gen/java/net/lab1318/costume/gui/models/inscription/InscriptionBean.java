@@ -125,8 +125,8 @@ public class InscriptionBean {
         final InscriptionBean other = (InscriptionBean)otherObject;
         return
             getTexts().equals(other.getTexts()) &&
-            getAuthor().equals(other.getAuthor()) &&
-            getPosition().equals(other.getPosition());
+            (getAuthor() != null ? getAuthor().equals(other.getAuthor()) : other.getAuthor() == null) &&
+            (getPosition() != null ? getPosition().equals(other.getPosition()) : other.getPosition() == null);
     }
 
     public net.lab1318.costume.gui.models.inscription.InscriptionAuthorBean getAuthor() {
