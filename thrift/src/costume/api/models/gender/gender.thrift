@@ -3,5 +3,6 @@ namespace * costume.api.models.gender
 
 enum Gender {
 	FEMALE,
-	MALE
+	MALE,
+	UNKNOWN
 }

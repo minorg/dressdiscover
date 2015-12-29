@@ -3,12 +3,10 @@ package net.lab1318.costume.gui.presenters;
 import org.thryft.waf.gui.EventBus;
 import org.thryft.waf.gui.views.View;
 
-import com.google.common.collect.ImmutableSet;
 import com.google.common.eventbus.Subscribe;
 
 import net.lab1318.costume.api.services.collection.CollectionQueryService.Messages.GetCollectionByIdRequest;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService.Messages.GetInstitutionByIdRequest;
-import net.lab1318.costume.api.services.object.ObjectFacetFilters;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectSummariesRequest;
 import net.lab1318.costume.gui.GuiUI;
@@ -20,21 +18,13 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
 
     @Subscribe
     public void onGetCollectionByIdRequest(final GetCollectionByIdRequest request) {
-        GuiUI.navigateTo(
-                ObjectQuery.builder().setCollectionId(request.getId())
-                        .setInstitutionId(request.getId().getInstitutionId())
-                        .setFacetFilters(ObjectFacetFilters.builder()
-                                .setIncludeCollections(ImmutableSet.of(request.getId()))
-                                .setIncludeInstitutions(ImmutableSet.of(request.getId().getInstitutionId())).build())
-                .build());
+        GuiUI.navigateTo(ObjectQuery.builder().setCollectionId(request.getId())
+                .setInstitutionId(request.getId().getInstitutionId()).build());
     }
 
     @Subscribe
     public void onGetInstitutionByIdRequest(final GetInstitutionByIdRequest request) {
-        GuiUI.navigateTo(ObjectQuery.builder().setInstitutionId(request.getId())
-                .setFacetFilters(
-                        ObjectFacetFilters.builder().setIncludeInstitutions(ImmutableSet.of(request.getId())).build())
-                .build());
+        GuiUI.navigateTo(ObjectQuery.builder().setInstitutionId(request.getId()).build());
     }
 
     @Subscribe

@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 
 import org.thryft.waf.gui.EventBus;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
@@ -46,25 +47,28 @@ final class ObjectFacetsLayout extends CustomComponent {
         }
         rootLayout.addComponent(resetButton, 0, rowI++);
 
+        final Optional<String> UNKNOWN_TEXT_FACET_KEY = Optional.of("");
         __addFacetPicker(availableObjectFacets,
                 new ObjectFacetPicker<String>(availableObjectFacets, "Agent names", eventBus,
-                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.AGENT_NAME_TEXTS, objectQuery,
-                        resultObjectFacets),
+                        ObjectFacets.FieldMetadata.AGENT_NAME_TEXTS, objectQuery, resultObjectFacets,
+                        UNKNOWN_TEXT_FACET_KEY),
                 rowI++);
 
         __addFacetPicker(availableObjectFacets,
                 new ObjectFacetPicker<String>(availableObjectFacets, "Categories", eventBus,
-                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.CATEGORIES, objectQuery,
-                        resultObjectFacets),
-                rowI++);
-
-        __addFacetPicker(availableObjectFacets, new ObjectFacetPicker<String>(availableObjectFacets, "Colors", eventBus,
-                objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.COLOR_TEXTS, objectQuery, resultObjectFacets),
+                        ObjectFacets.FieldMetadata.CATEGORIES, objectQuery, resultObjectFacets, UNKNOWN_TEXT_FACET_KEY),
                 rowI++);
 
         __addFacetPicker(availableObjectFacets,
-                new ObjectFacetPicker<Gender>(availableObjectFacets, "Genders", eventBus, objectQuery.getFacetFilters(),
-                        ObjectFacets.FieldMetadata.GENDERS, objectQuery, resultObjectFacets) {
+                new ObjectFacetPicker<String>(availableObjectFacets, "Colors", eventBus,
+                        ObjectFacets.FieldMetadata.COLOR_TEXTS, objectQuery, resultObjectFacets,
+                        UNKNOWN_TEXT_FACET_KEY),
+                rowI++);
+
+        __addFacetPicker(availableObjectFacets,
+                new ObjectFacetPicker<Gender>(availableObjectFacets, "Genders", eventBus,
+                        ObjectFacets.FieldMetadata.GENDERS, objectQuery, resultObjectFacets,
+                        Optional.of(Gender.UNKNOWN)) {
                     @Override
                     protected String _getCheckBoxCaption(final Gender facetKey) {
                         return Genders.getCaption(facetKey);
@@ -73,8 +77,7 @@ final class ObjectFacetsLayout extends CustomComponent {
 
         __addFacetPicker(availableObjectFacets,
                 new ObjectFacetPicker<InstitutionId>(availableObjectFacets, "Institutions", eventBus,
-                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.INSTITUTIONS, objectQuery,
-                        resultObjectFacets) {
+                        ObjectFacets.FieldMetadata.INSTITUTIONS, objectQuery, resultObjectFacets, Optional.absent()) {
                     @Override
                     protected String _getCheckBoxCaption(final InstitutionId facetKey) {
                         return institutions.get(facetKey).getTitle();
@@ -83,26 +86,26 @@ final class ObjectFacetsLayout extends CustomComponent {
 
         __addFacetPicker(availableObjectFacets,
                 new ObjectFacetPicker<String>(availableObjectFacets, "Materials", eventBus,
-                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.MATERIAL_TEXTS, objectQuery,
-                        resultObjectFacets),
+                        ObjectFacets.FieldMetadata.MATERIAL_TEXTS, objectQuery, resultObjectFacets,
+                        UNKNOWN_TEXT_FACET_KEY),
                 rowI++);
 
         __addFacetPicker(availableObjectFacets,
                 new ObjectFacetPicker<String>(availableObjectFacets, "Subjects", eventBus,
-                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.SUBJECT_TERM_TEXTS, objectQuery,
-                        resultObjectFacets),
+                        ObjectFacets.FieldMetadata.SUBJECT_TERM_TEXTS, objectQuery, resultObjectFacets,
+                        UNKNOWN_TEXT_FACET_KEY),
                 rowI++);
 
         __addFacetPicker(availableObjectFacets,
                 new ObjectFacetPicker<String>(availableObjectFacets, "Techniques", eventBus,
-                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.TECHNIQUE_TEXTS, objectQuery,
-                        resultObjectFacets),
+                        ObjectFacets.FieldMetadata.TECHNIQUE_TEXTS, objectQuery, resultObjectFacets,
+                        UNKNOWN_TEXT_FACET_KEY),
                 rowI++);
 
         __addFacetPicker(availableObjectFacets,
                 new ObjectFacetPicker<String>(availableObjectFacets, "Work types", eventBus,
-                        objectQuery.getFacetFilters(), ObjectFacets.FieldMetadata.WORK_TYPE_TEXTS, objectQuery,
-                        resultObjectFacets),
+                        ObjectFacets.FieldMetadata.WORK_TYPE_TEXTS, objectQuery, resultObjectFacets,
+                        UNKNOWN_TEXT_FACET_KEY),
                 rowI++);
 
         rootLayout.setSizeFull();

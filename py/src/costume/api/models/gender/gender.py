@@ -1,6 +1,7 @@
 class Gender(object):
     FEMALE = None
     MALE = None
+    UNKNOWN = None
 
     def __init__(self, name, value):
         object.__init__(self)
@@ -22,11 +23,14 @@ class Gender(object):
             return getattr(Gender, 'FEMALE')
         elif name == 'MALE' or name == '1':
             return getattr(Gender, 'MALE')
+        elif name == 'UNKNOWN' or name == '2':
+            return getattr(Gender, 'UNKNOWN')
         raise ValueError(name)
 
     @classmethod
     def values(cls):
-        return (Gender.FEMALE, Gender.MALE,)
+        return (Gender.FEMALE, Gender.MALE, Gender.UNKNOWN,)
 
 Gender.FEMALE = Gender('FEMALE', 0)
 Gender.MALE = Gender('MALE', 1)
+Gender.UNKNOWN = Gender('UNKNOWN', 2)
