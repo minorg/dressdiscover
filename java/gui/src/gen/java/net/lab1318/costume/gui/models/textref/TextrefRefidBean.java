@@ -3,7 +3,7 @@ package net.lab1318.costume.gui.models.textref;
 /**
  * VRA Core 4.0 textref.refid subelement
  */
-public class TextrefRefidBean {
+public class TextrefRefidBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "text", org.thryft.protocol.Type.STRING),
@@ -118,6 +118,17 @@ public class TextrefRefidBean {
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
             (getHref() != null ? getHref().equals(other.getHref()) : other.getHref() == null);
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "text": return getText();
+        case "type": return getType();
+        case "href": return getHref();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public org.thryft.native_.Url getHref() {

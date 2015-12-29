@@ -455,6 +455,37 @@
               }
             }
           }, 
+          "31:measurements": {
+            "type": "nested", 
+            "properties": {
+              "1:elements": {
+                "type": "nested", 
+                "properties": {
+                  "1:text": {
+                    "index": "not_analyzed", 
+                    "type": "string"
+                  }, 
+                  "2:type": {
+                    "index": "not_analyzed", 
+                    "type": "string"
+                  }, 
+                  "3:extent": {
+                    "type": "string"
+                  }, 
+                  "4:unit": {
+                    "index": "not_analyzed", 
+                    "type": "string"
+                  }
+                }
+              }, 
+              "2:display": {
+                "type": "string"
+              }, 
+              "3:notes": {
+                "type": "string"
+              }
+            }
+          }, 
           "5:provenance": {
             "type": "string"
           }, 

@@ -1,6 +1,6 @@
 package net.lab1318.costume.gui.models.object;
 
-public class ObjectBean {
+public class ObjectBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.CollectionId>() {}, true, 1, "collection_id", org.thryft.protocol.Type.STRING),
@@ -17,6 +17,7 @@ public class ObjectBean {
         IMAGES("images", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.image.ImageBean>>() {}, false, 23, "images", org.thryft.protocol.Type.LIST),
         INSCRIPTIONS("inscriptions", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.inscription.InscriptionSetBean>() {}, false, 17, "inscriptions", org.thryft.protocol.Type.STRUCT),
         MATERIALS("materials", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.material.MaterialSetBean>() {}, false, 15, "materials", org.thryft.protocol.Type.STRUCT),
+        MEASUREMENTS("measurements", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.measurements.MeasurementsSetBean>() {}, false, 31, "measurements", org.thryft.protocol.Type.STRUCT),
         PROVENANCE("provenance", new com.google.common.reflect.TypeToken<String>() {}, false, 5, "provenance", org.thryft.protocol.Type.STRING),
         QUANTITY("quantity", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, false, 26, "quantity", org.thryft.protocol.Type.I32),
         RELATIONS("relations", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.relation.RelationSetBean>() {}, false, 29, "relations", org.thryft.protocol.Type.STRUCT),
@@ -83,6 +84,7 @@ public class ObjectBean {
             case "images": return IMAGES;
             case "inscriptions": return INSCRIPTIONS;
             case "materials": return MATERIALS;
+            case "measurements": return MEASUREMENTS;
             case "provenance": return PROVENANCE;
             case "quantity": return QUANTITY;
             case "relations": return RELATIONS;
@@ -113,6 +115,7 @@ public class ObjectBean {
             case "images": return IMAGES;
             case "inscriptions": return INSCRIPTIONS;
             case "materials": return MATERIALS;
+            case "measurements": return MEASUREMENTS;
             case "provenance": return PROVENANCE;
             case "quantity": return QUANTITY;
             case "relations": return RELATIONS;
@@ -165,6 +168,7 @@ public class ObjectBean {
         images = null;
         inscriptions = null;
         materials = null;
+        measurements = null;
         provenance = null;
         quantity = null;
         relations = null;
@@ -200,6 +204,7 @@ public class ObjectBean {
         }).apply(other.getImages().get()) : null;
         this.inscriptions = other.getInscriptions().isPresent() ? new net.lab1318.costume.gui.models.inscription.InscriptionSetBean(other.getInscriptions().get()) : null;
         this.materials = other.getMaterials().isPresent() ? new net.lab1318.costume.gui.models.material.MaterialSetBean(other.getMaterials().get()) : null;
+        this.measurements = other.getMeasurements().isPresent() ? new net.lab1318.costume.gui.models.measurements.MeasurementsSetBean(other.getMeasurements().get()) : null;
         this.provenance = other.getProvenance().isPresent() ? other.getProvenance().get() : null;
         this.quantity = other.getQuantity().isPresent() ? other.getQuantity().get() : null;
         this.relations = other.getRelations().isPresent() ? new net.lab1318.costume.gui.models.relation.RelationSetBean(other.getRelations().get()) : null;
@@ -235,6 +240,7 @@ public class ObjectBean {
             (getImages() != null ? getImages().equals(other.getImages()) : other.getImages() == null) &&
             (getInscriptions() != null ? getInscriptions().equals(other.getInscriptions()) : other.getInscriptions() == null) &&
             (getMaterials() != null ? getMaterials().equals(other.getMaterials()) : other.getMaterials() == null) &&
+            (getMeasurements() != null ? getMeasurements().equals(other.getMeasurements()) : other.getMeasurements() == null) &&
             (getProvenance() != null ? getProvenance().equals(other.getProvenance()) : other.getProvenance() == null) &&
             (getQuantity() != null ? getQuantity().equals(other.getQuantity()) : other.getQuantity() == null) &&
             (getRelations() != null ? getRelations().equals(other.getRelations()) : other.getRelations() == null) &&
@@ -244,6 +250,38 @@ public class ObjectBean {
             (getTextrefs() != null ? getTextrefs().equals(other.getTextrefs()) : other.getTextrefs() == null) &&
             (getViewType() != null ? getViewType().equals(other.getViewType()) : other.getViewType() == null) &&
             (getWorkTypes() != null ? getWorkTypes().equals(other.getWorkTypes()) : other.getWorkTypes() == null);
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "collection_id": return getCollectionId();
+        case "institution_id": return getInstitutionId();
+        case "model_metadata": return getModelMetadata();
+        case "titles": return getTitles();
+        case "agents": return getAgents();
+        case "categories": return getCategories();
+        case "colors": return getColors();
+        case "condition": return getCondition();
+        case "dates": return getDates();
+        case "descriptions": return getDescriptions();
+        case "gender": return getGender();
+        case "images": return getImages();
+        case "inscriptions": return getInscriptions();
+        case "materials": return getMaterials();
+        case "measurements": return getMeasurements();
+        case "provenance": return getProvenance();
+        case "quantity": return getQuantity();
+        case "relations": return getRelations();
+        case "rights": return getRights();
+        case "subjects": return getSubjects();
+        case "techniques": return getTechniques();
+        case "textrefs": return getTextrefs();
+        case "view_type": return getViewType();
+        case "work_types": return getWorkTypes();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public net.lab1318.costume.gui.models.agent.AgentSetBean getAgents() {
@@ -292,6 +330,10 @@ public class ObjectBean {
 
     public net.lab1318.costume.gui.models.material.MaterialSetBean getMaterials() {
         return materials;
+    }
+
+    public net.lab1318.costume.gui.models.measurements.MeasurementsSetBean getMeasurements() {
+        return measurements;
     }
 
     public net.lab1318.costume.gui.models.ModelMetadataBean getModelMetadata() {
@@ -378,6 +420,9 @@ public class ObjectBean {
         if (getMaterials() != null) {
             hashCode = 31 * hashCode + getMaterials().hashCode();
         }
+        if (getMeasurements() != null) {
+            hashCode = 31 * hashCode + getMeasurements().hashCode();
+        }
         if (getProvenance() != null) {
             hashCode = 31 * hashCode + getProvenance().hashCode();
         }
@@ -456,6 +501,10 @@ public class ObjectBean {
         this.materials = materials;
     }
 
+    public void setMeasurements(final net.lab1318.costume.gui.models.measurements.MeasurementsSetBean measurements) {
+        this.measurements = measurements;
+    }
+
     public void setModelMetadata(final net.lab1318.costume.gui.models.ModelMetadataBean modelMetadata) {
         this.modelMetadata = modelMetadata;
     }
@@ -502,7 +551,7 @@ public class ObjectBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("titles", getTitles()).add("agents", getAgents()).add("categories", getCategories()).add("colors", getColors()).add("condition", getCondition()).add("dates", getDates()).add("descriptions", getDescriptions()).add("gender", getGender()).add("images", getImages()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("provenance", getProvenance()).add("quantity", getQuantity()).add("relations", getRelations()).add("rights", getRights()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("view_type", getViewType()).add("work_types", getWorkTypes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("titles", getTitles()).add("agents", getAgents()).add("categories", getCategories()).add("colors", getColors()).add("condition", getCondition()).add("dates", getDates()).add("descriptions", getDescriptions()).add("gender", getGender()).add("images", getImages()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("measurements", getMeasurements()).add("provenance", getProvenance()).add("quantity", getQuantity()).add("relations", getRelations()).add("rights", getRights()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("view_type", getViewType()).add("work_types", getWorkTypes()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -532,6 +581,8 @@ public class ObjectBean {
     private net.lab1318.costume.gui.models.inscription.InscriptionSetBean inscriptions;
 
     private net.lab1318.costume.gui.models.material.MaterialSetBean materials;
+
+    private net.lab1318.costume.gui.models.measurements.MeasurementsSetBean measurements;
 
     /**
      * Dublin Core freetext provenance

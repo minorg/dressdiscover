@@ -1,6 +1,6 @@
 package net.lab1318.costume.gui.models;
 
-public class ModelMetadataBean {
+public class ModelMetadataBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         CTIME("ctime", new com.google.common.reflect.TypeToken<java.util.Date>() {}, true, 1, "ctime", org.thryft.protocol.Type.I64),
@@ -109,6 +109,16 @@ public class ModelMetadataBean {
         return
             getCtime().equals(other.getCtime()) &&
             getMtime().equals(other.getMtime());
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "ctime": return getCtime();
+        case "mtime": return getMtime();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public java.util.Date getCtime() {

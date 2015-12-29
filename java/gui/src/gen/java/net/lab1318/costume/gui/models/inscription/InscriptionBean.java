@@ -3,7 +3,7 @@ package net.lab1318.costume.gui.models.inscription;
 /**
  * VRA Core 4.0 inscription element
  */
-public class InscriptionBean {
+public class InscriptionBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TEXTS("texts", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.inscription.InscriptionTextBean>>() {}, true, 1, "texts", org.thryft.protocol.Type.LIST),
@@ -127,6 +127,17 @@ public class InscriptionBean {
             getTexts().equals(other.getTexts()) &&
             (getAuthor() != null ? getAuthor().equals(other.getAuthor()) : other.getAuthor() == null) &&
             (getPosition() != null ? getPosition().equals(other.getPosition()) : other.getPosition() == null);
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "texts": return getTexts();
+        case "author": return getAuthor();
+        case "position": return getPosition();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public net.lab1318.costume.gui.models.inscription.InscriptionAuthorBean getAuthor() {

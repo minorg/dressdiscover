@@ -14,6 +14,7 @@ include "costume/api/models/image/image.thrift"
 include "costume/api/models/inscription/inscription_set.thrift"
 include "costume/api/models/institution/institution_id.thrift"
 include "costume/api/models/material/material_set.thrift"
+include "costume/api/models/measurements/measurements_set.thrift"
 include "costume/api/models/relation/relation_set.thrift"
 include "costume/api/models/rights/rights_set.thrift"
 include "costume/api/models/subject/subject_set.thrift"
@@ -56,6 +57,8 @@ struct Object {
 	17: optional inscription_set.InscriptionSet inscriptions;
 
 	15: optional material_set.MaterialSet materials;
+
+	31: optional measurements_set.MeasurementsSet measurements;
 
 	// Dublin Core freetext provenance
 	// @validation {"minLength": 1}

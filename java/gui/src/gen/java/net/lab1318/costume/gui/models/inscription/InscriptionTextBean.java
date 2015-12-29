@@ -1,6 +1,6 @@
 package net.lab1318.costume.gui.models.inscription;
 
-public class InscriptionTextBean {
+public class InscriptionTextBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.inscription.InscriptionTextType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),
@@ -115,6 +115,17 @@ public class InscriptionTextBean {
             getType().equals(other.getType()) &&
             getText().equals(other.getText()) &&
             (getLang() != null ? getLang().equals(other.getLang()) : other.getLang() == null);
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "type": return getType();
+        case "text": return getText();
+        case "lang": return getLang();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public String getLang() {

@@ -1,15 +1,15 @@
-package net.lab1318.costume.gui.models.rights;
+package net.lab1318.costume.gui.models.measurements;
 
 /**
- * VRA Core 4.0 rights element
+ * VRA Core 4.0 measurements element
  */
-public class RightsBean implements org.thryft.StructBean {
+public class MeasurementsBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        RIGHTS_HOLDER("rightsHolder", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "rights_holder", org.thryft.protocol.Type.STRING),
-        TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "text", org.thryft.protocol.Type.STRING),
-        TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.rights.RightsType>() {}, true, 3, "type", org.thryft.protocol.Type.STRING),
-        NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 4, "notes", org.thryft.protocol.Type.STRING);
+        TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "text", org.thryft.protocol.Type.STRING),
+        TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.measurements.MeasurementsType>() {}, true, 2, "type", org.thryft.protocol.Type.STRING),
+        EXTENT("extent", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "extent", org.thryft.protocol.Type.STRING),
+        UNIT("unit", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.measurements.MeasurementsUnit>() {}, false, 4, "unit", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -53,10 +53,10 @@ public class RightsBean implements org.thryft.StructBean {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "rightsHolder": return RIGHTS_HOLDER;
             case "text": return TEXT;
             case "type": return TYPE;
-            case "notes": return NOTES;
+            case "extent": return EXTENT;
+            case "unit": return UNIT;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -64,10 +64,10 @@ public class RightsBean implements org.thryft.StructBean {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "rights_holder": return RIGHTS_HOLDER;
             case "text": return TEXT;
             case "type": return TYPE;
-            case "notes": return NOTES;
+            case "extent": return EXTENT;
+            case "unit": return UNIT;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -96,102 +96,104 @@ public class RightsBean implements org.thryft.StructBean {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public RightsBean() {
-        rightsHolder = null;
+    public MeasurementsBean() {
         text = null;
         type = null;
-        notes = null;
+        extent = null;
+        unit = null;
     }
 
-    public RightsBean(final net.lab1318.costume.api.models.rights.Rights other) {
-        this.rightsHolder = other.getRightsHolder();
+    public MeasurementsBean(final net.lab1318.costume.api.models.measurements.Measurements other) {
         this.text = other.getText();
         this.type = other.getType();
-        this.notes = other.getNotes().isPresent() ? other.getNotes().get() : null;
+        this.extent = other.getExtent().isPresent() ? other.getExtent().get() : null;
+        this.unit = other.getUnit().isPresent() ? other.getUnit().get() : null;
     }
 
     @Override
     public boolean equals(final java.lang.Object otherObject) {
         if (otherObject == this) {
             return true;
-        } else if (!(otherObject instanceof RightsBean)) {
+        } else if (!(otherObject instanceof MeasurementsBean)) {
             return false;
         }
 
-        final RightsBean other = (RightsBean)otherObject;
+        final MeasurementsBean other = (MeasurementsBean)otherObject;
         return
-            getRightsHolder().equals(other.getRightsHolder()) &&
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
-            (getNotes() != null ? getNotes().equals(other.getNotes()) : other.getNotes() == null);
+            (getExtent() != null ? getExtent().equals(other.getExtent()) : other.getExtent() == null) &&
+            (getUnit() != null ? getUnit().equals(other.getUnit()) : other.getUnit() == null);
     }
 
     @Override
     public java.lang.Object get(final String fieldName) {
         switch (fieldName) {
-        case "rights_holder": return getRightsHolder();
         case "text": return getText();
         case "type": return getType();
-        case "notes": return getNotes();
+        case "extent": return getExtent();
+        case "unit": return getUnit();
         default:
             throw new IllegalArgumentException(fieldName);
         }
     }
 
-    public String getNotes() {
-        return notes;
-    }
-
-    public String getRightsHolder() {
-        return rightsHolder;
+    public String getExtent() {
+        return extent;
     }
 
     public String getText() {
         return text;
     }
 
-    public net.lab1318.costume.api.models.rights.RightsType getType() {
+    public net.lab1318.costume.api.models.measurements.MeasurementsType getType() {
         return type;
+    }
+
+    public net.lab1318.costume.api.models.measurements.MeasurementsUnit getUnit() {
+        return unit;
     }
 
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getRightsHolder().hashCode();
         hashCode = 31 * hashCode + getText().hashCode();
         hashCode = 31 * hashCode + getType().ordinal();
-        if (getNotes() != null) {
-            hashCode = 31 * hashCode + getNotes().hashCode();
+        if (getExtent() != null) {
+            hashCode = 31 * hashCode + getExtent().hashCode();
+        }
+        if (getUnit() != null) {
+            hashCode = 31 * hashCode + getUnit().ordinal();
         }
         return hashCode;
     }
 
-    public void setNotes(final String notes) {
-        this.notes = notes;
-    }
-
-    public void setRightsHolder(final String rightsHolder) {
-        this.rightsHolder = rightsHolder;
+    public void setExtent(final String extent) {
+        this.extent = extent;
     }
 
     public void setText(final String text) {
         this.text = text;
     }
 
-    public void setType(final net.lab1318.costume.api.models.rights.RightsType type) {
+    public void setType(final net.lab1318.costume.api.models.measurements.MeasurementsType type) {
         this.type = type;
+    }
+
+    public void setUnit(final net.lab1318.costume.api.models.measurements.MeasurementsUnit unit) {
+        this.unit = unit;
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("rights_holder", getRightsHolder()).add("text", getText()).add("type", getType()).add("notes", getNotes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("type", getType()).add("extent", getExtent()).add("unit", getUnit()).toString();
     }
-
-    private String rightsHolder;
 
     private String text;
 
-    private net.lab1318.costume.api.models.rights.RightsType type;
+    private net.lab1318.costume.api.models.measurements.MeasurementsType type;
 
-    private String notes;
+    private String extent;
+
+    private net.lab1318.costume.api.models.measurements.MeasurementsUnit unit;
 }

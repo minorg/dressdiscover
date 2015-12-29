@@ -3,7 +3,7 @@ package net.lab1318.costume.gui.models.date;
 /**
  * VRA Core 4.0 date earliestDate or latestDate subelement
  */
-public class DateBoundBean {
+public class DateBoundBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "text", org.thryft.protocol.Type.STRING),
@@ -124,6 +124,18 @@ public class DateBoundBean {
             (getCirca() != null ? getCirca().equals(other.getCirca()) : other.getCirca() == null) &&
             (getParsedDateTime() != null ? getParsedDateTime().equals(other.getParsedDateTime()) : other.getParsedDateTime() == null) &&
             (getParsedDateTimeGranularity() != null ? getParsedDateTimeGranularity().equals(other.getParsedDateTimeGranularity()) : other.getParsedDateTimeGranularity() == null);
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "text": return getText();
+        case "circa": return getCirca();
+        case "parsed_date_time": return getParsedDateTime();
+        case "parsed_date_time_granularity": return getParsedDateTimeGranularity();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public Boolean getCirca() {

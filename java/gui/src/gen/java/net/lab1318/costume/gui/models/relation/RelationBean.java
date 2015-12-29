@@ -3,7 +3,7 @@ package net.lab1318.costume.gui.models.relation;
 /**
  * VRA Core 4.0 relation element
  */
-public class RelationBean {
+public class RelationBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.relation.RelationType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),
@@ -124,6 +124,18 @@ public class RelationBean {
             (getHref() != null ? getHref().equals(other.getHref()) : other.getHref() == null) &&
             (getRelids() != null ? getRelids().equals(other.getRelids()) : other.getRelids() == null) &&
             (getText() != null ? getText().equals(other.getText()) : other.getText() == null);
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "type": return getType();
+        case "href": return getHref();
+        case "relids": return getRelids();
+        case "text": return getText();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public org.thryft.native_.Url getHref() {

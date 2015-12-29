@@ -3,7 +3,7 @@ package net.lab1318.costume.gui.models.agent;
 /**
  * VRA Core 4.0 agent element
  */
-public class AgentBean {
+public class AgentBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         NAME("name", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.agent.AgentNameBean>() {}, true, 1, "name", org.thryft.protocol.Type.STRUCT),
@@ -139,6 +139,19 @@ public class AgentBean {
             (getCulture() != null ? getCulture().equals(other.getCulture()) : other.getCulture() == null) &&
             (getDates() != null ? getDates().equals(other.getDates()) : other.getDates() == null) &&
             (getRole() != null ? getRole().equals(other.getRole()) : other.getRole() == null);
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "name": return getName();
+        case "attribution": return getAttribution();
+        case "culture": return getCulture();
+        case "dates": return getDates();
+        case "role": return getRole();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public String getAttribution() {

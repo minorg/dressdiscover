@@ -3,7 +3,7 @@ package net.lab1318.costume.gui.models.date;
 /**
  * VRA Core 4.0 date element
  */
-public class DateBean {
+public class DateBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         EARLIEST_DATE("earliestDate", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.date.DateBoundBean>() {}, true, 1, "earliest_date", org.thryft.protocol.Type.STRUCT),
@@ -130,6 +130,19 @@ public class DateBean {
             getType().equals(other.getType()) &&
             (getHref() != null ? getHref().equals(other.getHref()) : other.getHref() == null) &&
             (getSource() != null ? getSource().equals(other.getSource()) : other.getSource() == null);
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "earliest_date": return getEarliestDate();
+        case "latest_date": return getLatestDate();
+        case "type": return getType();
+        case "href": return getHref();
+        case "source": return getSource();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public net.lab1318.costume.gui.models.date.DateBoundBean getEarliestDate() {

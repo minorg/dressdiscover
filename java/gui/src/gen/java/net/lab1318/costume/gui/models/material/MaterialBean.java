@@ -3,7 +3,7 @@ package net.lab1318.costume.gui.models.material;
 /**
  * VRA Core 4.0 material element
  */
-public class MaterialBean {
+public class MaterialBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.material.MaterialType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),
@@ -118,6 +118,17 @@ public class MaterialBean {
             getType().equals(other.getType()) &&
             getText().equals(other.getText()) &&
             (getVocabRef() != null ? getVocabRef().equals(other.getVocabRef()) : other.getVocabRef() == null);
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "type": return getType();
+        case "text": return getText();
+        case "vocab_ref": return getVocabRef();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public String getText() {

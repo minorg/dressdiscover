@@ -1,15 +1,14 @@
-package net.lab1318.costume.gui.models.rights;
+package net.lab1318.costume.gui.models.measurements;
 
 /**
- * VRA Core 4.0 rights element
+ * VRA Core 4.0 measurementsSet element
  */
-public class RightsBean implements org.thryft.StructBean {
+public class MeasurementsSetBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        RIGHTS_HOLDER("rightsHolder", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "rights_holder", org.thryft.protocol.Type.STRING),
-        TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "text", org.thryft.protocol.Type.STRING),
-        TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.rights.RightsType>() {}, true, 3, "type", org.thryft.protocol.Type.STRING),
-        NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 4, "notes", org.thryft.protocol.Type.STRING);
+        ELEMENTS("elements", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.measurements.MeasurementsBean>>() {}, true, 1, "elements", org.thryft.protocol.Type.LIST),
+        DISPLAY("display", new com.google.common.reflect.TypeToken<String>() {}, false, 2, "display", org.thryft.protocol.Type.STRING),
+        NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "notes", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -53,9 +52,8 @@ public class RightsBean implements org.thryft.StructBean {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "rightsHolder": return RIGHTS_HOLDER;
-            case "text": return TEXT;
-            case "type": return TYPE;
+            case "elements": return ELEMENTS;
+            case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -64,9 +62,8 @@ public class RightsBean implements org.thryft.StructBean {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "rights_holder": return RIGHTS_HOLDER;
-            case "text": return TEXT;
-            case "type": return TYPE;
+            case "elements": return ELEMENTS;
+            case "display": return DISPLAY;
             case "notes": return NOTES;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -96,17 +93,24 @@ public class RightsBean implements org.thryft.StructBean {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public RightsBean() {
-        rightsHolder = null;
-        text = null;
-        type = null;
+    public MeasurementsSetBean() {
+        elements = null;
+        display = null;
         notes = null;
     }
 
-    public RightsBean(final net.lab1318.costume.api.models.rights.Rights other) {
-        this.rightsHolder = other.getRightsHolder();
-        this.text = other.getText();
-        this.type = other.getType();
+    public MeasurementsSetBean(final net.lab1318.costume.api.models.measurements.MeasurementsSet other) {
+        this.elements = (new com.google.common.base.Function<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.measurements.Measurements>, java.util.List<net.lab1318.costume.gui.models.measurements.MeasurementsBean>>() {
+            @Override
+            public java.util.List<net.lab1318.costume.gui.models.measurements.MeasurementsBean> apply(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.measurements.Measurements> other) {
+                final java.util.List<net.lab1318.costume.gui.models.measurements.MeasurementsBean> copy = new java.util.ArrayList<net.lab1318.costume.gui.models.measurements.MeasurementsBean>();
+                for (final net.lab1318.costume.api.models.measurements.Measurements element : other) {
+                    copy.add(new net.lab1318.costume.gui.models.measurements.MeasurementsBean(element));
+                }
+                return copy;
+            }
+        }).apply(other.getElements());
+        this.display = other.getDisplay().isPresent() ? other.getDisplay().get() : null;
         this.notes = other.getNotes().isPresent() ? other.getNotes().get() : null;
     }
 
@@ -114,84 +118,73 @@ public class RightsBean implements org.thryft.StructBean {
     public boolean equals(final java.lang.Object otherObject) {
         if (otherObject == this) {
             return true;
-        } else if (!(otherObject instanceof RightsBean)) {
+        } else if (!(otherObject instanceof MeasurementsSetBean)) {
             return false;
         }
 
-        final RightsBean other = (RightsBean)otherObject;
+        final MeasurementsSetBean other = (MeasurementsSetBean)otherObject;
         return
-            getRightsHolder().equals(other.getRightsHolder()) &&
-            getText().equals(other.getText()) &&
-            getType().equals(other.getType()) &&
+            getElements().equals(other.getElements()) &&
+            (getDisplay() != null ? getDisplay().equals(other.getDisplay()) : other.getDisplay() == null) &&
             (getNotes() != null ? getNotes().equals(other.getNotes()) : other.getNotes() == null);
     }
 
     @Override
     public java.lang.Object get(final String fieldName) {
         switch (fieldName) {
-        case "rights_holder": return getRightsHolder();
-        case "text": return getText();
-        case "type": return getType();
+        case "elements": return getElements();
+        case "display": return getDisplay();
         case "notes": return getNotes();
         default:
             throw new IllegalArgumentException(fieldName);
         }
     }
 
+    public String getDisplay() {
+        return display;
+    }
+
+    public java.util.List<net.lab1318.costume.gui.models.measurements.MeasurementsBean> getElements() {
+        return elements;
+    }
+
     public String getNotes() {
         return notes;
-    }
-
-    public String getRightsHolder() {
-        return rightsHolder;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public net.lab1318.costume.api.models.rights.RightsType getType() {
-        return type;
     }
 
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getRightsHolder().hashCode();
-        hashCode = 31 * hashCode + getText().hashCode();
-        hashCode = 31 * hashCode + getType().ordinal();
+        hashCode = 31 * hashCode + getElements().hashCode();
+        if (getDisplay() != null) {
+            hashCode = 31 * hashCode + getDisplay().hashCode();
+        }
         if (getNotes() != null) {
             hashCode = 31 * hashCode + getNotes().hashCode();
         }
         return hashCode;
     }
 
+    public void setDisplay(final String display) {
+        this.display = display;
+    }
+
+    public void setElements(final java.util.List<net.lab1318.costume.gui.models.measurements.MeasurementsBean> elements) {
+        this.elements = elements;
+    }
+
     public void setNotes(final String notes) {
         this.notes = notes;
     }
 
-    public void setRightsHolder(final String rightsHolder) {
-        this.rightsHolder = rightsHolder;
-    }
-
-    public void setText(final String text) {
-        this.text = text;
-    }
-
-    public void setType(final net.lab1318.costume.api.models.rights.RightsType type) {
-        this.type = type;
-    }
-
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("rights_holder", getRightsHolder()).add("text", getText()).add("type", getType()).add("notes", getNotes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("elements", getElements()).add("display", getDisplay()).add("notes", getNotes()).toString();
     }
 
-    private String rightsHolder;
+    private java.util.List<net.lab1318.costume.gui.models.measurements.MeasurementsBean> elements;
 
-    private String text;
-
-    private net.lab1318.costume.api.models.rights.RightsType type;
+    private String display;
 
     private String notes;
 }

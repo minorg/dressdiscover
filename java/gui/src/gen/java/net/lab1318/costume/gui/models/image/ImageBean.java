@@ -1,6 +1,6 @@
 package net.lab1318.costume.gui.models.image;
 
-public class ImageBean {
+public class ImageBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         FULL_SIZE("fullSize", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.image.ImageVersionBean>() {}, false, 2, "full_size", org.thryft.protocol.Type.STRUCT),
@@ -121,6 +121,18 @@ public class ImageBean {
             (getOriginal() != null ? getOriginal().equals(other.getOriginal()) : other.getOriginal() == null) &&
             (getSquareThumbnail() != null ? getSquareThumbnail().equals(other.getSquareThumbnail()) : other.getSquareThumbnail() == null) &&
             (getThumbnail() != null ? getThumbnail().equals(other.getThumbnail()) : other.getThumbnail() == null);
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "full_size": return getFullSize();
+        case "original": return getOriginal();
+        case "square_thumbnail": return getSquareThumbnail();
+        case "thumbnail": return getThumbnail();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public net.lab1318.costume.gui.models.image.ImageVersionBean getFullSize() {

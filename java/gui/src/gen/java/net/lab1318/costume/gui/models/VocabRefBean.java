@@ -1,6 +1,6 @@
 package net.lab1318.costume.gui.models;
 
-public class VocabRefBean {
+public class VocabRefBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         VOCAB("vocab", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.Vocab>() {}, true, 2, "vocab", org.thryft.protocol.Type.STRING),
@@ -115,6 +115,17 @@ public class VocabRefBean {
             getVocab().equals(other.getVocab()) &&
             (getRefid() != null ? getRefid().equals(other.getRefid()) : other.getRefid() == null) &&
             (getUri() != null ? getUri().equals(other.getUri()) : other.getUri() == null);
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "vocab": return getVocab();
+        case "refid": return getRefid();
+        case "uri": return getUri();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public String getRefid() {
