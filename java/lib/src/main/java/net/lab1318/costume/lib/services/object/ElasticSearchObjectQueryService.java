@@ -420,18 +420,25 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     }
 
     private <IdT> void __translateObjectSummaryIdFilters(final Optional<ImmutableSet<IdT>> excludeIds,
-            final Optional<Boolean> excludeMissing, final ObjectSummary.FieldMetadata field,
-            final Optional<ImmutableSet<IdT>> includeIds, final List<FilterBuilder> outFilters) {
-        if (excludeMissing.or(Boolean.FALSE)) {
-            outFilters.add(FilterBuilders.existsFilter(field.getThriftProtocolKey()));
-        }
+            final ObjectSummary.FieldMetadata field, final Optional<ImmutableSet<IdT>> includeIds,
+            final List<FilterBuilder> outFilters, final Optional<IdT> unknownId) {
         for (final Optional<ImmutableSet<IdT>> ids : ImmutableList.of(excludeIds, includeIds)) {
             if (!ids.isPresent()) {
                 continue;
             }
             final List<FilterBuilder> filters = new ArrayList<>();
             for (final IdT id : ids.get()) {
-                filters.add(FilterBuilders.termFilter(field.getThriftProtocolKey(), id.toString()));
+                if (id != unknownId.orNull()) {
+                    filters.add(FilterBuilders.termFilter(field.getThriftProtocolKey(), id.toString()));
+                } else {
+                    if (ids == excludeIds) {
+                        // Exclude unknown
+                        outFilters.add(FilterBuilders.existsFilter(field.getThriftProtocolKey()));
+                    } else {
+                        // Include unknown
+                        outFilters.add(FilterBuilders.missingFilter(field.getThriftProtocolKey()));
+                    }
+                }
             }
             if (!filters.isEmpty()) {
                 if (ids == excludeIds) {
@@ -494,43 +501,42 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
             checkState(!facetFilters.getExcludeAll().or(Boolean.FALSE));
 
-            __translateObjectSummaryTextFilters(facetFilters.getExcludeMissingAgentNameTexts(),
-                    facetFilters.getExcludeAgentNameTexts(), ObjectSummary.FieldMetadata.AGENT_NAME_TEXTS,
-                    facetFilters.getIncludeAgentNameTexts(), filtersTranslated);
-
-            __translateObjectSummaryTextFilters(facetFilters.getExcludeMissingCategories(),
-                    facetFilters.getExcludeCategories(), ObjectSummary.FieldMetadata.CATEGORIES,
-                    facetFilters.getIncludeCategories(), filtersTranslated);
-
-            __translateObjectSummaryIdFilters(facetFilters.getExcludeCollections(), Optional.absent(),
-                    ObjectSummary.FieldMetadata.COLLECTION_ID, facetFilters.getIncludeCollections(), filtersTranslated);
-
-            __translateObjectSummaryTextFilters(facetFilters.getExcludeMissingColorTexts(),
-                    facetFilters.getExcludeColorTexts(), ObjectSummary.FieldMetadata.COLOR_TEXTS,
-                    facetFilters.getIncludeColorTexts(), filtersTranslated);
-
-            __translateObjectSummaryIdFilters(facetFilters.getExcludeGenders(), facetFilters.getExcludeMissingGenders(),
-                    ObjectSummary.FieldMetadata.GENDER, facetFilters.getIncludeGenders(), filtersTranslated);
-
-            __translateObjectSummaryIdFilters(facetFilters.getExcludeInstitutions(), Optional.absent(),
-                    ObjectSummary.FieldMetadata.INSTITUTION_ID, facetFilters.getIncludeInstitutions(),
+            __translateObjectSummaryTextFilters(facetFilters.getExcludeAgentNameTexts(),
+                    ObjectSummary.FieldMetadata.AGENT_NAME_TEXTS, facetFilters.getIncludeAgentNameTexts(),
                     filtersTranslated);
 
-            __translateObjectSummaryTextFilters(facetFilters.getExcludeMissingMaterialTexts(),
-                    facetFilters.getExcludeMaterialTexts(), ObjectSummary.FieldMetadata.MATERIAL_TEXTS,
-                    facetFilters.getIncludeMaterialTexts(), filtersTranslated);
+            __translateObjectSummaryTextFilters(facetFilters.getExcludeCategories(),
+                    ObjectSummary.FieldMetadata.CATEGORIES, facetFilters.getIncludeCategories(), filtersTranslated);
 
-            __translateObjectSummaryTextFilters(facetFilters.getExcludeMissingSubjectTermTexts(),
-                    facetFilters.getExcludeSubjectTermTexts(), ObjectSummary.FieldMetadata.SUBJECT_TERM_TEXTS,
-                    facetFilters.getIncludeSubjectTermTexts(), filtersTranslated);
+            __translateObjectSummaryIdFilters(facetFilters.getExcludeCollections(),
+                    ObjectSummary.FieldMetadata.COLLECTION_ID, facetFilters.getIncludeCollections(), filtersTranslated,
+                    Optional.absent());
 
-            __translateObjectSummaryTextFilters(facetFilters.getExcludeMissingTechniqueTexts(),
-                    facetFilters.getExcludeTechniqueTexts(), ObjectSummary.FieldMetadata.TECHNIQUE_TEXTS,
-                    facetFilters.getIncludeTechniqueTexts(), filtersTranslated);
+            __translateObjectSummaryTextFilters(facetFilters.getExcludeColorTexts(),
+                    ObjectSummary.FieldMetadata.COLOR_TEXTS, facetFilters.getIncludeColorTexts(), filtersTranslated);
 
-            __translateObjectSummaryTextFilters(facetFilters.getExcludeMissingWorkTypeTexts(),
-                    facetFilters.getExcludeWorkTypeTexts(), ObjectSummary.FieldMetadata.WORK_TYPE_TEXTS,
-                    facetFilters.getIncludeWorkTypeTexts(), filtersTranslated);
+            __translateObjectSummaryIdFilters(facetFilters.getExcludeGenders(), ObjectSummary.FieldMetadata.GENDER,
+                    facetFilters.getIncludeGenders(), filtersTranslated, Optional.of(Gender.UNKNOWN));
+
+            __translateObjectSummaryIdFilters(facetFilters.getExcludeInstitutions(),
+                    ObjectSummary.FieldMetadata.INSTITUTION_ID, facetFilters.getIncludeInstitutions(),
+                    filtersTranslated, Optional.absent());
+
+            __translateObjectSummaryTextFilters(facetFilters.getExcludeMaterialTexts(),
+                    ObjectSummary.FieldMetadata.MATERIAL_TEXTS, facetFilters.getIncludeMaterialTexts(),
+                    filtersTranslated);
+
+            __translateObjectSummaryTextFilters(facetFilters.getExcludeSubjectTermTexts(),
+                    ObjectSummary.FieldMetadata.SUBJECT_TERM_TEXTS, facetFilters.getIncludeSubjectTermTexts(),
+                    filtersTranslated);
+
+            __translateObjectSummaryTextFilters(facetFilters.getExcludeTechniqueTexts(),
+                    ObjectSummary.FieldMetadata.TECHNIQUE_TEXTS, facetFilters.getIncludeTechniqueTexts(),
+                    filtersTranslated);
+
+            __translateObjectSummaryTextFilters(facetFilters.getExcludeWorkTypeTexts(),
+                    ObjectSummary.FieldMetadata.WORK_TYPE_TEXTS, facetFilters.getIncludeWorkTypeTexts(),
+                    filtersTranslated);
         }
 
         if (query.get().getInstitutionId().isPresent()) {
@@ -558,23 +564,27 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         return queryTranslated;
     }
 
-    private void __translateObjectSummaryTextFilters(final Optional<Boolean> excludeMissing,
-            final Optional<ImmutableSet<String>> excludeTexts, final ObjectSummary.FieldMetadata field,
-            final Optional<ImmutableSet<String>> includeTexts, final List<FilterBuilder> outFilters) {
-        if (excludeMissing.or(Boolean.FALSE)) {
-            outFilters.add(FilterBuilders.existsFilter(field.getThriftProtocolKey()));
-        }
-
+    private void __translateObjectSummaryTextFilters(final Optional<ImmutableSet<String>> excludeTexts,
+            final ObjectSummary.FieldMetadata field, final Optional<ImmutableSet<String>> includeTexts,
+            final List<FilterBuilder> outFilters) {
         for (final Optional<ImmutableSet<String>> texts : ImmutableList.of(excludeTexts, includeTexts)) {
             if (!texts.isPresent()) {
                 continue;
             }
             final List<FilterBuilder> textFilters = new ArrayList<>();
             for (final String text : texts.get()) {
-                if (text.isEmpty()) {
-                    continue;
+                if (!text.isEmpty()) {
+                    textFilters.add(FilterBuilders.termFilter(field.getThriftProtocolKey() + ".not_analyzed", text));
+                } else {
+                    // Empty text = "unknown" key
+                    if (texts == excludeTexts) {
+                        // Exclude unknown
+                        outFilters.add(FilterBuilders.existsFilter(field.getThriftProtocolKey()));
+                    } else {
+                        // Include unknown
+                        outFilters.add(FilterBuilders.missingFilter(field.getThriftProtocolKey()));
+                    }
                 }
-                textFilters.add(FilterBuilders.termFilter(field.getThriftProtocolKey() + ".not_analyzed", text));
             }
             if (!textFilters.isEmpty()) {
                 if (texts == excludeTexts) {
