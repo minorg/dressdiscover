@@ -256,7 +256,7 @@ class ObjectFacetPicker<KeyT> extends CustomComponent {
     private final Set<KeyT> includeFacetKeys = new LinkedHashSet<>();
 
     // Immutable model state
-    private EventBus eventBus;
+    private final EventBus eventBus;
     private final ObjectFacets.FieldMetadata field;
     private final ObjectQuery objectQuery;
 }
