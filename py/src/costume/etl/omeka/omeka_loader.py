@@ -804,7 +804,7 @@ class OmekaLoader(_Loader):
     def _load_item_element_itm_date_earliest(self, object_builder, text):
         earliest_date = self.__parse_date(text)
         if object_builder.dc_date_builder.earliest_date is not None:
-            self._logger.warn(
+            self._logger.info(
                 "replacing item %d's earliest date (%s) from Date with Date Earliest '%s' = %s",
                 object_builder.omeka_item_id,
                 object_builder.dc_date_builder.earliest_date,
@@ -816,7 +816,7 @@ class OmekaLoader(_Loader):
     def _load_item_element_itm_date_latest(self, object_builder, text):
         latest_date = self.__parse_date(text)
         if object_builder.dc_date_builder.latest_date is not None:
-            self._logger.warn(
+            self._logger.info(
                 "replacing item %d's latest date (%s) from Date with Date Earliest '%s' = %s",
                 object_builder.omeka_item_id,
                 object_builder.dc_date_builder.latest_date,
@@ -939,6 +939,12 @@ class OmekaLoader(_Loader):
                 .build()
         )
 
+    def _load_item_element_itm_location(self, object_builder, text):
+        pass
+
+    def _load_item_element_itm_mannequin(self, object_builder, text):
+        pass
+
     def _load_item_element_itm_objectvr_link(self, object_builder, text):
         pass
 
@@ -1034,8 +1040,6 @@ class OmekaLoader(_Loader):
                     structure_text = structure_text.lower()
                     logger.debug("structure %s from item %d has controlled text '%s' after lower-casing", type_.text, object_builder.omeka_item_id, structure_text)
                 else:
-                    if structure_text.endswith('(jacket)'):
-                        x = 1
                     logger.warn("structure %s from item %d has uncontrolled text '%s'", type_.text, object_builder.omeka_item_id, structure_text)
 
             return \
