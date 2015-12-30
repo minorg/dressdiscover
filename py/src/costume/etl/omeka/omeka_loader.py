@@ -441,14 +441,14 @@ class OmekaLoader(_Loader):
             try:
                 method = getattr(self, method_name)
             except AttributeError:
-                self._logger.warn("no method %s, skipping item Dublin Core element %s: %s", method_name, element_name, text.encode('ascii', 'ignore'))
+                self._logger.warn("no method %s, skipping item %d Dublin Core element %s: %s", method_name, object_builder.omeka_item_id, element_name, text.encode('ascii', 'ignore'))
                 return
         elif element_set_name == 'Item Type Metadata':
             method_name = '_load_item_element_itm_' + element_name.lower().replace(' ', '_')
             try:
                 method = getattr(self, method_name)
             except AttributeError:
-                self._logger.warn("no method %s, skipping Item Type Metadata element %s: %s", method_name, element_name, text.encode('ascii', 'ignore'))
+                self._logger.warn("no method %s, skipping item %d Item Type Metadata element %s: %s", method_name, object_builder.omeka_item_id, element_name, text.encode('ascii', 'ignore'))
                 return
         else:
             self._logger.warn("skipping item %s element set", element_set_name)
