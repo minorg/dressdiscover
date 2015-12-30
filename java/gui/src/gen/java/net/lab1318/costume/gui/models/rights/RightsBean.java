@@ -3,7 +3,7 @@ package net.lab1318.costume.gui.models.rights;
 /**
  * VRA Core 4.0 rights element
  */
-public class RightsBean {
+public class RightsBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         RIGHTS_HOLDER("rightsHolder", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "rights_holder", org.thryft.protocol.Type.STRING),
@@ -124,6 +124,18 @@ public class RightsBean {
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
             (getNotes() != null ? getNotes().equals(other.getNotes()) : other.getNotes() == null);
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "rights_holder": return getRightsHolder();
+        case "text": return getText();
+        case "type": return getType();
+        case "notes": return getNotes();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public String getNotes() {

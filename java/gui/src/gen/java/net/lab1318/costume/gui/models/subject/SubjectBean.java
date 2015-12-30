@@ -3,7 +3,7 @@ package net.lab1318.costume.gui.models.subject;
 /**
  * VRA Core 4.0 subject element
  */
-public class SubjectBean {
+public class SubjectBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TERMS("terms", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.subject.SubjectTermBean>>() {}, true, 1, "terms", org.thryft.protocol.Type.LIST);
@@ -115,6 +115,15 @@ public class SubjectBean {
         final SubjectBean other = (SubjectBean)otherObject;
         return
             getTerms().equals(other.getTerms());
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "terms": return getTerms();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public java.util.List<net.lab1318.costume.gui.models.subject.SubjectTermBean> getTerms() {

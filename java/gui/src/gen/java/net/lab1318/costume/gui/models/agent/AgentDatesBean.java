@@ -3,7 +3,7 @@ package net.lab1318.costume.gui.models.agent;
 /**
  * VRA Core 4.0 agent.dates element
  */
-public class AgentDatesBean {
+public class AgentDatesBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.agent.AgentDatesType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),
@@ -118,6 +118,17 @@ public class AgentDatesBean {
             getType().equals(other.getType()) &&
             (getEarliestDate() != null ? getEarliestDate().equals(other.getEarliestDate()) : other.getEarliestDate() == null) &&
             (getLatestDate() != null ? getLatestDate().equals(other.getLatestDate()) : other.getLatestDate() == null);
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "type": return getType();
+        case "earliest_date": return getEarliestDate();
+        case "latest_date": return getLatestDate();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public java.util.Date getEarliestDate() {

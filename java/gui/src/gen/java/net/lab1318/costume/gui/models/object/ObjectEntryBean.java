@@ -1,6 +1,6 @@
 package net.lab1318.costume.gui.models.object;
 
-public class ObjectEntryBean {
+public class ObjectEntryBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         ID("id", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.object.ObjectId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),
@@ -109,6 +109,16 @@ public class ObjectEntryBean {
         return
             getId().equals(other.getId()) &&
             getModel().equals(other.getModel());
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "id": return getId();
+        case "model": return getModel();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public net.lab1318.costume.api.models.object.ObjectId getId() {

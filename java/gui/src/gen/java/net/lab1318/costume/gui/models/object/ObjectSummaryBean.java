@@ -1,6 +1,6 @@
 package net.lab1318.costume.gui.models.object;
 
-public class ObjectSummaryBean {
+public class ObjectSummaryBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.CollectionId>() {}, true, 1, "collection_id", org.thryft.protocol.Type.STRING),
@@ -199,6 +199,31 @@ public class ObjectSummaryBean {
             (getThumbnail() != null ? getThumbnail().equals(other.getThumbnail()) : other.getThumbnail() == null) &&
             (getUrl() != null ? getUrl().equals(other.getUrl()) : other.getUrl() == null) &&
             (getWorkTypeTexts() != null ? getWorkTypeTexts().equals(other.getWorkTypeTexts()) : other.getWorkTypeTexts() == null);
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "collection_id": return getCollectionId();
+        case "institution_id": return getInstitutionId();
+        case "model_metadata": return getModelMetadata();
+        case "title": return getTitle();
+        case "agent_name_texts": return getAgentNameTexts();
+        case "categories": return getCategories();
+        case "color_texts": return getColorTexts();
+        case "date": return getDate();
+        case "description": return getDescription();
+        case "gender": return getGender();
+        case "relation_texts": return getRelationTexts();
+        case "material_texts": return getMaterialTexts();
+        case "subject_term_texts": return getSubjectTermTexts();
+        case "technique_texts": return getTechniqueTexts();
+        case "thumbnail": return getThumbnail();
+        case "url": return getUrl();
+        case "work_type_texts": return getWorkTypeTexts();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public java.util.List<String> getAgentNameTexts() {

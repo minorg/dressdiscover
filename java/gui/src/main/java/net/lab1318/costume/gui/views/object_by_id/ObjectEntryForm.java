@@ -91,6 +91,10 @@ final class ObjectEntryForm extends CustomComponent {
                 formLayout.addComponent(new MaterialSetTable(objectEntry.getModel().getMaterials().get()));
             }
 
+            if (objectEntry.getModel().getMeasurements().isPresent()) {
+                formLayout.addComponent(new MeasurementsSetTable(objectEntry.getModel().getMeasurements().get()));
+            }
+
             if (objectEntry.getModel().getProvenance().isPresent()) {
                 formLayout.addComponent(__createTextField("Provenance", objectEntry.getModel().getProvenance().get()));
             }

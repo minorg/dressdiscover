@@ -1,6 +1,6 @@
 package net.lab1318.costume.gui.models.institution;
 
-public class InstitutionBean {
+public class InstitutionBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         DATA_RIGHTS("dataRights", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.rights.RightsSetBean>() {}, true, 5, "data_rights", org.thryft.protocol.Type.STRUCT),
@@ -121,6 +121,18 @@ public class InstitutionBean {
             getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
             getUrl().equals(other.getUrl());
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "data_rights": return getDataRights();
+        case "model_metadata": return getModelMetadata();
+        case "title": return getTitle();
+        case "url": return getUrl();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public net.lab1318.costume.gui.models.rights.RightsSetBean getDataRights() {

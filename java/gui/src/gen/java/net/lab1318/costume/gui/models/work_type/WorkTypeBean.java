@@ -3,7 +3,7 @@ package net.lab1318.costume.gui.models.work_type;
 /**
  * VRA Core 4.0 workType element
  */
-public class WorkTypeBean {
+public class WorkTypeBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "text", org.thryft.protocol.Type.STRING),
@@ -112,6 +112,16 @@ public class WorkTypeBean {
         return
             getText().equals(other.getText()) &&
             (getVocabRef() != null ? getVocabRef().equals(other.getVocabRef()) : other.getVocabRef() == null);
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "text": return getText();
+        case "vocab_ref": return getVocabRef();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public String getText() {

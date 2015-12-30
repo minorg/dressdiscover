@@ -3,7 +3,7 @@ package net.lab1318.costume.gui.models.description;
 /**
  * VRA Core 4.0 description element
  */
-public class DescriptionBean {
+public class DescriptionBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "text", org.thryft.protocol.Type.STRING),
@@ -118,6 +118,17 @@ public class DescriptionBean {
             getText().equals(other.getText()) &&
             (getSource() != null ? getSource().equals(other.getSource()) : other.getSource() == null) &&
             (getType() != null ? getType().equals(other.getType()) : other.getType() == null);
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "text": return getText();
+        case "source": return getSource();
+        case "type": return getType();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public String getSource() {

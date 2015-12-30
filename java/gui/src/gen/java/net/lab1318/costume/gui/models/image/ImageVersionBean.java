@@ -1,6 +1,6 @@
 package net.lab1318.costume.gui.models.image;
 
-public class ImageVersionBean {
+public class ImageVersionBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, true, 1, "url", org.thryft.protocol.Type.STRING),
@@ -115,6 +115,17 @@ public class ImageVersionBean {
             getUrl().equals(other.getUrl()) &&
             (getHeightPx() != null ? getHeightPx().equals(other.getHeightPx()) : other.getHeightPx() == null) &&
             (getWidthPx() != null ? getWidthPx().equals(other.getWidthPx()) : other.getWidthPx() == null);
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "url": return getUrl();
+        case "height_px": return getHeightPx();
+        case "width_px": return getWidthPx();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public com.google.common.primitives.UnsignedInteger getHeightPx() {

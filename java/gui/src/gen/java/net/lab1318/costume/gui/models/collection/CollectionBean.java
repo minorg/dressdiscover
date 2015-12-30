@@ -1,6 +1,6 @@
 package net.lab1318.costume.gui.models.collection;
 
-public class CollectionBean {
+public class CollectionBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, true, 1, "institution_id", org.thryft.protocol.Type.STRING),
@@ -121,6 +121,18 @@ public class CollectionBean {
             getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
             (getDescription() != null ? getDescription().equals(other.getDescription()) : other.getDescription() == null);
+    }
+
+    @Override
+    public java.lang.Object get(final String fieldName) {
+        switch (fieldName) {
+        case "institution_id": return getInstitutionId();
+        case "model_metadata": return getModelMetadata();
+        case "title": return getTitle();
+        case "description": return getDescription();
+        default:
+            throw new IllegalArgumentException(fieldName);
+        }
     }
 
     public String getDescription() {
