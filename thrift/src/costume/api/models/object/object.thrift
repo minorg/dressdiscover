@@ -5,6 +5,7 @@ namespace * costume.api.models.object
 include "costume/api/models/model_metadata.thrift"
 include "costume/api/models/agent/agent_set.thrift"
 include "costume/api/models/collection/collection_id.thrift"
+include "costume/api/models/component/component_set.thrift"
 include "costume/api/models/condition/condition.thrift"
 include "costume/api/models/color/color_set.thrift"
 include "costume/api/models/date/date_set.thrift"
@@ -17,6 +18,7 @@ include "costume/api/models/material/material_set.thrift"
 include "costume/api/models/measurements/measurements_set.thrift"
 include "costume/api/models/relation/relation_set.thrift"
 include "costume/api/models/rights/rights_set.thrift"
+include "costume/api/models/structure/structure_set.thrift"
 include "costume/api/models/subject/subject_set.thrift"
 include "costume/api/models/technique/technique_set.thrift"
 include "costume/api/models/textref/textref_set.thrift"
@@ -42,6 +44,8 @@ struct Object {
 	18: optional list<string> categories;
 
 	30: optional color_set.ColorSet colors;
+
+	32: optional component_set.ComponentSet components;
 
 	27: optional condition.Condition condition;
 
@@ -69,6 +73,8 @@ struct Object {
 	29: optional relation_set.RelationSet relations;
 
 	22: optional rights_set.RightsSet rights;
+
+	33: optional structure_set.StructureSet structures;
 
 	21: optional subject_set.SubjectSet subjects;
 

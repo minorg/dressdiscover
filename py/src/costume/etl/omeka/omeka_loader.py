@@ -14,6 +14,9 @@ from costume.api.models.collection.collection import Collection
 from costume.api.models.color.color import Color
 from costume.api.models.color.color_set import ColorSet
 from costume.api.models.color.color_type import ColorType
+from costume.api.models.component.component import Component
+from costume.api.models.component.component_set import ComponentSet
+from costume.api.models.component.component_term import ComponentTerm
 from costume.api.models.condition.condition import Condition
 from costume.api.models.date.date import Date
 from costume.api.models.date.date_bound import DateBound
@@ -46,6 +49,9 @@ from costume.api.models.relation.relation_type import RelationType
 from costume.api.models.rights.rights import Rights
 from costume.api.models.rights.rights_set import RightsSet
 from costume.api.models.rights.rights_type import RightsType
+from costume.api.models.structure.structure import Structure
+from costume.api.models.structure.structure_set import StructureSet
+from costume.api.models.structure.structure_type import StructureType
 from costume.api.models.subject.subject import Subject
 from costume.api.models.subject.subject_set import SubjectSet
 from costume.api.models.subject.subject_term import SubjectTerm
@@ -117,6 +123,7 @@ class OmekaLoader(_Loader):
 
             self.agents = []
             self.categories = []
+            self.component_builders_by_letter = {}
             self.colors = []
             self.dc_date_builder = Date.Builder().set_type(DateType.CREATION)
             self.dc_date_certainty = None
@@ -128,6 +135,8 @@ class OmekaLoader(_Loader):
             self.materials = []
             self.measurements = []
             self.relations = []
+            self.structures = []
+            self.structures_by_component_letter = {}
             self.subjects = []
             self.techniques = []
             self.textrefs = []
@@ -157,6 +166,16 @@ class OmekaLoader(_Loader):
                 self.__object_builder.set_agents(AgentSet.Builder().set_elements(tuple(self.agents)).build())
             if len(self.categories) > 0:
                 self.__object_builder.set_categories(tuple(self.categories))
+            if len(self.component_builders_by_letter) > 0:
+                components = []
+                for letter, component_builder in self.component_builders_by_letter.iteritems():
+                    structures = self.structures_by_component_letter.get(letter)
+                    if structures is not None:
+                        assert len(structures) > 0
+                        component_builder.set_structures(StructureSet.Builder().set_elements(tuple(structures)).build())
+                    component = component_builder.build()
+                    components.append(component)
+                self.__object_builder.set_components(ComponentSet.Builder().set_elements(tuple(components)).build())
             if len(self.colors) > 0:
                 self.__object_builder.set_colors(ColorSet.Builder().set_elements(tuple(self.colors)).build())
             if self.dc_date_builder.earliest_date is not None and self.dc_date_builder.latest_date is not None:
@@ -219,6 +238,8 @@ class OmekaLoader(_Loader):
                         unique_relations.append(relation)
                         relation_texts[relation.text] = None
                 self.__object_builder.set_relations(RelationSet.Builder().set_elements(tuple(unique_relations)).build())
+            if len(self.structures) > 0:
+                self.__object_builder.set_structures(StructureSet.Builder().set_elements(tuple(self.structures)).build())
             if len(self.subjects) > 0:
                 self.__object_builder.set_subjects(SubjectSet.Builder().set_elements(tuple(self.subjects)).build())
             if len(self.techniques) > 0:
@@ -441,14 +462,14 @@ class OmekaLoader(_Loader):
             try:
                 method = getattr(self, method_name)
             except AttributeError:
-                self._logger.warn("no method %s, skipping item Dublin Core element %s: %s", method_name, element_name, text.encode('ascii', 'ignore'))
+                self._logger.warn("no method %s, skipping item %d Dublin Core element %s: %s", method_name, object_builder.omeka_item_id, element_name, text.encode('ascii', 'ignore'))
                 return
         elif element_set_name == 'Item Type Metadata':
             method_name = '_load_item_element_itm_' + element_name.lower().replace(' ', '_')
             try:
                 method = getattr(self, method_name)
             except AttributeError:
-                self._logger.warn("no method %s, skipping Item Type Metadata element %s: %s", method_name, element_name, text.encode('ascii', 'ignore'))
+                self._logger.warn("no method %s, skipping item %d Item Type Metadata element %s: %s", method_name, object_builder.omeka_item_id, element_name, text.encode('ascii', 'ignore'))
                 return
         else:
             self._logger.warn("skipping item %s element set", element_set_name)
@@ -629,6 +650,25 @@ class OmekaLoader(_Loader):
         if work_type is not None:
             object_builder.work_types.append(work_type)
 
+    # Components
+    def _load_item_element_itm_a(self, **kwds):
+        self.__load_item_element_itm_component(letter='a', **kwds)
+
+    def _load_item_element_itm_b(self, **kwds):
+        self.__load_item_element_itm_component(letter='b', **kwds)
+
+    def _load_item_element_itm_c(self, **kwds):
+        self.__load_item_element_itm_component(letter='c', **kwds)
+
+    def _load_item_element_itm_d(self, **kwds):
+        self.__load_item_element_itm_component(letter='d', **kwds)
+
+    def _load_item_element_itm_e(self, **kwds):
+        self.__load_item_element_itm_component(letter='e', **kwds)
+
+    def _load_item_element_itm_f(self, **kwds):
+        self.__load_item_element_itm_component(letter='f', **kwds)
+
     def _load_item_element_itm_accession_number(self, object_builder, text):
         object_builder.textrefs.append(
             Textref.Builder()
@@ -664,6 +704,14 @@ class OmekaLoader(_Loader):
                 .set_earliest_date(earliest_date)
                 .set_latest_date(earliest_date)
                 .set_type(DateType.ACCESSION)
+                .build()
+        )
+
+    def _load_item_element_itm_bibliography(self, object_builder, text):
+        object_builder.descriptions.append(
+            Description.Builder()
+                .set_text(text)
+                .set_type(DescriptionType.BIBLIOGRAPHY)
                 .build()
         )
 
@@ -709,6 +757,19 @@ class OmekaLoader(_Loader):
 
         object_builder.colors.append(builder.build())
 
+    def __load_item_element_itm_component(self, letter, object_builder, text):
+        letter = letter.lower()
+        if letter in object_builder.component_builders_by_letter:
+            self._logger.warn("component %s is defined twice on item %d", letter, object_builder.omeka_item_id)
+            return
+        object_builder.component_builders_by_letter[letter] = \
+            Component.Builder()\
+                .set_term(
+                    ComponentTerm.Builder()
+                        .set_text(text)
+                        .build()
+                )
+
     def _load_item_element_itm_condition(self, object_builder, text):
         object_builder.descriptions.append(
             Description.Builder()
@@ -743,7 +804,7 @@ class OmekaLoader(_Loader):
     def _load_item_element_itm_date_earliest(self, object_builder, text):
         earliest_date = self.__parse_date(text)
         if object_builder.dc_date_builder.earliest_date is not None:
-            self._logger.warn(
+            self._logger.info(
                 "replacing item %d's earliest date (%s) from Date with Date Earliest '%s' = %s",
                 object_builder.omeka_item_id,
                 object_builder.dc_date_builder.earliest_date,
@@ -755,7 +816,7 @@ class OmekaLoader(_Loader):
     def _load_item_element_itm_date_latest(self, object_builder, text):
         latest_date = self.__parse_date(text)
         if object_builder.dc_date_builder.latest_date is not None:
-            self._logger.warn(
+            self._logger.info(
                 "replacing item %d's latest date (%s) from Date with Date Earliest '%s' = %s",
                 object_builder.omeka_item_id,
                 object_builder.dc_date_builder.latest_date,
@@ -878,6 +939,12 @@ class OmekaLoader(_Loader):
                 .build()
         )
 
+    def _load_item_element_itm_location(self, object_builder, text):
+        pass
+
+    def _load_item_element_itm_mannequin(self, object_builder, text):
+        pass
+
     def _load_item_element_itm_objectvr_link(self, object_builder, text):
         pass
 
@@ -949,6 +1016,121 @@ class OmekaLoader(_Loader):
 
     def _load_item_element_itm_storage_location(self, object_builder, text):
         pass
+
+    def __load_item_element_itm_structure(self, object_builder, text, type_):
+        vocab_ref = VocabRef(vocab=Vocab.COSTUME_CORE)
+
+        logger = self._logger
+        def build_structure(structure_text):
+            controlled_vocabulary = None
+            for key, value in COSTUME_CORE_CONTROLLED_VOCABULARIES.iteritems():
+                if key.lower() == 'structure ' + type_.text:
+                    controlled_vocabulary = value
+                    break
+            if controlled_vocabulary is None:
+                if type_.text == 'silhouette':
+                    controlled_vocabulary = COSTUME_CORE_CONTROLLED_VOCABULARIES['Overall Silhouette']
+                else:
+                    logger.warn('unable to find controlled vocabulary for structure type %s', type_.text)
+
+            if controlled_vocabulary is not None:
+                if structure_text in controlled_vocabulary:
+                    logger.debug("structure %s from item %d has controlled text '%s'", type_.text, object_builder.omeka_item_id, structure_text)
+                elif structure_text.lower() in controlled_vocabulary:
+                    structure_text = structure_text.lower()
+                    logger.debug("structure %s from item %d has controlled text '%s' after lower-casing", type_.text, object_builder.omeka_item_id, structure_text)
+                else:
+                    logger.warn("structure %s from item %d has uncontrolled text '%s'", type_.text, object_builder.omeka_item_id, structure_text)
+
+            return \
+                Structure.Builder()\
+                    .set_text(structure_text)\
+                    .set_type(type_)\
+                    .set_vocab_ref(vocab_ref)\
+                    .build()
+
+        lines = text.split("\n")
+        if len(lines) == 1:
+            for text_part in text.split(';'):
+                text_part = text_part.strip()
+                if len(text_part) == 0:
+                    continue
+                if len(text_part) > 2 and text_part[1] == ':':
+                    # Form 'A: term'
+                    letter = text_part[0].lower()
+                    if not letter.isalpha():
+                        raise NotImplementedError(text_part)
+                    structure_text = text_part[2:].strip()
+                    object_builder.structures_by_component_letter.setdefault(letter, []).append(build_structure(structure_text))
+                elif text_part.endswith(')'):
+                    # Form 'term (extent)'
+                    open_p = text_part.rindex('(')
+                    if open_p == -1:
+                        object_builder.structures.append(build_structure(text_part))
+                        continue
+                    extent = text_part[open_p+1:-1]
+                    structure_text = text_part[:open_p].strip()
+                    if len(extent) == 1:
+                        letter = extent.lower()
+                        object_builder.structures_by_component_letter.setdefault(letter, []).append(build_structure(structure_text))
+                    elif len(extent) > 0:
+                        found_letter = None
+                        for letter, component_builder in object_builder.component_builders_by_letter.iteritems():
+                            if component_builder.term.text == extent:
+                                found_letter = letter
+                                break
+                        if found_letter is not None:
+                            object_builder.structures_by_component_letter.setdefault(found_letter, []).append(build_structure(structure_text))
+                        else:
+                            self._logger.warn("unable to resolve extent '%s' in structure %s from item %d", extent, type_.text, object_builder.omeka_item_id)
+                    else:
+                        raise NotImplementedError
+                else:
+                    # Form 'term'
+                    object_builder.structures.append(build_structure(text_part))
+        else:
+            # One item, with each line form 'A: term'
+            for line in lines:
+                line = line.strip()
+                if len(line) == 0:
+                    continue
+                if not (len(line) > 2 and line[1] == ':'):
+                    raise NotImplementedError(line)
+                letter = line[0].lower()
+                if not letter.isalpha():
+                    raise NotImplementedError(line)
+                structure_text = line[2:].strip()
+                object_builder.structures_by_component_letter.setdefault(letter, []).append(build_structure(structure_text))
+
+    def _load_item_element_itm_structure_cut(self, **kwds):
+        self.__load_item_element_itm_structure(type_=StructureType(text='cut', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+
+    def _load_item_element_itm_structure_hem(self, **kwds):
+        self.__load_item_element_itm_structure(type_=StructureType(text='hem', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+
+    def _load_item_element_itm_structure_lining(self, **kwds):
+        self.__load_item_element_itm_structure(type_=StructureType(text='lining', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+
+    def _load_item_element_itm_structure_neckline(self, **kwds):
+        self.__load_item_element_itm_structure(type_=StructureType(text='neckline', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+
+    def _load_item_element_itm_structure_pants(self, **kwds):
+        self.__load_item_element_itm_structure(type_=StructureType(text='pants', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+
+    def _load_item_element_itm_structure_silhouette(self, **kwds):
+        self.__load_item_element_itm_structure(type_=StructureType(text='silhouette', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+
+    def _load_item_element_itm_structure_skirt(self, **kwds):
+        self.__load_item_element_itm_structure(type_=StructureType(text='skirt', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+
+    def _load_item_element_itm_structure_sleeves(self, **kwds):
+        self.__load_item_element_itm_structure(type_=StructureType(text='sleeves', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+
+    def _load_item_element_itm_structure_torso(self, **kwds):
+        self.__load_item_element_itm_structure(type_=StructureType(text='torso', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+
+    def _load_item_element_itm_structure_waist(self, **kwds):
+        self.__load_item_element_itm_structure(type_=StructureType(text='waist', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
 
     def _load_item_element_itm_suffix(self, object_builder, text):
         pass # Accession number suffix
