@@ -5,6 +5,7 @@ namespace * costume.api.models.object
 include "costume/api/models/model_metadata.thrift"
 include "costume/api/models/agent/agent_set.thrift"
 include "costume/api/models/collection/collection_id.thrift"
+include "costume/api/models/component/component_set.thrift"
 include "costume/api/models/condition/condition.thrift"
 include "costume/api/models/color/color_set.thrift"
 include "costume/api/models/date/date_set.thrift"
@@ -42,6 +43,8 @@ struct Object {
 	18: optional list<string> categories;
 
 	30: optional color_set.ColorSet colors;
+
+	32: optional component_set.ComponentSet components;
 
 	27: optional condition.Condition condition;
 
