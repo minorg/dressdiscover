@@ -7,18 +7,24 @@ public class Component implements org.thryft.Struct, net.lab1318.costume.api.mod
     public static class Builder {
         public Builder() {
             term = null;
+            structures = com.google.common.base.Optional.absent();
         }
 
         public Builder(final Component other) {
             this.term = other.getTerm();
+            this.structures = other.getStructures();
         }
 
-        protected Component _build(final net.lab1318.costume.api.models.component.ComponentTerm term) {
-            return new Component(term);
+        protected Component _build(final net.lab1318.costume.api.models.component.ComponentTerm term, final com.google.common.base.Optional<net.lab1318.costume.api.models.structure.StructureSet> structures) {
+            return new Component(term, structures);
         }
 
         public Component build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(term, "net.lab1318.costume.api.models.component.Component: missing term"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(term, "net.lab1318.costume.api.models.component.Component: missing term"), com.google.common.base.Preconditions.checkNotNull(structures, "net.lab1318.costume.api.models.component.Component: missing structures"));
+        }
+
+        public final com.google.common.base.Optional<net.lab1318.costume.api.models.structure.StructureSet> getStructures() {
+            return structures;
         }
 
         public final net.lab1318.costume.api.models.component.ComponentTerm getTerm() {
@@ -37,8 +43,11 @@ public class Component implements org.thryft.Struct, net.lab1318.costume.api.mod
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            iprot.readListBegin();
+            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             term = net.lab1318.costume.api.models.component.ComponentTerm.readAsStruct(iprot);
+            if (__list.getSize() > 1) {
+                structures = com.google.common.base.Optional.of(net.lab1318.costume.api.models.structure.StructureSet.readAsStruct(iprot));
+            }
             iprot.readListEnd();
             return this;
         }
@@ -57,6 +66,12 @@ public class Component implements org.thryft.Struct, net.lab1318.costume.api.mod
                     }
                     break;
                 }
+                case "structures": {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        structures = com.google.common.base.Optional.of(net.lab1318.costume.api.models.structure.StructureSet.readAsStruct(iprot));
+                    }
+                    break;
+                }
                 }
                 iprot.readFieldEnd();
             }
@@ -68,7 +83,20 @@ public class Component implements org.thryft.Struct, net.lab1318.costume.api.mod
             com.google.common.base.Preconditions.checkNotNull(other);
 
             setTerm(other.getTerm());
+            if (other.getStructures().isPresent()) {
+                setStructures(other.getStructures());
+            }
 
+            return this;
+        }
+
+        public Builder setStructures(final com.google.common.base.Optional<net.lab1318.costume.api.models.structure.StructureSet> structures) {
+            this.structures = com.google.common.base.Preconditions.checkNotNull(structures);
+            return this;
+        }
+
+        public Builder setStructures(@javax.annotation.Nullable final net.lab1318.costume.api.models.structure.StructureSet structures) {
+            this.structures = com.google.common.base.Optional.fromNullable(structures);
             return this;
         }
 
@@ -82,9 +110,15 @@ public class Component implements org.thryft.Struct, net.lab1318.costume.api.mod
 
             switch (name.toLowerCase()) {
             case "term": setTerm((net.lab1318.costume.api.models.component.ComponentTerm)value); return this;
+            case "structures": setStructures((net.lab1318.costume.api.models.structure.StructureSet)value); return this;
             default:
                 throw new IllegalArgumentException(name);
             }
+        }
+
+        public Builder unsetStructures() {
+            this.structures = com.google.common.base.Optional.absent();
+            return this;
         }
 
         public Builder unsetTerm() {
@@ -97,17 +131,20 @@ public class Component implements org.thryft.Struct, net.lab1318.costume.api.mod
 
             switch (name.toLowerCase()) {
             case "term": return unsetTerm();
+            case "structures": return unsetStructures();
             default:
                 throw new IllegalArgumentException(name);
             }
         }
 
         private net.lab1318.costume.api.models.component.ComponentTerm term;
+        private com.google.common.base.Optional<net.lab1318.costume.api.models.structure.StructureSet> structures;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TERM("term", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.component.ComponentTerm>() {}, true, 1, "term", org.thryft.protocol.Type.STRUCT);
+        TERM("term", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.component.ComponentTerm>() {}, true, 1, "term", org.thryft.protocol.Type.STRUCT),
+        STRUCTURES("structures", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.structure.StructureSet>() {}, false, 2, "structures", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -152,6 +189,7 @@ public class Component implements org.thryft.Struct, net.lab1318.costume.api.mod
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
             case "term": return TERM;
+            case "structures": return STRUCTURES;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -160,6 +198,7 @@ public class Component implements org.thryft.Struct, net.lab1318.costume.api.mod
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
             case "term": return TERM;
+            case "structures": return STRUCTURES;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -192,14 +231,31 @@ public class Component implements org.thryft.Struct, net.lab1318.costume.api.mod
      * Copy constructor
      */
     public Component(final Component other) {
-        this(other.getTerm());
+        this(other.getTerm(), other.getStructures());
+    }
+
+    /**
+     * Required constructor
+     */
+    public Component(final net.lab1318.costume.api.models.component.ComponentTerm term) {
+        this.term = com.google.common.base.Preconditions.checkNotNull(term, "net.lab1318.costume.api.models.component.Component: missing term");
+        this.structures = com.google.common.base.Optional.absent();
+    }
+
+    /**
+     * Total Nullable constructor
+     */
+    public Component(final net.lab1318.costume.api.models.component.ComponentTerm term, final @javax.annotation.Nullable net.lab1318.costume.api.models.structure.StructureSet structures) {
+        this.term = com.google.common.base.Preconditions.checkNotNull(term, "net.lab1318.costume.api.models.component.Component: missing term");
+        this.structures = com.google.common.base.Optional.fromNullable(structures);
     }
 
     /**
      * Optional constructor
      */
-    public Component(final net.lab1318.costume.api.models.component.ComponentTerm term) {
+    public Component(final net.lab1318.costume.api.models.component.ComponentTerm term, final com.google.common.base.Optional<net.lab1318.costume.api.models.structure.StructureSet> structures) {
         this.term = com.google.common.base.Preconditions.checkNotNull(term, "net.lab1318.costume.api.models.component.Component: missing term");
+        this.structures = com.google.common.base.Preconditions.checkNotNull(structures, "net.lab1318.costume.api.models.component.Component: missing structures");
     }
 
     public static Builder builder() {
@@ -224,16 +280,22 @@ public class Component implements org.thryft.Struct, net.lab1318.costume.api.mod
 
         final Component other = (Component)otherObject;
         return
-            getTerm().equals(other.getTerm());
+            getTerm().equals(other.getTerm()) &&
+            getStructures().equals(other.getStructures());
     }
 
     @Override
     public java.lang.Object get(final String fieldName) {
         switch (fieldName) {
         case "term": return getTerm();
+        case "structures": return getStructures();
         default:
             throw new IllegalArgumentException(fieldName);
         }
+    }
+
+    public final com.google.common.base.Optional<net.lab1318.costume.api.models.structure.StructureSet> getStructures() {
+        return structures;
     }
 
     public final net.lab1318.costume.api.models.component.ComponentTerm getTerm() {
@@ -244,6 +306,9 @@ public class Component implements org.thryft.Struct, net.lab1318.costume.api.mod
     public int hashCode() {
         int hashCode = 17;
         hashCode = 31 * hashCode + getTerm().hashCode();
+        if (getStructures().isPresent()) {
+            hashCode = 31 * hashCode + getStructures().get().hashCode();
+        }
         return hashCode;
     }
 
@@ -260,12 +325,16 @@ public class Component implements org.thryft.Struct, net.lab1318.costume.api.mod
 
     public static Component readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         net.lab1318.costume.api.models.component.ComponentTerm term = null;
+        com.google.common.base.Optional<net.lab1318.costume.api.models.structure.StructureSet> structures = com.google.common.base.Optional.absent();
 
-        iprot.readListBegin();
+        final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         term = net.lab1318.costume.api.models.component.ComponentTerm.readAsStruct(iprot);
+        if (__list.getSize() > 1) {
+            structures = com.google.common.base.Optional.of(net.lab1318.costume.api.models.structure.StructureSet.readAsStruct(iprot));
+        }
         iprot.readListEnd();
         try {
-            return new Component(term);
+            return new Component(term, structures);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -273,6 +342,7 @@ public class Component implements org.thryft.Struct, net.lab1318.costume.api.mod
 
     public static Component readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         net.lab1318.costume.api.models.component.ComponentTerm term = null;
+        com.google.common.base.Optional<net.lab1318.costume.api.models.structure.StructureSet> structures = com.google.common.base.Optional.absent();
 
         iprot.readStructBegin();
         while (true) {
@@ -287,31 +357,51 @@ public class Component implements org.thryft.Struct, net.lab1318.costume.api.mod
                 }
                 break;
             }
+            case "structures": {
+                if (!ifield.hasId() || ifield.getId() == 2) {
+                    structures = com.google.common.base.Optional.of(net.lab1318.costume.api.models.structure.StructureSet.readAsStruct(iprot));
+                }
+                break;
+            }
             }
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
         try {
-            return new Component(term);
+            return new Component(term, structures);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
+    public Component replaceStructures(final com.google.common.base.Optional<net.lab1318.costume.api.models.structure.StructureSet> structures) {
+        return new Component(this.term, structures);
+    }
+
+    public Component replaceStructures(final net.lab1318.costume.api.models.structure.StructureSet structures) {
+        return replaceStructures(com.google.common.base.Optional.fromNullable(structures));
+    }
+
     public Component replaceTerm(final net.lab1318.costume.api.models.component.ComponentTerm term) {
-        return new Component(term);
+        return new Component(term, this.structures);
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("term", getTerm()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("term", getTerm()).add("structures", getStructures().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
 
         getTerm().writeAsStruct(oprot);
+
+        if (getStructures().isPresent()) {
+            getStructures().get().writeAsStruct(oprot);
+        } else {
+            oprot.writeNull();
+        }
 
         oprot.writeListEnd();
     }
@@ -329,8 +419,16 @@ public class Component implements org.thryft.Struct, net.lab1318.costume.api.mod
         getTerm().writeAsStruct(oprot);
         oprot.writeFieldEnd();
 
+        if (getStructures().isPresent()) {
+            oprot.writeFieldBegin("structures", org.thryft.protocol.Type.STRUCT, (short)2);
+            getStructures().get().writeAsStruct(oprot);
+            oprot.writeFieldEnd();
+        }
+
         oprot.writeFieldStop();
     }
 
     private final net.lab1318.costume.api.models.component.ComponentTerm term;
+
+    private final com.google.common.base.Optional<net.lab1318.costume.api.models.structure.StructureSet> structures;
 }

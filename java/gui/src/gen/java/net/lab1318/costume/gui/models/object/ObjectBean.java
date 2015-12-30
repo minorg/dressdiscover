@@ -23,6 +23,7 @@ public class ObjectBean implements org.thryft.StructBean {
         QUANTITY("quantity", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, false, 26, "quantity", org.thryft.protocol.Type.I32),
         RELATIONS("relations", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.relation.RelationSetBean>() {}, false, 29, "relations", org.thryft.protocol.Type.STRUCT),
         RIGHTS("rights", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.rights.RightsSetBean>() {}, false, 22, "rights", org.thryft.protocol.Type.STRUCT),
+        STRUCTURES("structures", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.structure.StructureSetBean>() {}, false, 33, "structures", org.thryft.protocol.Type.STRUCT),
         SUBJECTS("subjects", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.subject.SubjectSetBean>() {}, false, 21, "subjects", org.thryft.protocol.Type.STRUCT),
         TECHNIQUES("techniques", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.technique.TechniqueSetBean>() {}, false, 16, "techniques", org.thryft.protocol.Type.STRUCT),
         TEXTREFS("textrefs", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.textref.TextrefSetBean>() {}, false, 9, "textrefs", org.thryft.protocol.Type.STRUCT),
@@ -91,6 +92,7 @@ public class ObjectBean implements org.thryft.StructBean {
             case "quantity": return QUANTITY;
             case "relations": return RELATIONS;
             case "rights": return RIGHTS;
+            case "structures": return STRUCTURES;
             case "subjects": return SUBJECTS;
             case "techniques": return TECHNIQUES;
             case "textrefs": return TEXTREFS;
@@ -123,6 +125,7 @@ public class ObjectBean implements org.thryft.StructBean {
             case "quantity": return QUANTITY;
             case "relations": return RELATIONS;
             case "rights": return RIGHTS;
+            case "structures": return STRUCTURES;
             case "subjects": return SUBJECTS;
             case "techniques": return TECHNIQUES;
             case "textrefs": return TEXTREFS;
@@ -177,6 +180,7 @@ public class ObjectBean implements org.thryft.StructBean {
         quantity = null;
         relations = null;
         rights = null;
+        structures = null;
         subjects = null;
         techniques = null;
         textrefs = null;
@@ -214,6 +218,7 @@ public class ObjectBean implements org.thryft.StructBean {
         this.quantity = other.getQuantity().isPresent() ? other.getQuantity().get() : null;
         this.relations = other.getRelations().isPresent() ? new net.lab1318.costume.gui.models.relation.RelationSetBean(other.getRelations().get()) : null;
         this.rights = other.getRights().isPresent() ? new net.lab1318.costume.gui.models.rights.RightsSetBean(other.getRights().get()) : null;
+        this.structures = other.getStructures().isPresent() ? new net.lab1318.costume.gui.models.structure.StructureSetBean(other.getStructures().get()) : null;
         this.subjects = other.getSubjects().isPresent() ? new net.lab1318.costume.gui.models.subject.SubjectSetBean(other.getSubjects().get()) : null;
         this.techniques = other.getTechniques().isPresent() ? new net.lab1318.costume.gui.models.technique.TechniqueSetBean(other.getTechniques().get()) : null;
         this.textrefs = other.getTextrefs().isPresent() ? new net.lab1318.costume.gui.models.textref.TextrefSetBean(other.getTextrefs().get()) : null;
@@ -251,6 +256,7 @@ public class ObjectBean implements org.thryft.StructBean {
             (getQuantity() != null ? getQuantity().equals(other.getQuantity()) : other.getQuantity() == null) &&
             (getRelations() != null ? getRelations().equals(other.getRelations()) : other.getRelations() == null) &&
             (getRights() != null ? getRights().equals(other.getRights()) : other.getRights() == null) &&
+            (getStructures() != null ? getStructures().equals(other.getStructures()) : other.getStructures() == null) &&
             (getSubjects() != null ? getSubjects().equals(other.getSubjects()) : other.getSubjects() == null) &&
             (getTechniques() != null ? getTechniques().equals(other.getTechniques()) : other.getTechniques() == null) &&
             (getTextrefs() != null ? getTextrefs().equals(other.getTextrefs()) : other.getTextrefs() == null) &&
@@ -281,6 +287,7 @@ public class ObjectBean implements org.thryft.StructBean {
         case "quantity": return getQuantity();
         case "relations": return getRelations();
         case "rights": return getRights();
+        case "structures": return getStructures();
         case "subjects": return getSubjects();
         case "techniques": return getTechniques();
         case "textrefs": return getTextrefs();
@@ -370,6 +377,10 @@ public class ObjectBean implements org.thryft.StructBean {
         return rights;
     }
 
+    public net.lab1318.costume.gui.models.structure.StructureSetBean getStructures() {
+        return structures;
+    }
+
     public net.lab1318.costume.gui.models.subject.SubjectSetBean getSubjects() {
         return subjects;
     }
@@ -448,6 +459,9 @@ public class ObjectBean implements org.thryft.StructBean {
         }
         if (getRights() != null) {
             hashCode = 31 * hashCode + getRights().hashCode();
+        }
+        if (getStructures() != null) {
+            hashCode = 31 * hashCode + getStructures().hashCode();
         }
         if (getSubjects() != null) {
             hashCode = 31 * hashCode + getSubjects().hashCode();
@@ -543,6 +557,10 @@ public class ObjectBean implements org.thryft.StructBean {
         this.rights = rights;
     }
 
+    public void setStructures(final net.lab1318.costume.gui.models.structure.StructureSetBean structures) {
+        this.structures = structures;
+    }
+
     public void setSubjects(final net.lab1318.costume.gui.models.subject.SubjectSetBean subjects) {
         this.subjects = subjects;
     }
@@ -569,7 +587,7 @@ public class ObjectBean implements org.thryft.StructBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("titles", getTitles()).add("agents", getAgents()).add("categories", getCategories()).add("colors", getColors()).add("components", getComponents()).add("condition", getCondition()).add("dates", getDates()).add("descriptions", getDescriptions()).add("gender", getGender()).add("images", getImages()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("measurements", getMeasurements()).add("provenance", getProvenance()).add("quantity", getQuantity()).add("relations", getRelations()).add("rights", getRights()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("view_type", getViewType()).add("work_types", getWorkTypes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("titles", getTitles()).add("agents", getAgents()).add("categories", getCategories()).add("colors", getColors()).add("components", getComponents()).add("condition", getCondition()).add("dates", getDates()).add("descriptions", getDescriptions()).add("gender", getGender()).add("images", getImages()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("measurements", getMeasurements()).add("provenance", getProvenance()).add("quantity", getQuantity()).add("relations", getRelations()).add("rights", getRights()).add("structures", getStructures()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("view_type", getViewType()).add("work_types", getWorkTypes()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -614,6 +632,8 @@ public class ObjectBean implements org.thryft.StructBean {
     private net.lab1318.costume.gui.models.relation.RelationSetBean relations;
 
     private net.lab1318.costume.gui.models.rights.RightsSetBean rights;
+
+    private net.lab1318.costume.gui.models.structure.StructureSetBean structures;
 
     private net.lab1318.costume.gui.models.subject.SubjectSetBean subjects;
 

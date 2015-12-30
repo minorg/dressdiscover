@@ -18,6 +18,7 @@ include "costume/api/models/material/material_set.thrift"
 include "costume/api/models/measurements/measurements_set.thrift"
 include "costume/api/models/relation/relation_set.thrift"
 include "costume/api/models/rights/rights_set.thrift"
+include "costume/api/models/structure/structure_set.thrift"
 include "costume/api/models/subject/subject_set.thrift"
 include "costume/api/models/technique/technique_set.thrift"
 include "costume/api/models/textref/textref_set.thrift"
@@ -72,6 +73,8 @@ struct Object {
 	29: optional relation_set.RelationSet relations;
 
 	22: optional rights_set.RightsSet rights;
+
+	33: optional structure_set.StructureSet structures;
 
 	21: optional subject_set.SubjectSet subjects;
 

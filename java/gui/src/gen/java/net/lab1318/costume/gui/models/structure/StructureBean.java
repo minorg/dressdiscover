@@ -1,13 +1,14 @@
-package net.lab1318.costume.gui.models.component;
+package net.lab1318.costume.gui.models.structure;
 
 /**
- * Costume Core component element
+ * Costume Core structure* elements
  */
-public class ComponentBean implements org.thryft.StructBean {
+public class StructureBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TERM("term", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.component.ComponentTermBean>() {}, true, 1, "term", org.thryft.protocol.Type.STRUCT),
-        STRUCTURES("structures", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.structure.StructureSetBean>() {}, false, 2, "structures", org.thryft.protocol.Type.STRUCT);
+        TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "text", org.thryft.protocol.Type.STRING),
+        TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.structure.StructureTypeBean>() {}, true, 2, "type", org.thryft.protocol.Type.STRUCT),
+        VOCAB_REF("vocabRef", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.VocabRefBean>() {}, false, 3, "vocab_ref", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -51,8 +52,9 @@ public class ComponentBean implements org.thryft.StructBean {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "term": return TERM;
-            case "structures": return STRUCTURES;
+            case "text": return TEXT;
+            case "type": return TYPE;
+            case "vocabRef": return VOCAB_REF;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -60,8 +62,9 @@ public class ComponentBean implements org.thryft.StructBean {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "term": return TERM;
-            case "structures": return STRUCTURES;
+            case "text": return TEXT;
+            case "type": return TYPE;
+            case "vocab_ref": return VOCAB_REF;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -90,72 +93,87 @@ public class ComponentBean implements org.thryft.StructBean {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public ComponentBean() {
-        term = null;
-        structures = null;
+    public StructureBean() {
+        text = null;
+        type = null;
+        vocabRef = null;
     }
 
-    public ComponentBean(final net.lab1318.costume.api.models.component.Component other) {
-        this.term = new net.lab1318.costume.gui.models.component.ComponentTermBean(other.getTerm());
-        this.structures = other.getStructures().isPresent() ? new net.lab1318.costume.gui.models.structure.StructureSetBean(other.getStructures().get()) : null;
+    public StructureBean(final net.lab1318.costume.api.models.structure.Structure other) {
+        this.text = other.getText();
+        this.type = new net.lab1318.costume.gui.models.structure.StructureTypeBean(other.getType());
+        this.vocabRef = other.getVocabRef().isPresent() ? new net.lab1318.costume.gui.models.VocabRefBean(other.getVocabRef().get()) : null;
     }
 
     @Override
     public boolean equals(final java.lang.Object otherObject) {
         if (otherObject == this) {
             return true;
-        } else if (!(otherObject instanceof ComponentBean)) {
+        } else if (!(otherObject instanceof StructureBean)) {
             return false;
         }
 
-        final ComponentBean other = (ComponentBean)otherObject;
+        final StructureBean other = (StructureBean)otherObject;
         return
-            getTerm().equals(other.getTerm()) &&
-            (getStructures() != null ? getStructures().equals(other.getStructures()) : other.getStructures() == null);
+            getText().equals(other.getText()) &&
+            getType().equals(other.getType()) &&
+            (getVocabRef() != null ? getVocabRef().equals(other.getVocabRef()) : other.getVocabRef() == null);
     }
 
     @Override
     public java.lang.Object get(final String fieldName) {
         switch (fieldName) {
-        case "term": return getTerm();
-        case "structures": return getStructures();
+        case "text": return getText();
+        case "type": return getType();
+        case "vocab_ref": return getVocabRef();
         default:
             throw new IllegalArgumentException(fieldName);
         }
     }
 
-    public net.lab1318.costume.gui.models.structure.StructureSetBean getStructures() {
-        return structures;
+    public String getText() {
+        return text;
     }
 
-    public net.lab1318.costume.gui.models.component.ComponentTermBean getTerm() {
-        return term;
+    public net.lab1318.costume.gui.models.structure.StructureTypeBean getType() {
+        return type;
+    }
+
+    public net.lab1318.costume.gui.models.VocabRefBean getVocabRef() {
+        return vocabRef;
     }
 
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getTerm().hashCode();
-        if (getStructures() != null) {
-            hashCode = 31 * hashCode + getStructures().hashCode();
+        hashCode = 31 * hashCode + getText().hashCode();
+        hashCode = 31 * hashCode + getType().hashCode();
+        if (getVocabRef() != null) {
+            hashCode = 31 * hashCode + getVocabRef().hashCode();
         }
         return hashCode;
     }
 
-    public void setStructures(final net.lab1318.costume.gui.models.structure.StructureSetBean structures) {
-        this.structures = structures;
+    public void setText(final String text) {
+        this.text = text;
     }
 
-    public void setTerm(final net.lab1318.costume.gui.models.component.ComponentTermBean term) {
-        this.term = term;
+    public void setType(final net.lab1318.costume.gui.models.structure.StructureTypeBean type) {
+        this.type = type;
+    }
+
+    public void setVocabRef(final net.lab1318.costume.gui.models.VocabRefBean vocabRef) {
+        this.vocabRef = vocabRef;
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("term", getTerm()).add("structures", getStructures()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("type", getType()).add("vocab_ref", getVocabRef()).toString();
     }
 
-    private net.lab1318.costume.gui.models.component.ComponentTermBean term;
+    private String text;
 
-    private net.lab1318.costume.gui.models.structure.StructureSetBean structures;
+    private net.lab1318.costume.gui.models.structure.StructureTypeBean type;
+
+    private net.lab1318.costume.gui.models.VocabRefBean vocabRef;
 }

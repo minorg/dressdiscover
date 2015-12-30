@@ -14,6 +14,7 @@ import costume.api.models.measurements.measurements_set
 import costume.api.models.model_metadata
 import costume.api.models.relation.relation_set
 import costume.api.models.rights.rights_set
+import costume.api.models.structure.structure_set
 import costume.api.models.subject.subject_set
 import costume.api.models.technique.technique_set
 import costume.api.models.textref.textref_set
@@ -46,6 +47,7 @@ class Object(object):
             quantity=None,
             relations=None,
             rights=None,
+            structures=None,
             subjects=None,
             techniques=None,
             textrefs=None,
@@ -73,6 +75,7 @@ class Object(object):
             :type quantity: int or None
             :type relations: costume.api.models.relation.relation_set.RelationSet or None
             :type rights: costume.api.models.rights.rights_set.RightsSet or None
+            :type structures: costume.api.models.structure.structure_set.StructureSet or None
             :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
             :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
             :type textrefs: costume.api.models.textref.textref_set.TextrefSet or None
@@ -100,6 +103,7 @@ class Object(object):
             self.__quantity = quantity
             self.__relations = relations
             self.__rights = rights
+            self.__structures = structures
             self.__subjects = subjects
             self.__techniques = techniques
             self.__textrefs = textrefs
@@ -107,7 +111,7 @@ class Object(object):
             self.__work_types = work_types
 
         def build(self):
-            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, titles=self.__titles, agents=self.__agents, categories=self.__categories, colors=self.__colors, components=self.__components, condition=self.__condition, dates=self.__dates, descriptions=self.__descriptions, gender=self.__gender, images=self.__images, inscriptions=self.__inscriptions, materials=self.__materials, measurements=self.__measurements, provenance=self.__provenance, quantity=self.__quantity, relations=self.__relations, rights=self.__rights, subjects=self.__subjects, techniques=self.__techniques, textrefs=self.__textrefs, view_type=self.__view_type, work_types=self.__work_types)
+            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, titles=self.__titles, agents=self.__agents, categories=self.__categories, colors=self.__colors, components=self.__components, condition=self.__condition, dates=self.__dates, descriptions=self.__descriptions, gender=self.__gender, images=self.__images, inscriptions=self.__inscriptions, materials=self.__materials, measurements=self.__measurements, provenance=self.__provenance, quantity=self.__quantity, relations=self.__relations, rights=self.__rights, structures=self.__structures, subjects=self.__subjects, techniques=self.__techniques, textrefs=self.__textrefs, view_type=self.__view_type, work_types=self.__work_types)
 
         @property
         def agents(self):
@@ -413,6 +417,14 @@ class Object(object):
             self.__rights = rights
             return self
 
+        def set_structures(self, structures):
+            '''
+            :type structures: costume.api.models.structure.structure_set.StructureSet or None
+            '''
+
+            self.__structures = structures
+            return self
+
         def set_subjects(self, subjects):
             '''
             :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
@@ -460,6 +472,14 @@ class Object(object):
 
             self.__work_types = work_types
             return self
+
+        @property
+        def structures(self):
+            '''
+            :rtype: costume.api.models.structure.structure_set.StructureSet
+            '''
+
+            return self.__structures
 
         @property
         def subjects(self):
@@ -515,6 +535,7 @@ class Object(object):
             :type quantity: int or None
             :type relations: costume.api.models.relation.relation_set.RelationSet or None
             :type rights: costume.api.models.rights.rights_set.RightsSet or None
+            :type structures: costume.api.models.structure.structure_set.StructureSet or None
             :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
             :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
             :type textrefs: costume.api.models.textref.textref_set.TextrefSet or None
@@ -543,6 +564,7 @@ class Object(object):
                 self.set_quantity(object.quantity)
                 self.set_relations(object.relations)
                 self.set_rights(object.rights)
+                self.set_structures(object.structures)
                 self.set_subjects(object.subjects)
                 self.set_techniques(object.techniques)
                 self.set_textrefs(object.textrefs)
@@ -723,6 +745,14 @@ class Object(object):
 
             self.set_rights(rights)
 
+        @structures.setter
+        def structures(self, structures):
+            '''
+            :type structures: costume.api.models.structure.structure_set.StructureSet or None
+            '''
+
+            self.set_structures(structures)
+
         @subjects.setter
         def subjects(self, subjects):
             '''
@@ -793,6 +823,7 @@ class Object(object):
         quantity=None,
         relations=None,
         rights=None,
+        structures=None,
         subjects=None,
         techniques=None,
         textrefs=None,
@@ -820,6 +851,7 @@ class Object(object):
         :type quantity: int or None
         :type relations: costume.api.models.relation.relation_set.RelationSet or None
         :type rights: costume.api.models.rights.rights_set.RightsSet or None
+        :type structures: costume.api.models.structure.structure_set.StructureSet or None
         :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
         :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
         :type textrefs: costume.api.models.textref.textref_set.TextrefSet or None
@@ -937,6 +969,11 @@ class Object(object):
                 raise TypeError("expected rights to be a costume.api.models.rights.rights_set.RightsSet but it is a %s" % getattr(__builtin__, 'type')(rights))
         self.__rights = rights
 
+        if structures is not None:
+            if not isinstance(structures, costume.api.models.structure.structure_set.StructureSet):
+                raise TypeError("expected structures to be a costume.api.models.structure.structure_set.StructureSet but it is a %s" % getattr(__builtin__, 'type')(structures))
+        self.__structures = structures
+
         if subjects is not None:
             if not isinstance(subjects, costume.api.models.subject.subject_set.SubjectSet):
                 raise TypeError("expected subjects to be a costume.api.models.subject.subject_set.SubjectSet but it is a %s" % getattr(__builtin__, 'type')(subjects))
@@ -1003,6 +1040,8 @@ class Object(object):
             return False
         if self.rights != other.rights:
             return False
+        if self.structures != other.structures:
+            return False
         if self.subjects != other.subjects:
             return False
         if self.techniques != other.techniques:
@@ -1016,7 +1055,7 @@ class Object(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.model_metadata,self.titles,self.agents,self.categories,self.colors,self.components,self.condition,self.dates,self.descriptions,self.gender,self.images,self.inscriptions,self.materials,self.measurements,self.provenance,self.quantity,self.relations,self.rights,self.subjects,self.techniques,self.textrefs,self.view_type,self.work_types,))
+        return hash((self.collection_id,self.institution_id,self.model_metadata,self.titles,self.agents,self.categories,self.colors,self.components,self.condition,self.dates,self.descriptions,self.gender,self.images,self.inscriptions,self.materials,self.measurements,self.provenance,self.quantity,self.relations,self.rights,self.structures,self.subjects,self.techniques,self.textrefs,self.view_type,self.work_types,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -1062,6 +1101,8 @@ class Object(object):
             field_reprs.append('relations=' + repr(self.relations))
         if self.rights is not None:
             field_reprs.append('rights=' + repr(self.rights))
+        if self.structures is not None:
+            field_reprs.append('structures=' + repr(self.structures))
         if self.subjects is not None:
             field_reprs.append('subjects=' + repr(self.subjects))
         if self.techniques is not None:
@@ -1112,6 +1153,8 @@ class Object(object):
             field_reprs.append('relations=' + repr(self.relations))
         if self.rights is not None:
             field_reprs.append('rights=' + repr(self.rights))
+        if self.structures is not None:
+            field_reprs.append('structures=' + repr(self.structures))
         if self.subjects is not None:
             field_reprs.append('subjects=' + repr(self.subjects))
         if self.techniques is not None:
@@ -1139,7 +1182,7 @@ class Object(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'titles': self.titles, 'agents': self.agents, 'categories': self.categories, 'colors': self.colors, 'components': self.components, 'condition': self.condition, 'dates': self.dates, 'descriptions': self.descriptions, 'gender': self.gender, 'images': self.images, 'inscriptions': self.inscriptions, 'materials': self.materials, 'measurements': self.measurements, 'provenance': self.provenance, 'quantity': self.quantity, 'relations': self.relations, 'rights': self.rights, 'subjects': self.subjects, 'techniques': self.techniques, 'textrefs': self.textrefs, 'view_type': self.view_type, 'work_types': self.work_types}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'titles': self.titles, 'agents': self.agents, 'categories': self.categories, 'colors': self.colors, 'components': self.components, 'condition': self.condition, 'dates': self.dates, 'descriptions': self.descriptions, 'gender': self.gender, 'images': self.images, 'inscriptions': self.inscriptions, 'materials': self.materials, 'measurements': self.measurements, 'provenance': self.provenance, 'quantity': self.quantity, 'relations': self.relations, 'rights': self.rights, 'structures': self.structures, 'subjects': self.subjects, 'techniques': self.techniques, 'textrefs': self.textrefs, 'view_type': self.view_type, 'work_types': self.work_types}
 
     def as_tuple(self):
         '''
@@ -1148,7 +1191,7 @@ class Object(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.model_metadata, self.titles, self.agents, self.categories, self.colors, self.components, self.condition, self.dates, self.descriptions, self.gender, self.images, self.inscriptions, self.materials, self.measurements, self.provenance, self.quantity, self.relations, self.rights, self.subjects, self.techniques, self.textrefs, self.view_type, self.work_types,)
+        return (self.collection_id, self.institution_id, self.model_metadata, self.titles, self.agents, self.categories, self.colors, self.components, self.condition, self.dates, self.descriptions, self.gender, self.images, self.inscriptions, self.materials, self.measurements, self.provenance, self.quantity, self.relations, self.rights, self.structures, self.subjects, self.techniques, self.textrefs, self.view_type, self.work_types,)
 
     @property
     def categories(self):
@@ -1346,6 +1389,8 @@ class Object(object):
                 init_kwds['relations'] = costume.api.models.relation.relation_set.RelationSet.read(iprot)
             elif ifield_name == 'rights' and ifield_id == 22:
                 init_kwds['rights'] = costume.api.models.rights.rights_set.RightsSet.read(iprot)
+            elif ifield_name == 'structures' and ifield_id == 33:
+                init_kwds['structures'] = costume.api.models.structure.structure_set.StructureSet.read(iprot)
             elif ifield_name == 'subjects' and ifield_id == 21:
                 init_kwds['subjects'] = costume.api.models.subject.subject_set.SubjectSet.read(iprot)
             elif ifield_name == 'techniques' and ifield_id == 16:
@@ -1394,6 +1439,7 @@ class Object(object):
         quantity=None,
         relations=None,
         rights=None,
+        structures=None,
         subjects=None,
         techniques=None,
         textrefs=None,
@@ -1423,6 +1469,7 @@ class Object(object):
         :type quantity: int or None
         :type relations: costume.api.models.relation.relation_set.RelationSet or None
         :type rights: costume.api.models.rights.rights_set.RightsSet or None
+        :type structures: costume.api.models.structure.structure_set.StructureSet or None
         :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
         :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
         :type textrefs: costume.api.models.textref.textref_set.TextrefSet or None
@@ -1471,6 +1518,8 @@ class Object(object):
             relations = self.relations
         if rights is None:
             rights = self.rights
+        if structures is None:
+            structures = self.structures
         if subjects is None:
             subjects = self.subjects
         if techniques is None:
@@ -1481,7 +1530,7 @@ class Object(object):
             view_type = self.view_type
         if work_types is None:
             work_types = self.work_types
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, titles=titles, agents=agents, categories=categories, colors=colors, components=components, condition=condition, dates=dates, descriptions=descriptions, gender=gender, images=images, inscriptions=inscriptions, materials=materials, measurements=measurements, provenance=provenance, quantity=quantity, relations=relations, rights=rights, subjects=subjects, techniques=techniques, textrefs=textrefs, view_type=view_type, work_types=work_types)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, titles=titles, agents=agents, categories=categories, colors=colors, components=components, condition=condition, dates=dates, descriptions=descriptions, gender=gender, images=images, inscriptions=inscriptions, materials=materials, measurements=measurements, provenance=provenance, quantity=quantity, relations=relations, rights=rights, structures=structures, subjects=subjects, techniques=techniques, textrefs=textrefs, view_type=view_type, work_types=work_types)
 
     @property
     def rights(self):
@@ -1490,6 +1539,14 @@ class Object(object):
         '''
 
         return self.__rights
+
+    @property
+    def structures(self):
+        '''
+        :rtype: costume.api.models.structure.structure_set.StructureSet
+        '''
+
+        return self.__structures
 
     @property
     def subjects(self):
@@ -1649,6 +1706,11 @@ class Object(object):
         if self.rights is not None:
             oprot.write_field_begin(name='rights', type=12, id=22)
             self.rights.write(oprot)
+            oprot.write_field_end()
+
+        if self.structures is not None:
+            oprot.write_field_begin(name='structures', type=12, id=33)
+            self.structures.write(oprot)
             oprot.write_field_end()
 
         if self.subjects is not None:
