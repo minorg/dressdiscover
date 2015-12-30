@@ -783,6 +783,8 @@ class OmekaLoader(_Loader):
         builder = Measurements.Builder().set_text(text).set_type(type_)
         if extent is not None:
             builder.set_extent(extent)
+        if unit is not None:
+            builder.set_unit(unit)
         object_builder.measurements.append(builder.build())
 
     def _load_item_element_itm_dimensions_all(self, **kwds):
