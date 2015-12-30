@@ -37,6 +37,7 @@ from costume.api.models.material.material_type import MaterialType
 from costume.api.models.measurements.measurements import Measurements
 from costume.api.models.measurements.measurements_set import MeasurementsSet
 from costume.api.models.measurements.measurements_type import MeasurementsType
+from costume.api.models.measurements.measurements_unit import MeasurementsUnit
 from costume.api.models.object.object import Object
 from costume.api.models.object.object_entry import ObjectEntry
 from costume.api.models.relation.relation import Relation
@@ -455,6 +456,9 @@ class OmekaLoader(_Loader):
 
         method(object_builder=object_builder, text=text)
 
+    def _load_item_element_dc_abstract(self, object_builder, text):
+        pass
+
     def _load_item_element_dc_alternative_title(self, object_builder, text):
         object_builder.titles.append(
             Title.Builder()
@@ -775,7 +779,7 @@ class OmekaLoader(_Loader):
                 .build()
         )
 
-    def __load_item_element_itm_dimensions(self, object_builder, text, type_, extent=None):
+    def __load_item_element_itm_dimensions(self, object_builder, text, type_, extent=None, unit=None):
         builder = Measurements.Builder().set_text(text).set_type(type_)
         if extent is not None:
             builder.set_extent(extent)
@@ -785,22 +789,22 @@ class OmekaLoader(_Loader):
         self.__load_item_element_itm_dimensions(extent='all', type_=MeasurementsType.OTHER, **kwds)
 
     def _load_item_element_itm_dimensions_cb_length(self, **kwds):
-        self.__load_item_element_itm_dimensions(extent='center back', type_=MeasurementsType.LENGTH, **kwds)
-
-    def _load_item_element_itm_dimensions_cf_length(self, **kwds):
-        self.__load_item_element_itm_dimensions(extent='center front', type_=MeasurementsType.LENGTH, **kwds)
+        self.__load_item_element_itm_dimensions(extent='center back', type_=MeasurementsType.LENGTH, unit=MeasurementsUnit.IN, **kwds)
 
     def _load_item_element_itm_dimensions_chest(self, **kwds):
-        self.__load_item_element_itm_dimensions(extent='chest', type_=MeasurementsType.WIDTH, **kwds)
+        self.__load_item_element_itm_dimensions(extent='chest', type_=MeasurementsType.WIDTH, unit=MeasurementsUnit.IN, **kwds)
+
+    def _load_item_element_itm_dimensions_cf_length(self, **kwds):
+        self.__load_item_element_itm_dimensions(extent='center front', type_=MeasurementsType.LENGTH, unit=MeasurementsUnit.IN, **kwds)
 
     def _load_item_element_itm_dimensions_hips(self, **kwds):
-        self.__load_item_element_itm_dimensions(extent='hips', type_=MeasurementsType.WIDTH, **kwds)
+        self.__load_item_element_itm_dimensions(extent='hips', type_=MeasurementsType.WIDTH, unit=MeasurementsUnit.IN, **kwds)
 
     def _load_item_element_itm_dimensions_other(self, **kwds):
         self.__load_item_element_itm_dimensions(type_=MeasurementsType.OTHER, **kwds)
 
     def _load_item_element_itm_dimensions_waist(self, **kwds):
-        self.__load_item_element_itm_dimensions(extent='waist', type_=MeasurementsType.WIDTH, **kwds)
+        self.__load_item_element_itm_dimensions(extent='waist', type_=MeasurementsType.WIDTH, unit=MeasurementsUnit.IN, **kwds)
 
     def _load_item_element_itm_donation_date(self, object_builder, text):
         earliest_date = self.__parse_date(text)
@@ -958,6 +962,9 @@ class OmekaLoader(_Loader):
                         .set_text(technique)
                         .build()
                 )
+
+    def _load_item_element_itm_treatment(self, object_builder, text):
+        pass
 
     def _load_item_element_itm_url(self, object_builder, text):
         pass # ObjectVR URL
