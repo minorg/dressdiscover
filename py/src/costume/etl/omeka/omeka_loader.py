@@ -137,6 +137,7 @@ class OmekaLoader(_Loader):
             self.relations = []
             self.structures = []
             self.structures_by_component_letter = {}
+            self.structures_by_extent = {}
             self.subjects = []
             self.techniques = []
             self.textrefs = []
@@ -169,12 +170,16 @@ class OmekaLoader(_Loader):
             if len(self.component_builders_by_letter) > 0:
                 components = []
                 for letter, component_builder in self.component_builders_by_letter.iteritems():
-                    structures = self.structures_by_component_letter.get(letter)
-                    if structures is not None:
-                        assert len(structures) > 0
+                    structures = self.structures_by_component_letter.pop(letter, [])
+                    structures.extend(self.structures_by_extent.pop(component_builder.term.text, []))
+                    if len(structures) > 0:
                         component_builder.set_structures(StructureSet.Builder().set_elements(tuple(structures)).build())
                     component = component_builder.build()
                     components.append(component)
+                for letter in self.structures_by_component_letter.iterkeys():
+                    self.__logger.warn("structure(s) specified for unknown component %s on item %d", letter, self.__omeka_item_id)
+                for letter in self.structures_by_extent.iterkeys():
+                    self.__logger.warn("structure(s) specified for unknown extent %s on item %d", letter, self.__omeka_item_id)
                 self.__object_builder.set_components(ComponentSet.Builder().set_elements(tuple(components)).build())
             if len(self.colors) > 0:
                 self.__object_builder.set_colors(ColorSet.Builder().set_elements(tuple(self.colors)).build())
@@ -1074,15 +1079,7 @@ class OmekaLoader(_Loader):
                         letter = extent.lower()
                         object_builder.structures_by_component_letter.setdefault(letter, []).append(build_structure(structure_text))
                     elif len(extent) > 0:
-                        found_letter = None
-                        for letter, component_builder in object_builder.component_builders_by_letter.iteritems():
-                            if component_builder.term.text == extent:
-                                found_letter = letter
-                                break
-                        if found_letter is not None:
-                            object_builder.structures_by_component_letter.setdefault(found_letter, []).append(build_structure(structure_text))
-                        else:
-                            self._logger.warn("unable to resolve extent '%s' in structure %s from item %d", extent, type_.text, object_builder.omeka_item_id)
+                        object_builder.structures_by_extent.setdefault(extent, []).append(build_structure(structure_text))
                     else:
                         raise NotImplementedError
                 else:
