@@ -65,6 +65,10 @@ $v-layout-spacing-vertical: 0.5em;
   	text-align: center;
   }
 
+  .v-formlayout .v-caption {
+  	vertical-align: top;
+  }
+
   .v-table-cell-content-thumbnail > .v-table-cell-wrapper {
     padding: 2px;
     text-align: center;

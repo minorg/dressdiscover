@@ -17,6 +17,9 @@ final class CategoriesTable extends Table {
         setCaption("Categories");
         addContainerProperty("Text", String.class, null);
         for (final String category : categories) {
+            if (category.isEmpty()) {
+                continue;
+            }
             addItem(new Object[] { category }, category);
         }
         addGeneratedColumn("Text", new ColumnGenerator() {
@@ -35,6 +38,6 @@ final class CategoriesTable extends Table {
             }
         });
         setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
-        setPageLength(categories.size());
+        setPageLength(getContainerDataSource().size());
     }
 }
