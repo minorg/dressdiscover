@@ -10,6 +10,10 @@ from costume.api.models.agent.agent_name import AgentName
 from costume.api.models.agent.agent_name_type import AgentNameType
 from costume.api.models.agent.agent_role import AgentRole
 from costume.api.models.agent.agent_set import AgentSet
+from costume.api.models.closure.closure import Closure
+from costume.api.models.closure.closure_placement import ClosurePlacement
+from costume.api.models.closure.closure_set import ClosureSet
+from costume.api.models.closure.closure_type import ClosureType
 from costume.api.models.collection.collection import Collection
 from costume.api.models.color.color import Color
 from costume.api.models.color.color_set import ColorSet
@@ -123,6 +127,8 @@ class OmekaLoader(_Loader):
 
             self.agents = []
             self.categories = []
+            self.closure_placements = []
+            self.closure_types = []
             self.component_builders_by_letter = {}
             self.colors = []
             self.dc_date_builder = Date.Builder().set_type(DateType.CREATION)
@@ -167,6 +173,36 @@ class OmekaLoader(_Loader):
                 self.__object_builder.set_agents(AgentSet.Builder().set_elements(tuple(self.agents)).build())
             if len(self.categories) > 0:
                 self.__object_builder.set_categories(tuple(self.categories))
+            if len(self.closure_placements) > 0 and len(self.closure_types) > 0:
+                closures = []
+                if len(self.closure_placements) == len(self.closure_types):
+                    for closure_placement, closure_type in zip(self.closure_placements, self.closure_types):
+                        closures.append(
+                            Closure.Builder()
+                                .set_placement(closure_placement)
+                                .set_type(closure_type)
+                                .build()
+                        )
+                elif len(self.closure_placements) == 1:
+                    for closure_type in self.closure_types:
+                        closures.append(
+                            Closure.Builder()
+                                .set_placement(self.closure_placements[0])
+                                .set_type(closure_type)
+                                .build()
+                        )
+                elif len(self.closure_types) == 1:
+                    for closure_placement in self.closure_placements:
+                        closures.append(
+                            Closure.Builder()
+                                .set_placement(closure_placement)
+                                .set_type(self.closure_types[0])
+                                .build()
+                        )
+                else:
+                    self.__logger.warn("item %d has different numbers of closure placements and closure types: %d vs. %d", self.__omeka_item_id, len(self.closure_placements), len(self.closure_types))
+                if len(closures) > 0:
+                    self.__object_builder.set_closures(ClosureSet.Builder().set_elements(tuple(closures)).build())
             if len(self.component_builders_by_letter) > 0:
                 components = []
                 for letter, component_builder in self.component_builders_by_letter.iteritems():
@@ -736,6 +772,26 @@ class OmekaLoader(_Loader):
 
     def _load_item_element_itm_classification(self, object_builder, text):
         object_builder.categories.append(text)
+
+    def _load_item_element_itm_closure_placement(self, object_builder, text):
+        if text not in COSTUME_CORE_CONTROLLED_VOCABULARIES['Closure Placement']:
+            self._logger.warn("using uncontrolled closure placement %s from item %d", text, object_builder.omeka_item_id)
+        object_builder.closure_placements.append(
+            ClosurePlacement.Builder()\
+                .set_text(text)\
+                .set_vocab_ref(VocabRef(vocab=Vocab.COSTUME_CORE))\
+                .build()
+        )
+
+    def _load_item_element_itm_closure_type(self, object_builder, text):
+        if text not in COSTUME_CORE_CONTROLLED_VOCABULARIES['Closure Type']:
+            self._logger.warn("using uncontrolled closure type %s from item %d", text, object_builder.omeka_item_id)
+        object_builder.closure_types.append(
+            ClosureType.Builder()\
+                .set_text(text)\
+                .set_vocab_ref(VocabRef(vocab=Vocab.COSTUME_CORE))\
+                .build()
+        )
 
     def _load_item_element_itm_color_main(self, **kwds):
         self.__load_item_element_itm_color(type_=ColorType.PRIMARY, **kwds)
