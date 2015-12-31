@@ -3,7 +3,7 @@ package net.lab1318.costume.api.models.cultural_context;
 /**
  * VRA Core 4.0 culturalContextSet element
  */
-public class CulturalContextSet implements org.thryft.Struct, net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.culturalContext.CulturalContext> {
+public class CulturalContextSet implements org.thryft.Struct, net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.cultural_context.CulturalContext> {
     public static class Builder {
         public Builder() {
             elements = null;
