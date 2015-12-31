@@ -158,6 +158,70 @@
             "index": "not_analyzed", 
             "type": "string"
           }, 
+          "34:closures": {
+            "type": "nested", 
+            "properties": {
+              "1:elements": {
+                "type": "nested", 
+                "properties": {
+                  "1:placement": {
+                    "type": "nested", 
+                    "properties": {
+                      "1:text": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }, 
+                      "2:vocab_ref": {
+                        "type": "nested", 
+                        "properties": {
+                          "2:vocab": {
+                            "index": "not_analyzed", 
+                            "type": "string"
+                          }, 
+                          "1:refid": {
+                            "type": "string"
+                          }, 
+                          "3:uri": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }, 
+                  "2:type": {
+                    "type": "nested", 
+                    "properties": {
+                      "1:text": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }, 
+                      "2:vocab_ref": {
+                        "type": "nested", 
+                        "properties": {
+                          "2:vocab": {
+                            "index": "not_analyzed", 
+                            "type": "string"
+                          }, 
+                          "1:refid": {
+                            "type": "string"
+                          }, 
+                          "3:uri": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }, 
+              "2:display": {
+                "type": "string"
+              }, 
+              "3:notes": {
+                "type": "string"
+              }
+            }
+          }, 
           "30:colors": {
             "type": "nested", 
             "properties": {

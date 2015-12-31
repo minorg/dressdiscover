@@ -47,7 +47,7 @@ final class SubjectSetTable extends ElementSetTable {
                 return button;
             }
         });
-        setPageLength(subjects.getElements().size());
+        setPageLength(getContainerDataSource().size());
         setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
         final List<Object> visibleColumns = new ArrayList<>();
         visibleColumns.add(SubjectTerm.FieldMetadata.TEXT.getJavaName());

@@ -1,6 +1,7 @@
 from itertools import ifilterfalse
 import __builtin__
 import costume.api.models.agent.agent_set
+import costume.api.models.closure.closure_set
 import costume.api.models.color.color_set
 import costume.api.models.component.component_set
 import costume.api.models.condition.condition
@@ -33,6 +34,7 @@ class Object(object):
             titles=None,
             agents=None,
             categories=None,
+            closures=None,
             colors=None,
             components=None,
             condition=None,
@@ -61,6 +63,7 @@ class Object(object):
             :type titles: costume.api.models.title.title_set.TitleSet
             :type agents: costume.api.models.agent.agent_set.AgentSet or None
             :type categories: tuple(str) or None
+            :type closures: costume.api.models.closure.closure_set.ClosureSet or None
             :type colors: costume.api.models.color.color_set.ColorSet or None
             :type components: costume.api.models.component.component_set.ComponentSet or None
             :type condition: costume.api.models.condition.condition.Condition or None
@@ -89,6 +92,7 @@ class Object(object):
             self.__titles = titles
             self.__agents = agents
             self.__categories = categories
+            self.__closures = closures
             self.__colors = colors
             self.__components = components
             self.__condition = condition
@@ -111,7 +115,7 @@ class Object(object):
             self.__work_types = work_types
 
         def build(self):
-            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, titles=self.__titles, agents=self.__agents, categories=self.__categories, colors=self.__colors, components=self.__components, condition=self.__condition, dates=self.__dates, descriptions=self.__descriptions, gender=self.__gender, images=self.__images, inscriptions=self.__inscriptions, materials=self.__materials, measurements=self.__measurements, provenance=self.__provenance, quantity=self.__quantity, relations=self.__relations, rights=self.__rights, structures=self.__structures, subjects=self.__subjects, techniques=self.__techniques, textrefs=self.__textrefs, view_type=self.__view_type, work_types=self.__work_types)
+            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, titles=self.__titles, agents=self.__agents, categories=self.__categories, closures=self.__closures, colors=self.__colors, components=self.__components, condition=self.__condition, dates=self.__dates, descriptions=self.__descriptions, gender=self.__gender, images=self.__images, inscriptions=self.__inscriptions, materials=self.__materials, measurements=self.__measurements, provenance=self.__provenance, quantity=self.__quantity, relations=self.__relations, rights=self.__rights, structures=self.__structures, subjects=self.__subjects, techniques=self.__techniques, textrefs=self.__textrefs, view_type=self.__view_type, work_types=self.__work_types)
 
         @property
         def agents(self):
@@ -128,6 +132,14 @@ class Object(object):
             '''
 
             return self.__categories
+
+        @property
+        def closures(self):
+            '''
+            :rtype: costume.api.models.closure.closure_set.ClosureSet
+            '''
+
+            return self.__closures
 
         @property
         def collection_id(self):
@@ -279,6 +291,14 @@ class Object(object):
             '''
 
             self.__categories = categories
+            return self
+
+        def set_closures(self, closures):
+            '''
+            :type closures: costume.api.models.closure.closure_set.ClosureSet or None
+            '''
+
+            self.__closures = closures
             return self
 
         def set_collection_id(self, collection_id):
@@ -521,6 +541,7 @@ class Object(object):
             :type titles: costume.api.models.title.title_set.TitleSet
             :type agents: costume.api.models.agent.agent_set.AgentSet or None
             :type categories: tuple(str) or None
+            :type closures: costume.api.models.closure.closure_set.ClosureSet or None
             :type colors: costume.api.models.color.color_set.ColorSet or None
             :type components: costume.api.models.component.component_set.ComponentSet or None
             :type condition: costume.api.models.condition.condition.Condition or None
@@ -550,6 +571,7 @@ class Object(object):
                 self.set_titles(object.titles)
                 self.set_agents(object.agents)
                 self.set_categories(object.categories)
+                self.set_closures(object.closures)
                 self.set_colors(object.colors)
                 self.set_components(object.components)
                 self.set_condition(object.condition)
@@ -608,6 +630,14 @@ class Object(object):
             '''
 
             self.set_categories(categories)
+
+        @closures.setter
+        def closures(self, closures):
+            '''
+            :type closures: costume.api.models.closure.closure_set.ClosureSet or None
+            '''
+
+            self.set_closures(closures)
 
         @collection_id.setter
         def collection_id(self, collection_id):
@@ -809,6 +839,7 @@ class Object(object):
         titles,
         agents=None,
         categories=None,
+        closures=None,
         colors=None,
         components=None,
         condition=None,
@@ -837,6 +868,7 @@ class Object(object):
         :type titles: costume.api.models.title.title_set.TitleSet
         :type agents: costume.api.models.agent.agent_set.AgentSet or None
         :type categories: tuple(str) or None
+        :type closures: costume.api.models.closure.closure_set.ClosureSet or None
         :type colors: costume.api.models.color.color_set.ColorSet or None
         :type components: costume.api.models.component.component_set.ComponentSet or None
         :type condition: costume.api.models.condition.condition.Condition or None
@@ -894,6 +926,11 @@ class Object(object):
             if len(categories) < 1:
                 raise ValueError("expected len(categories) to be >= 1, was %d" % len(categories))
         self.__categories = categories
+
+        if closures is not None:
+            if not isinstance(closures, costume.api.models.closure.closure_set.ClosureSet):
+                raise TypeError("expected closures to be a costume.api.models.closure.closure_set.ClosureSet but it is a %s" % getattr(__builtin__, 'type')(closures))
+        self.__closures = closures
 
         if colors is not None:
             if not isinstance(colors, costume.api.models.color.color_set.ColorSet):
@@ -1012,6 +1049,8 @@ class Object(object):
             return False
         if self.categories != other.categories:
             return False
+        if self.closures != other.closures:
+            return False
         if self.colors != other.colors:
             return False
         if self.components != other.components:
@@ -1055,7 +1094,7 @@ class Object(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.model_metadata,self.titles,self.agents,self.categories,self.colors,self.components,self.condition,self.dates,self.descriptions,self.gender,self.images,self.inscriptions,self.materials,self.measurements,self.provenance,self.quantity,self.relations,self.rights,self.structures,self.subjects,self.techniques,self.textrefs,self.view_type,self.work_types,))
+        return hash((self.collection_id,self.institution_id,self.model_metadata,self.titles,self.agents,self.categories,self.closures,self.colors,self.components,self.condition,self.dates,self.descriptions,self.gender,self.images,self.inscriptions,self.materials,self.measurements,self.provenance,self.quantity,self.relations,self.rights,self.structures,self.subjects,self.techniques,self.textrefs,self.view_type,self.work_types,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -1073,6 +1112,8 @@ class Object(object):
             field_reprs.append('agents=' + repr(self.agents))
         if self.categories is not None:
             field_reprs.append('categories=' + repr(self.categories))
+        if self.closures is not None:
+            field_reprs.append('closures=' + repr(self.closures))
         if self.colors is not None:
             field_reprs.append('colors=' + repr(self.colors))
         if self.components is not None:
@@ -1125,6 +1166,8 @@ class Object(object):
             field_reprs.append('agents=' + repr(self.agents))
         if self.categories is not None:
             field_reprs.append('categories=' + repr(self.categories))
+        if self.closures is not None:
+            field_reprs.append('closures=' + repr(self.closures))
         if self.colors is not None:
             field_reprs.append('colors=' + repr(self.colors))
         if self.components is not None:
@@ -1182,7 +1225,7 @@ class Object(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'titles': self.titles, 'agents': self.agents, 'categories': self.categories, 'colors': self.colors, 'components': self.components, 'condition': self.condition, 'dates': self.dates, 'descriptions': self.descriptions, 'gender': self.gender, 'images': self.images, 'inscriptions': self.inscriptions, 'materials': self.materials, 'measurements': self.measurements, 'provenance': self.provenance, 'quantity': self.quantity, 'relations': self.relations, 'rights': self.rights, 'structures': self.structures, 'subjects': self.subjects, 'techniques': self.techniques, 'textrefs': self.textrefs, 'view_type': self.view_type, 'work_types': self.work_types}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'titles': self.titles, 'agents': self.agents, 'categories': self.categories, 'closures': self.closures, 'colors': self.colors, 'components': self.components, 'condition': self.condition, 'dates': self.dates, 'descriptions': self.descriptions, 'gender': self.gender, 'images': self.images, 'inscriptions': self.inscriptions, 'materials': self.materials, 'measurements': self.measurements, 'provenance': self.provenance, 'quantity': self.quantity, 'relations': self.relations, 'rights': self.rights, 'structures': self.structures, 'subjects': self.subjects, 'techniques': self.techniques, 'textrefs': self.textrefs, 'view_type': self.view_type, 'work_types': self.work_types}
 
     def as_tuple(self):
         '''
@@ -1191,7 +1234,7 @@ class Object(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.model_metadata, self.titles, self.agents, self.categories, self.colors, self.components, self.condition, self.dates, self.descriptions, self.gender, self.images, self.inscriptions, self.materials, self.measurements, self.provenance, self.quantity, self.relations, self.rights, self.structures, self.subjects, self.techniques, self.textrefs, self.view_type, self.work_types,)
+        return (self.collection_id, self.institution_id, self.model_metadata, self.titles, self.agents, self.categories, self.closures, self.colors, self.components, self.condition, self.dates, self.descriptions, self.gender, self.images, self.inscriptions, self.materials, self.measurements, self.provenance, self.quantity, self.relations, self.rights, self.structures, self.subjects, self.techniques, self.textrefs, self.view_type, self.work_types,)
 
     @property
     def categories(self):
@@ -1200,6 +1243,14 @@ class Object(object):
         '''
 
         return self.__categories
+
+    @property
+    def closures(self):
+        '''
+        :rtype: costume.api.models.closure.closure_set.ClosureSet
+        '''
+
+        return self.__closures
 
     @property
     def collection_id(self):
@@ -1349,6 +1400,8 @@ class Object(object):
                 init_kwds['agents'] = costume.api.models.agent.agent_set.AgentSet.read(iprot)
             elif ifield_name == 'categories' and ifield_id == 18:
                 init_kwds['categories'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+            elif ifield_name == 'closures' and ifield_id == 34:
+                init_kwds['closures'] = costume.api.models.closure.closure_set.ClosureSet.read(iprot)
             elif ifield_name == 'colors' and ifield_id == 30:
                 init_kwds['colors'] = costume.api.models.color.color_set.ColorSet.read(iprot)
             elif ifield_name == 'components' and ifield_id == 32:
@@ -1425,6 +1478,7 @@ class Object(object):
         titles=None,
         agents=None,
         categories=None,
+        closures=None,
         colors=None,
         components=None,
         condition=None,
@@ -1455,6 +1509,7 @@ class Object(object):
         :type titles: costume.api.models.title.title_set.TitleSet or None
         :type agents: costume.api.models.agent.agent_set.AgentSet or None
         :type categories: tuple(str) or None
+        :type closures: costume.api.models.closure.closure_set.ClosureSet or None
         :type colors: costume.api.models.color.color_set.ColorSet or None
         :type components: costume.api.models.component.component_set.ComponentSet or None
         :type condition: costume.api.models.condition.condition.Condition or None
@@ -1490,6 +1545,8 @@ class Object(object):
             agents = self.agents
         if categories is None:
             categories = self.categories
+        if closures is None:
+            closures = self.closures
         if colors is None:
             colors = self.colors
         if components is None:
@@ -1530,7 +1587,7 @@ class Object(object):
             view_type = self.view_type
         if work_types is None:
             work_types = self.work_types
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, titles=titles, agents=agents, categories=categories, colors=colors, components=components, condition=condition, dates=dates, descriptions=descriptions, gender=gender, images=images, inscriptions=inscriptions, materials=materials, measurements=measurements, provenance=provenance, quantity=quantity, relations=relations, rights=rights, structures=structures, subjects=subjects, techniques=techniques, textrefs=textrefs, view_type=view_type, work_types=work_types)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, titles=titles, agents=agents, categories=categories, closures=closures, colors=colors, components=components, condition=condition, dates=dates, descriptions=descriptions, gender=gender, images=images, inscriptions=inscriptions, materials=materials, measurements=measurements, provenance=provenance, quantity=quantity, relations=relations, rights=rights, structures=structures, subjects=subjects, techniques=techniques, textrefs=textrefs, view_type=view_type, work_types=work_types)
 
     @property
     def rights(self):
@@ -1633,6 +1690,11 @@ class Object(object):
             for _0 in self.categories:
                 oprot.write_string(_0)
             oprot.write_list_end()
+            oprot.write_field_end()
+
+        if self.closures is not None:
+            oprot.write_field_begin(name='closures', type=12, id=34)
+            self.closures.write(oprot)
             oprot.write_field_end()
 
         if self.colors is not None:

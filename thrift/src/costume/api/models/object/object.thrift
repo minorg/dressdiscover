@@ -4,6 +4,7 @@ namespace * costume.api.models.object
 
 include "costume/api/models/model_metadata.thrift"
 include "costume/api/models/agent/agent_set.thrift"
+include "costume/api/models/closure/closure_set.thrift"
 include "costume/api/models/collection/collection_id.thrift"
 include "costume/api/models/component/component_set.thrift"
 include "costume/api/models/condition/condition.thrift"
@@ -42,6 +43,8 @@ struct Object {
 	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	18: optional list<string> categories;
+
+	34: optional closure_set.ClosureSet closures;
 
 	30: optional color_set.ColorSet colors;
 

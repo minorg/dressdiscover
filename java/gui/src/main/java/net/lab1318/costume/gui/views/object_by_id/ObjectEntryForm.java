@@ -63,6 +63,14 @@ final class ObjectEntryForm extends CustomComponent {
                 formLayout.addComponent(new CategoriesTable(objectEntry.getModel().getCategories().get()));
             }
 
+            if (objectEntry.getModel().getClosures().isPresent()) {
+                formLayout.addComponent(new ClosureSetTable(objectEntry.getModel().getClosures().get()));
+            }
+
+            if (objectEntry.getModel().getComponents().isPresent()) {
+                formLayout.addComponent(new ComponentSetTable(objectEntry.getModel().getComponents().get()));
+            }
+
             if (objectEntry.getModel().getColors().isPresent()) {
                 formLayout.addComponent(new ColorSetTable(objectEntry.getModel().getColors().get()));
             }
@@ -111,6 +119,10 @@ final class ObjectEntryForm extends CustomComponent {
             if (objectEntry.getModel().getRelations().isPresent()) {
                 formLayout.addComponent(new RelationSetTable(objectEntry.getModel().getInstitutionId(),
                         objectEntry.getModel().getRelations().get()));
+            }
+
+            if (objectEntry.getModel().getStructures().isPresent()) {
+                formLayout.addComponent(new StructureSetTable(objectEntry.getModel().getStructures().get()));
             }
 
             if (objectEntry.getModel().getTechniques().isPresent()) {

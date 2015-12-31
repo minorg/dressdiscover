@@ -51,7 +51,7 @@ final class MaterialSetTable extends ElementSetTable {
             }
         });
 
-        setPageLength(materials.getElements().size());
+        setPageLength(getContainerDataSource().size());
         setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
         // setColumnHeader(Material.FieldMetadata.TEXT.getJavaName(), "Name");
         // setColumnHeader(Material.FieldMetadata.VOCAB.getJavaName(),
