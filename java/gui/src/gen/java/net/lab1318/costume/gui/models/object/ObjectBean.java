@@ -9,6 +9,7 @@ public class ObjectBean implements org.thryft.StructBean {
         TITLES("titles", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.title.TitleSetBean>() {}, true, 3, "titles", org.thryft.protocol.Type.STRUCT),
         AGENTS("agents", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.agent.AgentSetBean>() {}, false, 20, "agents", org.thryft.protocol.Type.STRUCT),
         CATEGORIES("categories", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 18, "categories", org.thryft.protocol.Type.LIST),
+        CLOSURES("closures", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.closure.ClosureSetBean>() {}, false, 34, "closures", org.thryft.protocol.Type.STRUCT),
         COLORS("colors", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.color.ColorSetBean>() {}, false, 30, "colors", org.thryft.protocol.Type.STRUCT),
         COMPONENTS("components", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.component.ComponentSetBean>() {}, false, 32, "components", org.thryft.protocol.Type.STRUCT),
         CONDITION("condition", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.condition.Condition>() {}, false, 27, "condition", org.thryft.protocol.Type.STRING),
@@ -78,6 +79,7 @@ public class ObjectBean implements org.thryft.StructBean {
             case "titles": return TITLES;
             case "agents": return AGENTS;
             case "categories": return CATEGORIES;
+            case "closures": return CLOSURES;
             case "colors": return COLORS;
             case "components": return COMPONENTS;
             case "condition": return CONDITION;
@@ -111,6 +113,7 @@ public class ObjectBean implements org.thryft.StructBean {
             case "titles": return TITLES;
             case "agents": return AGENTS;
             case "categories": return CATEGORIES;
+            case "closures": return CLOSURES;
             case "colors": return COLORS;
             case "components": return COMPONENTS;
             case "condition": return CONDITION;
@@ -166,6 +169,7 @@ public class ObjectBean implements org.thryft.StructBean {
         titles = null;
         agents = null;
         categories = null;
+        closures = null;
         colors = null;
         components = null;
         condition = null;
@@ -195,6 +199,7 @@ public class ObjectBean implements org.thryft.StructBean {
         this.titles = new net.lab1318.costume.gui.models.title.TitleSetBean(other.getTitles());
         this.agents = other.getAgents().isPresent() ? new net.lab1318.costume.gui.models.agent.AgentSetBean(other.getAgents().get()) : null;
         this.categories = other.getCategories().isPresent() ? new java.util.ArrayList<String>(other.getCategories().get()) : null;
+        this.closures = other.getClosures().isPresent() ? new net.lab1318.costume.gui.models.closure.ClosureSetBean(other.getClosures().get()) : null;
         this.colors = other.getColors().isPresent() ? new net.lab1318.costume.gui.models.color.ColorSetBean(other.getColors().get()) : null;
         this.components = other.getComponents().isPresent() ? new net.lab1318.costume.gui.models.component.ComponentSetBean(other.getComponents().get()) : null;
         this.condition = other.getCondition().isPresent() ? other.getCondition().get() : null;
@@ -242,6 +247,7 @@ public class ObjectBean implements org.thryft.StructBean {
             getTitles().equals(other.getTitles()) &&
             (getAgents() != null ? getAgents().equals(other.getAgents()) : other.getAgents() == null) &&
             (getCategories() != null ? getCategories().equals(other.getCategories()) : other.getCategories() == null) &&
+            (getClosures() != null ? getClosures().equals(other.getClosures()) : other.getClosures() == null) &&
             (getColors() != null ? getColors().equals(other.getColors()) : other.getColors() == null) &&
             (getComponents() != null ? getComponents().equals(other.getComponents()) : other.getComponents() == null) &&
             (getCondition() != null ? getCondition().equals(other.getCondition()) : other.getCondition() == null) &&
@@ -273,6 +279,7 @@ public class ObjectBean implements org.thryft.StructBean {
         case "titles": return getTitles();
         case "agents": return getAgents();
         case "categories": return getCategories();
+        case "closures": return getClosures();
         case "colors": return getColors();
         case "components": return getComponents();
         case "condition": return getCondition();
@@ -304,6 +311,10 @@ public class ObjectBean implements org.thryft.StructBean {
 
     public java.util.List<String> getCategories() {
         return categories;
+    }
+
+    public net.lab1318.costume.gui.models.closure.ClosureSetBean getClosures() {
+        return closures;
     }
 
     public net.lab1318.costume.api.models.collection.CollectionId getCollectionId() {
@@ -418,6 +429,9 @@ public class ObjectBean implements org.thryft.StructBean {
         if (getCategories() != null) {
             hashCode = 31 * hashCode + getCategories().hashCode();
         }
+        if (getClosures() != null) {
+            hashCode = 31 * hashCode + getClosures().hashCode();
+        }
         if (getColors() != null) {
             hashCode = 31 * hashCode + getColors().hashCode();
         }
@@ -487,6 +501,10 @@ public class ObjectBean implements org.thryft.StructBean {
 
     public void setCategories(final java.util.List<String> categories) {
         this.categories = categories;
+    }
+
+    public void setClosures(final net.lab1318.costume.gui.models.closure.ClosureSetBean closures) {
+        this.closures = closures;
     }
 
     public void setCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) {
@@ -587,7 +605,7 @@ public class ObjectBean implements org.thryft.StructBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("titles", getTitles()).add("agents", getAgents()).add("categories", getCategories()).add("colors", getColors()).add("components", getComponents()).add("condition", getCondition()).add("dates", getDates()).add("descriptions", getDescriptions()).add("gender", getGender()).add("images", getImages()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("measurements", getMeasurements()).add("provenance", getProvenance()).add("quantity", getQuantity()).add("relations", getRelations()).add("rights", getRights()).add("structures", getStructures()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("view_type", getViewType()).add("work_types", getWorkTypes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("titles", getTitles()).add("agents", getAgents()).add("categories", getCategories()).add("closures", getClosures()).add("colors", getColors()).add("components", getComponents()).add("condition", getCondition()).add("dates", getDates()).add("descriptions", getDescriptions()).add("gender", getGender()).add("images", getImages()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("measurements", getMeasurements()).add("provenance", getProvenance()).add("quantity", getQuantity()).add("relations", getRelations()).add("rights", getRights()).add("structures", getStructures()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("view_type", getViewType()).add("work_types", getWorkTypes()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -601,6 +619,8 @@ public class ObjectBean implements org.thryft.StructBean {
     private net.lab1318.costume.gui.models.agent.AgentSetBean agents;
 
     private java.util.List<String> categories;
+
+    private net.lab1318.costume.gui.models.closure.ClosureSetBean closures;
 
     private net.lab1318.costume.gui.models.color.ColorSetBean colors;
 
