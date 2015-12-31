@@ -22,6 +22,9 @@ struct ObjectFacetFilters {
 	optional set<string> exclude_color_texts;
 
 	// @validation {"minLength": 1}
+	optional set<string> exclude_cultural_context_texts;
+
+	// @validation {"minLength": 1}
 	optional set<gender.Gender> exclude_genders;
 
 	// @validation {"minLength": 1}
@@ -50,6 +53,9 @@ struct ObjectFacetFilters {
 
 	// @validation {"minLength": 1}
 	optional set<string> include_color_texts;
+
+	// @validation {"minLength": 1}
+	optional set<string> include_cultural_context_texts;
 
 	// @validation {"minLength": 1}
 	optional set<gender.Gender> include_genders;

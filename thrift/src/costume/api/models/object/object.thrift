@@ -9,6 +9,7 @@ include "costume/api/models/collection/collection_id.thrift"
 include "costume/api/models/component/component_set.thrift"
 include "costume/api/models/condition/condition.thrift"
 include "costume/api/models/color/color_set.thrift"
+include "costume/api/models/cultural_context/cultural_context_set.thrift"
 include "costume/api/models/date/date_set.thrift"
 include "costume/api/models/description/description_set.thrift"
 include "costume/api/models/gender/gender.thrift"
@@ -51,6 +52,8 @@ struct Object {
 	32: optional component_set.ComponentSet components;
 
 	27: optional condition.Condition condition;
+
+	35: optional cultural_context_set.CulturalContextSet cultural_contexts;
 
 	10: optional date_set.DateSet dates;
 
