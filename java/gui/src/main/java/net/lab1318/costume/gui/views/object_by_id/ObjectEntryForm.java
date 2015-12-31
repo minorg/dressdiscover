@@ -63,6 +63,10 @@ final class ObjectEntryForm extends CustomComponent {
                 formLayout.addComponent(new CategoriesTable(objectEntry.getModel().getCategories().get()));
             }
 
+            if (objectEntry.getModel().getClosures().isPresent()) {
+                formLayout.addComponent(new ClosureSetTable(objectEntry.getModel().getClosures().get()));
+            }
+
             if (objectEntry.getModel().getComponents().isPresent()) {
                 formLayout.addComponent(new ComponentSetTable(objectEntry.getModel().getComponents().get()));
             }
