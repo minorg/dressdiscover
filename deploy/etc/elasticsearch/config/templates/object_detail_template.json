@@ -47,6 +47,7 @@
                 "type": "nested", 
                 "properties": {
                   "1:text": {
+                    "index": "not_analyzed", 
                     "type": "string"
                   }, 
                   "2:type": {
@@ -59,9 +60,11 @@
                 }
               }, 
               "2:display": {
+                "index": "not_analyzed", 
                 "type": "string"
               }, 
               "3:notes": {
+                "index": "not_analyzed", 
                 "type": "string"
               }
             }
@@ -91,6 +94,7 @@
                             "type": "string"
                           }, 
                           "1:refid": {
+                            "index": "not_analyzed", 
                             "type": "string"
                           }, 
                           "3:uri": {
@@ -101,9 +105,11 @@
                     }
                   }, 
                   "2:attribution": {
+                    "index": "not_analyzed", 
                     "type": "string"
                   }, 
                   "3:culture": {
+                    "index": "not_analyzed", 
                     "type": "string"
                   }, 
                   "4:dates": {
@@ -125,6 +131,7 @@
                     "type": "nested", 
                     "properties": {
                       "1:text": {
+                        "index": "not_analyzed", 
                         "type": "string"
                       }, 
                       "4:vocab_ref": {
@@ -135,6 +142,7 @@
                             "type": "string"
                           }, 
                           "1:refid": {
+                            "index": "not_analyzed", 
                             "type": "string"
                           }, 
                           "3:uri": {
@@ -147,9 +155,11 @@
                 }
               }, 
               "2:display": {
+                "index": "not_analyzed", 
                 "type": "string"
               }, 
               "3:notes": {
+                "index": "not_analyzed", 
                 "type": "string"
               }
             }
@@ -179,6 +189,7 @@
                             "type": "string"
                           }, 
                           "1:refid": {
+                            "index": "not_analyzed", 
                             "type": "string"
                           }, 
                           "3:uri": {
@@ -203,6 +214,7 @@
                             "type": "string"
                           }, 
                           "1:refid": {
+                            "index": "not_analyzed", 
                             "type": "string"
                           }, 
                           "3:uri": {
@@ -215,9 +227,11 @@
                 }
               }, 
               "2:display": {
+                "index": "not_analyzed", 
                 "type": "string"
               }, 
               "3:notes": {
+                "index": "not_analyzed", 
                 "type": "string"
               }
             }
@@ -244,6 +258,7 @@
                         "type": "string"
                       }, 
                       "1:refid": {
+                        "index": "not_analyzed", 
                         "type": "string"
                       }, 
                       "3:uri": {
@@ -254,9 +269,11 @@
                 }
               }, 
               "2:display": {
+                "index": "not_analyzed", 
                 "type": "string"
               }, 
               "3:notes": {
+                "index": "not_analyzed", 
                 "type": "string"
               }
             }
@@ -282,6 +299,7 @@
                             "type": "string"
                           }, 
                           "1:refid": {
+                            "index": "not_analyzed", 
                             "type": "string"
                           }, 
                           "3:uri": {
@@ -316,6 +334,7 @@
                                     "type": "string"
                                   }, 
                                   "1:refid": {
+                                    "index": "not_analyzed", 
                                     "type": "string"
                                   }, 
                                   "3:uri": {
@@ -333,6 +352,7 @@
                                 "type": "string"
                               }, 
                               "1:refid": {
+                                "index": "not_analyzed", 
                                 "type": "string"
                               }, 
                               "3:uri": {
@@ -343,9 +363,11 @@
                         }
                       }, 
                       "2:display": {
+                        "index": "not_analyzed", 
                         "type": "string"
                       }, 
                       "3:notes": {
+                        "index": "not_analyzed", 
                         "type": "string"
                       }
                     }
@@ -353,9 +375,11 @@
                 }
               }, 
               "2:display": {
+                "index": "not_analyzed", 
                 "type": "string"
               }, 
               "3:notes": {
+                "index": "not_analyzed", 
                 "type": "string"
               }
             }
@@ -364,16 +388,56 @@
             "index": "not_analyzed", 
             "type": "string"
           }, 
+          "35:cultural_contexts": {
+            "type": "nested", 
+            "properties": {
+              "1:elements": {
+                "type": "nested", 
+                "properties": {
+                  "1:text": {
+                    "index": "not_analyzed", 
+                    "type": "string"
+                  }, 
+                  "2:vocab_ref": {
+                    "type": "nested", 
+                    "properties": {
+                      "2:vocab": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }, 
+                      "1:refid": {
+                        "index": "not_analyzed", 
+                        "type": "string"
+                      }, 
+                      "3:uri": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }, 
+              "2:display": {
+                "index": "not_analyzed", 
+                "type": "string"
+              }, 
+              "3:notes": {
+                "index": "not_analyzed", 
+                "type": "string"
+              }
+            }
+          }, 
           "10:dates": {
             "type": "nested", 
             "properties": {
               "1:elements": {
+                "index": "not_analyzed", 
                 "type": "nested", 
                 "properties": {
                   "1:earliest_date": {
                     "type": "nested", 
                     "properties": {
                       "1:text": {
+                        "index": "not_analyzed", 
                         "type": "string"
                       }, 
                       "2:circa": {
@@ -392,6 +456,7 @@
                     "type": "nested", 
                     "properties": {
                       "1:text": {
+                        "index": "not_analyzed", 
                         "type": "string"
                       }, 
                       "2:circa": {
@@ -415,14 +480,17 @@
                     "analyzer": "email_and_url"
                   }, 
                   "5:source": {
+                    "index": "not_analyzed", 
                     "type": "string"
                   }
                 }
               }, 
               "2:display": {
+                "index": "not_analyzed", 
                 "type": "string"
               }, 
               "3:notes": {
+                "index": "not_analyzed", 
                 "type": "string"
               }
             }
@@ -434,9 +502,11 @@
                 "type": "nested", 
                 "properties": {
                   "1:text": {
+                    "index": "not_analyzed", 
                     "type": "string"
                   }, 
                   "2:source": {
+                    "index": "not_analyzed", 
                     "type": "string"
                   }, 
                   "3:type": {
@@ -446,9 +516,11 @@
                 }
               }, 
               "2:display": {
+                "index": "not_analyzed", 
                 "type": "string"
               }, 
               "3:notes": {
+                "index": "not_analyzed", 
                 "type": "string"
               }
             }
@@ -536,9 +608,11 @@
                         "type": "string"
                       }, 
                       "2:text": {
+                        "index": "not_analyzed", 
                         "type": "string"
                       }, 
                       "3:lang": {
+                        "index": "not_analyzed", 
                         "type": "string"
                       }
                     }
@@ -547,6 +621,7 @@
                     "type": "nested", 
                     "properties": {
                       "1:text": {
+                        "index": "not_analyzed", 
                         "type": "string"
                       }, 
                       "4:vocab_ref": {
@@ -557,6 +632,7 @@
                             "type": "string"
                           }, 
                           "1:refid": {
+                            "index": "not_analyzed", 
                             "type": "string"
                           }, 
                           "3:uri": {
@@ -567,14 +643,17 @@
                     }
                   }, 
                   "3:position": {
+                    "index": "not_analyzed", 
                     "type": "string"
                   }
                 }
               }, 
               "2:display": {
+                "index": "not_analyzed", 
                 "type": "string"
               }, 
               "3:notes": {
+                "index": "not_analyzed", 
                 "type": "string"
               }
             }
@@ -601,6 +680,7 @@
                         "type": "string"
                       }, 
                       "1:refid": {
+                        "index": "not_analyzed", 
                         "type": "string"
                       }, 
                       "3:uri": {
@@ -611,9 +691,11 @@
                 }
               }, 
               "2:display": {
+                "index": "not_analyzed", 
                 "type": "string"
               }, 
               "3:notes": {
+                "index": "not_analyzed", 
                 "type": "string"
               }
             }
@@ -633,6 +715,7 @@
                     "type": "string"
                   }, 
                   "3:extent": {
+                    "index": "not_analyzed", 
                     "type": "string"
                   }, 
                   "4:unit": {
@@ -642,14 +725,17 @@
                 }
               }, 
               "2:display": {
+                "index": "not_analyzed", 
                 "type": "string"
               }, 
               "3:notes": {
+                "index": "not_analyzed", 
                 "type": "string"
               }
             }
           }, 
           "5:provenance": {
+            "index": "not_analyzed", 
             "type": "string"
           }, 
           "26:quantity": {
@@ -674,14 +760,17 @@
                     "type": "string"
                   }, 
                   "4:text": {
+                    "index": "not_analyzed", 
                     "type": "string"
                   }
                 }
               }, 
               "2:display": {
+                "index": "not_analyzed", 
                 "type": "string"
               }, 
               "3:notes": {
+                "index": "not_analyzed", 
                 "type": "string"
               }
             }
@@ -693,9 +782,11 @@
                 "type": "nested", 
                 "properties": {
                   "1:rights_holder": {
+                    "index": "not_analyzed", 
                     "type": "string"
                   }, 
                   "2:text": {
+                    "index": "not_analyzed", 
                     "type": "string"
                   }, 
                   "3:type": {
@@ -703,14 +794,17 @@
                     "type": "string"
                   }, 
                   "4:notes": {
+                    "index": "not_analyzed", 
                     "type": "string"
                   }
                 }
               }, 
               "2:display": {
+                "index": "not_analyzed", 
                 "type": "string"
               }, 
               "3:notes": {
+                "index": "not_analyzed", 
                 "type": "string"
               }
             }
@@ -740,6 +834,7 @@
                             "type": "string"
                           }, 
                           "1:refid": {
+                            "index": "not_analyzed", 
                             "type": "string"
                           }, 
                           "3:uri": {
@@ -757,6 +852,7 @@
                         "type": "string"
                       }, 
                       "1:refid": {
+                        "index": "not_analyzed", 
                         "type": "string"
                       }, 
                       "3:uri": {
@@ -767,9 +863,11 @@
                 }
               }, 
               "2:display": {
+                "index": "not_analyzed", 
                 "type": "string"
               }, 
               "3:notes": {
+                "index": "not_analyzed", 
                 "type": "string"
               }
             }
@@ -799,6 +897,7 @@
                             "type": "string"
                           }, 
                           "1:refid": {
+                            "index": "not_analyzed", 
                             "type": "string"
                           }, 
                           "3:uri": {
@@ -811,9 +910,11 @@
                 }
               }, 
               "2:display": {
+                "index": "not_analyzed", 
                 "type": "string"
               }, 
               "3:notes": {
+                "index": "not_analyzed", 
                 "type": "string"
               }
             }
@@ -836,6 +937,7 @@
                         "type": "string"
                       }, 
                       "1:refid": {
+                        "index": "not_analyzed", 
                         "type": "string"
                       }, 
                       "3:uri": {
@@ -846,9 +948,11 @@
                 }
               }, 
               "2:display": {
+                "index": "not_analyzed", 
                 "type": "string"
               }, 
               "3:notes": {
+                "index": "not_analyzed", 
                 "type": "string"
               }
             }
@@ -863,6 +967,7 @@
                     "type": "nested", 
                     "properties": {
                       "1:text": {
+                        "index": "not_analyzed", 
                         "type": "string"
                       }, 
                       "2:type": {
@@ -891,9 +996,11 @@
                 }
               }, 
               "2:display": {
+                "index": "not_analyzed", 
                 "type": "string"
               }, 
               "3:notes": {
+                "index": "not_analyzed", 
                 "type": "string"
               }
             }
@@ -920,6 +1027,7 @@
                         "type": "string"
                       }, 
                       "1:refid": {
+                        "index": "not_analyzed", 
                         "type": "string"
                       }, 
                       "3:uri": {
@@ -930,9 +1038,11 @@
                 }
               }, 
               "2:display": {
+                "index": "not_analyzed", 
                 "type": "string"
               }, 
               "3:notes": {
+                "index": "not_analyzed", 
                 "type": "string"
               }
             }

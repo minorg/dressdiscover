@@ -28,9 +28,11 @@
                 "type": "nested", 
                 "properties": {
                   "1:rights_holder": {
+                    "index": "not_analyzed", 
                     "type": "string"
                   }, 
                   "2:text": {
+                    "index": "not_analyzed", 
                     "type": "string"
                   }, 
                   "3:type": {
@@ -38,14 +40,17 @@
                     "type": "string"
                   }, 
                   "4:notes": {
+                    "index": "not_analyzed", 
                     "type": "string"
                   }
                 }
               }, 
               "2:display": {
+                "index": "not_analyzed", 
                 "type": "string"
               }, 
               "3:notes": {
+                "index": "not_analyzed", 
                 "type": "string"
               }
             }
@@ -62,6 +67,7 @@
             }
           }, 
           "1:title": {
+            "index": "not_analyzed", 
             "type": "string"
           }, 
           "3:url": {

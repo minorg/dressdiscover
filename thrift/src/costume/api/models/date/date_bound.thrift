@@ -7,6 +7,7 @@ include "thryft/native/date_time.thrift"
 
 // VRA Core 4.0 date earliestDate or latestDate subelement
 struct DateBound {
+	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	1: string text;
 

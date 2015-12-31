@@ -10,6 +10,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         AGENT_NAME_TEXTS("agentNameTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 6, "agent_name_texts", org.thryft.protocol.Type.LIST),
         CATEGORIES("categories", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 7, "categories", org.thryft.protocol.Type.LIST),
         COLOR_TEXTS("colorTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 17, "color_texts", org.thryft.protocol.Type.LIST),
+        CULTURAL_CONTEXT_TEXTS("culturalContextTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 18, "cultural_context_texts", org.thryft.protocol.Type.LIST),
         DATE("date", new com.google.common.reflect.TypeToken<String>() {}, false, 12, "date", org.thryft.protocol.Type.STRING),
         DESCRIPTION("description", new com.google.common.reflect.TypeToken<String>() {}, false, 5, "description", org.thryft.protocol.Type.STRING),
         GENDER("gender", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.gender.Gender>() {}, false, 8, "gender", org.thryft.protocol.Type.STRING),
@@ -70,6 +71,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
             case "agentNameTexts": return AGENT_NAME_TEXTS;
             case "categories": return CATEGORIES;
             case "colorTexts": return COLOR_TEXTS;
+            case "culturalContextTexts": return CULTURAL_CONTEXT_TEXTS;
             case "date": return DATE;
             case "description": return DESCRIPTION;
             case "gender": return GENDER;
@@ -94,6 +96,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
             case "agent_name_texts": return AGENT_NAME_TEXTS;
             case "categories": return CATEGORIES;
             case "color_texts": return COLOR_TEXTS;
+            case "cultural_context_texts": return CULTURAL_CONTEXT_TEXTS;
             case "date": return DATE;
             case "description": return DESCRIPTION;
             case "gender": return GENDER;
@@ -140,6 +143,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         agentNameTexts = null;
         categories = null;
         colorTexts = null;
+        culturalContextTexts = null;
         date = null;
         description = null;
         gender = null;
@@ -160,6 +164,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         this.agentNameTexts = other.getAgentNameTexts().isPresent() ? new java.util.ArrayList<String>(other.getAgentNameTexts().get()) : null;
         this.categories = other.getCategories().isPresent() ? new java.util.ArrayList<String>(other.getCategories().get()) : null;
         this.colorTexts = other.getColorTexts().isPresent() ? new java.util.ArrayList<String>(other.getColorTexts().get()) : null;
+        this.culturalContextTexts = other.getCulturalContextTexts().isPresent() ? new java.util.ArrayList<String>(other.getCulturalContextTexts().get()) : null;
         this.date = other.getDate().isPresent() ? other.getDate().get() : null;
         this.description = other.getDescription().isPresent() ? other.getDescription().get() : null;
         this.gender = other.getGender().isPresent() ? other.getGender().get() : null;
@@ -189,6 +194,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
             (getAgentNameTexts() != null ? getAgentNameTexts().equals(other.getAgentNameTexts()) : other.getAgentNameTexts() == null) &&
             (getCategories() != null ? getCategories().equals(other.getCategories()) : other.getCategories() == null) &&
             (getColorTexts() != null ? getColorTexts().equals(other.getColorTexts()) : other.getColorTexts() == null) &&
+            (getCulturalContextTexts() != null ? getCulturalContextTexts().equals(other.getCulturalContextTexts()) : other.getCulturalContextTexts() == null) &&
             (getDate() != null ? getDate().equals(other.getDate()) : other.getDate() == null) &&
             (getDescription() != null ? getDescription().equals(other.getDescription()) : other.getDescription() == null) &&
             (getGender() != null ? getGender().equals(other.getGender()) : other.getGender() == null) &&
@@ -211,6 +217,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         case "agent_name_texts": return getAgentNameTexts();
         case "categories": return getCategories();
         case "color_texts": return getColorTexts();
+        case "cultural_context_texts": return getCulturalContextTexts();
         case "date": return getDate();
         case "description": return getDescription();
         case "gender": return getGender();
@@ -240,6 +247,10 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
 
     public java.util.List<String> getColorTexts() {
         return colorTexts;
+    }
+
+    public java.util.List<String> getCulturalContextTexts() {
+        return culturalContextTexts;
     }
 
     /**
@@ -319,6 +330,9 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         if (getColorTexts() != null) {
             hashCode = 31 * hashCode + getColorTexts().hashCode();
         }
+        if (getCulturalContextTexts() != null) {
+            hashCode = 31 * hashCode + getCulturalContextTexts().hashCode();
+        }
         if (getDate() != null) {
             hashCode = 31 * hashCode + getDate().hashCode();
         }
@@ -366,6 +380,10 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
 
     public void setColorTexts(final java.util.List<String> colorTexts) {
         this.colorTexts = colorTexts;
+    }
+
+    public void setCulturalContextTexts(final java.util.List<String> culturalContextTexts) {
+        this.culturalContextTexts = culturalContextTexts;
     }
 
     public void setDate(final String date) {
@@ -422,7 +440,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("color_texts", getColorTexts()).add("date", getDate()).add("description", getDescription()).add("gender", getGender()).add("relation_texts", getRelationTexts()).add("material_texts", getMaterialTexts()).add("subject_term_texts", getSubjectTermTexts()).add("technique_texts", getTechniqueTexts()).add("thumbnail", getThumbnail()).add("url", getUrl()).add("work_type_texts", getWorkTypeTexts()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("color_texts", getColorTexts()).add("cultural_context_texts", getCulturalContextTexts()).add("date", getDate()).add("description", getDescription()).add("gender", getGender()).add("relation_texts", getRelationTexts()).add("material_texts", getMaterialTexts()).add("subject_term_texts", getSubjectTermTexts()).add("technique_texts", getTechniqueTexts()).add("thumbnail", getThumbnail()).add("url", getUrl()).add("work_type_texts", getWorkTypeTexts()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -441,6 +459,8 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
     private java.util.List<String> categories;
 
     private java.util.List<String> colorTexts;
+
+    private java.util.List<String> culturalContextTexts;
 
     /**
      * Dublin Core date

@@ -8,6 +8,7 @@ import com.google.common.collect.ImmutableList;
 
 import net.lab1318.costume.api.models.agent.Agent;
 import net.lab1318.costume.api.models.color.Color;
+import net.lab1318.costume.api.models.cultural_context.CulturalContext;
 import net.lab1318.costume.api.models.date.Date;
 import net.lab1318.costume.api.models.date.DateType;
 import net.lab1318.costume.api.models.description.Description;
@@ -55,6 +56,14 @@ public final class ObjectSummarizer {
                 colorTextsBuilder.add(color.getText());
             }
             builder.setColorTexts(colorTextsBuilder.build());
+        }
+
+        if (object.getCulturalContexts().isPresent()) {
+            final ImmutableList.Builder<String> culturalContextTextsBuilder = ImmutableList.builder();
+            for (final CulturalContext culturalContext : object.getCulturalContexts().get().getElements()) {
+                culturalContextTextsBuilder.add(culturalContext.getText());
+            }
+            builder.setCulturalContextTexts(culturalContextTextsBuilder.build());
         }
 
         if (object.getDates().isPresent()) {

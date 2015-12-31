@@ -10,9 +10,11 @@ struct TextrefSet {
 	// @validation {"minLength": 1}
 	1: list<textref.Textref> elements;
 
+	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	2: optional string display;
 
+	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	3: optional string notes;
 }

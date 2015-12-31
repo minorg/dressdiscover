@@ -14,6 +14,7 @@ struct Measurements {
 
 	2: measurements_type.MeasurementsType type;
 
+	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	3: optional string extent;
 

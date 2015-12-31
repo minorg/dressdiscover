@@ -135,6 +135,8 @@ class InscriptionText(object):
             raise ValueError('text is required')
         if not isinstance(text, basestring):
             raise TypeError("expected text to be a str but it is a %s" % getattr(__builtin__, 'type')(text))
+        if len(text) < 1:
+            raise ValueError("expected len(text) to be >= 1, was %d" % len(text))
         self.__text = text
 
         if lang is not None:

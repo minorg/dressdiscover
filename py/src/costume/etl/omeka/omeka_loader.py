@@ -22,6 +22,8 @@ from costume.api.models.component.component import Component
 from costume.api.models.component.component_set import ComponentSet
 from costume.api.models.component.component_term import ComponentTerm
 from costume.api.models.condition.condition import Condition
+from costume.api.models.cultural_context.cultural_context import CulturalContext
+from costume.api.models.cultural_context.cultural_context_set import CulturalContextSet
 from costume.api.models.date.date import Date
 from costume.api.models.date.date_bound import DateBound
 from costume.api.models.date.date_set import DateSet
@@ -131,6 +133,7 @@ class OmekaLoader(_Loader):
             self.closure_types = []
             self.component_builders_by_letter = {}
             self.colors = []
+            self.cultural_contexts = []
             self.dc_date_builder = Date.Builder().set_type(DateType.CREATION)
             self.dc_date_certainty = None
             self.dates = []
@@ -219,6 +222,8 @@ class OmekaLoader(_Loader):
                 self.__object_builder.set_components(ComponentSet.Builder().set_elements(tuple(components)).build())
             if len(self.colors) > 0:
                 self.__object_builder.set_colors(ColorSet.Builder().set_elements(tuple(self.colors)).build())
+            if len(self.cultural_contexts) > 0:
+                self.__object_builder.set_cultural_contexts(CulturalContextSet.Builder().set_elements(tuple(self.cultural_contexts)).build())
             if self.dc_date_builder.earliest_date is not None and self.dc_date_builder.latest_date is not None:
                 if self.dc_date_certainty is not None:
                     assert self.dc_date_certainty == 'circa'
@@ -849,6 +854,13 @@ class OmekaLoader(_Loader):
             Description.Builder()
                 .set_text(text)
                 .set_type(DescriptionType.CREDIT)
+                .build()
+        )
+
+    def _load_item_element_itm_culture(self, object_builder, text):
+        object_builder.cultural_contexts.append(
+            CulturalContext.Builder()
+                .set_text(text)
                 .build()
         )
 
