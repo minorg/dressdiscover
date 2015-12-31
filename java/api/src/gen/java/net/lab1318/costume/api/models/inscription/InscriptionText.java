@@ -266,7 +266,7 @@ public class InscriptionText implements org.thryft.Struct {
      */
     public InscriptionText(final net.lab1318.costume.api.models.inscription.InscriptionTextType type, final String text) {
         this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.inscription.InscriptionText: missing type");
-        this.text = com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.inscription.InscriptionText: missing text");
+        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.inscription.InscriptionText: missing text"), "net.lab1318.costume.api.models.inscription.InscriptionText: text is empty");
         this.lang = com.google.common.base.Optional.absent();
     }
 
@@ -275,7 +275,7 @@ public class InscriptionText implements org.thryft.Struct {
      */
     public InscriptionText(final net.lab1318.costume.api.models.inscription.InscriptionTextType type, final String text, final @javax.annotation.Nullable String lang) {
         this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.inscription.InscriptionText: missing type");
-        this.text = com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.inscription.InscriptionText: missing text");
+        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.inscription.InscriptionText: missing text"), "net.lab1318.costume.api.models.inscription.InscriptionText: text is empty");
         this.lang = org.thryft.Preconditions.checkOptionalStringMinLength(org.thryft.Preconditions.checkOptionalStringMaxLength(com.google.common.base.Optional.fromNullable(lang), 3, "net.lab1318.costume.api.models.inscription.InscriptionText: lang must have a maximum length of 3"), 2, "net.lab1318.costume.api.models.inscription.InscriptionText: lang must have a minimum length of 2");
     }
 
@@ -284,7 +284,7 @@ public class InscriptionText implements org.thryft.Struct {
      */
     public InscriptionText(final net.lab1318.costume.api.models.inscription.InscriptionTextType type, final String text, final com.google.common.base.Optional<String> lang) {
         this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.inscription.InscriptionText: missing type");
-        this.text = com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.inscription.InscriptionText: missing text");
+        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.inscription.InscriptionText: missing text"), "net.lab1318.costume.api.models.inscription.InscriptionText: text is empty");
         this.lang = org.thryft.Preconditions.checkOptionalStringMinLength(org.thryft.Preconditions.checkOptionalStringMaxLength(com.google.common.base.Preconditions.checkNotNull(lang, "net.lab1318.costume.api.models.inscription.InscriptionText: missing lang"), 3, "net.lab1318.costume.api.models.inscription.InscriptionText: lang must have a maximum length of 3"), 2, "net.lab1318.costume.api.models.inscription.InscriptionText: lang must have a minimum length of 2");
     }
 

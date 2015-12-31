@@ -13,6 +13,7 @@ public class ObjectBean implements org.thryft.StructBean {
         COLORS("colors", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.color.ColorSetBean>() {}, false, 30, "colors", org.thryft.protocol.Type.STRUCT),
         COMPONENTS("components", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.component.ComponentSetBean>() {}, false, 32, "components", org.thryft.protocol.Type.STRUCT),
         CONDITION("condition", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.condition.Condition>() {}, false, 27, "condition", org.thryft.protocol.Type.STRING),
+        CULTURAL_CONTEXTS("culturalContexts", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.cultural_context.CulturalContextSetBean>() {}, false, 35, "cultural_contexts", org.thryft.protocol.Type.STRUCT),
         DATES("dates", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.date.DateSetBean>() {}, false, 10, "dates", org.thryft.protocol.Type.STRUCT),
         DESCRIPTIONS("descriptions", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.description.DescriptionSetBean>() {}, false, 4, "descriptions", org.thryft.protocol.Type.STRUCT),
         GENDER("gender", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.gender.Gender>() {}, false, 25, "gender", org.thryft.protocol.Type.STRING),
@@ -83,6 +84,7 @@ public class ObjectBean implements org.thryft.StructBean {
             case "colors": return COLORS;
             case "components": return COMPONENTS;
             case "condition": return CONDITION;
+            case "culturalContexts": return CULTURAL_CONTEXTS;
             case "dates": return DATES;
             case "descriptions": return DESCRIPTIONS;
             case "gender": return GENDER;
@@ -117,6 +119,7 @@ public class ObjectBean implements org.thryft.StructBean {
             case "colors": return COLORS;
             case "components": return COMPONENTS;
             case "condition": return CONDITION;
+            case "cultural_contexts": return CULTURAL_CONTEXTS;
             case "dates": return DATES;
             case "descriptions": return DESCRIPTIONS;
             case "gender": return GENDER;
@@ -173,6 +176,7 @@ public class ObjectBean implements org.thryft.StructBean {
         colors = null;
         components = null;
         condition = null;
+        culturalContexts = null;
         dates = null;
         descriptions = null;
         gender = null;
@@ -203,6 +207,7 @@ public class ObjectBean implements org.thryft.StructBean {
         this.colors = other.getColors().isPresent() ? new net.lab1318.costume.gui.models.color.ColorSetBean(other.getColors().get()) : null;
         this.components = other.getComponents().isPresent() ? new net.lab1318.costume.gui.models.component.ComponentSetBean(other.getComponents().get()) : null;
         this.condition = other.getCondition().isPresent() ? other.getCondition().get() : null;
+        this.culturalContexts = other.getCulturalContexts().isPresent() ? new net.lab1318.costume.gui.models.cultural_context.CulturalContextSetBean(other.getCulturalContexts().get()) : null;
         this.dates = other.getDates().isPresent() ? new net.lab1318.costume.gui.models.date.DateSetBean(other.getDates().get()) : null;
         this.descriptions = other.getDescriptions().isPresent() ? new net.lab1318.costume.gui.models.description.DescriptionSetBean(other.getDescriptions().get()) : null;
         this.gender = other.getGender().isPresent() ? other.getGender().get() : null;
@@ -251,6 +256,7 @@ public class ObjectBean implements org.thryft.StructBean {
             (getColors() != null ? getColors().equals(other.getColors()) : other.getColors() == null) &&
             (getComponents() != null ? getComponents().equals(other.getComponents()) : other.getComponents() == null) &&
             (getCondition() != null ? getCondition().equals(other.getCondition()) : other.getCondition() == null) &&
+            (getCulturalContexts() != null ? getCulturalContexts().equals(other.getCulturalContexts()) : other.getCulturalContexts() == null) &&
             (getDates() != null ? getDates().equals(other.getDates()) : other.getDates() == null) &&
             (getDescriptions() != null ? getDescriptions().equals(other.getDescriptions()) : other.getDescriptions() == null) &&
             (getGender() != null ? getGender().equals(other.getGender()) : other.getGender() == null) &&
@@ -283,6 +289,7 @@ public class ObjectBean implements org.thryft.StructBean {
         case "colors": return getColors();
         case "components": return getComponents();
         case "condition": return getCondition();
+        case "cultural_contexts": return getCulturalContexts();
         case "dates": return getDates();
         case "descriptions": return getDescriptions();
         case "gender": return getGender();
@@ -331,6 +338,10 @@ public class ObjectBean implements org.thryft.StructBean {
 
     public net.lab1318.costume.api.models.condition.Condition getCondition() {
         return condition;
+    }
+
+    public net.lab1318.costume.gui.models.cultural_context.CulturalContextSetBean getCulturalContexts() {
+        return culturalContexts;
     }
 
     public net.lab1318.costume.gui.models.date.DateSetBean getDates() {
@@ -441,6 +452,9 @@ public class ObjectBean implements org.thryft.StructBean {
         if (getCondition() != null) {
             hashCode = 31 * hashCode + getCondition().ordinal();
         }
+        if (getCulturalContexts() != null) {
+            hashCode = 31 * hashCode + getCulturalContexts().hashCode();
+        }
         if (getDates() != null) {
             hashCode = 31 * hashCode + getDates().hashCode();
         }
@@ -521,6 +535,10 @@ public class ObjectBean implements org.thryft.StructBean {
 
     public void setCondition(final net.lab1318.costume.api.models.condition.Condition condition) {
         this.condition = condition;
+    }
+
+    public void setCulturalContexts(final net.lab1318.costume.gui.models.cultural_context.CulturalContextSetBean culturalContexts) {
+        this.culturalContexts = culturalContexts;
     }
 
     public void setDates(final net.lab1318.costume.gui.models.date.DateSetBean dates) {
@@ -605,7 +623,7 @@ public class ObjectBean implements org.thryft.StructBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("titles", getTitles()).add("agents", getAgents()).add("categories", getCategories()).add("closures", getClosures()).add("colors", getColors()).add("components", getComponents()).add("condition", getCondition()).add("dates", getDates()).add("descriptions", getDescriptions()).add("gender", getGender()).add("images", getImages()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("measurements", getMeasurements()).add("provenance", getProvenance()).add("quantity", getQuantity()).add("relations", getRelations()).add("rights", getRights()).add("structures", getStructures()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("view_type", getViewType()).add("work_types", getWorkTypes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("titles", getTitles()).add("agents", getAgents()).add("categories", getCategories()).add("closures", getClosures()).add("colors", getColors()).add("components", getComponents()).add("condition", getCondition()).add("cultural_contexts", getCulturalContexts()).add("dates", getDates()).add("descriptions", getDescriptions()).add("gender", getGender()).add("images", getImages()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("measurements", getMeasurements()).add("provenance", getProvenance()).add("quantity", getQuantity()).add("relations", getRelations()).add("rights", getRights()).add("structures", getStructures()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("view_type", getViewType()).add("work_types", getWorkTypes()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -627,6 +645,8 @@ public class ObjectBean implements org.thryft.StructBean {
     private net.lab1318.costume.gui.models.component.ComponentSetBean components;
 
     private net.lab1318.costume.api.models.condition.Condition condition;
+
+    private net.lab1318.costume.gui.models.cultural_context.CulturalContextSetBean culturalContexts;
 
     private net.lab1318.costume.gui.models.date.DateSetBean dates;
 

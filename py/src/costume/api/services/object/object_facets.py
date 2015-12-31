@@ -11,6 +11,7 @@ class ObjectFacets(object):
             categories=None,
             collections=None,
             color_texts=None,
+            cultural_context_texts=None,
             genders=None,
             institutions=None,
             material_texts=None,
@@ -23,6 +24,7 @@ class ObjectFacets(object):
             :type categories: dict(str: int)
             :type collections: dict(str: int)
             :type color_texts: dict(str: int)
+            :type cultural_context_texts: dict(str: int)
             :type genders: dict(costume.api.models.gender.gender.Gender: int)
             :type institutions: dict(str: int)
             :type material_texts: dict(str: int)
@@ -35,6 +37,7 @@ class ObjectFacets(object):
             self.__categories = categories
             self.__collections = collections
             self.__color_texts = color_texts
+            self.__cultural_context_texts = cultural_context_texts
             self.__genders = genders
             self.__institutions = institutions
             self.__material_texts = material_texts
@@ -43,7 +46,7 @@ class ObjectFacets(object):
             self.__work_type_texts = work_type_texts
 
         def build(self):
-            return ObjectFacets(agent_name_texts=self.__agent_name_texts, categories=self.__categories, collections=self.__collections, color_texts=self.__color_texts, genders=self.__genders, institutions=self.__institutions, material_texts=self.__material_texts, subject_term_texts=self.__subject_term_texts, technique_texts=self.__technique_texts, work_type_texts=self.__work_type_texts)
+            return ObjectFacets(agent_name_texts=self.__agent_name_texts, categories=self.__categories, collections=self.__collections, color_texts=self.__color_texts, cultural_context_texts=self.__cultural_context_texts, genders=self.__genders, institutions=self.__institutions, material_texts=self.__material_texts, subject_term_texts=self.__subject_term_texts, technique_texts=self.__technique_texts, work_type_texts=self.__work_type_texts)
 
         @property
         def agent_name_texts(self):
@@ -76,6 +79,14 @@ class ObjectFacets(object):
             '''
 
             return self.__color_texts.copy() if self.__color_texts is not None else None
+
+        @property
+        def cultural_context_texts(self):
+            '''
+            :rtype: dict(str: int)
+            '''
+
+            return self.__cultural_context_texts.copy() if self.__cultural_context_texts is not None else None
 
         @property
         def genders(self):
@@ -131,6 +142,14 @@ class ObjectFacets(object):
             '''
 
             self.__color_texts = color_texts
+            return self
+
+        def set_cultural_context_texts(self, cultural_context_texts):
+            '''
+            :type cultural_context_texts: dict(str: int)
+            '''
+
+            self.__cultural_context_texts = cultural_context_texts
             return self
 
         def set_genders(self, genders):
@@ -203,6 +222,7 @@ class ObjectFacets(object):
             :type categories: dict(str: int)
             :type collections: dict(str: int)
             :type color_texts: dict(str: int)
+            :type cultural_context_texts: dict(str: int)
             :type genders: dict(costume.api.models.gender.gender.Gender: int)
             :type institutions: dict(str: int)
             :type material_texts: dict(str: int)
@@ -216,6 +236,7 @@ class ObjectFacets(object):
                 self.set_categories(object_facets.categories)
                 self.set_collections(object_facets.collections)
                 self.set_color_texts(object_facets.color_texts)
+                self.set_cultural_context_texts(object_facets.cultural_context_texts)
                 self.set_genders(object_facets.genders)
                 self.set_institutions(object_facets.institutions)
                 self.set_material_texts(object_facets.material_texts)
@@ -268,6 +289,14 @@ class ObjectFacets(object):
             '''
 
             self.set_color_texts(color_texts)
+
+        @cultural_context_texts.setter
+        def cultural_context_texts(self, cultural_context_texts):
+            '''
+            :type cultural_context_texts: dict(str: int)
+            '''
+
+            self.set_cultural_context_texts(cultural_context_texts)
 
         @genders.setter
         def genders(self, genders):
@@ -323,6 +352,7 @@ class ObjectFacets(object):
         categories,
         collections,
         color_texts,
+        cultural_context_texts,
         genders,
         institutions,
         material_texts,
@@ -335,6 +365,7 @@ class ObjectFacets(object):
         :type categories: dict(str: int)
         :type collections: dict(str: int)
         :type color_texts: dict(str: int)
+        :type cultural_context_texts: dict(str: int)
         :type genders: dict(costume.api.models.gender.gender.Gender: int)
         :type institutions: dict(str: int)
         :type material_texts: dict(str: int)
@@ -366,6 +397,12 @@ class ObjectFacets(object):
         if not (isinstance(color_texts, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], basestring) and isinstance(__item[1], (int, long)) and __item[1] >= 0, color_texts.iteritems()))) == 0):
             raise TypeError("expected color_texts to be a dict(str: int) but it is a %s" % getattr(__builtin__, 'type')(color_texts))
         self.__color_texts = color_texts.copy() if color_texts is not None else None
+
+        if cultural_context_texts is None:
+            raise ValueError('cultural_context_texts is required')
+        if not (isinstance(cultural_context_texts, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], basestring) and isinstance(__item[1], (int, long)) and __item[1] >= 0, cultural_context_texts.iteritems()))) == 0):
+            raise TypeError("expected cultural_context_texts to be a dict(str: int) but it is a %s" % getattr(__builtin__, 'type')(cultural_context_texts))
+        self.__cultural_context_texts = cultural_context_texts.copy() if cultural_context_texts is not None else None
 
         if genders is None:
             raise ValueError('genders is required')
@@ -412,6 +449,8 @@ class ObjectFacets(object):
             return False
         if self.color_texts != other.color_texts:
             return False
+        if self.cultural_context_texts != other.cultural_context_texts:
+            return False
         if self.genders != other.genders:
             return False
         if self.institutions != other.institutions:
@@ -427,7 +466,7 @@ class ObjectFacets(object):
         return True
 
     def __hash__(self):
-        return hash((self.agent_name_texts,self.categories,self.collections,self.color_texts,self.genders,self.institutions,self.material_texts,self.subject_term_texts,self.technique_texts,self.work_type_texts,))
+        return hash((self.agent_name_texts,self.categories,self.collections,self.color_texts,self.cultural_context_texts,self.genders,self.institutions,self.material_texts,self.subject_term_texts,self.technique_texts,self.work_type_texts,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -441,6 +480,7 @@ class ObjectFacets(object):
         field_reprs.append('categories=' + repr(self.categories))
         field_reprs.append('collections=' + repr(self.collections))
         field_reprs.append('color_texts=' + repr(self.color_texts))
+        field_reprs.append('cultural_context_texts=' + repr(self.cultural_context_texts))
         field_reprs.append('genders=' + repr(self.genders))
         field_reprs.append('institutions=' + repr(self.institutions))
         field_reprs.append('material_texts=' + repr(self.material_texts))
@@ -455,6 +495,7 @@ class ObjectFacets(object):
         field_reprs.append('categories=' + repr(self.categories))
         field_reprs.append('collections=' + repr(self.collections))
         field_reprs.append('color_texts=' + repr(self.color_texts))
+        field_reprs.append('cultural_context_texts=' + repr(self.cultural_context_texts))
         field_reprs.append('genders=' + repr(self.genders))
         field_reprs.append('institutions=' + repr(self.institutions))
         field_reprs.append('material_texts=' + repr(self.material_texts))
@@ -478,7 +519,7 @@ class ObjectFacets(object):
         :rtype: dict
         '''
 
-        return {'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'collections': self.collections, 'color_texts': self.color_texts, 'genders': self.genders, 'institutions': self.institutions, 'material_texts': self.material_texts, 'subject_term_texts': self.subject_term_texts, 'technique_texts': self.technique_texts, 'work_type_texts': self.work_type_texts}
+        return {'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'collections': self.collections, 'color_texts': self.color_texts, 'cultural_context_texts': self.cultural_context_texts, 'genders': self.genders, 'institutions': self.institutions, 'material_texts': self.material_texts, 'subject_term_texts': self.subject_term_texts, 'technique_texts': self.technique_texts, 'work_type_texts': self.work_type_texts}
 
     def as_tuple(self):
         '''
@@ -487,7 +528,7 @@ class ObjectFacets(object):
         :rtype: tuple
         '''
 
-        return (self.agent_name_texts, self.categories, self.collections, self.color_texts, self.genders, self.institutions, self.material_texts, self.subject_term_texts, self.technique_texts, self.work_type_texts,)
+        return (self.agent_name_texts, self.categories, self.collections, self.color_texts, self.cultural_context_texts, self.genders, self.institutions, self.material_texts, self.subject_term_texts, self.technique_texts, self.work_type_texts,)
 
     @property
     def categories(self):
@@ -512,6 +553,14 @@ class ObjectFacets(object):
         '''
 
         return self.__color_texts.copy() if self.__color_texts is not None else None
+
+    @property
+    def cultural_context_texts(self):
+        '''
+        :rtype: dict(str: int)
+        '''
+
+        return self.__cultural_context_texts.copy() if self.__cultural_context_texts is not None else None
 
     @property
     def genders(self):
@@ -561,6 +610,8 @@ class ObjectFacets(object):
                 init_kwds['collections'] = dict([(iprot.read_string(), iprot.read_u32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'color_texts':
                 init_kwds['color_texts'] = dict([(iprot.read_string(), iprot.read_u32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
+            elif ifield_name == 'cultural_context_texts':
+                init_kwds['cultural_context_texts'] = dict([(iprot.read_string(), iprot.read_u32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'genders':
                 init_kwds['genders'] = dict([(costume.api.models.gender.gender.Gender.value_of(iprot.read_string().strip().upper()), iprot.read_u32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'institutions':
@@ -584,6 +635,7 @@ class ObjectFacets(object):
         categories=None,
         collections=None,
         color_texts=None,
+        cultural_context_texts=None,
         genders=None,
         institutions=None,
         material_texts=None,
@@ -598,6 +650,7 @@ class ObjectFacets(object):
         :type categories: dict(str: int) or None
         :type collections: dict(str: int) or None
         :type color_texts: dict(str: int) or None
+        :type cultural_context_texts: dict(str: int) or None
         :type genders: dict(costume.api.models.gender.gender.Gender: int) or None
         :type institutions: dict(str: int) or None
         :type material_texts: dict(str: int) or None
@@ -615,6 +668,8 @@ class ObjectFacets(object):
             collections = self.collections
         if color_texts is None:
             color_texts = self.color_texts
+        if cultural_context_texts is None:
+            cultural_context_texts = self.cultural_context_texts
         if genders is None:
             genders = self.genders
         if institutions is None:
@@ -627,7 +682,7 @@ class ObjectFacets(object):
             technique_texts = self.technique_texts
         if work_type_texts is None:
             work_type_texts = self.work_type_texts
-        return self.__class__(agent_name_texts=agent_name_texts, categories=categories, collections=collections, color_texts=color_texts, genders=genders, institutions=institutions, material_texts=material_texts, subject_term_texts=subject_term_texts, technique_texts=technique_texts, work_type_texts=work_type_texts)
+        return self.__class__(agent_name_texts=agent_name_texts, categories=categories, collections=collections, color_texts=color_texts, cultural_context_texts=cultural_context_texts, genders=genders, institutions=institutions, material_texts=material_texts, subject_term_texts=subject_term_texts, technique_texts=technique_texts, work_type_texts=work_type_texts)
 
     @property
     def subject_term_texts(self):
@@ -690,6 +745,14 @@ class ObjectFacets(object):
         oprot.write_field_begin(name='color_texts', type=13, id=None)
         oprot.write_map_begin(11, len(self.color_texts), 8)
         for __key0, __value0 in self.color_texts.iteritems():
+            oprot.write_string(__key0)
+            oprot.write_u32(__value0)
+        oprot.write_map_end()
+        oprot.write_field_end()
+
+        oprot.write_field_begin(name='cultural_context_texts', type=13, id=None)
+        oprot.write_map_begin(11, len(self.cultural_context_texts), 8)
+        for __key0, __value0 in self.cultural_context_texts.iteritems():
             oprot.write_string(__key0)
             oprot.write_u32(__value0)
         oprot.write_map_end()

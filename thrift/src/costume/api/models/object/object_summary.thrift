@@ -35,7 +35,7 @@ struct ObjectSummary {
 
 	// @elastic_search_mapping {"type": "multi_field", "fields": {"text": {"type": "string"}, "not_analyzed": {"type": "string", "index": "not_analyzed"}}}
 	// @validation {"minLength": 1}
-	17: optional list<string> cultural_context_texts;
+	18: optional list<string> cultural_context_texts;
 
 	// Dublin Core date
 	// @validation {"minLength": 1}

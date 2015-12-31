@@ -5,6 +5,7 @@ import costume.api.models.closure.closure_set
 import costume.api.models.color.color_set
 import costume.api.models.component.component_set
 import costume.api.models.condition.condition
+import costume.api.models.cultural_context.cultural_context_set
 import costume.api.models.date.date_set
 import costume.api.models.description.description_set
 import costume.api.models.gender.gender
@@ -38,6 +39,7 @@ class Object(object):
             colors=None,
             components=None,
             condition=None,
+            cultural_contexts=None,
             dates=None,
             descriptions=None,
             gender=None,
@@ -67,6 +69,7 @@ class Object(object):
             :type colors: costume.api.models.color.color_set.ColorSet or None
             :type components: costume.api.models.component.component_set.ComponentSet or None
             :type condition: costume.api.models.condition.condition.Condition or None
+            :type cultural_contexts: costume.api.models.cultural_context.cultural_context_set.CulturalContextSet or None
             :type dates: costume.api.models.date.date_set.DateSet or None
             :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
             :type gender: costume.api.models.gender.gender.Gender or None
@@ -96,6 +99,7 @@ class Object(object):
             self.__colors = colors
             self.__components = components
             self.__condition = condition
+            self.__cultural_contexts = cultural_contexts
             self.__dates = dates
             self.__descriptions = descriptions
             self.__gender = gender
@@ -115,7 +119,7 @@ class Object(object):
             self.__work_types = work_types
 
         def build(self):
-            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, titles=self.__titles, agents=self.__agents, categories=self.__categories, closures=self.__closures, colors=self.__colors, components=self.__components, condition=self.__condition, dates=self.__dates, descriptions=self.__descriptions, gender=self.__gender, images=self.__images, inscriptions=self.__inscriptions, materials=self.__materials, measurements=self.__measurements, provenance=self.__provenance, quantity=self.__quantity, relations=self.__relations, rights=self.__rights, structures=self.__structures, subjects=self.__subjects, techniques=self.__techniques, textrefs=self.__textrefs, view_type=self.__view_type, work_types=self.__work_types)
+            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, titles=self.__titles, agents=self.__agents, categories=self.__categories, closures=self.__closures, colors=self.__colors, components=self.__components, condition=self.__condition, cultural_contexts=self.__cultural_contexts, dates=self.__dates, descriptions=self.__descriptions, gender=self.__gender, images=self.__images, inscriptions=self.__inscriptions, materials=self.__materials, measurements=self.__measurements, provenance=self.__provenance, quantity=self.__quantity, relations=self.__relations, rights=self.__rights, structures=self.__structures, subjects=self.__subjects, techniques=self.__techniques, textrefs=self.__textrefs, view_type=self.__view_type, work_types=self.__work_types)
 
         @property
         def agents(self):
@@ -172,6 +176,14 @@ class Object(object):
             '''
 
             return self.__condition
+
+        @property
+        def cultural_contexts(self):
+            '''
+            :rtype: costume.api.models.cultural_context.cultural_context_set.CulturalContextSet
+            '''
+
+            return self.__cultural_contexts
 
         @property
         def dates(self):
@@ -331,6 +343,14 @@ class Object(object):
             '''
 
             self.__condition = condition
+            return self
+
+        def set_cultural_contexts(self, cultural_contexts):
+            '''
+            :type cultural_contexts: costume.api.models.cultural_context.cultural_context_set.CulturalContextSet or None
+            '''
+
+            self.__cultural_contexts = cultural_contexts
             return self
 
         def set_dates(self, dates):
@@ -545,6 +565,7 @@ class Object(object):
             :type colors: costume.api.models.color.color_set.ColorSet or None
             :type components: costume.api.models.component.component_set.ComponentSet or None
             :type condition: costume.api.models.condition.condition.Condition or None
+            :type cultural_contexts: costume.api.models.cultural_context.cultural_context_set.CulturalContextSet or None
             :type dates: costume.api.models.date.date_set.DateSet or None
             :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
             :type gender: costume.api.models.gender.gender.Gender or None
@@ -575,6 +596,7 @@ class Object(object):
                 self.set_colors(object.colors)
                 self.set_components(object.components)
                 self.set_condition(object.condition)
+                self.set_cultural_contexts(object.cultural_contexts)
                 self.set_dates(object.dates)
                 self.set_descriptions(object.descriptions)
                 self.set_gender(object.gender)
@@ -670,6 +692,14 @@ class Object(object):
             '''
 
             self.set_condition(condition)
+
+        @cultural_contexts.setter
+        def cultural_contexts(self, cultural_contexts):
+            '''
+            :type cultural_contexts: costume.api.models.cultural_context.cultural_context_set.CulturalContextSet or None
+            '''
+
+            self.set_cultural_contexts(cultural_contexts)
 
         @dates.setter
         def dates(self, dates):
@@ -843,6 +873,7 @@ class Object(object):
         colors=None,
         components=None,
         condition=None,
+        cultural_contexts=None,
         dates=None,
         descriptions=None,
         gender=None,
@@ -872,6 +903,7 @@ class Object(object):
         :type colors: costume.api.models.color.color_set.ColorSet or None
         :type components: costume.api.models.component.component_set.ComponentSet or None
         :type condition: costume.api.models.condition.condition.Condition or None
+        :type cultural_contexts: costume.api.models.cultural_context.cultural_context_set.CulturalContextSet or None
         :type dates: costume.api.models.date.date_set.DateSet or None
         :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
         :type gender: costume.api.models.gender.gender.Gender or None
@@ -946,6 +978,11 @@ class Object(object):
             if not isinstance(condition, costume.api.models.condition.condition.Condition):
                 raise TypeError("expected condition to be a costume.api.models.condition.condition.Condition but it is a %s" % getattr(__builtin__, 'type')(condition))
         self.__condition = condition
+
+        if cultural_contexts is not None:
+            if not isinstance(cultural_contexts, costume.api.models.cultural_context.cultural_context_set.CulturalContextSet):
+                raise TypeError("expected cultural_contexts to be a costume.api.models.cultural_context.cultural_context_set.CulturalContextSet but it is a %s" % getattr(__builtin__, 'type')(cultural_contexts))
+        self.__cultural_contexts = cultural_contexts
 
         if dates is not None:
             if not isinstance(dates, costume.api.models.date.date_set.DateSet):
@@ -1057,6 +1094,8 @@ class Object(object):
             return False
         if self.condition != other.condition:
             return False
+        if self.cultural_contexts != other.cultural_contexts:
+            return False
         if self.dates != other.dates:
             return False
         if self.descriptions != other.descriptions:
@@ -1094,7 +1133,7 @@ class Object(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.model_metadata,self.titles,self.agents,self.categories,self.closures,self.colors,self.components,self.condition,self.dates,self.descriptions,self.gender,self.images,self.inscriptions,self.materials,self.measurements,self.provenance,self.quantity,self.relations,self.rights,self.structures,self.subjects,self.techniques,self.textrefs,self.view_type,self.work_types,))
+        return hash((self.collection_id,self.institution_id,self.model_metadata,self.titles,self.agents,self.categories,self.closures,self.colors,self.components,self.condition,self.cultural_contexts,self.dates,self.descriptions,self.gender,self.images,self.inscriptions,self.materials,self.measurements,self.provenance,self.quantity,self.relations,self.rights,self.structures,self.subjects,self.techniques,self.textrefs,self.view_type,self.work_types,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -1120,6 +1159,8 @@ class Object(object):
             field_reprs.append('components=' + repr(self.components))
         if self.condition is not None:
             field_reprs.append('condition=' + repr(self.condition))
+        if self.cultural_contexts is not None:
+            field_reprs.append('cultural_contexts=' + repr(self.cultural_contexts))
         if self.dates is not None:
             field_reprs.append('dates=' + repr(self.dates))
         if self.descriptions is not None:
@@ -1174,6 +1215,8 @@ class Object(object):
             field_reprs.append('components=' + repr(self.components))
         if self.condition is not None:
             field_reprs.append('condition=' + repr(self.condition))
+        if self.cultural_contexts is not None:
+            field_reprs.append('cultural_contexts=' + repr(self.cultural_contexts))
         if self.dates is not None:
             field_reprs.append('dates=' + repr(self.dates))
         if self.descriptions is not None:
@@ -1225,7 +1268,7 @@ class Object(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'titles': self.titles, 'agents': self.agents, 'categories': self.categories, 'closures': self.closures, 'colors': self.colors, 'components': self.components, 'condition': self.condition, 'dates': self.dates, 'descriptions': self.descriptions, 'gender': self.gender, 'images': self.images, 'inscriptions': self.inscriptions, 'materials': self.materials, 'measurements': self.measurements, 'provenance': self.provenance, 'quantity': self.quantity, 'relations': self.relations, 'rights': self.rights, 'structures': self.structures, 'subjects': self.subjects, 'techniques': self.techniques, 'textrefs': self.textrefs, 'view_type': self.view_type, 'work_types': self.work_types}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'titles': self.titles, 'agents': self.agents, 'categories': self.categories, 'closures': self.closures, 'colors': self.colors, 'components': self.components, 'condition': self.condition, 'cultural_contexts': self.cultural_contexts, 'dates': self.dates, 'descriptions': self.descriptions, 'gender': self.gender, 'images': self.images, 'inscriptions': self.inscriptions, 'materials': self.materials, 'measurements': self.measurements, 'provenance': self.provenance, 'quantity': self.quantity, 'relations': self.relations, 'rights': self.rights, 'structures': self.structures, 'subjects': self.subjects, 'techniques': self.techniques, 'textrefs': self.textrefs, 'view_type': self.view_type, 'work_types': self.work_types}
 
     def as_tuple(self):
         '''
@@ -1234,7 +1277,7 @@ class Object(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.model_metadata, self.titles, self.agents, self.categories, self.closures, self.colors, self.components, self.condition, self.dates, self.descriptions, self.gender, self.images, self.inscriptions, self.materials, self.measurements, self.provenance, self.quantity, self.relations, self.rights, self.structures, self.subjects, self.techniques, self.textrefs, self.view_type, self.work_types,)
+        return (self.collection_id, self.institution_id, self.model_metadata, self.titles, self.agents, self.categories, self.closures, self.colors, self.components, self.condition, self.cultural_contexts, self.dates, self.descriptions, self.gender, self.images, self.inscriptions, self.materials, self.measurements, self.provenance, self.quantity, self.relations, self.rights, self.structures, self.subjects, self.techniques, self.textrefs, self.view_type, self.work_types,)
 
     @property
     def categories(self):
@@ -1283,6 +1326,14 @@ class Object(object):
         '''
 
         return self.__condition
+
+    @property
+    def cultural_contexts(self):
+        '''
+        :rtype: costume.api.models.cultural_context.cultural_context_set.CulturalContextSet
+        '''
+
+        return self.__cultural_contexts
 
     @property
     def dates(self):
@@ -1411,6 +1462,8 @@ class Object(object):
                     init_kwds['condition'] = costume.api.models.condition.condition.Condition.value_of(iprot.read_string().strip().upper())
                 except (TypeError,):
                     pass
+            elif ifield_name == 'cultural_contexts' and ifield_id == 35:
+                init_kwds['cultural_contexts'] = costume.api.models.cultural_context.cultural_context_set.CulturalContextSet.read(iprot)
             elif ifield_name == 'dates' and ifield_id == 10:
                 init_kwds['dates'] = costume.api.models.date.date_set.DateSet.read(iprot)
             elif ifield_name == 'descriptions' and ifield_id == 4:
@@ -1482,6 +1535,7 @@ class Object(object):
         colors=None,
         components=None,
         condition=None,
+        cultural_contexts=None,
         dates=None,
         descriptions=None,
         gender=None,
@@ -1513,6 +1567,7 @@ class Object(object):
         :type colors: costume.api.models.color.color_set.ColorSet or None
         :type components: costume.api.models.component.component_set.ComponentSet or None
         :type condition: costume.api.models.condition.condition.Condition or None
+        :type cultural_contexts: costume.api.models.cultural_context.cultural_context_set.CulturalContextSet or None
         :type dates: costume.api.models.date.date_set.DateSet or None
         :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
         :type gender: costume.api.models.gender.gender.Gender or None
@@ -1553,6 +1608,8 @@ class Object(object):
             components = self.components
         if condition is None:
             condition = self.condition
+        if cultural_contexts is None:
+            cultural_contexts = self.cultural_contexts
         if dates is None:
             dates = self.dates
         if descriptions is None:
@@ -1587,7 +1644,7 @@ class Object(object):
             view_type = self.view_type
         if work_types is None:
             work_types = self.work_types
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, titles=titles, agents=agents, categories=categories, closures=closures, colors=colors, components=components, condition=condition, dates=dates, descriptions=descriptions, gender=gender, images=images, inscriptions=inscriptions, materials=materials, measurements=measurements, provenance=provenance, quantity=quantity, relations=relations, rights=rights, structures=structures, subjects=subjects, techniques=techniques, textrefs=textrefs, view_type=view_type, work_types=work_types)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, titles=titles, agents=agents, categories=categories, closures=closures, colors=colors, components=components, condition=condition, cultural_contexts=cultural_contexts, dates=dates, descriptions=descriptions, gender=gender, images=images, inscriptions=inscriptions, materials=materials, measurements=measurements, provenance=provenance, quantity=quantity, relations=relations, rights=rights, structures=structures, subjects=subjects, techniques=techniques, textrefs=textrefs, view_type=view_type, work_types=work_types)
 
     @property
     def rights(self):
@@ -1710,6 +1767,11 @@ class Object(object):
         if self.condition is not None:
             oprot.write_field_begin(name='condition', type=11, id=27)
             oprot.write_string(str(self.condition))
+            oprot.write_field_end()
+
+        if self.cultural_contexts is not None:
+            oprot.write_field_begin(name='cultural_contexts', type=12, id=35)
+            self.cultural_contexts.write(oprot)
             oprot.write_field_end()
 
         if self.dates is not None:
