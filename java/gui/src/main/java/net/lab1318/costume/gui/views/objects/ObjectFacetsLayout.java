@@ -66,6 +66,12 @@ final class ObjectFacetsLayout extends CustomComponent {
                 rowI++);
 
         __addFacetPicker(availableObjectFacets,
+                new ObjectFacetPicker<String>(availableObjectFacets, "Cultural contexts", eventBus,
+                        ObjectFacets.FieldMetadata.CULTURAL_CONTEXT_TEXTS, objectQuery, resultObjectFacets,
+                        UNKNOWN_TEXT_FACET_KEY),
+                rowI++);
+
+        __addFacetPicker(availableObjectFacets,
                 new ObjectFacetPicker<Gender>(availableObjectFacets, "Genders", eventBus,
                         ObjectFacets.FieldMetadata.GENDERS, objectQuery, resultObjectFacets,
                         Optional.of(Gender.UNKNOWN)) {
@@ -136,5 +142,5 @@ final class ObjectFacetsLayout extends CustomComponent {
     }
 
     private final EventBus eventBus;
-    private final GridLayout rootLayout = new GridLayout(1, 10);
+    private final GridLayout rootLayout = new GridLayout(1, 11);
 }

@@ -82,6 +82,11 @@ final class ObjectEntryForm extends CustomComponent {
                 formLayout.addComponent(__createTextField("Condition", condition));
             }
 
+            if (objectEntry.getModel().getCulturalContexts().isPresent()) {
+                formLayout
+                        .addComponent(new CulturalContextSetTable(objectEntry.getModel().getCulturalContexts().get()));
+            }
+
             if (objectEntry.getModel().getDescriptions().isPresent()) {
                 formLayout.addComponent(new DescriptionSetTable(objectEntry.getModel().getDescriptions().get()));
             }
