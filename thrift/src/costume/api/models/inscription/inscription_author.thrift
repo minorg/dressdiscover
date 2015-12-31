@@ -5,6 +5,7 @@ namespace * costume.api.models.inscription
 include "costume/api/models/vocab_ref.thrift"
 
 struct InscriptionAuthor {
+	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	1: string text;
 

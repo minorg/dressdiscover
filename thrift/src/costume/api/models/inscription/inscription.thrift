@@ -13,6 +13,7 @@ struct Inscription {
 
 	2: optional inscription_author.InscriptionAuthor author;
 
+	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	3: optional string position;
 }

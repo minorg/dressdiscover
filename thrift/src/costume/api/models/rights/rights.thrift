@@ -7,14 +7,17 @@ include "costume/api/models/rights/rights_type.thrift"
 // VRA Core 4.0 rights element
 // @java_implements net.lab1318.costume.api.models.Element
 struct Rights {
+	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	1: string rights_holder;
 
+	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	2: string text;
 
 	3: rights_type.RightsType type;
 
+	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	4: optional string notes;
 }

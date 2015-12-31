@@ -11,9 +11,11 @@ include "costume/api/models/agent/agent_role.thrift"
 struct Agent {
 	1: agent_name.AgentName name;
 
+	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	2: optional string attribution;
 
+	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	3: optional string culture;
 
