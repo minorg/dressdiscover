@@ -127,17 +127,22 @@ class ObjectFacetPicker<KeyT> extends CustomComponent {
         final ImmutableSet.Builder<KeyT> currentlySelectedFacetKeysBuilder = ImmutableSet.builder();
 
         if (unknownFacetKey.isPresent()) {
+            boolean displayUnknownCheckBox = true;
             final CheckBox unknownCheckBox = new CheckBox("Unknown");
-            unknownCheckBox.addStyleName("unknown");
-            checkBoxesLayout.addComponent(unknownCheckBox);
-            currentlyDisplayedFacetKeysBuilder.add(unknownFacetKey.get());
             if (excludeAll || (!excludeFacetKeys.isEmpty() && excludeFacetKeys.contains(unknownFacetKey.get()))) {
                 unknownCheckBox.setValue(false);
-            } else {
+            } else if (includeFacetKeys.isEmpty() || includeFacetKeys.contains(unknownFacetKey.get())) {
                 unknownCheckBox.setValue(true);
                 currentlySelectedFacetKeysBuilder.add(unknownFacetKey.get());
+            } else {
+                displayUnknownCheckBox = false;
             }
-            unknownCheckBox.addValueChangeListener(new CheckBoxValueChangeListener(unknownFacetKey.get()));
+            if (displayUnknownCheckBox) {
+                unknownCheckBox.addStyleName("unknown");
+                checkBoxesLayout.addComponent(unknownCheckBox);
+                currentlyDisplayedFacetKeysBuilder.add(unknownFacetKey.get());
+                unknownCheckBox.addValueChangeListener(new CheckBoxValueChangeListener(unknownFacetKey.get()));
+            }
         }
 
         for (final KeyT availableFacetKey : availableFacetKeyList) {
