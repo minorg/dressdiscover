@@ -7,6 +7,7 @@ from urllib2 import urlopen
 
 class OmekaExtractor(_Extractor):
     def __init__(self, api_key, endpoint_url, institution_id, **kwds):
+        _Extractor.__init__(self, **kwds)
         self.__api_key = api_key
         if not endpoint_url.endswith('/'):
             endpoint_url = endpoint_url + '/'
@@ -15,7 +16,7 @@ class OmekaExtractor(_Extractor):
 
     @classmethod
     def _add_arguments(cls, argument_parser):
-        _Extractor._add_arguments(cls)
+        _Extractor._add_arguments(argument_parser)
         argument_parser.add_argument('--api-key', required=True)
         cls._add_institution_arguments(argument_parser)
 
