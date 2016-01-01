@@ -7,15 +7,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.elasticsearch.common.bytes.BytesReference;
-import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.thryft.protocol.InputProtocolException;
 import org.thryft.waf.lib.protocols.ElasticSearchInputProtocol;
 import org.thryft.waf.lib.stores.ElasticSearchIndex;
 import org.thryft.waf.lib.stores.InvalidModelException;
 import org.thryft.waf.lib.stores.NoSuchModelException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.thryft.protocol.InputProtocolException;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
@@ -90,8 +89,9 @@ public class ElasticSearchCollectionQueryService implements CollectionQueryServi
     public ImmutableList<CollectionEntry> getCollections() throws IoException {
         try {
             return elasticSearchIndex.getModels(logger, Markers.GET_COLLECTIONS,
-                    CollectionElasticSearchModelFactory.getInstance(), elasticSearchIndex.prepareSearchModels()
-                            .setQuery(QueryBuilders.matchAllQuery()).setSize(Integer.MAX_VALUE));
+                    CollectionElasticSearchModelFactory.getInstance(),
+                    elasticSearchIndex.prepareSearchModels().setQuery(QueryBuilders.matchAllQuery())
+                            .setSize(ElasticSearchIndex.SEARCH_REQUEST_SIZE_MAX));
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error getting collections");
         }
@@ -128,16 +128,14 @@ public class ElasticSearchCollectionQueryService implements CollectionQueryServi
     public ImmutableList<CollectionEntry> getCollectionsByInstitutionId(final InstitutionId institutionId)
             throws IoException {
         try {
-            return elasticSearchIndex
-                    .getModels(logger, Markers.GET_COLLECTIONS_BY_INSTITUTION_ID,
-                            CollectionElasticSearchModelFactory
-                                    .getInstance(),
-                            elasticSearchIndex.prepareSearchModels()
-                                    .setQuery(
-                                            QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
-                                                    FilterBuilders.termFilter(Collection.FieldMetadata.INSTITUTION_ID
-                                                            .getThriftProtocolKey(), institutionId.toString())))
-                            .setSize(Integer.MAX_VALUE));
+            return elasticSearchIndex.getModels(logger, Markers.GET_COLLECTIONS_BY_INSTITUTION_ID,
+                    CollectionElasticSearchModelFactory.getInstance(),
+                    elasticSearchIndex.prepareSearchModels()
+                            .setQuery(QueryBuilders.boolQuery()
+                                    .filter(QueryBuilders.termQuery(
+                                            Collection.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
+                                            institutionId.toString())))
+                            .setSize(ElasticSearchIndex.SEARCH_REQUEST_SIZE_MAX));
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error getting collections");
         }

@@ -13,18 +13,17 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.common.bytes.BytesReference;
-import org.elasticsearch.index.query.AndFilterBuilder;
-import org.elasticsearch.index.query.FilterBuilder;
-import org.elasticsearch.index.query.FilterBuilders;
+import org.elasticsearch.index.IndexNotFoundException;
+import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.MoreLikeThisQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.indices.IndexMissingException;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.aggregations.AbstractAggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.Aggregations;
 import org.elasticsearch.search.aggregations.bucket.terms.StringTerms;
+import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms.Bucket;
 import org.elasticsearch.search.aggregations.bucket.terms.TermsBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
@@ -216,7 +215,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                 final ObjectSummary.FieldMetadata field, final Function<String, IdT> idFactory) {
             final ImmutableMap.Builder<IdT, UnsignedInteger> idsBuilder = ImmutableMap.builder();
             for (final Bucket bucket : ((StringTerms) aggregations.get(field.getThriftName())).getBuckets()) {
-                idsBuilder.put(idFactory.apply(bucket.getKey()), UnsignedInteger.valueOf(bucket.getDocCount()));
+                idsBuilder.put(idFactory.apply(bucket.getKeyAsString()), UnsignedInteger.valueOf(bucket.getDocCount()));
             }
             return idsBuilder.build();
         }
@@ -224,8 +223,8 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         private ImmutableMap<String, UnsignedInteger> __getTextsFacet(final Aggregations aggregations,
                 final ObjectSummary.FieldMetadata field) {
             final ImmutableMap.Builder<String, UnsignedInteger> textsBuilder = ImmutableMap.builder();
-            for (final Bucket bucket : ((StringTerms) aggregations.get(field.getThriftName())).getBuckets()) {
-                textsBuilder.put(bucket.getKey(), UnsignedInteger.valueOf(bucket.getDocCount()));
+            for (final Bucket bucket : ((Terms) aggregations.get(field.getThriftName())).getBuckets()) {
+                textsBuilder.put(bucket.getKeyAsString(), UnsignedInteger.valueOf(bucket.getDocCount()));
             }
             return textsBuilder.build();
         }
@@ -243,32 +242,34 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         private final ImmutableList<AbstractAggregationBuilder> aggregations;
     }
 
-    private static FilterBuilder __excludeAllFilters(final ObjectSummary.FieldMetadata field,
-            final List<FilterBuilder> filters) {
+    private static QueryBuilder __excludeAllFilters(final ObjectSummary.FieldMetadata field,
+            final List<QueryBuilder> filters) {
         checkArgument(!filters.isEmpty());
-        final FilterBuilder[] filtersArray = new FilterBuilder[filters.size()];
-        for (int filterI = 0; filterI < filters.size(); filterI++) {
-            filtersArray[filterI] = FilterBuilders.notFilter(filters.get(filterI));
+        QueryBuilder excludeFilter;
+        if (filters.size() == 1) {
+            excludeFilter = QueryBuilders.boolQuery().mustNot(filters.get(0));
+        } else {
+            excludeFilter = QueryBuilders.boolQuery();
+            for (final QueryBuilder filter : filters) {
+                excludeFilter = ((BoolQueryBuilder) excludeFilter).mustNot(filter);
+            }
         }
         // !present || (!match AND !match AND !match ...)
-        FilterBuilder excludeFilter;
-        if (filtersArray.length == 1) {
-            excludeFilter = filtersArray[0];
-        } else {
-            excludeFilter = FilterBuilders.andFilter(filtersArray);
-        }
-        return FilterBuilders.orFilter(FilterBuilders.missingFilter(field.getThriftProtocolKey()), excludeFilter);
+        return QueryBuilders.boolQuery().should(QueryBuilders.missingQuery(field.getThriftProtocolKey()))
+                .should(excludeFilter);
     }
 
-    private static FilterBuilder __includeAnyFilter(final List<FilterBuilder> filters) {
+    private static QueryBuilder __includeAnyFilter(final List<QueryBuilder> filters) {
         checkArgument(!filters.isEmpty());
         if (filters.size() == 1) {
             return filters.get(0);
         }
-        final FilterBuilder[] filtersArray = new FilterBuilder[filters.size()];
-        filters.toArray(filtersArray);
         // match OR match OR match
-        return FilterBuilders.orFilter(filtersArray);
+        BoolQueryBuilder orFilter = QueryBuilders.boolQuery();
+        for (final QueryBuilder filter : filters) {
+            orFilter = orFilter.should(filter);
+        }
+        return orFilter;
     }
 
     private static boolean __isExcludeAllQuery(final Optional<ObjectQuery> query) {
@@ -317,7 +318,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                     .valueOf(
                             objectSummaryElasticSearchIndex
                                     .countModels(logger, Markers.GET_OBJECT_COUNT, objectSummaryElasticSearchIndex
-                                            .prepareCountModels().setQuery(__translateObjectSummaryQuery(query)))
+                                            .prepareSearchModels().setQuery(__translateObjectSummaryQuery(query)))
                             .longValue());
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error getting object count");
@@ -342,7 +343,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         try {
             searchResponse = objectSummaryElasticSearchIndex.getModels(logger, Markers.GET_OBJECT_FACETS,
                     searchRequestBuilder);
-        } catch (final IndexMissingException e) {
+        } catch (final IndexNotFoundException e) {
             logger.warn(Markers.GET_OBJECT_FACETS, "objects index does not exist, returning empty results");
             return emptyObjectFacets;
         } catch (final IOException e) {
@@ -385,7 +386,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         try {
             searchResponse = objectSummaryElasticSearchIndex.getModels(logger, Markers.GET_OBJECT_SUMMARIES,
                     searchRequestBuilder);
-        } catch (final IndexMissingException e) {
+        } catch (final IndexNotFoundException e) {
             logger.warn(Markers.GET_OBJECT_SUMMARIES, "object summaries index does not exist, returning empty results");
             return ImmutableList.of();
         } catch (final IOException e) {
@@ -426,22 +427,22 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
     private <IdT> void __translateObjectSummaryIdFilters(final Optional<ImmutableSet<IdT>> excludeIds,
             final ObjectSummary.FieldMetadata field, final Optional<ImmutableSet<IdT>> includeIds,
-            final List<FilterBuilder> outFilters, final Optional<IdT> unknownId) {
+            final List<QueryBuilder> outFilters, final Optional<IdT> unknownId) {
         for (final Optional<ImmutableSet<IdT>> ids : ImmutableList.of(excludeIds, includeIds)) {
             if (!ids.isPresent()) {
                 continue;
             }
-            final List<FilterBuilder> filters = new ArrayList<>();
+            final List<QueryBuilder> filters = new ArrayList<>();
             for (final IdT id : ids.get()) {
                 if (id != unknownId.orNull()) {
-                    filters.add(FilterBuilders.termFilter(field.getThriftProtocolKey(), id.toString()));
+                    filters.add(QueryBuilders.termQuery(field.getThriftProtocolKey(), id.toString()));
                 } else {
                     if (ids == excludeIds) {
                         // Exclude unknown
-                        outFilters.add(FilterBuilders.existsFilter(field.getThriftProtocolKey()));
+                        outFilters.add(QueryBuilders.existsQuery(field.getThriftProtocolKey()));
                     } else {
                         // Include unknown
-                        outFilters.add(FilterBuilders.missingFilter(field.getThriftProtocolKey()));
+                        outFilters.add(QueryBuilders.missingQuery(field.getThriftProtocolKey()));
                     }
                 }
             }
@@ -488,18 +489,18 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                             ObjectSummary.FieldMetadata.SUBJECT_TERM_TEXTS.getThriftProtocolKey(),
                             ObjectSummary.FieldMetadata.TECHNIQUE_TEXTS.getThriftProtocolKey(),
                             ObjectSummary.FieldMetadata.TITLE.getThriftProtocolKey())
-                    .docs(new MoreLikeThisQueryBuilder.Item(objectSummaryElasticSearchIndex.getIndexName(),
+                    .like(new MoreLikeThisQueryBuilder.Item(objectSummaryElasticSearchIndex.getIndexName(),
                             objectSummaryElasticSearchIndex.getDocumentType(),
                             query.get().getMoreLikeObjectId().get().toString()));
         } else {
             queryTranslated = QueryBuilders.matchAllQuery();
         }
 
-        final List<FilterBuilder> filtersTranslated = new ArrayList<>();
+        final List<QueryBuilder> filtersTranslated = new ArrayList<>();
 
         if (query.get().getCollectionId().isPresent()) {
             filtersTranslated
-                    .add(FilterBuilders.termFilter(ObjectSummary.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
+                    .add(QueryBuilders.termQuery(ObjectSummary.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
                             query.get().getCollectionId().get().toString()));
         }
 
@@ -552,24 +553,24 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
         if (query.get().getInstitutionId().isPresent()) {
             filtersTranslated
-                    .add(FilterBuilders.termFilter(ObjectSummary.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
+                    .add(QueryBuilders.termQuery(ObjectSummary.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
                             query.get().getInstitutionId().get().toString()));
         }
 
         if (query.get().getRelationText().isPresent()) {
-            filtersTranslated.add(FilterBuilders.termFilter(
+            filtersTranslated.add(QueryBuilders.termQuery(
                     ObjectSummary.FieldMetadata.RELATION_TEXTS.getThriftProtocolKey() + ".not_analyzed",
                     query.get().getRelationText().get()));
         }
 
         if (filtersTranslated.size() == 1) {
-            queryTranslated = QueryBuilders.filteredQuery(queryTranslated, filtersTranslated.get(0));
+            queryTranslated = QueryBuilders.boolQuery().must(queryTranslated).filter(filtersTranslated.get(0));
         } else if (filtersTranslated.size() > 1) {
-            AndFilterBuilder andFilter = FilterBuilders.andFilter();
-            for (final FilterBuilder filter : filtersTranslated) {
-                andFilter = andFilter.add(filter);
+            BoolQueryBuilder andFilter = QueryBuilders.boolQuery();
+            for (final QueryBuilder filter : filtersTranslated) {
+                andFilter = andFilter.must(filter);
             }
-            queryTranslated = QueryBuilders.filteredQuery(queryTranslated, andFilter);
+            queryTranslated = QueryBuilders.boolQuery().must(queryTranslated).filter(andFilter);
         }
 
         return queryTranslated;
@@ -577,23 +578,23 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
     private void __translateObjectSummaryTextFilters(final Optional<ImmutableSet<String>> excludeTexts,
             final ObjectSummary.FieldMetadata field, final Optional<ImmutableSet<String>> includeTexts,
-            final List<FilterBuilder> outFilters) {
+            final List<QueryBuilder> outFilters) {
         for (final Optional<ImmutableSet<String>> texts : ImmutableList.of(excludeTexts, includeTexts)) {
             if (!texts.isPresent()) {
                 continue;
             }
-            final List<FilterBuilder> textFilters = new ArrayList<>();
+            final List<QueryBuilder> textFilters = new ArrayList<>();
             for (final String text : texts.get()) {
                 if (!text.isEmpty()) {
-                    textFilters.add(FilterBuilders.termFilter(field.getThriftProtocolKey() + ".not_analyzed", text));
+                    textFilters.add(QueryBuilders.termQuery(field.getThriftProtocolKey() + ".not_analyzed", text));
                 } else {
                     // Empty text = "unknown" key
                     if (texts == excludeTexts) {
                         // Exclude unknown
-                        outFilters.add(FilterBuilders.existsFilter(field.getThriftProtocolKey()));
+                        outFilters.add(QueryBuilders.existsQuery(field.getThriftProtocolKey()));
                     } else {
                         // Include unknown
-                        outFilters.add(FilterBuilders.missingFilter(field.getThriftProtocolKey()));
+                        outFilters.add(QueryBuilders.missingQuery(field.getThriftProtocolKey()));
                     }
                 }
             }

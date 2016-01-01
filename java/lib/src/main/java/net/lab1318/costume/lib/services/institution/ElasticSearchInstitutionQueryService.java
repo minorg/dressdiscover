@@ -8,13 +8,13 @@ import java.util.Map;
 
 import org.elasticsearch.common.bytes.BytesReference;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.thryft.protocol.InputProtocolException;
 import org.thryft.waf.lib.protocols.ElasticSearchInputProtocol;
 import org.thryft.waf.lib.stores.ElasticSearchIndex;
 import org.thryft.waf.lib.stores.InvalidModelException;
 import org.thryft.waf.lib.stores.NoSuchModelException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.thryft.protocol.InputProtocolException;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
@@ -88,8 +88,9 @@ public class ElasticSearchInstitutionQueryService implements InstitutionQuerySer
     public ImmutableList<InstitutionEntry> getInstitutions() throws IoException {
         try {
             return elasticSearchIndex.getModels(logger, Markers.GET_INSTITUTIONS,
-                    InstitutionElasticSearchModelFactory.getInstance(), elasticSearchIndex.prepareSearchModels()
-                            .setQuery(QueryBuilders.matchAllQuery()).setSize(Integer.MAX_VALUE));
+                    InstitutionElasticSearchModelFactory.getInstance(),
+                    elasticSearchIndex.prepareSearchModels().setQuery(QueryBuilders.matchAllQuery())
+                            .setSize(ElasticSearchIndex.SEARCH_REQUEST_SIZE_MAX));
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error getting institutions");
         }

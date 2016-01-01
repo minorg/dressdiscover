@@ -4,7 +4,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.IOException;
 
-import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,20 +57,20 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
         try {
             objectElasticSearchIndex
                     .deleteModels(logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID,
-                            QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
-                                    FilterBuilders.termFilter(Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
+                            QueryBuilders.boolQuery()
+                                    .filter(QueryBuilders.termQuery(
+                                            Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
                                             collectionId.toString())));
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error deleting objects by collection id");
         }
 
         try {
-            objectSummaryElasticSearchIndex
-                    .deleteModels(logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID,
-                            QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
-                                    FilterBuilders.termFilter(
-                                            ObjectSummary.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
-                                            collectionId.toString())));
+            objectSummaryElasticSearchIndex.deleteModels(logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID,
+                    QueryBuilders.boolQuery()
+                            .filter(QueryBuilders.termQuery(
+                                    ObjectSummary.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
+                                    collectionId.toString())));
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error deleting object summaries by collection id");
         }
@@ -82,8 +81,8 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
         try {
             objectElasticSearchIndex
                     .deleteModels(logger, Markers.DELETE_OBJECTS_BY_INSTITUTION_ID,
-                            QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
-                                    FilterBuilders.termFilter(
+                            QueryBuilders.boolQuery()
+                                    .filter(QueryBuilders.termQuery(
                                             Object.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
                                             institutionId.toString())));
         } catch (final IOException e) {
@@ -91,12 +90,11 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
         }
 
         try {
-            objectSummaryElasticSearchIndex
-                    .deleteModels(logger, Markers.DELETE_OBJECTS_BY_INSTITUTION_ID,
-                            QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
-                                    FilterBuilders.termFilter(
-                                            ObjectSummary.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
-                                            institutionId.toString())));
+            objectSummaryElasticSearchIndex.deleteModels(logger, Markers.DELETE_OBJECTS_BY_INSTITUTION_ID,
+                    QueryBuilders.boolQuery()
+                            .filter(QueryBuilders.termQuery(
+                                    ObjectSummary.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
+                                    institutionId.toString())));
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error deleting object summaries by institution id");
         }

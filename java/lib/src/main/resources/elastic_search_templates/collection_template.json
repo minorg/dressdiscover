@@ -1,0 +1,47 @@
+{
+  "template": "collection_*", 
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "email_and_url": {
+          "filter": [
+            "standard", 
+            "lowercase"
+          ], 
+          "tokenizer": "uax_url_email"
+        }
+      }
+    }
+  }, 
+  "mappings": {
+    "collection": {
+      "_all": {
+        "enabled": false
+      }, 
+      "dynamic": "strict", 
+      "properties": {
+        "1:institution_id": {
+          "index": "not_analyzed", 
+          "type": "string"
+        }, 
+        "3:model_metadata": {
+          "type": "nested", 
+          "properties": {
+            "1:ctime": {
+              "type": "date"
+            }, 
+            "2:mtime": {
+              "type": "date"
+            }
+          }
+        }, 
+        "2:title": {
+          "type": "string"
+        }, 
+        "4:description": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

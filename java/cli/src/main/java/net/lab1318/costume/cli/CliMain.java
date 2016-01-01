@@ -1,15 +1,16 @@
 
 package net.lab1318.costume.cli;
 
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 import org.thryft.waf.cli.Command;
 import org.thryft.waf.cli.CommandParser;
 import org.thryft.waf.lib.PropertiesModule;
-import org.slf4j.Marker;
-import org.slf4j.MarkerFactory;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+import net.lab1318.costume.cli.commands.PutElasticSearchTemplatesCommand;
 import net.lab1318.costume.cli.commands.ResummarizeObjectsCommand;
 import net.lab1318.costume.lib.AbstractMain;
 import net.lab1318.costume.lib.CostumeProperties;
@@ -38,6 +39,6 @@ public final class CliMain extends AbstractMain {
         argParser.getCommand().run(injector);
     }
 
-    private final Command[] commands = { new ResummarizeObjectsCommand() };
+    private final Command[] commands = { new PutElasticSearchTemplatesCommand(), new ResummarizeObjectsCommand() };
     private final static Marker LOG_MARKER = MarkerFactory.getMarker("CLI_MAIN");
 }
