@@ -247,7 +247,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         checkArgument(!filters.isEmpty());
         QueryBuilder excludeFilter;
         if (filters.size() == 1) {
-            excludeFilter = filters.get(0);
+            excludeFilter = QueryBuilders.boolQuery().mustNot(filters.get(0));
         } else {
             excludeFilter = QueryBuilders.boolQuery();
             for (final QueryBuilder filter : filters) {
