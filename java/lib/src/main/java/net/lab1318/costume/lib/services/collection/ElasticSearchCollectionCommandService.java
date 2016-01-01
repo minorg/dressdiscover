@@ -4,11 +4,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.IOException;
 
-import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.thryft.waf.lib.stores.NoSuchModelException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.thryft.waf.lib.stores.NoSuchModelException;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -60,12 +59,11 @@ public class ElasticSearchCollectionCommandService implements CollectionCommandS
     @Override
     public void deleteCollectionsByInstitutionId(final InstitutionId institutionId) throws IoException {
         try {
-            elasticSearchIndex
-                    .deleteModels(logger, Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID,
-                            QueryBuilders.filteredQuery(QueryBuilders.matchAllQuery(),
-                                    FilterBuilders.termFilter(
-                                            Collection.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
-                                            institutionId.toString())));
+            elasticSearchIndex.deleteModels(logger,
+                    Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID, QueryBuilders.boolQuery()
+                            .filter(QueryBuilders.termQuery(
+                                    Collection.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
+                                    institutionId.toString())));
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error deleting collections by institution ID");
         }
