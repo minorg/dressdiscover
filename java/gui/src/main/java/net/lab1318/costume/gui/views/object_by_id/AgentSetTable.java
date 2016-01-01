@@ -10,6 +10,7 @@ import com.vaadin.ui.Table;
 
 import net.lab1318.costume.api.models.agent.Agent;
 import net.lab1318.costume.api.models.agent.AgentName;
+import net.lab1318.costume.api.models.agent.AgentRole;
 import net.lab1318.costume.api.models.agent.AgentSet;
 import net.lab1318.costume.api.services.object.ObjectFacetFilters;
 import net.lab1318.costume.api.services.object.ObjectQuery;
@@ -26,6 +27,7 @@ final class AgentSetTable extends ElementSetTable {
             container.addBean(new AgentBean(agent));
         }
         container.addNestedContainerBean(Agent.FieldMetadata.NAME.getJavaName());
+        container.addNestedContainerBean(Agent.FieldMetadata.ROLE.getJavaName());
         setContainerDataSource(container);
 
         addGeneratedColumn(Agent.FieldMetadata.NAME.getJavaName() + '.' + AgentName.FieldMetadata.TEXT.getJavaName(),
@@ -46,9 +48,10 @@ final class AgentSetTable extends ElementSetTable {
                     }
                 });
         setPageLength(agents.getElements().size());
-        setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
         setVisibleColumns(ImmutableList
-                .of(Agent.FieldMetadata.NAME.getJavaName() + '.' + AgentName.FieldMetadata.TEXT.getJavaName())
+                .of(Agent.FieldMetadata.NAME.getJavaName() + '.' + AgentName.FieldMetadata.TEXT.getJavaName(),
+                        Agent.FieldMetadata.ROLE.getJavaName() + '.' + AgentRole.FieldMetadata.TEXT.getJavaName())
                 .toArray());
+        setColumnHeaders("Name", "Role");
     }
 }
