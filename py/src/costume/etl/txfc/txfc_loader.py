@@ -1,6 +1,5 @@
 from collections import OrderedDict
 import os.path
-import sys
 import urllib
 from xml.etree import ElementTree
 
@@ -10,7 +9,15 @@ from costume.api.models.agent.agent_name_type import AgentNameType
 from costume.api.models.agent.agent_role import AgentRole
 from costume.api.models.agent.agent_set import AgentSet
 from costume.api.models.collection.collection import Collection
+from costume.api.models.date.date import Date
+from costume.api.models.date.date_bound import DateBound
+from costume.api.models.date.date_set import DateSet
+from costume.api.models.date.date_type import DateType
+from costume.api.models.description.description import Description
+from costume.api.models.description.description_set import DescriptionSet
+from costume.api.models.description.description_type import DescriptionType
 from costume.api.models.image.image import Image
+from costume.api.models.image.image_version import ImageVersion
 from costume.api.models.institution.institution import Institution
 from costume.api.models.object.object import Object
 from costume.api.models.object.object_entry import ObjectEntry
@@ -21,13 +28,24 @@ from costume.api.models.subject.subject import Subject
 from costume.api.models.subject.subject_set import SubjectSet
 from costume.api.models.subject.subject_term import SubjectTerm
 from costume.api.models.subject.subject_term_type import SubjectTermType
+from costume.api.models.textref.textref import Textref
+from costume.api.models.textref.textref_name import TextrefName
+from costume.api.models.textref.textref_name_type import TextrefNameType
+from costume.api.models.textref.textref_refid import TextrefRefid
+from costume.api.models.textref.textref_refid_type import TextrefRefidType
+from costume.api.models.textref.textref_set import TextrefSet
+from costume.api.models.title.title import Title
+from costume.api.models.title.title_set import TitleSet
+from costume.api.models.title.title_type import TitleType
 from costume.api.models.vocab import Vocab
 from costume.api.models.vocab_ref import VocabRef
 from costume.etl._loader import _Loader
 
 
 class TxfcLoader(_Loader):
-    def __init_(self, **kwds):
+    _UNTL_NS = '{http://digital2.library.unt.edu/untl/}'
+
+    def __init__(self, **kwds):
         _Loader.__init__(self, institution_id='untvca', **kwds)
         self.__collection_id = self._institution_id + '/txfc'
 
@@ -37,7 +55,7 @@ class TxfcLoader(_Loader):
             Institution.Builder()
                 .set_data_rights(
                     RightsSet.Builder()
-                        .set_rights((
+                        .set_elements((
                             Rights.Builder()
                                 .set_rights_holder("University of North Texas")
                                 .set_text("The contents of Texas Fashion Collection, hosted by the University of North Texas Libraries (digital content including images, text, and sound and video recordings) are made publicly available by the collection-holding partners for use in research, teaching, and private study. For the full terms of use, see http://digital.library.unt.edu/terms-of-use/")
@@ -54,7 +72,7 @@ class TxfcLoader(_Loader):
         )
 
         self._services.collection_command_service.put_collection(
-            self._collection_id,
+            self.__collection_id,
             Collection.Builder()
                 .set_institution_id(self._institution_id)
                 .set_model_metadata(self._new_model_metadata())
@@ -84,94 +102,211 @@ class TxfcLoader(_Loader):
         # info:ark/67531/metadc114731
         record_identifier = record_etree.find('header').find('identifier').text
         assert record_identifier.startswith('info:ark/')
-        object_id = self._collection_id + '/' + urllib.quote(record_identifier, '')
+        object_id = self.__collection_id + '/' + urllib.quote(record_identifier, '')
 
-        untl_ns = '{http://digital2.library.unt.edu/untl/}'
-        metadata_etree = record_etree.find('metadata').find(untl_ns + 'metadata')
+        metadata_etree = record_etree.find('metadata').find(self._UNTL_NS + 'metadata')
 
         object_builder = Object.Builder()
 
-        object_builder.collection_id = self._collection_id
-
-        def parse_agent(agent_etree):
-            if not 'qualifier' in agent_etree.attrib:
-                return tuple()
-
-            agent_builder = Agent.Builder()
-
-            # TODO: translate the qualifier to AAT
-            # http://digital2.library.unt.edu/vocabularies/agent-qualifiers/
-            qualifier = agent_etree.attrib['qualifier']
-            role = AgentRole.Builder().set_text(qualifier).build()
-            agent_builder.set_role(role)
-
-            info = agent_etree.find(untl_ns + 'info')
-            if info is not None and len(info.text) > 0:
-                agent_builder.attribution = info.text
-
-            name = agent_etree.find(untl_ns + 'name')
-            if name is not None and len(name.text) > 0:
-                name_text = name.text
-            else:
-                return tuple()
-
-            type_ = agent_etree.find(untl_ns + 'type')
-            if type_ is not None and len(type_.text) > 0:
-                if type_.text == 'org':
-                    name_type = AgentNameType.CORPORATE
-                elif type_.text == 'per':
-                    name_type = AgentNameType.PERSONAL
-                elif type_.text == 'event':
-                    name_type = AgentNameType.OTHER
-                else:
-                    raise NotImplementedError(type_.text)
-            else:
-                name_type = AgentNameType.OTHER
-
-            agent_builder.name = AgentName.Builder().set_text(name_text).set_type(name_type).build()
-
-            return (agent_builder.build(),)
+        object_builder.collection_id = self.__collection_id
 
         agents = []
-        for contributor_etree in metadata_etree.iter(untl_ns + 'contributor'):
-            agents.extend(parse_agent(contributor_etree))
-        for creator_etree in metadata_etree.iter(untl_ns + 'creator'):
-            agents.extend(parse_agent(creator_etree))
+        for contributor_etree in metadata_etree.iter(self._UNTL_NS + 'contributor'):
+            agents.extend(self.__parse_record_agent(contributor_etree))
+        for creator_etree in metadata_etree.iter(self._UNTL_NS + 'creator'):
+            agents.extend(self.__parse_record_agent(creator_etree))
         if len(agents) > 0:
-            object_builder.set_agents(AgentSet.Builder().set_agents(tuple(agents)).build())
+            object_builder.set_agents(AgentSet.Builder().set_elements(tuple(agents)).build())
 
-        for date_etree in metadata_etree.iter(untl_ns + 'date'):
-            if len(date_etree.text) == 0:
-                continue
-            try:
-                qualifier = date_etree.attrib['qualifier']
-            except KeyError:
-                object_builder.set_date_text(date_etree.text)
-                break
-            if qualifier == 'creation':
-                object_builder.set_date_text(date_etree.text)
-                break
-            else:
-                print >>sys.stderr, 'unknown date qualifier', qualifier
+        self.__parse_record_dates(
+            date_etrees=metadata_etree.iter(self._UNTL_NS + 'date'),
+            object_builder=object_builder
+        )
 
-        for description_etree in metadata_etree.iter(untl_ns + 'description'):
-            if len(description_etree.text) == 0:
-                continue
-            try:
-                qualifier = description_etree.attrib['qualifier']
-            except KeyError:
-                object_builder.set_description(description_etree.text)
-                continue
-            if qualifier == 'content':
-                object_builder.set_description(description_etree.text)
-            elif qualifier == 'physical':
-                object_builder.set_physical_description(description_etree.text)
+        self.__parse_record_descriptions(
+            description_etrees=metadata_etree.iter(self._UNTL_NS + 'description'),
+            object_builder=object_builder
+        )
+
+        self.__parse_record_identifiers(
+            identifier_etrees=metadata_etree.iter(self._UNTL_NS + 'identifier'),
+            object_builder=object_builder,
+            record_identifier=record_identifier
+        )
 
         object_builder.institution_id = self._institution_id
         object_builder.model_metadata = self._new_model_metadata()
 
+        self.__parse_record_subjects(
+            subject_etrees=metadata_etree.iter(self._UNTL_NS + 'subject'),
+            object_builder=object_builder
+        )
+
+        self.__parse_record_titles(
+            title_etrees=metadata_etree.iter(self._UNTL_NS + 'title'),
+            object_builder=object_builder,
+            record_identifier=record_identifier
+        )
+
+        return object_id, object_builder.build()
+
+    def __parse_record_agent(self, agent_etree):
+        if not 'qualifier' in agent_etree.attrib:
+            return tuple()
+
+        agent_builder = Agent.Builder()
+
+        # TODO: translate the qualifier to AAT
+        # http://digital2.library.unt.edu/vocabularies/agent-qualifiers/
+        qualifier = agent_etree.attrib['qualifier']
+        role = AgentRole.Builder().set_text(qualifier).build()
+        agent_builder.set_role(role)
+
+        info = agent_etree.find(self._UNTL_NS + 'info')
+        if info is not None and len(info.text) > 0:
+            agent_builder.attribution = info.text
+
+        name = agent_etree.find(self._UNTL_NS + 'name')
+        if name is not None and len(name.text) > 0:
+            name_text = name.text
+        else:
+            return tuple()
+
+        type_ = agent_etree.find(self._UNTL_NS + 'type')
+        if type_ is not None and len(type_.text) > 0:
+            if type_.text == 'org':
+                name_type = AgentNameType.CORPORATE
+            elif type_.text == 'per':
+                name_type = AgentNameType.PERSONAL
+            elif type_.text == 'event':
+                name_type = AgentNameType.OTHER
+            else:
+                raise NotImplementedError(type_.text)
+        else:
+            name_type = AgentNameType.OTHER
+
+        agent_builder.name = AgentName.Builder().set_text(name_text).set_type(name_type).build()
+
+        return (agent_builder.build(),)
+
+    def __parse_record_dates(self, date_etrees, object_builder):
+        dates = []
+        for date_etree in date_etrees:
+            if len(date_etree.text) == 0:
+                continue
+
+            date_type = DateType.CREATION
+            try:
+                qualifier = date_etree.attrib['qualifier']
+                if qualifier == 'accepted':
+                    date_type = DateType.ACCESSION
+                elif qualifier == 'creation':
+                    date_type = DateType.CREATION
+                else:
+                    self._logger.warn("unknown date qualifier '%s'", qualifier)
+            except KeyError:
+                pass
+
+            date_bound = DateBound.Builder().set_text(date_etree.text).build()
+            dates.append(
+                Date.Builder()
+                    .set_earliest_date(date_bound)
+                    .set_latest_date(date_bound)
+                    .set_type(date_type)
+                    .build()
+            )
+        if len(dates) > 0:
+            object_builder.set_dates(DateSet.Builder().set_elements(tuple(dates)).build())
+
+    def __parse_record_descriptions(self, description_etrees, object_builder):
+        descriptions = []
+        for description_etree in description_etrees:
+            if len(description_etree.text) == 0:
+                continue
+
+            description_type = None
+            try:
+                qualifier = description_etree.attrib['qualifier']
+                if qualifier == 'content':
+                    description_type = None
+                elif qualifier == 'physical':
+                    description_type = DescriptionType.PHYSICAL
+                else:
+                    self._logger.warn("unknown description qualifier '%s'", qualifier)
+            except KeyError:
+                pass
+
+            descriptions.append(
+                Description.Builder()
+                    .set_text(description_etree.text)
+                    .set_type(description_type)
+                    .build()
+            )
+        if len(descriptions) > 0:
+            object_builder.set_descriptions(DescriptionSet.Builder().set_elements(tuple(descriptions)).build())
+
+    def __parse_record_identifiers(self, identifier_etrees, object_builder, record_identifier):
+        images = []
+        textrefs = []
+        for identifier_etree in identifier_etrees:
+            if len(identifier_etree.text) == 0:
+                continue
+            qualifier = identifier_etree.attrib['qualifier']
+            if qualifier == 'itemURL':
+                textrefs.append(
+                    Textref.Builder()
+                        .set_name(
+                            TextrefName.Builder()
+                                .set_text("Item URL")
+                                .set_type(TextrefNameType.ELECTRONIC)
+                                .build()
+                        )
+                        .set_refid(
+                            TextrefRefid.Builder()
+                                .set_href(identifier_etree.text)
+                                .set_text(identifier_etree.text)
+                                .set_type(TextrefRefidType.URI)
+                                .build()
+                        )
+                        .build()
+                )
+            elif qualifier == 'thumbnailURL':
+                images.append(
+                    Image.Builder()
+                        .set_full_size(
+                            ImageVersion.Builder()
+                                .set_url("http://digital.library.unt.edu/ark:" + record_identifier[len('info:ark'):] + '/m1/1/med_res/')
+                                .set_width_px(75)
+                                .build()
+                        )
+                        .set_original(
+                            ImageVersion.Builder()
+                                .set_url("http://digital.library.unt.edu/ark:" + record_identifier[len('info:ark'):] + '/m1/1/high_res/')
+                                .set_width_px(75)
+                                .build()
+                        )
+                        .set_square_thumbnail(
+                            ImageVersion.Builder()
+                                .set_height_px(75)
+                                .set_url("http://digital.library.unt.edu/ark:" + record_identifier[len('info:ark'):] + '/m1/1/square/')
+                                .set_width_px(75)
+                                .build()
+                        )
+                        .set_thumbnail(
+                            ImageVersion.Builder()
+                                .set_url(identifier_etree.text)
+                                .build()
+                        )
+                        .build()
+                )
+        if len(images)> 0:
+            object_builder.set_images(tuple(images))
+        if len(textrefs) > 0:
+            object_builder.set_textrefs(TextrefSet.Builder().set_elements(tuple(textrefs)).build())
+
+    def __parse_record_subjects(self, subject_etrees, object_builder):
         subjects = []
-        for subject_etree in metadata_etree.iter(untl_ns + 'subject'):
+        for subject_etree in subject_etrees:
             if len(subject_etree.text) == 0:
                 continue
             try:
@@ -183,7 +318,7 @@ class TxfcLoader(_Loader):
             except AttributeError:
                 if qualifier in ('named_person', 'UNTL-BS',):
                     continue
-                print >>sys.stderr, 'unknown vocabulary', qualifier
+                self._logger.warn("unknown subject vocabulary '%s'", qualifier)
                 continue
             subjects.append(
                 Subject.Builder()
@@ -197,35 +332,35 @@ class TxfcLoader(_Loader):
                     .build()
             )
         if len(subjects) > 0:
-            object_builder.set_subjects(SubjectSet.Builder().set_subjects(tuple(subjects)).build())
+            object_builder.set_subjects(SubjectSet.Builder().set_elements(tuple(subjects)).build())
 
-        for title_etree in metadata_etree.iter(untl_ns + 'title'):
+    def __parse_record_titles(self, title_etrees, object_builder, record_identifier):
+        titles = []
+        for title_etree in title_etrees:
             if len(title_etree.text) == 0:
                 continue
+
+            title_type = TitleType.DESCRIPTIVE
             try:
                 qualifier = title_etree.attrib['qualifier']
+                if qualifier in ('addedtitle', 'alternatetitle', 'officialtitle', 'sorttitle'):
+                    title_type = TitleType.DESCRIPTIVE
+                elif qualifier == 'other':
+                    title_type = TitleType.OTHER
+                elif qualifier == 'paralleltitle':
+                    title_type = TitleType.TRANSLATED
+                elif qualifier == 'seriestitle':
+                    title_type = TitleType.REPOSITORY
+                else:
+                    self._logger.warn("unknown title qualifier '%s' on record %s", qualifier, record_identifier)
             except KeyError:
-                object_builder.title = title_etree.text
-                continue
-            if qualifier == 'officialtitle':
-                object_builder.title = title_etree.text
+                pass
 
-        for identifier_etree in metadata_etree.iter(untl_ns + 'identifier'):
-            if len(identifier_etree.text) == 0:
-                continue
-            qualifier = identifier_etree.attrib['qualifier']
-            if qualifier == 'itemURL':
-                object_builder.url = identifier_etree.text
-            elif qualifier == 'thumbnailURL':
-                # http://digital.library.unt.edu/ark:/67531/metadc114750/m1/1/square/
-                # object_builder.thumbnail = Image.Builder().set_url(identifier_etree.text).build()
-                # info:ark/67531/metadc114731
-                # Use uniformly-size square images rather than the variable-sized thumbnails in the OAI record
-                object_builder.thumbnail = \
-                    Image.Builder()\
-                        .set_height_px(75)\
-                        .set_width_px(75)\
-                        .set_url("http://digital.library.unt.edu/ark:" + record_identifier[len('info:ark'):] + '/m1/1/square/')\
-                        .build()
-
-        return object_id, object_builder.build()
+            titles.append(
+                Title.Builder()
+                    .set_text(title_etree.text)
+                    .set_type(title_type)
+                    .build()
+            )
+        if len(titles) > 0:
+            object_builder.set_titles(TitleSet.Builder().set_elements(tuple(titles)).build())
