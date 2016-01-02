@@ -16,6 +16,7 @@ include "costume/api/models/gender/gender.thrift"
 include "costume/api/models/image/image.thrift"
 include "costume/api/models/inscription/inscription_set.thrift"
 include "costume/api/models/institution/institution_id.thrift"
+include "costume/api/models/location/location_set.thrift"
 include "costume/api/models/material/material_set.thrift"
 include "costume/api/models/measurements/measurements_set.thrift"
 include "costume/api/models/relation/relation_set.thrift"
@@ -65,6 +66,8 @@ struct Object {
 	23: optional list<image.Image> images;
 
 	17: optional inscription_set.InscriptionSet inscriptions;
+
+	36: optional location_set.LocationSet locations;
 
 	15: optional material_set.MaterialSet materials;
 

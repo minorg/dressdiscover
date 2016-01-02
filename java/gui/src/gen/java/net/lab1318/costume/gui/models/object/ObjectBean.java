@@ -19,6 +19,7 @@ public class ObjectBean implements org.thryft.StructBean {
         GENDER("gender", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.gender.Gender>() {}, false, 25, "gender", org.thryft.protocol.Type.STRING),
         IMAGES("images", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.image.ImageBean>>() {}, false, 23, "images", org.thryft.protocol.Type.LIST),
         INSCRIPTIONS("inscriptions", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.inscription.InscriptionSetBean>() {}, false, 17, "inscriptions", org.thryft.protocol.Type.STRUCT),
+        LOCATIONS("locations", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.location.LocationSetBean>() {}, false, 36, "locations", org.thryft.protocol.Type.STRUCT),
         MATERIALS("materials", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.material.MaterialSetBean>() {}, false, 15, "materials", org.thryft.protocol.Type.STRUCT),
         MEASUREMENTS("measurements", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.measurements.MeasurementsSetBean>() {}, false, 31, "measurements", org.thryft.protocol.Type.STRUCT),
         PROVENANCE("provenance", new com.google.common.reflect.TypeToken<String>() {}, false, 5, "provenance", org.thryft.protocol.Type.STRING),
@@ -90,6 +91,7 @@ public class ObjectBean implements org.thryft.StructBean {
             case "gender": return GENDER;
             case "images": return IMAGES;
             case "inscriptions": return INSCRIPTIONS;
+            case "locations": return LOCATIONS;
             case "materials": return MATERIALS;
             case "measurements": return MEASUREMENTS;
             case "provenance": return PROVENANCE;
@@ -125,6 +127,7 @@ public class ObjectBean implements org.thryft.StructBean {
             case "gender": return GENDER;
             case "images": return IMAGES;
             case "inscriptions": return INSCRIPTIONS;
+            case "locations": return LOCATIONS;
             case "materials": return MATERIALS;
             case "measurements": return MEASUREMENTS;
             case "provenance": return PROVENANCE;
@@ -182,6 +185,7 @@ public class ObjectBean implements org.thryft.StructBean {
         gender = null;
         images = null;
         inscriptions = null;
+        locations = null;
         materials = null;
         measurements = null;
         provenance = null;
@@ -222,6 +226,7 @@ public class ObjectBean implements org.thryft.StructBean {
             }
         }).apply(other.getImages().get()) : null;
         this.inscriptions = other.getInscriptions().isPresent() ? new net.lab1318.costume.gui.models.inscription.InscriptionSetBean(other.getInscriptions().get()) : null;
+        this.locations = other.getLocations().isPresent() ? new net.lab1318.costume.gui.models.location.LocationSetBean(other.getLocations().get()) : null;
         this.materials = other.getMaterials().isPresent() ? new net.lab1318.costume.gui.models.material.MaterialSetBean(other.getMaterials().get()) : null;
         this.measurements = other.getMeasurements().isPresent() ? new net.lab1318.costume.gui.models.measurements.MeasurementsSetBean(other.getMeasurements().get()) : null;
         this.provenance = other.getProvenance().isPresent() ? other.getProvenance().get() : null;
@@ -262,6 +267,7 @@ public class ObjectBean implements org.thryft.StructBean {
             (getGender() != null ? getGender().equals(other.getGender()) : other.getGender() == null) &&
             (getImages() != null ? getImages().equals(other.getImages()) : other.getImages() == null) &&
             (getInscriptions() != null ? getInscriptions().equals(other.getInscriptions()) : other.getInscriptions() == null) &&
+            (getLocations() != null ? getLocations().equals(other.getLocations()) : other.getLocations() == null) &&
             (getMaterials() != null ? getMaterials().equals(other.getMaterials()) : other.getMaterials() == null) &&
             (getMeasurements() != null ? getMeasurements().equals(other.getMeasurements()) : other.getMeasurements() == null) &&
             (getProvenance() != null ? getProvenance().equals(other.getProvenance()) : other.getProvenance() == null) &&
@@ -295,6 +301,7 @@ public class ObjectBean implements org.thryft.StructBean {
         case "gender": return getGender();
         case "images": return getImages();
         case "inscriptions": return getInscriptions();
+        case "locations": return getLocations();
         case "materials": return getMaterials();
         case "measurements": return getMeasurements();
         case "provenance": return getProvenance();
@@ -366,6 +373,10 @@ public class ObjectBean implements org.thryft.StructBean {
 
     public net.lab1318.costume.api.models.institution.InstitutionId getInstitutionId() {
         return institutionId;
+    }
+
+    public net.lab1318.costume.gui.models.location.LocationSetBean getLocations() {
+        return locations;
     }
 
     public net.lab1318.costume.gui.models.material.MaterialSetBean getMaterials() {
@@ -470,6 +481,9 @@ public class ObjectBean implements org.thryft.StructBean {
         if (getInscriptions() != null) {
             hashCode = 31 * hashCode + getInscriptions().hashCode();
         }
+        if (getLocations() != null) {
+            hashCode = 31 * hashCode + getLocations().hashCode();
+        }
         if (getMaterials() != null) {
             hashCode = 31 * hashCode + getMaterials().hashCode();
         }
@@ -565,6 +579,10 @@ public class ObjectBean implements org.thryft.StructBean {
         this.institutionId = institutionId;
     }
 
+    public void setLocations(final net.lab1318.costume.gui.models.location.LocationSetBean locations) {
+        this.locations = locations;
+    }
+
     public void setMaterials(final net.lab1318.costume.gui.models.material.MaterialSetBean materials) {
         this.materials = materials;
     }
@@ -623,7 +641,7 @@ public class ObjectBean implements org.thryft.StructBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("titles", getTitles()).add("agents", getAgents()).add("categories", getCategories()).add("closures", getClosures()).add("colors", getColors()).add("components", getComponents()).add("condition", getCondition()).add("cultural_contexts", getCulturalContexts()).add("dates", getDates()).add("descriptions", getDescriptions()).add("gender", getGender()).add("images", getImages()).add("inscriptions", getInscriptions()).add("materials", getMaterials()).add("measurements", getMeasurements()).add("provenance", getProvenance()).add("quantity", getQuantity()).add("relations", getRelations()).add("rights", getRights()).add("structures", getStructures()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("view_type", getViewType()).add("work_types", getWorkTypes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("titles", getTitles()).add("agents", getAgents()).add("categories", getCategories()).add("closures", getClosures()).add("colors", getColors()).add("components", getComponents()).add("condition", getCondition()).add("cultural_contexts", getCulturalContexts()).add("dates", getDates()).add("descriptions", getDescriptions()).add("gender", getGender()).add("images", getImages()).add("inscriptions", getInscriptions()).add("locations", getLocations()).add("materials", getMaterials()).add("measurements", getMeasurements()).add("provenance", getProvenance()).add("quantity", getQuantity()).add("relations", getRelations()).add("rights", getRights()).add("structures", getStructures()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("view_type", getViewType()).add("work_types", getWorkTypes()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -657,6 +675,8 @@ public class ObjectBean implements org.thryft.StructBean {
     private java.util.List<net.lab1318.costume.gui.models.image.ImageBean> images;
 
     private net.lab1318.costume.gui.models.inscription.InscriptionSetBean inscriptions;
+
+    private net.lab1318.costume.gui.models.location.LocationSetBean locations;
 
     private net.lab1318.costume.gui.models.material.MaterialSetBean materials;
 
