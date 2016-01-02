@@ -45,6 +45,39 @@ from costume.etl._loader import _Loader
 class TxfcLoader(_Loader):
     _UNTL_NS = '{http://digital2.library.unt.edu/untl/}'
 
+    class _ObjectBuilder(object):
+        def __init__(self, record_identifier, **kwds):
+            self.__object_builder = Object.Builder(**kwds)
+            self.__record_identifier = record_identifier
+            self.agents = []
+            self.dates = []
+            self.descriptions = []
+            self.images = []
+            self.subjects = []
+            self.textrefs = []
+            self.titles = []
+
+        def build(self):
+            if len(self.agents) > 0:
+                self.__object_builder.set_agents(AgentSet.Builder().set_elements(tuple(self.agents)).build())
+            if len(self.dates) > 0:
+                self.__object_builder.set_dates(DateSet.Builder().set_elements(tuple(self.dates)).build())
+            if len(self.descriptions) > 0:
+                self.__object_builder.set_descriptions(DescriptionSet.Builder().set_elements(tuple(self.descriptions)).build())
+            if len(self.images) > 0:
+                self.__object_builder.set_images(tuple(self.images))
+            if len(self.subjects) > 0:
+                self.__object_builder.set_subjects(SubjectSet.Builder().set_elements(tuple(self.subjects)).build())
+            if len(self.textrefs) > 0:
+                self.__object_builder.set_textrefs(TextrefSet.Builder().set_elements(tuple(self.textrefs)).build())
+            if len(self.titles) > 0:
+                self.__object_builder.set_titles(TitleSet.Builder().set_elements(tuple(self.titles)).build())
+            return self.__object_builder.build()
+
+        @property
+        def record_identifier(self):
+            return self.__record_identifier
+
     def __init__(self, **kwds):
         _Loader.__init__(self, institution_id='untvca', **kwds)
         self.__collection_id = self._institution_id + '/txfc'
@@ -106,73 +139,55 @@ class TxfcLoader(_Loader):
 
         metadata_etree = record_etree.find('metadata').find(self._UNTL_NS + 'metadata')
 
-        object_builder = Object.Builder()
+        object_builder = \
+            self._ObjectBuilder(
+                collection_id=self.__collection_id,
+                institution_id=self._institution_id,
+                model_metadata=self._new_model_metadata(),
+                record_identifier=record_identifier
+            )
 
-        object_builder.collection_id = self.__collection_id
-
-        agents = []
-        for contributor_etree in metadata_etree.iter(self._UNTL_NS + 'contributor'):
-            agents.extend(self.__parse_record_agent(contributor_etree))
-        for creator_etree in metadata_etree.iter(self._UNTL_NS + 'creator'):
-            agents.extend(self.__parse_record_agent(creator_etree))
-        if len(agents) > 0:
-            object_builder.set_agents(AgentSet.Builder().set_elements(tuple(agents)).build())
-
-        self.__parse_record_dates(
-            date_etrees=metadata_etree.iter(self._UNTL_NS + 'date'),
-            object_builder=object_builder
-        )
-
-        self.__parse_record_descriptions(
-            description_etrees=metadata_etree.iter(self._UNTL_NS + 'description'),
-            object_builder=object_builder
-        )
-
-        self.__parse_record_identifiers(
-            identifier_etrees=metadata_etree.iter(self._UNTL_NS + 'identifier'),
-            object_builder=object_builder,
-            record_identifier=record_identifier
-        )
-
-        object_builder.institution_id = self._institution_id
-        object_builder.model_metadata = self._new_model_metadata()
-
-        self.__parse_record_subjects(
-            subject_etrees=metadata_etree.iter(self._UNTL_NS + 'subject'),
-            object_builder=object_builder
-        )
-
-        self.__parse_record_titles(
-            title_etrees=metadata_etree.iter(self._UNTL_NS + 'title'),
-            object_builder=object_builder,
-            record_identifier=record_identifier
-        )
+        for etree in metadata_etree:
+            assert etree.tag.startswith(self._UNTL_NS)
+            tag = etree.tag[len(self._UNTL_NS):]
+            method_name = '_parse_record_metadata_' + tag + '_element'
+            try:
+                method = getattr(self, method_name)
+            except AttributeError:
+                self._logger.warn("no such method '%s' for record %s with text '%s'", method_name, record_identifier, etree.text)
+                continue
+            method(
+                element=etree,
+                object_builder=object_builder
+            )
 
         return object_id, object_builder.build()
 
-    def __parse_record_agent(self, agent_etree):
-        if not 'qualifier' in agent_etree.attrib:
-            return tuple()
-
+    def __parse_record_metadata_agent_element(self, element, object_builder):
         agent_builder = Agent.Builder()
 
         # TODO: translate the qualifier to AAT
         # http://digital2.library.unt.edu/vocabularies/agent-qualifiers/
-        qualifier = agent_etree.attrib['qualifier']
+        qualifier = element.attrib.get('qualifier', None)
+        if qualifier is None:
+            self._logger.warn("ignoring agent element without qualifier on record %s", object_builder.record_identifier)
+            return
+
         role = AgentRole.Builder().set_text(qualifier).build()
         agent_builder.set_role(role)
 
-        info = agent_etree.find(self._UNTL_NS + 'info')
+        info = element.find(self._UNTL_NS + 'info')
         if info is not None and len(info.text) > 0:
             agent_builder.attribution = info.text
 
-        name = agent_etree.find(self._UNTL_NS + 'name')
+        name = element.find(self._UNTL_NS + 'name')
         if name is not None and len(name.text) > 0:
             name_text = name.text
         else:
-            return tuple()
+            self._logger.warn("ignoring agent element with enmpty name text on record %s", object_builder.record_identifier)
+            return
 
-        type_ = agent_etree.find(self._UNTL_NS + 'type')
+        type_ = element.find(self._UNTL_NS + 'type')
         if type_ is not None and len(type_.text) > 0:
             if type_.text == 'org':
                 name_type = AgentNameType.CORPORATE
@@ -187,180 +202,178 @@ class TxfcLoader(_Loader):
 
         agent_builder.name = AgentName.Builder().set_text(name_text).set_type(name_type).build()
 
-        return (agent_builder.build(),)
+        object_builder.agents.append(agent_builder.build())
 
-    def __parse_record_dates(self, date_etrees, object_builder):
-        dates = []
-        for date_etree in date_etrees:
-            if len(date_etree.text) == 0:
-                continue
+    def _parse_record_metadata_collection_element(self, element, object_builder):
+        assert element.text == 'TXFC', element.text
 
-            date_type = DateType.CREATION
-            try:
-                qualifier = date_etree.attrib['qualifier']
-                if qualifier == 'accepted':
-                    date_type = DateType.ACCESSION
-                elif qualifier == 'creation':
-                    date_type = DateType.CREATION
-                else:
-                    self._logger.warn("unknown date qualifier '%s'", qualifier)
-            except KeyError:
-                pass
+    def _parse_record_metadata_institution_element(self, element, object_builder):
+        assert element.text == 'UNTCVA', element.text
 
-            date_bound = DateBound.Builder().set_text(date_etree.text).build()
-            dates.append(
-                Date.Builder()
-                    .set_earliest_date(date_bound)
-                    .set_latest_date(date_bound)
-                    .set_type(date_type)
-                    .build()
-            )
-        if len(dates) > 0:
-            object_builder.set_dates(DateSet.Builder().set_elements(tuple(dates)).build())
+    def _parse_record_metadata_language_element(self, element, object_builder):
+        pass # Ignore
 
-    def __parse_record_descriptions(self, description_etrees, object_builder):
-        descriptions = []
-        for description_etree in description_etrees:
-            if len(description_etree.text) == 0:
-                continue
+    def _parse_record_metadata_contributor_element(self, **kwds):
+        self.__parse_record_metadata_agent_element(**kwds)
 
-            description_type = None
-            try:
-                qualifier = description_etree.attrib['qualifier']
-                if qualifier == 'content':
-                    description_type = None
-                elif qualifier == 'physical':
-                    description_type = DescriptionType.PHYSICAL
-                else:
-                    self._logger.warn("unknown description qualifier '%s'", qualifier)
-            except KeyError:
-                pass
+    def _parse_record_metadata_creator_element(self, **kwds):
+        self.__parse_record_metadata_agent_element(**kwds)
 
-            descriptions.append(
-                Description.Builder()
-                    .set_text(description_etree.text)
-                    .set_type(description_type)
-                    .build()
-            )
-        if len(descriptions) > 0:
-            object_builder.set_descriptions(DescriptionSet.Builder().set_elements(tuple(descriptions)).build())
+    def _parse_record_metadata_date_element(self, element, object_builder):
+        text = element.text.strip()
+        if len(text) == 0:
+            return
 
-    def __parse_record_identifiers(self, identifier_etrees, object_builder, record_identifier):
-        images = []
-        textrefs = []
-        for identifier_etree in identifier_etrees:
-            if len(identifier_etree.text) == 0:
-                continue
-            qualifier = identifier_etree.attrib['qualifier']
-            if qualifier == 'itemURL':
-                textrefs.append(
-                    Textref.Builder()
-                        .set_name(
-                            TextrefName.Builder()
-                                .set_text("Item URL")
-                                .set_type(TextrefNameType.ELECTRONIC)
-                                .build()
-                        )
-                        .set_refid(
-                            TextrefRefid.Builder()
-                                .set_href(identifier_etree.text)
-                                .set_text(identifier_etree.text)
-                                .set_type(TextrefRefidType.URI)
-                                .build()
-                        )
-                        .build()
-                )
-            elif qualifier == 'thumbnailURL':
-                images.append(
-                    Image.Builder()
-                        .set_full_size(
-                            ImageVersion.Builder()
-                                .set_url("http://digital.library.unt.edu/ark:" + record_identifier[len('info:ark'):] + '/m1/1/med_res/')
-                                .set_width_px(75)
-                                .build()
-                        )
-                        .set_original(
-                            ImageVersion.Builder()
-                                .set_url("http://digital.library.unt.edu/ark:" + record_identifier[len('info:ark'):] + '/m1/1/high_res/')
-                                .set_width_px(75)
-                                .build()
-                        )
-                        .set_square_thumbnail(
-                            ImageVersion.Builder()
-                                .set_height_px(75)
-                                .set_url("http://digital.library.unt.edu/ark:" + record_identifier[len('info:ark'):] + '/m1/1/square/')
-                                .set_width_px(75)
-                                .build()
-                        )
-                        .set_thumbnail(
-                            ImageVersion.Builder()
-                                .set_url(identifier_etree.text)
-                                .build()
-                        )
-                        .build()
-                )
-        if len(images)> 0:
-            object_builder.set_images(tuple(images))
-        if len(textrefs) > 0:
-            object_builder.set_textrefs(TextrefSet.Builder().set_elements(tuple(textrefs)).build())
+        date_type = DateType.CREATION
+        qualifier = element.attrib.get('qualifier', None)
+        if qualifier is not None:
+            if qualifier == 'accepted':
+                date_type = DateType.ACCESSION
+            elif qualifier == 'creation':
+                date_type = DateType.CREATION
+            else:
+                self._logger.warn("unknown date qualifier '%s'", qualifier)
 
-    def __parse_record_subjects(self, subject_etrees, object_builder):
-        subjects = []
-        for subject_etree in subject_etrees:
-            if len(subject_etree.text) == 0:
-                continue
-            try:
-                qualifier = subject_etree.attrib['qualifier']
-            except KeyError:
-                continue
-            try:
-                vocab = getattr(Vocab, qualifier)
-            except AttributeError:
-                if qualifier in ('named_person', 'UNTL-BS',):
-                    continue
-                self._logger.warn("unknown subject vocabulary '%s'", qualifier)
-                continue
-            subjects.append(
-                Subject.Builder()
-                    .set_terms((
-                        SubjectTerm.Builder()
-                            .set_text(subject_etree.text)
-                            .set_type(SubjectTermType.OTHER_TOPIC)
-                            .set_vocab_ref(VocabRef.Builder().set_vocab(vocab).build())
+        date_bound = DateBound.Builder().set_text(text).build()
+        object_builder.dates.append(
+            Date.Builder()
+                .set_earliest_date(date_bound)
+                .set_latest_date(date_bound)
+                .set_type(date_type)
+                .build()
+        )
+
+    def _parse_record_metadata_description_element(self, element, object_builder):
+        text = element.text.strip()
+        if len(text) == 0:
+            return
+
+        description_type = None
+        qualifier = element.attrib.get('qualifier', None)
+        if qualifier is not None:
+            if qualifier == 'content':
+                description_type = None
+            elif qualifier == 'physical':
+                description_type = DescriptionType.PHYSICAL
+            else:
+                self._logger.warn("unknown description qualifier '%s'", qualifier)
+
+        object_builder.descriptions.append(
+            Description.Builder()
+                .set_text(text)
+                .set_type(description_type)
+                .build()
+        )
+
+    def _parse_record_metadata_identifier_element(self, element, object_builder):
+        text = element.text.strip()
+        if len(text) == 0:
+            return
+
+        qualifier = element.attrib.get('qualifier', None)
+        if qualifier == 'itemURL':
+            object_builder.textrefs.append(
+                Textref.Builder()
+                    .set_name(
+                        TextrefName.Builder()
+                            .set_text("Item URL")
+                            .set_type(TextrefNameType.ELECTRONIC)
                             .build()
-                    ,))
+                    )
+                    .set_refid(
+                        TextrefRefid.Builder()
+                            .set_href(text)
+                            .set_text(text)
+                            .set_type(TextrefRefidType.URI)
+                            .build()
+                    )
                     .build()
             )
-        if len(subjects) > 0:
-            object_builder.set_subjects(SubjectSet.Builder().set_elements(tuple(subjects)).build())
-
-    def __parse_record_titles(self, title_etrees, object_builder, record_identifier):
-        titles = []
-        for title_etree in title_etrees:
-            if len(title_etree.text) == 0:
-                continue
-
-            title_type = TitleType.DESCRIPTIVE
-            try:
-                qualifier = title_etree.attrib['qualifier']
-                if qualifier in ('addedtitle', 'alternatetitle', 'officialtitle', 'sorttitle'):
-                    title_type = TitleType.DESCRIPTIVE
-                elif qualifier == 'other':
-                    title_type = TitleType.OTHER
-                elif qualifier == 'paralleltitle':
-                    title_type = TitleType.TRANSLATED
-                elif qualifier == 'seriestitle':
-                    title_type = TitleType.REPOSITORY
-                else:
-                    self._logger.warn("unknown title qualifier '%s' on record %s", qualifier, record_identifier)
-            except KeyError:
-                pass
-
-            titles.append(
-                Title.Builder()
-                    .set_text(title_etree.text)
-                    .set_type(title_type)
+        elif qualifier == 'thumbnailURL':
+            object_builder.images.append(
+                Image.Builder()
+                    .set_full_size(
+                        ImageVersion.Builder()
+                            .set_url("http://digital.library.unt.edu/ark:" + object_builder.record_identifier[len('info:ark'):] + '/m1/1/med_res/')
+                            .set_width_px(75)
+                            .build()
+                    )
+                    .set_original(
+                        ImageVersion.Builder()
+                            .set_url("http://digital.library.unt.edu/ark:" + object_builder.record_identifier[len('info:ark'):] + '/m1/1/high_res/')
+                            .set_width_px(75)
+                            .build()
+                    )
+                    .set_square_thumbnail(
+                        ImageVersion.Builder()
+                            .set_height_px(75)
+                            .set_url("http://digital.library.unt.edu/ark:" + object_builder.record_identifier[len('info:ark'):] + '/m1/1/square/')
+                            .set_width_px(75)
+                            .build()
+                    )
+                    .set_thumbnail(
+                        ImageVersion.Builder()
+                            .set_url(text)
+                            .build()
+                    )
                     .build()
             )
-        if len(titles) > 0:
-            object_builder.set_titles(TitleSet.Builder().set_elements(tuple(titles)).build())
+        elif qualifier is not None:
+            self._logger.warn("ignoring unknown identifier qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
+
+    def _parse_record_metadata_subject_element(self, element, object_builder):
+        text = element.text.strip()
+        if len(text) == 0:
+            return
+
+        try:
+            qualifier = element.attrib['qualifier']
+        except KeyError:
+            self._logger.warn("ignoring subject element without qualifier on record %s", object_builder.record_identifier)
+            return
+
+        try:
+            vocab = getattr(Vocab, qualifier)
+        except AttributeError:
+            if qualifier in ('named_person', 'UNTL-BS',):
+                return
+            self._logger.warn("unknown subject vocabulary '%s'", qualifier)
+            return
+
+        object_builder.subjects.append(
+            Subject.Builder()
+                .set_terms((
+                    SubjectTerm.Builder()
+                        .set_text(text)
+                        .set_type(SubjectTermType.OTHER_TOPIC)
+                        .set_vocab_ref(VocabRef.Builder().set_vocab(vocab).build())
+                        .build()
+                ,))
+                .build()
+        )
+
+    def _parse_record_metadata_title_element(self, element, object_builder):
+        text = element.text.strip()
+        if len(text) == 0:
+            return
+
+        title_type = TitleType.DESCRIPTIVE
+        qualifier = element.attrib.get('qualifier', None)
+        if qualifier is not None:
+            if qualifier in ('addedtitle', 'alternatetitle', 'officialtitle', 'sorttitle'):
+                title_type = TitleType.DESCRIPTIVE
+            elif qualifier == 'other':
+                title_type = TitleType.OTHER
+            elif qualifier == 'paralleltitle':
+                title_type = TitleType.TRANSLATED
+            elif qualifier == 'seriestitle':
+                title_type = TitleType.REPOSITORY
+            else:
+                self._logger.warn("unknown title qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
+
+        object_builder.titles.append(
+            Title.Builder()
+                .set_text(element.text)
+                .set_type(title_type)
+                .build()
+        )
