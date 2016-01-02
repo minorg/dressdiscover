@@ -39,10 +39,14 @@ from costume.api.models.title.title_set import TitleSet
 from costume.api.models.title.title_type import TitleType
 from costume.api.models.vocab import Vocab
 from costume.api.models.vocab_ref import VocabRef
+from costume.api.models.work_type.work_type import WorkType
+from costume.api.models.work_type.work_type_set import WorkTypeSet
 from costume.etl._loader import _Loader
+from costume.etl.dcmi_types import DCMI_TYPES_BASE_URL
 
 
 class TxfcLoader(_Loader):
+    _RIGHTS_HOLDER = "University of North Texas"
     _UNTL_NS = '{http://digital2.library.unt.edu/untl/}'
 
     class _ObjectBuilder(object):
@@ -52,12 +56,25 @@ class TxfcLoader(_Loader):
             self.agents = []
             self.dates = []
             self.descriptions = []
+            self.end_date_text = None
             self.images = []
+            self.rights = []
+            self.start_date_text = None
             self.subjects = []
             self.textrefs = []
             self.titles = []
+            self.work_types = []
 
         def build(self):
+            if self.start_date_text is not None and self.end_date_text is not None:
+                self.dates.append(
+                    Date.Builder()
+                        .set_earliest_date(DateBound.Builder().set_text(self.start_date_text).build())
+                        .set_latest_date(DateBound.Builder().set_text(self.end_date_text).build())
+                        .set_type(DateType.CREATION)
+                        .build()
+                )
+
             if len(self.agents) > 0:
                 self.__object_builder.set_agents(AgentSet.Builder().set_elements(tuple(self.agents)).build())
             if len(self.dates) > 0:
@@ -66,12 +83,16 @@ class TxfcLoader(_Loader):
                 self.__object_builder.set_descriptions(DescriptionSet.Builder().set_elements(tuple(self.descriptions)).build())
             if len(self.images) > 0:
                 self.__object_builder.set_images(tuple(self.images))
+            if len(self.rights) > 0:
+                self.__object_builder.set_rights(RightsSet.Builder().set_elements(tuple(self.rights)).build())
             if len(self.subjects) > 0:
                 self.__object_builder.set_subjects(SubjectSet.Builder().set_elements(tuple(self.subjects)).build())
             if len(self.textrefs) > 0:
                 self.__object_builder.set_textrefs(TextrefSet.Builder().set_elements(tuple(self.textrefs)).build())
             if len(self.titles) > 0:
                 self.__object_builder.set_titles(TitleSet.Builder().set_elements(tuple(self.titles)).build())
+            if len(self.work_types) > 0:
+                self.__object_builder.set_work_types(WorkTypeSet.Builder().set_elements(tuple(self.work_types)).build())
             return self.__object_builder.build()
 
         @property
@@ -90,7 +111,7 @@ class TxfcLoader(_Loader):
                     RightsSet.Builder()
                         .set_elements((
                             Rights.Builder()
-                                .set_rights_holder("University of North Texas")
+                                .set_rights_holder(self._RIGHTS_HOLDER)
                                 .set_text("The contents of Texas Fashion Collection, hosted by the University of North Texas Libraries (digital content including images, text, and sound and video recordings) are made publicly available by the collection-holding partners for use in research, teaching, and private study. For the full terms of use, see http://digital.library.unt.edu/terms-of-use/")
                                 .set_type(RightsType.COPYRIGHTED)
                                 .build()
@@ -184,7 +205,7 @@ class TxfcLoader(_Loader):
         if name is not None and len(name.text) > 0:
             name_text = name.text
         else:
-            self._logger.warn("ignoring agent element with enmpty name text on record %s", object_builder.record_identifier)
+            self._logger.warn("ignoring agent element with empty name text on record %s", object_builder.record_identifier)
             return
 
         type_ = element.find(self._UNTL_NS + 'type')
@@ -216,6 +237,32 @@ class TxfcLoader(_Loader):
     def _parse_record_metadata_contributor_element(self, **kwds):
         self.__parse_record_metadata_agent_element(**kwds)
 
+    def _parse_record_metadata_coverage_element(self, element, object_builder):
+        text = element.text.strip()
+        if len(text) == 0:
+            return
+
+        qualifier = element.attrib.get('qualifier', None)
+        if qualifier is None:
+            self._logger.warn("coverage element without qualifier on record %s", object_builder.record_identifier)
+            return
+
+        if qualifier == 'date':
+            pass # Same as date element
+        elif qualifier == 'eDate':
+            if object_builder.end_date_text is not None:
+                self._logger.warn("record %s has multiple eDate's", object_builder.record_identifier)
+            object_builder.end_date_text = text
+        elif qualifier == 'placeName':
+            # TODO: implement locations
+            pass
+        elif qualifier == 'sDate':
+            if object_builder.start_date_text is not None:
+                self._logger.warn("record %s has multiple sDate's", object_builder.record_identifier)
+            object_builder.start_date_text = text
+        else:
+            self._logger.warn("unknown coverage qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
+
     def _parse_record_metadata_creator_element(self, **kwds):
         self.__parse_record_metadata_agent_element(**kwds)
 
@@ -232,7 +279,7 @@ class TxfcLoader(_Loader):
             elif qualifier == 'creation':
                 date_type = DateType.CREATION
             else:
-                self._logger.warn("unknown date qualifier '%s'", qualifier)
+                self._logger.warn("unknown date qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
 
         date_bound = DateBound.Builder().set_text(text).build()
         object_builder.dates.append(
@@ -265,13 +312,19 @@ class TxfcLoader(_Loader):
                 .build()
         )
 
+    def _parse_record_metadata_format_element(self, element, object_builder):
+        # WorkType will be picked up by resourceType
+        assert element.text in ('image', 'video'), element.text
+
     def _parse_record_metadata_identifier_element(self, element, object_builder):
         text = element.text.strip()
         if len(text) == 0:
             return
 
         qualifier = element.attrib.get('qualifier', None)
-        if qualifier == 'itemURL':
+        if qualifier in ('ARK', 'LOCAL-CONT-NO', 'OTHER'):
+            pass
+        elif qualifier == 'itemURL':
             object_builder.textrefs.append(
                 Textref.Builder()
                     .set_name(
@@ -321,34 +374,145 @@ class TxfcLoader(_Loader):
         elif qualifier is not None:
             self._logger.warn("ignoring unknown identifier qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
 
+    def _parse_record_metadata_meta_element(self, element, object_builder):
+        text = element.text.strip()
+        if len(text) == 0:
+            return
+
+        qualifier = element.attrib.get('qualifier', None)
+        if qualifier is None:
+            self._logger.warn("meta element without qualifier on record %s", object_builder.record_identifier)
+            return
+
+        if qualifier in (
+            'ark',
+            'hidden',
+            'meta-id',
+            'metadataCreationDate',
+            'metadataCreator',
+            'metadataModifier',
+            'metadataModificationDate',
+            'system',
+        ):
+            pass
+        else:
+            self._logger.warn("ignoring unknown meta qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
+
+    def _parse_record_metadata_note_element(self, element, object_builder):
+        text = element.text.strip()
+        if len(text) == 0:
+            return
+
+        qualifier = element.attrib.get('qualifier', None)
+        if qualifier == 'digitalPreservation':
+            object_builder.descriptions.append(
+                Description.Builder()
+                    .set_text(text)
+                    .set_type(DescriptionType.HISTORY)
+                    .build()
+            )
+        elif qualifier == 'display':
+            object_builder.descriptions.append(
+                Description.Builder()
+                    .set_text(text)
+                    .set_type(DescriptionType.PUBLIC)
+                    .build()
+            )
+        elif qualifier == 'nonDisplay':
+            pass
+        else:
+            object_builder.descriptions.append(
+                Description.Builder()
+                    .set_text(text)
+                    .set_type(DescriptionType.HISTORY)
+                    .build()
+            )
+#             self._logger.warn("ignoring unknown note qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
+
+    def _parse_record_metadata_primarySource_element(self, **kwds):
+        pass # Ignore
+
+    def _parse_record_metadata_publisher_element(self, **kwds):
+        pass # Ignore
+
+    def _parse_record_metadata_resourceType_element(self, element, object_builder):
+        text = element.text.strip()
+        if len(text) == 0:
+            return
+
+        if text == 'physical-object':
+            text = 'PhysicalObject'
+        elif text == 'video':
+            text = 'MovingImage'
+        else:
+            raise NotImplementedError(text)
+
+        object_builder.work_types.append(
+            WorkType.Builder()\
+                .set_text(text)\
+                .set_vocab_ref(
+                    VocabRef.Builder()
+                        .set_refid(text)\
+                        .set_vocab(Vocab.DCMI_TYPE)\
+                        .set_uri(DCMI_TYPES_BASE_URL + text)\
+                        .build()
+                )\
+                .build()
+        )
+
+    def _parse_record_metadata_rights_element(self, element, object_builder):
+        text = element.text.strip()
+        if len(text) == 0:
+            return
+
+        qualifier = element.attrib.get('qualifier', None)
+        if qualifier is None:
+            self._logger.warn("rights element without qualifier on record %s", object_builder.record_identifier)
+            return
+
+        if qualifier == 'access':
+            assert text == 'public', text
+        elif qualifier == 'license':
+            object_builder.rights.append(
+                Rights.Builder()
+                    .set_rights_holder(self._RIGHTS_HOLDER)
+                    .set_text(text)
+                    .set_type(RightsType.LICENSED)
+                    .build()
+            )
+        elif qualifier == 'statement':
+            object_builder.rights.append(
+                Rights.Builder()
+                    .set_rights_holder(self._RIGHTS_HOLDER)
+                    .set_text(text)
+                    .set_type(RightsType.COPYRIGHTED)
+                    .build()
+            )
+        else:
+            self._logger.warn("ignoring unknown rights qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
+
     def _parse_record_metadata_subject_element(self, element, object_builder):
         text = element.text.strip()
         if len(text) == 0:
             return
 
-        try:
-            qualifier = element.attrib['qualifier']
-        except KeyError:
-            self._logger.warn("ignoring subject element without qualifier on record %s", object_builder.record_identifier)
-            return
+        subject_term_builder = \
+            SubjectTerm.Builder()\
+                .set_text(text)\
+                .set_type(SubjectTermType.OTHER_TOPIC)\
 
-        try:
-            vocab = getattr(Vocab, qualifier)
-        except AttributeError:
-            if qualifier in ('named_person', 'UNTL-BS',):
-                return
-            self._logger.warn("unknown subject vocabulary '%s'", qualifier)
-            return
+        qualifier = element.get('qualifier', None)
+        if qualifier is not None:
+            try:
+                vocab = getattr(Vocab, qualifier)
+                subject_term_builder.set_vocab_ref(VocabRef.Builder().set_vocab(vocab).build())
+            except AttributeError:
+                if qualifier not in ('named_person', 'UNTL-BS',):
+                    self._logger.warn("unknown subject vocabulary '%s'", qualifier)
 
         object_builder.subjects.append(
             Subject.Builder()
-                .set_terms((
-                    SubjectTerm.Builder()
-                        .set_text(text)
-                        .set_type(SubjectTermType.OTHER_TOPIC)
-                        .set_vocab_ref(VocabRef.Builder().set_vocab(vocab).build())
-                        .build()
-                ,))
+                .set_terms((subject_term_builder.build(),))
                 .build()
         )
 

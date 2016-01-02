@@ -4,7 +4,8 @@ namespace * costume.api.models.rights
 // VRA Core 4.0 rights type= attribute
 enum RightsType {
 	COPYRIGHTED,
-	PUBLIC_DOMAIN
+	LICENSED,
+	PUBLIC_DOMAIN,
 	UNDETERMINED,
 	OTHER
 }

@@ -5,9 +5,10 @@ package net.lab1318.costume.api.models.rights;
  */
 public enum RightsType {
     COPYRIGHTED(0),
-    PUBLIC_DOMAIN(1),
-    UNDETERMINED(2),
-    OTHER(3);
+    LICENSED(1),
+    PUBLIC_DOMAIN(2),
+    UNDETERMINED(3),
+    OTHER(4);
 
     private RightsType(int value) {
         this.value = value;
@@ -16,9 +17,10 @@ public enum RightsType {
     public static RightsType valueOf(final int value) {
         switch (value) {
         case 0: return COPYRIGHTED;
-        case 1: return PUBLIC_DOMAIN;
-        case 2: return UNDETERMINED;
-        case 3: return OTHER;
+        case 1: return LICENSED;
+        case 2: return PUBLIC_DOMAIN;
+        case 3: return UNDETERMINED;
+        case 4: return OTHER;
         default: throw new IllegalArgumentException();
         }
     }
