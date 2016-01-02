@@ -1,5 +1,6 @@
 from collections import OrderedDict
 import os.path
+from pprint import pformat
 import urllib
 from xml.etree import ElementTree
 
@@ -19,6 +20,11 @@ from costume.api.models.description.description_type import DescriptionType
 from costume.api.models.image.image import Image
 from costume.api.models.image.image_version import ImageVersion
 from costume.api.models.institution.institution import Institution
+from costume.api.models.location.location import Location
+from costume.api.models.location.location_name import LocationName
+from costume.api.models.location.location_name_type import LocationNameType
+from costume.api.models.location.location_set import LocationSet
+from costume.api.models.location.location_type import LocationType
 from costume.api.models.object.object import Object
 from costume.api.models.object.object_entry import ObjectEntry
 from costume.api.models.rights.rights import Rights
@@ -58,6 +64,7 @@ class TxfcLoader(_Loader):
             self.descriptions = []
             self.end_date_text = None
             self.images = []
+            self.locations = []
             self.rights = []
             self.start_date_text = None
             self.subjects = []
@@ -83,6 +90,8 @@ class TxfcLoader(_Loader):
                 self.__object_builder.set_descriptions(DescriptionSet.Builder().set_elements(tuple(self.descriptions)).build())
             if len(self.images) > 0:
                 self.__object_builder.set_images(tuple(self.images))
+            if len(self.locations) > 0:
+                self.__object_builder.set_locations(LocationSet.Builder().set_elements(tuple(self.locations)).build())
             if len(self.rights) > 0:
                 self.__object_builder.set_rights(RightsSet.Builder().set_elements(tuple(self.rights)).build())
             if len(self.subjects) > 0:
@@ -117,6 +126,8 @@ class TxfcLoader(_Loader):
                 break
             agent_qualifiers[agent_qualifier_code] = agent_qualifier_label
         self.__agent_qualifiers = agent_qualifiers
+
+        self.__location_names_by_extent = {}
 
     def _load(self):
         self._services.institution_command_service.put_institution(
@@ -159,6 +170,8 @@ class TxfcLoader(_Loader):
                 record_etree = ElementTree.parse(file_path)
                 object_id, object_ = self.__parse_record(record_etree)
                 objects_by_id[object_id] = object_
+
+        self._logger.info("Location names by extent:\n%s", pformat(self.__location_names_by_extent))
 
         self._logger.debug("putting %d objects to the service", len(objects_by_id))
         self._services.object_command_service.put_objects(
@@ -267,8 +280,58 @@ class TxfcLoader(_Loader):
                 self._logger.warn("record %s has multiple eDate's", object_builder.record_identifier)
             object_builder.end_date_text = text
         elif qualifier == 'placeName':
-            # TODO: implement locations
-            pass
+            text_parts = [text_part.strip() for text_part in text.split(' - ')]
+            self._logger.debug('place name from record %s: %s', object_builder.record_identifier, text)
+
+            location_names_by_extent = {}
+            location_names_by_extent['nation'] = nation = text_parts.pop(0)
+
+            if len(text_parts) > 0:
+                text_part = text_parts.pop(0)
+                if nation == 'United States':
+                    extent = 'state'
+                else:
+                    extent = 'region (geographic)'
+                location_names_by_extent[extent] = text_part
+
+            if len(text_parts) >= 2:
+                text_part = text_parts.pop(0)
+                if nation == 'United States':
+                    extent = 'county'
+                else:
+                    extent = 'province'
+                location_names_by_extent[extent] = text_part
+
+            if len(text_parts) == 2:
+                # 'Millburn Township', "Short Hills'
+                # 'New York City', 'Brooklyn Borough'
+                text_part = text_parts.pop(0)
+                assert nation == 'United States', text_parts
+                location_names_by_extent['township'] = text_part
+
+            if len(text_parts) > 0:
+                location_names_by_extent['inhabited place'] = text_parts.pop(0)
+
+            assert len(text_parts) == 0, text
+
+            for extent, text in location_names_by_extent.iteritems():
+                location_names_temp = self.__location_names_by_extent.setdefault(extent, [])
+                if not text in location_names_temp:
+                    location_names_temp.append(text)
+
+            object_builder.locations.append(
+                Location.Builder()
+                    .set_names(tuple(
+                        LocationName.Builder()
+                            .set_extent(extent)
+                            .set_text(text)
+                            .set_type(LocationNameType.GEOGRAPHIC)
+                            .build()
+                        for extent, text in location_names_by_extent.iteritems()
+                    ))
+                    .set_type(LocationType.OTHER)
+                    .build()
+            )
         elif qualifier == 'sDate':
             if object_builder.start_date_text is not None:
                 self._logger.warn("record %s has multiple sDate's", object_builder.record_identifier)
