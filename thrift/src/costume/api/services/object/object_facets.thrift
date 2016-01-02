@@ -14,6 +14,7 @@ struct ObjectFacets {
 	map<string, u32.u32> cultural_context_texts;
 	map<gender.Gender, u32.u32> genders;
 	map<institution_id.InstitutionId, u32.u32> institutions;
+	map<string, u32.u32> location_name_texts;
 	map<string, u32.u32> material_texts;
 	map<string, u32.u32> subject_term_texts;
 	map<string, u32.u32> technique_texts;

@@ -100,7 +100,7 @@
           "index": "not_analyzed", 
           "type": "string"
         }, 
-        "16:relation_texts": {
+        "19:location_name_texts": {
           "fields": {
             "text": {
               "type": "string"
@@ -113,6 +113,18 @@
           "type": "multi_field"
         }, 
         "14:material_texts": {
+          "fields": {
+            "text": {
+              "type": "string"
+            }, 
+            "not_analyzed": {
+              "index": "not_analyzed", 
+              "type": "string"
+            }
+          }, 
+          "type": "multi_field"
+        }, 
+        "16:relation_texts": {
           "fields": {
             "text": {
               "type": "string"

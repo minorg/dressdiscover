@@ -91,6 +91,12 @@ final class ObjectFacetsLayout extends CustomComponent {
                 }, rowI++);
 
         __addFacetPicker(availableObjectFacets,
+                new ObjectFacetPicker<String>(availableObjectFacets, "Locations", eventBus,
+                        ObjectFacets.FieldMetadata.LOCATION_NAME_TEXTS, objectQuery, resultObjectFacets,
+                        UNKNOWN_TEXT_FACET_KEY),
+                rowI++);
+
+        __addFacetPicker(availableObjectFacets,
                 new ObjectFacetPicker<String>(availableObjectFacets, "Materials", eventBus,
                         ObjectFacets.FieldMetadata.MATERIAL_TEXTS, objectQuery, resultObjectFacets,
                         UNKNOWN_TEXT_FACET_KEY),
@@ -142,5 +148,5 @@ final class ObjectFacetsLayout extends CustomComponent {
     }
 
     private final EventBus eventBus;
-    private final GridLayout rootLayout = new GridLayout(1, 11);
+    private final GridLayout rootLayout = new GridLayout(1, 12);
 }
