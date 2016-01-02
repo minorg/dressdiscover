@@ -103,6 +103,21 @@ class TxfcLoader(_Loader):
         _Loader.__init__(self, institution_id='untvca', **kwds)
         self.__collection_id = self._institution_id + '/txfc'
 
+        agent_qualifiers = {}
+        agent_qualifiers_etree = ElementTree.parse(os.path.join(self._data_dir_path, 'txfc', 'agent-qualifiers.xml'))
+        RDF_NS = '{http://www.w3.org/1999/02/22-rdf-syntax-ns#}'
+        RDFS_NS = '{http://www.w3.org/2000/01/rdf-schema#}'
+        for property_etree in agent_qualifiers_etree.iter():
+            if property_etree.tag != RDF_NS + 'Property':
+                continue
+            agent_qualifier_code = property_etree.attrib[RDF_NS + 'about'].rsplit('#', 2)[-1]
+            for label_etree in property_etree.iter(RDFS_NS + 'label'):
+                agent_qualifier_label = label_etree.text
+                assert len(agent_qualifier_label) > 0
+                break
+            agent_qualifiers[agent_qualifier_code] = agent_qualifier_label
+        self.__agent_qualifiers = agent_qualifiers
+
     def _load(self):
         self._services.institution_command_service.put_institution(
             self._institution_id,
@@ -187,14 +202,12 @@ class TxfcLoader(_Loader):
     def __parse_record_metadata_agent_element(self, element, object_builder):
         agent_builder = Agent.Builder()
 
-        # TODO: translate the qualifier to AAT
-        # http://digital2.library.unt.edu/vocabularies/agent-qualifiers/
         qualifier = element.attrib.get('qualifier', None)
         if qualifier is None:
             self._logger.warn("ignoring agent element without qualifier on record %s", object_builder.record_identifier)
             return
 
-        role = AgentRole.Builder().set_text(qualifier).build()
+        role = AgentRole.Builder().set_text(self.__agent_qualifiers[qualifier]).build()
         agent_builder.set_role(role)
 
         info = element.find(self._UNTL_NS + 'info')
