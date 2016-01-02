@@ -80,30 +80,13 @@ from costume.api.models.work_type.work_type import WorkType
 from costume.api.models.work_type.work_type_set import WorkTypeSet
 from costume.etl._loader import _Loader
 from costume.etl.costume_core_controlled_vocabularies import COSTUME_CORE_CONTROLLED_VOCABULARIES
+from costume.etl.dcmi_types import DCMI_TYPES, DCMI_TYPES_BASE_URL
 
 
 try:
     import dateparser.date
 except ImportError:
     dateparser = None
-
-
-DCMI_TYPES = (
-    'Collection',
-    'Dataset',
-    'Event',
-    'Image',
-    'InteractiveResource',
-    'MovingImage',
-    'PhysicalObject',
-    'Service',
-    'Software',
-    'Sound',
-    'StillImage',
-    'Text',
-)
-
-DCMI_TYPES_BASE_URL = 'http://purl.org/dc/dcmitype/'
 
 
 class OmekaLoader(_Loader):

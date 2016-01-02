@@ -1,5 +1,6 @@
 class RightsType(object):
     COPYRIGHTED = None
+    LICENSED = None
     PUBLIC_DOMAIN = None
     UNDETERMINED = None
     OTHER = None
@@ -22,19 +23,22 @@ class RightsType(object):
     def value_of(cls, name):
         if name == 'COPYRIGHTED' or name == '0':
             return getattr(RightsType, 'COPYRIGHTED')
-        elif name == 'PUBLIC_DOMAIN' or name == '1':
+        elif name == 'LICENSED' or name == '1':
+            return getattr(RightsType, 'LICENSED')
+        elif name == 'PUBLIC_DOMAIN' or name == '2':
             return getattr(RightsType, 'PUBLIC_DOMAIN')
-        elif name == 'UNDETERMINED' or name == '2':
+        elif name == 'UNDETERMINED' or name == '3':
             return getattr(RightsType, 'UNDETERMINED')
-        elif name == 'OTHER' or name == '3':
+        elif name == 'OTHER' or name == '4':
             return getattr(RightsType, 'OTHER')
         raise ValueError(name)
 
     @classmethod
     def values(cls):
-        return (RightsType.COPYRIGHTED, RightsType.PUBLIC_DOMAIN, RightsType.UNDETERMINED, RightsType.OTHER,)
+        return (RightsType.COPYRIGHTED, RightsType.LICENSED, RightsType.PUBLIC_DOMAIN, RightsType.UNDETERMINED, RightsType.OTHER,)
 
 RightsType.COPYRIGHTED = RightsType('COPYRIGHTED', 0)
-RightsType.PUBLIC_DOMAIN = RightsType('PUBLIC_DOMAIN', 1)
-RightsType.UNDETERMINED = RightsType('UNDETERMINED', 2)
-RightsType.OTHER = RightsType('OTHER', 3)
+RightsType.LICENSED = RightsType('LICENSED', 1)
+RightsType.PUBLIC_DOMAIN = RightsType('PUBLIC_DOMAIN', 2)
+RightsType.UNDETERMINED = RightsType('UNDETERMINED', 3)
+RightsType.OTHER = RightsType('OTHER', 4)
