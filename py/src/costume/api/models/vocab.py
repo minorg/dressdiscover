@@ -7,6 +7,7 @@ class Vocab(object):
     LCSH = None
     OTH = None
     QUILT_INDEX = None
+    TGN = None
 
     def __init__(self, name, value):
         object.__init__(self)
@@ -40,11 +41,13 @@ class Vocab(object):
             return getattr(Vocab, 'OTH')
         elif name == 'QUILT_INDEX' or name == '7':
             return getattr(Vocab, 'QUILT_INDEX')
+        elif name == 'TGN' or name == '8':
+            return getattr(Vocab, 'TGN')
         raise ValueError(name)
 
     @classmethod
     def values(cls):
-        return (Vocab.AAT, Vocab.COSTUME_CORE, Vocab.DC, Vocab.DCMI_TYPE, Vocab.KWD, Vocab.LCSH, Vocab.OTH, Vocab.QUILT_INDEX,)
+        return (Vocab.AAT, Vocab.COSTUME_CORE, Vocab.DC, Vocab.DCMI_TYPE, Vocab.KWD, Vocab.LCSH, Vocab.OTH, Vocab.QUILT_INDEX, Vocab.TGN,)
 
 Vocab.AAT = Vocab('AAT', 0)
 Vocab.COSTUME_CORE = Vocab('COSTUME_CORE', 1)
@@ -54,3 +57,4 @@ Vocab.KWD = Vocab('KWD', 4)
 Vocab.LCSH = Vocab('LCSH', 5)
 Vocab.OTH = Vocab('OTH', 6)
 Vocab.QUILT_INDEX = Vocab('QUILT_INDEX', 7)
+Vocab.TGN = Vocab('TGN', 8)

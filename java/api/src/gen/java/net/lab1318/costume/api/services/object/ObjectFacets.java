@@ -10,6 +10,7 @@ public class ObjectFacets implements org.thryft.Struct {
             culturalContextTexts = null;
             genders = null;
             institutions = null;
+            locationNameTexts = null;
             materialTexts = null;
             subjectTermTexts = null;
             techniqueTexts = null;
@@ -24,18 +25,19 @@ public class ObjectFacets implements org.thryft.Struct {
             this.culturalContextTexts = other.getCulturalContextTexts();
             this.genders = other.getGenders();
             this.institutions = other.getInstitutions();
+            this.locationNameTexts = other.getLocationNameTexts();
             this.materialTexts = other.getMaterialTexts();
             this.subjectTermTexts = other.getSubjectTermTexts();
             this.techniqueTexts = other.getTechniqueTexts();
             this.workTypeTexts = other.getWorkTypeTexts();
         }
 
-        protected ObjectFacets _build(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
-            return new ObjectFacets(agentNameTexts, categories, collections, colorTexts, culturalContextTexts, genders, institutions, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts);
+        protected ObjectFacets _build(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
+            return new ObjectFacets(agentNameTexts, categories, collections, colorTexts, culturalContextTexts, genders, institutions, locationNameTexts, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts);
         }
 
         public ObjectFacets build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(agentNameTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing agentNameTexts"), com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.services.object.ObjectFacets: missing categories"), com.google.common.base.Preconditions.checkNotNull(collections, "net.lab1318.costume.api.services.object.ObjectFacets: missing collections"), com.google.common.base.Preconditions.checkNotNull(colorTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing colorTexts"), com.google.common.base.Preconditions.checkNotNull(culturalContextTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing culturalContextTexts"), com.google.common.base.Preconditions.checkNotNull(genders, "net.lab1318.costume.api.services.object.ObjectFacets: missing genders"), com.google.common.base.Preconditions.checkNotNull(institutions, "net.lab1318.costume.api.services.object.ObjectFacets: missing institutions"), com.google.common.base.Preconditions.checkNotNull(materialTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing materialTexts"), com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing subjectTermTexts"), com.google.common.base.Preconditions.checkNotNull(techniqueTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing techniqueTexts"), com.google.common.base.Preconditions.checkNotNull(workTypeTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing workTypeTexts"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(agentNameTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing agentNameTexts"), com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.services.object.ObjectFacets: missing categories"), com.google.common.base.Preconditions.checkNotNull(collections, "net.lab1318.costume.api.services.object.ObjectFacets: missing collections"), com.google.common.base.Preconditions.checkNotNull(colorTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing colorTexts"), com.google.common.base.Preconditions.checkNotNull(culturalContextTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing culturalContextTexts"), com.google.common.base.Preconditions.checkNotNull(genders, "net.lab1318.costume.api.services.object.ObjectFacets: missing genders"), com.google.common.base.Preconditions.checkNotNull(institutions, "net.lab1318.costume.api.services.object.ObjectFacets: missing institutions"), com.google.common.base.Preconditions.checkNotNull(locationNameTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing locationNameTexts"), com.google.common.base.Preconditions.checkNotNull(materialTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing materialTexts"), com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing subjectTermTexts"), com.google.common.base.Preconditions.checkNotNull(techniqueTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing techniqueTexts"), com.google.common.base.Preconditions.checkNotNull(workTypeTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing workTypeTexts"));
         }
 
         public final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> getAgentNameTexts() {
@@ -64,6 +66,10 @@ public class ObjectFacets implements org.thryft.Struct {
 
         public final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> getInstitutions() {
             return institutions;
+        }
+
+        public final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> getLocationNameTexts() {
+            return locationNameTexts;
         }
 
         public final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> getMaterialTexts() {
@@ -260,6 +266,30 @@ public class ObjectFacets implements org.thryft.Struct {
                             } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
                                  throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
+                            final com.google.common.primitives.UnsignedInteger value;
+                            try {
+                                value = iprot.readU32();
+                            } catch (final NumberFormatException e) {
+                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                            }
+                            map.put(key, value);
+                        }
+                        iprot.readMapEnd();
+                        return map.build();
+                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                        return com.google.common.collect.ImmutableMap.of();
+                    }
+                }
+            }).apply(iprot);
+            locationNameTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                @Override
+                public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                    try {
+                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                        final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                            final String key;
+                            key = iprot.readString();
                             final com.google.common.primitives.UnsignedInteger value;
                             try {
                                 value = iprot.readU32();
@@ -584,6 +614,33 @@ public class ObjectFacets implements org.thryft.Struct {
                     }).apply(iprot);
                     break;
                 }
+                case "location_name_texts": {
+                    locationNameTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                        @Override
+                        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            try {
+                                final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                    final String key;
+                                    key = iprot.readString();
+                                    final com.google.common.primitives.UnsignedInteger value;
+                                    try {
+                                        value = iprot.readU32();
+                                    } catch (final NumberFormatException e) {
+                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                    map.put(key, value);
+                                }
+                                iprot.readMapEnd();
+                                return map.build();
+                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                return com.google.common.collect.ImmutableMap.of();
+                            }
+                        }
+                    }).apply(iprot);
+                    break;
+                }
                 case "material_texts": {
                     materialTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
                         @Override
@@ -739,6 +796,7 @@ public class ObjectFacets implements org.thryft.Struct {
             setCulturalContextTexts(other.getCulturalContextTexts());
             setGenders(other.getGenders());
             setInstitutions(other.getInstitutions());
+            setLocationNameTexts(other.getLocationNameTexts());
             setMaterialTexts(other.getMaterialTexts());
             setSubjectTermTexts(other.getSubjectTermTexts());
             setTechniqueTexts(other.getTechniqueTexts());
@@ -749,6 +807,11 @@ public class ObjectFacets implements org.thryft.Struct {
 
         public Builder setInstitutions(final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions) {
             this.institutions = com.google.common.base.Preconditions.checkNotNull(institutions);
+            return this;
+        }
+
+        public Builder setLocationNameTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts) {
+            this.locationNameTexts = com.google.common.base.Preconditions.checkNotNull(locationNameTexts);
             return this;
         }
 
@@ -784,6 +847,7 @@ public class ObjectFacets implements org.thryft.Struct {
             case "cultural_context_texts": setCulturalContextTexts((com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>)value); return this;
             case "genders": setGenders((com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger>)value); return this;
             case "institutions": setInstitutions((com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger>)value); return this;
+            case "location_name_texts": setLocationNameTexts((com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>)value); return this;
             case "material_texts": setMaterialTexts((com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>)value); return this;
             case "subject_term_texts": setSubjectTermTexts((com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>)value); return this;
             case "technique_texts": setTechniqueTexts((com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>)value); return this;
@@ -828,6 +892,11 @@ public class ObjectFacets implements org.thryft.Struct {
             return this;
         }
 
+        public Builder unsetLocationNameTexts() {
+            this.locationNameTexts = null;
+            return this;
+        }
+
         public Builder unsetMaterialTexts() {
             this.materialTexts = null;
             return this;
@@ -859,6 +928,7 @@ public class ObjectFacets implements org.thryft.Struct {
             case "cultural_context_texts": return unsetCulturalContextTexts();
             case "genders": return unsetGenders();
             case "institutions": return unsetInstitutions();
+            case "location_name_texts": return unsetLocationNameTexts();
             case "material_texts": return unsetMaterialTexts();
             case "subject_term_texts": return unsetSubjectTermTexts();
             case "technique_texts": return unsetTechniqueTexts();
@@ -875,6 +945,7 @@ public class ObjectFacets implements org.thryft.Struct {
         private com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts;
         private com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders;
         private com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions;
+        private com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts;
         private com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts;
         private com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts;
         private com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts;
@@ -890,6 +961,7 @@ public class ObjectFacets implements org.thryft.Struct {
         CULTURAL_CONTEXT_TEXTS("culturalContextTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {}, true, 0, "cultural_context_texts", org.thryft.protocol.Type.MAP),
         GENDERS("genders", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger>>() {}, true, 0, "genders", org.thryft.protocol.Type.MAP),
         INSTITUTIONS("institutions", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger>>() {}, true, 0, "institutions", org.thryft.protocol.Type.MAP),
+        LOCATION_NAME_TEXTS("locationNameTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {}, true, 0, "location_name_texts", org.thryft.protocol.Type.MAP),
         MATERIAL_TEXTS("materialTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {}, true, 0, "material_texts", org.thryft.protocol.Type.MAP),
         SUBJECT_TERM_TEXTS("subjectTermTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {}, true, 0, "subject_term_texts", org.thryft.protocol.Type.MAP),
         TECHNIQUE_TEXTS("techniqueTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {}, true, 0, "technique_texts", org.thryft.protocol.Type.MAP),
@@ -944,6 +1016,7 @@ public class ObjectFacets implements org.thryft.Struct {
             case "culturalContextTexts": return CULTURAL_CONTEXT_TEXTS;
             case "genders": return GENDERS;
             case "institutions": return INSTITUTIONS;
+            case "locationNameTexts": return LOCATION_NAME_TEXTS;
             case "materialTexts": return MATERIAL_TEXTS;
             case "subjectTermTexts": return SUBJECT_TERM_TEXTS;
             case "techniqueTexts": return TECHNIQUE_TEXTS;
@@ -962,6 +1035,7 @@ public class ObjectFacets implements org.thryft.Struct {
             case "cultural_context_texts": return CULTURAL_CONTEXT_TEXTS;
             case "genders": return GENDERS;
             case "institutions": return INSTITUTIONS;
+            case "location_name_texts": return LOCATION_NAME_TEXTS;
             case "material_texts": return MATERIAL_TEXTS;
             case "subject_term_texts": return SUBJECT_TERM_TEXTS;
             case "technique_texts": return TECHNIQUE_TEXTS;
@@ -998,13 +1072,13 @@ public class ObjectFacets implements org.thryft.Struct {
      * Copy constructor
      */
     public ObjectFacets(final ObjectFacets other) {
-        this(other.getAgentNameTexts(), other.getCategories(), other.getCollections(), other.getColorTexts(), other.getCulturalContextTexts(), other.getGenders(), other.getInstitutions(), other.getMaterialTexts(), other.getSubjectTermTexts(), other.getTechniqueTexts(), other.getWorkTypeTexts());
+        this(other.getAgentNameTexts(), other.getCategories(), other.getCollections(), other.getColorTexts(), other.getCulturalContextTexts(), other.getGenders(), other.getInstitutions(), other.getLocationNameTexts(), other.getMaterialTexts(), other.getSubjectTermTexts(), other.getTechniqueTexts(), other.getWorkTypeTexts());
     }
 
     /**
      * Optional constructor
      */
-    public ObjectFacets(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
+    public ObjectFacets(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
         this.agentNameTexts = com.google.common.base.Preconditions.checkNotNull(agentNameTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing agentNameTexts");
         this.categories = com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.services.object.ObjectFacets: missing categories");
         this.collections = com.google.common.base.Preconditions.checkNotNull(collections, "net.lab1318.costume.api.services.object.ObjectFacets: missing collections");
@@ -1012,6 +1086,7 @@ public class ObjectFacets implements org.thryft.Struct {
         this.culturalContextTexts = com.google.common.base.Preconditions.checkNotNull(culturalContextTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing culturalContextTexts");
         this.genders = com.google.common.base.Preconditions.checkNotNull(genders, "net.lab1318.costume.api.services.object.ObjectFacets: missing genders");
         this.institutions = com.google.common.base.Preconditions.checkNotNull(institutions, "net.lab1318.costume.api.services.object.ObjectFacets: missing institutions");
+        this.locationNameTexts = com.google.common.base.Preconditions.checkNotNull(locationNameTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing locationNameTexts");
         this.materialTexts = com.google.common.base.Preconditions.checkNotNull(materialTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing materialTexts");
         this.subjectTermTexts = com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing subjectTermTexts");
         this.techniqueTexts = com.google.common.base.Preconditions.checkNotNull(techniqueTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing techniqueTexts");
@@ -1047,6 +1122,7 @@ public class ObjectFacets implements org.thryft.Struct {
             getCulturalContextTexts().equals(other.getCulturalContextTexts()) &&
             getGenders().equals(other.getGenders()) &&
             getInstitutions().equals(other.getInstitutions()) &&
+            getLocationNameTexts().equals(other.getLocationNameTexts()) &&
             getMaterialTexts().equals(other.getMaterialTexts()) &&
             getSubjectTermTexts().equals(other.getSubjectTermTexts()) &&
             getTechniqueTexts().equals(other.getTechniqueTexts()) &&
@@ -1063,6 +1139,7 @@ public class ObjectFacets implements org.thryft.Struct {
         case "cultural_context_texts": return getCulturalContextTexts();
         case "genders": return getGenders();
         case "institutions": return getInstitutions();
+        case "location_name_texts": return getLocationNameTexts();
         case "material_texts": return getMaterialTexts();
         case "subject_term_texts": return getSubjectTermTexts();
         case "technique_texts": return getTechniqueTexts();
@@ -1100,6 +1177,10 @@ public class ObjectFacets implements org.thryft.Struct {
         return institutions;
     }
 
+    public final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> getLocationNameTexts() {
+        return locationNameTexts;
+    }
+
     public final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> getMaterialTexts() {
         return materialTexts;
     }
@@ -1126,6 +1207,7 @@ public class ObjectFacets implements org.thryft.Struct {
         hashCode = 31 * hashCode + getCulturalContextTexts().hashCode();
         hashCode = 31 * hashCode + getGenders().hashCode();
         hashCode = 31 * hashCode + getInstitutions().hashCode();
+        hashCode = 31 * hashCode + getLocationNameTexts().hashCode();
         hashCode = 31 * hashCode + getMaterialTexts().hashCode();
         hashCode = 31 * hashCode + getSubjectTermTexts().hashCode();
         hashCode = 31 * hashCode + getTechniqueTexts().hashCode();
@@ -1152,6 +1234,7 @@ public class ObjectFacets implements org.thryft.Struct {
         com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts = null;
         com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders = null;
         com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions = null;
+        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts = null;
         com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts = null;
         com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts = null;
         com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts = null;
@@ -1338,6 +1421,30 @@ public class ObjectFacets implements org.thryft.Struct {
                 }
             }
         }).apply(iprot);
+        locationNameTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+            @Override
+            public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                try {
+                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                    final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                        final String key;
+                        key = iprot.readString();
+                        final com.google.common.primitives.UnsignedInteger value;
+                        try {
+                            value = iprot.readU32();
+                        } catch (final NumberFormatException e) {
+                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                        }
+                        map.put(key, value);
+                    }
+                    iprot.readMapEnd();
+                    return map.build();
+                } catch (final org.thryft.protocol.InputProtocolException e) {
+                    return com.google.common.collect.ImmutableMap.of();
+                }
+            }
+        }).apply(iprot);
         materialTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
             @Override
             public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -1436,7 +1543,7 @@ public class ObjectFacets implements org.thryft.Struct {
         }).apply(iprot);
         iprot.readListEnd();
         try {
-            return new ObjectFacets(agentNameTexts, categories, collections, colorTexts, culturalContextTexts, genders, institutions, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts);
+            return new ObjectFacets(agentNameTexts, categories, collections, colorTexts, culturalContextTexts, genders, institutions, locationNameTexts, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -1450,6 +1557,7 @@ public class ObjectFacets implements org.thryft.Struct {
         com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts = null;
         com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders = null;
         com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions = null;
+        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts = null;
         com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts = null;
         com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts = null;
         com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts = null;
@@ -1663,6 +1771,33 @@ public class ObjectFacets implements org.thryft.Struct {
                 }).apply(iprot);
                 break;
             }
+            case "location_name_texts": {
+                locationNameTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                    @Override
+                    public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                        try {
+                            final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                            final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                            for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                final String key;
+                                key = iprot.readString();
+                                final com.google.common.primitives.UnsignedInteger value;
+                                try {
+                                    value = iprot.readU32();
+                                } catch (final NumberFormatException e) {
+                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                                map.put(key, value);
+                            }
+                            iprot.readMapEnd();
+                            return map.build();
+                        } catch (final org.thryft.protocol.InputProtocolException e) {
+                            return com.google.common.collect.ImmutableMap.of();
+                        }
+                    }
+                }).apply(iprot);
+                break;
+            }
             case "material_texts": {
                 materialTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
                     @Override
@@ -1776,64 +1911,68 @@ public class ObjectFacets implements org.thryft.Struct {
         }
         iprot.readStructEnd();
         try {
-            return new ObjectFacets(agentNameTexts, categories, collections, colorTexts, culturalContextTexts, genders, institutions, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts);
+            return new ObjectFacets(agentNameTexts, categories, collections, colorTexts, culturalContextTexts, genders, institutions, locationNameTexts, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public ObjectFacets replaceAgentNameTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> agentNameTexts) {
-        return new ObjectFacets(agentNameTexts, this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
+        return new ObjectFacets(agentNameTexts, this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
     }
 
     public ObjectFacets replaceCategories(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories) {
-        return new ObjectFacets(this.agentNameTexts, categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
+        return new ObjectFacets(this.agentNameTexts, categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
     }
 
     public ObjectFacets replaceCollections(final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections) {
-        return new ObjectFacets(this.agentNameTexts, this.categories, collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
+        return new ObjectFacets(this.agentNameTexts, this.categories, collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
     }
 
     public ObjectFacets replaceColorTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts) {
-        return new ObjectFacets(this.agentNameTexts, this.categories, this.collections, colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
+        return new ObjectFacets(this.agentNameTexts, this.categories, this.collections, colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
     }
 
     public ObjectFacets replaceCulturalContextTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts) {
-        return new ObjectFacets(this.agentNameTexts, this.categories, this.collections, this.colorTexts, culturalContextTexts, this.genders, this.institutions, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
+        return new ObjectFacets(this.agentNameTexts, this.categories, this.collections, this.colorTexts, culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
     }
 
     public ObjectFacets replaceGenders(final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders) {
-        return new ObjectFacets(this.agentNameTexts, this.categories, this.collections, this.colorTexts, this.culturalContextTexts, genders, this.institutions, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
+        return new ObjectFacets(this.agentNameTexts, this.categories, this.collections, this.colorTexts, this.culturalContextTexts, genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
     }
 
     public ObjectFacets replaceInstitutions(final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions) {
-        return new ObjectFacets(this.agentNameTexts, this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, institutions, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
+        return new ObjectFacets(this.agentNameTexts, this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
+    }
+
+    public ObjectFacets replaceLocationNameTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts) {
+        return new ObjectFacets(this.agentNameTexts, this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
     }
 
     public ObjectFacets replaceMaterialTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts) {
-        return new ObjectFacets(this.agentNameTexts, this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
+        return new ObjectFacets(this.agentNameTexts, this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
     }
 
     public ObjectFacets replaceSubjectTermTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts) {
-        return new ObjectFacets(this.agentNameTexts, this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.materialTexts, subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
+        return new ObjectFacets(this.agentNameTexts, this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
     }
 
     public ObjectFacets replaceTechniqueTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts) {
-        return new ObjectFacets(this.agentNameTexts, this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.materialTexts, this.subjectTermTexts, techniqueTexts, this.workTypeTexts);
+        return new ObjectFacets(this.agentNameTexts, this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, techniqueTexts, this.workTypeTexts);
     }
 
     public ObjectFacets replaceWorkTypeTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
-        return new ObjectFacets(this.agentNameTexts, this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, workTypeTexts);
+        return new ObjectFacets(this.agentNameTexts, this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, workTypeTexts);
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("collections", getCollections()).add("color_texts", getColorTexts()).add("cultural_context_texts", getCulturalContextTexts()).add("genders", getGenders()).add("institutions", getInstitutions()).add("material_texts", getMaterialTexts()).add("subject_term_texts", getSubjectTermTexts()).add("technique_texts", getTechniqueTexts()).add("work_type_texts", getWorkTypeTexts()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("collections", getCollections()).add("color_texts", getColorTexts()).add("cultural_context_texts", getCulturalContextTexts()).add("genders", getGenders()).add("institutions", getInstitutions()).add("location_name_texts", getLocationNameTexts()).add("material_texts", getMaterialTexts()).add("subject_term_texts", getSubjectTermTexts()).add("technique_texts", getTechniqueTexts()).add("work_type_texts", getWorkTypeTexts()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 11);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 12);
 
         oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getAgentNameTexts().size());
         for (com.google.common.collect.ImmutableMap.Entry<String, com.google.common.primitives.UnsignedInteger> _iter0 : getAgentNameTexts().entrySet()) {
@@ -1880,6 +2019,13 @@ public class ObjectFacets implements org.thryft.Struct {
         oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getInstitutions().size());
         for (com.google.common.collect.ImmutableMap.Entry<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> _iter0 : getInstitutions().entrySet()) {
             oprot.writeString(_iter0.getKey().toString());
+            oprot.writeU32(_iter0.getValue());
+        }
+        oprot.writeMapEnd();
+
+        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getLocationNameTexts().size());
+        for (com.google.common.collect.ImmutableMap.Entry<String, com.google.common.primitives.UnsignedInteger> _iter0 : getLocationNameTexts().entrySet()) {
+            oprot.writeString(_iter0.getKey());
             oprot.writeU32(_iter0.getValue());
         }
         oprot.writeMapEnd();
@@ -1987,6 +2133,15 @@ public class ObjectFacets implements org.thryft.Struct {
         oprot.writeMapEnd();
         oprot.writeFieldEnd();
 
+        oprot.writeFieldBegin("location_name_texts", org.thryft.protocol.Type.MAP, (short)0);
+        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getLocationNameTexts().size());
+        for (com.google.common.collect.ImmutableMap.Entry<String, com.google.common.primitives.UnsignedInteger> _iter0 : getLocationNameTexts().entrySet()) {
+            oprot.writeString(_iter0.getKey());
+            oprot.writeU32(_iter0.getValue());
+        }
+        oprot.writeMapEnd();
+        oprot.writeFieldEnd();
+
         oprot.writeFieldBegin("material_texts", org.thryft.protocol.Type.MAP, (short)0);
         oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getMaterialTexts().size());
         for (com.google.common.collect.ImmutableMap.Entry<String, com.google.common.primitives.UnsignedInteger> _iter0 : getMaterialTexts().entrySet()) {
@@ -2039,6 +2194,8 @@ public class ObjectFacets implements org.thryft.Struct {
     private final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders;
 
     private final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions;
+
+    private final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts;
 
     private final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts;
 

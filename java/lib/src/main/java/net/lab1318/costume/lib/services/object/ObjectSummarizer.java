@@ -15,6 +15,8 @@ import net.lab1318.costume.api.models.description.Description;
 import net.lab1318.costume.api.models.description.DescriptionType;
 import net.lab1318.costume.api.models.image.Image;
 import net.lab1318.costume.api.models.image.ImageVersion;
+import net.lab1318.costume.api.models.location.Location;
+import net.lab1318.costume.api.models.location.LocationName;
 import net.lab1318.costume.api.models.material.Material;
 import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectSummary;
@@ -115,6 +117,22 @@ public final class ObjectSummarizer {
         builder.setGender(object.getGender());
 
         builder.setInstitutionId(object.getInstitutionId());
+
+        if (object.getLocations().isPresent()) {
+            final ImmutableList.Builder<String> locationNameTextsBuilder = ImmutableList.builder();
+            for (final Location location : object.getLocations().get().getElements()) {
+                if (!location.getNames().isPresent()) {
+                    continue;
+                }
+                for (final LocationName locationName : location.getNames().get()) {
+                    locationNameTextsBuilder.add(locationName.getText());
+                }
+            }
+            final ImmutableList<String> locationNameTexts = locationNameTextsBuilder.build();
+            if (!locationNameTexts.isEmpty()) {
+                builder.setLocationNameTexts(locationNameTexts);
+            }
+        }
 
         if (object.getMaterials().isPresent()) {
             final ImmutableList.Builder<String> materialTextsBuilder = ImmutableList.builder();

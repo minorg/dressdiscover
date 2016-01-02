@@ -31,6 +31,9 @@ struct ObjectFacetFilters {
 	optional set<institution_id.InstitutionId> exclude_institutions;
 
 	// @validation {"minLength": 1}
+	optional set<string> exclude_location_name_texts;
+
+	// @validation {"minLength": 1}
 	optional set<string> exclude_material_texts;
 
 	// @validation {"minLength": 1}
@@ -62,6 +65,9 @@ struct ObjectFacetFilters {
 
 	// @validation {"minLength": 1}
 	optional set<institution_id.InstitutionId> include_institutions;
+
+	// @validation {"minLength": 1}
+	optional set<string> include_location_name_texts;
 
 	// @validation {"minLength": 1}
 	optional set<string> include_material_texts;

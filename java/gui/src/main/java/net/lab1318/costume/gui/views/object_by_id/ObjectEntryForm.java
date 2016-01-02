@@ -100,6 +100,10 @@ final class ObjectEntryForm extends CustomComponent {
                 formLayout.addComponent(new InscriptionSetTable(objectEntry.getModel().getInscriptions().get()));
             }
 
+            if (objectEntry.getModel().getLocations().isPresent()) {
+                formLayout.addComponent(new LocationSetTable(objectEntry.getModel().getLocations().get()));
+            }
+
             if (objectEntry.getModel().getMaterials().isPresent()) {
                 formLayout.addComponent(new MaterialSetTable(objectEntry.getModel().getMaterials().get()));
             }

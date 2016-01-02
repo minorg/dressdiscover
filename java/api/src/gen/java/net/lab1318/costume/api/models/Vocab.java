@@ -8,7 +8,8 @@ public enum Vocab {
     KWD(4),
     LCSH(5),
     OTH(6),
-    QUILT_INDEX(7);
+    QUILT_INDEX(7),
+    TGN(8);
 
     private Vocab(int value) {
         this.value = value;
@@ -24,6 +25,7 @@ public enum Vocab {
         case 5: return LCSH;
         case 6: return OTH;
         case 7: return QUILT_INDEX;
+        case 8: return TGN;
         default: throw new IllegalArgumentException();
         }
     }

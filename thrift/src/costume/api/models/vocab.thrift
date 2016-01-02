@@ -9,5 +9,6 @@ enum Vocab {
 	KWD,
 	LCSH,
 	OTH,
-	QUILT_INDEX
+	QUILT_INDEX,
+	TGN
 }
