@@ -16,6 +16,8 @@ struct CostumeProperties {
 
 	string home_directory_path;
 
+	u32.u32 object_count_cache_size = 1024;
+
 	u32.u32 object_facets_cache_size = 1024;
 
 	u32.u32 object_summary_cache_size = 1024;

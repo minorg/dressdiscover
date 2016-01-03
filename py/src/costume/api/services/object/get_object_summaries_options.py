@@ -9,20 +9,23 @@ class GetObjectSummariesOptions(object):
             self,
             from_=None,
             size=None,
+            include_object_facets=None,
             sorts=None,
         ):
             '''
             :type from_: int or None
             :type size: int or None
+            :type include_object_facets: bool or None
             :type sorts: tuple(costume.api.services.object.object_summary_sort.ObjectSummarySort) or None
             '''
 
             self.__from_ = from_
             self.__size = size
+            self.__include_object_facets = include_object_facets
             self.__sorts = sorts
 
         def build(self):
-            return GetObjectSummariesOptions(from_=self.__from_, size=self.__size, sorts=self.__sorts)
+            return GetObjectSummariesOptions(from_=self.__from_, size=self.__size, include_object_facets=self.__include_object_facets, sorts=self.__sorts)
 
         @property
         def from_(self):
@@ -32,12 +35,28 @@ class GetObjectSummariesOptions(object):
 
             return self.__from_
 
+        @property
+        def include_object_facets(self):
+            '''
+            :rtype: bool
+            '''
+
+            return self.__include_object_facets
+
         def set_from_(self, from_):
             '''
             :type from_: int or None
             '''
 
             self.__from_ = from_
+            return self
+
+        def set_include_object_facets(self, include_object_facets):
+            '''
+            :type include_object_facets: bool or None
+            '''
+
+            self.__include_object_facets = include_object_facets
             return self
 
         def set_size(self, size):
@@ -76,12 +95,14 @@ class GetObjectSummariesOptions(object):
             '''
             :type from_: int or None
             :type size: int or None
+            :type include_object_facets: bool or None
             :type sorts: tuple(costume.api.services.object.object_summary_sort.ObjectSummarySort) or None
             '''
 
             if isinstance(get_object_summaries_options, GetObjectSummariesOptions):
                 self.set_from_(get_object_summaries_options.from_)
                 self.set_size(get_object_summaries_options.size)
+                self.set_include_object_facets(get_object_summaries_options.include_object_facets)
                 self.set_sorts(get_object_summaries_options.sorts)
             elif isinstance(get_object_summaries_options, dict):
                 for key, value in get_object_summaries_options.iteritems():
@@ -97,6 +118,14 @@ class GetObjectSummariesOptions(object):
             '''
 
             self.set_from_(from_)
+
+        @include_object_facets.setter
+        def include_object_facets(self, include_object_facets):
+            '''
+            :type include_object_facets: bool or None
+            '''
+
+            self.set_include_object_facets(include_object_facets)
 
         @size.setter
         def size(self, size):
@@ -118,11 +147,13 @@ class GetObjectSummariesOptions(object):
         self,
         from_=None,
         size=None,
+        include_object_facets=None,
         sorts=None,
     ):
         '''
         :type from_: int or None
         :type size: int or None
+        :type include_object_facets: bool or None
         :type sorts: tuple(costume.api.services.object.object_summary_sort.ObjectSummarySort) or None
         '''
 
@@ -136,6 +167,11 @@ class GetObjectSummariesOptions(object):
                 raise TypeError("expected size to be a int but it is a %s" % getattr(__builtin__, 'type')(size))
         self.__size = size
 
+        if include_object_facets is not None:
+            if not isinstance(include_object_facets, bool):
+                raise TypeError("expected include_object_facets to be a bool but it is a %s" % getattr(__builtin__, 'type')(include_object_facets))
+        self.__include_object_facets = include_object_facets
+
         if sorts is not None:
             if not (isinstance(sorts, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.services.object.object_summary_sort.ObjectSummarySort), sorts))) == 0):
                 raise TypeError("expected sorts to be a tuple(costume.api.services.object.object_summary_sort.ObjectSummarySort) but it is a %s" % getattr(__builtin__, 'type')(sorts))
@@ -148,12 +184,14 @@ class GetObjectSummariesOptions(object):
             return False
         if self.size != other.size:
             return False
+        if self.include_object_facets != other.include_object_facets:
+            return False
         if self.sorts != other.sorts:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.from_,self.size,self.sorts,))
+        return hash((self.from_,self.size,self.include_object_facets,self.sorts,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -167,6 +205,8 @@ class GetObjectSummariesOptions(object):
             field_reprs.append('from_=' + repr(self.from_))
         if self.size is not None:
             field_reprs.append('size=' + repr(self.size))
+        if self.include_object_facets is not None:
+            field_reprs.append('include_object_facets=' + repr(self.include_object_facets))
         if self.sorts is not None:
             field_reprs.append('sorts=' + repr(self.sorts))
         return 'GetObjectSummariesOptions(' + ', '.join(field_reprs) + ')'
@@ -177,6 +217,8 @@ class GetObjectSummariesOptions(object):
             field_reprs.append('from_=' + repr(self.from_))
         if self.size is not None:
             field_reprs.append('size=' + repr(self.size))
+        if self.include_object_facets is not None:
+            field_reprs.append('include_object_facets=' + repr(self.include_object_facets))
         if self.sorts is not None:
             field_reprs.append('sorts=' + repr(self.sorts))
         return 'GetObjectSummariesOptions(' + ', '.join(field_reprs) + ')'
@@ -188,7 +230,7 @@ class GetObjectSummariesOptions(object):
         :rtype: dict
         '''
 
-        return {'from_': self.from_, 'size': self.size, 'sorts': self.sorts}
+        return {'from_': self.from_, 'size': self.size, 'include_object_facets': self.include_object_facets, 'sorts': self.sorts}
 
     def as_tuple(self):
         '''
@@ -197,7 +239,7 @@ class GetObjectSummariesOptions(object):
         :rtype: tuple
         '''
 
-        return (self.from_, self.size, self.sorts,)
+        return (self.from_, self.size, self.include_object_facets, self.sorts,)
 
     @property
     def from_(self):
@@ -206,6 +248,14 @@ class GetObjectSummariesOptions(object):
         '''
 
         return self.__from_
+
+    @property
+    def include_object_facets(self):
+        '''
+        :rtype: bool
+        '''
+
+        return self.__include_object_facets
 
     @classmethod
     def read(cls, iprot):
@@ -233,6 +283,11 @@ class GetObjectSummariesOptions(object):
                     init_kwds['size'] = iprot.read_u32()
                 except (TypeError,):
                     pass
+            elif ifield_name == 'include_object_facets':
+                try:
+                    init_kwds['include_object_facets'] = iprot.read_bool()
+                except (TypeError, ValueError,):
+                    pass
             elif ifield_name == 'sorts':
                 init_kwds['sorts'] = tuple([costume.api.services.object.object_summary_sort.ObjectSummarySort.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             iprot.read_field_end()
@@ -244,6 +299,7 @@ class GetObjectSummariesOptions(object):
         self,
         from_=None,
         size=None,
+        include_object_facets=None,
         sorts=None,
     ):
         '''
@@ -251,6 +307,7 @@ class GetObjectSummariesOptions(object):
 
         :type from_: int or None
         :type size: int or None
+        :type include_object_facets: bool or None
         :type sorts: tuple(costume.api.services.object.object_summary_sort.ObjectSummarySort) or None
         :rtype: costume.api.services.object.get_object_summaries_options.GetObjectSummariesOptions
         '''
@@ -259,9 +316,11 @@ class GetObjectSummariesOptions(object):
             from_ = self.from_
         if size is None:
             size = self.size
+        if include_object_facets is None:
+            include_object_facets = self.include_object_facets
         if sorts is None:
             sorts = self.sorts
-        return self.__class__(from_=from_, size=size, sorts=sorts)
+        return self.__class__(from_=from_, size=size, include_object_facets=include_object_facets, sorts=sorts)
 
     @property
     def size(self):
@@ -297,6 +356,11 @@ class GetObjectSummariesOptions(object):
         if self.size is not None:
             oprot.write_field_begin(name='size', type=8, id=None)
             oprot.write_u32(self.size)
+            oprot.write_field_end()
+
+        if self.include_object_facets is not None:
+            oprot.write_field_begin(name='include_object_facets', type=2, id=None)
+            oprot.write_bool(self.include_object_facets)
             oprot.write_field_end()
 
         if self.sorts is not None:

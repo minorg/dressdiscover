@@ -40,8 +40,7 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
 
     @Override
     public void deleteObjects() throws IoException {
-        objectFacetsCache.invalidateAll();
-        objectSummaryCache.invalidateAll();
+        __invalidateCaches();
 
         try {
             objectElasticSearchIndex.deleteIndex(logger, Markers.DELETE_OBJECTS);
@@ -60,8 +59,7 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
 
     @Override
     public void deleteObjectsByCollectionId(final CollectionId collectionId) throws IoException {
-        objectFacetsCache.invalidateAll();
-        objectSummaryCache.invalidateAll();
+        __invalidateCaches();
 
         try {
             objectElasticSearchIndex
@@ -87,8 +85,7 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
 
     @Override
     public void deleteObjectsByInstitutionId(final InstitutionId institutionId) throws IoException {
-        objectFacetsCache.invalidateAll();
-        objectSummaryCache.invalidateAll();
+        __invalidateCaches();
 
         try {
             objectElasticSearchIndex
@@ -114,8 +111,7 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
 
     @Override
     public void putObject(final ObjectId id, final Object object) throws IoException {
-        objectFacetsCache.invalidateAll();
-        objectSummaryCache.invalidateAll();
+        __invalidateCaches();
 
         try {
             objectElasticSearchIndex.putModel(logger, Markers.PUT_OBJECT, new ObjectEntry(id, object));
@@ -133,8 +129,7 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
 
     @Override
     public void putObjects(final ImmutableList<ObjectEntry> objects) throws IoException {
-        objectFacetsCache.invalidateAll();
-        objectSummaryCache.invalidateAll();
+        __invalidateCaches();
 
         try {
             objectElasticSearchIndex.putModels(logger, Markers.PUT_OBJECTS, objects);
@@ -152,6 +147,11 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error putting object summaries");
         }
+    }
+
+    private void __invalidateCaches() {
+        objectFacetsCache.invalidateAll();
+        objectSummaryCache.invalidateAll();
     }
 
     private final ObjectElasticSearchIndex objectElasticSearchIndex;

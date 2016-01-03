@@ -2,8 +2,8 @@ from urlparse import urlparse
 import base64
 import costume.api.models.object.object
 import costume.api.services.io_exception  # @UnusedImport
+import costume.api.services.object.get_object_summaries_result
 import costume.api.services.object.no_such_object_exception  # @UnusedImport
-import costume.api.services.object.object_facets
 import costume.api.services.object.object_query_service
 import json
 import thryft.protocol.json_input_protocol
@@ -129,38 +129,6 @@ class ObjectQueryServiceJsonRpcClient(costume.api.services.object.object_query_s
         iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
         return costume.api.models.object.object.Object.read(iprot)
 
-    def _get_object_count(
-        self,
-        query,
-    ):
-        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
-        oprot.write_struct_begin()
-        if query is not None:
-            oprot.write_field_begin(name='query', type=12, id=None)
-            query.write(oprot)
-            oprot.write_field_end()
-        oprot.write_struct_end()
-
-        return_value = self.__request(method='get_object_count', params=oprot.value)
-        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
-        return iprot.read_u32()
-
-    def _get_object_facets(
-        self,
-        query,
-    ):
-        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
-        oprot.write_struct_begin()
-        if query is not None:
-            oprot.write_field_begin(name='query', type=12, id=None)
-            query.write(oprot)
-            oprot.write_field_end()
-        oprot.write_struct_end()
-
-        return_value = self.__request(method='get_object_facets', params=oprot.value)
-        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
-        return costume.api.services.object.object_facets.ObjectFacets.read(iprot)
-
     def _get_object_summaries(
         self,
         options,
@@ -180,5 +148,5 @@ class ObjectQueryServiceJsonRpcClient(costume.api.services.object.object_query_s
 
         return_value = self.__request(method='get_object_summaries', params=oprot.value)
         iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
-        return tuple([costume.api.models.object.object_summary_entry.ObjectSummaryEntry.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+        return costume.api.services.object.get_object_summaries_result.GetObjectSummariesResult.read(iprot)
 

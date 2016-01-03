@@ -142,13 +142,9 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             } catch (final ExecutionException e) {
                 if (e.getCause() instanceof InvalidModelException) {
                     throw (InvalidModelException) e.getCause();
-                } else if (e.getCause() instanceof Error) {
-                    throw (Error) e.getCause();
-                } else if (e.getCause() instanceof RuntimeException) {
-                    throw (RuntimeException) e.getCause();
-                } else {
-                    throw new IllegalStateException(e);
                 }
+                ServiceExceptionHelper.rethrowExecutionException(e);
+                throw new IllegalStateException(e);
             }
         }
 
@@ -389,13 +385,9 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         } catch (final ExecutionException e) {
             if (e.getCause() instanceof IoException) {
                 throw (IoException) e.getCause();
-            } else if (e.getCause() instanceof Error) {
-                throw (Error) e.getCause();
-            } else if (e.getCause() instanceof RuntimeException) {
-                throw (RuntimeException) e.getCause();
-            } else {
-                throw new IllegalStateException(e);
             }
+            ServiceExceptionHelper.rethrowExecutionException(e);
+            throw new IllegalStateException(e);
         }
     }
 

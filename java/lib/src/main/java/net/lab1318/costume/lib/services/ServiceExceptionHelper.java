@@ -1,6 +1,7 @@
 package net.lab1318.costume.lib.services;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.elasticsearch.ElasticsearchException;
@@ -16,6 +17,14 @@ public final class ServiceExceptionHelper {
             return causeMessage + ": " + message;
         } else {
             return message;
+        }
+    }
+
+    public static void rethrowExecutionException(final ExecutionException e) {
+        if (e.getCause() instanceof Error) {
+            throw (Error) e.getCause();
+        } else if (e.getCause() instanceof RuntimeException) {
+            throw (RuntimeException) e.getCause();
         }
     }
 
