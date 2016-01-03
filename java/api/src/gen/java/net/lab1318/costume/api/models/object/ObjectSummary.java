@@ -1571,6 +1571,11 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public static ObjectSummary readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
         switch (type) {
         case LIST:

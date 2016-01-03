@@ -186,6 +186,11 @@ public class LocationBean implements org.thryft.StructBean {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public void setNames(final java.util.List<net.lab1318.costume.gui.models.location.LocationNameBean> names) {
         this.names = names;
     }

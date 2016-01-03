@@ -152,6 +152,11 @@ public class TextrefBean implements org.thryft.StructBean {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public void setName(final net.lab1318.costume.gui.models.textref.TextrefNameBean name) {
         this.name = name;
     }

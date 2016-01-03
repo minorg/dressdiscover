@@ -154,6 +154,11 @@ public class ComponentBean implements org.thryft.StructBean {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public void setStructures(final net.lab1318.costume.gui.models.structure.StructureSetBean structures) {
         this.structures = structures;
     }

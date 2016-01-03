@@ -192,6 +192,11 @@ public class DateBean implements org.thryft.StructBean {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public void setEarliestDate(final net.lab1318.costume.gui.models.date.DateBoundBean earliestDate) {
         this.earliestDate = earliestDate;
     }

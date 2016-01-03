@@ -281,6 +281,11 @@ public interface ObjectQueryService {
                 return hashCode;
             }
 
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
             public static GetObjectByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 switch (type) {
                 case LIST:
@@ -627,6 +632,11 @@ public interface ObjectQueryService {
                 int hashCode = 17;
                 hashCode = 31 * hashCode + getReturnValue().hashCode();
                 return hashCode;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
             }
 
             public static GetObjectByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -994,6 +1004,11 @@ public interface ObjectQueryService {
                 return hashCode;
             }
 
+            @Override
+            public boolean isEmpty() {
+                return getQuery().isPresent();
+            }
+
             public static GetObjectCountRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 switch (type) {
                 case LIST:
@@ -1344,6 +1359,11 @@ public interface ObjectQueryService {
                 int hashCode = 17;
                 hashCode = 31 * hashCode + getReturnValue().hashCode();
                 return hashCode;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
             }
 
             public static GetObjectCountResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -1711,6 +1731,11 @@ public interface ObjectQueryService {
                 return hashCode;
             }
 
+            @Override
+            public boolean isEmpty() {
+                return getQuery().isPresent();
+            }
+
             public static GetObjectFacetsRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 switch (type) {
                 case LIST:
@@ -2061,6 +2086,11 @@ public interface ObjectQueryService {
                 int hashCode = 17;
                 hashCode = 31 * hashCode + getReturnValue().hashCode();
                 return hashCode;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
             }
 
             public static GetObjectFacetsResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -2477,6 +2507,11 @@ public interface ObjectQueryService {
                 return hashCode;
             }
 
+            @Override
+            public boolean isEmpty() {
+                return getOptions().isPresent() && getQuery().isPresent();
+            }
+
             public static GetObjectSummariesRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 switch (type) {
                 case LIST:
@@ -2889,6 +2924,11 @@ public interface ObjectQueryService {
                 int hashCode = 17;
                 hashCode = 31 * hashCode + getReturnValue().hashCode();
                 return hashCode;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
             }
 
             public static GetObjectSummariesResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {

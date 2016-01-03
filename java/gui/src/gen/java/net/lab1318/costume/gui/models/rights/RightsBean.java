@@ -178,6 +178,11 @@ public class RightsBean implements org.thryft.StructBean {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public void setNotes(final String notes) {
         this.notes = notes;
     }

@@ -290,6 +290,11 @@ public class Subject implements org.thryft.Struct, net.lab1318.costume.api.model
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public static Subject readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
         switch (type) {
         case LIST:

@@ -152,6 +152,11 @@ public class LocationRefidBean implements org.thryft.StructBean {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public void setText(final String text) {
         this.text = text;
     }

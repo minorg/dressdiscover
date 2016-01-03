@@ -152,6 +152,11 @@ public class ClosureBean implements org.thryft.StructBean {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public void setPlacement(final net.lab1318.costume.gui.models.closure.ClosurePlacementBean placement) {
         this.placement = placement;
     }

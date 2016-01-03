@@ -168,6 +168,11 @@ public class DescriptionBean implements org.thryft.StructBean {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public void setSource(final String source) {
         this.source = source;
     }

@@ -181,6 +181,11 @@ public class ImageBean implements org.thryft.StructBean {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return getFullSize() != null && getOriginal() != null && getSquareThumbnail() != null && getThumbnail() != null;
+    }
+
     public void setFullSize(final net.lab1318.costume.gui.models.image.ImageVersionBean fullSize) {
         this.fullSize = fullSize;
     }

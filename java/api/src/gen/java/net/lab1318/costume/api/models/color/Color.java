@@ -364,6 +364,11 @@ public class Color implements org.thryft.Struct, net.lab1318.costume.api.models.
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public static Color readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
         switch (type) {
         case LIST:

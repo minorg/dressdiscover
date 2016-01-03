@@ -149,6 +149,11 @@ public class ObjectEntryBean implements org.thryft.StructBean {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public void setId(final net.lab1318.costume.api.models.object.ObjectId id) {
         this.id = id;
     }

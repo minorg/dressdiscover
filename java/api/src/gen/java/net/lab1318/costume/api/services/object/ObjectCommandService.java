@@ -143,6 +143,11 @@ public interface ObjectCommandService {
                 return hashCode;
             }
 
+            @Override
+            public boolean isEmpty() {
+                return true;
+            }
+
             public static DeleteObjectsRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 switch (type) {
                 case LIST:
@@ -328,6 +333,11 @@ public interface ObjectCommandService {
             public int hashCode() {
                 int hashCode = 17;
                 return hashCode;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return true;
             }
 
             public static DeleteObjectsResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -656,6 +666,11 @@ public interface ObjectCommandService {
                 return hashCode;
             }
 
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
             public static DeleteObjectsByCollectionIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 switch (type) {
                 case LIST:
@@ -871,6 +886,11 @@ public interface ObjectCommandService {
             public int hashCode() {
                 int hashCode = 17;
                 return hashCode;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return true;
             }
 
             public static DeleteObjectsByCollectionIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -1199,6 +1219,11 @@ public interface ObjectCommandService {
                 return hashCode;
             }
 
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
             public static DeleteObjectsByInstitutionIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 switch (type) {
                 case LIST:
@@ -1414,6 +1439,11 @@ public interface ObjectCommandService {
             public int hashCode() {
                 int hashCode = 17;
                 return hashCode;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return true;
             }
 
             public static DeleteObjectsByInstitutionIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -1778,6 +1808,11 @@ public interface ObjectCommandService {
                 return hashCode;
             }
 
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
             public static PutObjectRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 switch (type) {
                 case LIST:
@@ -2012,6 +2047,11 @@ public interface ObjectCommandService {
             public int hashCode() {
                 int hashCode = 17;
                 return hashCode;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return true;
             }
 
             public static PutObjectResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -2363,6 +2403,11 @@ public interface ObjectCommandService {
                 return hashCode;
             }
 
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
             public static PutObjectsRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 switch (type) {
                 case LIST:
@@ -2608,6 +2653,11 @@ public interface ObjectCommandService {
             public int hashCode() {
                 int hashCode = 17;
                 return hashCode;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return true;
             }
 
             public static PutObjectsResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {

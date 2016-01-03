@@ -298,6 +298,11 @@ public class CollectionEntry implements org.thryft.Struct, org.thryft.waf.api.mo
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public static CollectionEntry readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
         switch (type) {
         case LIST:

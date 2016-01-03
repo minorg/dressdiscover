@@ -173,6 +173,11 @@ public class InstitutionBean implements org.thryft.StructBean {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public void setDataRights(final net.lab1318.costume.gui.models.rights.RightsSetBean dataRights) {
         this.dataRights = dataRights;
     }

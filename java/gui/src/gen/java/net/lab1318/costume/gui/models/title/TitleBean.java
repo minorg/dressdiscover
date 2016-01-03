@@ -166,6 +166,11 @@ public class TitleBean implements org.thryft.StructBean {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public void setPref(final Boolean pref) {
         this.pref = pref;
     }

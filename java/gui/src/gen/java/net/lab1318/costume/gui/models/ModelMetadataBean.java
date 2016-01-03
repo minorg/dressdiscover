@@ -149,6 +149,11 @@ public class ModelMetadataBean implements org.thryft.StructBean {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public void setCtime(final java.util.Date ctime) {
         this.ctime = ctime;
     }

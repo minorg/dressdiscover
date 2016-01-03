@@ -281,6 +281,11 @@ public interface CollectionQueryService {
                 return hashCode;
             }
 
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
             public static GetCollectionByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 switch (type) {
                 case LIST:
@@ -629,6 +634,11 @@ public interface CollectionQueryService {
                 return hashCode;
             }
 
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
             public static GetCollectionByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 switch (type) {
                 case LIST:
@@ -836,6 +846,11 @@ public interface CollectionQueryService {
             public int hashCode() {
                 int hashCode = 17;
                 return hashCode;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return true;
             }
 
             public static GetCollectionsRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -1185,6 +1200,11 @@ public interface CollectionQueryService {
                 int hashCode = 17;
                 hashCode = 31 * hashCode + getReturnValue().hashCode();
                 return hashCode;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
             }
 
             public static GetCollectionsResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -1604,6 +1624,11 @@ public interface CollectionQueryService {
                 return hashCode;
             }
 
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
             public static GetCollectionsByIdsRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 switch (type) {
                 case LIST:
@@ -2021,6 +2046,11 @@ public interface CollectionQueryService {
                 return hashCode;
             }
 
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
             public static GetCollectionsByIdsResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 switch (type) {
                 case LIST:
@@ -2407,6 +2437,11 @@ public interface CollectionQueryService {
                 return hashCode;
             }
 
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
             public static GetCollectionsByInstitutionIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 switch (type) {
                 case LIST:
@@ -2784,6 +2819,11 @@ public interface CollectionQueryService {
                 int hashCode = 17;
                 hashCode = 31 * hashCode + getReturnValue().hashCode();
                 return hashCode;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
             }
 
             public static GetCollectionsByInstitutionIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {

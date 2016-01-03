@@ -182,6 +182,11 @@ public class DateBoundBean implements org.thryft.StructBean {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public void setCirca(final Boolean circa) {
         this.circa = circa;
     }

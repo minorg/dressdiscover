@@ -535,6 +535,11 @@ public class ObjectBean implements org.thryft.StructBean {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public void setAgents(final net.lab1318.costume.gui.models.agent.AgentSetBean agents) {
         this.agents = agents;
     }

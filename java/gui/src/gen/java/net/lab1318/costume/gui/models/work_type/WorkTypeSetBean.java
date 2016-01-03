@@ -177,6 +177,11 @@ public class WorkTypeSetBean implements org.thryft.StructBean {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public void setDisplay(final String display) {
         this.display = display;
     }

@@ -529,6 +529,11 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
 
     public static CostumeProperties load() {
         return load(com.google.common.base.Optional.<java.io.File> absent());

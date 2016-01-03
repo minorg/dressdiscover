@@ -163,6 +163,11 @@ public class InscriptionTextBean implements org.thryft.StructBean {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public void setLang(final String lang) {
         this.lang = lang;
     }

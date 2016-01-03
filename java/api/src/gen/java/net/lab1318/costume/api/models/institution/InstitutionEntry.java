@@ -298,6 +298,11 @@ public class InstitutionEntry implements org.thryft.Struct, org.thryft.waf.api.m
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public static InstitutionEntry readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
         switch (type) {
         case LIST:

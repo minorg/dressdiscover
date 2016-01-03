@@ -134,6 +134,11 @@ public class NoSuchObjectException extends org.thryft.Exception {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return true;
+    }
+
     public static NoSuchObjectException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
         switch (type) {
         case LIST:

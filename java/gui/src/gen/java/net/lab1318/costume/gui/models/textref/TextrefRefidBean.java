@@ -166,6 +166,11 @@ public class TextrefRefidBean implements org.thryft.StructBean {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public void setHref(final org.thryft.native_.Url href) {
         this.href = href;
     }

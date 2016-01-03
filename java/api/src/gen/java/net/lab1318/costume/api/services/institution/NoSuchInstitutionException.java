@@ -295,6 +295,11 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return getId().isPresent();
+    }
+
     public static NoSuchInstitutionException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
         switch (type) {
         case LIST:

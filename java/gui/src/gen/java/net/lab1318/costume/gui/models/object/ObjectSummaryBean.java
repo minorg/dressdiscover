@@ -392,6 +392,11 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         return hashCode;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public void setAgentNameTexts(final java.util.List<String> agentNameTexts) {
         this.agentNameTexts = agentNameTexts;
     }
