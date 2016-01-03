@@ -16,5 +16,7 @@ struct CostumeProperties {
 
 	string home_directory_path;
 
+	u32.u32 object_facets_cache_size = 1024;
+
 	optional string logback_xml_file_path;
 }

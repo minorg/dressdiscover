@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.elasticsearch.action.search.SearchRequestBuilder;
@@ -283,8 +285,10 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
     @Inject
     public ElasticSearchObjectQueryService(final ObjectElasticSearchIndex objectElasticSearchIndex,
+            final ObjectFacetsCache objectFacetsCache,
             final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex) {
         this.objectElasticSearchIndex = checkNotNull(objectElasticSearchIndex);
+        this.objectFacetsCache = checkNotNull(objectFacetsCache);
         this.objectSummaryElasticSearchIndex = checkNotNull(objectSummaryElasticSearchIndex);
         emptyObjectFacets = ObjectFacets.builder().setAgentNameTexts(ImmutableMap.of()).setCategories(ImmutableMap.of())
                 .setCollections(ImmutableMap.of()).setColorTexts(ImmutableMap.of())
@@ -331,30 +335,47 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
     @Override
     public ObjectFacets getObjectFacets(final Optional<ObjectQuery> query) throws IoException {
-        __checkIndexConsistency(Markers.GET_OBJECT_FACETS);
-
         if (__isExcludeAllQuery(query)) {
             return emptyObjectFacets;
         }
 
-        final SearchRequestBuilder searchRequestBuilder = objectSummaryElasticSearchIndex.prepareSearchModels()
-                .setQuery(__translateObjectSummaryQuery(query)).setFrom(0).setSize(0);
-        for (final AbstractAggregationBuilder aggregation : objectFacetAggregations) {
-            searchRequestBuilder.addAggregation(aggregation);
-        }
-
-        SearchResponse searchResponse;
         try {
-            searchResponse = objectSummaryElasticSearchIndex.getModels(logger, Markers.GET_OBJECT_FACETS,
-                    searchRequestBuilder);
-        } catch (final IndexNotFoundException e) {
-            logger.warn(Markers.GET_OBJECT_FACETS, "objects index does not exist, returning empty results");
-            return emptyObjectFacets;
-        } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting objects");
-        }
+            return objectFacetsCache.get(query, new Callable<ObjectFacets>() {
+                @Override
+                public ObjectFacets call() throws Exception {
+                    __checkIndexConsistency(Markers.GET_OBJECT_FACETS);
 
-        return objectFacetAggregations.getObjectFacets(searchResponse.getAggregations());
+                    final SearchRequestBuilder searchRequestBuilder = objectSummaryElasticSearchIndex
+                            .prepareSearchModels().setQuery(__translateObjectSummaryQuery(query)).setFrom(0).setSize(0);
+                    for (final AbstractAggregationBuilder aggregation : objectFacetAggregations) {
+                        searchRequestBuilder.addAggregation(aggregation);
+                    }
+
+                    SearchResponse searchResponse;
+                    try {
+                        searchResponse = objectSummaryElasticSearchIndex.getModels(logger, Markers.GET_OBJECT_FACETS,
+                                searchRequestBuilder);
+                    } catch (final IndexNotFoundException e) {
+                        logger.warn(Markers.GET_OBJECT_FACETS, "objects index does not exist, returning empty results");
+                        return emptyObjectFacets;
+                    } catch (final IOException e) {
+                        throw ServiceExceptionHelper.wrapException(e, "error getting objects");
+                    }
+
+                    return objectFacetAggregations.getObjectFacets(searchResponse.getAggregations());
+                }
+            });
+        } catch (final ExecutionException e) {
+            if (e.getCause() instanceof IoException) {
+                throw (IoException) e.getCause();
+            } else if (e.getCause() instanceof Error) {
+                throw (Error) e.getCause();
+            } else if (e.getCause() instanceof RuntimeException) {
+                throw (RuntimeException) e.getCause();
+            } else {
+                throw new IllegalStateException(e);
+            }
+        }
     }
 
     @Override
@@ -621,6 +642,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     private final AtomicBoolean checkedIndexConsistency = new AtomicBoolean(false);
     private final ObjectFacets emptyObjectFacets;
     private final ObjectFacetAggregations objectFacetAggregations = new ObjectFacetAggregations();
+    private final ObjectFacetsCache objectFacetsCache;
     private final ObjectElasticSearchIndex objectElasticSearchIndex;
     private final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex;
     private final static Logger logger = LoggerFactory.getLogger(ElasticSearchObjectQueryService.class);
