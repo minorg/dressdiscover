@@ -544,7 +544,7 @@ public class ObjectQuery implements org.thryft.Struct {
 
     @Override
     public boolean isEmpty() {
-        return getCollectionId().isPresent() && getFacetFilters().isPresent() && getInstitutionId().isPresent() && getMoreLikeObjectId().isPresent() && getRelationText().isPresent() && getQueryString().isPresent();
+        return !getCollectionId().isPresent() || !getFacetFilters().isPresent() || !getInstitutionId().isPresent() || !getMoreLikeObjectId().isPresent() || !getRelationText().isPresent() || !getQueryString().isPresent();
     }
 
     public static ObjectQuery readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {

@@ -428,7 +428,7 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
 
     @Override
     public boolean isEmpty() {
-        return getFrom().isPresent() && getSize().isPresent() && getSorts().isPresent();
+        return !getFrom().isPresent() || !getSize().isPresent() || !getSorts().isPresent();
     }
 
     public static GetObjectSummariesOptions readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {

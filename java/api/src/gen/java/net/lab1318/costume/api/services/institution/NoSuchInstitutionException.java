@@ -297,7 +297,7 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
 
     @Override
     public boolean isEmpty() {
-        return getId().isPresent();
+        return !getId().isPresent();
     }
 
     public static NoSuchInstitutionException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
