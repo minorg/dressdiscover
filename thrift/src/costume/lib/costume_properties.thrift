@@ -18,5 +18,7 @@ struct CostumeProperties {
 
 	u32.u32 object_facets_cache_size = 1024;
 
+	u32.u32 object_summary_cache_size = 1024;
+
 	optional string logback_xml_file_path;
 }

@@ -20,7 +20,6 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.MoreLikeThisQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.aggregations.AbstractAggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.Aggregations;
@@ -107,11 +106,8 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
     public final static class ObjectSummaryElasticSearchModelFactory
             implements ElasticSearchIndex.ModelFactory<ObjectSummaryEntry> {
-        public static ObjectSummaryElasticSearchModelFactory getInstance() {
-            return instance;
-        }
-
-        private ObjectSummaryElasticSearchModelFactory() {
+        private ObjectSummaryElasticSearchModelFactory(final ObjectSummaryCache objectSummaryCache) {
+            this.objectSummaryCache = checkNotNull(objectSummaryCache);
         }
 
         @Override
@@ -123,16 +119,40 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         @Override
         public ObjectSummaryEntry createModelEntryFromSource(final String id, final BytesReference document)
                 throws InvalidModelException {
+            ObjectId objectId;
             try {
-                return new ObjectSummaryEntry(ObjectId.parse(id),
-                        ObjectSummary.readAsStruct(new ElasticSearchInputProtocol(document)));
-            } catch (final InputProtocolException | InvalidObjectIdException e) {
+                objectId = ObjectId.parse(id);
+            } catch (final InvalidObjectIdException e) {
                 throw new InvalidModelException(id, ServiceExceptionHelper.combineMessages(e,
                         "error deserializing model document from ElasticSearch"), e);
             }
+            try {
+                return objectSummaryCache.get(objectId, new Callable<ObjectSummaryEntry>() {
+                    @Override
+                    public ObjectSummaryEntry call() throws Exception {
+                        try {
+                            return new ObjectSummaryEntry(objectId,
+                                    ObjectSummary.readAsStruct(new ElasticSearchInputProtocol(document)));
+                        } catch (final InputProtocolException e) {
+                            throw new InvalidModelException(id, ServiceExceptionHelper.combineMessages(e,
+                                    "error deserializing model document from ElasticSearch"), e);
+                        }
+                    }
+                });
+            } catch (final ExecutionException e) {
+                if (e.getCause() instanceof InvalidModelException) {
+                    throw (InvalidModelException) e.getCause();
+                } else if (e.getCause() instanceof Error) {
+                    throw (Error) e.getCause();
+                } else if (e.getCause() instanceof RuntimeException) {
+                    throw (RuntimeException) e.getCause();
+                } else {
+                    throw new IllegalStateException(e);
+                }
+            }
         }
 
-        private final static ObjectSummaryElasticSearchModelFactory instance = new ObjectSummaryElasticSearchModelFactory();
+        private final ObjectSummaryCache objectSummaryCache;
     }
 
     private final static class ObjectFacetAggregations extends ForwardingList<AbstractAggregationBuilder> {
@@ -285,11 +305,12 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
     @Inject
     public ElasticSearchObjectQueryService(final ObjectElasticSearchIndex objectElasticSearchIndex,
-            final ObjectFacetsCache objectFacetsCache,
+            final ObjectFacetsCache objectFacetsCache, final ObjectSummaryCache objectSummaryCache,
             final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex) {
         this.objectElasticSearchIndex = checkNotNull(objectElasticSearchIndex);
         this.objectFacetsCache = checkNotNull(objectFacetsCache);
         this.objectSummaryElasticSearchIndex = checkNotNull(objectSummaryElasticSearchIndex);
+        objectSummaryElasticSearchModelFactory = new ObjectSummaryElasticSearchModelFactory(objectSummaryCache);
         emptyObjectFacets = ObjectFacets.builder().setAgentNameTexts(ImmutableMap.of()).setCategories(ImmutableMap.of())
                 .setCollections(ImmutableMap.of()).setColorTexts(ImmutableMap.of())
                 .setCulturalContextTexts(ImmutableMap.of()).setGenders(ImmutableMap.of())
@@ -407,28 +428,15 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             }
         }
 
-        SearchResponse searchResponse;
         try {
-            searchResponse = objectSummaryElasticSearchIndex.getModels(logger, Markers.GET_OBJECT_SUMMARIES,
-                    searchRequestBuilder);
+            return objectSummaryElasticSearchIndex.getModels(logger, Markers.GET_OBJECT_SUMMARIES,
+                    objectSummaryElasticSearchModelFactory, searchRequestBuilder);
         } catch (final IndexNotFoundException e) {
             logger.warn(Markers.GET_OBJECT_SUMMARIES, "object summaries index does not exist, returning empty results");
             return ImmutableList.of();
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error getting object summaries");
         }
-
-        final ImmutableList.Builder<ObjectSummaryEntry> resultBuilder = ImmutableList.builder();
-        for (final SearchHit searchHit : searchResponse.getHits().getHits()) {
-            try {
-                resultBuilder.add(ObjectSummaryElasticSearchModelFactory.getInstance()
-                        .createModelEntryFromSource(searchHit.getId(), searchHit.getSourceRef()));
-            } catch (final InvalidModelException e) {
-                logger.warn(Markers.GET_OBJECT_SUMMARIES, "invalid object summary from index {}", e.getId());
-                continue;
-            }
-        }
-        return resultBuilder.build();
     }
 
     private void __checkIndexConsistency(final Marker logMarker) throws IoException {
@@ -645,5 +653,6 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     private final ObjectFacetsCache objectFacetsCache;
     private final ObjectElasticSearchIndex objectElasticSearchIndex;
     private final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex;
+    private final ObjectSummaryElasticSearchModelFactory objectSummaryElasticSearchModelFactory;
     private final static Logger logger = LoggerFactory.getLogger(ElasticSearchObjectQueryService.class);
 }

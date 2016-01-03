@@ -14,7 +14,7 @@ import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.lib.CostumeProperties;
 
 @Singleton
-public class ObjectFacetsCache {
+class ObjectFacetsCache {
     @Inject
     public ObjectFacetsCache(final CostumeProperties properties) {
         cache = CacheBuilder.newBuilder().maximumSize(properties.getObjectFacetsCacheSize().intValue()).build();
