@@ -225,29 +225,38 @@ class ObjectFacetPicker<KeyT> extends CustomComponent {
     }
 
     private void __refresh() {
-        final ObjectFacetFilters.Builder filters = ObjectFacetFilters.builder(objectQuery.getFacetFilters())
+        final ObjectFacetFilters.Builder filtersBuilder = ObjectFacetFilters.builder(objectQuery.getFacetFilters())
                 .unsetExcludeAll();
 
         if (excludeAll) {
-            filters.setExcludeAll(true);
+            filtersBuilder.setExcludeAll(true);
         } else {
-            filters.unsetExcludeAll();
+            filtersBuilder.unsetExcludeAll();
         }
 
         if (!excludeFacetKeys.isEmpty() && !excludeAll) {
-            filters.set("exclude_" + field.getThriftName(), ImmutableSet.copyOf(excludeFacetKeys));
+            filtersBuilder.set("exclude_" + field.getThriftName(), ImmutableSet.copyOf(excludeFacetKeys));
         } else {
-            filters.unset("exclude_" + field.getThriftName());
+            filtersBuilder.unset("exclude_" + field.getThriftName());
         }
 
         if (!includeFacetKeys.isEmpty() && !excludeAll) {
-            filters.set("include_" + field.getThriftName(), ImmutableSet.copyOf(includeFacetKeys));
+            filtersBuilder.set("include_" + field.getThriftName(), ImmutableSet.copyOf(includeFacetKeys));
         } else {
-            filters.unset("include_" + field.getThriftName());
+            filtersBuilder.unset("include_" + field.getThriftName());
         }
 
-        eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
-                .setQuery(ObjectQuery.builder(objectQuery).setFacetFilters(filters.build()).build()).build());
+        final ObjectFacetFilters filters = filtersBuilder.build();
+
+        final ObjectQuery.Builder queryBuilder = ObjectQuery.builder(objectQuery);
+        if (!filters.isEmpty()) {
+            queryBuilder.setFacetFilters(filters);
+        } else {
+            queryBuilder.unsetFacetFilters();
+        }
+
+        eventBus.post(
+                ObjectQueryService.Messages.GetObjectSummariesRequest.builder().setQuery(queryBuilder.build()).build());
     }
 
     // Immutable view state
