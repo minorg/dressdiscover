@@ -316,13 +316,25 @@ public class InscriptionText implements org.thryft.Struct {
     }
 
     @Override
-    public java.lang.Object get(final String fieldName) {
-        switch (fieldName) {
-        case "type": return getType();
-        case "text": return getText();
-        case "lang": return getLang();
+    public java.lang.Object get(final String fieldThriftName) {
+        return get(FieldMetadata.valueOfThriftName(fieldThriftName));
+    }
+
+    @Override
+    public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+        if (!(fieldMetadata instanceof FieldMetadata)) {
+            throw new IllegalArgumentException();
+        }
+        return get((FieldMetadata)fieldMetadata);
+    }
+
+    public java.lang.Object get(final FieldMetadata fieldMetadata) {
+        switch (fieldMetadata) {
+        case TYPE: return getType();
+        case TEXT: return getText();
+        case LANG: return getLang();
         default:
-            throw new IllegalArgumentException(fieldName);
+            throw new IllegalStateException();
         }
     }
 

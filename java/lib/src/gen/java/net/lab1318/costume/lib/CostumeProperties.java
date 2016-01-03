@@ -463,16 +463,28 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
     }
 
     @Override
-    public java.lang.Object get(final String fieldName) {
-        switch (fieldName) {
-        case "api_url": return getApiUrl();
-        case "environment": return getEnvironment();
-        case "elastic_search_host": return getElasticSearchHost();
-        case "elastic_search_port": return getElasticSearchPort();
-        case "home_directory_path": return getHomeDirectoryPath();
-        case "logback_xml_file_path": return getLogbackXmlFilePath();
+    public java.lang.Object get(final String fieldThriftName) {
+        return get(FieldMetadata.valueOfThriftName(fieldThriftName));
+    }
+
+    @Override
+    public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+        if (!(fieldMetadata instanceof FieldMetadata)) {
+            throw new IllegalArgumentException();
+        }
+        return get((FieldMetadata)fieldMetadata);
+    }
+
+    public java.lang.Object get(final FieldMetadata fieldMetadata) {
+        switch (fieldMetadata) {
+        case API_URL: return getApiUrl();
+        case ENVIRONMENT: return getEnvironment();
+        case ELASTIC_SEARCH_HOST: return getElasticSearchHost();
+        case ELASTIC_SEARCH_PORT: return getElasticSearchPort();
+        case HOME_DIRECTORY_PATH: return getHomeDirectoryPath();
+        case LOGBACK_XML_FILE_PATH: return getLogbackXmlFilePath();
         default:
-            throw new IllegalArgumentException(fieldName);
+            throw new IllegalStateException();
         }
     }
 

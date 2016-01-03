@@ -118,13 +118,25 @@ public class VocabRefBean implements org.thryft.StructBean {
     }
 
     @Override
-    public java.lang.Object get(final String fieldName) {
-        switch (fieldName) {
-        case "vocab": return getVocab();
-        case "refid": return getRefid();
-        case "uri": return getUri();
+    public java.lang.Object get(final String fieldThriftName) {
+        return get(FieldMetadata.valueOfThriftName(fieldThriftName));
+    }
+
+    @Override
+    public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+        if (!(fieldMetadata instanceof FieldMetadata)) {
+            throw new IllegalArgumentException();
+        }
+        return get((FieldMetadata)fieldMetadata);
+    }
+
+    public java.lang.Object get(final FieldMetadata fieldMetadata) {
+        switch (fieldMetadata) {
+        case VOCAB: return getVocab();
+        case REFID: return getRefid();
+        case URI: return getUri();
         default:
-            throw new IllegalArgumentException(fieldName);
+            throw new IllegalStateException();
         }
     }
 

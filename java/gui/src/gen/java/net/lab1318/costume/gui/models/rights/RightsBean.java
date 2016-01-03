@@ -127,14 +127,26 @@ public class RightsBean implements org.thryft.StructBean {
     }
 
     @Override
-    public java.lang.Object get(final String fieldName) {
-        switch (fieldName) {
-        case "rights_holder": return getRightsHolder();
-        case "text": return getText();
-        case "type": return getType();
-        case "notes": return getNotes();
+    public java.lang.Object get(final String fieldThriftName) {
+        return get(FieldMetadata.valueOfThriftName(fieldThriftName));
+    }
+
+    @Override
+    public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+        if (!(fieldMetadata instanceof FieldMetadata)) {
+            throw new IllegalArgumentException();
+        }
+        return get((FieldMetadata)fieldMetadata);
+    }
+
+    public java.lang.Object get(final FieldMetadata fieldMetadata) {
+        switch (fieldMetadata) {
+        case RIGHTS_HOLDER: return getRightsHolder();
+        case TEXT: return getText();
+        case TYPE: return getType();
+        case NOTES: return getNotes();
         default:
-            throw new IllegalArgumentException(fieldName);
+            throw new IllegalStateException();
         }
     }
 

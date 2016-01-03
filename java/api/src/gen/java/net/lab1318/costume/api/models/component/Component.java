@@ -285,12 +285,24 @@ public class Component implements org.thryft.Struct, net.lab1318.costume.api.mod
     }
 
     @Override
-    public java.lang.Object get(final String fieldName) {
-        switch (fieldName) {
-        case "term": return getTerm();
-        case "structures": return getStructures();
+    public java.lang.Object get(final String fieldThriftName) {
+        return get(FieldMetadata.valueOfThriftName(fieldThriftName));
+    }
+
+    @Override
+    public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+        if (!(fieldMetadata instanceof FieldMetadata)) {
+            throw new IllegalArgumentException();
+        }
+        return get((FieldMetadata)fieldMetadata);
+    }
+
+    public java.lang.Object get(final FieldMetadata fieldMetadata) {
+        switch (fieldMetadata) {
+        case TERM: return getTerm();
+        case STRUCTURES: return getStructures();
         default:
-            throw new IllegalArgumentException(fieldName);
+            throw new IllegalStateException();
         }
     }
 

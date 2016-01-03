@@ -128,11 +128,13 @@ public interface ObjectCommandService {
             }
 
             @Override
-            public java.lang.Object get(final String fieldName) {
-                switch (fieldName) {
-                default:
-                    throw new IllegalArgumentException(fieldName);
-                }
+            public java.lang.Object get(final String fieldThriftName) {
+                throw new IllegalArgumentException(fieldThriftName);
+            }
+
+            @Override
+            public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+                throw new IllegalArgumentException();
             }
 
             @Override
@@ -313,11 +315,13 @@ public interface ObjectCommandService {
             }
 
             @Override
-            public java.lang.Object get(final String fieldName) {
-                switch (fieldName) {
-                default:
-                    throw new IllegalArgumentException(fieldName);
-                }
+            public java.lang.Object get(final String fieldThriftName) {
+                throw new IllegalArgumentException(fieldThriftName);
+            }
+
+            @Override
+            public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+                throw new IllegalArgumentException();
             }
 
             @Override
@@ -621,11 +625,23 @@ public interface ObjectCommandService {
             }
 
             @Override
-            public java.lang.Object get(final String fieldName) {
-                switch (fieldName) {
-                case "collection_id": return getCollectionId();
+            public java.lang.Object get(final String fieldThriftName) {
+                return get(FieldMetadata.valueOfThriftName(fieldThriftName));
+            }
+
+            @Override
+            public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+                if (!(fieldMetadata instanceof FieldMetadata)) {
+                    throw new IllegalArgumentException();
+                }
+                return get((FieldMetadata)fieldMetadata);
+            }
+
+            public java.lang.Object get(final FieldMetadata fieldMetadata) {
+                switch (fieldMetadata) {
+                case COLLECTION_ID: return getCollectionId();
                 default:
-                    throw new IllegalArgumentException(fieldName);
+                    throw new IllegalStateException();
                 }
             }
 
@@ -842,11 +858,13 @@ public interface ObjectCommandService {
             }
 
             @Override
-            public java.lang.Object get(final String fieldName) {
-                switch (fieldName) {
-                default:
-                    throw new IllegalArgumentException(fieldName);
-                }
+            public java.lang.Object get(final String fieldThriftName) {
+                throw new IllegalArgumentException(fieldThriftName);
+            }
+
+            @Override
+            public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+                throw new IllegalArgumentException();
             }
 
             @Override
@@ -1150,11 +1168,23 @@ public interface ObjectCommandService {
             }
 
             @Override
-            public java.lang.Object get(final String fieldName) {
-                switch (fieldName) {
-                case "institution_id": return getInstitutionId();
+            public java.lang.Object get(final String fieldThriftName) {
+                return get(FieldMetadata.valueOfThriftName(fieldThriftName));
+            }
+
+            @Override
+            public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+                if (!(fieldMetadata instanceof FieldMetadata)) {
+                    throw new IllegalArgumentException();
+                }
+                return get((FieldMetadata)fieldMetadata);
+            }
+
+            public java.lang.Object get(final FieldMetadata fieldMetadata) {
+                switch (fieldMetadata) {
+                case INSTITUTION_ID: return getInstitutionId();
                 default:
-                    throw new IllegalArgumentException(fieldName);
+                    throw new IllegalStateException();
                 }
             }
 
@@ -1371,11 +1401,13 @@ public interface ObjectCommandService {
             }
 
             @Override
-            public java.lang.Object get(final String fieldName) {
-                switch (fieldName) {
-                default:
-                    throw new IllegalArgumentException(fieldName);
-                }
+            public java.lang.Object get(final String fieldThriftName) {
+                throw new IllegalArgumentException(fieldThriftName);
+            }
+
+            @Override
+            public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+                throw new IllegalArgumentException();
             }
 
             @Override
@@ -1709,12 +1741,24 @@ public interface ObjectCommandService {
             }
 
             @Override
-            public java.lang.Object get(final String fieldName) {
-                switch (fieldName) {
-                case "id": return getId();
-                case "object": return getObject();
+            public java.lang.Object get(final String fieldThriftName) {
+                return get(FieldMetadata.valueOfThriftName(fieldThriftName));
+            }
+
+            @Override
+            public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+                if (!(fieldMetadata instanceof FieldMetadata)) {
+                    throw new IllegalArgumentException();
+                }
+                return get((FieldMetadata)fieldMetadata);
+            }
+
+            public java.lang.Object get(final FieldMetadata fieldMetadata) {
+                switch (fieldMetadata) {
+                case ID: return getId();
+                case OBJECT: return getObject();
                 default:
-                    throw new IllegalArgumentException(fieldName);
+                    throw new IllegalStateException();
                 }
             }
 
@@ -1955,11 +1999,13 @@ public interface ObjectCommandService {
             }
 
             @Override
-            public java.lang.Object get(final String fieldName) {
-                switch (fieldName) {
-                default:
-                    throw new IllegalArgumentException(fieldName);
-                }
+            public java.lang.Object get(final String fieldThriftName) {
+                throw new IllegalArgumentException(fieldThriftName);
+            }
+
+            @Override
+            public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+                throw new IllegalArgumentException();
             }
 
             @Override
@@ -2286,11 +2332,23 @@ public interface ObjectCommandService {
             }
 
             @Override
-            public java.lang.Object get(final String fieldName) {
-                switch (fieldName) {
-                case "objects": return getObjects();
+            public java.lang.Object get(final String fieldThriftName) {
+                return get(FieldMetadata.valueOfThriftName(fieldThriftName));
+            }
+
+            @Override
+            public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+                if (!(fieldMetadata instanceof FieldMetadata)) {
+                    throw new IllegalArgumentException();
+                }
+                return get((FieldMetadata)fieldMetadata);
+            }
+
+            public java.lang.Object get(final FieldMetadata fieldMetadata) {
+                switch (fieldMetadata) {
+                case OBJECTS: return getObjects();
                 default:
-                    throw new IllegalArgumentException(fieldName);
+                    throw new IllegalStateException();
                 }
             }
 
@@ -2537,11 +2595,13 @@ public interface ObjectCommandService {
             }
 
             @Override
-            public java.lang.Object get(final String fieldName) {
-                switch (fieldName) {
-                default:
-                    throw new IllegalArgumentException(fieldName);
-                }
+            public java.lang.Object get(final String fieldThriftName) {
+                throw new IllegalArgumentException(fieldThriftName);
+            }
+
+            @Override
+            public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+                throw new IllegalArgumentException();
             }
 
             @Override

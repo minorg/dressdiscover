@@ -124,14 +124,26 @@ public class ImageBean implements org.thryft.StructBean {
     }
 
     @Override
-    public java.lang.Object get(final String fieldName) {
-        switch (fieldName) {
-        case "full_size": return getFullSize();
-        case "original": return getOriginal();
-        case "square_thumbnail": return getSquareThumbnail();
-        case "thumbnail": return getThumbnail();
+    public java.lang.Object get(final String fieldThriftName) {
+        return get(FieldMetadata.valueOfThriftName(fieldThriftName));
+    }
+
+    @Override
+    public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+        if (!(fieldMetadata instanceof FieldMetadata)) {
+            throw new IllegalArgumentException();
+        }
+        return get((FieldMetadata)fieldMetadata);
+    }
+
+    public java.lang.Object get(final FieldMetadata fieldMetadata) {
+        switch (fieldMetadata) {
+        case FULL_SIZE: return getFullSize();
+        case ORIGINAL: return getOriginal();
+        case SQUARE_THUMBNAIL: return getSquareThumbnail();
+        case THUMBNAIL: return getThumbnail();
         default:
-            throw new IllegalArgumentException(fieldName);
+            throw new IllegalStateException();
         }
     }
 

@@ -2143,35 +2143,47 @@ public class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     @Override
-    public java.lang.Object get(final String fieldName) {
-        switch (fieldName) {
-        case "exclude_agent_name_texts": return getExcludeAgentNameTexts();
-        case "exclude_all": return getExcludeAll();
-        case "exclude_categories": return getExcludeCategories();
-        case "exclude_collections": return getExcludeCollections();
-        case "exclude_color_texts": return getExcludeColorTexts();
-        case "exclude_cultural_context_texts": return getExcludeCulturalContextTexts();
-        case "exclude_genders": return getExcludeGenders();
-        case "exclude_institutions": return getExcludeInstitutions();
-        case "exclude_location_name_texts": return getExcludeLocationNameTexts();
-        case "exclude_material_texts": return getExcludeMaterialTexts();
-        case "exclude_subject_term_texts": return getExcludeSubjectTermTexts();
-        case "exclude_technique_texts": return getExcludeTechniqueTexts();
-        case "exclude_work_type_texts": return getExcludeWorkTypeTexts();
-        case "include_agent_name_texts": return getIncludeAgentNameTexts();
-        case "include_categories": return getIncludeCategories();
-        case "include_collections": return getIncludeCollections();
-        case "include_color_texts": return getIncludeColorTexts();
-        case "include_cultural_context_texts": return getIncludeCulturalContextTexts();
-        case "include_genders": return getIncludeGenders();
-        case "include_institutions": return getIncludeInstitutions();
-        case "include_location_name_texts": return getIncludeLocationNameTexts();
-        case "include_material_texts": return getIncludeMaterialTexts();
-        case "include_subject_term_texts": return getIncludeSubjectTermTexts();
-        case "include_technique_texts": return getIncludeTechniqueTexts();
-        case "include_work_type_texts": return getIncludeWorkTypeTexts();
+    public java.lang.Object get(final String fieldThriftName) {
+        return get(FieldMetadata.valueOfThriftName(fieldThriftName));
+    }
+
+    @Override
+    public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+        if (!(fieldMetadata instanceof FieldMetadata)) {
+            throw new IllegalArgumentException();
+        }
+        return get((FieldMetadata)fieldMetadata);
+    }
+
+    public java.lang.Object get(final FieldMetadata fieldMetadata) {
+        switch (fieldMetadata) {
+        case EXCLUDE_AGENT_NAME_TEXTS: return getExcludeAgentNameTexts();
+        case EXCLUDE_ALL: return getExcludeAll();
+        case EXCLUDE_CATEGORIES: return getExcludeCategories();
+        case EXCLUDE_COLLECTIONS: return getExcludeCollections();
+        case EXCLUDE_COLOR_TEXTS: return getExcludeColorTexts();
+        case EXCLUDE_CULTURAL_CONTEXT_TEXTS: return getExcludeCulturalContextTexts();
+        case EXCLUDE_GENDERS: return getExcludeGenders();
+        case EXCLUDE_INSTITUTIONS: return getExcludeInstitutions();
+        case EXCLUDE_LOCATION_NAME_TEXTS: return getExcludeLocationNameTexts();
+        case EXCLUDE_MATERIAL_TEXTS: return getExcludeMaterialTexts();
+        case EXCLUDE_SUBJECT_TERM_TEXTS: return getExcludeSubjectTermTexts();
+        case EXCLUDE_TECHNIQUE_TEXTS: return getExcludeTechniqueTexts();
+        case EXCLUDE_WORK_TYPE_TEXTS: return getExcludeWorkTypeTexts();
+        case INCLUDE_AGENT_NAME_TEXTS: return getIncludeAgentNameTexts();
+        case INCLUDE_CATEGORIES: return getIncludeCategories();
+        case INCLUDE_COLLECTIONS: return getIncludeCollections();
+        case INCLUDE_COLOR_TEXTS: return getIncludeColorTexts();
+        case INCLUDE_CULTURAL_CONTEXT_TEXTS: return getIncludeCulturalContextTexts();
+        case INCLUDE_GENDERS: return getIncludeGenders();
+        case INCLUDE_INSTITUTIONS: return getIncludeInstitutions();
+        case INCLUDE_LOCATION_NAME_TEXTS: return getIncludeLocationNameTexts();
+        case INCLUDE_MATERIAL_TEXTS: return getIncludeMaterialTexts();
+        case INCLUDE_SUBJECT_TERM_TEXTS: return getIncludeSubjectTermTexts();
+        case INCLUDE_TECHNIQUE_TEXTS: return getIncludeTechniqueTexts();
+        case INCLUDE_WORK_TYPE_TEXTS: return getIncludeWorkTypeTexts();
         default:
-            throw new IllegalArgumentException(fieldName);
+            throw new IllegalStateException();
         }
     }
 

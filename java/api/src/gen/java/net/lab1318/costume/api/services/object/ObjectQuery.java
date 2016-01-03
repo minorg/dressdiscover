@@ -469,16 +469,28 @@ public class ObjectQuery implements org.thryft.Struct {
     }
 
     @Override
-    public java.lang.Object get(final String fieldName) {
-        switch (fieldName) {
-        case "collection_id": return getCollectionId();
-        case "facet_filters": return getFacetFilters();
-        case "institution_id": return getInstitutionId();
-        case "more_like_object_id": return getMoreLikeObjectId();
-        case "relation_text": return getRelationText();
-        case "query_string": return getQueryString();
+    public java.lang.Object get(final String fieldThriftName) {
+        return get(FieldMetadata.valueOfThriftName(fieldThriftName));
+    }
+
+    @Override
+    public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+        if (!(fieldMetadata instanceof FieldMetadata)) {
+            throw new IllegalArgumentException();
+        }
+        return get((FieldMetadata)fieldMetadata);
+    }
+
+    public java.lang.Object get(final FieldMetadata fieldMetadata) {
+        switch (fieldMetadata) {
+        case COLLECTION_ID: return getCollectionId();
+        case FACET_FILTERS: return getFacetFilters();
+        case INSTITUTION_ID: return getInstitutionId();
+        case MORE_LIKE_OBJECT_ID: return getMoreLikeObjectId();
+        case RELATION_TEXT: return getRelationText();
+        case QUERY_STRING: return getQueryString();
         default:
-            throw new IllegalArgumentException(fieldName);
+            throw new IllegalStateException();
         }
     }
 

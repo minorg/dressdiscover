@@ -109,11 +109,13 @@ public class NoSuchObjectException extends org.thryft.Exception {
     }
 
     @Override
-    public java.lang.Object get(final String fieldName) {
-        switch (fieldName) {
-        default:
-            throw new IllegalArgumentException(fieldName);
-        }
+    public java.lang.Object get(final String fieldThriftName) {
+        throw new IllegalArgumentException(fieldThriftName);
+    }
+
+    @Override
+    public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+        throw new IllegalArgumentException();
     }
 
     @Override

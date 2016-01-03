@@ -383,14 +383,26 @@ public class DateBound implements org.thryft.Struct {
     }
 
     @Override
-    public java.lang.Object get(final String fieldName) {
-        switch (fieldName) {
-        case "text": return getText();
-        case "circa": return getCirca();
-        case "parsed_date_time": return getParsedDateTime();
-        case "parsed_date_time_granularity": return getParsedDateTimeGranularity();
+    public java.lang.Object get(final String fieldThriftName) {
+        return get(FieldMetadata.valueOfThriftName(fieldThriftName));
+    }
+
+    @Override
+    public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+        if (!(fieldMetadata instanceof FieldMetadata)) {
+            throw new IllegalArgumentException();
+        }
+        return get((FieldMetadata)fieldMetadata);
+    }
+
+    public java.lang.Object get(final FieldMetadata fieldMetadata) {
+        switch (fieldMetadata) {
+        case TEXT: return getText();
+        case CIRCA: return getCirca();
+        case PARSED_DATE_TIME: return getParsedDateTime();
+        case PARSED_DATE_TIME_GRANULARITY: return getParsedDateTimeGranularity();
         default:
-            throw new IllegalArgumentException(fieldName);
+            throw new IllegalStateException();
         }
     }
 

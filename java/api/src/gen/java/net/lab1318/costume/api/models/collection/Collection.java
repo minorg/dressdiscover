@@ -358,14 +358,26 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
     }
 
     @Override
-    public java.lang.Object get(final String fieldName) {
-        switch (fieldName) {
-        case "institution_id": return getInstitutionId();
-        case "model_metadata": return getModelMetadata();
-        case "title": return getTitle();
-        case "description": return getDescription();
+    public java.lang.Object get(final String fieldThriftName) {
+        return get(FieldMetadata.valueOfThriftName(fieldThriftName));
+    }
+
+    @Override
+    public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+        if (!(fieldMetadata instanceof FieldMetadata)) {
+            throw new IllegalArgumentException();
+        }
+        return get((FieldMetadata)fieldMetadata);
+    }
+
+    public java.lang.Object get(final FieldMetadata fieldMetadata) {
+        switch (fieldMetadata) {
+        case INSTITUTION_ID: return getInstitutionId();
+        case MODEL_METADATA: return getModelMetadata();
+        case TITLE: return getTitle();
+        case DESCRIPTION: return getDescription();
         default:
-            throw new IllegalArgumentException(fieldName);
+            throw new IllegalStateException();
         }
     }
 

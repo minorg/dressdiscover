@@ -1130,22 +1130,34 @@ public class ObjectFacets implements org.thryft.Struct {
     }
 
     @Override
-    public java.lang.Object get(final String fieldName) {
-        switch (fieldName) {
-        case "agent_name_texts": return getAgentNameTexts();
-        case "categories": return getCategories();
-        case "collections": return getCollections();
-        case "color_texts": return getColorTexts();
-        case "cultural_context_texts": return getCulturalContextTexts();
-        case "genders": return getGenders();
-        case "institutions": return getInstitutions();
-        case "location_name_texts": return getLocationNameTexts();
-        case "material_texts": return getMaterialTexts();
-        case "subject_term_texts": return getSubjectTermTexts();
-        case "technique_texts": return getTechniqueTexts();
-        case "work_type_texts": return getWorkTypeTexts();
+    public java.lang.Object get(final String fieldThriftName) {
+        return get(FieldMetadata.valueOfThriftName(fieldThriftName));
+    }
+
+    @Override
+    public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+        if (!(fieldMetadata instanceof FieldMetadata)) {
+            throw new IllegalArgumentException();
+        }
+        return get((FieldMetadata)fieldMetadata);
+    }
+
+    public java.lang.Object get(final FieldMetadata fieldMetadata) {
+        switch (fieldMetadata) {
+        case AGENT_NAME_TEXTS: return getAgentNameTexts();
+        case CATEGORIES: return getCategories();
+        case COLLECTIONS: return getCollections();
+        case COLOR_TEXTS: return getColorTexts();
+        case CULTURAL_CONTEXT_TEXTS: return getCulturalContextTexts();
+        case GENDERS: return getGenders();
+        case INSTITUTIONS: return getInstitutions();
+        case LOCATION_NAME_TEXTS: return getLocationNameTexts();
+        case MATERIAL_TEXTS: return getMaterialTexts();
+        case SUBJECT_TERM_TEXTS: return getSubjectTermTexts();
+        case TECHNIQUE_TEXTS: return getTechniqueTexts();
+        case WORK_TYPE_TEXTS: return getWorkTypeTexts();
         default:
-            throw new IllegalArgumentException(fieldName);
+            throw new IllegalStateException();
         }
     }
 

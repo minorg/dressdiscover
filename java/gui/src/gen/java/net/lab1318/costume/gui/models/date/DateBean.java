@@ -133,15 +133,27 @@ public class DateBean implements org.thryft.StructBean {
     }
 
     @Override
-    public java.lang.Object get(final String fieldName) {
-        switch (fieldName) {
-        case "earliest_date": return getEarliestDate();
-        case "latest_date": return getLatestDate();
-        case "type": return getType();
-        case "href": return getHref();
-        case "source": return getSource();
+    public java.lang.Object get(final String fieldThriftName) {
+        return get(FieldMetadata.valueOfThriftName(fieldThriftName));
+    }
+
+    @Override
+    public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+        if (!(fieldMetadata instanceof FieldMetadata)) {
+            throw new IllegalArgumentException();
+        }
+        return get((FieldMetadata)fieldMetadata);
+    }
+
+    public java.lang.Object get(final FieldMetadata fieldMetadata) {
+        switch (fieldMetadata) {
+        case EARLIEST_DATE: return getEarliestDate();
+        case LATEST_DATE: return getLatestDate();
+        case TYPE: return getType();
+        case HREF: return getHref();
+        case SOURCE: return getSource();
         default:
-            throw new IllegalArgumentException(fieldName);
+            throw new IllegalStateException();
         }
     }
 

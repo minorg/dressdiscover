@@ -124,14 +124,26 @@ public class InstitutionBean implements org.thryft.StructBean {
     }
 
     @Override
-    public java.lang.Object get(final String fieldName) {
-        switch (fieldName) {
-        case "data_rights": return getDataRights();
-        case "model_metadata": return getModelMetadata();
-        case "title": return getTitle();
-        case "url": return getUrl();
+    public java.lang.Object get(final String fieldThriftName) {
+        return get(FieldMetadata.valueOfThriftName(fieldThriftName));
+    }
+
+    @Override
+    public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+        if (!(fieldMetadata instanceof FieldMetadata)) {
+            throw new IllegalArgumentException();
+        }
+        return get((FieldMetadata)fieldMetadata);
+    }
+
+    public java.lang.Object get(final FieldMetadata fieldMetadata) {
+        switch (fieldMetadata) {
+        case DATA_RIGHTS: return getDataRights();
+        case MODEL_METADATA: return getModelMetadata();
+        case TITLE: return getTitle();
+        case URL: return getUrl();
         default:
-            throw new IllegalArgumentException(fieldName);
+            throw new IllegalStateException();
         }
     }
 

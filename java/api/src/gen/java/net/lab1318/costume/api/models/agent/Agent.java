@@ -451,15 +451,27 @@ public class Agent implements org.thryft.Struct, net.lab1318.costume.api.models.
     }
 
     @Override
-    public java.lang.Object get(final String fieldName) {
-        switch (fieldName) {
-        case "name": return getName();
-        case "attribution": return getAttribution();
-        case "culture": return getCulture();
-        case "dates": return getDates();
-        case "role": return getRole();
+    public java.lang.Object get(final String fieldThriftName) {
+        return get(FieldMetadata.valueOfThriftName(fieldThriftName));
+    }
+
+    @Override
+    public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+        if (!(fieldMetadata instanceof FieldMetadata)) {
+            throw new IllegalArgumentException();
+        }
+        return get((FieldMetadata)fieldMetadata);
+    }
+
+    public java.lang.Object get(final FieldMetadata fieldMetadata) {
+        switch (fieldMetadata) {
+        case NAME: return getName();
+        case ATTRIBUTION: return getAttribution();
+        case CULTURE: return getCulture();
+        case DATES: return getDates();
+        case ROLE: return getRole();
         default:
-            throw new IllegalArgumentException(fieldName);
+            throw new IllegalStateException();
         }
     }
 

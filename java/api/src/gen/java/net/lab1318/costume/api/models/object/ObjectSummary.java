@@ -1393,29 +1393,41 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
     }
 
     @Override
-    public java.lang.Object get(final String fieldName) {
-        switch (fieldName) {
-        case "collection_id": return getCollectionId();
-        case "institution_id": return getInstitutionId();
-        case "model_metadata": return getModelMetadata();
-        case "title": return getTitle();
-        case "agent_name_texts": return getAgentNameTexts();
-        case "categories": return getCategories();
-        case "color_texts": return getColorTexts();
-        case "cultural_context_texts": return getCulturalContextTexts();
-        case "date": return getDate();
-        case "description": return getDescription();
-        case "gender": return getGender();
-        case "location_name_texts": return getLocationNameTexts();
-        case "material_texts": return getMaterialTexts();
-        case "relation_texts": return getRelationTexts();
-        case "subject_term_texts": return getSubjectTermTexts();
-        case "technique_texts": return getTechniqueTexts();
-        case "thumbnail": return getThumbnail();
-        case "url": return getUrl();
-        case "work_type_texts": return getWorkTypeTexts();
+    public java.lang.Object get(final String fieldThriftName) {
+        return get(FieldMetadata.valueOfThriftName(fieldThriftName));
+    }
+
+    @Override
+    public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+        if (!(fieldMetadata instanceof FieldMetadata)) {
+            throw new IllegalArgumentException();
+        }
+        return get((FieldMetadata)fieldMetadata);
+    }
+
+    public java.lang.Object get(final FieldMetadata fieldMetadata) {
+        switch (fieldMetadata) {
+        case COLLECTION_ID: return getCollectionId();
+        case INSTITUTION_ID: return getInstitutionId();
+        case MODEL_METADATA: return getModelMetadata();
+        case TITLE: return getTitle();
+        case AGENT_NAME_TEXTS: return getAgentNameTexts();
+        case CATEGORIES: return getCategories();
+        case COLOR_TEXTS: return getColorTexts();
+        case CULTURAL_CONTEXT_TEXTS: return getCulturalContextTexts();
+        case DATE: return getDate();
+        case DESCRIPTION: return getDescription();
+        case GENDER: return getGender();
+        case LOCATION_NAME_TEXTS: return getLocationNameTexts();
+        case MATERIAL_TEXTS: return getMaterialTexts();
+        case RELATION_TEXTS: return getRelationTexts();
+        case SUBJECT_TERM_TEXTS: return getSubjectTermTexts();
+        case TECHNIQUE_TEXTS: return getTechniqueTexts();
+        case THUMBNAIL: return getThumbnail();
+        case URL: return getUrl();
+        case WORK_TYPE_TEXTS: return getWorkTypeTexts();
         default:
-            throw new IllegalArgumentException(fieldName);
+            throw new IllegalStateException();
         }
     }
 

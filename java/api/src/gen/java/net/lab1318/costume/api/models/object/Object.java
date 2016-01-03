@@ -1535,39 +1535,51 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
     }
 
     @Override
-    public java.lang.Object get(final String fieldName) {
-        switch (fieldName) {
-        case "collection_id": return getCollectionId();
-        case "institution_id": return getInstitutionId();
-        case "model_metadata": return getModelMetadata();
-        case "titles": return getTitles();
-        case "agents": return getAgents();
-        case "categories": return getCategories();
-        case "closures": return getClosures();
-        case "colors": return getColors();
-        case "components": return getComponents();
-        case "condition": return getCondition();
-        case "cultural_contexts": return getCulturalContexts();
-        case "dates": return getDates();
-        case "descriptions": return getDescriptions();
-        case "gender": return getGender();
-        case "images": return getImages();
-        case "inscriptions": return getInscriptions();
-        case "locations": return getLocations();
-        case "materials": return getMaterials();
-        case "measurements": return getMeasurements();
-        case "provenance": return getProvenance();
-        case "quantity": return getQuantity();
-        case "relations": return getRelations();
-        case "rights": return getRights();
-        case "structures": return getStructures();
-        case "subjects": return getSubjects();
-        case "techniques": return getTechniques();
-        case "textrefs": return getTextrefs();
-        case "view_type": return getViewType();
-        case "work_types": return getWorkTypes();
+    public java.lang.Object get(final String fieldThriftName) {
+        return get(FieldMetadata.valueOfThriftName(fieldThriftName));
+    }
+
+    @Override
+    public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+        if (!(fieldMetadata instanceof FieldMetadata)) {
+            throw new IllegalArgumentException();
+        }
+        return get((FieldMetadata)fieldMetadata);
+    }
+
+    public java.lang.Object get(final FieldMetadata fieldMetadata) {
+        switch (fieldMetadata) {
+        case COLLECTION_ID: return getCollectionId();
+        case INSTITUTION_ID: return getInstitutionId();
+        case MODEL_METADATA: return getModelMetadata();
+        case TITLES: return getTitles();
+        case AGENTS: return getAgents();
+        case CATEGORIES: return getCategories();
+        case CLOSURES: return getClosures();
+        case COLORS: return getColors();
+        case COMPONENTS: return getComponents();
+        case CONDITION: return getCondition();
+        case CULTURAL_CONTEXTS: return getCulturalContexts();
+        case DATES: return getDates();
+        case DESCRIPTIONS: return getDescriptions();
+        case GENDER: return getGender();
+        case IMAGES: return getImages();
+        case INSCRIPTIONS: return getInscriptions();
+        case LOCATIONS: return getLocations();
+        case MATERIALS: return getMaterials();
+        case MEASUREMENTS: return getMeasurements();
+        case PROVENANCE: return getProvenance();
+        case QUANTITY: return getQuantity();
+        case RELATIONS: return getRelations();
+        case RIGHTS: return getRights();
+        case STRUCTURES: return getStructures();
+        case SUBJECTS: return getSubjects();
+        case TECHNIQUES: return getTechniques();
+        case TEXTREFS: return getTextrefs();
+        case VIEW_TYPE: return getViewType();
+        case WORK_TYPES: return getWorkTypes();
         default:
-            throw new IllegalArgumentException(fieldName);
+            throw new IllegalStateException();
         }
     }
 
