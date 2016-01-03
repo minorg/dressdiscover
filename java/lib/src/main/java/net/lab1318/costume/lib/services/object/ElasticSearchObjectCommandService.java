@@ -30,13 +30,17 @@ import net.lab1318.costume.lib.stores.object.ObjectSummaryElasticSearchIndex;
 public class ElasticSearchObjectCommandService implements ObjectCommandService {
     @Inject
     public ElasticSearchObjectCommandService(final ObjectElasticSearchIndex objectElasticSearchIndex,
+            final ObjectFacetsCache objectFacetsCache,
             final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex) {
         this.objectElasticSearchIndex = checkNotNull(objectElasticSearchIndex);
+        this.objectFacetsCache = checkNotNull(objectFacetsCache);
         this.objectSummaryElasticSearchIndex = checkNotNull(objectSummaryElasticSearchIndex);
     }
 
     @Override
     public void deleteObjects() throws IoException {
+        objectFacetsCache.invalidateAll();
+
         try {
             objectElasticSearchIndex.deleteIndex(logger, Markers.DELETE_OBJECTS);
             objectElasticSearchIndex.createIndex(logger, Markers.DELETE_OBJECTS);
@@ -54,6 +58,8 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
 
     @Override
     public void deleteObjectsByCollectionId(final CollectionId collectionId) throws IoException {
+        objectFacetsCache.invalidateAll();
+
         try {
             objectElasticSearchIndex
                     .deleteModels(logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID,
@@ -78,6 +84,8 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
 
     @Override
     public void deleteObjectsByInstitutionId(final InstitutionId institutionId) throws IoException {
+        objectFacetsCache.invalidateAll();
+
         try {
             objectElasticSearchIndex
                     .deleteModels(logger, Markers.DELETE_OBJECTS_BY_INSTITUTION_ID,
@@ -102,6 +110,8 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
 
     @Override
     public void putObject(final ObjectId id, final Object object) throws IoException {
+        objectFacetsCache.invalidateAll();
+
         try {
             objectElasticSearchIndex.putModel(logger, Markers.PUT_OBJECT, new ObjectEntry(id, object));
         } catch (final IOException e) {
@@ -118,6 +128,8 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
 
     @Override
     public void putObjects(final ImmutableList<ObjectEntry> objects) throws IoException {
+        objectFacetsCache.invalidateAll();
+
         try {
             objectElasticSearchIndex.putModels(logger, Markers.PUT_OBJECTS, objects);
         } catch (final IOException e) {
@@ -137,6 +149,7 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
     }
 
     private final ObjectElasticSearchIndex objectElasticSearchIndex;
+    private final ObjectFacetsCache objectFacetsCache;
     private final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex;
     private final static Logger logger = LoggerFactory.getLogger(ElasticSearchObjectCommandService.class);
 }
