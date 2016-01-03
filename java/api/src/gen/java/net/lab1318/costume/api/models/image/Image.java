@@ -436,7 +436,7 @@ public class Image implements org.thryft.Struct {
 
     @Override
     public boolean isEmpty() {
-        return !getFullSize().isPresent() || !getOriginal().isPresent() || !getSquareThumbnail().isPresent() || !getThumbnail().isPresent();
+        return !getFullSize().isPresent() && !getOriginal().isPresent() && !getSquareThumbnail().isPresent() && !getThumbnail().isPresent();
     }
 
     public static Image readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {

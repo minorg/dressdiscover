@@ -2509,7 +2509,7 @@ public interface ObjectQueryService {
 
             @Override
             public boolean isEmpty() {
-                return !getOptions().isPresent() || !getQuery().isPresent();
+                return !getOptions().isPresent() && !getQuery().isPresent();
             }
 
             public static GetObjectSummariesRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
