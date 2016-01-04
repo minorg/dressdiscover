@@ -9,7 +9,7 @@ struct GetObjectSummariesOptions {
 	optional u32.u32 size;
 
 	// @validation {"acceptance": true}
-	optional bool include_object_facets;
+	optional bool include_facets;
 
 	// @validation {"minLength": 1}
 	optional list<object_summary_sort.ObjectSummarySort> sorts;

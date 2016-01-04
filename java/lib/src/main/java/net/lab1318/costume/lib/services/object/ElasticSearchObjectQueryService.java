@@ -12,6 +12,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.common.bytes.BytesReference;
@@ -20,6 +21,7 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.MoreLikeThisQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.aggregations.AbstractAggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.Aggregations;
@@ -31,7 +33,6 @@ import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.Marker;
 import org.thryft.protocol.InputProtocolException;
 import org.thryft.waf.lib.protocols.ElasticSearchInputProtocol;
 import org.thryft.waf.lib.stores.ElasticSearchIndex;
@@ -45,7 +46,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.primitives.UnsignedInteger;
-import com.google.common.primitives.UnsignedLong;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -62,6 +62,7 @@ import net.lab1318.costume.api.models.object.ObjectSummary;
 import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
+import net.lab1318.costume.api.services.object.GetObjectSummariesResult;
 import net.lab1318.costume.api.services.object.NoSuchObjectException;
 import net.lab1318.costume.api.services.object.ObjectFacetFilters;
 import net.lab1318.costume.api.services.object.ObjectFacets;
@@ -301,18 +302,24 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
 
     @Inject
     public ElasticSearchObjectQueryService(final ObjectElasticSearchIndex objectElasticSearchIndex,
-            final ObjectFacetsCache objectFacetsCache, final ObjectSummaryCache objectSummaryCache,
+            final ObjectSummariesResultCache objectSummariesResultCache, final ObjectSummaryCache objectSummaryCache,
             final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex) {
         this.objectElasticSearchIndex = checkNotNull(objectElasticSearchIndex);
-        this.objectFacetsCache = checkNotNull(objectFacetsCache);
+        this.objectSummariesResultCache = checkNotNull(objectSummariesResultCache);
         this.objectSummaryElasticSearchIndex = checkNotNull(objectSummaryElasticSearchIndex);
         objectSummaryElasticSearchModelFactory = new ObjectSummaryElasticSearchModelFactory(objectSummaryCache);
-        emptyObjectFacets = ObjectFacets.builder().setAgentNameTexts(ImmutableMap.of()).setCategories(ImmutableMap.of())
-                .setCollections(ImmutableMap.of()).setColorTexts(ImmutableMap.of())
-                .setCulturalContextTexts(ImmutableMap.of()).setGenders(ImmutableMap.of())
-                .setInstitutions(ImmutableMap.of()).setLocationNameTexts(ImmutableMap.of())
-                .setMaterialTexts(ImmutableMap.of()).setSubjectTermTexts(ImmutableMap.of())
-                .setTechniqueTexts(ImmutableMap.of()).setWorkTypeTexts(ImmutableMap.of()).build();
+        {
+            final ObjectFacets emptyObjectFacets = ObjectFacets.builder().setAgentNameTexts(ImmutableMap.of())
+                    .setCategories(ImmutableMap.of()).setCollections(ImmutableMap.of()).setColorTexts(ImmutableMap.of())
+                    .setCulturalContextTexts(ImmutableMap.of()).setGenders(ImmutableMap.of())
+                    .setInstitutions(ImmutableMap.of()).setLocationNameTexts(ImmutableMap.of())
+                    .setMaterialTexts(ImmutableMap.of()).setSubjectTermTexts(ImmutableMap.of())
+                    .setTechniqueTexts(ImmutableMap.of()).setWorkTypeTexts(ImmutableMap.of()).build();
+            emptyObjectSummariesResultWithFacets = GetObjectSummariesResult.builder().setFacets(emptyObjectFacets)
+                    .setHits(ImmutableList.of()).setTotalHits(UnsignedInteger.ZERO).build();
+            emptyObjectSummariesResultWithoutFacets = GetObjectSummariesResult.builder().setHits(ImmutableList.of())
+                    .setTotalHits(UnsignedInteger.ZERO).build();
+        }
     }
 
     @Override
@@ -331,57 +338,82 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     }
 
     @Override
-    public UnsignedInteger getObjectCount(final Optional<ObjectQuery> query) throws IoException {
-        __checkIndexConsistency(Markers.GET_OBJECT_COUNT);
-
+    public GetObjectSummariesResult getObjectSummaries(final Optional<GetObjectSummariesOptions> options,
+            final Optional<ObjectQuery> query) throws IoException {
         if (__isExcludeAllQuery(query)) {
-            return UnsignedInteger.ZERO;
+            return __getEmptyObjectSummariesResult(options);
         }
 
         try {
-            return UnsignedInteger
-                    .valueOf(
-                            objectSummaryElasticSearchIndex
-                                    .countModels(logger, Markers.GET_OBJECT_COUNT, objectSummaryElasticSearchIndex
-                                            .prepareSearchModels().setQuery(__translateObjectSummaryQuery(query)))
-                            .longValue());
-        } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting object count");
-        }
-    }
+            return objectSummariesResultCache.get(ImmutablePair.of(options, query),
+                    new Callable<GetObjectSummariesResult>() {
+                        @Override
+                        public GetObjectSummariesResult call() throws Exception {
+                            SearchRequestBuilder searchRequestBuilder = objectSummaryElasticSearchIndex
+                                    .prepareSearchModels().setQuery(__translateObjectSummaryQuery(query));
+                            if (options.isPresent()) {
+                                if (options.get().getFrom().isPresent()) {
+                                    searchRequestBuilder = searchRequestBuilder
+                                            .setFrom(options.get().getFrom().get().intValue());
+                                }
+                                if (options.get().getIncludeFacets().or(Boolean.FALSE)) {
+                                    for (final AbstractAggregationBuilder aggregation : objectFacetAggregations) {
+                                        searchRequestBuilder.addAggregation(aggregation);
+                                    }
+                                }
+                                if (options.get().getSize().isPresent()) {
+                                    searchRequestBuilder = searchRequestBuilder
+                                            .setSize(options.get().getSize().get().intValue());
+                                }
+                                if (options.get().getSorts().isPresent()) {
+                                    for (final ObjectSummarySort sort : options.get().getSorts().get()) {
+                                        searchRequestBuilder = searchRequestBuilder
+                                                .addSort(
+                                                        SortBuilders
+                                                                .fieldSort(ObjectSummary.FieldMetadata
+                                                                        .valueOfThriftName(
+                                                                                sort.getField().name().toLowerCase())
+                                                                        .getThriftProtocolKey())
+                                                        .missing("_last")
+                                                        .order(sort
+                                                                .getOrder() == net.lab1318.costume.api.models.SortOrder.ASC
+                                                                        ? SortOrder.ASC : SortOrder.DESC));
+                                    }
+                                }
+                            }
 
-    @Override
-    public ObjectFacets getObjectFacets(final Optional<ObjectQuery> query) throws IoException {
-        if (__isExcludeAllQuery(query)) {
-            return emptyObjectFacets;
-        }
+                            SearchResponse searchResponse;
+                            try {
+                                searchResponse = objectSummaryElasticSearchIndex.getModels(logger,
+                                        Markers.GET_OBJECT_SUMMARIES, searchRequestBuilder);
+                            } catch (final IndexNotFoundException e) {
+                                logger.warn(Markers.GET_OBJECT_SUMMARIES,
+                                        "object summaries index does not exist, returning empty results");
+                                return __getEmptyObjectSummariesResult(options);
+                            } catch (final IOException e) {
+                                throw ServiceExceptionHelper.wrapException(e, "error getting object summaries");
+                            }
 
-        try {
-            return objectFacetsCache.get(query, new Callable<ObjectFacets>() {
-                @Override
-                public ObjectFacets call() throws Exception {
-                    __checkIndexConsistency(Markers.GET_OBJECT_FACETS);
-
-                    final SearchRequestBuilder searchRequestBuilder = objectSummaryElasticSearchIndex
-                            .prepareSearchModels().setQuery(__translateObjectSummaryQuery(query)).setFrom(0).setSize(0);
-                    for (final AbstractAggregationBuilder aggregation : objectFacetAggregations) {
-                        searchRequestBuilder.addAggregation(aggregation);
-                    }
-
-                    SearchResponse searchResponse;
-                    try {
-                        searchResponse = objectSummaryElasticSearchIndex.getModels(logger, Markers.GET_OBJECT_FACETS,
-                                searchRequestBuilder);
-                    } catch (final IndexNotFoundException e) {
-                        logger.warn(Markers.GET_OBJECT_FACETS, "objects index does not exist, returning empty results");
-                        return emptyObjectFacets;
-                    } catch (final IOException e) {
-                        throw ServiceExceptionHelper.wrapException(e, "error getting objects");
-                    }
-
-                    return objectFacetAggregations.getObjectFacets(searchResponse.getAggregations());
-                }
-            });
+                            final GetObjectSummariesResult.Builder resultBuilder = GetObjectSummariesResult.builder();
+                            if (options.isPresent() && options.get().getIncludeFacets().or(Boolean.FALSE)) {
+                                resultBuilder.setFacets(
+                                        objectFacetAggregations.getObjectFacets(searchResponse.getAggregations()));
+                            }
+                            if (searchResponse.getHits().getHits().length > 0) {
+                                final ImmutableList.Builder<ObjectSummaryEntry> hitsBuilder = ImmutableList.builder();
+                                for (final SearchHit searchHit : searchResponse.getHits().getHits()) {
+                                    hitsBuilder.add(objectSummaryElasticSearchModelFactory
+                                            .createModelEntryFromSource(searchHit.getId(), searchHit.getSourceRef()));
+                                }
+                                resultBuilder.setHits(hitsBuilder.build());
+                            } else {
+                                resultBuilder.setHits(ImmutableList.of());
+                            }
+                            resultBuilder
+                                    .setTotalHits(UnsignedInteger.valueOf(searchResponse.getHits().getTotalHits()));
+                            return resultBuilder.build();
+                        }
+                    });
         } catch (final ExecutionException e) {
             if (e.getCause() instanceof IoException) {
                 throw (IoException) e.getCause();
@@ -389,64 +421,15 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
             ServiceExceptionHelper.rethrowExecutionException(e);
             throw new IllegalStateException(e);
         }
+
     }
 
-    @Override
-    public ImmutableList<ObjectSummaryEntry> getObjectSummaries(final Optional<GetObjectSummariesOptions> options,
-            final Optional<ObjectQuery> query) throws IoException {
-        __checkIndexConsistency(Markers.GET_OBJECT_SUMMARIES);
-
-        if (__isExcludeAllQuery(query)) {
-            return ImmutableList.of();
-        }
-
-        SearchRequestBuilder searchRequestBuilder = objectSummaryElasticSearchIndex.prepareSearchModels()
-                .setQuery(__translateObjectSummaryQuery(query));
-        if (options.isPresent()) {
-            if (options.get().getFrom().isPresent()) {
-                searchRequestBuilder = searchRequestBuilder.setFrom(options.get().getFrom().get().intValue());
-            }
-            if (options.get().getSize().isPresent()) {
-                searchRequestBuilder = searchRequestBuilder.setSize(options.get().getSize().get().intValue());
-            }
-            if (options.get().getSorts().isPresent()) {
-                for (final ObjectSummarySort sort : options.get().getSorts().get()) {
-                    searchRequestBuilder = searchRequestBuilder.addSort(SortBuilders
-                            .fieldSort(ObjectSummary.FieldMetadata
-                                    .valueOfThriftName(sort.getField().name().toLowerCase()).getThriftProtocolKey())
-                            .missing("_last").order(sort.getOrder() == net.lab1318.costume.api.models.SortOrder.ASC
-                                    ? SortOrder.ASC : SortOrder.DESC));
-                }
-            }
-        }
-
-        try {
-            return objectSummaryElasticSearchIndex.getModels(logger, Markers.GET_OBJECT_SUMMARIES,
-                    objectSummaryElasticSearchModelFactory, searchRequestBuilder);
-        } catch (final IndexNotFoundException e) {
-            logger.warn(Markers.GET_OBJECT_SUMMARIES, "object summaries index does not exist, returning empty results");
-            return ImmutableList.of();
-        } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting object summaries");
-        }
-    }
-
-    private void __checkIndexConsistency(final Marker logMarker) throws IoException {
-        if (!checkedIndexConsistency.compareAndSet(false, true)) {
-            return;
-        }
-
-        UnsignedLong objectCount;
-        final UnsignedLong objectSummaryCount;
-        try {
-            objectCount = objectElasticSearchIndex.countModels(logger, logMarker);
-            objectSummaryCount = objectSummaryElasticSearchIndex.countModels(logger, logMarker);
-        } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error checking object indices for consistency");
-        }
-        if (!objectCount.equals(objectSummaryCount)) {
-            logger.error(logMarker, "object count ({}) is not the same as the summary count ({})",
-                    objectCount.longValue(), objectSummaryCount.longValue());
+    private GetObjectSummariesResult __getEmptyObjectSummariesResult(
+            final Optional<GetObjectSummariesOptions> options) {
+        if (options.isPresent() && options.get().getIncludeFacets().or(Boolean.FALSE)) {
+            return emptyObjectSummariesResultWithFacets;
+        } else {
+            return emptyObjectSummariesResultWithoutFacets;
         }
     }
 
@@ -640,9 +623,10 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     }
 
     private final AtomicBoolean checkedIndexConsistency = new AtomicBoolean(false);
-    private final ObjectFacets emptyObjectFacets;
+    private final GetObjectSummariesResult emptyObjectSummariesResultWithFacets;
+    private final GetObjectSummariesResult emptyObjectSummariesResultWithoutFacets;
     private final ObjectFacetAggregations objectFacetAggregations = new ObjectFacetAggregations();
-    private final ObjectFacetsCache objectFacetsCache;
+    private final ObjectSummariesResultCache objectSummariesResultCache;
     private final ObjectElasticSearchIndex objectElasticSearchIndex;
     private final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex;
     private final ObjectSummaryElasticSearchModelFactory objectSummaryElasticSearchModelFactory;

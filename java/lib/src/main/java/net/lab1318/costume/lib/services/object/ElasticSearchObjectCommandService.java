@@ -30,10 +30,10 @@ import net.lab1318.costume.lib.stores.object.ObjectSummaryElasticSearchIndex;
 public class ElasticSearchObjectCommandService implements ObjectCommandService {
     @Inject
     public ElasticSearchObjectCommandService(final ObjectElasticSearchIndex objectElasticSearchIndex,
-            final ObjectFacetsCache objectFacetsCache, final ObjectSummaryCache objectSummaryCache,
+            final ObjectSummariesResultCache objectSummariesResultCache, final ObjectSummaryCache objectSummaryCache,
             final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex) {
         this.objectElasticSearchIndex = checkNotNull(objectElasticSearchIndex);
-        this.objectFacetsCache = checkNotNull(objectFacetsCache);
+        this.objectSummariesResultCache = checkNotNull(objectSummariesResultCache);
         this.objectSummaryCache = checkNotNull(objectSummaryCache);
         this.objectSummaryElasticSearchIndex = checkNotNull(objectSummaryElasticSearchIndex);
     }
@@ -150,12 +150,12 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
     }
 
     private void __invalidateCaches() {
-        objectFacetsCache.invalidateAll();
+        objectSummariesResultCache.invalidateAll();
         objectSummaryCache.invalidateAll();
     }
 
     private final ObjectElasticSearchIndex objectElasticSearchIndex;
-    private final ObjectFacetsCache objectFacetsCache;
+    private final ObjectSummariesResultCache objectSummariesResultCache;
     private final ObjectSummaryCache objectSummaryCache;
     private final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex;
     private final static Logger logger = LoggerFactory.getLogger(ElasticSearchObjectCommandService.class);

@@ -12,13 +12,13 @@ import net.lab1318.costume.lib.services.TestData;
 public final class ElasticSearchObjectCommandServiceTest extends ObjectServiceTest {
     @Test
     public void testDeleteObjects() throws Exception {
-        assertEquals(0, objectQueryService.getObjectCount().intValue());
+        assertEquals(0, _getObjectCount());
         _putObjects();
         Thread.sleep(500); // Let writes settle
-        assertNotEquals(0, objectQueryService.getObjectCount().intValue());
+        assertNotEquals(0, _getObjectCount());
         objectCommandService.deleteObjects();
         Thread.sleep(500); // Let writes settle
-        assertEquals(0, objectQueryService.getObjectCount().intValue());
+        assertEquals(0, _getObjectCount());
     }
 
     @Test
@@ -45,17 +45,17 @@ public final class ElasticSearchObjectCommandServiceTest extends ObjectServiceTe
 
     @Test
     public void testPutObject() throws Exception {
-        assertEquals(0, objectQueryService.getObjectCount().intValue());
+        assertEquals(0, _getObjectCount());
         _putObject();
         Thread.sleep(500); // Let writes settle
-        assertEquals(1, objectQueryService.getObjectCount().intValue());
+        assertEquals(1, _getObjectCount());
     }
 
     @Test
     public void testPutObjects() throws Exception {
-        assertEquals(0, objectQueryService.getObjectCount().intValue());
+        assertEquals(0, _getObjectCount());
         _putObjects();
         Thread.sleep(500); // Let writes settle
-        assertEquals(TestData.getInstance().getObjects().size(), objectQueryService.getObjectCount().intValue());
+        assertEquals(TestData.getInstance().getObjects().size(), _getObjectCount());
     }
 }

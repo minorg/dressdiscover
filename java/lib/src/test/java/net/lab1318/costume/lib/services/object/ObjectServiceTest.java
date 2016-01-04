@@ -5,6 +5,7 @@ import org.junit.Before;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
+import com.google.common.primitives.UnsignedInteger;
 
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.InstitutionId;
@@ -12,6 +13,7 @@ import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.services.collection.CollectionCommandService;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionCommandService;
+import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
 import net.lab1318.costume.api.services.object.ObjectCommandService;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
@@ -36,14 +38,23 @@ public abstract class ObjectServiceTest extends ServiceTest {
         institutionCommandService.deleteInstitutions();
     }
 
-    protected final int _getObjectCountByCollectionId(final CollectionId collectionId) throws Exception {
+    protected final int _getObjectCount() throws Exception {
+        return _getObjectCount(Optional.absent());
+    }
+
+    protected final int _getObjectCount(final Optional<ObjectQuery> query) throws Exception {
         return objectQueryService
-                .getObjectCount(Optional.of(ObjectQuery.builder().setCollectionId(collectionId).build())).intValue();
+                .getObjectSummaries(
+                        Optional.of(GetObjectSummariesOptions.builder().setSize(UnsignedInteger.ZERO).build()))
+                .getTotalHits().intValue();
+    }
+
+    protected final int _getObjectCountByCollectionId(final CollectionId collectionId) throws Exception {
+        return _getObjectCount(Optional.of(ObjectQuery.builder().setCollectionId(collectionId).build()));
     }
 
     protected final int _getObjectCountByInstitutionId(final InstitutionId institutionId) throws Exception {
-        return objectQueryService
-                .getObjectCount(Optional.of(ObjectQuery.builder().setInstitutionId(institutionId).build())).intValue();
+        return _getObjectCount(Optional.of(ObjectQuery.builder().setInstitutionId(institutionId).build()));
     }
 
     protected final ObjectEntry _putObject() throws Exception {

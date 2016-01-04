@@ -31,7 +31,7 @@ public final class ElasticSearchObjectQueryServiceTest extends ObjectServiceTest
     @Test
     public void testGetObjectCount() throws Exception {
         final ImmutableList<ObjectEntry> expected = _putObjects();
-        assertEquals(expected.size(), objectQueryService.getObjectCount().intValue());
+        assertEquals(expected.size(), _getObjectCount());
     }
 
     @Test
@@ -53,7 +53,10 @@ public final class ElasticSearchObjectQueryServiceTest extends ObjectServiceTest
     @Test
     public void testGetObjectFacets() throws Exception {
         _putObjects();
-        final ObjectFacets actual = objectQueryService.getObjectFacets();
+        final ObjectFacets actual = objectQueryService.getObjectSummaries(Optional
+                .of(GetObjectSummariesOptions.builder().setIncludeFacets(true).setSize(UnsignedInteger.ZERO).build()))
+                .getFacets().get();
+        ;
         assertEquals(TestData.getInstance().getAgents().size(), actual.getAgentNameTexts().size());
         assertEquals(ImmutableSet.copyOf(TestData.getInstance().getCategories()), actual.getCategories().keySet());
         assertEquals(TestData.getInstance().getCollections().size(), actual.getCollections().size());
@@ -66,7 +69,8 @@ public final class ElasticSearchObjectQueryServiceTest extends ObjectServiceTest
         final ImmutableList<ObjectEntry> expected = _putObjects();
         final ImmutableList<ObjectSummaryEntry> actual = objectQueryService
                 .getObjectSummaries(Optional.of(GetObjectSummariesOptions.builder().setFrom(UnsignedInteger.ZERO)
-                        .setSize(UnsignedInteger.MAX_VALUE).build()));
+                        .setSize(UnsignedInteger.MAX_VALUE).build()))
+                .getHits();
         assertEquals(TestData.getInstance().getObjects().size(), actual.size());
         for (final ObjectEntry expectedEntry : expected) {
             boolean found = false;

@@ -16,6 +16,7 @@ import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.eventbus.Subscribe;
+import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -32,6 +33,8 @@ import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
+import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
+import net.lab1318.costume.api.services.object.GetObjectSummariesResult;
 import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
@@ -73,22 +76,20 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
         final ObjectFacets availableObjectFacets;
         try {
             availableObjectFacets = objectQueryService
-                    .getObjectFacets(Optional.of(ObjectQuery.builder(objectQuery).unsetFacetFilters().build()));
+                    .getObjectSummaries(GET_AVAILABLE_OBJECT_FACETS_OPTIONS,
+                            Optional.of(ObjectQuery.builder(objectQuery).unsetFacetFilters().build()))
+                    .getFacets().get();
         } catch (final IoException e) {
             _getView().setComponentError(new SystemError("I/O exception", e));
             return;
         }
 
-        final ObjectFacets resultObjectFacets;
-        if (objectQuery.getFacetFilters().isPresent()) {
-            try {
-                resultObjectFacets = objectQueryService.getObjectFacets(Optional.of(objectQuery));
-            } catch (final IoException e) {
-                _getView().setComponentError(new SystemError("I/O exception", e));
-                return;
-            }
-        } else {
-            resultObjectFacets = availableObjectFacets;
+        GetObjectSummariesResult firstResult;
+        try {
+            firstResult = objectQueryService.getObjectSummaries(GET_FIRST_RESULT_OPTIONS, Optional.of(objectQuery));
+        } catch (final IoException e) {
+            _getView().setComponentError(new SystemError("I/O exception", e));
+            return;
         }
 
         ImmutableMap<CollectionId, Collection> collectionMap;
@@ -137,11 +138,18 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
 
         _getView().setModels(availableObjectFacets, collectionMap, institutionMap, objectQuery,
                 new LazyQueryContainer(ObjectSummaryEntryBeanQueryDefinition.getInstance(),
-                        ObjectSummaryEntryBeanQueryFactory.create(objectQuery, objectQueryService)),
-                resultObjectFacets);
+                        ObjectSummaryEntryBeanQueryFactory.create(firstResult, objectQuery, objectQueryService)),
+                firstResult.getFacets().get());
     }
 
     private final CollectionQueryService collectionQueryService;
     private final InstitutionQueryService institutionQueryService;
     private final ObjectQueryService objectQueryService;
+    private final static Optional<GetObjectSummariesOptions> GET_FIRST_RESULT_OPTIONS = Optional
+            .of(GetObjectSummariesOptions.builder().setIncludeFacets(true).setFrom(UnsignedInteger.ZERO)
+                    .setSize(
+                            UnsignedInteger.valueOf(ObjectSummaryEntryBeanQueryDefinition.getInstance().getBatchSize()))
+                    .build());
+    private final static Optional<GetObjectSummariesOptions> GET_AVAILABLE_OBJECT_FACETS_OPTIONS = Optional
+            .of(GetObjectSummariesOptions.builder().setIncludeFacets(true).setSize(UnsignedInteger.ZERO).build());
 }
