@@ -1534,11 +1534,11 @@ public interface ObjectQueryService {
     public net.lab1318.costume.api.models.object.Object getObjectById(final net.lab1318.costume.api.models.object.ObjectId id) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.object.NoSuchObjectException;
 
     public default net.lab1318.costume.api.services.object.GetObjectSummariesResult getObjectSummaries() throws net.lab1318.costume.api.services.IoException {
-        return getObjectSummaries(com.google.common.base.Optional.<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> absent());
+        return getObjectSummaries(com.google.common.base.Optional.<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> absent(), com.google.common.base.Optional.<net.lab1318.costume.api.services.object.ObjectQuery> absent());
     }
 
     public default net.lab1318.costume.api.services.object.GetObjectSummariesResult getObjectSummaries(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options) throws net.lab1318.costume.api.services.IoException {
-        return getObjectSummaries(com.google.common.base.Optional.<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> absent(), com.google.common.base.Optional.<net.lab1318.costume.api.services.object.ObjectQuery> absent());
+        return getObjectSummaries(options, com.google.common.base.Optional.<net.lab1318.costume.api.services.object.ObjectQuery> absent());
     }
 
     public net.lab1318.costume.api.services.object.GetObjectSummariesResult getObjectSummaries(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query) throws net.lab1318.costume.api.services.IoException;
