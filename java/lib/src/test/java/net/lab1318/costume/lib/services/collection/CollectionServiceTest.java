@@ -38,6 +38,7 @@ public abstract class CollectionServiceTest extends ServiceTest {
     public void tearDown() throws Exception {
         collectionCommandService.deleteCollections();
         institutionCommandService.deleteInstitutions();
+        Thread.sleep(1000);
     }
 
     protected final ImmutableList<CollectionEntry> _putCollections() throws Exception {

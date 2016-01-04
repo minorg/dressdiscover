@@ -36,6 +36,7 @@ public abstract class ObjectServiceTest extends ServiceTest {
         objectCommandService.deleteObjects();
         collectionCommandService.deleteCollections();
         institutionCommandService.deleteInstitutions();
+        Thread.sleep(1000);
     }
 
     protected final int _getObjectCount() throws Exception {
@@ -68,7 +69,7 @@ public abstract class ObjectServiceTest extends ServiceTest {
 
     protected final ImmutableList<ObjectEntry> _putObjects() throws Exception {
         objectCommandService.putObjects(ImmutableList.copyOf(TestData.getInstance().getObjects().values()));
-        Thread.sleep(500); // Let writes settle
+        Thread.sleep(1000); // Let writes settle
         return ImmutableList.copyOf(TestData.getInstance().getObjects().values());
     }
 
