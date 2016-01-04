@@ -1,6 +1,7 @@
 package net.lab1318.costume.gui.models.object;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,7 @@ public final class ObjectSummaryEntryBeanQuery extends AbstractBeanQuery<ObjectS
         GetObjectSummariesResult result;
         if (startIndex == 0) {
             result = firstResult;
+            checkState(count <= getQueryDefinition().getBatchSize());
         } else {
             final GetObjectSummariesOptions.Builder optionsBuilder = GetObjectSummariesOptions.builder()
                     .setFrom(UnsignedInteger.valueOf(startIndex)).setSize(UnsignedInteger.valueOf(count));
