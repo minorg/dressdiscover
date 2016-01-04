@@ -31,6 +31,7 @@ public abstract class InstitutionServiceTest extends ServiceTest {
     @After
     public void tearDown() throws Exception {
         institutionCommandService.deleteInstitutions();
+        Thread.sleep(1000);
     }
 
     protected final ImmutableList<InstitutionEntry> _putInstitutions() throws Exception {

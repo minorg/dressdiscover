@@ -12,13 +12,13 @@ import net.lab1318.costume.lib.services.TestData;
 public final class ElasticSearchObjectCommandServiceTest extends ObjectServiceTest {
     @Test
     public void testDeleteObjects() throws Exception {
-        assertEquals(0, objectQueryService.getObjectCount().intValue());
+        assertEquals(0, _getObjectCount());
         _putObjects();
-        Thread.sleep(500); // Let writes settle
-        assertNotEquals(0, objectQueryService.getObjectCount().intValue());
+        Thread.sleep(1000); // Let writes settle
+        assertNotEquals(0, _getObjectCount());
         objectCommandService.deleteObjects();
-        Thread.sleep(500); // Let writes settle
-        assertEquals(0, objectQueryService.getObjectCount().intValue());
+        Thread.sleep(1000); // Let writes settle
+        assertEquals(0, _getObjectCount());
     }
 
     @Test
@@ -27,7 +27,7 @@ public final class ElasticSearchObjectCommandServiceTest extends ObjectServiceTe
         for (final CollectionEntry collectionEntry : collectionQueryService.getCollections()) {
             assertNotEquals(0, _getObjectCountByCollectionId(collectionEntry.getId()));
             objectCommandService.deleteObjectsByCollectionId(collectionEntry.getId());
-            Thread.sleep(500); // Let writes settle
+            Thread.sleep(1000); // Let writes settle
             assertEquals(0, _getObjectCountByCollectionId(collectionEntry.getId()));
         }
     }
@@ -38,24 +38,24 @@ public final class ElasticSearchObjectCommandServiceTest extends ObjectServiceTe
         for (final InstitutionEntry institutionEntry : TestData.getInstance().getInstitutions()) {
             assertNotEquals(0, _getObjectCountByInstitutionId(institutionEntry.getId()));
             objectCommandService.deleteObjectsByInstitutionId(institutionEntry.getId());
-            Thread.sleep(500); // Let writes settle
+            Thread.sleep(1000); // Let writes settle
             assertEquals(0, _getObjectCountByInstitutionId(institutionEntry.getId()));
         }
     }
 
     @Test
     public void testPutObject() throws Exception {
-        assertEquals(0, objectQueryService.getObjectCount().intValue());
+        assertEquals(0, _getObjectCount());
         _putObject();
-        Thread.sleep(500); // Let writes settle
-        assertEquals(1, objectQueryService.getObjectCount().intValue());
+        Thread.sleep(1000); // Let writes settle
+        assertEquals(1, _getObjectCount());
     }
 
     @Test
     public void testPutObjects() throws Exception {
-        assertEquals(0, objectQueryService.getObjectCount().intValue());
+        assertEquals(0, _getObjectCount());
         _putObjects();
-        Thread.sleep(500); // Let writes settle
-        assertEquals(TestData.getInstance().getObjects().size(), objectQueryService.getObjectCount().intValue());
+        Thread.sleep(1000); // Let writes settle
+        assertEquals(TestData.getInstance().getObjects().size(), _getObjectCount());
     }
 }

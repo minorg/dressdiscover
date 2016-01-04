@@ -1,5 +1,8 @@
 package net.lab1318.costume.gui.models.object;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +19,7 @@ import net.lab1318.costume.api.models.SortOrder;
 import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
+import net.lab1318.costume.api.services.object.GetObjectSummariesResult;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.object.ObjectSummarySort;
@@ -27,17 +31,15 @@ public final class ObjectSummaryEntryBeanQuery extends AbstractBeanQuery<ObjectS
             final Map<String, java.lang.Object> queryConfiguration, final java.lang.Object[] sortPropertyIds,
             final boolean[] sortStates) {
         super(definition, queryConfiguration, sortPropertyIds, sortStates);
+        this.firstResult = checkNotNull((GetObjectSummariesResult) queryConfiguration.get("firstResult"));
         this.objectQuery = Optional.of((ObjectQuery) queryConfiguration.get("objectQuery"));
         this.objectQueryService = (ObjectQueryService) queryConfiguration.get("objectQueryService");
+        this.size = firstResult.getTotalHits().intValue();
     }
 
     @Override
     public int size() {
-        try {
-            return objectQueryService.getObjectCount(objectQuery).intValue();
-        } catch (final IoException e) {
-            throw new RuntimeException(e);
-        }
+        return size;
     }
 
     @Override
@@ -47,29 +49,36 @@ public final class ObjectSummaryEntryBeanQuery extends AbstractBeanQuery<ObjectS
 
     @Override
     protected List<ObjectSummaryEntryBean> loadBeans(final int startIndex, final int count) {
-        final GetObjectSummariesOptions.Builder optionsBuilder = GetObjectSummariesOptions.builder()
-                .setFrom(UnsignedInteger.valueOf(startIndex)).setSize(UnsignedInteger.valueOf(count));
+        GetObjectSummariesResult result;
+        if (startIndex == 0) {
+            result = firstResult;
+            checkState(count <= getQueryDefinition().getBatchSize());
+        } else {
+            final GetObjectSummariesOptions.Builder optionsBuilder = GetObjectSummariesOptions.builder()
+                    .setFrom(UnsignedInteger.valueOf(startIndex)).setSize(UnsignedInteger.valueOf(count));
 
-        if (getSortPropertyIds().length > 0) {
-            final ImmutableList.Builder<ObjectSummarySort> sortsBuilder = ImmutableList.builder();
-            for (int sortI = 0; sortI < getSortPropertyIds().length; sortI++) {
-                final String sortPropertyId = getSortPropertyIds()[sortI].toString();
-                final String fieldEnumName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, sortPropertyId);
-                final ObjectSummarySortField field = ObjectSummarySortField.valueOf(fieldEnumName);
-                final SortOrder order = getSortStates()[sortI] ? SortOrder.ASC : SortOrder.DESC;
-                sortsBuilder.add(ObjectSummarySort.builder().setField(field).setOrder(order).build());
+            if (getSortPropertyIds().length > 0) {
+                final ImmutableList.Builder<ObjectSummarySort> sortsBuilder = ImmutableList.builder();
+                for (int sortI = 0; sortI < getSortPropertyIds().length; sortI++) {
+                    final String sortPropertyId = getSortPropertyIds()[sortI].toString();
+                    final String fieldEnumName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, sortPropertyId);
+                    final ObjectSummarySortField field = ObjectSummarySortField.valueOf(fieldEnumName);
+                    final SortOrder order = getSortStates()[sortI] ? SortOrder.ASC : SortOrder.DESC;
+                    sortsBuilder.add(ObjectSummarySort.builder().setField(field).setOrder(order).build());
+                }
+                optionsBuilder.setSorts(sortsBuilder.build());
             }
-            optionsBuilder.setSorts(sortsBuilder.build());
+
+            try {
+                result = objectQueryService.getObjectSummaries(Optional.of(optionsBuilder.build()), objectQuery);
+            } catch (final IoException e) {
+                throw new RuntimeException(e);
+            }
         }
 
-        final List<ObjectSummaryEntryBean> beans = new ArrayList<>();
-        try {
-            for (final ObjectSummaryEntry entry : objectQueryService
-                    .getObjectSummaries(Optional.of(optionsBuilder.build()), objectQuery)) {
-                beans.add(new ObjectSummaryEntryBean(entry));
-            }
-        } catch (final IoException e) {
-            throw new RuntimeException(e);
+        final List<ObjectSummaryEntryBean> beans = new ArrayList<>(result.getHits().size());
+        for (final ObjectSummaryEntry entry : result.getHits()) {
+            beans.add(new ObjectSummaryEntryBean(entry));
         }
         return beans;
     }
@@ -80,6 +89,9 @@ public final class ObjectSummaryEntryBeanQuery extends AbstractBeanQuery<ObjectS
         throw new UnsupportedOperationException();
     }
 
+    private final int size;
+
+    private final GetObjectSummariesResult firstResult;
     private final Optional<ObjectQuery> objectQuery;
     private final ObjectQueryService objectQueryService;
 }

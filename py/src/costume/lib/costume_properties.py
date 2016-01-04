@@ -11,7 +11,8 @@ class CostumeProperties(object):
             elastic_search_host="elasticsearch",
             elastic_search_port=9300,
             home_directory_path=None,
-            object_facets_cache_size=1024,
+            object_summaries_result_cache_size=1024,
+            object_summary_cache_size=1024,
             logback_xml_file_path=None,
         ):
             '''
@@ -20,7 +21,8 @@ class CostumeProperties(object):
             :type elastic_search_host: str
             :type elastic_search_port: int
             :type home_directory_path: str
-            :type object_facets_cache_size: int
+            :type object_summaries_result_cache_size: int
+            :type object_summary_cache_size: int
             :type logback_xml_file_path: str or None
             '''
 
@@ -29,11 +31,12 @@ class CostumeProperties(object):
             self.__elastic_search_host = elastic_search_host
             self.__elastic_search_port = elastic_search_port
             self.__home_directory_path = home_directory_path
-            self.__object_facets_cache_size = object_facets_cache_size
+            self.__object_summaries_result_cache_size = object_summaries_result_cache_size
+            self.__object_summary_cache_size = object_summary_cache_size
             self.__logback_xml_file_path = logback_xml_file_path
 
         def build(self):
-            return CostumeProperties(api_url=self.__api_url, environment=self.__environment, elastic_search_host=self.__elastic_search_host, elastic_search_port=self.__elastic_search_port, home_directory_path=self.__home_directory_path, object_facets_cache_size=self.__object_facets_cache_size, logback_xml_file_path=self.__logback_xml_file_path)
+            return CostumeProperties(api_url=self.__api_url, environment=self.__environment, elastic_search_host=self.__elastic_search_host, elastic_search_port=self.__elastic_search_port, home_directory_path=self.__home_directory_path, object_summaries_result_cache_size=self.__object_summaries_result_cache_size, object_summary_cache_size=self.__object_summary_cache_size, logback_xml_file_path=self.__logback_xml_file_path)
 
         @property
         def api_url(self):
@@ -84,12 +87,20 @@ class CostumeProperties(object):
             return self.__logback_xml_file_path
 
         @property
-        def object_facets_cache_size(self):
+        def object_summaries_result_cache_size(self):
             '''
             :rtype: int
             '''
 
-            return self.__object_facets_cache_size
+            return self.__object_summaries_result_cache_size
+
+        @property
+        def object_summary_cache_size(self):
+            '''
+            :rtype: int
+            '''
+
+            return self.__object_summary_cache_size
 
         def set_api_url(self, api_url):
             '''
@@ -139,12 +150,20 @@ class CostumeProperties(object):
             self.__logback_xml_file_path = logback_xml_file_path
             return self
 
-        def set_object_facets_cache_size(self, object_facets_cache_size):
+        def set_object_summaries_result_cache_size(self, object_summaries_result_cache_size):
             '''
-            :type object_facets_cache_size: int
+            :type object_summaries_result_cache_size: int
             '''
 
-            self.__object_facets_cache_size = object_facets_cache_size
+            self.__object_summaries_result_cache_size = object_summaries_result_cache_size
+            return self
+
+        def set_object_summary_cache_size(self, object_summary_cache_size):
+            '''
+            :type object_summary_cache_size: int
+            '''
+
+            self.__object_summary_cache_size = object_summary_cache_size
             return self
 
         def update(self, costume_properties):
@@ -154,7 +173,8 @@ class CostumeProperties(object):
             :type elastic_search_host: str
             :type elastic_search_port: int
             :type home_directory_path: str
-            :type object_facets_cache_size: int
+            :type object_summaries_result_cache_size: int
+            :type object_summary_cache_size: int
             :type logback_xml_file_path: str or None
             '''
 
@@ -164,7 +184,8 @@ class CostumeProperties(object):
                 self.set_elastic_search_host(costume_properties.elastic_search_host)
                 self.set_elastic_search_port(costume_properties.elastic_search_port)
                 self.set_home_directory_path(costume_properties.home_directory_path)
-                self.set_object_facets_cache_size(costume_properties.object_facets_cache_size)
+                self.set_object_summaries_result_cache_size(costume_properties.object_summaries_result_cache_size)
+                self.set_object_summary_cache_size(costume_properties.object_summary_cache_size)
                 self.set_logback_xml_file_path(costume_properties.logback_xml_file_path)
             elif isinstance(costume_properties, dict):
                 for key, value in costume_properties.iteritems():
@@ -221,13 +242,21 @@ class CostumeProperties(object):
 
             self.set_logback_xml_file_path(logback_xml_file_path)
 
-        @object_facets_cache_size.setter
-        def object_facets_cache_size(self, object_facets_cache_size):
+        @object_summaries_result_cache_size.setter
+        def object_summaries_result_cache_size(self, object_summaries_result_cache_size):
             '''
-            :type object_facets_cache_size: int
+            :type object_summaries_result_cache_size: int
             '''
 
-            self.set_object_facets_cache_size(object_facets_cache_size)
+            self.set_object_summaries_result_cache_size(object_summaries_result_cache_size)
+
+        @object_summary_cache_size.setter
+        def object_summary_cache_size(self, object_summary_cache_size):
+            '''
+            :type object_summary_cache_size: int
+            '''
+
+            self.set_object_summary_cache_size(object_summary_cache_size)
 
     def __init__(
         self,
@@ -236,7 +265,8 @@ class CostumeProperties(object):
         api_url="http://middleware:8082/api/",
         elastic_search_host="elasticsearch",
         elastic_search_port=9300,
-        object_facets_cache_size=1024,
+        object_summaries_result_cache_size=1024,
+        object_summary_cache_size=1024,
         logback_xml_file_path=None,
     ):
         '''
@@ -245,7 +275,8 @@ class CostumeProperties(object):
         :type elastic_search_host: str
         :type elastic_search_port: int
         :type home_directory_path: str
-        :type object_facets_cache_size: int
+        :type object_summaries_result_cache_size: int
+        :type object_summary_cache_size: int
         :type logback_xml_file_path: str or None
         '''
 
@@ -279,11 +310,17 @@ class CostumeProperties(object):
             raise TypeError("expected home_directory_path to be a str but it is a %s" % getattr(__builtin__, 'type')(home_directory_path))
         self.__home_directory_path = home_directory_path
 
-        if object_facets_cache_size is None:
-            raise ValueError('object_facets_cache_size is required')
-        if not isinstance(object_facets_cache_size, (int, long)) and object_facets_cache_size >= 0:
-            raise TypeError("expected object_facets_cache_size to be a int but it is a %s" % getattr(__builtin__, 'type')(object_facets_cache_size))
-        self.__object_facets_cache_size = object_facets_cache_size
+        if object_summaries_result_cache_size is None:
+            raise ValueError('object_summaries_result_cache_size is required')
+        if not isinstance(object_summaries_result_cache_size, (int, long)) and object_summaries_result_cache_size >= 0:
+            raise TypeError("expected object_summaries_result_cache_size to be a int but it is a %s" % getattr(__builtin__, 'type')(object_summaries_result_cache_size))
+        self.__object_summaries_result_cache_size = object_summaries_result_cache_size
+
+        if object_summary_cache_size is None:
+            raise ValueError('object_summary_cache_size is required')
+        if not isinstance(object_summary_cache_size, (int, long)) and object_summary_cache_size >= 0:
+            raise TypeError("expected object_summary_cache_size to be a int but it is a %s" % getattr(__builtin__, 'type')(object_summary_cache_size))
+        self.__object_summary_cache_size = object_summary_cache_size
 
         if logback_xml_file_path is not None:
             if not isinstance(logback_xml_file_path, basestring):
@@ -301,14 +338,16 @@ class CostumeProperties(object):
             return False
         if self.home_directory_path != other.home_directory_path:
             return False
-        if self.object_facets_cache_size != other.object_facets_cache_size:
+        if self.object_summaries_result_cache_size != other.object_summaries_result_cache_size:
+            return False
+        if self.object_summary_cache_size != other.object_summary_cache_size:
             return False
         if self.logback_xml_file_path != other.logback_xml_file_path:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.api_url,self.environment,self.elastic_search_host,self.elastic_search_port,self.home_directory_path,self.object_facets_cache_size,self.logback_xml_file_path,))
+        return hash((self.api_url,self.environment,self.elastic_search_host,self.elastic_search_port,self.home_directory_path,self.object_summaries_result_cache_size,self.object_summary_cache_size,self.logback_xml_file_path,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -323,7 +362,8 @@ class CostumeProperties(object):
         field_reprs.append('elastic_search_host=' + "'" + self.elastic_search_host.encode('ascii', 'replace') + "'")
         field_reprs.append('elastic_search_port=' + repr(self.elastic_search_port))
         field_reprs.append('home_directory_path=' + "'" + self.home_directory_path.encode('ascii', 'replace') + "'")
-        field_reprs.append('object_facets_cache_size=' + repr(self.object_facets_cache_size))
+        field_reprs.append('object_summaries_result_cache_size=' + repr(self.object_summaries_result_cache_size))
+        field_reprs.append('object_summary_cache_size=' + repr(self.object_summary_cache_size))
         if self.logback_xml_file_path is not None:
             field_reprs.append('logback_xml_file_path=' + "'" + self.logback_xml_file_path.encode('ascii', 'replace') + "'")
         return 'CostumeProperties(' + ', '.join(field_reprs) + ')'
@@ -335,7 +375,8 @@ class CostumeProperties(object):
         field_reprs.append('elastic_search_host=' + "'" + self.elastic_search_host.encode('ascii', 'replace') + "'")
         field_reprs.append('elastic_search_port=' + repr(self.elastic_search_port))
         field_reprs.append('home_directory_path=' + "'" + self.home_directory_path.encode('ascii', 'replace') + "'")
-        field_reprs.append('object_facets_cache_size=' + repr(self.object_facets_cache_size))
+        field_reprs.append('object_summaries_result_cache_size=' + repr(self.object_summaries_result_cache_size))
+        field_reprs.append('object_summary_cache_size=' + repr(self.object_summary_cache_size))
         if self.logback_xml_file_path is not None:
             field_reprs.append('logback_xml_file_path=' + "'" + self.logback_xml_file_path.encode('ascii', 'replace') + "'")
         return 'CostumeProperties(' + ', '.join(field_reprs) + ')'
@@ -355,7 +396,7 @@ class CostumeProperties(object):
         :rtype: dict
         '''
 
-        return {'api_url': self.api_url, 'environment': self.environment, 'elastic_search_host': self.elastic_search_host, 'elastic_search_port': self.elastic_search_port, 'home_directory_path': self.home_directory_path, 'object_facets_cache_size': self.object_facets_cache_size, 'logback_xml_file_path': self.logback_xml_file_path}
+        return {'api_url': self.api_url, 'environment': self.environment, 'elastic_search_host': self.elastic_search_host, 'elastic_search_port': self.elastic_search_port, 'home_directory_path': self.home_directory_path, 'object_summaries_result_cache_size': self.object_summaries_result_cache_size, 'object_summary_cache_size': self.object_summary_cache_size, 'logback_xml_file_path': self.logback_xml_file_path}
 
     def as_tuple(self):
         '''
@@ -364,7 +405,7 @@ class CostumeProperties(object):
         :rtype: tuple
         '''
 
-        return (self.api_url, self.environment, self.elastic_search_host, self.elastic_search_port, self.home_directory_path, self.object_facets_cache_size, self.logback_xml_file_path,)
+        return (self.api_url, self.environment, self.elastic_search_host, self.elastic_search_port, self.home_directory_path, self.object_summaries_result_cache_size, self.object_summary_cache_size, self.logback_xml_file_path,)
 
     @property
     def elastic_search_host(self):
@@ -410,7 +451,7 @@ class CostumeProperties(object):
 
         properties = {}
 
-        for property_name in ('api_url', 'environment', 'elastic_search_host', 'elastic_search_port', 'home_directory_path', 'object_facets_cache_size', 'logback_xml_file_path',):
+        for property_name in ('api_url', 'environment', 'elastic_search_host', 'elastic_search_port', 'home_directory_path', 'object_summaries_result_cache_size', 'object_summary_cache_size', 'logback_xml_file_path',):
             property_value = os.getenv('COSTUME_' + property_name.upper())
             if property_value is not None and len(property_value) > 0:
                 properties[property_name] = property_value
@@ -439,8 +480,11 @@ class CostumeProperties(object):
         if 'elastic_search_port' in properties:
             properties['elastic_search_port'] = int(properties['elastic_search_port'])
 
-        if 'object_facets_cache_size' in properties:
-            properties['object_facets_cache_size'] = int(properties['object_facets_cache_size'])
+        if 'object_summaries_result_cache_size' in properties:
+            properties['object_summaries_result_cache_size'] = int(properties['object_summaries_result_cache_size'])
+
+        if 'object_summary_cache_size' in properties:
+            properties['object_summary_cache_size'] = int(properties['object_summary_cache_size'])
 
         return cls(**properties)
 
@@ -453,12 +497,20 @@ class CostumeProperties(object):
         return self.__logback_xml_file_path
 
     @property
-    def object_facets_cache_size(self):
+    def object_summaries_result_cache_size(self):
         '''
         :rtype: int
         '''
 
-        return self.__object_facets_cache_size
+        return self.__object_summaries_result_cache_size
+
+    @property
+    def object_summary_cache_size(self):
+        '''
+        :rtype: int
+        '''
+
+        return self.__object_summary_cache_size
 
     @classmethod
     def read(cls, iprot):
@@ -486,8 +538,10 @@ class CostumeProperties(object):
                 init_kwds['elastic_search_port'] = iprot.read_u32()
             elif ifield_name == 'home_directory_path':
                 init_kwds['home_directory_path'] = iprot.read_string()
-            elif ifield_name == 'object_facets_cache_size':
-                init_kwds['object_facets_cache_size'] = iprot.read_u32()
+            elif ifield_name == 'object_summaries_result_cache_size':
+                init_kwds['object_summaries_result_cache_size'] = iprot.read_u32()
+            elif ifield_name == 'object_summary_cache_size':
+                init_kwds['object_summary_cache_size'] = iprot.read_u32()
             elif ifield_name == 'logback_xml_file_path':
                 try:
                     init_kwds['logback_xml_file_path'] = iprot.read_string()
@@ -505,7 +559,8 @@ class CostumeProperties(object):
         elastic_search_host="elasticsearch",
         elastic_search_port=9300,
         home_directory_path=None,
-        object_facets_cache_size=1024,
+        object_summaries_result_cache_size=1024,
+        object_summary_cache_size=1024,
         logback_xml_file_path=None,
     ):
         '''
@@ -516,7 +571,8 @@ class CostumeProperties(object):
         :type elastic_search_host: str or None
         :type elastic_search_port: int or None
         :type home_directory_path: str or None
-        :type object_facets_cache_size: int or None
+        :type object_summaries_result_cache_size: int or None
+        :type object_summary_cache_size: int or None
         :type logback_xml_file_path: str or None
         :rtype: costume.lib.costume_properties.CostumeProperties
         '''
@@ -531,11 +587,13 @@ class CostumeProperties(object):
             elastic_search_port = self.elastic_search_port
         if home_directory_path is None:
             home_directory_path = self.home_directory_path
-        if object_facets_cache_size is None:
-            object_facets_cache_size = self.object_facets_cache_size
+        if object_summaries_result_cache_size is None:
+            object_summaries_result_cache_size = self.object_summaries_result_cache_size
+        if object_summary_cache_size is None:
+            object_summary_cache_size = self.object_summary_cache_size
         if logback_xml_file_path is None:
             logback_xml_file_path = self.logback_xml_file_path
-        return self.__class__(api_url=api_url, environment=environment, elastic_search_host=elastic_search_host, elastic_search_port=elastic_search_port, home_directory_path=home_directory_path, object_facets_cache_size=object_facets_cache_size, logback_xml_file_path=logback_xml_file_path)
+        return self.__class__(api_url=api_url, environment=environment, elastic_search_host=elastic_search_host, elastic_search_port=elastic_search_port, home_directory_path=home_directory_path, object_summaries_result_cache_size=object_summaries_result_cache_size, object_summary_cache_size=object_summary_cache_size, logback_xml_file_path=logback_xml_file_path)
 
     def write(self, oprot):
         '''
@@ -567,8 +625,12 @@ class CostumeProperties(object):
         oprot.write_string(self.home_directory_path)
         oprot.write_field_end()
 
-        oprot.write_field_begin(name='object_facets_cache_size', type=8, id=None)
-        oprot.write_u32(self.object_facets_cache_size)
+        oprot.write_field_begin(name='object_summaries_result_cache_size', type=8, id=None)
+        oprot.write_u32(self.object_summaries_result_cache_size)
+        oprot.write_field_end()
+
+        oprot.write_field_begin(name='object_summary_cache_size', type=8, id=None)
+        oprot.write_u32(self.object_summary_cache_size)
         oprot.write_field_end()
 
         if self.logback_xml_file_path is not None:

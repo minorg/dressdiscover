@@ -1,9 +1,7 @@
-from itertools import ifilterfalse
 import __builtin__
 import costume.api.models.object.object
-import costume.api.models.object.object_summary_entry
 import costume.api.services.object.get_object_summaries_options
-import costume.api.services.object.object_facets
+import costume.api.services.object.get_object_summaries_result
 import costume.api.services.object.object_query
 
 
@@ -35,58 +33,6 @@ class ObjectQueryService(object):
     ):
         raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_object_by_id')
 
-    def get_object_count(
-        self,
-        query=None,
-    ):
-        '''
-        :type query: costume.api.services.object.object_query.ObjectQuery or None
-        :rtype: int
-        '''
-
-        if query is not None:
-            if not isinstance(query, costume.api.services.object.object_query.ObjectQuery):
-                raise TypeError("expected query to be a costume.api.services.object.object_query.ObjectQuery but it is a %s" % getattr(__builtin__, 'type')(query))
-
-        get_object_count_return_value = self._get_object_count(query=query)
-
-        if not isinstance(get_object_count_return_value, (int, long)) and get_object_count_return_value >= 0:
-            raise TypeError(getattr(__builtin__, 'type')(get_object_count_return_value))
-
-        return get_object_count_return_value
-
-    def _get_object_count(
-        self,
-        query,
-    ):
-        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_object_count')
-
-    def get_object_facets(
-        self,
-        query=None,
-    ):
-        '''
-        :type query: costume.api.services.object.object_query.ObjectQuery or None
-        :rtype: costume.api.services.object.object_facets.ObjectFacets
-        '''
-
-        if query is not None:
-            if not isinstance(query, costume.api.services.object.object_query.ObjectQuery):
-                raise TypeError("expected query to be a costume.api.services.object.object_query.ObjectQuery but it is a %s" % getattr(__builtin__, 'type')(query))
-
-        get_object_facets_return_value = self._get_object_facets(query=query)
-
-        if not isinstance(get_object_facets_return_value, costume.api.services.object.object_facets.ObjectFacets):
-            raise TypeError(getattr(__builtin__, 'type')(get_object_facets_return_value))
-
-        return get_object_facets_return_value
-
-    def _get_object_facets(
-        self,
-        query,
-    ):
-        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_object_facets')
-
     def get_object_summaries(
         self,
         options=None,
@@ -95,7 +41,7 @@ class ObjectQueryService(object):
         '''
         :type options: costume.api.services.object.get_object_summaries_options.GetObjectSummariesOptions or None
         :type query: costume.api.services.object.object_query.ObjectQuery or None
-        :rtype: tuple(costume.api.models.object.object_summary_entry.ObjectSummaryEntry)
+        :rtype: costume.api.services.object.get_object_summaries_result.GetObjectSummariesResult
         '''
 
         if options is not None:
@@ -107,7 +53,7 @@ class ObjectQueryService(object):
 
         get_object_summaries_return_value = self._get_object_summaries(options=options, query=query)
 
-        if not (isinstance(get_object_summaries_return_value, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.object.object_summary_entry.ObjectSummaryEntry), get_object_summaries_return_value))) == 0):
+        if not isinstance(get_object_summaries_return_value, costume.api.services.object.get_object_summaries_result.GetObjectSummariesResult):
             raise TypeError(getattr(__builtin__, 'type')(get_object_summaries_return_value))
 
         return get_object_summaries_return_value

@@ -7,13 +7,11 @@ namespace * costume.api.services.object
 
 include "costume/api/models/object/object.thrift"
 include "costume/api/models/object/object_id.thrift"
-include "costume/api/models/object/object_summary_entry.thrift"
 include "costume/api/services/io_exception.thrift"
 include "costume/api/services/object/get_object_summaries_options.thrift"
-include "costume/api/services/object/object_facets.thrift"
+include "costume/api/services/object/get_object_summaries_result.thrift"
 include "costume/api/services/object/object_query.thrift"
 include "costume/api/services/object/no_such_object_exception.thrift"
-include "thryft/native/u32.thrift"
 
 service ObjectQueryService {
 	object.Object
@@ -24,21 +22,7 @@ service ObjectQueryService {
 		no_such_object_exception.NoSuchObjectException e2
 	);
 
-	u32.u32
-	get_object_count(
-		optional object_query.ObjectQuery query
-	) throws (
-		io_exception.IoException e
-	);
-
-	object_facets.ObjectFacets
-	get_object_facets(
-		optional object_query.ObjectQuery query
-	) throws (
-		io_exception.IoException e
-	);
-
-	list<object_summary_entry.ObjectSummaryEntry>
+	get_object_summaries_result.GetObjectSummariesResult
 	get_object_summaries(
 		optional get_object_summaries_options.GetObjectSummariesOptions options,
 		optional object_query.ObjectQuery query
