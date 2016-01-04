@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.elasticsearch.action.search.SearchRequestBuilder;
@@ -622,7 +621,6 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
         }
     }
 
-    private final AtomicBoolean checkedIndexConsistency = new AtomicBoolean(false);
     private final GetObjectSummariesResult emptyObjectSummariesResultWithFacets;
     private final GetObjectSummariesResult emptyObjectSummariesResultWithoutFacets;
     private final ObjectFacetAggregations objectFacetAggregations = new ObjectFacetAggregations();
