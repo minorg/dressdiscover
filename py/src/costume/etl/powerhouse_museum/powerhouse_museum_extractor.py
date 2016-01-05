@@ -15,8 +15,8 @@ class PowerhouseMuseumExtractor(_Extractor):
         argument_parser.add_argument('--api-key', required=True)
 
     def _extract(self):
-        ITEMS_DIR_PATH = os.path.join(self._data_dir_path, 'powerhouse_museum', 'item')
-        CATEGORY_ITEMS_FILE_PATH = os.path.join(self._data_dir_path, 'powerhouse_museum', 'category_items.json')
+        ITEMS_DIR_PATH = os.path.join(self._data_dir_path, 'extracted', 'powerhouse_museum', 'item')
+        CATEGORY_ITEMS_FILE_PATH = os.path.join(self._data_dir_path, 'extracted', 'powerhouse_museum', 'category_items.json')
         if not os.path.isdir(ITEMS_DIR_PATH):
             os.makedirs(ITEMS_DIR_PATH)
 

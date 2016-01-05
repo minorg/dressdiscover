@@ -113,7 +113,7 @@ class TxfcLoader(_Loader):
         self.__collection_id = self._institution_id + '/txfc'
 
         agent_qualifiers = {}
-        agent_qualifiers_etree = ElementTree.parse(os.path.join(self._data_dir_path, 'txfc', 'agent-qualifiers.xml'))
+        agent_qualifiers_etree = ElementTree.parse(os.path.join(self._data_dir_path, 'extracted', 'txfc', 'agent-qualifiers.xml'))
         RDF_NS = '{http://www.w3.org/1999/02/22-rdf-syntax-ns#}'
         RDFS_NS = '{http://www.w3.org/2000/01/rdf-schema#}'
         for property_etree in agent_qualifiers_etree.iter():
@@ -161,7 +161,7 @@ class TxfcLoader(_Loader):
         )
 
         objects_by_id = OrderedDict()
-        for root_dir_path, _, file_names in os.walk(os.path.join(self._data_dir_path, 'txfc', 'record')):
+        for root_dir_path, _, file_names in os.walk(os.path.join(self._data_dir_path, 'extracted', 'txfc', 'record')):
             for file_name in file_names:
                 file_path = os.path.join(root_dir_path, file_name)
                 if not file_path.endswith('.xml'):

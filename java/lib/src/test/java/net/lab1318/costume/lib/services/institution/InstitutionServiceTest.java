@@ -17,7 +17,7 @@ public abstract class InstitutionServiceTest extends ServiceTest {
         for (final InstitutionEntry entry : TestData.getInstance().getInstitutions()) {
             institutionCommandService.putInstitution(entry.getId(), entry.getModel());
         }
-        Thread.sleep(1000); // Let writes settle
+        // Thread.sleep(1000); // Let writes settle
         return TestData.getInstance().getInstitutions();
     }
 
@@ -31,7 +31,7 @@ public abstract class InstitutionServiceTest extends ServiceTest {
     @After
     public void tearDown() throws Exception {
         institutionCommandService.deleteInstitutions();
-        Thread.sleep(1000);
+        // Thread.sleep(1000);
     }
 
     protected final ImmutableList<InstitutionEntry> _putInstitutions() throws Exception {

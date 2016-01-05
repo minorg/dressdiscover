@@ -7,8 +7,8 @@ from costume.etl._extractor import _Extractor
 
 class VamExtractor(_Extractor):
     def _extract(self):
-        museumobjects_dir_path = os.path.join(self._data_dir_path, 'vam', 'museumobject')
-        museumobjects_file_path = os.path.join(self._data_dir_path, 'vam', 'museumobjects.json')
+        museumobjects_dir_path = os.path.join(self._data_dir_path, 'extracted', 'vam', 'museumobject')
+        museumobjects_file_path = os.path.join(self._data_dir_path, 'extracted', 'vam', 'museumobjects.json')
         if not os.path.isdir(museumobjects_dir_path):
             os.makedirs(museumobjects_dir_path)
 

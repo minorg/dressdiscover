@@ -52,7 +52,7 @@ class PowerhouseMuseumLoader(_Loader):
 
 
         object_count = 0
-        for root_dir_path, _, file_names in os.walk(os.path.join(self._data_dir_path, 'powerhouse_museum', 'item')):
+        for root_dir_path, _, file_names in os.walk(os.path.join(self._data_dir_path, 'extracted', 'powerhouse_museum', 'item')):
             for file_name in file_names:
                 if not file_name.endswith('.json'):
                     continue

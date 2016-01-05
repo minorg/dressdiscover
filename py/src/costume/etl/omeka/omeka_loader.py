@@ -361,7 +361,7 @@ class OmekaLoader(_Loader):
 
         # Don't put the collection until we're sure it has objects
 
-        with open(os.path.join(self._data_dir_path, self._institution_id, 'collection', str(omeka_collection_id), 'items.json')) as f:
+        with open(os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'collection', str(omeka_collection_id), 'items.json')) as f:
             item_dicts = json.loads(f.read())
         self._logger.info("loading %d items from collection %d", len(item_dicts), omeka_collection_id)
 
@@ -415,7 +415,7 @@ class OmekaLoader(_Loader):
                 .build()
         )
 
-        with open(os.path.join(self._data_dir_path, self._institution_id, 'collections.json')) as f:
+        with open(os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'collections.json')) as f:
             collection_dicts = json.loads(f.read())
 
         self._load_collections(collection_dicts=collection_dicts)
@@ -1238,7 +1238,7 @@ class OmekaLoader(_Loader):
 
         if files_count > 0:
             file_dicts = []
-            files_dir_path = os.path.join(self._data_dir_path, self._institution_id, 'files_by_item_id', str(omeka_item_id))
+            files_dir_path = os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'files_by_item_id', str(omeka_item_id))
             if os.path.isdir(files_dir_path):
                 for file_file_path in os.listdir(files_dir_path):
                     if not file_file_path.endswith('.json'):
