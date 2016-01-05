@@ -7,7 +7,7 @@ from costume.etl._extractor import _Extractor
 
 class TxfcExtractor(_Extractor):
     def _extract(self):
-        records_dir_path = os.path.join(self._data_dir_path, 'txfc', 'record')
+        records_dir_path = os.path.join(self._data_dir_path, 'extracted', 'txfc', 'record')
         if not os.path.isdir(records_dir_path):
             os.makedirs(records_dir_path)
 
