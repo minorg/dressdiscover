@@ -12,8 +12,6 @@ struct Institution {
 
 	4: model_metadata.ModelMetadata model_metadata;
 
-	// @elastic_search_mapping {"index": "not_analyzed"}
-	// @validation {"minLength": 1}
 	1: string title;
 
 	3: url.Url url;
