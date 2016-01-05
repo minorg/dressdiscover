@@ -173,8 +173,6 @@ class Institution(object):
             raise ValueError('title is required')
         if not isinstance(title, basestring):
             raise TypeError("expected title to be a str but it is a %s" % getattr(__builtin__, 'type')(title))
-        if len(title) < 1:
-            raise ValueError("expected len(title) to be >= 1, was %d" % len(title))
         self.__title = title
 
         if url is None:
