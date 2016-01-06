@@ -16,9 +16,13 @@ import org.thryft.protocol.JacksonJsonOutputProtocol;
 import org.thryft.protocol.OutputProtocol;
 import org.thryft.protocol.OutputProtocolException;
 import org.thryft.waf.api.models.Model;
+import org.thryft.waf.lib.stores.FileNameCodec;
 import org.thryft.waf.lib.stores.InvalidModelException;
 import org.thryft.waf.lib.stores.NoSuchModelException;
 
+import com.google.common.collect.ImmutableList;
+
+import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.lib.CostumeProperties;
 import net.logstash.logback.encoder.org.apache.commons.lang.exception.ExceptionUtils;
@@ -32,6 +36,10 @@ public abstract class AbstractFileSystem<ModelT extends Model> {
                 throw new RuntimeException("error creating directory " + rootDirectoryPath);
             }
         }
+    }
+
+    protected final String _decodeFileName(final String fileName) {
+        return FileNameCodec.decodeFileName(fileName);
     }
 
     protected final boolean _deleteDirectory(final File directoryPath, final Logger logger, final Marker logMarker)
@@ -63,8 +71,21 @@ public abstract class AbstractFileSystem<ModelT extends Model> {
         }
     }
 
+    protected final String _encodeFileName(final String fileName) {
+        return FileNameCodec.encodeFileName(fileName);
+    }
+
+    protected final File _getCollectionDirectoryPath(final CollectionId collectionId) {
+        return new File(_getInstitutionDirectoryPath(collectionId.getInstitutionId()),
+                _encodeFileName(collectionId.getUnqualifiedCollectionId()));
+    }
+
     protected final File _getInstitutionDirectoryPath(final InstitutionId institutionId) {
-        return new File(_getInstitutionsDirectoryPath(), institutionId.toString());
+        return new File(_getInstitutionsDirectoryPath(), _encodeFileName(institutionId.toString()));
+    }
+
+    protected final ImmutableList<File> _getInstitutionDirectoryPaths(final Logger logger, final Marker logMarker) {
+        return _getSubdirectoryPaths(_getInstitutionsDirectoryPath(), logger, logMarker);
     }
 
     protected final File _getInstitutionsDirectoryPath() {
@@ -72,7 +93,7 @@ public abstract class AbstractFileSystem<ModelT extends Model> {
     }
 
     protected final ModelT _getModel(final File filePath, final Logger logger, final Marker logMarker)
-            throws IOException, InvalidModelException, NoSuchModelException {
+            throws InvalidModelException, IOException, NoSuchModelException {
         try (FileReader fileReader = new FileReader(filePath)) {
             final JacksonJsonInputProtocol iprot = new JacksonJsonInputProtocol(fileReader);
             final ModelT model = _readModel(iprot);
@@ -82,6 +103,24 @@ public abstract class AbstractFileSystem<ModelT extends Model> {
             throw new NoSuchModelException();
         } catch (final InputProtocolException e) {
             throw new InvalidModelException("", ExceptionUtils.getRootCauseMessage(e));
+        }
+    }
+
+    protected final ImmutableList<File> _getSubdirectoryPaths(final File parentDirectoryPath, final Logger logger,
+            final Marker logMarker) {
+        final File[] subdirectoryPaths = parentDirectoryPath.listFiles();
+        if (subdirectoryPaths != null) {
+            final ImmutableList.Builder<File> resultBuilder = ImmutableList.builder();
+            for (final File subdirectoryPath : subdirectoryPaths) {
+                if (!subdirectoryPath.isDirectory()) {
+                    continue;
+                }
+                resultBuilder.add(subdirectoryPath);
+            }
+            return resultBuilder.build();
+        } else {
+            logger.warn(logMarker, "error listing institution directory {}", _getInstitutionsDirectoryPath());
+            return ImmutableList.of();
         }
     }
 

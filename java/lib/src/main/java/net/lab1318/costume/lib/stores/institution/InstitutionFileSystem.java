@@ -60,7 +60,7 @@ public class InstitutionFileSystem extends AbstractFileSystem<Institution> {
             }
             InstitutionId institutionId;
             try {
-                institutionId = InstitutionId.parse(institutionDirectoryPath.getName());
+                institutionId = InstitutionId.parse(_decodeFileName(institutionDirectoryPath.getName()));
             } catch (final InvalidInstitutionIdException e) {
                 logger.warn(logMarker, "invalid institution directory path {}", institutionDirectoryPath.getName());
                 continue;

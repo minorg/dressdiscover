@@ -22,21 +22,27 @@ public final class CollectionId extends StringModelId {
         } catch (final InvalidInstitutionIdException e) {
             throw new InvalidCollectionIdException(e.toString());
         }
-        final String collectionId = valueSplit[1].trim();
-        if (collectionId.isEmpty()) {
+        final String unqualifiedCollectionId = valueSplit[1].trim();
+        if (unqualifiedCollectionId.isEmpty()) {
             throw new InvalidCollectionIdException("empty collection ID: " + value);
         }
-        return new CollectionId(institutionId, value);
+        return new CollectionId(unqualifiedCollectionId, institutionId, value);
     }
 
-    private CollectionId(final InstitutionId institutionId, final String value) {
+    private CollectionId(final String unqualifiedCollectionId, final InstitutionId institutionId, final String value) {
         super(value);
         this.institutionId = checkNotNull(institutionId);
+        this.unqualifiedCollectionId = checkNotNull(unqualifiedCollectionId);
     }
 
     public InstitutionId getInstitutionId() {
         return institutionId;
     }
 
+    public String getUnqualifiedCollectionId() {
+        return unqualifiedCollectionId;
+    }
+
     private final InstitutionId institutionId;
+    private final String unqualifiedCollectionId;
 }
