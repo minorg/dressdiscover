@@ -14,7 +14,7 @@ import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.lib.services.TestData;
 
-public final class ElasticSearchCollectionQueryServiceTest extends CollectionServiceTest {
+public final class CollectionQueryServiceTest extends CollectionServiceTest {
     @Test
     public void testGetCollectionById() throws Exception {
         final ImmutableList<CollectionEntry> expected = _putCollections();

@@ -8,8 +8,8 @@ import net.lab1318.costume.api.services.institution.InstitutionCommandService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.object.ObjectCommandService;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
-import net.lab1318.costume.lib.services.collection.ElasticSearchCollectionCommandService;
-import net.lab1318.costume.lib.services.collection.ElasticSearchCollectionQueryService;
+import net.lab1318.costume.lib.services.collection.FsCollectionCommandService;
+import net.lab1318.costume.lib.services.collection.FsCollectionQueryService;
 import net.lab1318.costume.lib.services.collection.LoggingCollectionCommandService;
 import net.lab1318.costume.lib.services.collection.LoggingCollectionQueryService;
 import net.lab1318.costume.lib.services.collection.ValidatingCollectionCommandService;
@@ -30,7 +30,7 @@ import net.lab1318.costume.lib.services.object.ValidatingObjectQueryService;
 public class ServicesModule extends AbstractModule {
     protected void _configureCollectionCommandService() {
         bind(CollectionCommandService.class).annotatedWith(LoggingCollectionCommandService.DELEGATE_NAME)
-                .to(ElasticSearchCollectionCommandService.class).asEagerSingleton();
+                .to(FsCollectionCommandService.class).asEagerSingleton();
         bind(CollectionCommandService.class).annotatedWith(ValidatingCollectionCommandService.DELEGATE_NAME)
                 .to(LoggingCollectionCommandService.class).asEagerSingleton();
         bind(CollectionCommandService.class).to(ValidatingCollectionCommandService.class).asEagerSingleton();
@@ -38,7 +38,7 @@ public class ServicesModule extends AbstractModule {
 
     protected void _configureCollectionQueryService() {
         bind(CollectionQueryService.class).annotatedWith(LoggingCollectionQueryService.DELEGATE_NAME)
-                .to(ElasticSearchCollectionQueryService.class).asEagerSingleton();
+                .to(FsCollectionQueryService.class).asEagerSingleton();
         bind(CollectionQueryService.class).annotatedWith(ValidatingCollectionQueryService.DELEGATE_NAME)
                 .to(LoggingCollectionQueryService.class).asEagerSingleton();
         bind(CollectionQueryService.class).to(ValidatingCollectionQueryService.class).asEagerSingleton();
