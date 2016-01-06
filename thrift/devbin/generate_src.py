@@ -131,7 +131,7 @@ class Main(thryft.main.Main):
                     )
 
                     elastic_search_templates_dir_path = os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'main', 'resources', 'elastic_search_templates')
-                    if thrift_file_base_name in ('collection', 'object', 'object_summary'):
+                    if thrift_file_base_name in ('object', 'object_summary'):
                         if thrift_file_base_name == 'object':
                             file_base_name = 'object_detail_template'
                             template = "%s_detail_*" % thrift_file_base_name
