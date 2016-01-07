@@ -22,19 +22,19 @@ import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
 import net.lab1318.costume.lib.services.ServiceExceptionHelper;
 import net.lab1318.costume.lib.services.collection.LoggingCollectionQueryService.Markers;
-import net.lab1318.costume.lib.stores.collection.CollectionFileSystem;
+import net.lab1318.costume.lib.stores.collection.CollectionStore;
 
 @Singleton
-public class FsCollectionQueryService implements CollectionQueryService {
+public class StoreCollectionQueryService implements CollectionQueryService {
     @Inject
-    public FsCollectionQueryService(final CollectionFileSystem fileSystem) {
-        this.fileSystem = checkNotNull(fileSystem);
+    public StoreCollectionQueryService(final CollectionStore store) {
+        this.store = checkNotNull(store);
     }
 
     @Override
     public Collection getCollectionById(final CollectionId id) throws IoException, NoSuchCollectionException {
         try {
-            return fileSystem.getCollectionById(id, logger, Markers.GET_COLLECTION_BY_ID);
+            return store.getCollectionById(id, logger, Markers.GET_COLLECTION_BY_ID);
         } catch (final InvalidModelException e) {
             logger.warn(Markers.GET_COLLECTION_BY_ID, "invalid collection model {}: ", id, e);
             throw new NoSuchCollectionException();
@@ -48,7 +48,7 @@ public class FsCollectionQueryService implements CollectionQueryService {
     @Override
     public ImmutableList<CollectionEntry> getCollections() throws IoException {
         try {
-            return fileSystem.getCollections(logger, Markers.GET_COLLECTIONS);
+            return store.getCollections(logger, Markers.GET_COLLECTIONS);
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error getting collections");
         }
@@ -63,8 +63,7 @@ public class FsCollectionQueryService implements CollectionQueryService {
         final ImmutableList.Builder<Collection> collectionsBuilder = ImmutableList.builder();
         for (final CollectionId collectionId : ids) {
             try {
-                collectionsBuilder
-                        .add(fileSystem.getCollectionById(collectionId, logger, Markers.GET_COLLECTIONS_BY_IDS));
+                collectionsBuilder.add(store.getCollectionById(collectionId, logger, Markers.GET_COLLECTIONS_BY_IDS));
             } catch (final IOException e) {
                 throw ServiceExceptionHelper.wrapException(e, "error getting collections by ids");
             } catch (final InvalidModelException e) {
@@ -81,13 +80,13 @@ public class FsCollectionQueryService implements CollectionQueryService {
     public ImmutableList<CollectionEntry> getCollectionsByInstitutionId(final InstitutionId institutionId)
             throws IoException {
         try {
-            return fileSystem.getCollectionsByInstitutionId(institutionId, logger,
+            return store.getCollectionsByInstitutionId(institutionId, logger,
                     Markers.GET_COLLECTIONS_BY_INSTITUTION_ID);
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error getting collections");
         }
     }
 
-    private final CollectionFileSystem fileSystem;
-    private final static Logger logger = LoggerFactory.getLogger(FsCollectionQueryService.class);
+    private final CollectionStore store;
+    private final static Logger logger = LoggerFactory.getLogger(StoreCollectionQueryService.class);
 }

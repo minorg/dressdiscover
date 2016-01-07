@@ -21,9 +21,9 @@ import net.lab1318.costume.lib.services.institution.LoggingInstitutionCommandSer
 import net.lab1318.costume.lib.stores.institution.InstitutionStore;
 
 @Singleton
-public class FsInstitutionCommandService implements InstitutionCommandService {
+public class StoreInstitutionCommandService implements InstitutionCommandService {
     @Inject
-    public FsInstitutionCommandService(final CollectionCommandService collectionCommandService,
+    public StoreInstitutionCommandService(final CollectionCommandService collectionCommandService,
             final InstitutionStore store) {
         this.collectionCommandService = checkNotNull(collectionCommandService);
         this.store = checkNotNull(store);
@@ -64,5 +64,5 @@ public class FsInstitutionCommandService implements InstitutionCommandService {
 
     private final InstitutionStore store;
     private final CollectionCommandService collectionCommandService;
-    private final static Logger logger = LoggerFactory.getLogger(FsInstitutionCommandService.class);
+    private final static Logger logger = LoggerFactory.getLogger(StoreInstitutionCommandService.class);
 }

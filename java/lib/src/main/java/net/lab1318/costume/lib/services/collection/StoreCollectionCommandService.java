@@ -19,21 +19,20 @@ import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
 import net.lab1318.costume.api.services.object.ObjectCommandService;
 import net.lab1318.costume.lib.services.ServiceExceptionHelper;
 import net.lab1318.costume.lib.services.collection.LoggingCollectionCommandService.Markers;
-import net.lab1318.costume.lib.stores.collection.CollectionFileSystem;
+import net.lab1318.costume.lib.stores.collection.CollectionStore;
 
 @Singleton
-public class FsCollectionCommandService implements CollectionCommandService {
+public class StoreCollectionCommandService implements CollectionCommandService {
     @Inject
-    public FsCollectionCommandService(final CollectionFileSystem fileSystem,
-            final ObjectCommandService objectCommandService) {
-        this.fileSystem = checkNotNull(fileSystem);
+    public StoreCollectionCommandService(final ObjectCommandService objectCommandService, final CollectionStore store) {
         this.objectCommandService = checkNotNull(objectCommandService);
+        this.store = checkNotNull(store);
     }
 
     @Override
     public void deleteCollectionById(final CollectionId id) throws IoException, NoSuchCollectionException {
         try {
-            if (!fileSystem.deleteCollectionById(id, logger, Markers.DELETE_COLLECTION_BY_ID)) {
+            if (!store.deleteCollectionById(id, logger, Markers.DELETE_COLLECTION_BY_ID)) {
                 throw new NoSuchCollectionException();
             }
         } catch (final IOException e) {
@@ -44,7 +43,7 @@ public class FsCollectionCommandService implements CollectionCommandService {
     @Override
     public void deleteCollections() throws IoException {
         try {
-            fileSystem.deleteCollections(logger, Markers.DELETE_COLLECTIONS);
+            store.deleteCollections(logger, Markers.DELETE_COLLECTIONS);
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error deleting collections");
         }
@@ -55,7 +54,7 @@ public class FsCollectionCommandService implements CollectionCommandService {
     @Override
     public void deleteCollectionsByInstitutionId(final InstitutionId institutionId) throws IoException {
         try {
-            fileSystem.deleteCollectionsByInstitutionId(institutionId, logger, Markers.DELETE_COLLECTION_BY_ID);
+            store.deleteCollectionsByInstitutionId(institutionId, logger, Markers.DELETE_COLLECTION_BY_ID);
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error deleting collections by institution ID");
         }
@@ -66,13 +65,13 @@ public class FsCollectionCommandService implements CollectionCommandService {
     @Override
     public void putCollection(final CollectionId id, final Collection collection) throws IoException {
         try {
-            fileSystem.putCollection(collection, id, logger, Markers.PUT_COLLECTION);
+            store.putCollection(collection, id, logger, Markers.PUT_COLLECTION);
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error putting collection");
         }
     }
 
-    private final CollectionFileSystem fileSystem;
     private final ObjectCommandService objectCommandService;
-    private final static Logger logger = LoggerFactory.getLogger(FsCollectionCommandService.class);
+    private final CollectionStore store;
+    private final static Logger logger = LoggerFactory.getLogger(StoreCollectionCommandService.class);
 }

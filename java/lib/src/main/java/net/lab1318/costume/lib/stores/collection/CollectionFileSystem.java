@@ -24,23 +24,26 @@ import net.lab1318.costume.lib.stores.AbstractFileSystem;
 import net.logstash.logback.encoder.org.apache.commons.lang.exception.ExceptionUtils;
 
 @Singleton
-public class CollectionFileSystem extends AbstractFileSystem<Collection> {
+class CollectionFileSystem extends AbstractFileSystem<Collection> implements CollectionStore {
     @Inject
-    public CollectionFileSystem(final CostumeProperties properties) {
+    CollectionFileSystem(final CostumeProperties properties) {
         super(properties);
     }
 
+    @Override
     public final boolean deleteCollectionById(final CollectionId collectionId, final Logger logger,
             final Marker logMarker) throws IOException {
         return _deleteDirectory(_getCollectionDirectoryPath(collectionId), logger, logMarker);
     }
 
+    @Override
     public final void deleteCollections(final Logger logger, final Marker logMarker) throws IOException {
         for (final File institutionDirectoryPath : _getInstitutionDirectoryPaths(logger, logMarker)) {
             _deleteDirectoryContents(institutionDirectoryPath, logger, logMarker);
         }
     }
 
+    @Override
     public final void deleteCollectionsByInstitutionId(final InstitutionId institutionId, final Logger logger,
             final Marker logMarker) throws IOException {
         for (final File collectionDirectoryPath : _getSubdirectoryPaths(_getInstitutionDirectoryPath(institutionId),
@@ -49,11 +52,13 @@ public class CollectionFileSystem extends AbstractFileSystem<Collection> {
         }
     }
 
+    @Override
     public final Collection getCollectionById(final CollectionId collectionId, final Logger logger,
             final Marker logMarker) throws InvalidModelException, IOException, NoSuchModelException {
         return _getModel(__getCollectionFilePath(collectionId), logger, logMarker);
     }
 
+    @Override
     public final ImmutableList<CollectionEntry> getCollections(final Logger logger, final Marker logMarker)
             throws IOException {
         final ImmutableList.Builder<CollectionEntry> resultBuilder = ImmutableList.builder();
@@ -63,6 +68,7 @@ public class CollectionFileSystem extends AbstractFileSystem<Collection> {
         return resultBuilder.build();
     }
 
+    @Override
     public final ImmutableList<CollectionEntry> getCollectionsByInstitutionId(final InstitutionId institutionId,
             final Logger logger, final Marker logMarker) throws IOException {
         final ImmutableList.Builder<CollectionEntry> resultBuilder = ImmutableList.builder();
@@ -70,6 +76,7 @@ public class CollectionFileSystem extends AbstractFileSystem<Collection> {
         return resultBuilder.build();
     }
 
+    @Override
     public final void putCollection(final Collection collection, final CollectionId collectionId, final Logger logger,
             final Marker logMarker) throws IOException {
         _putModel(__getCollectionFilePath(collectionId), logger, logMarker, collection);
