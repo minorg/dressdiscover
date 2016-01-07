@@ -23,7 +23,7 @@ import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 
 @Singleton
-class CollectionCache implements CollectionStore {
+public class CollectionCache implements CollectionStore {
     @Inject
     public CollectionCache(final CollectionFileSystem fileSystem) {
         this.fileSystem = checkNotNull(fileSystem);

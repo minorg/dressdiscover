@@ -7,9 +7,6 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
-
 import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.InstitutionId;
@@ -21,10 +18,9 @@ import net.lab1318.costume.lib.services.ServiceExceptionHelper;
 import net.lab1318.costume.lib.services.collection.LoggingCollectionCommandService.Markers;
 import net.lab1318.costume.lib.stores.collection.CollectionStore;
 
-@Singleton
-public class StoreCollectionCommandService implements CollectionCommandService {
-    @Inject
-    public StoreCollectionCommandService(final ObjectCommandService objectCommandService, final CollectionStore store) {
+abstract class StoreCollectionCommandService implements CollectionCommandService {
+    protected StoreCollectionCommandService(final ObjectCommandService objectCommandService,
+            final CollectionStore store) {
         this.objectCommandService = checkNotNull(objectCommandService);
         this.store = checkNotNull(store);
     }

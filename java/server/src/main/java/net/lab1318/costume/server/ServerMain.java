@@ -18,7 +18,6 @@ import net.lab1318.costume.gui.GuiModule;
 import net.lab1318.costume.lib.AbstractMain;
 import net.lab1318.costume.lib.CostumeProperties;
 import net.lab1318.costume.lib.services.ServicesModule;
-import net.lab1318.costume.lib.stores.StoresModule;
 import net.lab1318.costume.server.controllers.ServerControllersModule;
 
 public final class ServerMain extends AbstractMain {
@@ -48,7 +47,7 @@ public final class ServerMain extends AbstractMain {
                 return Guice.createInjector(
                         // Order is important
                         new PropertiesModule<CostumeProperties>(properties), new ServerControllersModule(),
-                        new ServicesModule(), new StoresModule(), new GuiModule());
+                        new ServicesModule(), new GuiModule());
             }
         }, server);
         server.start();
