@@ -4,10 +4,10 @@ import static com.google.common.base.Preconditions.checkState;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
-import org.thryft.waf.lib.PropertiesModule;
-import org.thryft.waf.server.GuiceServletContextHandler;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
+import org.thryft.waf.lib.PropertiesModule;
+import org.thryft.waf.server.GuiceServletContextHandler;
 
 import com.beust.jcommander.JCommander;
 import com.google.inject.Guice;
@@ -18,6 +18,7 @@ import net.lab1318.costume.gui.GuiModule;
 import net.lab1318.costume.lib.AbstractMain;
 import net.lab1318.costume.lib.CostumeProperties;
 import net.lab1318.costume.lib.services.ServicesModule;
+import net.lab1318.costume.lib.stores.StoresModule;
 import net.lab1318.costume.server.controllers.ServerControllersModule;
 
 public final class ServerMain extends AbstractMain {
@@ -47,7 +48,7 @@ public final class ServerMain extends AbstractMain {
                 return Guice.createInjector(
                         // Order is important
                         new PropertiesModule<CostumeProperties>(properties), new ServerControllersModule(),
-                        new ServicesModule(), new GuiModule());
+                        new ServicesModule(), new StoresModule(), new GuiModule());
             }
         }, server);
         server.start();

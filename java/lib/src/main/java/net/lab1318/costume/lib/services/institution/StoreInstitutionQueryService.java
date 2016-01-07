@@ -21,19 +21,19 @@ import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
 import net.lab1318.costume.lib.services.ServiceExceptionHelper;
 import net.lab1318.costume.lib.services.institution.LoggingInstitutionQueryService.Markers;
-import net.lab1318.costume.lib.stores.institution.InstitutionFileSystem;
+import net.lab1318.costume.lib.stores.institution.InstitutionStore;
 
 @Singleton
-public class FsInstitutionQueryService implements InstitutionQueryService {
+public class StoreInstitutionQueryService implements InstitutionQueryService {
     @Inject
-    public FsInstitutionQueryService(final InstitutionFileSystem fileSystem) {
-        this.fileSystem = checkNotNull(fileSystem);
+    public StoreInstitutionQueryService(final InstitutionStore store) {
+        this.store = checkNotNull(store);
     }
 
     @Override
     public Institution getInstitutionById(final InstitutionId id) throws IoException, NoSuchInstitutionException {
         try {
-            return fileSystem.getInstitutionById(id, logger, Markers.GET_INSTITUTION_BY_ID);
+            return store.getInstitutionById(id, logger, Markers.GET_INSTITUTION_BY_ID);
         } catch (final InvalidModelException e) {
             logger.warn(Markers.GET_INSTITUTION_BY_ID, "invalid institution model {}: ", id, e);
             throw new NoSuchInstitutionException();
@@ -47,7 +47,7 @@ public class FsInstitutionQueryService implements InstitutionQueryService {
     @Override
     public ImmutableList<InstitutionEntry> getInstitutions() throws IoException {
         try {
-            return fileSystem.getInstitutions(logger, Markers.GET_INSTITUTIONS);
+            return store.getInstitutions(logger, Markers.GET_INSTITUTIONS);
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error getting institutions");
         }
@@ -63,8 +63,7 @@ public class FsInstitutionQueryService implements InstitutionQueryService {
             final ImmutableList.Builder<Institution> resultBuilder = ImmutableList.builder();
             for (final InstitutionId institutionId : ids) {
                 try {
-                    resultBuilder
-                            .add(fileSystem.getInstitutionById(institutionId, logger, Markers.GET_INSTITUTIONS_BY_IDS));
+                    resultBuilder.add(store.getInstitutionById(institutionId, logger, Markers.GET_INSTITUTIONS_BY_IDS));
                 } catch (final InvalidModelException e) {
                     logger.warn(Markers.GET_INSTITUTIONS_BY_IDS, "invalid institution model {}: ", institutionId, e);
                     throw new NoSuchInstitutionException(institutionId);
@@ -78,6 +77,6 @@ public class FsInstitutionQueryService implements InstitutionQueryService {
         }
     }
 
-    private final InstitutionFileSystem fileSystem;
-    private final static Logger logger = LoggerFactory.getLogger(FsInstitutionQueryService.class);
+    private final InstitutionStore store;
+    private final static Logger logger = LoggerFactory.getLogger(StoreInstitutionQueryService.class);
 }

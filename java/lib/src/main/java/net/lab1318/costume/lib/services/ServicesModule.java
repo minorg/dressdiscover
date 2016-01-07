@@ -15,7 +15,7 @@ import net.lab1318.costume.lib.services.collection.LoggingCollectionQueryService
 import net.lab1318.costume.lib.services.collection.ValidatingCollectionCommandService;
 import net.lab1318.costume.lib.services.collection.ValidatingCollectionQueryService;
 import net.lab1318.costume.lib.services.institution.FsInstitutionCommandService;
-import net.lab1318.costume.lib.services.institution.FsInstitutionQueryService;
+import net.lab1318.costume.lib.services.institution.StoreInstitutionQueryService;
 import net.lab1318.costume.lib.services.institution.LoggingInstitutionCommandService;
 import net.lab1318.costume.lib.services.institution.LoggingInstitutionQueryService;
 import net.lab1318.costume.lib.services.institution.ValidatingInstitutionCommandService;
@@ -54,7 +54,7 @@ public class ServicesModule extends AbstractModule {
 
     protected void _configureInstitutionQueryService() {
         bind(InstitutionQueryService.class).annotatedWith(LoggingInstitutionQueryService.DELEGATE_NAME)
-                .to(FsInstitutionQueryService.class).asEagerSingleton();
+                .to(StoreInstitutionQueryService.class).asEagerSingleton();
         bind(InstitutionQueryService.class).annotatedWith(ValidatingInstitutionQueryService.DELEGATE_NAME)
                 .to(LoggingInstitutionQueryService.class).asEagerSingleton();
         bind(InstitutionQueryService.class).to(ValidatingInstitutionQueryService.class).asEagerSingleton();

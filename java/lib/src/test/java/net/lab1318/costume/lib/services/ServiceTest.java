@@ -9,7 +9,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import net.lab1318.costume.lib.CostumeProperties;
-import net.lab1318.costume.lib.services.ServicesModule;
+import net.lab1318.costume.lib.stores.StoresModule;
 
 public abstract class ServiceTest {
     protected ServiceTest() {
@@ -21,7 +21,8 @@ public abstract class ServiceTest {
 
         properties = CostumeProperties.load();
 
-        injector = Guice.createInjector(new PropertiesModule<CostumeProperties>(properties), _newServicesModule());
+        injector = Guice.createInjector(new PropertiesModule<CostumeProperties>(properties), _newServicesModule(),
+                _newStoresModule());
     }
 
     @Before
@@ -37,6 +38,10 @@ public abstract class ServiceTest {
 
     protected ServicesModule _newServicesModule() {
         return new ServicesModule();
+    }
+
+    protected StoresModule _newStoresModule() {
+        return new StoresModule();
     }
 
     private final boolean readOnly;
