@@ -9,7 +9,7 @@ assert os.path.isdir(DATA_DIR_PATH), DATA_DIR_PATH
 
 
 csv_rows = []
-csv_rows.append(['Feature name', 'Feature value', 'Image file name'])
+csv_rows.append(['Feature name', 'Feature value', 'Image file name', 'Credit line', 'License', 'Image URL', 'Metadata URL'])
 for feature_name in sorted(COSTUME_CORE_CONTROLLED_VOCABULARIES.iterkeys()):
     if feature_name in (
         'Age',
@@ -25,7 +25,7 @@ for feature_name in sorted(COSTUME_CORE_CONTROLLED_VOCABULARIES.iterkeys()):
 
     feature_values = COSTUME_CORE_CONTROLLED_VOCABULARIES[feature_name].keys()
 
-    for feature_value in feature_values:
+    for feature_value in sorted(feature_values):
         csv_row = [feature_name, feature_value]
         feature_value_file_name = feature_value.replace('/', 'X')
         images_dir_path = os.path.join(DATA_DIR_PATH, 'images', feature_name, feature_value_file_name)
