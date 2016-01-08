@@ -23,26 +23,30 @@ import net.lab1318.costume.lib.stores.AbstractFileSystem;
 import net.logstash.logback.encoder.org.apache.commons.lang.exception.ExceptionUtils;
 
 @Singleton
-public class InstitutionFileSystem extends AbstractFileSystem<Institution> {
+public class InstitutionFileSystem extends AbstractFileSystem<Institution> implements InstitutionStore {
     @Inject
     public InstitutionFileSystem(final CostumeProperties properties) {
         super(properties);
     }
 
+    @Override
     public final boolean deleteInstitutionById(final InstitutionId institutionId, final Logger logger,
             final Marker logMarker) throws IOException {
         return _deleteDirectory(_getInstitutionDirectoryPath(institutionId), logger, logMarker);
     }
 
+    @Override
     public final void deleteInstitutions(final Logger logger, final Marker logMarker) throws IOException {
         _deleteDirectoryContents(_getInstitutionsDirectoryPath(), logger, logMarker);
     }
 
+    @Override
     public final Institution getInstitutionById(final InstitutionId institutionId, final Logger logger,
             final Marker logMarker) throws InvalidModelException, NoSuchModelException, IOException {
         return _getModel(__getInstitutionFilePath(institutionId), logger, logMarker);
     }
 
+    @Override
     public final ImmutableList<InstitutionEntry> getInstitutions(final Logger logger, final Marker logMarker)
             throws IOException {
         final File[] institutionDirectoryPaths = _getInstitutionsDirectoryPath().listFiles();
@@ -78,6 +82,7 @@ public class InstitutionFileSystem extends AbstractFileSystem<Institution> {
         return builder.build();
     }
 
+    @Override
     public final void putInstitution(final Institution institution, final InstitutionId institutionId,
             final Logger logger, final Marker logMarker) throws IOException {
         _putModel(__getInstitutionFilePath(institutionId), logger, logMarker, institution);

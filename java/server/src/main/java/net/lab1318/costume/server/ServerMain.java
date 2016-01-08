@@ -4,10 +4,10 @@ import static com.google.common.base.Preconditions.checkState;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
-import org.thryft.waf.lib.PropertiesModule;
-import org.thryft.waf.server.GuiceServletContextHandler;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
+import org.thryft.waf.lib.PropertiesModule;
+import org.thryft.waf.server.GuiceServletContextHandler;
 
 import com.beust.jcommander.JCommander;
 import com.google.inject.Guice;

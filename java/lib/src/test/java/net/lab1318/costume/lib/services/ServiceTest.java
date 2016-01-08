@@ -9,7 +9,6 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import net.lab1318.costume.lib.CostumeProperties;
-import net.lab1318.costume.lib.services.ServicesModule;
 
 public abstract class ServiceTest {
     protected ServiceTest() {
