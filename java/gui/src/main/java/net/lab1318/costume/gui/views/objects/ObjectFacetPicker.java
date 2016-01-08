@@ -26,7 +26,7 @@ import com.vaadin.ui.VerticalLayout;
 import net.lab1318.costume.api.services.object.ObjectFacetFilters;
 import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQuery;
-import net.lab1318.costume.api.services.object.ObjectQueryService;
+import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 
 @SuppressWarnings("serial")
 class ObjectFacetPicker<KeyT> extends CustomComponent {
@@ -255,8 +255,8 @@ class ObjectFacetPicker<KeyT> extends CustomComponent {
             queryBuilder.unsetFacetFilters();
         }
 
-        eventBus.post(
-                ObjectQueryService.Messages.GetObjectSummariesRequest.builder().setQuery(queryBuilder.build()).build());
+        eventBus.post(ObjectSummaryQueryService.Messages.GetObjectSummariesRequest.builder()
+                .setQuery(queryBuilder.build()).build());
     }
 
     // Immutable view state

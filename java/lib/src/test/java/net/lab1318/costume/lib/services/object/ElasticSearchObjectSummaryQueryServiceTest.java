@@ -19,7 +19,7 @@ import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
 import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.lib.services.TestData;
 
-public final class ElasticSearchObjectQueryServiceTest extends ObjectServiceTest {
+public final class ElasticSearchObjectSummaryQueryServiceTest extends ObjectServiceTest {
     @Test
     public void testGetObjectById() throws Exception {
         final ImmutableList<ObjectEntry> expected = _putObjects();
@@ -53,7 +53,7 @@ public final class ElasticSearchObjectQueryServiceTest extends ObjectServiceTest
     @Test
     public void testGetObjectFacets() throws Exception {
         _putObjects();
-        final ObjectFacets actual = objectQueryService.getObjectSummaries(Optional
+        final ObjectFacets actual = objectSummaryQueryService.getObjectSummaries(Optional
                 .of(GetObjectSummariesOptions.builder().setIncludeFacets(true).setSize(UnsignedInteger.ZERO).build()))
                 .getFacets().get();
         assertEquals(TestData.getInstance().getAgents().size(), actual.getAgentNameTexts().size());
@@ -66,7 +66,7 @@ public final class ElasticSearchObjectQueryServiceTest extends ObjectServiceTest
     @Test
     public void testGetObjectSummaries() throws Exception {
         final ImmutableList<ObjectEntry> expected = _putObjects();
-        final ImmutableList<ObjectSummaryEntry> actual = objectQueryService
+        final ImmutableList<ObjectSummaryEntry> actual = objectSummaryQueryService
                 .getObjectSummaries(Optional.of(GetObjectSummariesOptions.builder().setFrom(UnsignedInteger.ZERO)
                         .setSize(UnsignedInteger.MAX_VALUE).build()))
                 .getHits();

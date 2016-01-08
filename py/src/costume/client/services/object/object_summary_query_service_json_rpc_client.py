@@ -1,18 +1,17 @@
 from urlparse import urlparse
 import base64
-import costume.api.models.object.object
 import costume.api.services.io_exception  # @UnusedImport
-import costume.api.services.object.no_such_object_exception  # @UnusedImport
-import costume.api.services.object.object_query_service
+import costume.api.services.object.get_object_summaries_result
+import costume.api.services.object.object_summary_query_service
 import json
 import thryft.protocol.json_input_protocol
 import thryft.protocol.json_output_protocol
 import urllib2
 
 
-class ObjectQueryServiceJsonRpcClient(costume.api.services.object.object_query_service.ObjectQueryService):
+class ObjectSummaryQueryServiceJsonRpcClient(costume.api.services.object.object_summary_query_service.ObjectSummaryQueryService):
     def __init__(self, api_url, headers=None):
-        costume.api.services.object.object_query_service.ObjectQueryService.__init__(self)
+        costume.api.services.object.object_summary_query_service.ObjectSummaryQueryService.__init__(self)
 
         if headers is None:
             headers = {}
@@ -22,8 +21,8 @@ class ObjectQueryServiceJsonRpcClient(costume.api.services.object.object_query_s
             headers = headers.copy()
 
         api_url = api_url.rstrip('/')
-        if not api_url.endswith('/jsonrpc/object_query'):
-            api_url += '/jsonrpc/object_query'
+        if not api_url.endswith('/jsonrpc/object_summary_query'):
+            api_url += '/jsonrpc/object_summary_query'
         self.__api_url = api_url.rstrip('/')
         parsed_api_url = urlparse(api_url)
         parsed_api_url_netloc = parsed_api_url.netloc.split('@', 1)
@@ -113,18 +112,24 @@ class ObjectQueryServiceJsonRpcClient(costume.api.services.object.object_query_s
 
         return response.get('result')
 
-    def _get_object_by_id(
+    def _get_object_summaries(
         self,
-        id,  # @ReservedAssignment
+        options,
+        query,
     ):
         oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
-        oprot.write_field_begin(name='id', type=11, id=None)
-        oprot.write_string(id)
-        oprot.write_field_end()
+        if options is not None:
+            oprot.write_field_begin(name='options', type=12, id=None)
+            options.write(oprot)
+            oprot.write_field_end()
+        if query is not None:
+            oprot.write_field_begin(name='query', type=12, id=None)
+            query.write(oprot)
+            oprot.write_field_end()
         oprot.write_struct_end()
 
-        return_value = self.__request(method='get_object_by_id', params=oprot.value)
+        return_value = self.__request(method='get_object_summaries', params=oprot.value)
         iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
-        return costume.api.models.object.object.Object.read(iprot)
+        return costume.api.services.object.get_object_summaries_result.GetObjectSummariesResult.read(iprot)
 

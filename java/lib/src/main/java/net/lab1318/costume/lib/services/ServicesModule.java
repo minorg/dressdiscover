@@ -8,6 +8,7 @@ import net.lab1318.costume.api.services.institution.InstitutionCommandService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.object.ObjectCommandService;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
+import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.lib.services.collection.CachingCollectionCommandService;
 import net.lab1318.costume.lib.services.collection.CachingCollectionQueryService;
 import net.lab1318.costume.lib.services.collection.LoggingCollectionCommandService;
@@ -20,12 +21,15 @@ import net.lab1318.costume.lib.services.institution.LoggingInstitutionCommandSer
 import net.lab1318.costume.lib.services.institution.LoggingInstitutionQueryService;
 import net.lab1318.costume.lib.services.institution.ValidatingInstitutionCommandService;
 import net.lab1318.costume.lib.services.institution.ValidatingInstitutionQueryService;
-import net.lab1318.costume.lib.services.object.ElasticSearchObjectCommandService;
-import net.lab1318.costume.lib.services.object.ElasticSearchObjectQueryService;
+import net.lab1318.costume.lib.services.object.ElasticSearchObjectSummaryQueryService;
+import net.lab1318.costume.lib.services.object.FileSystemObjectCommandService;
+import net.lab1318.costume.lib.services.object.FileSystemObjectQueryService;
 import net.lab1318.costume.lib.services.object.LoggingObjectCommandService;
 import net.lab1318.costume.lib.services.object.LoggingObjectQueryService;
+import net.lab1318.costume.lib.services.object.LoggingObjectSummaryQueryService;
 import net.lab1318.costume.lib.services.object.ValidatingObjectCommandService;
 import net.lab1318.costume.lib.services.object.ValidatingObjectQueryService;
+import net.lab1318.costume.lib.services.object.ValidatingObjectSummaryQueryService;
 
 public class ServicesModule extends AbstractModule {
     protected void _configureCollectionCommandService() {
@@ -62,7 +66,7 @@ public class ServicesModule extends AbstractModule {
 
     protected void _configureObjectCommandService() {
         bind(ObjectCommandService.class).annotatedWith(LoggingObjectCommandService.DELEGATE_NAME)
-                .to(ElasticSearchObjectCommandService.class).asEagerSingleton();
+                .to(FileSystemObjectCommandService.class).asEagerSingleton();
         bind(ObjectCommandService.class).annotatedWith(ValidatingObjectCommandService.DELEGATE_NAME)
                 .to(LoggingObjectCommandService.class).asEagerSingleton();
         bind(ObjectCommandService.class).to(ValidatingObjectCommandService.class).asEagerSingleton();
@@ -70,10 +74,18 @@ public class ServicesModule extends AbstractModule {
 
     protected void _configureObjectQueryService() {
         bind(ObjectQueryService.class).annotatedWith(LoggingObjectQueryService.DELEGATE_NAME)
-                .to(ElasticSearchObjectQueryService.class).asEagerSingleton();
+                .to(FileSystemObjectQueryService.class).asEagerSingleton();
         bind(ObjectQueryService.class).annotatedWith(ValidatingObjectQueryService.DELEGATE_NAME)
                 .to(LoggingObjectQueryService.class).asEagerSingleton();
         bind(ObjectQueryService.class).to(ValidatingObjectQueryService.class).asEagerSingleton();
+    }
+
+    protected void _configureObjectSummaryQueryService() {
+        bind(ObjectSummaryQueryService.class).annotatedWith(LoggingObjectSummaryQueryService.DELEGATE_NAME)
+                .to(ElasticSearchObjectSummaryQueryService.class).asEagerSingleton();
+        bind(ObjectSummaryQueryService.class).annotatedWith(ValidatingObjectSummaryQueryService.DELEGATE_NAME)
+                .to(LoggingObjectSummaryQueryService.class).asEagerSingleton();
+        bind(ObjectSummaryQueryService.class).to(ValidatingObjectSummaryQueryService.class).asEagerSingleton();
     }
 
     @Override
@@ -84,5 +96,6 @@ public class ServicesModule extends AbstractModule {
         _configureInstitutionQueryService();
         _configureObjectCommandService();
         _configureObjectQueryService();
+        _configureObjectSummaryQueryService();
     }
 }

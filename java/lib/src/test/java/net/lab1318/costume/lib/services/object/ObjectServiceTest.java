@@ -17,6 +17,7 @@ import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
 import net.lab1318.costume.api.services.object.ObjectCommandService;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
+import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.lib.services.ServiceTest;
 import net.lab1318.costume.lib.services.TestData;
 
@@ -28,6 +29,7 @@ public abstract class ObjectServiceTest extends ServiceTest {
         institutionCommandService = _getInjector().getInstance(InstitutionCommandService.class);
         objectCommandService = _getInjector().getInstance(ObjectCommandService.class);
         objectQueryService = _getInjector().getInstance(ObjectQueryService.class);
+        objectSummaryQueryService = _getInjector().getInstance(ObjectSummaryQueryService.class);
         tearDown();
     }
 
@@ -44,7 +46,7 @@ public abstract class ObjectServiceTest extends ServiceTest {
     }
 
     protected final int _getObjectCount(final Optional<ObjectQuery> query) throws Exception {
-        return objectQueryService
+        return objectSummaryQueryService
                 .getObjectSummaries(
                         Optional.of(GetObjectSummariesOptions.builder().setSize(UnsignedInteger.ZERO).build()))
                 .getTotalHits().intValue();
@@ -78,4 +80,5 @@ public abstract class ObjectServiceTest extends ServiceTest {
     private InstitutionCommandService institutionCommandService;
     protected ObjectCommandService objectCommandService;
     protected ObjectQueryService objectQueryService;
+    protected ObjectSummaryQueryService objectSummaryQueryService;
 }

@@ -23,16 +23,16 @@ import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.ObjectCommandService;
 import net.lab1318.costume.lib.services.ServiceExceptionHelper;
 import net.lab1318.costume.lib.services.object.LoggingObjectCommandService.Markers;
-import net.lab1318.costume.lib.stores.object.ObjectElasticSearchIndex;
+import net.lab1318.costume.lib.stores.object.ObjectFileSystem;
 import net.lab1318.costume.lib.stores.object.ObjectSummaryElasticSearchIndex;
 
 @Singleton
-public class ElasticSearchObjectCommandService implements ObjectCommandService {
+public class FileSystemObjectCommandService implements ObjectCommandService {
     @Inject
-    public ElasticSearchObjectCommandService(final ObjectElasticSearchIndex objectElasticSearchIndex,
+    public FileSystemObjectCommandService(final ObjectFileSystem objectFileSystem,
             final ObjectSummariesResultCache objectSummariesResultCache, final ObjectSummaryCache objectSummaryCache,
             final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex) {
-        this.objectElasticSearchIndex = checkNotNull(objectElasticSearchIndex);
+        this.objectFileSystem = checkNotNull(objectFileSystem);
         this.objectSummariesResultCache = checkNotNull(objectSummariesResultCache);
         this.objectSummaryCache = checkNotNull(objectSummaryCache);
         this.objectSummaryElasticSearchIndex = checkNotNull(objectSummaryElasticSearchIndex);
@@ -43,8 +43,7 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
         __invalidateCaches();
 
         try {
-            objectElasticSearchIndex.deleteIndex(logger, Markers.DELETE_OBJECTS);
-            objectElasticSearchIndex.createIndex(logger, Markers.DELETE_OBJECTS);
+            objectFileSystem.deleteObjects(logger, Markers.DELETE_OBJECTS);
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error deleting objects");
         }
@@ -62,12 +61,7 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
         __invalidateCaches();
 
         try {
-            objectElasticSearchIndex
-                    .deleteModels(logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID,
-                            QueryBuilders.boolQuery()
-                                    .filter(QueryBuilders.termQuery(
-                                            Object.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
-                                            collectionId.toString())));
+            objectFileSystem.deleteObjectsByCollectionId(collectionId, logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID);
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error deleting objects by collection id");
         }
@@ -88,12 +82,8 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
         __invalidateCaches();
 
         try {
-            objectElasticSearchIndex
-                    .deleteModels(logger, Markers.DELETE_OBJECTS_BY_INSTITUTION_ID,
-                            QueryBuilders.boolQuery()
-                                    .filter(QueryBuilders.termQuery(
-                                            Object.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
-                                            institutionId.toString())));
+            objectFileSystem.deleteObjectsByInstitutionId(institutionId, logger,
+                    Markers.DELETE_OBJECTS_BY_INSTITUTION_ID);
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error deleting objects by institution id");
         }
@@ -114,7 +104,7 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
         __invalidateCaches();
 
         try {
-            objectElasticSearchIndex.putModel(logger, Markers.PUT_OBJECT, new ObjectEntry(id, object));
+            objectFileSystem.putObject(logger, Markers.PUT_OBJECT, object, id);
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error putting object");
         }
@@ -131,10 +121,12 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
     public void putObjects(final ImmutableList<ObjectEntry> objects) throws IoException {
         __invalidateCaches();
 
-        try {
-            objectElasticSearchIndex.putModels(logger, Markers.PUT_OBJECTS, objects);
-        } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error putting objects");
+        for (final ObjectEntry objectEntry : objects) {
+            try {
+                objectFileSystem.putObject(logger, Markers.PUT_OBJECTS, objectEntry.getModel(), objectEntry.getId());
+            } catch (final IOException e) {
+                throw ServiceExceptionHelper.wrapException(e, "error putting objects");
+            }
         }
 
         final ImmutableList.Builder<ObjectSummaryEntry> objectSummariesBuilder = ImmutableList.builder();
@@ -154,9 +146,9 @@ public class ElasticSearchObjectCommandService implements ObjectCommandService {
         objectSummaryCache.invalidateAll();
     }
 
-    private final ObjectElasticSearchIndex objectElasticSearchIndex;
+    private final ObjectFileSystem objectFileSystem;
     private final ObjectSummariesResultCache objectSummariesResultCache;
     private final ObjectSummaryCache objectSummaryCache;
     private final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex;
-    private final static Logger logger = LoggerFactory.getLogger(ElasticSearchObjectCommandService.class);
+    private final static Logger logger = LoggerFactory.getLogger(FileSystemObjectCommandService.class);
 }

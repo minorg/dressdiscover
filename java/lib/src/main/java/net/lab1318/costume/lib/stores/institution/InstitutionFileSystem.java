@@ -37,7 +37,7 @@ public class InstitutionFileSystem extends AbstractFileSystem<Institution> imple
 
     @Override
     public final void deleteInstitutions(final Logger logger, final Marker logMarker) throws IOException {
-        _deleteDirectoryContents(_getInstitutionsDirectoryPath(), logger, logMarker);
+        _deleteDirectoryContents(true, _getInstitutionsDirectoryPath(), logger, logMarker);
     }
 
     @Override
@@ -97,5 +97,5 @@ public class InstitutionFileSystem extends AbstractFileSystem<Institution> imple
         return new File(_getInstitutionDirectoryPath(institutionId), FILE_NAME);
     }
 
-    private final static String FILE_NAME = "institution.json";
+    private final static String FILE_NAME = ".institution.json";
 }

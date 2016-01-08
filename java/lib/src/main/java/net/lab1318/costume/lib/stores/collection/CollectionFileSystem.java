@@ -39,7 +39,7 @@ public class CollectionFileSystem extends AbstractFileSystem<Collection> impleme
     @Override
     public final void deleteCollections(final Logger logger, final Marker logMarker) throws IOException {
         for (final File institutionDirectoryPath : _getInstitutionDirectoryPaths(logger, logMarker)) {
-            _deleteDirectoryContents(institutionDirectoryPath, logger, logMarker);
+            _deleteDirectoryContents(true, institutionDirectoryPath, logger, logMarker);
         }
     }
 
@@ -130,5 +130,5 @@ public class CollectionFileSystem extends AbstractFileSystem<Collection> impleme
         }
     }
 
-    private final static String FILE_NAME = "collection.json";
+    final static String FILE_NAME = ".collection.json";
 }

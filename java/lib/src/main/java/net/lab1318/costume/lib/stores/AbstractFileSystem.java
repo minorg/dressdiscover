@@ -53,15 +53,17 @@ public abstract class AbstractFileSystem<ModelT extends Model> {
         return true;
     }
 
-    protected final void _deleteDirectoryContents(final File directoryPath, final Logger logger, final Marker logMarker)
-            throws IOException {
+    protected final void _deleteDirectoryContents(final boolean deleteHiddenFiles, final File directoryPath,
+            final Logger logger, final Marker logMarker) throws IOException {
         final File[] files = directoryPath.listFiles();
         if (files == null || files.length == 0) {
             logger.debug(logMarker, "directory {} does not exist or is empty, not deleting contents", directoryPath);
             return;
         }
         for (final File file : files) {
-            if (file.isDirectory()) {
+            if (file.getName().charAt(0) == '.' && !deleteHiddenFiles) {
+                continue;
+            } else if (file.isDirectory()) {
                 _deleteDirectory(file, logger, logMarker);
             } else if (!file.delete()) {
                 throw new IOException("error deleting " + file);

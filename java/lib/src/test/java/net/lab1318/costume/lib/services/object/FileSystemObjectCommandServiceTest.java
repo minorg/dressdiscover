@@ -9,7 +9,7 @@ import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.lib.services.TestData;
 
-public final class ElasticSearchObjectCommandServiceTest extends ObjectServiceTest {
+public final class FileSystemObjectCommandServiceTest extends ObjectServiceTest {
     @Test
     public void testDeleteObjects() throws Exception {
         assertEquals(0, _getObjectCount());
