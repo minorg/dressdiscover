@@ -14,10 +14,10 @@ import net.lab1318.costume.lib.services.collection.LoggingCollectionCommandServi
 import net.lab1318.costume.lib.services.collection.LoggingCollectionQueryService;
 import net.lab1318.costume.lib.services.collection.ValidatingCollectionCommandService;
 import net.lab1318.costume.lib.services.collection.ValidatingCollectionQueryService;
+import net.lab1318.costume.lib.services.institution.CachingInstitutionCommandService;
+import net.lab1318.costume.lib.services.institution.CachingInstitutionQueryService;
 import net.lab1318.costume.lib.services.institution.LoggingInstitutionCommandService;
 import net.lab1318.costume.lib.services.institution.LoggingInstitutionQueryService;
-import net.lab1318.costume.lib.services.institution.StoreInstitutionCommandService;
-import net.lab1318.costume.lib.services.institution.StoreInstitutionQueryService;
 import net.lab1318.costume.lib.services.institution.ValidatingInstitutionCommandService;
 import net.lab1318.costume.lib.services.institution.ValidatingInstitutionQueryService;
 import net.lab1318.costume.lib.services.object.ElasticSearchObjectCommandService;
@@ -46,7 +46,7 @@ public class ServicesModule extends AbstractModule {
 
     protected void _configureInstitutionCommandService() {
         bind(InstitutionCommandService.class).annotatedWith(LoggingInstitutionCommandService.DELEGATE_NAME)
-                .to(StoreInstitutionCommandService.class).asEagerSingleton();
+                .to(CachingInstitutionCommandService.class).asEagerSingleton();
         bind(InstitutionCommandService.class).annotatedWith(ValidatingInstitutionCommandService.DELEGATE_NAME)
                 .to(LoggingInstitutionCommandService.class).asEagerSingleton();
         bind(InstitutionCommandService.class).to(ValidatingInstitutionCommandService.class).asEagerSingleton();
@@ -54,7 +54,7 @@ public class ServicesModule extends AbstractModule {
 
     protected void _configureInstitutionQueryService() {
         bind(InstitutionQueryService.class).annotatedWith(LoggingInstitutionQueryService.DELEGATE_NAME)
-                .to(StoreInstitutionQueryService.class).asEagerSingleton();
+                .to(CachingInstitutionQueryService.class).asEagerSingleton();
         bind(InstitutionQueryService.class).annotatedWith(ValidatingInstitutionQueryService.DELEGATE_NAME)
                 .to(LoggingInstitutionQueryService.class).asEagerSingleton();
         bind(InstitutionQueryService.class).to(ValidatingInstitutionQueryService.class).asEagerSingleton();

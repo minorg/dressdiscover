@@ -13,7 +13,7 @@ import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
 import net.lab1318.costume.lib.services.TestData;
 
-abstract class CollectionCommandServiceTest extends CollectionServiceTest {
+public abstract class CollectionCommandServiceTest extends CollectionServiceTest {
     @Test
     public void testDeleteCollectionById() throws Exception {
         assertEquals(0, collectionQueryService.getCollections().size());

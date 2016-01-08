@@ -10,7 +10,7 @@ import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
 import net.lab1318.costume.lib.services.TestData;
 
-public final class InstitutionCommandServiceTest extends InstitutionServiceTest {
+public abstract class InstitutionCommandServiceTest extends InstitutionServiceTest {
     @Test
     public void testDeleteInstitutionById() throws Exception {
         assertEquals(0, institutionQueryService.getInstitutions().size());

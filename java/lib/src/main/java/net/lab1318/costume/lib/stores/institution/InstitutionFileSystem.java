@@ -23,9 +23,9 @@ import net.lab1318.costume.lib.stores.AbstractFileSystem;
 import net.logstash.logback.encoder.org.apache.commons.lang.exception.ExceptionUtils;
 
 @Singleton
-class InstitutionFileSystem extends AbstractFileSystem<Institution> implements InstitutionStore {
+public class InstitutionFileSystem extends AbstractFileSystem<Institution> implements InstitutionStore {
     @Inject
-    InstitutionFileSystem(final CostumeProperties properties) {
+    public InstitutionFileSystem(final CostumeProperties properties) {
         super(properties);
     }
 

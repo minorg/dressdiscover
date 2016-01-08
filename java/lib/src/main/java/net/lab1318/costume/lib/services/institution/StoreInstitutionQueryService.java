@@ -10,8 +10,6 @@ import org.thryft.waf.lib.stores.InvalidModelException;
 import org.thryft.waf.lib.stores.NoSuchModelException;
 
 import com.google.common.collect.ImmutableList;
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
@@ -23,10 +21,8 @@ import net.lab1318.costume.lib.services.ServiceExceptionHelper;
 import net.lab1318.costume.lib.services.institution.LoggingInstitutionQueryService.Markers;
 import net.lab1318.costume.lib.stores.institution.InstitutionStore;
 
-@Singleton
-public class StoreInstitutionQueryService implements InstitutionQueryService {
-    @Inject
-    public StoreInstitutionQueryService(final InstitutionStore store) {
+class StoreInstitutionQueryService implements InstitutionQueryService {
+    protected StoreInstitutionQueryService(final InstitutionStore store) {
         this.store = checkNotNull(store);
     }
 

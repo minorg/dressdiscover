@@ -21,7 +21,7 @@ import net.lab1318.costume.api.models.institution.InstitutionId;
 @Singleton
 public class InstitutionCache implements InstitutionStore {
     @Inject
-    InstitutionCache(final InstitutionFileSystem fileSystem) {
+    public InstitutionCache(final InstitutionFileSystem fileSystem) {
         this.fileSystem = checkNotNull(fileSystem);
     }
 
