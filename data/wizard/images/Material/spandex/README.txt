@@ -1,2 +1,0 @@
-Images for Material = spandex
-
