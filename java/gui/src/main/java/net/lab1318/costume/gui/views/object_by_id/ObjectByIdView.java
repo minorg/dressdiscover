@@ -17,7 +17,7 @@ import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.object.ObjectQuery;
-import net.lab1318.costume.api.services.object.ObjectQueryService;
+import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.gui.views.TopLevelView;
 
 @SuppressWarnings("serial")
@@ -70,7 +70,7 @@ public class ObjectByIdView extends TopLevelView {
                 final Button moreLikeThisButton = new NativeButton("More like this", new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {
-                        _getEventBus().post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
+                        _getEventBus().post(ObjectSummaryQueryService.Messages.GetObjectSummariesRequest.builder()
                                 .setQuery(ObjectQuery.builder().setMoreLikeObjectId(objectEntry.getId()).build())
                                 .build());
                     }

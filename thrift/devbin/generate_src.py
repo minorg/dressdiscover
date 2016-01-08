@@ -131,19 +131,13 @@ class Main(thryft.main.Main):
                     )
 
                     elastic_search_templates_dir_path = os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'main', 'resources', 'elastic_search_templates')
-                    if thrift_file_base_name in ('object', 'object_summary'):
-                        if thrift_file_base_name == 'object':
-                            file_base_name = 'object_detail_template'
-                            template = "%s_detail_*" % thrift_file_base_name
-                        else:
-                            file_base_name = thrift_file_base_name + '_template'
-                            template = "%s_*" % thrift_file_base_name
+                    if thrift_file_base_name in ('object_summary',):
                         self._compile_thrift_file(
                             generator=ElasticSearchMappingsGenerator(
                                 settings=ELASTIC_SEARCH_INDEX_SETTINGS,
-                                template=template,
+                                template="%s_*" % thrift_file_base_name,
                             ),
-                            out=os.path.join(elastic_search_templates_dir_path, file_base_name + '.json'),
+                            out=os.path.join(elastic_search_templates_dir_path, thrift_file_base_name + '_template.json'),
                             **compile_kwds
                         )
 

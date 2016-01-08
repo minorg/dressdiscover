@@ -8,7 +8,6 @@ import org.thryft.waf.lib.stores.ElasticSearchIndex;
 
 import com.google.inject.Injector;
 
-import net.lab1318.costume.lib.stores.object.ObjectElasticSearchIndex;
 import net.lab1318.costume.lib.stores.object.ObjectSummaryElasticSearchIndex;
 
 public final class PutElasticSearchTemplatesCommand extends Command {
@@ -20,7 +19,6 @@ public final class PutElasticSearchTemplatesCommand extends Command {
     @Override
     public void run(final Injector injector) {
         try {
-            __putElasticSearchTemplate(injector.getInstance(ObjectElasticSearchIndex.class), "object_detail");
             __putElasticSearchTemplate(injector.getInstance(ObjectSummaryElasticSearchIndex.class), "object_summary");
         } catch (final IOException e) {
             throw new RuntimeException(e);

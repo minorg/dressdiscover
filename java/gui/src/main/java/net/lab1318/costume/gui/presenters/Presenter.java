@@ -8,7 +8,7 @@ import com.google.common.eventbus.Subscribe;
 import net.lab1318.costume.api.services.collection.CollectionQueryService.Messages.GetCollectionByIdRequest;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService.Messages.GetInstitutionByIdRequest;
 import net.lab1318.costume.api.services.object.ObjectQuery;
-import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectSummariesRequest;
+import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
 import net.lab1318.costume.gui.GuiUI;
 
 public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.presenters.Presenter<ViewT> {

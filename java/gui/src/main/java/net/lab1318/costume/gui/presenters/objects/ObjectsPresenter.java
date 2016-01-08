@@ -37,8 +37,8 @@ import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
 import net.lab1318.costume.api.services.object.GetObjectSummariesResult;
 import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQuery;
-import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectByIdRequest;
+import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.gui.models.object.ObjectSummaryEntryBeanQueryDefinition;
 import net.lab1318.costume.gui.models.object.ObjectSummaryEntryBeanQueryFactory;
 import net.lab1318.costume.gui.presenters.Presenter;
@@ -49,12 +49,12 @@ import net.lab1318.costume.gui.views.objects.ObjectsView;
 public class ObjectsPresenter extends Presenter<ObjectsView> {
     @Inject
     public ObjectsPresenter(final CollectionQueryService collectionQueryService, final EventBus eventBus,
-            final InstitutionQueryService institutionQueryService, final ObjectQueryService objectQueryService,
-            final ObjectsView view) {
+            final InstitutionQueryService institutionQueryService,
+            final ObjectSummaryQueryService objectSummaryQueryService, final ObjectsView view) {
         super(eventBus, view);
         this.collectionQueryService = checkNotNull(collectionQueryService);
         this.institutionQueryService = checkNotNull(institutionQueryService);
-        this.objectQueryService = checkNotNull(objectQueryService);
+        this.objectSummaryQueryService = checkNotNull(objectSummaryQueryService);
     }
 
     @Subscribe
@@ -75,7 +75,7 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
 
         final ObjectFacets availableObjectFacets;
         try {
-            availableObjectFacets = objectQueryService
+            availableObjectFacets = objectSummaryQueryService
                     .getObjectSummaries(GET_AVAILABLE_OBJECT_FACETS_OPTIONS,
                             Optional.of(ObjectQuery.builder(objectQuery).unsetFacetFilters().build()))
                     .getFacets().get();
@@ -86,7 +86,8 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
 
         GetObjectSummariesResult firstResult;
         try {
-            firstResult = objectQueryService.getObjectSummaries(GET_FIRST_RESULT_OPTIONS, Optional.of(objectQuery));
+            firstResult = objectSummaryQueryService.getObjectSummaries(GET_FIRST_RESULT_OPTIONS,
+                    Optional.of(objectQuery));
         } catch (final IoException e) {
             _getView().setComponentError(new SystemError("I/O exception", e));
             return;
@@ -138,13 +139,13 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
 
         _getView().setModels(availableObjectFacets, collectionMap, institutionMap, objectQuery,
                 new LazyQueryContainer(ObjectSummaryEntryBeanQueryDefinition.getInstance(),
-                        ObjectSummaryEntryBeanQueryFactory.create(firstResult, objectQuery, objectQueryService)),
+                        ObjectSummaryEntryBeanQueryFactory.create(firstResult, objectQuery, objectSummaryQueryService)),
                 firstResult.getFacets().get());
     }
 
     private final CollectionQueryService collectionQueryService;
     private final InstitutionQueryService institutionQueryService;
-    private final ObjectQueryService objectQueryService;
+    private final ObjectSummaryQueryService objectSummaryQueryService;
     private final static Optional<GetObjectSummariesOptions> GET_FIRST_RESULT_OPTIONS = Optional
             .of(GetObjectSummariesOptions.builder().setIncludeFacets(true).setFrom(UnsignedInteger.ZERO)
                     .setSize(

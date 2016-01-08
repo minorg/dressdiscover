@@ -21,7 +21,7 @@ import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
 import net.lab1318.costume.api.services.object.GetObjectSummariesResult;
 import net.lab1318.costume.api.services.object.ObjectQuery;
-import net.lab1318.costume.api.services.object.ObjectQueryService;
+import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.api.services.object.ObjectSummarySort;
 import net.lab1318.costume.api.services.object.ObjectSummarySortField;
 
@@ -33,7 +33,8 @@ public final class ObjectSummaryEntryBeanQuery extends AbstractBeanQuery<ObjectS
         super(definition, queryConfiguration, sortPropertyIds, sortStates);
         this.firstResult = checkNotNull((GetObjectSummariesResult) queryConfiguration.get("firstResult"));
         this.objectQuery = Optional.of((ObjectQuery) queryConfiguration.get("objectQuery"));
-        this.objectQueryService = (ObjectQueryService) queryConfiguration.get("objectQueryService");
+        this.objectSummaryQueryService = (ObjectSummaryQueryService) queryConfiguration
+                .get("objectSummaryQueryService");
         this.size = firstResult.getTotalHits().intValue();
     }
 
@@ -70,7 +71,7 @@ public final class ObjectSummaryEntryBeanQuery extends AbstractBeanQuery<ObjectS
             }
 
             try {
-                result = objectQueryService.getObjectSummaries(Optional.of(optionsBuilder.build()), objectQuery);
+                result = objectSummaryQueryService.getObjectSummaries(Optional.of(optionsBuilder.build()), objectQuery);
             } catch (final IoException e) {
                 throw new RuntimeException(e);
             }
@@ -93,5 +94,5 @@ public final class ObjectSummaryEntryBeanQuery extends AbstractBeanQuery<ObjectS
 
     private final GetObjectSummariesResult firstResult;
     private final Optional<ObjectQuery> objectQuery;
-    private final ObjectQueryService objectQueryService;
+    private final ObjectSummaryQueryService objectSummaryQueryService;
 }

@@ -20,7 +20,7 @@ import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQuery;
-import net.lab1318.costume.api.services.object.ObjectQueryService;
+import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.gui.models.gender.Genders;
 
 @SuppressWarnings("serial")
@@ -38,7 +38,7 @@ final class ObjectFacetsLayout extends CustomComponent {
         final Button resetButton = new NativeButton("Reset filters", new Button.ClickListener() {
             @Override
             public void buttonClick(final ClickEvent event) {
-                eventBus.post(ObjectQueryService.Messages.GetObjectSummariesRequest.builder()
+                eventBus.post(ObjectSummaryQueryService.Messages.GetObjectSummariesRequest.builder()
                         .setQuery(ObjectQuery.builder(objectQuery).unsetFacetFilters().build()).build());
             }
         });

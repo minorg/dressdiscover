@@ -1,8 +1,8 @@
 package net.lab1318.costume.api.services.object;
 
-public interface ObjectQueryService {
+public interface ObjectSummaryQueryService {
     public enum FunctionMetadata {
-        GET_OBJECT_BY_ID("get_object_by_id");
+        GET_OBJECT_SUMMARIES("get_object_summaries");
 
         public String getThriftName() {
             return thriftName;
@@ -16,26 +16,32 @@ public interface ObjectQueryService {
     }
 
     public static class Messages {
-        public final static class GetObjectByIdRequest implements org.thryft.Struct {
+        public final static class GetObjectSummariesRequest implements org.thryft.Struct {
             public static class Builder {
                 public Builder() {
-                    id = null;
+                    options = com.google.common.base.Optional.absent();
+                    query = com.google.common.base.Optional.absent();
                 }
 
-                public Builder(final GetObjectByIdRequest other) {
-                    this.id = other.getId();
+                public Builder(final GetObjectSummariesRequest other) {
+                    this.options = other.getOptions();
+                    this.query = other.getQuery();
                 }
 
-                protected GetObjectByIdRequest _build(final net.lab1318.costume.api.models.object.ObjectId id) {
-                    return new GetObjectByIdRequest(id);
+                protected GetObjectSummariesRequest _build(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query) {
+                    return new GetObjectSummariesRequest(options, query);
                 }
 
-                public GetObjectByIdRequest build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(id, "net.lab1318.costume.api.services.object.GetObjectByIdRequest: missing id"));
+                public GetObjectSummariesRequest build() {
+                    return _build(com.google.common.base.Preconditions.checkNotNull(options, "net.lab1318.costume.api.services.object.GetObjectSummariesRequest: missing options"), com.google.common.base.Preconditions.checkNotNull(query, "net.lab1318.costume.api.services.object.GetObjectSummariesRequest: missing query"));
                 }
 
-                public final net.lab1318.costume.api.models.object.ObjectId getId() {
-                    return id;
+                public final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> getOptions() {
+                    return options;
+                }
+
+                public final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> getQuery() {
+                    return query;
                 }
 
                 public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -50,11 +56,12 @@ public interface ObjectQueryService {
                 }
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    iprot.readListBegin();
-                    try {
-                        id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
-                         throw new org.thryft.protocol.InputProtocolException(e);
+                    final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+                    if (__list.getSize() > 0) {
+                        options = com.google.common.base.Optional.of(net.lab1318.costume.api.services.object.GetObjectSummariesOptions.readAsStruct(iprot));
+                    }
+                    if (__list.getSize() > 1) {
+                        query = com.google.common.base.Optional.of(net.lab1318.costume.api.services.object.ObjectQuery.readAsStruct(iprot));
                     }
                     iprot.readListEnd();
                     return this;
@@ -68,12 +75,12 @@ public interface ObjectQueryService {
                             break;
                         }
                         switch (ifield.getName()) {
-                        case "id": {
-                            try {
-                                id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
-                            } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
-                                 throw new org.thryft.protocol.InputProtocolException(e);
-                            }
+                        case "options": {
+                            options = com.google.common.base.Optional.of(net.lab1318.costume.api.services.object.GetObjectSummariesOptions.readAsStruct(iprot));
+                            break;
+                        }
+                        case "query": {
+                            query = com.google.common.base.Optional.of(net.lab1318.costume.api.services.object.ObjectQuery.readAsStruct(iprot));
                             break;
                         }
                         }
@@ -83,16 +90,36 @@ public interface ObjectQueryService {
                     return this;
                 }
 
-                public Builder setId(final net.lab1318.costume.api.models.object.ObjectId id) {
-                    this.id = com.google.common.base.Preconditions.checkNotNull(id);
+                public Builder setIfPresent(final GetObjectSummariesRequest other) {
+                    com.google.common.base.Preconditions.checkNotNull(other);
+
+                    if (other.getOptions().isPresent()) {
+                        setOptions(other.getOptions());
+                    }
+                    if (other.getQuery().isPresent()) {
+                        setQuery(other.getQuery());
+                    }
+
                     return this;
                 }
 
-                public Builder setIfPresent(final GetObjectByIdRequest other) {
-                    com.google.common.base.Preconditions.checkNotNull(other);
+                public Builder setOptions(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options) {
+                    this.options = com.google.common.base.Preconditions.checkNotNull(options);
+                    return this;
+                }
 
-                    setId(other.getId());
+                public Builder setOptions(@javax.annotation.Nullable final net.lab1318.costume.api.services.object.GetObjectSummariesOptions options) {
+                    this.options = com.google.common.base.Optional.fromNullable(options);
+                    return this;
+                }
 
+                public Builder setQuery(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query) {
+                    this.query = com.google.common.base.Preconditions.checkNotNull(query);
+                    return this;
+                }
+
+                public Builder setQuery(@javax.annotation.Nullable final net.lab1318.costume.api.services.object.ObjectQuery query) {
+                    this.query = com.google.common.base.Optional.fromNullable(query);
                     return this;
                 }
 
@@ -100,14 +127,20 @@ public interface ObjectQueryService {
                     com.google.common.base.Preconditions.checkNotNull(name);
 
                     switch (name.toLowerCase()) {
-                    case "id": setId((net.lab1318.costume.api.models.object.ObjectId)value); return this;
+                    case "options": setOptions((net.lab1318.costume.api.services.object.GetObjectSummariesOptions)value); return this;
+                    case "query": setQuery((net.lab1318.costume.api.services.object.ObjectQuery)value); return this;
                     default:
                         throw new IllegalArgumentException(name);
                     }
                 }
 
-                public Builder unsetId() {
-                    this.id = null;
+                public Builder unsetOptions() {
+                    this.options = com.google.common.base.Optional.absent();
+                    return this;
+                }
+
+                public Builder unsetQuery() {
+                    this.query = com.google.common.base.Optional.absent();
                     return this;
                 }
 
@@ -115,18 +148,21 @@ public interface ObjectQueryService {
                     com.google.common.base.Preconditions.checkNotNull(name);
 
                     switch (name.toLowerCase()) {
-                    case "id": return unsetId();
+                    case "options": return unsetOptions();
+                    case "query": return unsetQuery();
                     default:
                         throw new IllegalArgumentException(name);
                     }
                 }
 
-                private net.lab1318.costume.api.models.object.ObjectId id;
+                private com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options;
+                private com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query;
             }
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                ID("id", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.object.ObjectId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING);
+                OPTIONS("options", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.services.object.GetObjectSummariesOptions>() {}, false, 0, "options", org.thryft.protocol.Type.STRUCT),
+                QUERY("query", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.services.object.ObjectQuery>() {}, false, 0, "query", org.thryft.protocol.Type.STRUCT);
 
                 @Override
                 public String getJavaName() {
@@ -170,7 +206,8 @@ public interface ObjectQueryService {
 
                 public static FieldMetadata valueOfJavaName(final String javaName) {
                     switch (javaName) {
-                    case "id": return ID;
+                    case "options": return OPTIONS;
+                    case "query": return QUERY;
                     default:
                         throw new IllegalArgumentException(javaName);
                     }
@@ -178,7 +215,8 @@ public interface ObjectQueryService {
 
                 public static FieldMetadata valueOfThriftName(final String thriftName) {
                     switch (thriftName) {
-                    case "id": return ID;
+                    case "options": return OPTIONS;
+                    case "query": return QUERY;
                     default:
                         throw new IllegalArgumentException(thriftName);
                     }
@@ -208,28 +246,45 @@ public interface ObjectQueryService {
             }
 
             /**
+             * Default constructor
+             */
+            public GetObjectSummariesRequest() {
+                options = com.google.common.base.Optional.absent();
+                query = com.google.common.base.Optional.absent();
+            }
+
+            /**
              * Copy constructor
              */
-            public GetObjectByIdRequest(final GetObjectByIdRequest other) {
-                this(other.getId());
+            public GetObjectSummariesRequest(final GetObjectSummariesRequest other) {
+                this(other.getOptions(), other.getQuery());
+            }
+
+            /**
+             * Total Nullable constructor
+             */
+            public GetObjectSummariesRequest(final @javax.annotation.Nullable net.lab1318.costume.api.services.object.GetObjectSummariesOptions options, final @javax.annotation.Nullable net.lab1318.costume.api.services.object.ObjectQuery query) {
+                this.options = com.google.common.base.Optional.fromNullable(options);
+                this.query = com.google.common.base.Optional.fromNullable(query);
             }
 
             /**
              * Optional constructor
              */
-            public GetObjectByIdRequest(final net.lab1318.costume.api.models.object.ObjectId id) {
-                this.id = com.google.common.base.Preconditions.checkNotNull(id, "net.lab1318.costume.api.services.object.GetObjectByIdRequest: missing id");
+            public GetObjectSummariesRequest(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query) {
+                this.options = com.google.common.base.Preconditions.checkNotNull(options, "net.lab1318.costume.api.services.object.GetObjectSummariesRequest: missing options");
+                this.query = com.google.common.base.Preconditions.checkNotNull(query, "net.lab1318.costume.api.services.object.GetObjectSummariesRequest: missing query");
             }
 
             public static Builder builder() {
                 return new Builder();
             }
 
-            public static Builder builder(final GetObjectByIdRequest other) {
+            public static Builder builder(final GetObjectSummariesRequest other) {
                 return new Builder(other);
             }
 
-            public static Builder builder(final com.google.common.base.Optional<GetObjectByIdRequest> other) {
+            public static Builder builder(final com.google.common.base.Optional<GetObjectSummariesRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
             }
 
@@ -237,13 +292,14 @@ public interface ObjectQueryService {
             public boolean equals(final java.lang.Object otherObject) {
                 if (otherObject == this) {
                     return true;
-                } else if (!(otherObject instanceof GetObjectByIdRequest)) {
+                } else if (!(otherObject instanceof GetObjectSummariesRequest)) {
                     return false;
                 }
 
-                final GetObjectByIdRequest other = (GetObjectByIdRequest)otherObject;
+                final GetObjectSummariesRequest other = (GetObjectSummariesRequest)otherObject;
                 return
-                    getId().equals(other.getId());
+                    getOptions().equals(other.getOptions()) &&
+                    getQuery().equals(other.getQuery());
             }
 
             @Override
@@ -261,29 +317,39 @@ public interface ObjectQueryService {
 
             public java.lang.Object get(final FieldMetadata fieldMetadata) {
                 switch (fieldMetadata) {
-                case ID: return getId();
+                case OPTIONS: return getOptions();
+                case QUERY: return getQuery();
                 default:
                     throw new IllegalStateException();
                 }
             }
 
-            public final net.lab1318.costume.api.models.object.ObjectId getId() {
-                return id;
+            public final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> getOptions() {
+                return options;
+            }
+
+            public final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> getQuery() {
+                return query;
             }
 
             @Override
             public int hashCode() {
                 int hashCode = 17;
-                hashCode = 31 * hashCode + getId().hashCode();
+                if (getOptions().isPresent()) {
+                    hashCode = 31 * hashCode + getOptions().get().hashCode();
+                }
+                if (getQuery().isPresent()) {
+                    hashCode = 31 * hashCode + getQuery().get().hashCode();
+                }
                 return hashCode;
             }
 
             @Override
             public boolean isEmpty() {
-                return false;
+                return !getOptions().isPresent() && !getQuery().isPresent();
             }
 
-            public static GetObjectByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            public static GetObjectSummariesRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 switch (type) {
                 case LIST:
                     return readAsList(iprot);
@@ -294,25 +360,28 @@ public interface ObjectQueryService {
                 }
             }
 
-            public static GetObjectByIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.object.ObjectId id = null;
+            public static GetObjectSummariesRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options = com.google.common.base.Optional.absent();
+                com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query = com.google.common.base.Optional.absent();
 
-                iprot.readListBegin();
-                try {
-                    id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
-                     throw new org.thryft.protocol.InputProtocolException(e);
+                final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+                if (__list.getSize() > 0) {
+                    options = com.google.common.base.Optional.of(net.lab1318.costume.api.services.object.GetObjectSummariesOptions.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 1) {
+                    query = com.google.common.base.Optional.of(net.lab1318.costume.api.services.object.ObjectQuery.readAsStruct(iprot));
                 }
                 iprot.readListEnd();
                 try {
-                    return new GetObjectByIdRequest(id);
+                    return new GetObjectSummariesRequest(options, query);
                 } catch (final IllegalArgumentException | NullPointerException e) {
                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
             }
 
-            public static GetObjectByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.object.ObjectId id = null;
+            public static GetObjectSummariesRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options = com.google.common.base.Optional.absent();
+                com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query = com.google.common.base.Optional.absent();
 
                 iprot.readStructBegin();
                 while (true) {
@@ -321,12 +390,12 @@ public interface ObjectQueryService {
                         break;
                     }
                     switch (ifield.getName()) {
-                    case "id": {
-                        try {
-                            id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
-                        } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
-                             throw new org.thryft.protocol.InputProtocolException(e);
-                        }
+                    case "options": {
+                        options = com.google.common.base.Optional.of(net.lab1318.costume.api.services.object.GetObjectSummariesOptions.readAsStruct(iprot));
+                        break;
+                    }
+                    case "query": {
+                        query = com.google.common.base.Optional.of(net.lab1318.costume.api.services.object.ObjectQuery.readAsStruct(iprot));
                         break;
                     }
                     }
@@ -334,68 +403,100 @@ public interface ObjectQueryService {
                 }
                 iprot.readStructEnd();
                 try {
-                    return new GetObjectByIdRequest(id);
+                    return new GetObjectSummariesRequest(options, query);
                 } catch (final IllegalArgumentException | NullPointerException e) {
                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
             }
 
-            public GetObjectByIdRequest replaceId(final net.lab1318.costume.api.models.object.ObjectId id) {
-                return new GetObjectByIdRequest(id);
+            public GetObjectSummariesRequest replaceOptions(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options) {
+                return new GetObjectSummariesRequest(options, this.query);
+            }
+
+            public GetObjectSummariesRequest replaceOptions(final net.lab1318.costume.api.services.object.GetObjectSummariesOptions options) {
+                return replaceOptions(com.google.common.base.Optional.fromNullable(options));
+            }
+
+            public GetObjectSummariesRequest replaceQuery(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query) {
+                return new GetObjectSummariesRequest(this.options, query);
+            }
+
+            public GetObjectSummariesRequest replaceQuery(final net.lab1318.costume.api.services.object.ObjectQuery query) {
+                return replaceQuery(com.google.common.base.Optional.fromNullable(query));
             }
 
             @Override
             public String toString() {
-                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("id", getId()).toString();
+                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("options", getOptions().orNull()).add("query", getQuery().orNull()).toString();
             }
 
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
+                oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
 
-                oprot.writeString(getId().toString());
+                if (getOptions().isPresent()) {
+                    getOptions().get().writeAsStruct(oprot);
+                } else {
+                    oprot.writeNull();
+                }
+
+                if (getQuery().isPresent()) {
+                    getQuery().get().writeAsStruct(oprot);
+                } else {
+                    oprot.writeNull();
+                }
 
                 oprot.writeListEnd();
             }
 
             @Override
             public void writeAsStruct(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeStructBegin("net.lab1318.costume.api.services.object.GetObjectByIdRequest");
+                oprot.writeStructBegin("net.lab1318.costume.api.services.object.GetObjectSummariesRequest");
                 writeFields(oprot);
                 oprot.writeStructEnd();
             }
 
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeFieldBegin("id", org.thryft.protocol.Type.STRING, (short)0);
-                oprot.writeString(getId().toString());
-                oprot.writeFieldEnd();
+                if (getOptions().isPresent()) {
+                    oprot.writeFieldBegin("options", org.thryft.protocol.Type.STRUCT, (short)0);
+                    getOptions().get().writeAsStruct(oprot);
+                    oprot.writeFieldEnd();
+                }
+
+                if (getQuery().isPresent()) {
+                    oprot.writeFieldBegin("query", org.thryft.protocol.Type.STRUCT, (short)0);
+                    getQuery().get().writeAsStruct(oprot);
+                    oprot.writeFieldEnd();
+                }
 
                 oprot.writeFieldStop();
             }
 
-            private final net.lab1318.costume.api.models.object.ObjectId id;
+            private final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options;
+
+            private final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query;
         }
 
-        public final static class GetObjectByIdResponse implements org.thryft.Struct {
+        public final static class GetObjectSummariesResponse implements org.thryft.Struct {
             public static class Builder {
                 public Builder() {
                     returnValue = null;
                 }
 
-                public Builder(final GetObjectByIdResponse other) {
+                public Builder(final GetObjectSummariesResponse other) {
                     this.returnValue = other.getReturnValue();
                 }
 
-                protected GetObjectByIdResponse _build(final net.lab1318.costume.api.models.object.Object returnValue) {
-                    return new GetObjectByIdResponse(returnValue);
+                protected GetObjectSummariesResponse _build(final net.lab1318.costume.api.services.object.GetObjectSummariesResult returnValue) {
+                    return new GetObjectSummariesResponse(returnValue);
                 }
 
-                public GetObjectByIdResponse build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(returnValue, "net.lab1318.costume.api.services.object.GetObjectByIdResponse: missing returnValue"));
+                public GetObjectSummariesResponse build() {
+                    return _build(com.google.common.base.Preconditions.checkNotNull(returnValue, "net.lab1318.costume.api.services.object.GetObjectSummariesResponse: missing returnValue"));
                 }
 
-                public final net.lab1318.costume.api.models.object.Object getReturnValue() {
+                public final net.lab1318.costume.api.services.object.GetObjectSummariesResult getReturnValue() {
                     return returnValue;
                 }
 
@@ -412,7 +513,7 @@ public interface ObjectQueryService {
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
-                    returnValue = net.lab1318.costume.api.models.object.Object.readAsStruct(iprot);
+                    returnValue = net.lab1318.costume.api.services.object.GetObjectSummariesResult.readAsStruct(iprot);
                     iprot.readListEnd();
                     return this;
                 }
@@ -426,7 +527,7 @@ public interface ObjectQueryService {
                         }
                         switch (ifield.getName()) {
                         case "return_value": {
-                            returnValue = net.lab1318.costume.api.models.object.Object.readAsStruct(iprot);
+                            returnValue = net.lab1318.costume.api.services.object.GetObjectSummariesResult.readAsStruct(iprot);
                             break;
                         }
                         }
@@ -436,7 +537,7 @@ public interface ObjectQueryService {
                     return this;
                 }
 
-                public Builder setIfPresent(final GetObjectByIdResponse other) {
+                public Builder setIfPresent(final GetObjectSummariesResponse other) {
                     com.google.common.base.Preconditions.checkNotNull(other);
 
                     setReturnValue(other.getReturnValue());
@@ -444,7 +545,7 @@ public interface ObjectQueryService {
                     return this;
                 }
 
-                public Builder setReturnValue(final net.lab1318.costume.api.models.object.Object returnValue) {
+                public Builder setReturnValue(final net.lab1318.costume.api.services.object.GetObjectSummariesResult returnValue) {
                     this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue);
                     return this;
                 }
@@ -453,7 +554,7 @@ public interface ObjectQueryService {
                     com.google.common.base.Preconditions.checkNotNull(name);
 
                     switch (name.toLowerCase()) {
-                    case "return_value": setReturnValue((net.lab1318.costume.api.models.object.Object)value); return this;
+                    case "return_value": setReturnValue((net.lab1318.costume.api.services.object.GetObjectSummariesResult)value); return this;
                     default:
                         throw new IllegalArgumentException(name);
                     }
@@ -474,12 +575,12 @@ public interface ObjectQueryService {
                     }
                 }
 
-                private net.lab1318.costume.api.models.object.Object returnValue;
+                private net.lab1318.costume.api.services.object.GetObjectSummariesResult returnValue;
             }
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.object.Object>() {}, true, 0, "return_value", org.thryft.protocol.Type.STRUCT);
+                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.services.object.GetObjectSummariesResult>() {}, true, 0, "return_value", org.thryft.protocol.Type.STRUCT);
 
                 @Override
                 public String getJavaName() {
@@ -563,26 +664,26 @@ public interface ObjectQueryService {
             /**
              * Copy constructor
              */
-            public GetObjectByIdResponse(final GetObjectByIdResponse other) {
+            public GetObjectSummariesResponse(final GetObjectSummariesResponse other) {
                 this(other.getReturnValue());
             }
 
             /**
              * Optional constructor
              */
-            public GetObjectByIdResponse(final net.lab1318.costume.api.models.object.Object returnValue) {
-                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "net.lab1318.costume.api.services.object.ObjectQueryService.getObjectById: missing returnValue");
+            public GetObjectSummariesResponse(final net.lab1318.costume.api.services.object.GetObjectSummariesResult returnValue) {
+                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "net.lab1318.costume.api.services.object.ObjectSummaryQueryService.getObjectSummaries: missing returnValue");
             }
 
             public static Builder builder() {
                 return new Builder();
             }
 
-            public static Builder builder(final GetObjectByIdResponse other) {
+            public static Builder builder(final GetObjectSummariesResponse other) {
                 return new Builder(other);
             }
 
-            public static Builder builder(final com.google.common.base.Optional<GetObjectByIdResponse> other) {
+            public static Builder builder(final com.google.common.base.Optional<GetObjectSummariesResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
             }
 
@@ -590,11 +691,11 @@ public interface ObjectQueryService {
             public boolean equals(final java.lang.Object otherObject) {
                 if (otherObject == this) {
                     return true;
-                } else if (!(otherObject instanceof GetObjectByIdResponse)) {
+                } else if (!(otherObject instanceof GetObjectSummariesResponse)) {
                     return false;
                 }
 
-                final GetObjectByIdResponse other = (GetObjectByIdResponse)otherObject;
+                final GetObjectSummariesResponse other = (GetObjectSummariesResponse)otherObject;
                 return
                     getReturnValue().equals(other.getReturnValue());
             }
@@ -620,7 +721,7 @@ public interface ObjectQueryService {
                 }
             }
 
-            public final net.lab1318.costume.api.models.object.Object getReturnValue() {
+            public final net.lab1318.costume.api.services.object.GetObjectSummariesResult getReturnValue() {
                 return returnValue;
             }
 
@@ -636,7 +737,7 @@ public interface ObjectQueryService {
                 return false;
             }
 
-            public static GetObjectByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            public static GetObjectSummariesResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 switch (type) {
                 case LIST:
                     return readAsList(iprot);
@@ -647,21 +748,21 @@ public interface ObjectQueryService {
                 }
             }
 
-            public static GetObjectByIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.object.Object returnValue = null;
+            public static GetObjectSummariesResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                net.lab1318.costume.api.services.object.GetObjectSummariesResult returnValue = null;
 
                 iprot.readListBegin();
-                returnValue = net.lab1318.costume.api.models.object.Object.readAsStruct(iprot);
+                returnValue = net.lab1318.costume.api.services.object.GetObjectSummariesResult.readAsStruct(iprot);
                 iprot.readListEnd();
                 try {
-                    return new GetObjectByIdResponse(returnValue);
+                    return new GetObjectSummariesResponse(returnValue);
                 } catch (final IllegalArgumentException | NullPointerException e) {
                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
             }
 
-            public static GetObjectByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.object.Object returnValue = null;
+            public static GetObjectSummariesResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                net.lab1318.costume.api.services.object.GetObjectSummariesResult returnValue = null;
 
                 iprot.readStructBegin();
                 while (true) {
@@ -671,7 +772,7 @@ public interface ObjectQueryService {
                     }
                     switch (ifield.getName()) {
                     case "return_value": {
-                        returnValue = net.lab1318.costume.api.models.object.Object.readAsStruct(iprot);
+                        returnValue = net.lab1318.costume.api.services.object.GetObjectSummariesResult.readAsStruct(iprot);
                         break;
                     }
                     }
@@ -679,14 +780,14 @@ public interface ObjectQueryService {
                 }
                 iprot.readStructEnd();
                 try {
-                    return new GetObjectByIdResponse(returnValue);
+                    return new GetObjectSummariesResponse(returnValue);
                 } catch (final IllegalArgumentException | NullPointerException e) {
                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
             }
 
-            public GetObjectByIdResponse replaceReturnValue(final net.lab1318.costume.api.models.object.Object returnValue) {
-                return new GetObjectByIdResponse(returnValue);
+            public GetObjectSummariesResponse replaceReturnValue(final net.lab1318.costume.api.services.object.GetObjectSummariesResult returnValue) {
+                return new GetObjectSummariesResponse(returnValue);
             }
 
             @Override
@@ -705,7 +806,7 @@ public interface ObjectQueryService {
 
             @Override
             public void writeAsStruct(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeStructBegin("net.lab1318.costume.api.services.object.GetObjectByIdResponse");
+                oprot.writeStructBegin("net.lab1318.costume.api.services.object.GetObjectSummariesResponse");
                 writeFields(oprot);
                 oprot.writeStructEnd();
             }
@@ -719,9 +820,17 @@ public interface ObjectQueryService {
                 oprot.writeFieldStop();
             }
 
-            private final net.lab1318.costume.api.models.object.Object returnValue;
+            private final net.lab1318.costume.api.services.object.GetObjectSummariesResult returnValue;
         }
     }
 
-    public net.lab1318.costume.api.models.object.Object getObjectById(final net.lab1318.costume.api.models.object.ObjectId id) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.object.NoSuchObjectException;
+    public default net.lab1318.costume.api.services.object.GetObjectSummariesResult getObjectSummaries() throws net.lab1318.costume.api.services.IoException {
+        return getObjectSummaries(com.google.common.base.Optional.<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> absent(), com.google.common.base.Optional.<net.lab1318.costume.api.services.object.ObjectQuery> absent());
+    }
+
+    public default net.lab1318.costume.api.services.object.GetObjectSummariesResult getObjectSummaries(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options) throws net.lab1318.costume.api.services.IoException {
+        return getObjectSummaries(options, com.google.common.base.Optional.<net.lab1318.costume.api.services.object.ObjectQuery> absent());
+    }
+
+    public net.lab1318.costume.api.services.object.GetObjectSummariesResult getObjectSummaries(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query) throws net.lab1318.costume.api.services.IoException;
 }

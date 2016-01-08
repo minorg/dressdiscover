@@ -36,7 +36,6 @@ import org.thryft.protocol.InputProtocolException;
 import org.thryft.waf.lib.protocols.ElasticSearchInputProtocol;
 import org.thryft.waf.lib.stores.ElasticSearchIndex;
 import org.thryft.waf.lib.stores.InvalidModelException;
-import org.thryft.waf.lib.stores.NoSuchModelException;
 
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
@@ -62,19 +61,17 @@ import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
 import net.lab1318.costume.api.services.object.GetObjectSummariesResult;
-import net.lab1318.costume.api.services.object.NoSuchObjectException;
 import net.lab1318.costume.api.services.object.ObjectFacetFilters;
 import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQuery;
-import net.lab1318.costume.api.services.object.ObjectQueryService;
+import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.api.services.object.ObjectSummarySort;
 import net.lab1318.costume.lib.services.ServiceExceptionHelper;
-import net.lab1318.costume.lib.services.object.LoggingObjectQueryService.Markers;
-import net.lab1318.costume.lib.stores.object.ObjectElasticSearchIndex;
+import net.lab1318.costume.lib.services.object.LoggingObjectSummaryQueryService.Markers;
 import net.lab1318.costume.lib.stores.object.ObjectSummaryElasticSearchIndex;
 
 @Singleton
-public class ElasticSearchObjectQueryService implements ObjectQueryService {
+public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQueryService {
     public final static class ObjectElasticSearchModelFactory implements ElasticSearchIndex.ModelFactory<ObjectEntry> {
         public static ObjectElasticSearchModelFactory getInstance() {
             return instance;
@@ -300,10 +297,9 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     }
 
     @Inject
-    public ElasticSearchObjectQueryService(final ObjectElasticSearchIndex objectElasticSearchIndex,
-            final ObjectSummariesResultCache objectSummariesResultCache, final ObjectSummaryCache objectSummaryCache,
+    public ElasticSearchObjectSummaryQueryService(final ObjectSummariesResultCache objectSummariesResultCache,
+            final ObjectSummaryCache objectSummaryCache,
             final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex) {
-        this.objectElasticSearchIndex = checkNotNull(objectElasticSearchIndex);
         this.objectSummariesResultCache = checkNotNull(objectSummariesResultCache);
         this.objectSummaryElasticSearchIndex = checkNotNull(objectSummaryElasticSearchIndex);
         objectSummaryElasticSearchModelFactory = new ObjectSummaryElasticSearchModelFactory(objectSummaryCache);
@@ -318,21 +314,6 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
                     .setHits(ImmutableList.of()).setTotalHits(UnsignedInteger.ZERO).build();
             emptyObjectSummariesResultWithoutFacets = GetObjectSummariesResult.builder().setHits(ImmutableList.of())
                     .setTotalHits(UnsignedInteger.ZERO).build();
-        }
-    }
-
-    @Override
-    public Object getObjectById(final ObjectId id) throws IoException, NoSuchObjectException {
-        try {
-            return objectElasticSearchIndex.getModelById(id, Optional.absent(), logger, Markers.GET_OBJECT_BY_ID,
-                    ObjectElasticSearchModelFactory.getInstance());
-        } catch (final InvalidModelException e) {
-            logger.warn(Markers.GET_OBJECT_BY_ID, "invalid object model {}: ", id, e);
-            throw new NoSuchObjectException();
-        } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting object" + id);
-        } catch (final NoSuchModelException e) {
-            throw new NoSuchObjectException();
         }
     }
 
@@ -625,8 +606,7 @@ public class ElasticSearchObjectQueryService implements ObjectQueryService {
     private final GetObjectSummariesResult emptyObjectSummariesResultWithoutFacets;
     private final ObjectFacetAggregations objectFacetAggregations = new ObjectFacetAggregations();
     private final ObjectSummariesResultCache objectSummariesResultCache;
-    private final ObjectElasticSearchIndex objectElasticSearchIndex;
     private final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex;
     private final ObjectSummaryElasticSearchModelFactory objectSummaryElasticSearchModelFactory;
-    private final static Logger logger = LoggerFactory.getLogger(ElasticSearchObjectQueryService.class);
+    private final static Logger logger = LoggerFactory.getLogger(ElasticSearchObjectSummaryQueryService.class);
 }
