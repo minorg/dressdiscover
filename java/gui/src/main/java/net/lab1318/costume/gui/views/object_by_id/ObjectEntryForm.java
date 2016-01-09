@@ -169,7 +169,9 @@ final class ObjectEntryForm extends CustomComponent {
             if (objectEntry.getModel().getRights().isPresent()) {
                 leftPaneLayout.addComponent(new RightsLabel(objectEntry.getModel().getRights().get()));
             }
-            leftPaneLayout.addComponent(new RightsLabel(institution.getDataRights()));
+            if (institution.getDataRights().isPresent()) {
+                leftPaneLayout.addComponent(new RightsLabel(institution.getDataRights().get()));
+            }
         }
 
         final VerticalLayout rightPaneLayout = new VerticalLayout();
