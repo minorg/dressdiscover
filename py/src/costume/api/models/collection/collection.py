@@ -10,21 +10,24 @@ class Collection(object):
             model_metadata=None,
             title=None,
             description=None,
+            hidden=None,
         ):
             '''
             :type institution_id: str
             :type model_metadata: costume.api.models.model_metadata.ModelMetadata
             :type title: str
             :type description: str or None
+            :type hidden: bool or None
             '''
 
             self.__institution_id = institution_id
             self.__model_metadata = model_metadata
             self.__title = title
             self.__description = description
+            self.__hidden = hidden
 
         def build(self):
-            return Collection(institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, description=self.__description)
+            return Collection(institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, description=self.__description, hidden=self.__hidden)
 
         @property
         def description(self):
@@ -33,6 +36,14 @@ class Collection(object):
             '''
 
             return self.__description
+
+        @property
+        def hidden(self):
+            '''
+            :rtype: bool
+            '''
+
+            return self.__hidden
 
         @property
         def institution_id(self):
@@ -56,6 +67,14 @@ class Collection(object):
             '''
 
             self.__description = description
+            return self
+
+        def set_hidden(self, hidden):
+            '''
+            :type hidden: bool or None
+            '''
+
+            self.__hidden = hidden
             return self
 
         def set_institution_id(self, institution_id):
@@ -96,6 +115,7 @@ class Collection(object):
             :type model_metadata: costume.api.models.model_metadata.ModelMetadata
             :type title: str
             :type description: str or None
+            :type hidden: bool or None
             '''
 
             if isinstance(collection, Collection):
@@ -103,6 +123,7 @@ class Collection(object):
                 self.set_model_metadata(collection.model_metadata)
                 self.set_title(collection.title)
                 self.set_description(collection.description)
+                self.set_hidden(collection.hidden)
             elif isinstance(collection, dict):
                 for key, value in collection.iteritems():
                     getattr(self, 'set_' + key)(value)
@@ -117,6 +138,14 @@ class Collection(object):
             '''
 
             self.set_description(description)
+
+        @hidden.setter
+        def hidden(self, hidden):
+            '''
+            :type hidden: bool or None
+            '''
+
+            self.set_hidden(hidden)
 
         @institution_id.setter
         def institution_id(self, institution_id):
@@ -148,12 +177,14 @@ class Collection(object):
         model_metadata,
         title,
         description=None,
+        hidden=None,
     ):
         '''
         :type institution_id: str
         :type model_metadata: costume.api.models.model_metadata.ModelMetadata
         :type title: str
         :type description: str or None
+        :type hidden: bool or None
         '''
 
         if institution_id is None:
@@ -183,6 +214,11 @@ class Collection(object):
                 raise ValueError("expected len(description) to be >= 1, was %d" % len(description))
         self.__description = description
 
+        if hidden is not None:
+            if not isinstance(hidden, bool):
+                raise TypeError("expected hidden to be a bool but it is a %s" % getattr(__builtin__, 'type')(hidden))
+        self.__hidden = hidden
+
     def __eq__(self, other):
         if self.institution_id != other.institution_id:
             return False
@@ -192,10 +228,12 @@ class Collection(object):
             return False
         if self.description != other.description:
             return False
+        if self.hidden != other.hidden:
+            return False
         return True
 
     def __hash__(self):
-        return hash((self.institution_id,self.model_metadata,self.title,self.description,))
+        return hash((self.institution_id,self.model_metadata,self.title,self.description,self.hidden,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -210,6 +248,8 @@ class Collection(object):
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
         if self.description is not None:
             field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
+        if self.hidden is not None:
+            field_reprs.append('hidden=' + repr(self.hidden))
         return 'Collection(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
@@ -219,6 +259,8 @@ class Collection(object):
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
         if self.description is not None:
             field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
+        if self.hidden is not None:
+            field_reprs.append('hidden=' + repr(self.hidden))
         return 'Collection(' + ', '.join(field_reprs) + ')'
 
     def as_dict(self):
@@ -228,7 +270,7 @@ class Collection(object):
         :rtype: dict
         '''
 
-        return {'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'description': self.description}
+        return {'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'description': self.description, 'hidden': self.hidden}
 
     def as_tuple(self):
         '''
@@ -237,7 +279,7 @@ class Collection(object):
         :rtype: tuple
         '''
 
-        return (self.institution_id, self.model_metadata, self.title, self.description,)
+        return (self.institution_id, self.model_metadata, self.title, self.description, self.hidden,)
 
     @property
     def description(self):
@@ -246,6 +288,14 @@ class Collection(object):
         '''
 
         return self.__description
+
+    @property
+    def hidden(self):
+        '''
+        :rtype: bool
+        '''
+
+        return self.__hidden
 
     @property
     def institution_id(self):
@@ -290,6 +340,11 @@ class Collection(object):
                     init_kwds['description'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
+            elif ifield_name == 'hidden' and ifield_id == 5:
+                try:
+                    init_kwds['hidden'] = iprot.read_bool()
+                except (TypeError, ValueError,):
+                    pass
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -301,6 +356,7 @@ class Collection(object):
         model_metadata=None,
         title=None,
         description=None,
+        hidden=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
@@ -309,6 +365,7 @@ class Collection(object):
         :type model_metadata: costume.api.models.model_metadata.ModelMetadata or None
         :type title: str or None
         :type description: str or None
+        :type hidden: bool or None
         :rtype: costume.api.models.collection.collection.Collection
         '''
 
@@ -320,7 +377,9 @@ class Collection(object):
             title = self.title
         if description is None:
             description = self.description
-        return self.__class__(institution_id=institution_id, model_metadata=model_metadata, title=title, description=description)
+        if hidden is None:
+            hidden = self.hidden
+        return self.__class__(institution_id=institution_id, model_metadata=model_metadata, title=title, description=description, hidden=hidden)
 
     @property
     def title(self):
@@ -355,6 +414,11 @@ class Collection(object):
         if self.description is not None:
             oprot.write_field_begin(name='description', type=11, id=4)
             oprot.write_string(self.description)
+            oprot.write_field_end()
+
+        if self.hidden is not None:
+            oprot.write_field_begin(name='hidden', type=2, id=5)
+            oprot.write_bool(self.hidden)
             oprot.write_field_end()
 
         oprot.write_field_stop()

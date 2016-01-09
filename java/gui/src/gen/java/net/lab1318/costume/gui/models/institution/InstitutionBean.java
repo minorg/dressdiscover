@@ -3,10 +3,11 @@ package net.lab1318.costume.gui.models.institution;
 public class InstitutionBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        DATA_RIGHTS("dataRights", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.rights.RightsSetBean>() {}, true, 5, "data_rights", org.thryft.protocol.Type.STRUCT),
         MODEL_METADATA("modelMetadata", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.ModelMetadataBean>() {}, true, 4, "model_metadata", org.thryft.protocol.Type.STRUCT),
         TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "title", org.thryft.protocol.Type.STRING),
-        URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, true, 3, "url", org.thryft.protocol.Type.STRING);
+        DATA_RIGHTS("dataRights", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.rights.RightsSetBean>() {}, false, 5, "data_rights", org.thryft.protocol.Type.STRUCT),
+        HIDDEN("hidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 6, "hidden", org.thryft.protocol.Type.BOOL),
+        URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 3, "url", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -50,9 +51,10 @@ public class InstitutionBean implements org.thryft.StructBean {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "dataRights": return DATA_RIGHTS;
             case "modelMetadata": return MODEL_METADATA;
             case "title": return TITLE;
+            case "dataRights": return DATA_RIGHTS;
+            case "hidden": return HIDDEN;
             case "url": return URL;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -61,9 +63,10 @@ public class InstitutionBean implements org.thryft.StructBean {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "data_rights": return DATA_RIGHTS;
             case "model_metadata": return MODEL_METADATA;
             case "title": return TITLE;
+            case "data_rights": return DATA_RIGHTS;
+            case "hidden": return HIDDEN;
             case "url": return URL;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -94,17 +97,19 @@ public class InstitutionBean implements org.thryft.StructBean {
     }
 
     public InstitutionBean() {
-        dataRights = null;
         modelMetadata = null;
         title = null;
+        dataRights = null;
+        hidden = null;
         url = null;
     }
 
     public InstitutionBean(final net.lab1318.costume.api.models.institution.Institution other) {
-        this.dataRights = new net.lab1318.costume.gui.models.rights.RightsSetBean(other.getDataRights());
         this.modelMetadata = new net.lab1318.costume.gui.models.ModelMetadataBean(other.getModelMetadata());
         this.title = other.getTitle();
-        this.url = other.getUrl();
+        this.dataRights = other.getDataRights().isPresent() ? new net.lab1318.costume.gui.models.rights.RightsSetBean(other.getDataRights().get()) : null;
+        this.hidden = other.getHidden().isPresent() ? other.getHidden().get() : null;
+        this.url = other.getUrl().isPresent() ? other.getUrl().get() : null;
     }
 
     @Override
@@ -117,10 +122,11 @@ public class InstitutionBean implements org.thryft.StructBean {
 
         final InstitutionBean other = (InstitutionBean)otherObject;
         return
-            getDataRights().equals(other.getDataRights()) &&
             getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
-            getUrl().equals(other.getUrl());
+            (getDataRights() != null ? getDataRights().equals(other.getDataRights()) : other.getDataRights() == null) &&
+            (getHidden() != null ? getHidden().equals(other.getHidden()) : other.getHidden() == null) &&
+            (getUrl() != null ? getUrl().equals(other.getUrl()) : other.getUrl() == null);
     }
 
     @Override
@@ -138,9 +144,10 @@ public class InstitutionBean implements org.thryft.StructBean {
 
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
-        case DATA_RIGHTS: return getDataRights();
         case MODEL_METADATA: return getModelMetadata();
         case TITLE: return getTitle();
+        case DATA_RIGHTS: return getDataRights();
+        case HIDDEN: return getHidden();
         case URL: return getUrl();
         default:
             throw new IllegalStateException();
@@ -149,6 +156,10 @@ public class InstitutionBean implements org.thryft.StructBean {
 
     public net.lab1318.costume.gui.models.rights.RightsSetBean getDataRights() {
         return dataRights;
+    }
+
+    public Boolean getHidden() {
+        return hidden;
     }
 
     public net.lab1318.costume.gui.models.ModelMetadataBean getModelMetadata() {
@@ -166,10 +177,17 @@ public class InstitutionBean implements org.thryft.StructBean {
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getDataRights().hashCode();
         hashCode = 31 * hashCode + getModelMetadata().hashCode();
         hashCode = 31 * hashCode + getTitle().hashCode();
-        hashCode = 31 * hashCode + getUrl().hashCode();
+        if (getDataRights() != null) {
+            hashCode = 31 * hashCode + getDataRights().hashCode();
+        }
+        if (getHidden() != null) {
+            hashCode = 31 * hashCode + (getHidden() ? 1 : 0);
+        }
+        if (getUrl() != null) {
+            hashCode = 31 * hashCode + getUrl().hashCode();
+        }
         return hashCode;
     }
 
@@ -180,6 +198,10 @@ public class InstitutionBean implements org.thryft.StructBean {
 
     public void setDataRights(final net.lab1318.costume.gui.models.rights.RightsSetBean dataRights) {
         this.dataRights = dataRights;
+    }
+
+    public void setHidden(final Boolean hidden) {
+        this.hidden = hidden;
     }
 
     public void setModelMetadata(final net.lab1318.costume.gui.models.ModelMetadataBean modelMetadata) {
@@ -196,14 +218,16 @@ public class InstitutionBean implements org.thryft.StructBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("data_rights", getDataRights()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("url", getUrl()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("model_metadata", getModelMetadata()).add("title", getTitle()).add("data_rights", getDataRights()).add("hidden", getHidden()).add("url", getUrl()).toString();
     }
-
-    private net.lab1318.costume.gui.models.rights.RightsSetBean dataRights;
 
     private net.lab1318.costume.gui.models.ModelMetadataBean modelMetadata;
 
     private String title;
+
+    private net.lab1318.costume.gui.models.rights.RightsSetBean dataRights;
+
+    private Boolean hidden;
 
     private org.thryft.native_.Url url;
 }

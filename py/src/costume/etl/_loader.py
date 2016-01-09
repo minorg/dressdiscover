@@ -1,6 +1,8 @@
 from datetime import datetime
 
+from costume.api.models.collection.collection import Collection
 from costume.api.models.model_metadata import ModelMetadata
+from costume.api.models.object.object_entry import ObjectEntry
 from costume.api.services.institution.no_such_institution_exception import NoSuchInstitutionException
 from costume.etl._main import _Main
 from costume.lib.costume_properties import CostumeProperties
@@ -59,3 +61,20 @@ class _Loader(_Main):
     def _services(self):
         return self.__services
 
+    def _put_collection(self, title):
+        self._services.collection_command_service.put_collection(
+            self.__collection_id,
+            Collection.Builder()
+                .set_institution_id(self._institution_id)
+                .set_model_metadata(self._new_model_metadata())
+                .set_title(title)
+                .build()
+        )
+
+    def _put_objects_by_id(self, objects_by_id):
+        self._logger.debug("putting %d objects to the service", len(objects_by_id))
+        self._services.object_command_service.put_objects(
+            tuple(ObjectEntry(object_id, object_)
+                  for object_id, object_ in objects_by_id.iteritems())
+        )
+        self._logger.info("put %d objects to the service", len(objects_by_id))

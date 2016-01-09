@@ -16,4 +16,7 @@ struct Collection {
 
 	// @validation {"minLength": 1}
 	4: optional string description;
+
+	// @validation {"acceptance": true}
+	5: optional bool hidden;
 }
