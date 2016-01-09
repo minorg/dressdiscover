@@ -69,10 +69,22 @@ class WizardLoader(_Loader):
                 if len(credit_line) == 0:
                     self._logger.debug("feature %s = %s has no credit line, skipping", feature_name, feature_value)
                     continue
-                license = csv_row['License']
-                if len(license) == 0:
+                license_ = csv_row['License']
+                if len(license_) == 0:
                     self._logger.debug("feature %s = %s has no license, skipping", feature_name, feature_value)
                     continue
+                license_vocab_ref = None
+                if license_.lower() == 'public domain':
+                    rights_type = RightsType.PUBLIC_DOMAIN
+                elif license_ == 'CC0':
+                    rights_type = RightsType.LICENSED
+                    license_vocab_ref = \
+                        VocabRef.Builder()\
+                            .set_vocab(Vocab.CREATIVE_COMMONS)\
+                            .set_uri('https://creativecommons.org/publicdomain/zero/1.0/')\
+                            .build()
+                else:
+                    raise NotImplementedError(license_)
                 image_url = csv_row['Image URL']
                 if len(image_url) == 0:
                     self._logger.debug("feature %s = %s has no image URL, skipping", feature_name, feature_value)
@@ -103,6 +115,16 @@ class WizardLoader(_Loader):
                         .build(),
                 ))
                 object_builder.model_metadata = self._new_model_metadata()
+                object_builder.set_rights(
+                    RightsSet.Builder().set_elements((
+                        Rights.Builder()
+                            .set_license_vocab_ref(license_vocab_ref)
+                            .set_text(license_)
+                            .set_type(rights_type)
+                            .build(),
+                    ))
+                    .build()
+                )
                 object_builder.set_structures(
                     StructureSet.Builder().set_elements((
                         Structure.Builder()
@@ -151,7 +173,7 @@ class WizardLoader(_Loader):
 
                 object_ = object_builder.build()
 
-                object_id = self.__collection_id + '/' + urllib.quote(feature_name) + '/' + urllib.quote(feature_value)
+                object_id = self.__collection_id + '/' + urllib.quote(feature_name + '=' + feature_value)
 
                 objects_by_id[object_id] = object_
 
