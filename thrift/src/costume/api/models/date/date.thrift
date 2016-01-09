@@ -17,7 +17,6 @@ struct Date {
 
 	4: optional url.Url href;
 
-	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	5: optional string source;
 }

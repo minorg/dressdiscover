@@ -7,7 +7,6 @@ include "thryft/native/url.thrift"
 
 // VRA Core 4.0 textref.refid subelement
 struct TextrefRefid {
-	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	1: string text;
 

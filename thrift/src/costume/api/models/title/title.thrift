@@ -7,7 +7,6 @@ include "costume/api/models/title/title_type.thrift"
 // VRA Core 4.0 title element
 // @java_implements net.lab1318.costume.api.models.Element
 struct Title {
-	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	1: string text;
 

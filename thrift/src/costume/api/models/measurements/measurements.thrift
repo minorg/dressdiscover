@@ -8,13 +8,11 @@ include "costume/api/models/measurements/measurements_unit.thrift"
 // VRA Core 4.0 measurements element
 // @java_implements net.lab1318.costume.api.models.Element
 struct Measurements {
-	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	1: string text;
 
 	2: measurements_type.MeasurementsType type;
 
-	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	3: optional string extent;
 

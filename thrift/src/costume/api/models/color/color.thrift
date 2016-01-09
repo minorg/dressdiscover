@@ -8,7 +8,6 @@ include "costume/api/models/vocab_ref.thrift"
 // Costume Core color element
 // @java_implements net.lab1318.costume.api.models.Element
 struct Color {
-	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	1: string text;
 
