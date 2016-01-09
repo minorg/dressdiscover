@@ -61,10 +61,11 @@ class _Loader(_Main):
     def _services(self):
         return self.__services
 
-    def _put_collection(self, title):
+    def _put_collection(self, collection_id, title, hidden=None):
         self._services.collection_command_service.put_collection(
-            self.__collection_id,
+            collection_id,
             Collection.Builder()
+                .set_hidden(hidden)
                 .set_institution_id(self._institution_id)
                 .set_model_metadata(self._new_model_metadata())
                 .set_title(title)
@@ -72,6 +73,8 @@ class _Loader(_Main):
         )
 
     def _put_objects_by_id(self, objects_by_id):
+        if len(objects_by_id) == 0:
+            return
         self._logger.debug("putting %d objects to the service", len(objects_by_id))
         self._services.object_command_service.put_objects(
             tuple(ObjectEntry(object_id, object_)

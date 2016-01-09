@@ -149,7 +149,10 @@ class TxfcLoader(_Loader):
                 .build()
         )
 
-        self._put_collection(title="Texas Fashion Collection")
+        self._put_collection(
+            collection_id=self.__collection_id,
+            title="Texas Fashion Collection"
+        )
 
         objects_by_id = OrderedDict()
         for root_dir_path, _, file_names in os.walk(os.path.join(self._data_dir_path, 'extracted', 'txfc', 'record')):
