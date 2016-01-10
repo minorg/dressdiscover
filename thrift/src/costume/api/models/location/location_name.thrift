@@ -7,13 +7,11 @@ include "costume/api/models/location/location_name_type.thrift"
 
 // VRA Core 4.0 location.name subelement
 struct LocationName {
-	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	1: string text;
 
 	2: location_name_type.LocationNameType type;
 
-	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	3: optional string extent;
 

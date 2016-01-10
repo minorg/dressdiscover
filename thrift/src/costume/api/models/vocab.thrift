@@ -4,6 +4,7 @@ namespace * costume.api.models
 enum Vocab {
 	AAT,
 	COSTUME_CORE,
+	CREATIVE_COMMONS,
 	DC,
 	DCMI_TYPE,
 	KWD,

@@ -10,7 +10,6 @@ include "costume/api/models/material/material_type.thrift"
 struct Material {
 	1: material_type.MaterialType type;
 
-	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	2: string text;
 

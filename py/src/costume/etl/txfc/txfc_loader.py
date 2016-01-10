@@ -9,7 +9,6 @@ from costume.api.models.agent.agent_name import AgentName
 from costume.api.models.agent.agent_name_type import AgentNameType
 from costume.api.models.agent.agent_role import AgentRole
 from costume.api.models.agent.agent_set import AgentSet
-from costume.api.models.collection.collection import Collection
 from costume.api.models.date.date import Date
 from costume.api.models.date.date_bound import DateBound
 from costume.api.models.date.date_set import DateSet
@@ -26,7 +25,6 @@ from costume.api.models.location.location_name_type import LocationNameType
 from costume.api.models.location.location_set import LocationSet
 from costume.api.models.location.location_type import LocationType
 from costume.api.models.object.object import Object
-from costume.api.models.object.object_entry import ObjectEntry
 from costume.api.models.rights.rights import Rights
 from costume.api.models.rights.rights_set import RightsSet
 from costume.api.models.rights.rights_type import RightsType
@@ -151,13 +149,9 @@ class TxfcLoader(_Loader):
                 .build()
         )
 
-        self._services.collection_command_service.put_collection(
-            self.__collection_id,
-            Collection.Builder()
-                .set_institution_id(self._institution_id)
-                .set_model_metadata(self._new_model_metadata())
-                .set_title("Texas Fashion Collection")
-                .build()
+        self._put_collection(
+            collection_id=self.__collection_id,
+            title="Texas Fashion Collection"
         )
 
         objects_by_id = OrderedDict()
@@ -173,12 +167,7 @@ class TxfcLoader(_Loader):
 
         self._logger.info("Location names by extent:\n%s", pformat(self.__location_names_by_extent))
 
-        self._logger.debug("putting %d objects to the service", len(objects_by_id))
-        self._services.object_command_service.put_objects(
-            tuple(ObjectEntry(object_id, object_)
-                  for object_id, object_ in objects_by_id.iteritems())
-        )
-        self._logger.info("put %d objects to the service", len(objects_by_id))
+        self._put_objects_by_id(objects_by_id)
 
     def __parse_record(self, record_etree):
         # info:ark/67531/metadc114731

@@ -16,7 +16,6 @@ struct Relation {
 	// @validation {"minLength": 1}
 	3: optional set<object_id.ObjectId> relids;
 
-	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	4: optional string text;
 }

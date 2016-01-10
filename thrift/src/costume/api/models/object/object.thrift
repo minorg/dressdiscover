@@ -42,7 +42,6 @@ struct Object {
 
 	20: optional agent_set.AgentSet agents;
 
-	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	18: optional list<string> categories;
 
@@ -74,7 +73,6 @@ struct Object {
 	31: optional measurements_set.MeasurementsSet measurements;
 
 	// Dublin Core freetext provenance
-	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	5: optional string provenance;
 

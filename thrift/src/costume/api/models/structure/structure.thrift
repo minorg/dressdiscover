@@ -8,7 +8,6 @@ include "costume/api/models/structure/structure_type.thrift"
 // Costume Core structure* elements
 // @java_implements net.lab1318.costume.api.models.Element
 struct Structure {
-	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	1: string text;
 

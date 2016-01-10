@@ -5,7 +5,6 @@ namespace * costume.api.models.structure
 include "costume/api/models/vocab_ref.thrift"
 
 struct StructureType {
-	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	1: string text;
 

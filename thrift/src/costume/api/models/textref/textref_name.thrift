@@ -6,7 +6,6 @@ include "costume/api/models/textref/textref_name_type.thrift"
 
 // VRA Core 4.0 textref.name subelement
 struct TextrefName {
-	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	1: string text;
 

@@ -8,11 +8,14 @@ include "thryft/native/url.thrift"
 
 // @java_implements org.thryft.waf.api.models.Model
 struct Institution {
-	5: rights_set.RightsSet	data_rights;
-
 	4: model_metadata.ModelMetadata model_metadata;
 
 	1: string title;
 
-	3: url.Url url;
+	5: optional rights_set.RightsSet	data_rights;
+
+	// @validation {"acceptance": true}
+	6: optional bool hidden;
+
+	3: optional url.Url url;
 }

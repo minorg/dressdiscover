@@ -6,7 +6,6 @@ include "costume/api/models/location/location_refid_type.thrift"
 
 // VRA Core 4.0 location.refid subelement
 struct LocationRefid {
-	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
 	1: string text;
 

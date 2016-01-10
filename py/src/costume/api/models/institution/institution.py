@@ -7,25 +7,28 @@ class Institution(object):
     class Builder(object):
         def __init__(
             self,
-            data_rights=None,
             model_metadata=None,
             title=None,
+            data_rights=None,
+            hidden=None,
             url=None,
         ):
             '''
-            :type data_rights: costume.api.models.rights.rights_set.RightsSet
             :type model_metadata: costume.api.models.model_metadata.ModelMetadata
             :type title: str
-            :type url: str
+            :type data_rights: costume.api.models.rights.rights_set.RightsSet or None
+            :type hidden: bool or None
+            :type url: str or None
             '''
 
-            self.__data_rights = data_rights
             self.__model_metadata = model_metadata
             self.__title = title
+            self.__data_rights = data_rights
+            self.__hidden = hidden
             self.__url = url
 
         def build(self):
-            return Institution(data_rights=self.__data_rights, model_metadata=self.__model_metadata, title=self.__title, url=self.__url)
+            return Institution(model_metadata=self.__model_metadata, title=self.__title, data_rights=self.__data_rights, hidden=self.__hidden, url=self.__url)
 
         @property
         def data_rights(self):
@@ -34,6 +37,14 @@ class Institution(object):
             '''
 
             return self.__data_rights
+
+        @property
+        def hidden(self):
+            '''
+            :rtype: bool
+            '''
+
+            return self.__hidden
 
         @property
         def model_metadata(self):
@@ -45,10 +56,18 @@ class Institution(object):
 
         def set_data_rights(self, data_rights):
             '''
-            :type data_rights: costume.api.models.rights.rights_set.RightsSet
+            :type data_rights: costume.api.models.rights.rights_set.RightsSet or None
             '''
 
             self.__data_rights = data_rights
+            return self
+
+        def set_hidden(self, hidden):
+            '''
+            :type hidden: bool or None
+            '''
+
+            self.__hidden = hidden
             return self
 
         def set_model_metadata(self, model_metadata):
@@ -69,7 +88,7 @@ class Institution(object):
 
         def set_url(self, url):
             '''
-            :type url: str
+            :type url: str or None
             '''
 
             self.__url = url
@@ -85,16 +104,18 @@ class Institution(object):
 
         def update(self, institution):
             '''
-            :type data_rights: costume.api.models.rights.rights_set.RightsSet
             :type model_metadata: costume.api.models.model_metadata.ModelMetadata
             :type title: str
-            :type url: str
+            :type data_rights: costume.api.models.rights.rights_set.RightsSet or None
+            :type hidden: bool or None
+            :type url: str or None
             '''
 
             if isinstance(institution, Institution):
-                self.set_data_rights(institution.data_rights)
                 self.set_model_metadata(institution.model_metadata)
                 self.set_title(institution.title)
+                self.set_data_rights(institution.data_rights)
+                self.set_hidden(institution.hidden)
                 self.set_url(institution.url)
             elif isinstance(institution, dict):
                 for key, value in institution.iteritems():
@@ -114,10 +135,18 @@ class Institution(object):
         @data_rights.setter
         def data_rights(self, data_rights):
             '''
-            :type data_rights: costume.api.models.rights.rights_set.RightsSet
+            :type data_rights: costume.api.models.rights.rights_set.RightsSet or None
             '''
 
             self.set_data_rights(data_rights)
+
+        @hidden.setter
+        def hidden(self, hidden):
+            '''
+            :type hidden: bool or None
+            '''
+
+            self.set_hidden(hidden)
 
         @model_metadata.setter
         def model_metadata(self, model_metadata):
@@ -138,30 +167,26 @@ class Institution(object):
         @url.setter
         def url(self, url):
             '''
-            :type url: str
+            :type url: str or None
             '''
 
             self.set_url(url)
 
     def __init__(
         self,
-        data_rights,
         model_metadata,
         title,
-        url,
+        data_rights=None,
+        hidden=None,
+        url=None,
     ):
         '''
-        :type data_rights: costume.api.models.rights.rights_set.RightsSet
         :type model_metadata: costume.api.models.model_metadata.ModelMetadata
         :type title: str
-        :type url: str
+        :type data_rights: costume.api.models.rights.rights_set.RightsSet or None
+        :type hidden: bool or None
+        :type url: str or None
         '''
-
-        if data_rights is None:
-            raise ValueError('data_rights is required')
-        if not isinstance(data_rights, costume.api.models.rights.rights_set.RightsSet):
-            raise TypeError("expected data_rights to be a costume.api.models.rights.rights_set.RightsSet but it is a %s" % getattr(__builtin__, 'type')(data_rights))
-        self.__data_rights = data_rights
 
         if model_metadata is None:
             raise ValueError('model_metadata is required')
@@ -175,25 +200,36 @@ class Institution(object):
             raise TypeError("expected title to be a str but it is a %s" % getattr(__builtin__, 'type')(title))
         self.__title = title
 
-        if url is None:
-            raise ValueError('url is required')
-        if not isinstance(url, basestring):
-            raise TypeError("expected url to be a str but it is a %s" % getattr(__builtin__, 'type')(url))
+        if data_rights is not None:
+            if not isinstance(data_rights, costume.api.models.rights.rights_set.RightsSet):
+                raise TypeError("expected data_rights to be a costume.api.models.rights.rights_set.RightsSet but it is a %s" % getattr(__builtin__, 'type')(data_rights))
+        self.__data_rights = data_rights
+
+        if hidden is not None:
+            if not isinstance(hidden, bool):
+                raise TypeError("expected hidden to be a bool but it is a %s" % getattr(__builtin__, 'type')(hidden))
+        self.__hidden = hidden
+
+        if url is not None:
+            if not isinstance(url, basestring):
+                raise TypeError("expected url to be a str but it is a %s" % getattr(__builtin__, 'type')(url))
         self.__url = url
 
     def __eq__(self, other):
-        if self.data_rights != other.data_rights:
-            return False
         if self.model_metadata != other.model_metadata:
             return False
         if self.title != other.title:
+            return False
+        if self.data_rights != other.data_rights:
+            return False
+        if self.hidden != other.hidden:
             return False
         if self.url != other.url:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.data_rights,self.model_metadata,self.title,self.url,))
+        return hash((self.model_metadata,self.title,self.data_rights,self.hidden,self.url,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -203,18 +239,26 @@ class Institution(object):
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('data_rights=' + repr(self.data_rights))
         field_reprs.append('model_metadata=' + repr(self.model_metadata))
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
-        field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
+        if self.data_rights is not None:
+            field_reprs.append('data_rights=' + repr(self.data_rights))
+        if self.hidden is not None:
+            field_reprs.append('hidden=' + repr(self.hidden))
+        if self.url is not None:
+            field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
         return 'Institution(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('data_rights=' + repr(self.data_rights))
         field_reprs.append('model_metadata=' + repr(self.model_metadata))
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
-        field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
+        if self.data_rights is not None:
+            field_reprs.append('data_rights=' + repr(self.data_rights))
+        if self.hidden is not None:
+            field_reprs.append('hidden=' + repr(self.hidden))
+        if self.url is not None:
+            field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
         return 'Institution(' + ', '.join(field_reprs) + ')'
 
     def as_dict(self):
@@ -224,7 +268,7 @@ class Institution(object):
         :rtype: dict
         '''
 
-        return {'data_rights': self.data_rights, 'model_metadata': self.model_metadata, 'title': self.title, 'url': self.url}
+        return {'model_metadata': self.model_metadata, 'title': self.title, 'data_rights': self.data_rights, 'hidden': self.hidden, 'url': self.url}
 
     def as_tuple(self):
         '''
@@ -233,7 +277,7 @@ class Institution(object):
         :rtype: tuple
         '''
 
-        return (self.data_rights, self.model_metadata, self.title, self.url,)
+        return (self.model_metadata, self.title, self.data_rights, self.hidden, self.url,)
 
     @property
     def data_rights(self):
@@ -242,6 +286,14 @@ class Institution(object):
         '''
 
         return self.__data_rights
+
+    @property
+    def hidden(self):
+        '''
+        :rtype: bool
+        '''
+
+        return self.__hidden
 
     @property
     def model_metadata(self):
@@ -267,14 +319,22 @@ class Institution(object):
             ifield_name, ifield_type, ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
-            elif ifield_name == 'data_rights' and ifield_id == 5:
-                init_kwds['data_rights'] = costume.api.models.rights.rights_set.RightsSet.read(iprot)
             elif ifield_name == 'model_metadata' and ifield_id == 4:
                 init_kwds['model_metadata'] = costume.api.models.model_metadata.ModelMetadata.read(iprot)
             elif ifield_name == 'title' and ifield_id == 1:
                 init_kwds['title'] = iprot.read_string()
+            elif ifield_name == 'data_rights' and ifield_id == 5:
+                init_kwds['data_rights'] = costume.api.models.rights.rights_set.RightsSet.read(iprot)
+            elif ifield_name == 'hidden' and ifield_id == 6:
+                try:
+                    init_kwds['hidden'] = iprot.read_bool()
+                except (TypeError, ValueError,):
+                    pass
             elif ifield_name == 'url' and ifield_id == 3:
-                init_kwds['url'] = iprot.read_string()
+                try:
+                    init_kwds['url'] = iprot.read_string()
+                except (TypeError, ValueError,):
+                    pass
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -282,30 +342,34 @@ class Institution(object):
 
     def replace(
         self,
-        data_rights=None,
         model_metadata=None,
         title=None,
+        data_rights=None,
+        hidden=None,
         url=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type data_rights: costume.api.models.rights.rights_set.RightsSet or None
         :type model_metadata: costume.api.models.model_metadata.ModelMetadata or None
         :type title: str or None
+        :type data_rights: costume.api.models.rights.rights_set.RightsSet or None
+        :type hidden: bool or None
         :type url: str or None
         :rtype: costume.api.models.institution.institution.Institution
         '''
 
-        if data_rights is None:
-            data_rights = self.data_rights
         if model_metadata is None:
             model_metadata = self.model_metadata
         if title is None:
             title = self.title
+        if data_rights is None:
+            data_rights = self.data_rights
+        if hidden is None:
+            hidden = self.hidden
         if url is None:
             url = self.url
-        return self.__class__(data_rights=data_rights, model_metadata=model_metadata, title=title, url=url)
+        return self.__class__(model_metadata=model_metadata, title=title, data_rights=data_rights, hidden=hidden, url=url)
 
     @property
     def title(self):
@@ -333,10 +397,6 @@ class Institution(object):
 
         oprot.write_struct_begin('Institution')
 
-        oprot.write_field_begin(name='data_rights', type=12, id=5)
-        self.data_rights.write(oprot)
-        oprot.write_field_end()
-
         oprot.write_field_begin(name='model_metadata', type=12, id=4)
         self.model_metadata.write(oprot)
         oprot.write_field_end()
@@ -345,9 +405,20 @@ class Institution(object):
         oprot.write_string(self.title)
         oprot.write_field_end()
 
-        oprot.write_field_begin(name='url', type=11, id=3)
-        oprot.write_string(self.url)
-        oprot.write_field_end()
+        if self.data_rights is not None:
+            oprot.write_field_begin(name='data_rights', type=12, id=5)
+            self.data_rights.write(oprot)
+            oprot.write_field_end()
+
+        if self.hidden is not None:
+            oprot.write_field_begin(name='hidden', type=2, id=6)
+            oprot.write_bool(self.hidden)
+            oprot.write_field_end()
+
+        if self.url is not None:
+            oprot.write_field_begin(name='url', type=11, id=3)
+            oprot.write_string(self.url)
+            oprot.write_field_end()
 
         oprot.write_field_stop()
 

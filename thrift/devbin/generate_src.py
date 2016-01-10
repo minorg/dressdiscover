@@ -1,6 +1,8 @@
+import csv
 import os.path
 import shutil
 import sys
+from pprint import pformat
 
 try:
     __import__('thryft')
@@ -26,7 +28,7 @@ from thryft.generators.java.validating_service_java_generator import ValidatingS
 from thryft.generators.py.properties_py_generator import PropertiesPyGenerator
 from thryft.generators.py.json_rpc_client_py_generator import JsonRpcClientPyGenerator
 from thryft.generators.py.py_generator import PyGenerator
-from yutil import upper_camelize
+from yutil import indent, upper_camelize
 
 
 ELASTIC_SEARCH_INDEX_SETTINGS = \
@@ -43,6 +45,18 @@ ELASTIC_SEARCH_INDEX_SETTINGS = \
             }
           }
     }
+
+EXCLUDE_COSTUME_CORE_FEATURE_NAMES = \
+    (
+        'Age',
+        'Condition Term',
+        'Function',
+        'Gender',
+        'Main Color',
+        'Record Type',
+        'Secondary Color',
+        'Socio-Economic Class',
+    )
 
 
 class Main(thryft.main.Main):
@@ -76,6 +90,10 @@ class Main(thryft.main.Main):
             os.path.join(THRYFT_ROOT_DIR_PATH, 'lib', 'py', 'src', 'thryft'),
             os.path.join(ROOT_DIR_PATH, 'py', 'src', 'thryft')
         )
+
+        costume_core_controlled_vocabularies = self.__generate_costume_core_py()
+        self.__generate_costume_core_java(costume_core_controlled_vocabularies)
+        self.__generate_wizard_features_template_csv(costume_core_controlled_vocabularies)
 
         thrift_src_root_dir_path = os.path.join(ROOT_DIR_PATH, 'thrift', 'src')
 
@@ -183,6 +201,139 @@ class Main(thryft.main.Main):
                     out=os.path.join(ROOT_DIR_PATH, 'py', 'src'),
                     **compile_kwds
                 )
+
+    def __generate_costume_core_java(self, costume_core_controlled_vocabularies):
+        number_strings = {
+            1: 'ONE',
+            2: 'TWO',
+            3: 'THREE',
+            4: 'FOUR',
+            5: 'FIVE',
+            6: 'SIX',
+            7: 'SEVEN'
+        }
+
+        feature_enums = []
+        put_features = []
+        for feature_name in sorted(costume_core_controlled_vocabularies.iterkeys()):
+            if feature_name in EXCLUDE_COSTUME_CORE_FEATURE_NAMES:
+                continue
+
+            feature_values = sorted(costume_core_controlled_vocabularies[feature_name].keys())
+
+            feature_name_upper_camelized = feature_name.replace(' ', '')
+            feature_value_enums = []
+            for feature_value in feature_values:
+                feature_value_safe = feature_value.upper()
+                for c in ' _-_/()\'':
+                    feature_value_safe = feature_value_safe.replace(c, '_')
+                feature_value_safe = feature_value_safe.replace('___', '_').replace('__', '_').rstrip('_')
+                try:
+                    feature_value_safe = number_strings[int(feature_value_safe[0])] + feature_value_safe[1:]
+                except ValueError:
+                    pass
+                feature_value_enums.append("""\
+%(feature_value_safe)s("%(feature_value)s")""" % locals())
+            feature_value_enums = indent(' ' * 4, ",\n".join(feature_value_enums))
+            feature_enums.append("""\
+public enum %(feature_name_upper_camelized)s implements Feature {
+%(feature_value_enums)s;
+
+    public final String getDisplayName() {
+        return displayName;
+    }
+
+    private %(feature_name_upper_camelized)s(final String displayName) {
+        this.displayName = displayName;
+    }
+
+    private final String displayName;
+}""" % locals())
+
+            put_features.append(".put(\"%(feature_name)s\", %(feature_name_upper_camelized)s.values())" % locals())
+        feature_enums = "\n\n".join(indent(' ' * 4, feature_enums))
+        put_features = ''.join(put_features)
+
+        out_dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'java', 'gui', 'src', 'gen', 'java', 'net', 'lab1318', 'costume', 'gui', 'models', 'wizard'))
+        if not os.path.isdir(out_dir_path):
+            os.makedirs(out_dir_path)
+        out_file_path = os.path.join(out_dir_path, 'CostumeCore.java')
+
+        with open(out_file_path, 'w+b') as f:
+            f.write("""\
+package net.lab1318.costume.gui.models.wizard;
+
+import com.google.common.collect.ImmutableMap;
+
+public final class CostumeCore {
+    public interface Feature {
+        public String getDisplayName();
+
+        public String name();
+    }
+
+%(feature_enums)s
+
+    public final static ImmutableMap<String, Feature[]> FEATURES = ImmutableMap.<String, Feature[]> builder()%(put_features)s.build();
+}""" % locals())
+
+    def __generate_costume_core_py(self):
+        csv_file_name = 'Costume Core Controlled Vocabularies - 2nd draft, Jan 2013.csv'
+        csv_file_path = os.path.join(os.path.dirname(__file__), '..', '..', 'devdata', csv_file_name)
+        assert os.path.exists(csv_file_path), csv_file_path
+        out_file_path = os.path.join(os.path.dirname(__file__), '..', '..', 'py', 'src', 'costume', 'etl', 'costume_core_controlled_vocabularies.py')
+
+        out = {}
+        header_row = {}
+        with open(csv_file_path, 'rb') as f:
+            for row_i, row in enumerate(csv.reader(f)):
+                for column_i, column in enumerate(row):
+                    if column_i == 0:
+                        continue
+                    column = column.strip()
+                    if len(column) == 0:
+                        continue
+
+                    if row_i == 0:
+                        header_row[column_i] = column
+                        out[column] = {}
+                        continue
+                    elif row_i == 1:
+                        # Description of the column
+                        continue
+                    elif row_i == 2:
+                        # Source of the vocabulary
+                        continue
+
+                    out[header_row[column_i]][column] = None
+
+        with open(out_file_path, 'w+b') as f:
+            f.write('COSTUME_CORE_CONTROLLED_VOCABULARIES = ' + pformat(out))
+
+        return out
+
+    def __generate_wizard_features_template_csv(self, costume_core_controlled_vocabularies):
+        data_dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'wizard'))
+        assert os.path.isdir(data_dir_path), data_dir_path
+
+        csv_rows = []
+        csv_rows.append(['Feature name', 'Feature value', 'Credit line', 'License', 'Image URL', 'Metadata URL'])
+        for feature_name in sorted(costume_core_controlled_vocabularies.iterkeys()):
+            if feature_name in EXCLUDE_COSTUME_CORE_FEATURE_NAMES:
+                continue
+
+            feature_values = costume_core_controlled_vocabularies[feature_name].keys()
+
+            for feature_value in sorted(feature_values):
+                csv_row = [feature_name, feature_value]
+                csv_rows.append(csv_row)
+
+            csv_rows.append([''] * len(csv_rows[0]))
+
+        with open(os.path.join(data_dir_path, 'features_template.csv'), 'w+b') as f:
+            writer = csv.writer(f)
+            for csv_row in csv_rows:
+                writer.writerow(csv_row)
 
 
 assert __name__ == '__main__'
