@@ -69,9 +69,13 @@ class WizardLoader(_Loader):
                 if len(credit_line) == 0:
                     self._logger.debug("feature %s = %s has no credit line, skipping", feature_name, feature_value)
                     continue
+                credit_line = credit_line.decode('ascii', 'ignore')
+                full_size_image_url = csv_row['Full-size image URL']
+                if len(full_size_image_url) == 0:
+                    full_size_image_url = None
                 license_ = csv_row['License']
                 if len(license_) == 0:
-                    self._logger.debug("feature %s = %s has no license, skipping", feature_name, feature_value)
+                    self._logger.warn("feature %s = %s has no license, skipping", feature_name, feature_value)
                     continue
                 license_vocab_ref = None
                 if license_.lower() == 'public domain':
@@ -83,14 +87,24 @@ class WizardLoader(_Loader):
                             .set_vocab(Vocab.CREATIVE_COMMONS)\
                             .set_uri('https://creativecommons.org/publicdomain/zero/1.0/')\
                             .build()
+                elif license_.startswith('CC BY-SA '):
+                    rights_type = RightsType.LICENSED
+                    version = license_[len('CC BY-SA '):]
+                    float(version)
+                    license_vocab_ref = \
+                        VocabRef.Builder()\
+                            .set_vocab(Vocab.CREATIVE_COMMONS)\
+                            .set_uri("https://creativecommons.org/licenses/by-sa/%s/" % version)\
+                            .build()
                 else:
                     raise NotImplementedError(license_)
-                image_url = csv_row['Image URL']
-                if len(image_url) == 0:
-                    self._logger.debug("feature %s = %s has no image URL, skipping", feature_name, feature_value)
-                    continue
                 metadata_url = csv_row['Metadata URL']
                 if len(metadata_url) == 0:
+                    self._logger.warn("feature %s = %s has no metadata URL, skipping", feature_name, feature_value)
+                    continue
+                thumbnail_url = csv_row['Thumbnail URL']
+                if len(thumbnail_url) == 0:
+                    self._logger.warn("feature %s = %s has no thumbnail URL, skipping", feature_name, feature_value)
                     continue
 
                 object_builder = Object.Builder()
@@ -105,15 +119,27 @@ class WizardLoader(_Loader):
                     ))
                     .build()
                 )
-                object_builder.set_images((
+                images = []
+                if full_size_image_url is not None:
+                    images.append(
+                        Image.Builder()
+                            .set_original(
+                                ImageVersion.Builder()
+                                    .set_url(full_size_image_url)
+                                    .build()
+                            )
+                            .build()
+                    )
+                images.append(
                     Image.Builder()
-                        .set_original(
+                        .set_thumbnail(
                             ImageVersion.Builder()
-                                .set_url(image_url)
+                                .set_url(thumbnail_url)
                                 .build()
                         )
-                        .build(),
-                ))
+                        .build()
+                )
+                object_builder.set_images(tuple(images))
                 object_builder.model_metadata = self._new_model_metadata()
                 object_builder.set_rights(
                     RightsSet.Builder().set_elements((
@@ -173,7 +199,7 @@ class WizardLoader(_Loader):
 
                 object_ = object_builder.build()
 
-                object_id = self.__collection_id + '/' + urllib.quote(feature_name + '=' + feature_value)
+                object_id = self.__collection_id + '/' + urllib.quote(feature_name + '=' + feature_value, '')
 
                 objects_by_id[object_id] = object_
 
