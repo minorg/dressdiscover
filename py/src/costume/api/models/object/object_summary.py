@@ -25,6 +25,7 @@ class ObjectSummary(object):
             relation_texts=None,
             subject_term_texts=None,
             technique_texts=None,
+            structure_texts=None,
             thumbnail=None,
             url=None,
             work_type_texts=None,
@@ -46,6 +47,7 @@ class ObjectSummary(object):
             :type relation_texts: tuple(str) or None
             :type subject_term_texts: tuple(str) or None
             :type technique_texts: tuple(str) or None
+            :type structure_texts: dict(str: str) or None
             :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
             :type url: str or None
             :type work_type_texts: tuple(str) or None
@@ -67,12 +69,13 @@ class ObjectSummary(object):
             self.__relation_texts = relation_texts
             self.__subject_term_texts = subject_term_texts
             self.__technique_texts = technique_texts
+            self.__structure_texts = structure_texts
             self.__thumbnail = thumbnail
             self.__url = url
             self.__work_type_texts = work_type_texts
 
         def build(self):
-            return ObjectSummary(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, agent_name_texts=self.__agent_name_texts, categories=self.__categories, color_texts=self.__color_texts, cultural_context_texts=self.__cultural_context_texts, date=self.__date, description=self.__description, gender=self.__gender, location_name_texts=self.__location_name_texts, material_texts=self.__material_texts, relation_texts=self.__relation_texts, subject_term_texts=self.__subject_term_texts, technique_texts=self.__technique_texts, thumbnail=self.__thumbnail, url=self.__url, work_type_texts=self.__work_type_texts)
+            return ObjectSummary(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, agent_name_texts=self.__agent_name_texts, categories=self.__categories, color_texts=self.__color_texts, cultural_context_texts=self.__cultural_context_texts, date=self.__date, description=self.__description, gender=self.__gender, location_name_texts=self.__location_name_texts, material_texts=self.__material_texts, relation_texts=self.__relation_texts, subject_term_texts=self.__subject_term_texts, technique_texts=self.__technique_texts, structure_texts=self.__structure_texts, thumbnail=self.__thumbnail, url=self.__url, work_type_texts=self.__work_type_texts)
 
         @property
         def agent_name_texts(self):
@@ -282,6 +285,14 @@ class ObjectSummary(object):
             self.__relation_texts = relation_texts
             return self
 
+        def set_structure_texts(self, structure_texts):
+            '''
+            :type structure_texts: dict(str: str) or None
+            '''
+
+            self.__structure_texts = structure_texts
+            return self
+
         def set_subject_term_texts(self, subject_term_texts):
             '''
             :type subject_term_texts: tuple(str) or None
@@ -329,6 +340,14 @@ class ObjectSummary(object):
 
             self.__work_type_texts = work_type_texts
             return self
+
+        @property
+        def structure_texts(self):
+            '''
+            :rtype: dict(str: str)
+            '''
+
+            return self.__structure_texts.copy() if self.__structure_texts is not None else None
 
         @property
         def subject_term_texts(self):
@@ -380,6 +399,7 @@ class ObjectSummary(object):
             :type relation_texts: tuple(str) or None
             :type subject_term_texts: tuple(str) or None
             :type technique_texts: tuple(str) or None
+            :type structure_texts: dict(str: str) or None
             :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
             :type url: str or None
             :type work_type_texts: tuple(str) or None
@@ -402,6 +422,7 @@ class ObjectSummary(object):
                 self.set_relation_texts(object_summary.relation_texts)
                 self.set_subject_term_texts(object_summary.subject_term_texts)
                 self.set_technique_texts(object_summary.technique_texts)
+                self.set_structure_texts(object_summary.structure_texts)
                 self.set_thumbnail(object_summary.thumbnail)
                 self.set_url(object_summary.url)
                 self.set_work_type_texts(object_summary.work_type_texts)
@@ -532,6 +553,14 @@ class ObjectSummary(object):
 
             self.set_relation_texts(relation_texts)
 
+        @structure_texts.setter
+        def structure_texts(self, structure_texts):
+            '''
+            :type structure_texts: dict(str: str) or None
+            '''
+
+            self.set_structure_texts(structure_texts)
+
         @subject_term_texts.setter
         def subject_term_texts(self, subject_term_texts):
             '''
@@ -598,6 +627,7 @@ class ObjectSummary(object):
         relation_texts=None,
         subject_term_texts=None,
         technique_texts=None,
+        structure_texts=None,
         thumbnail=None,
         url=None,
         work_type_texts=None,
@@ -619,6 +649,7 @@ class ObjectSummary(object):
         :type relation_texts: tuple(str) or None
         :type subject_term_texts: tuple(str) or None
         :type technique_texts: tuple(str) or None
+        :type structure_texts: dict(str: str) or None
         :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
         :type url: str or None
         :type work_type_texts: tuple(str) or None
@@ -732,6 +763,13 @@ class ObjectSummary(object):
                 raise ValueError("expected len(technique_texts) to be >= 1, was %d" % len(technique_texts))
         self.__technique_texts = technique_texts
 
+        if structure_texts is not None:
+            if not (isinstance(structure_texts, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], basestring) and isinstance(__item[1], basestring), structure_texts.iteritems()))) == 0):
+                raise TypeError("expected structure_texts to be a dict(str: str) but it is a %s" % getattr(__builtin__, 'type')(structure_texts))
+            if len(structure_texts) < 1:
+                raise ValueError("expected len(structure_texts) to be >= 1, was %d" % len(structure_texts))
+        self.__structure_texts = structure_texts.copy() if structure_texts is not None else None
+
         if thumbnail is not None:
             if not isinstance(thumbnail, costume.api.models.image.image_version.ImageVersion):
                 raise TypeError("expected thumbnail to be a costume.api.models.image.image_version.ImageVersion but it is a %s" % getattr(__builtin__, 'type')(thumbnail))
@@ -782,6 +820,8 @@ class ObjectSummary(object):
             return False
         if self.technique_texts != other.technique_texts:
             return False
+        if self.structure_texts != other.structure_texts:
+            return False
         if self.thumbnail != other.thumbnail:
             return False
         if self.url != other.url:
@@ -791,7 +831,7 @@ class ObjectSummary(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.agent_name_texts,self.categories,self.color_texts,self.cultural_context_texts,self.date,self.description,self.gender,self.location_name_texts,self.material_texts,self.relation_texts,self.subject_term_texts,self.technique_texts,self.thumbnail,self.url,self.work_type_texts,))
+        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.agent_name_texts,self.categories,self.color_texts,self.cultural_context_texts,self.date,self.description,self.gender,self.location_name_texts,self.material_texts,self.relation_texts,self.subject_term_texts,self.technique_texts,self.structure_texts,self.thumbnail,self.url,self.work_type_texts,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -829,6 +869,8 @@ class ObjectSummary(object):
             field_reprs.append('subject_term_texts=' + repr(self.subject_term_texts))
         if self.technique_texts is not None:
             field_reprs.append('technique_texts=' + repr(self.technique_texts))
+        if self.structure_texts is not None:
+            field_reprs.append('structure_texts=' + repr(self.structure_texts))
         if self.thumbnail is not None:
             field_reprs.append('thumbnail=' + repr(self.thumbnail))
         if self.url is not None:
@@ -867,6 +909,8 @@ class ObjectSummary(object):
             field_reprs.append('subject_term_texts=' + repr(self.subject_term_texts))
         if self.technique_texts is not None:
             field_reprs.append('technique_texts=' + repr(self.technique_texts))
+        if self.structure_texts is not None:
+            field_reprs.append('structure_texts=' + repr(self.structure_texts))
         if self.thumbnail is not None:
             field_reprs.append('thumbnail=' + repr(self.thumbnail))
         if self.url is not None:
@@ -890,7 +934,7 @@ class ObjectSummary(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'color_texts': self.color_texts, 'cultural_context_texts': self.cultural_context_texts, 'date': self.date, 'description': self.description, 'gender': self.gender, 'location_name_texts': self.location_name_texts, 'material_texts': self.material_texts, 'relation_texts': self.relation_texts, 'subject_term_texts': self.subject_term_texts, 'technique_texts': self.technique_texts, 'thumbnail': self.thumbnail, 'url': self.url, 'work_type_texts': self.work_type_texts}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'color_texts': self.color_texts, 'cultural_context_texts': self.cultural_context_texts, 'date': self.date, 'description': self.description, 'gender': self.gender, 'location_name_texts': self.location_name_texts, 'material_texts': self.material_texts, 'relation_texts': self.relation_texts, 'subject_term_texts': self.subject_term_texts, 'technique_texts': self.technique_texts, 'structure_texts': self.structure_texts, 'thumbnail': self.thumbnail, 'url': self.url, 'work_type_texts': self.work_type_texts}
 
     def as_tuple(self):
         '''
@@ -899,7 +943,7 @@ class ObjectSummary(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.agent_name_texts, self.categories, self.color_texts, self.cultural_context_texts, self.date, self.description, self.gender, self.location_name_texts, self.material_texts, self.relation_texts, self.subject_term_texts, self.technique_texts, self.thumbnail, self.url, self.work_type_texts,)
+        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.agent_name_texts, self.categories, self.color_texts, self.cultural_context_texts, self.date, self.description, self.gender, self.location_name_texts, self.material_texts, self.relation_texts, self.subject_term_texts, self.technique_texts, self.structure_texts, self.thumbnail, self.url, self.work_type_texts,)
 
     @property
     def categories(self):
@@ -1046,6 +1090,8 @@ class ObjectSummary(object):
                 init_kwds['subject_term_texts'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'technique_texts' and ifield_id == 15:
                 init_kwds['technique_texts'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+            elif ifield_name == 'structure_texts' and ifield_id == 20:
+                init_kwds['structure_texts'] = dict([(iprot.read_string(), iprot.read_string()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'thumbnail' and ifield_id == 10:
                 init_kwds['thumbnail'] = costume.api.models.image.image_version.ImageVersion.read(iprot)
             elif ifield_name == 'url' and ifield_id == 13:
@@ -1086,6 +1132,7 @@ class ObjectSummary(object):
         relation_texts=None,
         subject_term_texts=None,
         technique_texts=None,
+        structure_texts=None,
         thumbnail=None,
         url=None,
         work_type_texts=None,
@@ -1109,6 +1156,7 @@ class ObjectSummary(object):
         :type relation_texts: tuple(str) or None
         :type subject_term_texts: tuple(str) or None
         :type technique_texts: tuple(str) or None
+        :type structure_texts: dict(str: str) or None
         :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
         :type url: str or None
         :type work_type_texts: tuple(str) or None
@@ -1147,13 +1195,23 @@ class ObjectSummary(object):
             subject_term_texts = self.subject_term_texts
         if technique_texts is None:
             technique_texts = self.technique_texts
+        if structure_texts is None:
+            structure_texts = self.structure_texts
         if thumbnail is None:
             thumbnail = self.thumbnail
         if url is None:
             url = self.url
         if work_type_texts is None:
             work_type_texts = self.work_type_texts
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, agent_name_texts=agent_name_texts, categories=categories, color_texts=color_texts, cultural_context_texts=cultural_context_texts, date=date, description=description, gender=gender, location_name_texts=location_name_texts, material_texts=material_texts, relation_texts=relation_texts, subject_term_texts=subject_term_texts, technique_texts=technique_texts, thumbnail=thumbnail, url=url, work_type_texts=work_type_texts)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, agent_name_texts=agent_name_texts, categories=categories, color_texts=color_texts, cultural_context_texts=cultural_context_texts, date=date, description=description, gender=gender, location_name_texts=location_name_texts, material_texts=material_texts, relation_texts=relation_texts, subject_term_texts=subject_term_texts, technique_texts=technique_texts, structure_texts=structure_texts, thumbnail=thumbnail, url=url, work_type_texts=work_type_texts)
+
+    @property
+    def structure_texts(self):
+        '''
+        :rtype: dict(str: str)
+        '''
+
+        return self.__structure_texts.copy() if self.__structure_texts is not None else None
 
     @property
     def subject_term_texts(self):
@@ -1314,6 +1372,15 @@ class ObjectSummary(object):
             for _0 in self.technique_texts:
                 oprot.write_string(_0)
             oprot.write_list_end()
+            oprot.write_field_end()
+
+        if self.structure_texts is not None:
+            oprot.write_field_begin(name='structure_texts', type=13, id=20)
+            oprot.write_map_begin(11, len(self.structure_texts), 11)
+            for __key0, __value0 in self.structure_texts.iteritems():
+                oprot.write_string(__key0)
+                oprot.write_string(__value0)
+            oprot.write_map_end()
             oprot.write_field_end()
 
         if self.thumbnail is not None:

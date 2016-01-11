@@ -66,6 +66,9 @@ struct ObjectSummary {
 	// @elastic_search_mapping {"type": "multi_field", "fields": {"text": {"type": "string"}, "not_analyzed": {"type": "string", "index": "not_analyzed"}}}
 	// @validation {"minLength": 1}
 	15: optional list<string> technique_texts;
+	
+	// @validation {"minLength": 1}
+	20: optional map<string, string> structure_texts;
 
 	10: optional image_version.ImageVersion thumbnail;
 

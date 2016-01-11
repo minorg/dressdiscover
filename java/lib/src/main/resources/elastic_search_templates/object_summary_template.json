@@ -160,6 +160,10 @@
           }, 
           "type": "multi_field"
         }, 
+        "20:structure_texts": {
+          "type": "nested", 
+          "dynamic": true
+        }, 
         "10:thumbnail": {
           "type": "nested", 
           "properties": {
