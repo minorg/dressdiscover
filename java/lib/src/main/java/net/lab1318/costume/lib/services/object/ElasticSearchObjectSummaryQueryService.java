@@ -557,6 +557,52 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
                     query.get().getRelationText().get()));
         }
 
+        if (query.get().getStructureTexts().isPresent()) {
+            final String nestedPath = ObjectSummary.FieldMetadata.STRUCTURE_TEXTS.getThriftProtocolKey();
+            final List<QueryBuilder> andFilters = new ArrayList<>();
+            for (final Map.Entry<String, ImmutableList<String>> entry : query.get().getStructureTexts().get()
+                    .entrySet()) {
+                if (entry.getKey().isEmpty()) {
+                    continue;
+                }
+                if (!entry.getValue().isEmpty()) {
+                    final List<QueryBuilder> orFilters = new ArrayList<>();
+                    for (final String value : entry.getValue()) {
+                        if (value.isEmpty()) {
+                            continue;
+                        }
+                        orFilters.add(QueryBuilders.termQuery(nestedPath + '.' + entry.getKey(), value));
+                    }
+                    if (!orFilters.isEmpty()) {
+                        QueryBuilder orFilter;
+                        if (orFilters.size() == 1) {
+                            orFilter = orFilters.get(0);
+                        } else {
+                            orFilter = QueryBuilders.boolQuery();
+                            for (final QueryBuilder tempFilter : orFilters) {
+                                orFilter = ((BoolQueryBuilder) orFilter).should(tempFilter);
+                            }
+                        }
+                        andFilters.add(orFilter);
+                    }
+                } else {
+                    andFilters.add(QueryBuilders.existsQuery(nestedPath + '.' + entry.getKey()));
+                }
+            }
+            if (!andFilters.isEmpty()) {
+                QueryBuilder andFilter;
+                if (andFilters.size() == 1) {
+                    andFilter = andFilters.get(0);
+                } else {
+                    andFilter = QueryBuilders.boolQuery();
+                    for (final QueryBuilder tempFilter : andFilters) {
+                        andFilter = ((BoolQueryBuilder) andFilter).must(tempFilter);
+                    }
+                }
+                filtersTranslated.add(QueryBuilders.nestedQuery(nestedPath, andFilter));
+            }
+        }
+
         if (filtersTranslated.size() == 1) {
             queryTranslated = QueryBuilders.boolQuery().must(queryTranslated).filter(filtersTranslated.get(0));
         } else if (filtersTranslated.size() > 1) {
