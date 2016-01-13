@@ -557,6 +557,39 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
                     query.get().getRelationText().get()));
         }
 
+        if (query.get().getStructureTexts().isPresent()) {
+            final String nestedPath = ObjectSummary.FieldMetadata.STRUCTURE_TEXTS.getThriftProtocolKey();
+            BoolQueryBuilder andFilter = QueryBuilders.boolQuery();
+            boolean andFilterNotEmpty = false;
+            for (final Map.Entry<String, ImmutableList<String>> entry : query.get().getStructureTexts().get()
+                    .entrySet()) {
+                if (entry.getKey().isEmpty()) {
+                    continue;
+                }
+                if (!entry.getValue().isEmpty()) {
+                    BoolQueryBuilder orFilter = QueryBuilders.boolQuery();
+                    boolean orFilterNotEmpty = false;
+                    for (final String value : entry.getValue()) {
+                        if (value.isEmpty()) {
+                            continue;
+                        }
+                        orFilter = orFilter.should(QueryBuilders.termQuery(nestedPath + '.' + entry.getKey(), value));
+                        orFilterNotEmpty = true;
+                    }
+                    if (orFilterNotEmpty) {
+                        andFilter = andFilter.must(orFilter);
+                        andFilterNotEmpty = true;
+                    }
+                } else {
+                    andFilter = andFilter.must(QueryBuilders.existsQuery(nestedPath + '.' + entry.getKey()));
+                    andFilterNotEmpty = true;
+                }
+            }
+            if (andFilterNotEmpty) {
+                filtersTranslated.add(QueryBuilders.nestedQuery(nestedPath, andFilter));
+            }
+        }
+
         if (filtersTranslated.size() == 1) {
             queryTranslated = QueryBuilders.boolQuery().must(queryTranslated).filter(filtersTranslated.get(0));
         } else if (filtersTranslated.size() > 1) {

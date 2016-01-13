@@ -55,17 +55,16 @@ public final class Navbar extends HorizontalLayout {
             searchButton.addStyleName("icon-button");
 
             searchTextField.setWidth((float) 32.0, Unit.EM);
-            searchTextField.addFocusListener(new FocusListener() {
-                @Override
-                public void focus(final FocusEvent event) {
-                    searchButton.setClickShortcut(KeyCode.ENTER);
-                }
-            });
-
             searchTextField.addBlurListener(new BlurListener() {
                 @Override
                 public void blur(final BlurEvent event) {
                     searchButton.removeClickShortcut();
+                }
+            });
+            searchTextField.addFocusListener(new FocusListener() {
+                @Override
+                public void focus(final FocusEvent event) {
+                    searchButton.setClickShortcut(KeyCode.ENTER);
                 }
             });
             searchTextField.setInputPrompt("Search all objects");
