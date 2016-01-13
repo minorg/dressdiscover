@@ -24,17 +24,17 @@ public final class Navbar extends HorizontalLayout {
         setSizeFull();
 
         {
-            final Button institutionsButton = new NativeButton();
-            institutionsButton.setIcon(FontAwesome.HOME);
-            institutionsButton.addClickListener(new ClickListener() {
+            final Button homeButton = new NativeButton();
+            homeButton.setIcon(FontAwesome.HOME);
+            homeButton.addClickListener(new ClickListener() {
                 @Override
                 public void buttonClick(final ClickEvent event) {
-                    UI.getCurrent().getNavigator().navigateTo("institutions");
+                    UI.getCurrent().getNavigator().navigateTo("");
                 }
             });
-            institutionsButton.addStyleName("icon-button");
-            addComponent(institutionsButton);
-            setComponentAlignment(institutionsButton, Alignment.TOP_LEFT);
+            homeButton.addStyleName("icon-button");
+            addComponent(homeButton);
+            setComponentAlignment(homeButton, Alignment.TOP_LEFT);
         }
 
         {

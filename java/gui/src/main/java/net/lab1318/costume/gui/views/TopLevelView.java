@@ -6,44 +6,72 @@ import org.thryft.waf.gui.views.View;
 import com.vaadin.server.ErrorMessage;
 import com.vaadin.server.Page;
 import com.vaadin.shared.ui.label.ContentMode;
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+
+import net.lab1318.costume.gui.views.wizard.WizardFeatureView;
 
 @SuppressWarnings("serial")
 public abstract class TopLevelView extends View {
-	protected TopLevelView(final EventBus eventBus) {
-		super(eventBus);
-	}
+    protected TopLevelView(final EventBus eventBus) {
+        super(eventBus);
+    }
 
-	@Override
-	public void setComponentError(final ErrorMessage componentError) {
-		final Notification notification = new Notification("Error", componentError.getFormattedHtmlMessage(),
-				Notification.Type.ERROR_MESSAGE, true);
-		notification.show(Page.getCurrent());
-	}
+    @Override
+    public void setComponentError(final ErrorMessage componentError) {
+        final Notification notification = new Notification("Error", componentError.getFormattedHtmlMessage(),
+                Notification.Type.ERROR_MESSAGE, true);
+        notification.show(Page.getCurrent());
+    }
 
-	protected final Navbar _getNavbar() {
-		return navbar;
-	}
+    protected final Navbar _getNavbar() {
+        return navbar;
+    }
 
-	@Override
-	protected void setCompositionRoot(final Component compositionRoot) {
-		final VerticalLayout frameLayout = new VerticalLayout();
-		frameLayout.setSizeFull();
-		frameLayout.setSpacing(false);
+    @Override
+    protected void setCompositionRoot(final Component compositionRoot) {
+        final VerticalLayout frameLayout = new VerticalLayout();
+        frameLayout.setSizeFull();
+        frameLayout.setSpacing(false);
 
-		frameLayout.addComponent(navbar);
+        frameLayout.addComponent(navbar);
 
-		frameLayout.addComponent(new Label("<hr />", ContentMode.HTML));
+        frameLayout.addComponent(new Label("<hr />", ContentMode.HTML));
 
-		frameLayout.addComponent(compositionRoot);
+        frameLayout.addComponent(compositionRoot);
 
-		frameLayout.addComponent(new Label("<hr />", ContentMode.HTML));
+        frameLayout.addComponent(new Label("<hr />", ContentMode.HTML));
 
-		super.setCompositionRoot(frameLayout);
-	}
+        {
+            final HorizontalLayout footerLayout = new HorizontalLayout();
+            footerLayout.setSizeFull();
+            {
+                final Button piButton = new NativeButton();
+                piButton.setCaption("&Pi;");
+                piButton.setCaptionAsHtml(true);
+                piButton.addClickListener(new ClickListener() {
+                    @Override
+                    public void buttonClick(final ClickEvent event) {
+                        UI.getCurrent().getNavigator().navigateTo(WizardFeatureView.NAME);
+                    }
+                });
+                footerLayout.addComponent(piButton);
+                footerLayout.setComponentAlignment(piButton, Alignment.MIDDLE_RIGHT);
+            }
+            frameLayout.addComponent(footerLayout);
+        }
 
-	private final Navbar navbar = new Navbar();
+        super.setCompositionRoot(frameLayout);
+    }
+
+    private final Navbar navbar = new Navbar();
 }
