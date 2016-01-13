@@ -22,9 +22,9 @@ import net.lab1318.costume.gui.views.TopLevelView;
 
 @SuppressWarnings("serial")
 @SessionScoped
-public class WizardView extends TopLevelView {
+public class WizardFeatureView extends TopLevelView {
     @Inject
-    public WizardView(final EventBus eventBus) {
+    public WizardFeatureView(final EventBus eventBus) {
         super(eventBus);
 
         buttonLayout = new HorizontalLayout();
@@ -87,5 +87,5 @@ public class WizardView extends TopLevelView {
     private final HorizontalLayout buttonLayout;
     private final Button backButton = new NativeButton("Back");
     private final Button nextButton = new NativeButton("Next");
-    public final static String NAME = "wizard";
+    public final static String NAME = "wizard_feature";
 }

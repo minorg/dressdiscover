@@ -29,10 +29,10 @@ import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.gui.models.wizard.CostumeCore;
 import net.lab1318.costume.gui.presenters.Presenter;
-import net.lab1318.costume.gui.views.wizard.WizardView;
+import net.lab1318.costume.gui.views.wizard.WizardFeatureView;
 
 @SessionScoped
-public class WizardPresenter extends Presenter<WizardView> {
+public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
     private static CollectionId __createCollectionId() {
         try {
             return CollectionId.parse("wizard/wizard");
@@ -43,8 +43,8 @@ public class WizardPresenter extends Presenter<WizardView> {
 
     @SuppressWarnings("serial")
     @Inject
-    public WizardPresenter(final EventBus eventBus, final ObjectSummaryQueryService objectSummaryQueryService,
-            final WizardView view) {
+    public WizardFeaturePresenter(final EventBus eventBus, final ObjectSummaryQueryService objectSummaryQueryService,
+            final WizardFeatureView view) {
         super(eventBus, view);
         this.objectSummaryQueryService = checkNotNull(objectSummaryQueryService);
 
@@ -105,7 +105,7 @@ public class WizardPresenter extends Presenter<WizardView> {
     private void __navigateToFeature(final String featureName) {
         try {
             UI.getCurrent().getNavigator()
-                    .navigateTo(WizardView.NAME + '/' + URLEncoder.encode(featureName, Charsets.UTF_8.toString()));
+                    .navigateTo(WizardFeatureView.NAME + '/' + URLEncoder.encode(featureName, Charsets.UTF_8.toString()));
         } catch (final UnsupportedEncodingException e) {
             throw new IllegalStateException(e);
         }
