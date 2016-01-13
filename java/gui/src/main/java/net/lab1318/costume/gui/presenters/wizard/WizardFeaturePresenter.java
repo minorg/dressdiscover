@@ -1,10 +1,13 @@
 package net.lab1318.costume.gui.presenters.wizard;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.thryft.waf.gui.EventBus;
 
@@ -27,6 +30,7 @@ import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
+import net.lab1318.costume.gui.GuiUI;
 import net.lab1318.costume.gui.models.wizard.CostumeCore;
 import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.wizard.WizardFeatureView;
@@ -52,6 +56,7 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
             @Override
             public void buttonClick(final ClickEvent event) {
                 if (currentFeatureIndex > 0) {
+                    __selectFeatureValues(_getView().getSelectedModels());
                     __navigateToFeature(FEATURE_NAMES.get(currentFeatureIndex - 1));
                 }
             }
@@ -61,9 +66,11 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
             @Override
             public void buttonClick(final ClickEvent event) {
                 if (currentFeatureIndex + 1 < FEATURE_NAMES.size()) {
+                    __selectFeatureValues(_getView().getSelectedModels());
                     __navigateToFeature(FEATURE_NAMES.get(currentFeatureIndex + 1));
                 } else {
-                    throw new UnsupportedOperationException();
+                    GuiUI.navigateTo(ObjectQuery.builder()
+                            .setStructureTexts(ImmutableMap.copyOf(selectedFeatureValuesByFeatureName)).build());
                 }
             }
         });
@@ -104,16 +111,34 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
 
     private void __navigateToFeature(final String featureName) {
         try {
-            UI.getCurrent().getNavigator()
-                    .navigateTo(WizardFeatureView.NAME + '/' + URLEncoder.encode(featureName, Charsets.UTF_8.toString()));
+            UI.getCurrent().getNavigator().navigateTo(
+                    WizardFeatureView.NAME + '/' + URLEncoder.encode(featureName, Charsets.UTF_8.toString()));
         } catch (final UnsupportedEncodingException e) {
             throw new IllegalStateException(e);
+        }
+    }
+
+    private void __selectFeatureValues(final ImmutableList<ObjectSummaryEntry> objectSummaryEntries) {
+        final ImmutableList.Builder<String> selectedFeatureValuesBuilder = ImmutableList.builder();
+        for (final ObjectSummaryEntry objectSummaryEntry : objectSummaryEntries) {
+            checkState(objectSummaryEntry.getModel().getStructureTexts().isPresent());
+            checkState(objectSummaryEntry.getModel().getStructureTexts().get().size() == 1);
+            final String featureValue = objectSummaryEntry.getModel().getStructureTexts().get().get(currentFeatureName);
+            checkNotNull(featureValue);
+            selectedFeatureValuesBuilder.add(featureValue);
+        }
+        final ImmutableList<String> selectedFeatureValues = selectedFeatureValuesBuilder.build();
+        if (!selectedFeatureValues.isEmpty()) {
+            this.selectedFeatureValuesByFeatureName.put(currentFeatureName, selectedFeatureValues);
+        } else {
+            this.selectedFeatureValuesByFeatureName.remove(currentFeatureName);
         }
     }
 
     private String currentFeatureName = "";
     private int currentFeatureIndex = -1;
     private final ObjectSummaryQueryService objectSummaryQueryService;
+    private final Map<String, ImmutableList<String>> selectedFeatureValuesByFeatureName = new LinkedHashMap<>();
     private final static CollectionId COLLECTION_ID = __createCollectionId();
     private final static ImmutableList<String> FEATURE_NAMES = ImmutableList.copyOf(CostumeCore.FEATURES.keySet());
 }

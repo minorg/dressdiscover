@@ -559,33 +559,46 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
 
         if (query.get().getStructureTexts().isPresent()) {
             final String nestedPath = ObjectSummary.FieldMetadata.STRUCTURE_TEXTS.getThriftProtocolKey();
-            BoolQueryBuilder andFilter = QueryBuilders.boolQuery();
-            boolean andFilterNotEmpty = false;
+            final List<QueryBuilder> andFilters = new ArrayList<>();
             for (final Map.Entry<String, ImmutableList<String>> entry : query.get().getStructureTexts().get()
                     .entrySet()) {
                 if (entry.getKey().isEmpty()) {
                     continue;
                 }
                 if (!entry.getValue().isEmpty()) {
-                    BoolQueryBuilder orFilter = QueryBuilders.boolQuery();
-                    boolean orFilterNotEmpty = false;
+                    final List<QueryBuilder> orFilters = new ArrayList<>();
                     for (final String value : entry.getValue()) {
                         if (value.isEmpty()) {
                             continue;
                         }
-                        orFilter = orFilter.should(QueryBuilders.termQuery(nestedPath + '.' + entry.getKey(), value));
-                        orFilterNotEmpty = true;
+                        orFilters.add(QueryBuilders.termQuery(nestedPath + '.' + entry.getKey(), value));
                     }
-                    if (orFilterNotEmpty) {
-                        andFilter = andFilter.must(orFilter);
-                        andFilterNotEmpty = true;
+                    if (!orFilters.isEmpty()) {
+                        QueryBuilder orFilter;
+                        if (orFilters.size() == 1) {
+                            orFilter = orFilters.get(0);
+                        } else {
+                            orFilter = QueryBuilders.boolQuery();
+                            for (final QueryBuilder tempFilter : orFilters) {
+                                orFilter = ((BoolQueryBuilder) orFilter).should(tempFilter);
+                            }
+                        }
+                        andFilters.add(orFilter);
                     }
                 } else {
-                    andFilter = andFilter.must(QueryBuilders.existsQuery(nestedPath + '.' + entry.getKey()));
-                    andFilterNotEmpty = true;
+                    andFilters.add(QueryBuilders.existsQuery(nestedPath + '.' + entry.getKey()));
                 }
             }
-            if (andFilterNotEmpty) {
+            if (!andFilters.isEmpty()) {
+                QueryBuilder andFilter;
+                if (andFilters.size() == 1) {
+                    andFilter = andFilters.get(0);
+                } else {
+                    andFilter = QueryBuilders.boolQuery();
+                    for (final QueryBuilder tempFilter : andFilters) {
+                        andFilter = ((BoolQueryBuilder) andFilter).must(tempFilter);
+                    }
+                }
                 filtersTranslated.add(QueryBuilders.nestedQuery(nestedPath, andFilter));
             }
         }

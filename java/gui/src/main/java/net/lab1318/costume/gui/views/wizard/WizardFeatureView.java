@@ -1,5 +1,8 @@
 package net.lab1318.costume.gui.views.wizard;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.thryft.waf.gui.EventBus;
 
 import com.google.common.collect.ImmutableList;
@@ -43,7 +46,13 @@ public class WizardFeatureView extends TopLevelView {
         return nextButton;
     }
 
+    public ImmutableList<ObjectSummaryEntry> getSelectedModels() {
+        return ImmutableList.copyOf(selectedModels);
+    }
+
     public void setModels(final String featureName, final ImmutableList<ObjectSummaryEntry> objectSummaryEntries) {
+        selectedModels.clear();
+
         final VerticalLayout rootLayout = new VerticalLayout();
         rootLayout.setSizeFull();
 
@@ -70,6 +79,11 @@ public class WizardFeatureView extends TopLevelView {
                     @Override
                     public void click(final ClickEvent event) {
                         checkBox.setValue(!checkBox.getValue());
+                        if (checkBox.getValue()) {
+                            selectedModels.add(objectSummaryEntry);
+                        } else {
+                            selectedModels.remove(objectSummaryEntry);
+                        }
                     }
                 });
                 objectSummaryLayout.addComponent(checkBox);
@@ -87,5 +101,6 @@ public class WizardFeatureView extends TopLevelView {
     private final HorizontalLayout buttonLayout;
     private final Button backButton = new NativeButton("Back");
     private final Button nextButton = new NativeButton("Next");
+    private final List<ObjectSummaryEntry> selectedModels = new ArrayList<>();
     public final static String NAME = "wizard_feature";
 }
