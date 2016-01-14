@@ -360,9 +360,7 @@ class OmekaLoader(_Loader):
         collection = collection_builder.build()
 
         # Don't put the collection until we're sure it has objects
-
-        with open(os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'collection', str(omeka_collection_id), 'items.json')) as f:
-            item_dicts = json.loads(f.read())
+        item_dicts = self._read_item_dicts()
         self._logger.info("loading %d items from collection %d", len(item_dicts), omeka_collection_id)
 
         objects_by_id = \
@@ -384,9 +382,9 @@ class OmekaLoader(_Loader):
                   for object_id, object_ in objects_by_id.iteritems())
         )
 
-    def _load_collections(self, collection_dicts):
+    def _load_collections(self, collection_dicts, skip_private=True):
         for collection_dict in collection_dicts:
-            if not collection_dict['public']:
+            if skip_private and not collection_dict['public']:
                 omeka_collection_id = collection_dict['id']
                 self._logger.info("collection %d is not public, skipping", omeka_collection_id)
                 continue
@@ -415,9 +413,7 @@ class OmekaLoader(_Loader):
                 .build()
         )
 
-        with open(os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'collections.json')) as f:
-            collection_dicts = json.loads(f.read())
-
+        collection_dicts = self._read_collection_dicts()
         self._load_collections(collection_dicts=collection_dicts)
 
     def _load_item(self, collection_id, item_dict, omeka_collection_id):
@@ -1386,3 +1382,12 @@ class OmekaLoader(_Loader):
                                 .build()
                         )\
                         .build()
+
+    def _read_collection_dicts(self):
+        with open(os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'collections.json')) as f:
+            return json.loads(f.read())
+
+    def _read_item_dicts(self, collection_dict):
+        omeka_collection_id = collection_dict['id']
+        with open(os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'collection', str(omeka_collection_id), 'items.json')) as f:
+            return json.loads(f.read())
