@@ -158,7 +158,7 @@ class OmekaLoader(_Loader):
             if len(self.agents) > 0:
                 self.__object_builder.set_agents(AgentSet.Builder().set_elements(tuple(self.agents)).build())
             if len(self.categories) > 0:
-                self.__object_builder.set_categories(tuple(self.categories))
+                self.__object_builder.set_categories(tuple(set(self.categories)))
             if len(self.closure_placements) > 0 and len(self.closure_types) > 0:
                 closures = []
                 if len(self.closure_placements) == len(self.closure_types):
@@ -453,6 +453,15 @@ class OmekaLoader(_Loader):
             self._load_item_type(
                 item_type=item_dict.get('item_type', {}),
                 object_builder=object_builder
+            )
+
+        tag_names = []
+        for tag_dict in item_dict.get('tags', []):
+            tag_names.append(tag_dict['name'])
+        if len(tag_names) > 0:
+            self._load_item_tags(
+                object_builder=object_builder,
+                tag_names=tuple(tag_names)
             )
 
         return object_builder.build()
@@ -1294,6 +1303,9 @@ class OmekaLoader(_Loader):
                         raise NotImplementedError(name)
                 if image_versions_count > 0:
                     object_builder.images.append(image_builder.build())
+
+    def _load_item_tags(self, object_builder, tag_names):
+        object_builder.categories.extend(tag_names)
 
     def _load_item_type(self, item_type, object_builder):
         try:
