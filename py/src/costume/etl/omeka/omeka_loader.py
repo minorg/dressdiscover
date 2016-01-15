@@ -416,18 +416,8 @@ class OmekaLoader(_Loader):
         collection_dicts = self._read_collection_dicts()
         self._load_collections(collection_dicts=collection_dicts)
 
-    def _load_item(self, collection_id, item_dict, omeka_collection_id):
+    def _load_item(self, item_dict, object_builder):
         omeka_item_id = item_dict['id']
-
-        object_builder = \
-            self._ObjectBuilder(
-                collection_id=collection_id,
-                endpoint_url=self.__endpoint_url,
-                institution_id=self._institution_id,
-                logger=self._logger,
-                omeka_collection_id=omeka_collection_id,
-                omeka_item_id=omeka_item_id,
-            )
 
         for element_text_dict in item_dict['element_texts']:
             text = element_text_dict['text'].strip()
@@ -464,30 +454,39 @@ class OmekaLoader(_Loader):
                 tag_names=tuple(tag_names)
             )
 
-        return object_builder.build()
-
     def _load_items(self, collection_id, item_dicts, omeka_collection_id):
-        objects_by_id = OrderedDict()
+        object_builders_by_id = OrderedDict()
 
         for item_i, item_dict in enumerate(item_dicts):
             omeka_item_id = item_dict['id']
 
+            object_builder = \
+                self._ObjectBuilder(
+                    collection_id=collection_id,
+                    endpoint_url=self.__endpoint_url,
+                    institution_id=self._institution_id,
+                    logger=self._logger,
+                    omeka_collection_id=omeka_collection_id,
+                    omeka_item_id=omeka_item_id,
+                )
+
             try:
-                object_ = \
-                    self._load_item(
-                        collection_id,
-                        item_dict=item_dict,
-                        omeka_collection_id=omeka_collection_id,
-                    )
+                self._load_item(
+                    item_dict=item_dict,
+                    object_builder=object_builder
+                )
             except ValueError, e:
                 self._logger.debug("ignoring item %d from collection %d: %s", omeka_item_id, omeka_collection_id, str(e))
                 continue
 
             object_id = collection_id + '/' + str(omeka_item_id)
-            objects_by_id[object_id] = object_
+            object_builders_by_id[object_id] = object_builder
 
             self._logger.debug("loaded %d/%d items from collection %d", item_i + 1, len(item_dicts), omeka_collection_id)
 
+        objects_by_id = OrderedDict()
+        for object_id, object_builder in object_builders_by_id.iteritems():
+            objects_by_id[object_id] = object_builder.build()
         return objects_by_id
 
     def _load_item_element(self, element_name, element_set_name, object_builder, text):
