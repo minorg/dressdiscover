@@ -7,7 +7,6 @@ class ObjectFacets(object):
     class Builder(object):
         def __init__(
             self,
-            agent_name_texts=None,
             categories=None,
             collections=None,
             color_texts=None,
@@ -21,7 +20,6 @@ class ObjectFacets(object):
             work_type_texts=None,
         ):
             '''
-            :type agent_name_texts: dict(str: int)
             :type categories: dict(str: int)
             :type collections: dict(str: int)
             :type color_texts: dict(str: int)
@@ -35,7 +33,6 @@ class ObjectFacets(object):
             :type work_type_texts: dict(str: int)
             '''
 
-            self.__agent_name_texts = agent_name_texts
             self.__categories = categories
             self.__collections = collections
             self.__color_texts = color_texts
@@ -49,15 +46,7 @@ class ObjectFacets(object):
             self.__work_type_texts = work_type_texts
 
         def build(self):
-            return ObjectFacets(agent_name_texts=self.__agent_name_texts, categories=self.__categories, collections=self.__collections, color_texts=self.__color_texts, cultural_context_texts=self.__cultural_context_texts, genders=self.__genders, institutions=self.__institutions, location_name_texts=self.__location_name_texts, material_texts=self.__material_texts, subject_term_texts=self.__subject_term_texts, technique_texts=self.__technique_texts, work_type_texts=self.__work_type_texts)
-
-        @property
-        def agent_name_texts(self):
-            '''
-            :rtype: dict(str: int)
-            '''
-
-            return self.__agent_name_texts.copy() if self.__agent_name_texts is not None else None
+            return ObjectFacets(categories=self.__categories, collections=self.__collections, color_texts=self.__color_texts, cultural_context_texts=self.__cultural_context_texts, genders=self.__genders, institutions=self.__institutions, location_name_texts=self.__location_name_texts, material_texts=self.__material_texts, subject_term_texts=self.__subject_term_texts, technique_texts=self.__technique_texts, work_type_texts=self.__work_type_texts)
 
         @property
         def categories(self):
@@ -122,14 +111,6 @@ class ObjectFacets(object):
             '''
 
             return self.__material_texts.copy() if self.__material_texts is not None else None
-
-        def set_agent_name_texts(self, agent_name_texts):
-            '''
-            :type agent_name_texts: dict(str: int)
-            '''
-
-            self.__agent_name_texts = agent_name_texts
-            return self
 
         def set_categories(self, categories):
             '''
@@ -237,7 +218,6 @@ class ObjectFacets(object):
 
         def update(self, object_facets):
             '''
-            :type agent_name_texts: dict(str: int)
             :type categories: dict(str: int)
             :type collections: dict(str: int)
             :type color_texts: dict(str: int)
@@ -252,7 +232,6 @@ class ObjectFacets(object):
             '''
 
             if isinstance(object_facets, ObjectFacets):
-                self.set_agent_name_texts(object_facets.agent_name_texts)
                 self.set_categories(object_facets.categories)
                 self.set_collections(object_facets.collections)
                 self.set_color_texts(object_facets.color_texts)
@@ -278,14 +257,6 @@ class ObjectFacets(object):
             '''
 
             return self.__work_type_texts.copy() if self.__work_type_texts is not None else None
-
-        @agent_name_texts.setter
-        def agent_name_texts(self, agent_name_texts):
-            '''
-            :type agent_name_texts: dict(str: int)
-            '''
-
-            self.set_agent_name_texts(agent_name_texts)
 
         @categories.setter
         def categories(self, categories):
@@ -377,7 +348,6 @@ class ObjectFacets(object):
 
     def __init__(
         self,
-        agent_name_texts,
         categories,
         collections,
         color_texts,
@@ -391,7 +361,6 @@ class ObjectFacets(object):
         work_type_texts,
     ):
         '''
-        :type agent_name_texts: dict(str: int)
         :type categories: dict(str: int)
         :type collections: dict(str: int)
         :type color_texts: dict(str: int)
@@ -404,12 +373,6 @@ class ObjectFacets(object):
         :type technique_texts: dict(str: int)
         :type work_type_texts: dict(str: int)
         '''
-
-        if agent_name_texts is None:
-            raise ValueError('agent_name_texts is required')
-        if not (isinstance(agent_name_texts, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], basestring) and isinstance(__item[1], (int, long)) and __item[1] >= 0, agent_name_texts.iteritems()))) == 0):
-            raise TypeError("expected agent_name_texts to be a dict(str: int) but it is a %s" % getattr(__builtin__, 'type')(agent_name_texts))
-        self.__agent_name_texts = agent_name_texts.copy() if agent_name_texts is not None else None
 
         if categories is None:
             raise ValueError('categories is required')
@@ -478,8 +441,6 @@ class ObjectFacets(object):
         self.__work_type_texts = work_type_texts.copy() if work_type_texts is not None else None
 
     def __eq__(self, other):
-        if self.agent_name_texts != other.agent_name_texts:
-            return False
         if self.categories != other.categories:
             return False
         if self.collections != other.collections:
@@ -505,7 +466,7 @@ class ObjectFacets(object):
         return True
 
     def __hash__(self):
-        return hash((self.agent_name_texts,self.categories,self.collections,self.color_texts,self.cultural_context_texts,self.genders,self.institutions,self.location_name_texts,self.material_texts,self.subject_term_texts,self.technique_texts,self.work_type_texts,))
+        return hash((self.categories,self.collections,self.color_texts,self.cultural_context_texts,self.genders,self.institutions,self.location_name_texts,self.material_texts,self.subject_term_texts,self.technique_texts,self.work_type_texts,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -515,7 +476,6 @@ class ObjectFacets(object):
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('agent_name_texts=' + repr(self.agent_name_texts))
         field_reprs.append('categories=' + repr(self.categories))
         field_reprs.append('collections=' + repr(self.collections))
         field_reprs.append('color_texts=' + repr(self.color_texts))
@@ -531,7 +491,6 @@ class ObjectFacets(object):
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('agent_name_texts=' + repr(self.agent_name_texts))
         field_reprs.append('categories=' + repr(self.categories))
         field_reprs.append('collections=' + repr(self.collections))
         field_reprs.append('color_texts=' + repr(self.color_texts))
@@ -545,14 +504,6 @@ class ObjectFacets(object):
         field_reprs.append('work_type_texts=' + repr(self.work_type_texts))
         return 'ObjectFacets(' + ', '.join(field_reprs) + ')'
 
-    @property
-    def agent_name_texts(self):
-        '''
-        :rtype: dict(str: int)
-        '''
-
-        return self.__agent_name_texts.copy() if self.__agent_name_texts is not None else None
-
     def as_dict(self):
         '''
         Return the fields of this object as a dictionary.
@@ -560,7 +511,7 @@ class ObjectFacets(object):
         :rtype: dict
         '''
 
-        return {'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'collections': self.collections, 'color_texts': self.color_texts, 'cultural_context_texts': self.cultural_context_texts, 'genders': self.genders, 'institutions': self.institutions, 'location_name_texts': self.location_name_texts, 'material_texts': self.material_texts, 'subject_term_texts': self.subject_term_texts, 'technique_texts': self.technique_texts, 'work_type_texts': self.work_type_texts}
+        return {'categories': self.categories, 'collections': self.collections, 'color_texts': self.color_texts, 'cultural_context_texts': self.cultural_context_texts, 'genders': self.genders, 'institutions': self.institutions, 'location_name_texts': self.location_name_texts, 'material_texts': self.material_texts, 'subject_term_texts': self.subject_term_texts, 'technique_texts': self.technique_texts, 'work_type_texts': self.work_type_texts}
 
     def as_tuple(self):
         '''
@@ -569,7 +520,7 @@ class ObjectFacets(object):
         :rtype: tuple
         '''
 
-        return (self.agent_name_texts, self.categories, self.collections, self.color_texts, self.cultural_context_texts, self.genders, self.institutions, self.location_name_texts, self.material_texts, self.subject_term_texts, self.technique_texts, self.work_type_texts,)
+        return (self.categories, self.collections, self.color_texts, self.cultural_context_texts, self.genders, self.institutions, self.location_name_texts, self.material_texts, self.subject_term_texts, self.technique_texts, self.work_type_texts,)
 
     @property
     def categories(self):
@@ -651,8 +602,6 @@ class ObjectFacets(object):
             ifield_name, ifield_type, _ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
-            elif ifield_name == 'agent_name_texts':
-                init_kwds['agent_name_texts'] = dict([(iprot.read_string(), iprot.read_u32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'categories':
                 init_kwds['categories'] = dict([(iprot.read_string(), iprot.read_u32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'collections':
@@ -682,7 +631,6 @@ class ObjectFacets(object):
 
     def replace(
         self,
-        agent_name_texts=None,
         categories=None,
         collections=None,
         color_texts=None,
@@ -698,7 +646,6 @@ class ObjectFacets(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type agent_name_texts: dict(str: int) or None
         :type categories: dict(str: int) or None
         :type collections: dict(str: int) or None
         :type color_texts: dict(str: int) or None
@@ -713,8 +660,6 @@ class ObjectFacets(object):
         :rtype: costume.api.services.object.object_facets.ObjectFacets
         '''
 
-        if agent_name_texts is None:
-            agent_name_texts = self.agent_name_texts
         if categories is None:
             categories = self.categories
         if collections is None:
@@ -737,7 +682,7 @@ class ObjectFacets(object):
             technique_texts = self.technique_texts
         if work_type_texts is None:
             work_type_texts = self.work_type_texts
-        return self.__class__(agent_name_texts=agent_name_texts, categories=categories, collections=collections, color_texts=color_texts, cultural_context_texts=cultural_context_texts, genders=genders, institutions=institutions, location_name_texts=location_name_texts, material_texts=material_texts, subject_term_texts=subject_term_texts, technique_texts=technique_texts, work_type_texts=work_type_texts)
+        return self.__class__(categories=categories, collections=collections, color_texts=color_texts, cultural_context_texts=cultural_context_texts, genders=genders, institutions=institutions, location_name_texts=location_name_texts, material_texts=material_texts, subject_term_texts=subject_term_texts, technique_texts=technique_texts, work_type_texts=work_type_texts)
 
     @property
     def subject_term_texts(self):
@@ -772,14 +717,6 @@ class ObjectFacets(object):
         '''
 
         oprot.write_struct_begin('ObjectFacets')
-
-        oprot.write_field_begin(name='agent_name_texts', type=13, id=None)
-        oprot.write_map_begin(11, len(self.agent_name_texts), 8)
-        for __key0, __value0 in self.agent_name_texts.iteritems():
-            oprot.write_string(__key0)
-            oprot.write_u32(__value0)
-        oprot.write_map_end()
-        oprot.write_field_end()
 
         oprot.write_field_begin(name='categories', type=13, id=None)
         oprot.write_map_begin(11, len(self.categories), 8)

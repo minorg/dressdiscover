@@ -48,11 +48,6 @@ final class ObjectFacetsLayout extends CustomComponent {
         rootLayout.addComponent(resetButton, 0, rowI++);
 
         final Optional<String> UNKNOWN_TEXT_FACET_KEY = Optional.of("");
-        __addFacetPicker(availableObjectFacets,
-                new ObjectFacetPicker<String>(availableObjectFacets, "Agent names", eventBus,
-                        ObjectFacets.FieldMetadata.AGENT_NAME_TEXTS, objectQuery, resultObjectFacets,
-                        UNKNOWN_TEXT_FACET_KEY),
-                rowI++);
 
         __addFacetPicker(availableObjectFacets,
                 new ObjectFacetPicker<String>(availableObjectFacets, "Categories", eventBus,
