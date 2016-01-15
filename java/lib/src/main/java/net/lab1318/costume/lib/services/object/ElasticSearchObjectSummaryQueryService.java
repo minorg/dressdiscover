@@ -168,9 +168,6 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
         public ObjectFacets getObjectFacets(final Aggregations aggregations) {
             final ObjectFacets.Builder resultBuilder = ObjectFacets.builder();
 
-            resultBuilder
-                    .setAgentNameTexts(__getTextsFacet(aggregations, ObjectSummary.FieldMetadata.AGENT_NAME_TEXTS));
-
             resultBuilder.setCategories(__getTextsFacet(aggregations, ObjectSummary.FieldMetadata.CATEGORIES));
 
             resultBuilder.setCollections(__getIdFacet(aggregations, ObjectSummary.FieldMetadata.COLLECTION_ID,
@@ -304,8 +301,8 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
         this.objectSummaryElasticSearchIndex = checkNotNull(objectSummaryElasticSearchIndex);
         objectSummaryElasticSearchModelFactory = new ObjectSummaryElasticSearchModelFactory(objectSummaryCache);
         {
-            final ObjectFacets emptyObjectFacets = ObjectFacets.builder().setAgentNameTexts(ImmutableMap.of())
-                    .setCategories(ImmutableMap.of()).setCollections(ImmutableMap.of()).setColorTexts(ImmutableMap.of())
+            final ObjectFacets emptyObjectFacets = ObjectFacets.builder().setCategories(ImmutableMap.of())
+                    .setCollections(ImmutableMap.of()).setColorTexts(ImmutableMap.of())
                     .setCulturalContextTexts(ImmutableMap.of()).setGenders(ImmutableMap.of())
                     .setInstitutions(ImmutableMap.of()).setLocationNameTexts(ImmutableMap.of())
                     .setMaterialTexts(ImmutableMap.of()).setSubjectTermTexts(ImmutableMap.of())
@@ -498,10 +495,6 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
             final ObjectFacetFilters facetFilters = query.get().getFacetFilters().get();
 
             checkState(!facetFilters.getExcludeAll().or(Boolean.FALSE));
-
-            __translateObjectSummaryTextFilters(facetFilters.getExcludeAgentNameTexts(),
-                    ObjectSummary.FieldMetadata.AGENT_NAME_TEXTS, facetFilters.getIncludeAgentNameTexts(),
-                    filtersTranslated);
 
             __translateObjectSummaryTextFilters(facetFilters.getExcludeCategories(),
                     ObjectSummary.FieldMetadata.CATEGORIES, facetFilters.getIncludeCategories(), filtersTranslated);

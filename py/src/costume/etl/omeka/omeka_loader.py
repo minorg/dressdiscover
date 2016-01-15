@@ -360,7 +360,7 @@ class OmekaLoader(_Loader):
         collection = collection_builder.build()
 
         # Don't put the collection until we're sure it has objects
-        item_dicts = self._read_item_dicts()
+        item_dicts = self._read_item_dicts(collection_dict=collection_dict)
         self._logger.info("loading %d items from collection %d", len(item_dicts), omeka_collection_id)
 
         objects_by_id = \

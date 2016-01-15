@@ -56,7 +56,6 @@ public final class ElasticSearchObjectSummaryQueryServiceTest extends ObjectServ
         final ObjectFacets actual = objectSummaryQueryService.getObjectSummaries(Optional
                 .of(GetObjectSummariesOptions.builder().setIncludeFacets(true).setSize(UnsignedInteger.ZERO).build()))
                 .getFacets().get();
-        assertEquals(TestData.getInstance().getAgents().size(), actual.getAgentNameTexts().size());
         assertEquals(ImmutableSet.copyOf(TestData.getInstance().getCategories()), actual.getCategories().keySet());
         assertEquals(TestData.getInstance().getCollections().size(), actual.getCollections().size());
         assertEquals(TestData.getInstance().getInstitutions().size(), actual.getInstitutions().size());

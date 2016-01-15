@@ -6,9 +6,6 @@ include "costume/api/models/gender/gender.thrift"
 include "costume/api/models/institution/institution_id.thrift"
 
 struct ObjectFacetFilters {
-	// @validation {"minLength": 1}
-	optional set<string> exclude_agent_name_texts;
-
 	// @validation {"acceptance": true}
 	optional bool exclude_all;
 
@@ -44,9 +41,6 @@ struct ObjectFacetFilters {
 
 	// @validation {"minLength": 1}
 	optional set<string> exclude_work_type_texts;
-
-	// @validation {"minLength": 1}
-	optional set<string> include_agent_name_texts;
 
 	// @validation {"minLength": 1}
 	optional set<string> include_categories;
