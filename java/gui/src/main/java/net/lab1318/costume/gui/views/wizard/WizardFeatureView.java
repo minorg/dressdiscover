@@ -1,11 +1,17 @@
 package net.lab1318.costume.gui.views.wizard;
 
-import java.util.ArrayList;
-import java.util.List;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
+
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 
 import org.thryft.waf.gui.EventBus;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
 import com.vaadin.event.MouseEvents.ClickEvent;
@@ -20,6 +26,10 @@ import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
+import net.lab1318.costume.gui.events.wizard.WizardFeatureBackRequest;
+import net.lab1318.costume.gui.events.wizard.WizardFeatureGotoRequest;
+import net.lab1318.costume.gui.events.wizard.WizardFeatureNextRequest;
+import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
 import net.lab1318.costume.gui.views.Image;
 import net.lab1318.costume.gui.views.TopLevelView;
 
@@ -31,76 +41,127 @@ public class WizardFeatureView extends TopLevelView {
         super(eventBus);
 
         buttonLayout = new HorizontalLayout();
-        buttonLayout.addComponent(backButton);
-        buttonLayout.setComponentAlignment(backButton, Alignment.MIDDLE_LEFT);
-        buttonLayout.addComponent(nextButton);
-        buttonLayout.setComponentAlignment(nextButton, Alignment.MIDDLE_RIGHT);
+        {
+            final Button backButton = new NativeButton("Back", new Button.ClickListener() {
+                @Override
+                public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
+                    eventBus.post(new WizardFeatureBackRequest());
+                }
+            });
+            buttonLayout.addComponent(backButton);
+            buttonLayout.setComponentAlignment(backButton, Alignment.MIDDLE_LEFT);
+        }
+        {
+            final Button nextButton = new NativeButton("Next", new Button.ClickListener() {
+                @Override
+                public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
+                    eventBus.post(new WizardFeatureNextRequest());
+                }
+            });
+            buttonLayout.addComponent(nextButton);
+            buttonLayout.setComponentAlignment(nextButton, Alignment.MIDDLE_RIGHT);
+        }
         buttonLayout.setSizeFull();
     }
 
-    public Button getBackButton() {
-        return backButton;
+    public ImmutableSet<String> getSelectedFeatureValues() {
+        return ImmutableSet.copyOf(selectedFeatureValues);
     }
 
-    public Button getNextButton() {
-        return nextButton;
-    }
-
-    public ImmutableList<ObjectSummaryEntry> getSelectedModels() {
-        return ImmutableList.copyOf(selectedModels);
-    }
-
-    public void setModels(final String featureName, final ImmutableList<ObjectSummaryEntry> objectSummaryEntries) {
-        selectedModels.clear();
+    public void setModels(final ImmutableMap<String, ImmutableList<String>> allSelectedFeatureValuesByFeatureName,
+            final ImmutableList<ObjectSummaryEntry> availableFeatureModels, final String currentFeatureName,
+            final ImmutableSet<String> currentSelectedFeatureValues) {
+        this.selectedFeatureValues.clear();
+        this.selectedFeatureValues.addAll(currentSelectedFeatureValues);
 
         final VerticalLayout rootLayout = new VerticalLayout();
         rootLayout.setSizeFull();
 
         rootLayout.addComponent(buttonLayout);
 
+        if (!allSelectedFeatureValuesByFeatureName.isEmpty()) {
+            final Label label = new Label("<h3>Currently selected:</h3>", ContentMode.HTML);
+            rootLayout.addComponent(label);
+
+            final VerticalLayout allSelectedFeaturesLayout = new VerticalLayout();
+            allSelectedFeaturesLayout.setSizeFull();
+            for (final Map.Entry<String, ImmutableList<String>> entry : allSelectedFeatureValuesByFeatureName
+                    .entrySet()) {
+                final HorizontalLayout entryLayout = new HorizontalLayout();
+                checkState(!entry.getValue().isEmpty());
+                final StringBuilder joinedValueBuilder = new StringBuilder();
+                for (int valueI = 0; valueI < entry.getValue().size(); valueI++) {
+                    if (valueI > 0) {
+                        joinedValueBuilder.append(" OR ");
+                    }
+                    joinedValueBuilder.append('"');
+                    joinedValueBuilder.append(entry.getValue().get(valueI));
+                    joinedValueBuilder.append('"');
+                }
+                entryLayout.addComponent(new NativeButton(entry.getKey(), new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
+                        _getEventBus().post(new WizardFeatureGotoRequest(entry.getKey()));
+                    }
+                }));
+                final Label valueLabel = new Label(joinedValueBuilder.toString());
+                entryLayout.addComponent(valueLabel);
+                allSelectedFeaturesLayout.addComponent(entryLayout);
+            }
+            rootLayout.addComponent(allSelectedFeaturesLayout);
+            rootLayout.addComponent(new Label("<br/>", ContentMode.HTML));
+        }
+
         {
-            final Label label = new Label("<h1>" + featureName + "</h1>", ContentMode.HTML);
+            final Label label = new Label("<h1>Selecting: " + currentFeatureName + "</h1>", ContentMode.HTML);
             rootLayout.addComponent(label);
             rootLayout.setComponentAlignment(label, Alignment.MIDDLE_CENTER);
         }
 
         {
-            final HorizontalLayout objectSummariesLayout = new HorizontalLayout();
-            objectSummariesLayout.setSizeFull();
-            for (final ObjectSummaryEntry objectSummaryEntry : objectSummaryEntries) {
-                final VerticalLayout objectSummaryLayout = new VerticalLayout();
+            final HorizontalLayout availableFeaturesLayout = new HorizontalLayout();
+            availableFeaturesLayout.setSizeFull();
+            for (final ObjectSummaryEntry availableFeatureModel : availableFeatureModels) {
+                checkState(availableFeatureModel.getModel().getStructureTexts().isPresent());
+                checkState(availableFeatureModel.getModel().getStructureTexts().get().size() == 1);
+                final String availableFeatureValue = checkNotNull(
+                        availableFeatureModel.getModel().getStructureTexts().get().get(currentFeatureName));
 
-                final Image thumbnailImage = new Image("", objectSummaryEntry.getModel().getThumbnail().get());
-                objectSummaryLayout.addComponent(thumbnailImage);
-                objectSummaryLayout.setComponentAlignment(thumbnailImage, Alignment.MIDDLE_CENTER);
+                final VerticalLayout availableFeatureLayout = new VerticalLayout();
 
-                final CheckBox checkBox = new CheckBox(objectSummaryEntry.getModel().getTitle());
+                final Image thumbnailImage = new Image("", availableFeatureModel.getModel().getThumbnail().get());
+                availableFeatureLayout.addComponent(thumbnailImage);
+                availableFeatureLayout.setComponentAlignment(thumbnailImage, Alignment.MIDDLE_CENTER);
+
+                final CheckBox checkBox = new CheckBox(availableFeatureModel.getModel().getTitle());
+                checkBox.setValue(this.selectedFeatureValues.contains(availableFeatureValue));
                 thumbnailImage.addClickListener(new ClickListener() {
                     @Override
                     public void click(final ClickEvent event) {
                         checkBox.setValue(!checkBox.getValue());
+
                         if (checkBox.getValue()) {
-                            selectedModels.add(objectSummaryEntry);
+                            WizardFeatureView.this.selectedFeatureValues.add(availableFeatureValue);
                         } else {
-                            selectedModels.remove(objectSummaryEntry);
+                            WizardFeatureView.this.selectedFeatureValues.remove(availableFeatureValue);
                         }
+
+                        _getEventBus().post(new WizardFeatureRefreshRequest());
                     }
                 });
-                objectSummaryLayout.addComponent(checkBox);
-                objectSummaryLayout.setComponentAlignment(checkBox, Alignment.MIDDLE_CENTER);
+                availableFeatureLayout.addComponent(checkBox);
+                availableFeatureLayout.setComponentAlignment(checkBox, Alignment.MIDDLE_CENTER);
 
-                objectSummariesLayout.addComponent(objectSummaryLayout);
+                availableFeaturesLayout.addComponent(availableFeatureLayout);
             }
 
-            rootLayout.addComponent(objectSummariesLayout);
+            rootLayout.addComponent(availableFeaturesLayout);
         }
 
         setCompositionRoot(rootLayout);
     }
 
     private final HorizontalLayout buttonLayout;
-    private final Button backButton = new NativeButton("Back");
-    private final Button nextButton = new NativeButton("Next");
-    private final List<ObjectSummaryEntry> selectedModels = new ArrayList<>();
+    private final Set<String> selectedFeatureValues = new LinkedHashSet<>();
     public final static String NAME = "wizard_feature";
 }

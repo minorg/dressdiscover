@@ -1,7 +1,6 @@
 package net.lab1318.costume.gui.presenters.wizard;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -15,13 +14,13 @@ import com.google.common.base.Charsets;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.SystemError;
 import com.vaadin.server.UserError;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.UI;
 
 import net.lab1318.costume.api.models.collection.CollectionId;
@@ -31,6 +30,10 @@ import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.gui.GuiUI;
+import net.lab1318.costume.gui.events.wizard.WizardFeatureBackRequest;
+import net.lab1318.costume.gui.events.wizard.WizardFeatureGotoRequest;
+import net.lab1318.costume.gui.events.wizard.WizardFeatureNextRequest;
+import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
 import net.lab1318.costume.gui.models.wizard.CostumeCore;
 import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.wizard.WizardFeatureView;
@@ -45,40 +48,50 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
         }
     }
 
-    @SuppressWarnings("serial")
     @Inject
     public WizardFeaturePresenter(final EventBus eventBus, final ObjectSummaryQueryService objectSummaryQueryService,
             final WizardFeatureView view) {
         super(eventBus, view);
         this.objectSummaryQueryService = checkNotNull(objectSummaryQueryService);
+    }
 
-        _getView().getBackButton().addClickListener(new ClickListener() {
-            @Override
-            public void buttonClick(final ClickEvent event) {
-                if (currentFeatureIndex > 0) {
-                    __selectFeatureValues(_getView().getSelectedModels());
-                    __navigateToFeature(FEATURE_NAMES.get(currentFeatureIndex - 1));
-                }
-            }
-        });
+    @Subscribe
+    public void onWizardFeatureBackRequest(final WizardFeatureBackRequest event) {
+        __updateSelectedFeatureValues();
+        if (currentFeatureIndex > 0) {
+            __navigateToFeature(FEATURE_NAMES.get(currentFeatureIndex - 1));
+        }
+    }
 
-        _getView().getNextButton().addClickListener(new ClickListener() {
-            @Override
-            public void buttonClick(final ClickEvent event) {
-                if (currentFeatureIndex + 1 < FEATURE_NAMES.size()) {
-                    __selectFeatureValues(_getView().getSelectedModels());
-                    __navigateToFeature(FEATURE_NAMES.get(currentFeatureIndex + 1));
-                } else {
-                    GuiUI.navigateTo(ObjectQuery.builder()
-                            .setStructureTexts(ImmutableMap.copyOf(selectedFeatureValuesByFeatureName)).build());
-                }
-            }
-        });
+    @Subscribe
+    public void onWizardFeatureGotoRequest(final WizardFeatureGotoRequest event) {
+        __updateSelectedFeatureValues();
+        if (currentFeatureIndex > 0) {
+            __navigateToFeature(event.getFeatureName());
+        }
+    }
+
+    @Subscribe
+    public void onWizardFeatureNextRequest(final WizardFeatureNextRequest event) {
+        __updateSelectedFeatureValues();
+        if (currentFeatureIndex + 1 < FEATURE_NAMES.size()) {
+            __navigateToFeature(FEATURE_NAMES.get(currentFeatureIndex + 1));
+        } else {
+            GuiUI.navigateTo(ObjectQuery.builder()
+                    .setStructureTexts(ImmutableMap.copyOf(selectedFeatureValuesByFeatureName)).build());
+        }
+    }
+
+    @Subscribe
+    public void onWizardFeatureRefreshEvent(final WizardFeatureRefreshRequest event) {
+        __updateSelectedFeatureValues();
+        __refreshView();
     }
 
     @Override
     protected void _onViewEnter(final ViewChangeEvent event) {
         if (event.getParameters().isEmpty()) {
+            selectedFeatureValuesByFeatureName.clear(); // Reset
             __navigateToFeature(CostumeCore.FEATURES.keySet().iterator().next());
             return;
         }
@@ -94,9 +107,8 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
             return;
         }
 
-        ImmutableList<ObjectSummaryEntry> objectSummaryEntries;
         try {
-            objectSummaryEntries = objectSummaryQueryService.getObjectSummaries(Optional.absent(),
+            availableFeatureModels = objectSummaryQueryService.getObjectSummaries(Optional.absent(),
                     Optional.of(ObjectQuery.builder().setCollectionId(COLLECTION_ID)
                             .setInstitutionId(COLLECTION_ID.getInstitutionId())
                             .setStructureTexts(ImmutableMap.of(currentFeatureName, ImmutableList.of())).build()))
@@ -106,7 +118,7 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
             return;
         }
 
-        _getView().setModels(currentFeatureName, objectSummaryEntries);
+        __refreshView();
     }
 
     private void __navigateToFeature(final String featureName) {
@@ -118,22 +130,27 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
         }
     }
 
-    private void __selectFeatureValues(final ImmutableList<ObjectSummaryEntry> objectSummaryEntries) {
-        final ImmutableList.Builder<String> selectedFeatureValuesBuilder = ImmutableList.builder();
-        for (final ObjectSummaryEntry objectSummaryEntry : objectSummaryEntries) {
-            checkState(objectSummaryEntry.getModel().getStructureTexts().isPresent());
-            checkState(objectSummaryEntry.getModel().getStructureTexts().get().size() == 1);
-            final String featureValue = objectSummaryEntry.getModel().getStructureTexts().get().get(currentFeatureName);
-            checkNotNull(featureValue);
-            selectedFeatureValuesBuilder.add(featureValue);
+    private void __refreshView() {
+        ImmutableList<String> currentSelectedFeatureValues = selectedFeatureValuesByFeatureName.get(currentFeatureName);
+        if (currentSelectedFeatureValues == null) {
+            currentSelectedFeatureValues = ImmutableList.of();
         }
-        final ImmutableList<String> selectedFeatureValues = selectedFeatureValuesBuilder.build();
-        if (!selectedFeatureValues.isEmpty()) {
-            this.selectedFeatureValuesByFeatureName.put(currentFeatureName, selectedFeatureValues);
+
+        _getView().setModels(ImmutableMap.copyOf(selectedFeatureValuesByFeatureName), availableFeatureModels,
+                currentFeatureName, ImmutableSet.copyOf(currentSelectedFeatureValues));
+    }
+
+    private void __updateSelectedFeatureValues() {
+        final ImmutableSet<String> currentSelectedFeatureValues = _getView().getSelectedFeatureValues();
+        if (!currentSelectedFeatureValues.isEmpty()) {
+            this.selectedFeatureValuesByFeatureName.put(currentFeatureName,
+                    ImmutableList.copyOf(currentSelectedFeatureValues));
         } else {
             this.selectedFeatureValuesByFeatureName.remove(currentFeatureName);
         }
     }
+
+    private ImmutableList<ObjectSummaryEntry> availableFeatureModels;
 
     private String currentFeatureName = "";
     private int currentFeatureIndex = -1;
