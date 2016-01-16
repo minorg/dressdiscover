@@ -3,6 +3,7 @@
 	<name>costume-py</name>
 	<comment></comment>
 	<projects>
+		<project>yomeka-py</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

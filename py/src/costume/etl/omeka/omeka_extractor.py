@@ -2,16 +2,13 @@ import json
 import os.path
 
 from costume.etl._extractor import _Extractor
-from urllib2 import urlopen
+from yomeka.client.omeka_rest_api_client import OmekaRestApiClient
 
 
 class OmekaExtractor(_Extractor):
     def __init__(self, api_key, endpoint_url, institution_id, **kwds):
         _Extractor.__init__(self, **kwds)
-        self.__api_key = api_key
-        if not endpoint_url.endswith('/'):
-            endpoint_url = endpoint_url + '/'
-        self.__endpoint_url = endpoint_url
+        self.__client = OmekaRestApiClient(api_key=api_key, endpoint_url=endpoint_url)
         self.__institution_id = institution_id
 
     @classmethod
@@ -26,9 +23,6 @@ class OmekaExtractor(_Extractor):
         argument_parser.add_argument('--institution-id', required=True)
 
     def _extract(self):
-        api_key = self.__api_key
-        query_string = "?key=%(api_key)s" % locals()
-        endpoint_url = self.__endpoint_url
         institution_id = self.__institution_id
 
         out_dir_path = os.path.join(self._data_dir_path, 'extracted', institution_id)
@@ -41,46 +35,43 @@ class OmekaExtractor(_Extractor):
         # if not os.path.isdir(files_out_dir_path):
         #     os.makedirs(files_out_dir_path)
 
+        collections = []
         collection_dicts = []
-        for collection_dicts_page in self.__extract_paged_objects(endpoint_url + 'api/collections' + query_string):
-            collection_dicts.extend(collection_dicts_page)
+        for collection in self.__get_all_pages(self.__client.get_collections):
+            collections.append(collection)
+            collection_dicts.append(json.loads(collection.json))
         collections_file_path = os.path.join(out_dir_path, 'collections.json')
         with open(collections_file_path, 'w+b') as f:
-            f.write(json.dumps(collection_dicts))
+            f.write(json.dumps(collection_dicts, indent=4))
             self._logger.info('wrote %s', collections_file_path)
 
 
         files_out_dir_path = os.path.join(out_dir_path, 'files_by_item_id')
         if not os.path.isdir(files_out_dir_path):
             os.makedirs(files_out_dir_path)
-            for file_dicts_page in self.__extract_paged_objects(endpoint_url + 'api/files' + query_string):
-                for file_dict in file_dicts_page:
-                    file_id = file_dict['id']
-                    item_id = file_dict['item']['id']
-                    file_file_path = os.path.join(files_out_dir_path, str(item_id), str(file_id) + '.json')
-                    if os.path.isfile(file_file_path):
-                        self._logger.debug('%s already exists', file_file_path)
-                        continue
-                    if not os.path.isdir(os.path.dirname(file_file_path)):
-                        os.makedirs(os.path.dirname(file_file_path))
-                    with open(file_file_path, 'w+b') as f:
-                        f.write(json.dumps(file_dict))
-                        self._logger.info('wrote %s', file_file_path)
+            for file_ in self.__get_all_pages(self.__client.get_files):
+                file_file_path = os.path.join(files_out_dir_path, str(file_.item_id), str(file_.id) + '.json')
+                if os.path.isfile(file_file_path):
+                    self._logger.debug('%s already exists', file_file_path)
+                    continue
+                if not os.path.isdir(os.path.dirname(file_file_path)):
+                    os.makedirs(os.path.dirname(file_file_path))
+                with open(file_file_path, 'w+b') as f:
+                    f.write(file_.json)
+                    self._logger.info('wrote %s', file_file_path)
 
 
-        for collection_dict in collection_dicts:
-            collection_id = str(collection_dict['id'])
-            collection_dir_path = os.path.join(out_dir_path, 'collection', str(collection_id))
+        for collection in collections:
+            collection_dir_path = os.path.join(out_dir_path, 'collection', str(collection.id))
 
-            items_count = collection_dict['items']['count']
             item_dicts = []
             items_file_path = os.path.join(collection_dir_path, 'items.json')
             # Try to load an existing items file
             if not self._clean and os.path.isfile(items_file_path):
                 with open(items_file_path, 'rb') as f:
                     item_dicts = json.load(f)
-                if len(item_dicts) != items_count:
-                    self._logger.info("cached items count %d does not match collection count %d", len(item_dicts), items_count)
+                if len(item_dicts) != collection.items_count:
+                    self._logger.info("cached items count %d does not match collection count %d", len(item_dicts), collection.items_count)
                     item_dicts = []
                 else:
                     self._logger.debug("loaded %d cached items from %s", len(item_dicts), items_file_path)
@@ -88,9 +79,9 @@ class OmekaExtractor(_Extractor):
             if len(item_dicts) > 0:
                 continue
 
-            self._logger.debug("loading %d items from Omeka", items_count)
-            for item_dicts_page in self.__extract_paged_objects(endpoint_url + 'api/items' + query_string + "&collection=%(collection_id)s" % locals()):
-                item_dicts.extend(item_dicts_page)
+            self._logger.debug("loading %d items from Omeka", collection.items_count)
+            for item in self.__get_all_pages(self.__client.get_items, collection=collection.id):
+                item_dicts.append(json.loads(item.json))
 
             if not os.path.isdir(collection_dir_path):
                 os.makedirs(collection_dir_path)
@@ -98,51 +89,13 @@ class OmekaExtractor(_Extractor):
                 f.write(json.dumps(item_dicts, indent=4))
                 self._logger.info("wrote %d items to %s", len(item_dicts), items_file_path)
 
-#     for item_dict in item_dicts:
-#         item_id = item_dict['id']
-#         try:
-#             files = item_dict['files']
-#             files_count = files['count']
-#             if files_count == 0:
-#                 continue
-#             files_url = files['url']
-#         except KeyError:
-#             continue
-#         expected_files_url = "%sapi/files?item=%d" % (endpoint_url, item_id)
-#         assert files_url == expected_files_url, "%s vs. %s" % (files_url, expected_files_url)
-#
-#         files_file_path = os.path.join(files_out_dir_path, str(item_id), 'files.json')
-#         if os.path.isfile(files_file_path):
-#             continue
-#
-#         url = urlopen(files_url)
-#         try:
-#             files_json = url.read()
-#         finally:
-#             url.close()
-#         if not os.path.isdir(os.path.dirname(files_file_path)):
-#             os.makedirs(os.path.dirname(files_file_path))
-#         with open(files_file_path, 'w+b') as f:
-#             f.write(files_json)
-#             print 'wrote', files_file_path
-
-
-    def __extract_paged_objects(self, base_url, out_dir_path=None):
-        page_i = 1
+    def __get_all_pages(self, client_method, **kwds):
+        page = 1
         per_page = 50
-        total = 0
         while True:
-            url = base_url + ('&' if '?' in base_url else '&') + "page=%(page_i)s&per_page=%(per_page)s" % locals()
-            self._logger.debug("getting page %d of %s at %s", page_i, base_url, url)
-            url = urlopen(url)
-            try:
-                call_json = url.read()
-                call_result = json.loads(call_json)
-                total = total + len(call_result)
-            finally:
-                url.close()
-            self._logger.debug("retrieved %d objects from %s", total, base_url)
-            yield call_result
-            if len(call_result) < per_page:
+            objects = client_method(page=page, per_page=per_page, **kwds)
+            for object_ in objects:
+                yield object_
+            if len(objects) < per_page:
                 raise StopIteration
-            page_i = page_i + 1
+            page = page + 1
