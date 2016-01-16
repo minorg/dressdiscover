@@ -1,6 +1,7 @@
 import json
 import os.path
 import shutil
+import urllib2
 
 from costume.etl._extractor import _Extractor
 from yomeka.client.omeka_rest_api_client import OmekaRestApiClient
@@ -30,6 +31,29 @@ class WizardExtractor(_Extractor):
 
         item_dicts = []
         for item in self.__client.get_all_items(collection=self.OMEKA_COLLECTION_ID):
+            files = self.__client.get_all_files(item=item.id)
+            for file_ in files:
+                file_dir_path = os.path.join(out_dir_path, 'files_by_item_id', str(file_.item_id))
+                if not os.path.isdir(file_dir_path):
+                    os.makedirs(file_dir_path)
+
+                original_file_url = urllib2.urlopen(file_.file_urls.original)
+                try:
+                    original_file_data = original_file_url.read()
+                finally:
+                    original_file_url.close()
+                file_data_file_path = os.path.join(file_dir_path, str(file_.id) + '.' + file_.mime_type.split('/')[-1])
+                with open(file_data_file_path, 'w+b') as file_data_f:
+                    file_data_f.write(original_file_data)
+                    self._logger.info('wrote %s', file_data_file_path)
+
+                file_json_file_path = os.path.join(file_dir_path, str(file_.id) + '.json')
+                with open(file_json_file_path, 'w+b') as f:
+                    f.write(file_.json)
+                    self._logger.info('wrote %s', file_json_file_path)
+
+
+
             item_dicts.append(json.loads(item.json))
 
         items_file_path = os.path.join(out_dir_path, 'items.json')

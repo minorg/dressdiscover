@@ -47,7 +47,7 @@ class WizardLoader(_Loader):
         )
 
         self._put_collection(
-            collection_id=self.__collection_id,
+            collection_id=self.COLLECTION_ID,
             hidden=True,
             title='Wizard views'
         )
@@ -170,7 +170,18 @@ class WizardLoader(_Loader):
             )
             object_builder.set_view_type(ViewType.DETAIL)
 
-            files = self.__client.get_all_files(item=item.id)
+            files = []
+            files_dir_path = os.path.join(self._data_dir_path, 'extracted', 'wizard', 'files_by_item_id', str(item.id))
+            if os.path.isdir(files_dir_path):
+                for file_file_path in os.listdir(files_dir_path):
+                    if not file_file_path.endswith('.json'):
+                        continue
+                    file_file_path = os.path.join(files_dir_path, file_file_path)
+                    if not os.path.isfile(file_file_path):
+                        continue
+                    with open(file_file_path, 'rb') as f:
+                        files.append(OmekaJsonParser().parse_file_dict(json.load(f)))
+
             if len(files) == 0:
                 self._logger.warn("Omeka item %d has no files", item.id)
                 continue
