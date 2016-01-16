@@ -93,7 +93,6 @@ class Main(thryft.main.Main):
 
         costume_core_controlled_vocabularies = self.__generate_costume_core_py()
         self.__generate_costume_core_java(costume_core_controlled_vocabularies)
-        self.__generate_wizard_features_template_csv(costume_core_controlled_vocabularies)
 
         thrift_src_root_dir_path = os.path.join(ROOT_DIR_PATH, 'thrift', 'src')
 
@@ -311,29 +310,6 @@ public final class CostumeCore {
             f.write('COSTUME_CORE_CONTROLLED_VOCABULARIES = ' + pformat(out))
 
         return out
-
-    def __generate_wizard_features_template_csv(self, costume_core_controlled_vocabularies):
-        data_dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'wizard'))
-        assert os.path.isdir(data_dir_path), data_dir_path
-
-        csv_rows = []
-        csv_rows.append(['Feature name', 'Feature value', 'Credit line', 'License', 'Image URL', 'Metadata URL'])
-        for feature_name in sorted(costume_core_controlled_vocabularies.iterkeys()):
-            if feature_name in EXCLUDE_COSTUME_CORE_FEATURE_NAMES:
-                continue
-
-            feature_values = costume_core_controlled_vocabularies[feature_name].keys()
-
-            for feature_value in sorted(feature_values):
-                csv_row = [feature_name, feature_value]
-                csv_rows.append(csv_row)
-
-            csv_rows.append([''] * len(csv_rows[0]))
-
-        with open(os.path.join(data_dir_path, 'features_template.csv'), 'w+b') as f:
-            writer = csv.writer(f)
-            for csv_row in csv_rows:
-                writer.writerow(csv_row)
 
 
 assert __name__ == '__main__'
