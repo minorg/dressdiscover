@@ -20,12 +20,13 @@ import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.CheckBox;
+import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.VerticalLayout;
 
-import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
+import net.lab1318.costume.api.models.object.ObjectSummary;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureBackRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureGotoRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureNextRequest;
@@ -40,7 +41,10 @@ public class WizardFeatureView extends TopLevelView {
     public WizardFeatureView(final EventBus eventBus) {
         super(eventBus);
 
-        buttonLayout = new HorizontalLayout();
+        bottomButtonLayout = new HorizontalLayout();
+        bottomButtonLayout.setSizeFull();
+        topButtonLayout = new HorizontalLayout();
+        topButtonLayout.setSizeFull();
         {
             final Button backButton = new NativeButton("Back", new Button.ClickListener() {
                 @Override
@@ -48,8 +52,10 @@ public class WizardFeatureView extends TopLevelView {
                     eventBus.post(new WizardFeatureBackRequest());
                 }
             });
-            buttonLayout.addComponent(backButton);
-            buttonLayout.setComponentAlignment(backButton, Alignment.MIDDLE_LEFT);
+            bottomButtonLayout.addComponent(backButton);
+            bottomButtonLayout.setComponentAlignment(backButton, Alignment.MIDDLE_LEFT);
+            topButtonLayout.addComponent(backButton);
+            topButtonLayout.setComponentAlignment(backButton, Alignment.MIDDLE_LEFT);
         }
         {
             final Button nextButton = new NativeButton("Next", new Button.ClickListener() {
@@ -58,10 +64,11 @@ public class WizardFeatureView extends TopLevelView {
                     eventBus.post(new WizardFeatureNextRequest());
                 }
             });
-            buttonLayout.addComponent(nextButton);
-            buttonLayout.setComponentAlignment(nextButton, Alignment.MIDDLE_RIGHT);
+            bottomButtonLayout.addComponent(nextButton);
+            bottomButtonLayout.setComponentAlignment(nextButton, Alignment.MIDDLE_RIGHT);
+            topButtonLayout.addComponent(nextButton);
+            topButtonLayout.setComponentAlignment(nextButton, Alignment.MIDDLE_RIGHT);
         }
-        buttonLayout.setSizeFull();
     }
 
     public ImmutableSet<String> getSelectedFeatureValues() {
@@ -69,7 +76,7 @@ public class WizardFeatureView extends TopLevelView {
     }
 
     public void setModels(final ImmutableMap<String, ImmutableList<String>> allSelectedFeatureValuesByFeatureName,
-            final ImmutableList<ObjectSummaryEntry> availableFeatureModels, final String currentFeatureName,
+            final ImmutableList<ObjectSummary> availableFeatureModels, final String currentFeatureName,
             final ImmutableSet<String> currentSelectedFeatureValues) {
         this.selectedFeatureValues.clear();
         this.selectedFeatureValues.addAll(currentSelectedFeatureValues);
@@ -77,7 +84,7 @@ public class WizardFeatureView extends TopLevelView {
         final VerticalLayout rootLayout = new VerticalLayout();
         rootLayout.setSizeFull();
 
-        rootLayout.addComponent(buttonLayout);
+        rootLayout.addComponent(topButtonLayout);
 
         if (!allSelectedFeatureValuesByFeatureName.isEmpty()) {
             final Label label = new Label("<h3>Currently selected:</h3>", ContentMode.HTML);
@@ -119,21 +126,27 @@ public class WizardFeatureView extends TopLevelView {
         }
 
         {
-            final HorizontalLayout availableFeaturesLayout = new HorizontalLayout();
+            int rowCount = availableFeatureModels.size() / 4;
+            if (availableFeatureModels.size() % 4 != 0) {
+                rowCount++;
+            }
+            final GridLayout availableFeaturesLayout = new GridLayout(4, rowCount);
             availableFeaturesLayout.setSizeFull();
-            for (final ObjectSummaryEntry availableFeatureModel : availableFeatureModels) {
-                checkState(availableFeatureModel.getModel().getStructureTexts().isPresent());
-                checkState(availableFeatureModel.getModel().getStructureTexts().get().size() == 1);
+            int columnI = 0;
+            int rowI = 0;
+            for (final ObjectSummary availableFeatureModel : availableFeatureModels) {
+                checkState(availableFeatureModel.getStructureTexts().isPresent());
+                checkState(availableFeatureModel.getStructureTexts().get().size() == 1);
                 final String availableFeatureValue = checkNotNull(
-                        availableFeatureModel.getModel().getStructureTexts().get().get(currentFeatureName));
+                        availableFeatureModel.getStructureTexts().get().get(currentFeatureName));
 
                 final VerticalLayout availableFeatureLayout = new VerticalLayout();
 
-                final Image thumbnailImage = new Image("", availableFeatureModel.getModel().getThumbnail().get());
+                final Image thumbnailImage = new Image("", availableFeatureModel.getThumbnail().get());
                 availableFeatureLayout.addComponent(thumbnailImage);
                 availableFeatureLayout.setComponentAlignment(thumbnailImage, Alignment.MIDDLE_CENTER);
 
-                final CheckBox checkBox = new CheckBox(availableFeatureModel.getModel().getTitle());
+                final CheckBox checkBox = new CheckBox(availableFeatureModel.getTitle());
                 checkBox.setValue(this.selectedFeatureValues.contains(availableFeatureValue));
                 thumbnailImage.addClickListener(new ClickListener() {
                     @Override
@@ -152,16 +165,24 @@ public class WizardFeatureView extends TopLevelView {
                 availableFeatureLayout.addComponent(checkBox);
                 availableFeatureLayout.setComponentAlignment(checkBox, Alignment.MIDDLE_CENTER);
 
-                availableFeaturesLayout.addComponent(availableFeatureLayout);
+                availableFeaturesLayout.addComponent(availableFeatureLayout, columnI, rowI);
+                if (++columnI == 4) {
+                    columnI = 0;
+                    rowI++;
+                }
             }
 
             rootLayout.addComponent(availableFeaturesLayout);
         }
 
+        rootLayout.addComponent(bottomButtonLayout);
+
         setCompositionRoot(rootLayout);
     }
 
-    private final HorizontalLayout buttonLayout;
+    private final HorizontalLayout bottomButtonLayout;
+
+    private final HorizontalLayout topButtonLayout;
     private final Set<String> selectedFeatureValues = new LinkedHashSet<>();
     public final static String NAME = "wizard_feature";
 }

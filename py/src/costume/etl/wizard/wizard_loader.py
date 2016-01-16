@@ -189,7 +189,7 @@ class WizardLoader(_Loader):
                 object_builder.set_titles(
                     TitleSet.Builder().set_elements((
                         Title.Builder()
-                            .set_text("%(feature_name)s: %(feature_value)s" % locals())
+                            .set_text("%(feature_value)s" % locals())
                             .set_type(TitleType.DESCRIPTIVE)
                             .build(),
                     ))

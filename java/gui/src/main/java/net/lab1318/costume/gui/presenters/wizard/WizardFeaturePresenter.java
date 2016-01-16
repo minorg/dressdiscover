@@ -5,9 +5,13 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.annotation.Nullable;
+
+import org.thryft.native_.Url;
 import org.thryft.waf.gui.EventBus;
 
 import com.google.common.base.Charsets;
@@ -23,8 +27,11 @@ import com.vaadin.server.SystemError;
 import com.vaadin.server.UserError;
 import com.vaadin.ui.UI;
 
+import net.lab1318.costume.api.models.ModelMetadata;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.collection.InvalidCollectionIdException;
+import net.lab1318.costume.api.models.image.ImageVersion;
+import net.lab1318.costume.api.models.object.ObjectSummary;
 import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.ObjectQuery;
@@ -35,6 +42,7 @@ import net.lab1318.costume.gui.events.wizard.WizardFeatureGotoRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureNextRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
 import net.lab1318.costume.gui.models.wizard.CostumeCore;
+import net.lab1318.costume.gui.models.wizard.CostumeCore.Feature;
 import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.wizard.WizardFeatureView;
 
@@ -107,8 +115,9 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
             return;
         }
 
+        ImmutableList<ObjectSummaryEntry> featureModelsInDatabase;
         try {
-            availableFeatureModels = objectSummaryQueryService.getObjectSummaries(Optional.absent(),
+            featureModelsInDatabase = objectSummaryQueryService.getObjectSummaries(Optional.absent(),
                     Optional.of(ObjectQuery.builder().setCollectionId(COLLECTION_ID)
                             .setInstitutionId(COLLECTION_ID.getInstitutionId())
                             .setStructureTexts(ImmutableMap.of(currentFeatureName, ImmutableList.of())).build()))
@@ -117,6 +126,36 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
             _getView().setComponentError(new SystemError("I/O exception", e));
             return;
         }
+
+        // Fill in availableFeatureModels with dummy images
+        final Date currentDate = new Date();
+        final ModelMetadata modelMetadata = ModelMetadata.builder().setCtime(currentDate).setMtime(currentDate).build();
+        final ImmutableList.Builder<ObjectSummary> allFeatureModelsBuilder = ImmutableList.builder();
+        for (final Feature feature : CostumeCore.FEATURES.get(currentFeatureName)) {
+            @Nullable
+            ObjectSummaryEntry featureModel = null;
+            for (final ObjectSummaryEntry featureModelInDatabase : featureModelsInDatabase) {
+                final String featureValue = checkNotNull(
+                        featureModelInDatabase.getModel().getStructureTexts().get().get(currentFeatureName));
+                if (featureValue.equals(feature.getDisplayName())) {
+                    featureModel = featureModelInDatabase;
+                    break;
+                }
+            }
+            if (featureModel != null) {
+                // This feature value is represented in the database, so use it
+                allFeatureModelsBuilder.add(featureModel.getModel());
+            } else {
+                // Create a dummy model for this feature value
+                // Need title, structure texts, thumbnail
+                allFeatureModelsBuilder.add(ObjectSummary.builder().setCollectionId(COLLECTION_ID)
+                        .setInstitutionId(COLLECTION_ID.getInstitutionId()).setModelMetadata(modelMetadata)
+                        .setStructureTexts(ImmutableMap.of(currentFeatureName, feature.getDisplayName()))
+                        .setTitle(feature.getDisplayName())
+                        .setThumbnail(new ImageVersion(Url.parse("http://lorempixel.com/200/200/animals/"))).build());
+            }
+        }
+        availableFeatureModels = allFeatureModelsBuilder.build();
 
         __refreshView();
     }
@@ -150,8 +189,7 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
         }
     }
 
-    private ImmutableList<ObjectSummaryEntry> availableFeatureModels;
-
+    private ImmutableList<ObjectSummary> availableFeatureModels;
     private String currentFeatureName = "";
     private int currentFeatureIndex = -1;
     private final ObjectSummaryQueryService objectSummaryQueryService;
