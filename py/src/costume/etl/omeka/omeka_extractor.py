@@ -37,7 +37,7 @@ class OmekaExtractor(_Extractor):
 
         collections = []
         collection_dicts = []
-        for collection in self.__get_all_pages(self.__client.get_collections):
+        for collection in self.__client.get_all_collections():
             collections.append(collection)
             collection_dicts.append(json.loads(collection.json))
         collections_file_path = os.path.join(out_dir_path, 'collections.json')
@@ -49,7 +49,7 @@ class OmekaExtractor(_Extractor):
         files_out_dir_path = os.path.join(out_dir_path, 'files_by_item_id')
         if not os.path.isdir(files_out_dir_path):
             os.makedirs(files_out_dir_path)
-            for file_ in self.__get_all_pages(self.__client.get_files):
+            for file_ in self.__client.get_all_files():
                 file_file_path = os.path.join(files_out_dir_path, str(file_.item_id), str(file_.id) + '.json')
                 if os.path.isfile(file_file_path):
                     self._logger.debug('%s already exists', file_file_path)
@@ -80,7 +80,7 @@ class OmekaExtractor(_Extractor):
                 continue
 
             self._logger.debug("loading %d items from Omeka", collection.items_count)
-            for item in self.__get_all_pages(self.__client.get_items, collection=collection.id):
+            for item in self.__client.get_all_items(collection=collection.id):
                 item_dicts.append(json.loads(item.json))
 
             if not os.path.isdir(collection_dir_path):
@@ -88,14 +88,3 @@ class OmekaExtractor(_Extractor):
             with open(items_file_path, 'w+b') as f:
                 f.write(json.dumps(item_dicts, indent=4))
                 self._logger.info("wrote %d items to %s", len(item_dicts), items_file_path)
-
-    def __get_all_pages(self, client_method, **kwds):
-        page = 1
-        per_page = 50
-        while True:
-            objects = client_method(page=page, per_page=per_page, **kwds)
-            for object_ in objects:
-                yield object_
-            if len(objects) < per_page:
-                raise StopIteration
-            page = page + 1
