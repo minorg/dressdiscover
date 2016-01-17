@@ -16,6 +16,8 @@ import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
 import com.vaadin.event.MouseEvents.ClickEvent;
 import com.vaadin.event.MouseEvents.ClickListener;
+import com.vaadin.server.ExternalResource;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -23,6 +25,7 @@ import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Link;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.VerticalLayout;
 
@@ -156,6 +159,8 @@ public class WizardFeatureView extends TopLevelView {
 					availableFeatureLayout.addComponent(thumbnailImage);
 					availableFeatureLayout.setComponentAlignment(thumbnailImage, Alignment.MIDDLE_CENTER);
 
+					final HorizontalLayout captionLayout = new HorizontalLayout();
+					captionLayout.setSizeFull();
 					final CheckBox checkBox = new CheckBox(availableFeatureModel.getTitle());
 					checkBox.setValue(this.selectedFeatureValues.contains(availableFeatureValue));
 					thumbnailImage.addClickListener(new ClickListener() {
@@ -171,9 +176,19 @@ public class WizardFeatureView extends TopLevelView {
 
 							_getEventBus().post(new WizardFeatureRefreshRequest());
 						}
+
 					});
-					availableFeatureLayout.addComponent(checkBox);
-					availableFeatureLayout.setComponentAlignment(checkBox, Alignment.MIDDLE_CENTER);
+					captionLayout.addComponent(checkBox);
+					captionLayout.setComponentAlignment(checkBox, Alignment.MIDDLE_CENTER);
+					if (availableFeatureModel.getImage().get().getOriginal().isPresent()) {
+						final Link originalLink = new Link("", new ExternalResource(
+								availableFeatureModel.getImage().get().getOriginal().get().getUrl().toString()));
+						originalLink.setTargetName("_blank");
+						originalLink.setIcon(FontAwesome.SEARCH_PLUS);
+						captionLayout.addComponent(originalLink);
+						captionLayout.setComponentAlignment(originalLink, Alignment.MIDDLE_CENTER);
+					}
+					availableFeatureLayout.addComponent(captionLayout);
 
 					availableFeaturesLayout.addComponent(availableFeatureLayout, columnI, rowI);
 					if (++columnI == 4) {
