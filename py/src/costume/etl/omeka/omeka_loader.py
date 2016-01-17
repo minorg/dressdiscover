@@ -81,6 +81,7 @@ from costume.api.models.work_type.work_type_set import WorkTypeSet
 from costume.etl._loader import _Loader
 from costume.etl.costume_core_controlled_vocabularies import COSTUME_CORE_CONTROLLED_VOCABULARIES
 from costume.etl.dcmi_types import DCMI_TYPES, DCMI_TYPES_BASE_URL
+from yomeka.client.omeka_json_parser import OmekaJsonParser
 
 
 try:
@@ -332,64 +333,59 @@ class OmekaLoader(_Loader):
     def _load(self):
         self._load_institution()
 
-    def _load_collection(self, collection_dict):
-        omeka_collection_id = collection_dict['id']
-        self._logger.debug("reading collection %d", omeka_collection_id)
-        collection_id = self._institution_id + '/' + str(omeka_collection_id)
+    def _load_collection(self, omeka_collection):
+        self._logger.debug("reading collection %d", omeka_collection.id)
+        collection_id = self._institution_id + '/' + str(omeka_collection.id)
 
         collection_builder = \
             Collection.Builder()\
                 .set_institution_id(self._institution_id)\
                 .set_model_metadata(self._new_model_metadata())
 
-        for element_text_dict in collection_dict['element_texts']:
-            text = element_text_dict['text']
-            if len(text) == 0:
+        for element_text in omeka_collection.element_texts:
+            if len(element_text.text) == 0:
                 continue
-            element_set_name = element_text_dict['element_set']['name']
-            element_name = element_text_dict['element']['name']
 
-            if element_set_name == 'Dublin Core':
-                if element_name == 'Contributor':
+            if element_text.element_set.name == 'Dublin Core':
+                if element_text.element.name == 'Contributor':
                     pass
-                elif element_name == 'Description':
-                    collection_builder.set_description(text)
-                elif element_name == 'Title':
-                    collection_builder.set_title(text)
+                elif element_text.element.name == 'Description':
+                    collection_builder.set_description(element_text.text)
+                elif element_text.element.name == 'Title':
+                    collection_builder.set_title(element_text.text)
 
         collection = collection_builder.build()
 
         # Don't put the collection until we're sure it has objects
-        item_dicts = self._read_item_dicts(collection_dict=collection_dict)
-        self._logger.info("loading %d items from collection %d", len(item_dicts), omeka_collection_id)
+        omeka_items = self._read_omeka_items(omeka_collection=omeka_collection)
+        self._logger.info("loading %d items from collection %d", len(omeka_items), omeka_collection.id)
 
         objects_by_id = \
             self._load_items(
                 collection_id=collection_id,
-                item_dicts=item_dicts,
-                omeka_collection_id=omeka_collection_id
+                omeka_collection_id=omeka_collection.id,
+                omeka_items=omeka_items,
             )
 
         if len(objects_by_id) == 0:
-            self._logger.info("collection %d has no objects, skipping", omeka_collection_id)
+            self._logger.info("collection %d has no objects, skipping", omeka_collection.id)
             return
 
         self._services.collection_command_service.put_collection(collection_id, collection)
 
-        self._logger.info("putting %d objects to collection %d", len(objects_by_id), omeka_collection_id)
+        self._logger.info("putting %d objects to collection %d", len(objects_by_id), omeka_collection.id)
         self._services.object_command_service.put_objects(
             tuple(ObjectEntry(object_id, object_)
                   for object_id, object_ in objects_by_id.iteritems())
         )
 
-    def _load_collections(self, collection_dicts, skip_private=True):
-        for collection_dict in collection_dicts:
-            if skip_private and not collection_dict['public']:
-                omeka_collection_id = collection_dict['id']
-                self._logger.info("collection %d is not public, skipping", omeka_collection_id)
+    def _load_collections(self, omeka_collections, skip_private=True):
+        for omeka_collection in omeka_collections:
+            if skip_private and not omeka_collection.public:
+                self._logger.info("collection %d is not public, skipping", omeka_collection.id)
                 continue
 
-            self._load_collection(collection_dict=collection_dict)
+            self._load_collection(omeka_collection=omeka_collection)
 
     def _load_institution(self):
         self._services.institution_command_service.put_institution(
@@ -413,54 +409,44 @@ class OmekaLoader(_Loader):
                 .build()
         )
 
-        collection_dicts = self._read_collection_dicts()
-        self._load_collections(collection_dicts=collection_dicts)
+        self._load_collections(omeka_collections=self._read_omeka_collections())
 
-    def _load_item(self, item_dict, object_builder):
-        omeka_item_id = item_dict['id']
-
-        for element_text_dict in item_dict['element_texts']:
-            text = element_text_dict['text'].strip()
+    def _load_item(self, object_builder, omeka_item):
+        for element_text in omeka_item.element_texts:
+            text = element_text.text.strip()
             if len(text) == 0:
                 continue
-            element_set_name = element_text_dict['element_set']['name']
-            element_name = element_text_dict['element']['name']
 
             self._load_item_element(
-                element_name=element_name,
-                element_set_name=element_set_name,
+                element_name=element_text.element.name,
+                element_set_name=element_text.element_set.name,
                 object_builder=object_builder,
                 text=text
             )
 
         self._load_item_files(
-            files=item_dict.get('files', {}),
             object_builder=object_builder,
-            omeka_item_id=omeka_item_id,
+            omeka_item=omeka_item
         )
 
-        if len(object_builder.work_types) == 0:
+        if len(object_builder.work_types) == 0 and omeka_item.item_type is not None:
             self._load_item_type(
-                item_type=item_dict.get('item_type', {}),
-                object_builder=object_builder
+                object_builder=object_builder,
+                omeka_item_type=omeka_item.item_type
             )
 
-        tag_names = []
-        for tag_dict in item_dict.get('tags', []):
-            tag_names.append(tag_dict['name'])
+        tag_names = [tag.name for tag in omeka_item.tags]
         if len(tag_names) > 0:
             self._load_item_tags(
                 object_builder=object_builder,
                 tag_names=tuple(tag_names)
             )
 
-    def _load_items(self, collection_id, item_dicts, omeka_collection_id):
+    def _load_items(self, collection_id, omeka_collection_id, omeka_items):
         objects_by_id = OrderedDict()
 
-        for item_i, item_dict in enumerate(item_dicts):
-            omeka_item_id = item_dict['id']
-
-            object_id = collection_id + '/' + str(omeka_item_id)
+        for item_i, item in enumerate(omeka_items):
+            object_id = collection_id + '/' + str(item.id)
 
             object_builder = \
                 self._ObjectBuilder(
@@ -469,21 +455,21 @@ class OmekaLoader(_Loader):
                     institution_id=self._institution_id,
                     logger=self._logger,
                     omeka_collection_id=omeka_collection_id,
-                    omeka_item_id=omeka_item_id,
+                    omeka_item_id=item.id,
                 )
 
             try:
                 self._load_item(
-                    item_dict=item_dict,
-                    object_builder=object_builder
+                    object_builder=object_builder,
+                    omeka_item=item
                 )
 
                 objects_by_id[object_id] = object_builder.build()
             except ValueError, e:
-                self._logger.debug("ignoring item %d from collection %d: %s", omeka_item_id, omeka_collection_id, str(e))
+                self._logger.debug("ignoring item %d from collection %d: %s", item.id, omeka_collection_id, str(e))
                 continue
 
-            self._logger.debug("loaded %d/%d items from collection %d", item_i + 1, len(item_dicts), omeka_collection_id)
+            self._logger.debug("loaded %d/%d items from collection %d", item_i + 1, len(omeka_items), omeka_collection_id)
 
         return objects_by_id
 
@@ -1229,90 +1215,81 @@ class OmekaLoader(_Loader):
 
     def _load_item_files(
         self,
-        files,
         object_builder,
-        omeka_item_id
+        omeka_item
     ):
-        try:
-            files_count = files['count']
-        except KeyError:
-            files_count = 0
+        if omeka_item.files_count is None or omeka_item.files_count == 0:
+            return
 
-        if files_count > 0:
-            file_dicts = []
-            files_dir_path = os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'files_by_item_id', str(omeka_item_id))
-            if os.path.isdir(files_dir_path):
-                for file_file_path in os.listdir(files_dir_path):
-                    if not file_file_path.endswith('.json'):
-                        continue
-                    file_file_path = os.path.join(files_dir_path, file_file_path)
-                    if not os.path.isfile(file_file_path):
-                        continue
-                    with open(file_file_path, 'rb') as f:
-                        file_dict = json.load(f)
-                        file_dicts.append(file_dict)
-            for file_dict in file_dicts:
-                # file_id = file_dict['id']
-                file_mime_type = file_dict['mime_type']
-                if not file_mime_type.startswith('image/'):
+        file_dicts = []
+        files_dir_path = os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'files_by_item_id', str(omeka_item.id))
+        if os.path.isdir(files_dir_path):
+            for file_file_path in os.listdir(files_dir_path):
+                if not file_file_path.endswith('.json'):
                     continue
+                file_file_path = os.path.join(files_dir_path, file_file_path)
+                if not os.path.isfile(file_file_path):
+                    continue
+                with open(file_file_path, 'rb') as f:
+                    file_dict = json.load(f)
+                    file_dicts.append(file_dict)
+        for file_dict in file_dicts:
+            # file_id = file_dict['id']
+            file_mime_type = file_dict['mime_type']
+            if not file_mime_type.startswith('image/'):
+                continue
 
-                original_image_height = original_image_width = None
-                for element_text_dict in file_dict['element_texts']:
-                    text = element_text_dict['text']
-                    if len(text) == 0:
-                        continue
-                    element_set_name = element_text_dict['element_set']['name']
-                    element_name = element_text_dict['element']['name']
-                    if element_set_name == 'Omeka Image File':
-                        if element_name == 'Height':
-                            original_image_height = int(text)
-                        elif element_name == 'Width':
-                            original_image_width = int(text)
-    #                             else:
-    #                                 print 'skipping image file element', element_name
+            original_image_height = original_image_width = None
+            for element_text_dict in file_dict['element_texts']:
+                text = element_text_dict['text']
+                if len(text) == 0:
+                    continue
+                element_set_name = element_text_dict['element_set']['name']
+                element_name = element_text_dict['element']['name']
+                if element_set_name == 'Omeka Image File':
+                    if element_name == 'Height':
+                        original_image_height = int(text)
+                    elif element_name == 'Width':
+                        original_image_width = int(text)
+#                             else:
+#                                 print 'skipping image file element', element_name
 
-                image_builder = Image.Builder()
-                image_versions_count = 0
-                for name, file_url in file_dict['file_urls'].iteritems():
-                    if file_url is None or len(file_url) == 0:
-                        continue
-                    image_version_builder = ImageVersion.Builder().set_url(file_url)
-                    if name == 'fullsize':
-                        image_builder.set_full_size(image_version_builder.build())
-                        image_versions_count = image_versions_count + 1
-                    elif name == 'original':
-                        if original_image_height is not None:
-                            image_version_builder.set_height_px(original_image_height)
-                        if original_image_width is not None:
-                            image_version_builder.set_width_px(original_image_width)
-                        image_builder.set_original(image_version_builder.build())
-                        image_versions_count = image_versions_count + 1
-                    elif name == 'square_thumbnail':
-                        image_version_builder.set_height_px(self.__square_thumbnail_height_px)
-                        image_version_builder.set_width_px(self.__square_thumbnail_width_px)
-                        image_builder.set_square_thumbnail(image_version_builder.build())
-                        image_versions_count = image_versions_count + 1
-                    elif name == 'thumbnail':
-                        image_builder.set_thumbnail(image_version_builder.build())
-                        image_versions_count = image_versions_count + 1
-                    else:
-                        raise NotImplementedError(name)
-                if image_versions_count > 0:
-                    object_builder.images.append(image_builder.build())
+            image_builder = Image.Builder()
+            image_versions_count = 0
+            for name, file_url in file_dict['file_urls'].iteritems():
+                if file_url is None or len(file_url) == 0:
+                    continue
+                image_version_builder = ImageVersion.Builder().set_url(file_url)
+                if name == 'fullsize':
+                    image_builder.set_full_size(image_version_builder.build())
+                    image_versions_count = image_versions_count + 1
+                elif name == 'original':
+                    if original_image_height is not None:
+                        image_version_builder.set_height_px(original_image_height)
+                    if original_image_width is not None:
+                        image_version_builder.set_width_px(original_image_width)
+                    image_builder.set_original(image_version_builder.build())
+                    image_versions_count = image_versions_count + 1
+                elif name == 'square_thumbnail':
+                    image_version_builder.set_height_px(self.__square_thumbnail_height_px)
+                    image_version_builder.set_width_px(self.__square_thumbnail_width_px)
+                    image_builder.set_square_thumbnail(image_version_builder.build())
+                    image_versions_count = image_versions_count + 1
+                elif name == 'thumbnail':
+                    image_builder.set_thumbnail(image_version_builder.build())
+                    image_versions_count = image_versions_count + 1
+                else:
+                    raise NotImplementedError(name)
+            if image_versions_count > 0:
+                object_builder.images.append(image_builder.build())
 
     def _load_item_tags(self, object_builder, tag_names):
         object_builder.categories.extend(tag_names)
 
-    def _load_item_type(self, item_type, object_builder):
-        try:
-            work_type_text = item_type['name']
-        except (KeyError, TypeError):
-            work_type_text = None
-        if work_type_text is not None:
-            work_type = self.__parse_work_type(work_type_text)
-            if work_type is not None:
-                object_builder.work_types.append(work_type)
+    def _load_item_type(self, object_builder, omeka_item_type):
+        work_type = self.__parse_work_type(omeka_item_type.name)
+        if work_type is not None:
+            object_builder.work_types.append(work_type)
 
     def __parse_date(self, text):
         builder = DateBound.Builder().set_text(text)
@@ -1392,11 +1369,10 @@ class OmekaLoader(_Loader):
                         )\
                         .build()
 
-    def _read_collection_dicts(self):
+    def _read_omeka_collections(self):
         with open(os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'collections.json')) as f:
-            return json.loads(f.read())
+            return OmekaJsonParser().parse_collection_dicts(json.loads(f.read()))
 
-    def _read_item_dicts(self, collection_dict):
-        omeka_collection_id = collection_dict['id']
-        with open(os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'collection', str(omeka_collection_id), 'items.json')) as f:
-            return json.loads(f.read())
+    def _read_omeka_items(self, omeka_collection):
+        with open(os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'collection', str(omeka_collection.id), 'items.json')) as f:
+            return OmekaJsonParser().parse_item_dicts(json.loads(f.read()))
