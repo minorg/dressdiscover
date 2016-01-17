@@ -81,105 +81,117 @@ public class WizardFeatureView extends TopLevelView {
 		this.selectedFeatureValues.clear();
 		this.selectedFeatureValues.addAll(currentSelectedFeatureValues);
 
-		final VerticalLayout rootLayout = new VerticalLayout();
-		rootLayout.setSizeFull();
+		final HorizontalLayout twoPaneLayout = new HorizontalLayout();
+		twoPaneLayout.setSizeFull();
 
-		rootLayout.addComponent(topButtonLayout);
+		{
+			final VerticalLayout leftPaneLayout = new VerticalLayout();
 
-		if (!allSelectedFeatureValuesByFeatureName.isEmpty()) {
 			final Label label = new Label("<h3>Currently selected:</h3>", ContentMode.HTML);
-			rootLayout.addComponent(label);
+			leftPaneLayout.addComponent(label);
 
-			final VerticalLayout allSelectedFeaturesLayout = new VerticalLayout();
-			allSelectedFeaturesLayout.setSizeFull();
-			for (final Map.Entry<String, ImmutableList<String>> entry : allSelectedFeatureValuesByFeatureName
-					.entrySet()) {
-				final HorizontalLayout entryLayout = new HorizontalLayout();
-				checkState(!entry.getValue().isEmpty());
-				final StringBuilder joinedValueBuilder = new StringBuilder();
-				for (int valueI = 0; valueI < entry.getValue().size(); valueI++) {
-					if (valueI > 0) {
-						joinedValueBuilder.append(" OR ");
-					}
-					joinedValueBuilder.append('"');
-					joinedValueBuilder.append(entry.getValue().get(valueI));
-					joinedValueBuilder.append('"');
-				}
-				entryLayout.addComponent(new NativeButton(entry.getKey(), new Button.ClickListener() {
-					@Override
-					public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
-						_getEventBus().post(new WizardFeatureGotoRequest(entry.getKey()));
-					}
-				}));
-				final Label valueLabel = new Label(joinedValueBuilder.toString());
-				entryLayout.addComponent(valueLabel);
-				allSelectedFeaturesLayout.addComponent(entryLayout);
-			}
-			rootLayout.addComponent(allSelectedFeaturesLayout);
-			rootLayout.addComponent(new Label("<br/>", ContentMode.HTML));
-		}
-
-		{
-			final Label label = new Label("<h1>Selecting: " + currentFeatureName + "</h1>", ContentMode.HTML);
-			rootLayout.addComponent(label);
-			rootLayout.setComponentAlignment(label, Alignment.MIDDLE_CENTER);
-		}
-
-		{
-			int rowCount = availableFeatureModels.size() / 4;
-			if (availableFeatureModels.size() % 4 != 0) {
-				rowCount++;
-			}
-			final GridLayout availableFeaturesLayout = new GridLayout(4, rowCount);
-			availableFeaturesLayout.setSizeFull();
-			int columnI = 0;
-			int rowI = 0;
-			for (final ObjectSummary availableFeatureModel : availableFeatureModels) {
-				checkState(availableFeatureModel.getStructureTexts().isPresent());
-				checkState(availableFeatureModel.getStructureTexts().get().size() == 1);
-				final String availableFeatureValue = checkNotNull(
-						availableFeatureModel.getStructureTexts().get().get(currentFeatureName));
-
-				final VerticalLayout availableFeatureLayout = new VerticalLayout();
-
-				final ImageWithRightsView thumbnailImage = new ImageWithRightsView("",
-						availableFeatureModel.getImage().get().getSquareThumbnail().get(),
-						availableFeatureModel.getImage().get().getRights());
-				availableFeatureLayout.addComponent(thumbnailImage);
-				availableFeatureLayout.setComponentAlignment(thumbnailImage, Alignment.MIDDLE_CENTER);
-
-				final CheckBox checkBox = new CheckBox(availableFeatureModel.getTitle());
-				checkBox.setValue(this.selectedFeatureValues.contains(availableFeatureValue));
-				thumbnailImage.addClickListener(new ClickListener() {
-					@Override
-					public void click(final ClickEvent event) {
-						checkBox.setValue(!checkBox.getValue());
-
-						if (checkBox.getValue()) {
-							WizardFeatureView.this.selectedFeatureValues.add(availableFeatureValue);
-						} else {
-							WizardFeatureView.this.selectedFeatureValues.remove(availableFeatureValue);
+			if (!allSelectedFeatureValuesByFeatureName.isEmpty()) {
+				final VerticalLayout allSelectedFeaturesLayout = new VerticalLayout();
+				for (final Map.Entry<String, ImmutableList<String>> entry : allSelectedFeatureValuesByFeatureName
+						.entrySet()) {
+					final VerticalLayout entryLayout = new VerticalLayout();
+					checkState(!entry.getValue().isEmpty());
+					entryLayout.addComponent(new NativeButton(entry.getKey(), new Button.ClickListener() {
+						@Override
+						public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
+							_getEventBus().post(new WizardFeatureGotoRequest(entry.getKey()));
 						}
-
-						_getEventBus().post(new WizardFeatureRefreshRequest());
+					}));
+					for (int valueI = 0; valueI < entry.getValue().size(); valueI++) {
+						String value = entry.getValue().get(valueI);
+						value = '"' + value + '"';
+						if (valueI + 1 < entry.getValue().size()) {
+							value += " OR";
+						}
+						final Label valueLabel = new Label(value);
+						entryLayout.addComponent(valueLabel);
 					}
-				});
-				availableFeatureLayout.addComponent(checkBox);
-				availableFeatureLayout.setComponentAlignment(checkBox, Alignment.MIDDLE_CENTER);
-
-				availableFeaturesLayout.addComponent(availableFeatureLayout, columnI, rowI);
-				if (++columnI == 4) {
-					columnI = 0;
-					rowI++;
+					allSelectedFeaturesLayout.addComponent(entryLayout);
 				}
+				leftPaneLayout.addComponent(allSelectedFeaturesLayout);
 			}
 
-			rootLayout.addComponent(availableFeaturesLayout);
+			twoPaneLayout.addComponent(leftPaneLayout);
+			twoPaneLayout.setExpandRatio(leftPaneLayout, (float) 2.0);
 		}
 
-		rootLayout.addComponent(bottomButtonLayout);
+		{
+			final VerticalLayout rightPaneLayout = new VerticalLayout();
+			rightPaneLayout.setSizeFull();
 
-		setCompositionRoot(rootLayout);
+			rightPaneLayout.addComponent(topButtonLayout);
+
+			{
+				final Label label = new Label("<h1>Selecting: " + currentFeatureName + "</h1>", ContentMode.HTML);
+				rightPaneLayout.addComponent(label);
+				rightPaneLayout.setComponentAlignment(label, Alignment.MIDDLE_CENTER);
+			}
+
+			{
+				int rowCount = availableFeatureModels.size() / 4;
+				if (availableFeatureModels.size() % 4 != 0) {
+					rowCount++;
+				}
+				final GridLayout availableFeaturesLayout = new GridLayout(4, rowCount);
+				availableFeaturesLayout.setSizeFull();
+				availableFeaturesLayout.setSpacing(true);
+				int columnI = 0;
+				int rowI = 0;
+				for (final ObjectSummary availableFeatureModel : availableFeatureModels) {
+					checkState(availableFeatureModel.getStructureTexts().isPresent());
+					checkState(availableFeatureModel.getStructureTexts().get().size() == 1);
+					final String availableFeatureValue = checkNotNull(
+							availableFeatureModel.getStructureTexts().get().get(currentFeatureName));
+
+					final VerticalLayout availableFeatureLayout = new VerticalLayout();
+
+					final ImageWithRightsView thumbnailImage = new ImageWithRightsView("",
+							availableFeatureModel.getImage().get().getSquareThumbnail().get(),
+							availableFeatureModel.getImage().get().getRights());
+					availableFeatureLayout.addComponent(thumbnailImage);
+					availableFeatureLayout.setComponentAlignment(thumbnailImage, Alignment.MIDDLE_CENTER);
+
+					final CheckBox checkBox = new CheckBox(availableFeatureModel.getTitle());
+					checkBox.setValue(this.selectedFeatureValues.contains(availableFeatureValue));
+					thumbnailImage.addClickListener(new ClickListener() {
+						@Override
+						public void click(final ClickEvent event) {
+							checkBox.setValue(!checkBox.getValue());
+
+							if (checkBox.getValue()) {
+								WizardFeatureView.this.selectedFeatureValues.add(availableFeatureValue);
+							} else {
+								WizardFeatureView.this.selectedFeatureValues.remove(availableFeatureValue);
+							}
+
+							_getEventBus().post(new WizardFeatureRefreshRequest());
+						}
+					});
+					availableFeatureLayout.addComponent(checkBox);
+					availableFeatureLayout.setComponentAlignment(checkBox, Alignment.MIDDLE_CENTER);
+
+					availableFeaturesLayout.addComponent(availableFeatureLayout, columnI, rowI);
+					if (++columnI == 4) {
+						columnI = 0;
+						rowI++;
+					}
+				}
+
+				rightPaneLayout.addComponent(availableFeaturesLayout);
+			}
+
+			rightPaneLayout.addComponent(bottomButtonLayout);
+
+			twoPaneLayout.addComponent(rightPaneLayout);
+			twoPaneLayout.setExpandRatio(rightPaneLayout, (float) 8.0);
+		}
+
+		setCompositionRoot(twoPaneLayout);
 	}
 
 	private final HorizontalLayout bottomButtonLayout;
