@@ -18,7 +18,6 @@ import net.lab1318.costume.api.models.date.DateType;
 import net.lab1318.costume.api.models.description.Description;
 import net.lab1318.costume.api.models.description.DescriptionType;
 import net.lab1318.costume.api.models.image.Image;
-import net.lab1318.costume.api.models.image.ImageVersion;
 import net.lab1318.costume.api.models.location.Location;
 import net.lab1318.costume.api.models.location.LocationName;
 import net.lab1318.costume.api.models.material.Material;
@@ -121,6 +120,27 @@ public final class ObjectSummarizer {
 
         builder.setGender(object.getGender());
 
+        if (object.getImages().isPresent()) {
+            Image selectedImage = null;
+            for (final Image image : object.getImages().get()) {
+                if (image.getSquareThumbnail().isPresent()) {
+                    selectedImage = image;
+                    break;
+                }
+            }
+            if (selectedImage == null) {
+                for (final Image image : object.getImages().get()) {
+                    if (image.getThumbnail().isPresent()) {
+                        selectedImage = image;
+                        break;
+                    }
+                }
+            }
+            if (selectedImage != null) {
+                builder.setImage(selectedImage);
+            }
+        }
+
         builder.setInstitutionId(object.getInstitutionId());
 
         if (object.getLocations().isPresent()) {
@@ -190,29 +210,7 @@ public final class ObjectSummarizer {
             builder.setTechniqueTexts(techniqueTextsBuilder.build());
         }
 
-        // Thumbnail
-        if (object.getImages().isPresent()) {
-            @Nullable
-            ImageVersion thumbnail = null;
-            for (final Image image : object.getImages().get()) {
-                if (image.getSquareThumbnail().isPresent()) {
-                    thumbnail = image.getSquareThumbnail().get();
-                    break;
-                }
-            }
-            if (thumbnail == null) {
-                for (final Image image : object.getImages().get()) {
-                    if (image.getThumbnail().isPresent()) {
-                        thumbnail = image.getThumbnail().get();
-                        break;
-                    }
-                }
-            }
-            if (thumbnail != null) {
-                builder.setThumbnail(thumbnail);
-            }
-        }
-
+        // Image
         // Title
         {
             @Nullable
