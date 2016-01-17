@@ -137,7 +137,6 @@
               "type": "nested", 
               "properties": {
                 "1:elements": {
-                  "index": "not_analyzed", 
                   "type": "nested", 
                   "properties": {
                     "2:text": {
