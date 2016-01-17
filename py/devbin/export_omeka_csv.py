@@ -19,28 +19,20 @@ class OmekaCsvExporter(OmekaLoader):
         argument_parser.add_argument('-o', required=True)
 
     def _load_institution(self):
-        self._load_collections(collection_dicts=self._read_collection_dicts(), skip_private=False)
+        self._load_collections(omeka_collections=self._read_omeka_collections(), skip_private=False)
 
-    def _load_collection(self, collection_dict):
-        omeka_collection_id = collection_dict['id']
+    def _load_collection(self, omeka_collection):
+        omeka_items = self._read_omeka_items(omeka_collection=omeka_collection)
 
-        item_dicts = self._read_item_dicts(collection_dict=collection_dict)
-
-        for item_dict in item_dicts:
-            omeka_item_id = item_dict['id']
-
-            csv_row = {'Collection ID': [str(omeka_collection_id)], 'Item ID': [str(omeka_item_id)], 'Tags': []}
-            for element_text_dict in item_dict['element_texts']:
-                element_set_name = element_text_dict['element_set']['name']
-                element_name = element_text_dict['element']['name']
-                text = element_text_dict['text']
-
-                csv_column_header = element_set_name + ': ' + element_name
+        for omeka_item in omeka_items:
+            csv_row = {'Collection ID': [str(omeka_collection.id)], 'Item ID': [str(omeka_item.id)], 'Tags': []}
+            for element_text in omeka_item.element_texts:
+                csv_column_header = element_text.element_set.name + ': ' + element_text.element.name
                 self.__csv_column_headers.setdefault(csv_column_header, None)
-                csv_row.setdefault(csv_column_header, []).append(text)
+                csv_row.setdefault(csv_column_header, []).append(element_text.text)
 
-            for tag_dict in item_dict.get('tags', []):
-                csv_row['Tags'].append(tag_dict['name'])
+            for omeka_tag in omeka_item.tags:
+                csv_row['Tags'].append(omeka_tag.name)
 
             self.__csv_rows.append(csv_row)
 
