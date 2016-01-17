@@ -100,6 +100,122 @@
           "index": "not_analyzed", 
           "type": "string"
         }, 
+        "21:image": {
+          "type": "nested", 
+          "properties": {
+            "2:full_size": {
+              "type": "nested", 
+              "properties": {
+                "1:url": {
+                  "index": "not_analyzed", 
+                  "type": "string"
+                }, 
+                "2:height_px": {
+                  "type": "integer"
+                }, 
+                "3:width_px": {
+                  "type": "integer"
+                }
+              }
+            }, 
+            "3:original": {
+              "type": "nested", 
+              "properties": {
+                "1:url": {
+                  "index": "not_analyzed", 
+                  "type": "string"
+                }, 
+                "2:height_px": {
+                  "type": "integer"
+                }, 
+                "3:width_px": {
+                  "type": "integer"
+                }
+              }
+            }, 
+            "6:rights": {
+              "type": "nested", 
+              "properties": {
+                "1:elements": {
+                  "index": "not_analyzed", 
+                  "type": "nested", 
+                  "properties": {
+                    "2:text": {
+                      "index": "not_analyzed", 
+                      "type": "string"
+                    }, 
+                    "3:type": {
+                      "index": "not_analyzed", 
+                      "type": "string"
+                    }, 
+                    "5:license_vocab_ref": {
+                      "type": "nested", 
+                      "properties": {
+                        "2:vocab": {
+                          "index": "not_analyzed", 
+                          "type": "string"
+                        }, 
+                        "1:refid": {
+                          "index": "not_analyzed", 
+                          "type": "string"
+                        }, 
+                        "3:uri": {
+                          "type": "string"
+                        }
+                      }
+                    }, 
+                    "1:rights_holder": {
+                      "index": "not_analyzed", 
+                      "type": "string"
+                    }, 
+                    "4:notes": {
+                      "index": "not_analyzed", 
+                      "type": "string"
+                    }
+                  }
+                }, 
+                "2:display": {
+                  "index": "not_analyzed", 
+                  "type": "string"
+                }, 
+                "3:notes": {
+                  "index": "not_analyzed", 
+                  "type": "string"
+                }
+              }
+            }, 
+            "4:square_thumbnail": {
+              "type": "nested", 
+              "properties": {
+                "1:url": {
+                  "index": "not_analyzed", 
+                  "type": "string"
+                }, 
+                "2:height_px": {
+                  "type": "integer"
+                }, 
+                "3:width_px": {
+                  "type": "integer"
+                }
+              }
+            }, 
+            "5:thumbnail": {
+              "type": "nested", 
+              "properties": {
+                "1:url": {
+                  "index": "not_analyzed", 
+                  "type": "string"
+                }, 
+                "2:height_px": {
+                  "type": "integer"
+                }, 
+                "3:width_px": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }, 
         "19:location_name_texts": {
           "fields": {
             "text": {
@@ -163,21 +279,6 @@
         "20:structure_texts": {
           "type": "nested", 
           "dynamic": true
-        }, 
-        "10:thumbnail": {
-          "type": "nested", 
-          "properties": {
-            "1:url": {
-              "type": "string", 
-              "analyzer": "email_and_url"
-            }, 
-            "2:height_px": {
-              "type": "integer"
-            }, 
-            "3:width_px": {
-              "type": "integer"
-            }
-          }
         }, 
         "13:url": {
           "type": "string", 

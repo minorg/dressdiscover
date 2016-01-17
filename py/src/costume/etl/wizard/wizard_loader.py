@@ -3,9 +3,6 @@ import json
 import os.path
 import urllib
 
-from costume.api.models.description.description import Description
-from costume.api.models.description.description_set import DescriptionSet
-from costume.api.models.description.description_type import DescriptionType
 from costume.api.models.image.image import Image
 from costume.api.models.image.image_version import ImageVersion
 from costume.api.models.institution.institution import Institution

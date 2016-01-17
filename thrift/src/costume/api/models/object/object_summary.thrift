@@ -5,7 +5,7 @@ namespace * costume.api.models.object
 include "costume/api/models/model_metadata.thrift"
 include "costume/api/models/collection/collection_id.thrift"
 include "costume/api/models/gender/gender.thrift"
-include "costume/api/models/image/image_version.thrift"
+include "costume/api/models/image/image.thrift"
 include "costume/api/models/institution/institution_id.thrift"
 include "thryft/native/url.thrift"
 
@@ -47,6 +47,8 @@ struct ObjectSummary {
 
 	8: optional gender.Gender gender;
 
+	21: optional image.Image image;
+
 	// @elastic_search_mapping {"type": "multi_field", "fields": {"text": {"type": "string"}, "not_analyzed": {"type": "string", "index": "not_analyzed"}}}
 	// @validation {"minLength": 1}
 	19: optional list<string> location_name_texts;
@@ -66,11 +68,9 @@ struct ObjectSummary {
 	// @elastic_search_mapping {"type": "multi_field", "fields": {"text": {"type": "string"}, "not_analyzed": {"type": "string", "index": "not_analyzed"}}}
 	// @validation {"minLength": 1}
 	15: optional list<string> technique_texts;
-	
+
 	// @validation {"minLength": 1}
 	20: optional map<string, string> structure_texts;
-
-	10: optional image_version.ImageVersion thumbnail;
 
 	13: optional url.Url url;
 
