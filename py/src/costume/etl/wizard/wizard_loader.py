@@ -60,7 +60,7 @@ class WizardLoader(_Loader):
             items = OmekaJsonParser().parse_item_dicts(json.load(f))
 
         for item in items:
-            feature_name = feature_value = image_credit_line = image_license = None
+            feature_name = feature_value = None
             for element_text in item.element_texts:
                 if element_text.element_set.name == 'Dublin Core':
                     if element_text.element.name == 'Title':
@@ -75,11 +75,6 @@ class WizardLoader(_Loader):
                             feature_name = feature_value = None
                             self._logger.warn("Omeka item %d has an ill-formed title: %s", item.id, title)
                             break
-                elif element_text.element_set.name == 'Item Type Metadata':
-                    if element_text.element.name == 'Image credit line':
-                        image_credit_line = element_text.text
-                    elif element_text.element.name == 'Image license':
-                        image_license = element_text.text
 
             if feature_name is None or feature_value is None:
                 self._logger.warn("Omeka item %d has an invalid title", item.id)
@@ -92,59 +87,11 @@ class WizardLoader(_Loader):
                 self._logger.warn("Omeka item %d has an invalid feature value '%s' for feature name '%s'", item.id, feature_value, feature_name)
                 continue
 
-            if image_credit_line is None or len(image_credit_line) == 0:
-                self._logger.warn("Omeka item %d missing an image credit element", item.id)
-                continue
-
-            if image_license is None or len(image_license) == 0:
-                self._logger.warn("Omeka item %d missing an image license element", item.id)
-                continue
-
-            license_vocab_ref = None
-            if image_license.lower() == 'public domain':
-                rights_type = RightsType.PUBLIC_DOMAIN
-            elif image_license == 'CC0':
-                rights_type = RightsType.LICENSED
-                license_vocab_ref = \
-                    VocabRef.Builder()\
-                        .set_vocab(Vocab.CREATIVE_COMMONS)\
-                        .set_uri('https://creativecommons.org/publicdomain/zero/1.0/')\
-                        .build()
-            elif image_license.startswith('CC BY-SA '):
-                rights_type = RightsType.LICENSED
-                version = image_license[len('CC BY-SA '):]
-                float(version)
-                license_vocab_ref = \
-                    VocabRef.Builder()\
-                        .set_vocab(Vocab.CREATIVE_COMMONS)\
-                        .set_uri("https://creativecommons.org/licenses/by-sa/%s/" % version)\
-                        .build()
-            else:
-                raise NotImplementedError(image_license)
 
             object_builder = Object.Builder()
             object_builder.collection_id = self.COLLECTION_ID
             object_builder.institution_id = self._institution_id
-            object_builder.set_descriptions(
-                DescriptionSet.Builder().set_elements((
-                    Description.Builder()
-                        .set_text(image_credit_line)
-                        .set_type(DescriptionType.CREDIT)
-                        .build(),
-                ))
-                .build()
-            )
             object_builder.model_metadata = self._new_model_metadata()
-            object_builder.set_rights(
-                RightsSet.Builder().set_elements((
-                    Rights.Builder()
-                        .set_license_vocab_ref(license_vocab_ref)
-                        .set_text(image_license)
-                        .set_type(rights_type)
-                        .build(),
-                ))
-                .build()
-            )
             object_builder.set_structures(
                 StructureSet.Builder().set_elements((
                     Structure.Builder()
@@ -190,9 +137,59 @@ class WizardLoader(_Loader):
             for file_ in files:
                 if not file_.mime_type.startswith('image/'):
                     continue
+
+                image_credit_line = image_license = None
+                for element_text in file_.element_texts:
+                    if element_text.element_set.name == 'Dublin Core':
+                        if element_text.element.name == 'License':
+                            image_license = element_text.text
+                        elif element_text.element.name == 'Provenance':
+                            image_credit_line = element_text.text
+
+                if image_credit_line is None or len(image_credit_line) == 0:
+                    self._logger.warn("Omeka item %d has a file %d missing a Provenance", item.id, file_.id)
+                    continue
+
+                if image_license is None or len(image_license) == 0:
+                    self._logger.warn("Omeka item %d has a file %d missing a License", item.id, file_.id)
+                    continue
+
+                license_vocab_ref = None
+                if image_license.lower() == 'public domain':
+                    rights_type = RightsType.PUBLIC_DOMAIN
+                elif image_license == 'CC0':
+                    rights_type = RightsType.LICENSED
+                    license_vocab_ref = \
+                        VocabRef.Builder()\
+                            .set_vocab(Vocab.CREATIVE_COMMONS)\
+                            .set_uri('https://creativecommons.org/publicdomain/zero/1.0/')\
+                            .build()
+                elif image_license.startswith('CC BY-SA '):
+                    rights_type = RightsType.LICENSED
+                    version = image_license[len('CC BY-SA '):]
+                    float(version)
+                    license_vocab_ref = \
+                        VocabRef.Builder()\
+                            .set_vocab(Vocab.CREATIVE_COMMONS)\
+                            .set_uri("https://creativecommons.org/licenses/by-sa/%s/" % version)\
+                            .build()
+                else:
+                    raise NotImplementedError(image_license)
+
                 image_builder = Image.Builder()
                 file_urls = file_.file_urls
                 image_builder.set_original(ImageVersion.Builder().set_url(file_urls.original).build())
+                image_builder.set_rights(
+                    RightsSet.Builder().set_elements((
+                        Rights.Builder()
+                            .set_license_vocab_ref(license_vocab_ref)
+                            .set_rights_holder(image_credit_line)
+                            .set_text(image_license)
+                            .set_type(rights_type)
+                            .build(),
+                    ))
+                    .build()
+                )
                 if file_urls.square_thumbnail is None:
                     self._logger.warn("Omeka item %d has a file %d missing a square thumbnail", item.id, file_.id)
                     continue

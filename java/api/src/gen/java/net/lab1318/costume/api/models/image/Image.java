@@ -5,6 +5,7 @@ public class Image implements org.thryft.Struct {
         public Builder() {
             fullSize = com.google.common.base.Optional.absent();
             original = com.google.common.base.Optional.absent();
+            rights = com.google.common.base.Optional.absent();
             squareThumbnail = com.google.common.base.Optional.absent();
             thumbnail = com.google.common.base.Optional.absent();
         }
@@ -12,16 +13,17 @@ public class Image implements org.thryft.Struct {
         public Builder(final Image other) {
             this.fullSize = other.getFullSize();
             this.original = other.getOriginal();
+            this.rights = other.getRights();
             this.squareThumbnail = other.getSquareThumbnail();
             this.thumbnail = other.getThumbnail();
         }
 
-        protected Image _build(final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> fullSize, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> original, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> squareThumbnail, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> thumbnail) {
-            return new Image(fullSize, original, squareThumbnail, thumbnail);
+        protected Image _build(final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> fullSize, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> original, final com.google.common.base.Optional<net.lab1318.costume.api.models.rights.RightsSet> rights, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> squareThumbnail, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> thumbnail) {
+            return new Image(fullSize, original, rights, squareThumbnail, thumbnail);
         }
 
         public Image build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(fullSize, "net.lab1318.costume.api.models.image.Image: missing fullSize"), com.google.common.base.Preconditions.checkNotNull(original, "net.lab1318.costume.api.models.image.Image: missing original"), com.google.common.base.Preconditions.checkNotNull(squareThumbnail, "net.lab1318.costume.api.models.image.Image: missing squareThumbnail"), com.google.common.base.Preconditions.checkNotNull(thumbnail, "net.lab1318.costume.api.models.image.Image: missing thumbnail"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(fullSize, "net.lab1318.costume.api.models.image.Image: missing fullSize"), com.google.common.base.Preconditions.checkNotNull(original, "net.lab1318.costume.api.models.image.Image: missing original"), com.google.common.base.Preconditions.checkNotNull(rights, "net.lab1318.costume.api.models.image.Image: missing rights"), com.google.common.base.Preconditions.checkNotNull(squareThumbnail, "net.lab1318.costume.api.models.image.Image: missing squareThumbnail"), com.google.common.base.Preconditions.checkNotNull(thumbnail, "net.lab1318.costume.api.models.image.Image: missing thumbnail"));
         }
 
         public final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> getFullSize() {
@@ -30,6 +32,10 @@ public class Image implements org.thryft.Struct {
 
         public final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> getOriginal() {
             return original;
+        }
+
+        public final com.google.common.base.Optional<net.lab1318.costume.api.models.rights.RightsSet> getRights() {
+            return rights;
         }
 
         public final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> getSquareThumbnail() {
@@ -60,9 +66,12 @@ public class Image implements org.thryft.Struct {
                 original = com.google.common.base.Optional.of(net.lab1318.costume.api.models.image.ImageVersion.readAsStruct(iprot));
             }
             if (__list.getSize() > 2) {
-                squareThumbnail = com.google.common.base.Optional.of(net.lab1318.costume.api.models.image.ImageVersion.readAsStruct(iprot));
+                rights = com.google.common.base.Optional.of(net.lab1318.costume.api.models.rights.RightsSet.readAsStruct(iprot));
             }
             if (__list.getSize() > 3) {
+                squareThumbnail = com.google.common.base.Optional.of(net.lab1318.costume.api.models.image.ImageVersion.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 4) {
                 thumbnail = com.google.common.base.Optional.of(net.lab1318.costume.api.models.image.ImageVersion.readAsStruct(iprot));
             }
             iprot.readListEnd();
@@ -86,6 +95,12 @@ public class Image implements org.thryft.Struct {
                 case "original": {
                     if (!ifield.hasId() || ifield.getId() == 3) {
                         original = com.google.common.base.Optional.of(net.lab1318.costume.api.models.image.ImageVersion.readAsStruct(iprot));
+                    }
+                    break;
+                }
+                case "rights": {
+                    if (!ifield.hasId() || ifield.getId() == 6) {
+                        rights = com.google.common.base.Optional.of(net.lab1318.costume.api.models.rights.RightsSet.readAsStruct(iprot));
                     }
                     break;
                 }
@@ -127,6 +142,9 @@ public class Image implements org.thryft.Struct {
             if (other.getOriginal().isPresent()) {
                 setOriginal(other.getOriginal());
             }
+            if (other.getRights().isPresent()) {
+                setRights(other.getRights());
+            }
             if (other.getSquareThumbnail().isPresent()) {
                 setSquareThumbnail(other.getSquareThumbnail());
             }
@@ -144,6 +162,16 @@ public class Image implements org.thryft.Struct {
 
         public Builder setOriginal(@javax.annotation.Nullable final net.lab1318.costume.api.models.image.ImageVersion original) {
             this.original = com.google.common.base.Optional.fromNullable(original);
+            return this;
+        }
+
+        public Builder setRights(final com.google.common.base.Optional<net.lab1318.costume.api.models.rights.RightsSet> rights) {
+            this.rights = com.google.common.base.Preconditions.checkNotNull(rights);
+            return this;
+        }
+
+        public Builder setRights(@javax.annotation.Nullable final net.lab1318.costume.api.models.rights.RightsSet rights) {
+            this.rights = com.google.common.base.Optional.fromNullable(rights);
             return this;
         }
 
@@ -173,6 +201,7 @@ public class Image implements org.thryft.Struct {
             switch (name.toLowerCase()) {
             case "full_size": setFullSize((net.lab1318.costume.api.models.image.ImageVersion)value); return this;
             case "original": setOriginal((net.lab1318.costume.api.models.image.ImageVersion)value); return this;
+            case "rights": setRights((net.lab1318.costume.api.models.rights.RightsSet)value); return this;
             case "square_thumbnail": setSquareThumbnail((net.lab1318.costume.api.models.image.ImageVersion)value); return this;
             case "thumbnail": setThumbnail((net.lab1318.costume.api.models.image.ImageVersion)value); return this;
             default:
@@ -187,6 +216,11 @@ public class Image implements org.thryft.Struct {
 
         public Builder unsetOriginal() {
             this.original = com.google.common.base.Optional.absent();
+            return this;
+        }
+
+        public Builder unsetRights() {
+            this.rights = com.google.common.base.Optional.absent();
             return this;
         }
 
@@ -206,6 +240,7 @@ public class Image implements org.thryft.Struct {
             switch (name.toLowerCase()) {
             case "full_size": return unsetFullSize();
             case "original": return unsetOriginal();
+            case "rights": return unsetRights();
             case "square_thumbnail": return unsetSquareThumbnail();
             case "thumbnail": return unsetThumbnail();
             default:
@@ -215,6 +250,7 @@ public class Image implements org.thryft.Struct {
 
         private com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> fullSize;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> original;
+        private com.google.common.base.Optional<net.lab1318.costume.api.models.rights.RightsSet> rights;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> squareThumbnail;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> thumbnail;
     }
@@ -223,6 +259,7 @@ public class Image implements org.thryft.Struct {
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         FULL_SIZE("fullSize", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.image.ImageVersion>() {}, false, 2, "full_size", org.thryft.protocol.Type.STRUCT),
         ORIGINAL("original", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.image.ImageVersion>() {}, false, 3, "original", org.thryft.protocol.Type.STRUCT),
+        RIGHTS("rights", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.rights.RightsSet>() {}, false, 6, "rights", org.thryft.protocol.Type.STRUCT),
         SQUARE_THUMBNAIL("squareThumbnail", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.image.ImageVersion>() {}, false, 4, "square_thumbnail", org.thryft.protocol.Type.STRUCT),
         THUMBNAIL("thumbnail", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.image.ImageVersion>() {}, false, 5, "thumbnail", org.thryft.protocol.Type.STRUCT);
 
@@ -270,6 +307,7 @@ public class Image implements org.thryft.Struct {
             switch (javaName) {
             case "fullSize": return FULL_SIZE;
             case "original": return ORIGINAL;
+            case "rights": return RIGHTS;
             case "squareThumbnail": return SQUARE_THUMBNAIL;
             case "thumbnail": return THUMBNAIL;
             default:
@@ -281,6 +319,7 @@ public class Image implements org.thryft.Struct {
             switch (thriftName) {
             case "full_size": return FULL_SIZE;
             case "original": return ORIGINAL;
+            case "rights": return RIGHTS;
             case "square_thumbnail": return SQUARE_THUMBNAIL;
             case "thumbnail": return THUMBNAIL;
             default:
@@ -317,6 +356,7 @@ public class Image implements org.thryft.Struct {
     public Image() {
         fullSize = com.google.common.base.Optional.absent();
         original = com.google.common.base.Optional.absent();
+        rights = com.google.common.base.Optional.absent();
         squareThumbnail = com.google.common.base.Optional.absent();
         thumbnail = com.google.common.base.Optional.absent();
     }
@@ -325,15 +365,16 @@ public class Image implements org.thryft.Struct {
      * Copy constructor
      */
     public Image(final Image other) {
-        this(other.getFullSize(), other.getOriginal(), other.getSquareThumbnail(), other.getThumbnail());
+        this(other.getFullSize(), other.getOriginal(), other.getRights(), other.getSquareThumbnail(), other.getThumbnail());
     }
 
     /**
      * Total Nullable constructor
      */
-    public Image(final @javax.annotation.Nullable net.lab1318.costume.api.models.image.ImageVersion fullSize, final @javax.annotation.Nullable net.lab1318.costume.api.models.image.ImageVersion original, final @javax.annotation.Nullable net.lab1318.costume.api.models.image.ImageVersion squareThumbnail, final @javax.annotation.Nullable net.lab1318.costume.api.models.image.ImageVersion thumbnail) {
+    public Image(final @javax.annotation.Nullable net.lab1318.costume.api.models.image.ImageVersion fullSize, final @javax.annotation.Nullable net.lab1318.costume.api.models.image.ImageVersion original, final @javax.annotation.Nullable net.lab1318.costume.api.models.rights.RightsSet rights, final @javax.annotation.Nullable net.lab1318.costume.api.models.image.ImageVersion squareThumbnail, final @javax.annotation.Nullable net.lab1318.costume.api.models.image.ImageVersion thumbnail) {
         this.fullSize = com.google.common.base.Optional.fromNullable(fullSize);
         this.original = com.google.common.base.Optional.fromNullable(original);
+        this.rights = com.google.common.base.Optional.fromNullable(rights);
         this.squareThumbnail = com.google.common.base.Optional.fromNullable(squareThumbnail);
         this.thumbnail = com.google.common.base.Optional.fromNullable(thumbnail);
     }
@@ -341,9 +382,10 @@ public class Image implements org.thryft.Struct {
     /**
      * Optional constructor
      */
-    public Image(final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> fullSize, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> original, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> squareThumbnail, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> thumbnail) {
+    public Image(final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> fullSize, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> original, final com.google.common.base.Optional<net.lab1318.costume.api.models.rights.RightsSet> rights, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> squareThumbnail, final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> thumbnail) {
         this.fullSize = com.google.common.base.Preconditions.checkNotNull(fullSize, "net.lab1318.costume.api.models.image.Image: missing fullSize");
         this.original = com.google.common.base.Preconditions.checkNotNull(original, "net.lab1318.costume.api.models.image.Image: missing original");
+        this.rights = com.google.common.base.Preconditions.checkNotNull(rights, "net.lab1318.costume.api.models.image.Image: missing rights");
         this.squareThumbnail = com.google.common.base.Preconditions.checkNotNull(squareThumbnail, "net.lab1318.costume.api.models.image.Image: missing squareThumbnail");
         this.thumbnail = com.google.common.base.Preconditions.checkNotNull(thumbnail, "net.lab1318.costume.api.models.image.Image: missing thumbnail");
     }
@@ -372,6 +414,7 @@ public class Image implements org.thryft.Struct {
         return
             getFullSize().equals(other.getFullSize()) &&
             getOriginal().equals(other.getOriginal()) &&
+            getRights().equals(other.getRights()) &&
             getSquareThumbnail().equals(other.getSquareThumbnail()) &&
             getThumbnail().equals(other.getThumbnail());
     }
@@ -393,6 +436,7 @@ public class Image implements org.thryft.Struct {
         switch (fieldMetadata) {
         case FULL_SIZE: return getFullSize();
         case ORIGINAL: return getOriginal();
+        case RIGHTS: return getRights();
         case SQUARE_THUMBNAIL: return getSquareThumbnail();
         case THUMBNAIL: return getThumbnail();
         default:
@@ -406,6 +450,10 @@ public class Image implements org.thryft.Struct {
 
     public final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> getOriginal() {
         return original;
+    }
+
+    public final com.google.common.base.Optional<net.lab1318.costume.api.models.rights.RightsSet> getRights() {
+        return rights;
     }
 
     public final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> getSquareThumbnail() {
@@ -425,6 +473,9 @@ public class Image implements org.thryft.Struct {
         if (getOriginal().isPresent()) {
             hashCode = 31 * hashCode + getOriginal().get().hashCode();
         }
+        if (getRights().isPresent()) {
+            hashCode = 31 * hashCode + getRights().get().hashCode();
+        }
         if (getSquareThumbnail().isPresent()) {
             hashCode = 31 * hashCode + getSquareThumbnail().get().hashCode();
         }
@@ -436,7 +487,7 @@ public class Image implements org.thryft.Struct {
 
     @Override
     public boolean isEmpty() {
-        return !getFullSize().isPresent() && !getOriginal().isPresent() && !getSquareThumbnail().isPresent() && !getThumbnail().isPresent();
+        return !getFullSize().isPresent() && !getOriginal().isPresent() && !getRights().isPresent() && !getSquareThumbnail().isPresent() && !getThumbnail().isPresent();
     }
 
     public static Image readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -453,6 +504,7 @@ public class Image implements org.thryft.Struct {
     public static Image readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> fullSize = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> original = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<net.lab1318.costume.api.models.rights.RightsSet> rights = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> squareThumbnail = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> thumbnail = com.google.common.base.Optional.absent();
 
@@ -464,14 +516,17 @@ public class Image implements org.thryft.Struct {
             original = com.google.common.base.Optional.of(net.lab1318.costume.api.models.image.ImageVersion.readAsStruct(iprot));
         }
         if (__list.getSize() > 2) {
-            squareThumbnail = com.google.common.base.Optional.of(net.lab1318.costume.api.models.image.ImageVersion.readAsStruct(iprot));
+            rights = com.google.common.base.Optional.of(net.lab1318.costume.api.models.rights.RightsSet.readAsStruct(iprot));
         }
         if (__list.getSize() > 3) {
+            squareThumbnail = com.google.common.base.Optional.of(net.lab1318.costume.api.models.image.ImageVersion.readAsStruct(iprot));
+        }
+        if (__list.getSize() > 4) {
             thumbnail = com.google.common.base.Optional.of(net.lab1318.costume.api.models.image.ImageVersion.readAsStruct(iprot));
         }
         iprot.readListEnd();
         try {
-            return new Image(fullSize, original, squareThumbnail, thumbnail);
+            return new Image(fullSize, original, rights, squareThumbnail, thumbnail);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -480,6 +535,7 @@ public class Image implements org.thryft.Struct {
     public static Image readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> fullSize = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> original = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<net.lab1318.costume.api.models.rights.RightsSet> rights = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> squareThumbnail = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> thumbnail = com.google.common.base.Optional.absent();
 
@@ -502,6 +558,12 @@ public class Image implements org.thryft.Struct {
                 }
                 break;
             }
+            case "rights": {
+                if (!ifield.hasId() || ifield.getId() == 6) {
+                    rights = com.google.common.base.Optional.of(net.lab1318.costume.api.models.rights.RightsSet.readAsStruct(iprot));
+                }
+                break;
+            }
             case "square_thumbnail": {
                 if (!ifield.hasId() || ifield.getId() == 4) {
                     squareThumbnail = com.google.common.base.Optional.of(net.lab1318.costume.api.models.image.ImageVersion.readAsStruct(iprot));
@@ -519,14 +581,14 @@ public class Image implements org.thryft.Struct {
         }
         iprot.readStructEnd();
         try {
-            return new Image(fullSize, original, squareThumbnail, thumbnail);
+            return new Image(fullSize, original, rights, squareThumbnail, thumbnail);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public Image replaceFullSize(final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> fullSize) {
-        return new Image(fullSize, this.original, this.squareThumbnail, this.thumbnail);
+        return new Image(fullSize, this.original, this.rights, this.squareThumbnail, this.thumbnail);
     }
 
     public Image replaceFullSize(final net.lab1318.costume.api.models.image.ImageVersion fullSize) {
@@ -534,15 +596,23 @@ public class Image implements org.thryft.Struct {
     }
 
     public Image replaceOriginal(final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> original) {
-        return new Image(this.fullSize, original, this.squareThumbnail, this.thumbnail);
+        return new Image(this.fullSize, original, this.rights, this.squareThumbnail, this.thumbnail);
     }
 
     public Image replaceOriginal(final net.lab1318.costume.api.models.image.ImageVersion original) {
         return replaceOriginal(com.google.common.base.Optional.fromNullable(original));
     }
 
+    public Image replaceRights(final com.google.common.base.Optional<net.lab1318.costume.api.models.rights.RightsSet> rights) {
+        return new Image(this.fullSize, this.original, rights, this.squareThumbnail, this.thumbnail);
+    }
+
+    public Image replaceRights(final net.lab1318.costume.api.models.rights.RightsSet rights) {
+        return replaceRights(com.google.common.base.Optional.fromNullable(rights));
+    }
+
     public Image replaceSquareThumbnail(final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> squareThumbnail) {
-        return new Image(this.fullSize, this.original, squareThumbnail, this.thumbnail);
+        return new Image(this.fullSize, this.original, this.rights, squareThumbnail, this.thumbnail);
     }
 
     public Image replaceSquareThumbnail(final net.lab1318.costume.api.models.image.ImageVersion squareThumbnail) {
@@ -550,7 +620,7 @@ public class Image implements org.thryft.Struct {
     }
 
     public Image replaceThumbnail(final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> thumbnail) {
-        return new Image(this.fullSize, this.original, this.squareThumbnail, thumbnail);
+        return new Image(this.fullSize, this.original, this.rights, this.squareThumbnail, thumbnail);
     }
 
     public Image replaceThumbnail(final net.lab1318.costume.api.models.image.ImageVersion thumbnail) {
@@ -559,12 +629,12 @@ public class Image implements org.thryft.Struct {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("full_size", getFullSize().orNull()).add("original", getOriginal().orNull()).add("square_thumbnail", getSquareThumbnail().orNull()).add("thumbnail", getThumbnail().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("full_size", getFullSize().orNull()).add("original", getOriginal().orNull()).add("rights", getRights().orNull()).add("square_thumbnail", getSquareThumbnail().orNull()).add("thumbnail", getThumbnail().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 4);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 5);
 
         if (getFullSize().isPresent()) {
             getFullSize().get().writeAsStruct(oprot);
@@ -574,6 +644,12 @@ public class Image implements org.thryft.Struct {
 
         if (getOriginal().isPresent()) {
             getOriginal().get().writeAsStruct(oprot);
+        } else {
+            oprot.writeNull();
+        }
+
+        if (getRights().isPresent()) {
+            getRights().get().writeAsStruct(oprot);
         } else {
             oprot.writeNull();
         }
@@ -614,6 +690,12 @@ public class Image implements org.thryft.Struct {
             oprot.writeFieldEnd();
         }
 
+        if (getRights().isPresent()) {
+            oprot.writeFieldBegin("rights", org.thryft.protocol.Type.STRUCT, (short)6);
+            getRights().get().writeAsStruct(oprot);
+            oprot.writeFieldEnd();
+        }
+
         if (getSquareThumbnail().isPresent()) {
             oprot.writeFieldBegin("square_thumbnail", org.thryft.protocol.Type.STRUCT, (short)4);
             getSquareThumbnail().get().writeAsStruct(oprot);
@@ -632,6 +714,8 @@ public class Image implements org.thryft.Struct {
     private final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> fullSize;
 
     private final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> original;
+
+    private final com.google.common.base.Optional<net.lab1318.costume.api.models.rights.RightsSet> rights;
 
     private final com.google.common.base.Optional<net.lab1318.costume.api.models.image.ImageVersion> squareThumbnail;
 

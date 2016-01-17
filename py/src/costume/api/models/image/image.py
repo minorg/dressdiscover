@@ -1,5 +1,6 @@
 import __builtin__
 import costume.api.models.image.image_version
+import costume.api.models.rights.rights_set
 
 
 class Image(object):
@@ -8,23 +9,26 @@ class Image(object):
             self,
             full_size=None,
             original=None,
+            rights=None,
             square_thumbnail=None,
             thumbnail=None,
         ):
             '''
             :type full_size: costume.api.models.image.image_version.ImageVersion or None
             :type original: costume.api.models.image.image_version.ImageVersion or None
+            :type rights: costume.api.models.rights.rights_set.RightsSet or None
             :type square_thumbnail: costume.api.models.image.image_version.ImageVersion or None
             :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
             '''
 
             self.__full_size = full_size
             self.__original = original
+            self.__rights = rights
             self.__square_thumbnail = square_thumbnail
             self.__thumbnail = thumbnail
 
         def build(self):
-            return Image(full_size=self.__full_size, original=self.__original, square_thumbnail=self.__square_thumbnail, thumbnail=self.__thumbnail)
+            return Image(full_size=self.__full_size, original=self.__original, rights=self.__rights, square_thumbnail=self.__square_thumbnail, thumbnail=self.__thumbnail)
 
         @property
         def full_size(self):
@@ -42,6 +46,14 @@ class Image(object):
 
             return self.__original
 
+        @property
+        def rights(self):
+            '''
+            :rtype: costume.api.models.rights.rights_set.RightsSet
+            '''
+
+            return self.__rights
+
         def set_full_size(self, full_size):
             '''
             :type full_size: costume.api.models.image.image_version.ImageVersion or None
@@ -56,6 +68,14 @@ class Image(object):
             '''
 
             self.__original = original
+            return self
+
+        def set_rights(self, rights):
+            '''
+            :type rights: costume.api.models.rights.rights_set.RightsSet or None
+            '''
+
+            self.__rights = rights
             return self
 
         def set_square_thumbnail(self, square_thumbnail):
@@ -94,6 +114,7 @@ class Image(object):
             '''
             :type full_size: costume.api.models.image.image_version.ImageVersion or None
             :type original: costume.api.models.image.image_version.ImageVersion or None
+            :type rights: costume.api.models.rights.rights_set.RightsSet or None
             :type square_thumbnail: costume.api.models.image.image_version.ImageVersion or None
             :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
             '''
@@ -101,6 +122,7 @@ class Image(object):
             if isinstance(image, Image):
                 self.set_full_size(image.full_size)
                 self.set_original(image.original)
+                self.set_rights(image.rights)
                 self.set_square_thumbnail(image.square_thumbnail)
                 self.set_thumbnail(image.thumbnail)
             elif isinstance(image, dict):
@@ -126,6 +148,14 @@ class Image(object):
 
             self.set_original(original)
 
+        @rights.setter
+        def rights(self, rights):
+            '''
+            :type rights: costume.api.models.rights.rights_set.RightsSet or None
+            '''
+
+            self.set_rights(rights)
+
         @square_thumbnail.setter
         def square_thumbnail(self, square_thumbnail):
             '''
@@ -146,12 +176,14 @@ class Image(object):
         self,
         full_size=None,
         original=None,
+        rights=None,
         square_thumbnail=None,
         thumbnail=None,
     ):
         '''
         :type full_size: costume.api.models.image.image_version.ImageVersion or None
         :type original: costume.api.models.image.image_version.ImageVersion or None
+        :type rights: costume.api.models.rights.rights_set.RightsSet or None
         :type square_thumbnail: costume.api.models.image.image_version.ImageVersion or None
         :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
         '''
@@ -165,6 +197,11 @@ class Image(object):
             if not isinstance(original, costume.api.models.image.image_version.ImageVersion):
                 raise TypeError("expected original to be a costume.api.models.image.image_version.ImageVersion but it is a %s" % getattr(__builtin__, 'type')(original))
         self.__original = original
+
+        if rights is not None:
+            if not isinstance(rights, costume.api.models.rights.rights_set.RightsSet):
+                raise TypeError("expected rights to be a costume.api.models.rights.rights_set.RightsSet but it is a %s" % getattr(__builtin__, 'type')(rights))
+        self.__rights = rights
 
         if square_thumbnail is not None:
             if not isinstance(square_thumbnail, costume.api.models.image.image_version.ImageVersion):
@@ -181,6 +218,8 @@ class Image(object):
             return False
         if self.original != other.original:
             return False
+        if self.rights != other.rights:
+            return False
         if self.square_thumbnail != other.square_thumbnail:
             return False
         if self.thumbnail != other.thumbnail:
@@ -188,7 +227,7 @@ class Image(object):
         return True
 
     def __hash__(self):
-        return hash((self.full_size,self.original,self.square_thumbnail,self.thumbnail,))
+        return hash((self.full_size,self.original,self.rights,self.square_thumbnail,self.thumbnail,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -202,6 +241,8 @@ class Image(object):
             field_reprs.append('full_size=' + repr(self.full_size))
         if self.original is not None:
             field_reprs.append('original=' + repr(self.original))
+        if self.rights is not None:
+            field_reprs.append('rights=' + repr(self.rights))
         if self.square_thumbnail is not None:
             field_reprs.append('square_thumbnail=' + repr(self.square_thumbnail))
         if self.thumbnail is not None:
@@ -214,6 +255,8 @@ class Image(object):
             field_reprs.append('full_size=' + repr(self.full_size))
         if self.original is not None:
             field_reprs.append('original=' + repr(self.original))
+        if self.rights is not None:
+            field_reprs.append('rights=' + repr(self.rights))
         if self.square_thumbnail is not None:
             field_reprs.append('square_thumbnail=' + repr(self.square_thumbnail))
         if self.thumbnail is not None:
@@ -227,7 +270,7 @@ class Image(object):
         :rtype: dict
         '''
 
-        return {'full_size': self.full_size, 'original': self.original, 'square_thumbnail': self.square_thumbnail, 'thumbnail': self.thumbnail}
+        return {'full_size': self.full_size, 'original': self.original, 'rights': self.rights, 'square_thumbnail': self.square_thumbnail, 'thumbnail': self.thumbnail}
 
     def as_tuple(self):
         '''
@@ -236,7 +279,7 @@ class Image(object):
         :rtype: tuple
         '''
 
-        return (self.full_size, self.original, self.square_thumbnail, self.thumbnail,)
+        return (self.full_size, self.original, self.rights, self.square_thumbnail, self.thumbnail,)
 
     @property
     def full_size(self):
@@ -274,6 +317,8 @@ class Image(object):
                 init_kwds['full_size'] = costume.api.models.image.image_version.ImageVersion.read(iprot)
             elif ifield_name == 'original' and ifield_id == 3:
                 init_kwds['original'] = costume.api.models.image.image_version.ImageVersion.read(iprot)
+            elif ifield_name == 'rights' and ifield_id == 6:
+                init_kwds['rights'] = costume.api.models.rights.rights_set.RightsSet.read(iprot)
             elif ifield_name == 'square_thumbnail' and ifield_id == 4:
                 init_kwds['square_thumbnail'] = costume.api.models.image.image_version.ImageVersion.read(iprot)
             elif ifield_name == 'thumbnail' and ifield_id == 5:
@@ -287,6 +332,7 @@ class Image(object):
         self,
         full_size=None,
         original=None,
+        rights=None,
         square_thumbnail=None,
         thumbnail=None,
     ):
@@ -295,6 +341,7 @@ class Image(object):
 
         :type full_size: costume.api.models.image.image_version.ImageVersion or None
         :type original: costume.api.models.image.image_version.ImageVersion or None
+        :type rights: costume.api.models.rights.rights_set.RightsSet or None
         :type square_thumbnail: costume.api.models.image.image_version.ImageVersion or None
         :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
         :rtype: costume.api.models.image.image.Image
@@ -304,11 +351,21 @@ class Image(object):
             full_size = self.full_size
         if original is None:
             original = self.original
+        if rights is None:
+            rights = self.rights
         if square_thumbnail is None:
             square_thumbnail = self.square_thumbnail
         if thumbnail is None:
             thumbnail = self.thumbnail
-        return self.__class__(full_size=full_size, original=original, square_thumbnail=square_thumbnail, thumbnail=thumbnail)
+        return self.__class__(full_size=full_size, original=original, rights=rights, square_thumbnail=square_thumbnail, thumbnail=thumbnail)
+
+    @property
+    def rights(self):
+        '''
+        :rtype: costume.api.models.rights.rights_set.RightsSet
+        '''
+
+        return self.__rights
 
     @property
     def square_thumbnail(self):
@@ -344,6 +401,11 @@ class Image(object):
         if self.original is not None:
             oprot.write_field_begin(name='original', type=12, id=3)
             self.original.write(oprot)
+            oprot.write_field_end()
+
+        if self.rights is not None:
+            oprot.write_field_begin(name='rights', type=12, id=6)
+            self.rights.write(oprot)
             oprot.write_field_end()
 
         if self.square_thumbnail is not None:

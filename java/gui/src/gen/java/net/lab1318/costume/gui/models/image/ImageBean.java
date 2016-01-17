@@ -5,6 +5,7 @@ public class ImageBean implements org.thryft.StructBean {
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         FULL_SIZE("fullSize", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.image.ImageVersionBean>() {}, false, 2, "full_size", org.thryft.protocol.Type.STRUCT),
         ORIGINAL("original", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.image.ImageVersionBean>() {}, false, 3, "original", org.thryft.protocol.Type.STRUCT),
+        RIGHTS("rights", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.rights.RightsSetBean>() {}, false, 6, "rights", org.thryft.protocol.Type.STRUCT),
         SQUARE_THUMBNAIL("squareThumbnail", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.image.ImageVersionBean>() {}, false, 4, "square_thumbnail", org.thryft.protocol.Type.STRUCT),
         THUMBNAIL("thumbnail", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.image.ImageVersionBean>() {}, false, 5, "thumbnail", org.thryft.protocol.Type.STRUCT);
 
@@ -52,6 +53,7 @@ public class ImageBean implements org.thryft.StructBean {
             switch (javaName) {
             case "fullSize": return FULL_SIZE;
             case "original": return ORIGINAL;
+            case "rights": return RIGHTS;
             case "squareThumbnail": return SQUARE_THUMBNAIL;
             case "thumbnail": return THUMBNAIL;
             default:
@@ -63,6 +65,7 @@ public class ImageBean implements org.thryft.StructBean {
             switch (thriftName) {
             case "full_size": return FULL_SIZE;
             case "original": return ORIGINAL;
+            case "rights": return RIGHTS;
             case "square_thumbnail": return SQUARE_THUMBNAIL;
             case "thumbnail": return THUMBNAIL;
             default:
@@ -96,6 +99,7 @@ public class ImageBean implements org.thryft.StructBean {
     public ImageBean() {
         fullSize = null;
         original = null;
+        rights = null;
         squareThumbnail = null;
         thumbnail = null;
     }
@@ -103,6 +107,7 @@ public class ImageBean implements org.thryft.StructBean {
     public ImageBean(final net.lab1318.costume.api.models.image.Image other) {
         this.fullSize = other.getFullSize().isPresent() ? new net.lab1318.costume.gui.models.image.ImageVersionBean(other.getFullSize().get()) : null;
         this.original = other.getOriginal().isPresent() ? new net.lab1318.costume.gui.models.image.ImageVersionBean(other.getOriginal().get()) : null;
+        this.rights = other.getRights().isPresent() ? new net.lab1318.costume.gui.models.rights.RightsSetBean(other.getRights().get()) : null;
         this.squareThumbnail = other.getSquareThumbnail().isPresent() ? new net.lab1318.costume.gui.models.image.ImageVersionBean(other.getSquareThumbnail().get()) : null;
         this.thumbnail = other.getThumbnail().isPresent() ? new net.lab1318.costume.gui.models.image.ImageVersionBean(other.getThumbnail().get()) : null;
     }
@@ -119,6 +124,7 @@ public class ImageBean implements org.thryft.StructBean {
         return
             (getFullSize() != null ? getFullSize().equals(other.getFullSize()) : other.getFullSize() == null) &&
             (getOriginal() != null ? getOriginal().equals(other.getOriginal()) : other.getOriginal() == null) &&
+            (getRights() != null ? getRights().equals(other.getRights()) : other.getRights() == null) &&
             (getSquareThumbnail() != null ? getSquareThumbnail().equals(other.getSquareThumbnail()) : other.getSquareThumbnail() == null) &&
             (getThumbnail() != null ? getThumbnail().equals(other.getThumbnail()) : other.getThumbnail() == null);
     }
@@ -140,6 +146,7 @@ public class ImageBean implements org.thryft.StructBean {
         switch (fieldMetadata) {
         case FULL_SIZE: return getFullSize();
         case ORIGINAL: return getOriginal();
+        case RIGHTS: return getRights();
         case SQUARE_THUMBNAIL: return getSquareThumbnail();
         case THUMBNAIL: return getThumbnail();
         default:
@@ -153,6 +160,10 @@ public class ImageBean implements org.thryft.StructBean {
 
     public net.lab1318.costume.gui.models.image.ImageVersionBean getOriginal() {
         return original;
+    }
+
+    public net.lab1318.costume.gui.models.rights.RightsSetBean getRights() {
+        return rights;
     }
 
     public net.lab1318.costume.gui.models.image.ImageVersionBean getSquareThumbnail() {
@@ -172,6 +183,9 @@ public class ImageBean implements org.thryft.StructBean {
         if (getOriginal() != null) {
             hashCode = 31 * hashCode + getOriginal().hashCode();
         }
+        if (getRights() != null) {
+            hashCode = 31 * hashCode + getRights().hashCode();
+        }
         if (getSquareThumbnail() != null) {
             hashCode = 31 * hashCode + getSquareThumbnail().hashCode();
         }
@@ -183,7 +197,7 @@ public class ImageBean implements org.thryft.StructBean {
 
     @Override
     public boolean isEmpty() {
-        return getFullSize() == null && getOriginal() == null && getSquareThumbnail() == null && getThumbnail() == null;
+        return getFullSize() == null && getOriginal() == null && getRights() == null && getSquareThumbnail() == null && getThumbnail() == null;
     }
 
     public void setFullSize(final net.lab1318.costume.gui.models.image.ImageVersionBean fullSize) {
@@ -192,6 +206,10 @@ public class ImageBean implements org.thryft.StructBean {
 
     public void setOriginal(final net.lab1318.costume.gui.models.image.ImageVersionBean original) {
         this.original = original;
+    }
+
+    public void setRights(final net.lab1318.costume.gui.models.rights.RightsSetBean rights) {
+        this.rights = rights;
     }
 
     public void setSquareThumbnail(final net.lab1318.costume.gui.models.image.ImageVersionBean squareThumbnail) {
@@ -204,12 +222,14 @@ public class ImageBean implements org.thryft.StructBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("full_size", getFullSize()).add("original", getOriginal()).add("square_thumbnail", getSquareThumbnail()).add("thumbnail", getThumbnail()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("full_size", getFullSize()).add("original", getOriginal()).add("rights", getRights()).add("square_thumbnail", getSquareThumbnail()).add("thumbnail", getThumbnail()).toString();
     }
 
     private net.lab1318.costume.gui.models.image.ImageVersionBean fullSize;
 
     private net.lab1318.costume.gui.models.image.ImageVersionBean original;
+
+    private net.lab1318.costume.gui.models.rights.RightsSetBean rights;
 
     private net.lab1318.costume.gui.models.image.ImageVersionBean squareThumbnail;
 
