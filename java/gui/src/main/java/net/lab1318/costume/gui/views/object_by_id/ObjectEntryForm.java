@@ -2,13 +2,14 @@ package net.lab1318.costume.gui.views.object_by_id;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.vaadin.event.MouseEvents.ClickEvent;
-import com.vaadin.event.MouseEvents.ClickListener;
+import com.vaadin.server.ExternalResource;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Link;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
@@ -27,6 +28,7 @@ final class ObjectEntryForm extends CustomComponent {
 
 		final HorizontalLayout twoPaneLayout = new HorizontalLayout();
 		twoPaneLayout.setSizeFull();
+		twoPaneLayout.setSpacing(true);
 
 		final VerticalLayout leftPaneLayout = new VerticalLayout();
 		leftPaneLayout.setSpacing(false);
@@ -174,35 +176,40 @@ final class ObjectEntryForm extends CustomComponent {
 			}
 		}
 
-		final VerticalLayout rightPaneLayout = new VerticalLayout();
-		twoPaneLayout.addComponent(rightPaneLayout);
-		twoPaneLayout.setComponentAlignment(rightPaneLayout, Alignment.TOP_CENTER);
+		{
+			final VerticalLayout rightPaneLayout = new VerticalLayout();
+			rightPaneLayout.setSizeFull();
 
-		if (objectEntry.getModel().getImages().isPresent()) {
-			for (final net.lab1318.costume.api.models.image.Image imageModel : objectEntry.getModel().getImages()
-					.get()) {
-				final ImageVersion bestImageModel;
-				if (imageModel.getFullSize().isPresent()) {
-					bestImageModel = imageModel.getFullSize().get();
-				} else if (imageModel.getThumbnail().isPresent()) {
-					bestImageModel = imageModel.getThumbnail().get();
-				} else if (imageModel.getSquareThumbnail().isPresent()) {
-					bestImageModel = imageModel.getSquareThumbnail().get();
-				} else {
-					continue;
+			if (objectEntry.getModel().getImages().isPresent()) {
+				for (final net.lab1318.costume.api.models.image.Image imageModel : objectEntry.getModel().getImages()
+						.get()) {
+					final ImageVersion bestImageModel;
+					if (imageModel.getFullSize().isPresent()) {
+						bestImageModel = imageModel.getFullSize().get();
+					} else if (imageModel.getThumbnail().isPresent()) {
+						bestImageModel = imageModel.getThumbnail().get();
+					} else if (imageModel.getSquareThumbnail().isPresent()) {
+						bestImageModel = imageModel.getSquareThumbnail().get();
+					} else {
+						continue;
+					}
+					final VerticalLayout imageLayout = new VerticalLayout();
+					final ImageWithRightsView imageView = new ImageWithRightsView("", bestImageModel,
+							imageModel.getRights().or(objectEntry.getModel().getRights()));
+					imageLayout.addComponent(imageView);
+					if (imageModel.getOriginal().isPresent()) {
+						final Link originalLink = new Link("",
+								new ExternalResource(imageModel.getOriginal().get().getUrl().toString()));
+						originalLink.setTargetName("_blank");
+						originalLink.setIcon(FontAwesome.SEARCH_PLUS);
+						imageLayout.addComponent(originalLink);
+					}
+					rightPaneLayout.addComponent(imageLayout);
 				}
-				final ImageWithRightsView imageView = new ImageWithRightsView("", bestImageModel,
-						imageModel.getRights().or(objectEntry.getModel().getRights()));
-				if (imageModel.getOriginal().isPresent()) {
-					imageView.addClickListener(new ClickListener() {
-						@Override
-						public void click(final ClickEvent event) {
-							getUI().getPage().open(imageModel.getOriginal().get().getUrl().toString(), "_blank");
-						}
-					});
-				}
-				rightPaneLayout.addComponent(imageView);
 			}
+
+			twoPaneLayout.addComponent(rightPaneLayout);
+			twoPaneLayout.setComponentAlignment(rightPaneLayout, Alignment.TOP_RIGHT);
 		}
 
 		rootLayout.addComponent(twoPaneLayout);
