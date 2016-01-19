@@ -45,10 +45,10 @@ public class WizardFeatureView extends TopLevelView {
     public WizardFeatureView(final EventBus eventBus) {
         super(eventBus);
 
-        bottomButtonLayout = new HorizontalLayout();
-        bottomButtonLayout.setSizeFull();
-        topButtonLayout = new HorizontalLayout();
-        topButtonLayout.setSizeFull();
+        bottomBackNextButtonsLayout = new HorizontalLayout();
+        bottomBackNextButtonsLayout.setSizeFull();
+        topBackNextButtonsLayout = new HorizontalLayout();
+        topBackNextButtonsLayout.setSizeFull();
         {
             final Button backButton = new NativeButton("Back", new Button.ClickListener() {
                 @Override
@@ -56,10 +56,10 @@ public class WizardFeatureView extends TopLevelView {
                     eventBus.post(new WizardFeatureBackRequest());
                 }
             });
-            bottomButtonLayout.addComponent(backButton);
-            bottomButtonLayout.setComponentAlignment(backButton, Alignment.MIDDLE_LEFT);
-            topButtonLayout.addComponent(backButton);
-            topButtonLayout.setComponentAlignment(backButton, Alignment.MIDDLE_LEFT);
+            bottomBackNextButtonsLayout.addComponent(backButton);
+            bottomBackNextButtonsLayout.setComponentAlignment(backButton, Alignment.MIDDLE_LEFT);
+            topBackNextButtonsLayout.addComponent(backButton);
+            topBackNextButtonsLayout.setComponentAlignment(backButton, Alignment.MIDDLE_LEFT);
         }
         {
             final HorizontalLayout nextFinishButtonsLayout = new HorizontalLayout();
@@ -82,10 +82,23 @@ public class WizardFeatureView extends TopLevelView {
                 });
                 nextFinishButtonsLayout.addComponent(finishButton);
             }
-            bottomButtonLayout.addComponent(nextFinishButtonsLayout);
-            bottomButtonLayout.setComponentAlignment(nextFinishButtonsLayout, Alignment.MIDDLE_RIGHT);
-            topButtonLayout.addComponent(nextFinishButtonsLayout);
-            topButtonLayout.setComponentAlignment(nextFinishButtonsLayout, Alignment.MIDDLE_RIGHT);
+            bottomBackNextButtonsLayout.addComponent(nextFinishButtonsLayout);
+            bottomBackNextButtonsLayout.setComponentAlignment(nextFinishButtonsLayout, Alignment.MIDDLE_RIGHT);
+            topBackNextButtonsLayout.addComponent(nextFinishButtonsLayout);
+            topBackNextButtonsLayout.setComponentAlignment(nextFinishButtonsLayout, Alignment.MIDDLE_RIGHT);
+        }
+        {
+            resetButtonLayout = new HorizontalLayout();
+            resetButtonLayout.setSizeFull();
+            final Button resetButton = new NativeButton("Reset", new Button.ClickListener() {
+                @Override
+                public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
+                    selectedFeatureValues.clear();
+                    eventBus.post(new WizardFeatureRefreshRequest());
+                }
+            });
+            resetButtonLayout.addComponent(resetButton);
+            resetButtonLayout.setComponentAlignment(resetButton, Alignment.MIDDLE_RIGHT);
         }
     }
 
@@ -166,13 +179,15 @@ public class WizardFeatureView extends TopLevelView {
         {
             final VerticalLayout rightPaneLayout = new VerticalLayout();
 
-            rightPaneLayout.addComponent(topButtonLayout);
+            rightPaneLayout.addComponent(topBackNextButtonsLayout);
 
             {
                 final Label label = new Label("<h1>Selecting: " + currentFeatureName + "</h1>", ContentMode.HTML);
                 rightPaneLayout.addComponent(label);
                 rightPaneLayout.setComponentAlignment(label, Alignment.MIDDLE_CENTER);
             }
+
+            rightPaneLayout.addComponent(resetButtonLayout);
 
             {
                 int rowCount = currentFeatureValues.size() / 4;
@@ -239,7 +254,7 @@ public class WizardFeatureView extends TopLevelView {
                 rightPaneLayout.addComponent(availableFeaturesLayout);
             }
 
-            rightPaneLayout.addComponent(bottomButtonLayout);
+            rightPaneLayout.addComponent(bottomBackNextButtonsLayout);
 
             twoPaneLayout.addComponent(rightPaneLayout);
             twoPaneLayout.setExpandRatio(rightPaneLayout, (float) 8.0);
@@ -248,9 +263,9 @@ public class WizardFeatureView extends TopLevelView {
         setCompositionRoot(twoPaneLayout);
     }
 
-    private final HorizontalLayout bottomButtonLayout;
-
-    private final HorizontalLayout topButtonLayout;
+    private final HorizontalLayout bottomBackNextButtonsLayout;
+    private final HorizontalLayout resetButtonLayout;
+    private final HorizontalLayout topBackNextButtonsLayout;
     private final Set<String> selectedFeatureValues = new LinkedHashSet<>();
     public final static String NAME = "wizard_feature";
 }
