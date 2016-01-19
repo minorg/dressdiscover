@@ -1066,16 +1066,10 @@ class OmekaLoader(_Loader):
 
         logger = self._logger
         def build_structure(structure_text):
-            controlled_vocabulary = None
-            for key, value in COSTUME_CORE_CONTROLLED_VOCABULARIES.iteritems():
-                if key.lower() == 'structure ' + type_.text:
-                    controlled_vocabulary = value
-                    break
-            if controlled_vocabulary is None:
-                if type_.text == 'silhouette':
-                    controlled_vocabulary = COSTUME_CORE_CONTROLLED_VOCABULARIES['Overall Silhouette']
-                else:
-                    logger.warn('unable to find controlled vocabulary for structure type %s', type_.text)
+            try:
+                controlled_vocabulary = COSTUME_CORE_CONTROLLED_VOCABULARIES[type_.text]
+            except KeyError:
+                logger.warn('unable to find controlled vocabulary for structure type %s', type_.text)
 
             if controlled_vocabulary is not None:
                 if structure_text in controlled_vocabulary:
@@ -1139,34 +1133,34 @@ class OmekaLoader(_Loader):
                 object_builder.structures_by_component_letter.setdefault(letter, []).append(build_structure(structure_text))
 
     def _load_item_element_itm_structure_cut(self, **kwds):
-        self.__load_item_element_itm_structure(type_=StructureType(text='cut', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Cut', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
 
     def _load_item_element_itm_structure_hem(self, **kwds):
-        self.__load_item_element_itm_structure(type_=StructureType(text='hem', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Lining', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
 
     def _load_item_element_itm_structure_lining(self, **kwds):
-        self.__load_item_element_itm_structure(type_=StructureType(text='lining', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Lining', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
 
     def _load_item_element_itm_structure_neckline(self, **kwds):
-        self.__load_item_element_itm_structure(type_=StructureType(text='neckline', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Neckline', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
 
     def _load_item_element_itm_structure_pants(self, **kwds):
-        self.__load_item_element_itm_structure(type_=StructureType(text='pants', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Pants', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
 
     def _load_item_element_itm_structure_silhouette(self, **kwds):
-        self.__load_item_element_itm_structure(type_=StructureType(text='silhouette', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+        self.__load_item_element_itm_structure(type_=StructureType(text='Overall Silhouette', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
 
     def _load_item_element_itm_structure_skirt(self, **kwds):
-        self.__load_item_element_itm_structure(type_=StructureType(text='skirt', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Skirt', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
 
     def _load_item_element_itm_structure_sleeves(self, **kwds):
-        self.__load_item_element_itm_structure(type_=StructureType(text='sleeves', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Sleeves', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
 
     def _load_item_element_itm_structure_torso(self, **kwds):
-        self.__load_item_element_itm_structure(type_=StructureType(text='torso', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Torso', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
 
     def _load_item_element_itm_structure_waist(self, **kwds):
-        self.__load_item_element_itm_structure(type_=StructureType(text='waist', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Waist', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
 
     def _load_item_element_itm_suffix(self, object_builder, text):
         pass # Accession number suffix

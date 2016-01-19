@@ -36,6 +36,8 @@ import net.lab1318.costume.api.models.image.ImageVersion;
 import net.lab1318.costume.api.models.object.ObjectSummary;
 import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 import net.lab1318.costume.api.services.IoException;
+import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
+import net.lab1318.costume.api.services.object.ObjectFacetFilters;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.gui.GuiUI;
@@ -167,6 +169,15 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
         __refreshView();
     }
 
+    private ObjectQuery __getCurrentObjectQuery() {
+        ObjectQuery.Builder queryBuilder = ObjectQuery.builder().setFacetFilters(
+                ObjectFacetFilters.builder().setIncludeWorkTypeTexts(ImmutableSet.of("PhysicalObject")).build());
+        if (!selectedFeatureValuesByFeatureName.isEmpty()) {
+            queryBuilder = queryBuilder.setStructureTexts(ImmutableMap.copyOf(selectedFeatureValuesByFeatureName));
+        }
+        return queryBuilder.build();
+    }
+
     private void __navigateToFeature(final String featureName) {
         try {
             UI.getCurrent().getNavigator().navigateTo(
@@ -177,18 +188,27 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
     }
 
     private void __navigateToFinish() {
-        GuiUI.navigateTo(ObjectQuery.builder()
-                .setStructureTexts(ImmutableMap.copyOf(selectedFeatureValuesByFeatureName)).build());
+        GuiUI.navigateTo(__getCurrentObjectQuery());
     }
 
     private void __refreshView() {
+        final UnsignedInteger selectedObjectCount;
+        try {
+            selectedObjectCount = objectSummaryQueryService
+                    .getObjectSummaries(GET_OBJECT_COUNT_OPTIONS, Optional.of(__getCurrentObjectQuery()))
+                    .getTotalHits();
+        } catch (final IoException e) {
+            _getView().setComponentError(new SystemError("I/O exception", e));
+            return;
+        }
+
         ImmutableList<String> currentSelectedFeatureValues = selectedFeatureValuesByFeatureName.get(currentFeatureName);
         if (currentSelectedFeatureValues == null) {
             currentSelectedFeatureValues = ImmutableList.of();
         }
 
         _getView().setModels(ImmutableMap.copyOf(selectedFeatureValuesByFeatureName), availableFeatureModels,
-                currentFeatureName, ImmutableSet.copyOf(currentSelectedFeatureValues));
+                currentFeatureName, ImmutableSet.copyOf(currentSelectedFeatureValues), selectedObjectCount);
     }
 
     private void __updateSelectedFeatureValues() {
@@ -213,4 +233,6 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
                     .setUrl(Url.parse("http://lorempixel.com/200/200/animals/"))
                     .setWidthPx(UnsignedInteger.valueOf(200)).build())
             .build();
+    private final static Optional<GetObjectSummariesOptions> GET_OBJECT_COUNT_OPTIONS = Optional
+            .of(GetObjectSummariesOptions.builder().setSize(UnsignedInteger.ZERO).build());
 }

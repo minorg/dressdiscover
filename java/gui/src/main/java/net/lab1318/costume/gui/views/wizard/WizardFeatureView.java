@@ -12,6 +12,7 @@ import org.thryft.waf.gui.EventBus;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
 import com.vaadin.event.MouseEvents.ClickEvent;
@@ -95,7 +96,7 @@ public class WizardFeatureView extends TopLevelView {
 
     public void setModels(final ImmutableMap<String, ImmutableList<String>> allSelectedFeatureValuesByFeatureName,
             final ImmutableList<ObjectSummary> availableFeatureModels, final String currentFeatureName,
-            final ImmutableSet<String> currentSelectedFeatureValues) {
+            final ImmutableSet<String> currentSelectedFeatureValues, final UnsignedInteger currentSelectedObjectCount) {
         this.selectedFeatureValues.clear();
         this.selectedFeatureValues.addAll(currentSelectedFeatureValues);
 
@@ -105,8 +106,19 @@ public class WizardFeatureView extends TopLevelView {
         {
             final VerticalLayout leftPaneLayout = new VerticalLayout();
 
-            final Label label = new Label("<h3>Currently selected:</h3>", ContentMode.HTML);
-            leftPaneLayout.addComponent(label);
+            final Label headerLabel = new Label("<h3>Currently selected:</h3>", ContentMode.HTML);
+            leftPaneLayout.addComponent(headerLabel);
+
+            final Button currentSelectedObjectCountButton = new NativeButton(
+                    currentSelectedObjectCount.toString() + " objects", new Button.ClickListener() {
+                        @Override
+                        public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
+                            _getEventBus().post(new WizardFeatureFinishRequest());
+                        }
+                    });
+            leftPaneLayout.addComponent(currentSelectedObjectCountButton);
+
+            leftPaneLayout.addComponent(new Label("<hr/>", ContentMode.HTML));
 
             if (!allSelectedFeatureValuesByFeatureName.isEmpty()) {
                 final VerticalLayout allSelectedFeaturesLayout = new VerticalLayout();
