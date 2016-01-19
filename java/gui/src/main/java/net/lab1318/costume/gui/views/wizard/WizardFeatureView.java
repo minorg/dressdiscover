@@ -4,7 +4,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
 import java.util.LinkedHashSet;
-import java.util.Map;
 import java.util.Set;
 
 import org.thryft.waf.gui.EventBus;
@@ -94,11 +93,15 @@ public class WizardFeatureView extends TopLevelView {
         return ImmutableSet.copyOf(selectedFeatureValues);
     }
 
-    public void setModels(final ImmutableMap<String, ImmutableList<String>> allSelectedFeatureValuesByFeatureName,
-            final ImmutableList<ObjectSummary> availableFeatureModels, final String currentFeatureName,
-            final ImmutableSet<String> currentSelectedFeatureValues, final UnsignedInteger currentSelectedObjectCount) {
+    public void setModels(final ImmutableList<String> allFeatureNames, final String currentFeatureName,
+            final ImmutableList<ObjectSummary> currentFeatureValues, final UnsignedInteger selectedObjectCount,
+            final ImmutableMap<String, ImmutableList<String>> selectedFeatureValuesByFeatureName) {
         this.selectedFeatureValues.clear();
-        this.selectedFeatureValues.addAll(currentSelectedFeatureValues);
+        final ImmutableList<String> currentSelectedFeatureValues = selectedFeatureValuesByFeatureName
+                .get(currentFeatureName);
+        if (currentSelectedFeatureValues != null) {
+            this.selectedFeatureValues.addAll(currentSelectedFeatureValues);
+        }
 
         final HorizontalLayout twoPaneLayout = new HorizontalLayout();
         twoPaneLayout.setSizeFull();
@@ -110,7 +113,7 @@ public class WizardFeatureView extends TopLevelView {
             leftPaneLayout.addComponent(headerLabel);
 
             final Button currentSelectedObjectCountButton = new NativeButton(
-                    currentSelectedObjectCount.toString() + " objects", new Button.ClickListener() {
+                    selectedObjectCount.toString() + " objects", new Button.ClickListener() {
                         @Override
                         public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
                             _getEventBus().post(new WizardFeatureFinishRequest());
@@ -120,32 +123,42 @@ public class WizardFeatureView extends TopLevelView {
 
             leftPaneLayout.addComponent(new Label("<hr/>", ContentMode.HTML));
 
-            if (!allSelectedFeatureValuesByFeatureName.isEmpty()) {
-                final VerticalLayout allSelectedFeaturesLayout = new VerticalLayout();
-                for (final Map.Entry<String, ImmutableList<String>> entry : allSelectedFeatureValuesByFeatureName
-                        .entrySet()) {
-                    final VerticalLayout entryLayout = new VerticalLayout();
-                    checkState(!entry.getValue().isEmpty());
-                    entryLayout.addComponent(new NativeButton(entry.getKey(), new Button.ClickListener() {
+            {
+                final VerticalLayout allFeatureNavigationLayout = new VerticalLayout();
+                allFeatureNavigationLayout.setSpacing(true);
+                for (final String featureName : allFeatureNames) {
+                    final VerticalLayout featureNavigationLayout = new VerticalLayout();
+                    final Button featureButton = new NativeButton(featureName, new Button.ClickListener() {
                         @Override
                         public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
-                            _getEventBus().post(new WizardFeatureGotoRequest(entry.getKey()));
+                            _getEventBus().post(new WizardFeatureGotoRequest(featureName));
                         }
-                    }));
-                    for (int valueI = 0; valueI < entry.getValue().size(); valueI++) {
-                        String value = entry.getValue().get(valueI);
-                        value = '"' + value + '"';
-                        if (valueI + 1 < entry.getValue().size()) {
-                            value += " OR";
-                        }
-                        final Label valueLabel = new Label(value);
-                        entryLayout.addComponent(valueLabel);
+                    });
+                    featureButton.setSizeFull();
+                    if (featureName.equals(currentFeatureName)) {
+                        featureButton.addStyleName("bold-button");
                     }
-                    allSelectedFeaturesLayout.addComponent(entryLayout);
-                }
-                leftPaneLayout.addComponent(allSelectedFeaturesLayout);
-            }
+                    featureNavigationLayout.addComponent(featureButton);
 
+                    final ImmutableList<String> selectedFeatureValues_ = selectedFeatureValuesByFeatureName
+                            .get(featureName);
+                    if (selectedFeatureValues_ != null && !selectedFeatureValues_.isEmpty()) {
+                        for (int valueI = 0; valueI < selectedFeatureValues_.size(); valueI++) {
+                            String value = selectedFeatureValues_.get(valueI);
+                            value = '"' + value + '"';
+                            if (valueI + 1 < selectedFeatureValues_.size()) {
+                                value += " OR";
+                            }
+                            final Label valueLabel = new Label(value);
+                            featureNavigationLayout.addComponent(valueLabel);
+                        }
+                    }
+
+                    allFeatureNavigationLayout.addComponent(featureNavigationLayout);
+                }
+                leftPaneLayout.addComponent(allFeatureNavigationLayout);
+
+            }
             twoPaneLayout.addComponent(leftPaneLayout);
             twoPaneLayout.setExpandRatio(leftPaneLayout, (float) 2.0);
         }
@@ -162,8 +175,8 @@ public class WizardFeatureView extends TopLevelView {
             }
 
             {
-                int rowCount = availableFeatureModels.size() / 4;
-                if (availableFeatureModels.size() % 4 != 0) {
+                int rowCount = currentFeatureValues.size() / 4;
+                if (currentFeatureValues.size() % 4 != 0) {
                     rowCount++;
                 }
                 final GridLayout availableFeaturesLayout = new GridLayout(4, rowCount);
@@ -171,7 +184,7 @@ public class WizardFeatureView extends TopLevelView {
                 availableFeaturesLayout.setSpacing(true);
                 int columnI = 0;
                 int rowI = 0;
-                for (final ObjectSummary availableFeatureModel : availableFeatureModels) {
+                for (final ObjectSummary availableFeatureModel : currentFeatureValues) {
                     checkState(availableFeatureModel.getStructureTexts().isPresent());
                     checkState(availableFeatureModel.getStructureTexts().get().size() == 1);
                     final String availableFeatureValue = checkNotNull(

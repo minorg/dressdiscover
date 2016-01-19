@@ -85,9 +85,7 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
     @Subscribe
     public void onWizardFeatureGotoRequest(final WizardFeatureGotoRequest event) {
         __updateSelectedFeatureValues();
-        if (currentFeatureIndex > 0) {
-            __navigateToFeature(event.getFeatureName());
-        }
+        __navigateToFeature(event.getFeatureName());
     }
 
     @Subscribe
@@ -164,7 +162,7 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
                         .setTitle(feature.getDisplayName()).setImage(PLACEHOLDER_IMAGE).build());
             }
         }
-        availableFeatureModels = allFeatureModelsBuilder.build();
+        currentFeatureValues = allFeatureModelsBuilder.build();
 
         __refreshView();
     }
@@ -202,13 +200,8 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
             return;
         }
 
-        ImmutableList<String> currentSelectedFeatureValues = selectedFeatureValuesByFeatureName.get(currentFeatureName);
-        if (currentSelectedFeatureValues == null) {
-            currentSelectedFeatureValues = ImmutableList.of();
-        }
-
-        _getView().setModels(ImmutableMap.copyOf(selectedFeatureValuesByFeatureName), availableFeatureModels,
-                currentFeatureName, ImmutableSet.copyOf(currentSelectedFeatureValues), selectedObjectCount);
+        _getView().setModels(FEATURE_NAMES, currentFeatureName, currentFeatureValues, selectedObjectCount,
+                ImmutableMap.copyOf(selectedFeatureValuesByFeatureName));
     }
 
     private void __updateSelectedFeatureValues() {
@@ -221,7 +214,7 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
         }
     }
 
-    private ImmutableList<ObjectSummary> availableFeatureModels;
+    private ImmutableList<ObjectSummary> currentFeatureValues;
     private String currentFeatureName = "";
     private int currentFeatureIndex = -1;
     private final ObjectSummaryQueryService objectSummaryQueryService;

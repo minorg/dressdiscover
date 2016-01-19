@@ -32,6 +32,10 @@ $v-layout-spacing-vertical: 0.5em;
 @mixin costume {
   @include valo;
 
+  .bold-button {
+    font-weight: bold;
+  }
+
   .borderless {
   	border: none;
   }
