@@ -11,6 +11,7 @@ class ObjectQuery(object):
             facet_filters=None,
             institution_id=None,
             more_like_object_id=None,
+            object_ids=None,
             relation_text=None,
             query_string=None,
             structure_texts=None,
@@ -20,6 +21,7 @@ class ObjectQuery(object):
             :type facet_filters: costume.api.services.object.object_facet_filters.ObjectFacetFilters or None
             :type institution_id: str or None
             :type more_like_object_id: str or None
+            :type object_ids: frozenset(str) or None
             :type relation_text: str or None
             :type query_string: str or None
             :type structure_texts: dict(str: tuple(str)) or None
@@ -29,12 +31,13 @@ class ObjectQuery(object):
             self.__facet_filters = facet_filters
             self.__institution_id = institution_id
             self.__more_like_object_id = more_like_object_id
+            self.__object_ids = object_ids
             self.__relation_text = relation_text
             self.__query_string = query_string
             self.__structure_texts = structure_texts
 
         def build(self):
-            return ObjectQuery(collection_id=self.__collection_id, facet_filters=self.__facet_filters, institution_id=self.__institution_id, more_like_object_id=self.__more_like_object_id, relation_text=self.__relation_text, query_string=self.__query_string, structure_texts=self.__structure_texts)
+            return ObjectQuery(collection_id=self.__collection_id, facet_filters=self.__facet_filters, institution_id=self.__institution_id, more_like_object_id=self.__more_like_object_id, object_ids=self.__object_ids, relation_text=self.__relation_text, query_string=self.__query_string, structure_texts=self.__structure_texts)
 
         @property
         def collection_id(self):
@@ -67,6 +70,14 @@ class ObjectQuery(object):
             '''
 
             return self.__more_like_object_id
+
+        @property
+        def object_ids(self):
+            '''
+            :rtype: frozenset(str)
+            '''
+
+            return self.__object_ids
 
         @property
         def query_string(self):
@@ -116,6 +127,14 @@ class ObjectQuery(object):
             self.__more_like_object_id = more_like_object_id
             return self
 
+        def set_object_ids(self, object_ids):
+            '''
+            :type object_ids: frozenset(str) or None
+            '''
+
+            self.__object_ids = object_ids
+            return self
+
         def set_query_string(self, query_string):
             '''
             :type query_string: str or None
@@ -154,6 +173,7 @@ class ObjectQuery(object):
             :type facet_filters: costume.api.services.object.object_facet_filters.ObjectFacetFilters or None
             :type institution_id: str or None
             :type more_like_object_id: str or None
+            :type object_ids: frozenset(str) or None
             :type relation_text: str or None
             :type query_string: str or None
             :type structure_texts: dict(str: tuple(str)) or None
@@ -164,6 +184,7 @@ class ObjectQuery(object):
                 self.set_facet_filters(object_query.facet_filters)
                 self.set_institution_id(object_query.institution_id)
                 self.set_more_like_object_id(object_query.more_like_object_id)
+                self.set_object_ids(object_query.object_ids)
                 self.set_relation_text(object_query.relation_text)
                 self.set_query_string(object_query.query_string)
                 self.set_structure_texts(object_query.structure_texts)
@@ -206,6 +227,14 @@ class ObjectQuery(object):
 
             self.set_more_like_object_id(more_like_object_id)
 
+        @object_ids.setter
+        def object_ids(self, object_ids):
+            '''
+            :type object_ids: frozenset(str) or None
+            '''
+
+            self.set_object_ids(object_ids)
+
         @query_string.setter
         def query_string(self, query_string):
             '''
@@ -236,6 +265,7 @@ class ObjectQuery(object):
         facet_filters=None,
         institution_id=None,
         more_like_object_id=None,
+        object_ids=None,
         relation_text=None,
         query_string=None,
         structure_texts=None,
@@ -245,6 +275,7 @@ class ObjectQuery(object):
         :type facet_filters: costume.api.services.object.object_facet_filters.ObjectFacetFilters or None
         :type institution_id: str or None
         :type more_like_object_id: str or None
+        :type object_ids: frozenset(str) or None
         :type relation_text: str or None
         :type query_string: str or None
         :type structure_texts: dict(str: tuple(str)) or None
@@ -269,6 +300,11 @@ class ObjectQuery(object):
             if not isinstance(more_like_object_id, basestring):
                 raise TypeError("expected more_like_object_id to be a str but it is a %s" % getattr(__builtin__, 'type')(more_like_object_id))
         self.__more_like_object_id = more_like_object_id
+
+        if object_ids is not None:
+            if not (isinstance(object_ids, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), object_ids))) == 0):
+                raise TypeError("expected object_ids to be a frozenset(str) but it is a %s" % getattr(__builtin__, 'type')(object_ids))
+        self.__object_ids = object_ids
 
         if relation_text is not None:
             if not isinstance(relation_text, basestring):
@@ -300,6 +336,8 @@ class ObjectQuery(object):
             return False
         if self.more_like_object_id != other.more_like_object_id:
             return False
+        if self.object_ids != other.object_ids:
+            return False
         if self.relation_text != other.relation_text:
             return False
         if self.query_string != other.query_string:
@@ -309,7 +347,7 @@ class ObjectQuery(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.facet_filters,self.institution_id,self.more_like_object_id,self.relation_text,self.query_string,self.structure_texts,))
+        return hash((self.collection_id,self.facet_filters,self.institution_id,self.more_like_object_id,self.object_ids,self.relation_text,self.query_string,self.structure_texts,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -327,6 +365,8 @@ class ObjectQuery(object):
             field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
         if self.more_like_object_id is not None:
             field_reprs.append('more_like_object_id=' + "'" + self.more_like_object_id.encode('ascii', 'replace') + "'")
+        if self.object_ids is not None:
+            field_reprs.append('object_ids=' + repr(self.object_ids))
         if self.relation_text is not None:
             field_reprs.append('relation_text=' + "'" + self.relation_text.encode('ascii', 'replace') + "'")
         if self.query_string is not None:
@@ -345,6 +385,8 @@ class ObjectQuery(object):
             field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
         if self.more_like_object_id is not None:
             field_reprs.append('more_like_object_id=' + "'" + self.more_like_object_id.encode('ascii', 'replace') + "'")
+        if self.object_ids is not None:
+            field_reprs.append('object_ids=' + repr(self.object_ids))
         if self.relation_text is not None:
             field_reprs.append('relation_text=' + "'" + self.relation_text.encode('ascii', 'replace') + "'")
         if self.query_string is not None:
@@ -360,7 +402,7 @@ class ObjectQuery(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'facet_filters': self.facet_filters, 'institution_id': self.institution_id, 'more_like_object_id': self.more_like_object_id, 'relation_text': self.relation_text, 'query_string': self.query_string, 'structure_texts': self.structure_texts}
+        return {'collection_id': self.collection_id, 'facet_filters': self.facet_filters, 'institution_id': self.institution_id, 'more_like_object_id': self.more_like_object_id, 'object_ids': self.object_ids, 'relation_text': self.relation_text, 'query_string': self.query_string, 'structure_texts': self.structure_texts}
 
     def as_tuple(self):
         '''
@@ -369,7 +411,7 @@ class ObjectQuery(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.facet_filters, self.institution_id, self.more_like_object_id, self.relation_text, self.query_string, self.structure_texts,)
+        return (self.collection_id, self.facet_filters, self.institution_id, self.more_like_object_id, self.object_ids, self.relation_text, self.query_string, self.structure_texts,)
 
     @property
     def collection_id(self):
@@ -402,6 +444,14 @@ class ObjectQuery(object):
         '''
 
         return self.__more_like_object_id
+
+    @property
+    def object_ids(self):
+        '''
+        :rtype: frozenset(str)
+        '''
+
+        return self.__object_ids
 
     @property
     def query_string(self):
@@ -444,6 +494,8 @@ class ObjectQuery(object):
                     init_kwds['more_like_object_id'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
+            elif ifield_name == 'object_ids':
+                init_kwds['object_ids'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'relation_text':
                 try:
                     init_kwds['relation_text'] = iprot.read_string()
@@ -475,6 +527,7 @@ class ObjectQuery(object):
         facet_filters=None,
         institution_id=None,
         more_like_object_id=None,
+        object_ids=None,
         relation_text=None,
         query_string=None,
         structure_texts=None,
@@ -486,6 +539,7 @@ class ObjectQuery(object):
         :type facet_filters: costume.api.services.object.object_facet_filters.ObjectFacetFilters or None
         :type institution_id: str or None
         :type more_like_object_id: str or None
+        :type object_ids: frozenset(str) or None
         :type relation_text: str or None
         :type query_string: str or None
         :type structure_texts: dict(str: tuple(str)) or None
@@ -500,13 +554,15 @@ class ObjectQuery(object):
             institution_id = self.institution_id
         if more_like_object_id is None:
             more_like_object_id = self.more_like_object_id
+        if object_ids is None:
+            object_ids = self.object_ids
         if relation_text is None:
             relation_text = self.relation_text
         if query_string is None:
             query_string = self.query_string
         if structure_texts is None:
             structure_texts = self.structure_texts
-        return self.__class__(collection_id=collection_id, facet_filters=facet_filters, institution_id=institution_id, more_like_object_id=more_like_object_id, relation_text=relation_text, query_string=query_string, structure_texts=structure_texts)
+        return self.__class__(collection_id=collection_id, facet_filters=facet_filters, institution_id=institution_id, more_like_object_id=more_like_object_id, object_ids=object_ids, relation_text=relation_text, query_string=query_string, structure_texts=structure_texts)
 
     @property
     def structure_texts(self):
@@ -544,6 +600,14 @@ class ObjectQuery(object):
         if self.more_like_object_id is not None:
             oprot.write_field_begin(name='more_like_object_id', type=11, id=None)
             oprot.write_string(self.more_like_object_id)
+            oprot.write_field_end()
+
+        if self.object_ids is not None:
+            oprot.write_field_begin(name='object_ids', type=14, id=None)
+            oprot.write_set_begin(11, len(self.object_ids))
+            for _0 in self.object_ids:
+                oprot.write_string(_0)
+            oprot.write_set_end()
             oprot.write_field_end()
 
         if self.relation_text is not None:
