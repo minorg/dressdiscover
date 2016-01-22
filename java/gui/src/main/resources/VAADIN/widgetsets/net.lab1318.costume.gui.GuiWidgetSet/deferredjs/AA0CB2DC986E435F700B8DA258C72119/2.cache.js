@@ -1,1 +1,0 @@
-$wnd.net_lab1318_costume_gui_GuiWidgetSet.runAsyncCallback2('_fb(1623,1,r5d);_.Wc=function Njc(){w4b((!p4b&&(p4b=new B4b),p4b),this.a.d)};H$d(ij)(2);\n//# sourceURL=net.lab1318.costume.gui.GuiWidgetSet-2.js\n')

@@ -7,10 +7,12 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.VerticalLayout;
 
@@ -93,6 +95,8 @@ public class ObjectByIdView extends TopLevelView {
         rootLayout.addComponent(new ObjectEntryForm(objectEntry, institutionEntry.getModel()));
 
         if (objectEntry.getModel().getRelations().isPresent()) {
+            rootLayout.addComponent(new Label("&nbsp;", ContentMode.HTML));
+
             for (final Relation relation : objectEntry.getModel().getRelations().get().getElements()) {
                 if (!relation.getRelids().isPresent()) {
                     continue;
@@ -117,10 +121,9 @@ public class ObjectByIdView extends TopLevelView {
                         relationTypeDisplayNameBuilder.append(StringUtils.capitalize(word.toLowerCase()));
                     }
                     rootLayout.addComponent(new ObjectSummaryEntriesCarousel(
-                            relationTypeDisplayNameBuilder.toString() + ' ' + relation.getText().or(""),
+                            relationTypeDisplayNameBuilder.toString() + ' ' + relation.getText().or(""), _getEventBus(),
                             relationObjectSummaryEntries));
                 }
-
             }
         }
 

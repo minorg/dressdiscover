@@ -79,11 +79,13 @@
 			<artifactId>costume-lib</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
+<!--
 		<dependency>
 			<artifactId>guava-gwt</artifactId>
 			<groupId>com.google.guava</groupId>
 			<version>19.0</version>
 		</dependency>
+-->
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-client</artifactId>
@@ -116,6 +118,7 @@
 			<artifactId>vaadin-lazyquerycontainer</artifactId>
 			<version>7.4.0.1</version>
 		</dependency>
+<!--
 		<dependency>
 			<groupId>org.vaadin.virkki</groupId>
 			<artifactId>carousel</artifactId>
@@ -131,6 +134,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+-->
 	</dependencies>
 
 	<repositories>

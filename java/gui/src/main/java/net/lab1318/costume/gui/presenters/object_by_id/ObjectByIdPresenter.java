@@ -93,7 +93,12 @@ public class ObjectByIdPresenter extends Presenter<ObjectByIdView> {
                     if (!relation.getRelids().isPresent()) {
                         continue;
                     }
-                    relatedObjectIdsBuilder.addAll(relation.getRelids().get());
+                    for (final ObjectId relid : relation.getRelids().get()) {
+                        if (relid.equals(objectId)) {
+                            continue;
+                        }
+                        relatedObjectIdsBuilder.add(relid);
+                    }
                 }
                 final ImmutableSet<ObjectId> relatedObjectIds = relatedObjectIdsBuilder.build();
                 if (!relatedObjectIds.isEmpty()) {
