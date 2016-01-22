@@ -7,7 +7,8 @@ public class CollectionBean implements org.thryft.StructBean {
         MODEL_METADATA("modelMetadata", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.ModelMetadataBean>() {}, true, 3, "model_metadata", org.thryft.protocol.Type.STRUCT),
         TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "title", org.thryft.protocol.Type.STRING),
         DESCRIPTION("description", new com.google.common.reflect.TypeToken<String>() {}, false, 4, "description", org.thryft.protocol.Type.STRING),
-        HIDDEN("hidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 5, "hidden", org.thryft.protocol.Type.BOOL);
+        HIDDEN("hidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 5, "hidden", org.thryft.protocol.Type.BOOL),
+        WORK_TYPES("workTypes", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.work_type.WorkTypeSetBean>() {}, false, 6, "work_types", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -56,6 +57,7 @@ public class CollectionBean implements org.thryft.StructBean {
             case "title": return TITLE;
             case "description": return DESCRIPTION;
             case "hidden": return HIDDEN;
+            case "workTypes": return WORK_TYPES;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -68,6 +70,7 @@ public class CollectionBean implements org.thryft.StructBean {
             case "title": return TITLE;
             case "description": return DESCRIPTION;
             case "hidden": return HIDDEN;
+            case "work_types": return WORK_TYPES;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -102,6 +105,7 @@ public class CollectionBean implements org.thryft.StructBean {
         title = null;
         description = null;
         hidden = null;
+        workTypes = null;
     }
 
     public CollectionBean(final net.lab1318.costume.api.models.collection.Collection other) {
@@ -110,6 +114,7 @@ public class CollectionBean implements org.thryft.StructBean {
         this.title = other.getTitle();
         this.description = other.getDescription().isPresent() ? other.getDescription().get() : null;
         this.hidden = other.getHidden().isPresent() ? other.getHidden().get() : null;
+        this.workTypes = other.getWorkTypes().isPresent() ? new net.lab1318.costume.gui.models.work_type.WorkTypeSetBean(other.getWorkTypes().get()) : null;
     }
 
     @Override
@@ -126,7 +131,8 @@ public class CollectionBean implements org.thryft.StructBean {
             getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
             (getDescription() != null ? getDescription().equals(other.getDescription()) : other.getDescription() == null) &&
-            (getHidden() != null ? getHidden().equals(other.getHidden()) : other.getHidden() == null);
+            (getHidden() != null ? getHidden().equals(other.getHidden()) : other.getHidden() == null) &&
+            (getWorkTypes() != null ? getWorkTypes().equals(other.getWorkTypes()) : other.getWorkTypes() == null);
     }
 
     @Override
@@ -149,6 +155,7 @@ public class CollectionBean implements org.thryft.StructBean {
         case TITLE: return getTitle();
         case DESCRIPTION: return getDescription();
         case HIDDEN: return getHidden();
+        case WORK_TYPES: return getWorkTypes();
         default:
             throw new IllegalStateException();
         }
@@ -174,6 +181,10 @@ public class CollectionBean implements org.thryft.StructBean {
         return title;
     }
 
+    public net.lab1318.costume.gui.models.work_type.WorkTypeSetBean getWorkTypes() {
+        return workTypes;
+    }
+
     @Override
     public int hashCode() {
         int hashCode = 17;
@@ -185,6 +196,9 @@ public class CollectionBean implements org.thryft.StructBean {
         }
         if (getHidden() != null) {
             hashCode = 31 * hashCode + (getHidden() ? 1 : 0);
+        }
+        if (getWorkTypes() != null) {
+            hashCode = 31 * hashCode + getWorkTypes().hashCode();
         }
         return hashCode;
     }
@@ -214,9 +228,13 @@ public class CollectionBean implements org.thryft.StructBean {
         this.title = title;
     }
 
+    public void setWorkTypes(final net.lab1318.costume.gui.models.work_type.WorkTypeSetBean workTypes) {
+        this.workTypes = workTypes;
+    }
+
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("description", getDescription()).add("hidden", getHidden()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("description", getDescription()).add("hidden", getHidden()).add("work_types", getWorkTypes()).toString();
     }
 
     private net.lab1318.costume.api.models.institution.InstitutionId institutionId;
@@ -228,4 +246,6 @@ public class CollectionBean implements org.thryft.StructBean {
     private String description;
 
     private Boolean hidden;
+
+    private net.lab1318.costume.gui.models.work_type.WorkTypeSetBean workTypes;
 }

@@ -353,7 +353,23 @@ class OmekaLoader(_Loader):
 
     def _load_collection(self, omeka_collection):
         self._logger.debug("reading collection %d", omeka_collection.id)
+
         collection_id = self._institution_id + '/' + str(omeka_collection.id)
+
+        omeka_items = self._read_omeka_items(omeka_collection=omeka_collection)
+        self._logger.info("loading %d items from collection %d", len(omeka_items), omeka_collection.id)
+
+        object_builders_by_id = \
+            self._load_items(
+                collection_id=collection_id,
+                omeka_collection_id=omeka_collection.id,
+                omeka_items=omeka_items,
+            )
+
+        if len(object_builders_by_id) == 0:
+            self._logger.info("collection %d has no objects", omeka_collection.id)
+            return object_builders_by_id
+        self._logger.info("collection %d has %d objects", omeka_collection.id, len(object_builders_by_id))
 
         collection_builder = \
             Collection.Builder()\
@@ -372,24 +388,19 @@ class OmekaLoader(_Loader):
                 elif element_text.element.name == 'Title':
                     collection_builder.set_title(element_text.text)
 
+        work_types = []
+        for object_builder in object_builders_by_id.itervalues():
+            if len(object_builder.work_types) == 0:
+                continue
+            for work_type in object_builder.work_types:
+                if work_type not in work_types:
+                    work_types.append(work_type)
+        if len(work_types) > 0:
+            collection_builder.set_work_types(WorkTypeSet.Builder().set_elements(tuple(work_types)).build())
+
         collection = collection_builder.build()
 
-        # Don't put the collection until we're sure it has objects
-        omeka_items = self._read_omeka_items(omeka_collection=omeka_collection)
-        self._logger.info("loading %d items from collection %d", len(omeka_items), omeka_collection.id)
-
-        object_builders_by_id = \
-            self._load_items(
-                collection_id=collection_id,
-                omeka_collection_id=omeka_collection.id,
-                omeka_items=omeka_items,
-            )
-
-        if len(object_builders_by_id) > 0:
-            self._logger.info("collection %d has %d objects", omeka_collection.id, len(object_builders_by_id))
-            self._services.collection_command_service.put_collection(collection_id, collection)
-        else:
-            self._logger.info("collection %d has no objects", omeka_collection.id)
+        self._services.collection_command_service.put_collection(collection_id, collection)
 
         return object_builders_by_id
 
@@ -430,11 +441,7 @@ class OmekaLoader(_Loader):
 
         objects_by_id = OrderedDict()
         for object_id, object_builder in object_builders_by_id.iteritems():
-            try:
-                objects_by_id[object_id] = object_builder.build()
-            except ValueError, e:
-                self._logger.info("ignoring object %s: %s", object_id, str(e))
-                continue
+            objects_by_id[object_id] = object_builder.build()
 
         self._logger.info("putting %d objects", len(objects_by_id))
         self._services.object_command_service.put_objects(
@@ -518,6 +525,15 @@ class OmekaLoader(_Loader):
                 object_builder=object_builder,
                 omeka_item=item
             )
+
+            # Try to build the object here, even though we won't use the result,
+            # so that we catch errors before adding objects to a collection.
+            # This is to ensure that we don't create empty collections.
+            try:
+                object_builder.build()
+            except ValueError, e:
+                self._logger.info("ignoring object %s: %s", object_id, str(e))
+                continue
 
             object_builders_by_id[object_id] = object_builder
 
