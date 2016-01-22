@@ -378,32 +378,69 @@ class OmekaLoader(_Loader):
         omeka_items = self._read_omeka_items(omeka_collection=omeka_collection)
         self._logger.info("loading %d items from collection %d", len(omeka_items), omeka_collection.id)
 
-        objects_by_id = \
+        object_builders_by_id = \
             self._load_items(
                 collection_id=collection_id,
                 omeka_collection_id=omeka_collection.id,
                 omeka_items=omeka_items,
             )
 
-        if len(objects_by_id) == 0:
-            self._logger.info("collection %d has no objects, skipping", omeka_collection.id)
-            return
+        if len(object_builders_by_id) > 0:
+            self._logger.info("collection %d has %d objects", omeka_collection.id, len(object_builders_by_id))
+            self._services.collection_command_service.put_collection(collection_id, collection)
+        else:
+            self._logger.info("collection %d has no objects", omeka_collection.id)
 
-        self._services.collection_command_service.put_collection(collection_id, collection)
-
-        self._logger.info("putting %d objects to collection %d", len(objects_by_id), omeka_collection.id)
-        self._services.object_command_service.put_objects(
-            tuple(ObjectEntry(object_id, object_)
-                  for object_id, object_ in objects_by_id.iteritems())
-        )
+        return object_builders_by_id
 
     def _load_collections(self, omeka_collections, skip_private=True):
+        object_builders_by_id = OrderedDict()
         for omeka_collection in omeka_collections:
             if skip_private and not omeka_collection.public:
                 self._logger.info("collection %d is not public, skipping", omeka_collection.id)
                 continue
 
-            self._load_collection(omeka_collection=omeka_collection)
+            object_builders_by_id.update(self._load_collection(omeka_collection=omeka_collection))
+
+        self._logger.info("loaded %d objects from %d collections", len(object_builders_by_id), len(omeka_collections))
+
+        # All objects are parsed
+        # Build a map of relations across collections
+        relations = {}
+        for object_id, object_builder in object_builders_by_id.iteritems():
+            for relation_builder in object_builder.relation_builders:
+                if relation_builder.text is None:
+                    continue
+                assert relation_builder.type is not None
+                relations.setdefault(relation_builder.text, []).append(object_builder)
+        # Link up relation relids
+        for object_id, object_builder in object_builders_by_id.iteritems():
+            for relation_builder in object_builder.relation_builders:
+                if relation_builder.text is None:
+                    continue
+                related_object_builders = relations.get(relation_builder.text, None)
+                if related_object_builders is None:
+                    continue
+                relids = \
+                    frozenset(related_object_builder.object_id
+                                for related_object_builder in related_object_builders
+                                if related_object_builder.object_id != object_id)
+                if len(relids) > 0:
+                    relation_builder.relids = relids
+
+        objects_by_id = OrderedDict()
+        for object_id, object_builder in object_builders_by_id.iteritems():
+            try:
+                objects_by_id[object_id] = object_builder.build()
+            except ValueError, e:
+                self._logger.info("ignoring object %s: %s", object_id, str(e))
+                continue
+
+        self._logger.info("putting %d objects", len(objects_by_id))
+        self._services.object_command_service.put_objects(
+            tuple(ObjectEntry(object_id, object_)
+                  for object_id, object_ in objects_by_id.iteritems())
+        )
 
     def _load_institution(self):
         self._services.institution_command_service.put_institution(
@@ -486,34 +523,7 @@ class OmekaLoader(_Loader):
 
             self._logger.debug("loaded %d/%d items from collection %d", item_i + 1, len(omeka_items), omeka_collection_id)
 
-        # Build a map of relations
-        relations = {}
-        for object_id, object_builder in object_builders_by_id.iteritems():
-            for relation_builder in object_builder.relation_builders:
-                if relation_builder.text is None:
-                    continue
-                assert relation_builder.type is not None
-                relations.setdefault(relation_builder.text, []).append(object_builder)
-        # Link up relation relids
-        for object_id, object_builder in object_builders_by_id.iteritems():
-            for relation_builder in object_builder.relation_builders:
-                if relation_builder.text is None:
-                    continue
-                related_object_builders = relations.get(relation_builder.text, None)
-                if related_object_builders is None:
-                    continue
-                relation_builder.relids = \
-                    frozenset(related_object_builder.object_id
-                                for related_object_builder in related_object_builders)
-
-        objects_by_id = OrderedDict()
-        for object_id, object_builder in object_builders_by_id.iteritems():
-            try:
-                objects_by_id[object_id] = object_builder.build()
-            except ValueError, e:
-                self._logger.debug("ignoring object %s from collection %d: %s", object_id, omeka_collection_id, str(e))
-                continue
-        return objects_by_id
+        return object_builders_by_id
 
     def _load_item_element(self, element_name, element_set_name, object_builder, text):
         if element_set_name == 'Dublin Core':
