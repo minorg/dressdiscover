@@ -18,6 +18,7 @@ import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionId;
+import net.lab1318.costume.api.models.work_type.WorkType;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.gui.views.TopLevelView;
 
@@ -58,6 +59,23 @@ public class InstitutionsView extends TopLevelView {
             institutionTreeItem.getItemProperty("name").setValue(institutionEntry.getModel().getTitle());
 
             for (final CollectionEntry collectionEntry : modelTreeEntry.getValue()) {
+                boolean excludeCollection;
+                if (collectionEntry.getModel().getWorkTypes().isPresent()) {
+                    excludeCollection = true;
+                    for (final WorkType workType : collectionEntry.getModel().getWorkTypes().get().getElements()) {
+                        if (workType.getText().equalsIgnoreCase("PhysicalObject")) {
+                            excludeCollection = false;
+                            break;
+                        }
+                    }
+                } else {
+                    excludeCollection = false;
+                }
+
+                if (excludeCollection) {
+                    continue;
+                }
+
                 final Item collectionTreeItem = viewTree.addItem(collectionEntry.getId());
                 collectionTreeItem.getItemProperty("name").setValue(collectionEntry.getModel().getTitle());
                 viewTree.setChildrenAllowed(collectionEntry.getId(), false);

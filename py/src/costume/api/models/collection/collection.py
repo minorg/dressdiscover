@@ -1,5 +1,6 @@
 import __builtin__
 import costume.api.models.model_metadata
+import costume.api.models.work_type.work_type_set
 
 
 class Collection(object):
@@ -11,6 +12,7 @@ class Collection(object):
             title=None,
             description=None,
             hidden=None,
+            work_types=None,
         ):
             '''
             :type institution_id: str
@@ -18,6 +20,7 @@ class Collection(object):
             :type title: str
             :type description: str or None
             :type hidden: bool or None
+            :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
             '''
 
             self.__institution_id = institution_id
@@ -25,9 +28,10 @@ class Collection(object):
             self.__title = title
             self.__description = description
             self.__hidden = hidden
+            self.__work_types = work_types
 
         def build(self):
-            return Collection(institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, description=self.__description, hidden=self.__hidden)
+            return Collection(institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, description=self.__description, hidden=self.__hidden, work_types=self.__work_types)
 
         @property
         def description(self):
@@ -101,6 +105,14 @@ class Collection(object):
             self.__title = title
             return self
 
+        def set_work_types(self, work_types):
+            '''
+            :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
+            '''
+
+            self.__work_types = work_types
+            return self
+
         @property
         def title(self):
             '''
@@ -116,6 +128,7 @@ class Collection(object):
             :type title: str
             :type description: str or None
             :type hidden: bool or None
+            :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
             '''
 
             if isinstance(collection, Collection):
@@ -124,12 +137,21 @@ class Collection(object):
                 self.set_title(collection.title)
                 self.set_description(collection.description)
                 self.set_hidden(collection.hidden)
+                self.set_work_types(collection.work_types)
             elif isinstance(collection, dict):
                 for key, value in collection.iteritems():
                     getattr(self, 'set_' + key)(value)
             else:
                 raise TypeError(collection)
             return self
+
+        @property
+        def work_types(self):
+            '''
+            :rtype: costume.api.models.work_type.work_type_set.WorkTypeSet
+            '''
+
+            return self.__work_types
 
         @description.setter
         def description(self, description):
@@ -171,6 +193,14 @@ class Collection(object):
 
             self.set_title(title)
 
+        @work_types.setter
+        def work_types(self, work_types):
+            '''
+            :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
+            '''
+
+            self.set_work_types(work_types)
+
     def __init__(
         self,
         institution_id,
@@ -178,6 +208,7 @@ class Collection(object):
         title,
         description=None,
         hidden=None,
+        work_types=None,
     ):
         '''
         :type institution_id: str
@@ -185,6 +216,7 @@ class Collection(object):
         :type title: str
         :type description: str or None
         :type hidden: bool or None
+        :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
         '''
 
         if institution_id is None:
@@ -219,6 +251,11 @@ class Collection(object):
                 raise TypeError("expected hidden to be a bool but it is a %s" % getattr(__builtin__, 'type')(hidden))
         self.__hidden = hidden
 
+        if work_types is not None:
+            if not isinstance(work_types, costume.api.models.work_type.work_type_set.WorkTypeSet):
+                raise TypeError("expected work_types to be a costume.api.models.work_type.work_type_set.WorkTypeSet but it is a %s" % getattr(__builtin__, 'type')(work_types))
+        self.__work_types = work_types
+
     def __eq__(self, other):
         if self.institution_id != other.institution_id:
             return False
@@ -230,10 +267,12 @@ class Collection(object):
             return False
         if self.hidden != other.hidden:
             return False
+        if self.work_types != other.work_types:
+            return False
         return True
 
     def __hash__(self):
-        return hash((self.institution_id,self.model_metadata,self.title,self.description,self.hidden,))
+        return hash((self.institution_id,self.model_metadata,self.title,self.description,self.hidden,self.work_types,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -250,6 +289,8 @@ class Collection(object):
             field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
         if self.hidden is not None:
             field_reprs.append('hidden=' + repr(self.hidden))
+        if self.work_types is not None:
+            field_reprs.append('work_types=' + repr(self.work_types))
         return 'Collection(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
@@ -261,6 +302,8 @@ class Collection(object):
             field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
         if self.hidden is not None:
             field_reprs.append('hidden=' + repr(self.hidden))
+        if self.work_types is not None:
+            field_reprs.append('work_types=' + repr(self.work_types))
         return 'Collection(' + ', '.join(field_reprs) + ')'
 
     def as_dict(self):
@@ -270,7 +313,7 @@ class Collection(object):
         :rtype: dict
         '''
 
-        return {'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'description': self.description, 'hidden': self.hidden}
+        return {'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'description': self.description, 'hidden': self.hidden, 'work_types': self.work_types}
 
     def as_tuple(self):
         '''
@@ -279,7 +322,7 @@ class Collection(object):
         :rtype: tuple
         '''
 
-        return (self.institution_id, self.model_metadata, self.title, self.description, self.hidden,)
+        return (self.institution_id, self.model_metadata, self.title, self.description, self.hidden, self.work_types,)
 
     @property
     def description(self):
@@ -345,6 +388,8 @@ class Collection(object):
                     init_kwds['hidden'] = iprot.read_bool()
                 except (TypeError, ValueError,):
                     pass
+            elif ifield_name == 'work_types' and ifield_id == 6:
+                init_kwds['work_types'] = costume.api.models.work_type.work_type_set.WorkTypeSet.read(iprot)
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -357,6 +402,7 @@ class Collection(object):
         title=None,
         description=None,
         hidden=None,
+        work_types=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
@@ -366,6 +412,7 @@ class Collection(object):
         :type title: str or None
         :type description: str or None
         :type hidden: bool or None
+        :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
         :rtype: costume.api.models.collection.collection.Collection
         '''
 
@@ -379,7 +426,9 @@ class Collection(object):
             description = self.description
         if hidden is None:
             hidden = self.hidden
-        return self.__class__(institution_id=institution_id, model_metadata=model_metadata, title=title, description=description, hidden=hidden)
+        if work_types is None:
+            work_types = self.work_types
+        return self.__class__(institution_id=institution_id, model_metadata=model_metadata, title=title, description=description, hidden=hidden, work_types=work_types)
 
     @property
     def title(self):
@@ -388,6 +437,14 @@ class Collection(object):
         '''
 
         return self.__title
+
+    @property
+    def work_types(self):
+        '''
+        :rtype: costume.api.models.work_type.work_type_set.WorkTypeSet
+        '''
+
+        return self.__work_types
 
     def write(self, oprot):
         '''
@@ -419,6 +476,11 @@ class Collection(object):
         if self.hidden is not None:
             oprot.write_field_begin(name='hidden', type=2, id=5)
             oprot.write_bool(self.hidden)
+            oprot.write_field_end()
+
+        if self.work_types is not None:
+            oprot.write_field_begin(name='work_types', type=12, id=6)
+            self.work_types.write(oprot)
             oprot.write_field_end()
 
         oprot.write_field_stop()

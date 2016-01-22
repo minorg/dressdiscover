@@ -8,6 +8,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             title = null;
             description = com.google.common.base.Optional.absent();
             hidden = com.google.common.base.Optional.absent();
+            workTypes = com.google.common.base.Optional.absent();
         }
 
         public Builder(final Collection other) {
@@ -16,14 +17,15 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             this.title = other.getTitle();
             this.description = other.getDescription();
             this.hidden = other.getHidden();
+            this.workTypes = other.getWorkTypes();
         }
 
-        protected Collection _build(final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<Boolean> hidden) {
-            return new Collection(institutionId, modelMetadata, title, description, hidden);
+        protected Collection _build(final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<net.lab1318.costume.api.models.work_type.WorkTypeSet> workTypes) {
+            return new Collection(institutionId, modelMetadata, title, description, hidden, workTypes);
         }
 
         public Collection build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.collection.Collection: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.collection.Collection: missing modelMetadata"), com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.collection.Collection: missing title"), com.google.common.base.Preconditions.checkNotNull(description, "net.lab1318.costume.api.models.collection.Collection: missing description"), com.google.common.base.Preconditions.checkNotNull(hidden, "net.lab1318.costume.api.models.collection.Collection: missing hidden"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.collection.Collection: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.collection.Collection: missing modelMetadata"), com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.collection.Collection: missing title"), com.google.common.base.Preconditions.checkNotNull(description, "net.lab1318.costume.api.models.collection.Collection: missing description"), com.google.common.base.Preconditions.checkNotNull(hidden, "net.lab1318.costume.api.models.collection.Collection: missing hidden"), com.google.common.base.Preconditions.checkNotNull(workTypes, "net.lab1318.costume.api.models.collection.Collection: missing workTypes"));
         }
 
         public final com.google.common.base.Optional<String> getDescription() {
@@ -44,6 +46,10 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
 
         public final String getTitle() {
             return title;
+        }
+
+        public final com.google.common.base.Optional<net.lab1318.costume.api.models.work_type.WorkTypeSet> getWorkTypes() {
+            return workTypes;
         }
 
         public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -71,6 +77,9 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             }
             if (__list.getSize() > 4) {
                 hidden = com.google.common.base.Optional.of(iprot.readBool());
+            }
+            if (__list.getSize() > 5) {
+                workTypes = com.google.common.base.Optional.of(net.lab1318.costume.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
             }
             iprot.readListEnd();
             return this;
@@ -118,6 +127,12 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
                     }
                     break;
                 }
+                case "work_types": {
+                    if (!ifield.hasId() || ifield.getId() == 6) {
+                        workTypes = com.google.common.base.Optional.of(net.lab1318.costume.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
+                    }
+                    break;
+                }
                 }
                 iprot.readFieldEnd();
             }
@@ -157,6 +172,9 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             if (other.getHidden().isPresent()) {
                 setHidden(other.getHidden());
             }
+            if (other.getWorkTypes().isPresent()) {
+                setWorkTypes(other.getWorkTypes());
+            }
 
             return this;
         }
@@ -176,6 +194,16 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             return this;
         }
 
+        public Builder setWorkTypes(final com.google.common.base.Optional<net.lab1318.costume.api.models.work_type.WorkTypeSet> workTypes) {
+            this.workTypes = com.google.common.base.Preconditions.checkNotNull(workTypes);
+            return this;
+        }
+
+        public Builder setWorkTypes(@javax.annotation.Nullable final net.lab1318.costume.api.models.work_type.WorkTypeSet workTypes) {
+            this.workTypes = com.google.common.base.Optional.fromNullable(workTypes);
+            return this;
+        }
+
         public Builder set(final String name, @javax.annotation.Nullable final java.lang.Object value) {
             com.google.common.base.Preconditions.checkNotNull(name);
 
@@ -185,6 +213,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             case "title": setTitle((String)value); return this;
             case "description": setDescription((String)value); return this;
             case "hidden": setHidden((Boolean)value); return this;
+            case "work_types": setWorkTypes((net.lab1318.costume.api.models.work_type.WorkTypeSet)value); return this;
             default:
                 throw new IllegalArgumentException(name);
             }
@@ -215,6 +244,11 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             return this;
         }
 
+        public Builder unsetWorkTypes() {
+            this.workTypes = com.google.common.base.Optional.absent();
+            return this;
+        }
+
         public Builder unset(final String name) {
             com.google.common.base.Preconditions.checkNotNull(name);
 
@@ -224,6 +258,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             case "title": return unsetTitle();
             case "description": return unsetDescription();
             case "hidden": return unsetHidden();
+            case "work_types": return unsetWorkTypes();
             default:
                 throw new IllegalArgumentException(name);
             }
@@ -234,6 +269,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         private String title;
         private com.google.common.base.Optional<String> description;
         private com.google.common.base.Optional<Boolean> hidden;
+        private com.google.common.base.Optional<net.lab1318.costume.api.models.work_type.WorkTypeSet> workTypes;
     }
 
     @SuppressWarnings("serial")
@@ -242,7 +278,8 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         MODEL_METADATA("modelMetadata", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.ModelMetadata>() {}, true, 3, "model_metadata", org.thryft.protocol.Type.STRUCT),
         TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "title", org.thryft.protocol.Type.STRING),
         DESCRIPTION("description", new com.google.common.reflect.TypeToken<String>() {}, false, 4, "description", org.thryft.protocol.Type.STRING),
-        HIDDEN("hidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 5, "hidden", org.thryft.protocol.Type.BOOL);
+        HIDDEN("hidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 5, "hidden", org.thryft.protocol.Type.BOOL),
+        WORK_TYPES("workTypes", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.work_type.WorkTypeSet>() {}, false, 6, "work_types", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -291,6 +328,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             case "title": return TITLE;
             case "description": return DESCRIPTION;
             case "hidden": return HIDDEN;
+            case "workTypes": return WORK_TYPES;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -303,6 +341,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             case "title": return TITLE;
             case "description": return DESCRIPTION;
             case "hidden": return HIDDEN;
+            case "work_types": return WORK_TYPES;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -335,7 +374,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
      * Copy constructor
      */
     public Collection(final Collection other) {
-        this(other.getInstitutionId(), other.getModelMetadata(), other.getTitle(), other.getDescription(), other.getHidden());
+        this(other.getInstitutionId(), other.getModelMetadata(), other.getTitle(), other.getDescription(), other.getHidden(), other.getWorkTypes());
     }
 
     /**
@@ -347,28 +386,31 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.collection.Collection: missing title"), "net.lab1318.costume.api.models.collection.Collection: title is empty");
         this.description = com.google.common.base.Optional.absent();
         this.hidden = com.google.common.base.Optional.absent();
+        this.workTypes = com.google.common.base.Optional.absent();
     }
 
     /**
      * Total Nullable constructor
      */
-    public Collection(final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final @javax.annotation.Nullable String description, final @javax.annotation.Nullable Boolean hidden) {
+    public Collection(final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final @javax.annotation.Nullable String description, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable net.lab1318.costume.api.models.work_type.WorkTypeSet workTypes) {
         this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.collection.Collection: missing institutionId");
         this.modelMetadata = com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.collection.Collection: missing modelMetadata");
         this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.collection.Collection: missing title"), "net.lab1318.costume.api.models.collection.Collection: title is empty");
         this.description = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(description), "net.lab1318.costume.api.models.collection.Collection: description is empty");
         this.hidden = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(hidden), "net.lab1318.costume.api.models.collection.Collection: hidden must be true");
+        this.workTypes = com.google.common.base.Optional.fromNullable(workTypes);
     }
 
     /**
      * Optional constructor
      */
-    public Collection(final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<Boolean> hidden) {
+    public Collection(final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<net.lab1318.costume.api.models.work_type.WorkTypeSet> workTypes) {
         this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.collection.Collection: missing institutionId");
         this.modelMetadata = com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.collection.Collection: missing modelMetadata");
         this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.collection.Collection: missing title"), "net.lab1318.costume.api.models.collection.Collection: title is empty");
         this.description = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(description, "net.lab1318.costume.api.models.collection.Collection: missing description"), "net.lab1318.costume.api.models.collection.Collection: description is empty");
         this.hidden = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(hidden, "net.lab1318.costume.api.models.collection.Collection: missing hidden"), "net.lab1318.costume.api.models.collection.Collection: hidden must be true");
+        this.workTypes = com.google.common.base.Preconditions.checkNotNull(workTypes, "net.lab1318.costume.api.models.collection.Collection: missing workTypes");
     }
 
     public static Builder builder() {
@@ -397,7 +439,8 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
             getDescription().equals(other.getDescription()) &&
-            getHidden().equals(other.getHidden());
+            getHidden().equals(other.getHidden()) &&
+            getWorkTypes().equals(other.getWorkTypes());
     }
 
     @Override
@@ -420,6 +463,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         case TITLE: return getTitle();
         case DESCRIPTION: return getDescription();
         case HIDDEN: return getHidden();
+        case WORK_TYPES: return getWorkTypes();
         default:
             throw new IllegalStateException();
         }
@@ -445,6 +489,10 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         return title;
     }
 
+    public final com.google.common.base.Optional<net.lab1318.costume.api.models.work_type.WorkTypeSet> getWorkTypes() {
+        return workTypes;
+    }
+
     @Override
     public int hashCode() {
         int hashCode = 17;
@@ -456,6 +504,9 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         }
         if (getHidden().isPresent()) {
             hashCode = 31 * hashCode + (getHidden().get() ? 1 : 0);
+        }
+        if (getWorkTypes().isPresent()) {
+            hashCode = 31 * hashCode + getWorkTypes().get().hashCode();
         }
         return hashCode;
     }
@@ -482,6 +533,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         String title = null;
         com.google.common.base.Optional<String> description = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<Boolean> hidden = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<net.lab1318.costume.api.models.work_type.WorkTypeSet> workTypes = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         try {
@@ -497,9 +549,12 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         if (__list.getSize() > 4) {
             hidden = com.google.common.base.Optional.of(iprot.readBool());
         }
+        if (__list.getSize() > 5) {
+            workTypes = com.google.common.base.Optional.of(net.lab1318.costume.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
+        }
         iprot.readListEnd();
         try {
-            return new Collection(institutionId, modelMetadata, title, description, hidden);
+            return new Collection(institutionId, modelMetadata, title, description, hidden, workTypes);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -511,6 +566,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         String title = null;
         com.google.common.base.Optional<String> description = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<Boolean> hidden = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<net.lab1318.costume.api.models.work_type.WorkTypeSet> workTypes = com.google.common.base.Optional.absent();
 
         iprot.readStructBegin();
         while (true) {
@@ -553,19 +609,25 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
                 }
                 break;
             }
+            case "work_types": {
+                if (!ifield.hasId() || ifield.getId() == 6) {
+                    workTypes = com.google.common.base.Optional.of(net.lab1318.costume.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
+                }
+                break;
+            }
             }
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
         try {
-            return new Collection(institutionId, modelMetadata, title, description, hidden);
+            return new Collection(institutionId, modelMetadata, title, description, hidden, workTypes);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public Collection replaceDescription(final com.google.common.base.Optional<String> description) {
-        return new Collection(this.institutionId, this.modelMetadata, this.title, description, this.hidden);
+        return new Collection(this.institutionId, this.modelMetadata, this.title, description, this.hidden, this.workTypes);
     }
 
     public Collection replaceDescription(final String description) {
@@ -573,7 +635,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
     }
 
     public Collection replaceHidden(final com.google.common.base.Optional<Boolean> hidden) {
-        return new Collection(this.institutionId, this.modelMetadata, this.title, this.description, hidden);
+        return new Collection(this.institutionId, this.modelMetadata, this.title, this.description, hidden, this.workTypes);
     }
 
     public Collection replaceHidden(final boolean hidden) {
@@ -581,25 +643,33 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
     }
 
     public Collection replaceInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
-        return new Collection(institutionId, this.modelMetadata, this.title, this.description, this.hidden);
+        return new Collection(institutionId, this.modelMetadata, this.title, this.description, this.hidden, this.workTypes);
     }
 
     public Collection replaceModelMetadata(final net.lab1318.costume.api.models.ModelMetadata modelMetadata) {
-        return new Collection(this.institutionId, modelMetadata, this.title, this.description, this.hidden);
+        return new Collection(this.institutionId, modelMetadata, this.title, this.description, this.hidden, this.workTypes);
     }
 
     public Collection replaceTitle(final String title) {
-        return new Collection(this.institutionId, this.modelMetadata, title, this.description, this.hidden);
+        return new Collection(this.institutionId, this.modelMetadata, title, this.description, this.hidden, this.workTypes);
+    }
+
+    public Collection replaceWorkTypes(final com.google.common.base.Optional<net.lab1318.costume.api.models.work_type.WorkTypeSet> workTypes) {
+        return new Collection(this.institutionId, this.modelMetadata, this.title, this.description, this.hidden, workTypes);
+    }
+
+    public Collection replaceWorkTypes(final net.lab1318.costume.api.models.work_type.WorkTypeSet workTypes) {
+        return replaceWorkTypes(com.google.common.base.Optional.fromNullable(workTypes));
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("description", getDescription().orNull()).add("hidden", getHidden().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("description", getDescription().orNull()).add("hidden", getHidden().orNull()).add("work_types", getWorkTypes().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 5);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 6);
 
         oprot.writeString(getInstitutionId().toString());
 
@@ -615,6 +685,12 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
 
         if (getHidden().isPresent()) {
             oprot.writeBool(getHidden().get());
+        } else {
+            oprot.writeNull();
+        }
+
+        if (getWorkTypes().isPresent()) {
+            getWorkTypes().get().writeAsStruct(oprot);
         } else {
             oprot.writeNull();
         }
@@ -655,6 +731,12 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             oprot.writeFieldEnd();
         }
 
+        if (getWorkTypes().isPresent()) {
+            oprot.writeFieldBegin("work_types", org.thryft.protocol.Type.STRUCT, (short)6);
+            getWorkTypes().get().writeAsStruct(oprot);
+            oprot.writeFieldEnd();
+        }
+
         oprot.writeFieldStop();
     }
 
@@ -667,4 +749,6 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
     private final com.google.common.base.Optional<String> description;
 
     private final com.google.common.base.Optional<Boolean> hidden;
+
+    private final com.google.common.base.Optional<net.lab1318.costume.api.models.work_type.WorkTypeSet> workTypes;
 }
