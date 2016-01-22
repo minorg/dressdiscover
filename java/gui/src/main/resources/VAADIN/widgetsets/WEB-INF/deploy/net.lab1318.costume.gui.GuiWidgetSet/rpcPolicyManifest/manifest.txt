@@ -1,0 +1,2 @@
+# Module net.lab1318.costume.gui.GuiWidgetSet
+# RPC service class, partial path of RPC policy file
