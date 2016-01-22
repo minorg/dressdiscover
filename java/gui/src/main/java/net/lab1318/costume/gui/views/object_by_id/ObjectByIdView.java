@@ -1,19 +1,27 @@
 package net.lab1318.costume.gui.views.object_by_id;
 
+import org.apache.commons.lang3.StringUtils;
 import org.thryft.waf.gui.EventBus;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.models.object.ObjectEntry;
+import net.lab1318.costume.api.models.object.ObjectId;
+import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
+import net.lab1318.costume.api.models.relation.Relation;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.object.ObjectQuery;
@@ -29,7 +37,8 @@ public class ObjectByIdView extends TopLevelView {
     }
 
     public void setModels(final CollectionEntry collectionEntry, final InstitutionEntry institutionEntry,
-            final ObjectEntry objectEntry) {
+            final ObjectEntry objectEntry,
+            final ImmutableMap<ObjectId, ObjectSummaryEntry> relatedObjectSummaryEntries) {
         final VerticalLayout rootLayout = new VerticalLayout();
 
         {
@@ -84,6 +93,39 @@ public class ObjectByIdView extends TopLevelView {
         }
 
         rootLayout.addComponent(new ObjectEntryForm(objectEntry, institutionEntry.getModel()));
+
+        if (objectEntry.getModel().getRelations().isPresent()) {
+            rootLayout.addComponent(new Label("&nbsp;", ContentMode.HTML));
+
+            for (final Relation relation : objectEntry.getModel().getRelations().get().getElements()) {
+                if (!relation.getRelids().isPresent()) {
+                    continue;
+                }
+                final ImmutableList.Builder<ObjectSummaryEntry> relationObjectSummaryEntriesBuilder = ImmutableList
+                        .builder();
+                for (final ObjectId relid : relation.getRelids().get()) {
+                    final ObjectSummaryEntry relatedObjectSummaryEntry = relatedObjectSummaryEntries.get(relid);
+                    if (relatedObjectSummaryEntry != null) {
+                        relationObjectSummaryEntriesBuilder.add(relatedObjectSummaryEntry);
+                    }
+                }
+                final ImmutableList<ObjectSummaryEntry> relationObjectSummaryEntries = relationObjectSummaryEntriesBuilder
+                        .build();
+                if (!relationObjectSummaryEntries.isEmpty()) {
+                    final StringBuilder relationTypeDisplayNameBuilder = new StringBuilder();
+                    int wordI = 0;
+                    for (final String word : relation.getType().name().split("_")) {
+                        if (wordI++ > 0) {
+                            relationTypeDisplayNameBuilder.append(' ');
+                        }
+                        relationTypeDisplayNameBuilder.append(StringUtils.capitalize(word.toLowerCase()));
+                    }
+                    rootLayout.addComponent(new ObjectSummaryEntriesCarousel(
+                            relationTypeDisplayNameBuilder.toString() + ' ' + relation.getText().or(""), _getEventBus(),
+                            relationObjectSummaryEntries));
+                }
+            }
+        }
 
         setCompositionRoot(rootLayout);
     }

@@ -17,6 +17,7 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.common.bytes.BytesReference;
 import org.elasticsearch.index.IndexNotFoundException;
 import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.IdsQueryBuilder;
 import org.elasticsearch.index.query.MoreLikeThisQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -479,6 +480,11 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
                     .like(new MoreLikeThisQueryBuilder.Item(objectSummaryElasticSearchIndex.getIndexName(),
                             objectSummaryElasticSearchIndex.getDocumentType(),
                             query.get().getMoreLikeObjectId().get().toString()));
+        } else if (query.get().getObjectIds().isPresent()) {
+            queryTranslated = QueryBuilders.idsQuery(objectSummaryElasticSearchIndex.getDocumentType());
+            for (final ObjectId objectId : query.get().getObjectIds().get()) {
+                ((IdsQueryBuilder) queryTranslated).addIds(objectId.toString());
+            }
         } else {
             queryTranslated = QueryBuilders.matchAllQuery();
         }

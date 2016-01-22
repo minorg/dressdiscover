@@ -15,14 +15,12 @@ import com.google.common.base.Charsets;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.eventbus.Subscribe;
 import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.SystemError;
 import com.vaadin.server.UserError;
-import com.vaadin.ui.UI;
 
 import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionId;
@@ -37,12 +35,10 @@ import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
 import net.lab1318.costume.api.services.object.GetObjectSummariesResult;
 import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQuery;
-import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectByIdRequest;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.gui.models.object.ObjectSummaryEntryBeanQueryDefinition;
 import net.lab1318.costume.gui.models.object.ObjectSummaryEntryBeanQueryFactory;
 import net.lab1318.costume.gui.presenters.Presenter;
-import net.lab1318.costume.gui.views.object_by_id.ObjectByIdView;
 import net.lab1318.costume.gui.views.objects.ObjectsView;
 
 @SessionScoped
@@ -55,11 +51,6 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
         this.collectionQueryService = checkNotNull(collectionQueryService);
         this.institutionQueryService = checkNotNull(institutionQueryService);
         this.objectSummaryQueryService = checkNotNull(objectSummaryQueryService);
-    }
-
-    @Subscribe
-    public void onGetObjectByIdRequest(final GetObjectByIdRequest request) {
-        UI.getCurrent().getNavigator().navigateTo(ObjectByIdView.NAME + "/" + request.getId().toString());
     }
 
     @Override

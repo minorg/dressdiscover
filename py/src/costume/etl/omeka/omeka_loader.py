@@ -98,8 +98,9 @@ class OmekaLoader(_Loader):
             collection_id,
             institution_id,
             logger,
+            object_id,
             omeka_collection_id,
-            omeka_item_id,
+            omeka_item_id
         ):
             self.__institution_id = institution_id
             self.__object_builder = \
@@ -108,6 +109,7 @@ class OmekaLoader(_Loader):
                     .set_institution_id(institution_id)\
                     .set_model_metadata(_Loader._new_model_metadata())
             self.__logger = logger
+            self.__object_id = object_id
             self.__omeka_collection_id = omeka_collection_id
             self.__omeka_item_id = omeka_item_id
 
@@ -127,7 +129,7 @@ class OmekaLoader(_Loader):
             self.inscriptions = []
             self.materials = []
             self.measurements = []
-            self.relations = []
+            self.relation_builders = []
             self.structures = []
             self.structures_by_component_letter = {}
             self.structures_by_extent = {}
@@ -258,16 +260,28 @@ class OmekaLoader(_Loader):
                 self.__object_builder.set_materials(MaterialSet.Builder().set_elements(tuple(self.materials)).build())
             if len(self.measurements) > 0:
                 self.__object_builder.set_measurements(MeasurementsSet.Builder().set_elements(tuple(self.measurements)).build())
-            if len(self.relations) > 0:
-                relation_texts = {}
-                unique_relations = []
-                for relation in self.relations:
-                    if relation.text is None:
-                        unique_relations.append(relation)
-                    elif relation.text not in relation_texts:
-                        unique_relations.append(relation)
-                        relation_texts[relation.text] = None
-                self.__object_builder.set_relations(RelationSet.Builder().set_elements(tuple(unique_relations)).build())
+            if len(self.relation_builders) > 0:
+                unique_relation_builders_by_text = {}
+                for relation_builder in self.relation_builders:
+                    assert relation_builder.text is not None
+                    existing_relation_builders = unique_relation_builders_by_text.setdefault(relation_builder.text, [])
+                    unique = True
+                    for existing_relation_builder in existing_relation_builders:
+                        if existing_relation_builder.type == relation_builder.type:
+                            unique = False
+                            break
+                    if unique:
+                        existing_relation_builders.append(relation_builder)
+                    else:
+                        self.__logger.warn("item %d has duplicate relation type=%s, text=%s", self.__omeka_item_id, relation_builder.type, relation_builder.text)
+                unique_relation_builders = []
+                for relation_builders in unique_relation_builders_by_text.values():
+                    unique_relation_builders.extend(relation_builders)
+                self.__object_builder.set_relations(
+                        RelationSet.Builder()
+                            .set_elements(tuple(relation_builder.build()
+                                                for relation_builder in unique_relation_builders))
+                            .build())
             if len(self.structures) > 0:
                 self.__object_builder.set_structures(StructureSet.Builder().set_elements(tuple(self.structures)).build())
             if len(self.subjects) > 0:
@@ -289,6 +303,10 @@ class OmekaLoader(_Loader):
 
         def __getattr__(self, attr):
             return getattr(self.__object_builder, attr)
+
+        @property
+        def object_id(self):
+            return self.__object_id
 
         @property
         def omeka_collection_id(self):
@@ -360,32 +378,69 @@ class OmekaLoader(_Loader):
         omeka_items = self._read_omeka_items(omeka_collection=omeka_collection)
         self._logger.info("loading %d items from collection %d", len(omeka_items), omeka_collection.id)
 
-        objects_by_id = \
+        object_builders_by_id = \
             self._load_items(
                 collection_id=collection_id,
                 omeka_collection_id=omeka_collection.id,
                 omeka_items=omeka_items,
             )
 
-        if len(objects_by_id) == 0:
-            self._logger.info("collection %d has no objects, skipping", omeka_collection.id)
-            return
+        if len(object_builders_by_id) > 0:
+            self._logger.info("collection %d has %d objects", omeka_collection.id, len(object_builders_by_id))
+            self._services.collection_command_service.put_collection(collection_id, collection)
+        else:
+            self._logger.info("collection %d has no objects", omeka_collection.id)
 
-        self._services.collection_command_service.put_collection(collection_id, collection)
-
-        self._logger.info("putting %d objects to collection %d", len(objects_by_id), omeka_collection.id)
-        self._services.object_command_service.put_objects(
-            tuple(ObjectEntry(object_id, object_)
-                  for object_id, object_ in objects_by_id.iteritems())
-        )
+        return object_builders_by_id
 
     def _load_collections(self, omeka_collections, skip_private=True):
+        object_builders_by_id = OrderedDict()
         for omeka_collection in omeka_collections:
             if skip_private and not omeka_collection.public:
                 self._logger.info("collection %d is not public, skipping", omeka_collection.id)
                 continue
 
-            self._load_collection(omeka_collection=omeka_collection)
+            object_builders_by_id.update(self._load_collection(omeka_collection=omeka_collection))
+
+        self._logger.info("loaded %d objects from %d collections", len(object_builders_by_id), len(omeka_collections))
+
+        # All objects are parsed
+        # Build a map of relations across collections
+        relations = {}
+        for object_id, object_builder in object_builders_by_id.iteritems():
+            for relation_builder in object_builder.relation_builders:
+                if relation_builder.text is None:
+                    continue
+                assert relation_builder.type is not None
+                relations.setdefault(relation_builder.text, []).append(object_builder)
+        # Link up relation relids
+        for object_id, object_builder in object_builders_by_id.iteritems():
+            for relation_builder in object_builder.relation_builders:
+                if relation_builder.text is None:
+                    continue
+                related_object_builders = relations.get(relation_builder.text, None)
+                if related_object_builders is None:
+                    continue
+                relids = \
+                    frozenset(related_object_builder.object_id
+                                for related_object_builder in related_object_builders
+                                if related_object_builder.object_id != object_id)
+                if len(relids) > 0:
+                    relation_builder.relids = relids
+
+        objects_by_id = OrderedDict()
+        for object_id, object_builder in object_builders_by_id.iteritems():
+            try:
+                objects_by_id[object_id] = object_builder.build()
+            except ValueError, e:
+                self._logger.info("ignoring object %s: %s", object_id, str(e))
+                continue
+
+        self._logger.info("putting %d objects", len(objects_by_id))
+        self._services.object_command_service.put_objects(
+            tuple(ObjectEntry(object_id, object_)
+                  for object_id, object_ in objects_by_id.iteritems())
+        )
 
     def _load_institution(self):
         self._services.institution_command_service.put_institution(
@@ -443,7 +498,7 @@ class OmekaLoader(_Loader):
             )
 
     def _load_items(self, collection_id, omeka_collection_id, omeka_items):
-        objects_by_id = OrderedDict()
+        object_builders_by_id = OrderedDict()
 
         for item_i, item in enumerate(omeka_items):
             object_id = collection_id + '/' + str(item.id)
@@ -454,24 +509,21 @@ class OmekaLoader(_Loader):
                     endpoint_url=self.__endpoint_url,
                     institution_id=self._institution_id,
                     logger=self._logger,
+                    object_id=object_id,
                     omeka_collection_id=omeka_collection_id,
                     omeka_item_id=item.id,
                 )
 
-            try:
-                self._load_item(
-                    object_builder=object_builder,
-                    omeka_item=item
-                )
+            self._load_item(
+                object_builder=object_builder,
+                omeka_item=item
+            )
 
-                objects_by_id[object_id] = object_builder.build()
-            except ValueError, e:
-                self._logger.debug("ignoring item %d from collection %d: %s", item.id, omeka_collection_id, str(e))
-                continue
+            object_builders_by_id[object_id] = object_builder
 
             self._logger.debug("loaded %d/%d items from collection %d", item_i + 1, len(omeka_items), omeka_collection_id)
 
-        return objects_by_id
+        return object_builders_by_id
 
     def _load_item_element(self, element_name, element_set_name, object_builder, text):
         if element_set_name == 'Dublin Core':
@@ -575,11 +627,10 @@ class OmekaLoader(_Loader):
     def _load_item_element_dc_identifier(self, object_builder, text):
         if not text in object_builder.identifiers:
             object_builder.identifiers.append(text)
-        object_builder.relations.append(
+        object_builder.relation_builders.append(
             Relation.Builder()
                 .set_text(text)
                 .set_type(RelationType.SOURCE_FOR)
-                .build()
         )
 
     def _load_item_element_dc_language(self, object_builder, text):
@@ -603,11 +654,10 @@ class OmekaLoader(_Loader):
         object_builder.set_provenance(text)
 
     def _load_item_element_dc_relation(self, object_builder, text):
-        object_builder.relations.append(
+        object_builder.relation_builders.append(
             Relation.Builder()
                 .set_text(text)
                 .set_type(RelationType.RELATED_TO)
-                .build()
         )
 
     def _load_item_element_dc_rights(self, object_builder, text):
@@ -624,11 +674,10 @@ class OmekaLoader(_Loader):
         )
 
     def _load_item_element_dc_source(self, object_builder, text):
-        object_builder.relations.append(
+        object_builder.relation_builders.append(
             Relation.Builder()
                 .set_text(text)
                 .set_type(RelationType.DERIVED_FROM)
-                .build()
         )
 
     def _load_item_element_dc_spatial_coverage(self, object_builder, text):
@@ -949,11 +998,10 @@ class OmekaLoader(_Loader):
         )
 
     def _load_item_element_itm_exhibitions(self, object_builder, text):
-        object_builder.relations.append(
+        object_builder.relation_builders.append(
             Relation.Builder()
                 .set_text(text)
                 .set_type(RelationType.EXHIBITED_AT)
-                .build()
         )
 
     def _load_item_element_itm_gender(self, object_builder, text):
@@ -1045,11 +1093,10 @@ class OmekaLoader(_Loader):
     def _load_item_element_itm_source_identifier(self, object_builder, text):
         if not text in object_builder.identifiers:
             object_builder.identifiers.append(text)
-        object_builder.relations.append(
+        object_builder.relation_builders.append(
             Relation.Builder()
                 .set_text(text)
                 .set_type(RelationType.DERIVED_FROM)
-                .build()
         )
 
     def _load_item_element_itm_status_score(self, object_builder, text):

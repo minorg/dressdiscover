@@ -37,11 +37,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.geotools</groupId>
-			<artifactId>gt-shapefile</artifactId>
-			<version>${geotools.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-library</artifactId>
 			<version>${hamcrest.version}</version>
@@ -53,10 +48,6 @@
 			<version>${thryft-waf.version}</version>
 		</dependency>
 	</dependencies>
-
-	<properties>
-		<geotools.version>12.5</geotools.version>
-	</properties>
 
 	<repositories>
 		<!-- <repository> -->

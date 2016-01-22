@@ -11,6 +11,7 @@ import com.google.common.base.Charsets;
 import com.google.inject.Injector;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
+import com.vaadin.annotations.Widgetset;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServletRequest;
@@ -32,6 +33,7 @@ import net.lab1318.costume.gui.views.wizard.WizardFeatureView;
 @SuppressWarnings("serial")
 @Theme("costume")
 @Title("Costume Explorer")
+@Widgetset("net.lab1318.costume.gui.GuiWidgetSet")
 public final class GuiUI extends UI {
     public static void navigateTo(final ObjectQuery query) {
         String queryJson;

@@ -15,6 +15,18 @@
 			<plugin>
 				<groupId>com.vaadin</groupId>
 				<artifactId>vaadin-maven-plugin</artifactId>
+				<configuration>
+					<strict>false</strict>
+				</configuration>
+				<executions>
+					<execution>
+						<configuration>
+							<modules>
+								<module>net.lab1318.costume.gui.GuiWidgetSet</module>
+							</modules>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -67,15 +79,17 @@
 			<artifactId>costume-lib</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
+<!--
+		<dependency>
+			<artifactId>guava-gwt</artifactId>
+			<groupId>com.google.guava</groupId>
+			<version>19.0</version>
+		</dependency>
+-->
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-client</artifactId>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.vaadin.tapio</groupId>
-			<artifactId>googlemaps</artifactId>
-			<version>1.1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -104,6 +118,23 @@
 			<artifactId>vaadin-lazyquerycontainer</artifactId>
 			<version>7.4.0.1</version>
 		</dependency>
+<!--
+		<dependency>
+			<groupId>org.vaadin.virkki</groupId>
+			<artifactId>carousel</artifactId>
+			<version>0.5.2</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>guava</artifactId>
+					<groupId>com.google.guava</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>guava-gwt</artifactId>
+					<groupId>com.google.guava</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+-->
 	</dependencies>
 
 	<repositories>
