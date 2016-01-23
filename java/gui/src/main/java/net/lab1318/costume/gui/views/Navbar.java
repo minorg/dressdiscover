@@ -47,7 +47,8 @@ public final class Navbar extends HorizontalLayout {
                     if (searchTextField.getValue().isEmpty()) {
                         GuiUI.navigateTo(new ObjectQuery());
                     } else {
-                        GuiUI.navigateTo(ObjectQuery.builder().setQueryString(searchTextField.getValue()).build());
+                        GuiUI.navigateTo(ObjectQuery.builder().setQueryString(searchTextField.getValue())
+                                .setWorkTypeText("PhysicalObject").build());
                     }
                 }
             });

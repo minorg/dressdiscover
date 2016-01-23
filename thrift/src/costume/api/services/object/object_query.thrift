@@ -27,4 +27,7 @@ struct ObjectQuery {
 	// key=(value OR value...) AND key=(value OR value...)
 	// @validation {"minLength": 1}
 	optional	map<string, list<string>> structure_texts;
+
+	// @validation {"minLength": 1}
+	optional string work_type_text;
 }

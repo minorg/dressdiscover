@@ -22,12 +22,13 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
     @Subscribe
     public void onGetCollectionByIdRequest(final GetCollectionByIdRequest request) {
         GuiUI.navigateTo(ObjectQuery.builder().setCollectionId(request.getId())
-                .setInstitutionId(request.getId().getInstitutionId()).build());
+                .setInstitutionId(request.getId().getInstitutionId()).setWorkTypeText("PhysicalObject").build());
     }
 
     @Subscribe
     public void onGetInstitutionByIdRequest(final GetInstitutionByIdRequest request) {
-        GuiUI.navigateTo(ObjectQuery.builder().setInstitutionId(request.getId()).build());
+        GuiUI.navigateTo(
+                ObjectQuery.builder().setInstitutionId(request.getId()).setWorkTypeText("PhysicalObject").build());
     }
 
     @Subscribe
