@@ -7,10 +7,12 @@ import com.google.common.collect.ImmutableList;
 import com.vaadin.event.MouseEvents.ClickEvent;
 import com.vaadin.event.MouseEvents.ClickListener;
 import com.vaadin.server.ExternalResource;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
+import com.vaadin.ui.Link;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
@@ -59,6 +61,13 @@ public final class ObjectSummaryEntriesCarousel extends CustomComponent {
                         }
                     });
                     imageLayout.addComponent(imageView);
+                    if (imageModel.getOriginal().isPresent()) {
+                        final Link originalLink = new Link("",
+                                new ExternalResource(imageModel.getOriginal().get().getUrl().toString()));
+                        originalLink.setTargetName("_blank");
+                        originalLink.setIcon(FontAwesome.SEARCH_PLUS);
+                        imageLayout.addComponent(originalLink);
+                    }
                     imageLayout.addComponent(titleButton);
                     carousel.addComponent(imageLayout);
                     continue;
