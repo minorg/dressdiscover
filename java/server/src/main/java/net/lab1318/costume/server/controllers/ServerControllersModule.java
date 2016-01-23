@@ -1,5 +1,7 @@
 package net.lab1318.costume.server.controllers;
 
+import org.thryft.waf.server.controllers.LocalhostFilter;
+
 import com.google.inject.servlet.ServletModule;
 
 import net.lab1318.costume.server.controllers.collection.CollectionCommandServiceJsonRpcServlet;
@@ -19,6 +21,8 @@ public final class ServerControllersModule extends ServletModule {
             serve("/api/jsonrpc/institution_query").with(InstitutionQueryServiceJsonRpcServlet.class);
             serve("/api/jsonrpc/object_command").with(ObjectCommandServiceJsonRpcServlet.class);
             serve("/api/jsonrpc/object_query").with(ObjectQueryServiceJsonRpcServlet.class);
+
+            filter("/api/*").through(LocalhostFilter.class);
         }
     }
 
