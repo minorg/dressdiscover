@@ -1,4 +1,4 @@
-from collections import OrderedDict
+from collections import OrderedDict, Counter
 from datetime import datetime
 import json
 import os.path
@@ -341,6 +341,7 @@ class OmekaLoader(_Loader):
         self.__institution_url = institution_url
         self.__square_thumbnail_height_px = square_thumbnail_height_px
         self.__square_thumbnail_width_px = square_thumbnail_width_px
+        self.__vocabulary_used = {}
 
     @classmethod
     def _add_arguments(cls, argument_parser):
@@ -357,7 +358,20 @@ class OmekaLoader(_Loader):
         argument_parser.add_argument('--institution-url', required=True)
 
     def _load(self):
+        self.__vocabulary_used = {}
+
         self._load_institution()
+
+        vocabulary_used_alphabetical = OrderedDict()
+        for element_set_name in sorted(self.__vocabulary_used.keys()):
+            vocabulary_used_element_set = vocabulary_used_alphabetical.setdefault(element_set_name, OrderedDict())
+            for element_name in sorted(self.__vocabulary_used[element_set_name].keys()):
+                vocabulary_used_element = vocabulary_used_element_set.setdefault(element_name, OrderedDict())
+                for text in sorted(self.__vocabulary_used[element_set_name][element_name].keys()):
+                    vocabulary_used_element[text] = self.__vocabulary_used[element_set_name][element_name][text]
+        vocabulary_used_file_path = os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'vocabulary_used.json')
+        with open(vocabulary_used_file_path, 'w+b') as f:
+            json.dump(vocabulary_used_alphabetical, f, indent=4)
 
     def _load_collection(self, omeka_collection):
         self._logger.debug("reading collection %d", omeka_collection.id)
@@ -646,7 +660,7 @@ class OmekaLoader(_Loader):
         )
 
     def _load_item_element_dc_format(self, object_builder, text):
-        pass
+        self.__update_vocabulary_used('Dublin Core', 'Format', text)
 
     def _load_item_element_dc_identifier(self, object_builder, text):
         if not text in object_builder.identifiers:
@@ -658,7 +672,7 @@ class OmekaLoader(_Loader):
         )
 
     def _load_item_element_dc_language(self, object_builder, text):
-        pass
+        self.__update_vocabulary_used('Dublin Core', 'Language', text)
 
     def _load_item_element_dc_medium(self, object_builder, text):
         text = text.strip("'")
@@ -673,6 +687,7 @@ class OmekaLoader(_Loader):
                         .set_type(MaterialType.MEDIUM)
                         .build()
                 )
+                self.__update_vocabulary_used('Dublin Core', 'Medium', medium)
 
     def _load_item_element_dc_provenance(self, object_builder, text):
         object_builder.set_provenance(text)
@@ -705,26 +720,27 @@ class OmekaLoader(_Loader):
         )
 
     def _load_item_element_dc_spatial_coverage(self, object_builder, text):
-        pass
+        self.__update_vocabulary_used('Dublin Core', 'Spatial Coverage', text)
 
     def _load_item_element_dc_subject(self, object_builder, text):
-        for text_split in text.split(';'):
-            text_split = text_split.strip()
-            if len(text_split) == 0:
+        for subject in text.split(';'):
+            subject = subject.strip()
+            if len(subject) == 0:
                 continue
             object_builder.subjects.append(
                 Subject.Builder()
                     .set_terms((
                         SubjectTerm.Builder()
-                            .set_text(text_split)
+                            .set_text(subject)
                             .set_type(SubjectTermType.OTHER_TOPIC)
                             .build()
                     ,))
                     .build()
             )
+            self.__update_vocabulary_used('Dublin Core', 'Subject', subject)
 
     def _load_item_element_dc_temporal_coverage(self, object_builder, text):
-        pass
+        self.__update_vocabulary_used('Dublin Core', 'Temporal Coverage', text)
 
     def _load_item_element_dc_title(self, object_builder, text):
         object_builder.titles.append(
@@ -739,6 +755,7 @@ class OmekaLoader(_Loader):
         work_type = self.__parse_work_type(text)
         if work_type is not None:
             object_builder.work_types.append(work_type)
+        self.__update_vocabulary_used('Dublin Core', 'Type', text)
 
     # Components
     def _load_item_element_itm_a(self, **kwds):
@@ -813,9 +830,11 @@ class OmekaLoader(_Loader):
 
     def _load_item_element_itm_category(self, object_builder, text):
         object_builder.categories.append(text)
+        self.__update_vocabulary_used('Item Type Metadata', 'Category', text)
 
     def _load_item_element_itm_classification(self, object_builder, text):
         object_builder.categories.append(text)
+        self.__update_vocabulary_used('Item Type Metadata', 'Classification', text)
 
     def _load_item_element_itm_closure_placement(self, object_builder, text):
         if text not in COSTUME_CORE_CONTROLLED_VOCABULARIES['Closure Placement']:
@@ -826,6 +845,7 @@ class OmekaLoader(_Loader):
                 .set_vocab_ref(VocabRef(vocab=Vocab.COSTUME_CORE))\
                 .build()
         )
+        self.__update_vocabulary_used('Item Type Metadata', 'Closure Placement', text)
 
     def _load_item_element_itm_closure_type(self, object_builder, text):
         if text not in COSTUME_CORE_CONTROLLED_VOCABULARIES['Closure Type']:
@@ -836,6 +856,7 @@ class OmekaLoader(_Loader):
                 .set_vocab_ref(VocabRef(vocab=Vocab.COSTUME_CORE))\
                 .build()
         )
+        self.__update_vocabulary_used('Item Type Metadata', 'Closure Type', text)
 
     def _load_item_element_itm_color_main(self, **kwds):
         self.__load_item_element_itm_color(type_=ColorType.PRIMARY, **kwds)
@@ -862,6 +883,8 @@ class OmekaLoader(_Loader):
 
         object_builder.colors.append(builder.build())
 
+        self.__update_vocabulary_used('Item Type Metadata', 'Color', text)
+
     def __load_item_element_itm_component(self, letter, object_builder, text):
         letter = letter.lower()
         if letter in object_builder.component_builders_by_letter:
@@ -887,6 +910,7 @@ class OmekaLoader(_Loader):
         condition_str = text.upper().replace(' ', '_').rstrip('.')
         condition = getattr(Condition, condition_str)
         object_builder.set_condition(condition)
+        self.__update_vocabulary_used('Item Type Metadata', 'Condition Term', text)
 
     def _load_item_element_itm_credit_line(self, object_builder, text):
         object_builder.descriptions.append(
@@ -902,6 +926,7 @@ class OmekaLoader(_Loader):
                 .set_text(text)
                 .build()
         )
+        self.__update_vocabulary_used('Item Type Metadata', 'Culture', text)
 
     def _load_item_element_itm_date_certainty(self, object_builder, text):
         if text == 'circa':
@@ -912,6 +937,7 @@ class OmekaLoader(_Loader):
             object_builder.dc_date_builder.set_type(DateType.PERFORMANCE)
         else:
             self._logger.warn("item %d in collection %d has unrecognized Date Certainty '%s'", object_builder.omeka_item_id, object_builder.omeka_collection_id, text)
+        self.__update_vocabulary_used('Item Type Metadata', 'Date Certainty', text)
 
     def _load_item_element_itm_date_earliest(self, object_builder, text):
         earliest_date = self.__parse_date(text)
@@ -1034,6 +1060,7 @@ class OmekaLoader(_Loader):
         if object_builder.gender is not None:
             assert object_builder.gender == gender, "%s vs. %s" % (object_builder.gender, gender)
         object_builder.set_gender(gender)
+        self.__update_vocabulary_used('Item Type Metadata', 'Gender', text)
 
     def _load_item_element_itm_label(self, object_builder, text):
         text = text.strip("'").strip()
@@ -1061,6 +1088,7 @@ class OmekaLoader(_Loader):
 
     def _load_item_element_itm_original_format(self, object_builder, text):
         pass # For image items, the format of the subject of the image
+        self.__update_vocabulary_used('Item Type Metadata', 'Original Format', text)
 
     def _load_item_element_itm_private_information(self, object_builder, text):
         object_builder.descriptions.append(
@@ -1145,6 +1173,8 @@ class OmekaLoader(_Loader):
                     logger.debug("structure %s from item %d has controlled text '%s' after lower-casing", type_.text, object_builder.omeka_item_id, structure_text)
                 else:
                     logger.warn("structure %s from item %d has uncontrolled text '%s'", type_.text, object_builder.omeka_item_id, structure_text)
+
+            self.__update_vocabulary_used('Item Type Metadata', type_.text, structure_text)
 
             return \
                 Structure.Builder()\
@@ -1242,6 +1272,7 @@ class OmekaLoader(_Loader):
                         .set_text(technique)
                         .build()
                 )
+                self.__update_vocabulary_used('Item Type Metadata', 'Technique', technique)
 
     def _load_item_element_itm_treatment(self, object_builder, text):
         pass
@@ -1436,3 +1467,6 @@ class OmekaLoader(_Loader):
     def _read_omeka_items(self, omeka_collection):
         with open(os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'collection', str(omeka_collection.id), 'items.json')) as f:
             return OmekaJsonParser().parse_item_dicts(json.loads(f.read()))
+
+    def __update_vocabulary_used(self, element_set_name, element_name, text):
+        self.__vocabulary_used.setdefault(element_set_name, {}).setdefault(element_name, Counter())[text] += 1
