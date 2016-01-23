@@ -40,6 +40,11 @@ from costume.api.models.inscription.inscription_set import InscriptionSet
 from costume.api.models.inscription.inscription_text import InscriptionText
 from costume.api.models.inscription.inscription_text_type import InscriptionTextType
 from costume.api.models.institution.institution import Institution
+from costume.api.models.location.location import Location
+from costume.api.models.location.location_refid import LocationRefid
+from costume.api.models.location.location_refid_type import LocationRefidType
+from costume.api.models.location.location_set import LocationSet
+from costume.api.models.location.location_type import LocationType
 from costume.api.models.material.material import Material
 from costume.api.models.material.material_set import MaterialSet
 from costume.api.models.material.material_type import MaterialType
@@ -127,6 +132,7 @@ class OmekaLoader(_Loader):
             self.identifiers = []
             self.images = []
             self.inscriptions = []
+            self.locations = []
             self.materials = []
             self.measurements = []
             self.relation_builders = []
@@ -256,6 +262,8 @@ class OmekaLoader(_Loader):
                 self.__object_builder.set_images(tuple(self.images))
             if len(self.inscriptions) > 0:
                 self.__object_builder.set_inscriptions(InscriptionSet.Builder().set_elements(tuple(self.inscriptions)).build())
+            if len(self.locations) > 0:
+                self.__object_builder.set_locations(LocationSet.Builder().set_elements(tuple(self.locations)).build())
             if len(self.materials) > 0:
                 self.__object_builder.set_materials(MaterialSet.Builder().set_elements(tuple(self.materials)).build())
             if len(self.measurements) > 0:
@@ -752,20 +760,15 @@ class OmekaLoader(_Loader):
         self.__load_item_element_itm_component(letter='f', **kwds)
 
     def _load_item_element_itm_accession_number(self, object_builder, text):
-        object_builder.textrefs.append(
-            Textref.Builder()
-                .set_name(
-                    TextrefName.Builder()
-                        .set_text("Accession number")
-                        .set_type(TextrefNameType.CATALOG)
-                        .build()
-                )
-                .set_refid(
-                    TextrefRefid.Builder()
+        object_builder.locations.append(
+            Location.Builder()
+                .set_refids((
+                    LocationRefid.Builder()
                         .set_text(text)
-                        .set_type(TextrefRefidType.OTHER)
-                        .build()
-                )
+                        .set_type(LocationRefidType.ACCESSION)
+                        .build(),
+                ))
+                .set_type(LocationType.REPOSITORY)
                 .build()
         )
 
