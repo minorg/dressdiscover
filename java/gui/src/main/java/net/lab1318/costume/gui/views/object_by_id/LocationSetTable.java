@@ -1,5 +1,7 @@
 package net.lab1318.costume.gui.views.object_by_id;
 
+import org.thryft.waf.gui.EventBus;
+
 import com.google.common.collect.ImmutableSet;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
@@ -11,12 +13,11 @@ import net.lab1318.costume.api.models.location.LocationName;
 import net.lab1318.costume.api.models.location.LocationRefid;
 import net.lab1318.costume.api.models.location.LocationSet;
 import net.lab1318.costume.api.services.object.ObjectFacetFilters;
-import net.lab1318.costume.api.services.object.ObjectQuery;
-import net.lab1318.costume.gui.GuiUI;
+import net.lab1318.costume.gui.events.object_by_id.ObjectElementSelectionRequest;
 
 @SuppressWarnings("serial")
 final class LocationSetTable extends ElementSetTable {
-    public LocationSetTable(final LocationSet locations) {
+    public LocationSetTable(final EventBus eventBus, final LocationSet locations) {
         super("Locations", locations);
 
         addContainerProperty("Type", String.class, null);
@@ -42,16 +43,13 @@ final class LocationSetTable extends ElementSetTable {
         addGeneratedColumn("Text", new ColumnGenerator() {
             @Override
             public Object generateCell(final Table source, final Object itemId, final Object columnId) {
-                final String category = (String) source.getContainerDataSource().getContainerProperty(itemId, columnId)
+                final String locationText = (String) source.getContainerDataSource().getContainerProperty(itemId, columnId)
                         .getValue();
-                return new NativeButton(category, new Button.ClickListener() {
+                return new NativeButton(locationText, new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {
-                        GuiUI.navigateTo(
-                                ObjectQuery.builder()
-                                        .setFacetFilters(ObjectFacetFilters.builder()
-                                                .setIncludeLocationNameTexts(ImmutableSet.of(category)).build())
-                                .build());
+                        eventBus.post(new ObjectElementSelectionRequest(ObjectFacetFilters.builder()
+                                .setIncludeLocationNameTexts(ImmutableSet.of(locationText)).build()));
                     }
                 });
             }

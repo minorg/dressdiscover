@@ -3,6 +3,8 @@ package net.lab1318.costume.gui.views.object_by_id;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.thryft.waf.gui.EventBus;
+
 import com.google.common.collect.ImmutableSet;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Button;
@@ -13,13 +15,12 @@ import com.vaadin.ui.Table;
 import net.lab1318.costume.api.models.material.Material;
 import net.lab1318.costume.api.models.material.MaterialSet;
 import net.lab1318.costume.api.services.object.ObjectFacetFilters;
-import net.lab1318.costume.api.services.object.ObjectQuery;
-import net.lab1318.costume.gui.GuiUI;
+import net.lab1318.costume.gui.events.object_by_id.ObjectElementSelectionRequest;
 import net.lab1318.costume.gui.models.material.MaterialBean;
 
 @SuppressWarnings("serial")
 final class MaterialSetTable extends ElementSetTable {
-    public MaterialSetTable(final MaterialSet materials) {
+    public MaterialSetTable(final EventBus eventBus, final MaterialSet materials) {
         super("Materials", materials);
 
         final BeanItemContainer<MaterialBean> container = new BeanItemContainer<>(MaterialBean.class);
@@ -40,11 +41,8 @@ final class MaterialSetTable extends ElementSetTable {
                 final Button button = new NativeButton(materialText, new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {
-                        GuiUI.navigateTo(
-                                ObjectQuery.builder()
-                                        .setFacetFilters(ObjectFacetFilters.builder()
-                                                .setIncludeMaterialTexts(ImmutableSet.of(materialText)).build())
-                                .build());
+                        eventBus.post(new ObjectElementSelectionRequest(ObjectFacetFilters.builder()
+                                .setIncludeMaterialTexts(ImmutableSet.of(materialText)).build()));
                     }
                 });
                 return button;

@@ -3,6 +3,8 @@ package net.lab1318.costume.gui.views.object_by_id;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.thryft.waf.gui.EventBus;
+
 import com.google.common.collect.ImmutableSet;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Button;
@@ -14,13 +16,12 @@ import net.lab1318.costume.api.models.subject.Subject;
 import net.lab1318.costume.api.models.subject.SubjectSet;
 import net.lab1318.costume.api.models.subject.SubjectTerm;
 import net.lab1318.costume.api.services.object.ObjectFacetFilters;
-import net.lab1318.costume.api.services.object.ObjectQuery;
-import net.lab1318.costume.gui.GuiUI;
+import net.lab1318.costume.gui.events.object_by_id.ObjectElementSelectionRequest;
 import net.lab1318.costume.gui.models.subject.SubjectTermBean;
 
 @SuppressWarnings("serial")
 final class SubjectSetTable extends ElementSetTable {
-    public SubjectSetTable(final SubjectSet subjects) {
+    public SubjectSetTable(final EventBus eventBus, final SubjectSet subjects) {
         super("Subjects", subjects);
 
         final BeanItemContainer<SubjectTermBean> container = new BeanItemContainer<>(SubjectTermBean.class);
@@ -37,11 +38,8 @@ final class SubjectSetTable extends ElementSetTable {
                 final Button button = new NativeButton(subjectTermText, new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {
-                        GuiUI.navigateTo(
-                                ObjectQuery.builder()
-                                        .setFacetFilters(ObjectFacetFilters.builder()
-                                                .setIncludeSubjectTermTexts(ImmutableSet.of(subjectTermText)).build())
-                                .build());
+                        eventBus.post(new ObjectElementSelectionRequest(ObjectFacetFilters.builder()
+                                .setIncludeSubjectTermTexts(ImmutableSet.of(subjectTermText)).build()));
                     }
                 });
                 return button;

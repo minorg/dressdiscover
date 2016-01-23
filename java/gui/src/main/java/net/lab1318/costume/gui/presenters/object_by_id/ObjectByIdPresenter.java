@@ -1,6 +1,7 @@
 package net.lab1318.costume.gui.presenters.object_by_id;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 import org.thryft.waf.gui.EventBus;
 import org.thryft.waf.lib.stores.ElasticSearchIndex;
@@ -8,6 +9,7 @@ import org.thryft.waf.lib.stores.ElasticSearchIndex;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.eventbus.Subscribe;
 import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
@@ -35,6 +37,9 @@ import net.lab1318.costume.api.services.object.NoSuchObjectException;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
+import net.lab1318.costume.gui.GuiUI;
+import net.lab1318.costume.gui.events.object_by_id.ObjectElementSelectionRequest;
+import net.lab1318.costume.gui.events.object_by_id.ObjectMoreLikeThisRequest;
 import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.object_by_id.ObjectByIdView;
 
@@ -51,9 +56,22 @@ public class ObjectByIdPresenter extends Presenter<ObjectByIdView> {
         this.objectSummaryQueryService = checkNotNull(objectSummaryQueryService);
     }
 
+    @Subscribe
+    public void onObjectElementSelectionRequest(final ObjectElementSelectionRequest event) {
+        checkState(objectId != null);
+        GuiUI.navigateTo(ObjectQuery.builder().setCollectionId(objectId.getCollectionId())
+                .setInstitutionId(objectId.getInstitutionId()).setFacetFilters(event.getFilter()).build());
+    }
+
+    @Subscribe
+    public void onObjectMoreLikeThisRequest(final ObjectMoreLikeThisRequest event) {
+        checkState(objectId != null);
+        GuiUI.navigateTo(ObjectQuery.builder().setCollectionId(objectId.getCollectionId())
+                .setInstitutionId(objectId.getInstitutionId()).setMoreLikeObjectId(objectId).build());
+    }
+
     @Override
     protected void _onViewEnter(final ViewChangeEvent event) {
-        final ObjectId objectId;
         try {
             objectId = ObjectId.parse(event.getParameters());
         } catch (final InvalidObjectIdException e) {
@@ -131,8 +149,8 @@ public class ObjectByIdPresenter extends Presenter<ObjectByIdView> {
     }
 
     private final ObjectSummaryQueryService objectSummaryQueryService;
-
     private final CollectionQueryService collectionQueryService;
     private final InstitutionQueryService institutionQueryService;
+    private ObjectId objectId;
     private final ObjectQueryService objectQueryService;
 }

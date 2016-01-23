@@ -602,6 +602,12 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
             }
         }
 
+        if (query.get().getWorkTypeText().isPresent()) {
+            filtersTranslated.add(QueryBuilders.termQuery(
+                    ObjectSummary.FieldMetadata.WORK_TYPE_TEXTS.getThriftProtocolKey() + ".not_analyzed",
+                    query.get().getWorkTypeText().get()));
+        }
+
         if (filtersTranslated.size() == 1) {
             queryTranslated = QueryBuilders.boolQuery().must(queryTranslated).filter(filtersTranslated.get(0));
         } else if (filtersTranslated.size() > 1) {
