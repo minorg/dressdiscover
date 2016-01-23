@@ -538,8 +538,19 @@ class TxfcLoader(_Loader):
         if qualifier == 'access':
             assert text == 'public', text
         elif qualifier == 'license':
+            if text == 'by-nc-nd':
+                license_vocab_ref = \
+                    VocabRef.Builder()\
+                        .set_vocab(Vocab.CREATIVE_COMMONS)\
+                        .set_uri('https://creativecommons.org/licenses/by-nc-nd/2.0/')\
+                        .build()
+            else:
+                license_vocab_ref = None
+                self._logger.warn("ignoring unknown license text '%s' on record %s", text, object_builder.record_identifier)
+
             object_builder.rights.append(
                 Rights.Builder()
+                    .set_license_vocab_ref(license_vocab_ref)
                     .set_rights_holder(self._RIGHTS_HOLDER)
                     .set_text(text)
                     .set_type(RightsType.LICENSED)
