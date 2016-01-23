@@ -24,8 +24,7 @@ import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 import net.lab1318.costume.api.models.relation.Relation;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
-import net.lab1318.costume.api.services.object.ObjectQuery;
-import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
+import net.lab1318.costume.gui.events.object_by_id.ObjectMoreLikeThisRequest;
 import net.lab1318.costume.gui.views.TopLevelView;
 
 @SuppressWarnings("serial")
@@ -79,9 +78,7 @@ public class ObjectByIdView extends TopLevelView {
                 final Button moreLikeThisButton = new NativeButton("More like this", new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {
-                        _getEventBus().post(ObjectSummaryQueryService.Messages.GetObjectSummariesRequest.builder()
-                                .setQuery(ObjectQuery.builder().setMoreLikeObjectId(objectEntry.getId()).build())
-                                .build());
+                        _getEventBus().post(new ObjectMoreLikeThisRequest());
                     }
                 });
                 headerLayout.addComponent(moreLikeThisButton);
@@ -92,7 +89,7 @@ public class ObjectByIdView extends TopLevelView {
             rootLayout.addComponent(headerLayout);
         }
 
-        rootLayout.addComponent(new ObjectEntryForm(objectEntry, institutionEntry.getModel()));
+        rootLayout.addComponent(new ObjectEntryForm(_getEventBus(), objectEntry, institutionEntry.getModel()));
 
         if (objectEntry.getModel().getRelations().isPresent()) {
             rootLayout.addComponent(new Label("&nbsp;", ContentMode.HTML));
