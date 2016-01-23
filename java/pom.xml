@@ -36,7 +36,7 @@
 	<repositories>
 		<repository>
 			<id>thryft-waf-mvn-repo</id>
-			<url>https://raw.github.com/minorg/thryft-waf/mvn-repo/</url>
+			<url>https://raw.github.com/minorg/thryft-waf/develop/java/mvn-repo</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
