@@ -127,32 +127,38 @@ class TxfcLoader(_Loader):
 
         self.__location_names_by_extent = {}
 
-    def _load(self):
-        self._services.institution_command_service.put_institution(
-            self._institution_id,
-            Institution.Builder()
-                .set_data_rights(
-                    RightsSet.Builder()
-                        .set_elements((
-                            Rights.Builder()
-                                .set_rights_holder(self._RIGHTS_HOLDER)
-                                .set_text("The contents of Texas Fashion Collection, hosted by the University of North Texas Libraries (digital content including images, text, and sound and video recordings) are made publicly available by the collection-holding partners for use in research, teaching, and private study. For the full terms of use, see http://digital.library.unt.edu/terms-of-use/")
-                                .set_type(RightsType.COPYRIGHTED)
-                                .build()
+    def _load(self, dry_run):
+        if dry_run:
+            self._logger.info("dry run, not putting institution %s", self._institution_id)
+        else:
+            self._services.institution_command_service.put_institution(
+                self._institution_id,
+                Institution.Builder()
+                    .set_data_rights(
+                        RightsSet.Builder()
+                            .set_elements((
+                                Rights.Builder()
+                                    .set_rights_holder(self._RIGHTS_HOLDER)
+                                    .set_text("The contents of Texas Fashion Collection, hosted by the University of North Texas Libraries (digital content including images, text, and sound and video recordings) are made publicly available by the collection-holding partners for use in research, teaching, and private study. For the full terms of use, see http://digital.library.unt.edu/terms-of-use/")
+                                    .set_type(RightsType.COPYRIGHTED)
+                                    .build()
+    
+                            ,))
+                            .build()
+                    )
+                    .set_model_metadata(self._new_model_metadata())
+                    .set_title("University of North Texas")
+                    .set_url('http://digital.library.unt.edu/explore/collections/TXFC/')
+                    .build()
+            )
 
-                        ,))
-                        .build()
-                )
-                .set_model_metadata(self._new_model_metadata())
-                .set_title("University of North Texas")
-                .set_url('http://digital.library.unt.edu/explore/collections/TXFC/')
-                .build()
-        )
-
-        self._put_collection(
-            collection_id=self.__collection_id,
-            title="Texas Fashion Collection"
-        )
+        if dry_run:
+            self._logger.info("dry run, not putting collection %s", self.__collection_id)
+        else:
+            self._put_collection(
+                collection_id=self.__collection_id,
+                title="Texas Fashion Collection"
+            )
 
         objects_by_id = OrderedDict()
         for root_dir_path, _, file_names in os.walk(os.path.join(self._data_dir_path, 'extracted', 'txfc', 'record')):
@@ -167,7 +173,11 @@ class TxfcLoader(_Loader):
 
         self._logger.info("Location names by extent:\n%s", pformat(self.__location_names_by_extent))
 
-        self._put_objects_by_id(objects_by_id)
+        if dry_run:
+            self._logger.info("dry run, not putting %d objects to collection %s", len(objects_by_id), self.__collection_id)
+        else:
+            self._logger.info("putting %d objects to collection %s", len(objects_by_id), self.__collection_id)
+            self._put_objects_by_id(objects_by_id)
 
     def __parse_record(self, record_etree):
         # info:ark/67531/metadc114731
