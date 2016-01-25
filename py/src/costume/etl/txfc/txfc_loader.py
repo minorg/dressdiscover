@@ -47,6 +47,7 @@ from costume.api.models.work_type.work_type import WorkType
 from costume.api.models.work_type.work_type_set import WorkTypeSet
 from costume.etl._loader import _Loader
 from costume.etl.dcmi_types import DCMI_TYPES_BASE_URL
+from bokeh._glyph_functions import text
 
 
 class TxfcLoader(_Loader):
@@ -60,22 +61,22 @@ class TxfcLoader(_Loader):
             self.agents = []
             self.dates = []
             self.descriptions = []
-            self.end_date_text = None
+            self.end_date_bound = None
             self.images = []
             self.locations = []
             self.rights = []
-            self.start_date_text = None
+            self.start_date_bound = None
             self.subjects = []
             self.textrefs = []
             self.titles = []
             self.work_types = []
 
         def build(self):
-            if self.start_date_text is not None and self.end_date_text is not None:
+            if self.start_date_bound is not None and self.end_date_bound is not None:
                 self.dates.append(
                     Date.Builder()
-                        .set_earliest_date(DateBound.Builder().set_text(self.start_date_text).build())
-                        .set_latest_date(DateBound.Builder().set_text(self.end_date_text).build())
+                        .set_earliest_date(self.start_date_bound)
+                        .set_latest_date(self.end_date_bound)
                         .set_type(DateType.CREATION)
                         .build()
                 )
@@ -127,32 +128,38 @@ class TxfcLoader(_Loader):
 
         self.__location_names_by_extent = {}
 
-    def _load(self):
-        self._services.institution_command_service.put_institution(
-            self._institution_id,
-            Institution.Builder()
-                .set_data_rights(
-                    RightsSet.Builder()
-                        .set_elements((
-                            Rights.Builder()
-                                .set_rights_holder(self._RIGHTS_HOLDER)
-                                .set_text("The contents of Texas Fashion Collection, hosted by the University of North Texas Libraries (digital content including images, text, and sound and video recordings) are made publicly available by the collection-holding partners for use in research, teaching, and private study. For the full terms of use, see http://digital.library.unt.edu/terms-of-use/")
-                                .set_type(RightsType.COPYRIGHTED)
-                                .build()
+    def _load(self, dry_run):
+        if dry_run:
+            self._logger.info("dry run, not putting institution %s", self._institution_id)
+        else:
+            self._services.institution_command_service.put_institution(
+                self._institution_id,
+                Institution.Builder()
+                    .set_data_rights(
+                        RightsSet.Builder()
+                            .set_elements((
+                                Rights.Builder()
+                                    .set_rights_holder(self._RIGHTS_HOLDER)
+                                    .set_text("The contents of Texas Fashion Collection, hosted by the University of North Texas Libraries (digital content including images, text, and sound and video recordings) are made publicly available by the collection-holding partners for use in research, teaching, and private study. For the full terms of use, see http://digital.library.unt.edu/terms-of-use/")
+                                    .set_type(RightsType.COPYRIGHTED)
+                                    .build()
+    
+                            ,))
+                            .build()
+                    )
+                    .set_model_metadata(self._new_model_metadata())
+                    .set_title("University of North Texas")
+                    .set_url('http://digital.library.unt.edu/explore/collections/TXFC/')
+                    .build()
+            )
 
-                        ,))
-                        .build()
-                )
-                .set_model_metadata(self._new_model_metadata())
-                .set_title("University of North Texas")
-                .set_url('http://digital.library.unt.edu/explore/collections/TXFC/')
-                .build()
-        )
-
-        self._put_collection(
-            collection_id=self.__collection_id,
-            title="Texas Fashion Collection"
-        )
+        if dry_run:
+            self._logger.info("dry run, not putting collection %s", self.__collection_id)
+        else:
+            self._put_collection(
+                collection_id=self.__collection_id,
+                title="Texas Fashion Collection"
+            )
 
         objects_by_id = OrderedDict()
         for root_dir_path, _, file_names in os.walk(os.path.join(self._data_dir_path, 'extracted', 'txfc', 'record')):
@@ -167,7 +174,68 @@ class TxfcLoader(_Loader):
 
         self._logger.info("Location names by extent:\n%s", pformat(self.__location_names_by_extent))
 
-        self._put_objects_by_id(objects_by_id)
+        if dry_run:
+            self._logger.info("dry run, not putting %d objects to collection %s", len(objects_by_id), self.__collection_id)
+        else:
+            self._logger.info("putting %d objects to collection %s", len(objects_by_id), self.__collection_id)
+            self._put_objects_by_id(objects_by_id)
+
+    def __parse_date(self, text, circa=None):
+        date_bound_builder = DateBound.Builder().set_text(text)
+        
+        if text[-1] == 'u':
+            date_bound_builder.set_circa(True)
+            text = text[:-1] + '0'
+        elif text[-1] == '~':
+            date_bound_builder.set_circa(True)
+            text = text[:-1]
+        elif circa is not None:
+            date_bound_builder.set_circa(circa)
+        
+        self._parse_certain_date(
+            date_bound_builder=date_bound_builder,
+            text=text
+        )
+        
+        return date_bound_builder.build()
+    
+    def __parse_date_range(self, text):
+        original_text = text
+        
+        text = text.lstrip('[').rstrip(']')
+
+        if text[-1] == '~':
+            text = text[:-1]
+            circa = True
+        else:
+            circa = False
+        
+        date_range = None
+        for separator in ('/', '..'):
+            text_split = text.split(separator)
+            if len(text_split) != 2:
+                continue
+            try:
+                int(text_split[0])
+                int(text_split[1])
+                years = True
+            except ValueError:
+                years = False
+            if years:
+                date_range = \
+                    self.__parse_date(text_split[0], circa=circa),\
+                    self.__parse_date(text_split[1], circa=circa)
+                break
+        
+        if date_range is None:
+            earliest_date = latest_date = self.__parse_date(text, circa=circa)
+            date_range = earliest_date, latest_date
+        
+        if date_range[0].parsed_date_time is None or date_range[1].parsed_date_time is None:
+            self._logger.warn("unable to parse date range '%s'", original_text)
+        else:
+            self._logger.debug("parsed date range '%s' from '%s'", date_range, original_text)
+        return date_range
 
     def __parse_record(self, record_etree):
         # info:ark/67531/metadc114731
@@ -265,9 +333,12 @@ class TxfcLoader(_Loader):
         if qualifier == 'date':
             pass # Same as date element
         elif qualifier == 'eDate':
-            if object_builder.end_date_text is not None:
+            if object_builder.end_date_bound is not None:
                 self._logger.warn("record %s has multiple eDate's", object_builder.record_identifier)
-            object_builder.end_date_text = text
+            earliest_date, latest_date = self.__parse_date_range(text)
+            if earliest_date != latest_date:
+                self._logger.warn("record %s has a eDate range: %s", object_builder.record_identifier, text)
+            object_builder.end_date_bound = latest_date
         elif qualifier == 'placeName':
             text_parts = [text_part.strip() for text_part in text.split(' - ')]
             self._logger.debug('place name from record %s: %s', object_builder.record_identifier, text)
@@ -322,9 +393,12 @@ class TxfcLoader(_Loader):
                     .build()
             )
         elif qualifier == 'sDate':
-            if object_builder.start_date_text is not None:
+            if object_builder.start_date_bound is not None:
                 self._logger.warn("record %s has multiple sDate's", object_builder.record_identifier)
-            object_builder.start_date_text = text
+            earliest_date, latest_date = self.__parse_date_range(text)
+            if earliest_date != latest_date:
+                self._logger.warn("record %s has a sDate range: %s", object_builder.record_identifier, text)
+            object_builder.start_date_bound = earliest_date
         else:
             self._logger.warn("unknown coverage qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
 
@@ -346,11 +420,11 @@ class TxfcLoader(_Loader):
             else:
                 self._logger.warn("unknown date qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
 
-        date_bound = DateBound.Builder().set_text(text).build()
+        earliest_date, latest_date = self.__parse_date_range(text)
         object_builder.dates.append(
             Date.Builder()
-                .set_earliest_date(date_bound)
-                .set_latest_date(date_bound)
+                .set_earliest_date(earliest_date)
+                .set_latest_date(latest_date)
                 .set_type(date_type)
                 .build()
         )

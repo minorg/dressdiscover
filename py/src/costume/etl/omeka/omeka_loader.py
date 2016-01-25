@@ -357,10 +357,10 @@ class OmekaLoader(_Loader):
         argument_parser.add_argument('--institution-title', required=True)
         argument_parser.add_argument('--institution-url', required=True)
 
-    def _load(self):
+    def _load(self, dry_run):
         self.__vocabulary_used = {}
 
-        self._load_institution()
+        self._load_institution(dry_run=dry_run)
 
         vocabulary_used_alphabetical = OrderedDict()
         for element_set_name in sorted(self.__vocabulary_used.keys()):
@@ -373,7 +373,7 @@ class OmekaLoader(_Loader):
         with open(vocabulary_used_file_path, 'w+b') as f:
             json.dump(vocabulary_used_alphabetical, f, indent=4)
 
-    def _load_collection(self, omeka_collection):
+    def _load_collection(self, dry_run, omeka_collection):
         self._logger.debug("reading collection %d", omeka_collection.id)
 
         collection_id = self._institution_id + '/' + str(omeka_collection.id)
@@ -422,18 +422,25 @@ class OmekaLoader(_Loader):
 
         collection = collection_builder.build()
 
-        self._services.collection_command_service.put_collection(collection_id, collection)
+        if dry_run:
+            self._logger.info("dry run, not putting collection %s", collection_id)
+        else: 
+            self._services.collection_command_service.put_collection(collection_id, collection)
 
         return object_builders_by_id
 
-    def _load_collections(self, omeka_collections, skip_private=True):
+    def _load_collections(self, dry_run, omeka_collections, skip_private=True):
         object_builders_by_id = OrderedDict()
         for omeka_collection in omeka_collections:
             if skip_private and not omeka_collection.public:
                 self._logger.info("collection %d is not public, skipping", omeka_collection.id)
                 continue
 
-            object_builders_by_id.update(self._load_collection(omeka_collection=omeka_collection))
+            object_builders_by_id.update(
+                self._load_collection(
+                    dry_run=dry_run,
+                    omeka_collection=omeka_collection
+            ))
 
         self._logger.info("loaded %d objects from %d collections", len(object_builders_by_id), len(omeka_collections))
 
@@ -465,35 +472,44 @@ class OmekaLoader(_Loader):
         for object_id, object_builder in object_builders_by_id.iteritems():
             objects_by_id[object_id] = object_builder.build()
 
-        self._logger.info("putting %d objects", len(objects_by_id))
-        self._services.object_command_service.put_objects(
-            tuple(ObjectEntry(object_id, object_)
-                  for object_id, object_ in objects_by_id.iteritems())
+        if dry_run:
+            self._logger.info("dry run, not putting %d objects", len(objects_by_id))
+        else:
+            self._logger.info("putting %d objects", len(objects_by_id))
+            self._services.object_command_service.put_objects(
+                tuple(ObjectEntry(object_id, object_)
+                      for object_id, object_ in objects_by_id.iteritems())
+            )
+
+    def _load_institution(self, dry_run):
+        if dry_run:
+            self._logger.info("dry run, not putting institution %s", self._institution_id)
+        else:
+            self._services.institution_command_service.put_institution(
+                self._institution_id,
+                Institution.Builder()
+                    .set_data_rights(
+                        RightsSet.Builder()
+                            .set_elements((
+                                Rights.Builder()
+                                    .set_rights_holder(self.__institution_title)
+                                    .set_text("Copyright %s %s" % (datetime.now().year, self.__institution_title))
+                                    .set_type(RightsType.COPYRIGHTED)
+                                    .build()
+    
+                            ,))
+                            .build()
+                    )
+                    .set_model_metadata(self._new_model_metadata())
+                    .set_title(self.__institution_title)
+                    .set_url(self.__institution_url)
+                    .build()
+            )
+
+        self._load_collections(
+            dry_run=dry_run,
+            omeka_collections=self._read_omeka_collections()
         )
-
-    def _load_institution(self):
-        self._services.institution_command_service.put_institution(
-            self._institution_id,
-            Institution.Builder()
-                .set_data_rights(
-                    RightsSet.Builder()
-                        .set_elements((
-                            Rights.Builder()
-                                .set_rights_holder(self.__institution_title)
-                                .set_text("Copyright %s %s" % (datetime.now().year, self.__institution_title))
-                                .set_type(RightsType.COPYRIGHTED)
-                                .build()
-
-                        ,))
-                        .build()
-                )
-                .set_model_metadata(self._new_model_metadata())
-                .set_title(self.__institution_title)
-                .set_url(self.__institution_url)
-                .build()
-        )
-
-        self._load_collections(omeka_collections=self._read_omeka_collections())
 
     def _load_item(self, object_builder, omeka_item):
         for element_text in omeka_item.element_texts:
@@ -1383,54 +1399,16 @@ class OmekaLoader(_Loader):
             object_builder.work_types.append(work_type)
 
     def __parse_date(self, text):
-        builder = DateBound.Builder().set_text(text)
+        date_bound_builder = DateBound.Builder().set_text(text)
 
         if text.endswith('?'):
-            builder.set_circa(True)
+            date_bound_builder.set_circa(True)
             text = text[:-1]
-
-        parsed_date_time = None
-        parsed_date_time_granularity = None
-
-        try:
-            year = int(text)
-            parsed_date_time = datetime(year, 1, 1)
-            parsed_date_time_granularity = DateTimeGranularity.YEAR
-        except ValueError:
-            pass
-
-        if parsed_date_time is None:
-            if dateparser is not None:
-                parser = dateparser.date.DateDataParser(languages=('en',))
-                date_data = parser.get_date_data(text)
-                parsed_date_time = date_data['date_obj']
-                if parsed_date_time is not None:
-                    period = date_data['period']
-                    if period == 'day':
-                        parsed_date_time = parsed_date_time.replace(hour=0, minute=0, second=0, microsecond=0)
-                        parsed_date_time_granularity = DateTimeGranularity.DAY
-                    elif period == 'month':
-                        parsed_date_time = parsed_date_time.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
-                        parsed_date_time_granularity = DateTimeGranularity.MONTH
-                    elif period == 'year':
-                        parsed_date_time = parsed_date_time.replace(day=1, month=1, hour=0, minute=0, second=0, microsecond=0)
-                        parsed_date_time_granularity = DateTimeGranularity.YEAR
-                    else:
-                        raise NotImplementedError(period)
-
-        if parsed_date_time is not None:
-            parsed_date_time = parsed_date_time.replace(tzinfo=pytz.utc)
-
-            if parsed_date_time.year > datetime.now().year or parsed_date_time.year < 1000:
-                self._logger.debug("parsed date time has year out of range: '%s' from '%s'", parsed_date_time, text)
-                return builder.build()
-
-            builder.set_parsed_date_time(parsed_date_time)
-            if parsed_date_time_granularity is not None:
-                builder.set_parsed_date_time_granularity(parsed_date_time_granularity)
-            self._logger.debug("parsed date '%s' from %s at granularity '%s'", parsed_date_time, text, parsed_date_time_granularity)
-
-        return builder.build()
+            
+        self._parse_certain_date(
+            date_bound_builder=date_bound_builder,
+            text=text
+        )
 
     def __parse_date_range(self, text):
         text_split = text.split('-', 1)
@@ -1461,11 +1439,15 @@ class OmekaLoader(_Loader):
                         .build()
 
     def _read_omeka_collections(self):
-        with open(os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'collections.json')) as f:
+        file_path = os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'collections.json')
+        self._logger.info("reading collections from %s", file_path)
+        with open(file_path) as f:
             return OmekaJsonParser().parse_collection_dicts(json.loads(f.read()))
 
     def _read_omeka_items(self, omeka_collection):
-        with open(os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'collection', str(omeka_collection.id), 'items.json')) as f:
+        file_path = os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'collection', str(omeka_collection.id), 'items.json')
+        self._logger.info("reading items from %s", file_path)
+        with open(file_path) as f:
             return OmekaJsonParser().parse_item_dicts(json.loads(f.read()))
 
     def __update_vocabulary_used(self, element_set_name, element_name, text):
