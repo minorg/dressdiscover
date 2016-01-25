@@ -1,12 +1,8 @@
 from collections import OrderedDict
-from datetime import datetime
 import os.path
 from pprint import pformat
 import urllib
 from xml.etree import ElementTree
-
-import dateparser
-import pytz
 
 from costume.api.models.agent.agent import Agent
 from costume.api.models.agent.agent_name import AgentName
@@ -16,7 +12,6 @@ from costume.api.models.agent.agent_set import AgentSet
 from costume.api.models.date.date import Date
 from costume.api.models.date.date_bound import DateBound
 from costume.api.models.date.date_set import DateSet
-from costume.api.models.date.date_time_granularity import DateTimeGranularity
 from costume.api.models.date.date_type import DateType
 from costume.api.models.description.description import Description
 from costume.api.models.description.description_set import DescriptionSet
@@ -52,6 +47,7 @@ from costume.api.models.work_type.work_type import WorkType
 from costume.api.models.work_type.work_type_set import WorkTypeSet
 from costume.etl._loader import _Loader
 from costume.etl.dcmi_types import DCMI_TYPES_BASE_URL
+from bokeh._glyph_functions import text
 
 
 class TxfcLoader(_Loader):
@@ -184,22 +180,61 @@ class TxfcLoader(_Loader):
             self._logger.info("putting %d objects to collection %s", len(objects_by_id), self.__collection_id)
             self._put_objects_by_id(objects_by_id)
 
-    def __parse_date(self, text):
+    def __parse_date(self, text, circa=None):
         date_bound_builder = DateBound.Builder().set_text(text)
-
         
+        if text[-1] == 'u':
+            date_bound_builder.set_circa(True)
+            text = text[:-1] + '0'
+        elif text[-1] == '~':
+            date_bound_builder.set_circa(True)
+            text = text[:-1]
+        elif circa is not None:
+            date_bound_builder.set_circa(circa)
         
+        self._parse_certain_date(
+            date_bound_builder=date_bound_builder,
+            text=text
+        )
+        
+        return date_bound_builder.build()
     
     def __parse_date_range(self, text):
-        text_split = text.split('-', 1)
-        if len(text_split) == 1:
-            parsed_date = self.__parse_date(text)
-            date_range = parsed_date, parsed_date
-        elif len(text_split) == 2:
-            date_range = self.__parse_date(text_split[0]), self.__parse_date(text_split[1])
+        original_text = text
+        
+        text = text.lstrip('[').rstrip(']')
+
+        if text[-1] == '~':
+            text = text[:-1]
+            circa = True
         else:
-            raise NotImplementedError
-        self._logger.debug("parsed date range '%s' from '%s'", date_range, text)
+            circa = False
+        
+        date_range = None
+        for separator in ('/', '..'):
+            text_split = text.split(separator)
+            if len(text_split) != 2:
+                continue
+            try:
+                int(text_split[0])
+                int(text_split[1])
+                years = True
+            except ValueError:
+                years = False
+            if years:
+                date_range = \
+                    self.__parse_date(text_split[0], circa=circa),\
+                    self.__parse_date(text_split[1], circa=circa)
+                break
+        
+        if date_range is None:
+            earliest_date = latest_date = self.__parse_date(text, circa=circa)
+            date_range = earliest_date, latest_date
+        
+        if date_range[0].parsed_date_time is None or date_range[1].parsed_date_time is None:
+            self._logger.warn("unable to parse date range '%s'", original_text)
+        else:
+            self._logger.debug("parsed date range '%s' from '%s'", date_range, original_text)
         return date_range
 
     def __parse_record(self, record_etree):
