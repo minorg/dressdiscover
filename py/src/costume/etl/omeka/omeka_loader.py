@@ -89,12 +89,6 @@ from costume.etl.dcmi_types import DCMI_TYPES, DCMI_TYPES_BASE_URL
 from yomeka.client.omeka_json_parser import OmekaJsonParser
 
 
-try:
-    import dateparser.date
-except ImportError:
-    dateparser = None
-
-
 class OmekaLoader(_Loader):
     class _ObjectBuilder(object):
         def __init__(
@@ -341,6 +335,7 @@ class OmekaLoader(_Loader):
         self.__institution_url = institution_url
         self.__square_thumbnail_height_px = square_thumbnail_height_px
         self.__square_thumbnail_width_px = square_thumbnail_width_px
+        self.__structure_counts_by_omeka_item_id = Counter()
         self.__vocabulary_used = {}
 
     @classmethod
@@ -358,9 +353,16 @@ class OmekaLoader(_Loader):
         argument_parser.add_argument('--institution-url', required=True)
 
     def _load(self, dry_run):
+        self.__structure_counts_by_omeka_item_id = Counter()
         self.__vocabulary_used = {}
 
         self._load_institution(dry_run=dry_run)
+
+        print "Omeka items with most structure:"
+        structure_count_items = list(self.__structure_counts_by_omeka_item_id.items())
+        structure_count_items.sort(lambda left, right: -1 * cmp(left[1], right[1]))
+        for structure_count_item in structure_count_items:
+            print "%d,%d" % structure_count_item
 
         vocabulary_used_alphabetical = OrderedDict()
         for element_set_name in sorted(self.__vocabulary_used.keys()):
@@ -853,6 +855,8 @@ class OmekaLoader(_Loader):
         self.__update_vocabulary_used('Item Type Metadata', 'Classification', text)
 
     def _load_item_element_itm_closure_placement(self, object_builder, text):
+        self.__structure_counts_by_omeka_item_id[object_builder.omeka_item_id] += 1
+
         if text not in COSTUME_CORE_CONTROLLED_VOCABULARIES['Closure Placement']:
             self._logger.warn("using uncontrolled closure placement %s from item %d", text, object_builder.omeka_item_id)
         object_builder.closure_placements.append(
@@ -864,6 +868,8 @@ class OmekaLoader(_Loader):
         self.__update_vocabulary_used('Item Type Metadata', 'Closure Placement', text)
 
     def _load_item_element_itm_closure_type(self, object_builder, text):
+        self.__structure_counts_by_omeka_item_id[object_builder.omeka_item_id] += 1        
+        
         if text not in COSTUME_CORE_CONTROLLED_VOCABULARIES['Closure Type']:
             self._logger.warn("using uncontrolled closure type %s from item %d", text, object_builder.omeka_item_id)
         object_builder.closure_types.append(
@@ -1172,6 +1178,8 @@ class OmekaLoader(_Loader):
         pass
 
     def __load_item_element_itm_structure(self, object_builder, text, type_):
+        self.__structure_counts_by_omeka_item_id[object_builder.omeka_item_id] += 1
+        
         vocab_ref = VocabRef(vocab=Vocab.COSTUME_CORE)
 
         logger = self._logger
@@ -1278,6 +1286,8 @@ class OmekaLoader(_Loader):
         pass # Accession number suffix
 
     def _load_item_element_itm_technique(self, object_builder, text):
+        self.__structure_counts_by_omeka_item_id[object_builder.omeka_item_id] += 1
+        
         for technique in text.split(';'):
             for technique in technique.split(','):
                 technique = technique.strip()
@@ -1409,6 +1419,8 @@ class OmekaLoader(_Loader):
             date_bound_builder=date_bound_builder,
             text=text
         )
+        
+        return date_bound_builder.build()
 
     def __parse_date_range(self, text):
         text_split = text.split('-', 1)
