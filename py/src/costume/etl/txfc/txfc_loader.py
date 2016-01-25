@@ -1,8 +1,12 @@
 from collections import OrderedDict
+from datetime import datetime
 import os.path
 from pprint import pformat
 import urllib
 from xml.etree import ElementTree
+
+import dateparser
+import pytz
 
 from costume.api.models.agent.agent import Agent
 from costume.api.models.agent.agent_name import AgentName
@@ -12,6 +16,7 @@ from costume.api.models.agent.agent_set import AgentSet
 from costume.api.models.date.date import Date
 from costume.api.models.date.date_bound import DateBound
 from costume.api.models.date.date_set import DateSet
+from costume.api.models.date.date_time_granularity import DateTimeGranularity
 from costume.api.models.date.date_type import DateType
 from costume.api.models.description.description import Description
 from costume.api.models.description.description_set import DescriptionSet
@@ -60,22 +65,22 @@ class TxfcLoader(_Loader):
             self.agents = []
             self.dates = []
             self.descriptions = []
-            self.end_date_text = None
+            self.end_date_bound = None
             self.images = []
             self.locations = []
             self.rights = []
-            self.start_date_text = None
+            self.start_date_bound = None
             self.subjects = []
             self.textrefs = []
             self.titles = []
             self.work_types = []
 
         def build(self):
-            if self.start_date_text is not None and self.end_date_text is not None:
+            if self.start_date_bound is not None and self.end_date_bound is not None:
                 self.dates.append(
                     Date.Builder()
-                        .set_earliest_date(DateBound.Builder().set_text(self.start_date_text).build())
-                        .set_latest_date(DateBound.Builder().set_text(self.end_date_text).build())
+                        .set_earliest_date(self.start_date_bound)
+                        .set_latest_date(self.end_date_bound)
                         .set_type(DateType.CREATION)
                         .build()
                 )
@@ -179,6 +184,24 @@ class TxfcLoader(_Loader):
             self._logger.info("putting %d objects to collection %s", len(objects_by_id), self.__collection_id)
             self._put_objects_by_id(objects_by_id)
 
+    def __parse_date(self, text):
+        date_bound_builder = DateBound.Builder().set_text(text)
+
+        
+        
+    
+    def __parse_date_range(self, text):
+        text_split = text.split('-', 1)
+        if len(text_split) == 1:
+            parsed_date = self.__parse_date(text)
+            date_range = parsed_date, parsed_date
+        elif len(text_split) == 2:
+            date_range = self.__parse_date(text_split[0]), self.__parse_date(text_split[1])
+        else:
+            raise NotImplementedError
+        self._logger.debug("parsed date range '%s' from '%s'", date_range, text)
+        return date_range
+
     def __parse_record(self, record_etree):
         # info:ark/67531/metadc114731
         record_identifier = record_etree.find('header').find('identifier').text
@@ -275,9 +298,12 @@ class TxfcLoader(_Loader):
         if qualifier == 'date':
             pass # Same as date element
         elif qualifier == 'eDate':
-            if object_builder.end_date_text is not None:
+            if object_builder.end_date_bound is not None:
                 self._logger.warn("record %s has multiple eDate's", object_builder.record_identifier)
-            object_builder.end_date_text = text
+            earliest_date, latest_date = self.__parse_date_range(text)
+            if earliest_date != latest_date:
+                self._logger.warn("record %s has a eDate range: %s", object_builder.record_identifier, text)
+            object_builder.end_date_bound = latest_date
         elif qualifier == 'placeName':
             text_parts = [text_part.strip() for text_part in text.split(' - ')]
             self._logger.debug('place name from record %s: %s', object_builder.record_identifier, text)
@@ -332,9 +358,12 @@ class TxfcLoader(_Loader):
                     .build()
             )
         elif qualifier == 'sDate':
-            if object_builder.start_date_text is not None:
+            if object_builder.start_date_bound is not None:
                 self._logger.warn("record %s has multiple sDate's", object_builder.record_identifier)
-            object_builder.start_date_text = text
+            earliest_date, latest_date = self.__parse_date_range(text)
+            if earliest_date != latest_date:
+                self._logger.warn("record %s has a sDate range: %s", object_builder.record_identifier, text)
+            object_builder.start_date_bound = earliest_date
         else:
             self._logger.warn("unknown coverage qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
 
@@ -356,11 +385,11 @@ class TxfcLoader(_Loader):
             else:
                 self._logger.warn("unknown date qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
 
-        date_bound = DateBound.Builder().set_text(text).build()
+        earliest_date, latest_date = self.__parse_date_range(text)
         object_builder.dates.append(
             Date.Builder()
-                .set_earliest_date(date_bound)
-                .set_latest_date(date_bound)
+                .set_earliest_date(earliest_date)
+                .set_latest_date(latest_date)
                 .set_type(date_type)
                 .build()
         )

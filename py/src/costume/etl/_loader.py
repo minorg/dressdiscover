@@ -1,6 +1,10 @@
 from datetime import datetime
 
+import dateparser
+import pytz
+
 from costume.api.models.collection.collection import Collection
+from costume.api.models.date.date_time_granularity import DateTimeGranularity
 from costume.api.models.model_metadata import ModelMetadata
 from costume.api.models.object.object_entry import ObjectEntry
 from costume.api.services.institution.no_such_institution_exception import NoSuchInstitutionException
@@ -53,18 +57,51 @@ class _Loader(_Main):
         datetime_now = datetime.now()
         return ModelMetadata.Builder().set_ctime(datetime_now).set_mtime(datetime_now).build()
 
+    def _parse_certain_date(self, date_bound_builder, text):
+        parsed_date_time = None
+        parsed_date_time_granularity = None
+
+        try:
+            year = int(text)
+            parsed_date_time = datetime(year, 1, 1)
+            parsed_date_time_granularity = DateTimeGranularity.YEAR
+        except ValueError:
+            pass
+
+        if parsed_date_time is None:
+            if dateparser is not None:
+                parser = dateparser.date.DateDataParser(languages=('en',))
+                date_data = parser.get_date_data(text)
+                parsed_date_time = date_data['date_obj']
+                if parsed_date_time is not None:
+                    period = date_data['period']
+                    if period == 'day':
+                        parsed_date_time = parsed_date_time.replace(hour=0, minute=0, second=0, microsecond=0)
+                        parsed_date_time_granularity = DateTimeGranularity.DAY
+                    elif period == 'month':
+                        parsed_date_time = parsed_date_time.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+                        parsed_date_time_granularity = DateTimeGranularity.MONTH
+                    elif period == 'year':
+                        parsed_date_time = parsed_date_time.replace(day=1, month=1, hour=0, minute=0, second=0, microsecond=0)
+                        parsed_date_time_granularity = DateTimeGranularity.YEAR
+                    else:
+                        raise NotImplementedError(period)
+
+        if parsed_date_time is not None:
+            parsed_date_time = parsed_date_time.replace(tzinfo=pytz.utc)
+
+            if parsed_date_time.year > datetime.now().year or parsed_date_time.year < 1000:
+                self._logger.debug("parsed date time has year out of range: '%s' from '%s'", parsed_date_time, text)
+                return
+
+            date_bound_builder.set_parsed_date_time(parsed_date_time)
+            if parsed_date_time_granularity is not None:
+                date_bound_builder.set_parsed_date_time_granularity(parsed_date_time_granularity)
+            self._logger.debug("parsed date '%s' from %s at granularity '%s'", parsed_date_time, text, parsed_date_time_granularity)
+
     @property
     def _properties(self):
         return self.__properties
-
-    def _run(self):
-        if self.__clean:
-            self._clean()
-        self._load(dry_run=self.__dry_run)
-
-    @property
-    def _services(self):
-        return self.__services
 
     def _put_collection(self, collection_id, title, hidden=None):
         self._services.collection_command_service.put_collection(
@@ -86,3 +123,12 @@ class _Loader(_Main):
                   for object_id, object_ in objects_by_id.iteritems())
         )
         self._logger.info("put %d objects to the service", len(objects_by_id))
+
+    def _run(self):
+        if self.__clean:
+            self._clean()
+        self._load(dry_run=self.__dry_run)
+
+    @property
+    def _services(self):
+        return self.__services
