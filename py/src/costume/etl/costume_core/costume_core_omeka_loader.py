@@ -13,7 +13,6 @@ from costume.api.models.closure.closure_set import ClosureSet
 from costume.api.models.closure.closure_type import ClosureType
 from costume.api.models.color.color import Color
 from costume.api.models.color.color_set import ColorSet
-from costume.api.models.color.color_type import ColorType
 from costume.api.models.component.component import Component
 from costume.api.models.component.component_set import ComponentSet
 from costume.api.models.component.component_term import ComponentTerm
@@ -235,13 +234,7 @@ class CostumeCoreOmekaLoader(OmekaLoader):
         )
         self._update_vocabulary_used('Item Type Metadata', 'Closure Type', text)
 
-    def _load_item_element_itm_color_main(self, **kwds):
-        self.__load_item_element_itm_color(type_=ColorType.PRIMARY, **kwds)
-
-    def _load_item_element_itm_color_secondary(self, **kwds):
-        self.__load_item_element_itm_color(type_=ColorType.SECONDARY, **kwds)
-
-    def __load_item_element_itm_color(self, object_builder, text, type_):
+    def _load_item_element_itm_color(self, object_builder, text, type_):
         text = text.lower()
         builder = \
             Color.Builder()\

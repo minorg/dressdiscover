@@ -63,6 +63,10 @@ public interface InstitutionQueryService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     iprot.readStructBegin();
                     while (true) {
                         final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -78,6 +82,11 @@ public interface InstitutionQueryService {
                             }
                             break;
                         }
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
                         }
                         iprot.readFieldEnd();
                     }
@@ -314,6 +323,10 @@ public interface InstitutionQueryService {
             }
 
             public static GetInstitutionByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static GetInstitutionByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 net.lab1318.costume.api.models.institution.InstitutionId id = null;
 
                 iprot.readStructBegin();
@@ -331,6 +344,11 @@ public interface InstitutionQueryService {
                         }
                         break;
                     }
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
                     iprot.readFieldEnd();
                 }
@@ -420,6 +438,10 @@ public interface InstitutionQueryService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     iprot.readStructBegin();
                     while (true) {
                         final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -431,6 +453,11 @@ public interface InstitutionQueryService {
                             returnValue = net.lab1318.costume.api.models.institution.Institution.readAsStruct(iprot);
                             break;
                         }
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
                         }
                         iprot.readFieldEnd();
                     }
@@ -663,6 +690,10 @@ public interface InstitutionQueryService {
             }
 
             public static GetInstitutionByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static GetInstitutionByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 net.lab1318.costume.api.models.institution.Institution returnValue = null;
 
                 iprot.readStructBegin();
@@ -676,6 +707,11 @@ public interface InstitutionQueryService {
                         returnValue = net.lab1318.costume.api.models.institution.Institution.readAsStruct(iprot);
                         break;
                     }
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
                     iprot.readFieldEnd();
                 }
@@ -758,6 +794,10 @@ public interface InstitutionQueryService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     iprot.readStructBegin();
                     while (true) {
                         final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -765,6 +805,11 @@ public interface InstitutionQueryService {
                             break;
                         }
                         switch (ifield.getName()) {
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
                         }
                         iprot.readFieldEnd();
                     }
@@ -874,6 +919,10 @@ public interface InstitutionQueryService {
             }
 
             public static GetInstitutionsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static GetInstitutionsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 iprot.readStructBegin();
                 while (true) {
                     final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -881,6 +930,11 @@ public interface InstitutionQueryService {
                         break;
                     }
                     switch (ifield.getName()) {
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
                     iprot.readFieldEnd();
                 }
@@ -972,6 +1026,10 @@ public interface InstitutionQueryService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     iprot.readStructBegin();
                     while (true) {
                         final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -998,6 +1056,11 @@ public interface InstitutionQueryService {
                             }).apply(iprot);
                             break;
                         }
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
                         }
                         iprot.readFieldEnd();
                     }
@@ -1246,6 +1309,10 @@ public interface InstitutionQueryService {
             }
 
             public static GetInstitutionsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static GetInstitutionsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionEntry> returnValue = null;
 
                 iprot.readStructBegin();
@@ -1274,6 +1341,11 @@ public interface InstitutionQueryService {
                         }).apply(iprot);
                         break;
                     }
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
                     iprot.readFieldEnd();
                 }
@@ -1390,6 +1462,10 @@ public interface InstitutionQueryService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     iprot.readStructBegin();
                     while (true) {
                         final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -1420,6 +1496,11 @@ public interface InstitutionQueryService {
                             }).apply(iprot);
                             break;
                         }
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
                         }
                         iprot.readFieldEnd();
                     }
@@ -1672,6 +1753,10 @@ public interface InstitutionQueryService {
             }
 
             public static GetInstitutionsByIdsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static GetInstitutionsByIdsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId> ids = null;
 
                 iprot.readStructBegin();
@@ -1704,6 +1789,11 @@ public interface InstitutionQueryService {
                         }).apply(iprot);
                         break;
                     }
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
                     iprot.readFieldEnd();
                 }
@@ -1816,6 +1906,10 @@ public interface InstitutionQueryService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     iprot.readStructBegin();
                     while (true) {
                         final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -1842,6 +1936,11 @@ public interface InstitutionQueryService {
                             }).apply(iprot);
                             break;
                         }
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
                         }
                         iprot.readFieldEnd();
                     }
@@ -2090,6 +2189,10 @@ public interface InstitutionQueryService {
             }
 
             public static GetInstitutionsByIdsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static GetInstitutionsByIdsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.Institution> returnValue = null;
 
                 iprot.readStructBegin();
@@ -2118,6 +2221,11 @@ public interface InstitutionQueryService {
                         }).apply(iprot);
                         break;
                     }
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
                     iprot.readFieldEnd();
                 }

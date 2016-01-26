@@ -60,6 +60,10 @@ public class Structure implements org.thryft.Struct, net.lab1318.costume.api.mod
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        }
+
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             iprot.readStructBegin();
             while (true) {
                 final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -85,6 +89,11 @@ public class Structure implements org.thryft.Struct, net.lab1318.costume.api.mod
                     }
                     break;
                 }
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
                 }
                 iprot.readFieldEnd();
             }
@@ -400,6 +409,10 @@ public class Structure implements org.thryft.Struct, net.lab1318.costume.api.mod
     }
 
     public static Structure readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+    }
+
+    public static Structure readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         String text = null;
         net.lab1318.costume.api.models.structure.StructureType type = null;
         com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> vocabRef = com.google.common.base.Optional.absent();
@@ -429,6 +442,11 @@ public class Structure implements org.thryft.Struct, net.lab1318.costume.api.mod
                 }
                 break;
             }
+            default:
+                if (unknownFieldCallback.isPresent()) {
+                    unknownFieldCallback.get().apply(ifield);
+                }
+                break;
             }
             iprot.readFieldEnd();
         }

@@ -47,6 +47,10 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        }
+
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             iprot.readStructBegin();
             while (true) {
                 final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -61,6 +65,11 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
                     }
                     break;
                 }
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
                 }
                 iprot.readFieldEnd();
             }
@@ -330,6 +339,10 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
     }
 
     public static NoSuchInstitutionException readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+    }
+
+    public static NoSuchInstitutionException readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> id = com.google.common.base.Optional.absent();
 
         iprot.readStructBegin();
@@ -346,6 +359,11 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
                 }
                 break;
             }
+            default:
+                if (unknownFieldCallback.isPresent()) {
+                    unknownFieldCallback.get().apply(ifield);
+                }
+                break;
             }
             iprot.readFieldEnd();
         }

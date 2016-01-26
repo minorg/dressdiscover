@@ -77,6 +77,10 @@ public class Inscription implements org.thryft.Struct, net.lab1318.costume.api.m
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        }
+
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             iprot.readStructBegin();
             while (true) {
                 final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -117,6 +121,11 @@ public class Inscription implements org.thryft.Struct, net.lab1318.costume.api.m
                     }
                     break;
                 }
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
                 }
                 iprot.readFieldEnd();
             }
@@ -459,6 +468,10 @@ public class Inscription implements org.thryft.Struct, net.lab1318.costume.api.m
     }
 
     public static Inscription readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+    }
+
+    public static Inscription readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.inscription.InscriptionText> texts = null;
         com.google.common.base.Optional<net.lab1318.costume.api.models.inscription.InscriptionAuthor> author = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> position = com.google.common.base.Optional.absent();
@@ -503,6 +516,11 @@ public class Inscription implements org.thryft.Struct, net.lab1318.costume.api.m
                 }
                 break;
             }
+            default:
+                if (unknownFieldCallback.isPresent()) {
+                    unknownFieldCallback.get().apply(ifield);
+                }
+                break;
             }
             iprot.readFieldEnd();
         }

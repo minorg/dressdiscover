@@ -52,6 +52,10 @@ public class CollectionEntry implements org.thryft.Struct, org.thryft.waf.api.mo
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        }
+
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             iprot.readStructBegin();
             while (true) {
                 final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -71,6 +75,11 @@ public class CollectionEntry implements org.thryft.Struct, org.thryft.waf.api.mo
                     model = net.lab1318.costume.api.models.collection.Collection.readAsStruct(iprot);
                     break;
                 }
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
                 }
                 iprot.readFieldEnd();
             }
@@ -334,6 +343,10 @@ public class CollectionEntry implements org.thryft.Struct, org.thryft.waf.api.mo
     }
 
     public static CollectionEntry readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+    }
+
+    public static CollectionEntry readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         net.lab1318.costume.api.models.collection.CollectionId id = null;
         net.lab1318.costume.api.models.collection.Collection model = null;
 
@@ -356,6 +369,11 @@ public class CollectionEntry implements org.thryft.Struct, org.thryft.waf.api.mo
                 model = net.lab1318.costume.api.models.collection.Collection.readAsStruct(iprot);
                 break;
             }
+            default:
+                if (unknownFieldCallback.isPresent()) {
+                    unknownFieldCallback.get().apply(ifield);
+                }
+                break;
             }
             iprot.readFieldEnd();
         }

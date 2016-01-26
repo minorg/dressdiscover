@@ -346,6 +346,10 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        }
+
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             iprot.readStructBegin();
             while (true) {
                 final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -583,6 +587,11 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
                     }
                     break;
                 }
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
                 }
                 iprot.readFieldEnd();
             }
@@ -1979,6 +1988,10 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
     }
 
     public static Object readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+    }
+
+    public static Object readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         net.lab1318.costume.api.models.collection.CollectionId collectionId = null;
         net.lab1318.costume.api.models.institution.InstitutionId institutionId = null;
         net.lab1318.costume.api.models.ModelMetadata modelMetadata = null;
@@ -2246,6 +2259,11 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
                 }
                 break;
             }
+            default:
+                if (unknownFieldCallback.isPresent()) {
+                    unknownFieldCallback.get().apply(ifield);
+                }
+                break;
             }
             iprot.readFieldEnd();
         }

@@ -65,6 +65,10 @@ public class Description implements org.thryft.Struct, net.lab1318.costume.api.m
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        }
+
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             iprot.readStructBegin();
             while (true) {
                 final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -93,6 +97,11 @@ public class Description implements org.thryft.Struct, net.lab1318.costume.api.m
                     }
                     break;
                 }
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
                 }
                 iprot.readFieldEnd();
             }
@@ -422,6 +431,10 @@ public class Description implements org.thryft.Struct, net.lab1318.costume.api.m
     }
 
     public static Description readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+    }
+
+    public static Description readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         String text = null;
         com.google.common.base.Optional<String> source = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.description.DescriptionType> type = com.google.common.base.Optional.absent();
@@ -454,6 +467,11 @@ public class Description implements org.thryft.Struct, net.lab1318.costume.api.m
                 }
                 break;
             }
+            default:
+                if (unknownFieldCallback.isPresent()) {
+                    unknownFieldCallback.get().apply(ifield);
+                }
+                break;
             }
             iprot.readFieldEnd();
         }

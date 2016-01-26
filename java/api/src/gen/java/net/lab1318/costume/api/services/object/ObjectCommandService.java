@@ -54,6 +54,10 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     iprot.readStructBegin();
                     while (true) {
                         final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -61,6 +65,11 @@ public interface ObjectCommandService {
                             break;
                         }
                         switch (ifield.getName()) {
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
                         }
                         iprot.readFieldEnd();
                     }
@@ -170,6 +179,10 @@ public interface ObjectCommandService {
             }
 
             public static DeleteObjectsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static DeleteObjectsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 iprot.readStructBegin();
                 while (true) {
                     final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -177,6 +190,11 @@ public interface ObjectCommandService {
                         break;
                     }
                     switch (ifield.getName()) {
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
                     iprot.readFieldEnd();
                 }
@@ -246,6 +264,10 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     iprot.readStructBegin();
                     while (true) {
                         final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -253,6 +275,11 @@ public interface ObjectCommandService {
                             break;
                         }
                         switch (ifield.getName()) {
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
                         }
                         iprot.readFieldEnd();
                     }
@@ -362,6 +389,10 @@ public interface ObjectCommandService {
             }
 
             public static DeleteObjectsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static DeleteObjectsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 iprot.readStructBegin();
                 while (true) {
                     final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -369,6 +400,11 @@ public interface ObjectCommandService {
                         break;
                     }
                     switch (ifield.getName()) {
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
                     iprot.readFieldEnd();
                 }
@@ -449,6 +485,10 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     iprot.readStructBegin();
                     while (true) {
                         final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -464,6 +504,11 @@ public interface ObjectCommandService {
                             }
                             break;
                         }
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
                         }
                         iprot.readFieldEnd();
                     }
@@ -700,6 +745,10 @@ public interface ObjectCommandService {
             }
 
             public static DeleteObjectsByCollectionIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static DeleteObjectsByCollectionIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 net.lab1318.costume.api.models.collection.CollectionId collectionId = null;
 
                 iprot.readStructBegin();
@@ -717,6 +766,11 @@ public interface ObjectCommandService {
                         }
                         break;
                     }
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
                     iprot.readFieldEnd();
                 }
@@ -799,6 +853,10 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     iprot.readStructBegin();
                     while (true) {
                         final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -806,6 +864,11 @@ public interface ObjectCommandService {
                             break;
                         }
                         switch (ifield.getName()) {
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
                         }
                         iprot.readFieldEnd();
                     }
@@ -915,6 +978,10 @@ public interface ObjectCommandService {
             }
 
             public static DeleteObjectsByCollectionIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static DeleteObjectsByCollectionIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 iprot.readStructBegin();
                 while (true) {
                     final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -922,6 +989,11 @@ public interface ObjectCommandService {
                         break;
                     }
                     switch (ifield.getName()) {
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
                     iprot.readFieldEnd();
                 }
@@ -1002,6 +1074,10 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     iprot.readStructBegin();
                     while (true) {
                         final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -1017,6 +1093,11 @@ public interface ObjectCommandService {
                             }
                             break;
                         }
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
                         }
                         iprot.readFieldEnd();
                     }
@@ -1253,6 +1334,10 @@ public interface ObjectCommandService {
             }
 
             public static DeleteObjectsByInstitutionIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static DeleteObjectsByInstitutionIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 net.lab1318.costume.api.models.institution.InstitutionId institutionId = null;
 
                 iprot.readStructBegin();
@@ -1270,6 +1355,11 @@ public interface ObjectCommandService {
                         }
                         break;
                     }
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
                     iprot.readFieldEnd();
                 }
@@ -1352,6 +1442,10 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     iprot.readStructBegin();
                     while (true) {
                         final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -1359,6 +1453,11 @@ public interface ObjectCommandService {
                             break;
                         }
                         switch (ifield.getName()) {
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
                         }
                         iprot.readFieldEnd();
                     }
@@ -1468,6 +1567,10 @@ public interface ObjectCommandService {
             }
 
             public static DeleteObjectsByInstitutionIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static DeleteObjectsByInstitutionIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 iprot.readStructBegin();
                 while (true) {
                     final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -1475,6 +1578,11 @@ public interface ObjectCommandService {
                         break;
                     }
                     switch (ifield.getName()) {
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
                     iprot.readFieldEnd();
                 }
@@ -1562,6 +1670,10 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     iprot.readStructBegin();
                     while (true) {
                         final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -1581,6 +1693,11 @@ public interface ObjectCommandService {
                             object = net.lab1318.costume.api.models.object.Object.readAsStruct(iprot);
                             break;
                         }
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
                         }
                         iprot.readFieldEnd();
                     }
@@ -1844,6 +1961,10 @@ public interface ObjectCommandService {
             }
 
             public static PutObjectRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static PutObjectRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 net.lab1318.costume.api.models.object.ObjectId id = null;
                 net.lab1318.costume.api.models.object.Object object = null;
 
@@ -1866,6 +1987,11 @@ public interface ObjectCommandService {
                         object = net.lab1318.costume.api.models.object.Object.readAsStruct(iprot);
                         break;
                     }
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
                     iprot.readFieldEnd();
                 }
@@ -1960,6 +2086,10 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     iprot.readStructBegin();
                     while (true) {
                         final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -1967,6 +2097,11 @@ public interface ObjectCommandService {
                             break;
                         }
                         switch (ifield.getName()) {
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
                         }
                         iprot.readFieldEnd();
                     }
@@ -2076,6 +2211,10 @@ public interface ObjectCommandService {
             }
 
             public static PutObjectResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static PutObjectResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 iprot.readStructBegin();
                 while (true) {
                     final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -2083,6 +2222,11 @@ public interface ObjectCommandService {
                         break;
                     }
                     switch (ifield.getName()) {
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
                     iprot.readFieldEnd();
                 }
@@ -2174,6 +2318,10 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     iprot.readStructBegin();
                     while (true) {
                         final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -2200,6 +2348,11 @@ public interface ObjectCommandService {
                             }).apply(iprot);
                             break;
                         }
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
                         }
                         iprot.readFieldEnd();
                     }
@@ -2448,6 +2601,10 @@ public interface ObjectCommandService {
             }
 
             public static PutObjectsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static PutObjectsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> objects = null;
 
                 iprot.readStructBegin();
@@ -2476,6 +2633,11 @@ public interface ObjectCommandService {
                         }).apply(iprot);
                         break;
                     }
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
                     iprot.readFieldEnd();
                 }
@@ -2566,6 +2728,10 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     iprot.readStructBegin();
                     while (true) {
                         final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -2573,6 +2739,11 @@ public interface ObjectCommandService {
                             break;
                         }
                         switch (ifield.getName()) {
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
                         }
                         iprot.readFieldEnd();
                     }
@@ -2682,6 +2853,10 @@ public interface ObjectCommandService {
             }
 
             public static PutObjectsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static PutObjectsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 iprot.readStructBegin();
                 while (true) {
                     final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -2689,6 +2864,11 @@ public interface ObjectCommandService {
                         break;
                     }
                     switch (ifield.getName()) {
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
                     iprot.readFieldEnd();
                 }
