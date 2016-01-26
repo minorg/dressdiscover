@@ -1,9 +1,9 @@
-from costume.etl.omeka.omeka_loader import OmekaLoader
+from costume.etl.costume_core.costume_core_omeka_loader import CostumeCoreOmekaLoader
 
 
-class VcccOmekaLoader(OmekaLoader):
+class VcccOmekaLoader(CostumeCoreOmekaLoader):
     def __init__(self, **kwds):
-        OmekaLoader.__init__(
+        CostumeCoreOmekaLoader.__init__(
             self,
             endpoint_url='http://vcomeka.com/vccc',
             institution_id='vccc',
