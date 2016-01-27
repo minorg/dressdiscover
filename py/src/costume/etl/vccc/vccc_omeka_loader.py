@@ -1,9 +1,10 @@
-from costume.etl.omeka.omeka_loader import OmekaLoader
+from costume.api.models.color.color_type import ColorType
+from costume.etl.costume_core.costume_core_omeka_loader import CostumeCoreOmekaLoader
 
 
-class VcccOmekaLoader(OmekaLoader):
+class VcccOmekaLoader(CostumeCoreOmekaLoader):
     def __init__(self, **kwds):
-        OmekaLoader.__init__(
+        CostumeCoreOmekaLoader.__init__(
             self,
             endpoint_url='http://vcomeka.com/vccc',
             institution_id='vccc',
@@ -15,6 +16,12 @@ class VcccOmekaLoader(OmekaLoader):
     @classmethod
     def _add_institution_arguments(cls, argument_parser):
         pass
+
+    def _load_item_element_itm_color_main(self, **kwds):
+        self._load_item_element_itm_color(type_=ColorType.PRIMARY, **kwds)
+
+    def _load_item_element_itm_color_secondary(self, **kwds):
+        self._load_item_element_itm_color(type_=ColorType.SECONDARY, **kwds)
 
     def _load_item_element_itm_csv_file(self, object_builder, text):
         pass

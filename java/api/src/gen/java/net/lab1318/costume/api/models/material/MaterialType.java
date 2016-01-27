@@ -6,7 +6,9 @@ package net.lab1318.costume.api.models.material;
 public enum MaterialType {
     MEDIUM(0),
     SUPPORT(1),
-    OTHER(2);
+    OTHER(2),
+    WARP(3),
+    WEFT(4);
 
     private MaterialType(int value) {
         this.value = value;
@@ -17,6 +19,8 @@ public enum MaterialType {
         case 0: return MEDIUM;
         case 1: return SUPPORT;
         case 2: return OTHER;
+        case 3: return WARP;
+        case 4: return WEFT;
         default: throw new IllegalArgumentException();
         }
     }

@@ -5,5 +5,7 @@ namespace * costume.api.models.material
 enum MaterialType {
 	MEDIUM,
 	SUPPORT,
-	OTHER
+	OTHER,
+	WARP,
+	WEFT
 }

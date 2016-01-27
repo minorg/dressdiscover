@@ -280,7 +280,7 @@ public final class CostumeCore {
         csv_file_name = 'Costume Core Controlled Vocabularies - 2nd draft, Jan 2013.csv'
         csv_file_path = os.path.join(os.path.dirname(__file__), '..', '..', 'devdata', csv_file_name)
         assert os.path.exists(csv_file_path), csv_file_path
-        out_file_path = os.path.join(os.path.dirname(__file__), '..', '..', 'py', 'src', 'costume', 'etl', 'costume_core_controlled_vocabularies.py')
+        out_file_path = os.path.join(os.path.dirname(__file__), '..', '..', 'py', 'src', 'costume', 'etl', 'costume_core', 'costume_core_controlled_vocabularies.py')
 
         out = {}
         header_row = {}

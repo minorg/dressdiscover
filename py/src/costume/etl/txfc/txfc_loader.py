@@ -47,7 +47,6 @@ from costume.api.models.work_type.work_type import WorkType
 from costume.api.models.work_type.work_type_set import WorkTypeSet
 from costume.etl._loader import _Loader
 from costume.etl.dcmi_types import DCMI_TYPES_BASE_URL
-from bokeh._glyph_functions import text
 
 
 class TxfcLoader(_Loader):
@@ -143,7 +142,7 @@ class TxfcLoader(_Loader):
                                     .set_text("The contents of Texas Fashion Collection, hosted by the University of North Texas Libraries (digital content including images, text, and sound and video recordings) are made publicly available by the collection-holding partners for use in research, teaching, and private study. For the full terms of use, see http://digital.library.unt.edu/terms-of-use/")
                                     .set_type(RightsType.COPYRIGHTED)
                                     .build()
-    
+
                             ,))
                             .build()
                     )
@@ -182,7 +181,7 @@ class TxfcLoader(_Loader):
 
     def __parse_date(self, text, circa=None):
         date_bound_builder = DateBound.Builder().set_text(text)
-        
+
         if text[-1] == 'u':
             date_bound_builder.set_circa(True)
             text = text[:-1] + '0'
@@ -191,17 +190,17 @@ class TxfcLoader(_Loader):
             text = text[:-1]
         elif circa is not None:
             date_bound_builder.set_circa(circa)
-        
+
         self._parse_certain_date(
             date_bound_builder=date_bound_builder,
             text=text
         )
-        
+
         return date_bound_builder.build()
-    
+
     def __parse_date_range(self, text):
         original_text = text
-        
+
         text = text.lstrip('[').rstrip(']')
 
         if text[-1] == '~':
@@ -209,7 +208,7 @@ class TxfcLoader(_Loader):
             circa = True
         else:
             circa = False
-        
+
         date_range = None
         for separator in ('/', '..'):
             text_split = text.split(separator)
@@ -226,11 +225,11 @@ class TxfcLoader(_Loader):
                     self.__parse_date(text_split[0], circa=circa),\
                     self.__parse_date(text_split[1], circa=circa)
                 break
-        
+
         if date_range is None:
             earliest_date = latest_date = self.__parse_date(text, circa=circa)
             date_range = earliest_date, latest_date
-        
+
         if date_range[0].parsed_date_time is None or date_range[1].parsed_date_time is None:
             self._logger.warn("unable to parse date range '%s'", original_text)
         else:
@@ -487,13 +486,11 @@ class TxfcLoader(_Loader):
                     .set_full_size(
                         ImageVersion.Builder()
                             .set_url("http://digital.library.unt.edu/ark:" + object_builder.record_identifier[len('info:ark'):] + '/m1/1/med_res/')
-                            .set_width_px(75)
                             .build()
                     )
                     .set_original(
                         ImageVersion.Builder()
                             .set_url("http://digital.library.unt.edu/ark:" + object_builder.record_identifier[len('info:ark'):] + '/m1/1/high_res/')
-                            .set_width_px(75)
                             .build()
                     )
                     .set_square_thumbnail(

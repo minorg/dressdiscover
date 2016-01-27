@@ -94,6 +94,10 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        }
+
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             iprot.readStructBegin();
             while (true) {
                 final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -141,6 +145,11 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
                     }
                     break;
                 }
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
                 }
                 iprot.readFieldEnd();
             }
@@ -543,6 +552,10 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
     }
 
     public static GetObjectSummariesOptions readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+    }
+
+    public static GetObjectSummariesOptions readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<Boolean> includeFacets = com.google.common.base.Optional.absent();
@@ -595,6 +608,11 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
                 }
                 break;
             }
+            default:
+                if (unknownFieldCallback.isPresent()) {
+                    unknownFieldCallback.get().apply(ifield);
+                }
+                break;
             }
             iprot.readFieldEnd();
         }

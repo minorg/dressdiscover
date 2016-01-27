@@ -48,6 +48,10 @@ public class ObjectSummarySort implements org.thryft.Struct {
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        }
+
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             iprot.readStructBegin();
             while (true) {
                 final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -63,6 +67,11 @@ public class ObjectSummarySort implements org.thryft.Struct {
                     order = iprot.readEnum(net.lab1318.costume.api.models.SortOrder.class);
                     break;
                 }
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
                 }
                 iprot.readFieldEnd();
             }
@@ -322,6 +331,10 @@ public class ObjectSummarySort implements org.thryft.Struct {
     }
 
     public static ObjectSummarySort readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+    }
+
+    public static ObjectSummarySort readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         net.lab1318.costume.api.services.object.ObjectSummarySortField field = null;
         net.lab1318.costume.api.models.SortOrder order = null;
 
@@ -340,6 +353,11 @@ public class ObjectSummarySort implements org.thryft.Struct {
                 order = iprot.readEnum(net.lab1318.costume.api.models.SortOrder.class);
                 break;
             }
+            default:
+                if (unknownFieldCallback.isPresent()) {
+                    unknownFieldCallback.get().apply(ifield);
+                }
+                break;
             }
             iprot.readFieldEnd();
         }

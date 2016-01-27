@@ -72,6 +72,10 @@ public class GetObjectSummariesResult implements org.thryft.Struct {
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        }
+
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             iprot.readStructBegin();
             while (true) {
                 final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -106,6 +110,11 @@ public class GetObjectSummariesResult implements org.thryft.Struct {
                     facets = com.google.common.base.Optional.of(net.lab1318.costume.api.services.object.ObjectFacets.readAsStruct(iprot));
                     break;
                 }
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
                 }
                 iprot.readFieldEnd();
             }
@@ -437,6 +446,10 @@ public class GetObjectSummariesResult implements org.thryft.Struct {
     }
 
     public static GetObjectSummariesResult readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+    }
+
+    public static GetObjectSummariesResult readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectSummaryEntry> hits = null;
         com.google.common.primitives.UnsignedInteger totalHits = com.google.common.primitives.UnsignedInteger.ZERO;
         com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectFacets> facets = com.google.common.base.Optional.absent();
@@ -475,6 +488,11 @@ public class GetObjectSummariesResult implements org.thryft.Struct {
                 facets = com.google.common.base.Optional.of(net.lab1318.costume.api.services.object.ObjectFacets.readAsStruct(iprot));
                 break;
             }
+            default:
+                if (unknownFieldCallback.isPresent()) {
+                    unknownFieldCallback.get().apply(ifield);
+                }
+                break;
             }
             iprot.readFieldEnd();
         }

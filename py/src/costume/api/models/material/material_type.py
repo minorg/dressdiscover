@@ -2,6 +2,8 @@ class MaterialType(object):
     MEDIUM = None
     SUPPORT = None
     OTHER = None
+    WARP = None
+    WEFT = None
 
     def __init__(self, name, value):
         object.__init__(self)
@@ -25,12 +27,18 @@ class MaterialType(object):
             return getattr(MaterialType, 'SUPPORT')
         elif name == 'OTHER' or name == '2':
             return getattr(MaterialType, 'OTHER')
+        elif name == 'WARP' or name == '3':
+            return getattr(MaterialType, 'WARP')
+        elif name == 'WEFT' or name == '4':
+            return getattr(MaterialType, 'WEFT')
         raise ValueError(name)
 
     @classmethod
     def values(cls):
-        return (MaterialType.MEDIUM, MaterialType.SUPPORT, MaterialType.OTHER,)
+        return (MaterialType.MEDIUM, MaterialType.SUPPORT, MaterialType.OTHER, MaterialType.WARP, MaterialType.WEFT,)
 
 MaterialType.MEDIUM = MaterialType('MEDIUM', 0)
 MaterialType.SUPPORT = MaterialType('SUPPORT', 1)
 MaterialType.OTHER = MaterialType('OTHER', 2)
+MaterialType.WARP = MaterialType('WARP', 3)
+MaterialType.WEFT = MaterialType('WEFT', 4)

@@ -95,6 +95,10 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        }
+
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             iprot.readStructBegin();
             while (true) {
                 final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -134,6 +138,11 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
                     logbackXmlFilePath = com.google.common.base.Optional.of(iprot.readString());
                     break;
                 }
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
                 }
                 iprot.readFieldEnd();
             }
@@ -805,6 +814,10 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
     }
 
     public static CostumeProperties readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+    }
+
+    public static CostumeProperties readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         org.thryft.native_.Url apiUrl = org.thryft.native_.Url.parse("http://middleware:8082/api/");
         String environment = null;
         String elasticSearchHost = "elasticsearch";
@@ -853,6 +866,11 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
                 logbackXmlFilePath = com.google.common.base.Optional.of(iprot.readString());
                 break;
             }
+            default:
+                if (unknownFieldCallback.isPresent()) {
+                    unknownFieldCallback.get().apply(ifield);
+                }
+                break;
             }
             iprot.readFieldEnd();
         }
