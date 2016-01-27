@@ -49,7 +49,7 @@ from costume.api.models.textref.textref_refid_type import TextrefRefidType
 from costume.api.models.view_type.view_type import ViewType
 from costume.api.models.vocab import Vocab
 from costume.api.models.vocab_ref import VocabRef
-from costume.etl.costume_core_controlled_vocabularies import COSTUME_CORE_CONTROLLED_VOCABULARIES
+from costume.etl.costume_core.costume_core_controlled_vocabularies import COSTUME_CORE_CONTROLLED_VOCABULARIES
 from costume.etl.omeka.omeka_loader import OmekaLoader
 
 
