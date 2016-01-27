@@ -22,6 +22,7 @@ from costume.api.models.material.material_type import MaterialType
 from costume.api.models.measurements.measurements import Measurements
 from costume.api.models.measurements.measurements_type import MeasurementsType
 from costume.api.models.measurements.measurements_unit import MeasurementsUnit
+from costume.api.models.structure.structure_type import StructureType
 from costume.api.models.vocab import Vocab
 from costume.api.models.vocab_ref import VocabRef
 from costume.api.models.work_type.work_type import WorkType
@@ -68,6 +69,9 @@ class HistoricDressOmekaLoader(CostumeCoreOmekaLoader):
         pass
 
     def _load_item_element_dc_is_referenced_by(self, **kwds):
+        pass
+
+    def _load_item_element_itm_alternative_id(self, **kwds):
         pass
 
     def _load_item_element_itm_cataloger_name_and_date(self, **kwds):
@@ -182,6 +186,51 @@ class HistoricDressOmekaLoader(CostumeCoreOmekaLoader):
                 .set_type(MeasurementsType.WIDTH)
                 .set_unit(MeasurementsUnit.IN)
                 .build()
+        )
+
+    def _load_item_element_itm_shawl_border_detail(self, object_builder, text):
+        object_builder.structures.append(
+            self._parse_structure(
+                object_builder=object_builder,
+                text=text,
+                type_=StructureType(text='Shawl Border Detail', vocab_ref=self._COSTUME_CORE_VOCAB_REF)
+            )
+        )
+
+    def _load_item_element_itm_shawl_border_type(self, object_builder, text):
+        object_builder.structures.append(
+            self._parse_structure(
+                object_builder=object_builder,
+                text=text,
+                type_=StructureType(text='Shawl Border Type', vocab_ref=self._COSTUME_CORE_VOCAB_REF)
+            )
+        )
+
+    def _load_item_element_itm_shawl_design_features(self, object_builder, text):
+        object_builder.structures.append(
+            self._parse_structure(
+                object_builder=object_builder,
+                text=text,
+                type_=StructureType(text='Shawl Design Features', vocab_ref=self._COSTUME_CORE_VOCAB_REF)
+            )
+        )
+
+    def _load_item_element_itm_shawl_field_detail(self, object_builder, text):
+        object_builder.structures.append(
+            self._parse_structure(
+                object_builder=object_builder,
+                text=text,
+                type_=StructureType(text='Shawl Field Detail', vocab_ref=self._COSTUME_CORE_VOCAB_REF)
+            )
+        )
+
+    def _load_item_element_itm_shawl_shape(self, object_builder, text):
+        object_builder.structures.append(
+            self._parse_structure(
+                object_builder=object_builder,
+                text=text,
+                type_=StructureType(text='Shawl Shape', vocab_ref=self._COSTUME_CORE_VOCAB_REF)
+            )
         )
 
     def _load_item_element_itm_snapdragon_order(self, **kwds):

@@ -54,6 +54,8 @@ from costume.etl.omeka.omeka_loader import OmekaLoader
 
 
 class CostumeCoreOmekaLoader(OmekaLoader):
+    _COSTUME_CORE_VOCAB_REF = vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)
+
     class _ObjectBuilder(OmekaLoader._ObjectBuilder):
         def __init__(self, **kwds):
             OmekaLoader._ObjectBuilder.__init__(self, **kwds)
@@ -216,7 +218,7 @@ class CostumeCoreOmekaLoader(OmekaLoader):
         object_builder.closure_placements.append(
             ClosurePlacement.Builder()\
                 .set_text(text)\
-                .set_vocab_ref(VocabRef(vocab=Vocab.COSTUME_CORE))\
+                .set_vocab_ref(self._COSTUME_CORE_VOCAB_REF)\
                 .build()
         )
         self._update_vocabulary_used('Item Type Metadata', 'Closure Placement', text)
@@ -229,7 +231,7 @@ class CostumeCoreOmekaLoader(OmekaLoader):
         object_builder.closure_types.append(
             ClosureType.Builder()\
                 .set_text(text)\
-                .set_vocab_ref(VocabRef(vocab=Vocab.COSTUME_CORE))\
+                .set_vocab_ref(self._COSTUME_CORE_VOCAB_REF)\
                 .build()
         )
         self._update_vocabulary_used('Item Type Metadata', 'Closure Type', text)
@@ -528,33 +530,6 @@ class CostumeCoreOmekaLoader(OmekaLoader):
     def __load_item_element_itm_structure(self, object_builder, text, type_):
         self.__structure_counts_by_omeka_item_id[object_builder.omeka_item_id] += 1
 
-        vocab_ref = VocabRef(vocab=Vocab.COSTUME_CORE)
-
-        logger = self._logger
-        def build_structure(structure_text):
-            try:
-                controlled_vocabulary = COSTUME_CORE_CONTROLLED_VOCABULARIES[type_.text]
-            except KeyError:
-                logger.warn('unable to find controlled vocabulary for structure type %s', type_.text)
-
-            if controlled_vocabulary is not None:
-                if structure_text in controlled_vocabulary:
-                    logger.debug("structure %s from item %d has controlled text '%s'", type_.text, object_builder.omeka_item_id, structure_text)
-                elif structure_text.lower() in controlled_vocabulary:
-                    structure_text = structure_text.lower()
-                    logger.debug("structure %s from item %d has controlled text '%s' after lower-casing", type_.text, object_builder.omeka_item_id, structure_text)
-                else:
-                    logger.warn("structure %s from item %d has uncontrolled text '%s'", type_.text, object_builder.omeka_item_id, structure_text)
-
-            self._update_vocabulary_used('Item Type Metadata', type_.text, structure_text)
-
-            return \
-                Structure.Builder()\
-                    .set_text(structure_text)\
-                    .set_type(type_)\
-                    .set_vocab_ref(vocab_ref)\
-                    .build()
-
         lines = text.split("\n")
         if len(lines) == 1:
             for text_part in text.split(';'):
@@ -567,25 +542,25 @@ class CostumeCoreOmekaLoader(OmekaLoader):
                     if not letter.isalpha():
                         raise NotImplementedError(text_part)
                     structure_text = text_part[2:].strip()
-                    object_builder.structures_by_component_letter.setdefault(letter, []).append(build_structure(structure_text))
+                    object_builder.structures_by_component_letter.setdefault(letter, []).append(self._parse_structure(object_builder=object_builder, text=structure_text, type_=type_))
                 elif text_part.endswith(')'):
                     # Form 'term (extent)'
                     open_p = text_part.rindex('(')
                     if open_p == -1:
-                        object_builder.structures.append(build_structure(text_part))
+                        object_builder.structures.append(self._parse_structure(object_builder=object_builder, text=text_part, type_=type_))
                         continue
                     extent = text_part[open_p+1:-1]
                     structure_text = text_part[:open_p].strip()
                     if len(extent) == 1:
                         letter = extent.lower()
-                        object_builder.structures_by_component_letter.setdefault(letter, []).append(build_structure(structure_text))
+                        object_builder.structures_by_component_letter.setdefault(letter, []).append(self._parse_structure(object_builder=object_builder, text=structure_text, type_=type_))
                     elif len(extent) > 0:
-                        object_builder.structures_by_extent.setdefault(extent, []).append(build_structure(structure_text))
+                        object_builder.structures_by_extent.setdefault(extent, []).append(self._parse_structure(object_builder=object_builder, text=structure_text, type_=type_))
                     else:
                         raise NotImplementedError
                 else:
                     # Form 'term'
-                    object_builder.structures.append(build_structure(text_part))
+                    object_builder.structures.append(self._parse_structure(object_builder=object_builder, text=text_part, type_=type_))
         else:
             # One item, with each line form 'A: term'
             for line in lines:
@@ -598,37 +573,37 @@ class CostumeCoreOmekaLoader(OmekaLoader):
                 if not letter.isalpha():
                     raise NotImplementedError(line)
                 structure_text = line[2:].strip()
-                object_builder.structures_by_component_letter.setdefault(letter, []).append(build_structure(structure_text))
+                object_builder.structures_by_component_letter.setdefault(letter, []).append(self._parse_structure(object_builder=object_builder, text=structure_text, type_=type_))
 
     def _load_item_element_itm_structure_cut(self, **kwds):
-        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Cut', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Cut', vocab_ref=self._COSTUME_CORE_VOCAB_REF), **kwds)
 
     def _load_item_element_itm_structure_hem(self, **kwds):
-        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Lining', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Lining', vocab_ref=self._COSTUME_CORE_VOCAB_REF), **kwds)
 
     def _load_item_element_itm_structure_lining(self, **kwds):
-        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Lining', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Lining', vocab_ref=self._COSTUME_CORE_VOCAB_REF), **kwds)
 
     def _load_item_element_itm_structure_neckline(self, **kwds):
-        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Neckline', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Neckline', vocab_ref=self._COSTUME_CORE_VOCAB_REF), **kwds)
 
     def _load_item_element_itm_structure_pants(self, **kwds):
-        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Pants', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Pants', vocab_ref=self._COSTUME_CORE_VOCAB_REF), **kwds)
 
     def _load_item_element_itm_structure_silhouette(self, **kwds):
-        self.__load_item_element_itm_structure(type_=StructureType(text='Overall Silhouette', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+        self.__load_item_element_itm_structure(type_=StructureType(text='Overall Silhouette', vocab_ref=self._COSTUME_CORE_VOCAB_REF), **kwds)
 
     def _load_item_element_itm_structure_skirt(self, **kwds):
-        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Skirt', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Skirt', vocab_ref=self._COSTUME_CORE_VOCAB_REF), **kwds)
 
     def _load_item_element_itm_structure_sleeves(self, **kwds):
-        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Sleeves', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Sleeves', vocab_ref=self._COSTUME_CORE_VOCAB_REF), **kwds)
 
     def _load_item_element_itm_structure_torso(self, **kwds):
-        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Torso', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Torso', vocab_ref=self._COSTUME_CORE_VOCAB_REF), **kwds)
 
     def _load_item_element_itm_structure_waist(self, **kwds):
-        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Waist', vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)), **kwds)
+        self.__load_item_element_itm_structure(type_=StructureType(text='Structure Waist', vocab_ref=self._COSTUME_CORE_VOCAB_REF), **kwds)
 
     def _load_item_element_itm_suffix(self, object_builder, text):
         pass # Accession number suffix
@@ -677,4 +652,29 @@ class CostumeCoreOmekaLoader(OmekaLoader):
                     )
                 .build()
         )
+
+    def _parse_structure(self, object_builder, text, type_):
+        try:
+            controlled_vocabulary = COSTUME_CORE_CONTROLLED_VOCABULARIES[type_.text]
+        except KeyError:
+            controlled_vocabulary = None
+            self._logger.warn('unable to find controlled vocabulary for structure type %s', type_.text)
+
+        if controlled_vocabulary is not None:
+            if text in controlled_vocabulary:
+                self._logger.debug("structure %s from item %d has controlled text '%s'", type_.text, object_builder.omeka_item_id, text)
+            elif text.lower() in controlled_vocabulary:
+                text = text.lower()
+                self._logger.debug("structure %s from item %d has controlled text '%s' after lower-casing", type_.text, object_builder.omeka_item_id, text)
+            else:
+                self._logger.warn("structure %s from item %d has uncontrolled text '%s'", type_.text, object_builder.omeka_item_id, text)
+
+        self._update_vocabulary_used('Item Type Metadata', type_.text, text)
+
+        return \
+            Structure.Builder()\
+                .set_text(text)\
+                .set_type(type_)\
+                .set_vocab_ref(self._COSTUME_CORE_VOCAB_REF)\
+                .build()
 
