@@ -143,10 +143,10 @@ class HistoricDressOmekaLoader(CostumeCoreOmekaLoader):
         if text == 'work':
             object_builder.work_types.append(
                 WorkType.Builder()
-                    .set_text(text)
+                    .set_text('PhysicalObject')
                     .set_vocab_ref(
                         VocabRef.Builder()
-                            .set_refid(text)
+                            .set_refid('PhysicalObject')
                             .set_vocab(Vocab.DCMI_TYPE)
                             .set_uri(DCMI_TYPES_BASE_URL + 'PhysicalObject')
                             .build()
