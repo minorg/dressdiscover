@@ -162,15 +162,15 @@ class HistoricDressOmekaLoader(CostumeCoreOmekaLoader):
     def _load_item_element_itm_physical_dimensions(self, object_builder, text):
         text_split = text.split('x', 2)
 
-        length_text = text_split[0].strip()
-        assert length_text.endswith('inches')
-        length_text = length_text.split(' ', 2)[0]
-        float(length_text)
+        height_text = text_split[0].strip()
+        assert height_text.endswith('inches')
+        height_text = height_text.split(' ', 2)[0]
+        float(height_text)
 
         object_builder.measurements.append(
             Measurements.Builder()
-                .set_text(length_text)
-                .set_type(MeasurementsType.LENGTH)
+                .set_text(height_text)
+                .set_type(MeasurementsType.HEIGHT)
                 .set_unit(MeasurementsUnit.IN)
                 .build()
         )
