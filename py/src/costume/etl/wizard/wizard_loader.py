@@ -20,7 +20,7 @@ from costume.api.models.view_type.view_type import ViewType
 from costume.api.models.vocab import Vocab
 from costume.api.models.vocab_ref import VocabRef
 from costume.etl._loader import _Loader
-from costume.etl.costume_core_controlled_vocabularies import COSTUME_CORE_CONTROLLED_VOCABULARIES
+from costume.etl.costume_core.costume_core_controlled_vocabularies import COSTUME_CORE_CONTROLLED_VOCABULARIES
 from yomeka.client.omeka_json_parser import OmekaJsonParser
 
 
@@ -33,21 +33,22 @@ class WizardLoader(_Loader):
     def __init__(self, **kwds):
         _Loader.__init__(self, institution_id=WizardLoader.INSTITUTION_ID, **kwds)
 
-    def _load(self):
-        self._services.institution_command_service.put_institution(
-            self._institution_id,
-            Institution.Builder()
-                .set_hidden(True)
-                .set_model_metadata(self._new_model_metadata())
-                .set_title("Wizard views")
-                .build()
-        )
+    def _load(self, dry_run):
+        if not dry_run:
+            self._services.institution_command_service.put_institution(
+                self._institution_id,
+                Institution.Builder()
+                    .set_hidden(True)
+                    .set_model_metadata(self._new_model_metadata())
+                    .set_title("Wizard views")
+                    .build()
+            )
 
-        self._put_collection(
-            collection_id=self.COLLECTION_ID,
-            hidden=True,
-            title='Wizard views'
-        )
+            self._put_collection(
+                collection_id=self.COLLECTION_ID,
+                hidden=True,
+                title='Wizard views'
+            )
 
         objects_by_id = OrderedDict()
 
@@ -209,4 +210,5 @@ class WizardLoader(_Loader):
 
             objects_by_id[object_id] = object_
 
-        self._put_objects_by_id(objects_by_id)
+        if not dry_run:
+            self._put_objects_by_id(objects_by_id)
