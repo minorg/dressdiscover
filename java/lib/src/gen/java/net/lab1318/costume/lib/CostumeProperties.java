@@ -10,7 +10,6 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             homeDirectoryPath = null;
             objectSummariesResultCacheSize = com.google.common.primitives.UnsignedInteger.valueOf(1024);
             objectSummaryCacheSize = com.google.common.primitives.UnsignedInteger.valueOf(1024);
-            logbackXmlFilePath = com.google.common.base.Optional.absent();
         }
 
         public Builder(final CostumeProperties other) {
@@ -21,15 +20,14 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             this.homeDirectoryPath = other.getHomeDirectoryPath();
             this.objectSummariesResultCacheSize = other.getObjectSummariesResultCacheSize();
             this.objectSummaryCacheSize = other.getObjectSummaryCacheSize();
-            this.logbackXmlFilePath = other.getLogbackXmlFilePath();
         }
 
-        protected CostumeProperties _build(final org.thryft.native_.Url apiUrl, final String environment, final String elasticSearchHost, final com.google.common.primitives.UnsignedInteger elasticSearchPort, final String homeDirectoryPath, final com.google.common.primitives.UnsignedInteger objectSummariesResultCacheSize, final com.google.common.primitives.UnsignedInteger objectSummaryCacheSize, final com.google.common.base.Optional<String> logbackXmlFilePath) {
-            return new CostumeProperties(apiUrl, environment, elasticSearchHost, elasticSearchPort, homeDirectoryPath, objectSummariesResultCacheSize, objectSummaryCacheSize, logbackXmlFilePath);
+        protected CostumeProperties _build(final org.thryft.native_.Url apiUrl, final String environment, final String elasticSearchHost, final com.google.common.primitives.UnsignedInteger elasticSearchPort, final String homeDirectoryPath, final com.google.common.primitives.UnsignedInteger objectSummariesResultCacheSize, final com.google.common.primitives.UnsignedInteger objectSummaryCacheSize) {
+            return new CostumeProperties(apiUrl, environment, elasticSearchHost, elasticSearchPort, homeDirectoryPath, objectSummariesResultCacheSize, objectSummaryCacheSize);
         }
 
         public CostumeProperties build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(apiUrl, "net.lab1318.costume.lib.CostumeProperties: missing apiUrl"), com.google.common.base.Preconditions.checkNotNull(environment, "net.lab1318.costume.lib.CostumeProperties: missing environment"), com.google.common.base.Preconditions.checkNotNull(elasticSearchHost, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchHost"), com.google.common.base.Preconditions.checkNotNull(elasticSearchPort, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchPort"), com.google.common.base.Preconditions.checkNotNull(homeDirectoryPath, "net.lab1318.costume.lib.CostumeProperties: missing homeDirectoryPath"), com.google.common.base.Preconditions.checkNotNull(objectSummariesResultCacheSize, "net.lab1318.costume.lib.CostumeProperties: missing objectSummariesResultCacheSize"), com.google.common.base.Preconditions.checkNotNull(objectSummaryCacheSize, "net.lab1318.costume.lib.CostumeProperties: missing objectSummaryCacheSize"), com.google.common.base.Preconditions.checkNotNull(logbackXmlFilePath, "net.lab1318.costume.lib.CostumeProperties: missing logbackXmlFilePath"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(apiUrl, "net.lab1318.costume.lib.CostumeProperties: missing apiUrl"), com.google.common.base.Preconditions.checkNotNull(environment, "net.lab1318.costume.lib.CostumeProperties: missing environment"), com.google.common.base.Preconditions.checkNotNull(elasticSearchHost, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchHost"), com.google.common.base.Preconditions.checkNotNull(elasticSearchPort, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchPort"), com.google.common.base.Preconditions.checkNotNull(homeDirectoryPath, "net.lab1318.costume.lib.CostumeProperties: missing homeDirectoryPath"), com.google.common.base.Preconditions.checkNotNull(objectSummariesResultCacheSize, "net.lab1318.costume.lib.CostumeProperties: missing objectSummariesResultCacheSize"), com.google.common.base.Preconditions.checkNotNull(objectSummaryCacheSize, "net.lab1318.costume.lib.CostumeProperties: missing objectSummaryCacheSize"));
         }
 
         public final org.thryft.native_.Url getApiUrl() {
@@ -55,10 +53,6 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             return homeDirectoryPath;
         }
 
-        public final com.google.common.base.Optional<String> getLogbackXmlFilePath() {
-            return logbackXmlFilePath;
-        }
-
         public final com.google.common.primitives.UnsignedInteger getObjectSummariesResultCacheSize() {
             return objectSummariesResultCacheSize;
         }
@@ -79,7 +73,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+            iprot.readListBegin();
             apiUrl = org.thryft.native_.Url.parse(iprot.readString());
             environment = iprot.readString();
             elasticSearchHost = iprot.readString();
@@ -87,9 +81,6 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             homeDirectoryPath = iprot.readString();
             objectSummariesResultCacheSize = iprot.readU32();
             objectSummaryCacheSize = iprot.readU32();
-            if (__list.getSize() > 7) {
-                logbackXmlFilePath = com.google.common.base.Optional.of(iprot.readString());
-            }
             iprot.readListEnd();
             return this;
         }
@@ -132,10 +123,6 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
                 }
                 case "object_summary_cache_size": {
                     objectSummaryCacheSize = iprot.readU32();
-                    break;
-                }
-                case "logback_xml_file_path": {
-                    logbackXmlFilePath = com.google.common.base.Optional.of(iprot.readString());
                     break;
                 }
                 default:
@@ -185,20 +172,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             setHomeDirectoryPath(other.getHomeDirectoryPath());
             setObjectSummariesResultCacheSize(other.getObjectSummariesResultCacheSize());
             setObjectSummaryCacheSize(other.getObjectSummaryCacheSize());
-            if (other.getLogbackXmlFilePath().isPresent()) {
-                setLogbackXmlFilePath(other.getLogbackXmlFilePath());
-            }
 
-            return this;
-        }
-
-        public Builder setLogbackXmlFilePath(final com.google.common.base.Optional<String> logbackXmlFilePath) {
-            this.logbackXmlFilePath = com.google.common.base.Preconditions.checkNotNull(logbackXmlFilePath);
-            return this;
-        }
-
-        public Builder setLogbackXmlFilePath(@javax.annotation.Nullable final String logbackXmlFilePath) {
-            this.logbackXmlFilePath = com.google.common.base.Optional.fromNullable(logbackXmlFilePath);
             return this;
         }
 
@@ -223,7 +197,6 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             case "home_directory_path": setHomeDirectoryPath((String)value); return this;
             case "object_summaries_result_cache_size": setObjectSummariesResultCacheSize((com.google.common.primitives.UnsignedInteger)value); return this;
             case "object_summary_cache_size": setObjectSummaryCacheSize((com.google.common.primitives.UnsignedInteger)value); return this;
-            case "logback_xml_file_path": setLogbackXmlFilePath((String)value); return this;
             default:
                 throw new IllegalArgumentException(name);
             }
@@ -254,11 +227,6 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             return this;
         }
 
-        public Builder unsetLogbackXmlFilePath() {
-            this.logbackXmlFilePath = com.google.common.base.Optional.absent();
-            return this;
-        }
-
         public Builder unsetObjectSummariesResultCacheSize() {
             this.objectSummariesResultCacheSize = com.google.common.primitives.UnsignedInteger.valueOf(1024);
             return this;
@@ -280,7 +248,6 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             case "home_directory_path": return unsetHomeDirectoryPath();
             case "object_summaries_result_cache_size": return unsetObjectSummariesResultCacheSize();
             case "object_summary_cache_size": return unsetObjectSummaryCacheSize();
-            case "logback_xml_file_path": return unsetLogbackXmlFilePath();
             default:
                 throw new IllegalArgumentException(name);
             }
@@ -296,7 +263,6 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         private String homeDirectoryPath;
         private com.google.common.primitives.UnsignedInteger objectSummariesResultCacheSize;
         private com.google.common.primitives.UnsignedInteger objectSummaryCacheSize;
-        private com.google.common.base.Optional<String> logbackXmlFilePath;
     }
 
     @SuppressWarnings("serial")
@@ -307,8 +273,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         ELASTIC_SEARCH_PORT("elasticSearchPort", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, true, 0, "elastic_search_port", org.thryft.protocol.Type.I32),
         HOME_DIRECTORY_PATH("homeDirectoryPath", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "home_directory_path", org.thryft.protocol.Type.STRING),
         OBJECT_SUMMARIES_RESULT_CACHE_SIZE("objectSummariesResultCacheSize", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, true, 0, "object_summaries_result_cache_size", org.thryft.protocol.Type.I32),
-        OBJECT_SUMMARY_CACHE_SIZE("objectSummaryCacheSize", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, true, 0, "object_summary_cache_size", org.thryft.protocol.Type.I32),
-        LOGBACK_XML_FILE_PATH("logbackXmlFilePath", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "logback_xml_file_path", org.thryft.protocol.Type.STRING);
+        OBJECT_SUMMARY_CACHE_SIZE("objectSummaryCacheSize", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, true, 0, "object_summary_cache_size", org.thryft.protocol.Type.I32);
 
         @Override
         public String getJavaName() {
@@ -359,7 +324,6 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             case "homeDirectoryPath": return HOME_DIRECTORY_PATH;
             case "objectSummariesResultCacheSize": return OBJECT_SUMMARIES_RESULT_CACHE_SIZE;
             case "objectSummaryCacheSize": return OBJECT_SUMMARY_CACHE_SIZE;
-            case "logbackXmlFilePath": return LOGBACK_XML_FILE_PATH;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -374,7 +338,6 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             case "home_directory_path": return HOME_DIRECTORY_PATH;
             case "object_summaries_result_cache_size": return OBJECT_SUMMARIES_RESULT_CACHE_SIZE;
             case "object_summary_cache_size": return OBJECT_SUMMARY_CACHE_SIZE;
-            case "logback_xml_file_path": return LOGBACK_XML_FILE_PATH;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -407,7 +370,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
      * Copy constructor
      */
     public CostumeProperties(final CostumeProperties other) {
-        this(other.getApiUrl(), other.getEnvironment(), other.getElasticSearchHost(), other.getElasticSearchPort(), other.getHomeDirectoryPath(), other.getObjectSummariesResultCacheSize(), other.getObjectSummaryCacheSize(), other.getLogbackXmlFilePath());
+        this(other.getApiUrl(), other.getEnvironment(), other.getElasticSearchHost(), other.getElasticSearchPort(), other.getHomeDirectoryPath(), other.getObjectSummariesResultCacheSize(), other.getObjectSummaryCacheSize());
     }
 
     /**
@@ -421,27 +384,12 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         this.homeDirectoryPath = com.google.common.base.Preconditions.checkNotNull(homeDirectoryPath, "net.lab1318.costume.lib.CostumeProperties: missing homeDirectoryPath");
         this.objectSummariesResultCacheSize = com.google.common.primitives.UnsignedInteger.valueOf(1024);
         this.objectSummaryCacheSize = com.google.common.primitives.UnsignedInteger.valueOf(1024);
-        this.logbackXmlFilePath = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public CostumeProperties(final org.thryft.native_.Url apiUrl, final String environment, final String elasticSearchHost, final com.google.common.primitives.UnsignedInteger elasticSearchPort, final String homeDirectoryPath, final com.google.common.primitives.UnsignedInteger objectSummariesResultCacheSize, final com.google.common.primitives.UnsignedInteger objectSummaryCacheSize, final @javax.annotation.Nullable String logbackXmlFilePath) {
-        this.apiUrl = com.google.common.base.Preconditions.checkNotNull(apiUrl, "net.lab1318.costume.lib.CostumeProperties: missing apiUrl");
-        this.environment = com.google.common.base.Preconditions.checkNotNull(environment, "net.lab1318.costume.lib.CostumeProperties: missing environment");
-        this.elasticSearchHost = com.google.common.base.Preconditions.checkNotNull(elasticSearchHost, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchHost");
-        this.elasticSearchPort = com.google.common.base.Preconditions.checkNotNull(elasticSearchPort, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchPort");
-        this.homeDirectoryPath = com.google.common.base.Preconditions.checkNotNull(homeDirectoryPath, "net.lab1318.costume.lib.CostumeProperties: missing homeDirectoryPath");
-        this.objectSummariesResultCacheSize = com.google.common.base.Preconditions.checkNotNull(objectSummariesResultCacheSize, "net.lab1318.costume.lib.CostumeProperties: missing objectSummariesResultCacheSize");
-        this.objectSummaryCacheSize = com.google.common.base.Preconditions.checkNotNull(objectSummaryCacheSize, "net.lab1318.costume.lib.CostumeProperties: missing objectSummaryCacheSize");
-        this.logbackXmlFilePath = com.google.common.base.Optional.fromNullable(logbackXmlFilePath);
     }
 
     /**
      * Optional constructor
      */
-    public CostumeProperties(final org.thryft.native_.Url apiUrl, final String environment, final String elasticSearchHost, final com.google.common.primitives.UnsignedInteger elasticSearchPort, final String homeDirectoryPath, final com.google.common.primitives.UnsignedInteger objectSummariesResultCacheSize, final com.google.common.primitives.UnsignedInteger objectSummaryCacheSize, final com.google.common.base.Optional<String> logbackXmlFilePath) {
+    public CostumeProperties(final org.thryft.native_.Url apiUrl, final String environment, final String elasticSearchHost, final com.google.common.primitives.UnsignedInteger elasticSearchPort, final String homeDirectoryPath, final com.google.common.primitives.UnsignedInteger objectSummariesResultCacheSize, final com.google.common.primitives.UnsignedInteger objectSummaryCacheSize) {
         this.apiUrl = com.google.common.base.Preconditions.checkNotNull(apiUrl, "net.lab1318.costume.lib.CostumeProperties: missing apiUrl");
         this.environment = com.google.common.base.Preconditions.checkNotNull(environment, "net.lab1318.costume.lib.CostumeProperties: missing environment");
         this.elasticSearchHost = com.google.common.base.Preconditions.checkNotNull(elasticSearchHost, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchHost");
@@ -449,7 +397,6 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         this.homeDirectoryPath = com.google.common.base.Preconditions.checkNotNull(homeDirectoryPath, "net.lab1318.costume.lib.CostumeProperties: missing homeDirectoryPath");
         this.objectSummariesResultCacheSize = com.google.common.base.Preconditions.checkNotNull(objectSummariesResultCacheSize, "net.lab1318.costume.lib.CostumeProperties: missing objectSummariesResultCacheSize");
         this.objectSummaryCacheSize = com.google.common.base.Preconditions.checkNotNull(objectSummaryCacheSize, "net.lab1318.costume.lib.CostumeProperties: missing objectSummaryCacheSize");
-        this.logbackXmlFilePath = com.google.common.base.Preconditions.checkNotNull(logbackXmlFilePath, "net.lab1318.costume.lib.CostumeProperties: missing logbackXmlFilePath");
     }
 
     private static java.util.Properties __mergeProperties(
@@ -531,8 +478,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             getElasticSearchPort().equals(other.getElasticSearchPort()) &&
             getHomeDirectoryPath().equals(other.getHomeDirectoryPath()) &&
             getObjectSummariesResultCacheSize().equals(other.getObjectSummariesResultCacheSize()) &&
-            getObjectSummaryCacheSize().equals(other.getObjectSummaryCacheSize()) &&
-            getLogbackXmlFilePath().equals(other.getLogbackXmlFilePath());
+            getObjectSummaryCacheSize().equals(other.getObjectSummaryCacheSize());
     }
 
     @Override
@@ -557,7 +503,6 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         case HOME_DIRECTORY_PATH: return getHomeDirectoryPath();
         case OBJECT_SUMMARIES_RESULT_CACHE_SIZE: return getObjectSummariesResultCacheSize();
         case OBJECT_SUMMARY_CACHE_SIZE: return getObjectSummaryCacheSize();
-        case LOGBACK_XML_FILE_PATH: return getLogbackXmlFilePath();
         default:
             throw new IllegalStateException();
         }
@@ -586,10 +531,6 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         return homeDirectoryPath;
     }
 
-    public final com.google.common.base.Optional<String> getLogbackXmlFilePath() {
-        return logbackXmlFilePath;
-    }
-
     public final com.google.common.primitives.UnsignedInteger getObjectSummariesResultCacheSize() {
         return objectSummariesResultCacheSize;
     }
@@ -608,9 +549,6 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         hashCode = 31 * hashCode + getHomeDirectoryPath().hashCode();
         hashCode = 31 * hashCode + getObjectSummariesResultCacheSize().hashCode();
         hashCode = 31 * hashCode + getObjectSummaryCacheSize().hashCode();
-        if (getLogbackXmlFilePath().isPresent()) {
-            hashCode = 31 * hashCode + getLogbackXmlFilePath().get().hashCode();
-        }
         return hashCode;
     }
 
@@ -627,7 +565,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
     public static CostumeProperties load(final com.google.common.base.Optional<java.io.File> commandLinePropertiesFilePath) {
         java.util.Properties __properties = new java.util.Properties();
 
-        String[] __propertyNames = {"api_url", "environment", "elastic_search_host", "elastic_search_port", "home_directory_path", "object_summaries_result_cache_size", "object_summary_cache_size", "logback_xml_file_path"};
+        String[] __propertyNames = {"api_url", "environment", "elastic_search_host", "elastic_search_port", "home_directory_path", "object_summaries_result_cache_size", "object_summary_cache_size"};
         for (final String propertyName : __propertyNames) {
             final String propertyValue = System.getenv("COSTUME_" + propertyName.toUpperCase());
             if (propertyValue != null) {
@@ -751,26 +689,11 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             }
         }
 
-        final com.google.common.base.Optional<String> logbackXmlFilePath;
-        {
-            Object logbackXmlFilePathObject = __properties.remove("logback_xml_file_path");
-            if (!(logbackXmlFilePathObject instanceof String)) {
-                logbackXmlFilePath = com.google.common.base.Optional.<String>absent();
-            } else {
-                final String logbackXmlFilePathString = ((String)logbackXmlFilePathObject).trim();
-                if (logbackXmlFilePathString.isEmpty()) {
-                    logbackXmlFilePath = com.google.common.base.Optional.<String>absent();
-                } else {
-                    logbackXmlFilePath = com.google.common.base.Optional.of(logbackXmlFilePathString);
-                }
-            }
-        }
-
         for (final java.util.Map.Entry<Object, Object> entry : __properties.entrySet()) {
             throw new RuntimeException("properties file(s) have unknown property " + entry.getKey().toString());
         }
 
-        return new CostumeProperties(apiUrl, environment, elasticSearchHost, elasticSearchPort, homeDirectoryPath, objectSummariesResultCacheSize, objectSummaryCacheSize, logbackXmlFilePath);
+        return new CostumeProperties(apiUrl, environment, elasticSearchHost, elasticSearchPort, homeDirectoryPath, objectSummariesResultCacheSize, objectSummaryCacheSize);
     }
 
     public static CostumeProperties readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -792,9 +715,8 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         String homeDirectoryPath = null;
         com.google.common.primitives.UnsignedInteger objectSummariesResultCacheSize = com.google.common.primitives.UnsignedInteger.valueOf(1024);
         com.google.common.primitives.UnsignedInteger objectSummaryCacheSize = com.google.common.primitives.UnsignedInteger.valueOf(1024);
-        com.google.common.base.Optional<String> logbackXmlFilePath = com.google.common.base.Optional.absent();
 
-        final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+        iprot.readListBegin();
         apiUrl = org.thryft.native_.Url.parse(iprot.readString());
         environment = iprot.readString();
         elasticSearchHost = iprot.readString();
@@ -802,12 +724,9 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         homeDirectoryPath = iprot.readString();
         objectSummariesResultCacheSize = iprot.readU32();
         objectSummaryCacheSize = iprot.readU32();
-        if (__list.getSize() > 7) {
-            logbackXmlFilePath = com.google.common.base.Optional.of(iprot.readString());
-        }
         iprot.readListEnd();
         try {
-            return new CostumeProperties(apiUrl, environment, elasticSearchHost, elasticSearchPort, homeDirectoryPath, objectSummariesResultCacheSize, objectSummaryCacheSize, logbackXmlFilePath);
+            return new CostumeProperties(apiUrl, environment, elasticSearchHost, elasticSearchPort, homeDirectoryPath, objectSummariesResultCacheSize, objectSummaryCacheSize);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -825,7 +744,6 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         String homeDirectoryPath = null;
         com.google.common.primitives.UnsignedInteger objectSummariesResultCacheSize = com.google.common.primitives.UnsignedInteger.valueOf(1024);
         com.google.common.primitives.UnsignedInteger objectSummaryCacheSize = com.google.common.primitives.UnsignedInteger.valueOf(1024);
-        com.google.common.base.Optional<String> logbackXmlFilePath = com.google.common.base.Optional.absent();
 
         iprot.readStructBegin();
         while (true) {
@@ -862,10 +780,6 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
                 objectSummaryCacheSize = iprot.readU32();
                 break;
             }
-            case "logback_xml_file_path": {
-                logbackXmlFilePath = com.google.common.base.Optional.of(iprot.readString());
-                break;
-            }
             default:
                 if (unknownFieldCallback.isPresent()) {
                     unknownFieldCallback.get().apply(ifield);
@@ -876,46 +790,38 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         }
         iprot.readStructEnd();
         try {
-            return new CostumeProperties(apiUrl, environment, elasticSearchHost, elasticSearchPort, homeDirectoryPath, objectSummariesResultCacheSize, objectSummaryCacheSize, logbackXmlFilePath);
+            return new CostumeProperties(apiUrl, environment, elasticSearchHost, elasticSearchPort, homeDirectoryPath, objectSummariesResultCacheSize, objectSummaryCacheSize);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public CostumeProperties replaceApiUrl(final org.thryft.native_.Url apiUrl) {
-        return new CostumeProperties(apiUrl, this.environment, this.elasticSearchHost, this.elasticSearchPort, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.logbackXmlFilePath);
+        return new CostumeProperties(apiUrl, this.environment, this.elasticSearchHost, this.elasticSearchPort, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize);
     }
 
     public CostumeProperties replaceElasticSearchHost(final String elasticSearchHost) {
-        return new CostumeProperties(this.apiUrl, this.environment, elasticSearchHost, this.elasticSearchPort, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.logbackXmlFilePath);
+        return new CostumeProperties(this.apiUrl, this.environment, elasticSearchHost, this.elasticSearchPort, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize);
     }
 
     public CostumeProperties replaceElasticSearchPort(final com.google.common.primitives.UnsignedInteger elasticSearchPort) {
-        return new CostumeProperties(this.apiUrl, this.environment, this.elasticSearchHost, elasticSearchPort, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.logbackXmlFilePath);
+        return new CostumeProperties(this.apiUrl, this.environment, this.elasticSearchHost, elasticSearchPort, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize);
     }
 
     public CostumeProperties replaceEnvironment(final String environment) {
-        return new CostumeProperties(this.apiUrl, environment, this.elasticSearchHost, this.elasticSearchPort, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.logbackXmlFilePath);
+        return new CostumeProperties(this.apiUrl, environment, this.elasticSearchHost, this.elasticSearchPort, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize);
     }
 
     public CostumeProperties replaceHomeDirectoryPath(final String homeDirectoryPath) {
-        return new CostumeProperties(this.apiUrl, this.environment, this.elasticSearchHost, this.elasticSearchPort, homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.logbackXmlFilePath);
-    }
-
-    public CostumeProperties replaceLogbackXmlFilePath(final com.google.common.base.Optional<String> logbackXmlFilePath) {
-        return new CostumeProperties(this.apiUrl, this.environment, this.elasticSearchHost, this.elasticSearchPort, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, logbackXmlFilePath);
-    }
-
-    public CostumeProperties replaceLogbackXmlFilePath(final String logbackXmlFilePath) {
-        return replaceLogbackXmlFilePath(com.google.common.base.Optional.fromNullable(logbackXmlFilePath));
+        return new CostumeProperties(this.apiUrl, this.environment, this.elasticSearchHost, this.elasticSearchPort, homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize);
     }
 
     public CostumeProperties replaceObjectSummariesResultCacheSize(final com.google.common.primitives.UnsignedInteger objectSummariesResultCacheSize) {
-        return new CostumeProperties(this.apiUrl, this.environment, this.elasticSearchHost, this.elasticSearchPort, this.homeDirectoryPath, objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.logbackXmlFilePath);
+        return new CostumeProperties(this.apiUrl, this.environment, this.elasticSearchHost, this.elasticSearchPort, this.homeDirectoryPath, objectSummariesResultCacheSize, this.objectSummaryCacheSize);
     }
 
     public CostumeProperties replaceObjectSummaryCacheSize(final com.google.common.primitives.UnsignedInteger objectSummaryCacheSize) {
-        return new CostumeProperties(this.apiUrl, this.environment, this.elasticSearchHost, this.elasticSearchPort, this.homeDirectoryPath, this.objectSummariesResultCacheSize, objectSummaryCacheSize, this.logbackXmlFilePath);
+        return new CostumeProperties(this.apiUrl, this.environment, this.elasticSearchHost, this.elasticSearchPort, this.homeDirectoryPath, this.objectSummariesResultCacheSize, objectSummaryCacheSize);
     }
 
     public com.google.common.collect.ImmutableMap<String, Object> toMap() {
@@ -927,20 +833,17 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         builder.put("home_directory_path", getHomeDirectoryPath());
         builder.put("object_summaries_result_cache_size", getObjectSummariesResultCacheSize());
         builder.put("object_summary_cache_size", getObjectSummaryCacheSize());
-        if (getLogbackXmlFilePath().isPresent()) {
-            builder.put("logback_xml_file_path", getLogbackXmlFilePath().get());
-        }
         return builder.build();
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("api_url", getApiUrl()).add("environment", getEnvironment()).add("elastic_search_host", getElasticSearchHost()).add("elastic_search_port", getElasticSearchPort()).add("home_directory_path", getHomeDirectoryPath()).add("object_summaries_result_cache_size", getObjectSummariesResultCacheSize()).add("object_summary_cache_size", getObjectSummaryCacheSize()).add("logback_xml_file_path", getLogbackXmlFilePath().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("api_url", getApiUrl()).add("environment", getEnvironment()).add("elastic_search_host", getElasticSearchHost()).add("elastic_search_port", getElasticSearchPort()).add("home_directory_path", getHomeDirectoryPath()).add("object_summaries_result_cache_size", getObjectSummariesResultCacheSize()).add("object_summary_cache_size", getObjectSummaryCacheSize()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 8);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 7);
 
         oprot.writeString(getApiUrl().toString());
 
@@ -955,12 +858,6 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         oprot.writeU32(getObjectSummariesResultCacheSize());
 
         oprot.writeU32(getObjectSummaryCacheSize());
-
-        if (getLogbackXmlFilePath().isPresent()) {
-            oprot.writeString(getLogbackXmlFilePath().get());
-        } else {
-            oprot.writeNull();
-        }
 
         oprot.writeListEnd();
     }
@@ -1002,12 +899,6 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         oprot.writeU32(getObjectSummaryCacheSize());
         oprot.writeFieldEnd();
 
-        if (getLogbackXmlFilePath().isPresent()) {
-            oprot.writeFieldBegin("logback_xml_file_path", org.thryft.protocol.Type.STRING, (short)0);
-            oprot.writeString(getLogbackXmlFilePath().get());
-            oprot.writeFieldEnd();
-        }
-
         oprot.writeFieldStop();
     }
 
@@ -1027,8 +918,6 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
     private final com.google.common.primitives.UnsignedInteger objectSummariesResultCacheSize;
 
     private final com.google.common.primitives.UnsignedInteger objectSummaryCacheSize;
-
-    private final com.google.common.base.Optional<String> logbackXmlFilePath;
 
     private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(CostumeProperties.class);
 }
