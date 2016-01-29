@@ -18,8 +18,8 @@
 				<artifactId>maven-antrun-plugin</artifactId>
 				<configuration>
 					<tasks>
-						<copy file="${project.build.directory}/${project.build.finalName}.jar"
-							tofile="${project.build.directory}/../../dist/${project.artifactId}-current.jar" />
+						<copy file="${project.build.directory}/${project.build.finalName}.war"
+							tofile="${project.build.directory}/../../dist/${project.artifactId}-current.war" />
 					</tasks>
 				</configuration>
 				<executions>
@@ -34,10 +34,6 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
