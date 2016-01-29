@@ -29,7 +29,7 @@
 	}
 
 .v-vaadin-version:after {
-	content: "7.6.0";
+	content: "7.6.1";
 }
 
 .v-generated-body {
@@ -2306,6 +2306,7 @@ div.v-csslayout {
 .v-grid-column-resize-handle {
 	position: absolute;
 	width: 20px;
+	right: -10px;
 	top: 0px;
 	bottom: 0px;
 	cursor: col-resize;
@@ -2315,10 +2316,6 @@ div.v-csslayout {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-}
-
-.sort-asc  > .v-grid-column-resize-handle, .sort-desc  > .v-grid-column-resize-handle {
-	right: -10px;
 }
 
 .v-grid-footer td {
