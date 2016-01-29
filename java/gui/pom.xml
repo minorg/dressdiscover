@@ -13,40 +13,6 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>com.vaadin</groupId>
-				<artifactId>vaadin-maven-plugin</artifactId>
-				<configuration>
-					<strict>false</strict>
-				</configuration>
-				<executions>
-					<execution>
-						<configuration>
-							<modules>
-								<module>net.lab1318.costume.gui.GuiWidgetSet</module>
-							</modules>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-clean-plugin</artifactId>
-				<configuration>
-					<filesets>
-						<fileset>
-							<directory>
-								${basedir}/src/main/resources/VAADIN/gwt-unitCache
-							</directory>
-						</fileset>
-						<fileset>
-							<directory>
-								${basedir}/src/main/resources/VAADIN/widgetsets
-							</directory>
-						</fileset>
-					</filesets>
-				</configuration>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
