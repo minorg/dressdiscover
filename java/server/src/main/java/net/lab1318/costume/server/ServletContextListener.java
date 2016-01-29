@@ -3,6 +3,9 @@ package net.lab1318.costume.server;
 import static com.google.common.base.Preconditions.checkState;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import javax.servlet.ServletContextEvent;
 
@@ -26,6 +29,16 @@ public final class ServletContextListener extends GuiceServletContextListener {
 
         LoggingConfigurator.configureSlf4j();
         LoggingConfigurator.configureLogback(new File("/etc/costume/middleware-logback.xml"));
+
+        final String root = servletContextEvent.getServletContext().getRealPath("/");
+        if (root != null && Files.isDirectory(Paths.get(root))) {
+            // workaround for https://dev.vaadin.com/ticket/18463
+            try {
+                Files.createDirectories(
+                        Paths.get(servletContextEvent.getServletContext().getRealPath("/VAADIN/themes/costume")));
+            } catch (final IOException e) {
+            }
+        }
 
         super.contextInitialized(servletContextEvent);
     }
