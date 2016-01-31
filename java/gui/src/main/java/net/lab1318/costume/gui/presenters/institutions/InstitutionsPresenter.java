@@ -4,6 +4,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.thryft.waf.gui.EventBus;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.inject.Inject;
@@ -13,9 +14,11 @@ import com.vaadin.server.SystemError;
 
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
+import net.lab1318.costume.api.models.user.User;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
+import net.lab1318.costume.api.services.user.UserQueryService;
 import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.institutions.InstitutionsView;
 
@@ -23,14 +26,15 @@ import net.lab1318.costume.gui.views.institutions.InstitutionsView;
 public class InstitutionsPresenter extends Presenter<InstitutionsView> {
     @Inject
     public InstitutionsPresenter(final CollectionQueryService collectionQueryService, final EventBus eventBus,
-            final InstitutionQueryService institutionQueryService, final InstitutionsView view) {
-        super(eventBus, view);
+            final InstitutionQueryService institutionQueryService, final UserQueryService userQueryService,
+            final InstitutionsView view) {
+        super(eventBus, userQueryService, view);
         this.collectionQueryService = checkNotNull(collectionQueryService);
         this.institutionQueryService = checkNotNull(institutionQueryService);
     }
 
     @Override
-    protected void _onViewEnter(final ViewChangeEvent event) {
+    protected void _onViewEnter(final Optional<User> currentUser, final ViewChangeEvent event) {
         final ImmutableList<CollectionEntry> collectionEntries;
         final ImmutableList<InstitutionEntry> institutionEntries;
         try {

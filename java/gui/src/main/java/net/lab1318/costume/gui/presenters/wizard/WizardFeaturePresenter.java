@@ -35,11 +35,13 @@ import net.lab1318.costume.api.models.image.Image;
 import net.lab1318.costume.api.models.image.ImageVersion;
 import net.lab1318.costume.api.models.object.ObjectSummary;
 import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
+import net.lab1318.costume.api.models.user.User;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
 import net.lab1318.costume.api.services.object.ObjectFacetFilters;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
+import net.lab1318.costume.api.services.user.UserQueryService;
 import net.lab1318.costume.gui.GuiUI;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureBackRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureFinishRequest;
@@ -63,8 +65,8 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
 
     @Inject
     public WizardFeaturePresenter(final EventBus eventBus, final ObjectSummaryQueryService objectSummaryQueryService,
-            final WizardFeatureView view) {
-        super(eventBus, view);
+            final UserQueryService userQueryService, final WizardFeatureView view) {
+        super(eventBus, userQueryService, view);
         this.objectSummaryQueryService = checkNotNull(objectSummaryQueryService);
     }
 
@@ -105,7 +107,7 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
     }
 
     @Override
-    protected void _onViewEnter(final ViewChangeEvent event) {
+    protected void _onViewEnter(final Optional<User> currentUser, final ViewChangeEvent event) {
         if (event.getParameters().isEmpty()) {
             selectedFeatureValuesByFeatureName.clear(); // Reset
             __navigateToFeature(CostumeCore.FEATURES.keySet().iterator().next());

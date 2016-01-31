@@ -43,6 +43,17 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>
+			<version>${shiro.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
 			<groupId>org.thryft</groupId>
 			<artifactId>thryft-waf-lib</artifactId>
 			<version>${thryft-waf.version}</version>

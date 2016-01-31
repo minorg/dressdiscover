@@ -3,6 +3,7 @@ package net.lab1318.costume.gui.views;
 import org.thryft.waf.gui.EventBus;
 import org.thryft.waf.gui.views.View;
 
+import com.google.common.base.Optional;
 import com.vaadin.server.ErrorMessage;
 import com.vaadin.server.Page;
 import com.vaadin.shared.ui.label.ContentMode;
@@ -18,12 +19,14 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
+import net.lab1318.costume.api.models.user.User;
 import net.lab1318.costume.gui.views.wizard.WizardFeatureView;
 
 @SuppressWarnings("serial")
 public abstract class TopLevelView extends View {
     protected TopLevelView(final EventBus eventBus) {
         super(eventBus);
+        navbar = new Navbar(eventBus);
     }
 
     @Override
@@ -31,6 +34,10 @@ public abstract class TopLevelView extends View {
         final Notification notification = new Notification("Error", componentError.getFormattedHtmlMessage(),
                 Notification.Type.ERROR_MESSAGE, true);
         notification.show(Page.getCurrent());
+    }
+
+    public void setCurrentUser(final Optional<User> currentUser) {
+        navbar.setCurrentUser(currentUser);
     }
 
     protected final Navbar _getNavbar() {
@@ -64,6 +71,7 @@ public abstract class TopLevelView extends View {
                         UI.getCurrent().getNavigator().navigateTo(WizardFeatureView.NAME);
                     }
                 });
+                piButton.setStyleName("pi");
                 footerLayout.addComponent(piButton);
                 footerLayout.setComponentAlignment(piButton, Alignment.MIDDLE_RIGHT);
             }
@@ -73,5 +81,5 @@ public abstract class TopLevelView extends View {
         super.setCompositionRoot(frameLayout);
     }
 
-    private final Navbar navbar = new Navbar();
+    private final Navbar navbar;
 }

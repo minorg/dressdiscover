@@ -1,5 +1,10 @@
 package net.lab1318.costume.gui.views;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.thryft.waf.gui.EventBus;
+
+import com.google.common.base.Optional;
 import com.vaadin.event.FieldEvents.BlurEvent;
 import com.vaadin.event.FieldEvents.BlurListener;
 import com.vaadin.event.FieldEvents.FocusEvent;
@@ -11,30 +16,36 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.MenuBar.Command;
+import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 
+import net.lab1318.costume.api.models.user.User;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.gui.GuiUI;
+import net.lab1318.costume.gui.events.user.UserLogoutRequest;
 
 @SuppressWarnings("serial")
 public final class Navbar extends HorizontalLayout {
-    public Navbar() {
+    public Navbar(final EventBus eventBus) {
+        this.eventBus = checkNotNull(eventBus);
+
         setSizeFull();
 
         {
-            final Button homeButton = new NativeButton();
-            homeButton.setIcon(FontAwesome.HOME);
-            homeButton.addClickListener(new ClickListener() {
+            final MenuBar leftMenuBar = new MenuBar();
+            final MenuItem homeMenuItem = leftMenuBar.addItem("", FontAwesome.HOME, new MenuBar.Command() {
                 @Override
-                public void buttonClick(final ClickEvent event) {
+                public void menuSelected(final MenuItem selectedItem) {
                     UI.getCurrent().getNavigator().navigateTo("");
                 }
             });
-            homeButton.addStyleName("icon-button");
-            addComponent(homeButton);
-            setComponentAlignment(homeButton, Alignment.TOP_LEFT);
+            homeMenuItem.setStyleName("home");
+            addComponent(leftMenuBar);
+            setComponentAlignment(leftMenuBar, Alignment.TOP_LEFT);
         }
 
         {
@@ -53,7 +64,8 @@ public final class Navbar extends HorizontalLayout {
                 }
             });
             searchButton.setIcon(FontAwesome.SEARCH);
-            searchButton.addStyleName("icon-button");
+            searchButton.setSizeFull();
+            searchButton.setStyleName("search");
 
             searchTextField.setWidth((float) 32.0, Unit.EM);
             searchTextField.addBlurListener(new BlurListener() {
@@ -74,7 +86,14 @@ public final class Navbar extends HorizontalLayout {
             searchLayout.addComponent(searchButton);
 
             addComponent(searchLayout);
-            setComponentAlignment(searchLayout, Alignment.MIDDLE_RIGHT);
+            setComponentAlignment(searchLayout, Alignment.MIDDLE_CENTER);
+        }
+
+        {
+            final MenuBar rightMenuBar = new MenuBar();
+            currentUserMenuItem = rightMenuBar.addItem("Guest user", null);
+            addComponent(rightMenuBar);
+            setComponentAlignment(rightMenuBar, Alignment.MIDDLE_RIGHT);
         }
     }
 
@@ -82,5 +101,34 @@ public final class Navbar extends HorizontalLayout {
         return searchTextField;
     }
 
+    public void setCurrentUser(final Optional<User> currentUser) {
+        if (currentUser.isPresent()) {
+            currentUserMenuItem.setCommand(null);
+            currentUserMenuItem.setText(currentUser.get().getEmailAddress().toString());
+            currentUserMenuItem.removeChildren();
+            currentUserMenuItem.addItem("Logout", new Command() {
+                @Override
+                public void menuSelected(final MenuItem selectedItem) {
+                    eventBus.post(new UserLogoutRequest());
+                }
+            });
+        } else {
+            currentUserMenuItem.setCommand(new Command() {
+                @Override
+                public void menuSelected(final MenuItem selectedItem) {
+                    String redirectLocation = "/api/oauth2/google";
+                    final String state = UI.getCurrent().getNavigator().getState();
+                    if (!state.isEmpty()) {
+                        redirectLocation += "?state=" + state;
+                    }
+                    UI.getCurrent().getPage().setLocation(redirectLocation);
+                }
+            });
+            currentUserMenuItem.setText("Login");
+        }
+    }
+
+    private MenuItem currentUserMenuItem;
+    private final EventBus eventBus;
     private final TextField searchTextField = new TextField();
 }

@@ -10,6 +10,8 @@ class CostumeProperties(object):
             environment=None,
             elastic_search_host="elasticsearch",
             elastic_search_port=9300,
+            google_oauth_key=None,
+            google_oauth_secret=None,
             home_directory_path=None,
             object_summaries_result_cache_size=1024,
             object_summary_cache_size=1024,
@@ -19,6 +21,8 @@ class CostumeProperties(object):
             :type environment: str
             :type elastic_search_host: str
             :type elastic_search_port: int
+            :type google_oauth_key: str
+            :type google_oauth_secret: str
             :type home_directory_path: str
             :type object_summaries_result_cache_size: int
             :type object_summary_cache_size: int
@@ -28,12 +32,14 @@ class CostumeProperties(object):
             self.__environment = environment
             self.__elastic_search_host = elastic_search_host
             self.__elastic_search_port = elastic_search_port
+            self.__google_oauth_key = google_oauth_key
+            self.__google_oauth_secret = google_oauth_secret
             self.__home_directory_path = home_directory_path
             self.__object_summaries_result_cache_size = object_summaries_result_cache_size
             self.__object_summary_cache_size = object_summary_cache_size
 
         def build(self):
-            return CostumeProperties(api_url=self.__api_url, environment=self.__environment, elastic_search_host=self.__elastic_search_host, elastic_search_port=self.__elastic_search_port, home_directory_path=self.__home_directory_path, object_summaries_result_cache_size=self.__object_summaries_result_cache_size, object_summary_cache_size=self.__object_summary_cache_size)
+            return CostumeProperties(api_url=self.__api_url, environment=self.__environment, elastic_search_host=self.__elastic_search_host, elastic_search_port=self.__elastic_search_port, google_oauth_key=self.__google_oauth_key, google_oauth_secret=self.__google_oauth_secret, home_directory_path=self.__home_directory_path, object_summaries_result_cache_size=self.__object_summaries_result_cache_size, object_summary_cache_size=self.__object_summary_cache_size)
 
         @property
         def api_url(self):
@@ -66,6 +72,22 @@ class CostumeProperties(object):
             '''
 
             return self.__environment
+
+        @property
+        def google_oauth_key(self):
+            '''
+            :rtype: str
+            '''
+
+            return self.__google_oauth_key
+
+        @property
+        def google_oauth_secret(self):
+            '''
+            :rtype: str
+            '''
+
+            return self.__google_oauth_secret
 
         @property
         def home_directory_path(self):
@@ -123,6 +145,22 @@ class CostumeProperties(object):
             self.__environment = environment
             return self
 
+        def set_google_oauth_key(self, google_oauth_key):
+            '''
+            :type google_oauth_key: str
+            '''
+
+            self.__google_oauth_key = google_oauth_key
+            return self
+
+        def set_google_oauth_secret(self, google_oauth_secret):
+            '''
+            :type google_oauth_secret: str
+            '''
+
+            self.__google_oauth_secret = google_oauth_secret
+            return self
+
         def set_home_directory_path(self, home_directory_path):
             '''
             :type home_directory_path: str
@@ -153,6 +191,8 @@ class CostumeProperties(object):
             :type environment: str
             :type elastic_search_host: str
             :type elastic_search_port: int
+            :type google_oauth_key: str
+            :type google_oauth_secret: str
             :type home_directory_path: str
             :type object_summaries_result_cache_size: int
             :type object_summary_cache_size: int
@@ -163,6 +203,8 @@ class CostumeProperties(object):
                 self.set_environment(costume_properties.environment)
                 self.set_elastic_search_host(costume_properties.elastic_search_host)
                 self.set_elastic_search_port(costume_properties.elastic_search_port)
+                self.set_google_oauth_key(costume_properties.google_oauth_key)
+                self.set_google_oauth_secret(costume_properties.google_oauth_secret)
                 self.set_home_directory_path(costume_properties.home_directory_path)
                 self.set_object_summaries_result_cache_size(costume_properties.object_summaries_result_cache_size)
                 self.set_object_summary_cache_size(costume_properties.object_summary_cache_size)
@@ -205,6 +247,22 @@ class CostumeProperties(object):
 
             self.set_environment(environment)
 
+        @google_oauth_key.setter
+        def google_oauth_key(self, google_oauth_key):
+            '''
+            :type google_oauth_key: str
+            '''
+
+            self.set_google_oauth_key(google_oauth_key)
+
+        @google_oauth_secret.setter
+        def google_oauth_secret(self, google_oauth_secret):
+            '''
+            :type google_oauth_secret: str
+            '''
+
+            self.set_google_oauth_secret(google_oauth_secret)
+
         @home_directory_path.setter
         def home_directory_path(self, home_directory_path):
             '''
@@ -232,6 +290,8 @@ class CostumeProperties(object):
     def __init__(
         self,
         environment,
+        google_oauth_key,
+        google_oauth_secret,
         home_directory_path,
         api_url="http://middleware:8082/api/",
         elastic_search_host="elasticsearch",
@@ -244,6 +304,8 @@ class CostumeProperties(object):
         :type environment: str
         :type elastic_search_host: str
         :type elastic_search_port: int
+        :type google_oauth_key: str
+        :type google_oauth_secret: str
         :type home_directory_path: str
         :type object_summaries_result_cache_size: int
         :type object_summary_cache_size: int
@@ -273,6 +335,22 @@ class CostumeProperties(object):
             raise TypeError("expected elastic_search_port to be a int but it is a %s" % getattr(__builtin__, 'type')(elastic_search_port))
         self.__elastic_search_port = elastic_search_port
 
+        if google_oauth_key is None:
+            raise ValueError('google_oauth_key is required')
+        if not isinstance(google_oauth_key, basestring):
+            raise TypeError("expected google_oauth_key to be a str but it is a %s" % getattr(__builtin__, 'type')(google_oauth_key))
+        if len(google_oauth_key) < 1:
+            raise ValueError("expected len(google_oauth_key) to be >= 1, was %d" % len(google_oauth_key))
+        self.__google_oauth_key = google_oauth_key
+
+        if google_oauth_secret is None:
+            raise ValueError('google_oauth_secret is required')
+        if not isinstance(google_oauth_secret, basestring):
+            raise TypeError("expected google_oauth_secret to be a str but it is a %s" % getattr(__builtin__, 'type')(google_oauth_secret))
+        if len(google_oauth_secret) < 1:
+            raise ValueError("expected len(google_oauth_secret) to be >= 1, was %d" % len(google_oauth_secret))
+        self.__google_oauth_secret = google_oauth_secret
+
         if home_directory_path is None:
             raise ValueError('home_directory_path is required')
         if not isinstance(home_directory_path, basestring):
@@ -300,6 +378,10 @@ class CostumeProperties(object):
             return False
         if self.elastic_search_port != other.elastic_search_port:
             return False
+        if self.google_oauth_key != other.google_oauth_key:
+            return False
+        if self.google_oauth_secret != other.google_oauth_secret:
+            return False
         if self.home_directory_path != other.home_directory_path:
             return False
         if self.object_summaries_result_cache_size != other.object_summaries_result_cache_size:
@@ -309,7 +391,7 @@ class CostumeProperties(object):
         return True
 
     def __hash__(self):
-        return hash((self.api_url,self.environment,self.elastic_search_host,self.elastic_search_port,self.home_directory_path,self.object_summaries_result_cache_size,self.object_summary_cache_size,))
+        return hash((self.api_url,self.environment,self.elastic_search_host,self.elastic_search_port,self.google_oauth_key,self.google_oauth_secret,self.home_directory_path,self.object_summaries_result_cache_size,self.object_summary_cache_size,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -323,6 +405,8 @@ class CostumeProperties(object):
         field_reprs.append('environment=' + "'" + self.environment.encode('ascii', 'replace') + "'")
         field_reprs.append('elastic_search_host=' + "'" + self.elastic_search_host.encode('ascii', 'replace') + "'")
         field_reprs.append('elastic_search_port=' + repr(self.elastic_search_port))
+        field_reprs.append('google_oauth_key=' + "'" + self.google_oauth_key.encode('ascii', 'replace') + "'")
+        field_reprs.append('google_oauth_secret=' + "'" + self.google_oauth_secret.encode('ascii', 'replace') + "'")
         field_reprs.append('home_directory_path=' + "'" + self.home_directory_path.encode('ascii', 'replace') + "'")
         field_reprs.append('object_summaries_result_cache_size=' + repr(self.object_summaries_result_cache_size))
         field_reprs.append('object_summary_cache_size=' + repr(self.object_summary_cache_size))
@@ -334,6 +418,8 @@ class CostumeProperties(object):
         field_reprs.append('environment=' + "'" + self.environment.encode('ascii', 'replace') + "'")
         field_reprs.append('elastic_search_host=' + "'" + self.elastic_search_host.encode('ascii', 'replace') + "'")
         field_reprs.append('elastic_search_port=' + repr(self.elastic_search_port))
+        field_reprs.append('google_oauth_key=' + "'" + self.google_oauth_key.encode('ascii', 'replace') + "'")
+        field_reprs.append('google_oauth_secret=' + "'" + self.google_oauth_secret.encode('ascii', 'replace') + "'")
         field_reprs.append('home_directory_path=' + "'" + self.home_directory_path.encode('ascii', 'replace') + "'")
         field_reprs.append('object_summaries_result_cache_size=' + repr(self.object_summaries_result_cache_size))
         field_reprs.append('object_summary_cache_size=' + repr(self.object_summary_cache_size))
@@ -354,7 +440,7 @@ class CostumeProperties(object):
         :rtype: dict
         '''
 
-        return {'api_url': self.api_url, 'environment': self.environment, 'elastic_search_host': self.elastic_search_host, 'elastic_search_port': self.elastic_search_port, 'home_directory_path': self.home_directory_path, 'object_summaries_result_cache_size': self.object_summaries_result_cache_size, 'object_summary_cache_size': self.object_summary_cache_size}
+        return {'api_url': self.api_url, 'environment': self.environment, 'elastic_search_host': self.elastic_search_host, 'elastic_search_port': self.elastic_search_port, 'google_oauth_key': self.google_oauth_key, 'google_oauth_secret': self.google_oauth_secret, 'home_directory_path': self.home_directory_path, 'object_summaries_result_cache_size': self.object_summaries_result_cache_size, 'object_summary_cache_size': self.object_summary_cache_size}
 
     def as_tuple(self):
         '''
@@ -363,7 +449,7 @@ class CostumeProperties(object):
         :rtype: tuple
         '''
 
-        return (self.api_url, self.environment, self.elastic_search_host, self.elastic_search_port, self.home_directory_path, self.object_summaries_result_cache_size, self.object_summary_cache_size,)
+        return (self.api_url, self.environment, self.elastic_search_host, self.elastic_search_port, self.google_oauth_key, self.google_oauth_secret, self.home_directory_path, self.object_summaries_result_cache_size, self.object_summary_cache_size,)
 
     @property
     def elastic_search_host(self):
@@ -390,6 +476,22 @@ class CostumeProperties(object):
         return self.__environment
 
     @property
+    def google_oauth_key(self):
+        '''
+        :rtype: str
+        '''
+
+        return self.__google_oauth_key
+
+    @property
+    def google_oauth_secret(self):
+        '''
+        :rtype: str
+        '''
+
+        return self.__google_oauth_secret
+
+    @property
     def home_directory_path(self):
         '''
         :rtype: str
@@ -409,7 +511,7 @@ class CostumeProperties(object):
 
         properties = {}
 
-        for property_name in ('api_url', 'environment', 'elastic_search_host', 'elastic_search_port', 'home_directory_path', 'object_summaries_result_cache_size', 'object_summary_cache_size',):
+        for property_name in ('api_url', 'environment', 'elastic_search_host', 'elastic_search_port', 'google_oauth_key', 'google_oauth_secret', 'home_directory_path', 'object_summaries_result_cache_size', 'object_summary_cache_size',):
             property_value = os.getenv('COSTUME_' + property_name.upper())
             if property_value is not None and len(property_value) > 0:
                 properties[property_name] = property_value
@@ -486,6 +588,10 @@ class CostumeProperties(object):
                 init_kwds['elastic_search_host'] = iprot.read_string()
             elif ifield_name == 'elastic_search_port':
                 init_kwds['elastic_search_port'] = iprot.read_u32()
+            elif ifield_name == 'google_oauth_key':
+                init_kwds['google_oauth_key'] = iprot.read_string()
+            elif ifield_name == 'google_oauth_secret':
+                init_kwds['google_oauth_secret'] = iprot.read_string()
             elif ifield_name == 'home_directory_path':
                 init_kwds['home_directory_path'] = iprot.read_string()
             elif ifield_name == 'object_summaries_result_cache_size':
@@ -503,6 +609,8 @@ class CostumeProperties(object):
         environment=None,
         elastic_search_host="elasticsearch",
         elastic_search_port=9300,
+        google_oauth_key=None,
+        google_oauth_secret=None,
         home_directory_path=None,
         object_summaries_result_cache_size=1024,
         object_summary_cache_size=1024,
@@ -514,6 +622,8 @@ class CostumeProperties(object):
         :type environment: str or None
         :type elastic_search_host: str or None
         :type elastic_search_port: int or None
+        :type google_oauth_key: str or None
+        :type google_oauth_secret: str or None
         :type home_directory_path: str or None
         :type object_summaries_result_cache_size: int or None
         :type object_summary_cache_size: int or None
@@ -528,13 +638,17 @@ class CostumeProperties(object):
             elastic_search_host = self.elastic_search_host
         if elastic_search_port is None:
             elastic_search_port = self.elastic_search_port
+        if google_oauth_key is None:
+            google_oauth_key = self.google_oauth_key
+        if google_oauth_secret is None:
+            google_oauth_secret = self.google_oauth_secret
         if home_directory_path is None:
             home_directory_path = self.home_directory_path
         if object_summaries_result_cache_size is None:
             object_summaries_result_cache_size = self.object_summaries_result_cache_size
         if object_summary_cache_size is None:
             object_summary_cache_size = self.object_summary_cache_size
-        return self.__class__(api_url=api_url, environment=environment, elastic_search_host=elastic_search_host, elastic_search_port=elastic_search_port, home_directory_path=home_directory_path, object_summaries_result_cache_size=object_summaries_result_cache_size, object_summary_cache_size=object_summary_cache_size)
+        return self.__class__(api_url=api_url, environment=environment, elastic_search_host=elastic_search_host, elastic_search_port=elastic_search_port, google_oauth_key=google_oauth_key, google_oauth_secret=google_oauth_secret, home_directory_path=home_directory_path, object_summaries_result_cache_size=object_summaries_result_cache_size, object_summary_cache_size=object_summary_cache_size)
 
     def write(self, oprot):
         '''
@@ -560,6 +674,14 @@ class CostumeProperties(object):
 
         oprot.write_field_begin(name='elastic_search_port', type=8, id=None)
         oprot.write_u32(self.elastic_search_port)
+        oprot.write_field_end()
+
+        oprot.write_field_begin(name='google_oauth_key', type=11, id=None)
+        oprot.write_string(self.google_oauth_key)
+        oprot.write_field_end()
+
+        oprot.write_field_begin(name='google_oauth_secret', type=11, id=None)
+        oprot.write_string(self.google_oauth_secret)
         oprot.write_field_end()
 
         oprot.write_field_begin(name='home_directory_path', type=11, id=None)

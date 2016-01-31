@@ -1,22 +1,43 @@
 package net.lab1318.costume.gui.presenters;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
+
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.AuthorizationException;
+import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 import org.thryft.waf.gui.EventBus;
 import org.thryft.waf.gui.views.View;
 
+import com.google.common.base.Optional;
 import com.google.common.eventbus.Subscribe;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.UI;
 
+import net.lab1318.costume.api.models.user.InvalidUserIdException;
+import net.lab1318.costume.api.models.user.User;
+import net.lab1318.costume.api.models.user.UserId;
+import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService.Messages.GetCollectionByIdRequest;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService.Messages.GetInstitutionByIdRequest;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectByIdRequest;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
+import net.lab1318.costume.api.services.user.NoSuchUserException;
+import net.lab1318.costume.api.services.user.UserQueryService;
 import net.lab1318.costume.gui.GuiUI;
+import net.lab1318.costume.gui.events.user.UserLogoutRequest;
+import net.lab1318.costume.gui.views.TopLevelView;
 import net.lab1318.costume.gui.views.object_by_id.ObjectByIdView;
 
 public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.presenters.Presenter<ViewT> {
-    protected Presenter(final EventBus eventBus, final ViewT view) {
+    protected Presenter(final EventBus eventBus, final UserQueryService userQueryService, final ViewT view) {
         super(eventBus, view);
+        this.userQueryService = checkNotNull(userQueryService);
     }
 
     @Subscribe
@@ -40,4 +61,64 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
     public void onGetObjectSummariesRequest(final GetObjectSummariesRequest request) {
         GuiUI.navigateTo(request.getQuery().get());
     }
+
+    @Subscribe
+    public void onUserLogoutRequest(final UserLogoutRequest event) {
+        SecurityUtils.getSubject().logout();
+
+        if (_getView() instanceof TopLevelView) {
+            ((TopLevelView) _getView()).setCurrentUser(Optional.absent());
+        }
+
+        UI.getCurrent().getPage().reload();
+    }
+
+    protected abstract void _onViewEnter(final Optional<User> currentUser, final ViewChangeEvent event);
+
+    @Override
+    protected final void _onViewEnter(final ViewChangeEvent event) {
+        final Optional<User> currentUser = __getCurrentUser();
+        if (_getView() instanceof TopLevelView) {
+            ((TopLevelView) _getView()).setCurrentUser(currentUser);
+        }
+
+        _onViewEnter(currentUser, event);
+    }
+
+    private final Optional<User> __getCurrentUser() {
+        final Subject currentSubject = SecurityUtils.getSubject();
+        if (!currentSubject.isAuthenticated() && !currentSubject.isRemembered()) {
+            logger.debug(logMarker, "no user authenticated or remembered");
+            return Optional.absent();
+        }
+
+        final Object principal = currentSubject.getPrincipal();
+        checkState(principal != null); // Should be caught above
+        if (!(principal instanceof String)) {
+            logger.warn(logMarker, "unknown principal object type {}", principal.getClass().getCanonicalName());
+            return Optional.absent();
+        }
+
+        UserId currentUserId;
+        try {
+            currentUserId = UserId.parse((String) principal);
+        } catch (final InvalidUserIdException e) {
+            logger.warn(logMarker, "invalid principal string {}", principal);
+            throw new AuthorizationException("invalid principal");
+        }
+
+        try {
+            return Optional.of(userQueryService.getUserById(currentUserId));
+        } catch (final IoException e) {
+            logger.error(logMarker, "error getting user id '{}': {}", currentUserId, e);
+            return Optional.absent();
+        } catch (final NoSuchUserException e) {
+            logger.warn(logMarker, "no such user id '{}'", currentUserId);
+            throw new AuthorizationException("no such user id");
+        }
+    }
+
+    private final UserQueryService userQueryService;
+    private final static Logger logger = LoggerFactory.getLogger(Presenter.class);
+    private final static Marker logMarker = MarkerFactory.getMarker("PRESENTER");
 }
