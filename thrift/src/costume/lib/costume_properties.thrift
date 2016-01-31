@@ -14,6 +14,11 @@ struct CostumeProperties {
 	string elastic_search_host = "elasticsearch";
 	u32.u32 elastic_search_port = 9300;
 
+	// @validation {"minLength": 1}
+	string google_oauth_key;
+	// @validation {"minLength": 1}
+	string google_oauth_secret;
+
 	string home_directory_path;
 
 	u32.u32 object_summaries_result_cache_size = 1024;
