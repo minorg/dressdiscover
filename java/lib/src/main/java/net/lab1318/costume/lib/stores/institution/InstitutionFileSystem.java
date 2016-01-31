@@ -19,11 +19,12 @@ import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.institution.InvalidInstitutionIdException;
 import net.lab1318.costume.lib.CostumeProperties;
-import net.lab1318.costume.lib.stores.AbstractFileSystem;
+import net.lab1318.costume.lib.stores.AbstractInstitutionCollectionObjectFileSystem;
 import net.logstash.logback.encoder.org.apache.commons.lang.exception.ExceptionUtils;
 
 @Singleton
-public class InstitutionFileSystem extends AbstractFileSystem<Institution> implements InstitutionStore {
+public class InstitutionFileSystem extends AbstractInstitutionCollectionObjectFileSystem<Institution>
+        implements InstitutionStore {
     @Inject
     public InstitutionFileSystem(final CostumeProperties properties) {
         super(properties);
@@ -49,15 +50,12 @@ public class InstitutionFileSystem extends AbstractFileSystem<Institution> imple
     @Override
     public final ImmutableList<InstitutionEntry> getInstitutions(final Logger logger, final Marker logMarker)
             throws IOException {
-        final File[] institutionDirectoryPaths = _getInstitutionsDirectoryPath().listFiles();
-        if (institutionDirectoryPaths == null || institutionDirectoryPaths.length == 0) {
+        final ImmutableList<File> institutionDirectoryPaths = _getInstitutionDirectoryPaths(logger, logMarker);
+        if (institutionDirectoryPaths.isEmpty()) {
             return ImmutableList.of();
         }
         final ImmutableList.Builder<InstitutionEntry> builder = ImmutableList.builder();
         for (final File institutionDirectoryPath : institutionDirectoryPaths) {
-            if (!institutionDirectoryPath.isDirectory()) {
-                continue;
-            }
             final File institutionFilePath = new File(institutionDirectoryPath, FILE_NAME);
             if (!institutionFilePath.isFile()) {
                 continue;

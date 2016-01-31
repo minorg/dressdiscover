@@ -35,6 +35,10 @@ import net.lab1318.costume.api.models.subject.SubjectTermType;
 import net.lab1318.costume.api.models.title.Title;
 import net.lab1318.costume.api.models.title.TitleSet;
 import net.lab1318.costume.api.models.title.TitleType;
+import net.lab1318.costume.api.models.user.InvalidUserIdException;
+import net.lab1318.costume.api.models.user.User;
+import net.lab1318.costume.api.models.user.UserEntry;
+import net.lab1318.costume.api.models.user.UserId;
 
 public final class TestData {
     public static synchronized TestData getInstance() {
@@ -103,11 +107,22 @@ public final class TestData {
                 }
             }
         } catch (final InvalidCollectionIdException | InvalidInstitutionIdException | InvalidObjectIdException e) {
-            throw new IllegalStateException();
+            throw new IllegalStateException(e);
         }
         collections = collectionsBuilder.build();
         institutions = institutionsBuilder.build();
         objects = objectsBuilder.build();
+
+        final ImmutableList.Builder<UserEntry> usersBuilder = ImmutableList.builder();
+        for (int i = 0; i < 2; i++) {
+            try {
+                usersBuilder.add(new UserEntry(UserId.parse("test/testuser" + i),
+                        User.builder().setModelMetadata(__newModelMetadata()).build()));
+            } catch (final InvalidUserIdException e) {
+                throw new IllegalStateException(e);
+            }
+        }
+        users = usersBuilder.build();
     }
 
     public ImmutableList<Agent> getAgents() {
@@ -134,11 +149,16 @@ public final class TestData {
         return subjects;
     }
 
+    public ImmutableList<UserEntry> getUsers() {
+        return users;
+    }
+
     private final ImmutableList<Agent> agents;
     private ImmutableList<String> categories;
     private final ImmutableMultimap<InstitutionId, CollectionEntry> collections;
     private final ImmutableList<InstitutionEntry> institutions;
     private final ImmutableTable<InstitutionId, CollectionId, ObjectEntry> objects;
     private final ImmutableList<Subject> subjects;
+    private final ImmutableList<UserEntry> users;
     private static TestData instance = null;
 }
