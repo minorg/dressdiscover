@@ -104,6 +104,7 @@ public class UserFileSystem extends AbstractFileSystem<User> implements UserStor
     }
 
     private File __getUserFilePath(final UserId userId) {
-        return new File(new File(userId.getAuthProviderId()), _encodeFileName(userId.getUnqualifiedUserId()) + ".json");
+        return new File(new File(_getRootDirectoryPath(), userId.getAuthProviderId()),
+                _encodeFileName(userId.getUnqualifiedUserId()) + ".json");
     }
 }

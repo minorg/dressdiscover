@@ -15,6 +15,7 @@ public final class CachingUserCommandServiceTest extends UserCommandServiceTest 
 
             @Override
             protected void _configureUserQueryService() {
+                bind(IterableUserQueryService.class).to(CachingUserQueryService.class);
                 bind(UserQueryService.class).to(CachingUserQueryService.class);
             }
         };

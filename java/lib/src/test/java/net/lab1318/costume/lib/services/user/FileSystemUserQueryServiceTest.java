@@ -15,6 +15,7 @@ public final class FileSystemUserQueryServiceTest extends UserQueryServiceTest {
 
             @Override
             protected void _configureUserQueryService() {
+                bind(IterableUserQueryService.class).to(FileSystemUserQueryService.class);
                 bind(UserQueryService.class).to(FileSystemUserQueryService.class);
             }
         };
