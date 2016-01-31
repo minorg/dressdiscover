@@ -9,6 +9,8 @@ import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.object.ObjectCommandService;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
+import net.lab1318.costume.api.services.user.UserCommandService;
+import net.lab1318.costume.api.services.user.UserQueryService;
 import net.lab1318.costume.lib.services.collection.CachingCollectionCommandService;
 import net.lab1318.costume.lib.services.collection.CachingCollectionQueryService;
 import net.lab1318.costume.lib.services.collection.LoggingCollectionCommandService;
@@ -30,6 +32,13 @@ import net.lab1318.costume.lib.services.object.LoggingObjectSummaryQueryService;
 import net.lab1318.costume.lib.services.object.ValidatingObjectCommandService;
 import net.lab1318.costume.lib.services.object.ValidatingObjectQueryService;
 import net.lab1318.costume.lib.services.object.ValidatingObjectSummaryQueryService;
+import net.lab1318.costume.lib.services.user.FileSystemUserCommandService;
+import net.lab1318.costume.lib.services.user.FileSystemUserQueryService;
+import net.lab1318.costume.lib.services.user.IterableUserQueryService;
+import net.lab1318.costume.lib.services.user.LoggingUserCommandService;
+import net.lab1318.costume.lib.services.user.LoggingUserQueryService;
+import net.lab1318.costume.lib.services.user.ValidatingUserCommandService;
+import net.lab1318.costume.lib.services.user.ValidatingUserQueryService;
 
 public class ServicesModule extends AbstractModule {
     protected void _configureCollectionCommandService() {
@@ -88,6 +97,24 @@ public class ServicesModule extends AbstractModule {
         bind(ObjectSummaryQueryService.class).to(ValidatingObjectSummaryQueryService.class).asEagerSingleton();
     }
 
+    protected void _configureUserCommandService() {
+        bind(UserCommandService.class).annotatedWith(LoggingUserCommandService.DELEGATE_NAME)
+                .to(FileSystemUserCommandService.class).asEagerSingleton();
+        bind(UserCommandService.class).annotatedWith(ValidatingUserCommandService.DELEGATE_NAME)
+                .to(LoggingUserCommandService.class).asEagerSingleton();
+        bind(UserCommandService.class).to(ValidatingUserCommandService.class).asEagerSingleton();
+    }
+
+    protected void _configureUserQueryService() {
+        bind(IterableUserQueryService.class).annotatedWith(LoggingUserQueryService.DELEGATE_NAME)
+                .to(FileSystemUserQueryService.class).asEagerSingleton();
+        bind(UserQueryService.class).annotatedWith(LoggingUserQueryService.DELEGATE_NAME)
+                .to(FileSystemUserQueryService.class).asEagerSingleton();
+        bind(UserQueryService.class).annotatedWith(ValidatingUserQueryService.DELEGATE_NAME)
+                .to(LoggingUserQueryService.class).asEagerSingleton();
+        bind(UserQueryService.class).to(ValidatingUserQueryService.class).asEagerSingleton();
+    }
+
     @Override
     protected void configure() {
         _configureCollectionCommandService();
@@ -97,5 +124,7 @@ public class ServicesModule extends AbstractModule {
         _configureObjectCommandService();
         _configureObjectQueryService();
         _configureObjectSummaryQueryService();
+        _configureUserCommandService();
+        _configureUserQueryService();
     }
 }
