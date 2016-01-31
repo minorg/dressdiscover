@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Iterator;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.slf4j.Logger;
@@ -24,10 +25,10 @@ import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.lib.CostumeProperties;
-import net.lab1318.costume.lib.stores.AbstractFileSystem;
+import net.lab1318.costume.lib.stores.AbstractInstitutionCollectionObjectFileSystem;
 
 @Singleton
-public class ObjectFileSystem extends AbstractFileSystem<Object> {
+public class ObjectFileSystem extends AbstractInstitutionCollectionObjectFileSystem<Object> {
     @Inject
     public ObjectFileSystem(final CostumeProperties properties) {
         super(properties);
@@ -79,7 +80,7 @@ public class ObjectFileSystem extends AbstractFileSystem<Object> {
                         try {
                             objectId = ObjectId.parse(_decodeFileName(institutionDirectoryPath.getName()) + '/'
                                     + _decodeFileName(collectionDirectoryPath.getName()) + '/'
-                                    + _decodeFileName(objectFilePath.getName()));
+                                    + _decodeFileName(FilenameUtils.getBaseName(objectFilePath.getName())));
                         } catch (final InvalidObjectIdException e) {
                             throw new RuntimeException(e);
                         }

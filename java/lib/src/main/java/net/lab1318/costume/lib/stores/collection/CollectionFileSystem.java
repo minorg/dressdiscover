@@ -20,11 +20,11 @@ import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.collection.InvalidCollectionIdException;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.lib.CostumeProperties;
-import net.lab1318.costume.lib.stores.AbstractFileSystem;
+import net.lab1318.costume.lib.stores.AbstractInstitutionCollectionObjectFileSystem;
 import net.logstash.logback.encoder.org.apache.commons.lang.exception.ExceptionUtils;
 
 @Singleton
-public class CollectionFileSystem extends AbstractFileSystem<Collection> implements CollectionStore {
+public class CollectionFileSystem extends AbstractInstitutionCollectionObjectFileSystem<Collection> implements CollectionStore {
     @Inject
     public CollectionFileSystem(final CostumeProperties properties) {
         super(properties);
