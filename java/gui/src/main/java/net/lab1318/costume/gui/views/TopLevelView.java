@@ -3,6 +3,7 @@ package net.lab1318.costume.gui.views;
 import org.thryft.waf.gui.EventBus;
 import org.thryft.waf.gui.views.View;
 
+import com.google.common.base.Optional;
 import com.vaadin.server.ErrorMessage;
 import com.vaadin.server.Page;
 import com.vaadin.shared.ui.label.ContentMode;
@@ -25,6 +26,7 @@ import net.lab1318.costume.gui.views.wizard.WizardFeatureView;
 public abstract class TopLevelView extends View {
     protected TopLevelView(final EventBus eventBus) {
         super(eventBus);
+        navbar = new Navbar(eventBus);
     }
 
     @Override
@@ -34,7 +36,7 @@ public abstract class TopLevelView extends View {
         notification.show(Page.getCurrent());
     }
 
-    public void setCurrentUser(final User currentUser) {
+    public void setCurrentUser(final Optional<User> currentUser) {
         navbar.setCurrentUser(currentUser);
     }
 
@@ -79,5 +81,5 @@ public abstract class TopLevelView extends View {
         super.setCompositionRoot(frameLayout);
     }
 
-    private final Navbar navbar = new Navbar();
+    private final Navbar navbar;
 }

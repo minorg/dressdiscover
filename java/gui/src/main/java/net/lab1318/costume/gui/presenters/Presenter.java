@@ -30,6 +30,7 @@ import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Message
 import net.lab1318.costume.api.services.user.NoSuchUserException;
 import net.lab1318.costume.api.services.user.UserQueryService;
 import net.lab1318.costume.gui.GuiUI;
+import net.lab1318.costume.gui.events.user.UserLogoutRequest;
 import net.lab1318.costume.gui.views.TopLevelView;
 import net.lab1318.costume.gui.views.object_by_id.ObjectByIdView;
 
@@ -61,13 +62,24 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
         GuiUI.navigateTo(request.getQuery().get());
     }
 
+    @Subscribe
+    public void onUserLogoutRequest(final UserLogoutRequest event) {
+        SecurityUtils.getSubject().logout();
+
+        if (_getView() instanceof TopLevelView) {
+            ((TopLevelView) _getView()).setCurrentUser(Optional.absent());
+        }
+
+        UI.getCurrent().getPage().reload();
+    }
+
     protected abstract void _onViewEnter(final Optional<User> currentUser, final ViewChangeEvent event);
 
     @Override
     protected final void _onViewEnter(final ViewChangeEvent event) {
         final Optional<User> currentUser = __getCurrentUser();
-        if (currentUser.isPresent() && _getView() instanceof TopLevelView) {
-            ((TopLevelView) _getView()).setCurrentUser(currentUser.get());
+        if (_getView() instanceof TopLevelView) {
+            ((TopLevelView) _getView()).setCurrentUser(currentUser);
         }
 
         _onViewEnter(currentUser, event);

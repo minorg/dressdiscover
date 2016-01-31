@@ -3,6 +3,8 @@ package net.lab1318.costume.server.controllers.login;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Date;
 
 import org.apache.shiro.SecurityUtils;
@@ -40,13 +42,13 @@ public class OauthLoginController extends AbstractOauthLoginController<UserEntry
     }
 
     @Override
-    protected final String _getFailedLoginUrlPath() {
+    protected final String _getFailedLoginUrl(final String errorUrlCoded, final String stateParameterUrlDecoded) {
         return "/";
     }
 
     @Override
-    protected final String _getNewLoginUrlPath() {
-        return "/";
+    protected final String _getNewLoginUrl(final String stateParameterUrlDecoded) {
+        return _getSuccessfulLoginUrl(stateParameterUrlDecoded);
     }
 
     @Override
@@ -60,8 +62,15 @@ public class OauthLoginController extends AbstractOauthLoginController<UserEntry
     }
 
     @Override
-    protected final String _getSuccessfulLoginUrlPath() {
-        return "/";
+    protected final String _getSuccessfulLoginUrl(final String stateParameterUrlDecoded) {
+        if (stateParameterUrlDecoded == null || stateParameterUrlDecoded.isEmpty()) {
+            return "/";
+        }
+        try {
+            return "/#!" + URLEncoder.encode(stateParameterUrlDecoded, "ASCII");
+        } catch (final UnsupportedEncodingException e) {
+            throw new IllegalStateException(e);
+        }
     }
 
     @Override

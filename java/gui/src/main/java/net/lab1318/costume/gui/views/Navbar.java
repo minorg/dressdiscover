@@ -1,5 +1,10 @@
 package net.lab1318.costume.gui.views;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.thryft.waf.gui.EventBus;
+
+import com.google.common.base.Optional;
 import com.vaadin.event.FieldEvents.BlurEvent;
 import com.vaadin.event.FieldEvents.BlurListener;
 import com.vaadin.event.FieldEvents.FocusEvent;
@@ -12,6 +17,7 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.MenuBar.Command;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.TextField;
@@ -20,10 +26,13 @@ import com.vaadin.ui.UI;
 import net.lab1318.costume.api.models.user.User;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.gui.GuiUI;
+import net.lab1318.costume.gui.events.user.UserLogoutRequest;
 
 @SuppressWarnings("serial")
 public final class Navbar extends HorizontalLayout {
-    public Navbar() {
+    public Navbar(final EventBus eventBus) {
+        this.eventBus = checkNotNull(eventBus);
+
         setSizeFull();
 
         {
@@ -92,10 +101,34 @@ public final class Navbar extends HorizontalLayout {
         return searchTextField;
     }
 
-    public void setCurrentUser(final User currentUser) {
-        currentUserMenuItem.setText(currentUser.getEmailAddress().toString());
+    public void setCurrentUser(final Optional<User> currentUser) {
+        if (currentUser.isPresent()) {
+            currentUserMenuItem.setCommand(null);
+            currentUserMenuItem.setText(currentUser.get().getEmailAddress().toString());
+            currentUserMenuItem.removeChildren();
+            currentUserMenuItem.addItem("Logout", new Command() {
+                @Override
+                public void menuSelected(final MenuItem selectedItem) {
+                    eventBus.post(new UserLogoutRequest());
+                }
+            });
+        } else {
+            currentUserMenuItem.setCommand(new Command() {
+                @Override
+                public void menuSelected(final MenuItem selectedItem) {
+                    String redirectLocation = "/api/oauth2/google";
+                    final String state = UI.getCurrent().getNavigator().getState();
+                    if (!state.isEmpty()) {
+                        redirectLocation += "?state=" + state;
+                    }
+                    UI.getCurrent().getPage().setLocation(redirectLocation);
+                }
+            });
+            currentUserMenuItem.setText("Login");
+        }
     }
 
     private MenuItem currentUserMenuItem;
+    private final EventBus eventBus;
     private final TextField searchTextField = new TextField();
 }
