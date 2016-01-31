@@ -26,6 +26,7 @@ import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionId;
+import net.lab1318.costume.api.models.user.User;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
@@ -36,6 +37,7 @@ import net.lab1318.costume.api.services.object.GetObjectSummariesResult;
 import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
+import net.lab1318.costume.api.services.user.UserQueryService;
 import net.lab1318.costume.gui.models.object.ObjectSummaryEntryBeanQueryDefinition;
 import net.lab1318.costume.gui.models.object.ObjectSummaryEntryBeanQueryFactory;
 import net.lab1318.costume.gui.presenters.Presenter;
@@ -46,15 +48,16 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
     @Inject
     public ObjectsPresenter(final CollectionQueryService collectionQueryService, final EventBus eventBus,
             final InstitutionQueryService institutionQueryService,
-            final ObjectSummaryQueryService objectSummaryQueryService, final ObjectsView view) {
-        super(eventBus, view);
+            final ObjectSummaryQueryService objectSummaryQueryService, final UserQueryService userQueryService,
+            final ObjectsView view) {
+        super(eventBus, userQueryService, view);
         this.collectionQueryService = checkNotNull(collectionQueryService);
         this.institutionQueryService = checkNotNull(institutionQueryService);
         this.objectSummaryQueryService = checkNotNull(objectSummaryQueryService);
     }
 
     @Override
-    protected void _onViewEnter(final ViewChangeEvent event) {
+    protected void _onViewEnter(final Optional<User> currentUser, final ViewChangeEvent event) {
         final ObjectQuery objectQuery;
         try {
             objectQuery = ObjectQuery.readAsStruct(

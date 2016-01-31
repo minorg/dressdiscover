@@ -44,13 +44,6 @@ $v-layout-spacing-vertical: 0.5em;
   	padding: 10px;
   }
 
-  .icon-button {
-	font-size: 1em;
-	padding-bottom: 4px;
-	padding-top: 4px;
-	vertical-align: middle;
-  }
-
   .v-checkbox-all {
   	font-weight: bold;
   }
@@ -71,6 +64,18 @@ $v-layout-spacing-vertical: 0.5em;
 
   .v-formlayout .v-caption {
   	vertical-align: top;
+  }
+
+  .v-menubar {
+  	background: none;
+  }
+
+  .v-nativebutton-search {
+  	background: none;
+  }
+
+  .v-nativebutton-pi {
+  	background: none;
   }
 
   .v-table-cell-content-thumbnail > .v-table-cell-wrapper {

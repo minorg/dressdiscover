@@ -11,10 +11,13 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 
+import net.lab1318.costume.api.models.user.User;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.gui.GuiUI;
 
@@ -24,17 +27,16 @@ public final class Navbar extends HorizontalLayout {
         setSizeFull();
 
         {
-            final Button homeButton = new NativeButton();
-            homeButton.setIcon(FontAwesome.HOME);
-            homeButton.addClickListener(new ClickListener() {
+            final MenuBar leftMenuBar = new MenuBar();
+            final MenuItem homeMenuItem = leftMenuBar.addItem("", FontAwesome.HOME, new MenuBar.Command() {
                 @Override
-                public void buttonClick(final ClickEvent event) {
+                public void menuSelected(final MenuItem selectedItem) {
                     UI.getCurrent().getNavigator().navigateTo("");
                 }
             });
-            homeButton.addStyleName("icon-button");
-            addComponent(homeButton);
-            setComponentAlignment(homeButton, Alignment.TOP_LEFT);
+            homeMenuItem.setStyleName("home");
+            addComponent(leftMenuBar);
+            setComponentAlignment(leftMenuBar, Alignment.TOP_LEFT);
         }
 
         {
@@ -53,7 +55,8 @@ public final class Navbar extends HorizontalLayout {
                 }
             });
             searchButton.setIcon(FontAwesome.SEARCH);
-            searchButton.addStyleName("icon-button");
+            searchButton.setSizeFull();
+            searchButton.setStyleName("search");
 
             searchTextField.setWidth((float) 32.0, Unit.EM);
             searchTextField.addBlurListener(new BlurListener() {
@@ -74,7 +77,14 @@ public final class Navbar extends HorizontalLayout {
             searchLayout.addComponent(searchButton);
 
             addComponent(searchLayout);
-            setComponentAlignment(searchLayout, Alignment.MIDDLE_RIGHT);
+            setComponentAlignment(searchLayout, Alignment.MIDDLE_CENTER);
+        }
+
+        {
+            final MenuBar rightMenuBar = new MenuBar();
+            currentUserMenuItem = rightMenuBar.addItem("Guest user", null);
+            addComponent(rightMenuBar);
+            setComponentAlignment(rightMenuBar, Alignment.MIDDLE_RIGHT);
         }
     }
 
@@ -82,5 +92,10 @@ public final class Navbar extends HorizontalLayout {
         return searchTextField;
     }
 
+    public void setCurrentUser(final User currentUser) {
+        currentUserMenuItem.setText(currentUser.getEmailAddress().toString());
+    }
+
+    private MenuItem currentUserMenuItem;
     private final TextField searchTextField = new TextField();
 }

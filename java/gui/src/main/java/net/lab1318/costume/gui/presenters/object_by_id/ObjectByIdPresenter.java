@@ -27,6 +27,7 @@ import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 import net.lab1318.costume.api.models.relation.Relation;
+import net.lab1318.costume.api.models.user.User;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
@@ -37,6 +38,7 @@ import net.lab1318.costume.api.services.object.NoSuchObjectException;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
+import net.lab1318.costume.api.services.user.UserQueryService;
 import net.lab1318.costume.gui.GuiUI;
 import net.lab1318.costume.gui.events.object_by_id.ObjectElementSelectionRequest;
 import net.lab1318.costume.gui.events.object_by_id.ObjectMoreLikeThisRequest;
@@ -48,8 +50,9 @@ public class ObjectByIdPresenter extends Presenter<ObjectByIdView> {
     @Inject
     public ObjectByIdPresenter(final CollectionQueryService collectionQueryService, final EventBus eventBus,
             final InstitutionQueryService institutionQueryService, final ObjectQueryService objectQueryService,
-            final ObjectSummaryQueryService objectSummaryQueryService, final ObjectByIdView view) {
-        super(eventBus, view);
+            final ObjectSummaryQueryService objectSummaryQueryService, final UserQueryService userQueryService,
+            final ObjectByIdView view) {
+        super(eventBus, userQueryService, view);
         this.collectionQueryService = checkNotNull(collectionQueryService);
         this.institutionQueryService = checkNotNull(institutionQueryService);
         this.objectQueryService = checkNotNull(objectQueryService);
@@ -71,7 +74,7 @@ public class ObjectByIdPresenter extends Presenter<ObjectByIdView> {
     }
 
     @Override
-    protected void _onViewEnter(final ViewChangeEvent event) {
+    protected void _onViewEnter(final Optional<User> currentUser, final ViewChangeEvent event) {
         try {
             objectId = ObjectId.parse(event.getParameters());
         } catch (final InvalidObjectIdException e) {
