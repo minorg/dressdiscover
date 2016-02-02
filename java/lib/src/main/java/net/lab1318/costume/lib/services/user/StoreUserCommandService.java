@@ -15,7 +15,7 @@ import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.user.DuplicateUserException;
 import net.lab1318.costume.api.services.user.NoSuchUserException;
 import net.lab1318.costume.api.services.user.UserCommandService;
-import net.lab1318.costume.lib.services.ServiceExceptionHelper;
+import net.lab1318.costume.lib.services.IoExceptions;
 import net.lab1318.costume.lib.services.user.LoggingUserCommandService.Markers;
 import net.lab1318.costume.lib.stores.user.UserStore;
 
@@ -31,7 +31,7 @@ abstract class StoreUserCommandService implements UserCommandService {
                 throw new NoSuchUserException();
             }
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error deleting user by id");
+            throw IoExceptions.wrap(e, "error deleting user by id");
         }
     }
 
@@ -40,7 +40,7 @@ abstract class StoreUserCommandService implements UserCommandService {
         try {
             store.deleteUsers(logger, Markers.DELETE_USERS);
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error deleting users");
+            throw IoExceptions.wrap(e, "error deleting users");
         }
     }
 
@@ -49,7 +49,7 @@ abstract class StoreUserCommandService implements UserCommandService {
         try {
             return new UserEntry(store.postUser(user, logger, Markers.POST_AND_GET_USER), user);
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error posting user");
+            throw IoExceptions.wrap(e, "error posting user");
         }
     }
 
@@ -63,7 +63,7 @@ abstract class StoreUserCommandService implements UserCommandService {
         try {
             store.putUser(user, id, logger, Markers.PUT_USER);
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error putting user");
+            throw IoExceptions.wrap(e, "error putting user");
         } catch (final NoSuchModelException e) {
             throw new NoSuchUserException();
         }

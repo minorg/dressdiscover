@@ -6,6 +6,7 @@ namespace validating_service_java net.lab1318.costume.lib.services.user
 namespace * costume.api.services.user
 
 include "costume/api/models/user/user.thrift"
+include "costume/api/models/user/user_bookmark.thrift"
 include "costume/api/models/user/user_entry.thrift"
 include "costume/api/models/user/user_id.thrift"
 include "costume/api/services/io_exception.thrift"
@@ -13,6 +14,14 @@ include "costume/api/services/user/no_such_user_exception.thrift"
 include "thryft/native/email_address.thrift"
 
 service UserQueryService {
+	list<user_bookmark_entry.UserBookmarkEntry>
+	get_user_bookmarks_by_user_id(
+		user_id.UserId user_id
+	) throws (
+		io_exception.IoException e1,
+		no_such_user_exception.NoSuchUserException e2
+	);
+
 	user_entry.UserEntry
 	get_user_by_email_address(
 		email_address.EmailAddress email_address

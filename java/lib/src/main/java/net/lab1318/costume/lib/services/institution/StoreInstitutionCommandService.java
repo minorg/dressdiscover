@@ -13,7 +13,7 @@ import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionCommandService;
 import net.lab1318.costume.api.services.institution.InstitutionCommandService;
 import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
-import net.lab1318.costume.lib.services.ServiceExceptionHelper;
+import net.lab1318.costume.lib.services.IoExceptions;
 import net.lab1318.costume.lib.services.institution.LoggingInstitutionCommandService.Markers;
 import net.lab1318.costume.lib.stores.institution.InstitutionStore;
 
@@ -31,7 +31,7 @@ class StoreInstitutionCommandService implements InstitutionCommandService {
                 throw new NoSuchInstitutionException();
             }
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error deleting institution by id");
+            throw IoExceptions.wrap(e, "error deleting institution by id");
         }
 
         collectionCommandService.deleteCollectionsByInstitutionId(id);
@@ -42,7 +42,7 @@ class StoreInstitutionCommandService implements InstitutionCommandService {
         try {
             store.deleteInstitutions(logger, Markers.DELETE_INSTITUTIONS);
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error deleting institutions");
+            throw IoExceptions.wrap(e, "error deleting institutions");
         }
 
         collectionCommandService.deleteCollections();
@@ -53,7 +53,7 @@ class StoreInstitutionCommandService implements InstitutionCommandService {
         try {
             store.putInstitution(institution, id, logger, Markers.PUT_INSTITUTION);
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error putting institution");
+            throw IoExceptions.wrap(e, "error putting institution");
         }
     }
 

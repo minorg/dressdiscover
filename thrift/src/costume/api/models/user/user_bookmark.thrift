@@ -8,5 +8,7 @@ include "costume/api/models/user/user_id.thrift"
 // @java_implements org.thryft.waf.api.models.Model
 struct UserBookmark {
 	object_id.ObjectId object_id;
+
+	// @sql_foreign_key user.id
 	user_id.UserId user_id;
 }

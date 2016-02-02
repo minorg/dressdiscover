@@ -21,7 +21,7 @@ import net.lab1318.costume.api.models.object.ObjectSummary;
 import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.ObjectCommandService;
-import net.lab1318.costume.lib.services.ServiceExceptionHelper;
+import net.lab1318.costume.lib.services.IoExceptions;
 import net.lab1318.costume.lib.services.object.LoggingObjectCommandService.Markers;
 import net.lab1318.costume.lib.stores.object.ObjectFileSystem;
 import net.lab1318.costume.lib.stores.object.ObjectSummaryElasticSearchIndex;
@@ -45,14 +45,14 @@ public class FileSystemObjectCommandService implements ObjectCommandService {
         try {
             objectFileSystem.deleteObjects(logger, Markers.DELETE_OBJECTS);
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error deleting objects");
+            throw IoExceptions.wrap(e, "error deleting objects");
         }
 
         try {
             objectSummaryElasticSearchIndex.deleteIndex(logger, Markers.DELETE_OBJECTS);
             objectSummaryElasticSearchIndex.createIndex(logger, Markers.DELETE_OBJECTS);
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error deleting object summaries");
+            throw IoExceptions.wrap(e, "error deleting object summaries");
         }
     }
 
@@ -63,7 +63,7 @@ public class FileSystemObjectCommandService implements ObjectCommandService {
         try {
             objectFileSystem.deleteObjectsByCollectionId(collectionId, logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID);
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error deleting objects by collection id");
+            throw IoExceptions.wrap(e, "error deleting objects by collection id");
         }
 
         try {
@@ -73,7 +73,7 @@ public class FileSystemObjectCommandService implements ObjectCommandService {
                                     ObjectSummary.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
                                     collectionId.toString())));
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error deleting object summaries by collection id");
+            throw IoExceptions.wrap(e, "error deleting object summaries by collection id");
         }
     }
 
@@ -85,7 +85,7 @@ public class FileSystemObjectCommandService implements ObjectCommandService {
             objectFileSystem.deleteObjectsByInstitutionId(institutionId, logger,
                     Markers.DELETE_OBJECTS_BY_INSTITUTION_ID);
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error deleting objects by institution id");
+            throw IoExceptions.wrap(e, "error deleting objects by institution id");
         }
 
         try {
@@ -95,7 +95,7 @@ public class FileSystemObjectCommandService implements ObjectCommandService {
                                     ObjectSummary.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
                                     institutionId.toString())));
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error deleting object summaries by institution id");
+            throw IoExceptions.wrap(e, "error deleting object summaries by institution id");
         }
     }
 
@@ -106,14 +106,14 @@ public class FileSystemObjectCommandService implements ObjectCommandService {
         try {
             objectFileSystem.putObject(logger, Markers.PUT_OBJECT, object, id);
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error putting object");
+            throw IoExceptions.wrap(e, "error putting object");
         }
 
         try {
             objectSummaryElasticSearchIndex.putModel(logger, Markers.PUT_OBJECT,
                     new ObjectSummaryEntry(id, ObjectSummarizer.getInstance().summarizeObject(object)));
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error putting object summary");
+            throw IoExceptions.wrap(e, "error putting object summary");
         }
     }
 
@@ -125,7 +125,7 @@ public class FileSystemObjectCommandService implements ObjectCommandService {
             try {
                 objectFileSystem.putObject(logger, Markers.PUT_OBJECTS, objectEntry.getModel(), objectEntry.getId());
             } catch (final IOException e) {
-                throw ServiceExceptionHelper.wrapException(e, "error putting objects");
+                throw IoExceptions.wrap(e, "error putting objects");
             }
         }
 
@@ -137,7 +137,7 @@ public class FileSystemObjectCommandService implements ObjectCommandService {
         try {
             objectSummaryElasticSearchIndex.putModels(logger, Markers.PUT_OBJECTS, objectSummariesBuilder.build());
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error putting object summaries");
+            throw IoExceptions.wrap(e, "error putting object summaries");
         }
     }
 

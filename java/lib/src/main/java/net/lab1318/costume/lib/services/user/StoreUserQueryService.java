@@ -15,7 +15,7 @@ import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.api.models.user.UserId;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.user.NoSuchUserException;
-import net.lab1318.costume.lib.services.ServiceExceptionHelper;
+import net.lab1318.costume.lib.services.IoExceptions;
 import net.lab1318.costume.lib.stores.user.UserStore;
 
 abstract class StoreUserQueryService implements IterableUserQueryService {
@@ -33,7 +33,7 @@ abstract class StoreUserQueryService implements IterableUserQueryService {
                     "invalid user model {}: ", emailAddress, e);
             throw new NoSuchUserException();
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting user " + emailAddress);
+            throw IoExceptions.wrap(e, "error getting user " + emailAddress);
         } catch (final NoSuchModelException e) {
             throw new NoSuchUserException();
         }
@@ -49,7 +49,7 @@ abstract class StoreUserQueryService implements IterableUserQueryService {
                     "invalid user model {}: ", id, e);
             throw new NoSuchUserException();
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting user " + id);
+            throw IoExceptions.wrap(e, "error getting user " + id);
         } catch (final NoSuchModelException e) {
             throw new NoSuchUserException();
         }
@@ -60,7 +60,7 @@ abstract class StoreUserQueryService implements IterableUserQueryService {
         try {
             return store.getUsers(logger, Markers.GET_USERS);
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting users");
+            throw IoExceptions.wrap(e, "error getting users");
         }
     }
 

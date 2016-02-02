@@ -157,7 +157,7 @@ class Main(thryft.main.Main):
                             **compile_kwds
                         )
 
-                        if thrift_file_base_name in ('user',):
+                        if thrift_file_base_name in ('user', 'user_bookmark',):
                             out_dir_path = os.path.join(ROOT_DIR_PATH, 'sql')
                             if not os.path.isdir(out_dir_path):
                                 os.makedirs(out_dir_path)

@@ -34,6 +34,7 @@ import org.elasticsearch.search.sort.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thryft.protocol.InputProtocolException;
+import org.thryft.waf.lib.ExceptionUtils;
 import org.thryft.waf.lib.protocols.ElasticSearchInputProtocol;
 import org.thryft.waf.lib.stores.ElasticSearchIndex;
 import org.thryft.waf.lib.stores.InvalidModelException;
@@ -67,7 +68,7 @@ import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.api.services.object.ObjectSummarySort;
-import net.lab1318.costume.lib.services.ServiceExceptionHelper;
+import net.lab1318.costume.lib.services.IoExceptions;
 import net.lab1318.costume.lib.services.object.LoggingObjectSummaryQueryService.Markers;
 import net.lab1318.costume.lib.stores.object.ObjectSummaryElasticSearchIndex;
 
@@ -94,8 +95,8 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
                 return new ObjectEntry(ObjectId.parse(id),
                         Object.readAsStruct(new ElasticSearchInputProtocol(document)));
             } catch (final InputProtocolException | InvalidObjectIdException e) {
-                throw new InvalidModelException(id, ServiceExceptionHelper.combineMessages(e,
-                        "error deserializing model document from ElasticSearch"), e);
+                throw new InvalidModelException(id,
+                        ExceptionUtils.combineMessages(e, "error deserializing model document from ElasticSearch"), e);
             }
         }
 
@@ -121,8 +122,8 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
             try {
                 objectId = ObjectId.parse(id);
             } catch (final InvalidObjectIdException e) {
-                throw new InvalidModelException(id, ServiceExceptionHelper.combineMessages(e,
-                        "error deserializing model document from ElasticSearch"), e);
+                throw new InvalidModelException(id,
+                        ExceptionUtils.combineMessages(e, "error deserializing model document from ElasticSearch"), e);
             }
             try {
                 return objectSummaryCache.get(objectId, new Callable<ObjectSummaryEntry>() {
@@ -132,7 +133,7 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
                             return new ObjectSummaryEntry(objectId,
                                     ObjectSummary.readAsStruct(new ElasticSearchInputProtocol(document)));
                         } catch (final InputProtocolException e) {
-                            throw new InvalidModelException(id, ServiceExceptionHelper.combineMessages(e,
+                            throw new InvalidModelException(id, ExceptionUtils.combineMessages(e,
                                     "error deserializing model document from ElasticSearch"), e);
                         }
                     }
@@ -141,7 +142,7 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
                 if (e.getCause() instanceof InvalidModelException) {
                     throw (InvalidModelException) e.getCause();
                 }
-                ServiceExceptionHelper.rethrowExecutionException(e);
+                IoExceptions.rethrowExecutionException(e);
                 throw new IllegalStateException(e);
             }
         }
@@ -369,7 +370,7 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
                                         "object summaries index does not exist, returning empty results");
                                 return __getEmptyObjectSummariesResult(options);
                             } catch (final IOException e) {
-                                throw ServiceExceptionHelper.wrapException(e, "error getting object summaries");
+                                throw IoExceptions.wrap(e, "error getting object summaries");
                             }
 
                             final GetObjectSummariesResult.Builder resultBuilder = GetObjectSummariesResult.builder();
@@ -396,7 +397,7 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
             if (e.getCause() instanceof IoException) {
                 throw (IoException) e.getCause();
             }
-            ServiceExceptionHelper.rethrowExecutionException(e);
+            IoExceptions.rethrowExecutionException(e);
             throw new IllegalStateException(e);
         }
 

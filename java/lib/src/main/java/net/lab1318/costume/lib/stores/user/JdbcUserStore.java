@@ -1,7 +1,6 @@
 package net.lab1318.costume.lib.stores.user;
 
 import java.io.File;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,6 +25,7 @@ import com.google.inject.Singleton;
 import net.lab1318.costume.api.models.user.User;
 import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.api.models.user.UserId;
+import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.lib.CostumeProperties;
 
 @Singleton
@@ -60,7 +60,7 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
     }
 
     @Override
-    public boolean deleteUserById(final UserId userId, final Logger logger, final Marker logMarker) throws IOException {
+    public boolean deleteUserById(final UserId userId, final Logger logger, final Marker logMarker) throws IoException {
         try (Connection connection = _getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(deleteUserByIdSql)) {
                 statement.setInt(1, userId.asInteger());
@@ -79,7 +79,7 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
     }
 
     @Override
-    public void deleteUsers(final Logger logger, final Marker logMarker) throws IOException {
+    public void deleteUsers(final Logger logger, final Marker logMarker) throws IoException {
         try (Connection connection = _getConnection()) {
             try (Statement statement = connection.createStatement()) {
                 statement.execute(deleteUsersSql);
@@ -91,7 +91,7 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
 
     @Override
     public UserEntry getUserByEmailAddress(final EmailAddress emailAddress, final Logger logger, final Marker logMarker)
-            throws InvalidModelException, IOException, NoSuchModelException {
+            throws InvalidModelException, IoException, NoSuchModelException {
         try (Connection connection = _getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(getUserByEmailAddressSql)) {
                 statement.setString(1, emailAddress.toString());
@@ -111,7 +111,7 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
 
     @Override
     public User getUserById(final UserId userId, final Logger logger, final Marker logMarker)
-            throws InvalidModelException, IOException, NoSuchModelException {
+            throws InvalidModelException, IoException, NoSuchModelException {
         try (Connection connection = _getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(getUserByIdSql)) {
                 statement.setInt(1, userId.asInteger());
@@ -130,7 +130,7 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
     }
 
     @Override
-    public ImmutableList<UserEntry> getUsers(final Logger logger, final Marker logMarker) throws IOException {
+    public ImmutableList<UserEntry> getUsers(final Logger logger, final Marker logMarker) throws IoException {
         try (Connection connection = _getConnection()) {
             try (Statement statement = connection.createStatement()) {
                 try (final ResultSet resultSet = statement.executeQuery(getUsersSql)) {
@@ -147,7 +147,7 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
     }
 
     @Override
-    public UserId postUser(final User user, final Logger logger, final Marker logMarker) throws IOException {
+    public UserId postUser(final User user, final Logger logger, final Marker logMarker) throws IoException {
         try (Connection connection = _getConnection()) {
             try (PreparedStatement userInsertStatement = connection
                     .prepareStatement(_getInsertSql(user, USER_TABLE_NAME))) {
@@ -162,7 +162,7 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
                 }
             }
         } catch (final OutputProtocolException e) {
-            throw new IOException(e);
+            throw new IoException(e);
         } catch (final SQLException e) {
             throw __wrap(e, "error posting user");
         }
@@ -170,7 +170,7 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
 
     @Override
     public void putUser(final User user, final UserId userId, final Logger logger, final Marker logMarker)
-            throws IOException, NoSuchModelException {
+            throws IoException, NoSuchModelException {
         try (Connection connection = _getConnection()) {
             try (PreparedStatement userUpdateStatement = connection
                     .prepareStatement(_getUpdateSql(user, USER_TABLE_NAME) + " WHERE id = ?")) {
@@ -188,7 +188,7 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
                 }
             }
         } catch (final OutputProtocolException e) {
-            throw new IOException(e);
+            throw new IoException(e);
         } catch (final SQLException e) {
             throw __wrap(e, "error putting user");
         }
@@ -220,8 +220,10 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
         return usersBuilder.build();
     }
 
-    private IOException __wrap(final SQLException cause, final String message) {
-        return new IOException(cause);
+    private IoException __wrap(final SQLException cause, final String message) {
+        final IoException exception = new IoException(message);
+        exception.setStark
+        return new IoException(cause);
     }
 
     private final String deleteUserByIdSql;

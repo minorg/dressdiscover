@@ -17,7 +17,7 @@ import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
-import net.lab1318.costume.lib.services.ServiceExceptionHelper;
+import net.lab1318.costume.lib.services.IoExceptions;
 import net.lab1318.costume.lib.services.institution.LoggingInstitutionQueryService.Markers;
 import net.lab1318.costume.lib.stores.institution.InstitutionStore;
 
@@ -34,7 +34,7 @@ class StoreInstitutionQueryService implements InstitutionQueryService {
             logger.warn(Markers.GET_INSTITUTION_BY_ID, "invalid institution model {}: ", id, e);
             throw new NoSuchInstitutionException();
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting institution" + id);
+            throw IoExceptions.wrap(e, "error getting institution" + id);
         } catch (final NoSuchModelException e) {
             throw new NoSuchInstitutionException();
         }
@@ -45,7 +45,7 @@ class StoreInstitutionQueryService implements InstitutionQueryService {
         try {
             return store.getInstitutions(logger, Markers.GET_INSTITUTIONS);
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting institutions");
+            throw IoExceptions.wrap(e, "error getting institutions");
         }
     }
 
@@ -69,7 +69,7 @@ class StoreInstitutionQueryService implements InstitutionQueryService {
             }
             return resultBuilder.build();
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting institutions");
+            throw IoExceptions.wrap(e, "error getting institutions");
         }
     }
 
