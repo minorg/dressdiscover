@@ -1,43 +1,54 @@
 package net.lab1318.costume.api.models.user;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkArgument;
 
-import org.thryft.waf.api.models.StringModelId;
+import org.thryft.waf.api.models.ModelId;
 
-public final class UserId extends StringModelId {
+public final class UserId implements ModelId {
     public static UserId parse(final String value) throws InvalidUserIdException {
-        if (value.isEmpty()) {
-            throw new InvalidUserIdException("empty string");
+        try {
+            return new UserId(Integer.parseInt(value));
+        } catch (final IllegalArgumentException e) {
+            throw new InvalidUserIdException("not an integer");
         }
-        final String[] valueSplit = value.split("/");
-        if (valueSplit.length != 2) {
-            throw new InvalidUserIdException("malformed user ID: " + value);
-        }
-        final String authProviderId = valueSplit[0].trim();
-        if (authProviderId.isEmpty()) {
-            throw new InvalidUserIdException("empty provider ID: " + value);
-        }
-        final String unqualifiedUserId = valueSplit[1].trim();
-        if (unqualifiedUserId.isEmpty()) {
-            throw new InvalidUserIdException("empty user ID: " + value);
-        }
-        return new UserId(authProviderId, unqualifiedUserId, value);
     }
 
-    private UserId(final String authProviderId, final String unqualifiedUserId, final String value) {
-        super(value);
-        this.authProviderId = checkNotNull(authProviderId);
-        this.unqualifiedUserId = checkNotNull(unqualifiedUserId);
+    public UserId(final int value) {
+        checkArgument(value >= 0);
+        this.value = value;
     }
 
-    public String getAuthProviderId() {
-        return authProviderId;
+    public final int asInteger() {
+        return value;
     }
 
-    public String getUnqualifiedUserId() {
-        return unqualifiedUserId;
+    @Override
+    public final boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final UserId other = (UserId) obj;
+        if (value != other.value) {
+            return false;
+        }
+        return true;
     }
 
-    private final String authProviderId;
-    private final String unqualifiedUserId;
+    @Override
+    public final int hashCode() {
+        return value;
+    }
+
+    @Override
+    public final String toString() {
+        return Integer.toString(value);
+    }
+
+    private final int value;
 }

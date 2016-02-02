@@ -1,6 +1,7 @@
 from urlparse import urlparse
 import base64
 import costume.api.models.user.user
+import costume.api.models.user.user_entry
 import costume.api.services.io_exception  # @UnusedImport
 import costume.api.services.user.no_such_user_exception  # @UnusedImport
 import costume.api.services.user.user_query_service
@@ -112,6 +113,21 @@ class UserQueryServiceJsonRpcClient(costume.api.services.user.user_query_service
             raise RuntimeError("JSON-RPC error: code=%s, message='%s'" % (code, message))
 
         return response.get('result')
+
+    def _get_user_by_email_address(
+        self,
+        email_address,
+    ):
+        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
+        oprot.write_struct_begin()
+        oprot.write_field_begin(name='email_address', type=11, id=None)
+        oprot.write_string(email_address)
+        oprot.write_field_end()
+        oprot.write_struct_end()
+
+        return_value = self.__request(method='get_user_by_email_address', params=oprot.value)
+        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
+        return costume.api.models.user.user_entry.UserEntry.read(iprot)
 
     def _get_user_by_id(
         self,

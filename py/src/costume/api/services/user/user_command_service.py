@@ -1,5 +1,6 @@
 import __builtin__
 import costume.api.models.user.user
+import costume.api.models.user.user_entry
 
 
 class UserCommandService(object):
@@ -33,6 +34,60 @@ class UserCommandService(object):
         self,
     ):
         raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._delete_users')
+
+    def post_and_get_user(
+        self,
+        user=None,
+    ):
+        '''
+        :type user: costume.api.models.user.user.User
+        :rtype: costume.api.models.user.user_entry.UserEntry
+        '''
+
+        if user is None:
+            raise ValueError('user is required')
+        if not isinstance(user, costume.api.models.user.user.User):
+            raise TypeError("expected user to be a costume.api.models.user.user.User but it is a %s" % getattr(__builtin__, 'type')(user))
+
+        post_and_get_user_return_value = self._post_and_get_user(user=user)
+
+        if not isinstance(post_and_get_user_return_value, costume.api.models.user.user_entry.UserEntry):
+            raise TypeError(getattr(__builtin__, 'type')(post_and_get_user_return_value))
+
+        return post_and_get_user_return_value
+
+    def _post_and_get_user(
+        self,
+        user,
+    ):
+        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._post_and_get_user')
+
+    def post_user(
+        self,
+        user=None,
+    ):
+        '''
+        :type user: costume.api.models.user.user.User
+        :rtype: str
+        '''
+
+        if user is None:
+            raise ValueError('user is required')
+        if not isinstance(user, costume.api.models.user.user.User):
+            raise TypeError("expected user to be a costume.api.models.user.user.User but it is a %s" % getattr(__builtin__, 'type')(user))
+
+        post_user_return_value = self._post_user(user=user)
+
+        if not isinstance(post_user_return_value, basestring):
+            raise TypeError(getattr(__builtin__, 'type')(post_user_return_value))
+
+        return post_user_return_value
+
+    def _post_user(
+        self,
+        user,
+    ):
+        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._post_user')
 
     def put_user(
         self,

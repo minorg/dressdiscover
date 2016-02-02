@@ -5,6 +5,7 @@ import java.io.File;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
 import org.thryft.waf.api.models.Model;
+import org.thryft.waf.lib.stores.AbstractFileSystem;
 
 import com.google.common.collect.ImmutableList;
 

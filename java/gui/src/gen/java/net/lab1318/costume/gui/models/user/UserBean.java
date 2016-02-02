@@ -3,8 +3,7 @@ package net.lab1318.costume.gui.models.user;
 public class UserBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        EMAIL_ADDRESS("emailAddress", new com.google.common.reflect.TypeToken<org.thryft.native_.EmailAddress>() {}, true, 2, "email_address", org.thryft.protocol.Type.STRING),
-        MODEL_METADATA("modelMetadata", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.ModelMetadataBean>() {}, true, 1, "model_metadata", org.thryft.protocol.Type.STRUCT);
+        EMAIL_ADDRESS("emailAddress", new com.google.common.reflect.TypeToken<org.thryft.native_.EmailAddress>() {}, true, 0, "email_address", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -49,7 +48,6 @@ public class UserBean implements org.thryft.StructBean {
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
             case "emailAddress": return EMAIL_ADDRESS;
-            case "modelMetadata": return MODEL_METADATA;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -58,7 +56,6 @@ public class UserBean implements org.thryft.StructBean {
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
             case "email_address": return EMAIL_ADDRESS;
-            case "model_metadata": return MODEL_METADATA;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -89,12 +86,10 @@ public class UserBean implements org.thryft.StructBean {
 
     public UserBean() {
         emailAddress = null;
-        modelMetadata = null;
     }
 
     public UserBean(final net.lab1318.costume.api.models.user.User other) {
         this.emailAddress = other.getEmailAddress();
-        this.modelMetadata = new net.lab1318.costume.gui.models.ModelMetadataBean(other.getModelMetadata());
     }
 
     @Override
@@ -107,8 +102,7 @@ public class UserBean implements org.thryft.StructBean {
 
         final UserBean other = (UserBean)otherObject;
         return
-            getEmailAddress().equals(other.getEmailAddress()) &&
-            getModelMetadata().equals(other.getModelMetadata());
+            getEmailAddress().equals(other.getEmailAddress());
     }
 
     @Override
@@ -127,7 +121,6 @@ public class UserBean implements org.thryft.StructBean {
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
         case EMAIL_ADDRESS: return getEmailAddress();
-        case MODEL_METADATA: return getModelMetadata();
         default:
             throw new IllegalStateException();
         }
@@ -137,15 +130,10 @@ public class UserBean implements org.thryft.StructBean {
         return emailAddress;
     }
 
-    public net.lab1318.costume.gui.models.ModelMetadataBean getModelMetadata() {
-        return modelMetadata;
-    }
-
     @Override
     public int hashCode() {
         int hashCode = 17;
         hashCode = 31 * hashCode + getEmailAddress().hashCode();
-        hashCode = 31 * hashCode + getModelMetadata().hashCode();
         return hashCode;
     }
 
@@ -158,16 +146,10 @@ public class UserBean implements org.thryft.StructBean {
         this.emailAddress = emailAddress;
     }
 
-    public void setModelMetadata(final net.lab1318.costume.gui.models.ModelMetadataBean modelMetadata) {
-        this.modelMetadata = modelMetadata;
-    }
-
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("email_address", getEmailAddress()).add("model_metadata", getModelMetadata()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("email_address", getEmailAddress()).toString();
     }
 
     private org.thryft.native_.EmailAddress emailAddress;
-
-    private net.lab1318.costume.gui.models.ModelMetadataBean modelMetadata;
 }

@@ -4,28 +4,22 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
     public static class Builder {
         public Builder() {
             emailAddress = null;
-            modelMetadata = null;
         }
 
         public Builder(final User other) {
             this.emailAddress = other.getEmailAddress();
-            this.modelMetadata = other.getModelMetadata();
         }
 
-        protected User _build(final org.thryft.native_.EmailAddress emailAddress, final net.lab1318.costume.api.models.ModelMetadata modelMetadata) {
-            return new User(emailAddress, modelMetadata);
+        protected User _build(final org.thryft.native_.EmailAddress emailAddress) {
+            return new User(emailAddress);
         }
 
         public User build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(emailAddress, "net.lab1318.costume.api.models.user.User: missing emailAddress"), com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.user.User: missing modelMetadata"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(emailAddress, "net.lab1318.costume.api.models.user.User: missing emailAddress"));
         }
 
         public final org.thryft.native_.EmailAddress getEmailAddress() {
             return emailAddress;
-        }
-
-        public final net.lab1318.costume.api.models.ModelMetadata getModelMetadata() {
-            return modelMetadata;
         }
 
         public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -42,7 +36,6 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             iprot.readListBegin();
             emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
-            modelMetadata = net.lab1318.costume.api.models.ModelMetadata.readAsStruct(iprot);
             iprot.readListEnd();
             return this;
         }
@@ -60,15 +53,7 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
                 }
                 switch (ifield.getName()) {
                 case "email_address": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
-                    }
-                    break;
-                }
-                case "model_metadata": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        modelMetadata = net.lab1318.costume.api.models.ModelMetadata.readAsStruct(iprot);
-                    }
+                    emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
                     break;
                 }
                 default:
@@ -92,13 +77,7 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
             com.google.common.base.Preconditions.checkNotNull(other);
 
             setEmailAddress(other.getEmailAddress());
-            setModelMetadata(other.getModelMetadata());
 
-            return this;
-        }
-
-        public Builder setModelMetadata(final net.lab1318.costume.api.models.ModelMetadata modelMetadata) {
-            this.modelMetadata = com.google.common.base.Preconditions.checkNotNull(modelMetadata);
             return this;
         }
 
@@ -107,7 +86,6 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
 
             switch (name.toLowerCase()) {
             case "email_address": setEmailAddress((org.thryft.native_.EmailAddress)value); return this;
-            case "model_metadata": setModelMetadata((net.lab1318.costume.api.models.ModelMetadata)value); return this;
             default:
                 throw new IllegalArgumentException(name);
             }
@@ -118,30 +96,22 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
             return this;
         }
 
-        public Builder unsetModelMetadata() {
-            this.modelMetadata = null;
-            return this;
-        }
-
         public Builder unset(final String name) {
             com.google.common.base.Preconditions.checkNotNull(name);
 
             switch (name.toLowerCase()) {
             case "email_address": return unsetEmailAddress();
-            case "model_metadata": return unsetModelMetadata();
             default:
                 throw new IllegalArgumentException(name);
             }
         }
 
         private org.thryft.native_.EmailAddress emailAddress;
-        private net.lab1318.costume.api.models.ModelMetadata modelMetadata;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        EMAIL_ADDRESS("emailAddress", new com.google.common.reflect.TypeToken<org.thryft.native_.EmailAddress>() {}, true, 2, "email_address", org.thryft.protocol.Type.STRING),
-        MODEL_METADATA("modelMetadata", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.ModelMetadata>() {}, true, 1, "model_metadata", org.thryft.protocol.Type.STRUCT);
+        EMAIL_ADDRESS("emailAddress", new com.google.common.reflect.TypeToken<org.thryft.native_.EmailAddress>() {}, true, 0, "email_address", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -186,7 +156,6 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
             case "emailAddress": return EMAIL_ADDRESS;
-            case "modelMetadata": return MODEL_METADATA;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -195,7 +164,6 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
             case "email_address": return EMAIL_ADDRESS;
-            case "model_metadata": return MODEL_METADATA;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -228,15 +196,14 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
      * Copy constructor
      */
     public User(final User other) {
-        this(other.getEmailAddress(), other.getModelMetadata());
+        this(other.getEmailAddress());
     }
 
     /**
      * Optional constructor
      */
-    public User(final org.thryft.native_.EmailAddress emailAddress, final net.lab1318.costume.api.models.ModelMetadata modelMetadata) {
+    public User(final org.thryft.native_.EmailAddress emailAddress) {
         this.emailAddress = com.google.common.base.Preconditions.checkNotNull(emailAddress, "net.lab1318.costume.api.models.user.User: missing emailAddress");
-        this.modelMetadata = com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.user.User: missing modelMetadata");
     }
 
     public static Builder builder() {
@@ -261,8 +228,7 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
 
         final User other = (User)otherObject;
         return
-            getEmailAddress().equals(other.getEmailAddress()) &&
-            getModelMetadata().equals(other.getModelMetadata());
+            getEmailAddress().equals(other.getEmailAddress());
     }
 
     @Override
@@ -281,7 +247,6 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
         case EMAIL_ADDRESS: return getEmailAddress();
-        case MODEL_METADATA: return getModelMetadata();
         default:
             throw new IllegalStateException();
         }
@@ -291,15 +256,10 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
         return emailAddress;
     }
 
-    public final net.lab1318.costume.api.models.ModelMetadata getModelMetadata() {
-        return modelMetadata;
-    }
-
     @Override
     public int hashCode() {
         int hashCode = 17;
         hashCode = 31 * hashCode + getEmailAddress().hashCode();
-        hashCode = 31 * hashCode + getModelMetadata().hashCode();
         return hashCode;
     }
 
@@ -321,14 +281,12 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
 
     public static User readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         org.thryft.native_.EmailAddress emailAddress = null;
-        net.lab1318.costume.api.models.ModelMetadata modelMetadata = null;
 
         iprot.readListBegin();
         emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
-        modelMetadata = net.lab1318.costume.api.models.ModelMetadata.readAsStruct(iprot);
         iprot.readListEnd();
         try {
-            return new User(emailAddress, modelMetadata);
+            return new User(emailAddress);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -340,7 +298,6 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
 
     public static User readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         org.thryft.native_.EmailAddress emailAddress = null;
-        net.lab1318.costume.api.models.ModelMetadata modelMetadata = null;
 
         iprot.readStructBegin();
         while (true) {
@@ -350,15 +307,7 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
             }
             switch (ifield.getName()) {
             case "email_address": {
-                if (!ifield.hasId() || ifield.getId() == 2) {
-                    emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
-                }
-                break;
-            }
-            case "model_metadata": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    modelMetadata = net.lab1318.costume.api.models.ModelMetadata.readAsStruct(iprot);
-                }
+                emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
                 break;
             }
             default:
@@ -371,32 +320,26 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
         }
         iprot.readStructEnd();
         try {
-            return new User(emailAddress, modelMetadata);
+            return new User(emailAddress);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public User replaceEmailAddress(final org.thryft.native_.EmailAddress emailAddress) {
-        return new User(emailAddress, this.modelMetadata);
-    }
-
-    public User replaceModelMetadata(final net.lab1318.costume.api.models.ModelMetadata modelMetadata) {
-        return new User(this.emailAddress, modelMetadata);
+        return new User(emailAddress);
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("email_address", getEmailAddress()).add("model_metadata", getModelMetadata()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("email_address", getEmailAddress()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
 
         oprot.writeString(getEmailAddress().toString());
-
-        getModelMetadata().writeAsStruct(oprot);
 
         oprot.writeListEnd();
     }
@@ -410,18 +353,12 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("email_address", org.thryft.protocol.Type.STRING, (short)2);
+        oprot.writeFieldBegin("email_address", org.thryft.protocol.Type.STRING, (short)0);
         oprot.writeString(getEmailAddress().toString());
-        oprot.writeFieldEnd();
-
-        oprot.writeFieldBegin("model_metadata", org.thryft.protocol.Type.STRUCT, (short)1);
-        getModelMetadata().writeAsStruct(oprot);
         oprot.writeFieldEnd();
 
         oprot.writeFieldStop();
     }
 
     private final org.thryft.native_.EmailAddress emailAddress;
-
-    private final net.lab1318.costume.api.models.ModelMetadata modelMetadata;
 }

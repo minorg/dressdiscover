@@ -2,6 +2,7 @@ package net.lab1318.costume.lib.services;
 
 import java.util.Date;
 
+import org.thryft.native_.EmailAddress;
 import org.thryft.native_.Url;
 
 import com.google.common.collect.ImmutableList;
@@ -35,10 +36,7 @@ import net.lab1318.costume.api.models.subject.SubjectTermType;
 import net.lab1318.costume.api.models.title.Title;
 import net.lab1318.costume.api.models.title.TitleSet;
 import net.lab1318.costume.api.models.title.TitleType;
-import net.lab1318.costume.api.models.user.InvalidUserIdException;
 import net.lab1318.costume.api.models.user.User;
-import net.lab1318.costume.api.models.user.UserEntry;
-import net.lab1318.costume.api.models.user.UserId;
 
 public final class TestData {
     public static synchronized TestData getInstance() {
@@ -113,14 +111,9 @@ public final class TestData {
         institutions = institutionsBuilder.build();
         objects = objectsBuilder.build();
 
-        final ImmutableList.Builder<UserEntry> usersBuilder = ImmutableList.builder();
+        final ImmutableList.Builder<User> usersBuilder = ImmutableList.builder();
         for (int i = 0; i < 2; i++) {
-            try {
-                usersBuilder.add(new UserEntry(UserId.parse("test/testuser" + i),
-                        User.builder().setModelMetadata(__newModelMetadata()).build()));
-            } catch (final InvalidUserIdException e) {
-                throw new IllegalStateException(e);
-            }
+            usersBuilder.add(User.builder().setEmailAddress(new EmailAddress("testuser" + i + "@example.com")).build());
         }
         users = usersBuilder.build();
     }
@@ -149,7 +142,7 @@ public final class TestData {
         return subjects;
     }
 
-    public ImmutableList<UserEntry> getUsers() {
+    public ImmutableList<User> getUsers() {
         return users;
     }
 
@@ -159,6 +152,6 @@ public final class TestData {
     private final ImmutableList<InstitutionEntry> institutions;
     private final ImmutableTable<InstitutionId, CollectionId, ObjectEntry> objects;
     private final ImmutableList<Subject> subjects;
-    private final ImmutableList<UserEntry> users;
+    private final ImmutableList<User> users;
     private static TestData instance = null;
 }

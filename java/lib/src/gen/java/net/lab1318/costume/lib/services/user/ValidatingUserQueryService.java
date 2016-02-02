@@ -10,6 +10,16 @@ public class ValidatingUserQueryService implements net.lab1318.costume.api.servi
     }
 
     @Override
+    public final net.lab1318.costume.api.models.user.UserEntry getUserByEmailAddress(final org.thryft.native_.EmailAddress emailAddress) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.user.NoSuchUserException {
+        _validateGetUserByEmailAddressParameters(emailAddress);
+        return com.google.common.base.Preconditions.checkNotNull(delegate.getUserByEmailAddress(emailAddress), "net.lab1318.costume.api.services.user.UserQueryService.getUserByEmailAddress: missing returnValue");
+    }
+
+    protected void _validateGetUserByEmailAddressParameters(final org.thryft.native_.EmailAddress emailAddress) {
+        com.google.common.base.Preconditions.checkNotNull(emailAddress, "net.lab1318.costume.api.services.user.UserQueryService.getUserByEmailAddress: missing emailAddress");
+    }
+
+    @Override
     public final net.lab1318.costume.api.models.user.User getUserById(final net.lab1318.costume.api.models.user.UserId id) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.user.NoSuchUserException {
         _validateGetUserByIdParameters(id);
         return com.google.common.base.Preconditions.checkNotNull(delegate.getUserById(id), "net.lab1318.costume.api.services.user.UserQueryService.getUserById: missing returnValue");

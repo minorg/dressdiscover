@@ -10,21 +10,21 @@ import com.google.common.collect.ImmutableList;
 import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.lib.services.TestData;
 
-public abstract class UserQueryServiceTest extends UserServiceTest {
+public final class UserQueryServiceTest extends UserServiceTest {
     @Test
     public void testGetUserById() throws Exception {
-        _putUsers();
-        for (final UserEntry entry : TestData.getInstance().getUsers()) {
+        final ImmutableList<UserEntry> expected = _postUsers();
+        for (final UserEntry entry : expected) {
             assertEquals(entry.getModel(), userQueryService.getUserById(entry.getId()));
         }
     }
 
     @Test
     public void testGetUsers() throws Exception {
-        _putUsers();
+        final ImmutableList<UserEntry> expected = _postUsers();
         final ImmutableList<UserEntry> actual = _getUsers();
         assertEquals(TestData.getInstance().getUsers().size(), actual.size());
-        for (final UserEntry expectedEntry : TestData.getInstance().getUsers()) {
+        for (final UserEntry expectedEntry : expected) {
             boolean found = false;
             for (final UserEntry actualEntry : actual) {
                 if (actualEntry.getId().equals(expectedEntry.getId())) {

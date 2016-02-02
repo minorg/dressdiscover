@@ -6,10 +6,13 @@ import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.thryft.waf.lib.stores.NoSuchModelException;
 
 import net.lab1318.costume.api.models.user.User;
+import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.api.models.user.UserId;
 import net.lab1318.costume.api.services.IoException;
+import net.lab1318.costume.api.services.user.DuplicateUserException;
 import net.lab1318.costume.api.services.user.NoSuchUserException;
 import net.lab1318.costume.api.services.user.UserCommandService;
 import net.lab1318.costume.lib.services.ServiceExceptionHelper;
@@ -42,11 +45,27 @@ abstract class StoreUserCommandService implements UserCommandService {
     }
 
     @Override
-    public void putUser(final UserId id, final User user) throws IoException {
+    public UserEntry postAndGetUser(final User user) throws DuplicateUserException, IoException {
+        try {
+            return new UserEntry(store.postUser(user, logger, Markers.POST_AND_GET_USER), user);
+        } catch (final IOException e) {
+            throw ServiceExceptionHelper.wrapException(e, "error posting user");
+        }
+    }
+
+    @Override
+    public UserId postUser(final User user) throws DuplicateUserException, IoException {
+        return postAndGetUser(user).getId();
+    }
+
+    @Override
+    public void putUser(final UserId id, final User user) throws IoException, NoSuchUserException {
         try {
             store.putUser(user, id, logger, Markers.PUT_USER);
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error putting user");
+        } catch (final NoSuchModelException e) {
+            throw new NoSuchUserException();
         }
     }
 

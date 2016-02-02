@@ -1,6 +1,8 @@
 from urlparse import urlparse
 import base64
+import costume.api.models.user.user_entry
 import costume.api.services.io_exception  # @UnusedImport
+import costume.api.services.user.duplicate_user_exception  # @UnusedImport
 import costume.api.services.user.no_such_user_exception  # @UnusedImport
 import costume.api.services.user.user_command_service
 import json
@@ -129,6 +131,36 @@ class UserCommandServiceJsonRpcClient(costume.api.services.user.user_command_ser
         self,
     ):
         self.__request(method='delete_users', params={})
+
+    def _post_and_get_user(
+        self,
+        user,
+    ):
+        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
+        oprot.write_struct_begin()
+        oprot.write_field_begin(name='user', type=12, id=None)
+        user.write(oprot)
+        oprot.write_field_end()
+        oprot.write_struct_end()
+
+        return_value = self.__request(method='post_and_get_user', params=oprot.value)
+        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
+        return costume.api.models.user.user_entry.UserEntry.read(iprot)
+
+    def _post_user(
+        self,
+        user,
+    ):
+        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
+        oprot.write_struct_begin()
+        oprot.write_field_begin(name='user', type=12, id=None)
+        user.write(oprot)
+        oprot.write_field_end()
+        oprot.write_struct_end()
+
+        return_value = self.__request(method='post_user', params=oprot.value)
+        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
+        return iprot.read_string()
 
     def _put_user(
         self,

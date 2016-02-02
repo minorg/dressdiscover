@@ -32,8 +32,8 @@ import net.lab1318.costume.lib.services.object.LoggingObjectSummaryQueryService;
 import net.lab1318.costume.lib.services.object.ValidatingObjectCommandService;
 import net.lab1318.costume.lib.services.object.ValidatingObjectQueryService;
 import net.lab1318.costume.lib.services.object.ValidatingObjectSummaryQueryService;
-import net.lab1318.costume.lib.services.user.FileSystemUserCommandService;
-import net.lab1318.costume.lib.services.user.FileSystemUserQueryService;
+import net.lab1318.costume.lib.services.user.JdbcUserCommandService;
+import net.lab1318.costume.lib.services.user.JdbcUserQueryService;
 import net.lab1318.costume.lib.services.user.IterableUserQueryService;
 import net.lab1318.costume.lib.services.user.LoggingUserCommandService;
 import net.lab1318.costume.lib.services.user.LoggingUserQueryService;
@@ -99,7 +99,7 @@ public class ServicesModule extends AbstractModule {
 
     protected void _configureUserCommandService() {
         bind(UserCommandService.class).annotatedWith(LoggingUserCommandService.DELEGATE_NAME)
-                .to(FileSystemUserCommandService.class).asEagerSingleton();
+                .to(JdbcUserCommandService.class).asEagerSingleton();
         bind(UserCommandService.class).annotatedWith(ValidatingUserCommandService.DELEGATE_NAME)
                 .to(LoggingUserCommandService.class).asEagerSingleton();
         bind(UserCommandService.class).to(ValidatingUserCommandService.class).asEagerSingleton();
@@ -107,9 +107,9 @@ public class ServicesModule extends AbstractModule {
 
     protected void _configureUserQueryService() {
         bind(IterableUserQueryService.class).annotatedWith(LoggingUserQueryService.DELEGATE_NAME)
-                .to(FileSystemUserQueryService.class).asEagerSingleton();
+                .to(JdbcUserQueryService.class).asEagerSingleton();
         bind(UserQueryService.class).annotatedWith(LoggingUserQueryService.DELEGATE_NAME)
-                .to(FileSystemUserQueryService.class).asEagerSingleton();
+                .to(JdbcUserQueryService.class).asEagerSingleton();
         bind(UserQueryService.class).annotatedWith(ValidatingUserQueryService.DELEGATE_NAME)
                 .to(LoggingUserQueryService.class).asEagerSingleton();
         bind(UserQueryService.class).to(ValidatingUserQueryService.class).asEagerSingleton();

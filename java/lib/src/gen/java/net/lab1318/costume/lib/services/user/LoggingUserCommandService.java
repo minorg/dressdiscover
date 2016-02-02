@@ -5,12 +5,16 @@ public class LoggingUserCommandService implements net.lab1318.costume.api.servic
     public static class Markers {
         public final static org.slf4j.Marker DELETE_USER_BY_ID = org.slf4j.MarkerFactory.getMarker("DELETE_USER_BY_ID");
         public final static org.slf4j.Marker DELETE_USERS = org.slf4j.MarkerFactory.getMarker("DELETE_USERS");
+        public final static org.slf4j.Marker POST_AND_GET_USER = org.slf4j.MarkerFactory.getMarker("POST_AND_GET_USER");
+        public final static org.slf4j.Marker POST_USER = org.slf4j.MarkerFactory.getMarker("POST_USER");
         public final static org.slf4j.Marker PUT_USER = org.slf4j.MarkerFactory.getMarker("PUT_USER");
 
         public final static org.slf4j.Marker USER_COMMAND_SERVICE = org.slf4j.MarkerFactory.getMarker("USER_COMMAND_SERVICE");
         static {
             USER_COMMAND_SERVICE.add(DELETE_USER_BY_ID);
             USER_COMMAND_SERVICE.add(DELETE_USERS);
+            USER_COMMAND_SERVICE.add(POST_AND_GET_USER);
+            USER_COMMAND_SERVICE.add(POST_USER);
             USER_COMMAND_SERVICE.add(PUT_USER);
         }
     }
@@ -67,7 +71,69 @@ public class LoggingUserCommandService implements net.lab1318.costume.api.servic
         }
     }
 
-    public void putUser(final net.lab1318.costume.api.models.user.UserId id, final net.lab1318.costume.api.models.user.User user) throws net.lab1318.costume.api.services.IoException {
+    public net.lab1318.costume.api.models.user.UserEntry postAndGetUser(final net.lab1318.costume.api.models.user.User user) throws net.lab1318.costume.api.services.user.DuplicateUserException, net.lab1318.costume.api.services.IoException {
+        final StringBuilder __logMessageStringBuilder = new StringBuilder();
+        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+
+        __logMessageStringBuilder.append("post_and_get_user(");
+        __logMessageStringBuilder.append("{}");
+        __logMessageArgs.add(new Messages.PostAndGetUserRequest(user));
+        __logMessageStringBuilder.append(")");
+
+        try {
+            net.lab1318.costume.api.models.user.UserEntry __returnValue = delegate.postAndGetUser(user);
+
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(__returnValue);
+
+            logger.debug(Markers.POST_AND_GET_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+
+            return __returnValue;
+        } catch (final net.lab1318.costume.api.services.user.DuplicateUserException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.POST_AND_GET_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        } catch (final net.lab1318.costume.api.services.IoException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.POST_AND_GET_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        }
+    }
+
+    public net.lab1318.costume.api.models.user.UserId postUser(final net.lab1318.costume.api.models.user.User user) throws net.lab1318.costume.api.services.user.DuplicateUserException, net.lab1318.costume.api.services.IoException {
+        final StringBuilder __logMessageStringBuilder = new StringBuilder();
+        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+
+        __logMessageStringBuilder.append("post_user(");
+        __logMessageStringBuilder.append("{}");
+        __logMessageArgs.add(new Messages.PostUserRequest(user));
+        __logMessageStringBuilder.append(")");
+
+        try {
+            net.lab1318.costume.api.models.user.UserId __returnValue = delegate.postUser(user);
+
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(__returnValue);
+
+            logger.debug(Markers.POST_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+
+            return __returnValue;
+        } catch (final net.lab1318.costume.api.services.user.DuplicateUserException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.POST_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        } catch (final net.lab1318.costume.api.services.IoException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.POST_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        }
+    }
+
+    public void putUser(final net.lab1318.costume.api.models.user.UserId id, final net.lab1318.costume.api.models.user.User user) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.user.NoSuchUserException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -81,6 +147,11 @@ public class LoggingUserCommandService implements net.lab1318.costume.api.servic
 
             logger.debug(Markers.PUT_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
         } catch (final net.lab1318.costume.api.services.IoException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.PUT_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        } catch (final net.lab1318.costume.api.services.user.NoSuchUserException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.PUT_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());

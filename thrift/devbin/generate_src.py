@@ -28,6 +28,7 @@ from thryft.generators.java.validating_service_java_generator import ValidatingS
 from thryft.generators.py.properties_py_generator import PropertiesPyGenerator
 from thryft.generators.py.json_rpc_client_py_generator import JsonRpcClientPyGenerator
 from thryft.generators.py.py_generator import PyGenerator
+from thryft.generators.sql.create_table_sql_generator import CreateTableSqlGenerator
 from yutil import indent, upper_camelize
 
 
@@ -78,128 +79,148 @@ class Main(thryft.main.Main):
              os.path.join(ROOT_DIR_PATH, 'py', 'src', 'costume', 'api'),
              os.path.join(ROOT_DIR_PATH, 'py', 'src', 'costume', 'client'),
              os.path.join(ROOT_DIR_PATH, 'py', 'src', 'thryft'),
+             os.path.join(ROOT_DIR_PATH, 'sql'),
         ):
             if os.path.isdir(dir_path):
                 shutil.rmtree(dir_path)
 
     def _compile(self):
-        self._clean()
-
-        # Copy thryft/lib/py to py/src
-        shutil.copytree(
-            os.path.join(THRYFT_ROOT_DIR_PATH, 'lib', 'py', 'src', 'thryft'),
-            os.path.join(ROOT_DIR_PATH, 'py', 'src', 'thryft')
-        )
-
-        costume_core_controlled_vocabularies = self.__generate_costume_core_py()
-        self.__generate_costume_core_java(costume_core_controlled_vocabularies)
-
         thrift_src_root_dir_path = os.path.join(ROOT_DIR_PATH, 'thrift', 'src')
 
-        for thrift_subdir_name in ('api', 'gui', 'lib', 'server'):
-            thrift_src_dir_path = os.path.join(thrift_src_root_dir_path, 'costume', thrift_subdir_name)
-            if not os.path.isdir(thrift_src_dir_path):
-                continue
+        for pass_i in xrange(2):
+            # Two passes: one to test-compile all .thrift files, the other to generate them
+            # ASTs are cached in the compiler so this only costs us the file system traversal,
+            # and avoids generating code when there's a compilation error
+            if pass_i == 1:
+                self._clean()
 
-            for thrift_file_path in self._get_thrift_file_paths(thrift_src_dir_path):
-                thrift_file_name = os.path.split(thrift_file_path)[1]
-                thrift_file_base_name = os.path.splitext(thrift_file_name)[0]
-
-                compile_kwds = {
-                    'document_root_dir_path': thrift_src_root_dir_path,
-                    'thrift_file_path': thrift_file_path
-                }
-
-                self._compile_thrift_file(generator=None, out=None, **compile_kwds)
-
-                if thrift_file_name == 'costume_properties.thrift':
-                    self._compile_thrift_file(
-                        generator=PropertiesJavaGenerator(project_name='costume'),
-                        out=os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'gen', 'java'),
-                        **compile_kwds
-                    )
-
-                    self._compile_thrift_file(
-                        generator=PropertiesPyGenerator(project_name='costume'),
-                        out=os.path.join(ROOT_DIR_PATH, 'py', 'src'),
-                        **compile_kwds
-                    )
-
-                    continue
-
-                self._compile_thrift_file(
-                    generator=JavaGenerator(default_methods=True, function_overloads=True),
-                    out=os.path.join(ROOT_DIR_PATH, 'java', thrift_subdir_name, 'src', 'gen', 'java'),
-                    **compile_kwds
+                # Copy thryft/lib/py to py/src
+                shutil.copytree(
+                    os.path.join(THRYFT_ROOT_DIR_PATH, 'lib', 'py', 'src', 'thryft'),
+                    os.path.join(ROOT_DIR_PATH, 'py', 'src', 'thryft')
                 )
 
-                if 'models' in thrift_file_path.split(os.path.sep):
-                    self._compile_thrift_file(
-                        generator=BeanJavaGenerator(default_methods=True, function_overloads=True),
-                        out=os.path.join(ROOT_DIR_PATH, 'java', 'gui', 'src', 'gen', 'java'),
-                        **compile_kwds
-                    )
+                costume_core_controlled_vocabularies = self.__generate_costume_core_py()
+                self.__generate_costume_core_java(costume_core_controlled_vocabularies)
 
-                if thrift_subdir_name == 'api':
-                    self._compile_thrift_file(
-                        generator=PyGenerator(),
-                        out=os.path.join(ROOT_DIR_PATH, 'py', 'src'),
-                        **compile_kwds
-                    )
+            for thrift_subdir_name in ('api', 'gui', 'lib', 'server'):
+                thrift_src_dir_path = os.path.join(thrift_src_root_dir_path, 'costume', thrift_subdir_name)
+                if not os.path.isdir(thrift_src_dir_path):
+                    continue
 
-                    elastic_search_templates_dir_path = os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'main', 'resources', 'elastic_search_templates')
-                    if thrift_file_base_name in ('object_summary',):
+                for thrift_file_path in self._get_thrift_file_paths(thrift_src_dir_path):
+                    thrift_file_name = os.path.split(thrift_file_path)[1]
+                    thrift_file_base_name = os.path.splitext(thrift_file_name)[0]
+
+                    compile_kwds = {
+                        'document_root_dir_path': thrift_src_root_dir_path,
+                        'thrift_file_path': thrift_file_path
+                    }
+
+                    self._compile_thrift_file(generator=None, out=None, **compile_kwds)
+
+                    if pass_i == 0:
+                        continue
+
+                    if thrift_file_name == 'costume_properties.thrift':
                         self._compile_thrift_file(
-                            generator=ElasticSearchMappingsGenerator(
-                                settings=ELASTIC_SEARCH_INDEX_SETTINGS,
-                                template="%s_*" % thrift_file_base_name,
-                            ),
-                            out=os.path.join(elastic_search_templates_dir_path, thrift_file_base_name + '_template.json'),
+                            generator=PropertiesJavaGenerator(project_name='costume'),
+                            out=os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'gen', 'java'),
                             **compile_kwds
                         )
 
-                if not thrift_file_path.endswith('_service.thrift'):
-                    continue
-                # Only *_service.thrift from here on
+                        self._compile_thrift_file(
+                            generator=PropertiesPyGenerator(project_name='costume'),
+                            out=os.path.join(ROOT_DIR_PATH, 'py', 'src'),
+                            **compile_kwds
+                        )
 
-                if thrift_subdir_name in ('api', 'lib'):
-                    java_subdir_name = 'lib'
-                elif thrift_subdir_name == 'server':
-                    java_subdir_name = 'server'
-                else:
-                    raise NotImplementedError(thrift_subdir_name)
+                        continue
 
-                self._compile_thrift_file(
-                    generator=LoggingServiceJavaGenerator(
-                        call_log_level_default='info' if thrift_subdir_name == 'server' else 'debug',
-                        exception_log_level_default='error'
-                    ),
-                    out=os.path.join(ROOT_DIR_PATH, 'java', java_subdir_name, 'src', 'gen', 'java'),
-                    **compile_kwds
-                )
-
-                self._compile_thrift_file(
-                    generator=ValidatingServiceJavaGenerator(),
-                    out=os.path.join(ROOT_DIR_PATH, 'java', java_subdir_name, 'src', 'gen', 'java'),
-                    **compile_kwds
-                )
-
-                if thrift_subdir_name in ('api', 'server'):
                     self._compile_thrift_file(
-                        generator=JsonRpcServletJavaGenerator(),
-                        out=os.path.join(ROOT_DIR_PATH, 'java', 'server', 'src', 'gen', 'java'),
+                        generator=JavaGenerator(default_methods=True, function_overloads=True),
+                        out=os.path.join(ROOT_DIR_PATH, 'java', thrift_subdir_name, 'src', 'gen', 'java'),
                         **compile_kwds
                     )
 
-                if thrift_subdir_name != 'api':
-                    # Only generate Python for the API services
-                    continue
+                    if 'models' in thrift_file_path.split(os.path.sep):
+                        self._compile_thrift_file(
+                            generator=BeanJavaGenerator(default_methods=True, function_overloads=True),
+                            out=os.path.join(ROOT_DIR_PATH, 'java', 'gui', 'src', 'gen', 'java'),
+                            **compile_kwds
+                        )
 
-                self._compile_thrift_file(
-                    generator=JsonRpcClientPyGenerator(),
-                    out=os.path.join(ROOT_DIR_PATH, 'py', 'src'),
-                    **compile_kwds
-                )
+                    if thrift_subdir_name == 'api':
+                        self._compile_thrift_file(
+                            generator=PyGenerator(),
+                            out=os.path.join(ROOT_DIR_PATH, 'py', 'src'),
+                            **compile_kwds
+                        )
+
+                        if thrift_file_base_name in ('user',):
+                            out_dir_path = os.path.join(ROOT_DIR_PATH, 'sql')
+                            if not os.path.isdir(out_dir_path):
+                                os.makedirs(out_dir_path)
+
+                            self._compile_thrift_file(
+                                generator=CreateTableSqlGenerator(),
+                                out=out_dir_path,
+                                **compile_kwds
+                            )
+
+                        elastic_search_templates_dir_path = os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'main', 'resources', 'elastic_search_templates')
+                        if thrift_file_base_name in ('object_summary',):
+                            self._compile_thrift_file(
+                                generator=ElasticSearchMappingsGenerator(
+                                    settings=ELASTIC_SEARCH_INDEX_SETTINGS,
+                                    template="%s_*" % thrift_file_base_name,
+                                ),
+                                out=os.path.join(elastic_search_templates_dir_path, thrift_file_base_name + '_template.json'),
+                                **compile_kwds
+                            )
+
+                    if not thrift_file_path.endswith('_service.thrift'):
+                        continue
+                    # Only *_service.thrift from here on
+
+                    if thrift_subdir_name in ('api', 'lib'):
+                        java_subdir_name = 'lib'
+                    elif thrift_subdir_name == 'server':
+                        java_subdir_name = 'server'
+                    else:
+                        raise NotImplementedError(thrift_subdir_name)
+
+                    self._compile_thrift_file(
+                        generator=LoggingServiceJavaGenerator(
+                            call_log_level_default='info' if thrift_subdir_name == 'server' else 'debug',
+                            exception_log_level_default='error'
+                        ),
+                        out=os.path.join(ROOT_DIR_PATH, 'java', java_subdir_name, 'src', 'gen', 'java'),
+                        **compile_kwds
+                    )
+
+                    self._compile_thrift_file(
+                        generator=ValidatingServiceJavaGenerator(),
+                        out=os.path.join(ROOT_DIR_PATH, 'java', java_subdir_name, 'src', 'gen', 'java'),
+                        **compile_kwds
+                    )
+
+                    if thrift_subdir_name in ('api', 'server'):
+                        self._compile_thrift_file(
+                            generator=JsonRpcServletJavaGenerator(),
+                            out=os.path.join(ROOT_DIR_PATH, 'java', 'server', 'src', 'gen', 'java'),
+                            **compile_kwds
+                        )
+
+                    if thrift_subdir_name != 'api':
+                        # Only generate Python for the API services
+                        continue
+
+                    self._compile_thrift_file(
+                        generator=JsonRpcClientPyGenerator(),
+                        out=os.path.join(ROOT_DIR_PATH, 'py', 'src'),
+                        **compile_kwds
+                    )
 
     def __generate_costume_core_java(self, costume_core_controlled_vocabularies):
         number_strings = {

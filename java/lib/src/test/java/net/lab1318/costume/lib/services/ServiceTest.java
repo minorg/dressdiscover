@@ -20,7 +20,8 @@ public abstract class ServiceTest {
 
         properties = CostumeProperties.load();
 
-        injector = Guice.createInjector(new PropertiesModule<CostumeProperties>(properties), _newServicesModule());
+        injector = Guice.createInjector(new PropertiesModule<CostumeProperties>(properties),
+                _newServicesModule(properties));
     }
 
     @Before
@@ -34,7 +35,7 @@ public abstract class ServiceTest {
         return injector;
     }
 
-    protected ServicesModule _newServicesModule() {
+    protected ServicesModule _newServicesModule(final CostumeProperties properties) {
         return new ServicesModule();
     }
 

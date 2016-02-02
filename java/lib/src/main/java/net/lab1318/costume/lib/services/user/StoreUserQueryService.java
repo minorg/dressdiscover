@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.thryft.native_.EmailAddress;
 import org.thryft.waf.lib.stores.InvalidModelException;
 import org.thryft.waf.lib.stores.NoSuchModelException;
 
@@ -23,13 +24,29 @@ abstract class StoreUserQueryService implements IterableUserQueryService {
     }
 
     @Override
+    public UserEntry getUserByEmailAddress(final EmailAddress emailAddress) throws IoException, NoSuchUserException {
+        try {
+            return store.getUserByEmailAddress(emailAddress, logger,
+                    net.lab1318.costume.lib.services.user.LoggingUserQueryService.Markers.GET_USER_BY_ID);
+        } catch (final InvalidModelException e) {
+            logger.warn(net.lab1318.costume.lib.services.user.LoggingUserQueryService.Markers.GET_USER_BY_ID,
+                    "invalid user model {}: ", emailAddress, e);
+            throw new NoSuchUserException();
+        } catch (final IOException e) {
+            throw ServiceExceptionHelper.wrapException(e, "error getting user " + emailAddress);
+        } catch (final NoSuchModelException e) {
+            throw new NoSuchUserException();
+        }
+    }
+
+    @Override
     public User getUserById(final UserId id) throws IoException, NoSuchUserException {
         try {
             return store.getUserById(id, logger,
                     net.lab1318.costume.lib.services.user.LoggingUserQueryService.Markers.GET_USER_BY_ID);
         } catch (final InvalidModelException e) {
             logger.warn(net.lab1318.costume.lib.services.user.LoggingUserQueryService.Markers.GET_USER_BY_ID,
-                    "invalid collection model {}: ", id, e);
+                    "invalid user model {}: ", id, e);
             throw new NoSuchUserException();
         } catch (final IOException e) {
             throw ServiceExceptionHelper.wrapException(e, "error getting user " + id);

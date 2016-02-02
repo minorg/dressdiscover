@@ -25,7 +25,27 @@ public class ValidatingUserCommandService implements net.lab1318.costume.api.ser
     }
 
     @Override
-    public final void putUser(final net.lab1318.costume.api.models.user.UserId id, final net.lab1318.costume.api.models.user.User user) throws net.lab1318.costume.api.services.IoException {
+    public final net.lab1318.costume.api.models.user.UserEntry postAndGetUser(final net.lab1318.costume.api.models.user.User user) throws net.lab1318.costume.api.services.user.DuplicateUserException, net.lab1318.costume.api.services.IoException {
+        _validatePostAndGetUserParameters(user);
+        return com.google.common.base.Preconditions.checkNotNull(delegate.postAndGetUser(user), "net.lab1318.costume.api.services.user.UserCommandService.postAndGetUser: missing returnValue");
+    }
+
+    protected void _validatePostAndGetUserParameters(final net.lab1318.costume.api.models.user.User user) {
+        com.google.common.base.Preconditions.checkNotNull(user, "net.lab1318.costume.api.services.user.UserCommandService.postAndGetUser: missing user");
+    }
+
+    @Override
+    public final net.lab1318.costume.api.models.user.UserId postUser(final net.lab1318.costume.api.models.user.User user) throws net.lab1318.costume.api.services.user.DuplicateUserException, net.lab1318.costume.api.services.IoException {
+        _validatePostUserParameters(user);
+        return com.google.common.base.Preconditions.checkNotNull(delegate.postUser(user), "net.lab1318.costume.api.services.user.UserCommandService.postUser: missing returnValue");
+    }
+
+    protected void _validatePostUserParameters(final net.lab1318.costume.api.models.user.User user) {
+        com.google.common.base.Preconditions.checkNotNull(user, "net.lab1318.costume.api.services.user.UserCommandService.postUser: missing user");
+    }
+
+    @Override
+    public final void putUser(final net.lab1318.costume.api.models.user.UserId id, final net.lab1318.costume.api.models.user.User user) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.user.NoSuchUserException {
         _validatePutUserParameters(id, user);
         delegate.putUser(id, user);
     }
