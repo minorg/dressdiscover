@@ -15,8 +15,6 @@ import org.thryft.protocol.InputProtocolException;
 import org.thryft.protocol.OutputProtocolException;
 import org.thryft.waf.lib.protocols.JdbcResultSetInputProtocol;
 import org.thryft.waf.lib.stores.AbstractJdbcStore;
-import org.thryft.waf.lib.stores.InvalidModelException;
-import org.thryft.waf.lib.stores.NoSuchModelException;
 
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
@@ -26,7 +24,9 @@ import net.lab1318.costume.api.models.user.User;
 import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.api.models.user.UserId;
 import net.lab1318.costume.api.services.IoException;
+import net.lab1318.costume.api.services.user.NoSuchUserException;
 import net.lab1318.costume.lib.CostumeProperties;
+import net.lab1318.costume.lib.services.IoExceptions;
 
 @Singleton
 public final class JdbcUserStore extends AbstractJdbcStore<User> implements UserStore {
@@ -91,7 +91,7 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
 
     @Override
     public UserEntry getUserByEmailAddress(final EmailAddress emailAddress, final Logger logger, final Marker logMarker)
-            throws InvalidModelException, IoException, NoSuchModelException {
+            throws IoException, NoSuchUserException {
         try (Connection connection = _getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(getUserByEmailAddressSql)) {
                 statement.setString(1, emailAddress.toString());
@@ -100,7 +100,7 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
                     if (!users.isEmpty()) {
                         return users.get(0);
                     } else {
-                        throw new NoSuchModelException();
+                        throw new NoSuchUserException();
                     }
                 }
             }
@@ -111,7 +111,7 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
 
     @Override
     public User getUserById(final UserId userId, final Logger logger, final Marker logMarker)
-            throws InvalidModelException, IoException, NoSuchModelException {
+            throws IoException, NoSuchUserException {
         try (Connection connection = _getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(getUserByIdSql)) {
                 statement.setInt(1, userId.asInteger());
@@ -120,7 +120,7 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
                     if (!users.isEmpty()) {
                         return users.get(0).getModel();
                     } else {
-                        throw new NoSuchModelException();
+                        throw new NoSuchUserException();
                     }
                 }
             }
@@ -134,11 +134,7 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
         try (Connection connection = _getConnection()) {
             try (Statement statement = connection.createStatement()) {
                 try (final ResultSet resultSet = statement.executeQuery(getUsersSql)) {
-                    try {
-                        return __getUsers(logger, logMarker, resultSet, true);
-                    } catch (final InvalidModelException e) {
-                        throw new IllegalStateException(e);
-                    }
+                    return __getUsers(logger, logMarker, resultSet);
                 }
             }
         } catch (final SQLException e) {
@@ -162,7 +158,7 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
                 }
             }
         } catch (final OutputProtocolException e) {
-            throw new IoException(e);
+            throw IoExceptions.wrap(e, "error posting user");
         } catch (final SQLException e) {
             throw __wrap(e, "error posting user");
         }
@@ -170,7 +166,7 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
 
     @Override
     public void putUser(final User user, final UserId userId, final Logger logger, final Marker logMarker)
-            throws IoException, NoSuchModelException {
+            throws IoException, NoSuchUserException {
         try (Connection connection = _getConnection()) {
             try (PreparedStatement userUpdateStatement = connection
                     .prepareStatement(_getUpdateSql(user, USER_TABLE_NAME) + " WHERE id = ?")) {
@@ -182,25 +178,20 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
                 if (updateCount == 1) {
                     return;
                 } else if (updateCount == 0) {
-                    throw new NoSuchModelException();
+                    throw new NoSuchUserException();
                 } else {
                     throw new IllegalStateException("" + updateCount);
                 }
             }
         } catch (final OutputProtocolException e) {
-            throw new IoException(e);
+            throw IoExceptions.wrap(e, "error putting user");
         } catch (final SQLException e) {
             throw __wrap(e, "error putting user");
         }
     }
 
     private ImmutableList<UserEntry> __getUsers(final Logger logger, final Marker logMarker, final ResultSet resultSet)
-            throws InvalidModelException, SQLException {
-        return __getUsers(logger, logMarker, resultSet, false);
-    }
-
-    private ImmutableList<UserEntry> __getUsers(final Logger logger, final Marker logMarker, final ResultSet resultSet,
-            final boolean ignoreInvalidModel) throws InvalidModelException, SQLException {
+            throws SQLException {
         final JdbcResultSetInputProtocol iprot = new JdbcResultSetInputProtocol(resultSet);
         final ImmutableList.Builder<UserEntry> usersBuilder = ImmutableList.builder();
         while (resultSet.next()) {
@@ -209,12 +200,7 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
                 final User user = User.readAsStruct(iprot);
                 usersBuilder.add(new UserEntry(userId, user));
             } catch (final InputProtocolException e) {
-                if (ignoreInvalidModel) {
-                    logger.warn(logMarker, "user model {} is invalid: {}", userId,
-                            ExceptionUtils.getRootCauseMessage(e));
-                } else {
-                    throw new InvalidModelException(userId.toString(), ExceptionUtils.getRootCauseMessage(e));
-                }
+                logger.warn(logMarker, "user model {} is invalid: {}", userId, ExceptionUtils.getRootCauseMessage(e));
             }
         }
         return usersBuilder.build();
@@ -222,8 +208,8 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
 
     private IoException __wrap(final SQLException cause, final String message) {
         final IoException exception = new IoException(message);
-        exception.setStark
-        return new IoException(cause);
+        exception.initCause(cause);
+        return exception;
     }
 
     private final String deleteUserByIdSql;

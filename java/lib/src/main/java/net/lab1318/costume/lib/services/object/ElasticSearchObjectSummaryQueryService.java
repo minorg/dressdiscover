@@ -142,7 +142,7 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
                 if (e.getCause() instanceof InvalidModelException) {
                     throw (InvalidModelException) e.getCause();
                 }
-                IoExceptions.rethrowExecutionException(e);
+                ExceptionUtils.rethrowExecutionException(e);
                 throw new IllegalStateException(e);
             }
         }
@@ -397,7 +397,7 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
             if (e.getCause() instanceof IoException) {
                 throw (IoException) e.getCause();
             }
-            IoExceptions.rethrowExecutionException(e);
+            ExceptionUtils.rethrowExecutionException(e);
             throw new IllegalStateException(e);
         }
 
