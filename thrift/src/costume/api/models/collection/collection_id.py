@@ -7,5 +7,5 @@ class CollectionId(_Id):
     def java_read_protocol_throws_checked(self):
         return ['net.lab1318.costume.api.models.collection.InvalidCollectionIdException']
 
-    def java_qname(self, boxed=False):
+    def java_qname(self):
         return 'net.lab1318.costume.api.models.collection.CollectionId'

@@ -8,10 +8,16 @@ class _Id(object):
     def elastic_search_mapping_dict(self):
         return {'index': 'not_analyzed', 'type': 'string'}
 
+    def java_boxed_name(self):
+        return self.java_qname()
+
+    def java_boxed_qname(self):
+        return self.java_qname()
+
     def java_default_value(self):
         return 'null'
 
-    def java_name(self, boxed=False):
+    def java_name(self):
         return self.java_qname()
 
     def java_is_reference(self):
