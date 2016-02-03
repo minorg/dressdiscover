@@ -7,6 +7,7 @@ include "costume/api/models/object/object_query.thrift"
 include "costume/api/models/user/user_id.thrift"
 
 // @java_implements org.thryft.waf.api.models.Model
+// @sql_column object_query VARCHAR
 struct UserBookmark {
 	// @sql_foreign_key user.id
 	user_id.UserId user_id;

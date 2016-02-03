@@ -1,5 +1,6 @@
 package net.lab1318.costume.lib.stores.user;
 
+import java.io.StringWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,13 +10,17 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
 import org.thryft.protocol.InputProtocolException;
+import org.thryft.protocol.JacksonJsonInputProtocol;
+import org.thryft.protocol.JacksonJsonOutputProtocol;
 import org.thryft.protocol.OutputProtocolException;
 import org.thryft.waf.lib.protocols.JdbcResultSetInputProtocol;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.models.user.UserBookmark;
 import net.lab1318.costume.api.models.user.UserBookmarkEntry;
 import net.lab1318.costume.api.models.user.UserBookmarkId;
@@ -75,9 +80,22 @@ public class UserBookmarkJdbcTable extends AbstractJdbcTable<UserBookmark> imple
     public UserBookmarkId postUserBookmark(final Logger logger, final Marker logMarker, final UserBookmark userBookmark)
             throws IoException {
         try (Connection connection = _getConnection()) {
+            ImmutableMap<String, Object> extraColumns;
+            if (userBookmark.getObjectQuery().isPresent()) {
+                final StringWriter objectQueryJsonStringWriter = new StringWriter();
+                final JacksonJsonOutputProtocol oprot = new JacksonJsonOutputProtocol(objectQueryJsonStringWriter);
+                userBookmark.getObjectQuery().get().writeAsStruct(oprot);
+                oprot.flush();
+                final String objectQueryJson = objectQueryJsonStringWriter.toString();
+                extraColumns = ImmutableMap.of(UserBookmark.FieldMetadata.OBJECT_QUERY.getThriftName(),
+                        objectQueryJson);
+            } else {
+                extraColumns = ImmutableMap.of();
+            }
+
             try (PreparedStatement insertStatement = connection
-                    .prepareStatement(_getInsertSql(userBookmark, TABLE_NAME))) {
-                _setParameters(insertStatement, userBookmark);
+                    .prepareStatement(_getInsertSql(userBookmark, TABLE_NAME, extraColumns))) {
+                _setParameters(insertStatement, userBookmark, extraColumns);
                 insertStatement.execute();
                 try (final ResultSet insertResultSet = insertStatement.getGeneratedKeys()) {
                     if (insertResultSet.next()) {
@@ -101,8 +119,14 @@ public class UserBookmarkJdbcTable extends AbstractJdbcTable<UserBookmark> imple
         while (resultSet.next()) {
             final UserBookmarkId userBookmarkId = new UserBookmarkId(resultSet.getInt("id"));
             try {
-                final UserBookmark userBookmark = UserBookmark.readAsStruct(iprot);
-                userBookmarksBuilder.add(new UserBookmarkEntry(userBookmarkId, userBookmark));
+                final UserBookmark.Builder userBookmarkBuilder = UserBookmark.builder().readAsStruct(iprot);
+                final String objectQueryJson = resultSet
+                        .getString(UserBookmark.FieldMetadata.OBJECT_QUERY.getThriftName());
+                if (objectQueryJson != null) {
+                    userBookmarkBuilder
+                            .setObjectQuery(ObjectQuery.readAsStruct(new JacksonJsonInputProtocol(objectQueryJson)));
+                }
+                userBookmarksBuilder.add(new UserBookmarkEntry(userBookmarkId, userBookmarkBuilder.build()));
             } catch (final InputProtocolException e) {
                 logger.warn(logMarker, "user bookmark model {} is invalid: {}", userBookmarkId,
                         ExceptionUtils.getRootCauseMessage(e));
@@ -115,8 +139,8 @@ public class UserBookmarkJdbcTable extends AbstractJdbcTable<UserBookmark> imple
     private final String getUserBookmarksByUserIdSql = String.format("SELECT * FROM %s WHERE %s.user_id = ?",
             TABLE_NAME, TABLE_NAME);
     final static String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS user_bookmark(\n"
-            + "    id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,\n" + "    object_id VARCHAR NOT NULL,\n"
-            + "    user_id INTEGER NOT NULL,\n" + "    folder VARCHAR,\n"
+            + "    id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,\n" + "    object_query VARCHAR,\n"
+            + "    user_id INTEGER NOT NULL,\n" + "    folder VARCHAR,\n" + "    object_id VARCHAR,\n"
             + "    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE ON UPDATE CASCADE\n" + ")";
     private final static String TABLE_NAME = "user_bookmark";
 }
