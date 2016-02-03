@@ -128,11 +128,11 @@ public class ObjectQueryBean implements org.thryft.StructBean {
         this.objectIds = other.getObjectIds().isPresent() ? new java.util.LinkedHashSet<net.lab1318.costume.api.models.object.ObjectId>(other.getObjectIds().get()) : null;
         this.relationText = other.getRelationText().isPresent() ? other.getRelationText().get() : null;
         this.queryString = other.getQueryString().isPresent() ? other.getQueryString().get() : null;
-        this.structureTexts = other.getStructureTexts().isPresent() ? (new com.google.common.base.Function<com.google.common.collect.ImmutableMap<String, java.util.List<String>>, java.util.Map<String, java.util.List<String>>>() {
+        this.structureTexts = other.getStructureTexts().isPresent() ? (new com.google.common.base.Function<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>, java.util.Map<String, java.util.List<String>>>() {
             @Override
-            public java.util.Map<String, java.util.List<String>> apply(final com.google.common.collect.ImmutableMap<String, java.util.List<String>> other) {
+            public java.util.Map<String, java.util.List<String>> apply(final com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>> other) {
                 final java.util.Map<String, java.util.List<String>> copy = new java.util.HashMap<String, java.util.List<String>>();
-                for (final java.util.Map.Entry<String, java.util.List<String>> entry : other.entrySet()) {
+                for (final java.util.Map.Entry<String, com.google.common.collect.ImmutableList<String>> entry : other.entrySet()) {
                     copy.put(entry.getKey(), new java.util.ArrayList<String>(entry.getValue()));
                 }
                 return copy;
