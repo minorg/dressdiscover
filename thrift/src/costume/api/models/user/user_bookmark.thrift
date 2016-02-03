@@ -11,4 +11,7 @@ struct UserBookmark {
 
 	// @sql_foreign_key user.id
 	user_id.UserId user_id;
+
+	// @validation {"minLength": 1}
+	optional string folder;
 }

@@ -116,7 +116,7 @@ public class UserBookmarkJdbcTable extends AbstractJdbcTable<UserBookmark> imple
             TABLE_NAME, TABLE_NAME);
     final static String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS user_bookmark(\n"
             + "    id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,\n" + "    object_id VARCHAR NOT NULL,\n"
-            + "    user_id INTEGER NOT NULL,\n"
+            + "    user_id INTEGER NOT NULL,\n" + "    folder VARCHAR,\n"
             + "    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE ON UPDATE CASCADE\n" + ")";
     private final static String TABLE_NAME = "user_bookmark";
 }

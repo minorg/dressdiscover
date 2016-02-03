@@ -74,7 +74,7 @@ public abstract class UserServiceTest extends ServiceTest {
     protected final ImmutableList<UserBookmarkEntry> _postUserBookmarks(final UserId userId) throws Exception {
         final ImmutableList.Builder<UserBookmarkEntry> resultBuilder = ImmutableList.builder();
         for (int i = 0; i < 2; i++) {
-            final UserBookmark userBookmark = UserBookmark.builder()
+            final UserBookmark userBookmark = UserBookmark.builder().setFolder("My folder")
                     .setObjectId(ObjectId.parse("institution/collection/object" + i)).setUserId(userId).build();
             resultBuilder.add(new UserBookmarkEntry(userCommandService.postUserBookmark(userBookmark), userBookmark));
         }
