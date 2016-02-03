@@ -3,9 +3,10 @@ package net.lab1318.costume.gui.models.user;
 public class UserBookmarkBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        OBJECT_ID("objectId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.object.ObjectId>() {}, true, 0, "object_id", org.thryft.protocol.Type.STRING),
         USER_ID("userId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.user.UserId>() {}, true, 0, "user_id", org.thryft.protocol.Type.STRING),
-        FOLDER("folder", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "folder", org.thryft.protocol.Type.STRING);
+        FOLDER("folder", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "folder", org.thryft.protocol.Type.STRING),
+        OBJECT_ID("objectId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.object.ObjectId>() {}, false, 0, "object_id", org.thryft.protocol.Type.STRING),
+        OBJECT_QUERY("objectQuery", new com.google.common.reflect.TypeToken<costume.api.models.object.ObjectQueryBean>() {}, false, 0, "object_query", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -49,9 +50,10 @@ public class UserBookmarkBean implements org.thryft.StructBean {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "objectId": return OBJECT_ID;
             case "userId": return USER_ID;
             case "folder": return FOLDER;
+            case "objectId": return OBJECT_ID;
+            case "objectQuery": return OBJECT_QUERY;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -59,9 +61,10 @@ public class UserBookmarkBean implements org.thryft.StructBean {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "object_id": return OBJECT_ID;
             case "user_id": return USER_ID;
             case "folder": return FOLDER;
+            case "object_id": return OBJECT_ID;
+            case "object_query": return OBJECT_QUERY;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -91,15 +94,17 @@ public class UserBookmarkBean implements org.thryft.StructBean {
     }
 
     public UserBookmarkBean() {
-        objectId = null;
         userId = null;
         folder = null;
+        objectId = null;
+        objectQuery = null;
     }
 
     public UserBookmarkBean(final net.lab1318.costume.api.models.user.UserBookmark other) {
-        this.objectId = other.getObjectId();
         this.userId = other.getUserId();
         this.folder = other.getFolder().isPresent() ? other.getFolder().get() : null;
+        this.objectId = other.getObjectId().isPresent() ? other.getObjectId().get() : null;
+        this.objectQuery = other.getObjectQuery().isPresent() ? new costume.api.models.object.ObjectQueryBean(other.getObjectQuery().get()) : null;
     }
 
     @Override
@@ -112,9 +117,10 @@ public class UserBookmarkBean implements org.thryft.StructBean {
 
         final UserBookmarkBean other = (UserBookmarkBean)otherObject;
         return
-            getObjectId().equals(other.getObjectId()) &&
             getUserId().equals(other.getUserId()) &&
-            (getFolder() != null ? getFolder().equals(other.getFolder()) : other.getFolder() == null);
+            (getFolder() != null ? getFolder().equals(other.getFolder()) : other.getFolder() == null) &&
+            (getObjectId() != null ? getObjectId().equals(other.getObjectId()) : other.getObjectId() == null) &&
+            (getObjectQuery() != null ? getObjectQuery().equals(other.getObjectQuery()) : other.getObjectQuery() == null);
     }
 
     @Override
@@ -132,9 +138,10 @@ public class UserBookmarkBean implements org.thryft.StructBean {
 
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
-        case OBJECT_ID: return getObjectId();
         case USER_ID: return getUserId();
         case FOLDER: return getFolder();
+        case OBJECT_ID: return getObjectId();
+        case OBJECT_QUERY: return getObjectQuery();
         default:
             throw new IllegalStateException();
         }
@@ -148,6 +155,10 @@ public class UserBookmarkBean implements org.thryft.StructBean {
         return objectId;
     }
 
+    public costume.api.models.object.ObjectQueryBean getObjectQuery() {
+        return objectQuery;
+    }
+
     public net.lab1318.costume.api.models.user.UserId getUserId() {
         return userId;
     }
@@ -155,10 +166,15 @@ public class UserBookmarkBean implements org.thryft.StructBean {
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getObjectId().hashCode();
         hashCode = 31 * hashCode + getUserId().hashCode();
         if (getFolder() != null) {
             hashCode = 31 * hashCode + getFolder().hashCode();
+        }
+        if (getObjectId() != null) {
+            hashCode = 31 * hashCode + getObjectId().hashCode();
+        }
+        if (getObjectQuery() != null) {
+            hashCode = 31 * hashCode + getObjectQuery().hashCode();
         }
         return hashCode;
     }
@@ -176,18 +192,24 @@ public class UserBookmarkBean implements org.thryft.StructBean {
         this.objectId = objectId;
     }
 
+    public void setObjectQuery(final costume.api.models.object.ObjectQueryBean objectQuery) {
+        this.objectQuery = objectQuery;
+    }
+
     public void setUserId(final net.lab1318.costume.api.models.user.UserId userId) {
         this.userId = userId;
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("object_id", getObjectId()).add("user_id", getUserId()).add("folder", getFolder()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("user_id", getUserId()).add("folder", getFolder()).add("object_id", getObjectId()).add("object_query", getObjectQuery()).toString();
     }
-
-    private net.lab1318.costume.api.models.object.ObjectId objectId;
 
     private net.lab1318.costume.api.models.user.UserId userId;
 
     private String folder;
+
+    private net.lab1318.costume.api.models.object.ObjectId objectId;
+
+    private costume.api.models.object.ObjectQueryBean objectQuery;
 }

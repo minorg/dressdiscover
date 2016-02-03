@@ -1,7 +1,7 @@
 from itertools import ifilterfalse
 import __builtin__
+import costume.api.models.object.object_facets
 import costume.api.models.object.object_summary_entry
-import costume.api.services.object.object_facets
 
 
 class GetObjectSummariesResult(object):
@@ -15,7 +15,7 @@ class GetObjectSummariesResult(object):
             '''
             :type hits: tuple(costume.api.models.object.object_summary_entry.ObjectSummaryEntry)
             :type total_hits: int
-            :type facets: costume.api.services.object.object_facets.ObjectFacets or None
+            :type facets: costume.api.models.object.object_facets.ObjectFacets or None
             '''
 
             self.__hits = hits
@@ -28,7 +28,7 @@ class GetObjectSummariesResult(object):
         @property
         def facets(self):
             '''
-            :rtype: costume.api.services.object.object_facets.ObjectFacets
+            :rtype: costume.api.models.object.object_facets.ObjectFacets
             '''
 
             return self.__facets
@@ -43,7 +43,7 @@ class GetObjectSummariesResult(object):
 
         def set_facets(self, facets):
             '''
-            :type facets: costume.api.services.object.object_facets.ObjectFacets or None
+            :type facets: costume.api.models.object.object_facets.ObjectFacets or None
             '''
 
             self.__facets = facets
@@ -77,7 +77,7 @@ class GetObjectSummariesResult(object):
             '''
             :type hits: tuple(costume.api.models.object.object_summary_entry.ObjectSummaryEntry)
             :type total_hits: int
-            :type facets: costume.api.services.object.object_facets.ObjectFacets or None
+            :type facets: costume.api.models.object.object_facets.ObjectFacets or None
             '''
 
             if isinstance(get_object_summaries_result, GetObjectSummariesResult):
@@ -94,7 +94,7 @@ class GetObjectSummariesResult(object):
         @facets.setter
         def facets(self, facets):
             '''
-            :type facets: costume.api.services.object.object_facets.ObjectFacets or None
+            :type facets: costume.api.models.object.object_facets.ObjectFacets or None
             '''
 
             self.set_facets(facets)
@@ -124,7 +124,7 @@ class GetObjectSummariesResult(object):
         '''
         :type hits: tuple(costume.api.models.object.object_summary_entry.ObjectSummaryEntry)
         :type total_hits: int
-        :type facets: costume.api.services.object.object_facets.ObjectFacets or None
+        :type facets: costume.api.models.object.object_facets.ObjectFacets or None
         '''
 
         if hits is None:
@@ -140,8 +140,8 @@ class GetObjectSummariesResult(object):
         self.__total_hits = total_hits
 
         if facets is not None:
-            if not isinstance(facets, costume.api.services.object.object_facets.ObjectFacets):
-                raise TypeError("expected facets to be a costume.api.services.object.object_facets.ObjectFacets but it is a %s" % getattr(__builtin__, 'type')(facets))
+            if not isinstance(facets, costume.api.models.object.object_facets.ObjectFacets):
+                raise TypeError("expected facets to be a costume.api.models.object.object_facets.ObjectFacets but it is a %s" % getattr(__builtin__, 'type')(facets))
         self.__facets = facets
 
     def __eq__(self, other):
@@ -199,7 +199,7 @@ class GetObjectSummariesResult(object):
     @property
     def facets(self):
         '''
-        :rtype: costume.api.services.object.object_facets.ObjectFacets
+        :rtype: costume.api.models.object.object_facets.ObjectFacets
         '''
 
         return self.__facets
@@ -233,7 +233,7 @@ class GetObjectSummariesResult(object):
             elif ifield_name == 'total_hits':
                 init_kwds['total_hits'] = iprot.read_u32()
             elif ifield_name == 'facets':
-                init_kwds['facets'] = costume.api.services.object.object_facets.ObjectFacets.read(iprot)
+                init_kwds['facets'] = costume.api.models.object.object_facets.ObjectFacets.read(iprot)
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -250,7 +250,7 @@ class GetObjectSummariesResult(object):
 
         :type hits: tuple(costume.api.models.object.object_summary_entry.ObjectSummaryEntry) or None
         :type total_hits: int or None
-        :type facets: costume.api.services.object.object_facets.ObjectFacets or None
+        :type facets: costume.api.models.object.object_facets.ObjectFacets or None
         :rtype: costume.api.services.object.get_object_summaries_result.GetObjectSummariesResult
         '''
 

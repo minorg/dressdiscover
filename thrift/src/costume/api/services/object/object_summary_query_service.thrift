@@ -5,10 +5,10 @@ namespace servlet_java net.lab1318.costume.server.controllers.object
 namespace validating_service_java net.lab1318.costume.lib.services.object
 namespace * costume.api.services.object
 
+include "costume/api/models/object/object_query.thrift"
 include "costume/api/services/io_exception.thrift"
 include "costume/api/services/object/get_object_summaries_options.thrift"
 include "costume/api/services/object/get_object_summaries_result.thrift"
-include "costume/api/services/object/object_query.thrift"
 
 service ObjectSummaryQueryService {
 	get_object_summaries_result.GetObjectSummariesResult

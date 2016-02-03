@@ -592,7 +592,7 @@ class ObjectFacets(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.services.object.object_facets.ObjectFacets
+        :rtype: costume.api.models.object.object_facets.ObjectFacets
         '''
 
         init_kwds = {}
@@ -657,7 +657,7 @@ class ObjectFacets(object):
         :type subject_term_texts: dict(str: int) or None
         :type technique_texts: dict(str: int) or None
         :type work_type_texts: dict(str: int) or None
-        :rtype: costume.api.services.object.object_facets.ObjectFacets
+        :rtype: costume.api.models.object.object_facets.ObjectFacets
         '''
 
         if categories is None:
@@ -713,7 +713,7 @@ class ObjectFacets(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.services.object.object_facets.ObjectFacets
+        :rtype: costume.api.models.object.object_facets.ObjectFacets
         '''
 
         oprot.write_struct_begin('ObjectFacets')

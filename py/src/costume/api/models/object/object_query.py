@@ -1,6 +1,6 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.services.object.object_facet_filters
+import costume.api.models.object.object_facet_filters
 
 
 class ObjectQuery(object):
@@ -19,7 +19,7 @@ class ObjectQuery(object):
         ):
             '''
             :type collection_id: str or None
-            :type facet_filters: costume.api.services.object.object_facet_filters.ObjectFacetFilters or None
+            :type facet_filters: costume.api.models.object.object_facet_filters.ObjectFacetFilters or None
             :type institution_id: str or None
             :type more_like_object_id: str or None
             :type object_ids: frozenset(str) or None
@@ -53,7 +53,7 @@ class ObjectQuery(object):
         @property
         def facet_filters(self):
             '''
-            :rtype: costume.api.services.object.object_facet_filters.ObjectFacetFilters
+            :rtype: costume.api.models.object.object_facet_filters.ObjectFacetFilters
             '''
 
             return self.__facet_filters
@@ -108,7 +108,7 @@ class ObjectQuery(object):
 
         def set_facet_filters(self, facet_filters):
             '''
-            :type facet_filters: costume.api.services.object.object_facet_filters.ObjectFacetFilters or None
+            :type facet_filters: costume.api.models.object.object_facet_filters.ObjectFacetFilters or None
             '''
 
             self.__facet_filters = facet_filters
@@ -181,7 +181,7 @@ class ObjectQuery(object):
         def update(self, object_query):
             '''
             :type collection_id: str or None
-            :type facet_filters: costume.api.services.object.object_facet_filters.ObjectFacetFilters or None
+            :type facet_filters: costume.api.models.object.object_facet_filters.ObjectFacetFilters or None
             :type institution_id: str or None
             :type more_like_object_id: str or None
             :type object_ids: frozenset(str) or None
@@ -227,7 +227,7 @@ class ObjectQuery(object):
         @facet_filters.setter
         def facet_filters(self, facet_filters):
             '''
-            :type facet_filters: costume.api.services.object.object_facet_filters.ObjectFacetFilters or None
+            :type facet_filters: costume.api.models.object.object_facet_filters.ObjectFacetFilters or None
             '''
 
             self.set_facet_filters(facet_filters)
@@ -302,7 +302,7 @@ class ObjectQuery(object):
     ):
         '''
         :type collection_id: str or None
-        :type facet_filters: costume.api.services.object.object_facet_filters.ObjectFacetFilters or None
+        :type facet_filters: costume.api.models.object.object_facet_filters.ObjectFacetFilters or None
         :type institution_id: str or None
         :type more_like_object_id: str or None
         :type object_ids: frozenset(str) or None
@@ -318,8 +318,8 @@ class ObjectQuery(object):
         self.__collection_id = collection_id
 
         if facet_filters is not None:
-            if not isinstance(facet_filters, costume.api.services.object.object_facet_filters.ObjectFacetFilters):
-                raise TypeError("expected facet_filters to be a costume.api.services.object.object_facet_filters.ObjectFacetFilters but it is a %s" % getattr(__builtin__, 'type')(facet_filters))
+            if not isinstance(facet_filters, costume.api.models.object.object_facet_filters.ObjectFacetFilters):
+                raise TypeError("expected facet_filters to be a costume.api.models.object.object_facet_filters.ObjectFacetFilters but it is a %s" % getattr(__builtin__, 'type')(facet_filters))
         self.__facet_filters = facet_filters
 
         if institution_id is not None:
@@ -468,7 +468,7 @@ class ObjectQuery(object):
     @property
     def facet_filters(self):
         '''
-        :rtype: costume.api.services.object.object_facet_filters.ObjectFacetFilters
+        :rtype: costume.api.models.object.object_facet_filters.ObjectFacetFilters
         '''
 
         return self.__facet_filters
@@ -511,7 +511,7 @@ class ObjectQuery(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.services.object.object_query.ObjectQuery
+        :rtype: costume.api.models.object.object_query.ObjectQuery
         '''
 
         init_kwds = {}
@@ -527,7 +527,7 @@ class ObjectQuery(object):
                 except (TypeError, ValueError,):
                     pass
             elif ifield_name == 'facet_filters':
-                init_kwds['facet_filters'] = costume.api.services.object.object_facet_filters.ObjectFacetFilters.read(iprot)
+                init_kwds['facet_filters'] = costume.api.models.object.object_facet_filters.ObjectFacetFilters.read(iprot)
             elif ifield_name == 'institution_id':
                 try:
                     init_kwds['institution_id'] = iprot.read_string()
@@ -586,7 +586,7 @@ class ObjectQuery(object):
         Copy this object, replace one or more fields, and return the copy.
 
         :type collection_id: str or None
-        :type facet_filters: costume.api.services.object.object_facet_filters.ObjectFacetFilters or None
+        :type facet_filters: costume.api.models.object.object_facet_filters.ObjectFacetFilters or None
         :type institution_id: str or None
         :type more_like_object_id: str or None
         :type object_ids: frozenset(str) or None
@@ -594,7 +594,7 @@ class ObjectQuery(object):
         :type query_string: str or None
         :type structure_texts: dict(str: tuple(str)) or None
         :type work_type_text: str or None
-        :rtype: costume.api.services.object.object_query.ObjectQuery
+        :rtype: costume.api.models.object.object_query.ObjectQuery
         '''
 
         if collection_id is None:
@@ -638,7 +638,7 @@ class ObjectQuery(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.services.object.object_query.ObjectQuery
+        :rtype: costume.api.models.object.object_query.ObjectQuery
         '''
 
         oprot.write_struct_begin('ObjectQuery')

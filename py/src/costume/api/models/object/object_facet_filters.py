@@ -1271,7 +1271,7 @@ class ObjectFacetFilters(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.services.object.object_facet_filters.ObjectFacetFilters
+        :rtype: costume.api.models.object.object_facet_filters.ObjectFacetFilters
         '''
 
         init_kwds = {}
@@ -1387,7 +1387,7 @@ class ObjectFacetFilters(object):
         :type include_subject_term_texts: frozenset(str) or None
         :type include_technique_texts: frozenset(str) or None
         :type include_work_type_texts: frozenset(str) or None
-        :rtype: costume.api.services.object.object_facet_filters.ObjectFacetFilters
+        :rtype: costume.api.models.object.object_facet_filters.ObjectFacetFilters
         '''
 
         if exclude_all is None:
@@ -1443,7 +1443,7 @@ class ObjectFacetFilters(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.services.object.object_facet_filters.ObjectFacetFilters
+        :rtype: costume.api.models.object.object_facet_filters.ObjectFacetFilters
         '''
 
         oprot.write_struct_begin('ObjectFacetFilters')
