@@ -1,8 +1,8 @@
 from urlparse import urlparse
 import base64
-import costume.api.models.user.user_entry
 import costume.api.services.io_exception  # @UnusedImport
 import costume.api.services.user.duplicate_user_exception  # @UnusedImport
+import costume.api.services.user.no_such_user_bookmark_exception  # @UnusedImport
 import costume.api.services.user.no_such_user_exception  # @UnusedImport
 import costume.api.services.user.user_command_service
 import json
@@ -114,6 +114,19 @@ class UserCommandServiceJsonRpcClient(costume.api.services.user.user_command_ser
 
         return response.get('result')
 
+    def _delete_user_bookmark_by_id(
+        self,
+        id,  # @ReservedAssignment
+    ):
+        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
+        oprot.write_struct_begin()
+        oprot.write_field_begin(name='id', type=11, id=None)
+        oprot.write_string(id)
+        oprot.write_field_end()
+        oprot.write_struct_end()
+
+        self.__request(method='delete_user_bookmark_by_id', params=oprot.value)
+
     def _delete_user_by_id(
         self,
         id,  # @ReservedAssignment
@@ -132,21 +145,6 @@ class UserCommandServiceJsonRpcClient(costume.api.services.user.user_command_ser
     ):
         self.__request(method='delete_users', params={})
 
-    def _post_and_get_user(
-        self,
-        user,
-    ):
-        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
-        oprot.write_struct_begin()
-        oprot.write_field_begin(name='user', type=12, id=None)
-        user.write(oprot)
-        oprot.write_field_end()
-        oprot.write_struct_end()
-
-        return_value = self.__request(method='post_and_get_user', params=oprot.value)
-        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
-        return costume.api.models.user.user_entry.UserEntry.read(iprot)
-
     def _post_user(
         self,
         user,
@@ -159,6 +157,21 @@ class UserCommandServiceJsonRpcClient(costume.api.services.user.user_command_ser
         oprot.write_struct_end()
 
         return_value = self.__request(method='post_user', params=oprot.value)
+        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
+        return iprot.read_string()
+
+    def _post_user_bookmark(
+        self,
+        user_bookmark,
+    ):
+        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
+        oprot.write_struct_begin()
+        oprot.write_field_begin(name='user_bookmark', type=12, id=None)
+        user_bookmark.write(oprot)
+        oprot.write_field_end()
+        oprot.write_struct_end()
+
+        return_value = self.__request(method='post_user_bookmark', params=oprot.value)
         iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
         return iprot.read_string()
 

@@ -113,7 +113,8 @@ public final class TestData {
 
         final ImmutableList.Builder<User> usersBuilder = ImmutableList.builder();
         for (int i = 0; i < 2; i++) {
-            usersBuilder.add(User.builder().setEmailAddress(new EmailAddress("testuser" + i + "@example.com")).build());
+            usersBuilder.add(User.builder().setCtime(new Date())
+                    .setEmailAddress(new EmailAddress("testuser" + i + "@example.com")).build());
         }
         users = usersBuilder.build();
     }

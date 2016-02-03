@@ -9,3 +9,6 @@ class UserBookmarkId(_Id):
 
     def java_qname(self, boxed=False):
         return 'net.lab1318.costume.api.models.user.UserBookmarkId'
+
+    def sql_name(self):
+        return 'INTEGER'

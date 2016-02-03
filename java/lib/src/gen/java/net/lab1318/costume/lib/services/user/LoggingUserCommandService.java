@@ -3,18 +3,20 @@ package net.lab1318.costume.lib.services.user;
 @com.google.inject.Singleton
 public class LoggingUserCommandService implements net.lab1318.costume.api.services.user.UserCommandService {
     public static class Markers {
+        public final static org.slf4j.Marker DELETE_USER_BOOKMARK_BY_ID = org.slf4j.MarkerFactory.getMarker("DELETE_USER_BOOKMARK_BY_ID");
         public final static org.slf4j.Marker DELETE_USER_BY_ID = org.slf4j.MarkerFactory.getMarker("DELETE_USER_BY_ID");
         public final static org.slf4j.Marker DELETE_USERS = org.slf4j.MarkerFactory.getMarker("DELETE_USERS");
-        public final static org.slf4j.Marker POST_AND_GET_USER = org.slf4j.MarkerFactory.getMarker("POST_AND_GET_USER");
         public final static org.slf4j.Marker POST_USER = org.slf4j.MarkerFactory.getMarker("POST_USER");
+        public final static org.slf4j.Marker POST_USER_BOOKMARK = org.slf4j.MarkerFactory.getMarker("POST_USER_BOOKMARK");
         public final static org.slf4j.Marker PUT_USER = org.slf4j.MarkerFactory.getMarker("PUT_USER");
 
         public final static org.slf4j.Marker USER_COMMAND_SERVICE = org.slf4j.MarkerFactory.getMarker("USER_COMMAND_SERVICE");
         static {
+            USER_COMMAND_SERVICE.add(DELETE_USER_BOOKMARK_BY_ID);
             USER_COMMAND_SERVICE.add(DELETE_USER_BY_ID);
             USER_COMMAND_SERVICE.add(DELETE_USERS);
-            USER_COMMAND_SERVICE.add(POST_AND_GET_USER);
             USER_COMMAND_SERVICE.add(POST_USER);
+            USER_COMMAND_SERVICE.add(POST_USER_BOOKMARK);
             USER_COMMAND_SERVICE.add(PUT_USER);
         }
     }
@@ -24,6 +26,32 @@ public class LoggingUserCommandService implements net.lab1318.costume.api.servic
     @com.google.inject.Inject
     public LoggingUserCommandService(@com.google.inject.name.Named("net.lab1318.costume.lib.services.user.LoggingUserCommandService.delegate") final net.lab1318.costume.api.services.user.UserCommandService delegate) {
         this.delegate = com.google.common.base.Preconditions.checkNotNull(delegate);
+    }
+
+    public void deleteUserBookmarkById(final net.lab1318.costume.api.models.user.UserBookmarkId id) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.user.NoSuchUserBookmarkException {
+        final StringBuilder __logMessageStringBuilder = new StringBuilder();
+        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+
+        __logMessageStringBuilder.append("delete_user_bookmark_by_id(");
+        __logMessageStringBuilder.append("{}");
+        __logMessageArgs.add(new Messages.DeleteUserBookmarkByIdRequest(id));
+        __logMessageStringBuilder.append(")");
+
+        try {
+            delegate.deleteUserBookmarkById(id);
+
+            logger.debug(Markers.DELETE_USER_BOOKMARK_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+        } catch (final net.lab1318.costume.api.services.IoException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.DELETE_USER_BOOKMARK_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        } catch (final net.lab1318.costume.api.services.user.NoSuchUserBookmarkException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.DELETE_USER_BOOKMARK_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        }
     }
 
     public void deleteUserById(final net.lab1318.costume.api.models.user.UserId id) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.user.NoSuchUserException {
@@ -71,37 +99,6 @@ public class LoggingUserCommandService implements net.lab1318.costume.api.servic
         }
     }
 
-    public net.lab1318.costume.api.models.user.UserEntry postAndGetUser(final net.lab1318.costume.api.models.user.User user) throws net.lab1318.costume.api.services.user.DuplicateUserException, net.lab1318.costume.api.services.IoException {
-        final StringBuilder __logMessageStringBuilder = new StringBuilder();
-        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
-
-        __logMessageStringBuilder.append("post_and_get_user(");
-        __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.PostAndGetUserRequest(user));
-        __logMessageStringBuilder.append(")");
-
-        try {
-            net.lab1318.costume.api.models.user.UserEntry __returnValue = delegate.postAndGetUser(user);
-
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(__returnValue);
-
-            logger.debug(Markers.POST_AND_GET_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
-
-            return __returnValue;
-        } catch (final net.lab1318.costume.api.services.user.DuplicateUserException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.POST_AND_GET_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
-            throw e;
-        } catch (final net.lab1318.costume.api.services.IoException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.POST_AND_GET_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
-            throw e;
-        }
-    }
-
     public net.lab1318.costume.api.models.user.UserId postUser(final net.lab1318.costume.api.models.user.User user) throws net.lab1318.costume.api.services.user.DuplicateUserException, net.lab1318.costume.api.services.IoException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
@@ -129,6 +126,32 @@ public class LoggingUserCommandService implements net.lab1318.costume.api.servic
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.POST_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        }
+    }
+
+    public net.lab1318.costume.api.models.user.UserBookmarkId postUserBookmark(final net.lab1318.costume.api.models.user.UserBookmark userBookmark) throws net.lab1318.costume.api.services.IoException {
+        final StringBuilder __logMessageStringBuilder = new StringBuilder();
+        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+
+        __logMessageStringBuilder.append("post_user_bookmark(");
+        __logMessageStringBuilder.append("{}");
+        __logMessageArgs.add(new Messages.PostUserBookmarkRequest(userBookmark));
+        __logMessageStringBuilder.append(")");
+
+        try {
+            net.lab1318.costume.api.models.user.UserBookmarkId __returnValue = delegate.postUserBookmark(userBookmark);
+
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(__returnValue);
+
+            logger.debug(Markers.POST_USER_BOOKMARK, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+
+            return __returnValue;
+        } catch (final net.lab1318.costume.api.services.IoException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.POST_USER_BOOKMARK, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
         }
     }

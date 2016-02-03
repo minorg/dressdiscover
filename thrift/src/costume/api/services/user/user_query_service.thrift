@@ -6,7 +6,7 @@ namespace validating_service_java net.lab1318.costume.lib.services.user
 namespace * costume.api.services.user
 
 include "costume/api/models/user/user.thrift"
-include "costume/api/models/user/user_bookmark.thrift"
+include "costume/api/models/user/user_bookmark_entry.thrift"
 include "costume/api/models/user/user_entry.thrift"
 include "costume/api/models/user/user_id.thrift"
 include "costume/api/services/io_exception.thrift"

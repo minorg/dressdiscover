@@ -1,6 +1,5 @@
 package net.lab1318.costume.lib.stores.user;
 
-import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +13,6 @@ import org.thryft.native_.EmailAddress;
 import org.thryft.protocol.InputProtocolException;
 import org.thryft.protocol.OutputProtocolException;
 import org.thryft.waf.lib.protocols.JdbcResultSetInputProtocol;
-import org.thryft.waf.lib.stores.AbstractJdbcStore;
 
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
@@ -29,52 +27,34 @@ import net.lab1318.costume.lib.CostumeProperties;
 import net.lab1318.costume.lib.services.IoExceptions;
 
 @Singleton
-public final class JdbcUserStore extends AbstractJdbcStore<User> implements UserStore {
+public final class UserJdbcTable extends AbstractJdbcTable<User> implements UserStore {
     @Inject
-    public JdbcUserStore(final CostumeProperties properties) throws SQLException {
-        this(properties, "jdbc:h2:" + new File(new File(new File(properties.getHomeDirectoryPath()), "data"), "users"));
+    public UserJdbcTable(final CostumeProperties properties) throws SQLException {
+        super(properties);
+
     }
 
-    public JdbcUserStore(final CostumeProperties properties, final String url) throws SQLException {
-        super(url);
-        try {
-            Class.forName("org.h2.Driver");
-        } catch (final ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        try (Connection connection = _getConnection()) {
-            connection.setAutoCommit(false);
-            try (Statement statement = connection.createStatement()) {
-                // Order is important
-                statement.execute(USER_CREATE_TABLE_SQL);
-            }
-            connection.commit();
-        }
-
-        deleteUserByIdSql = String.format("DELETE FROM %s WHERE id = ?", USER_TABLE_NAME);
-        deleteUsersSql = String.format("DELETE FROM %s", USER_TABLE_NAME);
-        getUserByEmailAddressSql = String.format("SELECT * FROM %s WHERE %s.email_address = ?", USER_TABLE_NAME,
-                USER_TABLE_NAME);
-        getUserByIdSql = String.format("SELECT * FROM %s WHERE %s.id = ?", USER_TABLE_NAME, USER_TABLE_NAME);
-        getUsersSql = String.format("SELECT * FROM %s", USER_TABLE_NAME);
+    public UserJdbcTable(final CostumeProperties properties, final String url) throws SQLException {
+        super(properties, url);
     }
 
     @Override
-    public boolean deleteUserById(final UserId userId, final Logger logger, final Marker logMarker) throws IoException {
+    public void deleteUserById(final Logger logger, final Marker logMarker, final UserId userId)
+            throws IoException, NoSuchUserException {
         try (Connection connection = _getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(deleteUserByIdSql)) {
                 statement.setInt(1, userId.asInteger());
                 final int updateCount = statement.executeUpdate();
                 if (updateCount == 1) {
-                    return true;
+                    return;
                 } else if (updateCount == 0) {
-                    return false;
+                    throw new NoSuchUserException();
                 } else {
                     throw new IllegalStateException("" + updateCount);
                 }
             }
         } catch (final SQLException e) {
-            throw __wrap(e, "error deleting user by ID");
+            throw _wrap(e, "error deleting user by ID");
         }
     }
 
@@ -85,7 +65,7 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
                 statement.execute(deleteUsersSql);
             }
         } catch (final SQLException e) {
-            throw __wrap(e, "error deleting users");
+            throw _wrap(e, "error deleting users");
         }
     }
 
@@ -105,12 +85,12 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
                 }
             }
         } catch (final SQLException e) {
-            throw __wrap(e, "error getting user by email address");
+            throw _wrap(e, "error getting user by email address");
         }
     }
 
     @Override
-    public User getUserById(final UserId userId, final Logger logger, final Marker logMarker)
+    public User getUserById(final Logger logger, final Marker logMarker, final UserId userId)
             throws IoException, NoSuchUserException {
         try (Connection connection = _getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(getUserByIdSql)) {
@@ -125,7 +105,7 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
                 }
             }
         } catch (final SQLException e) {
-            throw __wrap(e, "error getting user by ID");
+            throw _wrap(e, "error getting user by ID");
         }
     }
 
@@ -138,15 +118,14 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
                 }
             }
         } catch (final SQLException e) {
-            throw __wrap(e, "error getting user by ID");
+            throw _wrap(e, "error getting user by ID");
         }
     }
 
     @Override
-    public UserId postUser(final User user, final Logger logger, final Marker logMarker) throws IoException {
+    public UserId postUser(final Logger logger, final Marker logMarker, final User user) throws IoException {
         try (Connection connection = _getConnection()) {
-            try (PreparedStatement userInsertStatement = connection
-                    .prepareStatement(_getInsertSql(user, USER_TABLE_NAME))) {
+            try (PreparedStatement userInsertStatement = connection.prepareStatement(_getInsertSql(user, TABLE_NAME))) {
                 _setParameters(userInsertStatement, user);
                 userInsertStatement.execute();
                 try (final ResultSet userInsertResultSet = userInsertStatement.getGeneratedKeys()) {
@@ -160,16 +139,16 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
         } catch (final OutputProtocolException e) {
             throw IoExceptions.wrap(e, "error posting user");
         } catch (final SQLException e) {
-            throw __wrap(e, "error posting user");
+            throw _wrap(e, "error posting user");
         }
     }
 
     @Override
-    public void putUser(final User user, final UserId userId, final Logger logger, final Marker logMarker)
+    public void putUser(final Logger logger, final Marker logMarker, final User user, final UserId userId)
             throws IoException, NoSuchUserException {
         try (Connection connection = _getConnection()) {
             try (PreparedStatement userUpdateStatement = connection
-                    .prepareStatement(_getUpdateSql(user, USER_TABLE_NAME) + " WHERE id = ?")) {
+                    .prepareStatement(_getUpdateSql(user, TABLE_NAME) + " WHERE id = ?")) {
                 {
                     final int parameterCount = _setParameters(userUpdateStatement, user);
                     userUpdateStatement.setInt(parameterCount + 1, userId.asInteger());
@@ -186,7 +165,7 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
         } catch (final OutputProtocolException e) {
             throw IoExceptions.wrap(e, "error putting user");
         } catch (final SQLException e) {
-            throw __wrap(e, "error putting user");
+            throw _wrap(e, "error putting user");
         }
     }
 
@@ -206,20 +185,15 @@ public final class JdbcUserStore extends AbstractJdbcStore<User> implements User
         return usersBuilder.build();
     }
 
-    private IoException __wrap(final SQLException cause, final String message) {
-        final IoException exception = new IoException(message);
-        exception.initCause(cause);
-        return exception;
-    }
+    private final String deleteUserByIdSql = String.format("DELETE FROM %s WHERE id = ?", TABLE_NAME);
+    private final String deleteUsersSql = String.format("DELETE FROM %s", TABLE_NAME);
+    private final String getUserByEmailAddressSql = String.format("SELECT * FROM %s WHERE %s.email_address = ?",
+            TABLE_NAME, TABLE_NAME);
+    private final String getUserByIdSql = String.format("SELECT * FROM %s WHERE %s.id = ?", TABLE_NAME, TABLE_NAME);
+    private final String getUsersSql = String.format("SELECT * FROM %s", TABLE_NAME);
+    final static String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS user(\n"
+            + "    id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,\n" + "    ctime TIMESTAMP NOT NULL,\n"
+            + "    email_address VARCHAR NOT NULL UNIQUE\n" + ")";
+    private final static String TABLE_NAME = "user";
 
-    private final String deleteUserByIdSql;
-    private final String deleteUsersSql;
-    private final String getUserByEmailAddressSql;
-    private final String getUserByIdSql;
-    private final String getUsersSql;
-
-    private final static String USER_CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS user(\n"
-            + "    id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,\n" + "    email_address VARCHAR NOT NULL UNIQUE\n"
-            + ")";
-    private final static String USER_TABLE_NAME = "user";
 }
