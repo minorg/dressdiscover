@@ -1,10 +1,11 @@
-namespace java net.lab1318.costume.api.services.object
-namespace * costume.api.services.object
+namespace bean_java net.lab1318.costume.gui.models.object
+namespace java net.lab1318.costume.api.models.object
+namespace * costume.api.models.object
 
 include "costume/api/models/collection/collection_id.thrift"
 include "costume/api/models/institution/institution_id.thrift"
 include "costume/api/models/object/object_id.thrift"
-include "costume/api/services/object/object_facet_filters.thrift"
+include "costume/api/models/object/object_facet_filters.thrift"
 
 struct ObjectQuery {
 	optional collection_id.CollectionId collection_id;

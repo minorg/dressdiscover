@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.vaadin.addons.lazyquerycontainer.BeanQueryFactory;
 
+import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.GetObjectSummariesResult;
-import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 
 public final class ObjectSummaryEntryBeanQueryFactory {

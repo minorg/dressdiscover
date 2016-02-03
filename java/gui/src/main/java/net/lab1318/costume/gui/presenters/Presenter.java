@@ -18,13 +18,13 @@ import com.google.common.eventbus.Subscribe;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.UI;
 
+import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.models.user.InvalidUserIdException;
 import net.lab1318.costume.api.models.user.User;
 import net.lab1318.costume.api.models.user.UserId;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService.Messages.GetCollectionByIdRequest;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService.Messages.GetInstitutionByIdRequest;
-import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectByIdRequest;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
 import net.lab1318.costume.api.services.user.NoSuchUserException;

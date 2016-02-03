@@ -46,7 +46,9 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
             if (messageBegin.getType() != org.thryft.protocol.MessageType.CALL) {
                 throw new org.thryft.protocol.JsonRpcInputProtocolException(-32600, "expected request");
             }
-            if (messageBegin.getName().equals("get_user_by_email_address")) {
+            if (messageBegin.getName().equals("get_user_bookmarks_by_user_id")) {
+                doPostGetUserBookmarksByUserId(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
+            } else if (messageBegin.getName().equals("get_user_by_email_address")) {
                 doPostGetUserByEmailAddress(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
             } else if (messageBegin.getName().equals("get_user_by_id")) {
                 doPostGetUserById(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
@@ -144,6 +146,49 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
         }
 
         httpServletResponse.getOutputStream().write(httpServletResponseBody.getBytes("UTF-8"));
+    }
+
+    public void doPostGetUserBookmarksByUserId(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
+        final net.lab1318.costume.api.services.user.UserQueryService.Messages.GetUserBookmarksByUserIdRequest serviceRequest;
+        try {
+            serviceRequest = net.lab1318.costume.api.services.user.UserQueryService.Messages.GetUserBookmarksByUserIdRequest.readAs(iprot, iprot.getCurrentFieldType());
+        } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
+            logger.debug("error deserializing service request: ", e);
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, -32602, "invalid JSON-RPC request method parameters: " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            return;
+        }
+
+        final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.user.UserBookmarkEntry> result;
+        try {
+            result = service.getUserBookmarksByUserId(serviceRequest.getUserId());
+        } catch (final net.lab1318.costume.api.services.IoException e) {
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            return;
+        } catch (final net.lab1318.costume.api.services.user.NoSuchUserException e) {
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            return;
+        }
+
+        final String httpServletResponseBody;
+        {
+            final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
+            try {
+                final org.thryft.protocol.JsonRpcOutputProtocol oprot = new org.thryft.protocol.JsonRpcOutputProtocol(new org.thryft.protocol.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
+                oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
+                oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, result.size());
+                for (final net.lab1318.costume.api.models.user.UserBookmarkEntry _iter0 : result) {
+                    _iter0.writeAsStruct(oprot);
+                }
+                oprot.writeListEnd();
+                oprot.writeMessageEnd();
+                oprot.flush();
+            } catch (final org.thryft.protocol.OutputProtocolException e) {
+                logger.error("error serializing service error response: ", e);
+                throw new IllegalStateException(e);
+            }
+            httpServletResponseBody = httpServletResponseBodyWriter.toString();
+        }
+        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
     }
 
     public void doPostGetUserByEmailAddress(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {

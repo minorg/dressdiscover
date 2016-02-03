@@ -18,8 +18,8 @@ import com.vaadin.ui.NativeButton;
 import net.lab1318.costume.api.models.gender.Gender;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionId;
-import net.lab1318.costume.api.services.object.ObjectFacets;
-import net.lab1318.costume.api.services.object.ObjectQuery;
+import net.lab1318.costume.api.models.object.ObjectFacets;
+import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.gui.models.gender.Genders;
 

@@ -18,7 +18,7 @@ import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
-import net.lab1318.costume.lib.services.ServiceExceptionHelper;
+import net.lab1318.costume.lib.services.IoExceptions;
 import net.lab1318.costume.lib.services.collection.LoggingCollectionQueryService.Markers;
 import net.lab1318.costume.lib.stores.collection.CollectionStore;
 
@@ -35,7 +35,7 @@ abstract class StoreCollectionQueryService implements CollectionQueryService {
             logger.warn(Markers.GET_COLLECTION_BY_ID, "invalid collection model {}: ", id, e);
             throw new NoSuchCollectionException();
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting collection" + id);
+            throw IoExceptions.wrap(e, "error getting collection" + id);
         } catch (final NoSuchModelException e) {
             throw new NoSuchCollectionException();
         }
@@ -46,7 +46,7 @@ abstract class StoreCollectionQueryService implements CollectionQueryService {
         try {
             return store.getCollections(logger, Markers.GET_COLLECTIONS);
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting collections");
+            throw IoExceptions.wrap(e, "error getting collections");
         }
     }
 
@@ -61,7 +61,7 @@ abstract class StoreCollectionQueryService implements CollectionQueryService {
             try {
                 collectionsBuilder.add(store.getCollectionById(collectionId, logger, Markers.GET_COLLECTIONS_BY_IDS));
             } catch (final IOException e) {
-                throw ServiceExceptionHelper.wrapException(e, "error getting collections by ids");
+                throw IoExceptions.wrap(e, "error getting collections by ids");
             } catch (final InvalidModelException e) {
                 logger.warn(Markers.GET_COLLECTIONS_BY_IDS, "invalid collection model {}: ", collectionId, e);
                 throw new NoSuchCollectionException(collectionId);
@@ -79,7 +79,7 @@ abstract class StoreCollectionQueryService implements CollectionQueryService {
             return store.getCollectionsByInstitutionId(institutionId, logger,
                     Markers.GET_COLLECTIONS_BY_INSTITUTION_ID);
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting collections");
+            throw IoExceptions.wrap(e, "error getting collections");
         }
     }
 

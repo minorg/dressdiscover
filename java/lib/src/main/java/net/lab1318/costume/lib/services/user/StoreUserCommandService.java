@@ -2,73 +2,63 @@ package net.lab1318.costume.lib.services.user;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.io.IOException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.thryft.waf.lib.stores.NoSuchModelException;
 
 import net.lab1318.costume.api.models.user.User;
-import net.lab1318.costume.api.models.user.UserEntry;
+import net.lab1318.costume.api.models.user.UserBookmark;
+import net.lab1318.costume.api.models.user.UserBookmarkId;
 import net.lab1318.costume.api.models.user.UserId;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.user.DuplicateUserException;
+import net.lab1318.costume.api.services.user.NoSuchUserBookmarkException;
 import net.lab1318.costume.api.services.user.NoSuchUserException;
 import net.lab1318.costume.api.services.user.UserCommandService;
-import net.lab1318.costume.lib.services.ServiceExceptionHelper;
 import net.lab1318.costume.lib.services.user.LoggingUserCommandService.Markers;
+import net.lab1318.costume.lib.stores.user.UserBookmarkStore;
 import net.lab1318.costume.lib.stores.user.UserStore;
 
 abstract class StoreUserCommandService implements UserCommandService {
-    protected StoreUserCommandService(final UserStore store) {
-        this.store = checkNotNull(store);
+    protected StoreUserCommandService(final UserBookmarkStore userBookmarkStore, final UserStore userStore) {
+        this.userBookmarkStore = checkNotNull(userBookmarkStore);
+        this.userStore = checkNotNull(userStore);
+    }
+
+    @Override
+    public void deleteUserBookmarkById(final UserBookmarkId id) throws IoException, NoSuchUserBookmarkException {
+        userBookmarkStore.deleteUserBookmarkById(logger, Markers.DELETE_USER_BOOKMARK_BY_ID, id);
     }
 
     @Override
     public void deleteUserById(final UserId id) throws IoException, NoSuchUserException {
-        try {
-            if (!store.deleteUserById(id, logger, Markers.DELETE_USER_BY_ID)) {
-                throw new NoSuchUserException();
-            }
-        } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error deleting user by id");
-        }
+        userStore.deleteUserById(logger, Markers.DELETE_USER_BY_ID, id);
     }
 
     @Override
     public void deleteUsers() throws IoException {
-        try {
-            store.deleteUsers(logger, Markers.DELETE_USERS);
-        } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error deleting users");
-        }
-    }
-
-    @Override
-    public UserEntry postAndGetUser(final User user) throws DuplicateUserException, IoException {
-        try {
-            return new UserEntry(store.postUser(user, logger, Markers.POST_AND_GET_USER), user);
-        } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error posting user");
-        }
+        userStore.deleteUsers(logger, Markers.DELETE_USERS);
     }
 
     @Override
     public UserId postUser(final User user) throws DuplicateUserException, IoException {
-        return postAndGetUser(user).getId();
+        return userStore.postUser(logger, Markers.POST_USER, user);
+    }
+
+    @Override
+    public UserBookmarkId postUserBookmark(final UserBookmark userBookmark) throws IoException {
+        if (!(userBookmark.getObjectId().isPresent() ^ userBookmark.getObjectQuery().isPresent())) {
+            throw new IoException("user bookmark must have object_id xor object_query");
+        }
+
+        return userBookmarkStore.postUserBookmark(logger, Markers.POST_USER_BOOKMARK, userBookmark);
     }
 
     @Override
     public void putUser(final UserId id, final User user) throws IoException, NoSuchUserException {
-        try {
-            store.putUser(user, id, logger, Markers.PUT_USER);
-        } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error putting user");
-        } catch (final NoSuchModelException e) {
-            throw new NoSuchUserException();
-        }
+        userStore.putUser(logger, Markers.PUT_USER, user, id);
     }
 
-    private final UserStore store;
+    private final UserBookmarkStore userBookmarkStore;
+    private final UserStore userStore;
     private final static Logger logger = LoggerFactory.getLogger(StoreUserCommandService.class);
 }

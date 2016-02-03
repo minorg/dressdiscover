@@ -17,7 +17,7 @@ import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.NoSuchObjectException;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
-import net.lab1318.costume.lib.services.ServiceExceptionHelper;
+import net.lab1318.costume.lib.services.IoExceptions;
 import net.lab1318.costume.lib.services.object.LoggingObjectQueryService.Markers;
 import net.lab1318.costume.lib.stores.object.ObjectFileSystem;
 
@@ -36,7 +36,7 @@ public class FileSystemObjectQueryService implements ObjectQueryService {
             logger.warn(Markers.GET_OBJECT_BY_ID, "invalid object model {}: ", id, e);
             throw new NoSuchObjectException();
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error getting object" + id);
+            throw IoExceptions.wrap(e, "error getting object" + id);
         } catch (final NoSuchModelException e) {
             throw new NoSuchObjectException();
         }

@@ -46,14 +46,16 @@ public class UserCommandServiceJsonRpcServlet extends javax.servlet.http.HttpSer
             if (messageBegin.getType() != org.thryft.protocol.MessageType.CALL) {
                 throw new org.thryft.protocol.JsonRpcInputProtocolException(-32600, "expected request");
             }
-            if (messageBegin.getName().equals("delete_user_by_id")) {
+            if (messageBegin.getName().equals("delete_user_bookmark_by_id")) {
+                doPostDeleteUserBookmarkById(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
+            } else if (messageBegin.getName().equals("delete_user_by_id")) {
                 doPostDeleteUserById(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
             } else if (messageBegin.getName().equals("delete_users")) {
                 doPostDeleteUsers(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
-            } else if (messageBegin.getName().equals("post_and_get_user")) {
-                doPostPostAndGetUser(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
             } else if (messageBegin.getName().equals("post_user")) {
                 doPostPostUser(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
+            } else if (messageBegin.getName().equals("post_user_bookmark")) {
+                doPostPostUserBookmark(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
             } else if (messageBegin.getName().equals("put_user")) {
                 doPostPutUser(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
             } else {
@@ -152,6 +154,45 @@ public class UserCommandServiceJsonRpcServlet extends javax.servlet.http.HttpSer
         httpServletResponse.getOutputStream().write(httpServletResponseBody.getBytes("UTF-8"));
     }
 
+    public void doPostDeleteUserBookmarkById(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
+        final net.lab1318.costume.api.services.user.UserCommandService.Messages.DeleteUserBookmarkByIdRequest serviceRequest;
+        try {
+            serviceRequest = net.lab1318.costume.api.services.user.UserCommandService.Messages.DeleteUserBookmarkByIdRequest.readAs(iprot, iprot.getCurrentFieldType());
+        } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
+            logger.debug("error deserializing service request: ", e);
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, -32602, "invalid JSON-RPC request method parameters: " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            return;
+        }
+
+        try {
+            service.deleteUserBookmarkById(serviceRequest.getId());
+        } catch (final net.lab1318.costume.api.services.IoException e) {
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            return;
+        } catch (final net.lab1318.costume.api.services.user.NoSuchUserBookmarkException e) {
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            return;
+        }
+
+        final String httpServletResponseBody;
+        {
+            final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
+            try {
+                final org.thryft.protocol.JsonRpcOutputProtocol oprot = new org.thryft.protocol.JsonRpcOutputProtocol(new org.thryft.protocol.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
+                oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
+                oprot.writeStructBegin("response");
+                oprot.writeStructEnd();
+                oprot.writeMessageEnd();
+                oprot.flush();
+            } catch (final org.thryft.protocol.OutputProtocolException e) {
+                logger.error("error serializing service error response: ", e);
+                throw new IllegalStateException(e);
+            }
+            httpServletResponseBody = httpServletResponseBodyWriter.toString();
+        }
+        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
+    }
+
     public void doPostDeleteUserById(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
         final net.lab1318.costume.api.services.user.UserCommandService.Messages.DeleteUserByIdRequest serviceRequest;
         try {
@@ -218,45 +259,6 @@ public class UserCommandServiceJsonRpcServlet extends javax.servlet.http.HttpSer
         __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
     }
 
-    public void doPostPostAndGetUser(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final net.lab1318.costume.api.services.user.UserCommandService.Messages.PostAndGetUserRequest serviceRequest;
-        try {
-            serviceRequest = net.lab1318.costume.api.services.user.UserCommandService.Messages.PostAndGetUserRequest.readAs(iprot, iprot.getCurrentFieldType());
-        } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
-            logger.debug("error deserializing service request: ", e);
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, -32602, "invalid JSON-RPC request method parameters: " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        }
-
-        final net.lab1318.costume.api.models.user.UserEntry result;
-        try {
-            result = service.postAndGetUser(serviceRequest.getUser());
-        } catch (final net.lab1318.costume.api.services.user.DuplicateUserException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        } catch (final net.lab1318.costume.api.services.IoException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        }
-
-        final String httpServletResponseBody;
-        {
-            final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
-            try {
-                final org.thryft.protocol.JsonRpcOutputProtocol oprot = new org.thryft.protocol.JsonRpcOutputProtocol(new org.thryft.protocol.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
-                oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                result.writeAsStruct(oprot);
-                oprot.writeMessageEnd();
-                oprot.flush();
-            } catch (final org.thryft.protocol.OutputProtocolException e) {
-                logger.error("error serializing service error response: ", e);
-                throw new IllegalStateException(e);
-            }
-            httpServletResponseBody = httpServletResponseBodyWriter.toString();
-        }
-        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
-    }
-
     public void doPostPostUser(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
         final net.lab1318.costume.api.services.user.UserCommandService.Messages.PostUserRequest serviceRequest;
         try {
@@ -273,6 +275,42 @@ public class UserCommandServiceJsonRpcServlet extends javax.servlet.http.HttpSer
         } catch (final net.lab1318.costume.api.services.user.DuplicateUserException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
+        } catch (final net.lab1318.costume.api.services.IoException e) {
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            return;
+        }
+
+        final String httpServletResponseBody;
+        {
+            final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
+            try {
+                final org.thryft.protocol.JsonRpcOutputProtocol oprot = new org.thryft.protocol.JsonRpcOutputProtocol(new org.thryft.protocol.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
+                oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
+                oprot.writeString(result.toString());
+                oprot.writeMessageEnd();
+                oprot.flush();
+            } catch (final org.thryft.protocol.OutputProtocolException e) {
+                logger.error("error serializing service error response: ", e);
+                throw new IllegalStateException(e);
+            }
+            httpServletResponseBody = httpServletResponseBodyWriter.toString();
+        }
+        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
+    }
+
+    public void doPostPostUserBookmark(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
+        final net.lab1318.costume.api.services.user.UserCommandService.Messages.PostUserBookmarkRequest serviceRequest;
+        try {
+            serviceRequest = net.lab1318.costume.api.services.user.UserCommandService.Messages.PostUserBookmarkRequest.readAs(iprot, iprot.getCurrentFieldType());
+        } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
+            logger.debug("error deserializing service request: ", e);
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, -32602, "invalid JSON-RPC request method parameters: " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            return;
+        }
+
+        final net.lab1318.costume.api.models.user.UserBookmarkId result;
+        try {
+            result = service.postUserBookmark(serviceRequest.getUserBookmark());
         } catch (final net.lab1318.costume.api.services.IoException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;

@@ -3,19 +3,25 @@ package net.lab1318.costume.api.models.user;
 public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model {
     public static class Builder {
         public Builder() {
+            ctime = null;
             emailAddress = null;
         }
 
         public Builder(final User other) {
+            this.ctime = other.getCtime();
             this.emailAddress = other.getEmailAddress();
         }
 
-        protected User _build(final org.thryft.native_.EmailAddress emailAddress) {
-            return new User(emailAddress);
+        protected User _build(final java.util.Date ctime, final org.thryft.native_.EmailAddress emailAddress) {
+            return new User(ctime, emailAddress);
         }
 
         public User build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(emailAddress, "net.lab1318.costume.api.models.user.User: missing emailAddress"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(ctime, "net.lab1318.costume.api.models.user.User: missing ctime"), com.google.common.base.Preconditions.checkNotNull(emailAddress, "net.lab1318.costume.api.models.user.User: missing emailAddress"));
+        }
+
+        public final java.util.Date getCtime() {
+            return ctime;
         }
 
         public final org.thryft.native_.EmailAddress getEmailAddress() {
@@ -35,6 +41,7 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             iprot.readListBegin();
+            ctime = iprot.readDateTime();
             emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
             iprot.readListEnd();
             return this;
@@ -52,6 +59,10 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
                     break;
                 }
                 switch (ifield.getName()) {
+                case "ctime": {
+                    ctime = iprot.readDateTime();
+                    break;
+                }
                 case "email_address": {
                     emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
                     break;
@@ -68,6 +79,11 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
             return this;
         }
 
+        public Builder setCtime(final java.util.Date ctime) {
+            this.ctime = com.google.common.base.Preconditions.checkNotNull(ctime);
+            return this;
+        }
+
         public Builder setEmailAddress(final org.thryft.native_.EmailAddress emailAddress) {
             this.emailAddress = com.google.common.base.Preconditions.checkNotNull(emailAddress);
             return this;
@@ -76,6 +92,7 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
         public Builder setIfPresent(final User other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
+            setCtime(other.getCtime());
             setEmailAddress(other.getEmailAddress());
 
             return this;
@@ -85,10 +102,16 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
             com.google.common.base.Preconditions.checkNotNull(name);
 
             switch (name.toLowerCase()) {
+            case "ctime": setCtime((java.util.Date)value); return this;
             case "email_address": setEmailAddress((org.thryft.native_.EmailAddress)value); return this;
             default:
                 throw new IllegalArgumentException(name);
             }
+        }
+
+        public Builder unsetCtime() {
+            this.ctime = null;
+            return this;
         }
 
         public Builder unsetEmailAddress() {
@@ -100,17 +123,20 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
             com.google.common.base.Preconditions.checkNotNull(name);
 
             switch (name.toLowerCase()) {
+            case "ctime": return unsetCtime();
             case "email_address": return unsetEmailAddress();
             default:
                 throw new IllegalArgumentException(name);
             }
         }
 
+        private java.util.Date ctime;
         private org.thryft.native_.EmailAddress emailAddress;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
+        CTIME("ctime", new com.google.common.reflect.TypeToken<java.util.Date>() {}, true, 0, "ctime", org.thryft.protocol.Type.I64),
         EMAIL_ADDRESS("emailAddress", new com.google.common.reflect.TypeToken<org.thryft.native_.EmailAddress>() {}, true, 0, "email_address", org.thryft.protocol.Type.STRING);
 
         @Override
@@ -155,6 +181,7 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
+            case "ctime": return CTIME;
             case "emailAddress": return EMAIL_ADDRESS;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -163,6 +190,7 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
+            case "ctime": return CTIME;
             case "email_address": return EMAIL_ADDRESS;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -196,13 +224,14 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
      * Copy constructor
      */
     public User(final User other) {
-        this(other.getEmailAddress());
+        this(other.getCtime(), other.getEmailAddress());
     }
 
     /**
      * Optional constructor
      */
-    public User(final org.thryft.native_.EmailAddress emailAddress) {
+    public User(final java.util.Date ctime, final org.thryft.native_.EmailAddress emailAddress) {
+        this.ctime = com.google.common.base.Preconditions.checkNotNull(ctime, "net.lab1318.costume.api.models.user.User: missing ctime");
         this.emailAddress = com.google.common.base.Preconditions.checkNotNull(emailAddress, "net.lab1318.costume.api.models.user.User: missing emailAddress");
     }
 
@@ -228,6 +257,7 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
 
         final User other = (User)otherObject;
         return
+            getCtime().equals(other.getCtime()) &&
             getEmailAddress().equals(other.getEmailAddress());
     }
 
@@ -246,10 +276,15 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
 
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
+        case CTIME: return getCtime();
         case EMAIL_ADDRESS: return getEmailAddress();
         default:
             throw new IllegalStateException();
         }
+    }
+
+    public final java.util.Date getCtime() {
+        return ctime;
     }
 
     public final org.thryft.native_.EmailAddress getEmailAddress() {
@@ -259,6 +294,7 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
     @Override
     public int hashCode() {
         int hashCode = 17;
+        hashCode = 31 * hashCode + getCtime().hashCode();
         hashCode = 31 * hashCode + getEmailAddress().hashCode();
         return hashCode;
     }
@@ -280,13 +316,15 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
     }
 
     public static User readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+        java.util.Date ctime = null;
         org.thryft.native_.EmailAddress emailAddress = null;
 
         iprot.readListBegin();
+        ctime = iprot.readDateTime();
         emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
         iprot.readListEnd();
         try {
-            return new User(emailAddress);
+            return new User(ctime, emailAddress);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -297,6 +335,7 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
     }
 
     public static User readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        java.util.Date ctime = null;
         org.thryft.native_.EmailAddress emailAddress = null;
 
         iprot.readStructBegin();
@@ -306,6 +345,10 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
                 break;
             }
             switch (ifield.getName()) {
+            case "ctime": {
+                ctime = iprot.readDateTime();
+                break;
+            }
             case "email_address": {
                 emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
                 break;
@@ -320,24 +363,30 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
         }
         iprot.readStructEnd();
         try {
-            return new User(emailAddress);
+            return new User(ctime, emailAddress);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
+    public User replaceCtime(final java.util.Date ctime) {
+        return new User(ctime, this.emailAddress);
+    }
+
     public User replaceEmailAddress(final org.thryft.native_.EmailAddress emailAddress) {
-        return new User(emailAddress);
+        return new User(this.ctime, emailAddress);
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("email_address", getEmailAddress()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("ctime", getCtime()).add("email_address", getEmailAddress()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
+
+        oprot.writeDateTime(getCtime());
 
         oprot.writeString(getEmailAddress().toString());
 
@@ -353,12 +402,18 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin("ctime", org.thryft.protocol.Type.I64, (short)0);
+        oprot.writeDateTime(getCtime());
+        oprot.writeFieldEnd();
+
         oprot.writeFieldBegin("email_address", org.thryft.protocol.Type.STRING, (short)0);
         oprot.writeString(getEmailAddress().toString());
         oprot.writeFieldEnd();
 
         oprot.writeFieldStop();
     }
+
+    private final java.util.Date ctime;
 
     private final org.thryft.native_.EmailAddress emailAddress;
 }

@@ -7,10 +7,18 @@ import org.junit.Test;
 
 import com.google.common.collect.ImmutableList;
 
+import net.lab1318.costume.api.models.user.UserBookmarkEntry;
 import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.lib.services.TestData;
 
 public final class UserQueryServiceTest extends UserServiceTest {
+    @Test
+    public void testGetUserBookmarksById() throws Exception {
+        final UserEntry user = _postUsers().iterator().next();
+        final ImmutableList<UserBookmarkEntry> expected = _postUserBookmarks(user.getId());
+        assertEquals(expected, userQueryService.getUserBookmarksByUserId(user.getId()));
+    }
+
     @Test
     public void testGetUserById() throws Exception {
         final ImmutableList<UserEntry> expected = _postUsers();

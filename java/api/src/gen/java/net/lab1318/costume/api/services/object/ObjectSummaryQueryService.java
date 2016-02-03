@@ -28,7 +28,7 @@ public interface ObjectSummaryQueryService {
                     this.query = other.getQuery();
                 }
 
-                protected GetObjectSummariesRequest _build(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query) {
+                protected GetObjectSummariesRequest _build(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query) {
                     return new GetObjectSummariesRequest(options, query);
                 }
 
@@ -40,7 +40,7 @@ public interface ObjectSummaryQueryService {
                     return options;
                 }
 
-                public final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> getQuery() {
+                public final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> getQuery() {
                     return query;
                 }
 
@@ -61,7 +61,7 @@ public interface ObjectSummaryQueryService {
                         options = com.google.common.base.Optional.of(net.lab1318.costume.api.services.object.GetObjectSummariesOptions.readAsStruct(iprot));
                     }
                     if (__list.getSize() > 1) {
-                        query = com.google.common.base.Optional.of(net.lab1318.costume.api.services.object.ObjectQuery.readAsStruct(iprot));
+                        query = com.google.common.base.Optional.of(net.lab1318.costume.api.models.object.ObjectQuery.readAsStruct(iprot));
                     }
                     iprot.readListEnd();
                     return this;
@@ -84,7 +84,7 @@ public interface ObjectSummaryQueryService {
                             break;
                         }
                         case "query": {
-                            query = com.google.common.base.Optional.of(net.lab1318.costume.api.services.object.ObjectQuery.readAsStruct(iprot));
+                            query = com.google.common.base.Optional.of(net.lab1318.costume.api.models.object.ObjectQuery.readAsStruct(iprot));
                             break;
                         }
                         default:
@@ -122,12 +122,12 @@ public interface ObjectSummaryQueryService {
                     return this;
                 }
 
-                public Builder setQuery(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query) {
+                public Builder setQuery(final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query) {
                     this.query = com.google.common.base.Preconditions.checkNotNull(query);
                     return this;
                 }
 
-                public Builder setQuery(@javax.annotation.Nullable final net.lab1318.costume.api.services.object.ObjectQuery query) {
+                public Builder setQuery(@javax.annotation.Nullable final net.lab1318.costume.api.models.object.ObjectQuery query) {
                     this.query = com.google.common.base.Optional.fromNullable(query);
                     return this;
                 }
@@ -137,7 +137,7 @@ public interface ObjectSummaryQueryService {
 
                     switch (name.toLowerCase()) {
                     case "options": setOptions((net.lab1318.costume.api.services.object.GetObjectSummariesOptions)value); return this;
-                    case "query": setQuery((net.lab1318.costume.api.services.object.ObjectQuery)value); return this;
+                    case "query": setQuery((net.lab1318.costume.api.models.object.ObjectQuery)value); return this;
                     default:
                         throw new IllegalArgumentException(name);
                     }
@@ -165,13 +165,13 @@ public interface ObjectSummaryQueryService {
                 }
 
                 private com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options;
-                private com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query;
+                private com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query;
             }
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
                 OPTIONS("options", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.services.object.GetObjectSummariesOptions>() {}, false, 0, "options", org.thryft.protocol.Type.STRUCT),
-                QUERY("query", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.services.object.ObjectQuery>() {}, false, 0, "query", org.thryft.protocol.Type.STRUCT);
+                QUERY("query", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.object.ObjectQuery>() {}, false, 0, "query", org.thryft.protocol.Type.STRUCT);
 
                 @Override
                 public String getJavaName() {
@@ -272,7 +272,7 @@ public interface ObjectSummaryQueryService {
             /**
              * Total Nullable constructor
              */
-            public GetObjectSummariesRequest(final @javax.annotation.Nullable net.lab1318.costume.api.services.object.GetObjectSummariesOptions options, final @javax.annotation.Nullable net.lab1318.costume.api.services.object.ObjectQuery query) {
+            public GetObjectSummariesRequest(final @javax.annotation.Nullable net.lab1318.costume.api.services.object.GetObjectSummariesOptions options, final @javax.annotation.Nullable net.lab1318.costume.api.models.object.ObjectQuery query) {
                 this.options = com.google.common.base.Optional.fromNullable(options);
                 this.query = com.google.common.base.Optional.fromNullable(query);
             }
@@ -280,7 +280,7 @@ public interface ObjectSummaryQueryService {
             /**
              * Optional constructor
              */
-            public GetObjectSummariesRequest(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query) {
+            public GetObjectSummariesRequest(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query) {
                 this.options = com.google.common.base.Preconditions.checkNotNull(options, "net.lab1318.costume.api.services.object.GetObjectSummariesRequest: missing options");
                 this.query = com.google.common.base.Preconditions.checkNotNull(query, "net.lab1318.costume.api.services.object.GetObjectSummariesRequest: missing query");
             }
@@ -337,7 +337,7 @@ public interface ObjectSummaryQueryService {
                 return options;
             }
 
-            public final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> getQuery() {
+            public final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> getQuery() {
                 return query;
             }
 
@@ -371,14 +371,14 @@ public interface ObjectSummaryQueryService {
 
             public static GetObjectSummariesRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                 com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options = com.google.common.base.Optional.absent();
-                com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query = com.google.common.base.Optional.absent();
+                com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query = com.google.common.base.Optional.absent();
 
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 if (__list.getSize() > 0) {
                     options = com.google.common.base.Optional.of(net.lab1318.costume.api.services.object.GetObjectSummariesOptions.readAsStruct(iprot));
                 }
                 if (__list.getSize() > 1) {
-                    query = com.google.common.base.Optional.of(net.lab1318.costume.api.services.object.ObjectQuery.readAsStruct(iprot));
+                    query = com.google.common.base.Optional.of(net.lab1318.costume.api.models.object.ObjectQuery.readAsStruct(iprot));
                 }
                 iprot.readListEnd();
                 try {
@@ -394,7 +394,7 @@ public interface ObjectSummaryQueryService {
 
             public static GetObjectSummariesRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options = com.google.common.base.Optional.absent();
-                com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query = com.google.common.base.Optional.absent();
+                com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query = com.google.common.base.Optional.absent();
 
                 iprot.readStructBegin();
                 while (true) {
@@ -408,7 +408,7 @@ public interface ObjectSummaryQueryService {
                         break;
                     }
                     case "query": {
-                        query = com.google.common.base.Optional.of(net.lab1318.costume.api.services.object.ObjectQuery.readAsStruct(iprot));
+                        query = com.google.common.base.Optional.of(net.lab1318.costume.api.models.object.ObjectQuery.readAsStruct(iprot));
                         break;
                     }
                     default:
@@ -435,11 +435,11 @@ public interface ObjectSummaryQueryService {
                 return replaceOptions(com.google.common.base.Optional.fromNullable(options));
             }
 
-            public GetObjectSummariesRequest replaceQuery(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query) {
+            public GetObjectSummariesRequest replaceQuery(final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query) {
                 return new GetObjectSummariesRequest(this.options, query);
             }
 
-            public GetObjectSummariesRequest replaceQuery(final net.lab1318.costume.api.services.object.ObjectQuery query) {
+            public GetObjectSummariesRequest replaceQuery(final net.lab1318.costume.api.models.object.ObjectQuery query) {
                 return replaceQuery(com.google.common.base.Optional.fromNullable(query));
             }
 
@@ -493,7 +493,7 @@ public interface ObjectSummaryQueryService {
 
             private final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options;
 
-            private final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query;
+            private final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query;
         }
 
         public final static class GetObjectSummariesResponse implements org.thryft.Struct {
@@ -861,12 +861,12 @@ public interface ObjectSummaryQueryService {
     }
 
     public default net.lab1318.costume.api.services.object.GetObjectSummariesResult getObjectSummaries() throws net.lab1318.costume.api.services.IoException {
-        return getObjectSummaries(com.google.common.base.Optional.<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> absent(), com.google.common.base.Optional.<net.lab1318.costume.api.services.object.ObjectQuery> absent());
+        return getObjectSummaries(com.google.common.base.Optional.<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> absent(), com.google.common.base.Optional.<net.lab1318.costume.api.models.object.ObjectQuery> absent());
     }
 
     public default net.lab1318.costume.api.services.object.GetObjectSummariesResult getObjectSummaries(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options) throws net.lab1318.costume.api.services.IoException {
-        return getObjectSummaries(options, com.google.common.base.Optional.<net.lab1318.costume.api.services.object.ObjectQuery> absent());
+        return getObjectSummaries(options, com.google.common.base.Optional.<net.lab1318.costume.api.models.object.ObjectQuery> absent());
     }
 
-    public net.lab1318.costume.api.services.object.GetObjectSummariesResult getObjectSummaries(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<net.lab1318.costume.api.services.object.ObjectQuery> query) throws net.lab1318.costume.api.services.IoException;
+    public net.lab1318.costume.api.services.object.GetObjectSummariesResult getObjectSummaries(final com.google.common.base.Optional<net.lab1318.costume.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> query) throws net.lab1318.costume.api.services.IoException;
 }

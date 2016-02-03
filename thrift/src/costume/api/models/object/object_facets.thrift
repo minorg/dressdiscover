@@ -1,5 +1,5 @@
-namespace java net.lab1318.costume.api.services.object
-namespace * costume.api.services.object
+namespace java net.lab1318.costume.api.models.object
+namespace * costume.api.models.object
 
 include "costume/api/models/collection/collection_id.thrift"
 include "costume/api/models/gender/gender.thrift"

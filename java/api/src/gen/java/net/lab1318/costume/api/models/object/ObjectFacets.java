@@ -1,4 +1,4 @@
-package net.lab1318.costume.api.services.object;
+package net.lab1318.costume.api.models.object;
 
 public class ObjectFacets implements org.thryft.Struct {
     public static class Builder {
@@ -35,7 +35,7 @@ public class ObjectFacets implements org.thryft.Struct {
         }
 
         public ObjectFacets build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.services.object.ObjectFacets: missing categories"), com.google.common.base.Preconditions.checkNotNull(collections, "net.lab1318.costume.api.services.object.ObjectFacets: missing collections"), com.google.common.base.Preconditions.checkNotNull(colorTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing colorTexts"), com.google.common.base.Preconditions.checkNotNull(culturalContextTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing culturalContextTexts"), com.google.common.base.Preconditions.checkNotNull(genders, "net.lab1318.costume.api.services.object.ObjectFacets: missing genders"), com.google.common.base.Preconditions.checkNotNull(institutions, "net.lab1318.costume.api.services.object.ObjectFacets: missing institutions"), com.google.common.base.Preconditions.checkNotNull(locationNameTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing locationNameTexts"), com.google.common.base.Preconditions.checkNotNull(materialTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing materialTexts"), com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing subjectTermTexts"), com.google.common.base.Preconditions.checkNotNull(techniqueTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing techniqueTexts"), com.google.common.base.Preconditions.checkNotNull(workTypeTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing workTypeTexts"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.models.object.ObjectFacets: missing categories"), com.google.common.base.Preconditions.checkNotNull(collections, "net.lab1318.costume.api.models.object.ObjectFacets: missing collections"), com.google.common.base.Preconditions.checkNotNull(colorTexts, "net.lab1318.costume.api.models.object.ObjectFacets: missing colorTexts"), com.google.common.base.Preconditions.checkNotNull(culturalContextTexts, "net.lab1318.costume.api.models.object.ObjectFacets: missing culturalContextTexts"), com.google.common.base.Preconditions.checkNotNull(genders, "net.lab1318.costume.api.models.object.ObjectFacets: missing genders"), com.google.common.base.Preconditions.checkNotNull(institutions, "net.lab1318.costume.api.models.object.ObjectFacets: missing institutions"), com.google.common.base.Preconditions.checkNotNull(locationNameTexts, "net.lab1318.costume.api.models.object.ObjectFacets: missing locationNameTexts"), com.google.common.base.Preconditions.checkNotNull(materialTexts, "net.lab1318.costume.api.models.object.ObjectFacets: missing materialTexts"), com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.models.object.ObjectFacets: missing subjectTermTexts"), com.google.common.base.Preconditions.checkNotNull(techniqueTexts, "net.lab1318.costume.api.models.object.ObjectFacets: missing techniqueTexts"), com.google.common.base.Preconditions.checkNotNull(workTypeTexts, "net.lab1318.costume.api.models.object.ObjectFacets: missing workTypeTexts"));
         }
 
         public final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> getCategories() {
@@ -1014,17 +1014,17 @@ public class ObjectFacets implements org.thryft.Struct {
      * Optional constructor
      */
     public ObjectFacets(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders, final com.google.common.collect.ImmutableMap<net.lab1318.costume.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
-        this.categories = com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.services.object.ObjectFacets: missing categories");
-        this.collections = com.google.common.base.Preconditions.checkNotNull(collections, "net.lab1318.costume.api.services.object.ObjectFacets: missing collections");
-        this.colorTexts = com.google.common.base.Preconditions.checkNotNull(colorTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing colorTexts");
-        this.culturalContextTexts = com.google.common.base.Preconditions.checkNotNull(culturalContextTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing culturalContextTexts");
-        this.genders = com.google.common.base.Preconditions.checkNotNull(genders, "net.lab1318.costume.api.services.object.ObjectFacets: missing genders");
-        this.institutions = com.google.common.base.Preconditions.checkNotNull(institutions, "net.lab1318.costume.api.services.object.ObjectFacets: missing institutions");
-        this.locationNameTexts = com.google.common.base.Preconditions.checkNotNull(locationNameTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing locationNameTexts");
-        this.materialTexts = com.google.common.base.Preconditions.checkNotNull(materialTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing materialTexts");
-        this.subjectTermTexts = com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing subjectTermTexts");
-        this.techniqueTexts = com.google.common.base.Preconditions.checkNotNull(techniqueTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing techniqueTexts");
-        this.workTypeTexts = com.google.common.base.Preconditions.checkNotNull(workTypeTexts, "net.lab1318.costume.api.services.object.ObjectFacets: missing workTypeTexts");
+        this.categories = com.google.common.base.Preconditions.checkNotNull(categories, "net.lab1318.costume.api.models.object.ObjectFacets: missing categories");
+        this.collections = com.google.common.base.Preconditions.checkNotNull(collections, "net.lab1318.costume.api.models.object.ObjectFacets: missing collections");
+        this.colorTexts = com.google.common.base.Preconditions.checkNotNull(colorTexts, "net.lab1318.costume.api.models.object.ObjectFacets: missing colorTexts");
+        this.culturalContextTexts = com.google.common.base.Preconditions.checkNotNull(culturalContextTexts, "net.lab1318.costume.api.models.object.ObjectFacets: missing culturalContextTexts");
+        this.genders = com.google.common.base.Preconditions.checkNotNull(genders, "net.lab1318.costume.api.models.object.ObjectFacets: missing genders");
+        this.institutions = com.google.common.base.Preconditions.checkNotNull(institutions, "net.lab1318.costume.api.models.object.ObjectFacets: missing institutions");
+        this.locationNameTexts = com.google.common.base.Preconditions.checkNotNull(locationNameTexts, "net.lab1318.costume.api.models.object.ObjectFacets: missing locationNameTexts");
+        this.materialTexts = com.google.common.base.Preconditions.checkNotNull(materialTexts, "net.lab1318.costume.api.models.object.ObjectFacets: missing materialTexts");
+        this.subjectTermTexts = com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "net.lab1318.costume.api.models.object.ObjectFacets: missing subjectTermTexts");
+        this.techniqueTexts = com.google.common.base.Preconditions.checkNotNull(techniqueTexts, "net.lab1318.costume.api.models.object.ObjectFacets: missing techniqueTexts");
+        this.workTypeTexts = com.google.common.base.Preconditions.checkNotNull(workTypeTexts, "net.lab1318.costume.api.models.object.ObjectFacets: missing workTypeTexts");
     }
 
     public static Builder builder() {
@@ -1952,7 +1952,7 @@ public class ObjectFacets implements org.thryft.Struct {
 
     @Override
     public void writeAsStruct(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeStructBegin("net.lab1318.costume.api.services.object.ObjectFacets");
+        oprot.writeStructBegin("net.lab1318.costume.api.models.object.ObjectFacets");
         writeFields(oprot);
         oprot.writeStructEnd();
     }

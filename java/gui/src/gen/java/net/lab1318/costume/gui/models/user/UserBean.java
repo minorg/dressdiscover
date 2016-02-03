@@ -3,6 +3,7 @@ package net.lab1318.costume.gui.models.user;
 public class UserBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
+        CTIME("ctime", new com.google.common.reflect.TypeToken<java.util.Date>() {}, true, 0, "ctime", org.thryft.protocol.Type.I64),
         EMAIL_ADDRESS("emailAddress", new com.google.common.reflect.TypeToken<org.thryft.native_.EmailAddress>() {}, true, 0, "email_address", org.thryft.protocol.Type.STRING);
 
         @Override
@@ -47,6 +48,7 @@ public class UserBean implements org.thryft.StructBean {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
+            case "ctime": return CTIME;
             case "emailAddress": return EMAIL_ADDRESS;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -55,6 +57,7 @@ public class UserBean implements org.thryft.StructBean {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
+            case "ctime": return CTIME;
             case "email_address": return EMAIL_ADDRESS;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -85,10 +88,12 @@ public class UserBean implements org.thryft.StructBean {
     }
 
     public UserBean() {
+        ctime = null;
         emailAddress = null;
     }
 
     public UserBean(final net.lab1318.costume.api.models.user.User other) {
+        this.ctime = other.getCtime();
         this.emailAddress = other.getEmailAddress();
     }
 
@@ -102,6 +107,7 @@ public class UserBean implements org.thryft.StructBean {
 
         final UserBean other = (UserBean)otherObject;
         return
+            getCtime().equals(other.getCtime()) &&
             getEmailAddress().equals(other.getEmailAddress());
     }
 
@@ -120,10 +126,15 @@ public class UserBean implements org.thryft.StructBean {
 
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
+        case CTIME: return getCtime();
         case EMAIL_ADDRESS: return getEmailAddress();
         default:
             throw new IllegalStateException();
         }
+    }
+
+    public java.util.Date getCtime() {
+        return ctime;
     }
 
     public org.thryft.native_.EmailAddress getEmailAddress() {
@@ -133,6 +144,7 @@ public class UserBean implements org.thryft.StructBean {
     @Override
     public int hashCode() {
         int hashCode = 17;
+        hashCode = 31 * hashCode + getCtime().hashCode();
         hashCode = 31 * hashCode + getEmailAddress().hashCode();
         return hashCode;
     }
@@ -142,14 +154,20 @@ public class UserBean implements org.thryft.StructBean {
         return false;
     }
 
+    public void setCtime(final java.util.Date ctime) {
+        this.ctime = ctime;
+    }
+
     public void setEmailAddress(final org.thryft.native_.EmailAddress emailAddress) {
         this.emailAddress = emailAddress;
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("email_address", getEmailAddress()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("ctime", getCtime()).add("email_address", getEmailAddress()).toString();
     }
+
+    private java.util.Date ctime;
 
     private org.thryft.native_.EmailAddress emailAddress;
 }

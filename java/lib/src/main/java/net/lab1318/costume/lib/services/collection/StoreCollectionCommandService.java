@@ -14,7 +14,7 @@ import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionCommandService;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
 import net.lab1318.costume.api.services.object.ObjectCommandService;
-import net.lab1318.costume.lib.services.ServiceExceptionHelper;
+import net.lab1318.costume.lib.services.IoExceptions;
 import net.lab1318.costume.lib.services.collection.LoggingCollectionCommandService.Markers;
 import net.lab1318.costume.lib.stores.collection.CollectionStore;
 
@@ -32,7 +32,7 @@ abstract class StoreCollectionCommandService implements CollectionCommandService
                 throw new NoSuchCollectionException();
             }
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error deleting collection by id");
+            throw IoExceptions.wrap(e, "error deleting collection by id");
         }
     }
 
@@ -41,7 +41,7 @@ abstract class StoreCollectionCommandService implements CollectionCommandService
         try {
             store.deleteCollections(logger, Markers.DELETE_COLLECTIONS);
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error deleting collections");
+            throw IoExceptions.wrap(e, "error deleting collections");
         }
 
         objectCommandService.deleteObjects();
@@ -52,7 +52,7 @@ abstract class StoreCollectionCommandService implements CollectionCommandService
         try {
             store.deleteCollectionsByInstitutionId(institutionId, logger, Markers.DELETE_COLLECTION_BY_ID);
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error deleting collections by institution ID");
+            throw IoExceptions.wrap(e, "error deleting collections by institution ID");
         }
 
         objectCommandService.deleteObjectsByInstitutionId(institutionId);
@@ -63,7 +63,7 @@ abstract class StoreCollectionCommandService implements CollectionCommandService
         try {
             store.putCollection(collection, id, logger, Markers.PUT_COLLECTION);
         } catch (final IOException e) {
-            throw ServiceExceptionHelper.wrapException(e, "error putting collection");
+            throw IoExceptions.wrap(e, "error putting collection");
         }
     }
 

@@ -9,9 +9,9 @@ import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.Table;
 
 import net.lab1318.costume.api.models.institution.InstitutionId;
+import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.models.relation.Relation;
 import net.lab1318.costume.api.models.relation.RelationSet;
-import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.gui.GuiUI;
 import net.lab1318.costume.gui.models.relation.RelationBean;
 

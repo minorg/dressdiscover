@@ -1,7 +1,7 @@
 import __builtin__
+import costume.api.models.object.object_query
 import costume.api.services.object.get_object_summaries_options
 import costume.api.services.object.get_object_summaries_result
-import costume.api.services.object.object_query
 
 
 class ObjectSummaryQueryService(object):
@@ -12,7 +12,7 @@ class ObjectSummaryQueryService(object):
     ):
         '''
         :type options: costume.api.services.object.get_object_summaries_options.GetObjectSummariesOptions or None
-        :type query: costume.api.services.object.object_query.ObjectQuery or None
+        :type query: costume.api.models.object.object_query.ObjectQuery or None
         :rtype: costume.api.services.object.get_object_summaries_result.GetObjectSummariesResult
         '''
 
@@ -20,8 +20,8 @@ class ObjectSummaryQueryService(object):
             if not isinstance(options, costume.api.services.object.get_object_summaries_options.GetObjectSummariesOptions):
                 raise TypeError("expected options to be a costume.api.services.object.get_object_summaries_options.GetObjectSummariesOptions but it is a %s" % getattr(__builtin__, 'type')(options))
         if query is not None:
-            if not isinstance(query, costume.api.services.object.object_query.ObjectQuery):
-                raise TypeError("expected query to be a costume.api.services.object.object_query.ObjectQuery but it is a %s" % getattr(__builtin__, 'type')(query))
+            if not isinstance(query, costume.api.models.object.object_query.ObjectQuery):
+                raise TypeError("expected query to be a costume.api.models.object.object_query.ObjectQuery but it is a %s" % getattr(__builtin__, 'type')(query))
 
         get_object_summaries_return_value = self._get_object_summaries(options=options, query=query)
 

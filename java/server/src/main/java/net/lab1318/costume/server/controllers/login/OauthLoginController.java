@@ -91,8 +91,9 @@ public class OauthLoginController extends AbstractOauthLoginController<UserEntry
     protected UserEntry _postUser(final String providerId, final OauthUserProfile userProfile) throws IOException {
         final User.Builder userBuilder = User.builder();
         userBuilder.setEmailAddress(userProfile.getEmailAddress());
+        final User user = userBuilder.build();
         try {
-            return userCommandService.postAndGetUser(userBuilder.build());
+            return new UserEntry(userCommandService.postUser(user), user);
         } catch (final DuplicateUserException e) {
             throw new IllegalStateException(e);
         } catch (final IoException e) {
