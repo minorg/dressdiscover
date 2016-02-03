@@ -8,9 +8,6 @@ class _Id(object):
     def elastic_search_mapping_dict(self):
         return {'index': 'not_analyzed', 'type': 'string'}
 
-    def java_declaration_name(self, boxed=False):
-        return self.java_qname()
-
     def java_default_value(self):
         return 'null'
 
