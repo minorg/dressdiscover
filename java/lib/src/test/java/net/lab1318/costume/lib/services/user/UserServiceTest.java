@@ -6,8 +6,10 @@ import org.junit.After;
 import org.junit.Before;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 
 import net.lab1318.costume.api.models.object.ObjectId;
+import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.models.user.User;
 import net.lab1318.costume.api.models.user.UserBookmark;
 import net.lab1318.costume.api.models.user.UserBookmarkEntry;
@@ -73,9 +75,17 @@ public abstract class UserServiceTest extends ServiceTest {
 
     protected final ImmutableList<UserBookmarkEntry> _postUserBookmarks(final UserId userId) throws Exception {
         final ImmutableList.Builder<UserBookmarkEntry> resultBuilder = ImmutableList.builder();
-        for (int i = 0; i < 2; i++) {
-            final UserBookmark userBookmark = UserBookmark.builder().setFolder("My folder")
-                    .setObjectId(ObjectId.parse("institution/collection/object" + i)).setUserId(userId).build();
+        for (int i = 0; i < 4; i++) {
+            final UserBookmark.Builder userBookmarkBuilder = UserBookmark.builder().setFolder("My folder")
+                    .setUserId(userId);
+            final ObjectId objectId = ObjectId.parse("institution/collection/object" + i);
+            if (i % 2 == 0) {
+                userBookmarkBuilder.setObjectId(objectId);
+            } else {
+                userBookmarkBuilder
+                        .setObjectQuery(ObjectQuery.builder().setObjectIds(ImmutableSet.of(objectId)).build());
+            }
+            final UserBookmark userBookmark = userBookmarkBuilder.build();
             resultBuilder.add(new UserBookmarkEntry(userCommandService.postUserBookmark(userBookmark), userBookmark));
         }
         return resultBuilder.build();
