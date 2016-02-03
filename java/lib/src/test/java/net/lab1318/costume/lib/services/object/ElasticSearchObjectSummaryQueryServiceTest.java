@@ -14,9 +14,9 @@ import com.google.common.primitives.UnsignedInteger;
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.models.object.ObjectEntry;
+import net.lab1318.costume.api.models.object.ObjectFacets;
 import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
-import net.lab1318.costume.api.services.object.ObjectFacets;
 import net.lab1318.costume.lib.services.TestData;
 
 public final class ElasticSearchObjectSummaryQueryServiceTest extends ObjectServiceTest {

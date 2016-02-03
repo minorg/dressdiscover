@@ -16,11 +16,11 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.primitives.UnsignedInteger;
 
 import net.lab1318.costume.api.models.SortOrder;
+import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
 import net.lab1318.costume.api.services.object.GetObjectSummariesResult;
-import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.api.services.object.ObjectSummarySort;
 import net.lab1318.costume.api.services.object.ObjectSummarySortField;

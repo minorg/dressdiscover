@@ -1,3 +1,4 @@
+namespace bean_java net.lab1318.costume.gui.models.object
 namespace java net.lab1318.costume.api.models.object
 namespace * costume.api.models.object
 

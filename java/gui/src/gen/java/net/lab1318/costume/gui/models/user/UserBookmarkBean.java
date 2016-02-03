@@ -6,7 +6,7 @@ public class UserBookmarkBean implements org.thryft.StructBean {
         USER_ID("userId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.user.UserId>() {}, true, 0, "user_id", org.thryft.protocol.Type.STRING),
         FOLDER("folder", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "folder", org.thryft.protocol.Type.STRING),
         OBJECT_ID("objectId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.object.ObjectId>() {}, false, 0, "object_id", org.thryft.protocol.Type.STRING),
-        OBJECT_QUERY("objectQuery", new com.google.common.reflect.TypeToken<costume.api.models.object.ObjectQueryBean>() {}, false, 0, "object_query", org.thryft.protocol.Type.STRUCT);
+        OBJECT_QUERY("objectQuery", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.object.ObjectQueryBean>() {}, false, 0, "object_query", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -104,7 +104,7 @@ public class UserBookmarkBean implements org.thryft.StructBean {
         this.userId = other.getUserId();
         this.folder = other.getFolder().isPresent() ? other.getFolder().get() : null;
         this.objectId = other.getObjectId().isPresent() ? other.getObjectId().get() : null;
-        this.objectQuery = other.getObjectQuery().isPresent() ? new costume.api.models.object.ObjectQueryBean(other.getObjectQuery().get()) : null;
+        this.objectQuery = other.getObjectQuery().isPresent() ? new net.lab1318.costume.gui.models.object.ObjectQueryBean(other.getObjectQuery().get()) : null;
     }
 
     @Override
@@ -155,7 +155,7 @@ public class UserBookmarkBean implements org.thryft.StructBean {
         return objectId;
     }
 
-    public costume.api.models.object.ObjectQueryBean getObjectQuery() {
+    public net.lab1318.costume.gui.models.object.ObjectQueryBean getObjectQuery() {
         return objectQuery;
     }
 
@@ -192,7 +192,7 @@ public class UserBookmarkBean implements org.thryft.StructBean {
         this.objectId = objectId;
     }
 
-    public void setObjectQuery(final costume.api.models.object.ObjectQueryBean objectQuery) {
+    public void setObjectQuery(final net.lab1318.costume.gui.models.object.ObjectQueryBean objectQuery) {
         this.objectQuery = objectQuery;
     }
 
@@ -211,5 +211,5 @@ public class UserBookmarkBean implements org.thryft.StructBean {
 
     private net.lab1318.costume.api.models.object.ObjectId objectId;
 
-    private costume.api.models.object.ObjectQueryBean objectQuery;
+    private net.lab1318.costume.gui.models.object.ObjectQueryBean objectQuery;
 }

@@ -23,8 +23,8 @@ import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 
+import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.models.user.User;
-import net.lab1318.costume.api.services.object.ObjectQuery;
 import net.lab1318.costume.gui.GuiUI;
 import net.lab1318.costume.gui.events.user.UserLogoutRequest;
 

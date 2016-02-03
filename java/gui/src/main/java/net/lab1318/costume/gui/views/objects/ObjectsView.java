@@ -16,8 +16,8 @@ import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionId;
-import net.lab1318.costume.api.services.object.ObjectFacets;
-import net.lab1318.costume.api.services.object.ObjectQuery;
+import net.lab1318.costume.api.models.object.ObjectFacets;
+import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.gui.views.TopLevelView;
 
 @SuppressWarnings("serial")

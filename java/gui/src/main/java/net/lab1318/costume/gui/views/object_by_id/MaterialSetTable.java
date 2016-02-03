@@ -14,7 +14,7 @@ import com.vaadin.ui.Table;
 
 import net.lab1318.costume.api.models.material.Material;
 import net.lab1318.costume.api.models.material.MaterialSet;
-import net.lab1318.costume.api.services.object.ObjectFacetFilters;
+import net.lab1318.costume.api.models.object.ObjectFacetFilters;
 import net.lab1318.costume.gui.events.object_by_id.ObjectElementSelectionRequest;
 import net.lab1318.costume.gui.models.material.MaterialBean;
 
