@@ -1,10 +1,10 @@
 package net.lab1318.costume.cli;
 
 import org.slf4j.Marker;
-import org.slf4j.MarkerFactory;
 import org.thryft.waf.cli.Command;
 import org.thryft.waf.cli.CommandParser;
 import org.thryft.waf.lib.PropertiesModule;
+import org.thryft.waf.lib.logging.LoggingUtils;
 
 import com.google.common.base.Optional;
 import com.google.inject.Guice;
@@ -42,5 +42,5 @@ public final class CliMain extends org.thryft.waf.lib.AbstractMain {
     }
 
     private final Command[] commands = { new PutElasticSearchTemplatesCommand(), new ResummarizeObjectsCommand() };
-    private final static Marker LOG_MARKER = MarkerFactory.getMarker("CLI_MAIN");
+    private final static Marker LOG_MARKER = LoggingUtils.getMarker(CliMain.class);
 }

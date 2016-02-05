@@ -9,9 +9,9 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
-import org.slf4j.MarkerFactory;
 import org.thryft.waf.gui.EventBus;
 import org.thryft.waf.gui.views.View;
+import org.thryft.waf.lib.logging.LoggingUtils;
 
 import com.google.common.base.Optional;
 import com.google.common.eventbus.Subscribe;
@@ -120,5 +120,5 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
 
     private final UserQueryService userQueryService;
     private final static Logger logger = LoggerFactory.getLogger(Presenter.class);
-    private final static Marker logMarker = MarkerFactory.getMarker("PRESENTER");
+    private final static Marker logMarker = LoggingUtils.getMarker(Presenter.class);
 }
