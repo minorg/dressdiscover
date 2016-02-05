@@ -1,7 +1,5 @@
 package net.lab1318.costume.cli;
 
-import java.io.File;
-
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 import org.thryft.waf.cli.Command;
@@ -32,8 +30,7 @@ public final class CliMain extends org.thryft.waf.lib.AbstractMain {
 
         argParser.parse(argv);
 
-        _configureSlf4j();
-        _configureLogback(new File("/etc/costume/cli-logback.xml"));
+        _configureLogging(args, "costume");
 
         final CostumeProperties properties = CostumeProperties.load(Optional.fromNullable(args.properties));
         _getLogger().debug(_getLogMarker(), "properties: {}", properties);
