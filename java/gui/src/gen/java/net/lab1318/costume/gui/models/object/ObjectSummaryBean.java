@@ -18,9 +18,9 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         LOCATION_NAME_TEXTS("locationNameTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 19, "location_name_texts", org.thryft.protocol.Type.LIST),
         MATERIAL_TEXTS("materialTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 14, "material_texts", org.thryft.protocol.Type.LIST),
         RELATION_TEXTS("relationTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 16, "relation_texts", org.thryft.protocol.Type.LIST),
+        STRUCTURE_TEXTS("structureTexts", new com.google.common.reflect.TypeToken<java.util.Map<String, String>>() {}, false, 20, "structure_texts", org.thryft.protocol.Type.MAP),
         SUBJECT_TERM_TEXTS("subjectTermTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 9, "subject_term_texts", org.thryft.protocol.Type.LIST),
         TECHNIQUE_TEXTS("techniqueTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 15, "technique_texts", org.thryft.protocol.Type.LIST),
-        STRUCTURE_TEXTS("structureTexts", new com.google.common.reflect.TypeToken<java.util.Map<String, String>>() {}, false, 20, "structure_texts", org.thryft.protocol.Type.MAP),
         URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 13, "url", org.thryft.protocol.Type.STRING),
         WORK_TYPE_TEXTS("workTypeTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 11, "work_type_texts", org.thryft.protocol.Type.LIST);
 
@@ -81,9 +81,9 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
             case "locationNameTexts": return LOCATION_NAME_TEXTS;
             case "materialTexts": return MATERIAL_TEXTS;
             case "relationTexts": return RELATION_TEXTS;
+            case "structureTexts": return STRUCTURE_TEXTS;
             case "subjectTermTexts": return SUBJECT_TERM_TEXTS;
             case "techniqueTexts": return TECHNIQUE_TEXTS;
-            case "structureTexts": return STRUCTURE_TEXTS;
             case "url": return URL;
             case "workTypeTexts": return WORK_TYPE_TEXTS;
             default:
@@ -108,9 +108,9 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
             case "location_name_texts": return LOCATION_NAME_TEXTS;
             case "material_texts": return MATERIAL_TEXTS;
             case "relation_texts": return RELATION_TEXTS;
+            case "structure_texts": return STRUCTURE_TEXTS;
             case "subject_term_texts": return SUBJECT_TERM_TEXTS;
             case "technique_texts": return TECHNIQUE_TEXTS;
-            case "structure_texts": return STRUCTURE_TEXTS;
             case "url": return URL;
             case "work_type_texts": return WORK_TYPE_TEXTS;
             default:
@@ -157,9 +157,9 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         locationNameTexts = null;
         materialTexts = null;
         relationTexts = null;
+        structureTexts = null;
         subjectTermTexts = null;
         techniqueTexts = null;
-        structureTexts = null;
         url = null;
         workTypeTexts = null;
     }
@@ -180,9 +180,9 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         this.locationNameTexts = other.getLocationNameTexts().isPresent() ? new java.util.ArrayList<String>(other.getLocationNameTexts().get()) : null;
         this.materialTexts = other.getMaterialTexts().isPresent() ? new java.util.ArrayList<String>(other.getMaterialTexts().get()) : null;
         this.relationTexts = other.getRelationTexts().isPresent() ? new java.util.ArrayList<String>(other.getRelationTexts().get()) : null;
+        this.structureTexts = other.getStructureTexts().isPresent() ? new java.util.HashMap<String, String>(other.getStructureTexts().get()) : null;
         this.subjectTermTexts = other.getSubjectTermTexts().isPresent() ? new java.util.ArrayList<String>(other.getSubjectTermTexts().get()) : null;
         this.techniqueTexts = other.getTechniqueTexts().isPresent() ? new java.util.ArrayList<String>(other.getTechniqueTexts().get()) : null;
-        this.structureTexts = other.getStructureTexts().isPresent() ? new java.util.HashMap<String, String>(other.getStructureTexts().get()) : null;
         this.url = other.getUrl().isPresent() ? other.getUrl().get() : null;
         this.workTypeTexts = other.getWorkTypeTexts().isPresent() ? new java.util.ArrayList<String>(other.getWorkTypeTexts().get()) : null;
     }
@@ -212,9 +212,9 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
             (getLocationNameTexts() != null ? getLocationNameTexts().equals(other.getLocationNameTexts()) : other.getLocationNameTexts() == null) &&
             (getMaterialTexts() != null ? getMaterialTexts().equals(other.getMaterialTexts()) : other.getMaterialTexts() == null) &&
             (getRelationTexts() != null ? getRelationTexts().equals(other.getRelationTexts()) : other.getRelationTexts() == null) &&
+            (getStructureTexts() != null ? getStructureTexts().equals(other.getStructureTexts()) : other.getStructureTexts() == null) &&
             (getSubjectTermTexts() != null ? getSubjectTermTexts().equals(other.getSubjectTermTexts()) : other.getSubjectTermTexts() == null) &&
             (getTechniqueTexts() != null ? getTechniqueTexts().equals(other.getTechniqueTexts()) : other.getTechniqueTexts() == null) &&
-            (getStructureTexts() != null ? getStructureTexts().equals(other.getStructureTexts()) : other.getStructureTexts() == null) &&
             (getUrl() != null ? getUrl().equals(other.getUrl()) : other.getUrl() == null) &&
             (getWorkTypeTexts() != null ? getWorkTypeTexts().equals(other.getWorkTypeTexts()) : other.getWorkTypeTexts() == null);
     }
@@ -249,9 +249,9 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         case LOCATION_NAME_TEXTS: return getLocationNameTexts();
         case MATERIAL_TEXTS: return getMaterialTexts();
         case RELATION_TEXTS: return getRelationTexts();
+        case STRUCTURE_TEXTS: return getStructureTexts();
         case SUBJECT_TERM_TEXTS: return getSubjectTermTexts();
         case TECHNIQUE_TEXTS: return getTechniqueTexts();
-        case STRUCTURE_TEXTS: return getStructureTexts();
         case URL: return getUrl();
         case WORK_TYPE_TEXTS: return getWorkTypeTexts();
         default:
@@ -388,14 +388,14 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         if (getRelationTexts() != null) {
             hashCode = 31 * hashCode + getRelationTexts().hashCode();
         }
+        if (getStructureTexts() != null) {
+            hashCode = 31 * hashCode + getStructureTexts().hashCode();
+        }
         if (getSubjectTermTexts() != null) {
             hashCode = 31 * hashCode + getSubjectTermTexts().hashCode();
         }
         if (getTechniqueTexts() != null) {
             hashCode = 31 * hashCode + getTechniqueTexts().hashCode();
-        }
-        if (getStructureTexts() != null) {
-            hashCode = 31 * hashCode + getStructureTexts().hashCode();
         }
         if (getUrl() != null) {
             hashCode = 31 * hashCode + getUrl().hashCode();
@@ -493,7 +493,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("color_texts", getColorTexts()).add("cultural_context_texts", getCulturalContextTexts()).add("date", getDate()).add("description", getDescription()).add("gender", getGender()).add("image", getImage()).add("location_name_texts", getLocationNameTexts()).add("material_texts", getMaterialTexts()).add("relation_texts", getRelationTexts()).add("subject_term_texts", getSubjectTermTexts()).add("technique_texts", getTechniqueTexts()).add("structure_texts", getStructureTexts()).add("url", getUrl()).add("work_type_texts", getWorkTypeTexts()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("color_texts", getColorTexts()).add("cultural_context_texts", getCulturalContextTexts()).add("date", getDate()).add("description", getDescription()).add("gender", getGender()).add("image", getImage()).add("location_name_texts", getLocationNameTexts()).add("material_texts", getMaterialTexts()).add("relation_texts", getRelationTexts()).add("structure_texts", getStructureTexts()).add("subject_term_texts", getSubjectTermTexts()).add("technique_texts", getTechniqueTexts()).add("url", getUrl()).add("work_type_texts", getWorkTypeTexts()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -535,11 +535,11 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
 
     private java.util.List<String> relationTexts;
 
+    private java.util.Map<String, String> structureTexts;
+
     private java.util.List<String> subjectTermTexts;
 
     private java.util.List<String> techniqueTexts;
-
-    private java.util.Map<String, String> structureTexts;
 
     private org.thryft.native_.Url url;
 

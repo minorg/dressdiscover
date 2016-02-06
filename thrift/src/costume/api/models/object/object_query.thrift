@@ -20,10 +20,10 @@ struct ObjectQuery {
 	optional set<object_id.ObjectId> object_ids;
 
 	// @validation {"minLength": 1}
-	optional string relation_text;
+	optional string query_string;
 
 	// @validation {"minLength": 1}
-	optional string query_string;
+	optional string relation_text;
 
 	// key=(value OR value...) AND key=(value OR value...)
 	// @validation {"minLength": 1}

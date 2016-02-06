@@ -8,8 +8,8 @@ public class ObjectQueryBean implements org.thryft.StructBean {
         INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, false, 0, "institution_id", org.thryft.protocol.Type.STRING),
         MORE_LIKE_OBJECT_ID("moreLikeObjectId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.object.ObjectId>() {}, false, 0, "more_like_object_id", org.thryft.protocol.Type.STRING),
         OBJECT_IDS("objectIds", new com.google.common.reflect.TypeToken<java.util.Set<net.lab1318.costume.api.models.object.ObjectId>>() {}, false, 0, "object_ids", org.thryft.protocol.Type.SET),
-        RELATION_TEXT("relationText", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "relation_text", org.thryft.protocol.Type.STRING),
         QUERY_STRING("queryString", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "query_string", org.thryft.protocol.Type.STRING),
+        RELATION_TEXT("relationText", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "relation_text", org.thryft.protocol.Type.STRING),
         STRUCTURE_TEXTS("structureTexts", new com.google.common.reflect.TypeToken<java.util.Map<String, java.util.List<String>>>() {}, false, 0, "structure_texts", org.thryft.protocol.Type.MAP),
         WORK_TYPE_TEXT("workTypeText", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "work_type_text", org.thryft.protocol.Type.STRING);
 
@@ -60,8 +60,8 @@ public class ObjectQueryBean implements org.thryft.StructBean {
             case "institutionId": return INSTITUTION_ID;
             case "moreLikeObjectId": return MORE_LIKE_OBJECT_ID;
             case "objectIds": return OBJECT_IDS;
-            case "relationText": return RELATION_TEXT;
             case "queryString": return QUERY_STRING;
+            case "relationText": return RELATION_TEXT;
             case "structureTexts": return STRUCTURE_TEXTS;
             case "workTypeText": return WORK_TYPE_TEXT;
             default:
@@ -76,8 +76,8 @@ public class ObjectQueryBean implements org.thryft.StructBean {
             case "institution_id": return INSTITUTION_ID;
             case "more_like_object_id": return MORE_LIKE_OBJECT_ID;
             case "object_ids": return OBJECT_IDS;
-            case "relation_text": return RELATION_TEXT;
             case "query_string": return QUERY_STRING;
+            case "relation_text": return RELATION_TEXT;
             case "structure_texts": return STRUCTURE_TEXTS;
             case "work_type_text": return WORK_TYPE_TEXT;
             default:
@@ -114,8 +114,8 @@ public class ObjectQueryBean implements org.thryft.StructBean {
         institutionId = null;
         moreLikeObjectId = null;
         objectIds = null;
-        relationText = null;
         queryString = null;
+        relationText = null;
         structureTexts = null;
         workTypeText = null;
     }
@@ -126,8 +126,8 @@ public class ObjectQueryBean implements org.thryft.StructBean {
         this.institutionId = other.getInstitutionId().isPresent() ? other.getInstitutionId().get() : null;
         this.moreLikeObjectId = other.getMoreLikeObjectId().isPresent() ? other.getMoreLikeObjectId().get() : null;
         this.objectIds = other.getObjectIds().isPresent() ? new java.util.LinkedHashSet<net.lab1318.costume.api.models.object.ObjectId>(other.getObjectIds().get()) : null;
-        this.relationText = other.getRelationText().isPresent() ? other.getRelationText().get() : null;
         this.queryString = other.getQueryString().isPresent() ? other.getQueryString().get() : null;
+        this.relationText = other.getRelationText().isPresent() ? other.getRelationText().get() : null;
         this.structureTexts = other.getStructureTexts().isPresent() ? (new com.google.common.base.Function<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>, java.util.Map<String, java.util.List<String>>>() {
             @Override
             public java.util.Map<String, java.util.List<String>> apply(final com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>> other) {
@@ -156,8 +156,8 @@ public class ObjectQueryBean implements org.thryft.StructBean {
             (getInstitutionId() != null ? getInstitutionId().equals(other.getInstitutionId()) : other.getInstitutionId() == null) &&
             (getMoreLikeObjectId() != null ? getMoreLikeObjectId().equals(other.getMoreLikeObjectId()) : other.getMoreLikeObjectId() == null) &&
             (getObjectIds() != null ? getObjectIds().equals(other.getObjectIds()) : other.getObjectIds() == null) &&
-            (getRelationText() != null ? getRelationText().equals(other.getRelationText()) : other.getRelationText() == null) &&
             (getQueryString() != null ? getQueryString().equals(other.getQueryString()) : other.getQueryString() == null) &&
+            (getRelationText() != null ? getRelationText().equals(other.getRelationText()) : other.getRelationText() == null) &&
             (getStructureTexts() != null ? getStructureTexts().equals(other.getStructureTexts()) : other.getStructureTexts() == null) &&
             (getWorkTypeText() != null ? getWorkTypeText().equals(other.getWorkTypeText()) : other.getWorkTypeText() == null);
     }
@@ -182,8 +182,8 @@ public class ObjectQueryBean implements org.thryft.StructBean {
         case INSTITUTION_ID: return getInstitutionId();
         case MORE_LIKE_OBJECT_ID: return getMoreLikeObjectId();
         case OBJECT_IDS: return getObjectIds();
-        case RELATION_TEXT: return getRelationText();
         case QUERY_STRING: return getQueryString();
+        case RELATION_TEXT: return getRelationText();
         case STRUCTURE_TEXTS: return getStructureTexts();
         case WORK_TYPE_TEXT: return getWorkTypeText();
         default:
@@ -248,11 +248,11 @@ public class ObjectQueryBean implements org.thryft.StructBean {
         if (getObjectIds() != null) {
             hashCode = 31 * hashCode + getObjectIds().hashCode();
         }
-        if (getRelationText() != null) {
-            hashCode = 31 * hashCode + getRelationText().hashCode();
-        }
         if (getQueryString() != null) {
             hashCode = 31 * hashCode + getQueryString().hashCode();
+        }
+        if (getRelationText() != null) {
+            hashCode = 31 * hashCode + getRelationText().hashCode();
         }
         if (getStructureTexts() != null) {
             hashCode = 31 * hashCode + getStructureTexts().hashCode();
@@ -265,7 +265,7 @@ public class ObjectQueryBean implements org.thryft.StructBean {
 
     @Override
     public boolean isEmpty() {
-        return getCollectionId() == null && getFacetFilters() == null && getInstitutionId() == null && getMoreLikeObjectId() == null && getObjectIds() == null && getRelationText() == null && getQueryString() == null && getStructureTexts() == null && getWorkTypeText() == null;
+        return getCollectionId() == null && getFacetFilters() == null && getInstitutionId() == null && getMoreLikeObjectId() == null && getObjectIds() == null && getQueryString() == null && getRelationText() == null && getStructureTexts() == null && getWorkTypeText() == null;
     }
 
     public void setCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) {
@@ -306,7 +306,7 @@ public class ObjectQueryBean implements org.thryft.StructBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("facet_filters", getFacetFilters()).add("institution_id", getInstitutionId()).add("more_like_object_id", getMoreLikeObjectId()).add("object_ids", getObjectIds()).add("relation_text", getRelationText()).add("query_string", getQueryString()).add("structure_texts", getStructureTexts()).add("work_type_text", getWorkTypeText()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("facet_filters", getFacetFilters()).add("institution_id", getInstitutionId()).add("more_like_object_id", getMoreLikeObjectId()).add("object_ids", getObjectIds()).add("query_string", getQueryString()).add("relation_text", getRelationText()).add("structure_texts", getStructureTexts()).add("work_type_text", getWorkTypeText()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -319,9 +319,9 @@ public class ObjectQueryBean implements org.thryft.StructBean {
 
     private java.util.Set<net.lab1318.costume.api.models.object.ObjectId> objectIds;
 
-    private String relationText;
-
     private String queryString;
+
+    private String relationText;
 
     /**
      * key=(value OR value...) AND key=(value OR value...)

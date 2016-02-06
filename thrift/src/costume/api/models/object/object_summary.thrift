@@ -61,6 +61,9 @@ struct ObjectSummary {
 	// @validation {"minLength": 1}
 	16: optional list<string> relation_texts;
 
+	// @validation {"minLength": 1}
+	20: optional map<string, string> structure_texts;
+
 	// @elastic_search_mapping {"type": "multi_field", "fields": {"text": {"type": "string"}, "not_analyzed": {"type": "string", "index": "not_analyzed"}}}
 	// @validation {"minLength": 1}
 	9: optional list<string> subject_term_texts;
@@ -68,9 +71,6 @@ struct ObjectSummary {
 	// @elastic_search_mapping {"type": "multi_field", "fields": {"text": {"type": "string"}, "not_analyzed": {"type": "string", "index": "not_analyzed"}}}
 	// @validation {"minLength": 1}
 	15: optional list<string> technique_texts;
-
-	// @validation {"minLength": 1}
-	20: optional map<string, string> structure_texts;
 
 	13: optional url.Url url;
 

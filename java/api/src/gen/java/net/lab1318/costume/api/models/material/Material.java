@@ -6,23 +6,23 @@ package net.lab1318.costume.api.models.material;
 public class Material implements org.thryft.Struct, net.lab1318.costume.api.models.Element {
     public static class Builder {
         public Builder() {
-            type = null;
             text = null;
+            type = null;
             vocabRef = com.google.common.base.Optional.absent();
         }
 
         public Builder(final Material other) {
-            this.type = other.getType();
             this.text = other.getText();
+            this.type = other.getType();
             this.vocabRef = other.getVocabRef();
         }
 
-        protected Material _build(final net.lab1318.costume.api.models.material.MaterialType type, final String text, final com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> vocabRef) {
-            return new Material(type, text, vocabRef);
+        protected Material _build(final String text, final net.lab1318.costume.api.models.material.MaterialType type, final com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> vocabRef) {
+            return new Material(text, type, vocabRef);
         }
 
         public Material build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.material.Material: missing type"), com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.material.Material: missing text"), com.google.common.base.Preconditions.checkNotNull(vocabRef, "net.lab1318.costume.api.models.material.Material: missing vocabRef"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.material.Material: missing text"), com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.material.Material: missing type"), com.google.common.base.Preconditions.checkNotNull(vocabRef, "net.lab1318.costume.api.models.material.Material: missing vocabRef"));
         }
 
         public final String getText() {
@@ -50,8 +50,8 @@ public class Material implements org.thryft.Struct, net.lab1318.costume.api.mode
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            type = iprot.readEnum(net.lab1318.costume.api.models.material.MaterialType.class);
             text = iprot.readString();
+            type = iprot.readEnum(net.lab1318.costume.api.models.material.MaterialType.class);
             if (__list.getSize() > 2) {
                 vocabRef = com.google.common.base.Optional.of(net.lab1318.costume.api.models.VocabRef.readAsStruct(iprot));
             }
@@ -71,15 +71,15 @@ public class Material implements org.thryft.Struct, net.lab1318.costume.api.mode
                     break;
                 }
                 switch (ifield.getName()) {
-                case "type": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        type = iprot.readEnum(net.lab1318.costume.api.models.material.MaterialType.class);
-                    }
-                    break;
-                }
                 case "text": {
                     if (!ifield.hasId() || ifield.getId() == 2) {
                         text = iprot.readString();
+                    }
+                    break;
+                }
+                case "type": {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        type = iprot.readEnum(net.lab1318.costume.api.models.material.MaterialType.class);
                     }
                     break;
                 }
@@ -104,8 +104,8 @@ public class Material implements org.thryft.Struct, net.lab1318.costume.api.mode
         public Builder setIfPresent(final Material other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
-            setType(other.getType());
             setText(other.getText());
+            setType(other.getType());
             if (other.getVocabRef().isPresent()) {
                 setVocabRef(other.getVocabRef());
             }
@@ -137,8 +137,8 @@ public class Material implements org.thryft.Struct, net.lab1318.costume.api.mode
             com.google.common.base.Preconditions.checkNotNull(name);
 
             switch (name.toLowerCase()) {
-            case "type": setType((net.lab1318.costume.api.models.material.MaterialType)value); return this;
             case "text": setText((String)value); return this;
+            case "type": setType((net.lab1318.costume.api.models.material.MaterialType)value); return this;
             case "vocab_ref": setVocabRef((net.lab1318.costume.api.models.VocabRef)value); return this;
             default:
                 throw new IllegalArgumentException(name);
@@ -164,23 +164,23 @@ public class Material implements org.thryft.Struct, net.lab1318.costume.api.mode
             com.google.common.base.Preconditions.checkNotNull(name);
 
             switch (name.toLowerCase()) {
-            case "type": return unsetType();
             case "text": return unsetText();
+            case "type": return unsetType();
             case "vocab_ref": return unsetVocabRef();
             default:
                 throw new IllegalArgumentException(name);
             }
         }
 
-        private net.lab1318.costume.api.models.material.MaterialType type;
         private String text;
+        private net.lab1318.costume.api.models.material.MaterialType type;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> vocabRef;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.material.MaterialType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "text", org.thryft.protocol.Type.STRING),
+        TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.material.MaterialType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),
         VOCAB_REF("vocabRef", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.VocabRef>() {}, false, 5, "vocab_ref", org.thryft.protocol.Type.STRUCT);
 
         @Override
@@ -225,8 +225,8 @@ public class Material implements org.thryft.Struct, net.lab1318.costume.api.mode
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "type": return TYPE;
             case "text": return TEXT;
+            case "type": return TYPE;
             case "vocabRef": return VOCAB_REF;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -235,8 +235,8 @@ public class Material implements org.thryft.Struct, net.lab1318.costume.api.mode
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "type": return TYPE;
             case "text": return TEXT;
+            case "type": return TYPE;
             case "vocab_ref": return VOCAB_REF;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -270,33 +270,33 @@ public class Material implements org.thryft.Struct, net.lab1318.costume.api.mode
      * Copy constructor
      */
     public Material(final Material other) {
-        this(other.getType(), other.getText(), other.getVocabRef());
+        this(other.getText(), other.getType(), other.getVocabRef());
     }
 
     /**
      * Required constructor
      */
-    public Material(final net.lab1318.costume.api.models.material.MaterialType type, final String text) {
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.material.Material: missing type");
+    public Material(final String text, final net.lab1318.costume.api.models.material.MaterialType type) {
         this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.material.Material: missing text"), "net.lab1318.costume.api.models.material.Material: text is empty");
+        this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.material.Material: missing type");
         this.vocabRef = com.google.common.base.Optional.absent();
     }
 
     /**
      * Total Nullable constructor
      */
-    public Material(final net.lab1318.costume.api.models.material.MaterialType type, final String text, final @javax.annotation.Nullable net.lab1318.costume.api.models.VocabRef vocabRef) {
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.material.Material: missing type");
+    public Material(final String text, final net.lab1318.costume.api.models.material.MaterialType type, final @javax.annotation.Nullable net.lab1318.costume.api.models.VocabRef vocabRef) {
         this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.material.Material: missing text"), "net.lab1318.costume.api.models.material.Material: text is empty");
+        this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.material.Material: missing type");
         this.vocabRef = com.google.common.base.Optional.fromNullable(vocabRef);
     }
 
     /**
      * Optional constructor
      */
-    public Material(final net.lab1318.costume.api.models.material.MaterialType type, final String text, final com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> vocabRef) {
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.material.Material: missing type");
+    public Material(final String text, final net.lab1318.costume.api.models.material.MaterialType type, final com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> vocabRef) {
         this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.material.Material: missing text"), "net.lab1318.costume.api.models.material.Material: text is empty");
+        this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.material.Material: missing type");
         this.vocabRef = com.google.common.base.Preconditions.checkNotNull(vocabRef, "net.lab1318.costume.api.models.material.Material: missing vocabRef");
     }
 
@@ -322,8 +322,8 @@ public class Material implements org.thryft.Struct, net.lab1318.costume.api.mode
 
         final Material other = (Material)otherObject;
         return
-            getType().equals(other.getType()) &&
             getText().equals(other.getText()) &&
+            getType().equals(other.getType()) &&
             getVocabRef().equals(other.getVocabRef());
     }
 
@@ -342,8 +342,8 @@ public class Material implements org.thryft.Struct, net.lab1318.costume.api.mode
 
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
-        case TYPE: return getType();
         case TEXT: return getText();
+        case TYPE: return getType();
         case VOCAB_REF: return getVocabRef();
         default:
             throw new IllegalStateException();
@@ -365,8 +365,8 @@ public class Material implements org.thryft.Struct, net.lab1318.costume.api.mode
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getType().ordinal();
         hashCode = 31 * hashCode + getText().hashCode();
+        hashCode = 31 * hashCode + getType().ordinal();
         if (getVocabRef().isPresent()) {
             hashCode = 31 * hashCode + getVocabRef().get().hashCode();
         }
@@ -390,19 +390,19 @@ public class Material implements org.thryft.Struct, net.lab1318.costume.api.mode
     }
 
     public static Material readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        net.lab1318.costume.api.models.material.MaterialType type = null;
         String text = null;
+        net.lab1318.costume.api.models.material.MaterialType type = null;
         com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> vocabRef = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        type = iprot.readEnum(net.lab1318.costume.api.models.material.MaterialType.class);
         text = iprot.readString();
+        type = iprot.readEnum(net.lab1318.costume.api.models.material.MaterialType.class);
         if (__list.getSize() > 2) {
             vocabRef = com.google.common.base.Optional.of(net.lab1318.costume.api.models.VocabRef.readAsStruct(iprot));
         }
         iprot.readListEnd();
         try {
-            return new Material(type, text, vocabRef);
+            return new Material(text, type, vocabRef);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -413,8 +413,8 @@ public class Material implements org.thryft.Struct, net.lab1318.costume.api.mode
     }
 
     public static Material readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        net.lab1318.costume.api.models.material.MaterialType type = null;
         String text = null;
+        net.lab1318.costume.api.models.material.MaterialType type = null;
         com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> vocabRef = com.google.common.base.Optional.absent();
 
         iprot.readStructBegin();
@@ -424,15 +424,15 @@ public class Material implements org.thryft.Struct, net.lab1318.costume.api.mode
                 break;
             }
             switch (ifield.getName()) {
-            case "type": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    type = iprot.readEnum(net.lab1318.costume.api.models.material.MaterialType.class);
-                }
-                break;
-            }
             case "text": {
                 if (!ifield.hasId() || ifield.getId() == 2) {
                     text = iprot.readString();
+                }
+                break;
+            }
+            case "type": {
+                if (!ifield.hasId() || ifield.getId() == 1) {
+                    type = iprot.readEnum(net.lab1318.costume.api.models.material.MaterialType.class);
                 }
                 break;
             }
@@ -452,22 +452,22 @@ public class Material implements org.thryft.Struct, net.lab1318.costume.api.mode
         }
         iprot.readStructEnd();
         try {
-            return new Material(type, text, vocabRef);
+            return new Material(text, type, vocabRef);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public Material replaceText(final String text) {
-        return new Material(this.type, text, this.vocabRef);
+        return new Material(text, this.type, this.vocabRef);
     }
 
     public Material replaceType(final net.lab1318.costume.api.models.material.MaterialType type) {
-        return new Material(type, this.text, this.vocabRef);
+        return new Material(this.text, type, this.vocabRef);
     }
 
     public Material replaceVocabRef(final com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> vocabRef) {
-        return new Material(this.type, this.text, vocabRef);
+        return new Material(this.text, this.type, vocabRef);
     }
 
     public Material replaceVocabRef(final net.lab1318.costume.api.models.VocabRef vocabRef) {
@@ -476,16 +476,16 @@ public class Material implements org.thryft.Struct, net.lab1318.costume.api.mode
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("type", getType()).add("text", getText()).add("vocab_ref", getVocabRef().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("type", getType()).add("vocab_ref", getVocabRef().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
 
-        oprot.writeEnum(getType());
-
         oprot.writeString(getText());
+
+        oprot.writeEnum(getType());
 
         if (getVocabRef().isPresent()) {
             getVocabRef().get().writeAsStruct(oprot);
@@ -505,12 +505,12 @@ public class Material implements org.thryft.Struct, net.lab1318.costume.api.mode
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("type", org.thryft.protocol.Type.STRING, (short)1);
-        oprot.writeEnum(getType());
-        oprot.writeFieldEnd();
-
         oprot.writeFieldBegin("text", org.thryft.protocol.Type.STRING, (short)2);
         oprot.writeString(getText());
+        oprot.writeFieldEnd();
+
+        oprot.writeFieldBegin("type", org.thryft.protocol.Type.STRING, (short)1);
+        oprot.writeEnum(getType());
         oprot.writeFieldEnd();
 
         if (getVocabRef().isPresent()) {
@@ -522,9 +522,9 @@ public class Material implements org.thryft.Struct, net.lab1318.costume.api.mode
         oprot.writeFieldStop();
     }
 
-    private final net.lab1318.costume.api.models.material.MaterialType type;
-
     private final String text;
+
+    private final net.lab1318.costume.api.models.material.MaterialType type;
 
     private final com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> vocabRef;
 }

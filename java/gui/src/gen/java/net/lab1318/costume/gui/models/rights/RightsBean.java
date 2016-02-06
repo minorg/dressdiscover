@@ -9,8 +9,8 @@ public class RightsBean implements org.thryft.StructBean {
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "text", org.thryft.protocol.Type.STRING),
         TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.rights.RightsType>() {}, true, 3, "type", org.thryft.protocol.Type.STRING),
         LICENSE_VOCAB_REF("licenseVocabRef", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.VocabRefBean>() {}, false, 5, "license_vocab_ref", org.thryft.protocol.Type.STRUCT),
-        RIGHTS_HOLDER("rightsHolder", new com.google.common.reflect.TypeToken<String>() {}, false, 1, "rights_holder", org.thryft.protocol.Type.STRING),
-        NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 4, "notes", org.thryft.protocol.Type.STRING);
+        NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 4, "notes", org.thryft.protocol.Type.STRING),
+        RIGHTS_HOLDER("rightsHolder", new com.google.common.reflect.TypeToken<String>() {}, false, 1, "rights_holder", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -57,8 +57,8 @@ public class RightsBean implements org.thryft.StructBean {
             case "text": return TEXT;
             case "type": return TYPE;
             case "licenseVocabRef": return LICENSE_VOCAB_REF;
-            case "rightsHolder": return RIGHTS_HOLDER;
             case "notes": return NOTES;
+            case "rightsHolder": return RIGHTS_HOLDER;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -69,8 +69,8 @@ public class RightsBean implements org.thryft.StructBean {
             case "text": return TEXT;
             case "type": return TYPE;
             case "license_vocab_ref": return LICENSE_VOCAB_REF;
-            case "rights_holder": return RIGHTS_HOLDER;
             case "notes": return NOTES;
+            case "rights_holder": return RIGHTS_HOLDER;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -103,16 +103,16 @@ public class RightsBean implements org.thryft.StructBean {
         text = null;
         type = null;
         licenseVocabRef = null;
-        rightsHolder = null;
         notes = null;
+        rightsHolder = null;
     }
 
     public RightsBean(final net.lab1318.costume.api.models.rights.Rights other) {
         this.text = other.getText();
         this.type = other.getType();
         this.licenseVocabRef = other.getLicenseVocabRef().isPresent() ? new net.lab1318.costume.gui.models.VocabRefBean(other.getLicenseVocabRef().get()) : null;
-        this.rightsHolder = other.getRightsHolder().isPresent() ? other.getRightsHolder().get() : null;
         this.notes = other.getNotes().isPresent() ? other.getNotes().get() : null;
+        this.rightsHolder = other.getRightsHolder().isPresent() ? other.getRightsHolder().get() : null;
     }
 
     @Override
@@ -128,8 +128,8 @@ public class RightsBean implements org.thryft.StructBean {
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
             (getLicenseVocabRef() != null ? getLicenseVocabRef().equals(other.getLicenseVocabRef()) : other.getLicenseVocabRef() == null) &&
-            (getRightsHolder() != null ? getRightsHolder().equals(other.getRightsHolder()) : other.getRightsHolder() == null) &&
-            (getNotes() != null ? getNotes().equals(other.getNotes()) : other.getNotes() == null);
+            (getNotes() != null ? getNotes().equals(other.getNotes()) : other.getNotes() == null) &&
+            (getRightsHolder() != null ? getRightsHolder().equals(other.getRightsHolder()) : other.getRightsHolder() == null);
     }
 
     @Override
@@ -150,8 +150,8 @@ public class RightsBean implements org.thryft.StructBean {
         case TEXT: return getText();
         case TYPE: return getType();
         case LICENSE_VOCAB_REF: return getLicenseVocabRef();
-        case RIGHTS_HOLDER: return getRightsHolder();
         case NOTES: return getNotes();
+        case RIGHTS_HOLDER: return getRightsHolder();
         default:
             throw new IllegalStateException();
         }
@@ -185,11 +185,11 @@ public class RightsBean implements org.thryft.StructBean {
         if (getLicenseVocabRef() != null) {
             hashCode = 31 * hashCode + getLicenseVocabRef().hashCode();
         }
-        if (getRightsHolder() != null) {
-            hashCode = 31 * hashCode + getRightsHolder().hashCode();
-        }
         if (getNotes() != null) {
             hashCode = 31 * hashCode + getNotes().hashCode();
+        }
+        if (getRightsHolder() != null) {
+            hashCode = 31 * hashCode + getRightsHolder().hashCode();
         }
         return hashCode;
     }
@@ -221,7 +221,7 @@ public class RightsBean implements org.thryft.StructBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("type", getType()).add("license_vocab_ref", getLicenseVocabRef()).add("rights_holder", getRightsHolder()).add("notes", getNotes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("type", getType()).add("license_vocab_ref", getLicenseVocabRef()).add("notes", getNotes()).add("rights_holder", getRightsHolder()).toString();
     }
 
     private String text;
@@ -230,7 +230,7 @@ public class RightsBean implements org.thryft.StructBean {
 
     private net.lab1318.costume.gui.models.VocabRefBean licenseVocabRef;
 
-    private String rightsHolder;
-
     private String notes;
+
+    private String rightsHolder;
 }

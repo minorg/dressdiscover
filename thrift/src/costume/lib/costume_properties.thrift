@@ -8,11 +8,11 @@ include "thryft/native/url.thrift"
 struct CostumeProperties {
 	url.Url api_url = "http://middleware:8082/api/";
 
-	// dev, staging, production, etc.
-	string environment;
-
 	string elastic_search_host = "elasticsearch";
 	u32.u32 elastic_search_port = 9300;
+
+	// dev, staging, production, etc.
+	string environment;
 
 	// @validation {"minLength": 1}
 	string google_oauth_key;

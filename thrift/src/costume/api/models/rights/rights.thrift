@@ -18,9 +18,9 @@ struct Rights {
 
 	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
-	1: optional string rights_holder;
+	4: optional string notes;
 
 	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}
-	4: optional string notes;
+	1: optional string rights_holder;
 }

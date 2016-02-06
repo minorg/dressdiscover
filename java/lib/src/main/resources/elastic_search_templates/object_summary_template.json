@@ -163,11 +163,11 @@
                         }
                       }
                     }, 
-                    "1:rights_holder": {
+                    "4:notes": {
                       "index": "not_analyzed", 
                       "type": "string"
                     }, 
-                    "4:notes": {
+                    "1:rights_holder": {
                       "index": "not_analyzed", 
                       "type": "string"
                     }
@@ -251,6 +251,10 @@
           }, 
           "type": "multi_field"
         }, 
+        "20:structure_texts": {
+          "type": "nested", 
+          "dynamic": true
+        }, 
         "9:subject_term_texts": {
           "fields": {
             "text": {
@@ -274,10 +278,6 @@
             }
           }, 
           "type": "multi_field"
-        }, 
-        "20:structure_texts": {
-          "type": "nested", 
-          "dynamic": true
         }, 
         "13:url": {
           "type": "string", 
