@@ -6,10 +6,11 @@ include "thryft/native/u32.thrift"
 
 struct GetObjectSummariesOptions {
 	optional u32.u32 from_;
-	optional u32.u32 size;
 
 	// @validation {"acceptance": true}
 	optional bool include_facets;
+
+	optional u32.u32 size;
 
 	// @validation {"minLength": 1}
 	optional list<object_summary_sort.ObjectSummarySort> sorts;

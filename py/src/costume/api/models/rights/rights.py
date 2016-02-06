@@ -10,25 +10,25 @@ class Rights(object):
             text=None,
             type=None,  # @ReservedAssignment
             license_vocab_ref=None,
-            rights_holder=None,
             notes=None,
+            rights_holder=None,
         ):
             '''
             :type text: str
             :type type: costume.api.models.rights.rights_type.RightsType
             :type license_vocab_ref: costume.api.models.vocab_ref.VocabRef or None
-            :type rights_holder: str or None
             :type notes: str or None
+            :type rights_holder: str or None
             '''
 
             self.__text = text
             self.__type = type
             self.__license_vocab_ref = license_vocab_ref
-            self.__rights_holder = rights_holder
             self.__notes = notes
+            self.__rights_holder = rights_holder
 
         def build(self):
-            return Rights(text=self.__text, type=self.__type, license_vocab_ref=self.__license_vocab_ref, rights_holder=self.__rights_holder, notes=self.__notes)
+            return Rights(text=self.__text, type=self.__type, license_vocab_ref=self.__license_vocab_ref, notes=self.__notes, rights_holder=self.__rights_holder)
 
         @property
         def license_vocab_ref(self):
@@ -115,16 +115,16 @@ class Rights(object):
             :type text: str
             :type type: costume.api.models.rights.rights_type.RightsType
             :type license_vocab_ref: costume.api.models.vocab_ref.VocabRef or None
-            :type rights_holder: str or None
             :type notes: str or None
+            :type rights_holder: str or None
             '''
 
             if isinstance(rights, Rights):
                 self.set_text(rights.text)
                 self.set_type(rights.type)
                 self.set_license_vocab_ref(rights.license_vocab_ref)
-                self.set_rights_holder(rights.rights_holder)
                 self.set_notes(rights.notes)
+                self.set_rights_holder(rights.rights_holder)
             elif isinstance(rights, dict):
                 for key, value in rights.iteritems():
                     getattr(self, 'set_' + key)(value)
@@ -177,15 +177,15 @@ class Rights(object):
         text,
         type,  # @ReservedAssignment
         license_vocab_ref=None,
-        rights_holder=None,
         notes=None,
+        rights_holder=None,
     ):
         '''
         :type text: str
         :type type: costume.api.models.rights.rights_type.RightsType
         :type license_vocab_ref: costume.api.models.vocab_ref.VocabRef or None
-        :type rights_holder: str or None
         :type notes: str or None
+        :type rights_holder: str or None
         '''
 
         if text is None:
@@ -207,19 +207,19 @@ class Rights(object):
                 raise TypeError("expected license_vocab_ref to be a costume.api.models.vocab_ref.VocabRef but it is a %s" % getattr(__builtin__, 'type')(license_vocab_ref))
         self.__license_vocab_ref = license_vocab_ref
 
-        if rights_holder is not None:
-            if not isinstance(rights_holder, basestring):
-                raise TypeError("expected rights_holder to be a str but it is a %s" % getattr(__builtin__, 'type')(rights_holder))
-            if len(rights_holder) < 1:
-                raise ValueError("expected len(rights_holder) to be >= 1, was %d" % len(rights_holder))
-        self.__rights_holder = rights_holder
-
         if notes is not None:
             if not isinstance(notes, basestring):
                 raise TypeError("expected notes to be a str but it is a %s" % getattr(__builtin__, 'type')(notes))
             if len(notes) < 1:
                 raise ValueError("expected len(notes) to be >= 1, was %d" % len(notes))
         self.__notes = notes
+
+        if rights_holder is not None:
+            if not isinstance(rights_holder, basestring):
+                raise TypeError("expected rights_holder to be a str but it is a %s" % getattr(__builtin__, 'type')(rights_holder))
+            if len(rights_holder) < 1:
+                raise ValueError("expected len(rights_holder) to be >= 1, was %d" % len(rights_holder))
+        self.__rights_holder = rights_holder
 
     def __eq__(self, other):
         if self.text != other.text:
@@ -228,14 +228,14 @@ class Rights(object):
             return False
         if self.license_vocab_ref != other.license_vocab_ref:
             return False
-        if self.rights_holder != other.rights_holder:
-            return False
         if self.notes != other.notes:
+            return False
+        if self.rights_holder != other.rights_holder:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.text,self.type,self.license_vocab_ref,self.rights_holder,self.notes,))
+        return hash((self.text,self.type,self.license_vocab_ref,self.notes,self.rights_holder,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -249,10 +249,10 @@ class Rights(object):
         field_reprs.append('type=' + repr(self.type))
         if self.license_vocab_ref is not None:
             field_reprs.append('license_vocab_ref=' + repr(self.license_vocab_ref))
-        if self.rights_holder is not None:
-            field_reprs.append('rights_holder=' + "'" + self.rights_holder.encode('ascii', 'replace') + "'")
         if self.notes is not None:
             field_reprs.append('notes=' + "'" + self.notes.encode('ascii', 'replace') + "'")
+        if self.rights_holder is not None:
+            field_reprs.append('rights_holder=' + "'" + self.rights_holder.encode('ascii', 'replace') + "'")
         return 'Rights(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
@@ -261,10 +261,10 @@ class Rights(object):
         field_reprs.append('type=' + repr(self.type))
         if self.license_vocab_ref is not None:
             field_reprs.append('license_vocab_ref=' + repr(self.license_vocab_ref))
-        if self.rights_holder is not None:
-            field_reprs.append('rights_holder=' + "'" + self.rights_holder.encode('ascii', 'replace') + "'")
         if self.notes is not None:
             field_reprs.append('notes=' + "'" + self.notes.encode('ascii', 'replace') + "'")
+        if self.rights_holder is not None:
+            field_reprs.append('rights_holder=' + "'" + self.rights_holder.encode('ascii', 'replace') + "'")
         return 'Rights(' + ', '.join(field_reprs) + ')'
 
     def as_dict(self):
@@ -274,7 +274,7 @@ class Rights(object):
         :rtype: dict
         '''
 
-        return {'text': self.text, 'type': self.type, 'license_vocab_ref': self.license_vocab_ref, 'rights_holder': self.rights_holder, 'notes': self.notes}
+        return {'text': self.text, 'type': self.type, 'license_vocab_ref': self.license_vocab_ref, 'notes': self.notes, 'rights_holder': self.rights_holder}
 
     def as_tuple(self):
         '''
@@ -283,7 +283,7 @@ class Rights(object):
         :rtype: tuple
         '''
 
-        return (self.text, self.type, self.license_vocab_ref, self.rights_holder, self.notes,)
+        return (self.text, self.type, self.license_vocab_ref, self.notes, self.rights_holder,)
 
     @property
     def license_vocab_ref(self):
@@ -323,14 +323,14 @@ class Rights(object):
                 init_kwds['type'] = costume.api.models.rights.rights_type.RightsType.value_of(iprot.read_string().strip().upper())
             elif ifield_name == 'license_vocab_ref' and ifield_id == 5:
                 init_kwds['license_vocab_ref'] = costume.api.models.vocab_ref.VocabRef.read(iprot)
-            elif ifield_name == 'rights_holder' and ifield_id == 1:
-                try:
-                    init_kwds['rights_holder'] = iprot.read_string()
-                except (TypeError, ValueError,):
-                    pass
             elif ifield_name == 'notes' and ifield_id == 4:
                 try:
                     init_kwds['notes'] = iprot.read_string()
+                except (TypeError, ValueError,):
+                    pass
+            elif ifield_name == 'rights_holder' and ifield_id == 1:
+                try:
+                    init_kwds['rights_holder'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
             iprot.read_field_end()
@@ -343,8 +343,8 @@ class Rights(object):
         text=None,
         type=None,  # @ReservedAssignment
         license_vocab_ref=None,
-        rights_holder=None,
         notes=None,
+        rights_holder=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
@@ -352,8 +352,8 @@ class Rights(object):
         :type text: str or None
         :type type: costume.api.models.rights.rights_type.RightsType or None
         :type license_vocab_ref: costume.api.models.vocab_ref.VocabRef or None
-        :type rights_holder: str or None
         :type notes: str or None
+        :type rights_holder: str or None
         :rtype: costume.api.models.rights.rights.Rights
         '''
 
@@ -363,11 +363,11 @@ class Rights(object):
             type = self.type  # @ReservedAssignment
         if license_vocab_ref is None:
             license_vocab_ref = self.license_vocab_ref
-        if rights_holder is None:
-            rights_holder = self.rights_holder
         if notes is None:
             notes = self.notes
-        return self.__class__(text=text, type=type, license_vocab_ref=license_vocab_ref, rights_holder=rights_holder, notes=notes)
+        if rights_holder is None:
+            rights_holder = self.rights_holder
+        return self.__class__(text=text, type=type, license_vocab_ref=license_vocab_ref, notes=notes, rights_holder=rights_holder)
 
     @property
     def rights_holder(self):
@@ -416,14 +416,14 @@ class Rights(object):
             self.license_vocab_ref.write(oprot)
             oprot.write_field_end()
 
-        if self.rights_holder is not None:
-            oprot.write_field_begin(name='rights_holder', type=11, id=1)
-            oprot.write_string(self.rights_holder)
-            oprot.write_field_end()
-
         if self.notes is not None:
             oprot.write_field_begin(name='notes', type=11, id=4)
             oprot.write_string(self.notes)
+            oprot.write_field_end()
+
+        if self.rights_holder is not None:
+            oprot.write_field_begin(name='rights_holder', type=11, id=1)
+            oprot.write_string(self.rights_holder)
             oprot.write_field_end()
 
         oprot.write_field_stop()

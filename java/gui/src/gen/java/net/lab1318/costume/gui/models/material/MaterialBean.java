@@ -6,8 +6,8 @@ package net.lab1318.costume.gui.models.material;
 public class MaterialBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.material.MaterialType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "text", org.thryft.protocol.Type.STRING),
+        TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.material.MaterialType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),
         VOCAB_REF("vocabRef", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.VocabRefBean>() {}, false, 5, "vocab_ref", org.thryft.protocol.Type.STRUCT);
 
         @Override
@@ -52,8 +52,8 @@ public class MaterialBean implements org.thryft.StructBean {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "type": return TYPE;
             case "text": return TEXT;
+            case "type": return TYPE;
             case "vocabRef": return VOCAB_REF;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -62,8 +62,8 @@ public class MaterialBean implements org.thryft.StructBean {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "type": return TYPE;
             case "text": return TEXT;
+            case "type": return TYPE;
             case "vocab_ref": return VOCAB_REF;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -94,14 +94,14 @@ public class MaterialBean implements org.thryft.StructBean {
     }
 
     public MaterialBean() {
-        type = null;
         text = null;
+        type = null;
         vocabRef = null;
     }
 
     public MaterialBean(final net.lab1318.costume.api.models.material.Material other) {
-        this.type = other.getType();
         this.text = other.getText();
+        this.type = other.getType();
         this.vocabRef = other.getVocabRef().isPresent() ? new net.lab1318.costume.gui.models.VocabRefBean(other.getVocabRef().get()) : null;
     }
 
@@ -115,8 +115,8 @@ public class MaterialBean implements org.thryft.StructBean {
 
         final MaterialBean other = (MaterialBean)otherObject;
         return
-            getType().equals(other.getType()) &&
             getText().equals(other.getText()) &&
+            getType().equals(other.getType()) &&
             (getVocabRef() != null ? getVocabRef().equals(other.getVocabRef()) : other.getVocabRef() == null);
     }
 
@@ -135,8 +135,8 @@ public class MaterialBean implements org.thryft.StructBean {
 
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
-        case TYPE: return getType();
         case TEXT: return getText();
+        case TYPE: return getType();
         case VOCAB_REF: return getVocabRef();
         default:
             throw new IllegalStateException();
@@ -158,8 +158,8 @@ public class MaterialBean implements org.thryft.StructBean {
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getType().ordinal();
         hashCode = 31 * hashCode + getText().hashCode();
+        hashCode = 31 * hashCode + getType().ordinal();
         if (getVocabRef() != null) {
             hashCode = 31 * hashCode + getVocabRef().hashCode();
         }
@@ -185,12 +185,12 @@ public class MaterialBean implements org.thryft.StructBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("type", getType()).add("text", getText()).add("vocab_ref", getVocabRef()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("type", getType()).add("vocab_ref", getVocabRef()).toString();
     }
 
-    private net.lab1318.costume.api.models.material.MaterialType type;
-
     private String text;
+
+    private net.lab1318.costume.api.models.material.MaterialType type;
 
     private net.lab1318.costume.gui.models.VocabRefBean vocabRef;
 }

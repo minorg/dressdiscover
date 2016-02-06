@@ -4,24 +4,24 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
     public static class Builder {
         public Builder() {
             from = com.google.common.base.Optional.absent();
-            size = com.google.common.base.Optional.absent();
             includeFacets = com.google.common.base.Optional.absent();
+            size = com.google.common.base.Optional.absent();
             sorts = com.google.common.base.Optional.absent();
         }
 
         public Builder(final GetObjectSummariesOptions other) {
             this.from = other.getFrom();
-            this.size = other.getSize();
             this.includeFacets = other.getIncludeFacets();
+            this.size = other.getSize();
             this.sorts = other.getSorts();
         }
 
-        protected GetObjectSummariesOptions _build(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size, final com.google.common.base.Optional<Boolean> includeFacets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSummarySort>> sorts) {
-            return new GetObjectSummariesOptions(from, size, includeFacets, sorts);
+        protected GetObjectSummariesOptions _build(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from, final com.google.common.base.Optional<Boolean> includeFacets, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSummarySort>> sorts) {
+            return new GetObjectSummariesOptions(from, includeFacets, size, sorts);
         }
 
         public GetObjectSummariesOptions build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(from, "net.lab1318.costume.api.services.object.GetObjectSummariesOptions: missing from"), com.google.common.base.Preconditions.checkNotNull(size, "net.lab1318.costume.api.services.object.GetObjectSummariesOptions: missing size"), com.google.common.base.Preconditions.checkNotNull(includeFacets, "net.lab1318.costume.api.services.object.GetObjectSummariesOptions: missing includeFacets"), com.google.common.base.Preconditions.checkNotNull(sorts, "net.lab1318.costume.api.services.object.GetObjectSummariesOptions: missing sorts"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(from, "net.lab1318.costume.api.services.object.GetObjectSummariesOptions: missing from"), com.google.common.base.Preconditions.checkNotNull(includeFacets, "net.lab1318.costume.api.services.object.GetObjectSummariesOptions: missing includeFacets"), com.google.common.base.Preconditions.checkNotNull(size, "net.lab1318.costume.api.services.object.GetObjectSummariesOptions: missing size"), com.google.common.base.Preconditions.checkNotNull(sorts, "net.lab1318.costume.api.services.object.GetObjectSummariesOptions: missing sorts"));
         }
 
         public final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> getFrom() {
@@ -60,13 +60,13 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
                 }
             }
             if (__list.getSize() > 1) {
+                includeFacets = com.google.common.base.Optional.of(iprot.readBool());
+            }
+            if (__list.getSize() > 2) {
                 try {
                     size = com.google.common.base.Optional.of(iprot.readU32());
                 } catch (final NumberFormatException e) {
                 }
-            }
-            if (__list.getSize() > 2) {
-                includeFacets = com.google.common.base.Optional.of(iprot.readBool());
             }
             if (__list.getSize() > 3) {
                 try {
@@ -112,15 +112,15 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
                     }
                     break;
                 }
+                case "include_facets": {
+                    includeFacets = com.google.common.base.Optional.of(iprot.readBool());
+                    break;
+                }
                 case "size": {
                     try {
                         size = com.google.common.base.Optional.of(iprot.readU32());
                     } catch (final NumberFormatException e) {
                     }
-                    break;
-                }
-                case "include_facets": {
-                    includeFacets = com.google.common.base.Optional.of(iprot.readBool());
                     break;
                 }
                 case "sorts": {
@@ -173,11 +173,11 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
             if (other.getFrom().isPresent()) {
                 setFrom(other.getFrom());
             }
-            if (other.getSize().isPresent()) {
-                setSize(other.getSize());
-            }
             if (other.getIncludeFacets().isPresent()) {
                 setIncludeFacets(other.getIncludeFacets());
+            }
+            if (other.getSize().isPresent()) {
+                setSize(other.getSize());
             }
             if (other.getSorts().isPresent()) {
                 setSorts(other.getSorts());
@@ -222,8 +222,8 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
 
             switch (name.toLowerCase()) {
             case "from_": setFrom((com.google.common.primitives.UnsignedInteger)value); return this;
-            case "size": setSize((com.google.common.primitives.UnsignedInteger)value); return this;
             case "include_facets": setIncludeFacets((Boolean)value); return this;
+            case "size": setSize((com.google.common.primitives.UnsignedInteger)value); return this;
             case "sorts": setSorts((com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSummarySort>)value); return this;
             default:
                 throw new IllegalArgumentException(name);
@@ -255,8 +255,8 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
 
             switch (name.toLowerCase()) {
             case "from_": return unsetFrom();
-            case "size": return unsetSize();
             case "include_facets": return unsetIncludeFacets();
+            case "size": return unsetSize();
             case "sorts": return unsetSorts();
             default:
                 throw new IllegalArgumentException(name);
@@ -264,16 +264,16 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
         }
 
         private com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from;
-        private com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size;
         private com.google.common.base.Optional<Boolean> includeFacets;
+        private com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSummarySort>> sorts;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         FROM_("from", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, false, 0, "from_", org.thryft.protocol.Type.I32),
-        SIZE("size", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, false, 0, "size", org.thryft.protocol.Type.I32),
         INCLUDE_FACETS("includeFacets", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 0, "include_facets", org.thryft.protocol.Type.BOOL),
+        SIZE("size", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, false, 0, "size", org.thryft.protocol.Type.I32),
         SORTS("sorts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSummarySort>>() {}, false, 0, "sorts", org.thryft.protocol.Type.LIST);
 
         @Override
@@ -319,8 +319,8 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
             case "from": return FROM_;
-            case "size": return SIZE;
             case "includeFacets": return INCLUDE_FACETS;
+            case "size": return SIZE;
             case "sorts": return SORTS;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -330,8 +330,8 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
             case "from_": return FROM_;
-            case "size": return SIZE;
             case "include_facets": return INCLUDE_FACETS;
+            case "size": return SIZE;
             case "sorts": return SORTS;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -366,8 +366,8 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
      */
     public GetObjectSummariesOptions() {
         from = com.google.common.base.Optional.absent();
-        size = com.google.common.base.Optional.absent();
         includeFacets = com.google.common.base.Optional.absent();
+        size = com.google.common.base.Optional.absent();
         sorts = com.google.common.base.Optional.absent();
     }
 
@@ -375,26 +375,26 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
      * Copy constructor
      */
     public GetObjectSummariesOptions(final GetObjectSummariesOptions other) {
-        this(other.getFrom(), other.getSize(), other.getIncludeFacets(), other.getSorts());
+        this(other.getFrom(), other.getIncludeFacets(), other.getSize(), other.getSorts());
     }
 
     /**
      * Total Nullable constructor
      */
-    public GetObjectSummariesOptions(final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger from, final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger size, final @javax.annotation.Nullable Boolean includeFacets, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSummarySort> sorts) {
+    public GetObjectSummariesOptions(final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger from, final @javax.annotation.Nullable Boolean includeFacets, final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger size, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSummarySort> sorts) {
         this.from = com.google.common.base.Optional.fromNullable(from);
-        this.size = com.google.common.base.Optional.fromNullable(size);
         this.includeFacets = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(includeFacets), "net.lab1318.costume.api.services.object.GetObjectSummariesOptions: includeFacets must be true");
+        this.size = com.google.common.base.Optional.fromNullable(size);
         this.sorts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(sorts), "net.lab1318.costume.api.services.object.GetObjectSummariesOptions: sorts is empty");
     }
 
     /**
      * Optional constructor
      */
-    public GetObjectSummariesOptions(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size, final com.google.common.base.Optional<Boolean> includeFacets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSummarySort>> sorts) {
+    public GetObjectSummariesOptions(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from, final com.google.common.base.Optional<Boolean> includeFacets, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSummarySort>> sorts) {
         this.from = com.google.common.base.Preconditions.checkNotNull(from, "net.lab1318.costume.api.services.object.GetObjectSummariesOptions: missing from");
-        this.size = com.google.common.base.Preconditions.checkNotNull(size, "net.lab1318.costume.api.services.object.GetObjectSummariesOptions: missing size");
         this.includeFacets = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(includeFacets, "net.lab1318.costume.api.services.object.GetObjectSummariesOptions: missing includeFacets"), "net.lab1318.costume.api.services.object.GetObjectSummariesOptions: includeFacets must be true");
+        this.size = com.google.common.base.Preconditions.checkNotNull(size, "net.lab1318.costume.api.services.object.GetObjectSummariesOptions: missing size");
         this.sorts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(sorts, "net.lab1318.costume.api.services.object.GetObjectSummariesOptions: missing sorts"), "net.lab1318.costume.api.services.object.GetObjectSummariesOptions: sorts is empty");
     }
 
@@ -421,8 +421,8 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
         final GetObjectSummariesOptions other = (GetObjectSummariesOptions)otherObject;
         return
             getFrom().equals(other.getFrom()) &&
-            getSize().equals(other.getSize()) &&
             getIncludeFacets().equals(other.getIncludeFacets()) &&
+            getSize().equals(other.getSize()) &&
             getSorts().equals(other.getSorts());
     }
 
@@ -442,8 +442,8 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
         case FROM_: return getFrom();
-        case SIZE: return getSize();
         case INCLUDE_FACETS: return getIncludeFacets();
+        case SIZE: return getSize();
         case SORTS: return getSorts();
         default:
             throw new IllegalStateException();
@@ -472,11 +472,11 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
         if (getFrom().isPresent()) {
             hashCode = 31 * hashCode + getFrom().get().hashCode();
         }
-        if (getSize().isPresent()) {
-            hashCode = 31 * hashCode + getSize().get().hashCode();
-        }
         if (getIncludeFacets().isPresent()) {
             hashCode = 31 * hashCode + (getIncludeFacets().get() ? 1 : 0);
+        }
+        if (getSize().isPresent()) {
+            hashCode = 31 * hashCode + getSize().get().hashCode();
         }
         if (getSorts().isPresent()) {
             hashCode = 31 * hashCode + getSorts().get().hashCode();
@@ -486,7 +486,7 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
 
     @Override
     public boolean isEmpty() {
-        return !getFrom().isPresent() && !getSize().isPresent() && !getIncludeFacets().isPresent() && !getSorts().isPresent();
+        return !getFrom().isPresent() && !getIncludeFacets().isPresent() && !getSize().isPresent() && !getSorts().isPresent();
     }
 
     public static GetObjectSummariesOptions readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -502,8 +502,8 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
 
     public static GetObjectSummariesOptions readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<Boolean> includeFacets = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSummarySort>> sorts = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
@@ -514,13 +514,13 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
             }
         }
         if (__list.getSize() > 1) {
+            includeFacets = com.google.common.base.Optional.of(iprot.readBool());
+        }
+        if (__list.getSize() > 2) {
             try {
                 size = com.google.common.base.Optional.of(iprot.readU32());
             } catch (final NumberFormatException e) {
             }
-        }
-        if (__list.getSize() > 2) {
-            includeFacets = com.google.common.base.Optional.of(iprot.readBool());
         }
         if (__list.getSize() > 3) {
             try {
@@ -545,7 +545,7 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
         }
         iprot.readListEnd();
         try {
-            return new GetObjectSummariesOptions(from, size, includeFacets, sorts);
+            return new GetObjectSummariesOptions(from, includeFacets, size, sorts);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -557,8 +557,8 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
 
     public static GetObjectSummariesOptions readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<Boolean> includeFacets = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSummarySort>> sorts = com.google.common.base.Optional.absent();
 
         iprot.readStructBegin();
@@ -575,15 +575,15 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
                 }
                 break;
             }
+            case "include_facets": {
+                includeFacets = com.google.common.base.Optional.of(iprot.readBool());
+                break;
+            }
             case "size": {
                 try {
                     size = com.google.common.base.Optional.of(iprot.readU32());
                 } catch (final NumberFormatException e) {
                 }
-                break;
-            }
-            case "include_facets": {
-                includeFacets = com.google.common.base.Optional.of(iprot.readBool());
                 break;
             }
             case "sorts": {
@@ -618,14 +618,14 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
         }
         iprot.readStructEnd();
         try {
-            return new GetObjectSummariesOptions(from, size, includeFacets, sorts);
+            return new GetObjectSummariesOptions(from, includeFacets, size, sorts);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public GetObjectSummariesOptions replaceFrom(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from) {
-        return new GetObjectSummariesOptions(from, this.size, this.includeFacets, this.sorts);
+        return new GetObjectSummariesOptions(from, this.includeFacets, this.size, this.sorts);
     }
 
     public GetObjectSummariesOptions replaceFrom(final com.google.common.primitives.UnsignedInteger from) {
@@ -633,7 +633,7 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
     }
 
     public GetObjectSummariesOptions replaceIncludeFacets(final com.google.common.base.Optional<Boolean> includeFacets) {
-        return new GetObjectSummariesOptions(this.from, this.size, includeFacets, this.sorts);
+        return new GetObjectSummariesOptions(this.from, includeFacets, this.size, this.sorts);
     }
 
     public GetObjectSummariesOptions replaceIncludeFacets(final boolean includeFacets) {
@@ -641,7 +641,7 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
     }
 
     public GetObjectSummariesOptions replaceSize(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size) {
-        return new GetObjectSummariesOptions(this.from, size, this.includeFacets, this.sorts);
+        return new GetObjectSummariesOptions(this.from, this.includeFacets, size, this.sorts);
     }
 
     public GetObjectSummariesOptions replaceSize(final com.google.common.primitives.UnsignedInteger size) {
@@ -649,7 +649,7 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
     }
 
     public GetObjectSummariesOptions replaceSorts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSummarySort>> sorts) {
-        return new GetObjectSummariesOptions(this.from, this.size, this.includeFacets, sorts);
+        return new GetObjectSummariesOptions(this.from, this.includeFacets, this.size, sorts);
     }
 
     public GetObjectSummariesOptions replaceSorts(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSummarySort> sorts) {
@@ -658,7 +658,7 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("from_", getFrom().orNull()).add("size", getSize().orNull()).add("include_facets", getIncludeFacets().orNull()).add("sorts", getSorts().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("from_", getFrom().orNull()).add("include_facets", getIncludeFacets().orNull()).add("size", getSize().orNull()).add("sorts", getSorts().orNull()).toString();
     }
 
     @Override
@@ -671,14 +671,14 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
             oprot.writeNull();
         }
 
-        if (getSize().isPresent()) {
-            oprot.writeU32(getSize().get());
+        if (getIncludeFacets().isPresent()) {
+            oprot.writeBool(getIncludeFacets().get());
         } else {
             oprot.writeNull();
         }
 
-        if (getIncludeFacets().isPresent()) {
-            oprot.writeBool(getIncludeFacets().get());
+        if (getSize().isPresent()) {
+            oprot.writeU32(getSize().get());
         } else {
             oprot.writeNull();
         }
@@ -711,15 +711,15 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
             oprot.writeFieldEnd();
         }
 
-        if (getSize().isPresent()) {
-            oprot.writeFieldBegin("size", org.thryft.protocol.Type.I32, (short)0);
-            oprot.writeU32(getSize().get());
-            oprot.writeFieldEnd();
-        }
-
         if (getIncludeFacets().isPresent()) {
             oprot.writeFieldBegin("include_facets", org.thryft.protocol.Type.BOOL, (short)0);
             oprot.writeBool(getIncludeFacets().get());
+            oprot.writeFieldEnd();
+        }
+
+        if (getSize().isPresent()) {
+            oprot.writeFieldBegin("size", org.thryft.protocol.Type.I32, (short)0);
+            oprot.writeU32(getSize().get());
             oprot.writeFieldEnd();
         }
 
@@ -738,9 +738,9 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
 
     private final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from;
 
-    private final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size;
-
     private final com.google.common.base.Optional<Boolean> includeFacets;
+
+    private final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size;
 
     private final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.services.object.ObjectSummarySort>> sorts;
 }

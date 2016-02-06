@@ -3,8 +3,8 @@ package net.lab1318.costume.gui.models.inscription;
 public class InscriptionTextBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.inscription.InscriptionTextType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "text", org.thryft.protocol.Type.STRING),
+        TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.inscription.InscriptionTextType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),
         LANG("lang", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "lang", org.thryft.protocol.Type.STRING);
 
         @Override
@@ -49,8 +49,8 @@ public class InscriptionTextBean implements org.thryft.StructBean {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "type": return TYPE;
             case "text": return TEXT;
+            case "type": return TYPE;
             case "lang": return LANG;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -59,8 +59,8 @@ public class InscriptionTextBean implements org.thryft.StructBean {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "type": return TYPE;
             case "text": return TEXT;
+            case "type": return TYPE;
             case "lang": return LANG;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -91,14 +91,14 @@ public class InscriptionTextBean implements org.thryft.StructBean {
     }
 
     public InscriptionTextBean() {
-        type = null;
         text = null;
+        type = null;
         lang = null;
     }
 
     public InscriptionTextBean(final net.lab1318.costume.api.models.inscription.InscriptionText other) {
-        this.type = other.getType();
         this.text = other.getText();
+        this.type = other.getType();
         this.lang = other.getLang().isPresent() ? other.getLang().get() : null;
     }
 
@@ -112,8 +112,8 @@ public class InscriptionTextBean implements org.thryft.StructBean {
 
         final InscriptionTextBean other = (InscriptionTextBean)otherObject;
         return
-            getType().equals(other.getType()) &&
             getText().equals(other.getText()) &&
+            getType().equals(other.getType()) &&
             (getLang() != null ? getLang().equals(other.getLang()) : other.getLang() == null);
     }
 
@@ -132,8 +132,8 @@ public class InscriptionTextBean implements org.thryft.StructBean {
 
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
-        case TYPE: return getType();
         case TEXT: return getText();
+        case TYPE: return getType();
         case LANG: return getLang();
         default:
             throw new IllegalStateException();
@@ -155,8 +155,8 @@ public class InscriptionTextBean implements org.thryft.StructBean {
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getType().ordinal();
         hashCode = 31 * hashCode + getText().hashCode();
+        hashCode = 31 * hashCode + getType().ordinal();
         if (getLang() != null) {
             hashCode = 31 * hashCode + getLang().hashCode();
         }
@@ -182,12 +182,12 @@ public class InscriptionTextBean implements org.thryft.StructBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("type", getType()).add("text", getText()).add("lang", getLang()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("type", getType()).add("lang", getLang()).toString();
     }
 
-    private net.lab1318.costume.api.models.inscription.InscriptionTextType type;
-
     private String text;
+
+    private net.lab1318.costume.api.models.inscription.InscriptionTextType type;
 
     private String lang;
 }

@@ -9,24 +9,24 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
             text = null;
             type = null;
             licenseVocabRef = com.google.common.base.Optional.absent();
-            rightsHolder = com.google.common.base.Optional.absent();
             notes = com.google.common.base.Optional.absent();
+            rightsHolder = com.google.common.base.Optional.absent();
         }
 
         public Builder(final Rights other) {
             this.text = other.getText();
             this.type = other.getType();
             this.licenseVocabRef = other.getLicenseVocabRef();
-            this.rightsHolder = other.getRightsHolder();
             this.notes = other.getNotes();
+            this.rightsHolder = other.getRightsHolder();
         }
 
-        protected Rights _build(final String text, final net.lab1318.costume.api.models.rights.RightsType type, final com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> licenseVocabRef, final com.google.common.base.Optional<String> rightsHolder, final com.google.common.base.Optional<String> notes) {
-            return new Rights(text, type, licenseVocabRef, rightsHolder, notes);
+        protected Rights _build(final String text, final net.lab1318.costume.api.models.rights.RightsType type, final com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> licenseVocabRef, final com.google.common.base.Optional<String> notes, final com.google.common.base.Optional<String> rightsHolder) {
+            return new Rights(text, type, licenseVocabRef, notes, rightsHolder);
         }
 
         public Rights build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.rights.Rights: missing text"), com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.rights.Rights: missing type"), com.google.common.base.Preconditions.checkNotNull(licenseVocabRef, "net.lab1318.costume.api.models.rights.Rights: missing licenseVocabRef"), com.google.common.base.Preconditions.checkNotNull(rightsHolder, "net.lab1318.costume.api.models.rights.Rights: missing rightsHolder"), com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.rights.Rights: missing notes"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.rights.Rights: missing text"), com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.rights.Rights: missing type"), com.google.common.base.Preconditions.checkNotNull(licenseVocabRef, "net.lab1318.costume.api.models.rights.Rights: missing licenseVocabRef"), com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.rights.Rights: missing notes"), com.google.common.base.Preconditions.checkNotNull(rightsHolder, "net.lab1318.costume.api.models.rights.Rights: missing rightsHolder"));
         }
 
         public final com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> getLicenseVocabRef() {
@@ -68,10 +68,10 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
                 licenseVocabRef = com.google.common.base.Optional.of(net.lab1318.costume.api.models.VocabRef.readAsStruct(iprot));
             }
             if (__list.getSize() > 3) {
-                rightsHolder = com.google.common.base.Optional.of(iprot.readString());
+                notes = com.google.common.base.Optional.of(iprot.readString());
             }
             if (__list.getSize() > 4) {
-                notes = com.google.common.base.Optional.of(iprot.readString());
+                rightsHolder = com.google.common.base.Optional.of(iprot.readString());
             }
             iprot.readListEnd();
             return this;
@@ -107,15 +107,15 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
                     }
                     break;
                 }
-                case "rights_holder": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        rightsHolder = com.google.common.base.Optional.of(iprot.readString());
-                    }
-                    break;
-                }
                 case "notes": {
                     if (!ifield.hasId() || ifield.getId() == 4) {
                         notes = com.google.common.base.Optional.of(iprot.readString());
+                    }
+                    break;
+                }
+                case "rights_holder": {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        rightsHolder = com.google.common.base.Optional.of(iprot.readString());
                     }
                     break;
                 }
@@ -139,11 +139,11 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
             if (other.getLicenseVocabRef().isPresent()) {
                 setLicenseVocabRef(other.getLicenseVocabRef());
             }
-            if (other.getRightsHolder().isPresent()) {
-                setRightsHolder(other.getRightsHolder());
-            }
             if (other.getNotes().isPresent()) {
                 setNotes(other.getNotes());
+            }
+            if (other.getRightsHolder().isPresent()) {
+                setRightsHolder(other.getRightsHolder());
             }
 
             return this;
@@ -196,8 +196,8 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
             case "text": setText((String)value); return this;
             case "type": setType((net.lab1318.costume.api.models.rights.RightsType)value); return this;
             case "license_vocab_ref": setLicenseVocabRef((net.lab1318.costume.api.models.VocabRef)value); return this;
-            case "rights_holder": setRightsHolder((String)value); return this;
             case "notes": setNotes((String)value); return this;
+            case "rights_holder": setRightsHolder((String)value); return this;
             default:
                 throw new IllegalArgumentException(name);
             }
@@ -235,8 +235,8 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
             case "text": return unsetText();
             case "type": return unsetType();
             case "license_vocab_ref": return unsetLicenseVocabRef();
-            case "rights_holder": return unsetRightsHolder();
             case "notes": return unsetNotes();
+            case "rights_holder": return unsetRightsHolder();
             default:
                 throw new IllegalArgumentException(name);
             }
@@ -245,8 +245,8 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
         private String text;
         private net.lab1318.costume.api.models.rights.RightsType type;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> licenseVocabRef;
-        private com.google.common.base.Optional<String> rightsHolder;
         private com.google.common.base.Optional<String> notes;
+        private com.google.common.base.Optional<String> rightsHolder;
     }
 
     @SuppressWarnings("serial")
@@ -254,8 +254,8 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "text", org.thryft.protocol.Type.STRING),
         TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.rights.RightsType>() {}, true, 3, "type", org.thryft.protocol.Type.STRING),
         LICENSE_VOCAB_REF("licenseVocabRef", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.VocabRef>() {}, false, 5, "license_vocab_ref", org.thryft.protocol.Type.STRUCT),
-        RIGHTS_HOLDER("rightsHolder", new com.google.common.reflect.TypeToken<String>() {}, false, 1, "rights_holder", org.thryft.protocol.Type.STRING),
-        NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 4, "notes", org.thryft.protocol.Type.STRING);
+        NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 4, "notes", org.thryft.protocol.Type.STRING),
+        RIGHTS_HOLDER("rightsHolder", new com.google.common.reflect.TypeToken<String>() {}, false, 1, "rights_holder", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -302,8 +302,8 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
             case "text": return TEXT;
             case "type": return TYPE;
             case "licenseVocabRef": return LICENSE_VOCAB_REF;
-            case "rightsHolder": return RIGHTS_HOLDER;
             case "notes": return NOTES;
+            case "rightsHolder": return RIGHTS_HOLDER;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -314,8 +314,8 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
             case "text": return TEXT;
             case "type": return TYPE;
             case "license_vocab_ref": return LICENSE_VOCAB_REF;
-            case "rights_holder": return RIGHTS_HOLDER;
             case "notes": return NOTES;
+            case "rights_holder": return RIGHTS_HOLDER;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -348,7 +348,7 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
      * Copy constructor
      */
     public Rights(final Rights other) {
-        this(other.getText(), other.getType(), other.getLicenseVocabRef(), other.getRightsHolder(), other.getNotes());
+        this(other.getText(), other.getType(), other.getLicenseVocabRef(), other.getNotes(), other.getRightsHolder());
     }
 
     /**
@@ -358,30 +358,30 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
         this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.rights.Rights: missing text"), "net.lab1318.costume.api.models.rights.Rights: text is empty");
         this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.rights.Rights: missing type");
         this.licenseVocabRef = com.google.common.base.Optional.absent();
-        this.rightsHolder = com.google.common.base.Optional.absent();
         this.notes = com.google.common.base.Optional.absent();
+        this.rightsHolder = com.google.common.base.Optional.absent();
     }
 
     /**
      * Total Nullable constructor
      */
-    public Rights(final String text, final net.lab1318.costume.api.models.rights.RightsType type, final @javax.annotation.Nullable net.lab1318.costume.api.models.VocabRef licenseVocabRef, final @javax.annotation.Nullable String rightsHolder, final @javax.annotation.Nullable String notes) {
+    public Rights(final String text, final net.lab1318.costume.api.models.rights.RightsType type, final @javax.annotation.Nullable net.lab1318.costume.api.models.VocabRef licenseVocabRef, final @javax.annotation.Nullable String notes, final @javax.annotation.Nullable String rightsHolder) {
         this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.rights.Rights: missing text"), "net.lab1318.costume.api.models.rights.Rights: text is empty");
         this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.rights.Rights: missing type");
         this.licenseVocabRef = com.google.common.base.Optional.fromNullable(licenseVocabRef);
-        this.rightsHolder = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(rightsHolder), "net.lab1318.costume.api.models.rights.Rights: rightsHolder is empty");
         this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(notes), "net.lab1318.costume.api.models.rights.Rights: notes is empty");
+        this.rightsHolder = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(rightsHolder), "net.lab1318.costume.api.models.rights.Rights: rightsHolder is empty");
     }
 
     /**
      * Optional constructor
      */
-    public Rights(final String text, final net.lab1318.costume.api.models.rights.RightsType type, final com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> licenseVocabRef, final com.google.common.base.Optional<String> rightsHolder, final com.google.common.base.Optional<String> notes) {
+    public Rights(final String text, final net.lab1318.costume.api.models.rights.RightsType type, final com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> licenseVocabRef, final com.google.common.base.Optional<String> notes, final com.google.common.base.Optional<String> rightsHolder) {
         this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "net.lab1318.costume.api.models.rights.Rights: missing text"), "net.lab1318.costume.api.models.rights.Rights: text is empty");
         this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.rights.Rights: missing type");
         this.licenseVocabRef = com.google.common.base.Preconditions.checkNotNull(licenseVocabRef, "net.lab1318.costume.api.models.rights.Rights: missing licenseVocabRef");
-        this.rightsHolder = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(rightsHolder, "net.lab1318.costume.api.models.rights.Rights: missing rightsHolder"), "net.lab1318.costume.api.models.rights.Rights: rightsHolder is empty");
         this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(notes, "net.lab1318.costume.api.models.rights.Rights: missing notes"), "net.lab1318.costume.api.models.rights.Rights: notes is empty");
+        this.rightsHolder = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(rightsHolder, "net.lab1318.costume.api.models.rights.Rights: missing rightsHolder"), "net.lab1318.costume.api.models.rights.Rights: rightsHolder is empty");
     }
 
     public static Builder builder() {
@@ -409,8 +409,8 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
             getLicenseVocabRef().equals(other.getLicenseVocabRef()) &&
-            getRightsHolder().equals(other.getRightsHolder()) &&
-            getNotes().equals(other.getNotes());
+            getNotes().equals(other.getNotes()) &&
+            getRightsHolder().equals(other.getRightsHolder());
     }
 
     @Override
@@ -431,8 +431,8 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
         case TEXT: return getText();
         case TYPE: return getType();
         case LICENSE_VOCAB_REF: return getLicenseVocabRef();
-        case RIGHTS_HOLDER: return getRightsHolder();
         case NOTES: return getNotes();
+        case RIGHTS_HOLDER: return getRightsHolder();
         default:
             throw new IllegalStateException();
         }
@@ -466,11 +466,11 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
         if (getLicenseVocabRef().isPresent()) {
             hashCode = 31 * hashCode + getLicenseVocabRef().get().hashCode();
         }
-        if (getRightsHolder().isPresent()) {
-            hashCode = 31 * hashCode + getRightsHolder().get().hashCode();
-        }
         if (getNotes().isPresent()) {
             hashCode = 31 * hashCode + getNotes().get().hashCode();
+        }
+        if (getRightsHolder().isPresent()) {
+            hashCode = 31 * hashCode + getRightsHolder().get().hashCode();
         }
         return hashCode;
     }
@@ -495,8 +495,8 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
         String text = null;
         net.lab1318.costume.api.models.rights.RightsType type = null;
         com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> licenseVocabRef = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> rightsHolder = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> rightsHolder = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         text = iprot.readString();
@@ -505,14 +505,14 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
             licenseVocabRef = com.google.common.base.Optional.of(net.lab1318.costume.api.models.VocabRef.readAsStruct(iprot));
         }
         if (__list.getSize() > 3) {
-            rightsHolder = com.google.common.base.Optional.of(iprot.readString());
+            notes = com.google.common.base.Optional.of(iprot.readString());
         }
         if (__list.getSize() > 4) {
-            notes = com.google.common.base.Optional.of(iprot.readString());
+            rightsHolder = com.google.common.base.Optional.of(iprot.readString());
         }
         iprot.readListEnd();
         try {
-            return new Rights(text, type, licenseVocabRef, rightsHolder, notes);
+            return new Rights(text, type, licenseVocabRef, notes, rightsHolder);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -526,8 +526,8 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
         String text = null;
         net.lab1318.costume.api.models.rights.RightsType type = null;
         com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> licenseVocabRef = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> rightsHolder = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> rightsHolder = com.google.common.base.Optional.absent();
 
         iprot.readStructBegin();
         while (true) {
@@ -554,15 +554,15 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
                 }
                 break;
             }
-            case "rights_holder": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    rightsHolder = com.google.common.base.Optional.of(iprot.readString());
-                }
-                break;
-            }
             case "notes": {
                 if (!ifield.hasId() || ifield.getId() == 4) {
                     notes = com.google.common.base.Optional.of(iprot.readString());
+                }
+                break;
+            }
+            case "rights_holder": {
+                if (!ifield.hasId() || ifield.getId() == 1) {
+                    rightsHolder = com.google.common.base.Optional.of(iprot.readString());
                 }
                 break;
             }
@@ -576,14 +576,14 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
         }
         iprot.readStructEnd();
         try {
-            return new Rights(text, type, licenseVocabRef, rightsHolder, notes);
+            return new Rights(text, type, licenseVocabRef, notes, rightsHolder);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public Rights replaceLicenseVocabRef(final com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> licenseVocabRef) {
-        return new Rights(this.text, this.type, licenseVocabRef, this.rightsHolder, this.notes);
+        return new Rights(this.text, this.type, licenseVocabRef, this.notes, this.rightsHolder);
     }
 
     public Rights replaceLicenseVocabRef(final net.lab1318.costume.api.models.VocabRef licenseVocabRef) {
@@ -591,7 +591,7 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
     }
 
     public Rights replaceNotes(final com.google.common.base.Optional<String> notes) {
-        return new Rights(this.text, this.type, this.licenseVocabRef, this.rightsHolder, notes);
+        return new Rights(this.text, this.type, this.licenseVocabRef, notes, this.rightsHolder);
     }
 
     public Rights replaceNotes(final String notes) {
@@ -599,7 +599,7 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
     }
 
     public Rights replaceRightsHolder(final com.google.common.base.Optional<String> rightsHolder) {
-        return new Rights(this.text, this.type, this.licenseVocabRef, rightsHolder, this.notes);
+        return new Rights(this.text, this.type, this.licenseVocabRef, this.notes, rightsHolder);
     }
 
     public Rights replaceRightsHolder(final String rightsHolder) {
@@ -607,16 +607,16 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
     }
 
     public Rights replaceText(final String text) {
-        return new Rights(text, this.type, this.licenseVocabRef, this.rightsHolder, this.notes);
+        return new Rights(text, this.type, this.licenseVocabRef, this.notes, this.rightsHolder);
     }
 
     public Rights replaceType(final net.lab1318.costume.api.models.rights.RightsType type) {
-        return new Rights(this.text, type, this.licenseVocabRef, this.rightsHolder, this.notes);
+        return new Rights(this.text, type, this.licenseVocabRef, this.notes, this.rightsHolder);
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("type", getType()).add("license_vocab_ref", getLicenseVocabRef().orNull()).add("rights_holder", getRightsHolder().orNull()).add("notes", getNotes().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("text", getText()).add("type", getType()).add("license_vocab_ref", getLicenseVocabRef().orNull()).add("notes", getNotes().orNull()).add("rights_holder", getRightsHolder().orNull()).toString();
     }
 
     @Override
@@ -633,14 +633,14 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
             oprot.writeNull();
         }
 
-        if (getRightsHolder().isPresent()) {
-            oprot.writeString(getRightsHolder().get());
+        if (getNotes().isPresent()) {
+            oprot.writeString(getNotes().get());
         } else {
             oprot.writeNull();
         }
 
-        if (getNotes().isPresent()) {
-            oprot.writeString(getNotes().get());
+        if (getRightsHolder().isPresent()) {
+            oprot.writeString(getRightsHolder().get());
         } else {
             oprot.writeNull();
         }
@@ -671,15 +671,15 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
             oprot.writeFieldEnd();
         }
 
-        if (getRightsHolder().isPresent()) {
-            oprot.writeFieldBegin("rights_holder", org.thryft.protocol.Type.STRING, (short)1);
-            oprot.writeString(getRightsHolder().get());
-            oprot.writeFieldEnd();
-        }
-
         if (getNotes().isPresent()) {
             oprot.writeFieldBegin("notes", org.thryft.protocol.Type.STRING, (short)4);
             oprot.writeString(getNotes().get());
+            oprot.writeFieldEnd();
+        }
+
+        if (getRightsHolder().isPresent()) {
+            oprot.writeFieldBegin("rights_holder", org.thryft.protocol.Type.STRING, (short)1);
+            oprot.writeString(getRightsHolder().get());
             oprot.writeFieldEnd();
         }
 
@@ -692,7 +692,7 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
 
     private final com.google.common.base.Optional<net.lab1318.costume.api.models.VocabRef> licenseVocabRef;
 
-    private final com.google.common.base.Optional<String> rightsHolder;
-
     private final com.google.common.base.Optional<String> notes;
+
+    private final com.google.common.base.Optional<String> rightsHolder;
 }

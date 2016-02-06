@@ -12,8 +12,8 @@ class ObjectQuery(object):
             institution_id=None,
             more_like_object_id=None,
             object_ids=None,
-            relation_text=None,
             query_string=None,
+            relation_text=None,
             structure_texts=None,
             work_type_text=None,
         ):
@@ -23,8 +23,8 @@ class ObjectQuery(object):
             :type institution_id: str or None
             :type more_like_object_id: str or None
             :type object_ids: frozenset(str) or None
-            :type relation_text: str or None
             :type query_string: str or None
+            :type relation_text: str or None
             :type structure_texts: dict(str: tuple(str)) or None
             :type work_type_text: str or None
             '''
@@ -34,13 +34,13 @@ class ObjectQuery(object):
             self.__institution_id = institution_id
             self.__more_like_object_id = more_like_object_id
             self.__object_ids = object_ids
-            self.__relation_text = relation_text
             self.__query_string = query_string
+            self.__relation_text = relation_text
             self.__structure_texts = structure_texts
             self.__work_type_text = work_type_text
 
         def build(self):
-            return ObjectQuery(collection_id=self.__collection_id, facet_filters=self.__facet_filters, institution_id=self.__institution_id, more_like_object_id=self.__more_like_object_id, object_ids=self.__object_ids, relation_text=self.__relation_text, query_string=self.__query_string, structure_texts=self.__structure_texts, work_type_text=self.__work_type_text)
+            return ObjectQuery(collection_id=self.__collection_id, facet_filters=self.__facet_filters, institution_id=self.__institution_id, more_like_object_id=self.__more_like_object_id, object_ids=self.__object_ids, query_string=self.__query_string, relation_text=self.__relation_text, structure_texts=self.__structure_texts, work_type_text=self.__work_type_text)
 
         @property
         def collection_id(self):
@@ -185,8 +185,8 @@ class ObjectQuery(object):
             :type institution_id: str or None
             :type more_like_object_id: str or None
             :type object_ids: frozenset(str) or None
-            :type relation_text: str or None
             :type query_string: str or None
+            :type relation_text: str or None
             :type structure_texts: dict(str: tuple(str)) or None
             :type work_type_text: str or None
             '''
@@ -197,8 +197,8 @@ class ObjectQuery(object):
                 self.set_institution_id(object_query.institution_id)
                 self.set_more_like_object_id(object_query.more_like_object_id)
                 self.set_object_ids(object_query.object_ids)
-                self.set_relation_text(object_query.relation_text)
                 self.set_query_string(object_query.query_string)
+                self.set_relation_text(object_query.relation_text)
                 self.set_structure_texts(object_query.structure_texts)
                 self.set_work_type_text(object_query.work_type_text)
             elif isinstance(object_query, dict):
@@ -295,8 +295,8 @@ class ObjectQuery(object):
         institution_id=None,
         more_like_object_id=None,
         object_ids=None,
-        relation_text=None,
         query_string=None,
+        relation_text=None,
         structure_texts=None,
         work_type_text=None,
     ):
@@ -306,8 +306,8 @@ class ObjectQuery(object):
         :type institution_id: str or None
         :type more_like_object_id: str or None
         :type object_ids: frozenset(str) or None
-        :type relation_text: str or None
         :type query_string: str or None
+        :type relation_text: str or None
         :type structure_texts: dict(str: tuple(str)) or None
         :type work_type_text: str or None
         '''
@@ -337,19 +337,19 @@ class ObjectQuery(object):
                 raise TypeError("expected object_ids to be a frozenset(str) but it is a %s" % getattr(__builtin__, 'type')(object_ids))
         self.__object_ids = object_ids
 
-        if relation_text is not None:
-            if not isinstance(relation_text, basestring):
-                raise TypeError("expected relation_text to be a str but it is a %s" % getattr(__builtin__, 'type')(relation_text))
-            if len(relation_text) < 1:
-                raise ValueError("expected len(relation_text) to be >= 1, was %d" % len(relation_text))
-        self.__relation_text = relation_text
-
         if query_string is not None:
             if not isinstance(query_string, basestring):
                 raise TypeError("expected query_string to be a str but it is a %s" % getattr(__builtin__, 'type')(query_string))
             if len(query_string) < 1:
                 raise ValueError("expected len(query_string) to be >= 1, was %d" % len(query_string))
         self.__query_string = query_string
+
+        if relation_text is not None:
+            if not isinstance(relation_text, basestring):
+                raise TypeError("expected relation_text to be a str but it is a %s" % getattr(__builtin__, 'type')(relation_text))
+            if len(relation_text) < 1:
+                raise ValueError("expected len(relation_text) to be >= 1, was %d" % len(relation_text))
+        self.__relation_text = relation_text
 
         if structure_texts is not None:
             if not (isinstance(structure_texts, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], basestring) and (isinstance(__item[1], tuple) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), __item[1]))) == 0), structure_texts.iteritems()))) == 0):
@@ -376,9 +376,9 @@ class ObjectQuery(object):
             return False
         if self.object_ids != other.object_ids:
             return False
-        if self.relation_text != other.relation_text:
-            return False
         if self.query_string != other.query_string:
+            return False
+        if self.relation_text != other.relation_text:
             return False
         if self.structure_texts != other.structure_texts:
             return False
@@ -387,7 +387,7 @@ class ObjectQuery(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.facet_filters,self.institution_id,self.more_like_object_id,self.object_ids,self.relation_text,self.query_string,self.structure_texts,self.work_type_text,))
+        return hash((self.collection_id,self.facet_filters,self.institution_id,self.more_like_object_id,self.object_ids,self.query_string,self.relation_text,self.structure_texts,self.work_type_text,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -407,10 +407,10 @@ class ObjectQuery(object):
             field_reprs.append('more_like_object_id=' + "'" + self.more_like_object_id.encode('ascii', 'replace') + "'")
         if self.object_ids is not None:
             field_reprs.append('object_ids=' + repr(self.object_ids))
-        if self.relation_text is not None:
-            field_reprs.append('relation_text=' + "'" + self.relation_text.encode('ascii', 'replace') + "'")
         if self.query_string is not None:
             field_reprs.append('query_string=' + "'" + self.query_string.encode('ascii', 'replace') + "'")
+        if self.relation_text is not None:
+            field_reprs.append('relation_text=' + "'" + self.relation_text.encode('ascii', 'replace') + "'")
         if self.structure_texts is not None:
             field_reprs.append('structure_texts=' + repr(self.structure_texts))
         if self.work_type_text is not None:
@@ -429,10 +429,10 @@ class ObjectQuery(object):
             field_reprs.append('more_like_object_id=' + "'" + self.more_like_object_id.encode('ascii', 'replace') + "'")
         if self.object_ids is not None:
             field_reprs.append('object_ids=' + repr(self.object_ids))
-        if self.relation_text is not None:
-            field_reprs.append('relation_text=' + "'" + self.relation_text.encode('ascii', 'replace') + "'")
         if self.query_string is not None:
             field_reprs.append('query_string=' + "'" + self.query_string.encode('ascii', 'replace') + "'")
+        if self.relation_text is not None:
+            field_reprs.append('relation_text=' + "'" + self.relation_text.encode('ascii', 'replace') + "'")
         if self.structure_texts is not None:
             field_reprs.append('structure_texts=' + repr(self.structure_texts))
         if self.work_type_text is not None:
@@ -446,7 +446,7 @@ class ObjectQuery(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'facet_filters': self.facet_filters, 'institution_id': self.institution_id, 'more_like_object_id': self.more_like_object_id, 'object_ids': self.object_ids, 'relation_text': self.relation_text, 'query_string': self.query_string, 'structure_texts': self.structure_texts, 'work_type_text': self.work_type_text}
+        return {'collection_id': self.collection_id, 'facet_filters': self.facet_filters, 'institution_id': self.institution_id, 'more_like_object_id': self.more_like_object_id, 'object_ids': self.object_ids, 'query_string': self.query_string, 'relation_text': self.relation_text, 'structure_texts': self.structure_texts, 'work_type_text': self.work_type_text}
 
     def as_tuple(self):
         '''
@@ -455,7 +455,7 @@ class ObjectQuery(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.facet_filters, self.institution_id, self.more_like_object_id, self.object_ids, self.relation_text, self.query_string, self.structure_texts, self.work_type_text,)
+        return (self.collection_id, self.facet_filters, self.institution_id, self.more_like_object_id, self.object_ids, self.query_string, self.relation_text, self.structure_texts, self.work_type_text,)
 
     @property
     def collection_id(self):
@@ -540,14 +540,14 @@ class ObjectQuery(object):
                     pass
             elif ifield_name == 'object_ids':
                 init_kwds['object_ids'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
-            elif ifield_name == 'relation_text':
-                try:
-                    init_kwds['relation_text'] = iprot.read_string()
-                except (TypeError, ValueError,):
-                    pass
             elif ifield_name == 'query_string':
                 try:
                     init_kwds['query_string'] = iprot.read_string()
+                except (TypeError, ValueError,):
+                    pass
+            elif ifield_name == 'relation_text':
+                try:
+                    init_kwds['relation_text'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
             elif ifield_name == 'structure_texts':
@@ -577,8 +577,8 @@ class ObjectQuery(object):
         institution_id=None,
         more_like_object_id=None,
         object_ids=None,
-        relation_text=None,
         query_string=None,
+        relation_text=None,
         structure_texts=None,
         work_type_text=None,
     ):
@@ -590,8 +590,8 @@ class ObjectQuery(object):
         :type institution_id: str or None
         :type more_like_object_id: str or None
         :type object_ids: frozenset(str) or None
-        :type relation_text: str or None
         :type query_string: str or None
+        :type relation_text: str or None
         :type structure_texts: dict(str: tuple(str)) or None
         :type work_type_text: str or None
         :rtype: costume.api.models.object.object_query.ObjectQuery
@@ -607,15 +607,15 @@ class ObjectQuery(object):
             more_like_object_id = self.more_like_object_id
         if object_ids is None:
             object_ids = self.object_ids
-        if relation_text is None:
-            relation_text = self.relation_text
         if query_string is None:
             query_string = self.query_string
+        if relation_text is None:
+            relation_text = self.relation_text
         if structure_texts is None:
             structure_texts = self.structure_texts
         if work_type_text is None:
             work_type_text = self.work_type_text
-        return self.__class__(collection_id=collection_id, facet_filters=facet_filters, institution_id=institution_id, more_like_object_id=more_like_object_id, object_ids=object_ids, relation_text=relation_text, query_string=query_string, structure_texts=structure_texts, work_type_text=work_type_text)
+        return self.__class__(collection_id=collection_id, facet_filters=facet_filters, institution_id=institution_id, more_like_object_id=more_like_object_id, object_ids=object_ids, query_string=query_string, relation_text=relation_text, structure_texts=structure_texts, work_type_text=work_type_text)
 
     @property
     def structure_texts(self):
@@ -671,14 +671,14 @@ class ObjectQuery(object):
             oprot.write_set_end()
             oprot.write_field_end()
 
-        if self.relation_text is not None:
-            oprot.write_field_begin(name='relation_text', type=11, id=None)
-            oprot.write_string(self.relation_text)
-            oprot.write_field_end()
-
         if self.query_string is not None:
             oprot.write_field_begin(name='query_string', type=11, id=None)
             oprot.write_string(self.query_string)
+            oprot.write_field_end()
+
+        if self.relation_text is not None:
+            oprot.write_field_begin(name='relation_text', type=11, id=None)
+            oprot.write_string(self.relation_text)
             oprot.write_field_end()
 
         if self.structure_texts is not None:
