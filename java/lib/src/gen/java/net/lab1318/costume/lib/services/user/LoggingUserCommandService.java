@@ -130,7 +130,7 @@ public class LoggingUserCommandService implements net.lab1318.costume.api.servic
         }
     }
 
-    public net.lab1318.costume.api.models.user.UserBookmarkId postUserBookmark(final net.lab1318.costume.api.models.user.UserBookmark userBookmark) throws net.lab1318.costume.api.services.IoException {
+    public net.lab1318.costume.api.models.user.UserBookmarkId postUserBookmark(final net.lab1318.costume.api.models.user.UserBookmark userBookmark) throws net.lab1318.costume.api.services.user.DuplicateUserBookmarkException, net.lab1318.costume.api.services.IoException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -148,6 +148,11 @@ public class LoggingUserCommandService implements net.lab1318.costume.api.servic
             logger.debug(Markers.POST_USER_BOOKMARK, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
 
             return __returnValue;
+        } catch (final net.lab1318.costume.api.services.user.DuplicateUserBookmarkException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.POST_USER_BOOKMARK, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
         } catch (final net.lab1318.costume.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());

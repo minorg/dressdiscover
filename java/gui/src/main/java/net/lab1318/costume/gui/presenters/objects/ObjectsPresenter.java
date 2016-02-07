@@ -5,16 +5,23 @@ import static com.google.common.base.Preconditions.checkState;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
 import org.thryft.protocol.InputProtocolException;
 import org.thryft.protocol.JacksonJsonInputProtocol;
 import org.thryft.waf.gui.EventBus;
+import org.thryft.waf.lib.logging.LoggingUtils;
 import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.eventbus.Subscribe;
 import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
@@ -27,8 +34,12 @@ import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.object.ObjectFacets;
+import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.models.object.ObjectQuery;
-import net.lab1318.costume.api.models.user.User;
+import net.lab1318.costume.api.models.user.UserBookmarkEntry;
+import net.lab1318.costume.api.models.user.UserBookmarkId;
+import net.lab1318.costume.api.models.user.UserEntry;
+import net.lab1318.costume.api.models.user.UserId;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
@@ -37,6 +48,10 @@ import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
 import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
 import net.lab1318.costume.api.services.object.GetObjectSummariesResult;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
+import net.lab1318.costume.api.services.user.NoSuchUserException;
+import net.lab1318.costume.api.services.user.UserCommandService;
+import net.lab1318.costume.api.services.user.UserCommandService.Messages.DeleteUserBookmarkByIdRequest;
+import net.lab1318.costume.api.services.user.UserCommandService.Messages.PostUserBookmarkRequest;
 import net.lab1318.costume.api.services.user.UserQueryService;
 import net.lab1318.costume.gui.models.object.ObjectSummaryEntryBeanQueryDefinition;
 import net.lab1318.costume.gui.models.object.ObjectSummaryEntryBeanQueryFactory;
@@ -48,16 +63,33 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
     @Inject
     public ObjectsPresenter(final CollectionQueryService collectionQueryService, final EventBus eventBus,
             final InstitutionQueryService institutionQueryService,
-            final ObjectSummaryQueryService objectSummaryQueryService, final UserQueryService userQueryService,
-            final ObjectsView view) {
-        super(eventBus, userQueryService, view);
+            final ObjectSummaryQueryService objectSummaryQueryService, final UserCommandService userCommandService,
+            final UserQueryService userQueryService, final ObjectsView view) {
+        super(eventBus, userCommandService, userQueryService, view);
         this.collectionQueryService = checkNotNull(collectionQueryService);
         this.institutionQueryService = checkNotNull(institutionQueryService);
         this.objectSummaryQueryService = checkNotNull(objectSummaryQueryService);
     }
 
+    @Subscribe
+    public void onDeleteUserBookmarkByIdRequest(final DeleteUserBookmarkByIdRequest request) {
+        if (!_deleteUserBookmark(request.getId())) {
+            return;
+        }
+        _getView().setBookmarkedObjectIds(__getBookmarkedObjectIds());
+    }
+
+    @Subscribe
+    public void onPostUserBookmarkRequest(final PostUserBookmarkRequest request) {
+        final Optional<UserBookmarkId> userBookmarkId = _postUserBookmark(request.getUserBookmark());
+        if (!userBookmarkId.isPresent()) {
+            return;
+        }
+        _getView().setBookmarkedObjectIds(__getBookmarkedObjectIds());
+    }
+
     @Override
-    protected void _onViewEnter(final Optional<User> currentUser, final ViewChangeEvent event) {
+    protected void _onViewEnter(final Optional<UserEntry> currentUser, final ViewChangeEvent event) {
         final ObjectQuery objectQuery;
         try {
             objectQuery = ObjectQuery.readAsStruct(
@@ -131,10 +163,48 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
             institutionMap = institutionMapBuilder.build();
         }
 
-        _getView().setModels(availableObjectFacets, collectionMap, institutionMap, objectQuery,
+        ImmutableMap<ObjectId, UserBookmarkId> bookmarkedObjectIds;
+        Optional<UserId> currentUserId;
+        if (currentUser.isPresent()) {
+            currentUserId = Optional.of(currentUser.get().getId());
+            bookmarkedObjectIds = __getBookmarkedObjectIds();
+        } else {
+            bookmarkedObjectIds = ImmutableMap.of();
+            currentUserId = Optional.absent();
+        }
+
+        _getView().setModels(availableObjectFacets, bookmarkedObjectIds, collectionMap, currentUserId, institutionMap,
+                objectQuery,
                 new LazyQueryContainer(ObjectSummaryEntryBeanQueryDefinition.getInstance(),
                         ObjectSummaryEntryBeanQueryFactory.create(firstResult, objectQuery, objectSummaryQueryService)),
                 firstResult.getFacets().get());
+    }
+
+    private ImmutableMap<ObjectId, UserBookmarkId> __getBookmarkedObjectIds() {
+        final Optional<UserEntry> currentUser = _getCurrentUser();
+        if (!currentUser.isPresent()) {
+            return ImmutableMap.of();
+        }
+
+        try {
+            final ImmutableList<UserBookmarkEntry> bookmarks = _getUserQueryService()
+                    .getUserBookmarksByUserId(currentUser.get().getId());
+            final Map<ObjectId, UserBookmarkId> bookmarkedObjectIdsBuilder = new LinkedHashMap<>();
+            for (final UserBookmarkEntry bookmarkEntry : bookmarks) {
+                if (!bookmarkEntry.getModel().getObjectId().isPresent()) {
+                    continue;
+                }
+                bookmarkedObjectIdsBuilder.put(bookmarkEntry.getModel().getObjectId().get(), bookmarkEntry.getId());
+            }
+            return ImmutableMap.copyOf(bookmarkedObjectIdsBuilder);
+        } catch (final IoException e) {
+            _getView().setComponentError(new SystemError("I/O exception", e));
+            return ImmutableMap.of();
+        } catch (final NoSuchUserException e) {
+            logger.warn(logMarker, "unable to get bookmarks for user {}, user no longer exists?",
+                    currentUser.get().getId());
+            return ImmutableMap.of();
+        }
     }
 
     private final CollectionQueryService collectionQueryService;
@@ -147,4 +217,6 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
                     .build());
     private final static Optional<GetObjectSummariesOptions> GET_AVAILABLE_OBJECT_FACETS_OPTIONS = Optional
             .of(GetObjectSummariesOptions.builder().setIncludeFacets(true).setSize(UnsignedInteger.ZERO).build());
+    private final static Logger logger = LoggerFactory.getLogger(ObjectsPresenter.class);
+    private final static Marker logMarker = LoggingUtils.getMarker(ObjectsPresenter.class);
 }

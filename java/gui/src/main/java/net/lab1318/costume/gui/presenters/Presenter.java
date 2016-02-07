@@ -16,18 +16,24 @@ import org.thryft.waf.lib.logging.LoggingUtils;
 import com.google.common.base.Optional;
 import com.google.common.eventbus.Subscribe;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.SystemError;
 import com.vaadin.ui.UI;
 
 import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.models.user.InvalidUserIdException;
-import net.lab1318.costume.api.models.user.User;
+import net.lab1318.costume.api.models.user.UserBookmark;
+import net.lab1318.costume.api.models.user.UserBookmarkId;
+import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.api.models.user.UserId;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService.Messages.GetCollectionByIdRequest;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService.Messages.GetInstitutionByIdRequest;
 import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectByIdRequest;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
+import net.lab1318.costume.api.services.user.DuplicateUserBookmarkException;
+import net.lab1318.costume.api.services.user.NoSuchUserBookmarkException;
 import net.lab1318.costume.api.services.user.NoSuchUserException;
+import net.lab1318.costume.api.services.user.UserCommandService;
 import net.lab1318.costume.api.services.user.UserQueryService;
 import net.lab1318.costume.gui.GuiUI;
 import net.lab1318.costume.gui.events.user.UserLogoutRequest;
@@ -35,8 +41,10 @@ import net.lab1318.costume.gui.views.TopLevelView;
 import net.lab1318.costume.gui.views.object_by_id.ObjectByIdView;
 
 public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.presenters.Presenter<ViewT> {
-    protected Presenter(final EventBus eventBus, final UserQueryService userQueryService, final ViewT view) {
+    protected Presenter(final EventBus eventBus, final UserCommandService userCommandService,
+            final UserQueryService userQueryService, final ViewT view) {
         super(eventBus, view);
+        this.userCommandService = checkNotNull(userCommandService);
         this.userQueryService = checkNotNull(userQueryService);
     }
 
@@ -66,6 +74,8 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
     public void onUserLogoutRequest(final UserLogoutRequest event) {
         SecurityUtils.getSubject().logout();
 
+        currentUser = Optional.absent();
+
         if (_getView() instanceof TopLevelView) {
             ((TopLevelView) _getView()).setCurrentUser(Optional.absent());
         }
@@ -73,11 +83,41 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
         UI.getCurrent().getPage().reload();
     }
 
-    protected abstract void _onViewEnter(final Optional<User> currentUser, final ViewChangeEvent event);
+    protected final boolean _deleteUserBookmark(final UserBookmarkId userBookmarkId) {
+        if (!currentUser.isPresent()) {
+            logger.warn(logMarker, "tried to delete a bookmark when not logged in");
+            return false;
+        }
+        try {
+            userCommandService.deleteUserBookmarkById(userBookmarkId);
+            return true;
+        } catch (final IoException e) {
+            _getView().setComponentError(new SystemError("I/O exception", e));
+            return false;
+        } catch (final NoSuchUserBookmarkException e) {
+            logger.warn(logMarker, "user {} tried to delete a non-existent bookmark {}", currentUser.get().getId(),
+                    userBookmarkId);
+            return false;
+        }
+    }
+
+    protected final Optional<UserEntry> _getCurrentUser() {
+        return currentUser;
+    }
+
+    protected final UserCommandService _getUserCommandService() {
+        return userCommandService;
+    }
+
+    protected final UserQueryService _getUserQueryService() {
+        return userQueryService;
+    }
+
+    protected abstract void _onViewEnter(final Optional<UserEntry> currentUser, final ViewChangeEvent event);
 
     @Override
     protected final void _onViewEnter(final ViewChangeEvent event) {
-        final Optional<User> currentUser = __getCurrentUser();
+        currentUser = __getCurrentUser();
         if (_getView() instanceof TopLevelView) {
             ((TopLevelView) _getView()).setCurrentUser(currentUser);
         }
@@ -85,7 +125,34 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
         _onViewEnter(currentUser, event);
     }
 
-    private final Optional<User> __getCurrentUser() {
+    @Override
+    protected void _onViewExit(final ViewChangeEvent event) {
+        currentUser = Optional.absent();
+    }
+
+    protected final Optional<UserBookmarkId> _postUserBookmark(final UserBookmark userBookmark) {
+        if (!currentUser.isPresent()) {
+            logger.warn(logMarker, "tried to post a bookmark when not logged in");
+            return Optional.absent();
+        } else if (!currentUser.get().getId().equals(userBookmark.getUserId())) {
+            logger.warn(logMarker, "user {} tried to post a bookmark as another user {}", currentUser.get().getId(),
+                    userBookmark.getUserId());
+            return Optional.absent();
+        }
+
+        try {
+            return Optional.of(userCommandService.postUserBookmark(userBookmark));
+        } catch (final DuplicateUserBookmarkException e) {
+            logger.warn(logMarker, "user {} tried to post a duplicate bookmark {}", currentUser.get().getId(),
+                    userBookmark.getUserId());
+            return Optional.absent();
+        } catch (final IoException e) {
+            _getView().setComponentError(new SystemError("I/O exception", e));
+            return Optional.absent();
+        }
+    }
+
+    private final Optional<UserEntry> __getCurrentUser() {
         final Subject currentSubject = SecurityUtils.getSubject();
         if (!currentSubject.isAuthenticated() && !currentSubject.isRemembered()) {
             logger.debug(logMarker, "no user authenticated or remembered");
@@ -108,16 +175,18 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
         }
 
         try {
-            return Optional.of(userQueryService.getUserById(currentUserId));
+            return Optional.of(new UserEntry(currentUserId, userQueryService.getUserById(currentUserId)));
         } catch (final IoException e) {
             logger.error(logMarker, "error getting user id '{}': {}", currentUserId, e);
             return Optional.absent();
         } catch (final NoSuchUserException e) {
             logger.warn(logMarker, "no such user id '{}'", currentUserId);
-            throw new AuthorizationException("no such user id");
+            return Optional.absent();
         }
     }
 
+    private Optional<UserEntry> currentUser = Optional.absent();
+    private final UserCommandService userCommandService;
     private final UserQueryService userQueryService;
     private final static Logger logger = LoggerFactory.getLogger(Presenter.class);
     private final static Marker logMarker = LoggingUtils.getMarker(Presenter.class);

@@ -311,6 +311,9 @@ public class UserCommandServiceJsonRpcServlet extends javax.servlet.http.HttpSer
         final net.lab1318.costume.api.models.user.UserBookmarkId result;
         try {
             result = service.postUserBookmark(serviceRequest.getUserBookmark());
+        } catch (final net.lab1318.costume.api.services.user.DuplicateUserBookmarkException e) {
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            return;
         } catch (final net.lab1318.costume.api.services.IoException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;

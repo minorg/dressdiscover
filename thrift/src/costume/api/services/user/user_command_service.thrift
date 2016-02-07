@@ -10,6 +10,7 @@ include "costume/api/models/user/user_bookmark.thrift"
 include "costume/api/models/user/user_bookmark_id.thrift"
 include "costume/api/models/user/user_id.thrift"
 include "costume/api/services/io_exception.thrift"
+include "costume/api/services/user/duplicate_user_bookmark_exception.thrift"
 include "costume/api/services/user/duplicate_user_exception.thrift"
 include "costume/api/services/user/no_such_user_exception.thrift"
 include "costume/api/services/user/no_such_user_bookmark_exception.thrift"
@@ -49,7 +50,8 @@ service UserCommandService {
 	post_user_bookmark(
 		user_bookmark.UserBookmark user_bookmark,
 	) throws (
-		io_exception.IoException e1
+		duplicate_user_bookmark_exception.DuplicateUserBookmarkException e1,
+		io_exception.IoException e2
 	);
 
 	void

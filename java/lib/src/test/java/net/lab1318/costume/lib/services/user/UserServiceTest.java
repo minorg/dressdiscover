@@ -73,22 +73,32 @@ public abstract class UserServiceTest extends ServiceTest {
         };
     }
 
-    protected final ImmutableList<UserBookmarkEntry> _postUserBookmarks(final UserId userId) throws Exception {
+    protected final ImmutableList<UserBookmarkEntry> _postObjectIdUserBookmarks(final UserId userId) throws Exception {
         final ImmutableList.Builder<UserBookmarkEntry> resultBuilder = ImmutableList.builder();
-        for (int i = 0; i < 4; i++) {
-            final UserBookmark.Builder userBookmarkBuilder = UserBookmark.builder().setFolder("My folder")
-                    .setUserId(userId);
-            final ObjectId objectId = ObjectId.parse("institution/collection/object" + i);
-            if (i % 2 == 0) {
-                userBookmarkBuilder.setObjectId(objectId);
-            } else {
-                userBookmarkBuilder
-                        .setObjectQuery(ObjectQuery.builder().setObjectIds(ImmutableSet.of(objectId)).build());
-            }
-            final UserBookmark userBookmark = userBookmarkBuilder.build();
+        for (int i = 0; i < 2; i++) {
+            final UserBookmark userBookmark = UserBookmark.builder().setFolder("My folder")
+                    .setObjectId(ObjectId.parse("institution/collection/object" + i)).setUserId(userId).build();
             resultBuilder.add(new UserBookmarkEntry(userCommandService.postUserBookmark(userBookmark), userBookmark));
         }
         return resultBuilder.build();
+    }
+
+    protected final ImmutableList<UserBookmarkEntry> _postObjectQueryUserBookmarks(final UserId userId)
+            throws Exception {
+        final ImmutableList.Builder<UserBookmarkEntry> resultBuilder = ImmutableList.builder();
+        for (int i = 0; i < 2; i++) {
+            final UserBookmark userBookmark = UserBookmark.builder().setFolder("My folder")
+                    .setObjectQuery(ObjectQuery.builder()
+                            .setObjectIds(ImmutableSet.of(ObjectId.parse("institution/collection/object" + i))).build())
+                    .setUserId(userId).build();
+            resultBuilder.add(new UserBookmarkEntry(userCommandService.postUserBookmark(userBookmark), userBookmark));
+        }
+        return resultBuilder.build();
+    }
+
+    protected final ImmutableList<UserBookmarkEntry> _postUserBookmarks(final UserId userId) throws Exception {
+        return ImmutableList.<UserBookmarkEntry> builder().addAll(_postObjectIdUserBookmarks(userId))
+                .addAll(_postObjectQueryUserBookmarks(userId)).build();
     }
 
     protected final ImmutableList<UserEntry> _postUsers() throws Exception {

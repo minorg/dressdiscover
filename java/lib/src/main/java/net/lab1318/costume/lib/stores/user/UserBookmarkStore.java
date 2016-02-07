@@ -10,6 +10,7 @@ import net.lab1318.costume.api.models.user.UserBookmarkEntry;
 import net.lab1318.costume.api.models.user.UserBookmarkId;
 import net.lab1318.costume.api.models.user.UserId;
 import net.lab1318.costume.api.services.IoException;
+import net.lab1318.costume.api.services.user.DuplicateUserBookmarkException;
 import net.lab1318.costume.api.services.user.NoSuchUserBookmarkException;
 
 public interface UserBookmarkStore {
@@ -20,5 +21,5 @@ public interface UserBookmarkStore {
             throws IoException;
 
     public UserBookmarkId postUserBookmark(final Logger logger, final Marker logMarker, final UserBookmark userBookmark)
-            throws IoException;
+            throws DuplicateUserBookmarkException, IoException;
 }
