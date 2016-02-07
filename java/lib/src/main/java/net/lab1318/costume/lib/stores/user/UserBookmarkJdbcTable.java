@@ -66,9 +66,10 @@ public class UserBookmarkJdbcTable extends AbstractJdbcTable<UserBookmark> imple
 
     @Override
     public ImmutableList<UserBookmarkEntry> getUserBookmarksByUserId(final Logger logger, final Marker logMarker,
-            final UserId userId) throws IoException {
+            final boolean objectIdsOnly, final UserId userId) throws IoException {
         try (Connection connection = _getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement(getUserBookmarksByUserIdSql)) {
+            try (PreparedStatement statement = connection.prepareStatement(
+                    objectIdsOnly ? getObjectIdUserBookmarksByUserIdSql : getUserBookmarksByUserIdSql)) {
                 statement.setInt(1, userId.asInteger());
                 try (final ResultSet resultSet = statement.executeQuery()) {
                     return __getUserBookmarks(logger, logMarker, resultSet);
@@ -176,6 +177,9 @@ public class UserBookmarkJdbcTable extends AbstractJdbcTable<UserBookmark> imple
     private final String deleteUserBookmarkByIdSql = String.format("DELETE FROM %s WHERE id = ?", TABLE_NAME);
     private final String getUserBookmarksByUserIdSql = String.format("SELECT * FROM %s WHERE %s = ?", TABLE_NAME,
             UserBookmark.FieldMetadata.USER_ID.getThriftName());
+    private final String getObjectIdUserBookmarksByUserIdSql = getUserBookmarksByUserIdSql
+            + String.format(" AND %s IS NOT NULL AND %s IS NULL", UserBookmark.FieldMetadata.OBJECT_ID.getThriftName(),
+                    UserBookmark.FieldMetadata.OBJECT_QUERY.getThriftName());
     final static String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS user_bookmark(\n"
             + "    id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,\n" + "    object_query VARCHAR,\n"
             + "    name VARCHAR NOT NULL,\n" + "    user_id INTEGER NOT NULL,\n" + "    folder VARCHAR,\n"

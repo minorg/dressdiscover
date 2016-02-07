@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thryft.native_.EmailAddress;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 
 import net.lab1318.costume.api.models.user.User;
@@ -24,11 +25,11 @@ abstract class StoreUserQueryService implements IterableUserQueryService {
     }
 
     @Override
-    public ImmutableList<UserBookmarkEntry> getUserBookmarksByUserId(final UserId userId)
-            throws IoException, NoSuchUserException {
+    public ImmutableList<UserBookmarkEntry> getUserBookmarksByUserId(final UserId userId,
+            final Optional<Boolean> objectIdsOnly) throws IoException, NoSuchUserException {
         return userBookmarkStore.getUserBookmarksByUserId(logger,
                 net.lab1318.costume.lib.services.user.LoggingUserQueryService.Markers.GET_USER_BOOKMARKS_BY_USER_ID,
-                userId);
+                objectIdsOnly.or(Boolean.FALSE), userId);
     }
 
     @Override

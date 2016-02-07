@@ -117,12 +117,17 @@ class UserQueryServiceJsonRpcClient(costume.api.services.user.user_query_service
     def _get_user_bookmarks_by_user_id(
         self,
         user_id,
+        object_ids_only,
     ):
         oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='user_id', type=11, id=None)
         oprot.write_string(user_id)
         oprot.write_field_end()
+        if object_ids_only is not None:
+            oprot.write_field_begin(name='object_ids_only', type=2, id=None)
+            oprot.write_bool(object_ids_only)
+            oprot.write_field_end()
         oprot.write_struct_end()
 
         return_value = self.__request(method='get_user_bookmarks_by_user_id', params=oprot.value)

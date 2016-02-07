@@ -16,7 +16,8 @@ include "thryft/native/email_address.thrift"
 service UserQueryService {
 	list<user_bookmark_entry.UserBookmarkEntry>
 	get_user_bookmarks_by_user_id(
-		user_id.UserId user_id
+		user_id.UserId user_id,
+		optional bool object_ids_only
 	) throws (
 		io_exception.IoException e1,
 		no_such_user_exception.NoSuchUserException e2

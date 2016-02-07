@@ -160,7 +160,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
 
         final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.user.UserBookmarkEntry> result;
         try {
-            result = service.getUserBookmarksByUserId(serviceRequest.getUserId());
+            result = service.getUserBookmarksByUserId(serviceRequest.getUserId(), serviceRequest.getObjectIdsOnly());
         } catch (final net.lab1318.costume.api.services.IoException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
