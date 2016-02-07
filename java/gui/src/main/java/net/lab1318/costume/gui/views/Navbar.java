@@ -24,7 +24,7 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 
 import net.lab1318.costume.api.models.object.ObjectQuery;
-import net.lab1318.costume.api.models.user.User;
+import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.gui.GuiUI;
 import net.lab1318.costume.gui.events.user.UserLogoutRequest;
 
@@ -101,10 +101,10 @@ public final class Navbar extends HorizontalLayout {
         return searchTextField;
     }
 
-    public void setCurrentUser(final Optional<User> currentUser) {
+    public void setCurrentUser(final Optional<UserEntry> currentUser) {
         if (currentUser.isPresent()) {
             currentUserMenuItem.setCommand(null);
-            currentUserMenuItem.setText(currentUser.get().getEmailAddress().toString());
+            currentUserMenuItem.setText(currentUser.get().getModel().getEmailAddress().toString());
             currentUserMenuItem.removeChildren();
             currentUserMenuItem.addItem("Logout", new Command() {
                 @Override

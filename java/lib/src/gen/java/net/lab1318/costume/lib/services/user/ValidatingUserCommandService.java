@@ -45,7 +45,7 @@ public class ValidatingUserCommandService implements net.lab1318.costume.api.ser
     }
 
     @Override
-    public final net.lab1318.costume.api.models.user.UserBookmarkId postUserBookmark(final net.lab1318.costume.api.models.user.UserBookmark userBookmark) throws net.lab1318.costume.api.services.IoException {
+    public final net.lab1318.costume.api.models.user.UserBookmarkId postUserBookmark(final net.lab1318.costume.api.models.user.UserBookmark userBookmark) throws net.lab1318.costume.api.services.user.DuplicateUserBookmarkException, net.lab1318.costume.api.services.IoException {
         _validatePostUserBookmarkParameters(userBookmark);
         return com.google.common.base.Preconditions.checkNotNull(delegate.postUserBookmark(userBookmark), "net.lab1318.costume.api.services.user.UserCommandService.postUserBookmark: missing returnValue");
     }

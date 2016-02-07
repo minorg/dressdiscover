@@ -18,7 +18,8 @@ abstract class AbstractJdbcTable<ModelT extends Model> extends org.thryft.waf.li
     }
 
     protected AbstractJdbcTable(final CostumeProperties properties) throws SQLException {
-        this(properties, "jdbc:h2:" + new File(new File(new File(properties.getHomeDirectoryPath()), "data"), "users"));
+        this(properties, "jdbc:h2:" + new File(new File(new File(properties.getHomeDirectoryPath()), "data"), "users")
+                + ";TRACE_LEVEL_FILE=0");
     }
 
     protected AbstractJdbcTable(final CostumeProperties properties, final String url) throws SQLException {

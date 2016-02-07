@@ -16,6 +16,7 @@ import com.google.common.collect.ImmutableList;
 import net.lab1318.costume.api.models.user.User;
 import net.lab1318.costume.api.models.user.UserBookmarkEntry;
 import net.lab1318.costume.api.models.user.UserEntry;
+import net.lab1318.costume.api.services.user.DuplicateUserBookmarkException;
 import net.lab1318.costume.api.services.user.NoSuchUserException;
 import net.lab1318.costume.lib.services.TestData;
 
@@ -81,6 +82,18 @@ public final class UserCommandServiceTest extends UserServiceTest {
     public void testPostUserBookmark() throws Exception {
         final UserEntry userEntry = _postUsers().get(0);
         _postUserBookmarks(userEntry.getId());
+
+        try {
+            _postObjectIdUserBookmarks(userEntry.getId());
+            fail();
+        } catch (final DuplicateUserBookmarkException e) {
+        }
+
+        try {
+            _postObjectQueryUserBookmarks(userEntry.getId());
+            fail();
+        } catch (final DuplicateUserBookmarkException e) {
+        }
     }
 
     @Test

@@ -1,5 +1,7 @@
 package net.lab1318.costume.lib.stores.user;
 
+import static com.google.common.base.Preconditions.checkState;
+
 import java.io.StringWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,6 +28,7 @@ import net.lab1318.costume.api.models.user.UserBookmarkEntry;
 import net.lab1318.costume.api.models.user.UserBookmarkId;
 import net.lab1318.costume.api.models.user.UserId;
 import net.lab1318.costume.api.services.IoException;
+import net.lab1318.costume.api.services.user.DuplicateUserBookmarkException;
 import net.lab1318.costume.api.services.user.NoSuchUserBookmarkException;
 import net.lab1318.costume.lib.CostumeProperties;
 import net.lab1318.costume.lib.services.IoExceptions;
@@ -78,19 +81,47 @@ public class UserBookmarkJdbcTable extends AbstractJdbcTable<UserBookmark> imple
 
     @Override
     public UserBookmarkId postUserBookmark(final Logger logger, final Marker logMarker, final UserBookmark userBookmark)
-            throws IoException {
+            throws DuplicateUserBookmarkException, IoException {
+        checkState(userBookmark.getObjectId().isPresent() ^ userBookmark.getObjectQuery().isPresent());
+
         try (Connection connection = _getConnection()) {
+            // Check uniqueness manually
+
             ImmutableMap<String, Object> extraColumns;
-            if (userBookmark.getObjectQuery().isPresent()) {
+            if (userBookmark.getObjectId().isPresent()) {
+                try (PreparedStatement selectStatement = connection
+                        .prepareStatement(selectDuplicateObjectIdUserBookmarksSql)) {
+                    selectStatement.setString(1, userBookmark.getObjectId().get().toString());
+                    selectStatement.setString(2, userBookmark.getUserId().toString());
+                    try (ResultSet resultSet = selectStatement.executeQuery()) {
+                        if (resultSet.next()) {
+                            final int id = resultSet.getInt("id");
+                            throw new DuplicateUserBookmarkException(
+                                    String.format("duplicate bookmark %d with same object id", id));
+                        }
+                    }
+                }
+                extraColumns = ImmutableMap.of();
+            } else {
                 final StringWriter objectQueryJsonStringWriter = new StringWriter();
                 final JacksonJsonOutputProtocol oprot = new JacksonJsonOutputProtocol(objectQueryJsonStringWriter);
                 userBookmark.getObjectQuery().get().writeAsStruct(oprot);
                 oprot.flush();
                 final String objectQueryJson = objectQueryJsonStringWriter.toString();
+                try (PreparedStatement selectStatement = connection
+                        .prepareStatement(selectDuplicateObjectQueryUserBookmarksSql)) {
+                    selectStatement.setString(1, objectQueryJson);
+                    selectStatement.setString(2, userBookmark.getUserId().toString());
+                    try (ResultSet resultSet = selectStatement.executeQuery()) {
+                        if (resultSet.next()) {
+                            final int id = resultSet.getInt("id");
+                            throw new DuplicateUserBookmarkException(
+                                    String.format("duplicate bookmark %d with same object query", id));
+                        }
+                    }
+                }
                 extraColumns = ImmutableMap.of(UserBookmark.FieldMetadata.OBJECT_QUERY.getThriftName(),
                         objectQueryJson);
-            } else {
-                extraColumns = ImmutableMap.of();
             }
 
             try (PreparedStatement insertStatement = connection
@@ -135,9 +166,16 @@ public class UserBookmarkJdbcTable extends AbstractJdbcTable<UserBookmark> imple
         return userBookmarksBuilder.build();
     }
 
+    private final String selectDuplicateObjectIdUserBookmarksSql = String.format(
+            "SELECT id FROM %s WHERE %s = ? AND %s = ? LIMIT 1", TABLE_NAME,
+            UserBookmark.FieldMetadata.OBJECT_ID.getThriftName(), UserBookmark.FieldMetadata.USER_ID.getThriftName());
+    private final String selectDuplicateObjectQueryUserBookmarksSql = String.format(
+            "SELECT id FROM %s WHERE %s = ? AND %s = ? LIMIT 1", TABLE_NAME,
+            UserBookmark.FieldMetadata.OBJECT_QUERY.getThriftName(),
+            UserBookmark.FieldMetadata.USER_ID.getThriftName());
     private final String deleteUserBookmarkByIdSql = String.format("DELETE FROM %s WHERE id = ?", TABLE_NAME);
-    private final String getUserBookmarksByUserIdSql = String.format("SELECT * FROM %s WHERE %s.user_id = ?",
-            TABLE_NAME, TABLE_NAME);
+    private final String getUserBookmarksByUserIdSql = String.format("SELECT * FROM %s WHERE %s = ?", TABLE_NAME,
+            UserBookmark.FieldMetadata.USER_ID.getThriftName());
     final static String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS user_bookmark(\n"
             + "    id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,\n" + "    object_query VARCHAR,\n"
             + "    user_id INTEGER NOT NULL,\n" + "    folder VARCHAR,\n" + "    object_id VARCHAR,\n"

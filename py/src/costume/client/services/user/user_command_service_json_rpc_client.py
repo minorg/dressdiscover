@@ -1,6 +1,7 @@
 from urlparse import urlparse
 import base64
 import costume.api.services.io_exception  # @UnusedImport
+import costume.api.services.user.duplicate_user_bookmark_exception  # @UnusedImport
 import costume.api.services.user.duplicate_user_exception  # @UnusedImport
 import costume.api.services.user.no_such_user_bookmark_exception  # @UnusedImport
 import costume.api.services.user.no_such_user_exception  # @UnusedImport

@@ -5,6 +5,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Date;
 
 import org.apache.shiro.SecurityUtils;
 import org.thryft.waf.server.controllers.oauth.AbstractOauthLoginController;
@@ -89,8 +90,8 @@ public class OauthLoginController extends AbstractOauthLoginController<UserEntry
 
     @Override
     protected UserEntry _postUser(final String providerId, final OauthUserProfile userProfile) throws IOException {
-        final User.Builder userBuilder = User.builder();
-        userBuilder.setEmailAddress(userProfile.getEmailAddress());
+        final User.Builder userBuilder = User.builder().setCtime(new Date())
+                .setEmailAddress(userProfile.getEmailAddress());
         final User user = userBuilder.build();
         try {
             return new UserEntry(userCommandService.postUser(user), user);

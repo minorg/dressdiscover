@@ -19,7 +19,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-import net.lab1318.costume.api.models.user.User;
+import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.gui.views.wizard.WizardFeatureView;
 
 @SuppressWarnings("serial")
@@ -36,7 +36,7 @@ public abstract class TopLevelView extends View {
         notification.show(Page.getCurrent());
     }
 
-    public void setCurrentUser(final Optional<User> currentUser) {
+    public void setCurrentUser(final Optional<UserEntry> currentUser) {
         navbar.setCurrentUser(currentUser);
     }
 

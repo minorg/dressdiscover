@@ -1,7 +1,11 @@
 package net.lab1318.costume.gui.views.objects;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import javax.annotation.Nullable;
 
 import org.thryft.native_.Url;
 import org.thryft.waf.gui.EventBus;
@@ -11,6 +15,7 @@ import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 import com.vaadin.event.MouseEvents.ClickListener;
 import com.vaadin.server.ExternalResource;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.CustomComponent;
@@ -28,20 +33,31 @@ import net.lab1318.costume.api.models.object.ObjectFacets;
 import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.models.object.ObjectSummary;
 import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
+import net.lab1318.costume.api.models.user.UserBookmark;
+import net.lab1318.costume.api.models.user.UserBookmarkId;
+import net.lab1318.costume.api.models.user.UserId;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
+import net.lab1318.costume.api.services.user.UserCommandService.Messages.DeleteUserBookmarkByIdRequest;
+import net.lab1318.costume.api.services.user.UserCommandService.Messages.PostUserBookmarkRequest;
 import net.lab1318.costume.gui.models.image.ImageBean;
 import net.lab1318.costume.gui.models.image.ImageVersionBean;
 import net.lab1318.costume.gui.views.ImageWithRightsView;
 
 @SuppressWarnings("serial")
 final class ObjectSummaryEntriesTable extends CustomComponent {
-    public ObjectSummaryEntriesTable(final ImmutableMap<CollectionId, Collection> collections, final EventBus eventBus,
-            final ImmutableMap<InstitutionId, Institution> institutions, final ObjectFacets objectFacets,
-            final LazyQueryContainer objects) {
+    public ObjectSummaryEntriesTable(final ImmutableMap<ObjectId, UserBookmarkId> bookmarkedObjectIds,
+            final ImmutableMap<CollectionId, Collection> collections, final Optional<UserId> currentUserId,
+            final EventBus eventBus, final ImmutableMap<InstitutionId, Institution> institutions,
+            final ObjectFacets objectFacets, final LazyQueryContainer objects) {
+        this.bookmarkedObjectIds = checkNotNull(bookmarkedObjectIds);
+
         final Map<String, String> columns = new LinkedHashMap<>();
         {
+            if (currentUserId.isPresent()) {
+                columns.put("bookmark", "Bookmark");
+            }
             columns.put(ObjectSummaryEntry.FieldMetadata.MODEL.getJavaName() + '.'
                     + ObjectSummary.FieldMetadata.IMAGE.getJavaName(), "");
             columns.put(ObjectSummaryEntry.FieldMetadata.MODEL.getJavaName() + '.'
@@ -56,15 +72,42 @@ final class ObjectSummaryEntriesTable extends CustomComponent {
                     + ObjectSummary.FieldMetadata.URL.getJavaName(), "URL");
         }
 
-        final Table table = new Table();
         table.setContainerDataSource(objects);
         table.setPageLength(6);
         table.setSizeFull();
-        table.setVisibleColumns(columns.keySet().toArray());
-        {
-            final String[] columnHeaders = new String[columns.size()];
-            columns.values().toArray(columnHeaders);
-            table.setColumnHeaders(columnHeaders);
+
+        if (currentUserId.isPresent()) {
+            table.addGeneratedColumn("bookmark", new ColumnGenerator() {
+                @Override
+                public Object generateCell(final Table source, final Object itemId, final Object columnId) {
+                    final ObjectId objectId = (ObjectId) source.getContainerDataSource()
+                            .getContainerProperty(itemId, "id").getValue();
+                    final Button button = new NativeButton();
+                    @Nullable
+                    final UserBookmarkId bookmarkId = ObjectSummaryEntriesTable.this.bookmarkedObjectIds.get(objectId);
+                    if (bookmarkId != null) {
+                        button.addClickListener(new Button.ClickListener() {
+                            @Override
+                            public void buttonClick(final ClickEvent event) {
+                                eventBus.post(new DeleteUserBookmarkByIdRequest(bookmarkId));
+                                button.setIcon(FontAwesome.STAR_O);
+                            }
+                        });
+                        button.setIcon(FontAwesome.STAR);
+                    } else {
+                        button.addClickListener(new Button.ClickListener() {
+                            @Override
+                            public void buttonClick(final ClickEvent event) {
+                                eventBus.post(PostUserBookmarkRequest.builder().setUserBookmark(UserBookmark.builder()
+                                        .setObjectId(objectId).setUserId(currentUserId.get()).build()).build());
+                                button.setIcon(FontAwesome.STAR);
+                            }
+                        });
+                        button.setIcon(FontAwesome.STAR_O);
+                    }
+                    return button;
+                }
+            });
         }
 
         table.addGeneratedColumn(ObjectSummaryEntry.FieldMetadata.MODEL.getJavaName() + '.'
@@ -187,6 +230,21 @@ final class ObjectSummaryEntriesTable extends CustomComponent {
                     });
         }
 
+        table.setVisibleColumns(columns.keySet().toArray());
+        {
+            final String[] columnHeaders = new String[columns.size()];
+            columns.values().toArray(columnHeaders);
+            table.setColumnHeaders(columnHeaders);
+        }
+
         setCompositionRoot(table);
     }
+
+    public void setBookmarkedObjectIds(final ImmutableMap<ObjectId, UserBookmarkId> bookmarkedObjectIds) {
+        this.bookmarkedObjectIds = checkNotNull(bookmarkedObjectIds);
+        table.refreshRowCache();
+    }
+
+    private ImmutableMap<ObjectId, UserBookmarkId> bookmarkedObjectIds;
+    private final Table table = new Table();
 }

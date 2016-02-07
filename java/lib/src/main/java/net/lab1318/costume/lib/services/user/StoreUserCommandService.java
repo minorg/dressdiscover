@@ -10,6 +10,7 @@ import net.lab1318.costume.api.models.user.UserBookmark;
 import net.lab1318.costume.api.models.user.UserBookmarkId;
 import net.lab1318.costume.api.models.user.UserId;
 import net.lab1318.costume.api.services.IoException;
+import net.lab1318.costume.api.services.user.DuplicateUserBookmarkException;
 import net.lab1318.costume.api.services.user.DuplicateUserException;
 import net.lab1318.costume.api.services.user.NoSuchUserBookmarkException;
 import net.lab1318.costume.api.services.user.NoSuchUserException;
@@ -45,7 +46,8 @@ abstract class StoreUserCommandService implements UserCommandService {
     }
 
     @Override
-    public UserBookmarkId postUserBookmark(final UserBookmark userBookmark) throws IoException {
+    public UserBookmarkId postUserBookmark(final UserBookmark userBookmark)
+            throws DuplicateUserBookmarkException, IoException {
         if (!(userBookmark.getObjectId().isPresent() ^ userBookmark.getObjectQuery().isPresent())) {
             throw new IoException("user bookmark must have object_id xor object_query");
         }
