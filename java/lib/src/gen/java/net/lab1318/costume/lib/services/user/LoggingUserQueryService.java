@@ -22,17 +22,17 @@ public class LoggingUserQueryService implements net.lab1318.costume.api.services
         this.delegate = com.google.common.base.Preconditions.checkNotNull(delegate);
     }
 
-    public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.user.UserBookmarkEntry> getUserBookmarksByUserId(final net.lab1318.costume.api.models.user.UserId userId) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.user.NoSuchUserException {
+    public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.user.UserBookmarkEntry> getUserBookmarksByUserId(final net.lab1318.costume.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.user.NoSuchUserException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
         __logMessageStringBuilder.append("get_user_bookmarks_by_user_id(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.GetUserBookmarksByUserIdRequest(userId));
+        __logMessageArgs.add(new Messages.GetUserBookmarksByUserIdRequest(userId, objectIdsOnly));
         __logMessageStringBuilder.append(")");
 
         try {
-            com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.user.UserBookmarkEntry> __returnValue = delegate.getUserBookmarksByUserId(userId);
+            com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.user.UserBookmarkEntry> __returnValue = delegate.getUserBookmarksByUserId(userId, objectIdsOnly);
 
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(__returnValue);

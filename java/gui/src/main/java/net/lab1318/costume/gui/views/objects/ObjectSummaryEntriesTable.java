@@ -24,6 +24,7 @@ import com.vaadin.ui.Link;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.Table.ColumnGenerator;
+import com.vaadin.ui.UI;
 
 import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionId;
@@ -41,6 +42,7 @@ import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.user.UserCommandService.Messages.DeleteUserBookmarkByIdRequest;
 import net.lab1318.costume.api.services.user.UserCommandService.Messages.PostUserBookmarkRequest;
+import net.lab1318.costume.gui.components.BookmarkNameDialog;
 import net.lab1318.costume.gui.models.image.ImageBean;
 import net.lab1318.costume.gui.models.image.ImageVersionBean;
 import net.lab1318.costume.gui.views.ImageWithRightsView;
@@ -82,6 +84,10 @@ final class ObjectSummaryEntriesTable extends CustomComponent {
                 public Object generateCell(final Table source, final Object itemId, final Object columnId) {
                     final ObjectId objectId = (ObjectId) source.getContainerDataSource()
                             .getContainerProperty(itemId, "id").getValue();
+                    final String objectTitle = (String) source.getContainerDataSource()
+                            .getContainerProperty(itemId, ObjectSummaryEntry.FieldMetadata.MODEL.getJavaName() + '.'
+                                    + ObjectSummary.FieldMetadata.TITLE.getJavaName())
+                            .getValue();
                     final Button button = new NativeButton();
                     @Nullable
                     final UserBookmarkId bookmarkId = ObjectSummaryEntriesTable.this.bookmarkedObjectIds.get(objectId);
@@ -90,7 +96,6 @@ final class ObjectSummaryEntriesTable extends CustomComponent {
                             @Override
                             public void buttonClick(final ClickEvent event) {
                                 eventBus.post(new DeleteUserBookmarkByIdRequest(bookmarkId));
-                                button.setIcon(FontAwesome.STAR_O);
                             }
                         });
                         button.setIcon(FontAwesome.STAR);
@@ -98,9 +103,16 @@ final class ObjectSummaryEntriesTable extends CustomComponent {
                         button.addClickListener(new Button.ClickListener() {
                             @Override
                             public void buttonClick(final ClickEvent event) {
-                                eventBus.post(PostUserBookmarkRequest.builder().setUserBookmark(UserBookmark.builder()
-                                        .setObjectId(objectId).setUserId(currentUserId.get()).build()).build());
-                                button.setIcon(FontAwesome.STAR);
+                                UI.getCurrent().addWindow(new BookmarkNameDialog(Optional.of(objectTitle)) {
+                                    @Override
+                                    protected void _save(final String name) {
+                                        eventBus.post(
+                                                PostUserBookmarkRequest.builder()
+                                                        .setUserBookmark(UserBookmark.builder().setObjectId(objectId)
+                                                                .setName(name).setUserId(currentUserId.get()).build())
+                                                .build());
+                                    }
+                                });
                             }
                         });
                         button.setIcon(FontAwesome.STAR_O);

@@ -188,7 +188,7 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
 
         try {
             final ImmutableList<UserBookmarkEntry> bookmarks = _getUserQueryService()
-                    .getUserBookmarksByUserId(currentUser.get().getId());
+                    .getUserBookmarksByUserId(currentUser.get().getId(), OPTIONAL_TRUE);
             final Map<ObjectId, UserBookmarkId> bookmarkedObjectIdsBuilder = new LinkedHashMap<>();
             for (final UserBookmarkEntry bookmarkEntry : bookmarks) {
                 if (!bookmarkEntry.getModel().getObjectId().isPresent()) {
@@ -219,4 +219,5 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
             .of(GetObjectSummariesOptions.builder().setIncludeFacets(true).setSize(UnsignedInteger.ZERO).build());
     private final static Logger logger = LoggerFactory.getLogger(ObjectsPresenter.class);
     private final static Marker logMarker = LoggingUtils.getMarker(ObjectsPresenter.class);
+    private final static Optional<Boolean> OPTIONAL_TRUE = Optional.of(Boolean.TRUE);
 }

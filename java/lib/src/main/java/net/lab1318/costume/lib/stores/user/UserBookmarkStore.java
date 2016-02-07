@@ -17,8 +17,8 @@ public interface UserBookmarkStore {
     public void deleteUserBookmarkById(Logger logger, Marker logMarker, UserBookmarkId userBookmarkId)
             throws IoException, NoSuchUserBookmarkException;
 
-    public ImmutableList<UserBookmarkEntry> getUserBookmarksByUserId(Logger logger, Marker logMarker, UserId userId)
-            throws IoException;
+    public ImmutableList<UserBookmarkEntry> getUserBookmarksByUserId(Logger logger, Marker logMarker,
+            boolean objectIdsOnly, UserId userId) throws IoException;
 
     public UserBookmarkId postUserBookmark(final Logger logger, final Marker logMarker, final UserBookmark userBookmark)
             throws DuplicateUserBookmarkException, IoException;

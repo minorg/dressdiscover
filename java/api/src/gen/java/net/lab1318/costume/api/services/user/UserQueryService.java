@@ -22,18 +22,24 @@ public interface UserQueryService {
             public static class Builder {
                 public Builder() {
                     userId = null;
+                    objectIdsOnly = com.google.common.base.Optional.absent();
                 }
 
                 public Builder(final GetUserBookmarksByUserIdRequest other) {
                     this.userId = other.getUserId();
+                    this.objectIdsOnly = other.getObjectIdsOnly();
                 }
 
-                protected GetUserBookmarksByUserIdRequest _build(final net.lab1318.costume.api.models.user.UserId userId) {
-                    return new GetUserBookmarksByUserIdRequest(userId);
+                protected GetUserBookmarksByUserIdRequest _build(final net.lab1318.costume.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) {
+                    return new GetUserBookmarksByUserIdRequest(userId, objectIdsOnly);
                 }
 
                 public GetUserBookmarksByUserIdRequest build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(userId, "net.lab1318.costume.api.services.user.GetUserBookmarksByUserIdRequest: missing userId"));
+                    return _build(com.google.common.base.Preconditions.checkNotNull(userId, "net.lab1318.costume.api.services.user.GetUserBookmarksByUserIdRequest: missing userId"), com.google.common.base.Preconditions.checkNotNull(objectIdsOnly, "net.lab1318.costume.api.services.user.GetUserBookmarksByUserIdRequest: missing objectIdsOnly"));
+                }
+
+                public final com.google.common.base.Optional<Boolean> getObjectIdsOnly() {
+                    return objectIdsOnly;
                 }
 
                 public final net.lab1318.costume.api.models.user.UserId getUserId() {
@@ -52,11 +58,14 @@ public interface UserQueryService {
                 }
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    iprot.readListBegin();
+                    final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                     try {
                         userId = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
                     } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
                          throw new org.thryft.protocol.InputProtocolException(e);
+                    }
+                    if (__list.getSize() > 1) {
+                        objectIdsOnly = com.google.common.base.Optional.of(iprot.readBool());
                     }
                     iprot.readListEnd();
                     return this;
@@ -82,6 +91,10 @@ public interface UserQueryService {
                             }
                             break;
                         }
+                        case "object_ids_only": {
+                            objectIdsOnly = com.google.common.base.Optional.of(iprot.readBool());
+                            break;
+                        }
                         default:
                             if (unknownFieldCallback.isPresent()) {
                                 unknownFieldCallback.get().apply(ifield);
@@ -98,7 +111,20 @@ public interface UserQueryService {
                     com.google.common.base.Preconditions.checkNotNull(other);
 
                     setUserId(other.getUserId());
+                    if (other.getObjectIdsOnly().isPresent()) {
+                        setObjectIdsOnly(other.getObjectIdsOnly());
+                    }
 
+                    return this;
+                }
+
+                public Builder setObjectIdsOnly(final com.google.common.base.Optional<Boolean> objectIdsOnly) {
+                    this.objectIdsOnly = com.google.common.base.Preconditions.checkNotNull(objectIdsOnly);
+                    return this;
+                }
+
+                public Builder setObjectIdsOnly(@javax.annotation.Nullable final Boolean objectIdsOnly) {
+                    this.objectIdsOnly = com.google.common.base.Optional.fromNullable(objectIdsOnly);
                     return this;
                 }
 
@@ -112,9 +138,15 @@ public interface UserQueryService {
 
                     switch (name.toLowerCase()) {
                     case "user_id": setUserId((net.lab1318.costume.api.models.user.UserId)value); return this;
+                    case "object_ids_only": setObjectIdsOnly((Boolean)value); return this;
                     default:
                         throw new IllegalArgumentException(name);
                     }
+                }
+
+                public Builder unsetObjectIdsOnly() {
+                    this.objectIdsOnly = com.google.common.base.Optional.absent();
+                    return this;
                 }
 
                 public Builder unsetUserId() {
@@ -127,17 +159,20 @@ public interface UserQueryService {
 
                     switch (name.toLowerCase()) {
                     case "user_id": return unsetUserId();
+                    case "object_ids_only": return unsetObjectIdsOnly();
                     default:
                         throw new IllegalArgumentException(name);
                     }
                 }
 
                 private net.lab1318.costume.api.models.user.UserId userId;
+                private com.google.common.base.Optional<Boolean> objectIdsOnly;
             }
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                USER_ID("userId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.user.UserId>() {}, true, 0, "user_id", org.thryft.protocol.Type.STRING);
+                USER_ID("userId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.user.UserId>() {}, true, 0, "user_id", org.thryft.protocol.Type.STRING),
+                OBJECT_IDS_ONLY("objectIdsOnly", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 0, "object_ids_only", org.thryft.protocol.Type.BOOL);
 
                 @Override
                 public String getJavaName() {
@@ -182,6 +217,7 @@ public interface UserQueryService {
                 public static FieldMetadata valueOfJavaName(final String javaName) {
                     switch (javaName) {
                     case "userId": return USER_ID;
+                    case "objectIdsOnly": return OBJECT_IDS_ONLY;
                     default:
                         throw new IllegalArgumentException(javaName);
                     }
@@ -190,6 +226,7 @@ public interface UserQueryService {
                 public static FieldMetadata valueOfThriftName(final String thriftName) {
                     switch (thriftName) {
                     case "user_id": return USER_ID;
+                    case "object_ids_only": return OBJECT_IDS_ONLY;
                     default:
                         throw new IllegalArgumentException(thriftName);
                     }
@@ -222,14 +259,31 @@ public interface UserQueryService {
              * Copy constructor
              */
             public GetUserBookmarksByUserIdRequest(final GetUserBookmarksByUserIdRequest other) {
-                this(other.getUserId());
+                this(other.getUserId(), other.getObjectIdsOnly());
+            }
+
+            /**
+             * Required constructor
+             */
+            public GetUserBookmarksByUserIdRequest(final net.lab1318.costume.api.models.user.UserId userId) {
+                this.userId = com.google.common.base.Preconditions.checkNotNull(userId, "net.lab1318.costume.api.services.user.GetUserBookmarksByUserIdRequest: missing userId");
+                this.objectIdsOnly = com.google.common.base.Optional.absent();
+            }
+
+            /**
+             * Total Nullable constructor
+             */
+            public GetUserBookmarksByUserIdRequest(final net.lab1318.costume.api.models.user.UserId userId, final @javax.annotation.Nullable Boolean objectIdsOnly) {
+                this.userId = com.google.common.base.Preconditions.checkNotNull(userId, "net.lab1318.costume.api.services.user.GetUserBookmarksByUserIdRequest: missing userId");
+                this.objectIdsOnly = com.google.common.base.Optional.fromNullable(objectIdsOnly);
             }
 
             /**
              * Optional constructor
              */
-            public GetUserBookmarksByUserIdRequest(final net.lab1318.costume.api.models.user.UserId userId) {
+            public GetUserBookmarksByUserIdRequest(final net.lab1318.costume.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) {
                 this.userId = com.google.common.base.Preconditions.checkNotNull(userId, "net.lab1318.costume.api.services.user.GetUserBookmarksByUserIdRequest: missing userId");
+                this.objectIdsOnly = com.google.common.base.Preconditions.checkNotNull(objectIdsOnly, "net.lab1318.costume.api.services.user.GetUserBookmarksByUserIdRequest: missing objectIdsOnly");
             }
 
             public static Builder builder() {
@@ -254,7 +308,8 @@ public interface UserQueryService {
 
                 final GetUserBookmarksByUserIdRequest other = (GetUserBookmarksByUserIdRequest)otherObject;
                 return
-                    getUserId().equals(other.getUserId());
+                    getUserId().equals(other.getUserId()) &&
+                    getObjectIdsOnly().equals(other.getObjectIdsOnly());
             }
 
             @Override
@@ -273,9 +328,14 @@ public interface UserQueryService {
             public java.lang.Object get(final FieldMetadata fieldMetadata) {
                 switch (fieldMetadata) {
                 case USER_ID: return getUserId();
+                case OBJECT_IDS_ONLY: return getObjectIdsOnly();
                 default:
                     throw new IllegalStateException();
                 }
+            }
+
+            public final com.google.common.base.Optional<Boolean> getObjectIdsOnly() {
+                return objectIdsOnly;
             }
 
             public final net.lab1318.costume.api.models.user.UserId getUserId() {
@@ -286,6 +346,9 @@ public interface UserQueryService {
             public int hashCode() {
                 int hashCode = 17;
                 hashCode = 31 * hashCode + getUserId().hashCode();
+                if (getObjectIdsOnly().isPresent()) {
+                    hashCode = 31 * hashCode + (getObjectIdsOnly().get() ? 1 : 0);
+                }
                 return hashCode;
             }
 
@@ -307,16 +370,20 @@ public interface UserQueryService {
 
             public static GetUserBookmarksByUserIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                 net.lab1318.costume.api.models.user.UserId userId = null;
+                com.google.common.base.Optional<Boolean> objectIdsOnly = com.google.common.base.Optional.absent();
 
-                iprot.readListBegin();
+                final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 try {
                     userId = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
                 } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
                      throw new org.thryft.protocol.InputProtocolException(e);
                 }
+                if (__list.getSize() > 1) {
+                    objectIdsOnly = com.google.common.base.Optional.of(iprot.readBool());
+                }
                 iprot.readListEnd();
                 try {
-                    return new GetUserBookmarksByUserIdRequest(userId);
+                    return new GetUserBookmarksByUserIdRequest(userId, objectIdsOnly);
                 } catch (final IllegalArgumentException | NullPointerException e) {
                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
@@ -328,6 +395,7 @@ public interface UserQueryService {
 
             public static GetUserBookmarksByUserIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 net.lab1318.costume.api.models.user.UserId userId = null;
+                com.google.common.base.Optional<Boolean> objectIdsOnly = com.google.common.base.Optional.absent();
 
                 iprot.readStructBegin();
                 while (true) {
@@ -344,6 +412,10 @@ public interface UserQueryService {
                         }
                         break;
                     }
+                    case "object_ids_only": {
+                        objectIdsOnly = com.google.common.base.Optional.of(iprot.readBool());
+                        break;
+                    }
                     default:
                         if (unknownFieldCallback.isPresent()) {
                             unknownFieldCallback.get().apply(ifield);
@@ -354,26 +426,40 @@ public interface UserQueryService {
                 }
                 iprot.readStructEnd();
                 try {
-                    return new GetUserBookmarksByUserIdRequest(userId);
+                    return new GetUserBookmarksByUserIdRequest(userId, objectIdsOnly);
                 } catch (final IllegalArgumentException | NullPointerException e) {
                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
             }
 
+            public GetUserBookmarksByUserIdRequest replaceObjectIdsOnly(final com.google.common.base.Optional<Boolean> objectIdsOnly) {
+                return new GetUserBookmarksByUserIdRequest(this.userId, objectIdsOnly);
+            }
+
+            public GetUserBookmarksByUserIdRequest replaceObjectIdsOnly(final boolean objectIdsOnly) {
+                return replaceObjectIdsOnly(com.google.common.base.Optional.fromNullable(objectIdsOnly));
+            }
+
             public GetUserBookmarksByUserIdRequest replaceUserId(final net.lab1318.costume.api.models.user.UserId userId) {
-                return new GetUserBookmarksByUserIdRequest(userId);
+                return new GetUserBookmarksByUserIdRequest(userId, this.objectIdsOnly);
             }
 
             @Override
             public String toString() {
-                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("user_id", getUserId()).toString();
+                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("user_id", getUserId()).add("object_ids_only", getObjectIdsOnly().orNull()).toString();
             }
 
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
+                oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
 
                 oprot.writeString(getUserId().toString());
+
+                if (getObjectIdsOnly().isPresent()) {
+                    oprot.writeBool(getObjectIdsOnly().get());
+                } else {
+                    oprot.writeNull();
+                }
 
                 oprot.writeListEnd();
             }
@@ -391,10 +477,18 @@ public interface UserQueryService {
                 oprot.writeString(getUserId().toString());
                 oprot.writeFieldEnd();
 
+                if (getObjectIdsOnly().isPresent()) {
+                    oprot.writeFieldBegin("object_ids_only", org.thryft.protocol.Type.BOOL, (short)0);
+                    oprot.writeBool(getObjectIdsOnly().get());
+                    oprot.writeFieldEnd();
+                }
+
                 oprot.writeFieldStop();
             }
 
             private final net.lab1318.costume.api.models.user.UserId userId;
+
+            private final com.google.common.base.Optional<Boolean> objectIdsOnly;
         }
 
         public final static class GetUserBookmarksByUserIdResponse implements org.thryft.Struct {
@@ -2298,7 +2392,11 @@ public interface UserQueryService {
         }
     }
 
-    public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.user.UserBookmarkEntry> getUserBookmarksByUserId(final net.lab1318.costume.api.models.user.UserId userId) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.user.NoSuchUserException;
+    public default com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.user.UserBookmarkEntry> getUserBookmarksByUserId(final net.lab1318.costume.api.models.user.UserId userId) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.user.NoSuchUserException {
+        return getUserBookmarksByUserId(userId, com.google.common.base.Optional.<Boolean> absent());
+    }
+
+    public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.user.UserBookmarkEntry> getUserBookmarksByUserId(final net.lab1318.costume.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.user.NoSuchUserException;
 
     public net.lab1318.costume.api.models.user.UserEntry getUserByEmailAddress(final org.thryft.native_.EmailAddress emailAddress) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.user.NoSuchUserException;
 
