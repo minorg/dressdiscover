@@ -77,7 +77,8 @@ public abstract class UserServiceTest extends ServiceTest {
         final ImmutableList.Builder<UserBookmarkEntry> resultBuilder = ImmutableList.builder();
         for (int i = 0; i < 2; i++) {
             final UserBookmark userBookmark = UserBookmark.builder().setFolder("My folder")
-                    .setObjectId(ObjectId.parse("institution/collection/object" + i)).setUserId(userId).build();
+                    .setName("Test bookmark " + i).setObjectId(ObjectId.parse("institution/collection/object" + i))
+                    .setUserId(userId).build();
             resultBuilder.add(new UserBookmarkEntry(userCommandService.postUserBookmark(userBookmark), userBookmark));
         }
         return resultBuilder.build();
@@ -88,6 +89,7 @@ public abstract class UserServiceTest extends ServiceTest {
         final ImmutableList.Builder<UserBookmarkEntry> resultBuilder = ImmutableList.builder();
         for (int i = 0; i < 2; i++) {
             final UserBookmark userBookmark = UserBookmark.builder().setFolder("My folder")
+                    .setName("Test bookmark " + i)
                     .setObjectQuery(ObjectQuery.builder()
                             .setObjectIds(ImmutableSet.of(ObjectId.parse("institution/collection/object" + i))).build())
                     .setUserId(userId).build();

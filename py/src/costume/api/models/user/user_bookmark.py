@@ -6,25 +6,28 @@ class UserBookmark(object):
     class Builder(object):
         def __init__(
             self,
+            name=None,
             user_id=None,
             folder=None,
             object_id=None,
             object_query=None,
         ):
             '''
+            :type name: str
             :type user_id: str
             :type folder: str or None
             :type object_id: str or None
             :type object_query: costume.api.models.object.object_query.ObjectQuery or None
             '''
 
+            self.__name = name
             self.__user_id = user_id
             self.__folder = folder
             self.__object_id = object_id
             self.__object_query = object_query
 
         def build(self):
-            return UserBookmark(user_id=self.__user_id, folder=self.__folder, object_id=self.__object_id, object_query=self.__object_query)
+            return UserBookmark(name=self.__name, user_id=self.__user_id, folder=self.__folder, object_id=self.__object_id, object_query=self.__object_query)
 
         @property
         def folder(self):
@@ -33,6 +36,14 @@ class UserBookmark(object):
             '''
 
             return self.__folder
+
+        @property
+        def name(self):
+            '''
+            :rtype: str
+            '''
+
+            return self.__name
 
         @property
         def object_id(self):
@@ -56,6 +67,14 @@ class UserBookmark(object):
             '''
 
             self.__folder = folder
+            return self
+
+        def set_name(self, name):
+            '''
+            :type name: str
+            '''
+
+            self.__name = name
             return self
 
         def set_object_id(self, object_id):
@@ -84,6 +103,7 @@ class UserBookmark(object):
 
         def update(self, user_bookmark):
             '''
+            :type name: str
             :type user_id: str
             :type folder: str or None
             :type object_id: str or None
@@ -91,6 +111,7 @@ class UserBookmark(object):
             '''
 
             if isinstance(user_bookmark, UserBookmark):
+                self.set_name(user_bookmark.name)
                 self.set_user_id(user_bookmark.user_id)
                 self.set_folder(user_bookmark.folder)
                 self.set_object_id(user_bookmark.object_id)
@@ -118,6 +139,14 @@ class UserBookmark(object):
 
             self.set_folder(folder)
 
+        @name.setter
+        def name(self, name):
+            '''
+            :type name: str
+            '''
+
+            self.set_name(name)
+
         @object_id.setter
         def object_id(self, object_id):
             '''
@@ -144,17 +173,27 @@ class UserBookmark(object):
 
     def __init__(
         self,
+        name,
         user_id,
         folder=None,
         object_id=None,
         object_query=None,
     ):
         '''
+        :type name: str
         :type user_id: str
         :type folder: str or None
         :type object_id: str or None
         :type object_query: costume.api.models.object.object_query.ObjectQuery or None
         '''
+
+        if name is None:
+            raise ValueError('name is required')
+        if not isinstance(name, basestring):
+            raise TypeError("expected name to be a str but it is a %s" % getattr(__builtin__, 'type')(name))
+        if len(name) < 1:
+            raise ValueError("expected len(name) to be >= 1, was %d" % len(name))
+        self.__name = name
 
         if user_id is None:
             raise ValueError('user_id is required')
@@ -180,6 +219,8 @@ class UserBookmark(object):
         self.__object_query = object_query
 
     def __eq__(self, other):
+        if self.name != other.name:
+            return False
         if self.user_id != other.user_id:
             return False
         if self.folder != other.folder:
@@ -191,7 +232,7 @@ class UserBookmark(object):
         return True
 
     def __hash__(self):
-        return hash((self.user_id,self.folder,self.object_id,self.object_query,))
+        return hash((self.name,self.user_id,self.folder,self.object_id,self.object_query,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -201,6 +242,7 @@ class UserBookmark(object):
 
     def __repr__(self):
         field_reprs = []
+        field_reprs.append('name=' + "'" + self.name.encode('ascii', 'replace') + "'")
         field_reprs.append('user_id=' + "'" + self.user_id.encode('ascii', 'replace') + "'")
         if self.folder is not None:
             field_reprs.append('folder=' + "'" + self.folder.encode('ascii', 'replace') + "'")
@@ -212,6 +254,7 @@ class UserBookmark(object):
 
     def __str__(self):
         field_reprs = []
+        field_reprs.append('name=' + "'" + self.name.encode('ascii', 'replace') + "'")
         field_reprs.append('user_id=' + "'" + self.user_id.encode('ascii', 'replace') + "'")
         if self.folder is not None:
             field_reprs.append('folder=' + "'" + self.folder.encode('ascii', 'replace') + "'")
@@ -228,7 +271,7 @@ class UserBookmark(object):
         :rtype: dict
         '''
 
-        return {'user_id': self.user_id, 'folder': self.folder, 'object_id': self.object_id, 'object_query': self.object_query}
+        return {'name': self.name, 'user_id': self.user_id, 'folder': self.folder, 'object_id': self.object_id, 'object_query': self.object_query}
 
     def as_tuple(self):
         '''
@@ -237,7 +280,7 @@ class UserBookmark(object):
         :rtype: tuple
         '''
 
-        return (self.user_id, self.folder, self.object_id, self.object_query,)
+        return (self.name, self.user_id, self.folder, self.object_id, self.object_query,)
 
     @property
     def folder(self):
@@ -246,6 +289,14 @@ class UserBookmark(object):
         '''
 
         return self.__folder
+
+    @property
+    def name(self):
+        '''
+        :rtype: str
+        '''
+
+        return self.__name
 
     @property
     def object_id(self):
@@ -279,6 +330,8 @@ class UserBookmark(object):
             ifield_name, ifield_type, _ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
+            elif ifield_name == 'name':
+                init_kwds['name'] = iprot.read_string()
             elif ifield_name == 'user_id':
                 init_kwds['user_id'] = iprot.read_string()
             elif ifield_name == 'folder':
@@ -300,6 +353,7 @@ class UserBookmark(object):
 
     def replace(
         self,
+        name=None,
         user_id=None,
         folder=None,
         object_id=None,
@@ -308,6 +362,7 @@ class UserBookmark(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
+        :type name: str or None
         :type user_id: str or None
         :type folder: str or None
         :type object_id: str or None
@@ -315,6 +370,8 @@ class UserBookmark(object):
         :rtype: costume.api.models.user.user_bookmark.UserBookmark
         '''
 
+        if name is None:
+            name = self.name
         if user_id is None:
             user_id = self.user_id
         if folder is None:
@@ -323,7 +380,7 @@ class UserBookmark(object):
             object_id = self.object_id
         if object_query is None:
             object_query = self.object_query
-        return self.__class__(user_id=user_id, folder=folder, object_id=object_id, object_query=object_query)
+        return self.__class__(name=name, user_id=user_id, folder=folder, object_id=object_id, object_query=object_query)
 
     @property
     def user_id(self):
@@ -342,6 +399,10 @@ class UserBookmark(object):
         '''
 
         oprot.write_struct_begin('UserBookmark')
+
+        oprot.write_field_begin(name='name', type=11, id=None)
+        oprot.write_string(self.name)
+        oprot.write_field_end()
 
         oprot.write_field_begin(name='user_id', type=11, id=None)
         oprot.write_string(self.user_id)

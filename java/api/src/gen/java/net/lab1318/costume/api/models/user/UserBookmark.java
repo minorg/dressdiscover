@@ -3,6 +3,7 @@ package net.lab1318.costume.api.models.user;
 public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.models.Model {
     public static class Builder {
         public Builder() {
+            name = null;
             userId = null;
             folder = com.google.common.base.Optional.absent();
             objectId = com.google.common.base.Optional.absent();
@@ -10,22 +11,27 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         public Builder(final UserBookmark other) {
+            this.name = other.getName();
             this.userId = other.getUserId();
             this.folder = other.getFolder();
             this.objectId = other.getObjectId();
             this.objectQuery = other.getObjectQuery();
         }
 
-        protected UserBookmark _build(final net.lab1318.costume.api.models.user.UserId userId, final com.google.common.base.Optional<String> folder, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> objectId, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> objectQuery) {
-            return new UserBookmark(userId, folder, objectId, objectQuery);
+        protected UserBookmark _build(final String name, final net.lab1318.costume.api.models.user.UserId userId, final com.google.common.base.Optional<String> folder, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> objectId, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> objectQuery) {
+            return new UserBookmark(name, userId, folder, objectId, objectQuery);
         }
 
         public UserBookmark build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(userId, "net.lab1318.costume.api.models.user.UserBookmark: missing userId"), com.google.common.base.Preconditions.checkNotNull(folder, "net.lab1318.costume.api.models.user.UserBookmark: missing folder"), com.google.common.base.Preconditions.checkNotNull(objectId, "net.lab1318.costume.api.models.user.UserBookmark: missing objectId"), com.google.common.base.Preconditions.checkNotNull(objectQuery, "net.lab1318.costume.api.models.user.UserBookmark: missing objectQuery"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(name, "net.lab1318.costume.api.models.user.UserBookmark: missing name"), com.google.common.base.Preconditions.checkNotNull(userId, "net.lab1318.costume.api.models.user.UserBookmark: missing userId"), com.google.common.base.Preconditions.checkNotNull(folder, "net.lab1318.costume.api.models.user.UserBookmark: missing folder"), com.google.common.base.Preconditions.checkNotNull(objectId, "net.lab1318.costume.api.models.user.UserBookmark: missing objectId"), com.google.common.base.Preconditions.checkNotNull(objectQuery, "net.lab1318.costume.api.models.user.UserBookmark: missing objectQuery"));
         }
 
         public final com.google.common.base.Optional<String> getFolder() {
             return folder;
+        }
+
+        public final String getName() {
+            return name;
         }
 
         public final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> getObjectId() {
@@ -53,21 +59,22 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+            name = iprot.readString();
             try {
                 userId = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
             } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
                  throw new org.thryft.protocol.InputProtocolException(e);
             }
-            if (__list.getSize() > 1) {
+            if (__list.getSize() > 2) {
                 folder = com.google.common.base.Optional.of(iprot.readString());
             }
-            if (__list.getSize() > 2) {
+            if (__list.getSize() > 3) {
                 try {
                     objectId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString()));
                 } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
                 }
             }
-            if (__list.getSize() > 3) {
+            if (__list.getSize() > 4) {
                 objectQuery = com.google.common.base.Optional.of(net.lab1318.costume.api.models.object.ObjectQuery.readAsStruct(iprot));
             }
             iprot.readListEnd();
@@ -86,6 +93,10 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
                     break;
                 }
                 switch (ifield.getName()) {
+                case "name": {
+                    name = iprot.readString();
+                    break;
+                }
                 case "user_id": {
                     try {
                         userId = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
@@ -134,6 +145,7 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
         public Builder setIfPresent(final UserBookmark other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
+            setName(other.getName());
             setUserId(other.getUserId());
             if (other.getFolder().isPresent()) {
                 setFolder(other.getFolder());
@@ -145,6 +157,11 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
                 setObjectQuery(other.getObjectQuery());
             }
 
+            return this;
+        }
+
+        public Builder setName(final String name) {
+            this.name = com.google.common.base.Preconditions.checkNotNull(name);
             return this;
         }
 
@@ -177,6 +194,7 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
             com.google.common.base.Preconditions.checkNotNull(name);
 
             switch (name.toLowerCase()) {
+            case "name": setName((String)value); return this;
             case "user_id": setUserId((net.lab1318.costume.api.models.user.UserId)value); return this;
             case "folder": setFolder((String)value); return this;
             case "object_id": setObjectId((net.lab1318.costume.api.models.object.ObjectId)value); return this;
@@ -188,6 +206,11 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
 
         public Builder unsetFolder() {
             this.folder = com.google.common.base.Optional.absent();
+            return this;
+        }
+
+        public Builder unsetName() {
+            this.name = null;
             return this;
         }
 
@@ -210,6 +233,7 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
             com.google.common.base.Preconditions.checkNotNull(name);
 
             switch (name.toLowerCase()) {
+            case "name": return unsetName();
             case "user_id": return unsetUserId();
             case "folder": return unsetFolder();
             case "object_id": return unsetObjectId();
@@ -219,6 +243,7 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
             }
         }
 
+        private String name;
         private net.lab1318.costume.api.models.user.UserId userId;
         private com.google.common.base.Optional<String> folder;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> objectId;
@@ -227,6 +252,7 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
+        NAME("name", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "name", org.thryft.protocol.Type.STRING),
         USER_ID("userId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.user.UserId>() {}, true, 0, "user_id", org.thryft.protocol.Type.STRING),
         FOLDER("folder", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "folder", org.thryft.protocol.Type.STRING),
         OBJECT_ID("objectId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.object.ObjectId>() {}, false, 0, "object_id", org.thryft.protocol.Type.STRING),
@@ -274,6 +300,7 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
+            case "name": return NAME;
             case "userId": return USER_ID;
             case "folder": return FOLDER;
             case "objectId": return OBJECT_ID;
@@ -285,6 +312,7 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
+            case "name": return NAME;
             case "user_id": return USER_ID;
             case "folder": return FOLDER;
             case "object_id": return OBJECT_ID;
@@ -321,13 +349,14 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
      * Copy constructor
      */
     public UserBookmark(final UserBookmark other) {
-        this(other.getUserId(), other.getFolder(), other.getObjectId(), other.getObjectQuery());
+        this(other.getName(), other.getUserId(), other.getFolder(), other.getObjectId(), other.getObjectQuery());
     }
 
     /**
      * Required constructor
      */
-    public UserBookmark(final net.lab1318.costume.api.models.user.UserId userId) {
+    public UserBookmark(final String name, final net.lab1318.costume.api.models.user.UserId userId) {
+        this.name = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(name, "net.lab1318.costume.api.models.user.UserBookmark: missing name"), "net.lab1318.costume.api.models.user.UserBookmark: name is empty");
         this.userId = com.google.common.base.Preconditions.checkNotNull(userId, "net.lab1318.costume.api.models.user.UserBookmark: missing userId");
         this.folder = com.google.common.base.Optional.absent();
         this.objectId = com.google.common.base.Optional.absent();
@@ -337,7 +366,8 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
     /**
      * Total Nullable constructor
      */
-    public UserBookmark(final net.lab1318.costume.api.models.user.UserId userId, final @javax.annotation.Nullable String folder, final @javax.annotation.Nullable net.lab1318.costume.api.models.object.ObjectId objectId, final @javax.annotation.Nullable net.lab1318.costume.api.models.object.ObjectQuery objectQuery) {
+    public UserBookmark(final String name, final net.lab1318.costume.api.models.user.UserId userId, final @javax.annotation.Nullable String folder, final @javax.annotation.Nullable net.lab1318.costume.api.models.object.ObjectId objectId, final @javax.annotation.Nullable net.lab1318.costume.api.models.object.ObjectQuery objectQuery) {
+        this.name = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(name, "net.lab1318.costume.api.models.user.UserBookmark: missing name"), "net.lab1318.costume.api.models.user.UserBookmark: name is empty");
         this.userId = com.google.common.base.Preconditions.checkNotNull(userId, "net.lab1318.costume.api.models.user.UserBookmark: missing userId");
         this.folder = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(folder), "net.lab1318.costume.api.models.user.UserBookmark: folder is empty");
         this.objectId = com.google.common.base.Optional.fromNullable(objectId);
@@ -347,7 +377,8 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
     /**
      * Optional constructor
      */
-    public UserBookmark(final net.lab1318.costume.api.models.user.UserId userId, final com.google.common.base.Optional<String> folder, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> objectId, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> objectQuery) {
+    public UserBookmark(final String name, final net.lab1318.costume.api.models.user.UserId userId, final com.google.common.base.Optional<String> folder, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> objectId, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> objectQuery) {
+        this.name = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(name, "net.lab1318.costume.api.models.user.UserBookmark: missing name"), "net.lab1318.costume.api.models.user.UserBookmark: name is empty");
         this.userId = com.google.common.base.Preconditions.checkNotNull(userId, "net.lab1318.costume.api.models.user.UserBookmark: missing userId");
         this.folder = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(folder, "net.lab1318.costume.api.models.user.UserBookmark: missing folder"), "net.lab1318.costume.api.models.user.UserBookmark: folder is empty");
         this.objectId = com.google.common.base.Preconditions.checkNotNull(objectId, "net.lab1318.costume.api.models.user.UserBookmark: missing objectId");
@@ -376,6 +407,7 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
 
         final UserBookmark other = (UserBookmark)otherObject;
         return
+            getName().equals(other.getName()) &&
             getUserId().equals(other.getUserId()) &&
             getFolder().equals(other.getFolder()) &&
             getObjectId().equals(other.getObjectId()) &&
@@ -397,6 +429,7 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
 
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
+        case NAME: return getName();
         case USER_ID: return getUserId();
         case FOLDER: return getFolder();
         case OBJECT_ID: return getObjectId();
@@ -408,6 +441,10 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
 
     public final com.google.common.base.Optional<String> getFolder() {
         return folder;
+    }
+
+    public final String getName() {
+        return name;
     }
 
     public final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> getObjectId() {
@@ -425,6 +462,7 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
     @Override
     public int hashCode() {
         int hashCode = 17;
+        hashCode = 31 * hashCode + getName().hashCode();
         hashCode = 31 * hashCode + getUserId().hashCode();
         if (getFolder().isPresent()) {
             hashCode = 31 * hashCode + getFolder().get().hashCode();
@@ -455,32 +493,34 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public static UserBookmark readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+        String name = null;
         net.lab1318.costume.api.models.user.UserId userId = null;
         com.google.common.base.Optional<String> folder = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> objectId = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> objectQuery = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+        name = iprot.readString();
         try {
             userId = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
         } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
              throw new org.thryft.protocol.InputProtocolException(e);
         }
-        if (__list.getSize() > 1) {
+        if (__list.getSize() > 2) {
             folder = com.google.common.base.Optional.of(iprot.readString());
         }
-        if (__list.getSize() > 2) {
+        if (__list.getSize() > 3) {
             try {
                 objectId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString()));
             } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
             }
         }
-        if (__list.getSize() > 3) {
+        if (__list.getSize() > 4) {
             objectQuery = com.google.common.base.Optional.of(net.lab1318.costume.api.models.object.ObjectQuery.readAsStruct(iprot));
         }
         iprot.readListEnd();
         try {
-            return new UserBookmark(userId, folder, objectId, objectQuery);
+            return new UserBookmark(name, userId, folder, objectId, objectQuery);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -491,6 +531,7 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public static UserBookmark readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        String name = null;
         net.lab1318.costume.api.models.user.UserId userId = null;
         com.google.common.base.Optional<String> folder = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> objectId = com.google.common.base.Optional.absent();
@@ -503,6 +544,10 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
                 break;
             }
             switch (ifield.getName()) {
+            case "name": {
+                name = iprot.readString();
+                break;
+            }
             case "user_id": {
                 try {
                     userId = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
@@ -536,22 +581,26 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
         }
         iprot.readStructEnd();
         try {
-            return new UserBookmark(userId, folder, objectId, objectQuery);
+            return new UserBookmark(name, userId, folder, objectId, objectQuery);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public UserBookmark replaceFolder(final com.google.common.base.Optional<String> folder) {
-        return new UserBookmark(this.userId, folder, this.objectId, this.objectQuery);
+        return new UserBookmark(this.name, this.userId, folder, this.objectId, this.objectQuery);
     }
 
     public UserBookmark replaceFolder(final String folder) {
         return replaceFolder(com.google.common.base.Optional.fromNullable(folder));
     }
 
+    public UserBookmark replaceName(final String name) {
+        return new UserBookmark(name, this.userId, this.folder, this.objectId, this.objectQuery);
+    }
+
     public UserBookmark replaceObjectId(final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> objectId) {
-        return new UserBookmark(this.userId, this.folder, objectId, this.objectQuery);
+        return new UserBookmark(this.name, this.userId, this.folder, objectId, this.objectQuery);
     }
 
     public UserBookmark replaceObjectId(final net.lab1318.costume.api.models.object.ObjectId objectId) {
@@ -559,7 +608,7 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public UserBookmark replaceObjectQuery(final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectQuery> objectQuery) {
-        return new UserBookmark(this.userId, this.folder, this.objectId, objectQuery);
+        return new UserBookmark(this.name, this.userId, this.folder, this.objectId, objectQuery);
     }
 
     public UserBookmark replaceObjectQuery(final net.lab1318.costume.api.models.object.ObjectQuery objectQuery) {
@@ -567,17 +616,19 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public UserBookmark replaceUserId(final net.lab1318.costume.api.models.user.UserId userId) {
-        return new UserBookmark(userId, this.folder, this.objectId, this.objectQuery);
+        return new UserBookmark(this.name, userId, this.folder, this.objectId, this.objectQuery);
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("user_id", getUserId()).add("folder", getFolder().orNull()).add("object_id", getObjectId().orNull()).add("object_query", getObjectQuery().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("name", getName()).add("user_id", getUserId()).add("folder", getFolder().orNull()).add("object_id", getObjectId().orNull()).add("object_query", getObjectQuery().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 4);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 5);
+
+        oprot.writeString(getName());
 
         oprot.writeString(getUserId().toString());
 
@@ -611,6 +662,10 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin("name", org.thryft.protocol.Type.STRING, (short)0);
+        oprot.writeString(getName());
+        oprot.writeFieldEnd();
+
         oprot.writeFieldBegin("user_id", org.thryft.protocol.Type.STRING, (short)0);
         oprot.writeString(getUserId().toString());
         oprot.writeFieldEnd();
@@ -635,6 +690,8 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
 
         oprot.writeFieldStop();
     }
+
+    private final String name;
 
     private final net.lab1318.costume.api.models.user.UserId userId;
 

@@ -3,6 +3,7 @@ package net.lab1318.costume.gui.models.user;
 public class UserBookmarkBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
+        NAME("name", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "name", org.thryft.protocol.Type.STRING),
         USER_ID("userId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.user.UserId>() {}, true, 0, "user_id", org.thryft.protocol.Type.STRING),
         FOLDER("folder", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "folder", org.thryft.protocol.Type.STRING),
         OBJECT_ID("objectId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.object.ObjectId>() {}, false, 0, "object_id", org.thryft.protocol.Type.STRING),
@@ -50,6 +51,7 @@ public class UserBookmarkBean implements org.thryft.StructBean {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
+            case "name": return NAME;
             case "userId": return USER_ID;
             case "folder": return FOLDER;
             case "objectId": return OBJECT_ID;
@@ -61,6 +63,7 @@ public class UserBookmarkBean implements org.thryft.StructBean {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
+            case "name": return NAME;
             case "user_id": return USER_ID;
             case "folder": return FOLDER;
             case "object_id": return OBJECT_ID;
@@ -94,6 +97,7 @@ public class UserBookmarkBean implements org.thryft.StructBean {
     }
 
     public UserBookmarkBean() {
+        name = null;
         userId = null;
         folder = null;
         objectId = null;
@@ -101,6 +105,7 @@ public class UserBookmarkBean implements org.thryft.StructBean {
     }
 
     public UserBookmarkBean(final net.lab1318.costume.api.models.user.UserBookmark other) {
+        this.name = other.getName();
         this.userId = other.getUserId();
         this.folder = other.getFolder().isPresent() ? other.getFolder().get() : null;
         this.objectId = other.getObjectId().isPresent() ? other.getObjectId().get() : null;
@@ -117,6 +122,7 @@ public class UserBookmarkBean implements org.thryft.StructBean {
 
         final UserBookmarkBean other = (UserBookmarkBean)otherObject;
         return
+            getName().equals(other.getName()) &&
             getUserId().equals(other.getUserId()) &&
             (getFolder() != null ? getFolder().equals(other.getFolder()) : other.getFolder() == null) &&
             (getObjectId() != null ? getObjectId().equals(other.getObjectId()) : other.getObjectId() == null) &&
@@ -138,6 +144,7 @@ public class UserBookmarkBean implements org.thryft.StructBean {
 
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
+        case NAME: return getName();
         case USER_ID: return getUserId();
         case FOLDER: return getFolder();
         case OBJECT_ID: return getObjectId();
@@ -149,6 +156,10 @@ public class UserBookmarkBean implements org.thryft.StructBean {
 
     public String getFolder() {
         return folder;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public net.lab1318.costume.api.models.object.ObjectId getObjectId() {
@@ -166,6 +177,7 @@ public class UserBookmarkBean implements org.thryft.StructBean {
     @Override
     public int hashCode() {
         int hashCode = 17;
+        hashCode = 31 * hashCode + getName().hashCode();
         hashCode = 31 * hashCode + getUserId().hashCode();
         if (getFolder() != null) {
             hashCode = 31 * hashCode + getFolder().hashCode();
@@ -188,6 +200,10 @@ public class UserBookmarkBean implements org.thryft.StructBean {
         this.folder = folder;
     }
 
+    public void setName(final String name) {
+        this.name = name;
+    }
+
     public void setObjectId(final net.lab1318.costume.api.models.object.ObjectId objectId) {
         this.objectId = objectId;
     }
@@ -202,8 +218,10 @@ public class UserBookmarkBean implements org.thryft.StructBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("user_id", getUserId()).add("folder", getFolder()).add("object_id", getObjectId()).add("object_query", getObjectQuery()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("name", getName()).add("user_id", getUserId()).add("folder", getFolder()).add("object_id", getObjectId()).add("object_query", getObjectQuery()).toString();
     }
+
+    private String name;
 
     private net.lab1318.costume.api.models.user.UserId userId;
 
