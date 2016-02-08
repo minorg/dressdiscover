@@ -51,8 +51,7 @@ public class FileSystemObjectCommandService implements ObjectCommandService {
 		}
 
 		try {
-			objectSummaryElasticSearchIndex.deleteIndex(logger, Markers.DELETE_OBJECTS);
-			objectSummaryElasticSearchIndex.createIndex(logger, Markers.DELETE_OBJECTS);
+			objectSummaryElasticSearchIndex.deleteModels(logger, Markers.DELETE_OBJECTS);
 		} catch (final IOException e) {
 			throw IoExceptions.wrap(e, "error deleting object summaries");
 		}
