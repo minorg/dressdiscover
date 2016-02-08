@@ -114,7 +114,9 @@ class ObjectCommandServiceJsonRpcClient(costume.api.services.object.object_comma
     def _delete_objects(
         self,
     ):
-        self.__request(method='delete_objects', params={})
+        return_value = self.__request(method='delete_objects', params={})
+        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
+        return iprot.read_u32()
 
     def _delete_objects_by_collection_id(
         self,
@@ -127,7 +129,9 @@ class ObjectCommandServiceJsonRpcClient(costume.api.services.object.object_comma
         oprot.write_field_end()
         oprot.write_struct_end()
 
-        self.__request(method='delete_objects_by_collection_id', params=oprot.value)
+        return_value = self.__request(method='delete_objects_by_collection_id', params=oprot.value)
+        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
+        return iprot.read_u32()
 
     def _delete_objects_by_institution_id(
         self,
@@ -140,7 +144,9 @@ class ObjectCommandServiceJsonRpcClient(costume.api.services.object.object_comma
         oprot.write_field_end()
         oprot.write_struct_end()
 
-        self.__request(method='delete_objects_by_institution_id', params=oprot.value)
+        return_value = self.__request(method='delete_objects_by_institution_id', params=oprot.value)
+        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
+        return iprot.read_u32()
 
     def _put_object(
         self,

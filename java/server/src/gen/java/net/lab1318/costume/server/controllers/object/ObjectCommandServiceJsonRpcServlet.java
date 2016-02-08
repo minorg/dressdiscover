@@ -153,8 +153,9 @@ public class ObjectCommandServiceJsonRpcServlet extends javax.servlet.http.HttpS
     }
 
     public void doPostDeleteObjects(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
+        final com.google.common.primitives.UnsignedInteger result;
         try {
-            service.deleteObjects();
+            result = service.deleteObjects();
         } catch (final net.lab1318.costume.api.services.IoException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
@@ -166,8 +167,7 @@ public class ObjectCommandServiceJsonRpcServlet extends javax.servlet.http.HttpS
             try {
                 final org.thryft.protocol.JsonRpcOutputProtocol oprot = new org.thryft.protocol.JsonRpcOutputProtocol(new org.thryft.protocol.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
                 oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                oprot.writeStructBegin("response");
-                oprot.writeStructEnd();
+                oprot.writeU32(result);
                 oprot.writeMessageEnd();
                 oprot.flush();
             } catch (final org.thryft.protocol.OutputProtocolException e) {
@@ -189,8 +189,9 @@ public class ObjectCommandServiceJsonRpcServlet extends javax.servlet.http.HttpS
             return;
         }
 
+        final com.google.common.primitives.UnsignedInteger result;
         try {
-            service.deleteObjectsByCollectionId(serviceRequest.getCollectionId());
+            result = service.deleteObjectsByCollectionId(serviceRequest.getCollectionId());
         } catch (final net.lab1318.costume.api.services.IoException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
@@ -202,8 +203,7 @@ public class ObjectCommandServiceJsonRpcServlet extends javax.servlet.http.HttpS
             try {
                 final org.thryft.protocol.JsonRpcOutputProtocol oprot = new org.thryft.protocol.JsonRpcOutputProtocol(new org.thryft.protocol.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
                 oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                oprot.writeStructBegin("response");
-                oprot.writeStructEnd();
+                oprot.writeU32(result);
                 oprot.writeMessageEnd();
                 oprot.flush();
             } catch (final org.thryft.protocol.OutputProtocolException e) {
@@ -225,8 +225,9 @@ public class ObjectCommandServiceJsonRpcServlet extends javax.servlet.http.HttpS
             return;
         }
 
+        final com.google.common.primitives.UnsignedInteger result;
         try {
-            service.deleteObjectsByInstitutionId(serviceRequest.getInstitutionId());
+            result = service.deleteObjectsByInstitutionId(serviceRequest.getInstitutionId());
         } catch (final net.lab1318.costume.api.services.IoException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
@@ -238,8 +239,7 @@ public class ObjectCommandServiceJsonRpcServlet extends javax.servlet.http.HttpS
             try {
                 final org.thryft.protocol.JsonRpcOutputProtocol oprot = new org.thryft.protocol.JsonRpcOutputProtocol(new org.thryft.protocol.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
                 oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                oprot.writeStructBegin("response");
-                oprot.writeStructEnd();
+                oprot.writeU32(result);
                 oprot.writeMessageEnd();
                 oprot.flush();
             } catch (final org.thryft.protocol.OutputProtocolException e) {

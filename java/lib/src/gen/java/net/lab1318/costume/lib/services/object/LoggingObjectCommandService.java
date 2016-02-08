@@ -26,7 +26,7 @@ public class LoggingObjectCommandService implements net.lab1318.costume.api.serv
         this.delegate = com.google.common.base.Preconditions.checkNotNull(delegate);
     }
 
-    public void deleteObjects() throws net.lab1318.costume.api.services.IoException {
+    public com.google.common.primitives.UnsignedInteger deleteObjects() throws net.lab1318.costume.api.services.IoException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -34,9 +34,14 @@ public class LoggingObjectCommandService implements net.lab1318.costume.api.serv
         __logMessageStringBuilder.append(")");
 
         try {
-            delegate.deleteObjects();
+            com.google.common.primitives.UnsignedInteger __returnValue = delegate.deleteObjects();
+
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(__returnValue);
 
             logger.debug(Markers.DELETE_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+
+            return __returnValue;
         } catch (final net.lab1318.costume.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
@@ -45,7 +50,7 @@ public class LoggingObjectCommandService implements net.lab1318.costume.api.serv
         }
     }
 
-    public void deleteObjectsByCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) throws net.lab1318.costume.api.services.IoException {
+    public com.google.common.primitives.UnsignedInteger deleteObjectsByCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) throws net.lab1318.costume.api.services.IoException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -55,9 +60,14 @@ public class LoggingObjectCommandService implements net.lab1318.costume.api.serv
         __logMessageStringBuilder.append(")");
 
         try {
-            delegate.deleteObjectsByCollectionId(collectionId);
+            com.google.common.primitives.UnsignedInteger __returnValue = delegate.deleteObjectsByCollectionId(collectionId);
+
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(__returnValue);
 
             logger.debug(Markers.DELETE_OBJECTS_BY_COLLECTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+
+            return __returnValue;
         } catch (final net.lab1318.costume.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
@@ -66,7 +76,7 @@ public class LoggingObjectCommandService implements net.lab1318.costume.api.serv
         }
     }
 
-    public void deleteObjectsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws net.lab1318.costume.api.services.IoException {
+    public com.google.common.primitives.UnsignedInteger deleteObjectsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws net.lab1318.costume.api.services.IoException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -76,9 +86,14 @@ public class LoggingObjectCommandService implements net.lab1318.costume.api.serv
         __logMessageStringBuilder.append(")");
 
         try {
-            delegate.deleteObjectsByInstitutionId(institutionId);
+            com.google.common.primitives.UnsignedInteger __returnValue = delegate.deleteObjectsByInstitutionId(institutionId);
+
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(__returnValue);
 
             logger.debug(Markers.DELETE_OBJECTS_BY_INSTITUTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+
+            return __returnValue;
         } catch (final net.lab1318.costume.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());

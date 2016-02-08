@@ -8,7 +8,16 @@ class ObjectCommandService(object):
     def delete_objects(
         self,
     ):
-        self._delete_objects()
+        '''
+        :rtype: int
+        '''
+
+        delete_objects_return_value = self._delete_objects()
+
+        if not isinstance(delete_objects_return_value, (int, long)) and delete_objects_return_value >= 0:
+            raise TypeError(getattr(__builtin__, 'type')(delete_objects_return_value))
+
+        return delete_objects_return_value
 
     def _delete_objects(
         self,
@@ -21,6 +30,7 @@ class ObjectCommandService(object):
     ):
         '''
         :type collection_id: str
+        :rtype: int
         '''
 
         if collection_id is None:
@@ -28,7 +38,12 @@ class ObjectCommandService(object):
         if not isinstance(collection_id, basestring):
             raise TypeError("expected collection_id to be a str but it is a %s" % getattr(__builtin__, 'type')(collection_id))
 
-        self._delete_objects_by_collection_id(collection_id=collection_id)
+        delete_objects_by_collection_id_return_value = self._delete_objects_by_collection_id(collection_id=collection_id)
+
+        if not isinstance(delete_objects_by_collection_id_return_value, (int, long)) and delete_objects_by_collection_id_return_value >= 0:
+            raise TypeError(getattr(__builtin__, 'type')(delete_objects_by_collection_id_return_value))
+
+        return delete_objects_by_collection_id_return_value
 
     def _delete_objects_by_collection_id(
         self,
@@ -42,6 +57,7 @@ class ObjectCommandService(object):
     ):
         '''
         :type institution_id: str
+        :rtype: int
         '''
 
         if institution_id is None:
@@ -49,7 +65,12 @@ class ObjectCommandService(object):
         if not isinstance(institution_id, basestring):
             raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
 
-        self._delete_objects_by_institution_id(institution_id=institution_id)
+        delete_objects_by_institution_id_return_value = self._delete_objects_by_institution_id(institution_id=institution_id)
+
+        if not isinstance(delete_objects_by_institution_id_return_value, (int, long)) and delete_objects_by_institution_id_return_value >= 0:
+            raise TypeError(getattr(__builtin__, 'type')(delete_objects_by_institution_id_return_value))
+
+        return delete_objects_by_institution_id_return_value
 
     def _delete_objects_by_institution_id(
         self,

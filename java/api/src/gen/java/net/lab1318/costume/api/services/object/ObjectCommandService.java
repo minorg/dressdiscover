@@ -233,17 +233,23 @@ public interface ObjectCommandService {
         public final static class DeleteObjectsResponse implements org.thryft.Struct {
             public static class Builder {
                 public Builder() {
+                    returnValue = com.google.common.primitives.UnsignedInteger.ZERO;
                 }
 
                 public Builder(final DeleteObjectsResponse other) {
+                    this.returnValue = other.getReturnValue();
                 }
 
-                protected DeleteObjectsResponse _build() {
-                    return new DeleteObjectsResponse();
+                protected DeleteObjectsResponse _build(final com.google.common.primitives.UnsignedInteger returnValue) {
+                    return new DeleteObjectsResponse(returnValue);
                 }
 
                 public DeleteObjectsResponse build() {
-                    return _build();
+                    return _build(com.google.common.base.Preconditions.checkNotNull(returnValue, "net.lab1318.costume.api.services.object.DeleteObjectsResponse: missing returnValue"));
+                }
+
+                public final com.google.common.primitives.UnsignedInteger getReturnValue() {
+                    return returnValue;
                 }
 
                 public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -259,6 +265,7 @@ public interface ObjectCommandService {
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
+                    returnValue = iprot.readU32();
                     iprot.readListEnd();
                     return this;
                 }
@@ -275,6 +282,10 @@ public interface ObjectCommandService {
                             break;
                         }
                         switch (ifield.getName()) {
+                        case "return_value": {
+                            returnValue = iprot.readU32();
+                            break;
+                        }
                         default:
                             if (unknownFieldCallback.isPresent()) {
                                 unknownFieldCallback.get().apply(ifield);
@@ -290,8 +301,13 @@ public interface ObjectCommandService {
                 public Builder setIfPresent(final DeleteObjectsResponse other) {
                     com.google.common.base.Preconditions.checkNotNull(other);
 
+                    setReturnValue(other.getReturnValue());
 
+                    return this;
+                }
 
+                public Builder setReturnValue(final com.google.common.primitives.UnsignedInteger returnValue) {
+                    this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue);
                     return this;
                 }
 
@@ -299,28 +315,125 @@ public interface ObjectCommandService {
                     com.google.common.base.Preconditions.checkNotNull(name);
 
                     switch (name.toLowerCase()) {
+                    case "return_value": setReturnValue((com.google.common.primitives.UnsignedInteger)value); return this;
                     default:
                         throw new IllegalArgumentException(name);
                     }
+                }
+
+                public Builder unsetReturnValue() {
+                    this.returnValue = com.google.common.primitives.UnsignedInteger.ZERO;
+                    return this;
                 }
 
                 public Builder unset(final String name) {
                     com.google.common.base.Preconditions.checkNotNull(name);
 
                     switch (name.toLowerCase()) {
+                    case "return_value": return unsetReturnValue();
                     default:
                         throw new IllegalArgumentException(name);
                     }
                 }
+
+                private com.google.common.primitives.UnsignedInteger returnValue;
             }
 
-            public DeleteObjectsResponse() {
+            @SuppressWarnings("serial")
+            public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
+                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, true, 0, "return_value", org.thryft.protocol.Type.I32);
+
+                @Override
+                public String getJavaName() {
+                    return javaName;
+                }
+
+                @Override
+                public com.google.common.reflect.TypeToken<?> getJavaType() {
+                    return javaType;
+                }
+
+                @Override
+                public int getThriftId() {
+                    return thriftId;
+                }
+
+                @Override
+                public String getThriftProtocolKey() {
+                    return thriftProtocolKey;
+                }
+
+                @Override
+                public org.thryft.protocol.Type getThriftProtocolType() {
+                    return thriftProtocolType;
+                }
+
+                @Override
+                public String getThriftName() {
+                    return thriftName;
+                }
+
+                @Override
+                public boolean hasThriftId() {
+                    return thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID;
+                }
+
+                @Override
+                public boolean isRequired()  {
+                    return required;
+                }
+
+                public static FieldMetadata valueOfJavaName(final String javaName) {
+                    switch (javaName) {
+                    case "returnValue": return RETURN_VALUE;
+                    default:
+                        throw new IllegalArgumentException(javaName);
+                    }
+                }
+
+                public static FieldMetadata valueOfThriftName(final String thriftName) {
+                    switch (thriftName) {
+                    case "return_value": return RETURN_VALUE;
+                    default:
+                        throw new IllegalArgumentException(thriftName);
+                    }
+                }
+
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                    this.javaName = javaName;
+                    this.javaType = javaType;
+                    this.required = required;
+                    this.thriftId = thriftId;
+                    this.thriftName = thriftName;
+                    if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
+                        this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
+                    } else {
+                        this.thriftProtocolKey = thriftName;
+                    }
+                    this.thriftProtocolType = thriftProtocolType;
+                }
+
+                private final String javaName;
+                private final com.google.common.reflect.TypeToken<?> javaType;
+                private final boolean required;
+                private final int thriftId;
+                private final String thriftName;
+                private final String thriftProtocolKey;
+                private final org.thryft.protocol.Type thriftProtocolType;
             }
 
             /**
              * Copy constructor
              */
             public DeleteObjectsResponse(final DeleteObjectsResponse other) {
+                this(other.getReturnValue());
+            }
+
+            /**
+             * Optional constructor
+             */
+            public DeleteObjectsResponse(final com.google.common.primitives.UnsignedInteger returnValue) {
+                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "net.lab1318.costume.api.services.object.ObjectCommandService.deleteObjects: missing returnValue");
             }
 
             public static Builder builder() {
@@ -343,28 +456,46 @@ public interface ObjectCommandService {
                     return false;
                 }
 
-                return true;
+                final DeleteObjectsResponse other = (DeleteObjectsResponse)otherObject;
+                return
+                    getReturnValue().equals(other.getReturnValue());
             }
 
             @Override
             public java.lang.Object get(final String fieldThriftName) {
-                throw new IllegalArgumentException(fieldThriftName);
+                return get(FieldMetadata.valueOfThriftName(fieldThriftName));
             }
 
             @Override
             public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
-                throw new IllegalArgumentException();
+                if (!(fieldMetadata instanceof FieldMetadata)) {
+                    throw new IllegalArgumentException();
+                }
+                return get((FieldMetadata)fieldMetadata);
+            }
+
+            public java.lang.Object get(final FieldMetadata fieldMetadata) {
+                switch (fieldMetadata) {
+                case RETURN_VALUE: return getReturnValue();
+                default:
+                    throw new IllegalStateException();
+                }
+            }
+
+            public final com.google.common.primitives.UnsignedInteger getReturnValue() {
+                return returnValue;
             }
 
             @Override
             public int hashCode() {
                 int hashCode = 17;
+                hashCode = 31 * hashCode + getReturnValue().hashCode();
                 return hashCode;
             }
 
             @Override
             public boolean isEmpty() {
-                return true;
+                return false;
             }
 
             public static DeleteObjectsResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -379,10 +510,13 @@ public interface ObjectCommandService {
             }
 
             public static DeleteObjectsResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                com.google.common.primitives.UnsignedInteger returnValue = com.google.common.primitives.UnsignedInteger.ZERO;
+
                 iprot.readListBegin();
+                returnValue = iprot.readU32();
                 iprot.readListEnd();
                 try {
-                    return new DeleteObjectsResponse();
+                    return new DeleteObjectsResponse(returnValue);
                 } catch (final IllegalArgumentException | NullPointerException e) {
                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
@@ -393,6 +527,8 @@ public interface ObjectCommandService {
             }
 
             public static DeleteObjectsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                com.google.common.primitives.UnsignedInteger returnValue = com.google.common.primitives.UnsignedInteger.ZERO;
+
                 iprot.readStructBegin();
                 while (true) {
                     final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -400,6 +536,10 @@ public interface ObjectCommandService {
                         break;
                     }
                     switch (ifield.getName()) {
+                    case "return_value": {
+                        returnValue = iprot.readU32();
+                        break;
+                    }
                     default:
                         if (unknownFieldCallback.isPresent()) {
                             unknownFieldCallback.get().apply(ifield);
@@ -410,20 +550,27 @@ public interface ObjectCommandService {
                 }
                 iprot.readStructEnd();
                 try {
-                    return new DeleteObjectsResponse();
+                    return new DeleteObjectsResponse(returnValue);
                 } catch (final IllegalArgumentException | NullPointerException e) {
                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
             }
 
+            public DeleteObjectsResponse replaceReturnValue(final com.google.common.primitives.UnsignedInteger returnValue) {
+                return new DeleteObjectsResponse(returnValue);
+            }
+
             @Override
             public String toString() {
-                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().toString();
+                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("return_value", getReturnValue()).toString();
             }
 
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 0);
+                oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
+
+                oprot.writeU32(getReturnValue());
+
                 oprot.writeListEnd();
             }
 
@@ -436,8 +583,14 @@ public interface ObjectCommandService {
 
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeFieldBegin("return_value", org.thryft.protocol.Type.I32, (short)0);
+                oprot.writeU32(getReturnValue());
+                oprot.writeFieldEnd();
+
                 oprot.writeFieldStop();
             }
+
+            private final com.google.common.primitives.UnsignedInteger returnValue;
         }
 
         public final static class DeleteObjectsByCollectionIdRequest implements org.thryft.Struct {
@@ -822,17 +975,23 @@ public interface ObjectCommandService {
         public final static class DeleteObjectsByCollectionIdResponse implements org.thryft.Struct {
             public static class Builder {
                 public Builder() {
+                    returnValue = com.google.common.primitives.UnsignedInteger.ZERO;
                 }
 
                 public Builder(final DeleteObjectsByCollectionIdResponse other) {
+                    this.returnValue = other.getReturnValue();
                 }
 
-                protected DeleteObjectsByCollectionIdResponse _build() {
-                    return new DeleteObjectsByCollectionIdResponse();
+                protected DeleteObjectsByCollectionIdResponse _build(final com.google.common.primitives.UnsignedInteger returnValue) {
+                    return new DeleteObjectsByCollectionIdResponse(returnValue);
                 }
 
                 public DeleteObjectsByCollectionIdResponse build() {
-                    return _build();
+                    return _build(com.google.common.base.Preconditions.checkNotNull(returnValue, "net.lab1318.costume.api.services.object.DeleteObjectsByCollectionIdResponse: missing returnValue"));
+                }
+
+                public final com.google.common.primitives.UnsignedInteger getReturnValue() {
+                    return returnValue;
                 }
 
                 public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -848,6 +1007,7 @@ public interface ObjectCommandService {
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
+                    returnValue = iprot.readU32();
                     iprot.readListEnd();
                     return this;
                 }
@@ -864,6 +1024,10 @@ public interface ObjectCommandService {
                             break;
                         }
                         switch (ifield.getName()) {
+                        case "return_value": {
+                            returnValue = iprot.readU32();
+                            break;
+                        }
                         default:
                             if (unknownFieldCallback.isPresent()) {
                                 unknownFieldCallback.get().apply(ifield);
@@ -879,8 +1043,13 @@ public interface ObjectCommandService {
                 public Builder setIfPresent(final DeleteObjectsByCollectionIdResponse other) {
                     com.google.common.base.Preconditions.checkNotNull(other);
 
+                    setReturnValue(other.getReturnValue());
 
+                    return this;
+                }
 
+                public Builder setReturnValue(final com.google.common.primitives.UnsignedInteger returnValue) {
+                    this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue);
                     return this;
                 }
 
@@ -888,28 +1057,125 @@ public interface ObjectCommandService {
                     com.google.common.base.Preconditions.checkNotNull(name);
 
                     switch (name.toLowerCase()) {
+                    case "return_value": setReturnValue((com.google.common.primitives.UnsignedInteger)value); return this;
                     default:
                         throw new IllegalArgumentException(name);
                     }
+                }
+
+                public Builder unsetReturnValue() {
+                    this.returnValue = com.google.common.primitives.UnsignedInteger.ZERO;
+                    return this;
                 }
 
                 public Builder unset(final String name) {
                     com.google.common.base.Preconditions.checkNotNull(name);
 
                     switch (name.toLowerCase()) {
+                    case "return_value": return unsetReturnValue();
                     default:
                         throw new IllegalArgumentException(name);
                     }
                 }
+
+                private com.google.common.primitives.UnsignedInteger returnValue;
             }
 
-            public DeleteObjectsByCollectionIdResponse() {
+            @SuppressWarnings("serial")
+            public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
+                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, true, 0, "return_value", org.thryft.protocol.Type.I32);
+
+                @Override
+                public String getJavaName() {
+                    return javaName;
+                }
+
+                @Override
+                public com.google.common.reflect.TypeToken<?> getJavaType() {
+                    return javaType;
+                }
+
+                @Override
+                public int getThriftId() {
+                    return thriftId;
+                }
+
+                @Override
+                public String getThriftProtocolKey() {
+                    return thriftProtocolKey;
+                }
+
+                @Override
+                public org.thryft.protocol.Type getThriftProtocolType() {
+                    return thriftProtocolType;
+                }
+
+                @Override
+                public String getThriftName() {
+                    return thriftName;
+                }
+
+                @Override
+                public boolean hasThriftId() {
+                    return thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID;
+                }
+
+                @Override
+                public boolean isRequired()  {
+                    return required;
+                }
+
+                public static FieldMetadata valueOfJavaName(final String javaName) {
+                    switch (javaName) {
+                    case "returnValue": return RETURN_VALUE;
+                    default:
+                        throw new IllegalArgumentException(javaName);
+                    }
+                }
+
+                public static FieldMetadata valueOfThriftName(final String thriftName) {
+                    switch (thriftName) {
+                    case "return_value": return RETURN_VALUE;
+                    default:
+                        throw new IllegalArgumentException(thriftName);
+                    }
+                }
+
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                    this.javaName = javaName;
+                    this.javaType = javaType;
+                    this.required = required;
+                    this.thriftId = thriftId;
+                    this.thriftName = thriftName;
+                    if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
+                        this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
+                    } else {
+                        this.thriftProtocolKey = thriftName;
+                    }
+                    this.thriftProtocolType = thriftProtocolType;
+                }
+
+                private final String javaName;
+                private final com.google.common.reflect.TypeToken<?> javaType;
+                private final boolean required;
+                private final int thriftId;
+                private final String thriftName;
+                private final String thriftProtocolKey;
+                private final org.thryft.protocol.Type thriftProtocolType;
             }
 
             /**
              * Copy constructor
              */
             public DeleteObjectsByCollectionIdResponse(final DeleteObjectsByCollectionIdResponse other) {
+                this(other.getReturnValue());
+            }
+
+            /**
+             * Optional constructor
+             */
+            public DeleteObjectsByCollectionIdResponse(final com.google.common.primitives.UnsignedInteger returnValue) {
+                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "net.lab1318.costume.api.services.object.ObjectCommandService.deleteObjectsByCollectionId: missing returnValue");
             }
 
             public static Builder builder() {
@@ -932,28 +1198,46 @@ public interface ObjectCommandService {
                     return false;
                 }
 
-                return true;
+                final DeleteObjectsByCollectionIdResponse other = (DeleteObjectsByCollectionIdResponse)otherObject;
+                return
+                    getReturnValue().equals(other.getReturnValue());
             }
 
             @Override
             public java.lang.Object get(final String fieldThriftName) {
-                throw new IllegalArgumentException(fieldThriftName);
+                return get(FieldMetadata.valueOfThriftName(fieldThriftName));
             }
 
             @Override
             public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
-                throw new IllegalArgumentException();
+                if (!(fieldMetadata instanceof FieldMetadata)) {
+                    throw new IllegalArgumentException();
+                }
+                return get((FieldMetadata)fieldMetadata);
+            }
+
+            public java.lang.Object get(final FieldMetadata fieldMetadata) {
+                switch (fieldMetadata) {
+                case RETURN_VALUE: return getReturnValue();
+                default:
+                    throw new IllegalStateException();
+                }
+            }
+
+            public final com.google.common.primitives.UnsignedInteger getReturnValue() {
+                return returnValue;
             }
 
             @Override
             public int hashCode() {
                 int hashCode = 17;
+                hashCode = 31 * hashCode + getReturnValue().hashCode();
                 return hashCode;
             }
 
             @Override
             public boolean isEmpty() {
-                return true;
+                return false;
             }
 
             public static DeleteObjectsByCollectionIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -968,10 +1252,13 @@ public interface ObjectCommandService {
             }
 
             public static DeleteObjectsByCollectionIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                com.google.common.primitives.UnsignedInteger returnValue = com.google.common.primitives.UnsignedInteger.ZERO;
+
                 iprot.readListBegin();
+                returnValue = iprot.readU32();
                 iprot.readListEnd();
                 try {
-                    return new DeleteObjectsByCollectionIdResponse();
+                    return new DeleteObjectsByCollectionIdResponse(returnValue);
                 } catch (final IllegalArgumentException | NullPointerException e) {
                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
@@ -982,6 +1269,8 @@ public interface ObjectCommandService {
             }
 
             public static DeleteObjectsByCollectionIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                com.google.common.primitives.UnsignedInteger returnValue = com.google.common.primitives.UnsignedInteger.ZERO;
+
                 iprot.readStructBegin();
                 while (true) {
                     final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -989,6 +1278,10 @@ public interface ObjectCommandService {
                         break;
                     }
                     switch (ifield.getName()) {
+                    case "return_value": {
+                        returnValue = iprot.readU32();
+                        break;
+                    }
                     default:
                         if (unknownFieldCallback.isPresent()) {
                             unknownFieldCallback.get().apply(ifield);
@@ -999,20 +1292,27 @@ public interface ObjectCommandService {
                 }
                 iprot.readStructEnd();
                 try {
-                    return new DeleteObjectsByCollectionIdResponse();
+                    return new DeleteObjectsByCollectionIdResponse(returnValue);
                 } catch (final IllegalArgumentException | NullPointerException e) {
                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
             }
 
+            public DeleteObjectsByCollectionIdResponse replaceReturnValue(final com.google.common.primitives.UnsignedInteger returnValue) {
+                return new DeleteObjectsByCollectionIdResponse(returnValue);
+            }
+
             @Override
             public String toString() {
-                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().toString();
+                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("return_value", getReturnValue()).toString();
             }
 
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 0);
+                oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
+
+                oprot.writeU32(getReturnValue());
+
                 oprot.writeListEnd();
             }
 
@@ -1025,8 +1325,14 @@ public interface ObjectCommandService {
 
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeFieldBegin("return_value", org.thryft.protocol.Type.I32, (short)0);
+                oprot.writeU32(getReturnValue());
+                oprot.writeFieldEnd();
+
                 oprot.writeFieldStop();
             }
+
+            private final com.google.common.primitives.UnsignedInteger returnValue;
         }
 
         public final static class DeleteObjectsByInstitutionIdRequest implements org.thryft.Struct {
@@ -1411,17 +1717,23 @@ public interface ObjectCommandService {
         public final static class DeleteObjectsByInstitutionIdResponse implements org.thryft.Struct {
             public static class Builder {
                 public Builder() {
+                    returnValue = com.google.common.primitives.UnsignedInteger.ZERO;
                 }
 
                 public Builder(final DeleteObjectsByInstitutionIdResponse other) {
+                    this.returnValue = other.getReturnValue();
                 }
 
-                protected DeleteObjectsByInstitutionIdResponse _build() {
-                    return new DeleteObjectsByInstitutionIdResponse();
+                protected DeleteObjectsByInstitutionIdResponse _build(final com.google.common.primitives.UnsignedInteger returnValue) {
+                    return new DeleteObjectsByInstitutionIdResponse(returnValue);
                 }
 
                 public DeleteObjectsByInstitutionIdResponse build() {
-                    return _build();
+                    return _build(com.google.common.base.Preconditions.checkNotNull(returnValue, "net.lab1318.costume.api.services.object.DeleteObjectsByInstitutionIdResponse: missing returnValue"));
+                }
+
+                public final com.google.common.primitives.UnsignedInteger getReturnValue() {
+                    return returnValue;
                 }
 
                 public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -1437,6 +1749,7 @@ public interface ObjectCommandService {
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
+                    returnValue = iprot.readU32();
                     iprot.readListEnd();
                     return this;
                 }
@@ -1453,6 +1766,10 @@ public interface ObjectCommandService {
                             break;
                         }
                         switch (ifield.getName()) {
+                        case "return_value": {
+                            returnValue = iprot.readU32();
+                            break;
+                        }
                         default:
                             if (unknownFieldCallback.isPresent()) {
                                 unknownFieldCallback.get().apply(ifield);
@@ -1468,8 +1785,13 @@ public interface ObjectCommandService {
                 public Builder setIfPresent(final DeleteObjectsByInstitutionIdResponse other) {
                     com.google.common.base.Preconditions.checkNotNull(other);
 
+                    setReturnValue(other.getReturnValue());
 
+                    return this;
+                }
 
+                public Builder setReturnValue(final com.google.common.primitives.UnsignedInteger returnValue) {
+                    this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue);
                     return this;
                 }
 
@@ -1477,28 +1799,125 @@ public interface ObjectCommandService {
                     com.google.common.base.Preconditions.checkNotNull(name);
 
                     switch (name.toLowerCase()) {
+                    case "return_value": setReturnValue((com.google.common.primitives.UnsignedInteger)value); return this;
                     default:
                         throw new IllegalArgumentException(name);
                     }
+                }
+
+                public Builder unsetReturnValue() {
+                    this.returnValue = com.google.common.primitives.UnsignedInteger.ZERO;
+                    return this;
                 }
 
                 public Builder unset(final String name) {
                     com.google.common.base.Preconditions.checkNotNull(name);
 
                     switch (name.toLowerCase()) {
+                    case "return_value": return unsetReturnValue();
                     default:
                         throw new IllegalArgumentException(name);
                     }
                 }
+
+                private com.google.common.primitives.UnsignedInteger returnValue;
             }
 
-            public DeleteObjectsByInstitutionIdResponse() {
+            @SuppressWarnings("serial")
+            public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
+                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, true, 0, "return_value", org.thryft.protocol.Type.I32);
+
+                @Override
+                public String getJavaName() {
+                    return javaName;
+                }
+
+                @Override
+                public com.google.common.reflect.TypeToken<?> getJavaType() {
+                    return javaType;
+                }
+
+                @Override
+                public int getThriftId() {
+                    return thriftId;
+                }
+
+                @Override
+                public String getThriftProtocolKey() {
+                    return thriftProtocolKey;
+                }
+
+                @Override
+                public org.thryft.protocol.Type getThriftProtocolType() {
+                    return thriftProtocolType;
+                }
+
+                @Override
+                public String getThriftName() {
+                    return thriftName;
+                }
+
+                @Override
+                public boolean hasThriftId() {
+                    return thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID;
+                }
+
+                @Override
+                public boolean isRequired()  {
+                    return required;
+                }
+
+                public static FieldMetadata valueOfJavaName(final String javaName) {
+                    switch (javaName) {
+                    case "returnValue": return RETURN_VALUE;
+                    default:
+                        throw new IllegalArgumentException(javaName);
+                    }
+                }
+
+                public static FieldMetadata valueOfThriftName(final String thriftName) {
+                    switch (thriftName) {
+                    case "return_value": return RETURN_VALUE;
+                    default:
+                        throw new IllegalArgumentException(thriftName);
+                    }
+                }
+
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                    this.javaName = javaName;
+                    this.javaType = javaType;
+                    this.required = required;
+                    this.thriftId = thriftId;
+                    this.thriftName = thriftName;
+                    if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
+                        this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
+                    } else {
+                        this.thriftProtocolKey = thriftName;
+                    }
+                    this.thriftProtocolType = thriftProtocolType;
+                }
+
+                private final String javaName;
+                private final com.google.common.reflect.TypeToken<?> javaType;
+                private final boolean required;
+                private final int thriftId;
+                private final String thriftName;
+                private final String thriftProtocolKey;
+                private final org.thryft.protocol.Type thriftProtocolType;
             }
 
             /**
              * Copy constructor
              */
             public DeleteObjectsByInstitutionIdResponse(final DeleteObjectsByInstitutionIdResponse other) {
+                this(other.getReturnValue());
+            }
+
+            /**
+             * Optional constructor
+             */
+            public DeleteObjectsByInstitutionIdResponse(final com.google.common.primitives.UnsignedInteger returnValue) {
+                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "net.lab1318.costume.api.services.object.ObjectCommandService.deleteObjectsByInstitutionId: missing returnValue");
             }
 
             public static Builder builder() {
@@ -1521,28 +1940,46 @@ public interface ObjectCommandService {
                     return false;
                 }
 
-                return true;
+                final DeleteObjectsByInstitutionIdResponse other = (DeleteObjectsByInstitutionIdResponse)otherObject;
+                return
+                    getReturnValue().equals(other.getReturnValue());
             }
 
             @Override
             public java.lang.Object get(final String fieldThriftName) {
-                throw new IllegalArgumentException(fieldThriftName);
+                return get(FieldMetadata.valueOfThriftName(fieldThriftName));
             }
 
             @Override
             public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
-                throw new IllegalArgumentException();
+                if (!(fieldMetadata instanceof FieldMetadata)) {
+                    throw new IllegalArgumentException();
+                }
+                return get((FieldMetadata)fieldMetadata);
+            }
+
+            public java.lang.Object get(final FieldMetadata fieldMetadata) {
+                switch (fieldMetadata) {
+                case RETURN_VALUE: return getReturnValue();
+                default:
+                    throw new IllegalStateException();
+                }
+            }
+
+            public final com.google.common.primitives.UnsignedInteger getReturnValue() {
+                return returnValue;
             }
 
             @Override
             public int hashCode() {
                 int hashCode = 17;
+                hashCode = 31 * hashCode + getReturnValue().hashCode();
                 return hashCode;
             }
 
             @Override
             public boolean isEmpty() {
-                return true;
+                return false;
             }
 
             public static DeleteObjectsByInstitutionIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -1557,10 +1994,13 @@ public interface ObjectCommandService {
             }
 
             public static DeleteObjectsByInstitutionIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                com.google.common.primitives.UnsignedInteger returnValue = com.google.common.primitives.UnsignedInteger.ZERO;
+
                 iprot.readListBegin();
+                returnValue = iprot.readU32();
                 iprot.readListEnd();
                 try {
-                    return new DeleteObjectsByInstitutionIdResponse();
+                    return new DeleteObjectsByInstitutionIdResponse(returnValue);
                 } catch (final IllegalArgumentException | NullPointerException e) {
                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
@@ -1571,6 +2011,8 @@ public interface ObjectCommandService {
             }
 
             public static DeleteObjectsByInstitutionIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                com.google.common.primitives.UnsignedInteger returnValue = com.google.common.primitives.UnsignedInteger.ZERO;
+
                 iprot.readStructBegin();
                 while (true) {
                     final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
@@ -1578,6 +2020,10 @@ public interface ObjectCommandService {
                         break;
                     }
                     switch (ifield.getName()) {
+                    case "return_value": {
+                        returnValue = iprot.readU32();
+                        break;
+                    }
                     default:
                         if (unknownFieldCallback.isPresent()) {
                             unknownFieldCallback.get().apply(ifield);
@@ -1588,20 +2034,27 @@ public interface ObjectCommandService {
                 }
                 iprot.readStructEnd();
                 try {
-                    return new DeleteObjectsByInstitutionIdResponse();
+                    return new DeleteObjectsByInstitutionIdResponse(returnValue);
                 } catch (final IllegalArgumentException | NullPointerException e) {
                     throw new org.thryft.protocol.InputProtocolException(e);
                 }
             }
 
+            public DeleteObjectsByInstitutionIdResponse replaceReturnValue(final com.google.common.primitives.UnsignedInteger returnValue) {
+                return new DeleteObjectsByInstitutionIdResponse(returnValue);
+            }
+
             @Override
             public String toString() {
-                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().toString();
+                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("return_value", getReturnValue()).toString();
             }
 
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 0);
+                oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
+
+                oprot.writeU32(getReturnValue());
+
                 oprot.writeListEnd();
             }
 
@@ -1614,8 +2067,14 @@ public interface ObjectCommandService {
 
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeFieldBegin("return_value", org.thryft.protocol.Type.I32, (short)0);
+                oprot.writeU32(getReturnValue());
+                oprot.writeFieldEnd();
+
                 oprot.writeFieldStop();
             }
+
+            private final com.google.common.primitives.UnsignedInteger returnValue;
         }
 
         public final static class PutObjectRequest implements org.thryft.Struct {
@@ -2905,11 +3364,11 @@ public interface ObjectCommandService {
         }
     }
 
-    public void deleteObjects() throws net.lab1318.costume.api.services.IoException;
+    public com.google.common.primitives.UnsignedInteger deleteObjects() throws net.lab1318.costume.api.services.IoException;
 
-    public void deleteObjectsByCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) throws net.lab1318.costume.api.services.IoException;
+    public com.google.common.primitives.UnsignedInteger deleteObjectsByCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) throws net.lab1318.costume.api.services.IoException;
 
-    public void deleteObjectsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws net.lab1318.costume.api.services.IoException;
+    public com.google.common.primitives.UnsignedInteger deleteObjectsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws net.lab1318.costume.api.services.IoException;
 
     public void putObject(final net.lab1318.costume.api.models.object.ObjectId id, final net.lab1318.costume.api.models.object.Object object) throws net.lab1318.costume.api.services.IoException;
 

@@ -11,22 +11,23 @@ include "costume/api/models/object/object.thrift"
 include "costume/api/models/object/object_entry.thrift"
 include "costume/api/models/object/object_id.thrift"
 include "costume/api/services/io_exception.thrift"
+include "thryft/native/u32.thrift"
 
 service ObjectCommandService {
-	void
+	u32.u32
 	delete_objects(
 	) throws (
 		io_exception.IoException e
 	);
 
-	void
+	u32.u32
 	delete_objects_by_collection_id(
 		collection_id.CollectionId collection_id
 	) throws (
 		io_exception.IoException e
 	);
 
-	void
+	u32.u32
 	delete_objects_by_institution_id(
 		institution_id.InstitutionId institution_id
 	) throws (
