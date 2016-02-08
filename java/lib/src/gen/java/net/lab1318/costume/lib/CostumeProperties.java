@@ -649,10 +649,10 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
 
         __properties = __mergeProperties(__properties, __readProperties("costume.properties"));
         __properties = __mergeProperties(__properties, __readProperties(new java.io.File(
+                "/etc/costume/costume.properties")));
+        __properties = __mergeProperties(__properties, __readProperties(new java.io.File(
                 new java.io.File(new java.io.File(System.getProperty("user.home")),
                         ".costume"), "costume.properties")));
-        __properties = __mergeProperties(__properties, __readProperties(new java.io.File(
-                "/etc/costume/costume.properties")));
         if (commandLinePropertiesFilePath.isPresent()) {
             __properties = __mergeProperties(__properties,
                     __readProperties(commandLinePropertiesFilePath.get()));
