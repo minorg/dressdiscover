@@ -22,6 +22,7 @@ import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.models.user.UserBookmarkId;
 import net.lab1318.costume.api.models.user.UserId;
+import net.lab1318.costume.gui.components.ObjectSummaryEntriesTable;
 import net.lab1318.costume.gui.views.TopLevelView;
 
 @SuppressWarnings("serial")
@@ -86,7 +87,7 @@ public class ObjectsView extends TopLevelView {
             rightPaneContentLayout.setComponentAlignment(hitCountsLabel, Alignment.MIDDLE_CENTER);
 
             objectSummaryEntriesTable = new ObjectSummaryEntriesTable(bookmarkedObjectIds, collections, currentUserId,
-                    _getEventBus(), institutions, availableObjectFacets, objectSummaries);
+                    _getEventBus(), institutions, objectSummaries);
             rightPaneContentLayout.addComponent(objectSummaryEntriesTable);
         } else {
             rightPaneContentLayout.addComponent(new Label("No objects match your criteria."));

@@ -40,7 +40,6 @@ import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.api.services.user.UserCommandService;
 import net.lab1318.costume.api.services.user.UserQueryService;
-import net.lab1318.costume.gui.GuiUI;
 import net.lab1318.costume.gui.events.object_by_id.ObjectElementSelectionRequest;
 import net.lab1318.costume.gui.events.object_by_id.ObjectMoreLikeThisRequest;
 import net.lab1318.costume.gui.presenters.Presenter;
@@ -63,14 +62,14 @@ public class ObjectByIdPresenter extends Presenter<ObjectByIdView> {
     @Subscribe
     public void onObjectElementSelectionRequest(final ObjectElementSelectionRequest event) {
         checkState(objectId != null);
-        GuiUI.navigateTo(ObjectQuery.builder().setCollectionId(objectId.getCollectionId())
+        _navigateTo(ObjectQuery.builder().setCollectionId(objectId.getCollectionId())
                 .setInstitutionId(objectId.getInstitutionId()).setFacetFilters(event.getFilter()).build());
     }
 
     @Subscribe
     public void onObjectMoreLikeThisRequest(final ObjectMoreLikeThisRequest event) {
         checkState(objectId != null);
-        GuiUI.navigateTo(ObjectQuery.builder().setCollectionId(objectId.getCollectionId())
+        _navigateTo(ObjectQuery.builder().setCollectionId(objectId.getCollectionId())
                 .setInstitutionId(objectId.getInstitutionId()).setMoreLikeObjectId(objectId).build());
     }
 

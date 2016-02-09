@@ -1,5 +1,7 @@
 package net.lab1318.costume.gui.views.object_by_id;
 
+import org.thryft.waf.gui.EventBus;
+
 import com.google.common.collect.ImmutableList;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Button;
@@ -12,12 +14,12 @@ import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.models.relation.Relation;
 import net.lab1318.costume.api.models.relation.RelationSet;
-import net.lab1318.costume.gui.GuiUI;
+import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
 import net.lab1318.costume.gui.models.relation.RelationBean;
 
 @SuppressWarnings("serial")
 final class RelationSetTable extends ElementSetTable {
-    public RelationSetTable(final InstitutionId institutionId, final RelationSet relations) {
+    public RelationSetTable(final EventBus eventBus, final InstitutionId institutionId, final RelationSet relations) {
         super("Relations", relations);
 
         final BeanItemContainer<RelationBean> container = new BeanItemContainer<>(RelationBean.class);
@@ -39,8 +41,8 @@ final class RelationSetTable extends ElementSetTable {
                 return new NativeButton(relationText, new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {
-                        GuiUI.navigateTo(ObjectQuery.builder().setInstitutionId(institutionId)
-                                .setRelationText(relationText).build());
+                        eventBus.post(GetObjectSummariesRequest.builder().setQuery(ObjectQuery.builder()
+                                .setInstitutionId(institutionId).setRelationText(relationText).build()).build());
                     }
                 });
             }

@@ -129,7 +129,7 @@ final class ObjectEntryForm extends CustomComponent {
             }
 
             if (objectEntry.getModel().getRelations().isPresent()) {
-                formLayout.addComponent(new RelationSetTable(objectEntry.getModel().getInstitutionId(),
+                formLayout.addComponent(new RelationSetTable(eventBus, objectEntry.getModel().getInstitutionId(),
                         objectEntry.getModel().getRelations().get()));
             }
 
