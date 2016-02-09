@@ -25,7 +25,8 @@ import com.vaadin.ui.UI;
 
 import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.models.user.UserEntry;
-import net.lab1318.costume.gui.GuiUI;
+import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
+import net.lab1318.costume.api.services.user.UserQueryService.Messages.GetUserBookmarksByUserIdRequest;
 import net.lab1318.costume.gui.events.user.UserLogoutRequest;
 
 @SuppressWarnings("serial")
@@ -56,10 +57,11 @@ public final class Navbar extends HorizontalLayout {
                 @Override
                 public void buttonClick(final ClickEvent event) {
                     if (searchTextField.getValue().isEmpty()) {
-                        GuiUI.navigateTo(new ObjectQuery());
+                        eventBus.post(new GetObjectSummariesRequest());
                     } else {
-                        GuiUI.navigateTo(ObjectQuery.builder().setQueryString(searchTextField.getValue())
-                                .setWorkTypeText("PhysicalObject").build());
+                        eventBus.post(GetObjectSummariesRequest.builder().setQuery(ObjectQuery.builder()
+                                .setQueryString(searchTextField.getValue()).setWorkTypeText("PhysicalObject").build())
+                                .build());
                     }
                 }
             });
@@ -92,6 +94,13 @@ public final class Navbar extends HorizontalLayout {
         {
             final MenuBar rightMenuBar = new MenuBar();
             currentUserMenuItem = rightMenuBar.addItem("Guest user", null);
+            bookmarksMenuItem = rightMenuBar.addItem("Bookmarks", new Command() {
+                @Override
+                public void menuSelected(final MenuItem selectedItem) {
+                    eventBus.post(new GetUserBookmarksByUserIdRequest(currentUser.get().getId()));
+                }
+            });
+            bookmarksMenuItem.setEnabled(false);
             addComponent(rightMenuBar);
             setComponentAlignment(rightMenuBar, Alignment.MIDDLE_RIGHT);
         }
@@ -102,6 +111,7 @@ public final class Navbar extends HorizontalLayout {
     }
 
     public void setCurrentUser(final Optional<UserEntry> currentUser) {
+        this.currentUser = checkNotNull(currentUser);
         if (currentUser.isPresent()) {
             currentUserMenuItem.setCommand(null);
             currentUserMenuItem.setText(currentUser.get().getModel().getEmailAddress().toString());
@@ -113,6 +123,7 @@ public final class Navbar extends HorizontalLayout {
                 }
             });
         } else {
+            bookmarksMenuItem.setEnabled(true);
             currentUserMenuItem.setCommand(new Command() {
                 @Override
                 public void menuSelected(final MenuItem selectedItem) {
@@ -128,6 +139,8 @@ public final class Navbar extends HorizontalLayout {
         }
     }
 
+    private MenuItem bookmarksMenuItem;
+    private Optional<UserEntry> currentUser;
     private MenuItem currentUserMenuItem;
     private final EventBus eventBus;
     private final TextField searchTextField = new TextField();

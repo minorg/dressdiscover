@@ -43,7 +43,6 @@ import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.api.services.user.UserCommandService;
 import net.lab1318.costume.api.services.user.UserQueryService;
-import net.lab1318.costume.gui.GuiUI;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureBackRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureFinishRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureGotoRequest;
@@ -190,7 +189,7 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
     }
 
     private void __navigateToFinish() {
-        GuiUI.navigateTo(__getCurrentObjectQuery());
+        _navigateTo(__getCurrentObjectQuery());
     }
 
     private void __refreshView() {

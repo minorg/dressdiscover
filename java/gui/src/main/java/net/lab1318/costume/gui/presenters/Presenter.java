@@ -3,16 +3,23 @@ package net.lab1318.costume.gui.presenters;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
+import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
+import org.thryft.protocol.JacksonJsonOutputProtocol;
+import org.thryft.protocol.OutputProtocolException;
 import org.thryft.waf.gui.EventBus;
 import org.thryft.waf.gui.views.View;
 import org.thryft.waf.lib.logging.LoggingUtils;
 
+import com.google.common.base.Charsets;
 import com.google.common.base.Optional;
 import com.google.common.eventbus.Subscribe;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -35,12 +42,33 @@ import net.lab1318.costume.api.services.user.NoSuchUserBookmarkException;
 import net.lab1318.costume.api.services.user.NoSuchUserException;
 import net.lab1318.costume.api.services.user.UserCommandService;
 import net.lab1318.costume.api.services.user.UserQueryService;
-import net.lab1318.costume.gui.GuiUI;
+import net.lab1318.costume.api.services.user.UserQueryService.Messages.GetUserBookmarksByUserIdRequest;
 import net.lab1318.costume.gui.events.user.UserLogoutRequest;
 import net.lab1318.costume.gui.views.TopLevelView;
 import net.lab1318.costume.gui.views.object_by_id.ObjectByIdView;
+import net.lab1318.costume.gui.views.objects.ObjectsView;
+import net.lab1318.costume.gui.views.user_bookmarks.UserBookmarksView;
 
 public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.presenters.Presenter<ViewT> {
+    protected static void _navigateTo(final ObjectQuery query) {
+        String queryJson;
+        try {
+            final StringWriter jsonStringWriter = new StringWriter();
+            final JacksonJsonOutputProtocol oprot = new JacksonJsonOutputProtocol(jsonStringWriter);
+            query.writeAsStruct(oprot);
+            oprot.flush();
+            queryJson = jsonStringWriter.toString();
+        } catch (final OutputProtocolException e) {
+            throw new IllegalStateException();
+        }
+        try {
+            UI.getCurrent().getNavigator()
+                    .navigateTo(ObjectsView.NAME + "/" + URLEncoder.encode(queryJson, Charsets.UTF_8.toString()));
+        } catch (final UnsupportedEncodingException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
     protected Presenter(final EventBus eventBus, final UserCommandService userCommandService,
             final UserQueryService userQueryService, final ViewT view) {
         super(eventBus, view);
@@ -50,14 +78,13 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
 
     @Subscribe
     public void onGetCollectionByIdRequest(final GetCollectionByIdRequest request) {
-        GuiUI.navigateTo(ObjectQuery.builder().setCollectionId(request.getId())
+        _navigateTo(ObjectQuery.builder().setCollectionId(request.getId())
                 .setInstitutionId(request.getId().getInstitutionId()).setWorkTypeText("PhysicalObject").build());
     }
 
     @Subscribe
     public void onGetInstitutionByIdRequest(final GetInstitutionByIdRequest request) {
-        GuiUI.navigateTo(
-                ObjectQuery.builder().setInstitutionId(request.getId()).setWorkTypeText("PhysicalObject").build());
+        _navigateTo(ObjectQuery.builder().setInstitutionId(request.getId()).setWorkTypeText("PhysicalObject").build());
     }
 
     @Subscribe
@@ -67,7 +94,12 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
 
     @Subscribe
     public void onGetObjectSummariesRequest(final GetObjectSummariesRequest request) {
-        GuiUI.navigateTo(request.getQuery().get());
+        _navigateTo(request.getQuery().get());
+    }
+
+    @Subscribe
+    public void onGetUserBookmarksByUserIdRequest(final GetUserBookmarksByUserIdRequest request) {
+        UI.getCurrent().getNavigator().navigateTo(UserBookmarksView.NAME);
     }
 
     @Subscribe
