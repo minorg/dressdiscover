@@ -93,7 +93,6 @@ public final class Navbar extends HorizontalLayout {
 
         {
             final MenuBar rightMenuBar = new MenuBar();
-            currentUserMenuItem = rightMenuBar.addItem("Guest user", null);
             bookmarksMenuItem = rightMenuBar.addItem("Bookmarks", new Command() {
                 @Override
                 public void menuSelected(final MenuItem selectedItem) {
@@ -101,6 +100,7 @@ public final class Navbar extends HorizontalLayout {
                 }
             });
             bookmarksMenuItem.setVisible(false);
+            currentUserMenuItem = rightMenuBar.addItem("Guest user", null);
             addComponent(rightMenuBar);
             setComponentAlignment(rightMenuBar, Alignment.MIDDLE_RIGHT);
         }
@@ -113,7 +113,7 @@ public final class Navbar extends HorizontalLayout {
     public void setCurrentUser(final Optional<UserEntry> currentUser) {
         this.currentUser = checkNotNull(currentUser);
         if (currentUser.isPresent()) {
-            bookmarksMenuItem.setVisible(false);
+            bookmarksMenuItem.setVisible(true);
             currentUserMenuItem.setCommand(null);
             currentUserMenuItem.setText(currentUser.get().getModel().getEmailAddress().toString());
             currentUserMenuItem.removeChildren();
@@ -124,7 +124,7 @@ public final class Navbar extends HorizontalLayout {
                 }
             });
         } else {
-            bookmarksMenuItem.setVisible(true);
+            bookmarksMenuItem.setVisible(false);
             currentUserMenuItem.setCommand(new Command() {
                 @Override
                 public void menuSelected(final MenuItem selectedItem) {

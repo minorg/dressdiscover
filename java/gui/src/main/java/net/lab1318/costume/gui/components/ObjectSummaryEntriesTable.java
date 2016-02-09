@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.views.objects;
+package net.lab1318.costume.gui.components;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -30,7 +30,6 @@ import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionId;
-import net.lab1318.costume.api.models.object.ObjectFacets;
 import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.models.object.ObjectSummary;
 import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
@@ -42,17 +41,16 @@ import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.user.UserCommandService.Messages.DeleteUserBookmarkByIdRequest;
 import net.lab1318.costume.api.services.user.UserCommandService.Messages.PostUserBookmarkRequest;
-import net.lab1318.costume.gui.components.BookmarkNameDialog;
 import net.lab1318.costume.gui.models.image.ImageBean;
 import net.lab1318.costume.gui.models.image.ImageVersionBean;
 import net.lab1318.costume.gui.views.ImageWithRightsView;
 
 @SuppressWarnings("serial")
-final class ObjectSummaryEntriesTable extends CustomComponent {
+public final class ObjectSummaryEntriesTable extends CustomComponent {
     public ObjectSummaryEntriesTable(final ImmutableMap<ObjectId, UserBookmarkId> bookmarkedObjectIds,
             final ImmutableMap<CollectionId, Collection> collections, final Optional<UserId> currentUserId,
             final EventBus eventBus, final ImmutableMap<InstitutionId, Institution> institutions,
-            final ObjectFacets objectFacets, final LazyQueryContainer objects) {
+            final LazyQueryContainer objects) {
         this.bookmarkedObjectIds = checkNotNull(bookmarkedObjectIds);
 
         final Map<String, String> columns = new LinkedHashMap<>();
@@ -124,6 +122,7 @@ final class ObjectSummaryEntriesTable extends CustomComponent {
 
         table.addGeneratedColumn(ObjectSummaryEntry.FieldMetadata.MODEL.getJavaName() + '.'
                 + ObjectSummary.FieldMetadata.COLLECTION_ID.getJavaName(), new ColumnGenerator() {
+
                     @Override
                     public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
                             final java.lang.Object columnId) {
@@ -141,6 +140,7 @@ final class ObjectSummaryEntriesTable extends CustomComponent {
 
         table.addGeneratedColumn(ObjectSummaryEntry.FieldMetadata.MODEL.getJavaName() + '.'
                 + ObjectSummary.FieldMetadata.INSTITUTION_ID.getJavaName(), new ColumnGenerator() {
+
                     @Override
                     public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
                             final java.lang.Object columnId) {
@@ -158,6 +158,7 @@ final class ObjectSummaryEntriesTable extends CustomComponent {
 
         table.addGeneratedColumn(ObjectSummaryEntry.FieldMetadata.MODEL.getJavaName() + '.'
                 + ObjectSummary.FieldMetadata.IMAGE.getJavaName(), new ColumnGenerator() {
+
                     @Override
                     public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
                             final java.lang.Object columnId) {
@@ -191,6 +192,7 @@ final class ObjectSummaryEntriesTable extends CustomComponent {
                 });
 
         table.setCellStyleGenerator(new Table.CellStyleGenerator() {
+
             @Override
             public String getStyle(final Table source, final java.lang.Object itemId,
                     final java.lang.Object propertyId) {

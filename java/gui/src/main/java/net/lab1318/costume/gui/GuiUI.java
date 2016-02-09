@@ -15,10 +15,12 @@ import net.lab1318.costume.gui.converters.CustomConverterFactory;
 import net.lab1318.costume.gui.presenters.institutions.InstitutionsPresenter;
 import net.lab1318.costume.gui.presenters.object_by_id.ObjectByIdPresenter;
 import net.lab1318.costume.gui.presenters.objects.ObjectsPresenter;
+import net.lab1318.costume.gui.presenters.user_bookmarks.UserBookmarksPresenter;
 import net.lab1318.costume.gui.presenters.wizard.WizardFeaturePresenter;
 import net.lab1318.costume.gui.views.institutions.InstitutionsView;
 import net.lab1318.costume.gui.views.object_by_id.ObjectByIdView;
 import net.lab1318.costume.gui.views.objects.ObjectsView;
+import net.lab1318.costume.gui.views.user_bookmarks.UserBookmarksView;
 import net.lab1318.costume.gui.views.wizard.WizardFeatureView;
 
 @SuppressWarnings("serial")
@@ -48,6 +50,11 @@ public final class GuiUI extends UI {
         {
             injector.getInstance(ObjectsPresenter.class);
             navigator.addView(ObjectsView.NAME, injector.getInstance(ObjectsView.class));
+        }
+
+        {
+            injector.getInstance(UserBookmarksPresenter.class);
+            navigator.addView(UserBookmarksView.NAME, injector.getInstance(UserBookmarksView.class));
         }
 
         {

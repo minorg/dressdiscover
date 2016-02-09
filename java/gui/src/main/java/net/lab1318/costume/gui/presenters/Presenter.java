@@ -21,11 +21,17 @@ import org.thryft.waf.lib.logging.LoggingUtils;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Optional;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.eventbus.Subscribe;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.SystemError;
 import com.vaadin.ui.UI;
 
+import net.lab1318.costume.api.models.collection.Collection;
+import net.lab1318.costume.api.models.collection.CollectionId;
+import net.lab1318.costume.api.models.institution.Institution;
+import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.models.user.InvalidUserIdException;
 import net.lab1318.costume.api.models.user.UserBookmark;
@@ -33,8 +39,12 @@ import net.lab1318.costume.api.models.user.UserBookmarkId;
 import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.api.models.user.UserId;
 import net.lab1318.costume.api.services.IoException;
+import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.collection.CollectionQueryService.Messages.GetCollectionByIdRequest;
+import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
+import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService.Messages.GetInstitutionByIdRequest;
+import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
 import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectByIdRequest;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
 import net.lab1318.costume.api.services.user.DuplicateUserBookmarkException;
@@ -133,8 +143,32 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
         }
     }
 
+    protected final ImmutableMap<CollectionId, Collection> _getCollections(
+            final ImmutableList<CollectionId> collectionIds, final CollectionQueryService collectionQueryService)
+                    throws IoException, NoSuchCollectionException {
+        final ImmutableList<Collection> collections = collectionQueryService.getCollectionsByIds(collectionIds);
+        checkState(collectionIds.size() == collections.size());
+        final ImmutableMap.Builder<CollectionId, Collection> collectionMapBuilder = ImmutableMap.builder();
+        for (int collectionI = 0; collectionI < collectionIds.size(); collectionI++) {
+            collectionMapBuilder.put(collectionIds.get(collectionI), collections.get(collectionI));
+        }
+        return collectionMapBuilder.build();
+    }
+
     protected final Optional<UserEntry> _getCurrentUser() {
         return currentUser;
+    }
+
+    protected final ImmutableMap<InstitutionId, Institution> _getInstitutions(
+            final ImmutableList<InstitutionId> institutionIds, final InstitutionQueryService institutionQueryService)
+                    throws IoException, NoSuchInstitutionException {
+        final ImmutableList<Institution> institutions = institutionQueryService.getInstitutionsByIds(institutionIds);
+        checkState(institutionIds.size() == institutions.size());
+        final ImmutableMap.Builder<InstitutionId, Institution> institutionMapBuilder = ImmutableMap.builder();
+        for (int institutionI = 0; institutionI < institutionIds.size(); institutionI++) {
+            institutionMapBuilder.put(institutionIds.get(institutionI), institutions.get(institutionI));
+        }
+        return institutionMapBuilder.build();
     }
 
     protected final UserCommandService _getUserCommandService() {
