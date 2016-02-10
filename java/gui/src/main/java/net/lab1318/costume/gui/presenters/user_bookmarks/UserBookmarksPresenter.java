@@ -39,7 +39,6 @@ import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.api.services.user.NoSuchUserException;
 import net.lab1318.costume.api.services.user.UserCommandService;
 import net.lab1318.costume.api.services.user.UserCommandService.Messages.DeleteUserBookmarkByIdRequest;
-import net.lab1318.costume.api.services.user.UserCommandService.Messages.PostUserBookmarkRequest;
 import net.lab1318.costume.api.services.user.UserQueryService;
 import net.lab1318.costume.gui.models.object.ObjectSummaryEntryBeanQueryDefinition;
 import net.lab1318.costume.gui.models.object.ObjectSummaryEntryBeanQueryFactory;
@@ -64,14 +63,7 @@ public class UserBookmarksPresenter extends Presenter<UserBookmarksView> {
         if (!_deleteUserBookmark(request.getId())) {
             return;
         }
-    }
-
-    @Subscribe
-    public void onPostUserBookmarkRequest(final PostUserBookmarkRequest request) {
-        final Optional<UserBookmarkId> userBookmarkId = _postUserBookmark(request.getUserBookmark());
-        if (!userBookmarkId.isPresent()) {
-            return;
-        }
+        __refreshView(_getCurrentUser());
     }
 
     @Override
