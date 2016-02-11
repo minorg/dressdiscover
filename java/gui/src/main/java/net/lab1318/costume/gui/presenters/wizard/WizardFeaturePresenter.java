@@ -226,7 +226,7 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
     private final static ImmutableList<String> FEATURE_NAMES = ImmutableList.copyOf(CostumeCore.FEATURES.keySet());
     private final static Image PLACEHOLDER_IMAGE = Image.builder()
             .setSquareThumbnail(ImageVersion.builder().setHeightPx(UnsignedInteger.valueOf(200))
-                    .setUrl(Url.parse("http://lorempixel.com/200/200/animals/"))
+                    .setUrl(Url.parse("http://placehold.it/200x200?text=Missing%20image"))
                     .setWidthPx(UnsignedInteger.valueOf(200)).build())
             .build();
     private final static Optional<GetObjectSummariesOptions> GET_OBJECT_COUNT_OPTIONS = Optional
