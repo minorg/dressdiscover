@@ -8,7 +8,6 @@ public final class GuiControllersModule extends ServletModule {
     protected void configureServlets() {
         final ImmutableMap<String, String> initParams = ImmutableMap.of("widgetset",
                 "net.lab1318.costume.gui.widgetset.GuiWidgetSet");
-        serve("/VAADIN/*").with(GuiServlet.class, initParams);
-        serve("/*").with(GuiServlet.class);
+        serve("/*").with(GuiServlet.class, initParams);
     }
 }
