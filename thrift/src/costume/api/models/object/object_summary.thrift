@@ -47,6 +47,9 @@ struct ObjectSummary {
 
 	8: optional gender.Gender gender;
 
+	// @validation {"acceptance": true}
+	22: optional bool hidden;
+
 	21: optional image.Image image;
 
 	// @elastic_search_mapping {"type": "multi_field", "fields": {"text": {"type": "string"}, "not_analyzed": {"type": "string", "index": "not_analyzed"}}}

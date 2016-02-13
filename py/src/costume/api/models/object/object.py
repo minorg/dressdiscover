@@ -44,6 +44,7 @@ class Object(object):
             dates=None,
             descriptions=None,
             gender=None,
+            hidden=None,
             images=None,
             inscriptions=None,
             locations=None,
@@ -75,6 +76,7 @@ class Object(object):
             :type dates: costume.api.models.date.date_set.DateSet or None
             :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
             :type gender: costume.api.models.gender.gender.Gender or None
+            :type hidden: bool or None
             :type images: tuple(costume.api.models.image.image.Image) or None
             :type inscriptions: costume.api.models.inscription.inscription_set.InscriptionSet or None
             :type locations: costume.api.models.location.location_set.LocationSet or None
@@ -106,6 +108,7 @@ class Object(object):
             self.__dates = dates
             self.__descriptions = descriptions
             self.__gender = gender
+            self.__hidden = hidden
             self.__images = images
             self.__inscriptions = inscriptions
             self.__locations = locations
@@ -123,7 +126,7 @@ class Object(object):
             self.__work_types = work_types
 
         def build(self):
-            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, titles=self.__titles, agents=self.__agents, categories=self.__categories, closures=self.__closures, colors=self.__colors, components=self.__components, condition=self.__condition, cultural_contexts=self.__cultural_contexts, dates=self.__dates, descriptions=self.__descriptions, gender=self.__gender, images=self.__images, inscriptions=self.__inscriptions, locations=self.__locations, materials=self.__materials, measurements=self.__measurements, provenance=self.__provenance, quantity=self.__quantity, relations=self.__relations, rights=self.__rights, structures=self.__structures, subjects=self.__subjects, techniques=self.__techniques, textrefs=self.__textrefs, view_type=self.__view_type, work_types=self.__work_types)
+            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, titles=self.__titles, agents=self.__agents, categories=self.__categories, closures=self.__closures, colors=self.__colors, components=self.__components, condition=self.__condition, cultural_contexts=self.__cultural_contexts, dates=self.__dates, descriptions=self.__descriptions, gender=self.__gender, hidden=self.__hidden, images=self.__images, inscriptions=self.__inscriptions, locations=self.__locations, materials=self.__materials, measurements=self.__measurements, provenance=self.__provenance, quantity=self.__quantity, relations=self.__relations, rights=self.__rights, structures=self.__structures, subjects=self.__subjects, techniques=self.__techniques, textrefs=self.__textrefs, view_type=self.__view_type, work_types=self.__work_types)
 
         @property
         def agents(self):
@@ -212,6 +215,14 @@ class Object(object):
             '''
 
             return self.__gender
+
+        @property
+        def hidden(self):
+            '''
+            :rtype: bool
+            '''
+
+            return self.__hidden
 
         @property
         def images(self):
@@ -387,6 +398,14 @@ class Object(object):
             '''
 
             self.__gender = gender
+            return self
+
+        def set_hidden(self, hidden):
+            '''
+            :type hidden: bool or None
+            '''
+
+            self.__hidden = hidden
             return self
 
         def set_images(self, images):
@@ -589,6 +608,7 @@ class Object(object):
             :type dates: costume.api.models.date.date_set.DateSet or None
             :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
             :type gender: costume.api.models.gender.gender.Gender or None
+            :type hidden: bool or None
             :type images: tuple(costume.api.models.image.image.Image) or None
             :type inscriptions: costume.api.models.inscription.inscription_set.InscriptionSet or None
             :type locations: costume.api.models.location.location_set.LocationSet or None
@@ -621,6 +641,7 @@ class Object(object):
                 self.set_dates(object.dates)
                 self.set_descriptions(object.descriptions)
                 self.set_gender(object.gender)
+                self.set_hidden(object.hidden)
                 self.set_images(object.images)
                 self.set_inscriptions(object.inscriptions)
                 self.set_locations(object.locations)
@@ -746,6 +767,14 @@ class Object(object):
             '''
 
             self.set_gender(gender)
+
+        @hidden.setter
+        def hidden(self, hidden):
+            '''
+            :type hidden: bool or None
+            '''
+
+            self.set_hidden(hidden)
 
         @images.setter
         def images(self, images):
@@ -907,6 +936,7 @@ class Object(object):
         dates=None,
         descriptions=None,
         gender=None,
+        hidden=None,
         images=None,
         inscriptions=None,
         locations=None,
@@ -938,6 +968,7 @@ class Object(object):
         :type dates: costume.api.models.date.date_set.DateSet or None
         :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
         :type gender: costume.api.models.gender.gender.Gender or None
+        :type hidden: bool or None
         :type images: tuple(costume.api.models.image.image.Image) or None
         :type inscriptions: costume.api.models.inscription.inscription_set.InscriptionSet or None
         :type locations: costume.api.models.location.location_set.LocationSet or None
@@ -1030,6 +1061,11 @@ class Object(object):
             if not isinstance(gender, costume.api.models.gender.gender.Gender):
                 raise TypeError("expected gender to be a costume.api.models.gender.gender.Gender but it is a %s" % getattr(__builtin__, 'type')(gender))
         self.__gender = gender
+
+        if hidden is not None:
+            if not isinstance(hidden, bool):
+                raise TypeError("expected hidden to be a bool but it is a %s" % getattr(__builtin__, 'type')(hidden))
+        self.__hidden = hidden
 
         if images is not None:
             if not (isinstance(images, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.image.image.Image), images))) == 0):
@@ -1139,6 +1175,8 @@ class Object(object):
             return False
         if self.gender != other.gender:
             return False
+        if self.hidden != other.hidden:
+            return False
         if self.images != other.images:
             return False
         if self.inscriptions != other.inscriptions:
@@ -1172,7 +1210,7 @@ class Object(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.model_metadata,self.titles,self.agents,self.categories,self.closures,self.colors,self.components,self.condition,self.cultural_contexts,self.dates,self.descriptions,self.gender,self.images,self.inscriptions,self.locations,self.materials,self.measurements,self.provenance,self.quantity,self.relations,self.rights,self.structures,self.subjects,self.techniques,self.textrefs,self.view_type,self.work_types,))
+        return hash((self.collection_id,self.institution_id,self.model_metadata,self.titles,self.agents,self.categories,self.closures,self.colors,self.components,self.condition,self.cultural_contexts,self.dates,self.descriptions,self.gender,self.hidden,self.images,self.inscriptions,self.locations,self.materials,self.measurements,self.provenance,self.quantity,self.relations,self.rights,self.structures,self.subjects,self.techniques,self.textrefs,self.view_type,self.work_types,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -1206,6 +1244,8 @@ class Object(object):
             field_reprs.append('descriptions=' + repr(self.descriptions))
         if self.gender is not None:
             field_reprs.append('gender=' + repr(self.gender))
+        if self.hidden is not None:
+            field_reprs.append('hidden=' + repr(self.hidden))
         if self.images is not None:
             field_reprs.append('images=' + repr(self.images))
         if self.inscriptions is not None:
@@ -1264,6 +1304,8 @@ class Object(object):
             field_reprs.append('descriptions=' + repr(self.descriptions))
         if self.gender is not None:
             field_reprs.append('gender=' + repr(self.gender))
+        if self.hidden is not None:
+            field_reprs.append('hidden=' + repr(self.hidden))
         if self.images is not None:
             field_reprs.append('images=' + repr(self.images))
         if self.inscriptions is not None:
@@ -1311,7 +1353,7 @@ class Object(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'titles': self.titles, 'agents': self.agents, 'categories': self.categories, 'closures': self.closures, 'colors': self.colors, 'components': self.components, 'condition': self.condition, 'cultural_contexts': self.cultural_contexts, 'dates': self.dates, 'descriptions': self.descriptions, 'gender': self.gender, 'images': self.images, 'inscriptions': self.inscriptions, 'locations': self.locations, 'materials': self.materials, 'measurements': self.measurements, 'provenance': self.provenance, 'quantity': self.quantity, 'relations': self.relations, 'rights': self.rights, 'structures': self.structures, 'subjects': self.subjects, 'techniques': self.techniques, 'textrefs': self.textrefs, 'view_type': self.view_type, 'work_types': self.work_types}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'titles': self.titles, 'agents': self.agents, 'categories': self.categories, 'closures': self.closures, 'colors': self.colors, 'components': self.components, 'condition': self.condition, 'cultural_contexts': self.cultural_contexts, 'dates': self.dates, 'descriptions': self.descriptions, 'gender': self.gender, 'hidden': self.hidden, 'images': self.images, 'inscriptions': self.inscriptions, 'locations': self.locations, 'materials': self.materials, 'measurements': self.measurements, 'provenance': self.provenance, 'quantity': self.quantity, 'relations': self.relations, 'rights': self.rights, 'structures': self.structures, 'subjects': self.subjects, 'techniques': self.techniques, 'textrefs': self.textrefs, 'view_type': self.view_type, 'work_types': self.work_types}
 
     def as_tuple(self):
         '''
@@ -1320,7 +1362,7 @@ class Object(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.model_metadata, self.titles, self.agents, self.categories, self.closures, self.colors, self.components, self.condition, self.cultural_contexts, self.dates, self.descriptions, self.gender, self.images, self.inscriptions, self.locations, self.materials, self.measurements, self.provenance, self.quantity, self.relations, self.rights, self.structures, self.subjects, self.techniques, self.textrefs, self.view_type, self.work_types,)
+        return (self.collection_id, self.institution_id, self.model_metadata, self.titles, self.agents, self.categories, self.closures, self.colors, self.components, self.condition, self.cultural_contexts, self.dates, self.descriptions, self.gender, self.hidden, self.images, self.inscriptions, self.locations, self.materials, self.measurements, self.provenance, self.quantity, self.relations, self.rights, self.structures, self.subjects, self.techniques, self.textrefs, self.view_type, self.work_types,)
 
     @property
     def categories(self):
@@ -1401,6 +1443,14 @@ class Object(object):
         '''
 
         return self.__gender
+
+    @property
+    def hidden(self):
+        '''
+        :rtype: bool
+        '''
+
+        return self.__hidden
 
     @property
     def images(self):
@@ -1524,6 +1574,11 @@ class Object(object):
                     init_kwds['gender'] = costume.api.models.gender.gender.Gender.value_of(iprot.read_string().strip().upper())
                 except (TypeError,):
                     pass
+            elif ifield_name == 'hidden' and ifield_id == 37:
+                try:
+                    init_kwds['hidden'] = iprot.read_bool()
+                except (TypeError, ValueError,):
+                    pass
             elif ifield_name == 'images' and ifield_id == 23:
                 init_kwds['images'] = tuple([costume.api.models.image.image.Image.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'inscriptions' and ifield_id == 17:
@@ -1592,6 +1647,7 @@ class Object(object):
         dates=None,
         descriptions=None,
         gender=None,
+        hidden=None,
         images=None,
         inscriptions=None,
         locations=None,
@@ -1625,6 +1681,7 @@ class Object(object):
         :type dates: costume.api.models.date.date_set.DateSet or None
         :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
         :type gender: costume.api.models.gender.gender.Gender or None
+        :type hidden: bool or None
         :type images: tuple(costume.api.models.image.image.Image) or None
         :type inscriptions: costume.api.models.inscription.inscription_set.InscriptionSet or None
         :type locations: costume.api.models.location.location_set.LocationSet or None
@@ -1671,6 +1728,8 @@ class Object(object):
             descriptions = self.descriptions
         if gender is None:
             gender = self.gender
+        if hidden is None:
+            hidden = self.hidden
         if images is None:
             images = self.images
         if inscriptions is None:
@@ -1701,7 +1760,7 @@ class Object(object):
             view_type = self.view_type
         if work_types is None:
             work_types = self.work_types
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, titles=titles, agents=agents, categories=categories, closures=closures, colors=colors, components=components, condition=condition, cultural_contexts=cultural_contexts, dates=dates, descriptions=descriptions, gender=gender, images=images, inscriptions=inscriptions, locations=locations, materials=materials, measurements=measurements, provenance=provenance, quantity=quantity, relations=relations, rights=rights, structures=structures, subjects=subjects, techniques=techniques, textrefs=textrefs, view_type=view_type, work_types=work_types)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, titles=titles, agents=agents, categories=categories, closures=closures, colors=colors, components=components, condition=condition, cultural_contexts=cultural_contexts, dates=dates, descriptions=descriptions, gender=gender, hidden=hidden, images=images, inscriptions=inscriptions, locations=locations, materials=materials, measurements=measurements, provenance=provenance, quantity=quantity, relations=relations, rights=rights, structures=structures, subjects=subjects, techniques=techniques, textrefs=textrefs, view_type=view_type, work_types=work_types)
 
     @property
     def rights(self):
@@ -1844,6 +1903,11 @@ class Object(object):
         if self.gender is not None:
             oprot.write_field_begin(name='gender', type=11, id=25)
             oprot.write_string(str(self.gender))
+            oprot.write_field_end()
+
+        if self.hidden is not None:
+            oprot.write_field_begin(name='hidden', type=2, id=37)
+            oprot.write_bool(self.hidden)
             oprot.write_field_end()
 
         if self.images is not None:

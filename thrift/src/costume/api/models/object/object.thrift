@@ -61,6 +61,9 @@ struct Object {
 
 	25: optional gender.Gender gender;
 
+	// @validation {"acceptance": true}
+	37: optional bool hidden;
+
 	// @validation {"minLength": 1}
 	23: optional list<image.Image> images;
 

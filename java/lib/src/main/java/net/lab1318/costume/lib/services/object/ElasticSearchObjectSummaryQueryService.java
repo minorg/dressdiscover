@@ -545,6 +545,11 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
                     filtersTranslated);
         }
 
+        if (!query.get().getIncludeHidden().or(Boolean.FALSE)) {
+            filtersTranslated
+                    .add(QueryBuilders.missingQuery(ObjectSummary.FieldMetadata.HIDDEN.getThriftProtocolKey()));
+        }
+
         if (query.get().getInstitutionId().isPresent()) {
             filtersTranslated
                     .add(QueryBuilders.termQuery(ObjectSummary.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),

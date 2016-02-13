@@ -120,6 +120,8 @@ public final class ObjectSummarizer {
 
         builder.setGender(object.getGender());
 
+        builder.setHidden(object.getHidden());
+
         if (object.getImages().isPresent()) {
             Image selectedImage = null;
             for (final Image image : object.getImages().get()) {
