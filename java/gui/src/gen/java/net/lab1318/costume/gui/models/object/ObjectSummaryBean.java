@@ -14,6 +14,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         DATE("date", new com.google.common.reflect.TypeToken<String>() {}, false, 12, "date", org.thryft.protocol.Type.STRING),
         DESCRIPTION("description", new com.google.common.reflect.TypeToken<String>() {}, false, 5, "description", org.thryft.protocol.Type.STRING),
         GENDER("gender", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.gender.Gender>() {}, false, 8, "gender", org.thryft.protocol.Type.STRING),
+        HIDDEN("hidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 22, "hidden", org.thryft.protocol.Type.BOOL),
         IMAGE("image", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.image.ImageBean>() {}, false, 21, "image", org.thryft.protocol.Type.STRUCT),
         LOCATION_NAME_TEXTS("locationNameTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 19, "location_name_texts", org.thryft.protocol.Type.LIST),
         MATERIAL_TEXTS("materialTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 14, "material_texts", org.thryft.protocol.Type.LIST),
@@ -77,6 +78,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
             case "date": return DATE;
             case "description": return DESCRIPTION;
             case "gender": return GENDER;
+            case "hidden": return HIDDEN;
             case "image": return IMAGE;
             case "locationNameTexts": return LOCATION_NAME_TEXTS;
             case "materialTexts": return MATERIAL_TEXTS;
@@ -104,6 +106,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
             case "date": return DATE;
             case "description": return DESCRIPTION;
             case "gender": return GENDER;
+            case "hidden": return HIDDEN;
             case "image": return IMAGE;
             case "location_name_texts": return LOCATION_NAME_TEXTS;
             case "material_texts": return MATERIAL_TEXTS;
@@ -153,6 +156,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         date = null;
         description = null;
         gender = null;
+        hidden = null;
         image = null;
         locationNameTexts = null;
         materialTexts = null;
@@ -176,6 +180,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         this.date = other.getDate().isPresent() ? other.getDate().get() : null;
         this.description = other.getDescription().isPresent() ? other.getDescription().get() : null;
         this.gender = other.getGender().isPresent() ? other.getGender().get() : null;
+        this.hidden = other.getHidden().isPresent() ? other.getHidden().get() : null;
         this.image = other.getImage().isPresent() ? new net.lab1318.costume.gui.models.image.ImageBean(other.getImage().get()) : null;
         this.locationNameTexts = other.getLocationNameTexts().isPresent() ? new java.util.ArrayList<String>(other.getLocationNameTexts().get()) : null;
         this.materialTexts = other.getMaterialTexts().isPresent() ? new java.util.ArrayList<String>(other.getMaterialTexts().get()) : null;
@@ -208,6 +213,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
             (getDate() != null ? getDate().equals(other.getDate()) : other.getDate() == null) &&
             (getDescription() != null ? getDescription().equals(other.getDescription()) : other.getDescription() == null) &&
             (getGender() != null ? getGender().equals(other.getGender()) : other.getGender() == null) &&
+            (getHidden() != null ? getHidden().equals(other.getHidden()) : other.getHidden() == null) &&
             (getImage() != null ? getImage().equals(other.getImage()) : other.getImage() == null) &&
             (getLocationNameTexts() != null ? getLocationNameTexts().equals(other.getLocationNameTexts()) : other.getLocationNameTexts() == null) &&
             (getMaterialTexts() != null ? getMaterialTexts().equals(other.getMaterialTexts()) : other.getMaterialTexts() == null) &&
@@ -245,6 +251,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         case DATE: return getDate();
         case DESCRIPTION: return getDescription();
         case GENDER: return getGender();
+        case HIDDEN: return getHidden();
         case IMAGE: return getImage();
         case LOCATION_NAME_TEXTS: return getLocationNameTexts();
         case MATERIAL_TEXTS: return getMaterialTexts();
@@ -295,6 +302,10 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
 
     public net.lab1318.costume.api.models.gender.Gender getGender() {
         return gender;
+    }
+
+    public Boolean getHidden() {
+        return hidden;
     }
 
     public net.lab1318.costume.gui.models.image.ImageBean getImage() {
@@ -376,6 +387,9 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         if (getGender() != null) {
             hashCode = 31 * hashCode + getGender().ordinal();
         }
+        if (getHidden() != null) {
+            hashCode = 31 * hashCode + (getHidden() ? 1 : 0);
+        }
         if (getImage() != null) {
             hashCode = 31 * hashCode + getImage().hashCode();
         }
@@ -443,6 +457,10 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         this.gender = gender;
     }
 
+    public void setHidden(final Boolean hidden) {
+        this.hidden = hidden;
+    }
+
     public void setImage(final net.lab1318.costume.gui.models.image.ImageBean image) {
         this.image = image;
     }
@@ -493,7 +511,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("color_texts", getColorTexts()).add("cultural_context_texts", getCulturalContextTexts()).add("date", getDate()).add("description", getDescription()).add("gender", getGender()).add("image", getImage()).add("location_name_texts", getLocationNameTexts()).add("material_texts", getMaterialTexts()).add("relation_texts", getRelationTexts()).add("structure_texts", getStructureTexts()).add("subject_term_texts", getSubjectTermTexts()).add("technique_texts", getTechniqueTexts()).add("url", getUrl()).add("work_type_texts", getWorkTypeTexts()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("color_texts", getColorTexts()).add("cultural_context_texts", getCulturalContextTexts()).add("date", getDate()).add("description", getDescription()).add("gender", getGender()).add("hidden", getHidden()).add("image", getImage()).add("location_name_texts", getLocationNameTexts()).add("material_texts", getMaterialTexts()).add("relation_texts", getRelationTexts()).add("structure_texts", getStructureTexts()).add("subject_term_texts", getSubjectTermTexts()).add("technique_texts", getTechniqueTexts()).add("url", getUrl()).add("work_type_texts", getWorkTypeTexts()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
@@ -526,6 +544,8 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
     private String description;
 
     private net.lab1318.costume.api.models.gender.Gender gender;
+
+    private Boolean hidden;
 
     private net.lab1318.costume.gui.models.image.ImageBean image;
 

@@ -100,6 +100,9 @@
           "index": "not_analyzed", 
           "type": "string"
         }, 
+        "22:hidden": {
+          "type": "boolean"
+        }, 
         "21:image": {
           "type": "nested", 
           "properties": {

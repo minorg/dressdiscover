@@ -9,6 +9,7 @@ class ObjectQuery(object):
             self,
             collection_id=None,
             facet_filters=None,
+            include_hidden=None,
             institution_id=None,
             more_like_object_id=None,
             object_ids=None,
@@ -20,6 +21,7 @@ class ObjectQuery(object):
             '''
             :type collection_id: str or None
             :type facet_filters: costume.api.models.object.object_facet_filters.ObjectFacetFilters or None
+            :type include_hidden: bool or None
             :type institution_id: str or None
             :type more_like_object_id: str or None
             :type object_ids: frozenset(str) or None
@@ -31,6 +33,7 @@ class ObjectQuery(object):
 
             self.__collection_id = collection_id
             self.__facet_filters = facet_filters
+            self.__include_hidden = include_hidden
             self.__institution_id = institution_id
             self.__more_like_object_id = more_like_object_id
             self.__object_ids = object_ids
@@ -40,7 +43,7 @@ class ObjectQuery(object):
             self.__work_type_text = work_type_text
 
         def build(self):
-            return ObjectQuery(collection_id=self.__collection_id, facet_filters=self.__facet_filters, institution_id=self.__institution_id, more_like_object_id=self.__more_like_object_id, object_ids=self.__object_ids, query_string=self.__query_string, relation_text=self.__relation_text, structure_texts=self.__structure_texts, work_type_text=self.__work_type_text)
+            return ObjectQuery(collection_id=self.__collection_id, facet_filters=self.__facet_filters, include_hidden=self.__include_hidden, institution_id=self.__institution_id, more_like_object_id=self.__more_like_object_id, object_ids=self.__object_ids, query_string=self.__query_string, relation_text=self.__relation_text, structure_texts=self.__structure_texts, work_type_text=self.__work_type_text)
 
         @property
         def collection_id(self):
@@ -57,6 +60,14 @@ class ObjectQuery(object):
             '''
 
             return self.__facet_filters
+
+        @property
+        def include_hidden(self):
+            '''
+            :rtype: bool
+            '''
+
+            return self.__include_hidden
 
         @property
         def institution_id(self):
@@ -112,6 +123,14 @@ class ObjectQuery(object):
             '''
 
             self.__facet_filters = facet_filters
+            return self
+
+        def set_include_hidden(self, include_hidden):
+            '''
+            :type include_hidden: bool or None
+            '''
+
+            self.__include_hidden = include_hidden
             return self
 
         def set_institution_id(self, institution_id):
@@ -182,6 +201,7 @@ class ObjectQuery(object):
             '''
             :type collection_id: str or None
             :type facet_filters: costume.api.models.object.object_facet_filters.ObjectFacetFilters or None
+            :type include_hidden: bool or None
             :type institution_id: str or None
             :type more_like_object_id: str or None
             :type object_ids: frozenset(str) or None
@@ -194,6 +214,7 @@ class ObjectQuery(object):
             if isinstance(object_query, ObjectQuery):
                 self.set_collection_id(object_query.collection_id)
                 self.set_facet_filters(object_query.facet_filters)
+                self.set_include_hidden(object_query.include_hidden)
                 self.set_institution_id(object_query.institution_id)
                 self.set_more_like_object_id(object_query.more_like_object_id)
                 self.set_object_ids(object_query.object_ids)
@@ -231,6 +252,14 @@ class ObjectQuery(object):
             '''
 
             self.set_facet_filters(facet_filters)
+
+        @include_hidden.setter
+        def include_hidden(self, include_hidden):
+            '''
+            :type include_hidden: bool or None
+            '''
+
+            self.set_include_hidden(include_hidden)
 
         @institution_id.setter
         def institution_id(self, institution_id):
@@ -292,6 +321,7 @@ class ObjectQuery(object):
         self,
         collection_id=None,
         facet_filters=None,
+        include_hidden=None,
         institution_id=None,
         more_like_object_id=None,
         object_ids=None,
@@ -303,6 +333,7 @@ class ObjectQuery(object):
         '''
         :type collection_id: str or None
         :type facet_filters: costume.api.models.object.object_facet_filters.ObjectFacetFilters or None
+        :type include_hidden: bool or None
         :type institution_id: str or None
         :type more_like_object_id: str or None
         :type object_ids: frozenset(str) or None
@@ -321,6 +352,11 @@ class ObjectQuery(object):
             if not isinstance(facet_filters, costume.api.models.object.object_facet_filters.ObjectFacetFilters):
                 raise TypeError("expected facet_filters to be a costume.api.models.object.object_facet_filters.ObjectFacetFilters but it is a %s" % getattr(__builtin__, 'type')(facet_filters))
         self.__facet_filters = facet_filters
+
+        if include_hidden is not None:
+            if not isinstance(include_hidden, bool):
+                raise TypeError("expected include_hidden to be a bool but it is a %s" % getattr(__builtin__, 'type')(include_hidden))
+        self.__include_hidden = include_hidden
 
         if institution_id is not None:
             if not isinstance(institution_id, basestring):
@@ -370,6 +406,8 @@ class ObjectQuery(object):
             return False
         if self.facet_filters != other.facet_filters:
             return False
+        if self.include_hidden != other.include_hidden:
+            return False
         if self.institution_id != other.institution_id:
             return False
         if self.more_like_object_id != other.more_like_object_id:
@@ -387,7 +425,7 @@ class ObjectQuery(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.facet_filters,self.institution_id,self.more_like_object_id,self.object_ids,self.query_string,self.relation_text,self.structure_texts,self.work_type_text,))
+        return hash((self.collection_id,self.facet_filters,self.include_hidden,self.institution_id,self.more_like_object_id,self.object_ids,self.query_string,self.relation_text,self.structure_texts,self.work_type_text,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -401,6 +439,8 @@ class ObjectQuery(object):
             field_reprs.append('collection_id=' + "'" + self.collection_id.encode('ascii', 'replace') + "'")
         if self.facet_filters is not None:
             field_reprs.append('facet_filters=' + repr(self.facet_filters))
+        if self.include_hidden is not None:
+            field_reprs.append('include_hidden=' + repr(self.include_hidden))
         if self.institution_id is not None:
             field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
         if self.more_like_object_id is not None:
@@ -423,6 +463,8 @@ class ObjectQuery(object):
             field_reprs.append('collection_id=' + "'" + self.collection_id.encode('ascii', 'replace') + "'")
         if self.facet_filters is not None:
             field_reprs.append('facet_filters=' + repr(self.facet_filters))
+        if self.include_hidden is not None:
+            field_reprs.append('include_hidden=' + repr(self.include_hidden))
         if self.institution_id is not None:
             field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
         if self.more_like_object_id is not None:
@@ -446,7 +488,7 @@ class ObjectQuery(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'facet_filters': self.facet_filters, 'institution_id': self.institution_id, 'more_like_object_id': self.more_like_object_id, 'object_ids': self.object_ids, 'query_string': self.query_string, 'relation_text': self.relation_text, 'structure_texts': self.structure_texts, 'work_type_text': self.work_type_text}
+        return {'collection_id': self.collection_id, 'facet_filters': self.facet_filters, 'include_hidden': self.include_hidden, 'institution_id': self.institution_id, 'more_like_object_id': self.more_like_object_id, 'object_ids': self.object_ids, 'query_string': self.query_string, 'relation_text': self.relation_text, 'structure_texts': self.structure_texts, 'work_type_text': self.work_type_text}
 
     def as_tuple(self):
         '''
@@ -455,7 +497,7 @@ class ObjectQuery(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.facet_filters, self.institution_id, self.more_like_object_id, self.object_ids, self.query_string, self.relation_text, self.structure_texts, self.work_type_text,)
+        return (self.collection_id, self.facet_filters, self.include_hidden, self.institution_id, self.more_like_object_id, self.object_ids, self.query_string, self.relation_text, self.structure_texts, self.work_type_text,)
 
     @property
     def collection_id(self):
@@ -472,6 +514,14 @@ class ObjectQuery(object):
         '''
 
         return self.__facet_filters
+
+    @property
+    def include_hidden(self):
+        '''
+        :rtype: bool
+        '''
+
+        return self.__include_hidden
 
     @property
     def institution_id(self):
@@ -528,6 +578,11 @@ class ObjectQuery(object):
                     pass
             elif ifield_name == 'facet_filters':
                 init_kwds['facet_filters'] = costume.api.models.object.object_facet_filters.ObjectFacetFilters.read(iprot)
+            elif ifield_name == 'include_hidden':
+                try:
+                    init_kwds['include_hidden'] = iprot.read_bool()
+                except (TypeError, ValueError,):
+                    pass
             elif ifield_name == 'institution_id':
                 try:
                     init_kwds['institution_id'] = iprot.read_string()
@@ -574,6 +629,7 @@ class ObjectQuery(object):
         self,
         collection_id=None,
         facet_filters=None,
+        include_hidden=None,
         institution_id=None,
         more_like_object_id=None,
         object_ids=None,
@@ -587,6 +643,7 @@ class ObjectQuery(object):
 
         :type collection_id: str or None
         :type facet_filters: costume.api.models.object.object_facet_filters.ObjectFacetFilters or None
+        :type include_hidden: bool or None
         :type institution_id: str or None
         :type more_like_object_id: str or None
         :type object_ids: frozenset(str) or None
@@ -601,6 +658,8 @@ class ObjectQuery(object):
             collection_id = self.collection_id
         if facet_filters is None:
             facet_filters = self.facet_filters
+        if include_hidden is None:
+            include_hidden = self.include_hidden
         if institution_id is None:
             institution_id = self.institution_id
         if more_like_object_id is None:
@@ -615,7 +674,7 @@ class ObjectQuery(object):
             structure_texts = self.structure_texts
         if work_type_text is None:
             work_type_text = self.work_type_text
-        return self.__class__(collection_id=collection_id, facet_filters=facet_filters, institution_id=institution_id, more_like_object_id=more_like_object_id, object_ids=object_ids, query_string=query_string, relation_text=relation_text, structure_texts=structure_texts, work_type_text=work_type_text)
+        return self.__class__(collection_id=collection_id, facet_filters=facet_filters, include_hidden=include_hidden, institution_id=institution_id, more_like_object_id=more_like_object_id, object_ids=object_ids, query_string=query_string, relation_text=relation_text, structure_texts=structure_texts, work_type_text=work_type_text)
 
     @property
     def structure_texts(self):
@@ -651,6 +710,11 @@ class ObjectQuery(object):
         if self.facet_filters is not None:
             oprot.write_field_begin(name='facet_filters', type=12, id=None)
             self.facet_filters.write(oprot)
+            oprot.write_field_end()
+
+        if self.include_hidden is not None:
+            oprot.write_field_begin(name='include_hidden', type=2, id=None)
+            oprot.write_bool(self.include_hidden)
             oprot.write_field_end()
 
         if self.institution_id is not None:

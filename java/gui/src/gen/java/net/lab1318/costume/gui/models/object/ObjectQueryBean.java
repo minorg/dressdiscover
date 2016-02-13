@@ -5,6 +5,7 @@ public class ObjectQueryBean implements org.thryft.StructBean {
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.CollectionId>() {}, false, 0, "collection_id", org.thryft.protocol.Type.STRING),
         FACET_FILTERS("facetFilters", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.object.ObjectFacetFiltersBean>() {}, false, 0, "facet_filters", org.thryft.protocol.Type.STRUCT),
+        INCLUDE_HIDDEN("includeHidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 0, "include_hidden", org.thryft.protocol.Type.BOOL),
         INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, false, 0, "institution_id", org.thryft.protocol.Type.STRING),
         MORE_LIKE_OBJECT_ID("moreLikeObjectId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.object.ObjectId>() {}, false, 0, "more_like_object_id", org.thryft.protocol.Type.STRING),
         OBJECT_IDS("objectIds", new com.google.common.reflect.TypeToken<java.util.Set<net.lab1318.costume.api.models.object.ObjectId>>() {}, false, 0, "object_ids", org.thryft.protocol.Type.SET),
@@ -57,6 +58,7 @@ public class ObjectQueryBean implements org.thryft.StructBean {
             switch (javaName) {
             case "collectionId": return COLLECTION_ID;
             case "facetFilters": return FACET_FILTERS;
+            case "includeHidden": return INCLUDE_HIDDEN;
             case "institutionId": return INSTITUTION_ID;
             case "moreLikeObjectId": return MORE_LIKE_OBJECT_ID;
             case "objectIds": return OBJECT_IDS;
@@ -73,6 +75,7 @@ public class ObjectQueryBean implements org.thryft.StructBean {
             switch (thriftName) {
             case "collection_id": return COLLECTION_ID;
             case "facet_filters": return FACET_FILTERS;
+            case "include_hidden": return INCLUDE_HIDDEN;
             case "institution_id": return INSTITUTION_ID;
             case "more_like_object_id": return MORE_LIKE_OBJECT_ID;
             case "object_ids": return OBJECT_IDS;
@@ -111,6 +114,7 @@ public class ObjectQueryBean implements org.thryft.StructBean {
     public ObjectQueryBean() {
         collectionId = null;
         facetFilters = null;
+        includeHidden = null;
         institutionId = null;
         moreLikeObjectId = null;
         objectIds = null;
@@ -123,6 +127,7 @@ public class ObjectQueryBean implements org.thryft.StructBean {
     public ObjectQueryBean(final net.lab1318.costume.api.models.object.ObjectQuery other) {
         this.collectionId = other.getCollectionId().isPresent() ? other.getCollectionId().get() : null;
         this.facetFilters = other.getFacetFilters().isPresent() ? new net.lab1318.costume.gui.models.object.ObjectFacetFiltersBean(other.getFacetFilters().get()) : null;
+        this.includeHidden = other.getIncludeHidden().isPresent() ? other.getIncludeHidden().get() : null;
         this.institutionId = other.getInstitutionId().isPresent() ? other.getInstitutionId().get() : null;
         this.moreLikeObjectId = other.getMoreLikeObjectId().isPresent() ? other.getMoreLikeObjectId().get() : null;
         this.objectIds = other.getObjectIds().isPresent() ? new java.util.LinkedHashSet<net.lab1318.costume.api.models.object.ObjectId>(other.getObjectIds().get()) : null;
@@ -153,6 +158,7 @@ public class ObjectQueryBean implements org.thryft.StructBean {
         return
             (getCollectionId() != null ? getCollectionId().equals(other.getCollectionId()) : other.getCollectionId() == null) &&
             (getFacetFilters() != null ? getFacetFilters().equals(other.getFacetFilters()) : other.getFacetFilters() == null) &&
+            (getIncludeHidden() != null ? getIncludeHidden().equals(other.getIncludeHidden()) : other.getIncludeHidden() == null) &&
             (getInstitutionId() != null ? getInstitutionId().equals(other.getInstitutionId()) : other.getInstitutionId() == null) &&
             (getMoreLikeObjectId() != null ? getMoreLikeObjectId().equals(other.getMoreLikeObjectId()) : other.getMoreLikeObjectId() == null) &&
             (getObjectIds() != null ? getObjectIds().equals(other.getObjectIds()) : other.getObjectIds() == null) &&
@@ -179,6 +185,7 @@ public class ObjectQueryBean implements org.thryft.StructBean {
         switch (fieldMetadata) {
         case COLLECTION_ID: return getCollectionId();
         case FACET_FILTERS: return getFacetFilters();
+        case INCLUDE_HIDDEN: return getIncludeHidden();
         case INSTITUTION_ID: return getInstitutionId();
         case MORE_LIKE_OBJECT_ID: return getMoreLikeObjectId();
         case OBJECT_IDS: return getObjectIds();
@@ -197,6 +204,10 @@ public class ObjectQueryBean implements org.thryft.StructBean {
 
     public net.lab1318.costume.gui.models.object.ObjectFacetFiltersBean getFacetFilters() {
         return facetFilters;
+    }
+
+    public Boolean getIncludeHidden() {
+        return includeHidden;
     }
 
     public net.lab1318.costume.api.models.institution.InstitutionId getInstitutionId() {
@@ -239,6 +250,9 @@ public class ObjectQueryBean implements org.thryft.StructBean {
         if (getFacetFilters() != null) {
             hashCode = 31 * hashCode + getFacetFilters().hashCode();
         }
+        if (getIncludeHidden() != null) {
+            hashCode = 31 * hashCode + (getIncludeHidden() ? 1 : 0);
+        }
         if (getInstitutionId() != null) {
             hashCode = 31 * hashCode + getInstitutionId().hashCode();
         }
@@ -265,7 +279,7 @@ public class ObjectQueryBean implements org.thryft.StructBean {
 
     @Override
     public boolean isEmpty() {
-        return getCollectionId() == null && getFacetFilters() == null && getInstitutionId() == null && getMoreLikeObjectId() == null && getObjectIds() == null && getQueryString() == null && getRelationText() == null && getStructureTexts() == null && getWorkTypeText() == null;
+        return getCollectionId() == null && getFacetFilters() == null && getIncludeHidden() == null && getInstitutionId() == null && getMoreLikeObjectId() == null && getObjectIds() == null && getQueryString() == null && getRelationText() == null && getStructureTexts() == null && getWorkTypeText() == null;
     }
 
     public void setCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) {
@@ -274,6 +288,10 @@ public class ObjectQueryBean implements org.thryft.StructBean {
 
     public void setFacetFilters(final net.lab1318.costume.gui.models.object.ObjectFacetFiltersBean facetFilters) {
         this.facetFilters = facetFilters;
+    }
+
+    public void setIncludeHidden(final Boolean includeHidden) {
+        this.includeHidden = includeHidden;
     }
 
     public void setInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
@@ -306,12 +324,14 @@ public class ObjectQueryBean implements org.thryft.StructBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("facet_filters", getFacetFilters()).add("institution_id", getInstitutionId()).add("more_like_object_id", getMoreLikeObjectId()).add("object_ids", getObjectIds()).add("query_string", getQueryString()).add("relation_text", getRelationText()).add("structure_texts", getStructureTexts()).add("work_type_text", getWorkTypeText()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("facet_filters", getFacetFilters()).add("include_hidden", getIncludeHidden()).add("institution_id", getInstitutionId()).add("more_like_object_id", getMoreLikeObjectId()).add("object_ids", getObjectIds()).add("query_string", getQueryString()).add("relation_text", getRelationText()).add("structure_texts", getStructureTexts()).add("work_type_text", getWorkTypeText()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
 
     private net.lab1318.costume.gui.models.object.ObjectFacetFiltersBean facetFilters;
+
+    private Boolean includeHidden;
 
     private net.lab1318.costume.api.models.institution.InstitutionId institutionId;
 

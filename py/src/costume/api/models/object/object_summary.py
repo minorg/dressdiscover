@@ -20,6 +20,7 @@ class ObjectSummary(object):
             date=None,
             description=None,
             gender=None,
+            hidden=None,
             image=None,
             location_name_texts=None,
             material_texts=None,
@@ -42,6 +43,7 @@ class ObjectSummary(object):
             :type date: str or None
             :type description: str or None
             :type gender: costume.api.models.gender.gender.Gender or None
+            :type hidden: bool or None
             :type image: costume.api.models.image.image.Image or None
             :type location_name_texts: tuple(str) or None
             :type material_texts: tuple(str) or None
@@ -64,6 +66,7 @@ class ObjectSummary(object):
             self.__date = date
             self.__description = description
             self.__gender = gender
+            self.__hidden = hidden
             self.__image = image
             self.__location_name_texts = location_name_texts
             self.__material_texts = material_texts
@@ -75,7 +78,7 @@ class ObjectSummary(object):
             self.__work_type_texts = work_type_texts
 
         def build(self):
-            return ObjectSummary(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, agent_name_texts=self.__agent_name_texts, categories=self.__categories, color_texts=self.__color_texts, cultural_context_texts=self.__cultural_context_texts, date=self.__date, description=self.__description, gender=self.__gender, image=self.__image, location_name_texts=self.__location_name_texts, material_texts=self.__material_texts, relation_texts=self.__relation_texts, structure_texts=self.__structure_texts, subject_term_texts=self.__subject_term_texts, technique_texts=self.__technique_texts, url=self.__url, work_type_texts=self.__work_type_texts)
+            return ObjectSummary(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, agent_name_texts=self.__agent_name_texts, categories=self.__categories, color_texts=self.__color_texts, cultural_context_texts=self.__cultural_context_texts, date=self.__date, description=self.__description, gender=self.__gender, hidden=self.__hidden, image=self.__image, location_name_texts=self.__location_name_texts, material_texts=self.__material_texts, relation_texts=self.__relation_texts, structure_texts=self.__structure_texts, subject_term_texts=self.__subject_term_texts, technique_texts=self.__technique_texts, url=self.__url, work_type_texts=self.__work_type_texts)
 
         @property
         def agent_name_texts(self):
@@ -140,6 +143,14 @@ class ObjectSummary(object):
             '''
 
             return self.__gender
+
+        @property
+        def hidden(self):
+            '''
+            :rtype: bool
+            '''
+
+            return self.__hidden
 
         @property
         def image(self):
@@ -251,6 +262,14 @@ class ObjectSummary(object):
             '''
 
             self.__gender = gender
+            return self
+
+        def set_hidden(self, hidden):
+            '''
+            :type hidden: bool or None
+            '''
+
+            self.__hidden = hidden
             return self
 
         def set_image(self, image):
@@ -394,6 +413,7 @@ class ObjectSummary(object):
             :type date: str or None
             :type description: str or None
             :type gender: costume.api.models.gender.gender.Gender or None
+            :type hidden: bool or None
             :type image: costume.api.models.image.image.Image or None
             :type location_name_texts: tuple(str) or None
             :type material_texts: tuple(str) or None
@@ -417,6 +437,7 @@ class ObjectSummary(object):
                 self.set_date(object_summary.date)
                 self.set_description(object_summary.description)
                 self.set_gender(object_summary.gender)
+                self.set_hidden(object_summary.hidden)
                 self.set_image(object_summary.image)
                 self.set_location_name_texts(object_summary.location_name_texts)
                 self.set_material_texts(object_summary.material_texts)
@@ -512,6 +533,14 @@ class ObjectSummary(object):
             '''
 
             self.set_gender(gender)
+
+        @hidden.setter
+        def hidden(self, hidden):
+            '''
+            :type hidden: bool or None
+            '''
+
+            self.set_hidden(hidden)
 
         @image.setter
         def image(self, image):
@@ -622,6 +651,7 @@ class ObjectSummary(object):
         date=None,
         description=None,
         gender=None,
+        hidden=None,
         image=None,
         location_name_texts=None,
         material_texts=None,
@@ -644,6 +674,7 @@ class ObjectSummary(object):
         :type date: str or None
         :type description: str or None
         :type gender: costume.api.models.gender.gender.Gender or None
+        :type hidden: bool or None
         :type image: costume.api.models.image.image.Image or None
         :type location_name_texts: tuple(str) or None
         :type material_texts: tuple(str) or None
@@ -728,6 +759,11 @@ class ObjectSummary(object):
                 raise TypeError("expected gender to be a costume.api.models.gender.gender.Gender but it is a %s" % getattr(__builtin__, 'type')(gender))
         self.__gender = gender
 
+        if hidden is not None:
+            if not isinstance(hidden, bool):
+                raise TypeError("expected hidden to be a bool but it is a %s" % getattr(__builtin__, 'type')(hidden))
+        self.__hidden = hidden
+
         if image is not None:
             if not isinstance(image, costume.api.models.image.image.Image):
                 raise TypeError("expected image to be a costume.api.models.image.image.Image but it is a %s" % getattr(__builtin__, 'type')(image))
@@ -810,6 +846,8 @@ class ObjectSummary(object):
             return False
         if self.gender != other.gender:
             return False
+        if self.hidden != other.hidden:
+            return False
         if self.image != other.image:
             return False
         if self.location_name_texts != other.location_name_texts:
@@ -831,7 +869,7 @@ class ObjectSummary(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.agent_name_texts,self.categories,self.color_texts,self.cultural_context_texts,self.date,self.description,self.gender,self.image,self.location_name_texts,self.material_texts,self.relation_texts,self.structure_texts,self.subject_term_texts,self.technique_texts,self.url,self.work_type_texts,))
+        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.agent_name_texts,self.categories,self.color_texts,self.cultural_context_texts,self.date,self.description,self.gender,self.hidden,self.image,self.location_name_texts,self.material_texts,self.relation_texts,self.structure_texts,self.subject_term_texts,self.technique_texts,self.url,self.work_type_texts,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -859,6 +897,8 @@ class ObjectSummary(object):
             field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
         if self.gender is not None:
             field_reprs.append('gender=' + repr(self.gender))
+        if self.hidden is not None:
+            field_reprs.append('hidden=' + repr(self.hidden))
         if self.image is not None:
             field_reprs.append('image=' + repr(self.image))
         if self.location_name_texts is not None:
@@ -899,6 +939,8 @@ class ObjectSummary(object):
             field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
         if self.gender is not None:
             field_reprs.append('gender=' + repr(self.gender))
+        if self.hidden is not None:
+            field_reprs.append('hidden=' + repr(self.hidden))
         if self.image is not None:
             field_reprs.append('image=' + repr(self.image))
         if self.location_name_texts is not None:
@@ -934,7 +976,7 @@ class ObjectSummary(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'color_texts': self.color_texts, 'cultural_context_texts': self.cultural_context_texts, 'date': self.date, 'description': self.description, 'gender': self.gender, 'image': self.image, 'location_name_texts': self.location_name_texts, 'material_texts': self.material_texts, 'relation_texts': self.relation_texts, 'structure_texts': self.structure_texts, 'subject_term_texts': self.subject_term_texts, 'technique_texts': self.technique_texts, 'url': self.url, 'work_type_texts': self.work_type_texts}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'color_texts': self.color_texts, 'cultural_context_texts': self.cultural_context_texts, 'date': self.date, 'description': self.description, 'gender': self.gender, 'hidden': self.hidden, 'image': self.image, 'location_name_texts': self.location_name_texts, 'material_texts': self.material_texts, 'relation_texts': self.relation_texts, 'structure_texts': self.structure_texts, 'subject_term_texts': self.subject_term_texts, 'technique_texts': self.technique_texts, 'url': self.url, 'work_type_texts': self.work_type_texts}
 
     def as_tuple(self):
         '''
@@ -943,7 +985,7 @@ class ObjectSummary(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.agent_name_texts, self.categories, self.color_texts, self.cultural_context_texts, self.date, self.description, self.gender, self.image, self.location_name_texts, self.material_texts, self.relation_texts, self.structure_texts, self.subject_term_texts, self.technique_texts, self.url, self.work_type_texts,)
+        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.agent_name_texts, self.categories, self.color_texts, self.cultural_context_texts, self.date, self.description, self.gender, self.hidden, self.image, self.location_name_texts, self.material_texts, self.relation_texts, self.structure_texts, self.subject_term_texts, self.technique_texts, self.url, self.work_type_texts,)
 
     @property
     def categories(self):
@@ -1000,6 +1042,14 @@ class ObjectSummary(object):
         '''
 
         return self.__gender
+
+    @property
+    def hidden(self):
+        '''
+        :rtype: bool
+        '''
+
+        return self.__hidden
 
     @property
     def image(self):
@@ -1088,6 +1138,11 @@ class ObjectSummary(object):
                     init_kwds['gender'] = costume.api.models.gender.gender.Gender.value_of(iprot.read_string().strip().upper())
                 except (TypeError,):
                     pass
+            elif ifield_name == 'hidden' and ifield_id == 22:
+                try:
+                    init_kwds['hidden'] = iprot.read_bool()
+                except (TypeError, ValueError,):
+                    pass
             elif ifield_name == 'image' and ifield_id == 21:
                 init_kwds['image'] = costume.api.models.image.image.Image.read(iprot)
             elif ifield_name == 'location_name_texts' and ifield_id == 19:
@@ -1135,6 +1190,7 @@ class ObjectSummary(object):
         date=None,
         description=None,
         gender=None,
+        hidden=None,
         image=None,
         location_name_texts=None,
         material_texts=None,
@@ -1159,6 +1215,7 @@ class ObjectSummary(object):
         :type date: str or None
         :type description: str or None
         :type gender: costume.api.models.gender.gender.Gender or None
+        :type hidden: bool or None
         :type image: costume.api.models.image.image.Image or None
         :type location_name_texts: tuple(str) or None
         :type material_texts: tuple(str) or None
@@ -1193,6 +1250,8 @@ class ObjectSummary(object):
             description = self.description
         if gender is None:
             gender = self.gender
+        if hidden is None:
+            hidden = self.hidden
         if image is None:
             image = self.image
         if location_name_texts is None:
@@ -1211,7 +1270,7 @@ class ObjectSummary(object):
             url = self.url
         if work_type_texts is None:
             work_type_texts = self.work_type_texts
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, agent_name_texts=agent_name_texts, categories=categories, color_texts=color_texts, cultural_context_texts=cultural_context_texts, date=date, description=description, gender=gender, image=image, location_name_texts=location_name_texts, material_texts=material_texts, relation_texts=relation_texts, structure_texts=structure_texts, subject_term_texts=subject_term_texts, technique_texts=technique_texts, url=url, work_type_texts=work_type_texts)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, agent_name_texts=agent_name_texts, categories=categories, color_texts=color_texts, cultural_context_texts=cultural_context_texts, date=date, description=description, gender=gender, hidden=hidden, image=image, location_name_texts=location_name_texts, material_texts=material_texts, relation_texts=relation_texts, structure_texts=structure_texts, subject_term_texts=subject_term_texts, technique_texts=technique_texts, url=url, work_type_texts=work_type_texts)
 
     @property
     def structure_texts(self):
@@ -1332,6 +1391,11 @@ class ObjectSummary(object):
         if self.gender is not None:
             oprot.write_field_begin(name='gender', type=11, id=8)
             oprot.write_string(str(self.gender))
+            oprot.write_field_end()
+
+        if self.hidden is not None:
+            oprot.write_field_begin(name='hidden', type=2, id=22)
+            oprot.write_bool(self.hidden)
             oprot.write_field_end()
 
         if self.image is not None:

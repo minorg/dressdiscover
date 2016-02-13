@@ -13,6 +13,9 @@ struct ObjectQuery {
 	// @validation {"minLength": 1}
 	optional object_facet_filters.ObjectFacetFilters facet_filters;
 
+	// @validation {"acceptance": true}
+	optional bool include_hidden;
+
 	optional institution_id.InstitutionId institution_id;
 
 	optional object_id.ObjectId more_like_object_id;

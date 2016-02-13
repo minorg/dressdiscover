@@ -88,6 +88,7 @@ class WizardLoader(_Loader):
 
             object_builder = Object.Builder()
             object_builder.collection_id = self.COLLECTION_ID
+            object_builder.hidden = True
             object_builder.institution_id = self._institution_id
             object_builder.model_metadata = self._new_model_metadata()
             object_builder.set_structures(

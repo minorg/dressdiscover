@@ -129,7 +129,7 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
         ImmutableList<ObjectSummaryEntry> featureModelsInDatabase;
         try {
             featureModelsInDatabase = objectSummaryQueryService.getObjectSummaries(Optional.absent(),
-                    Optional.of(ObjectQuery.builder().setCollectionId(COLLECTION_ID)
+                    Optional.of(ObjectQuery.builder().setCollectionId(COLLECTION_ID).setIncludeHidden(true)
                             .setInstitutionId(COLLECTION_ID.getInstitutionId())
                             .setStructureTexts(ImmutableMap.of(currentFeatureName, ImmutableList.of())).build()))
                     .getHits();
