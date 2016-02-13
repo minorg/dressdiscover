@@ -1,5 +1,6 @@
 package net.lab1318.costume.gui.models.wizard;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
 public final class CostumeCore {
@@ -601,4 +602,5 @@ public final class CostumeCore {
     }
 
     public final static ImmutableMap<String, Feature[]> FEATURES = ImmutableMap.<String, Feature[]> builder().put("Closure Placement", ClosurePlacement.values()).put("Closure Type", ClosureType.values()).put("Material", Material.values()).put("Overall Silhouette", OverallSilhouette.values()).put("Shawl Border Type", ShawlBorderType.values()).put("Shawl Design Features", ShawlDesignFeatures.values()).put("Shawl Shape", ShawlShape.values()).put("Structure Cut", StructureCut.values()).put("Structure Hem", StructureHem.values()).put("Structure Lining", StructureLining.values()).put("Structure Neckline", StructureNeckline.values()).put("Structure Pants", StructurePants.values()).put("Structure Skirt", StructureSkirt.values()).put("Structure Sleeve Length", StructureSleeveLength.values()).put("Structure Sleeves", StructureSleeves.values()).put("Structure Torso", StructureTorso.values()).put("Structure Waist", StructureWaist.values()).put("Structure Waist Shape", StructureWaistShape.values()).put("Technique", Technique.values()).build();
+    public final static ImmutableList<String> FEATURE_NAMES = ImmutableList.<String> builder().add("Closure Placement").add("Closure Type").add("Material").add("Overall Silhouette").add("Shawl Border Type").add("Shawl Design Features").add("Shawl Shape").add("Structure Cut").add("Structure Hem").add("Structure Lining").add("Structure Neckline").add("Structure Pants").add("Structure Skirt").add("Structure Sleeve Length").add("Structure Sleeves").add("Structure Torso").add("Structure Waist").add("Structure Waist Shape").add("Technique").build();
 }
