@@ -15,6 +15,7 @@ class CostumeProperties(object):
             home_directory_path=None,
             object_summaries_result_cache_size=1024,
             object_summary_cache_size=1024,
+            resummarize_objects_bulk_request_size=1000,
         ):
             '''
             :type api_url: str
@@ -26,6 +27,7 @@ class CostumeProperties(object):
             :type home_directory_path: str
             :type object_summaries_result_cache_size: int
             :type object_summary_cache_size: int
+            :type resummarize_objects_bulk_request_size: int
             '''
 
             self.__api_url = api_url
@@ -37,9 +39,10 @@ class CostumeProperties(object):
             self.__home_directory_path = home_directory_path
             self.__object_summaries_result_cache_size = object_summaries_result_cache_size
             self.__object_summary_cache_size = object_summary_cache_size
+            self.__resummarize_objects_bulk_request_size = resummarize_objects_bulk_request_size
 
         def build(self):
-            return CostumeProperties(api_url=self.__api_url, elastic_search_host=self.__elastic_search_host, elastic_search_port=self.__elastic_search_port, environment=self.__environment, google_oauth_key=self.__google_oauth_key, google_oauth_secret=self.__google_oauth_secret, home_directory_path=self.__home_directory_path, object_summaries_result_cache_size=self.__object_summaries_result_cache_size, object_summary_cache_size=self.__object_summary_cache_size)
+            return CostumeProperties(api_url=self.__api_url, elastic_search_host=self.__elastic_search_host, elastic_search_port=self.__elastic_search_port, environment=self.__environment, google_oauth_key=self.__google_oauth_key, google_oauth_secret=self.__google_oauth_secret, home_directory_path=self.__home_directory_path, object_summaries_result_cache_size=self.__object_summaries_result_cache_size, object_summary_cache_size=self.__object_summary_cache_size, resummarize_objects_bulk_request_size=self.__resummarize_objects_bulk_request_size)
 
         @property
         def api_url(self):
@@ -113,6 +116,14 @@ class CostumeProperties(object):
 
             return self.__object_summary_cache_size
 
+        @property
+        def resummarize_objects_bulk_request_size(self):
+            '''
+            :rtype: int
+            '''
+
+            return self.__resummarize_objects_bulk_request_size
+
         def set_api_url(self, api_url):
             '''
             :type api_url: str
@@ -185,6 +196,14 @@ class CostumeProperties(object):
             self.__object_summary_cache_size = object_summary_cache_size
             return self
 
+        def set_resummarize_objects_bulk_request_size(self, resummarize_objects_bulk_request_size):
+            '''
+            :type resummarize_objects_bulk_request_size: int
+            '''
+
+            self.__resummarize_objects_bulk_request_size = resummarize_objects_bulk_request_size
+            return self
+
         def update(self, costume_properties):
             '''
             :type api_url: str
@@ -196,6 +215,7 @@ class CostumeProperties(object):
             :type home_directory_path: str
             :type object_summaries_result_cache_size: int
             :type object_summary_cache_size: int
+            :type resummarize_objects_bulk_request_size: int
             '''
 
             if isinstance(costume_properties, CostumeProperties):
@@ -208,6 +228,7 @@ class CostumeProperties(object):
                 self.set_home_directory_path(costume_properties.home_directory_path)
                 self.set_object_summaries_result_cache_size(costume_properties.object_summaries_result_cache_size)
                 self.set_object_summary_cache_size(costume_properties.object_summary_cache_size)
+                self.set_resummarize_objects_bulk_request_size(costume_properties.resummarize_objects_bulk_request_size)
             elif isinstance(costume_properties, dict):
                 for key, value in costume_properties.iteritems():
                     getattr(self, 'set_' + key)(value)
@@ -287,6 +308,14 @@ class CostumeProperties(object):
 
             self.set_object_summary_cache_size(object_summary_cache_size)
 
+        @resummarize_objects_bulk_request_size.setter
+        def resummarize_objects_bulk_request_size(self, resummarize_objects_bulk_request_size):
+            '''
+            :type resummarize_objects_bulk_request_size: int
+            '''
+
+            self.set_resummarize_objects_bulk_request_size(resummarize_objects_bulk_request_size)
+
     def __init__(
         self,
         environment,
@@ -298,6 +327,7 @@ class CostumeProperties(object):
         elastic_search_port=9300,
         object_summaries_result_cache_size=1024,
         object_summary_cache_size=1024,
+        resummarize_objects_bulk_request_size=1000,
     ):
         '''
         :type api_url: str
@@ -309,6 +339,7 @@ class CostumeProperties(object):
         :type home_directory_path: str
         :type object_summaries_result_cache_size: int
         :type object_summary_cache_size: int
+        :type resummarize_objects_bulk_request_size: int
         '''
 
         if api_url is None:
@@ -369,6 +400,12 @@ class CostumeProperties(object):
             raise TypeError("expected object_summary_cache_size to be a int but it is a %s" % getattr(__builtin__, 'type')(object_summary_cache_size))
         self.__object_summary_cache_size = object_summary_cache_size
 
+        if resummarize_objects_bulk_request_size is None:
+            raise ValueError('resummarize_objects_bulk_request_size is required')
+        if not isinstance(resummarize_objects_bulk_request_size, (int, long)) and resummarize_objects_bulk_request_size >= 0:
+            raise TypeError("expected resummarize_objects_bulk_request_size to be a int but it is a %s" % getattr(__builtin__, 'type')(resummarize_objects_bulk_request_size))
+        self.__resummarize_objects_bulk_request_size = resummarize_objects_bulk_request_size
+
     def __eq__(self, other):
         if self.api_url != other.api_url:
             return False
@@ -388,10 +425,12 @@ class CostumeProperties(object):
             return False
         if self.object_summary_cache_size != other.object_summary_cache_size:
             return False
+        if self.resummarize_objects_bulk_request_size != other.resummarize_objects_bulk_request_size:
+            return False
         return True
 
     def __hash__(self):
-        return hash((self.api_url,self.elastic_search_host,self.elastic_search_port,self.environment,self.google_oauth_key,self.google_oauth_secret,self.home_directory_path,self.object_summaries_result_cache_size,self.object_summary_cache_size,))
+        return hash((self.api_url,self.elastic_search_host,self.elastic_search_port,self.environment,self.google_oauth_key,self.google_oauth_secret,self.home_directory_path,self.object_summaries_result_cache_size,self.object_summary_cache_size,self.resummarize_objects_bulk_request_size,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -410,6 +449,7 @@ class CostumeProperties(object):
         field_reprs.append('home_directory_path=' + "'" + self.home_directory_path.encode('ascii', 'replace') + "'")
         field_reprs.append('object_summaries_result_cache_size=' + repr(self.object_summaries_result_cache_size))
         field_reprs.append('object_summary_cache_size=' + repr(self.object_summary_cache_size))
+        field_reprs.append('resummarize_objects_bulk_request_size=' + repr(self.resummarize_objects_bulk_request_size))
         return 'CostumeProperties(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
@@ -423,6 +463,7 @@ class CostumeProperties(object):
         field_reprs.append('home_directory_path=' + "'" + self.home_directory_path.encode('ascii', 'replace') + "'")
         field_reprs.append('object_summaries_result_cache_size=' + repr(self.object_summaries_result_cache_size))
         field_reprs.append('object_summary_cache_size=' + repr(self.object_summary_cache_size))
+        field_reprs.append('resummarize_objects_bulk_request_size=' + repr(self.resummarize_objects_bulk_request_size))
         return 'CostumeProperties(' + ', '.join(field_reprs) + ')'
 
     @property
@@ -440,7 +481,7 @@ class CostumeProperties(object):
         :rtype: dict
         '''
 
-        return {'api_url': self.api_url, 'elastic_search_host': self.elastic_search_host, 'elastic_search_port': self.elastic_search_port, 'environment': self.environment, 'google_oauth_key': self.google_oauth_key, 'google_oauth_secret': self.google_oauth_secret, 'home_directory_path': self.home_directory_path, 'object_summaries_result_cache_size': self.object_summaries_result_cache_size, 'object_summary_cache_size': self.object_summary_cache_size}
+        return {'api_url': self.api_url, 'elastic_search_host': self.elastic_search_host, 'elastic_search_port': self.elastic_search_port, 'environment': self.environment, 'google_oauth_key': self.google_oauth_key, 'google_oauth_secret': self.google_oauth_secret, 'home_directory_path': self.home_directory_path, 'object_summaries_result_cache_size': self.object_summaries_result_cache_size, 'object_summary_cache_size': self.object_summary_cache_size, 'resummarize_objects_bulk_request_size': self.resummarize_objects_bulk_request_size}
 
     def as_tuple(self):
         '''
@@ -449,7 +490,7 @@ class CostumeProperties(object):
         :rtype: tuple
         '''
 
-        return (self.api_url, self.elastic_search_host, self.elastic_search_port, self.environment, self.google_oauth_key, self.google_oauth_secret, self.home_directory_path, self.object_summaries_result_cache_size, self.object_summary_cache_size,)
+        return (self.api_url, self.elastic_search_host, self.elastic_search_port, self.environment, self.google_oauth_key, self.google_oauth_secret, self.home_directory_path, self.object_summaries_result_cache_size, self.object_summary_cache_size, self.resummarize_objects_bulk_request_size,)
 
     @property
     def elastic_search_host(self):
@@ -511,7 +552,7 @@ class CostumeProperties(object):
 
         properties = {}
 
-        for property_name in ('api_url', 'elastic_search_host', 'elastic_search_port', 'environment', 'google_oauth_key', 'google_oauth_secret', 'home_directory_path', 'object_summaries_result_cache_size', 'object_summary_cache_size',):
+        for property_name in ('api_url', 'elastic_search_host', 'elastic_search_port', 'environment', 'google_oauth_key', 'google_oauth_secret', 'home_directory_path', 'object_summaries_result_cache_size', 'object_summary_cache_size', 'resummarize_objects_bulk_request_size',):
             property_value = os.getenv('COSTUME_' + property_name.upper())
             if property_value is not None and len(property_value) > 0:
                 properties[property_name] = property_value
@@ -545,6 +586,9 @@ class CostumeProperties(object):
 
         if 'object_summary_cache_size' in properties:
             properties['object_summary_cache_size'] = int(properties['object_summary_cache_size'])
+
+        if 'resummarize_objects_bulk_request_size' in properties:
+            properties['resummarize_objects_bulk_request_size'] = int(properties['resummarize_objects_bulk_request_size'])
 
         return cls(**properties)
 
@@ -598,6 +642,8 @@ class CostumeProperties(object):
                 init_kwds['object_summaries_result_cache_size'] = iprot.read_u32()
             elif ifield_name == 'object_summary_cache_size':
                 init_kwds['object_summary_cache_size'] = iprot.read_u32()
+            elif ifield_name == 'resummarize_objects_bulk_request_size':
+                init_kwds['resummarize_objects_bulk_request_size'] = iprot.read_u32()
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -614,6 +660,7 @@ class CostumeProperties(object):
         home_directory_path=None,
         object_summaries_result_cache_size=1024,
         object_summary_cache_size=1024,
+        resummarize_objects_bulk_request_size=1000,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
@@ -627,6 +674,7 @@ class CostumeProperties(object):
         :type home_directory_path: str or None
         :type object_summaries_result_cache_size: int or None
         :type object_summary_cache_size: int or None
+        :type resummarize_objects_bulk_request_size: int or None
         :rtype: costume.lib.costume_properties.CostumeProperties
         '''
 
@@ -648,7 +696,17 @@ class CostumeProperties(object):
             object_summaries_result_cache_size = self.object_summaries_result_cache_size
         if object_summary_cache_size is None:
             object_summary_cache_size = self.object_summary_cache_size
-        return self.__class__(api_url=api_url, elastic_search_host=elastic_search_host, elastic_search_port=elastic_search_port, environment=environment, google_oauth_key=google_oauth_key, google_oauth_secret=google_oauth_secret, home_directory_path=home_directory_path, object_summaries_result_cache_size=object_summaries_result_cache_size, object_summary_cache_size=object_summary_cache_size)
+        if resummarize_objects_bulk_request_size is None:
+            resummarize_objects_bulk_request_size = self.resummarize_objects_bulk_request_size
+        return self.__class__(api_url=api_url, elastic_search_host=elastic_search_host, elastic_search_port=elastic_search_port, environment=environment, google_oauth_key=google_oauth_key, google_oauth_secret=google_oauth_secret, home_directory_path=home_directory_path, object_summaries_result_cache_size=object_summaries_result_cache_size, object_summary_cache_size=object_summary_cache_size, resummarize_objects_bulk_request_size=resummarize_objects_bulk_request_size)
+
+    @property
+    def resummarize_objects_bulk_request_size(self):
+        '''
+        :rtype: int
+        '''
+
+        return self.__resummarize_objects_bulk_request_size
 
     def write(self, oprot):
         '''
@@ -694,6 +752,10 @@ class CostumeProperties(object):
 
         oprot.write_field_begin(name='object_summary_cache_size', type=8, id=None)
         oprot.write_u32(self.object_summary_cache_size)
+        oprot.write_field_end()
+
+        oprot.write_field_begin(name='resummarize_objects_bulk_request_size', type=8, id=None)
+        oprot.write_u32(self.resummarize_objects_bulk_request_size)
         oprot.write_field_end()
 
         oprot.write_field_stop()

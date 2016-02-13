@@ -181,3 +181,8 @@ class ObjectCommandServiceJsonRpcClient(costume.api.services.object.object_comma
 
         self.__request(method='put_objects', params=oprot.value)
 
+    def _resummarize_objects(
+        self,
+    ):
+        self.__request(method='resummarize_objects', params={})
+
