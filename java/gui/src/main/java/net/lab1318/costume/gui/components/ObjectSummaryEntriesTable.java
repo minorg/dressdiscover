@@ -34,7 +34,7 @@ import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.models.object.ObjectSummary;
 import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 import net.lab1318.costume.api.models.user.UserBookmark;
-import net.lab1318.costume.api.models.user.UserBookmarkId;
+import net.lab1318.costume.api.models.user.UserBookmarkEntry;
 import net.lab1318.costume.api.models.user.UserId;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
@@ -47,11 +47,11 @@ import net.lab1318.costume.gui.views.ImageWithRightsView;
 
 @SuppressWarnings("serial")
 public final class ObjectSummaryEntriesTable extends CustomComponent {
-    public ObjectSummaryEntriesTable(final ImmutableMap<ObjectId, UserBookmarkId> bookmarkedObjectIds,
+    public ObjectSummaryEntriesTable(final ImmutableMap<ObjectId, UserBookmarkEntry> bookmarks,
             final ImmutableMap<CollectionId, Collection> collections, final Optional<UserId> currentUserId,
             final EventBus eventBus, final ImmutableMap<InstitutionId, Institution> institutions,
             final LazyQueryContainer objects) {
-        this.bookmarkedObjectIds = checkNotNull(bookmarkedObjectIds);
+        this.bookmarks = checkNotNull(bookmarks);
 
         final Map<String, String> columns = new LinkedHashMap<>();
         {
@@ -88,12 +88,12 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
                             .getValue();
                     final Button button = new NativeButton();
                     @Nullable
-                    final UserBookmarkId bookmarkId = ObjectSummaryEntriesTable.this.bookmarkedObjectIds.get(objectId);
-                    if (bookmarkId != null) {
+                    final UserBookmarkEntry bookmarkEntry = ObjectSummaryEntriesTable.this.bookmarks.get(objectId);
+                    if (bookmarkEntry != null) {
                         button.addClickListener(new Button.ClickListener() {
                             @Override
                             public void buttonClick(final ClickEvent event) {
-                                eventBus.post(new DeleteUserBookmarkByIdRequest(bookmarkId));
+                                eventBus.post(new DeleteUserBookmarkByIdRequest(bookmarkEntry.getId()));
                             }
                         });
                         button.setIcon(FontAwesome.STAR);
@@ -212,13 +212,18 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
                     @Override
                     public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
                             final java.lang.Object columnId) {
-                        final String title = (String) source.getContainerDataSource()
-                                .getContainerProperty(itemId, columnId).getValue();
+                        final ObjectId objectId = (ObjectId) source.getContainerDataSource()
+                                .getContainerProperty(itemId, "id").getValue();
+                        String title = (String) source.getContainerDataSource().getContainerProperty(itemId, columnId)
+                                .getValue();
+                        @Nullable
+                        final UserBookmarkEntry bookmarkEntry = ObjectSummaryEntriesTable.this.bookmarks.get(objectId);
+                        if (bookmarkEntry != null && !bookmarkEntry.getModel().getName().equals(title)) {
+                            title = String.format("%s (%s)", bookmarkEntry.getModel().getName(), title);
+                        }
                         return new NativeButton(title, new Button.ClickListener() {
                             @Override
                             public void buttonClick(final ClickEvent event) {
-                                final ObjectId objectId = (ObjectId) source.getContainerDataSource()
-                                        .getContainerProperty(itemId, "id").getValue();
                                 eventBus.post(new ObjectQueryService.Messages.GetObjectByIdRequest(objectId));
                             }
                         });
@@ -254,11 +259,11 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
         setCompositionRoot(table);
     }
 
-    public void setBookmarkedObjectIds(final ImmutableMap<ObjectId, UserBookmarkId> bookmarkedObjectIds) {
-        this.bookmarkedObjectIds = checkNotNull(bookmarkedObjectIds);
+    public void setBookmarks(final ImmutableMap<ObjectId, UserBookmarkEntry> bookmarks) {
+        this.bookmarks = checkNotNull(bookmarks);
         table.refreshRowCache();
     }
 
-    private ImmutableMap<ObjectId, UserBookmarkId> bookmarkedObjectIds;
+    private ImmutableMap<ObjectId, UserBookmarkEntry> bookmarks;
     private final Table table = new Table();
 }

@@ -18,7 +18,7 @@ import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.models.object.ObjectQuery;
-import net.lab1318.costume.api.models.user.UserBookmarkId;
+import net.lab1318.costume.api.models.user.UserBookmarkEntry;
 import net.lab1318.costume.api.models.user.UserId;
 import net.lab1318.costume.gui.components.ObjectSummaryEntriesTable;
 import net.lab1318.costume.gui.views.TopLevelView;
@@ -31,7 +31,7 @@ public class UserBookmarksView extends TopLevelView {
         super(eventBus);
     }
 
-    public void setModels(final ImmutableMap<ObjectId, UserBookmarkId> bookmarkedObjectIds,
+    public void setModels(final ImmutableMap<ObjectId, UserBookmarkEntry> bookmarks,
             final ImmutableMap<CollectionId, Collection> collections, final UserId currentUserId,
             final ImmutableMap<InstitutionId, Institution> institutions, final ObjectQuery objectQuery,
             final LazyQueryContainer objectSummaries) {
@@ -42,7 +42,7 @@ public class UserBookmarksView extends TopLevelView {
         rootLayout.addComponent(headerLabel);
         rootLayout.setComponentAlignment(headerLabel, Alignment.MIDDLE_CENTER);
 
-        rootLayout.addComponent(new ObjectSummaryEntriesTable(bookmarkedObjectIds, collections,
+        rootLayout.addComponent(new ObjectSummaryEntriesTable(bookmarks, collections,
                 Optional.of(currentUserId), _getEventBus(), institutions, objectSummaries));
 
         setCompositionRoot(rootLayout);

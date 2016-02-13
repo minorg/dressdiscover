@@ -20,7 +20,7 @@ import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.object.ObjectFacets;
 import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.models.object.ObjectQuery;
-import net.lab1318.costume.api.models.user.UserBookmarkId;
+import net.lab1318.costume.api.models.user.UserBookmarkEntry;
 import net.lab1318.costume.api.models.user.UserId;
 import net.lab1318.costume.gui.components.ObjectSummaryEntriesTable;
 import net.lab1318.costume.gui.views.TopLevelView;
@@ -61,12 +61,12 @@ public class ObjectsView extends TopLevelView {
         setCompositionRoot(twoPaneLayout);
     }
 
-    public void setBookmarkedObjectIds(final ImmutableMap<ObjectId, UserBookmarkId> bookmarkedObjectIds) {
-        objectSummaryEntriesTable.setBookmarkedObjectIds(bookmarkedObjectIds);
+    public void setBookmarks(final ImmutableMap<ObjectId, UserBookmarkEntry> bookmarks) {
+        objectSummaryEntriesTable.setBookmarks(bookmarks);
     }
 
     public void setModels(final ObjectFacets availableObjectFacets,
-            final ImmutableMap<ObjectId, UserBookmarkId> bookmarkedObjectIds,
+            final ImmutableMap<ObjectId, UserBookmarkEntry> bookmarks,
             final ImmutableMap<CollectionId, Collection> collections, final Optional<UserId> currentUserId,
             final ImmutableMap<InstitutionId, Institution> institutions, final ObjectQuery objectQuery,
             final LazyQueryContainer objectSummaries, final ObjectFacets resultObjectFacets) {
@@ -86,7 +86,7 @@ public class ObjectsView extends TopLevelView {
             rightPaneContentLayout.addComponent(hitCountsLabel);
             rightPaneContentLayout.setComponentAlignment(hitCountsLabel, Alignment.MIDDLE_CENTER);
 
-            objectSummaryEntriesTable = new ObjectSummaryEntriesTable(bookmarkedObjectIds, collections, currentUserId,
+            objectSummaryEntriesTable = new ObjectSummaryEntriesTable(bookmarks, collections, currentUserId,
                     _getEventBus(), institutions, objectSummaries);
             rightPaneContentLayout.addComponent(objectSummaryEntriesTable);
         } else {

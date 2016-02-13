@@ -75,7 +75,7 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
         if (!_deleteUserBookmark(request.getId())) {
             return;
         }
-        _getView().setBookmarkedObjectIds(__getBookmarkedObjectIds());
+        _getView().setBookmarks(__getBookmarks());
     }
 
     @Subscribe
@@ -84,7 +84,7 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
         if (!userBookmarkId.isPresent()) {
             return;
         }
-        _getView().setBookmarkedObjectIds(__getBookmarkedObjectIds());
+        _getView().setBookmarks(__getBookmarks());
     }
 
     @Override
@@ -142,24 +142,24 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
             return;
         }
 
-        ImmutableMap<ObjectId, UserBookmarkId> bookmarkedObjectIds;
+        ImmutableMap<ObjectId, UserBookmarkEntry> bookmarks;
         Optional<UserId> currentUserId;
         if (currentUser.isPresent()) {
             currentUserId = Optional.of(currentUser.get().getId());
-            bookmarkedObjectIds = __getBookmarkedObjectIds();
+            bookmarks = __getBookmarks();
         } else {
-            bookmarkedObjectIds = ImmutableMap.of();
+            bookmarks = ImmutableMap.of();
             currentUserId = Optional.absent();
         }
 
-        _getView().setModels(availableObjectFacets, bookmarkedObjectIds, collectionMap, currentUserId, institutionMap,
+        _getView().setModels(availableObjectFacets, bookmarks, collectionMap, currentUserId, institutionMap,
                 objectQuery,
                 new LazyQueryContainer(ObjectSummaryEntryBeanQueryDefinition.getInstance(),
                         ObjectSummaryEntryBeanQueryFactory.create(firstResult, objectQuery, objectSummaryQueryService)),
                 firstResult.getFacets().get());
     }
 
-    private ImmutableMap<ObjectId, UserBookmarkId> __getBookmarkedObjectIds() {
+    private ImmutableMap<ObjectId, UserBookmarkEntry> __getBookmarks() {
         final Optional<UserEntry> currentUser = _getCurrentUser();
         if (!currentUser.isPresent()) {
             return ImmutableMap.of();
@@ -168,12 +168,12 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
         try {
             final ImmutableList<UserBookmarkEntry> bookmarks = _getUserQueryService()
                     .getUserBookmarksByUserId(currentUser.get().getId(), OPTIONAL_TRUE);
-            final Map<ObjectId, UserBookmarkId> bookmarkedObjectIdsBuilder = new LinkedHashMap<>();
+            final Map<ObjectId, UserBookmarkEntry> bookmarkedObjectIdsBuilder = new LinkedHashMap<>();
             for (final UserBookmarkEntry bookmarkEntry : bookmarks) {
                 if (!bookmarkEntry.getModel().getObjectId().isPresent()) {
                     continue;
                 }
-                bookmarkedObjectIdsBuilder.put(bookmarkEntry.getModel().getObjectId().get(), bookmarkEntry.getId());
+                bookmarkedObjectIdsBuilder.put(bookmarkEntry.getModel().getObjectId().get(), bookmarkEntry);
             }
             return ImmutableMap.copyOf(bookmarkedObjectIdsBuilder);
         } catch (final IoException e) {
