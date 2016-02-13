@@ -111,7 +111,7 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
     protected void _onViewEnter(final Optional<UserEntry> currentUser, final ViewChangeEvent event) {
         if (event.getParameters().isEmpty()) {
             selectedFeatureValuesByFeatureName.clear(); // Reset
-            __navigateToFeature(CostumeCore.FEATURES.keySet().iterator().next());
+            __navigateToFeature(FEATURE_NAMES.get(0));
             return;
         }
 
@@ -223,7 +223,12 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
     private final ObjectSummaryQueryService objectSummaryQueryService;
     private final Map<String, ImmutableList<String>> selectedFeatureValuesByFeatureName = new LinkedHashMap<>();
     private final static CollectionId COLLECTION_ID = __createCollectionId();
-    private final static ImmutableList<String> FEATURE_NAMES = ImmutableList.copyOf(CostumeCore.FEATURES.keySet());
+    // private final static ImmutableList<String> FEATURE_NAMES =
+    // CostumeCore.FEATURE_NAMES;
+    private final static ImmutableList<String> FEATURE_NAMES = ImmutableList.<String> builder().add("Closure Type")
+            .add("Material").add("Structure Cut").add("Structure Neckline").add("Structure Skirt")
+            .add("Structure Sleeves").add("Structure Torso").add("Structure Waist Shape").add("Technique").build();
+
     private final static Image PLACEHOLDER_IMAGE = Image.builder()
             .setSquareThumbnail(ImageVersion.builder().setHeightPx(UnsignedInteger.valueOf(200))
                     .setUrl(Url.parse("http://placehold.it/200x200?text=Missing%20image"))

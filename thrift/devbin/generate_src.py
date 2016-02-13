@@ -233,6 +233,7 @@ class Main(thryft.main.Main):
             7: 'SEVEN'
         }
 
+        add_feature_names = []
         feature_enums = []
         put_features = []
         for feature_name in sorted(costume_core_controlled_vocabularies.iterkeys()):
@@ -270,7 +271,9 @@ public enum %(feature_name_upper_camelized)s implements Feature {
     private final String displayName;
 }""" % locals())
 
+            add_feature_names.append(".add(\"%(feature_name)s\")" % locals())
             put_features.append(".put(\"%(feature_name)s\", %(feature_name_upper_camelized)s.values())" % locals())
+        add_feature_names = ''.join(add_feature_names)
         feature_enums = "\n\n".join(indent(' ' * 4, feature_enums))
         put_features = ''.join(put_features)
 
@@ -283,6 +286,7 @@ public enum %(feature_name_upper_camelized)s implements Feature {
             f.write("""\
 package net.lab1318.costume.gui.models.wizard;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
 public final class CostumeCore {
@@ -295,6 +299,7 @@ public final class CostumeCore {
 %(feature_enums)s
 
     public final static ImmutableMap<String, Feature[]> FEATURES = ImmutableMap.<String, Feature[]> builder()%(put_features)s.build();
+    public final static ImmutableList<String> FEATURE_NAMES = ImmutableList.<String> builder()%(add_feature_names)s.build();
 }""" % locals())
 
     def __generate_costume_core_py(self):
