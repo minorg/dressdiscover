@@ -55,5 +55,10 @@ public class ValidatingObjectCommandService implements net.lab1318.costume.api.s
         com.google.common.base.Preconditions.checkNotNull(objects, "net.lab1318.costume.api.services.object.ObjectCommandService.putObjects: missing objects");
     }
 
+    @Override
+    public final void resummarizeObjects() throws net.lab1318.costume.api.services.IoException {
+        delegate.resummarizeObjects();
+    }
+
     private final net.lab1318.costume.api.services.object.ObjectCommandService delegate;
 }

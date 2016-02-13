@@ -126,3 +126,13 @@ class ObjectCommandService(object):
         objects,
     ):
         raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._put_objects')
+
+    def resummarize_objects(
+        self,
+    ):
+        self._resummarize_objects()
+
+    def _resummarize_objects(
+        self,
+    ):
+        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._resummarize_objects')

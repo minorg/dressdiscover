@@ -24,4 +24,6 @@ struct CostumeProperties {
 	u32.u32 object_summaries_result_cache_size = 1024;
 
 	u32.u32 object_summary_cache_size = 1024;
+
+	u32.u32 resummarize_objects_bulk_request_size = 1000;
 }

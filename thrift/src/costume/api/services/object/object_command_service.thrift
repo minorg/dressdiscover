@@ -48,4 +48,10 @@ service ObjectCommandService {
 	) throws (
 		io_exception.IoException e
 	);
+
+	void
+	resummarize_objects(
+	) throws (
+		io_exception.IoException e
+	);
 }

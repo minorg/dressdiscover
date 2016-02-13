@@ -8,6 +8,7 @@ public class LoggingObjectCommandService implements net.lab1318.costume.api.serv
         public final static org.slf4j.Marker DELETE_OBJECTS_BY_INSTITUTION_ID = org.slf4j.MarkerFactory.getMarker("DELETE_OBJECTS_BY_INSTITUTION_ID");
         public final static org.slf4j.Marker PUT_OBJECT = org.slf4j.MarkerFactory.getMarker("PUT_OBJECT");
         public final static org.slf4j.Marker PUT_OBJECTS = org.slf4j.MarkerFactory.getMarker("PUT_OBJECTS");
+        public final static org.slf4j.Marker RESUMMARIZE_OBJECTS = org.slf4j.MarkerFactory.getMarker("RESUMMARIZE_OBJECTS");
 
         public final static org.slf4j.Marker OBJECT_COMMAND_SERVICE = org.slf4j.MarkerFactory.getMarker("OBJECT_COMMAND_SERVICE");
         static {
@@ -16,6 +17,7 @@ public class LoggingObjectCommandService implements net.lab1318.costume.api.serv
             OBJECT_COMMAND_SERVICE.add(DELETE_OBJECTS_BY_INSTITUTION_ID);
             OBJECT_COMMAND_SERVICE.add(PUT_OBJECT);
             OBJECT_COMMAND_SERVICE.add(PUT_OBJECTS);
+            OBJECT_COMMAND_SERVICE.add(RESUMMARIZE_OBJECTS);
         }
     }
 
@@ -140,6 +142,25 @@ public class LoggingObjectCommandService implements net.lab1318.costume.api.serv
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.PUT_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        }
+    }
+
+    public void resummarizeObjects() throws net.lab1318.costume.api.services.IoException {
+        final StringBuilder __logMessageStringBuilder = new StringBuilder();
+        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+
+        __logMessageStringBuilder.append("resummarize_objects(");
+        __logMessageStringBuilder.append(")");
+
+        try {
+            delegate.resummarizeObjects();
+
+            logger.debug(Markers.RESUMMARIZE_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+        } catch (final net.lab1318.costume.api.services.IoException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.RESUMMARIZE_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
         }
     }
