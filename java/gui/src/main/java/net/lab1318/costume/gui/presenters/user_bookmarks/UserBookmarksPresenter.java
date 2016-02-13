@@ -26,7 +26,6 @@ import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.models.user.UserBookmarkEntry;
-import net.lab1318.costume.api.models.user.UserBookmarkId;
 import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
@@ -77,9 +76,9 @@ public class UserBookmarksPresenter extends Presenter<UserBookmarksView> {
             return;
         }
 
-        ImmutableList<UserBookmarkEntry> bookmarks;
+        ImmutableList<UserBookmarkEntry> bookmarksList;
         try {
-            bookmarks = _getUserQueryService().getUserBookmarksByUserId(currentUser.get().getId());
+            bookmarksList = _getUserQueryService().getUserBookmarksByUserId(currentUser.get().getId());
         } catch (final IoException e) {
             _getView().setComponentError(new SystemError("I/O exception", e));
             return;
@@ -88,19 +87,19 @@ public class UserBookmarksPresenter extends Presenter<UserBookmarksView> {
             return;
         }
 
-        ImmutableMap<ObjectId, UserBookmarkId> bookmarkedObjectIds;
+        ImmutableMap<ObjectId, UserBookmarkEntry> bookmarksMap;
         {
-            final Map<ObjectId, UserBookmarkId> bookmarkedObjectIdsBuilder = new LinkedHashMap<>();
-            for (final UserBookmarkEntry bookmarkEntry : bookmarks) {
+            final Map<ObjectId, UserBookmarkEntry> bookmarksMapBuilder = new LinkedHashMap<>();
+            for (final UserBookmarkEntry bookmarkEntry : bookmarksList) {
                 if (!bookmarkEntry.getModel().getObjectId().isPresent()) {
                     continue;
                 }
-                bookmarkedObjectIdsBuilder.put(bookmarkEntry.getModel().getObjectId().get(), bookmarkEntry.getId());
+                bookmarksMapBuilder.put(bookmarkEntry.getModel().getObjectId().get(), bookmarkEntry);
             }
-            bookmarkedObjectIds = ImmutableMap.copyOf(bookmarkedObjectIdsBuilder);
+            bookmarksMap = ImmutableMap.copyOf(bookmarksMapBuilder);
         }
 
-        final ObjectQuery objectQuery = ObjectQuery.builder().setObjectIds(bookmarkedObjectIds.keySet()).build();
+        final ObjectQuery objectQuery = ObjectQuery.builder().setObjectIds(bookmarksMap.keySet()).build();
 
         GetObjectSummariesResult firstResult;
         try {
@@ -137,7 +136,7 @@ public class UserBookmarksPresenter extends Presenter<UserBookmarksView> {
             return;
         }
 
-        _getView().setModels(bookmarkedObjectIds, collectionMap, currentUser.get().getId(), institutionMap, objectQuery,
+        _getView().setModels(bookmarksMap, collectionMap, currentUser.get().getId(), institutionMap, objectQuery,
                 new LazyQueryContainer(ObjectSummaryEntryBeanQueryDefinition.getInstance(),
                         ObjectSummaryEntryBeanQueryFactory.create(firstResult, objectQuery,
                                 objectSummaryQueryService)));
