@@ -36,14 +36,14 @@ class _OaiPmhExtractor(_Extractor):
             self._logger.debug("reading URL %s", url)
             url_f = urllib2.urlopen(url)
             try:
-                xml = url_f.read()
+                xml_str = url_f.read()
             finally:
                 url_f.close()
-            self._logger.debug("read XML from URL %s: \n%s", url, xml)
-            xml = parseString(xml)
-            ListRecords_elements = xml.documentElement.getElementsByTagName('ListRecords')
+            self._logger.debug("read XML from URL %s: \n%s", url, xml_str)
+            dom = parseString(xml_str)
+            ListRecords_elements = dom.documentElement.getElementsByTagName('ListRecords')
             if len(ListRecords_elements) == 0:
-                self._logger.error("no ListRecords element in XML: \n%s", xml)
+                self._logger.error("no ListRecords element in XML: \n%s", xml_str)
                 return
             ListRecords_element = ListRecords_elements[0]
             for record_element in ListRecords_element.getElementsByTagName('record'):
