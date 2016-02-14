@@ -6,7 +6,7 @@ class TxfcExtractor(_OaiPmhExtractor):
         _OaiPmhExtractor.__init__(
             self,
             endpoint_url='http://digital.library.unt.edu/explore/collections/TXFC/oai/',
-            institution_id='txfc',
+            institution_id='untvca',
             metadata_prefix='untl',
             **kwds
         )
