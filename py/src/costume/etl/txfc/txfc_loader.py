@@ -1,7 +1,4 @@
-from collections import OrderedDict
 import os.path
-from pprint import pformat
-import urllib
 from xml.etree import ElementTree
 
 from costume.api.models.agent.agent import Agent
@@ -24,7 +21,6 @@ from costume.api.models.location.location_name import LocationName
 from costume.api.models.location.location_name_type import LocationNameType
 from costume.api.models.location.location_set import LocationSet
 from costume.api.models.location.location_type import LocationType
-from costume.api.models.object.object import Object
 from costume.api.models.rights.rights import Rights
 from costume.api.models.rights.rights_set import RightsSet
 from costume.api.models.rights.rights_type import RightsType
@@ -47,16 +43,16 @@ from costume.api.models.work_type.work_type import WorkType
 from costume.api.models.work_type.work_type_set import WorkTypeSet
 from costume.etl._loader import _Loader
 from costume.etl.dcmi_types import DCMI_TYPES_BASE_URL
+from costume.etl.oai_pmh._oai_pmh_loader import _OaiPmhLoader
 
 
-class TxfcLoader(_Loader):
+class TxfcLoader(_OaiPmhLoader):
     _RIGHTS_HOLDER = "University of North Texas"
     _UNTL_NS = '{http://digital2.library.unt.edu/untl/}'
 
-    class _ObjectBuilder(object):
-        def __init__(self, record_identifier, **kwds):
-            self.__object_builder = Object.Builder(**kwds)
-            self.__record_identifier = record_identifier
+    class _ObjectBuilder(_OaiPmhLoader._ObjectBuilder):
+        def __init__(self, **kwds):
+            _OaiPmhLoader._ObjectBuilder.__init__(self, **kwds)
             self.agents = []
             self.dates = []
             self.descriptions = []
@@ -81,34 +77,34 @@ class TxfcLoader(_Loader):
                 )
 
             if len(self.agents) > 0:
-                self.__object_builder.set_agents(AgentSet.Builder().set_elements(tuple(self.agents)).build())
+                self._object_builder.set_agents(AgentSet.Builder().set_elements(tuple(self.agents)).build())
             if len(self.dates) > 0:
-                self.__object_builder.set_dates(DateSet.Builder().set_elements(tuple(self.dates)).build())
+                self._object_builder.set_dates(DateSet.Builder().set_elements(tuple(self.dates)).build())
             if len(self.descriptions) > 0:
-                self.__object_builder.set_descriptions(DescriptionSet.Builder().set_elements(tuple(self.descriptions)).build())
+                self._object_builder.set_descriptions(DescriptionSet.Builder().set_elements(tuple(self.descriptions)).build())
             if len(self.images) > 0:
-                self.__object_builder.set_images(tuple(self.images))
+                self._object_builder.set_images(tuple(self.images))
             if len(self.locations) > 0:
-                self.__object_builder.set_locations(LocationSet.Builder().set_elements(tuple(self.locations)).build())
+                self._object_builder.set_locations(LocationSet.Builder().set_elements(tuple(self.locations)).build())
             if len(self.rights) > 0:
-                self.__object_builder.set_rights(RightsSet.Builder().set_elements(tuple(self.rights)).build())
+                self._object_builder.set_rights(RightsSet.Builder().set_elements(tuple(self.rights)).build())
             if len(self.subjects) > 0:
-                self.__object_builder.set_subjects(SubjectSet.Builder().set_elements(tuple(self.subjects)).build())
+                self._object_builder.set_subjects(SubjectSet.Builder().set_elements(tuple(self.subjects)).build())
             if len(self.textrefs) > 0:
-                self.__object_builder.set_textrefs(TextrefSet.Builder().set_elements(tuple(self.textrefs)).build())
+                self._object_builder.set_textrefs(TextrefSet.Builder().set_elements(tuple(self.textrefs)).build())
             if len(self.titles) > 0:
-                self.__object_builder.set_titles(TitleSet.Builder().set_elements(tuple(self.titles)).build())
+                self._object_builder.set_titles(TitleSet.Builder().set_elements(tuple(self.titles)).build())
             if len(self.work_types) > 0:
-                self.__object_builder.set_work_types(WorkTypeSet.Builder().set_elements(tuple(self.work_types)).build())
-            return self.__object_builder.build()
-
-        @property
-        def record_identifier(self):
-            return self.__record_identifier
+                self._object_builder.set_work_types(WorkTypeSet.Builder().set_elements(tuple(self.work_types)).build())
+            return self._object_builder.build()
 
     def __init__(self, **kwds):
-        _Loader.__init__(self, institution_id='untvca', **kwds)
-        self.__collection_id = self._institution_id + '/txfc'
+        _OaiPmhLoader.__init__(
+            self,
+            collection_id='untvca/txfc',
+            institution_id='untvca',
+            **kwds
+        )
 
         agent_qualifiers = {}
         agent_qualifiers_etree = ElementTree.parse(os.path.join(self._data_dir_path, 'extracted', 'txfc', 'agent-qualifiers.xml'))
@@ -126,58 +122,6 @@ class TxfcLoader(_Loader):
         self.__agent_qualifiers = agent_qualifiers
 
         self.__location_names_by_extent = {}
-
-    def _load(self, dry_run):
-        if dry_run:
-            self._logger.info("dry run, not putting institution %s", self._institution_id)
-        else:
-            self._services.institution_command_service.put_institution(
-                self._institution_id,
-                Institution.Builder()
-                    .set_data_rights(
-                        RightsSet.Builder()
-                            .set_elements((
-                                Rights.Builder()
-                                    .set_rights_holder(self._RIGHTS_HOLDER)
-                                    .set_text("The contents of Texas Fashion Collection, hosted by the University of North Texas Libraries (digital content including images, text, and sound and video recordings) are made publicly available by the collection-holding partners for use in research, teaching, and private study. For the full terms of use, see http://digital.library.unt.edu/terms-of-use/")
-                                    .set_type(RightsType.COPYRIGHTED)
-                                    .build()
-
-                            ,))
-                            .build()
-                    )
-                    .set_model_metadata(self._new_model_metadata())
-                    .set_title("University of North Texas")
-                    .set_url('http://digital.library.unt.edu/explore/collections/TXFC/')
-                    .build()
-            )
-
-        if dry_run:
-            self._logger.info("dry run, not putting collection %s", self.__collection_id)
-        else:
-            self._put_collection(
-                collection_id=self.__collection_id,
-                title="Texas Fashion Collection"
-            )
-
-        objects_by_id = OrderedDict()
-        for root_dir_path, _, file_names in os.walk(os.path.join(self._data_dir_path, 'extracted', 'txfc', 'record')):
-            for file_name in file_names:
-                file_path = os.path.join(root_dir_path, file_name)
-                if not file_path.endswith('.xml'):
-                    os.rename(file_path, file_path + '.xml')
-                    file_path = file_path + '.xml'
-                record_etree = ElementTree.parse(file_path)
-                object_id, object_ = self.__parse_record(record_etree)
-                objects_by_id[object_id] = object_
-
-        self._logger.info("Location names by extent:\n%s", pformat(self.__location_names_by_extent))
-
-        if dry_run:
-            self._logger.info("dry run, not putting %d objects to collection %s", len(objects_by_id), self.__collection_id)
-        else:
-            self._logger.info("putting %d objects to collection %s", len(objects_by_id), self.__collection_id)
-            self._put_objects_by_id(objects_by_id)
 
     def __parse_date(self, text, circa=None):
         date_bound_builder = DateBound.Builder().set_text(text)
@@ -236,23 +180,16 @@ class TxfcLoader(_Loader):
             self._logger.debug("parsed date range '%s' from '%s'", date_range, original_text)
         return date_range
 
-    def __parse_record(self, record_etree):
-        # info:ark/67531/metadc114731
-        record_identifier = record_etree.find('header').find('identifier').text
-        assert record_identifier.startswith('info:ark/')
-        object_id = self.__collection_id + '/' + urllib.quote(record_identifier, '')
-
-        metadata_etree = record_etree.find('metadata').find(self._UNTL_NS + 'metadata')
-
+    def _parse_record_metadata(self, object_id, record_identifier, record_metadata_etree):
         object_builder = \
             self._ObjectBuilder(
-                collection_id=self.__collection_id,
+                collection_id=self._collection_id,
                 institution_id=self._institution_id,
                 model_metadata=self._new_model_metadata(),
                 record_identifier=record_identifier
             )
 
-        for etree in metadata_etree:
+        for etree in record_metadata_etree:
             assert etree.tag.startswith(self._UNTL_NS)
             tag = etree.tag[len(self._UNTL_NS):]
             method_name = '_parse_record_metadata_' + tag + '_element'
@@ -686,5 +623,33 @@ class TxfcLoader(_Loader):
             Title.Builder()
                 .set_text(element.text)
                 .set_type(title_type)
+                .build()
+        )
+
+    def _put_collection(self):
+        _Loader._put_collection(
+            self,
+            collection_id=self._collection_id,
+            title="Texas Fashion Collection"
+        )
+
+    def _put_institution(self):
+        self._services.institution_command_service.put_institution(
+            self._institution_id,
+            Institution.Builder()
+                .set_data_rights(
+                    RightsSet.Builder()
+                        .set_elements((
+                            Rights.Builder()
+                                .set_rights_holder(self._RIGHTS_HOLDER)
+                                .set_text("The contents of Texas Fashion Collection, hosted by the University of North Texas Libraries (digital content including images, text, and sound and video recordings) are made publicly available by the collection-holding partners for use in research, teaching, and private study. For the full terms of use, see http://digital.library.unt.edu/terms-of-use/")
+                                .set_type(RightsType.COPYRIGHTED)
+                                .build()
+                        ,))
+                        .build()
+                )
+                .set_model_metadata(self._new_model_metadata())
+                .set_title("University of North Texas")
+                .set_url('http://digital.library.unt.edu/explore/collections/TXFC/')
                 .build()
         )
