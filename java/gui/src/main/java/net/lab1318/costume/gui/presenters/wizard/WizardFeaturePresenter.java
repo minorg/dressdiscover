@@ -227,7 +227,7 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
     // CostumeCore.FEATURE_NAMES;
     private final static ImmutableList<String> FEATURE_NAMES = ImmutableList.<String> builder().add("Closure Type")
             .add("Material").add("Structure Cut").add("Structure Neckline").add("Structure Skirt")
-            .add("Structure Sleeves").add("Structure Torso").add("Structure Waist Shape").add("Technique").build();
+            .add("Structure Sleeves").add("Structure Torso").add("Structure Waist").add("Technique").build();
 
     private final static Image PLACEHOLDER_IMAGE = Image.builder()
             .setSquareThumbnail(ImageVersion.builder().setHeightPx(UnsignedInteger.valueOf(200))
