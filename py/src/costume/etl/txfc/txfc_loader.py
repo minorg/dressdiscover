@@ -107,7 +107,7 @@ class TxfcLoader(_OaiPmhLoader):
         )
 
         agent_qualifiers = {}
-        agent_qualifiers_etree = ElementTree.parse(os.path.join(self._data_dir_path, 'extracted', 'txfc', 'agent-qualifiers.xml'))
+        agent_qualifiers_etree = ElementTree.parse(os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'agent-qualifiers.xml'))
         RDF_NS = '{http://www.w3.org/1999/02/22-rdf-syntax-ns#}'
         RDFS_NS = '{http://www.w3.org/2000/01/rdf-schema#}'
         for property_etree in agent_qualifiers_etree.iter():
@@ -189,7 +189,7 @@ class TxfcLoader(_OaiPmhLoader):
                 record_identifier=record_identifier
             )
 
-        for etree in record_metadata_etree:
+        for etree in record_metadata_etree.find(self._UNTL_NS + 'metadata'):
             assert etree.tag.startswith(self._UNTL_NS)
             tag = etree.tag[len(self._UNTL_NS):]
             method_name = '_parse_record_metadata_' + tag + '_element'

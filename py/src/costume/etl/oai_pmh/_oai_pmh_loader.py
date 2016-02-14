@@ -54,31 +54,36 @@ class _OaiPmhLoader(_Loader):
     def _parse_record(self, record_etree):
         # info:ark/67531/metadc114731
         record_identifier = record_etree.find('header').find('identifier').text
-        assert record_identifier.startswith('info:ark/')
         object_id = self.__collection_id + '/' + urllib.quote(record_identifier, '')
 
-        metadata_etree = record_etree.find('metadata').find(self._UNTL_NS + 'metadata')
+        metadata_etree = record_etree.find('metadata')
 
-        return \
+        result = \
             self._parse_record_metadata(
                 object_id=object_id,
                 record_identifier=record_identifier,
                 record_metadata_etree=metadata_etree
             )
+        if result is None:
+            self._logger.debug("ignoring record %s", record_identifier)
+        return result
 
     def _parse_record_metadata(self, object_id, record_identifier, record_metadata_etree):
         raise NotImplementedError
 
     def _parse_records(self):
         objects_by_id = OrderedDict()
-        for root_dir_path, _, file_names in os.walk(os.path.join(self._data_dir_path, 'extracted', 'txfc', 'record')):
+        for root_dir_path, _, file_names in os.walk(os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'record')):
             for file_name in file_names:
                 file_path = os.path.join(root_dir_path, file_name)
                 if not file_path.endswith('.xml'):
                     os.rename(file_path, file_path + '.xml')
                     file_path = file_path + '.xml'
                 record_etree = ElementTree.parse(file_path)
-                object_id, object_ = self._parse_record(record_etree)
+                result = self._parse_record(record_etree)
+                if result is None:
+                    continue
+                object_id, object_ = result
                 objects_by_id[object_id] = object_
         return objects_by_id
 
