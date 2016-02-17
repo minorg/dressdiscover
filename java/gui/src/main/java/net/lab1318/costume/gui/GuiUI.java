@@ -12,11 +12,13 @@ import com.vaadin.ui.UI;
 
 import net.lab1318.costume.gui.controllers.GuiServlet;
 import net.lab1318.costume.gui.converters.CustomConverterFactory;
+import net.lab1318.costume.gui.presenters.home.HomePresenter;
 import net.lab1318.costume.gui.presenters.institutions.InstitutionsPresenter;
 import net.lab1318.costume.gui.presenters.object_by_id.ObjectByIdPresenter;
 import net.lab1318.costume.gui.presenters.objects.ObjectsPresenter;
 import net.lab1318.costume.gui.presenters.user_bookmarks.UserBookmarksPresenter;
 import net.lab1318.costume.gui.presenters.wizard.WizardFeaturePresenter;
+import net.lab1318.costume.gui.views.home.HomeView;
 import net.lab1318.costume.gui.views.institutions.InstitutionsView;
 import net.lab1318.costume.gui.views.object_by_id.ObjectByIdView;
 import net.lab1318.costume.gui.views.objects.ObjectsView;
@@ -37,8 +39,12 @@ public final class GuiUI extends UI {
         final Navigator navigator = new Navigator(this, this);
 
         {
+            injector.getInstance(HomePresenter.class);
+            navigator.addView("", injector.getInstance(HomeView.class));
+        }
+
+        {
             injector.getInstance(InstitutionsPresenter.class);
-            navigator.addView("", injector.getInstance(InstitutionsView.class));
             navigator.addView(InstitutionsView.NAME, injector.getInstance(InstitutionsView.class));
         }
 

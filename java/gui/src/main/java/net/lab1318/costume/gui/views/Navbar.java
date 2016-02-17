@@ -28,6 +28,7 @@ import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
 import net.lab1318.costume.api.services.user.UserQueryService.Messages.GetUserBookmarksByUserIdRequest;
 import net.lab1318.costume.gui.events.user.UserLogoutRequest;
+import net.lab1318.costume.gui.views.home.HomeView;
 
 @SuppressWarnings("serial")
 public final class Navbar extends HorizontalLayout {
@@ -38,13 +39,15 @@ public final class Navbar extends HorizontalLayout {
 
         {
             final MenuBar leftMenuBar = new MenuBar();
-            final MenuItem homeMenuItem = leftMenuBar.addItem("", FontAwesome.HOME, new MenuBar.Command() {
-                @Override
-                public void menuSelected(final MenuItem selectedItem) {
-                    UI.getCurrent().getNavigator().navigateTo("");
-                }
-            });
-            homeMenuItem.setStyleName("home");
+            {
+                final MenuItem homeMenuItem = leftMenuBar.addItem("", FontAwesome.HOME, new MenuBar.Command() {
+                    @Override
+                    public void menuSelected(final MenuItem selectedItem) {
+                        UI.getCurrent().getNavigator().navigateTo(HomeView.NAME);
+                    }
+                });
+                homeMenuItem.setStyleName("home");
+            }
             addComponent(leftMenuBar);
             setComponentAlignment(leftMenuBar, Alignment.TOP_LEFT);
         }

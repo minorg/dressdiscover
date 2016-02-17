@@ -8,7 +8,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -237,7 +236,7 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
             currentUserId = UserId.parse((String) principal);
         } catch (final InvalidUserIdException e) {
             logger.warn(logMarker, "invalid principal string {}", principal);
-            throw new AuthorizationException("invalid principal");
+            return Optional.absent();
         }
 
         try {
