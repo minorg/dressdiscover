@@ -51,10 +51,11 @@ import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
 import net.lab1318.costume.gui.models.wizard.CostumeCore;
 import net.lab1318.costume.gui.models.wizard.CostumeCore.Feature;
 import net.lab1318.costume.gui.presenters.Presenter;
-import net.lab1318.costume.gui.views.wizard.WizardFeatureView;
+import net.lab1318.costume.gui.views.wizard.QueryWizardFeatureView;
+import net.lab1318.costume.gui.views.wizard.QueryWizardSummaryView;
 
 @SessionScoped
-public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
+public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureView> {
     private static CollectionId __createCollectionId() {
         try {
             return CollectionId.parse("wizard/wizard");
@@ -64,9 +65,9 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
     }
 
     @Inject
-    public WizardFeaturePresenter(final EventBus eventBus, final ObjectSummaryQueryService objectSummaryQueryService,
-            final UserCommandService userCommandService, final UserQueryService userQueryService,
-            final WizardFeatureView view) {
+    public QueryWizardFeaturePresenter(final EventBus eventBus,
+            final ObjectSummaryQueryService objectSummaryQueryService, final UserCommandService userCommandService,
+            final UserQueryService userQueryService, final QueryWizardFeatureView view) {
         super(eventBus, userCommandService, userQueryService, view);
         this.objectSummaryQueryService = checkNotNull(objectSummaryQueryService);
     }
@@ -182,14 +183,15 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
     private void __navigateToFeature(final String featureName) {
         try {
             UI.getCurrent().getNavigator().navigateTo(
-                    WizardFeatureView.NAME + '/' + URLEncoder.encode(featureName, Charsets.UTF_8.toString()));
+                    QueryWizardFeatureView.NAME + '/' + URLEncoder.encode(featureName, Charsets.UTF_8.toString()));
         } catch (final UnsupportedEncodingException e) {
             throw new IllegalStateException(e);
         }
     }
 
     private void __navigateToFinish() {
-        _navigateTo(__getCurrentObjectQuery());
+        UI.getCurrent().getNavigator()
+                .navigateTo(QueryWizardSummaryView.NAME + "/" + _toUrlEncodedJsonString(__getCurrentObjectQuery()));
     }
 
     private void __refreshView() {
@@ -203,8 +205,8 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
             return;
         }
 
-        _getView().setModels(FEATURE_NAMES, currentFeatureName, currentFeatureValues, selectedObjectCount,
-                ImmutableMap.copyOf(selectedFeatureValuesByFeatureName));
+        _getView().setModels(FEATURE_NAMES, currentFeatureName, currentFeatureValues,
+                ImmutableMap.copyOf(selectedFeatureValuesByFeatureName), selectedObjectCount);
     }
 
     private void __updateSelectedFeatureValues() {
@@ -225,7 +227,7 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
     private final static CollectionId COLLECTION_ID = __createCollectionId();
     // private final static ImmutableList<String> FEATURE_NAMES =
     // CostumeCore.FEATURE_NAMES;
-    private final static ImmutableList<String> FEATURE_NAMES = ImmutableList.<String> builder().add("Closure Type")
+    final static ImmutableList<String> FEATURE_NAMES = ImmutableList.<String> builder().add("Closure Type")
             .add("Material").add("Structure Cut").add("Structure Neckline").add("Structure Skirt")
             .add("Structure Sleeves").add("Structure Torso").add("Structure Waist").add("Technique").build();
 
@@ -234,6 +236,6 @@ public class WizardFeaturePresenter extends Presenter<WizardFeatureView> {
                     .setUrl(Url.parse("http://placehold.it/200x200?text=Missing%20image"))
                     .setWidthPx(UnsignedInteger.valueOf(200)).build())
             .build();
-    private final static Optional<GetObjectSummariesOptions> GET_OBJECT_COUNT_OPTIONS = Optional
+    final static Optional<GetObjectSummariesOptions> GET_OBJECT_COUNT_OPTIONS = Optional
             .of(GetObjectSummariesOptions.builder().setSize(UnsignedInteger.ZERO).build());
 }

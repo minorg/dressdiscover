@@ -8,7 +8,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,6 +60,10 @@ import net.lab1318.costume.gui.views.user_bookmarks.UserBookmarksView;
 
 public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.presenters.Presenter<ViewT> {
     protected static void _navigateTo(final ObjectQuery query) {
+        UI.getCurrent().getNavigator().navigateTo(ObjectsView.NAME + "/" + _toUrlEncodedJsonString(query));
+    }
+
+    protected static String _toUrlEncodedJsonString(final ObjectQuery query) {
         String queryJson;
         try {
             final StringWriter jsonStringWriter = new StringWriter();
@@ -72,8 +75,7 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
             throw new IllegalStateException();
         }
         try {
-            UI.getCurrent().getNavigator()
-                    .navigateTo(ObjectsView.NAME + "/" + URLEncoder.encode(queryJson, Charsets.UTF_8.toString()));
+            return URLEncoder.encode(queryJson, Charsets.UTF_8.toString());
         } catch (final UnsupportedEncodingException e) {
             throw new IllegalStateException(e);
         }
@@ -237,7 +239,7 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
             currentUserId = UserId.parse((String) principal);
         } catch (final InvalidUserIdException e) {
             logger.warn(logMarker, "invalid principal string {}", principal);
-            throw new AuthorizationException("invalid principal");
+            return Optional.absent();
         }
 
         try {
