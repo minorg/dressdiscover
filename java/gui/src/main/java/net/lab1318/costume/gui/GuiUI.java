@@ -18,12 +18,14 @@ import net.lab1318.costume.gui.presenters.object_by_id.ObjectByIdPresenter;
 import net.lab1318.costume.gui.presenters.objects.ObjectsPresenter;
 import net.lab1318.costume.gui.presenters.user_bookmarks.UserBookmarksPresenter;
 import net.lab1318.costume.gui.presenters.wizard.QueryWizardFeaturePresenter;
+import net.lab1318.costume.gui.presenters.wizard.QueryWizardPresenter;
 import net.lab1318.costume.gui.views.home.HomeView;
 import net.lab1318.costume.gui.views.institutions.InstitutionsView;
 import net.lab1318.costume.gui.views.object_by_id.ObjectByIdView;
 import net.lab1318.costume.gui.views.objects.ObjectsView;
 import net.lab1318.costume.gui.views.user_bookmarks.UserBookmarksView;
 import net.lab1318.costume.gui.views.wizard.QueryWizardFeatureView;
+import net.lab1318.costume.gui.views.wizard.QueryWizardView;
 
 @SuppressWarnings("serial")
 @Theme("costume")
@@ -61,6 +63,11 @@ public final class GuiUI extends UI {
         {
             injector.getInstance(UserBookmarksPresenter.class);
             navigator.addView(UserBookmarksView.NAME, injector.getInstance(UserBookmarksView.class));
+        }
+
+        {
+            injector.getInstance(QueryWizardPresenter.class);
+            navigator.addView(QueryWizardView.NAME, injector.getInstance(QueryWizardView.class));
         }
 
         {
