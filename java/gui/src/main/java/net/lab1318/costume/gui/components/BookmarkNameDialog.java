@@ -1,6 +1,7 @@
 package net.lab1318.costume.gui.components;
 
 import com.google.common.base.Optional;
+import com.vaadin.annotations.DesignRoot;
 import com.vaadin.event.FieldEvents.BlurEvent;
 import com.vaadin.event.FieldEvents.BlurListener;
 import com.vaadin.event.FieldEvents.FocusEvent;
@@ -8,10 +9,36 @@ import com.vaadin.event.FieldEvents.FocusListener;
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.TextField;
+import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
 @SuppressWarnings("serial")
 public abstract class BookmarkNameDialog extends Window {
+    @DesignRoot("BookmarkNameDialog.html")
+    private final static class Design extends VerticalLayout {
+        public Design() {
+            com.vaadin.ui.declarative.Design.read(this);
+            nameTextField.focus();
+        }
+
+        public Button getCancelButton() {
+            return cancelButton;
+        }
+
+        public TextField getNameTextField() {
+            return nameTextField;
+        }
+
+        public Button getSaveButton() {
+            return saveButton;
+        }
+
+        Button cancelButton = null;
+        Button saveButton = null;
+        TextField nameTextField = null;
+    }
+
     public BookmarkNameDialog() {
         this(Optional.absent());
     }
@@ -22,7 +49,7 @@ public abstract class BookmarkNameDialog extends Window {
         setModal(true);
         setResizable(false);
 
-        final BookmarkNameDialogDesign design = new BookmarkNameDialogDesign();
+        final Design design = new Design();
         design.getCancelButton().addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(final ClickEvent event) {
