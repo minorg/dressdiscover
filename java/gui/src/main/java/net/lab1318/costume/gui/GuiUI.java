@@ -19,12 +19,14 @@ import net.lab1318.costume.gui.presenters.objects.ObjectsPresenter;
 import net.lab1318.costume.gui.presenters.user_bookmarks.UserBookmarksPresenter;
 import net.lab1318.costume.gui.presenters.wizard.QueryWizardFeaturePresenter;
 import net.lab1318.costume.gui.presenters.wizard.QueryWizardPresenter;
+import net.lab1318.costume.gui.presenters.wizard.QueryWizardSummaryPresenter;
 import net.lab1318.costume.gui.views.home.HomeView;
 import net.lab1318.costume.gui.views.institutions.InstitutionsView;
 import net.lab1318.costume.gui.views.object_by_id.ObjectByIdView;
 import net.lab1318.costume.gui.views.objects.ObjectsView;
 import net.lab1318.costume.gui.views.user_bookmarks.UserBookmarksView;
 import net.lab1318.costume.gui.views.wizard.QueryWizardFeatureView;
+import net.lab1318.costume.gui.views.wizard.QueryWizardSummaryView;
 import net.lab1318.costume.gui.views.wizard.QueryWizardView;
 
 @SuppressWarnings("serial")
@@ -73,6 +75,11 @@ public final class GuiUI extends UI {
         {
             injector.getInstance(QueryWizardFeaturePresenter.class);
             navigator.addView(QueryWizardFeatureView.NAME, injector.getInstance(QueryWizardFeatureView.class));
+        }
+
+        {
+            injector.getInstance(QueryWizardSummaryPresenter.class);
+            navigator.addView(QueryWizardSummaryView.NAME, injector.getInstance(QueryWizardSummaryView.class));
         }
 
         VaadinSession.getCurrent().setConverterFactory(CustomConverterFactory.getInstance());

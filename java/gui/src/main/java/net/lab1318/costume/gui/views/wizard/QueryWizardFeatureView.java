@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.thryft.waf.gui.EventBus;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -25,6 +26,7 @@ import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Layout;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.VerticalLayout;
 
@@ -45,12 +47,12 @@ public class QueryWizardFeatureView extends TopLevelView {
             com.vaadin.ui.declarative.Design.read(this);
         }
 
-        HorizontalLayout availableFeaturesLayout;
+        Layout availableFeaturesLayout;
         Button bottomBackButton;
         Button bottomFinishButton;
         Button bottomNextButton;
         Label currentFeatureNameLabel;
-        HorizontalLayout leftPaneLayout;
+        Layout leftPaneLayout;
         Button resetButton;
         Button topBackButton;
         Button topFinishButton;
@@ -102,8 +104,9 @@ public class QueryWizardFeatureView extends TopLevelView {
     }
 
     public void setModels(final ImmutableList<String> allFeatureNames, final String currentFeatureName,
-            final ImmutableList<ObjectSummary> currentFeatureValues, final UnsignedInteger selectedObjectCount,
-            final ImmutableMap<String, ImmutableList<String>> selectedFeatureValuesByFeatureName) {
+            final ImmutableList<ObjectSummary> currentFeatureValues,
+            final ImmutableMap<String, ImmutableList<String>> selectedFeatureValuesByFeatureName,
+            final UnsignedInteger selectedObjectCount) {
         this.selectedFeatureValues.clear();
         final ImmutableList<String> currentSelectedFeatureValues = selectedFeatureValuesByFeatureName
                 .get(currentFeatureName);
@@ -113,8 +116,9 @@ public class QueryWizardFeatureView extends TopLevelView {
 
         {
             design.leftPaneLayout.removeAllComponents();
-            design.leftPaneLayout.addComponent(new QueryWizardSelectedFeaturesLayout(allFeatureNames,
-                    currentFeatureName, _getEventBus(), selectedFeatureValuesByFeatureName, selectedObjectCount));
+            design.leftPaneLayout.addComponent(
+                    new QueryWizardSelectedFeaturesLayout(allFeatureNames, Optional.of(currentFeatureName),
+                            _getEventBus(), selectedFeatureValuesByFeatureName, selectedObjectCount));
         }
 
         {

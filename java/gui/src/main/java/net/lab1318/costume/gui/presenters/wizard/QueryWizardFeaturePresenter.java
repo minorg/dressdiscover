@@ -205,8 +205,8 @@ public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureVie
             return;
         }
 
-        _getView().setModels(FEATURE_NAMES, currentFeatureName, currentFeatureValues, selectedObjectCount,
-                ImmutableMap.copyOf(selectedFeatureValuesByFeatureName));
+        _getView().setModels(FEATURE_NAMES, currentFeatureName, currentFeatureValues,
+                ImmutableMap.copyOf(selectedFeatureValuesByFeatureName), selectedObjectCount);
     }
 
     private void __updateSelectedFeatureValues() {
@@ -227,7 +227,7 @@ public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureVie
     private final static CollectionId COLLECTION_ID = __createCollectionId();
     // private final static ImmutableList<String> FEATURE_NAMES =
     // CostumeCore.FEATURE_NAMES;
-    private final static ImmutableList<String> FEATURE_NAMES = ImmutableList.<String> builder().add("Closure Type")
+    final static ImmutableList<String> FEATURE_NAMES = ImmutableList.<String> builder().add("Closure Type")
             .add("Material").add("Structure Cut").add("Structure Neckline").add("Structure Skirt")
             .add("Structure Sleeves").add("Structure Torso").add("Structure Waist").add("Technique").build();
 
@@ -236,6 +236,6 @@ public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureVie
                     .setUrl(Url.parse("http://placehold.it/200x200?text=Missing%20image"))
                     .setWidthPx(UnsignedInteger.valueOf(200)).build())
             .build();
-    private final static Optional<GetObjectSummariesOptions> GET_OBJECT_COUNT_OPTIONS = Optional
+    final static Optional<GetObjectSummariesOptions> GET_OBJECT_COUNT_OPTIONS = Optional
             .of(GetObjectSummariesOptions.builder().setSize(UnsignedInteger.ZERO).build());
 }

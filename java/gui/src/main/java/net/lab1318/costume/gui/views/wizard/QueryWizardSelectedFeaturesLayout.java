@@ -2,6 +2,7 @@ package net.lab1318.costume.gui.views.wizard;
 
 import org.thryft.waf.gui.EventBus;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.primitives.UnsignedInteger;
@@ -18,7 +19,7 @@ import net.lab1318.costume.gui.events.wizard.WizardFeatureGotoRequest;
 @DesignRoot
 final class QueryWizardSelectedFeaturesLayout extends VerticalLayout {
     public QueryWizardSelectedFeaturesLayout(final ImmutableList<String> allFeatureNames,
-            final String currentFeatureName, final EventBus eventBus,
+            final Optional<String> currentFeatureName, final EventBus eventBus,
             final ImmutableMap<String, ImmutableList<String>> selectedFeatureValuesByFeatureName,
             final UnsignedInteger selectedObjectCount) {
         Design.read(this);
@@ -32,8 +33,7 @@ final class QueryWizardSelectedFeaturesLayout extends VerticalLayout {
                     eventBus.post(new WizardFeatureGotoRequest(featureName));
                 }
             });
-            featureButton.setSizeFull();
-            if (featureName.equals(currentFeatureName)) {
+            if (currentFeatureName.isPresent() && featureName.equals(currentFeatureName.get())) {
                 featureButton.addStyleName("bold-button");
             }
             featureNavigationLayout.addComponent(featureButton);
