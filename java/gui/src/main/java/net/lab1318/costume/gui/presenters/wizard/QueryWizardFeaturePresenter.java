@@ -52,6 +52,7 @@ import net.lab1318.costume.gui.models.wizard.CostumeCore;
 import net.lab1318.costume.gui.models.wizard.CostumeCore.Feature;
 import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.wizard.QueryWizardFeatureView;
+import net.lab1318.costume.gui.views.wizard.QueryWizardSummaryView;
 
 @SessionScoped
 public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureView> {
@@ -64,9 +65,9 @@ public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureVie
     }
 
     @Inject
-    public QueryWizardFeaturePresenter(final EventBus eventBus, final ObjectSummaryQueryService objectSummaryQueryService,
-            final UserCommandService userCommandService, final UserQueryService userQueryService,
-            final QueryWizardFeatureView view) {
+    public QueryWizardFeaturePresenter(final EventBus eventBus,
+            final ObjectSummaryQueryService objectSummaryQueryService, final UserCommandService userCommandService,
+            final UserQueryService userQueryService, final QueryWizardFeatureView view) {
         super(eventBus, userCommandService, userQueryService, view);
         this.objectSummaryQueryService = checkNotNull(objectSummaryQueryService);
     }
@@ -189,7 +190,8 @@ public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureVie
     }
 
     private void __navigateToFinish() {
-        _navigateTo(__getCurrentObjectQuery());
+        UI.getCurrent().getNavigator()
+                .navigateTo(QueryWizardSummaryView.NAME + "/" + _toUrlEncodedJsonString(__getCurrentObjectQuery()));
     }
 
     private void __refreshView() {

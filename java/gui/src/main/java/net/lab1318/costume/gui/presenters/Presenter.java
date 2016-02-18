@@ -60,6 +60,10 @@ import net.lab1318.costume.gui.views.user_bookmarks.UserBookmarksView;
 
 public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.presenters.Presenter<ViewT> {
     protected static void _navigateTo(final ObjectQuery query) {
+        UI.getCurrent().getNavigator().navigateTo(ObjectsView.NAME + "/" + _toUrlEncodedJsonString(query));
+    }
+
+    protected static String _toUrlEncodedJsonString(final ObjectQuery query) {
         String queryJson;
         try {
             final StringWriter jsonStringWriter = new StringWriter();
@@ -71,8 +75,7 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
             throw new IllegalStateException();
         }
         try {
-            UI.getCurrent().getNavigator()
-                    .navigateTo(ObjectsView.NAME + "/" + URLEncoder.encode(queryJson, Charsets.UTF_8.toString()));
+            return URLEncoder.encode(queryJson, Charsets.UTF_8.toString());
         } catch (final UnsupportedEncodingException e) {
             throw new IllegalStateException(e);
         }

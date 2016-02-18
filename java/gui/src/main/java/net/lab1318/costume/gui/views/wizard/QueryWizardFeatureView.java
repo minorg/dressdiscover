@@ -14,11 +14,11 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
+import com.vaadin.annotations.DesignRoot;
 import com.vaadin.event.MouseEvents.ClickEvent;
 import com.vaadin.event.MouseEvents.ClickListener;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.FontAwesome;
-import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.CheckBox;
@@ -26,13 +26,11 @@ import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
-import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.api.models.object.ObjectSummary;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureBackRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureFinishRequest;
-import net.lab1318.costume.gui.events.wizard.WizardFeatureGotoRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureNextRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
 import net.lab1318.costume.gui.views.ImageWithRightsView;
@@ -41,65 +39,62 @@ import net.lab1318.costume.gui.views.TopLevelView;
 @SuppressWarnings("serial")
 @SessionScoped
 public class QueryWizardFeatureView extends TopLevelView {
+    @DesignRoot("QueryWizardFeatureView.html")
+    private final static class Design extends HorizontalLayout {
+        public Design() {
+            com.vaadin.ui.declarative.Design.read(this);
+        }
+
+        HorizontalLayout availableFeaturesLayout;
+        Button bottomBackButton;
+        Button bottomFinishButton;
+        Button bottomNextButton;
+        Label currentFeatureNameLabel;
+        HorizontalLayout leftPaneLayout;
+        Button resetButton;
+        Button topBackButton;
+        Button topFinishButton;
+        Button topNextButton;
+    }
+
     @Inject
     public QueryWizardFeatureView(final EventBus eventBus) {
         super(eventBus);
 
-        bottomBackNextButtonsLayout = new HorizontalLayout();
-        bottomBackNextButtonsLayout.setSizeFull();
-        topBackNextButtonsLayout = new HorizontalLayout();
-        topBackNextButtonsLayout.setSizeFull();
-        {
-            final Button backButton = new NativeButton("Back", new Button.ClickListener() {
-                @Override
-                public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
-                    eventBus.post(new WizardFeatureBackRequest());
-                }
-            });
-            bottomBackNextButtonsLayout.addComponent(backButton);
-            bottomBackNextButtonsLayout.setComponentAlignment(backButton, Alignment.MIDDLE_LEFT);
-            topBackNextButtonsLayout.addComponent(backButton);
-            topBackNextButtonsLayout.setComponentAlignment(backButton, Alignment.MIDDLE_LEFT);
-        }
-        {
-            final HorizontalLayout nextFinishButtonsLayout = new HorizontalLayout();
-            nextFinishButtonsLayout.setSpacing(true);
-            {
-                final Button nextButton = new NativeButton("Next", new Button.ClickListener() {
-                    @Override
-                    public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
-                        eventBus.post(new WizardFeatureNextRequest());
-                    }
-                });
-                nextFinishButtonsLayout.addComponent(nextButton);
+        final com.vaadin.ui.Button.ClickListener backButtonClickListener = new Button.ClickListener() {
+            @Override
+            public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
+                eventBus.post(new WizardFeatureBackRequest());
             }
-            {
-                final Button finishButton = new NativeButton("Finish", new Button.ClickListener() {
-                    @Override
-                    public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
-                        eventBus.post(new WizardFeatureFinishRequest());
-                    }
-                });
-                nextFinishButtonsLayout.addComponent(finishButton);
+        };
+        design.bottomBackButton.addClickListener(backButtonClickListener);
+        design.topBackButton.addClickListener(backButtonClickListener);
+
+        final com.vaadin.ui.Button.ClickListener finishButtonClickListener = new Button.ClickListener() {
+            @Override
+            public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
+                eventBus.post(new WizardFeatureFinishRequest());
             }
-            bottomBackNextButtonsLayout.addComponent(nextFinishButtonsLayout);
-            bottomBackNextButtonsLayout.setComponentAlignment(nextFinishButtonsLayout, Alignment.MIDDLE_RIGHT);
-            topBackNextButtonsLayout.addComponent(nextFinishButtonsLayout);
-            topBackNextButtonsLayout.setComponentAlignment(nextFinishButtonsLayout, Alignment.MIDDLE_RIGHT);
-        }
-        {
-            resetButtonLayout = new HorizontalLayout();
-            resetButtonLayout.setSizeFull();
-            final Button resetButton = new NativeButton("Reset", new Button.ClickListener() {
-                @Override
-                public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
-                    selectedFeatureValues.clear();
-                    eventBus.post(new WizardFeatureRefreshRequest());
-                }
-            });
-            resetButtonLayout.addComponent(resetButton);
-            resetButtonLayout.setComponentAlignment(resetButton, Alignment.MIDDLE_RIGHT);
-        }
+        };
+        design.bottomFinishButton.addClickListener(finishButtonClickListener);
+        design.topFinishButton.addClickListener(finishButtonClickListener);
+
+        final com.vaadin.ui.Button.ClickListener nextButtonClickListener = new Button.ClickListener() {
+            @Override
+            public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
+                eventBus.post(new WizardFeatureNextRequest());
+            }
+        };
+        design.bottomNextButton.addClickListener(nextButtonClickListener);
+        design.topNextButton.addClickListener(nextButtonClickListener);
+
+        design.resetButton.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
+                selectedFeatureValues.clear();
+                eventBus.post(new WizardFeatureRefreshRequest());
+            }
+        });
     }
 
     public ImmutableSet<String> getSelectedFeatureValues() {
@@ -116,78 +111,15 @@ public class QueryWizardFeatureView extends TopLevelView {
             this.selectedFeatureValues.addAll(currentSelectedFeatureValues);
         }
 
-        final HorizontalLayout twoPaneLayout = new HorizontalLayout();
-        twoPaneLayout.setSizeFull();
-
         {
-            final VerticalLayout leftPaneLayout = new VerticalLayout();
-
-            final Label headerLabel = new Label("<h3>Currently selected:</h3>", ContentMode.HTML);
-            leftPaneLayout.addComponent(headerLabel);
-
-            final Button currentSelectedObjectCountButton = new NativeButton(
-                    selectedObjectCount.toString() + " objects", new Button.ClickListener() {
-                        @Override
-                        public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
-                            _getEventBus().post(new WizardFeatureFinishRequest());
-                        }
-                    });
-            leftPaneLayout.addComponent(currentSelectedObjectCountButton);
-
-            leftPaneLayout.addComponent(new Label("<hr/>", ContentMode.HTML));
-
-            {
-                final VerticalLayout allFeatureNavigationLayout = new VerticalLayout();
-                allFeatureNavigationLayout.setSpacing(true);
-                for (final String featureName : allFeatureNames) {
-                    final VerticalLayout featureNavigationLayout = new VerticalLayout();
-                    final Button featureButton = new NativeButton(featureName, new Button.ClickListener() {
-                        @Override
-                        public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
-                            _getEventBus().post(new WizardFeatureGotoRequest(featureName));
-                        }
-                    });
-                    featureButton.setSizeFull();
-                    if (featureName.equals(currentFeatureName)) {
-                        featureButton.addStyleName("bold-button");
-                    }
-                    featureNavigationLayout.addComponent(featureButton);
-
-                    final ImmutableList<String> selectedFeatureValues_ = selectedFeatureValuesByFeatureName
-                            .get(featureName);
-                    if (selectedFeatureValues_ != null && !selectedFeatureValues_.isEmpty()) {
-                        for (int valueI = 0; valueI < selectedFeatureValues_.size(); valueI++) {
-                            String value = selectedFeatureValues_.get(valueI);
-                            value = '"' + value + '"';
-                            if (valueI + 1 < selectedFeatureValues_.size()) {
-                                value += " OR";
-                            }
-                            final Label valueLabel = new Label(value);
-                            featureNavigationLayout.addComponent(valueLabel);
-                        }
-                    }
-
-                    allFeatureNavigationLayout.addComponent(featureNavigationLayout);
-                }
-                leftPaneLayout.addComponent(allFeatureNavigationLayout);
-
-            }
-            twoPaneLayout.addComponent(leftPaneLayout);
-            twoPaneLayout.setExpandRatio(leftPaneLayout, (float) 2.0);
+            design.leftPaneLayout.removeAllComponents();
+            design.leftPaneLayout.addComponent(new QueryWizardSelectedFeaturesLayout(allFeatureNames,
+                    currentFeatureName, _getEventBus(), selectedFeatureValuesByFeatureName, selectedObjectCount));
         }
 
         {
-            final VerticalLayout rightPaneLayout = new VerticalLayout();
-
-            rightPaneLayout.addComponent(topBackNextButtonsLayout);
-
-            {
-                final Label label = new Label("<h1>Selecting: " + currentFeatureName + "</h1>", ContentMode.HTML);
-                rightPaneLayout.addComponent(label);
-                rightPaneLayout.setComponentAlignment(label, Alignment.MIDDLE_CENTER);
-            }
-
-            rightPaneLayout.addComponent(resetButtonLayout);
+            design.currentFeatureNameLabel.setCaptionAsHtml(true);
+            design.currentFeatureNameLabel.setCaption("<h1>Selecting: " + currentFeatureName + "</h1>");
 
             {
                 int rowCount = currentFeatureValues.size() / 4;
@@ -251,21 +183,15 @@ public class QueryWizardFeatureView extends TopLevelView {
                     }
                 }
 
-                rightPaneLayout.addComponent(availableFeaturesLayout);
+                design.availableFeaturesLayout.removeAllComponents();
+                design.availableFeaturesLayout.addComponent(availableFeaturesLayout);
             }
-
-            rightPaneLayout.addComponent(bottomBackNextButtonsLayout);
-
-            twoPaneLayout.addComponent(rightPaneLayout);
-            twoPaneLayout.setExpandRatio(rightPaneLayout, (float) 8.0);
         }
 
-        setCompositionRoot(twoPaneLayout);
+        setCompositionRoot(design);
     }
 
-    private final HorizontalLayout bottomBackNextButtonsLayout;
-    private final HorizontalLayout resetButtonLayout;
-    private final HorizontalLayout topBackNextButtonsLayout;
+    private final Design design = new Design();
     private final Set<String> selectedFeatureValues = new LinkedHashSet<>();
     public final static String NAME = "query_wizard_feature";
 }
