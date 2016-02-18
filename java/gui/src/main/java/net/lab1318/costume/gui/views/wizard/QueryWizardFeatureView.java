@@ -40,9 +40,9 @@ import net.lab1318.costume.gui.views.TopLevelView;
 
 @SuppressWarnings("serial")
 @SessionScoped
-public class WizardFeatureView extends TopLevelView {
+public class QueryWizardFeatureView extends TopLevelView {
     @Inject
-    public WizardFeatureView(final EventBus eventBus) {
+    public QueryWizardFeatureView(final EventBus eventBus) {
         super(eventBus);
 
         bottomBackNextButtonsLayout = new HorizontalLayout();
@@ -223,9 +223,9 @@ public class WizardFeatureView extends TopLevelView {
                             checkBox.setValue(!checkBox.getValue());
 
                             if (checkBox.getValue()) {
-                                WizardFeatureView.this.selectedFeatureValues.add(availableFeatureValue);
+                                QueryWizardFeatureView.this.selectedFeatureValues.add(availableFeatureValue);
                             } else {
-                                WizardFeatureView.this.selectedFeatureValues.remove(availableFeatureValue);
+                                QueryWizardFeatureView.this.selectedFeatureValues.remove(availableFeatureValue);
                             }
 
                             _getEventBus().post(new WizardFeatureRefreshRequest());
@@ -267,5 +267,5 @@ public class WizardFeatureView extends TopLevelView {
     private final HorizontalLayout resetButtonLayout;
     private final HorizontalLayout topBackNextButtonsLayout;
     private final Set<String> selectedFeatureValues = new LinkedHashSet<>();
-    public final static String NAME = "wizard_feature";
+    public final static String NAME = "query_wizard_feature";
 }

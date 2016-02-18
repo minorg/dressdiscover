@@ -10,7 +10,7 @@ import com.vaadin.ui.UI;
 
 import net.lab1318.costume.gui.views.TopLevelView;
 import net.lab1318.costume.gui.views.institutions.InstitutionsView;
-import net.lab1318.costume.gui.views.wizard.WizardFeatureView;
+import net.lab1318.costume.gui.views.wizard.QueryWizardFeatureView;
 
 @SuppressWarnings("serial")
 @SessionScoped
@@ -31,7 +31,7 @@ public class HomeView extends TopLevelView {
         design.queryWizardButton.addClickListener(new ClickListener() {
             @Override
             public void buttonClick(final ClickEvent event) {
-                UI.getCurrent().getNavigator().navigateTo(WizardFeatureView.NAME);
+                UI.getCurrent().getNavigator().navigateTo(QueryWizardFeatureView.NAME);
             }
         });
         setCompositionRoot(design);
