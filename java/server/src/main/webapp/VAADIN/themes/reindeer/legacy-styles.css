@@ -29,7 +29,7 @@
 	}
 
 .v-vaadin-version:after {
-	content: "7.6.1";
+	content: "7.6.2";
 }
 
 .v-generated-body {
@@ -2470,11 +2470,11 @@ div.v-csslayout {
 }
 
 .v-ie8 .v-grid-editor-cells  > div .v-datefield-button {
-	margin-left: -30px;
+	margin-left: -37px;
 }
 
 .v-ie8 .v-grid-editor-cells  > div .v-filterselect-button {
-	margin-left: -27px;
+	margin-left: -25px;
 }
 
 .v-grid-editor-cells  > div .v-select, .v-grid-editor-cells  > div .v-select-select {
@@ -5789,6 +5789,10 @@ td.v-inline-datefield-calendarpanel-nextyear {
 	border: none;
 	border-radius: 0;
 	background: transparent;
+}
+
+.v-ie8 .v-grid-editor-cells > div .v-datefield-button {
+	margin-top: -2px;
 }
 
 .v-grid-editor-cells > div .v-filterselect {
