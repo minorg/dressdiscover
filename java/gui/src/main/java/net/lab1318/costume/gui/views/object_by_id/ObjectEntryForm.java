@@ -222,7 +222,7 @@ final class ObjectEntryForm extends CustomComponent {
 
     private TextField __createTextField(final String caption, final String value) {
         final TextField textField = new TextField(caption, value);
-        textField.addStyleName("borderlessTextField");
+        textField.addStyleName("borderless");
         textField.setReadOnly(true);
         if (value.length() > 1) {
             textField.setWidth((float) (value.length() * 1.0), Unit.EM);

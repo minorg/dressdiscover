@@ -38,18 +38,17 @@ public final class Navbar extends HorizontalLayout {
         setSizeFull();
 
         {
-            final MenuBar leftMenuBar = new MenuBar();
-            {
-                final MenuItem homeMenuItem = leftMenuBar.addItem("", FontAwesome.HOME, new MenuBar.Command() {
-                    @Override
-                    public void menuSelected(final MenuItem selectedItem) {
-                        UI.getCurrent().getNavigator().navigateTo(HomeView.NAME);
-                    }
-                });
-                homeMenuItem.setStyleName("home");
-            }
-            addComponent(leftMenuBar);
-            setComponentAlignment(leftMenuBar, Alignment.TOP_LEFT);
+            final Button homeButton = new NativeButton();
+            homeButton.addClickListener(new ClickListener() {
+                @Override
+                public void buttonClick(final ClickEvent event) {
+                    UI.getCurrent().getNavigator().navigateTo(HomeView.NAME);
+                }
+            });
+            homeButton.setIcon(FontAwesome.HOME);
+            homeButton.setStyleName("home");
+            addComponent(homeButton);
+            setComponentAlignment(homeButton, Alignment.TOP_LEFT);
         }
 
         {

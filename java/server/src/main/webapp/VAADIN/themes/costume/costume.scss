@@ -49,9 +49,7 @@ $v-selection-item-border-radius: 0;
   }
 
   .v-nativebutton {
-    // background: transparent;
-    border: none;
-    box-shadow: none;
+	background: transparent;
   }
 
   .v-align-center > .v-widget {
@@ -66,11 +64,12 @@ $v-selection-item-border-radius: 0;
   	background: none;
   }
 
-  .v-nativebutton-search {
+  .v-nativebutton-home {
   	background: none;
+  	width: 2em;
   }
 
-  .v-nativebutton-pi {
+  .v-nativebutton-search {
   	background: none;
   }
 
