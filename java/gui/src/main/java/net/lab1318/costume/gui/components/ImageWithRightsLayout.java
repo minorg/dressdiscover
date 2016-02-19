@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.views;
+package net.lab1318.costume.gui.components;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -21,13 +21,13 @@ import net.lab1318.costume.gui.models.rights.RightsBean;
 import net.lab1318.costume.gui.models.rights.RightsSetBean;
 
 @SuppressWarnings("serial")
-public final class ImageWithRightsView extends CustomComponent {
-	public ImageWithRightsView(final String caption, final ImageVersion model, final Optional<RightsSet> rights) {
+public final class ImageWithRightsLayout extends CustomComponent {
+	public ImageWithRightsLayout(final String caption, final ImageVersion model, final Optional<RightsSet> rights) {
 		this(caption, new ImageVersionBean(model),
 				rights.isPresent() ? Optional.of(new RightsSetBean(rights.get())) : Optional.absent());
 	}
 
-	public ImageWithRightsView(final String caption, final ImageVersionBean model,
+	public ImageWithRightsLayout(final String caption, final ImageVersionBean model,
 			final Optional<RightsSetBean> rights) {
 		checkNotNull(model);
 

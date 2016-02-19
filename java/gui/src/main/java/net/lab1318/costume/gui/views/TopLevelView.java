@@ -13,6 +13,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.api.models.user.UserEntry;
+import net.lab1318.costume.gui.components.Navbar;
 
 @SuppressWarnings("serial")
 public abstract class TopLevelView extends View {

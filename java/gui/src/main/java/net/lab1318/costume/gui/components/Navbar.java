@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.views;
+package net.lab1318.costume.gui.components;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

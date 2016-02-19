@@ -43,7 +43,6 @@ import net.lab1318.costume.api.services.user.UserCommandService.Messages.DeleteU
 import net.lab1318.costume.api.services.user.UserCommandService.Messages.PostUserBookmarkRequest;
 import net.lab1318.costume.gui.models.image.ImageBean;
 import net.lab1318.costume.gui.models.image.ImageVersionBean;
-import net.lab1318.costume.gui.views.ImageWithRightsView;
 
 @SuppressWarnings("serial")
 public final class ObjectSummaryEntriesTable extends CustomComponent {
@@ -176,7 +175,7 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
                             return new Label(); // TODO: return an empty image
                         }
 
-                        final ImageWithRightsView thumbnailView = new ImageWithRightsView("", thumbnailModel,
+                        final ImageWithRightsLayout thumbnailView = new ImageWithRightsLayout("", thumbnailModel,
                                 Optional.fromNullable(imageModel.getRights()));
                         thumbnailView.addStyleName("thumbnail");
                         thumbnailView.addClickListener(new ClickListener() {

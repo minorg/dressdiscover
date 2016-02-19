@@ -31,11 +31,11 @@ import com.vaadin.ui.Link;
 import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.api.models.object.ObjectSummary;
+import net.lab1318.costume.gui.components.ImageWithRightsLayout;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureBackRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureFinishRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureNextRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
-import net.lab1318.costume.gui.views.ImageWithRightsView;
 import net.lab1318.costume.gui.views.TopLevelView;
 
 @SuppressWarnings("serial")
@@ -143,7 +143,7 @@ public class QueryWizardFeatureView extends TopLevelView {
 
                     final VerticalLayout availableFeatureLayout = new VerticalLayout();
 
-                    final ImageWithRightsView thumbnailImage = new ImageWithRightsView("",
+                    final ImageWithRightsLayout thumbnailImage = new ImageWithRightsLayout("",
                             availableFeatureModel.getImage().get().getSquareThumbnail().get(),
                             availableFeatureModel.getImage().get().getRights());
                     availableFeatureLayout.addComponent(thumbnailImage);

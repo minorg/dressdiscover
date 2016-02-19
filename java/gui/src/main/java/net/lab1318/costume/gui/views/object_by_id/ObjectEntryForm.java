@@ -19,8 +19,8 @@ import net.lab1318.costume.api.models.image.ImageVersion;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.title.Title;
+import net.lab1318.costume.gui.components.ImageWithRightsLayout;
 import net.lab1318.costume.gui.models.gender.Genders;
-import net.lab1318.costume.gui.views.ImageWithRightsView;
 
 @SuppressWarnings("serial")
 final class ObjectEntryForm extends CustomComponent {
@@ -190,7 +190,7 @@ final class ObjectEntryForm extends CustomComponent {
                         continue;
                     }
                     final VerticalLayout imageLayout = new VerticalLayout();
-                    final ImageWithRightsView imageView = new ImageWithRightsView("", bestImageModel,
+                    final ImageWithRightsLayout imageView = new ImageWithRightsLayout("", bestImageModel,
                             imageModel.getRights().or(objectEntry.getModel().getRights()));
                     imageLayout.addComponent(imageView);
                     if (imageModel.getOriginal().isPresent()) {
