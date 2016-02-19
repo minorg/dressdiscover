@@ -7,13 +7,12 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
+import com.vaadin.annotations.DesignRoot;
 import com.vaadin.shared.ui.label.ContentMode;
-import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.NativeButton;
+import com.vaadin.ui.Layout;
 import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.api.models.collection.CollectionEntry;
@@ -30,6 +29,19 @@ import net.lab1318.costume.gui.views.TopLevelView;
 @SuppressWarnings("serial")
 @SessionScoped
 public class ObjectByIdView extends TopLevelView {
+    @DesignRoot("ObjectByIdView.html")
+    private final static class Design extends VerticalLayout {
+        public Design() {
+            com.vaadin.ui.declarative.Design.read(this);
+        }
+
+        Layout carouselLayout;
+        Button collectionButton;
+        Button institutionButton;
+        Button moreLikeThisButton;
+        Layout objectEntryFormLayout;
+    }
+
     @Inject
     public ObjectByIdView(final EventBus eventBus) {
         super(eventBus);
@@ -38,61 +50,38 @@ public class ObjectByIdView extends TopLevelView {
     public void setModels(final CollectionEntry collectionEntry, final InstitutionEntry institutionEntry,
             final ObjectEntry objectEntry,
             final ImmutableMap<ObjectId, ObjectSummaryEntry> relatedObjectSummaryEntries) {
-        final VerticalLayout rootLayout = new VerticalLayout();
+        final Design design = new Design();
 
-        {
-            final HorizontalLayout headerLayout = new HorizontalLayout();
-            headerLayout.setSizeFull();
-
-            {
-                final VerticalLayout leftHeaderLayout = new VerticalLayout();
-                leftHeaderLayout.setSpacing(true);
-                {
-                    final Button institutionButton = new NativeButton(
-                            "Institution: " + institutionEntry.getModel().getTitle(), new Button.ClickListener() {
-                                @Override
-                                public void buttonClick(final ClickEvent event) {
-                                    _getEventBus().post(new InstitutionQueryService.Messages.GetInstitutionByIdRequest(
-                                            institutionEntry.getId()));
-                                }
-                            });
-                    leftHeaderLayout.addComponent(institutionButton);
-                }
-                {
-                    final Button collectionButton = new NativeButton(
-                            "Collection: " + collectionEntry.getModel().getTitle(), new Button.ClickListener() {
-                                @Override
-                                public void buttonClick(final ClickEvent event) {
-                                    _getEventBus().post(new CollectionQueryService.Messages.GetCollectionByIdRequest(
-                                            collectionEntry.getId()));
-                                }
-                            });
-                    leftHeaderLayout.addComponent(collectionButton);
-                }
-
-                headerLayout.addComponent(leftHeaderLayout);
-                headerLayout.setExpandRatio(leftHeaderLayout, 1);
+        design.collectionButton.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(final ClickEvent event) {
+                _getEventBus()
+                        .post(new CollectionQueryService.Messages.GetCollectionByIdRequest(collectionEntry.getId()));
             }
+        });
+        design.collectionButton.setCaption("Collection: " + collectionEntry.getModel().getTitle());
 
-            {
-                final Button moreLikeThisButton = new NativeButton("More like this", new Button.ClickListener() {
-                    @Override
-                    public void buttonClick(final ClickEvent event) {
-                        _getEventBus().post(new ObjectMoreLikeThisRequest());
-                    }
-                });
-                headerLayout.addComponent(moreLikeThisButton);
-                headerLayout.setComponentAlignment(moreLikeThisButton, Alignment.MIDDLE_CENTER);
-                headerLayout.setExpandRatio(moreLikeThisButton, 1);
+        design.institutionButton.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(final ClickEvent event) {
+                _getEventBus()
+                        .post(new InstitutionQueryService.Messages.GetInstitutionByIdRequest(institutionEntry.getId()));
             }
+        });
+        design.institutionButton.setCaption("Institution: " + institutionEntry.getModel().getTitle());
 
-            rootLayout.addComponent(headerLayout);
-        }
+        design.moreLikeThisButton.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(final ClickEvent event) {
+                _getEventBus().post(new ObjectMoreLikeThisRequest());
+            }
+        });
 
-        rootLayout.addComponent(new ObjectEntryForm(_getEventBus(), objectEntry, institutionEntry.getModel()));
+        design.objectEntryFormLayout
+                .addComponent(new ObjectEntryForm(_getEventBus(), objectEntry, institutionEntry.getModel()));
 
         if (objectEntry.getModel().getRelations().isPresent()) {
-            rootLayout.addComponent(new Label("&nbsp;", ContentMode.HTML));
+            design.carouselLayout.addComponent(new Label("&nbsp;", ContentMode.HTML));
 
             for (final Relation relation : objectEntry.getModel().getRelations().get().getElements()) {
                 if (!relation.getRelids().isPresent()) {
@@ -117,14 +106,14 @@ public class ObjectByIdView extends TopLevelView {
                         }
                         relationTypeDisplayNameBuilder.append(StringUtils.capitalize(word.toLowerCase()));
                     }
-                    rootLayout.addComponent(new ObjectSummaryEntriesCarousel(
+                    design.carouselLayout.addComponent(new ObjectSummaryEntriesCarousel(
                             relationTypeDisplayNameBuilder.toString() + ' ' + relation.getText().or(""), _getEventBus(),
                             relationObjectSummaryEntries));
                 }
             }
         }
 
-        setCompositionRoot(rootLayout);
+        setCompositionRoot(design);
     }
 
     public final static String NAME = "object_by_id";

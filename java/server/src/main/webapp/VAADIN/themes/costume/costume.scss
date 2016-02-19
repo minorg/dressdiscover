@@ -78,6 +78,10 @@ $v-layout-spacing-vertical: 0.5em;
   	background: none;
   }
 
+  .v-panel-content {
+  	overflow: auto;
+  }
+
   .v-table-cell-content-thumbnail > .v-table-cell-wrapper {
     padding: 2px;
     text-align: center;

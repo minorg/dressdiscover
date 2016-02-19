@@ -7,9 +7,8 @@ import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
-import com.vaadin.shared.ui.label.ContentMode;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Label;
+import com.vaadin.annotations.DesignRoot;
+import com.vaadin.ui.Layout;
 import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.api.models.collection.Collection;
@@ -26,6 +25,15 @@ import net.lab1318.costume.gui.views.TopLevelView;
 @SuppressWarnings("serial")
 @SessionScoped
 public class UserBookmarksView extends TopLevelView {
+    @DesignRoot("UserBookmarksView.html")
+    private final static class Design extends VerticalLayout {
+        public Design() {
+            com.vaadin.ui.declarative.Design.read(this);
+        }
+
+        Layout bookmarksLayout;
+    }
+
     @Inject
     public UserBookmarksView(final EventBus eventBus) {
         super(eventBus);
@@ -35,17 +43,10 @@ public class UserBookmarksView extends TopLevelView {
             final ImmutableMap<CollectionId, Collection> collections, final UserId currentUserId,
             final ImmutableMap<InstitutionId, Institution> institutions, final ObjectQuery objectQuery,
             final LazyQueryContainer objectSummaries) {
-        final VerticalLayout rootLayout = new VerticalLayout();
-        rootLayout.setSizeFull();
-
-        final Label headerLabel = new Label("<h2>Bookmarks</h2>", ContentMode.HTML);
-        rootLayout.addComponent(headerLabel);
-        rootLayout.setComponentAlignment(headerLabel, Alignment.MIDDLE_CENTER);
-
-        rootLayout.addComponent(new ObjectSummaryEntriesTable(bookmarks, collections,
+        final Design design = new Design();
+        design.bookmarksLayout.addComponent(new ObjectSummaryEntriesTable(bookmarks, collections,
                 Optional.of(currentUserId), _getEventBus(), institutions, objectSummaries));
-
-        setCompositionRoot(rootLayout);
+        setCompositionRoot(design);
     }
 
     public final static String NAME = "bookmarks";
