@@ -7,6 +7,7 @@ import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
+import com.vaadin.annotations.DesignRoot;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
@@ -28,37 +29,23 @@ import net.lab1318.costume.gui.views.TopLevelView;
 @SuppressWarnings("serial")
 @SessionScoped
 public class ObjectsView extends TopLevelView {
+    @DesignRoot("ObjectsView.html")
+    private final static class Design extends HorizontalLayout {
+        public Design() {
+            com.vaadin.ui.declarative.Design.read(this);
+        }
+
+        Panel leftPanePanel;
+        VerticalLayout rightPaneContentLayout;
+    }
+
     @Inject
     public ObjectsView(final EventBus eventBus) {
         super(eventBus);
 
-        final HorizontalLayout twoPaneLayout = new HorizontalLayout();
-        twoPaneLayout.setSizeFull();
-        // twoPaneLayout.setHeight(700, Unit.PIXELS);
-
-        {
-            leftPaneContentLayout = new ObjectFacetsLayout(_getEventBus());
-
-            final Panel leftPanePanel = new Panel();
-            leftPanePanel.addStyleName("borderless");
-            leftPanePanel.setContent(leftPaneContentLayout);
-
-            twoPaneLayout.addComponent(leftPanePanel);
-            twoPaneLayout.setComponentAlignment(leftPanePanel, Alignment.TOP_LEFT);
-            twoPaneLayout.setExpandRatio(leftPanePanel, 1);
-        }
-
-        {
-            final Panel rightPanePanel = new Panel();
-            rightPanePanel.addStyleName("borderless");
-            rightPanePanel.setContent(rightPaneContentLayout);
-
-            twoPaneLayout.addComponent(rightPanePanel);
-            twoPaneLayout.setComponentAlignment(rightPanePanel, Alignment.TOP_CENTER);
-            twoPaneLayout.setExpandRatio(rightPanePanel, 3);
-        }
-
-        setCompositionRoot(twoPaneLayout);
+        leftPaneContentLayout = new ObjectFacetsLayout(_getEventBus());
+        design.leftPanePanel.setContent(leftPaneContentLayout);
+        setCompositionRoot(design);
     }
 
     public void setBookmarks(final ImmutableMap<ObjectId, UserBookmarkEntry> bookmarks) {
@@ -78,24 +65,24 @@ public class ObjectsView extends TopLevelView {
 
         leftPaneContentLayout.setModels(availableObjectFacets, institutions, objectQuery, resultObjectFacets);
 
-        rightPaneContentLayout.removeAllComponents();
+        design.rightPaneContentLayout.removeAllComponents();
         if (objectSummariesSize > 0) {
             final Label hitCountsLabel = new Label(
                     String.format("%d object(s) in %d collection(s)", objectSummariesSize, collections.size()));
             hitCountsLabel.setWidth(100, Unit.PERCENTAGE);
-            rightPaneContentLayout.addComponent(hitCountsLabel);
-            rightPaneContentLayout.setComponentAlignment(hitCountsLabel, Alignment.MIDDLE_CENTER);
+            design.rightPaneContentLayout.addComponent(hitCountsLabel);
+            design.rightPaneContentLayout.setComponentAlignment(hitCountsLabel, Alignment.MIDDLE_CENTER);
 
             objectSummaryEntriesTable = new ObjectSummaryEntriesTable(bookmarks, collections, currentUserId,
                     _getEventBus(), institutions, objectSummaries);
-            rightPaneContentLayout.addComponent(objectSummaryEntriesTable);
+            design.rightPaneContentLayout.addComponent(objectSummaryEntriesTable);
         } else {
-            rightPaneContentLayout.addComponent(new Label("No objects match your criteria."));
+            design.rightPaneContentLayout.addComponent(new Label("No objects match your criteria."));
         }
     }
 
+    private final Design design = new Design();
     private final ObjectFacetsLayout leftPaneContentLayout;
     private ObjectSummaryEntriesTable objectSummaryEntriesTable;
-    private final VerticalLayout rightPaneContentLayout = new VerticalLayout();
     public final static String NAME = "objects";
 }
