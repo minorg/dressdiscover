@@ -8,11 +8,14 @@ import org.thryft.waf.gui.EventBus;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
+import com.vaadin.annotations.DesignRoot;
 import com.vaadin.data.Item;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.event.ItemClickEvent.ItemClickListener;
 import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
+import com.vaadin.ui.Layout;
 import com.vaadin.ui.Tree;
+import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.collection.CollectionId;
@@ -25,6 +28,15 @@ import net.lab1318.costume.gui.views.TopLevelView;
 @SuppressWarnings("serial")
 @SessionScoped
 public class InstitutionsView extends TopLevelView {
+    @DesignRoot("InstitutionsView.html")
+    private final static class Design extends VerticalLayout {
+        public Design() {
+            com.vaadin.ui.declarative.Design.read(this);
+        }
+
+        Layout treeLayout;
+    }
+
     @Inject
     public InstitutionsView(final EventBus eventBus) {
         super(eventBus);
@@ -32,6 +44,8 @@ public class InstitutionsView extends TopLevelView {
 
     @SuppressWarnings("unchecked")
     public void setModels(final ImmutableMultimap<InstitutionEntry, CollectionEntry> modelTree) {
+        final Design design = new Design();
+
         final Tree viewTree = new Tree();
         viewTree.addContainerProperty("name", String.class, null);
         viewTree.setItemCaptionMode(ItemCaptionMode.PROPERTY);
@@ -56,7 +70,8 @@ public class InstitutionsView extends TopLevelView {
                 .entrySet()) {
             final InstitutionEntry institutionEntry = modelTreeEntry.getKey();
             final Item institutionTreeItem = viewTree.addItem(institutionEntry.getId());
-            institutionTreeItem.getItemProperty("name").setValue(institutionEntry.getModel().getTitle());
+            institutionTreeItem.getItemProperty("name")
+                    .setValue("Institution: " + institutionEntry.getModel().getTitle());
 
             for (final CollectionEntry collectionEntry : modelTreeEntry.getValue()) {
                 boolean excludeCollection;
@@ -77,13 +92,15 @@ public class InstitutionsView extends TopLevelView {
                 }
 
                 final Item collectionTreeItem = viewTree.addItem(collectionEntry.getId());
-                collectionTreeItem.getItemProperty("name").setValue(collectionEntry.getModel().getTitle());
+                collectionTreeItem.getItemProperty("name")
+                        .setValue("Collection: " + collectionEntry.getModel().getTitle());
                 viewTree.setChildrenAllowed(collectionEntry.getId(), false);
                 viewTree.setParent(collectionEntry.getId(), institutionEntry.getId());
             }
         }
+        design.treeLayout.addComponent(viewTree);
 
-        setCompositionRoot(viewTree);
+        setCompositionRoot(design);
     }
 
     public final static String NAME = "institutions";
