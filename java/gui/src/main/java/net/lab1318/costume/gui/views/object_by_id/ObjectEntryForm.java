@@ -3,13 +3,14 @@ package net.lab1318.costume.gui.views.object_by_id;
 import org.apache.commons.lang3.StringUtils;
 import org.thryft.waf.gui.EventBus;
 
+import com.vaadin.annotations.DesignRoot;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.FontAwesome;
-import com.vaadin.ui.Alignment;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Layout;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
@@ -23,18 +24,20 @@ import net.lab1318.costume.gui.views.ImageWithRightsView;
 
 @SuppressWarnings("serial")
 final class ObjectEntryForm extends CustomComponent {
+    @DesignRoot("ObjectEntryForm.html")
+    private final static class Design extends HorizontalLayout {
+        public Design() {
+            com.vaadin.ui.declarative.Design.read(this);
+        }
+
+        FormLayout formLayout;
+        Layout rightPaneLayout;
+        Layout rightsLayout;
+        Label titleLabel;
+    }
+
     public ObjectEntryForm(final EventBus eventBus, final ObjectEntry objectEntry, final Institution institution) {
-        final VerticalLayout rootLayout = new VerticalLayout();
-        rootLayout.setSizeFull();
-
-        final HorizontalLayout twoPaneLayout = new HorizontalLayout();
-        twoPaneLayout.setSizeFull();
-        twoPaneLayout.setSpacing(true);
-
-        final VerticalLayout leftPaneLayout = new VerticalLayout();
-        leftPaneLayout.setSpacing(false);
-        twoPaneLayout.addComponent(leftPaneLayout);
-        twoPaneLayout.setComponentAlignment(leftPaneLayout, Alignment.TOP_LEFT);
+        final Design design = new Design();
 
         {
             Title preferredTitle = objectEntry.getModel().getTitles().getElements().get(0);
@@ -44,15 +47,12 @@ final class ObjectEntryForm extends CustomComponent {
                     break;
                 }
             }
-            final Label titleLabel = new Label(preferredTitle.getText());
-            titleLabel.setStyleName("h3");
-            leftPaneLayout.addComponent(titleLabel);
+            design.titleLabel.setCaptionAsHtml(true);
+            design.titleLabel.setCaption("<h3>" + preferredTitle.getText() + "</h3>");
         }
 
         {
-            final FormLayout formLayout = new FormLayout();
-            formLayout.setSpacing(true);
-            formLayout.setSizeFull();
+            final FormLayout formLayout = design.formLayout;
 
             if (objectEntry.getModel().getDates().isPresent()) {
                 formLayout.addComponent(new DateSetTable(objectEntry.getModel().getDates().get()));
@@ -167,20 +167,15 @@ final class ObjectEntryForm extends CustomComponent {
             // formLayout.addComponent(link);
             // }
 
-            leftPaneLayout.addComponent(formLayout);
-
             if (objectEntry.getModel().getRights().isPresent()) {
-                leftPaneLayout.addComponent(new RightsLabel(objectEntry.getModel().getRights().get()));
+                design.rightsLayout.addComponent(new RightsLabel(objectEntry.getModel().getRights().get()));
             }
             if (institution.getDataRights().isPresent()) {
-                leftPaneLayout.addComponent(new RightsLabel(institution.getDataRights().get()));
+                design.rightsLayout.addComponent(new RightsLabel(institution.getDataRights().get()));
             }
         }
 
         {
-            final VerticalLayout rightPaneLayout = new VerticalLayout();
-            rightPaneLayout.setSizeFull();
-
             if (objectEntry.getModel().getImages().isPresent()) {
                 for (final net.lab1318.costume.api.models.image.Image imageModel : objectEntry.getModel().getImages()
                         .get()) {
@@ -205,17 +200,12 @@ final class ObjectEntryForm extends CustomComponent {
                         originalLink.setIcon(FontAwesome.SEARCH_PLUS);
                         imageLayout.addComponent(originalLink);
                     }
-                    rightPaneLayout.addComponent(imageLayout);
+                    design.rightPaneLayout.addComponent(imageLayout);
                 }
             }
-
-            twoPaneLayout.addComponent(rightPaneLayout);
-            twoPaneLayout.setComponentAlignment(rightPaneLayout, Alignment.TOP_RIGHT);
         }
 
-        rootLayout.addComponent(twoPaneLayout);
-
-        setCompositionRoot(rootLayout);
+        setCompositionRoot(design);
     }
 
     // private TextArea __createTextArea(final String caption, final String
