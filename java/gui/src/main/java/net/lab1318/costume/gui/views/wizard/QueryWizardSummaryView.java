@@ -3,8 +3,6 @@ package net.lab1318.costume.gui.views.wizard;
 import org.thryft.waf.gui.EventBus;
 
 import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
 import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
@@ -16,6 +14,7 @@ import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
+import net.lab1318.costume.gui.models.wizard.FeatureSet;
 import net.lab1318.costume.gui.views.TopLevelView;
 
 @SuppressWarnings("serial")
@@ -36,13 +35,12 @@ public class QueryWizardSummaryView extends TopLevelView {
         super(eventBus);
     }
 
-    public void setModels(final ImmutableList<String> allFeatureNames, final ObjectQuery query,
-            final ImmutableMap<String, ImmutableList<String>> selectedFeatureValuesByFeatureName,
+    public void setModels(final FeatureSet featureSet, final ObjectQuery query,
             final UnsignedInteger selectedObjectCount) {
         final Design design = new Design();
 
-        design.currentlySelectedFeaturesLayout.addComponent(new QueryWizardSelectedFeaturesLayout(allFeatureNames,
-                Optional.absent(), _getEventBus(), selectedFeatureValuesByFeatureName, selectedObjectCount));
+        design.currentlySelectedFeaturesLayout.addComponent(
+                new QueryWizardFeatureSetLayout(Optional.absent(), _getEventBus(), featureSet, selectedObjectCount));
 
         design.searchButton.addClickListener(new Button.ClickListener() {
             @Override

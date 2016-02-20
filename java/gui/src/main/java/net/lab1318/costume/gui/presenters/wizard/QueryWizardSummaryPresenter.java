@@ -11,7 +11,6 @@ import org.thryft.waf.gui.EventBus;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableMap;
 import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
@@ -25,16 +24,19 @@ import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.api.services.user.UserCommandService;
 import net.lab1318.costume.api.services.user.UserQueryService;
+import net.lab1318.costume.gui.models.wizard.FeatureSet;
+import net.lab1318.costume.gui.models.wizard.FeatureSetFactories;
 import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.wizard.QueryWizardSummaryView;
 
 @SessionScoped
 public class QueryWizardSummaryPresenter extends Presenter<QueryWizardSummaryView> {
     @Inject
-    public QueryWizardSummaryPresenter(final EventBus eventBus,
+    public QueryWizardSummaryPresenter(final EventBus eventBus, final FeatureSetFactories featureSetFactories,
             final ObjectSummaryQueryService objectSummaryQueryService, final UserCommandService userCommandService,
             final UserQueryService userQueryService, final QueryWizardSummaryView view) {
         super(eventBus, userCommandService, userQueryService, view);
+        this.featureSetFactories = checkNotNull(featureSetFactories);
         this.objectSummaryQueryService = checkNotNull(objectSummaryQueryService);
     }
 
@@ -49,6 +51,15 @@ public class QueryWizardSummaryPresenter extends Presenter<QueryWizardSummaryVie
             return;
         }
 
+        FeatureSet featureSet;
+        try {
+            featureSet = featureSetFactories.getFeatureSetFactoryByName("costume_core").createFeatureSet();
+        } catch (final IoException e) {
+            _getView().setComponentError(new SystemError("I/O exception", e));
+            return;
+        }
+        featureSet.setSelectedFromQuery(objectQuery);
+
         final UnsignedInteger selectedObjectCount;
         try {
             selectedObjectCount = objectSummaryQueryService
@@ -59,9 +70,9 @@ public class QueryWizardSummaryPresenter extends Presenter<QueryWizardSummaryVie
             return;
         }
 
-        _getView().setModels(QueryWizardFeaturePresenter.FEATURE_NAMES, objectQuery,
-                objectQuery.getStructureTexts().or(ImmutableMap.of()), selectedObjectCount);
+        _getView().setModels(featureSet, objectQuery, selectedObjectCount);
     }
 
+    private final FeatureSetFactories featureSetFactories;
     private final ObjectSummaryQueryService objectSummaryQueryService;
 }

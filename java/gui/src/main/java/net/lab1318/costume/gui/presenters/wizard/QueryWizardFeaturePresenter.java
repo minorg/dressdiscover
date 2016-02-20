@@ -5,13 +5,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
-import javax.annotation.Nullable;
-
-import org.thryft.native_.Url;
 import org.thryft.waf.gui.EventBus;
 
 import com.google.common.base.Charsets;
@@ -28,15 +22,8 @@ import com.vaadin.server.SystemError;
 import com.vaadin.server.UserError;
 import com.vaadin.ui.UI;
 
-import net.lab1318.costume.api.models.ModelMetadata;
-import net.lab1318.costume.api.models.collection.CollectionId;
-import net.lab1318.costume.api.models.collection.InvalidCollectionIdException;
-import net.lab1318.costume.api.models.image.Image;
-import net.lab1318.costume.api.models.image.ImageVersion;
 import net.lab1318.costume.api.models.object.ObjectFacetFilters;
 import net.lab1318.costume.api.models.object.ObjectQuery;
-import net.lab1318.costume.api.models.object.ObjectSummary;
-import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
@@ -48,55 +35,46 @@ import net.lab1318.costume.gui.events.wizard.WizardFeatureFinishRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureGotoRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureNextRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
-import net.lab1318.costume.gui.models.wizard.CostumeCore;
-import net.lab1318.costume.gui.models.wizard.CostumeCore.Feature;
+import net.lab1318.costume.gui.models.wizard.Feature;
+import net.lab1318.costume.gui.models.wizard.FeatureSet;
+import net.lab1318.costume.gui.models.wizard.FeatureSetFactories;
+import net.lab1318.costume.gui.models.wizard.FeatureValue;
 import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.wizard.QueryWizardFeatureView;
 import net.lab1318.costume.gui.views.wizard.QueryWizardSummaryView;
 
 @SessionScoped
 public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureView> {
-    private static CollectionId __createCollectionId() {
-        try {
-            return CollectionId.parse("wizard/wizard");
-        } catch (final InvalidCollectionIdException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     @Inject
-    public QueryWizardFeaturePresenter(final EventBus eventBus,
+    public QueryWizardFeaturePresenter(final EventBus eventBus, final FeatureSetFactories featureSetFactories,
             final ObjectSummaryQueryService objectSummaryQueryService, final UserCommandService userCommandService,
             final UserQueryService userQueryService, final QueryWizardFeatureView view) {
         super(eventBus, userCommandService, userQueryService, view);
+        this.featureSetFactories = checkNotNull(featureSetFactories);
         this.objectSummaryQueryService = checkNotNull(objectSummaryQueryService);
     }
 
     @Subscribe
     public void onWizardFeatureBackRequest(final WizardFeatureBackRequest event) {
-        __updateSelectedFeatureValues();
-        if (currentFeatureIndex > 0) {
-            __navigateToFeature(FEATURE_NAMES.get(currentFeatureIndex - 1));
+        if (currentFeature.getPreviousFeature().isPresent()) {
+            __navigateToFeature(currentFeature.getPreviousFeature().get());
         }
     }
 
     @Subscribe
     public void onWizardFeatureFinishRequest(final WizardFeatureFinishRequest event) {
-        __updateSelectedFeatureValues();
         __navigateToFinish();
     }
 
     @Subscribe
     public void onWizardFeatureGotoRequest(final WizardFeatureGotoRequest event) {
-        __updateSelectedFeatureValues();
-        __navigateToFeature(event.getFeatureName());
+        __navigateToFeature(featureSet.getFeatureByName(event.getFeatureName()));
     }
 
     @Subscribe
     public void onWizardFeatureNextRequest(final WizardFeatureNextRequest event) {
-        __updateSelectedFeatureValues();
-        if (currentFeatureIndex + 1 < FEATURE_NAMES.size()) {
-            __navigateToFeature(FEATURE_NAMES.get(currentFeatureIndex + 1));
+        if (currentFeature.getNextFeature().isPresent()) {
+            __navigateToFeature(currentFeature.getNextFeature().get());
         } else {
             __navigateToFinish();
         }
@@ -104,69 +82,40 @@ public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureVie
 
     @Subscribe
     public void onWizardFeatureRefreshEvent(final WizardFeatureRefreshRequest event) {
-        __updateSelectedFeatureValues();
         __refreshView();
     }
 
     @Override
     protected void _onViewEnter(final Optional<UserEntry> currentUser, final ViewChangeEvent event) {
+        if (featureSet == null) {
+            // TODO: check if current featureSet corresponds to desired features
+            try {
+                featureSet = featureSetFactories.getFeatureSetFactoryByName("costume_core").createFeatureSet();
+            } catch (final IoException e) {
+                _getView().setComponentError(new SystemError("I/O exception", e));
+                return;
+            }
+        }
+
         if (event.getParameters().isEmpty()) {
-            selectedFeatureValuesByFeatureName.clear(); // Reset
-            __navigateToFeature(FEATURE_NAMES.get(0));
+            featureSet.resetSelected();
+            __navigateToFeature(featureSet.getFeatures().get(0));
             return;
         }
 
+        String currentFeatureName;
         try {
             currentFeatureName = URLDecoder.decode(event.getParameters(), "UTF-8");
         } catch (final UnsupportedEncodingException e) {
             throw new IllegalStateException(e);
         }
-        currentFeatureIndex = FEATURE_NAMES.indexOf(currentFeatureName);
-        if (currentFeatureIndex == -1) {
+
+        try {
+            currentFeature = featureSet.getFeatureByName(currentFeatureName);
+        } catch (final IllegalArgumentException e) {
             _getView().setComponentError(new UserError("no such feature " + currentFeatureName));
             return;
         }
-
-        ImmutableList<ObjectSummaryEntry> featureModelsInDatabase;
-        try {
-            featureModelsInDatabase = objectSummaryQueryService.getObjectSummaries(Optional.absent(),
-                    Optional.of(ObjectQuery.builder().setCollectionId(COLLECTION_ID).setIncludeHidden(true)
-                            .setInstitutionId(COLLECTION_ID.getInstitutionId())
-                            .setStructureTexts(ImmutableMap.of(currentFeatureName, ImmutableList.of())).build()))
-                    .getHits();
-        } catch (final IoException e) {
-            _getView().setComponentError(new SystemError("I/O exception", e));
-            return;
-        }
-
-        // Fill in availableFeatureModels with dummy images
-        final Date currentDate = new Date();
-        final ModelMetadata modelMetadata = ModelMetadata.builder().setCtime(currentDate).setMtime(currentDate).build();
-        final ImmutableList.Builder<ObjectSummary> allFeatureModelsBuilder = ImmutableList.builder();
-        for (final Feature feature : CostumeCore.FEATURES.get(currentFeatureName)) {
-            @Nullable
-            ObjectSummaryEntry featureModel = null;
-            for (final ObjectSummaryEntry featureModelInDatabase : featureModelsInDatabase) {
-                final String featureValue = checkNotNull(
-                        featureModelInDatabase.getModel().getStructureTexts().get().get(currentFeatureName));
-                if (featureValue.equals(feature.getDisplayName())) {
-                    featureModel = featureModelInDatabase;
-                    break;
-                }
-            }
-            if (featureModel != null) {
-                // This feature value is represented in the database, so use it
-                allFeatureModelsBuilder.add(featureModel.getModel());
-            } else {
-                // Create a dummy model for this feature value
-                // Need title, structure texts, thumbnail
-                allFeatureModelsBuilder.add(ObjectSummary.builder().setCollectionId(COLLECTION_ID)
-                        .setInstitutionId(COLLECTION_ID.getInstitutionId()).setModelMetadata(modelMetadata)
-                        .setStructureTexts(ImmutableMap.of(currentFeatureName, feature.getDisplayName()))
-                        .setTitle(feature.getDisplayName()).setImage(PLACEHOLDER_IMAGE).build());
-            }
-        }
-        currentFeatureValues = allFeatureModelsBuilder.build();
 
         __refreshView();
     }
@@ -174,16 +123,32 @@ public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureVie
     private ObjectQuery __getCurrentObjectQuery() {
         ObjectQuery.Builder queryBuilder = ObjectQuery.builder().setFacetFilters(
                 ObjectFacetFilters.builder().setIncludeWorkTypeTexts(ImmutableSet.of("PhysicalObject")).build());
-        if (!selectedFeatureValuesByFeatureName.isEmpty()) {
-            queryBuilder = queryBuilder.setStructureTexts(ImmutableMap.copyOf(selectedFeatureValuesByFeatureName));
+        final ImmutableMap.Builder<String, ImmutableList<String>> structureTextsBuilder = ImmutableMap.builder();
+        for (final Feature feature : featureSet.getFeatures()) {
+            ImmutableList.Builder<String> selectedFeatureValuesBuilder = null;
+            for (final FeatureValue featureValue : feature.getValues()) {
+                if (featureValue.isSelected()) {
+                    if (selectedFeatureValuesBuilder == null) {
+                        selectedFeatureValuesBuilder = ImmutableList.builder();
+                    }
+                    selectedFeatureValuesBuilder.add(featureValue.getName());
+                }
+            }
+            if (selectedFeatureValuesBuilder != null) {
+                structureTextsBuilder.put(feature.getName(), selectedFeatureValuesBuilder.build());
+            }
+        }
+        final ImmutableMap<String, ImmutableList<String>> structureTexts = structureTextsBuilder.build();
+        if (!structureTexts.isEmpty()) {
+            queryBuilder = queryBuilder.setStructureTexts(structureTexts);
         }
         return queryBuilder.build();
     }
 
-    private void __navigateToFeature(final String featureName) {
+    private void __navigateToFeature(final Feature feature) {
         try {
-            UI.getCurrent().getNavigator().navigateTo(
-                    QueryWizardFeatureView.NAME + '/' + URLEncoder.encode(featureName, Charsets.UTF_8.toString()));
+            UI.getCurrent().getNavigator().navigateTo(QueryWizardFeatureView.NAME + '/'
+                    + URLEncoder.encode(feature.getName(), Charsets.UTF_8.toString()));
         } catch (final UnsupportedEncodingException e) {
             throw new IllegalStateException(e);
         }
@@ -205,37 +170,13 @@ public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureVie
             return;
         }
 
-        _getView().setModels(FEATURE_NAMES, currentFeatureName, currentFeatureValues,
-                ImmutableMap.copyOf(selectedFeatureValuesByFeatureName), selectedObjectCount);
+        _getView().setModels(currentFeature, featureSet, selectedObjectCount);
     }
 
-    private void __updateSelectedFeatureValues() {
-        final ImmutableSet<String> currentSelectedFeatureValues = _getView().getSelectedFeatureValues();
-        if (!currentSelectedFeatureValues.isEmpty()) {
-            this.selectedFeatureValuesByFeatureName.put(currentFeatureName,
-                    ImmutableList.copyOf(currentSelectedFeatureValues));
-        } else {
-            this.selectedFeatureValuesByFeatureName.remove(currentFeatureName);
-        }
-    }
-
-    private ImmutableList<ObjectSummary> currentFeatureValues;
-    private String currentFeatureName = "";
-    private int currentFeatureIndex = -1;
+    private Feature currentFeature = null;
+    private FeatureSet featureSet = null;
+    private final FeatureSetFactories featureSetFactories;
     private final ObjectSummaryQueryService objectSummaryQueryService;
-    private final Map<String, ImmutableList<String>> selectedFeatureValuesByFeatureName = new LinkedHashMap<>();
-    private final static CollectionId COLLECTION_ID = __createCollectionId();
-    // private final static ImmutableList<String> FEATURE_NAMES =
-    // CostumeCore.FEATURE_NAMES;
-    final static ImmutableList<String> FEATURE_NAMES = ImmutableList.<String> builder().add("Closure Type")
-            .add("Material").add("Structure Cut").add("Structure Neckline").add("Structure Skirt")
-            .add("Structure Sleeves").add("Structure Torso").add("Structure Waist").add("Technique").build();
-
-    private final static Image PLACEHOLDER_IMAGE = Image.builder()
-            .setSquareThumbnail(ImageVersion.builder().setHeightPx(UnsignedInteger.valueOf(200))
-                    .setUrl(Url.parse("http://placehold.it/200x200?text=Missing%20image"))
-                    .setWidthPx(UnsignedInteger.valueOf(200)).build())
-            .build();
     final static Optional<GetObjectSummariesOptions> GET_OBJECT_COUNT_OPTIONS = Optional
             .of(GetObjectSummariesOptions.builder().setSize(UnsignedInteger.ZERO).build());
 }

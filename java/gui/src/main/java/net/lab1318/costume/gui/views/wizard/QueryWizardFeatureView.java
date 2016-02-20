@@ -1,17 +1,10 @@
 package net.lab1318.costume.gui.views.wizard;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
-
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 import org.thryft.waf.gui.EventBus;
 
 import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
 import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
@@ -30,12 +23,14 @@ import com.vaadin.ui.Layout;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.VerticalLayout;
 
-import net.lab1318.costume.api.models.object.ObjectSummary;
 import net.lab1318.costume.gui.components.ImageWithRightsLayout;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureBackRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureFinishRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureNextRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
+import net.lab1318.costume.gui.models.wizard.Feature;
+import net.lab1318.costume.gui.models.wizard.FeatureSet;
+import net.lab1318.costume.gui.models.wizard.FeatureValue;
 import net.lab1318.costume.gui.views.TopLevelView;
 
 @SuppressWarnings("serial")
@@ -93,41 +88,29 @@ public class QueryWizardFeatureView extends TopLevelView {
         design.resetButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
-                selectedFeatureValues.clear();
+                currentFeature.resetSelected();
                 eventBus.post(new WizardFeatureRefreshRequest());
             }
         });
     }
 
-    public ImmutableSet<String> getSelectedFeatureValues() {
-        return ImmutableSet.copyOf(selectedFeatureValues);
-    }
-
-    public void setModels(final ImmutableList<String> allFeatureNames, final String currentFeatureName,
-            final ImmutableList<ObjectSummary> currentFeatureValues,
-            final ImmutableMap<String, ImmutableList<String>> selectedFeatureValuesByFeatureName,
+    public void setModels(final Feature currentFeature, final FeatureSet featureSet,
             final UnsignedInteger selectedObjectCount) {
-        this.selectedFeatureValues.clear();
-        final ImmutableList<String> currentSelectedFeatureValues = selectedFeatureValuesByFeatureName
-                .get(currentFeatureName);
-        if (currentSelectedFeatureValues != null) {
-            this.selectedFeatureValues.addAll(currentSelectedFeatureValues);
-        }
+        this.currentFeature = checkNotNull(currentFeature);
 
         {
             design.leftPaneLayout.removeAllComponents();
-            design.leftPaneLayout.addComponent(
-                    new QueryWizardSelectedFeaturesLayout(allFeatureNames, Optional.of(currentFeatureName),
-                            _getEventBus(), selectedFeatureValuesByFeatureName, selectedObjectCount));
+            design.leftPaneLayout.addComponent(new QueryWizardFeatureSetLayout(Optional.of(currentFeature),
+                    _getEventBus(), featureSet, selectedObjectCount));
         }
 
         {
             design.currentFeatureNameLabel.setCaptionAsHtml(true);
-            design.currentFeatureNameLabel.setCaption("<h1>Selecting: " + currentFeatureName + "</h1>");
+            design.currentFeatureNameLabel.setCaption("<h1>Selecting: " + currentFeature.getName() + "</h1>");
 
             {
-                int rowCount = currentFeatureValues.size() / 4;
-                if (currentFeatureValues.size() % 4 != 0) {
+                int rowCount = currentFeature.getValues().size() / 4;
+                if (currentFeature.getValues().size() % 4 != 0) {
                     rowCount++;
                 }
                 final GridLayout availableFeaturesLayout = new GridLayout(4, rowCount);
@@ -135,44 +118,32 @@ public class QueryWizardFeatureView extends TopLevelView {
                 availableFeaturesLayout.setSpacing(true);
                 int columnI = 0;
                 int rowI = 0;
-                for (final ObjectSummary availableFeatureModel : currentFeatureValues) {
-                    checkState(availableFeatureModel.getStructureTexts().isPresent());
-                    checkState(availableFeatureModel.getStructureTexts().get().size() == 1);
-                    final String availableFeatureValue = checkNotNull(
-                            availableFeatureModel.getStructureTexts().get().get(currentFeatureName));
-
+                for (final FeatureValue featureValue : currentFeature.getValues()) {
                     final VerticalLayout availableFeatureLayout = new VerticalLayout();
 
                     final ImageWithRightsLayout thumbnailImage = new ImageWithRightsLayout("",
-                            availableFeatureModel.getImage().get().getSquareThumbnail().get(),
-                            availableFeatureModel.getImage().get().getRights());
+                            featureValue.getImage().getSquareThumbnail().get(), featureValue.getImage().getRights());
                     availableFeatureLayout.addComponent(thumbnailImage);
                     availableFeatureLayout.setComponentAlignment(thumbnailImage, Alignment.MIDDLE_CENTER);
 
                     final HorizontalLayout captionLayout = new HorizontalLayout();
                     captionLayout.setSizeFull();
-                    final CheckBox checkBox = new CheckBox(availableFeatureModel.getTitle());
-                    checkBox.setValue(this.selectedFeatureValues.contains(availableFeatureValue));
+                    final CheckBox checkBox = new CheckBox(featureValue.getName());
+                    checkBox.setValue(featureValue.isSelected());
                     thumbnailImage.addClickListener(new ClickListener() {
                         @Override
                         public void click(final ClickEvent event) {
                             checkBox.setValue(!checkBox.getValue());
-
-                            if (checkBox.getValue()) {
-                                QueryWizardFeatureView.this.selectedFeatureValues.add(availableFeatureValue);
-                            } else {
-                                QueryWizardFeatureView.this.selectedFeatureValues.remove(availableFeatureValue);
-                            }
-
+                            featureValue.setSelected(checkBox.getValue());
                             _getEventBus().post(new WizardFeatureRefreshRequest());
                         }
 
                     });
                     captionLayout.addComponent(checkBox);
                     captionLayout.setComponentAlignment(checkBox, Alignment.MIDDLE_CENTER);
-                    if (availableFeatureModel.getImage().get().getOriginal().isPresent()) {
-                        final Link originalLink = new Link("", new ExternalResource(
-                                availableFeatureModel.getImage().get().getOriginal().get().getUrl().toString()));
+                    if (featureValue.getImage().getOriginal().isPresent()) {
+                        final Link originalLink = new Link("",
+                                new ExternalResource(featureValue.getImage().getOriginal().get().getUrl().toString()));
                         originalLink.setTargetName("_blank");
                         originalLink.setIcon(FontAwesome.SEARCH_PLUS);
                         captionLayout.addComponent(originalLink);
@@ -196,6 +167,6 @@ public class QueryWizardFeatureView extends TopLevelView {
     }
 
     private final Design design = new Design();
-    private final Set<String> selectedFeatureValues = new LinkedHashSet<>();
+    private Feature currentFeature = null;
     public final static String NAME = "query_wizard_feature";
 }

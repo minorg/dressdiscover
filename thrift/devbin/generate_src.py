@@ -223,58 +223,27 @@ class Main(thryft.main.Main):
                     )
 
     def __generate_costume_core_java(self, costume_core_controlled_vocabularies):
-        number_strings = {
-            1: 'ONE',
-            2: 'TWO',
-            3: 'THREE',
-            4: 'FOUR',
-            5: 'FIVE',
-            6: 'SIX',
-            7: 'SEVEN'
-        }
-
-        add_feature_names = []
-        feature_enums = []
         put_features = []
+        INCLUDE_COSTUME_CORE_FEATURE_NAMES = \
+            (
+                "Closure Type",
+                "Material",
+                "Structure Cut",
+                "Structure Neckline",
+                "Structure Skirt",
+                "Structure Sleeves",
+                "Structure Torso",
+                "Structure Waist",
+                "Technique"
+            )
         for feature_name in sorted(costume_core_controlled_vocabularies.iterkeys()):
             if feature_name in EXCLUDE_COSTUME_CORE_FEATURE_NAMES:
                 continue
+            elif feature_name not in INCLUDE_COSTUME_CORE_FEATURE_NAMES:
+                continue
 
-            feature_values = sorted(costume_core_controlled_vocabularies[feature_name].keys())
-
-            feature_name_upper_camelized = feature_name.replace(' ', '')
-            feature_value_enums = []
-            for feature_value in feature_values:
-                feature_value_safe = feature_value.upper()
-                for c in ' _-_/()\'':
-                    feature_value_safe = feature_value_safe.replace(c, '_')
-                feature_value_safe = feature_value_safe.replace('___', '_').replace('__', '_').rstrip('_')
-                try:
-                    feature_value_safe = number_strings[int(feature_value_safe[0])] + feature_value_safe[1:]
-                except ValueError:
-                    pass
-                feature_value_enums.append("""\
-%(feature_value_safe)s("%(feature_value)s")""" % locals())
-            feature_value_enums = indent(' ' * 4, ",\n".join(feature_value_enums))
-            feature_enums.append("""\
-public enum %(feature_name_upper_camelized)s implements Feature {
-%(feature_value_enums)s;
-
-    public final String getDisplayName() {
-        return displayName;
-    }
-
-    private %(feature_name_upper_camelized)s(final String displayName) {
-        this.displayName = displayName;
-    }
-
-    private final String displayName;
-}""" % locals())
-
-            add_feature_names.append(".add(\"%(feature_name)s\")" % locals())
-            put_features.append(".put(\"%(feature_name)s\", %(feature_name_upper_camelized)s.values())" % locals())
-        add_feature_names = ''.join(add_feature_names)
-        feature_enums = "\n\n".join(indent(' ' * 4, feature_enums))
+            for feature_value in sorted(costume_core_controlled_vocabularies[feature_name].keys()):
+                put_features.append(""".put("%(feature_name)s", "%(feature_value)s")""" % locals())
         put_features = ''.join(put_features)
 
         out_dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'java', 'gui', 'src', 'gen', 'java', 'net', 'lab1318', 'costume', 'gui', 'models', 'wizard'))
@@ -286,21 +255,12 @@ public enum %(feature_name_upper_camelized)s implements Feature {
             f.write("""\
 package net.lab1318.costume.gui.models.wizard;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableMultimap;
 
-public final class CostumeCore {
-    public interface Feature {
-        public String getDisplayName();
-
-        public String name();
-    }
-
-%(feature_enums)s
-
-    public final static ImmutableMap<String, Feature[]> FEATURES = ImmutableMap.<String, Feature[]> builder()%(put_features)s.build();
-    public final static ImmutableList<String> FEATURE_NAMES = ImmutableList.<String> builder()%(add_feature_names)s.build();
-}""" % locals())
+final class CostumeCore {
+    public final static ImmutableMultimap<String, String> FEATURES = ImmutableMultimap.<String, String> builder()%(put_features)s.build();
+}
+""" % locals())
 
     def __generate_costume_core_py(self):
         csv_file_name = 'Costume Core Controlled Vocabularies - 2nd draft, Jan 2013.csv'
