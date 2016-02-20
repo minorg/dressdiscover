@@ -10,9 +10,6 @@ import org.thryft.waf.gui.EventBus;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
 import com.google.common.eventbus.Subscribe;
 import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
@@ -22,8 +19,6 @@ import com.vaadin.server.SystemError;
 import com.vaadin.server.UserError;
 import com.vaadin.ui.UI;
 
-import net.lab1318.costume.api.models.object.ObjectFacetFilters;
-import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
@@ -38,7 +33,6 @@ import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
 import net.lab1318.costume.gui.models.wizard.Feature;
 import net.lab1318.costume.gui.models.wizard.FeatureSet;
 import net.lab1318.costume.gui.models.wizard.FeatureSetFactories;
-import net.lab1318.costume.gui.models.wizard.FeatureValue;
 import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.wizard.QueryWizardFeatureView;
 import net.lab1318.costume.gui.views.wizard.QueryWizardSummaryView;
@@ -120,31 +114,6 @@ public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureVie
         __refreshView();
     }
 
-    private ObjectQuery __getCurrentObjectQuery() {
-        ObjectQuery.Builder queryBuilder = ObjectQuery.builder().setFacetFilters(
-                ObjectFacetFilters.builder().setIncludeWorkTypeTexts(ImmutableSet.of("PhysicalObject")).build());
-        final ImmutableMap.Builder<String, ImmutableList<String>> structureTextsBuilder = ImmutableMap.builder();
-        for (final Feature feature : featureSet.getFeatures()) {
-            ImmutableList.Builder<String> selectedFeatureValuesBuilder = null;
-            for (final FeatureValue featureValue : feature.getValues()) {
-                if (featureValue.isSelected()) {
-                    if (selectedFeatureValuesBuilder == null) {
-                        selectedFeatureValuesBuilder = ImmutableList.builder();
-                    }
-                    selectedFeatureValuesBuilder.add(featureValue.getName());
-                }
-            }
-            if (selectedFeatureValuesBuilder != null) {
-                structureTextsBuilder.put(feature.getName(), selectedFeatureValuesBuilder.build());
-            }
-        }
-        final ImmutableMap<String, ImmutableList<String>> structureTexts = structureTextsBuilder.build();
-        if (!structureTexts.isEmpty()) {
-            queryBuilder = queryBuilder.setStructureTexts(structureTexts);
-        }
-        return queryBuilder.build();
-    }
-
     private void __navigateToFeature(final Feature feature) {
         try {
             UI.getCurrent().getNavigator().navigateTo(QueryWizardFeatureView.NAME + '/'
@@ -155,15 +124,15 @@ public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureVie
     }
 
     private void __navigateToFinish() {
-        UI.getCurrent().getNavigator()
-                .navigateTo(QueryWizardSummaryView.NAME + "/" + _toUrlEncodedJsonString(__getCurrentObjectQuery()));
+        UI.getCurrent().getNavigator().navigateTo(
+                QueryWizardSummaryView.NAME + "/" + _toUrlEncodedJsonString(featureSet.getSelectedAsQuery()));
     }
 
     private void __refreshView() {
         final UnsignedInteger selectedObjectCount;
         try {
             selectedObjectCount = objectSummaryQueryService
-                    .getObjectSummaries(GET_OBJECT_COUNT_OPTIONS, Optional.of(__getCurrentObjectQuery()))
+                    .getObjectSummaries(GET_OBJECT_COUNT_OPTIONS, Optional.of(featureSet.getSelectedAsQuery()))
                     .getTotalHits();
         } catch (final IoException e) {
             _getView().setComponentError(new SystemError("I/O exception", e));
