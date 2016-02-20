@@ -14,7 +14,7 @@ import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
-import net.lab1318.costume.gui.models.wizard.FeatureSet;
+import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.views.TopLevelView;
 
 @SuppressWarnings("serial")
@@ -35,7 +35,7 @@ public class QueryWizardSummaryView extends TopLevelView {
         super(eventBus);
     }
 
-    public void setModels(final FeatureSet featureSet, final ObjectQuery query,
+    public void setModels(final WizardFeatureSet featureSet, final ObjectQuery query,
             final UnsignedInteger selectedObjectCount) {
         final Design design = new Design();
 

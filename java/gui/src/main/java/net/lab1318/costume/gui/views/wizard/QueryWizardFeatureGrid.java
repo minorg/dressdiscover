@@ -15,12 +15,12 @@ import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.gui.components.ImageWithRightsLayout;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
-import net.lab1318.costume.gui.models.wizard.Feature;
-import net.lab1318.costume.gui.models.wizard.FeatureValue;
+import net.lab1318.costume.gui.models.wizard.WizardFeature;
+import net.lab1318.costume.gui.models.wizard.WizardFeatureValue;
 
 @SuppressWarnings("serial")
 final class QueryWizardFeatureGrid extends GridLayout {
-    private static int __getRowCount(final Feature feature) {
+    private static int __getRowCount(final WizardFeature feature) {
         int rowCount = feature.getValues().size() / 4;
         if (feature.getValues().size() % 4 != 0) {
             rowCount++;
@@ -28,13 +28,13 @@ final class QueryWizardFeatureGrid extends GridLayout {
         return rowCount;
     }
 
-    QueryWizardFeatureGrid(final EventBus eventBus, final Feature feature) {
+    QueryWizardFeatureGrid(final EventBus eventBus, final WizardFeature feature) {
         super(4, __getRowCount(feature));
         setSizeFull();
         setSpacing(true);
         int columnI = 0;
         int rowI = 0;
-        for (final FeatureValue featureValue : feature.getValues()) {
+        for (final WizardFeatureValue featureValue : feature.getValues()) {
             final VerticalLayout availableFeatureLayout = new VerticalLayout();
 
             final ImageWithRightsLayout thumbnailImage = new ImageWithRightsLayout("",

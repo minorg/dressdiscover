@@ -30,9 +30,9 @@ import net.lab1318.costume.gui.events.wizard.WizardFeatureFinishRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureGotoRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureNextRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
-import net.lab1318.costume.gui.models.wizard.Feature;
-import net.lab1318.costume.gui.models.wizard.FeatureSet;
-import net.lab1318.costume.gui.models.wizard.FeatureSetFactories;
+import net.lab1318.costume.gui.models.wizard.WizardFeature;
+import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
+import net.lab1318.costume.gui.models.wizard.WizardFeatureSetFactories;
 import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.wizard.QueryWizardFeatureView;
 import net.lab1318.costume.gui.views.wizard.QueryWizardSummaryView;
@@ -40,7 +40,7 @@ import net.lab1318.costume.gui.views.wizard.QueryWizardSummaryView;
 @SessionScoped
 public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureView> {
     @Inject
-    public QueryWizardFeaturePresenter(final EventBus eventBus, final FeatureSetFactories featureSetFactories,
+    public QueryWizardFeaturePresenter(final EventBus eventBus, final WizardFeatureSetFactories featureSetFactories,
             final ObjectSummaryQueryService objectSummaryQueryService, final UserCommandService userCommandService,
             final UserQueryService userQueryService, final QueryWizardFeatureView view) {
         super(eventBus, userCommandService, userQueryService, view);
@@ -114,7 +114,7 @@ public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureVie
         __refreshView();
     }
 
-    private void __navigateToFeature(final Feature feature) {
+    private void __navigateToFeature(final WizardFeature feature) {
         try {
             UI.getCurrent().getNavigator().navigateTo(QueryWizardFeatureView.NAME + '/'
                     + URLEncoder.encode(feature.getName(), Charsets.UTF_8.toString()));
@@ -142,9 +142,9 @@ public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureVie
         _getView().setModels(currentFeature, featureSet, selectedObjectCount);
     }
 
-    private Feature currentFeature = null;
-    private FeatureSet featureSet = null;
-    private final FeatureSetFactories featureSetFactories;
+    private WizardFeature currentFeature = null;
+    private WizardFeatureSet featureSet = null;
+    private final WizardFeatureSetFactories featureSetFactories;
     private final ObjectSummaryQueryService objectSummaryQueryService;
     final static Optional<GetObjectSummariesOptions> GET_OBJECT_COUNT_OPTIONS = Optional
             .of(GetObjectSummariesOptions.builder().setSize(UnsignedInteger.ZERO).build());

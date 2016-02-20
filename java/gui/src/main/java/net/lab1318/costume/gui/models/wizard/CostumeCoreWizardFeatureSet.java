@@ -7,8 +7,8 @@ import com.google.common.collect.ImmutableSet;
 import net.lab1318.costume.api.models.object.ObjectFacetFilters;
 import net.lab1318.costume.api.models.object.ObjectQuery;
 
-final class CostumeCoreFeatureSet extends FeatureSet {
-    CostumeCoreFeatureSet(final ImmutableList<Feature> features) {
+final class CostumeCoreWizardFeatureSet extends WizardFeatureSet {
+    CostumeCoreWizardFeatureSet(final ImmutableList<WizardFeature> features) {
         super(features);
     }
 
@@ -17,9 +17,9 @@ final class CostumeCoreFeatureSet extends FeatureSet {
         ObjectQuery.Builder queryBuilder = ObjectQuery.builder().setFacetFilters(
                 ObjectFacetFilters.builder().setIncludeWorkTypeTexts(ImmutableSet.of("PhysicalObject")).build());
         final ImmutableMap.Builder<String, ImmutableList<String>> structureTextsBuilder = ImmutableMap.builder();
-        for (final Feature feature : getFeatures()) {
+        for (final WizardFeature feature : getFeatures()) {
             ImmutableList.Builder<String> selectedFeatureValuesBuilder = null;
-            for (final FeatureValue featureValue : feature.getValues()) {
+            for (final WizardFeatureValue featureValue : feature.getValues()) {
                 if (featureValue.isSelected()) {
                     if (selectedFeatureValuesBuilder == null) {
                         selectedFeatureValuesBuilder = ImmutableList.builder();
@@ -44,12 +44,12 @@ final class CostumeCoreFeatureSet extends FeatureSet {
             return;
         }
         final ImmutableMap<String, ImmutableList<String>> structuredTexts = query.getStructureTexts().get();
-        for (final Feature feature : getFeatures()) {
+        for (final WizardFeature feature : getFeatures()) {
             final ImmutableList<String> structuredTextValues = structuredTexts.get(feature.getName());
             if (structuredTextValues == null) {
                 continue;
             }
-            for (final FeatureValue featureValue : feature.getValues()) {
+            for (final WizardFeatureValue featureValue : feature.getValues()) {
                 if (structuredTextValues.contains(featureValue.getName())) {
                     featureValue.setSelected(true);
                 }

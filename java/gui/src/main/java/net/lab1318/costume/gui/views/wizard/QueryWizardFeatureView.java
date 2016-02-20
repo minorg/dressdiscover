@@ -18,8 +18,8 @@ import net.lab1318.costume.gui.events.wizard.WizardFeatureBackRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureFinishRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureNextRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
-import net.lab1318.costume.gui.models.wizard.Feature;
-import net.lab1318.costume.gui.models.wizard.FeatureSet;
+import net.lab1318.costume.gui.models.wizard.WizardFeature;
+import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.views.TopLevelView;
 
 @SuppressWarnings("serial")
@@ -83,7 +83,7 @@ public class QueryWizardFeatureView extends TopLevelView {
         });
     }
 
-    public void setModels(final Feature currentFeature, final FeatureSet featureSet,
+    public void setModels(final WizardFeature currentFeature, final WizardFeatureSet featureSet,
             final UnsignedInteger selectedObjectCount) {
         this.currentFeature = checkNotNull(currentFeature);
 
@@ -101,6 +101,6 @@ public class QueryWizardFeatureView extends TopLevelView {
     }
 
     private final Design design = new Design();
-    private Feature currentFeature = null;
+    private WizardFeature currentFeature = null;
     public final static String NAME = "query_wizard_feature";
 }

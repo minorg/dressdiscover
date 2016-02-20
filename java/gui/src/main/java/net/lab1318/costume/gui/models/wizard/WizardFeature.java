@@ -5,8 +5,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 
-public final class Feature {
-    Feature(final String name, final ImmutableList<FeatureValue> values) {
+public final class WizardFeature {
+    WizardFeature(final String name, final ImmutableList<WizardFeatureValue> values) {
         this.name = checkNotNull(name);
         this.values = checkNotNull(values);
     }
@@ -15,34 +15,34 @@ public final class Feature {
         return name;
     }
 
-    public Optional<Feature> getNextFeature() {
+    public Optional<WizardFeature> getNextFeature() {
         return nextFeature;
     }
 
-    public Optional<Feature> getPreviousFeature() {
+    public Optional<WizardFeature> getPreviousFeature() {
         return previousFeature;
     }
 
-    public ImmutableList<FeatureValue> getValues() {
+    public ImmutableList<WizardFeatureValue> getValues() {
         return values;
     }
 
     public void resetSelected() {
-        for (final FeatureValue value : values) {
+        for (final WizardFeatureValue value : values) {
             value.setSelected(false);
         }
     }
 
-    void setNextFeature(final Feature nextFeature) {
+    void setNextFeature(final WizardFeature nextFeature) {
         this.nextFeature = Optional.of(nextFeature);
     }
 
-    void setPreviousFeature(final Feature previousFeature) {
+    void setPreviousFeature(final WizardFeature previousFeature) {
         this.previousFeature = Optional.of(previousFeature);
     }
 
     private final String name;
-    private Optional<Feature> nextFeature = Optional.absent();
-    private Optional<Feature> previousFeature = Optional.absent();
-    private final ImmutableList<FeatureValue> values;
+    private Optional<WizardFeature> nextFeature = Optional.absent();
+    private Optional<WizardFeature> previousFeature = Optional.absent();
+    private final ImmutableList<WizardFeatureValue> values;
 }

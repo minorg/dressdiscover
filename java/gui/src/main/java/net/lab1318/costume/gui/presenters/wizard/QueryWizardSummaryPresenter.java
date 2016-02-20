@@ -24,15 +24,15 @@ import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.api.services.user.UserCommandService;
 import net.lab1318.costume.api.services.user.UserQueryService;
-import net.lab1318.costume.gui.models.wizard.FeatureSet;
-import net.lab1318.costume.gui.models.wizard.FeatureSetFactories;
+import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
+import net.lab1318.costume.gui.models.wizard.WizardFeatureSetFactories;
 import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.wizard.QueryWizardSummaryView;
 
 @SessionScoped
 public class QueryWizardSummaryPresenter extends Presenter<QueryWizardSummaryView> {
     @Inject
-    public QueryWizardSummaryPresenter(final EventBus eventBus, final FeatureSetFactories featureSetFactories,
+    public QueryWizardSummaryPresenter(final EventBus eventBus, final WizardFeatureSetFactories featureSetFactories,
             final ObjectSummaryQueryService objectSummaryQueryService, final UserCommandService userCommandService,
             final UserQueryService userQueryService, final QueryWizardSummaryView view) {
         super(eventBus, userCommandService, userQueryService, view);
@@ -51,7 +51,7 @@ public class QueryWizardSummaryPresenter extends Presenter<QueryWizardSummaryVie
             return;
         }
 
-        FeatureSet featureSet;
+        WizardFeatureSet featureSet;
         try {
             featureSet = featureSetFactories.getFeatureSetFactoryByName("costume_core").createFeatureSet();
         } catch (final IoException e) {
@@ -73,6 +73,6 @@ public class QueryWizardSummaryPresenter extends Presenter<QueryWizardSummaryVie
         _getView().setModels(featureSet, objectQuery, selectedObjectCount);
     }
 
-    private final FeatureSetFactories featureSetFactories;
+    private final WizardFeatureSetFactories featureSetFactories;
     private final ObjectSummaryQueryService objectSummaryQueryService;
 }

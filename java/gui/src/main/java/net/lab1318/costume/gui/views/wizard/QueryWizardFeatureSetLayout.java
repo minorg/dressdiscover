@@ -12,20 +12,20 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.declarative.Design;
 
 import net.lab1318.costume.gui.events.wizard.WizardFeatureGotoRequest;
-import net.lab1318.costume.gui.models.wizard.Feature;
-import net.lab1318.costume.gui.models.wizard.FeatureSet;
-import net.lab1318.costume.gui.models.wizard.FeatureValue;
+import net.lab1318.costume.gui.models.wizard.WizardFeature;
+import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
+import net.lab1318.costume.gui.models.wizard.WizardFeatureValue;
 
 @SuppressWarnings("serial")
 @DesignRoot
 final class QueryWizardFeatureSetLayout extends VerticalLayout {
-    public QueryWizardFeatureSetLayout(final Optional<Feature> currentFeature, final EventBus eventBus,
-            final FeatureSet featureSet, final UnsignedInteger selectedObjectCount) {
+    public QueryWizardFeatureSetLayout(final Optional<WizardFeature> currentFeature, final EventBus eventBus,
+            final WizardFeatureSet featureSet, final UnsignedInteger selectedObjectCount) {
         Design.read(this);
 
         currentSelectedObjectCountButton.setCaption(selectedObjectCount + " objects");
 
-        for (final Feature feature : featureSet.getFeatures()) {
+        for (final WizardFeature feature : featureSet.getFeatures()) {
             final VerticalLayout featureNavigationLayout = new VerticalLayout();
             final Button featureButton = new NativeButton(feature.getName(), new Button.ClickListener() {
                 @Override
@@ -39,7 +39,7 @@ final class QueryWizardFeatureSetLayout extends VerticalLayout {
             featureNavigationLayout.addComponent(featureButton);
 
             String selectedFeatureValuesString = "";
-            for (final FeatureValue featureValue : feature.getValues()) {
+            for (final WizardFeatureValue featureValue : feature.getValues()) {
                 if (!featureValue.isSelected()) {
                     continue;
                 }

@@ -25,9 +25,9 @@ import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 
 @Singleton
-public class CostumeCoreFeatureSetFactory implements FeatureSetFactory {
+public class CostumeCoreWizardFeatureSetFactory implements WizardFeatureSetFactory {
     @Inject
-    public CostumeCoreFeatureSetFactory(final ObjectSummaryQueryService objectSummaryQueryService) {
+    public CostumeCoreWizardFeatureSetFactory(final ObjectSummaryQueryService objectSummaryQueryService) {
         try {
             collectionId = CollectionId.parse("wizard/wizard");
         } catch (final InvalidCollectionIdException e) {
@@ -37,7 +37,7 @@ public class CostumeCoreFeatureSetFactory implements FeatureSetFactory {
     }
 
     @Override
-    public final synchronized FeatureSet createFeatureSet() throws IoException {
+    public final synchronized WizardFeatureSet createFeatureSet() throws IoException {
         if (featureImages == null) {
             final ImmutableList<ObjectSummaryEntry> featureObjectSummariesList = objectSummaryQueryService
                     .getObjectSummaries(Optional.absent(),
@@ -76,18 +76,18 @@ public class CostumeCoreFeatureSetFactory implements FeatureSetFactory {
             this.featureImages = immutableFeatureImagesBuilder.build();
         }
 
-        final ImmutableList.Builder<Feature> featuresBuilder = ImmutableList.builder();
+        final ImmutableList.Builder<WizardFeature> featuresBuilder = ImmutableList.builder();
         for (final Map.Entry<String, Collection<String>> featureEntry : CostumeCore.FEATURES.asMap().entrySet()) {
             final String featureName = featureEntry.getKey();
             final ImmutableMap<String, Image> featureValueImages = checkNotNull(featureImages.get(featureName));
-            final ImmutableList.Builder<FeatureValue> featureValuesBuilder = ImmutableList.builder();
+            final ImmutableList.Builder<WizardFeatureValue> featureValuesBuilder = ImmutableList.builder();
             for (final String featureValue : featureEntry.getValue()) {
                 featureValuesBuilder
-                        .add(new FeatureValue(checkNotNull(featureValueImages.get(featureValue)), featureValue));
+                        .add(new WizardFeatureValue(checkNotNull(featureValueImages.get(featureValue)), featureValue));
             }
-            featuresBuilder.add(new Feature(featureName, featureValuesBuilder.build()));
+            featuresBuilder.add(new WizardFeature(featureName, featureValuesBuilder.build()));
         }
-        return new CostumeCoreFeatureSet(featuresBuilder.build());
+        return new CostumeCoreWizardFeatureSet(featuresBuilder.build());
     }
 
     private final CollectionId collectionId;
