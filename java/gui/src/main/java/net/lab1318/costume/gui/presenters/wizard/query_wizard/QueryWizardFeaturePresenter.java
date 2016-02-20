@@ -33,6 +33,7 @@ import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSetFactories;
+import net.lab1318.costume.gui.models.wizard.WizardFeatureSetFactory;
 import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardFeatureView;
 import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardSummaryView;
@@ -81,27 +82,45 @@ public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureVie
 
     @Override
     protected void _onViewEnter(final Optional<UserEntry> currentUser, final ViewChangeEvent event) {
-        if (featureSet == null) {
-            // TODO: check if current featureSet corresponds to desired features
+        if (event.getParameters().isEmpty()) {
+            _getView().setComponentError(new UserError("missing feature set"));
+            return;
+        }
+
+        final String[] parametersSplit = event.getParameters().split("/", 2);
+        final String featureSetName = parametersSplit[0];
+        if (featureSetName.isEmpty()) {
+            _getView().setComponentError(new UserError("missing feature set"));
+            return;
+        }
+        String featureName;
+        try {
+            featureName = parametersSplit.length == 2 ? URLDecoder.decode(parametersSplit[1], Charsets.UTF_8.name())
+                    : "";
+        } catch (final UnsupportedEncodingException e) {
+            throw new IllegalStateException(e);
+        }
+
+        if (featureSet == null || !featureSetName.equals(featureSet.getUrlName())) {
+            WizardFeatureSetFactory featureSetFactory;
             try {
-                featureSet = featureSetFactories.getFeatureSetFactoryByName("costume_core").createFeatureSet();
+                featureSetFactory = featureSetFactories.getFeatureSetFactoryByUrlName(featureSetName);
+            } catch (final IllegalArgumentException e) {
+                _getView().setComponentError(new UserError(String.format("unknown feature set '%s'", featureSetName)));
+                return;
+            }
+            try {
+                featureSet = featureSetFactory.createFeatureSet();
             } catch (final IoException e) {
                 _getView().setComponentError(new SystemError("I/O exception", e));
                 return;
             }
         }
 
-        if (event.getParameters().isEmpty()) {
+        if (featureName.isEmpty()) {
             featureSet.resetSelected();
             __navigateToFeature(featureSet.getFeatures().get(0));
             return;
-        }
-
-        String currentFeatureName;
-        try {
-            currentFeatureName = URLDecoder.decode(event.getParameters(), "UTF-8");
-        } catch (final UnsupportedEncodingException e) {
-            throw new IllegalStateException(e);
         }
 
         try {

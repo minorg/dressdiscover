@@ -90,8 +90,19 @@ public class CostumeCoreWizardFeatureSetFactory implements WizardFeatureSetFacto
         return new CostumeCoreWizardFeatureSet(featuresBuilder.build());
     }
 
+    @Override
+    public String getDisplayName() {
+        return CostumeCoreWizardFeatureSet.DISPLAY_NAME;
+    }
+
+    @Override
+    public String getUrlName() {
+        return CostumeCoreWizardFeatureSet.URL_NAME;
+    }
+
     private final CollectionId collectionId;
     private ImmutableMap<String, ImmutableMap<String, Image>> featureImages = null;
+
     private final ObjectSummaryQueryService objectSummaryQueryService;
     private final Image placeholderImage = Image.builder()
             .setSquareThumbnail(ImageVersion.builder().setHeightPx(UnsignedInteger.valueOf(200))

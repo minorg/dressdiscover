@@ -53,7 +53,7 @@ public class QueryWizardSummaryPresenter extends Presenter<QueryWizardSummaryVie
 
         WizardFeatureSet featureSet;
         try {
-            featureSet = featureSetFactories.getFeatureSetFactoryByName("costume_core").createFeatureSet();
+            featureSet = featureSetFactories.getFeatureSetFactoryByUrlName("costume_core").createFeatureSet();
         } catch (final IoException e) {
             _getView().setComponentError(new SystemError("I/O exception", e));
             return;

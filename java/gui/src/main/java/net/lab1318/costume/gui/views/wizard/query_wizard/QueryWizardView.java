@@ -11,6 +11,7 @@ import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
+import net.lab1318.costume.gui.models.wizard.CostumeCoreWizardFeatureSet;
 import net.lab1318.costume.gui.views.TopLevelView;
 
 @SuppressWarnings("serial")
@@ -22,7 +23,7 @@ public class QueryWizardView extends TopLevelView {
             com.vaadin.ui.declarative.Design.read(this);
         }
 
-        Button startButton = null;
+        Button costumeCoreButton = null;
     }
 
     @Inject
@@ -32,10 +33,11 @@ public class QueryWizardView extends TopLevelView {
 
     public void setModels() {
         final Design design = new Design();
-        design.startButton.addClickListener(new ClickListener() {
+        design.costumeCoreButton.addClickListener(new ClickListener() {
             @Override
             public void buttonClick(final ClickEvent event) {
-                UI.getCurrent().getNavigator().navigateTo(QueryWizardFeatureView.NAME);
+                UI.getCurrent().getNavigator()
+                        .navigateTo(QueryWizardFeatureView.NAME + "/" + CostumeCoreWizardFeatureSet.URL_NAME);
             }
         });
         setCompositionRoot(design);

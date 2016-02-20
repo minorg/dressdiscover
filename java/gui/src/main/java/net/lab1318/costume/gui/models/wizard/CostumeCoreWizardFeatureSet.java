@@ -7,9 +7,14 @@ import com.google.common.collect.ImmutableSet;
 import net.lab1318.costume.api.models.object.ObjectFacetFilters;
 import net.lab1318.costume.api.models.object.ObjectQuery;
 
-final class CostumeCoreWizardFeatureSet extends WizardFeatureSet {
+public final class CostumeCoreWizardFeatureSet extends WizardFeatureSet {
     CostumeCoreWizardFeatureSet(final ImmutableList<WizardFeature> features) {
         super(features);
+    }
+
+    @Override
+    public String getDisplayName() {
+        return DISPLAY_NAME;
     }
 
     @Override
@@ -39,6 +44,11 @@ final class CostumeCoreWizardFeatureSet extends WizardFeatureSet {
     }
 
     @Override
+    public String getUrlName() {
+        return URL_NAME;
+    }
+
+    @Override
     public void setSelectedFromQuery(final ObjectQuery query) {
         if (!query.getStructureTexts().isPresent()) {
             return;
@@ -56,4 +66,7 @@ final class CostumeCoreWizardFeatureSet extends WizardFeatureSet {
             }
         }
     }
+
+    public final static String DISPLAY_NAME = "Costume Core";
+    public final static String URL_NAME = "costume_core";
 }

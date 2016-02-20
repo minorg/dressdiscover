@@ -20,6 +20,8 @@ public abstract class WizardFeatureSet {
         }
     }
 
+    public abstract String getDisplayName();
+
     public WizardFeature getFeatureByName(final String name) {
         for (final WizardFeature feature : features) {
             if (feature.getName().equals(name)) {
@@ -34,6 +36,8 @@ public abstract class WizardFeatureSet {
     }
 
     public abstract ObjectQuery getSelectedAsQuery();
+
+    public abstract String getUrlName();
 
     public void resetSelected() {
         for (final WizardFeature feature : features) {

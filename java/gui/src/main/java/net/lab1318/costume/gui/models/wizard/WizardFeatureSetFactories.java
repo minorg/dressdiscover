@@ -8,11 +8,16 @@ import com.google.inject.Singleton;
 public class WizardFeatureSetFactories {
     @Inject
     public WizardFeatureSetFactories(final CostumeCoreWizardFeatureSetFactory costumeCoreFeatureSetFactory) {
-        map = ImmutableMap.<String, WizardFeatureSetFactory> of("costume_core", costumeCoreFeatureSetFactory);
+        final ImmutableMap.Builder<String, WizardFeatureSetFactory> byUrlNameBuilder = ImmutableMap.builder();
+        for (final WizardFeatureSetFactory featureSetFactory : new WizardFeatureSetFactory[] {
+                costumeCoreFeatureSetFactory }) {
+            byUrlNameBuilder.put(featureSetFactory.getUrlName(), featureSetFactory);
+        }
+        byUrlName = byUrlNameBuilder.build();
     }
 
-    public final WizardFeatureSetFactory getFeatureSetFactoryByName(final String name) {
-        final WizardFeatureSetFactory result = map.get(name.toLowerCase());
+    public final WizardFeatureSetFactory getFeatureSetFactoryByUrlName(final String name) {
+        final WizardFeatureSetFactory result = byUrlName.get(name.toLowerCase());
         if (result != null) {
             return result;
         } else {
@@ -20,5 +25,5 @@ public class WizardFeatureSetFactories {
         }
     }
 
-    private final ImmutableMap<String, WizardFeatureSetFactory> map;
+    private final ImmutableMap<String, WizardFeatureSetFactory> byUrlName;
 }
