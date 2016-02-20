@@ -16,18 +16,18 @@ import net.lab1318.costume.gui.presenters.home.HomePresenter;
 import net.lab1318.costume.gui.presenters.institutions.InstitutionsPresenter;
 import net.lab1318.costume.gui.presenters.object_by_id.ObjectByIdPresenter;
 import net.lab1318.costume.gui.presenters.objects.ObjectsPresenter;
-import net.lab1318.costume.gui.presenters.query_wizard.QueryWizardFeaturePresenter;
-import net.lab1318.costume.gui.presenters.query_wizard.QueryWizardPresenter;
-import net.lab1318.costume.gui.presenters.query_wizard.QueryWizardSummaryPresenter;
 import net.lab1318.costume.gui.presenters.user_bookmarks.UserBookmarksPresenter;
+import net.lab1318.costume.gui.presenters.wizard.query_wizard.QueryWizardFeaturePresenter;
+import net.lab1318.costume.gui.presenters.wizard.query_wizard.QueryWizardPresenter;
+import net.lab1318.costume.gui.presenters.wizard.query_wizard.QueryWizardSummaryPresenter;
 import net.lab1318.costume.gui.views.home.HomeView;
 import net.lab1318.costume.gui.views.institutions.InstitutionsView;
 import net.lab1318.costume.gui.views.object_by_id.ObjectByIdView;
 import net.lab1318.costume.gui.views.objects.ObjectsView;
-import net.lab1318.costume.gui.views.query_wizard.QueryWizardFeatureView;
-import net.lab1318.costume.gui.views.query_wizard.QueryWizardSummaryView;
-import net.lab1318.costume.gui.views.query_wizard.QueryWizardView;
 import net.lab1318.costume.gui.views.user_bookmarks.UserBookmarksView;
+import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardFeatureView;
+import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardSummaryView;
+import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardView;
 
 @SuppressWarnings("serial")
 @Theme("costume")

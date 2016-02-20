@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.presenters.query_wizard;
+package net.lab1318.costume.gui.presenters.wizard.query_wizard;
 
 import org.thryft.waf.gui.EventBus;
 
@@ -11,7 +11,7 @@ import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.api.services.user.UserCommandService;
 import net.lab1318.costume.api.services.user.UserQueryService;
 import net.lab1318.costume.gui.presenters.Presenter;
-import net.lab1318.costume.gui.views.query_wizard.QueryWizardView;
+import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardView;
 
 @SessionScoped
 public class QueryWizardPresenter extends Presenter<QueryWizardView> {

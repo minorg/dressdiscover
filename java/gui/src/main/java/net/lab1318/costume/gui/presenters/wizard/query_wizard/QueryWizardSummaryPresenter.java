@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.presenters.query_wizard;
+package net.lab1318.costume.gui.presenters.wizard.query_wizard;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -27,7 +27,7 @@ import net.lab1318.costume.api.services.user.UserQueryService;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSetFactories;
 import net.lab1318.costume.gui.presenters.Presenter;
-import net.lab1318.costume.gui.views.query_wizard.QueryWizardSummaryView;
+import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardSummaryView;
 
 @SessionScoped
 public class QueryWizardSummaryPresenter extends Presenter<QueryWizardSummaryView> {

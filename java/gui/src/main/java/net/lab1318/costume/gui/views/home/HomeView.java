@@ -13,7 +13,7 @@ import com.vaadin.ui.UI;
 
 import net.lab1318.costume.gui.views.TopLevelView;
 import net.lab1318.costume.gui.views.institutions.InstitutionsView;
-import net.lab1318.costume.gui.views.query_wizard.QueryWizardView;
+import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardView;
 
 @SuppressWarnings("serial")
 @SessionScoped
