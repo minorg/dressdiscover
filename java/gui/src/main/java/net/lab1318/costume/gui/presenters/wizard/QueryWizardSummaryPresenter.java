@@ -27,7 +27,7 @@ import net.lab1318.costume.api.services.user.UserQueryService;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSetFactories;
 import net.lab1318.costume.gui.presenters.Presenter;
-import net.lab1318.costume.gui.views.wizard.QueryWizardSummaryView;
+import net.lab1318.costume.gui.views.query_wizard.QueryWizardSummaryView;
 
 @SessionScoped
 public class QueryWizardSummaryPresenter extends Presenter<QueryWizardSummaryView> {

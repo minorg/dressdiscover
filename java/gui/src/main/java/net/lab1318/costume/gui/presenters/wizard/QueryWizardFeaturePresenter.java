@@ -34,8 +34,8 @@ import net.lab1318.costume.gui.models.wizard.WizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSetFactories;
 import net.lab1318.costume.gui.presenters.Presenter;
-import net.lab1318.costume.gui.views.wizard.QueryWizardFeatureView;
-import net.lab1318.costume.gui.views.wizard.QueryWizardSummaryView;
+import net.lab1318.costume.gui.views.query_wizard.QueryWizardFeatureView;
+import net.lab1318.costume.gui.views.query_wizard.QueryWizardSummaryView;
 
 @SessionScoped
 public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureView> {

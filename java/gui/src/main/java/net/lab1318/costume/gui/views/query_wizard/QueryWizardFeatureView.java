@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.views.wizard;
+package net.lab1318.costume.gui.views.query_wizard;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

@@ -24,10 +24,10 @@ import net.lab1318.costume.gui.views.home.HomeView;
 import net.lab1318.costume.gui.views.institutions.InstitutionsView;
 import net.lab1318.costume.gui.views.object_by_id.ObjectByIdView;
 import net.lab1318.costume.gui.views.objects.ObjectsView;
+import net.lab1318.costume.gui.views.query_wizard.QueryWizardFeatureView;
+import net.lab1318.costume.gui.views.query_wizard.QueryWizardSummaryView;
+import net.lab1318.costume.gui.views.query_wizard.QueryWizardView;
 import net.lab1318.costume.gui.views.user_bookmarks.UserBookmarksView;
-import net.lab1318.costume.gui.views.wizard.QueryWizardFeatureView;
-import net.lab1318.costume.gui.views.wizard.QueryWizardSummaryView;
-import net.lab1318.costume.gui.views.wizard.QueryWizardView;
 
 @SuppressWarnings("serial")
 @Theme("costume")
