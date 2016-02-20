@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.presenters.wizard;
+package net.lab1318.costume.gui.presenters.query_wizard;
 
 import org.thryft.waf.gui.EventBus;
 
