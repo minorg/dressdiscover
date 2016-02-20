@@ -9,28 +9,17 @@ import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
 import com.vaadin.annotations.DesignRoot;
-import com.vaadin.event.MouseEvents.ClickEvent;
-import com.vaadin.event.MouseEvents.ClickListener;
-import com.vaadin.server.ExternalResource;
-import com.vaadin.server.FontAwesome;
-import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.CheckBox;
-import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
-import com.vaadin.ui.Link;
-import com.vaadin.ui.VerticalLayout;
 
-import net.lab1318.costume.gui.components.ImageWithRightsLayout;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureBackRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureFinishRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureNextRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
 import net.lab1318.costume.gui.models.wizard.Feature;
 import net.lab1318.costume.gui.models.wizard.FeatureSet;
-import net.lab1318.costume.gui.models.wizard.FeatureValue;
 import net.lab1318.costume.gui.views.TopLevelView;
 
 @SuppressWarnings("serial")
@@ -98,70 +87,15 @@ public class QueryWizardFeatureView extends TopLevelView {
             final UnsignedInteger selectedObjectCount) {
         this.currentFeature = checkNotNull(currentFeature);
 
-        {
-            design.leftPaneLayout.removeAllComponents();
-            design.leftPaneLayout.addComponent(new QueryWizardFeatureSetLayout(Optional.of(currentFeature),
-                    _getEventBus(), featureSet, selectedObjectCount));
-        }
+        design.leftPaneLayout.removeAllComponents();
+        design.leftPaneLayout.addComponent(new QueryWizardFeatureSetLayout(Optional.of(currentFeature), _getEventBus(),
+                featureSet, selectedObjectCount));
 
-        {
-            design.currentFeatureNameLabel.setCaptionAsHtml(true);
-            design.currentFeatureNameLabel.setCaption("<h1>Selecting: " + currentFeature.getName() + "</h1>");
+        design.currentFeatureNameLabel.setCaptionAsHtml(true);
+        design.currentFeatureNameLabel.setCaption("<h1>Selecting: " + currentFeature.getName() + "</h1>");
 
-            {
-                int rowCount = currentFeature.getValues().size() / 4;
-                if (currentFeature.getValues().size() % 4 != 0) {
-                    rowCount++;
-                }
-                final GridLayout availableFeaturesLayout = new GridLayout(4, rowCount);
-                availableFeaturesLayout.setSizeFull();
-                availableFeaturesLayout.setSpacing(true);
-                int columnI = 0;
-                int rowI = 0;
-                for (final FeatureValue featureValue : currentFeature.getValues()) {
-                    final VerticalLayout availableFeatureLayout = new VerticalLayout();
-
-                    final ImageWithRightsLayout thumbnailImage = new ImageWithRightsLayout("",
-                            featureValue.getImage().getSquareThumbnail().get(), featureValue.getImage().getRights());
-                    availableFeatureLayout.addComponent(thumbnailImage);
-                    availableFeatureLayout.setComponentAlignment(thumbnailImage, Alignment.MIDDLE_CENTER);
-
-                    final HorizontalLayout captionLayout = new HorizontalLayout();
-                    captionLayout.setSizeFull();
-                    final CheckBox checkBox = new CheckBox(featureValue.getName());
-                    checkBox.setValue(featureValue.isSelected());
-                    thumbnailImage.addClickListener(new ClickListener() {
-                        @Override
-                        public void click(final ClickEvent event) {
-                            checkBox.setValue(!checkBox.getValue());
-                            featureValue.setSelected(checkBox.getValue());
-                            _getEventBus().post(new WizardFeatureRefreshRequest());
-                        }
-
-                    });
-                    captionLayout.addComponent(checkBox);
-                    captionLayout.setComponentAlignment(checkBox, Alignment.MIDDLE_CENTER);
-                    if (featureValue.getImage().getOriginal().isPresent()) {
-                        final Link originalLink = new Link("",
-                                new ExternalResource(featureValue.getImage().getOriginal().get().getUrl().toString()));
-                        originalLink.setTargetName("_blank");
-                        originalLink.setIcon(FontAwesome.SEARCH_PLUS);
-                        captionLayout.addComponent(originalLink);
-                        captionLayout.setComponentAlignment(originalLink, Alignment.MIDDLE_CENTER);
-                    }
-                    availableFeatureLayout.addComponent(captionLayout);
-
-                    availableFeaturesLayout.addComponent(availableFeatureLayout, columnI, rowI);
-                    if (++columnI == 4) {
-                        columnI = 0;
-                        rowI++;
-                    }
-                }
-
-                design.availableFeaturesLayout.removeAllComponents();
-                design.availableFeaturesLayout.addComponent(availableFeaturesLayout);
-            }
-        }
+        design.availableFeaturesLayout.removeAllComponents();
+        design.availableFeaturesLayout.addComponent(new QueryWizardFeatureGrid(_getEventBus(), currentFeature));
 
         setCompositionRoot(design);
     }
