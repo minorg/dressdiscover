@@ -9,22 +9,13 @@
 			<v-vertical-layout _id="featureSetLayout"></v-vertical-layout>
 		</v-vertical-layout>
 		<v-vertical-layout :expand="8" size-full>
-			<v-horizontal-layout size-full>
-				<v-native-button _id="topBackButton" :left :middle><b>Back</b></v-native-button>
-				<v-native-button _id="topNextButton" :right :middle><b>Next</b></v-native-button>
-				<v-native-button _id="topFinishButton" :right :middle><b>Finish</b></v-native-button>
-			</v-horizontal-layout>
+			<v-horizontal-layout _id="topNavigationLayout" size-full></v-horizontal-layout>
 			<v-label _id="currentFeatureNameLabel" :middle :center></v-label>
 			<v-horizontal-layout size-full>
 				<v-native-button _id="resetButton" :middle :right>Reset</v-native-button>
 			</v-horizontal-layout>
-			<v-horizontal-layout _id="availableFeaturesLayout" size-full>
-			</v-horizontal-layout>
-			<v-horizontal-layout size-full>
-				<v-native-button _id="bottomBackButton" :left :middle><b>Back</b></v-native-button>
-				<v-native-button _id="bottomNextButton" :right :middle><b>Next</b></v-native-button>
-				<v-native-button _id="bottomFinishButton" :right :middle><b>Finish</b></v-native-button>
-			</v-horizontal-layout>
+			<v-horizontal-layout _id="availableFeaturesLayout" size-full></v-horizontal-layout>
+			<v-horizontal-layout _id="bottomNavigationLayout" size-full></v-horizontal-layout>
 		</v-vertical-layout>
 	</v-horizontal-layout>
 </body>
