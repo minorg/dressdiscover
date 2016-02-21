@@ -15,7 +15,7 @@ import net.lab1318.costume.gui.views.TopLevelView;
 @SuppressWarnings("serial")
 @SessionScoped
 public class CatalogWizardView extends TopLevelView {
-    @DesignRoot("QueryWizardView.html")
+    @DesignRoot("CatalogWizardView.html")
     private final static class Design extends VerticalLayout {
         public Design() {
             com.vaadin.ui.declarative.Design.read(this);

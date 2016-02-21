@@ -2,16 +2,18 @@ package net.lab1318.costume.gui.models.wizard;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.Optional;
+
 import net.lab1318.costume.api.models.image.Image;
 
 public final class EnumWizardFeatureValue {
-    EnumWizardFeatureValue(final Image image, final String name) {
+    EnumWizardFeatureValue(final Optional<Image> image, final String name) {
         this.image = checkNotNull(image);
         this.name = checkNotNull(name);
         this.selected = false;
     }
 
-    public Image getImage() {
+    public Optional<Image> getImage() {
         return image;
     }
 
@@ -27,7 +29,7 @@ public final class EnumWizardFeatureValue {
         this.selected = selected;
     }
 
-    private final Image image;
+    private final Optional<Image> image;
     private boolean selected;
     private final String name;
 }

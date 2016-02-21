@@ -6,19 +6,15 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.thryft.native_.Url;
-
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.collection.InvalidCollectionIdException;
 import net.lab1318.costume.api.models.image.Image;
-import net.lab1318.costume.api.models.image.ImageVersion;
 import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 import net.lab1318.costume.api.services.IoException;
@@ -44,12 +40,12 @@ public class CostumeCoreWizardFeatureSetFactory implements WizardFeatureSetFacto
                             Optional.of(ObjectQuery.builder().setCollectionId(collectionId).setIncludeHidden(true)
                                     .setInstitutionId(collectionId.getInstitutionId()).build()))
                     .getHits();
-            final Map<String, Map<String, Image>> featureImages = new HashMap<>();
+            final Map<String, Map<String, Optional<Image>>> featureImages = new HashMap<>();
             for (final Map.Entry<String, Collection<String>> featureEntry : CostumeCore.FEATURES.asMap().entrySet()) {
                 final String featureName = featureEntry.getKey();
-                final Map<String, Image> featureValueImages = new HashMap<>();
+                final Map<String, Optional<Image>> featureValueImages = new HashMap<>();
                 for (final String featureValue : featureEntry.getValue()) {
-                    Image featureValueImage = placeholderImage;
+                    Optional<Image> featureValueImage = Optional.absent();
                     for (final ObjectSummaryEntry featureObjectSummary : featureObjectSummariesList) {
                         if (!featureObjectSummary.getModel().getStructureTexts().isPresent()) {
                             continue;
@@ -61,29 +57,44 @@ public class CostumeCoreWizardFeatureSetFactory implements WizardFeatureSetFacto
                         } else if (!checkFeatureValue.equals(featureValue)) {
                             continue;
                         }
-                        featureValueImage = featureObjectSummary.getModel().getImage().orNull();
+                        featureValueImage = featureObjectSummary.getModel().getImage();
                         break;
                     }
-                    featureValueImages.put(featureValue, featureValueImage);
+                    if (featureValueImage.isPresent()) {
+                        featureValueImages.put(featureValue, featureValueImage);
+                    }
                 }
-                featureImages.put(featureName, featureValueImages);
+                if (!featureValueImages.isEmpty()) {
+                    featureImages.put(featureName, featureValueImages);
+                }
             }
-            final ImmutableMap.Builder<String, ImmutableMap<String, Image>> immutableFeatureImagesBuilder = ImmutableMap
+            final ImmutableMap.Builder<String, ImmutableMap<String, Optional<Image>>> immutableFeatureImagesBuilder = ImmutableMap
                     .builder();
-            for (final Map.Entry<String, Map<String, Image>> entry : featureImages.entrySet()) {
+            for (final Map.Entry<String, Map<String, Optional<Image>>> entry : featureImages.entrySet()) {
                 immutableFeatureImagesBuilder.put(entry.getKey(), ImmutableMap.copyOf(entry.getValue()));
             }
             this.featureImages = immutableFeatureImagesBuilder.build();
         }
 
         final ImmutableList.Builder<WizardFeature> featuresBuilder = ImmutableList.builder();
+        if (mode == WizardMode.CATALOG) {
+            featuresBuilder.add(new TextWizardFeature("Title"));
+        }
         for (final Map.Entry<String, Collection<String>> featureEntry : CostumeCore.FEATURES.asMap().entrySet()) {
             final String featureName = featureEntry.getKey();
-            final ImmutableMap<String, Image> featureValueImages = checkNotNull(featureImages.get(featureName));
+            final ImmutableMap<String, Optional<Image>> featureValueImages = featureImages.get(featureName);
             final ImmutableList.Builder<EnumWizardFeatureValue> featureValuesBuilder = ImmutableList.builder();
             for (final String featureValue : featureEntry.getValue()) {
-                featureValuesBuilder.add(
-                        new EnumWizardFeatureValue(checkNotNull(featureValueImages.get(featureValue)), featureValue));
+                Optional<Image> featureValueImage;
+                if (featureValueImages != null) {
+                    featureValueImage = featureValueImages.get(featureValue);
+                    if (featureValueImage == null) {
+                        featureValueImage = Optional.absent();
+                    }
+                } else {
+                    featureValueImage = Optional.absent();
+                }
+                featureValuesBuilder.add(new EnumWizardFeatureValue(featureValueImage, featureValue));
             }
             featuresBuilder.add(new EnumWizardFeature(featureName, featureValuesBuilder.build()));
         }
@@ -101,12 +112,7 @@ public class CostumeCoreWizardFeatureSetFactory implements WizardFeatureSetFacto
     }
 
     private final CollectionId collectionId;
-    private ImmutableMap<String, ImmutableMap<String, Image>> featureImages = null;
+    private ImmutableMap<String, ImmutableMap<String, Optional<Image>>> featureImages = null;
 
     private final ObjectSummaryQueryService objectSummaryQueryService;
-    private final Image placeholderImage = Image.builder()
-            .setSquareThumbnail(ImageVersion.builder().setHeightPx(UnsignedInteger.valueOf(200))
-                    .setUrl(Url.parse("http://placehold.it/200x200?text=Missing%20image"))
-                    .setWidthPx(UnsignedInteger.valueOf(200)).build())
-            .build();
 }

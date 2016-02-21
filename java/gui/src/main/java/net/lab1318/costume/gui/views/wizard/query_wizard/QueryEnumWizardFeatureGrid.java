@@ -1,7 +1,9 @@
 package net.lab1318.costume.gui.views.wizard.query_wizard;
 
+import org.thryft.native_.Url;
 import org.thryft.waf.gui.EventBus;
 
+import com.google.common.primitives.UnsignedInteger;
 import com.vaadin.event.MouseEvents.ClickEvent;
 import com.vaadin.event.MouseEvents.ClickListener;
 import com.vaadin.server.ExternalResource;
@@ -13,6 +15,8 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.VerticalLayout;
 
+import net.lab1318.costume.api.models.image.Image;
+import net.lab1318.costume.api.models.image.ImageVersion;
 import net.lab1318.costume.gui.components.ImageWithRightsLayout;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
 import net.lab1318.costume.gui.models.wizard.EnumWizardFeature;
@@ -39,8 +43,10 @@ final class QueryEnumWizardFeatureGrid extends GridLayout {
         for (final EnumWizardFeatureValue featureValue : feature.getValues()) {
             final VerticalLayout availableFeatureLayout = new VerticalLayout();
 
-            final ImageWithRightsLayout thumbnailImage = new ImageWithRightsLayout("",
-                    featureValue.getImage().getSquareThumbnail().get(), featureValue.getImage().getRights());
+            final Image image = featureValue.getImage().or(placeholderImage);
+
+            final ImageWithRightsLayout thumbnailImage = new ImageWithRightsLayout("", image.getSquareThumbnail().get(),
+                    image.getRights());
             availableFeatureLayout.addComponent(thumbnailImage);
             availableFeatureLayout.setComponentAlignment(thumbnailImage, Alignment.MIDDLE_CENTER);
 
@@ -59,9 +65,9 @@ final class QueryEnumWizardFeatureGrid extends GridLayout {
             });
             captionLayout.addComponent(checkBox);
             captionLayout.setComponentAlignment(checkBox, Alignment.MIDDLE_CENTER);
-            if (featureValue.getImage().getOriginal().isPresent()) {
+            if (image.getOriginal().isPresent()) {
                 final Link originalLink = new Link("",
-                        new ExternalResource(featureValue.getImage().getOriginal().get().getUrl().toString()));
+                        new ExternalResource(image.getOriginal().get().getUrl().toString()));
                 originalLink.setTargetName("_blank");
                 originalLink.setIcon(FontAwesome.SEARCH_PLUS);
                 captionLayout.addComponent(originalLink);
@@ -76,4 +82,10 @@ final class QueryEnumWizardFeatureGrid extends GridLayout {
             }
         }
     }
+
+    private final static Image placeholderImage = Image.builder()
+            .setSquareThumbnail(ImageVersion.builder().setHeightPx(UnsignedInteger.valueOf(200))
+                    .setUrl(Url.parse("http://placehold.it/200x200?text=Missing%20image"))
+                    .setWidthPx(UnsignedInteger.valueOf(200)).build())
+            .build();
 }

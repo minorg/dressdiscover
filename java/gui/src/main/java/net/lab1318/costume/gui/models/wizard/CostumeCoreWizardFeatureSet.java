@@ -1,5 +1,7 @@
 package net.lab1318.costume.gui.models.wizard;
 
+import static com.google.common.base.Preconditions.checkState;
+
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -23,10 +25,8 @@ public final class CostumeCoreWizardFeatureSet extends WizardFeatureSet {
                 ObjectFacetFilters.builder().setIncludeWorkTypeTexts(ImmutableSet.of("PhysicalObject")).build());
         final ImmutableMap.Builder<String, ImmutableList<String>> structureTextsBuilder = ImmutableMap.builder();
         for (final WizardFeature feature : getFeatures()) {
+            checkState(feature instanceof EnumWizardFeature);
             ImmutableList.Builder<String> selectedFeatureValuesBuilder = null;
-            if (!(feature instanceof EnumWizardFeature)) {
-                continue;
-            }
             for (final String featureValue : feature.getSelected()) {
                 if (selectedFeatureValuesBuilder == null) {
                     selectedFeatureValuesBuilder = ImmutableList.builder();
