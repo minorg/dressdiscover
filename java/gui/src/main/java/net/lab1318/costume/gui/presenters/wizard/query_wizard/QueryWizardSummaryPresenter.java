@@ -19,6 +19,7 @@ import net.lab1318.costume.api.services.user.UserCommandService;
 import net.lab1318.costume.api.services.user.UserQueryService;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSetFactories;
+import net.lab1318.costume.gui.models.wizard.WizardMode;
 import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardSummaryView;
 
@@ -37,7 +38,7 @@ public class QueryWizardSummaryPresenter extends Presenter<QueryWizardSummaryVie
     protected void _onViewEnter(final Optional<UserEntry> currentUser, final ViewChangeEvent event) {
         WizardFeatureSet featureSet;
         try {
-            featureSet = featureSetFactories.createFeatureSetFromUrlString(event.getParameters());
+            featureSet = featureSetFactories.createFeatureSetFromUrlString(WizardMode.QUERY, event.getParameters());
         } catch (final IllegalArgumentException e) {
             _getView().setComponentError(new UserError(e.getMessage()));
             return;

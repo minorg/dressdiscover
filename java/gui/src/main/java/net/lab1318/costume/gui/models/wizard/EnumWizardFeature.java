@@ -11,6 +11,16 @@ public class EnumWizardFeature extends WizardFeature {
     }
 
     @Override
+    public void addSelected(final String value) {
+        for (final EnumWizardFeatureValue featureValue : values) {
+            if (featureValue.getName().equals(value)) {
+                featureValue.setSelected(true);
+                break;
+            }
+        }
+    }
+
+    @Override
     public ImmutableList<String> getSelected() {
         ImmutableList.Builder<String> builder = null;
         for (final EnumWizardFeatureValue featureValue : values) {
@@ -32,16 +42,6 @@ public class EnumWizardFeature extends WizardFeature {
     public void resetSelected() {
         for (final EnumWizardFeatureValue value : values) {
             value.setSelected(false);
-        }
-    }
-
-    @Override
-    protected void setSelected(final String value) {
-        for (final EnumWizardFeatureValue featureValue : values) {
-            if (featureValue.getName().equals(value)) {
-                featureValue.setSelected(true);
-                break;
-            }
         }
     }
 

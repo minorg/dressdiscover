@@ -24,9 +24,9 @@ public abstract class WizardFeature {
 
     public abstract ImmutableList<String> getSelected();
 
-    protected abstract void resetSelected();
+    public abstract void resetSelected();
 
-    protected abstract void setSelected(final String value);
+    public abstract void addSelected(final String value);
 
     void setNextFeature(final WizardFeature nextFeature) {
         this.nextFeature = Optional.of(nextFeature);

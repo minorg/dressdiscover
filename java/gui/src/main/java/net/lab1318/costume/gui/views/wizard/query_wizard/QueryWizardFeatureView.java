@@ -16,6 +16,7 @@ import net.lab1318.costume.gui.events.wizard.WizardFeatureBackRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureFinishRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureNextRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
+import net.lab1318.costume.gui.models.wizard.EnumWizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.views.TopLevelView;
@@ -48,6 +49,10 @@ public class QueryWizardFeatureView extends TopLevelView {
 
     public void setModels(final WizardFeature currentFeature, final WizardFeatureSet featureSet,
             final UnsignedInteger selectedObjectCount) {
+        if (!(currentFeature instanceof EnumWizardFeature)) {
+            throw new UnsupportedOperationException();
+        }
+
         final Design design = new Design();
 
         final com.vaadin.ui.Button.ClickListener backButtonClickListener = new Button.ClickListener() {
@@ -93,8 +98,8 @@ public class QueryWizardFeatureView extends TopLevelView {
         design.currentFeatureNameLabel.setCaption("<h1>Selecting: " + currentFeature.getName() + "</h1>");
 
         design.availableFeaturesLayout.removeAllComponents();
-        design.availableFeaturesLayout
-                .addComponent(new QueryWizardFeatureGrid(_getEventBus(), currentFeature, featureSet));
+        design.availableFeaturesLayout.addComponent(
+                new QueryEnumWizardFeatureGrid(_getEventBus(), (EnumWizardFeature) currentFeature, featureSet));
 
         setCompositionRoot(design);
     }

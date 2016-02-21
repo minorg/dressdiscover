@@ -15,13 +15,13 @@ import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.gui.components.ImageWithRightsLayout;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
-import net.lab1318.costume.gui.models.wizard.WizardFeature;
-import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
+import net.lab1318.costume.gui.models.wizard.EnumWizardFeature;
 import net.lab1318.costume.gui.models.wizard.EnumWizardFeatureValue;
+import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 
 @SuppressWarnings("serial")
-final class QueryWizardFeatureGrid extends GridLayout {
-    private static int __getRowCount(final WizardFeature feature) {
+final class QueryEnumWizardFeatureGrid extends GridLayout {
+    private static int __getRowCount(final EnumWizardFeature feature) {
         int rowCount = feature.getValues().size() / 4;
         if (feature.getValues().size() % 4 != 0) {
             rowCount++;
@@ -29,7 +29,8 @@ final class QueryWizardFeatureGrid extends GridLayout {
         return rowCount;
     }
 
-    QueryWizardFeatureGrid(final EventBus eventBus, final WizardFeature feature, final WizardFeatureSet featureSet) {
+    QueryEnumWizardFeatureGrid(final EventBus eventBus, final EnumWizardFeature feature,
+            final WizardFeatureSet featureSet) {
         super(4, __getRowCount(feature));
         setSizeFull();
         setSpacing(true);

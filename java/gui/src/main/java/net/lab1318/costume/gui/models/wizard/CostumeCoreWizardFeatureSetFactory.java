@@ -37,7 +37,7 @@ public class CostumeCoreWizardFeatureSetFactory implements WizardFeatureSetFacto
     }
 
     @Override
-    public final synchronized WizardFeatureSet createFeatureSet() throws IoException {
+    public final synchronized WizardFeatureSet createFeatureSet(final WizardMode mode) throws IoException {
         if (featureImages == null) {
             final ImmutableList<ObjectSummaryEntry> featureObjectSummariesList = objectSummaryQueryService
                     .getObjectSummaries(Optional.absent(),

@@ -33,6 +33,7 @@ import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSetFactories;
+import net.lab1318.costume.gui.models.wizard.WizardMode;
 import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardFeatureView;
 import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardSummaryView;
@@ -89,7 +90,7 @@ public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureVie
         final String[] parametersSplit = event.getParameters().split("/", 2);
         WizardFeatureSet featureSet;
         try {
-            featureSet = featureSetFactories.createFeatureSetFromUrlString(parametersSplit[0]);
+            featureSet = featureSetFactories.createFeatureSetFromUrlString(WizardMode.QUERY, parametersSplit[0]);
         } catch (final IllegalArgumentException e) {
             _getView().setComponentError(new UserError(e.getMessage()));
             return;
