@@ -1,7 +1,5 @@
 package net.lab1318.costume.gui.views.wizard.query_wizard;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.thryft.waf.gui.EventBus;
 
 import com.google.common.base.Optional;
@@ -46,11 +44,16 @@ public class QueryWizardFeatureView extends TopLevelView {
     @Inject
     public QueryWizardFeatureView(final EventBus eventBus) {
         super(eventBus);
+    }
+
+    public void setModels(final WizardFeature currentFeature, final WizardFeatureSet featureSet,
+            final UnsignedInteger selectedObjectCount) {
+        final Design design = new Design();
 
         final com.vaadin.ui.Button.ClickListener backButtonClickListener = new Button.ClickListener() {
             @Override
             public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
-                eventBus.post(new WizardFeatureBackRequest());
+                _getEventBus().post(new WizardFeatureBackRequest(currentFeature, featureSet));
             }
         };
         design.bottomBackButton.addClickListener(backButtonClickListener);
@@ -59,7 +62,7 @@ public class QueryWizardFeatureView extends TopLevelView {
         final com.vaadin.ui.Button.ClickListener finishButtonClickListener = new Button.ClickListener() {
             @Override
             public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
-                eventBus.post(new WizardFeatureFinishRequest());
+                _getEventBus().post(new WizardFeatureFinishRequest(currentFeature, featureSet));
             }
         };
         design.bottomFinishButton.addClickListener(finishButtonClickListener);
@@ -68,7 +71,7 @@ public class QueryWizardFeatureView extends TopLevelView {
         final com.vaadin.ui.Button.ClickListener nextButtonClickListener = new Button.ClickListener() {
             @Override
             public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
-                eventBus.post(new WizardFeatureNextRequest());
+                _getEventBus().post(new WizardFeatureNextRequest(currentFeature, featureSet));
             }
         };
         design.bottomNextButton.addClickListener(nextButtonClickListener);
@@ -78,14 +81,9 @@ public class QueryWizardFeatureView extends TopLevelView {
             @Override
             public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
                 currentFeature.resetSelected();
-                eventBus.post(new WizardFeatureRefreshRequest());
+                _getEventBus().post(new WizardFeatureRefreshRequest(currentFeature, featureSet));
             }
         });
-    }
-
-    public void setModels(final WizardFeature currentFeature, final WizardFeatureSet featureSet,
-            final UnsignedInteger selectedObjectCount) {
-        this.currentFeature = checkNotNull(currentFeature);
 
         design.leftPaneLayout.removeAllComponents();
         design.leftPaneLayout.addComponent(new QueryWizardFeatureSetLayout(Optional.of(currentFeature), _getEventBus(),
@@ -95,12 +93,11 @@ public class QueryWizardFeatureView extends TopLevelView {
         design.currentFeatureNameLabel.setCaption("<h1>Selecting: " + currentFeature.getName() + "</h1>");
 
         design.availableFeaturesLayout.removeAllComponents();
-        design.availableFeaturesLayout.addComponent(new QueryWizardFeatureGrid(_getEventBus(), currentFeature));
+        design.availableFeaturesLayout
+                .addComponent(new QueryWizardFeatureGrid(_getEventBus(), currentFeature, featureSet));
 
         setCompositionRoot(design);
     }
 
-    private final Design design = new Design();
-    private WizardFeature currentFeature = null;
     public final static String NAME = "query_wizard_feature";
 }

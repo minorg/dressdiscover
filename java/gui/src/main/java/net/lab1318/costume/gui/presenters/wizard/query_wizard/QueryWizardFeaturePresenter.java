@@ -51,33 +51,33 @@ public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureVie
 
     @Subscribe
     public void onWizardFeatureBackRequest(final WizardFeatureBackRequest event) {
-        if (currentFeature.getPreviousFeature().isPresent()) {
-            __navigateToFeature(currentFeature.getPreviousFeature().get());
+        if (event.getCurrentFeature().getPreviousFeature().isPresent()) {
+            __navigateToFeature(event.getCurrentFeature().getPreviousFeature().get(), event.getFeatureSet());
         }
     }
 
     @Subscribe
     public void onWizardFeatureFinishRequest(final WizardFeatureFinishRequest event) {
-        __navigateToFinish();
+        __navigateToFinish(event.getFeatureSet());
     }
 
     @Subscribe
     public void onWizardFeatureGotoRequest(final WizardFeatureGotoRequest event) {
-        __navigateToFeature(featureSet.getFeatureByName(event.getFeatureName()));
+        __navigateToFeature(event.getFeatureSet().getFeatureByName(event.getFeatureName()), event.getFeatureSet());
     }
 
     @Subscribe
     public void onWizardFeatureNextRequest(final WizardFeatureNextRequest event) {
-        if (currentFeature.getNextFeature().isPresent()) {
-            __navigateToFeature(currentFeature.getNextFeature().get());
+        if (event.getCurrentFeature().getNextFeature().isPresent()) {
+            __navigateToFeature(event.getCurrentFeature().getNextFeature().get(), event.getFeatureSet());
         } else {
-            __navigateToFinish();
+            __navigateToFinish(event.getFeatureSet());
         }
     }
 
     @Subscribe
     public void onWizardFeatureRefreshEvent(final WizardFeatureRefreshRequest event) {
-        __refreshView();
+        __refreshView(event.getCurrentFeature(), event.getFeatureSet());
     }
 
     @Override
@@ -87,7 +87,7 @@ public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureVie
             return;
         }
 
-        final String[] parametersSplit = event.getParameters().split("/", 2);
+        final String[] parametersSplit = event.getParameters().split("/", 3);
         final String featureSetName = parametersSplit[0];
         if (featureSetName.isEmpty()) {
             _getView().setComponentError(new UserError("missing feature set"));
@@ -95,45 +95,48 @@ public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureVie
         }
         String featureName;
         try {
-            featureName = parametersSplit.length == 2 ? URLDecoder.decode(parametersSplit[1], Charsets.UTF_8.name())
+            featureName = parametersSplit.length >= 2 ? URLDecoder.decode(parametersSplit[1], Charsets.UTF_8.name())
                     : "";
         } catch (final UnsupportedEncodingException e) {
             throw new IllegalStateException(e);
         }
 
-        if (featureSet == null || !featureSetName.equals(featureSet.getUrlName())) {
-            WizardFeatureSetFactory featureSetFactory;
-            try {
-                featureSetFactory = featureSetFactories.getFeatureSetFactoryByUrlName(featureSetName);
-            } catch (final IllegalArgumentException e) {
-                _getView().setComponentError(new UserError(String.format("unknown feature set '%s'", featureSetName)));
-                return;
-            }
-            try {
-                featureSet = featureSetFactory.createFeatureSet();
-            } catch (final IoException e) {
-                _getView().setComponentError(new SystemError("I/O exception", e));
-                return;
-            }
+        WizardFeatureSet featureSet;
+        WizardFeatureSetFactory featureSetFactory;
+        try {
+            featureSetFactory = featureSetFactories.getFeatureSetFactoryByUrlName(featureSetName);
+        } catch (final IllegalArgumentException e) {
+            _getView().setComponentError(new UserError(String.format("unknown feature set '%s'", featureSetName)));
+            return;
+        }
+        try {
+            featureSet = featureSetFactory.createFeatureSet();
+        } catch (final IoException e) {
+            _getView().setComponentError(new SystemError("I/O exception", e));
+            return;
+        }
+
+        if (parametersSplit.length == 3) {
+            featureSet.setSelectedFromUrlString(parametersSplit[2]);
         }
 
         if (featureName.isEmpty()) {
-            featureSet.resetSelected();
-            __navigateToFeature(featureSet.getFeatures().get(0));
+            __navigateToFeature(featureSet.getFeatures().get(0), featureSet);
             return;
         }
 
+        WizardFeature currentFeature;
         try {
-            currentFeature = featureSet.getFeatureByName(currentFeatureName);
+            currentFeature = featureSet.getFeatureByName(featureName);
         } catch (final IllegalArgumentException e) {
-            _getView().setComponentError(new UserError("no such feature " + currentFeatureName));
+            _getView().setComponentError(new UserError("no such feature " + featureName));
             return;
         }
 
-        __refreshView();
+        __refreshView(currentFeature, featureSet);
     }
 
-    private void __navigateToFeature(final WizardFeature feature) {
+    private void __navigateToFeature(final WizardFeature feature, final WizardFeatureSet featureSet) {
         try {
             UI.getCurrent().getNavigator().navigateTo(QueryWizardFeatureView.NAME + '/'
                     + URLEncoder.encode(feature.getName(), Charsets.UTF_8.toString()));
@@ -142,12 +145,12 @@ public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureVie
         }
     }
 
-    private void __navigateToFinish() {
-        UI.getCurrent().getNavigator().navigateTo(
-                QueryWizardSummaryView.NAME + "/" + _toUrlEncodedJsonString(featureSet.getSelectedAsQuery()));
+    private void __navigateToFinish(final WizardFeatureSet featureSet) {
+        UI.getCurrent().getNavigator().navigateTo(QueryWizardSummaryView.NAME + "/" + featureSet.getUrlName() + "/"
+                + featureSet.getSelectedAsUrlString());
     }
 
-    private void __refreshView() {
+    private void __refreshView(final WizardFeature currentFeature, final WizardFeatureSet featureSet) {
         final UnsignedInteger selectedObjectCount;
         try {
             selectedObjectCount = objectSummaryQueryService
@@ -161,8 +164,6 @@ public class QueryWizardFeaturePresenter extends Presenter<QueryWizardFeatureVie
         _getView().setModels(currentFeature, featureSet, selectedObjectCount);
     }
 
-    private WizardFeature currentFeature = null;
-    private WizardFeatureSet featureSet = null;
     private final WizardFeatureSetFactories featureSetFactories;
     private final ObjectSummaryQueryService objectSummaryQueryService;
     final static Optional<GetObjectSummariesOptions> GET_OBJECT_COUNT_OPTIONS = Optional

@@ -30,7 +30,7 @@ final class QueryWizardFeatureSetLayout extends VerticalLayout {
             final Button featureButton = new NativeButton(feature.getName(), new Button.ClickListener() {
                 @Override
                 public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
-                    eventBus.post(new WizardFeatureGotoRequest(feature.getName()));
+                    eventBus.post(new WizardFeatureGotoRequest(feature.getName(), featureSet));
                 }
             });
             if (currentFeature.isPresent() && feature.getName().equals(currentFeature.get().getName())) {

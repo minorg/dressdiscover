@@ -16,6 +16,7 @@ import com.vaadin.ui.VerticalLayout;
 import net.lab1318.costume.gui.components.ImageWithRightsLayout;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
+import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureValue;
 
 @SuppressWarnings("serial")
@@ -28,7 +29,7 @@ final class QueryWizardFeatureGrid extends GridLayout {
         return rowCount;
     }
 
-    QueryWizardFeatureGrid(final EventBus eventBus, final WizardFeature feature) {
+    QueryWizardFeatureGrid(final EventBus eventBus, final WizardFeature feature, final WizardFeatureSet featureSet) {
         super(4, __getRowCount(feature));
         setSizeFull();
         setSpacing(true);
@@ -51,7 +52,7 @@ final class QueryWizardFeatureGrid extends GridLayout {
                 public void click(final ClickEvent event) {
                     checkBox.setValue(!checkBox.getValue());
                     featureValue.setSelected(checkBox.getValue());
-                    eventBus.post(new WizardFeatureRefreshRequest());
+                    eventBus.post(new WizardFeatureRefreshRequest(feature, featureSet));
                 }
 
             });

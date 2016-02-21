@@ -58,7 +58,7 @@ public class QueryWizardSummaryPresenter extends Presenter<QueryWizardSummaryVie
             _getView().setComponentError(new SystemError("I/O exception", e));
             return;
         }
-        featureSet.setSelectedFromQuery(objectQuery);
+        // featureSet.setSelectedFromQuery(objectQuery);
 
         final UnsignedInteger selectedObjectCount;
         try {
