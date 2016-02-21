@@ -3,7 +3,10 @@
 <body>
 	<v-vertical-layout size-full>
 		<v-label :center><h1>Query Wizard: Summary</h1></v-label>
-		<v-vertical-layout :center _id="currentlySelectedFeaturesLayout" size-full></v-vertical-layout>
+		<v-vertical-layout size-full>
+			<v-label><h3>Selected features:</h3></v-label>
+			<v-vertical-layout :center _id="featureSetLayout" size-full></v-vertical-layout>
+		</v-vertical-layout>
 		<v-label><br/></v-label>
 		<v-native-button :bottom :center _id="searchButton"><b>Search</b></v-native-button>
 	</v-vertical-layout>

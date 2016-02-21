@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.views.wizard.query_wizard;
+package net.lab1318.costume.gui.views.wizard;
 
 import org.thryft.native_.Url;
 import org.thryft.waf.gui.EventBus;
@@ -24,7 +24,7 @@ import net.lab1318.costume.gui.models.wizard.EnumWizardFeatureValue;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 
 @SuppressWarnings("serial")
-final class QueryEnumWizardFeatureGrid extends GridLayout {
+public final class EnumWizardFeatureGrid extends GridLayout {
     private static int __getRowCount(final EnumWizardFeature feature) {
         int rowCount = feature.getValues().size() / 4;
         if (feature.getValues().size() % 4 != 0) {
@@ -33,7 +33,7 @@ final class QueryEnumWizardFeatureGrid extends GridLayout {
         return rowCount;
     }
 
-    QueryEnumWizardFeatureGrid(final EventBus eventBus, final EnumWizardFeature feature,
+    public EnumWizardFeatureGrid(final EventBus eventBus, final EnumWizardFeature feature,
             final WizardFeatureSet featureSet) {
         super(4, __getRowCount(feature));
         setSizeFull();

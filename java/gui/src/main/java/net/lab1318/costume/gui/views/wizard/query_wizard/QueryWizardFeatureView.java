@@ -8,10 +8,12 @@ import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
 import com.vaadin.annotations.DesignRoot;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 
+import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureBackRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureFinishRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureNextRequest;
@@ -20,6 +22,8 @@ import net.lab1318.costume.gui.models.wizard.EnumWizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.views.TopLevelView;
+import net.lab1318.costume.gui.views.wizard.EnumWizardFeatureGrid;
+import net.lab1318.costume.gui.views.wizard.WizardFeatureSetLayout;
 
 @SuppressWarnings("serial")
 @SessionScoped
@@ -35,8 +39,9 @@ public class QueryWizardFeatureView extends TopLevelView {
         Button bottomFinishButton;
         Button bottomNextButton;
         Label currentFeatureNameLabel;
-        Layout leftPaneLayout;
+        Layout featureSetLayout;
         Button resetButton;
+        Button selectedObjectCountButton;
         Button topBackButton;
         Button topFinishButton;
         Button topNextButton;
@@ -90,16 +95,23 @@ public class QueryWizardFeatureView extends TopLevelView {
             }
         });
 
-        design.leftPaneLayout.removeAllComponents();
-        design.leftPaneLayout.addComponent(new QueryWizardFeatureSetLayout(Optional.of(currentFeature), _getEventBus(),
-                featureSet, selectedObjectCount));
+        design.selectedObjectCountButton.setCaption(selectedObjectCount + " objects");
+        design.selectedObjectCountButton.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(final ClickEvent event) {
+                _getEventBus()
+                        .post(GetObjectSummariesRequest.builder().setQuery(featureSet.getSelectedAsQuery()).build());
+            }
+        });
+        design.featureSetLayout
+                .addComponent(new WizardFeatureSetLayout(Optional.of(currentFeature), _getEventBus(), featureSet));
 
         design.currentFeatureNameLabel.setCaptionAsHtml(true);
         design.currentFeatureNameLabel.setCaption("<h1>Selecting: " + currentFeature.getName() + "</h1>");
 
         design.availableFeaturesLayout.removeAllComponents();
         design.availableFeaturesLayout.addComponent(
-                new QueryEnumWizardFeatureGrid(_getEventBus(), (EnumWizardFeature) currentFeature, featureSet));
+                new EnumWizardFeatureGrid(_getEventBus(), (EnumWizardFeature) currentFeature, featureSet));
 
         setCompositionRoot(design);
     }

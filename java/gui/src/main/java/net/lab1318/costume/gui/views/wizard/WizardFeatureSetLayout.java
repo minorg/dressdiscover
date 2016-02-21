@@ -1,29 +1,21 @@
-package net.lab1318.costume.gui.views.wizard.query_wizard;
+package net.lab1318.costume.gui.views.wizard;
 
 import org.thryft.waf.gui.EventBus;
 
 import com.google.common.base.Optional;
-import com.google.common.primitives.UnsignedInteger;
-import com.vaadin.annotations.DesignRoot;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.declarative.Design;
 
 import net.lab1318.costume.gui.events.wizard.WizardFeatureGotoRequest;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 
 @SuppressWarnings("serial")
-@DesignRoot
-final class QueryWizardFeatureSetLayout extends VerticalLayout {
-    public QueryWizardFeatureSetLayout(final Optional<WizardFeature> currentFeature, final EventBus eventBus,
-            final WizardFeatureSet featureSet, final UnsignedInteger selectedObjectCount) {
-        Design.read(this);
-
-        currentSelectedObjectCountButton.setCaption(selectedObjectCount + " objects");
-
+public final class WizardFeatureSetLayout extends VerticalLayout {
+    public WizardFeatureSetLayout(final Optional<WizardFeature> currentFeature, final EventBus eventBus,
+            final WizardFeatureSet featureSet) {
         for (final WizardFeature feature : featureSet.getFeatures()) {
             final VerticalLayout featureNavigationLayout = new VerticalLayout();
             final Button featureButton = new NativeButton(feature.getName(), new Button.ClickListener() {
@@ -46,10 +38,7 @@ final class QueryWizardFeatureSetLayout extends VerticalLayout {
             }
             featureNavigationLayout.addComponent(new Label(selectedFeatureValuesString));
 
-            allFeatureNavigationLayout.addComponent(featureNavigationLayout);
+            addComponent(featureNavigationLayout);
         }
     }
-
-    VerticalLayout allFeatureNavigationLayout = null;
-    Button currentSelectedObjectCountButton = null;
 }
