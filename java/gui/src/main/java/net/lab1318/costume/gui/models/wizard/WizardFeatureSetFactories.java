@@ -59,12 +59,7 @@ public class WizardFeatureSetFactories {
                 if (!feature.getName().equals(selectedName)) {
                     continue;
                 }
-                for (final WizardFeatureValue featureValue : feature.getValues()) {
-                    if (featureValue.getName().equals(selectedValue)) {
-                        featureValue.setSelected(true);
-                        break;
-                    }
-                }
+                feature.setSelected(selectedValue);
                 break;
             }
         }

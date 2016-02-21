@@ -14,7 +14,7 @@ import com.vaadin.ui.declarative.Design;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureGotoRequest;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
-import net.lab1318.costume.gui.models.wizard.WizardFeatureValue;
+import net.lab1318.costume.gui.models.wizard.EnumWizardFeatureValue;
 
 @SuppressWarnings("serial")
 @DesignRoot
@@ -39,7 +39,7 @@ final class QueryWizardFeatureSetLayout extends VerticalLayout {
             featureNavigationLayout.addComponent(featureButton);
 
             String selectedFeatureValuesString = "";
-            for (final WizardFeatureValue featureValue : feature.getValues()) {
+            for (final EnumWizardFeatureValue featureValue : feature.getValues()) {
                 if (!featureValue.isSelected()) {
                     continue;
                 }

@@ -80,12 +80,12 @@ public class CostumeCoreWizardFeatureSetFactory implements WizardFeatureSetFacto
         for (final Map.Entry<String, Collection<String>> featureEntry : CostumeCore.FEATURES.asMap().entrySet()) {
             final String featureName = featureEntry.getKey();
             final ImmutableMap<String, Image> featureValueImages = checkNotNull(featureImages.get(featureName));
-            final ImmutableList.Builder<WizardFeatureValue> featureValuesBuilder = ImmutableList.builder();
+            final ImmutableList.Builder<EnumWizardFeatureValue> featureValuesBuilder = ImmutableList.builder();
             for (final String featureValue : featureEntry.getValue()) {
-                featureValuesBuilder
-                        .add(new WizardFeatureValue(checkNotNull(featureValueImages.get(featureValue)), featureValue));
+                featureValuesBuilder.add(
+                        new EnumWizardFeatureValue(checkNotNull(featureValueImages.get(featureValue)), featureValue));
             }
-            featuresBuilder.add(new WizardFeature(featureName, featureValuesBuilder.build()));
+            featuresBuilder.add(new EnumWizardFeature(featureName, featureValuesBuilder.build()));
         }
         return new CostumeCoreWizardFeatureSet(featuresBuilder.build());
     }

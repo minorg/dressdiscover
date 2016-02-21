@@ -5,10 +5,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 
-public final class WizardFeature {
-    WizardFeature(final String name, final ImmutableList<WizardFeatureValue> values) {
+public abstract class WizardFeature {
+    protected WizardFeature(final String name) {
         this.name = checkNotNull(name);
-        this.values = checkNotNull(values);
     }
 
     public String getName() {
@@ -23,15 +22,11 @@ public final class WizardFeature {
         return previousFeature;
     }
 
-    public ImmutableList<WizardFeatureValue> getValues() {
-        return values;
-    }
+    public abstract ImmutableList<String> getSelected();
 
-    public void resetSelected() {
-        for (final WizardFeatureValue value : values) {
-            value.setSelected(false);
-        }
-    }
+    protected abstract void resetSelected();
+
+    protected abstract void setSelected(final String value);
 
     void setNextFeature(final WizardFeature nextFeature) {
         this.nextFeature = Optional.of(nextFeature);
@@ -44,5 +39,4 @@ public final class WizardFeature {
     private final String name;
     private Optional<WizardFeature> nextFeature = Optional.absent();
     private Optional<WizardFeature> previousFeature = Optional.absent();
-    private final ImmutableList<WizardFeatureValue> values;
 }

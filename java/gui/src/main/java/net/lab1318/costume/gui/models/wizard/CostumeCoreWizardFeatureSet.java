@@ -24,13 +24,14 @@ public final class CostumeCoreWizardFeatureSet extends WizardFeatureSet {
         final ImmutableMap.Builder<String, ImmutableList<String>> structureTextsBuilder = ImmutableMap.builder();
         for (final WizardFeature feature : getFeatures()) {
             ImmutableList.Builder<String> selectedFeatureValuesBuilder = null;
-            for (final WizardFeatureValue featureValue : feature.getValues()) {
-                if (featureValue.isSelected()) {
-                    if (selectedFeatureValuesBuilder == null) {
-                        selectedFeatureValuesBuilder = ImmutableList.builder();
-                    }
-                    selectedFeatureValuesBuilder.add(featureValue.getName());
+            if (!(feature instanceof EnumWizardFeature)) {
+                continue;
+            }
+            for (final String featureValue : feature.getSelected()) {
+                if (selectedFeatureValuesBuilder == null) {
+                    selectedFeatureValuesBuilder = ImmutableList.builder();
                 }
+                selectedFeatureValuesBuilder.add(featureValue);
             }
             if (selectedFeatureValuesBuilder != null) {
                 structureTextsBuilder.put(feature.getName(), selectedFeatureValuesBuilder.build());

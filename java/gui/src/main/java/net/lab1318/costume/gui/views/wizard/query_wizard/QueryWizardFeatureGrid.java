@@ -17,7 +17,7 @@ import net.lab1318.costume.gui.components.ImageWithRightsLayout;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
-import net.lab1318.costume.gui.models.wizard.WizardFeatureValue;
+import net.lab1318.costume.gui.models.wizard.EnumWizardFeatureValue;
 
 @SuppressWarnings("serial")
 final class QueryWizardFeatureGrid extends GridLayout {
@@ -35,7 +35,7 @@ final class QueryWizardFeatureGrid extends GridLayout {
         setSpacing(true);
         int columnI = 0;
         int rowI = 0;
-        for (final WizardFeatureValue featureValue : feature.getValues()) {
+        for (final EnumWizardFeatureValue featureValue : feature.getValues()) {
             final VerticalLayout availableFeatureLayout = new VerticalLayout();
 
             final ImageWithRightsLayout thumbnailImage = new ImageWithRightsLayout("",
