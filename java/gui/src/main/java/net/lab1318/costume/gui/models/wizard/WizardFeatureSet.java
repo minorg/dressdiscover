@@ -3,7 +3,6 @@ package net.lab1318.costume.gui.models.wizard;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 import com.google.common.base.Charsets;
@@ -42,29 +41,6 @@ public abstract class WizardFeatureSet {
 
     public abstract ObjectQuery getSelectedAsQuery();
 
-    public final String getSelectedAsUrlString() {
-        final StringBuilder builder = new StringBuilder();
-        boolean builderEmpty = true;
-        for (final WizardFeature feature : features) {
-            for (final WizardFeatureValue featureValue : feature.getValues()) {
-                if (featureValue.isSelected()) {
-                    if (!builderEmpty) {
-                        builder.append('&');
-                    }
-                    try {
-                        builder.append(URLEncoder.encode(feature.getName(), Charsets.UTF_8.name()));
-                        builder.append('=');
-                        builder.append(URLEncoder.encode(featureValue.getName(), Charsets.UTF_8.name()));
-                    } catch (final UnsupportedEncodingException e) {
-                        throw new IllegalStateException(e);
-                    }
-                    builderEmpty = false;
-                }
-            }
-        }
-        return builder.toString();
-    }
-
     public abstract String getUrlName();
 
     public final void resetSelected() {
@@ -73,41 +49,41 @@ public abstract class WizardFeatureSet {
         }
     }
 
-    public final void setSelectedFromUrlString(final String urlString) {
-        resetSelected();
-
-        for (final String nameValuePairString : urlString.split("&")) {
-            final String[] nameValuePairSplit = nameValuePairString.split("=", 2);
-            if (nameValuePairSplit.length == 1) {
-                continue;
-            }
-            String selectedName, selectedValue;
-            try {
-                selectedName = URLDecoder.decode(nameValuePairSplit[0], Charsets.UTF_8.name());
-                if (selectedName.isEmpty()) {
-                    continue;
-                }
-                selectedValue = URLDecoder.decode(nameValuePairSplit[1], Charsets.UTF_8.name());
-                if (selectedValue.isEmpty()) {
-                    continue;
-                }
-            } catch (final UnsupportedEncodingException e) {
-                throw new IllegalStateException(e);
-            }
-            for (final WizardFeature feature : features) {
-                if (!feature.getName().equals(selectedName)) {
-                    continue;
-                }
-                for (final WizardFeatureValue featureValue : feature.getValues()) {
-                    if (featureValue.getName().equals(selectedValue)) {
-                        featureValue.setSelected(true);
-                        break;
+    public final String toUrlString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getUrlName());
+        boolean haveSelectedFeatureValue = false;
+        for (final WizardFeature feature : features) {
+            for (final WizardFeatureValue featureValue : feature.getValues()) {
+                if (featureValue.isSelected()) {
+                    if (haveSelectedFeatureValue) {
+                        builder.append('&');
+                    } else {
+                        builder.append(URL_STRING_SEPARATOR);
                     }
+                    try {
+                        builder.append(URLEncoder.encode(feature.getName(), Charsets.UTF_8.name()));
+                        builder.append('=');
+                        builder.append(URLEncoder.encode(featureValue.getName(), Charsets.UTF_8.name()));
+                    } catch (final UnsupportedEncodingException e) {
+                        throw new IllegalStateException(e);
+                    }
+                    haveSelectedFeatureValue = true;
                 }
-                break;
             }
         }
+        return builder.toString();
     }
 
     private final ImmutableList<WizardFeature> features;
+
+    public final static String URL_STRING_SEPARATOR;
+
+    static {
+        try {
+            URL_STRING_SEPARATOR = URLEncoder.encode("?", Charsets.UTF_8.name());
+        } catch (final UnsupportedEncodingException e) {
+            throw new IllegalStateException(e);
+        }
+    }
 }

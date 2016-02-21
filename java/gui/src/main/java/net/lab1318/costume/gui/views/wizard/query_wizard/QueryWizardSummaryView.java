@@ -12,7 +12,6 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.VerticalLayout;
 
-import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.views.TopLevelView;
@@ -35,8 +34,7 @@ public class QueryWizardSummaryView extends TopLevelView {
         super(eventBus);
     }
 
-    public void setModels(final WizardFeatureSet featureSet, final ObjectQuery query,
-            final UnsignedInteger selectedObjectCount) {
+    public void setModels(final WizardFeatureSet featureSet, final UnsignedInteger selectedObjectCount) {
         final Design design = new Design();
 
         design.currentlySelectedFeaturesLayout.addComponent(
@@ -45,7 +43,8 @@ public class QueryWizardSummaryView extends TopLevelView {
         design.searchButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(final ClickEvent event) {
-                _getEventBus().post(GetObjectSummariesRequest.builder().setQuery(query).build());
+                _getEventBus()
+                        .post(GetObjectSummariesRequest.builder().setQuery(featureSet.getSelectedAsQuery()).build());
             }
         });
 
