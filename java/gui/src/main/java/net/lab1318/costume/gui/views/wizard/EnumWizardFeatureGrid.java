@@ -9,10 +9,12 @@ import com.vaadin.event.MouseEvents.ClickListener;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Link;
+import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.api.models.image.Image;
@@ -24,7 +26,7 @@ import net.lab1318.costume.gui.models.wizard.EnumWizardFeatureValue;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 
 @SuppressWarnings("serial")
-public final class EnumWizardFeatureGrid extends GridLayout {
+public final class EnumWizardFeatureGrid extends VerticalLayout {
     private static int __getRowCount(final EnumWizardFeature feature) {
         int rowCount = feature.getValues().size() / 4;
         if (feature.getValues().size() % 4 != 0) {
@@ -35,9 +37,21 @@ public final class EnumWizardFeatureGrid extends GridLayout {
 
     public EnumWizardFeatureGrid(final EventBus eventBus, final EnumWizardFeature feature,
             final WizardFeatureSet featureSet) {
-        super(4, __getRowCount(feature));
         setSizeFull();
-        setSpacing(true);
+
+        final Button resetButton = new NativeButton("Reset", new Button.ClickListener() {
+            @Override
+            public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
+                feature.resetSelected();
+                eventBus.post(new WizardFeatureRefreshRequest(feature, featureSet));
+            }
+        });
+        addComponent(resetButton);
+        setComponentAlignment(resetButton, Alignment.MIDDLE_RIGHT);
+
+        final GridLayout grid = new GridLayout(4, __getRowCount(feature));
+        grid.setSizeFull();
+        grid.setSpacing(true);
         int columnI = 0;
         int rowI = 0;
         for (final EnumWizardFeatureValue featureValue : feature.getValues()) {
@@ -75,12 +89,13 @@ public final class EnumWizardFeatureGrid extends GridLayout {
             }
             availableFeatureLayout.addComponent(captionLayout);
 
-            addComponent(availableFeatureLayout, columnI, rowI);
+            grid.addComponent(availableFeatureLayout, columnI, rowI);
             if (++columnI == 4) {
                 columnI = 0;
                 rowI++;
             }
         }
+        addComponent(grid);
     }
 
     private final static Image placeholderImage = Image.builder()

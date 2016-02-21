@@ -14,7 +14,6 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
-import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
 import net.lab1318.costume.gui.models.wizard.EnumWizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
@@ -36,7 +35,6 @@ public class QueryWizardFeatureView extends TopLevelView {
         Layout bottomNavigationLayout;
         Label currentFeatureNameLabel;
         Layout featureSetLayout;
-        Button resetButton;
         Button selectedObjectCountButton;
         Layout topNavigationLayout;
     }
@@ -66,14 +64,6 @@ public class QueryWizardFeatureView extends TopLevelView {
 
         design.featureSetLayout
                 .addComponent(new WizardFeatureSetLayout(Optional.of(currentFeature), _getEventBus(), featureSet));
-
-        design.resetButton.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
-                currentFeature.resetSelected();
-                _getEventBus().post(new WizardFeatureRefreshRequest(currentFeature, featureSet));
-            }
-        });
 
         design.selectedObjectCountButton.setCaption(selectedObjectCount + " objects");
         design.selectedObjectCountButton.addClickListener(new Button.ClickListener() {
