@@ -1,19 +1,15 @@
-package net.lab1318.costume.gui.views.wizard.query_wizard;
+package net.lab1318.costume.gui.views.wizard.catalog_wizard;
 
 import org.thryft.waf.gui.EventBus;
 
 import com.google.common.base.Optional;
-import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
 import com.vaadin.annotations.DesignRoot;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 
-import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
 import net.lab1318.costume.gui.models.wizard.EnumWizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
@@ -24,8 +20,8 @@ import net.lab1318.costume.gui.views.wizard.WizardFeatureSetLayout;
 
 @SuppressWarnings("serial")
 @SessionScoped
-public class QueryWizardFeatureView extends TopLevelView {
-    @DesignRoot("QueryWizardFeatureView.html")
+public class CatalogWizardFeatureView extends TopLevelView {
+    @DesignRoot("CatalogWizardFeatureView.html")
     private final static class Design extends HorizontalLayout {
         public Design() {
             com.vaadin.ui.declarative.Design.read(this);
@@ -35,17 +31,15 @@ public class QueryWizardFeatureView extends TopLevelView {
         Layout currentFeatureLayout;
         Label currentFeatureNameLabel;
         Layout featureSetLayout;
-        Button selectedObjectCountButton;
         Layout topNavigationLayout;
     }
 
     @Inject
-    public QueryWizardFeatureView(final EventBus eventBus) {
+    public CatalogWizardFeatureView(final EventBus eventBus) {
         super(eventBus);
     }
 
-    public void setModels(final WizardFeature currentFeature, final WizardFeatureSet featureSet,
-            final UnsignedInteger selectedObjectCount) {
+    public void setModels(final WizardFeature currentFeature, final WizardFeatureSet featureSet) {
         if (!(currentFeature instanceof EnumWizardFeature)) {
             throw new UnsupportedOperationException();
         }
@@ -64,20 +58,11 @@ public class QueryWizardFeatureView extends TopLevelView {
         design.featureSetLayout
                 .addComponent(new WizardFeatureSetLayout(Optional.of(currentFeature), _getEventBus(), featureSet));
 
-        design.selectedObjectCountButton.setCaption(selectedObjectCount + " objects");
-        design.selectedObjectCountButton.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(final ClickEvent event) {
-                _getEventBus()
-                        .post(GetObjectSummariesRequest.builder().setQuery(featureSet.getSelectedAsQuery()).build());
-            }
-        });
-
         design.topNavigationLayout
                 .addComponent(new WizardFeatureNavigationLayout(currentFeature, _getEventBus(), featureSet));
 
         setCompositionRoot(design);
     }
 
-    public final static String NAME = "query_wizard_feature";
+    public final static String NAME = "catalog_wizard_feature";
 }

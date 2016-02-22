@@ -17,6 +17,7 @@ import net.lab1318.costume.gui.presenters.institutions.InstitutionsPresenter;
 import net.lab1318.costume.gui.presenters.object_by_id.ObjectByIdPresenter;
 import net.lab1318.costume.gui.presenters.objects.ObjectsPresenter;
 import net.lab1318.costume.gui.presenters.user_bookmarks.UserBookmarksPresenter;
+import net.lab1318.costume.gui.presenters.wizard.catalog_wizard.CatalogWizardFeaturePresenter;
 import net.lab1318.costume.gui.presenters.wizard.catalog_wizard.CatalogWizardPresenter;
 import net.lab1318.costume.gui.presenters.wizard.query_wizard.QueryWizardFeaturePresenter;
 import net.lab1318.costume.gui.presenters.wizard.query_wizard.QueryWizardPresenter;
@@ -26,6 +27,7 @@ import net.lab1318.costume.gui.views.institutions.InstitutionsView;
 import net.lab1318.costume.gui.views.object_by_id.ObjectByIdView;
 import net.lab1318.costume.gui.views.objects.ObjectsView;
 import net.lab1318.costume.gui.views.user_bookmarks.UserBookmarksView;
+import net.lab1318.costume.gui.views.wizard.catalog_wizard.CatalogWizardFeatureView;
 import net.lab1318.costume.gui.views.wizard.catalog_wizard.CatalogWizardView;
 import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardFeatureView;
 import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardSummaryView;
@@ -43,6 +45,11 @@ public final class GuiUI extends UI {
 
         // Create a navigator to control the views
         final Navigator navigator = new Navigator(this, this);
+
+        {
+            injector.getInstance(CatalogWizardFeaturePresenter.class);
+            navigator.addView(CatalogWizardFeatureView.NAME, injector.getInstance(CatalogWizardFeatureView.class));
+        }
 
         {
             injector.getInstance(CatalogWizardPresenter.class);
@@ -75,13 +82,13 @@ public final class GuiUI extends UI {
         }
 
         {
-            injector.getInstance(QueryWizardPresenter.class);
-            navigator.addView(QueryWizardView.NAME, injector.getInstance(QueryWizardView.class));
+            injector.getInstance(QueryWizardFeaturePresenter.class);
+            navigator.addView(QueryWizardFeatureView.NAME, injector.getInstance(QueryWizardFeatureView.class));
         }
 
         {
-            injector.getInstance(QueryWizardFeaturePresenter.class);
-            navigator.addView(QueryWizardFeatureView.NAME, injector.getInstance(QueryWizardFeatureView.class));
+            injector.getInstance(QueryWizardPresenter.class);
+            navigator.addView(QueryWizardView.NAME, injector.getInstance(QueryWizardView.class));
         }
 
         {
