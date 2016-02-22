@@ -3,7 +3,6 @@ package net.lab1318.costume.gui.views.wizard.query_wizard;
 import org.thryft.waf.gui.EventBus;
 
 import com.google.common.base.Optional;
-import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
 import com.vaadin.annotations.DesignRoot;
@@ -15,6 +14,7 @@ import com.vaadin.ui.VerticalLayout;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.views.TopLevelView;
+import net.lab1318.costume.gui.views.wizard.WizardFeatureSetLayout;
 
 @SuppressWarnings("serial")
 @SessionScoped
@@ -34,11 +34,11 @@ public class QueryWizardSummaryView extends TopLevelView {
         super(eventBus);
     }
 
-    public void setModels(final WizardFeatureSet featureSet, final UnsignedInteger selectedObjectCount) {
+    public void setModels(final WizardFeatureSet featureSet) {
         final Design design = new Design();
 
-        design.currentlySelectedFeaturesLayout.addComponent(
-                new QueryWizardFeatureSetLayout(Optional.absent(), _getEventBus(), featureSet, selectedObjectCount));
+        design.currentlySelectedFeaturesLayout
+                .addComponent(new WizardFeatureSetLayout(Optional.absent(), _getEventBus(), featureSet));
 
         design.searchButton.addClickListener(new Button.ClickListener() {
             @Override

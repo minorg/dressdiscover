@@ -23,7 +23,8 @@ public class WizardFeatureSetFactories {
         byUrlName = byUrlNameBuilder.build();
     }
 
-    public final WizardFeatureSet createFeatureSetFromUrlString(final String urlString) throws IoException {
+    public final WizardFeatureSet createFeatureSetFromUrlString(final WizardMode mode, final String urlString)
+            throws IoException {
         final String[] urlStringSplit = StringUtils.splitByWholeSeparator(urlString,
                 WizardFeatureSet.URL_STRING_SEPARATOR, 2);
 
@@ -32,7 +33,7 @@ public class WizardFeatureSetFactories {
             throw new IllegalArgumentException(String.format("unknown feature set '%s'", urlStringSplit[0]));
         }
 
-        final WizardFeatureSet featureSet = factory.createFeatureSet();
+        final WizardFeatureSet featureSet = factory.createFeatureSet(mode);
         if (urlStringSplit.length == 1 || urlStringSplit[1].isEmpty()) {
             return featureSet;
         }
@@ -59,12 +60,7 @@ public class WizardFeatureSetFactories {
                 if (!feature.getName().equals(selectedName)) {
                     continue;
                 }
-                for (final WizardFeatureValue featureValue : feature.getValues()) {
-                    if (featureValue.getName().equals(selectedValue)) {
-                        featureValue.setSelected(true);
-                        break;
-                    }
-                }
+                feature.addSelected(selectedValue);
                 break;
             }
         }

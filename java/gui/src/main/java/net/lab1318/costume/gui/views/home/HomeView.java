@@ -13,6 +13,7 @@ import com.vaadin.ui.UI;
 
 import net.lab1318.costume.gui.views.TopLevelView;
 import net.lab1318.costume.gui.views.institutions.InstitutionsView;
+import net.lab1318.costume.gui.views.wizard.catalog_wizard.CatalogWizardView;
 import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardView;
 
 @SuppressWarnings("serial")
@@ -24,8 +25,9 @@ public class HomeView extends TopLevelView {
             com.vaadin.ui.declarative.Design.read(this);
         }
 
-        Button institutionsButton = null;
-        Button queryWizardButton = null;
+        Button catalogWizardButton;
+        Button institutionsButton;
+        Button queryWizardButton;
     }
 
     @Inject
@@ -35,6 +37,12 @@ public class HomeView extends TopLevelView {
 
     public void setModels() {
         final Design design = new Design();
+        design.catalogWizardButton.addClickListener(new ClickListener() {
+            @Override
+            public void buttonClick(final ClickEvent event) {
+                UI.getCurrent().getNavigator().navigateTo(CatalogWizardView.NAME);
+            }
+        });
         design.institutionsButton.addClickListener(new ClickListener() {
             @Override
             public void buttonClick(final ClickEvent event) {

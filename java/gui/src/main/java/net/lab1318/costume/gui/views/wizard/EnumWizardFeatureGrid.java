@@ -1,27 +1,33 @@
-package net.lab1318.costume.gui.views.wizard.query_wizard;
+package net.lab1318.costume.gui.views.wizard;
 
+import org.thryft.native_.Url;
 import org.thryft.waf.gui.EventBus;
 
+import com.google.common.primitives.UnsignedInteger;
 import com.vaadin.event.MouseEvents.ClickEvent;
 import com.vaadin.event.MouseEvents.ClickListener;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Link;
+import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.VerticalLayout;
 
+import net.lab1318.costume.api.models.image.Image;
+import net.lab1318.costume.api.models.image.ImageVersion;
 import net.lab1318.costume.gui.components.ImageWithRightsLayout;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
-import net.lab1318.costume.gui.models.wizard.WizardFeature;
+import net.lab1318.costume.gui.models.wizard.EnumWizardFeature;
+import net.lab1318.costume.gui.models.wizard.EnumWizardFeatureValue;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
-import net.lab1318.costume.gui.models.wizard.WizardFeatureValue;
 
 @SuppressWarnings("serial")
-final class QueryWizardFeatureGrid extends GridLayout {
-    private static int __getRowCount(final WizardFeature feature) {
+public final class EnumWizardFeatureGrid extends VerticalLayout {
+    private static int __getRowCount(final EnumWizardFeature feature) {
         int rowCount = feature.getValues().size() / 4;
         if (feature.getValues().size() % 4 != 0) {
             rowCount++;
@@ -29,17 +35,32 @@ final class QueryWizardFeatureGrid extends GridLayout {
         return rowCount;
     }
 
-    QueryWizardFeatureGrid(final EventBus eventBus, final WizardFeature feature, final WizardFeatureSet featureSet) {
-        super(4, __getRowCount(feature));
+    public EnumWizardFeatureGrid(final EventBus eventBus, final EnumWizardFeature feature,
+            final WizardFeatureSet featureSet) {
         setSizeFull();
-        setSpacing(true);
+
+        final Button resetButton = new NativeButton("Reset", new Button.ClickListener() {
+            @Override
+            public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
+                feature.resetSelected();
+                eventBus.post(new WizardFeatureRefreshRequest(feature, featureSet));
+            }
+        });
+        addComponent(resetButton);
+        setComponentAlignment(resetButton, Alignment.MIDDLE_RIGHT);
+
+        final GridLayout grid = new GridLayout(4, __getRowCount(feature));
+        grid.setSizeFull();
+        grid.setSpacing(true);
         int columnI = 0;
         int rowI = 0;
-        for (final WizardFeatureValue featureValue : feature.getValues()) {
+        for (final EnumWizardFeatureValue featureValue : feature.getValues()) {
             final VerticalLayout availableFeatureLayout = new VerticalLayout();
 
-            final ImageWithRightsLayout thumbnailImage = new ImageWithRightsLayout("",
-                    featureValue.getImage().getSquareThumbnail().get(), featureValue.getImage().getRights());
+            final Image image = featureValue.getImage().or(placeholderImage);
+
+            final ImageWithRightsLayout thumbnailImage = new ImageWithRightsLayout("", image.getSquareThumbnail().get(),
+                    image.getRights());
             availableFeatureLayout.addComponent(thumbnailImage);
             availableFeatureLayout.setComponentAlignment(thumbnailImage, Alignment.MIDDLE_CENTER);
 
@@ -58,9 +79,9 @@ final class QueryWizardFeatureGrid extends GridLayout {
             });
             captionLayout.addComponent(checkBox);
             captionLayout.setComponentAlignment(checkBox, Alignment.MIDDLE_CENTER);
-            if (featureValue.getImage().getOriginal().isPresent()) {
+            if (image.getOriginal().isPresent()) {
                 final Link originalLink = new Link("",
-                        new ExternalResource(featureValue.getImage().getOriginal().get().getUrl().toString()));
+                        new ExternalResource(image.getOriginal().get().getUrl().toString()));
                 originalLink.setTargetName("_blank");
                 originalLink.setIcon(FontAwesome.SEARCH_PLUS);
                 captionLayout.addComponent(originalLink);
@@ -68,11 +89,18 @@ final class QueryWizardFeatureGrid extends GridLayout {
             }
             availableFeatureLayout.addComponent(captionLayout);
 
-            addComponent(availableFeatureLayout, columnI, rowI);
+            grid.addComponent(availableFeatureLayout, columnI, rowI);
             if (++columnI == 4) {
                 columnI = 0;
                 rowI++;
             }
         }
+        addComponent(grid);
     }
+
+    private final static Image placeholderImage = Image.builder()
+            .setSquareThumbnail(ImageVersion.builder().setHeightPx(UnsignedInteger.valueOf(200))
+                    .setUrl(Url.parse("http://placehold.it/200x200?text=Missing%20image"))
+                    .setWidthPx(UnsignedInteger.valueOf(200)).build())
+            .build();
 }

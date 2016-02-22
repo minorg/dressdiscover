@@ -54,22 +54,20 @@ public abstract class WizardFeatureSet {
         builder.append(getUrlName());
         boolean haveSelectedFeatureValue = false;
         for (final WizardFeature feature : features) {
-            for (final WizardFeatureValue featureValue : feature.getValues()) {
-                if (featureValue.isSelected()) {
-                    if (haveSelectedFeatureValue) {
-                        builder.append('&');
-                    } else {
-                        builder.append(URL_STRING_SEPARATOR);
-                    }
-                    try {
-                        builder.append(URLEncoder.encode(feature.getName(), Charsets.UTF_8.name()));
-                        builder.append('=');
-                        builder.append(URLEncoder.encode(featureValue.getName(), Charsets.UTF_8.name()));
-                    } catch (final UnsupportedEncodingException e) {
-                        throw new IllegalStateException(e);
-                    }
-                    haveSelectedFeatureValue = true;
+            for (final String featureValue : feature.getSelected()) {
+                if (haveSelectedFeatureValue) {
+                    builder.append('&');
+                } else {
+                    builder.append(URL_STRING_SEPARATOR);
                 }
+                try {
+                    builder.append(URLEncoder.encode(feature.getName(), Charsets.UTF_8.name()));
+                    builder.append('=');
+                    builder.append(URLEncoder.encode(featureValue, Charsets.UTF_8.name()));
+                } catch (final UnsupportedEncodingException e) {
+                    throw new IllegalStateException(e);
+                }
+                haveSelectedFeatureValue = true;
             }
         }
         return builder.toString();
