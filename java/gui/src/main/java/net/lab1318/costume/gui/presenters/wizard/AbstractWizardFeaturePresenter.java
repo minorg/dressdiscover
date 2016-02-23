@@ -52,7 +52,7 @@ public abstract class AbstractWizardFeaturePresenter<ViewT extends View> extends
 
     @Subscribe
     public final void onWizardFeatureFinishRequest(final WizardFeatureFinishRequest event) {
-        _navigateToFinish(event.getFeatureSet());
+        _navigateToSummary(event.getFeatureSet());
     }
 
     @Subscribe
@@ -65,7 +65,7 @@ public abstract class AbstractWizardFeaturePresenter<ViewT extends View> extends
         if (event.getCurrentFeature().getNextFeature().isPresent()) {
             _navigateToFeature(event.getCurrentFeature().getNextFeature().get(), event.getFeatureSet());
         } else {
-            _navigateToFinish(event.getFeatureSet());
+            _navigateToSummary(event.getFeatureSet());
         }
     }
 
@@ -76,7 +76,7 @@ public abstract class AbstractWizardFeaturePresenter<ViewT extends View> extends
 
     protected abstract void _navigateToFeature(final WizardFeature feature, final WizardFeatureSet featureSet);
 
-    protected abstract void _navigateToFinish(final WizardFeatureSet featureSet);
+    protected abstract void _navigateToSummary(final WizardFeatureSet featureSet);
 
     @Override
     protected final void _onViewEnter(final Optional<UserEntry> currentUser, final ViewChangeEvent event) {
