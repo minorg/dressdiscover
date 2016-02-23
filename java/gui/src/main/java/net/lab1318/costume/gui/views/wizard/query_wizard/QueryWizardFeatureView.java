@@ -18,7 +18,7 @@ import net.lab1318.costume.gui.models.wizard.EnumWizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.views.TopLevelView;
-import net.lab1318.costume.gui.views.wizard.EnumWizardFeatureGrid;
+import net.lab1318.costume.gui.views.wizard.EnumWizardFeatureLayout;
 import net.lab1318.costume.gui.views.wizard.WizardFeatureNavigationLayout;
 import net.lab1318.costume.gui.views.wizard.WizardFeatureSetLayout;
 
@@ -53,7 +53,7 @@ public class QueryWizardFeatureView extends TopLevelView {
         final Design design = new Design();
 
         design.currentFeatureLayout.addComponent(
-                new EnumWizardFeatureGrid(_getEventBus(), (EnumWizardFeature) currentFeature, featureSet));
+                new EnumWizardFeatureLayout(_getEventBus(), (EnumWizardFeature) currentFeature, featureSet));
 
         design.currentFeatureNameLabel.setCaptionAsHtml(true);
         design.currentFeatureNameLabel.setCaption("<h1>Selecting: " + currentFeature.getName() + "</h1>");

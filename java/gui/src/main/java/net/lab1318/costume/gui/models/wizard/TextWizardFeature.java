@@ -4,8 +4,8 @@ import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.collect.ImmutableList;
 
-public final class TextWizardFeature extends WizardFeature {
-    TextWizardFeature(final String name) {
+public class TextWizardFeature extends WizardFeature {
+    TextWizardFeature(final String name, final boolean required) {
         super(name);
     }
 

@@ -8,8 +8,10 @@ import com.vaadin.annotations.DesignRoot;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
+import net.lab1318.costume.gui.models.wizard.CostumeCoreWizardFeatureSet;
 import net.lab1318.costume.gui.views.TopLevelView;
 
 @SuppressWarnings("serial")
@@ -34,9 +36,8 @@ public class CatalogWizardView extends TopLevelView {
         design.costumeCoreButton.addClickListener(new ClickListener() {
             @Override
             public void buttonClick(final ClickEvent event) {
-                // UI.getCurrent().getNavigator()
-                // .navigateTo(QueryWizardFeatureView.NAME + "/" +
-                // CostumeCoreWizardFeatureSet.URL_NAME);
+                UI.getCurrent().getNavigator()
+                        .navigateTo(CatalogWizardFeatureView.NAME + "/" + CostumeCoreWizardFeatureSet.URL_NAME);
             }
         });
         setCompositionRoot(design);

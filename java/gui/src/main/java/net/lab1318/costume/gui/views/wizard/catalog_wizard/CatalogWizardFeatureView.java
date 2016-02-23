@@ -11,10 +11,12 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 
 import net.lab1318.costume.gui.models.wizard.EnumWizardFeature;
+import net.lab1318.costume.gui.models.wizard.TextWizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.views.TopLevelView;
-import net.lab1318.costume.gui.views.wizard.EnumWizardFeatureGrid;
+import net.lab1318.costume.gui.views.wizard.EnumWizardFeatureLayout;
+import net.lab1318.costume.gui.views.wizard.TextWizardFeatureLayout;
 import net.lab1318.costume.gui.views.wizard.WizardFeatureNavigationLayout;
 import net.lab1318.costume.gui.views.wizard.WizardFeatureSetLayout;
 
@@ -40,20 +42,24 @@ public class CatalogWizardFeatureView extends TopLevelView {
     }
 
     public void setModels(final WizardFeature currentFeature, final WizardFeatureSet featureSet) {
-        if (!(currentFeature instanceof EnumWizardFeature)) {
-            throw new UnsupportedOperationException();
-        }
-
         final Design design = new Design();
 
-        design.currentFeatureLayout.addComponent(
-                new EnumWizardFeatureGrid(_getEventBus(), (EnumWizardFeature) currentFeature, featureSet));
-
         design.currentFeatureNameLabel.setCaptionAsHtml(true);
-        design.currentFeatureNameLabel.setCaption("<h1>Selecting: " + currentFeature.getName() + "</h1>");
+        design.currentFeatureNameLabel.setCaption("<h1>" + currentFeature.getName() + "</h1>");
 
-        design.bottomNavigationLayout
-                .addComponent(new WizardFeatureNavigationLayout(currentFeature, _getEventBus(), featureSet));
+        final WizardFeatureNavigationLayout bottomFeatureNavigationLayout = new WizardFeatureNavigationLayout(
+                currentFeature, _getEventBus(), featureSet);
+        design.bottomNavigationLayout.addComponent(bottomFeatureNavigationLayout);
+
+        if (currentFeature instanceof EnumWizardFeature) {
+            design.currentFeatureLayout.addComponent(
+                    new EnumWizardFeatureLayout(_getEventBus(), (EnumWizardFeature) currentFeature, featureSet));
+        } else if (currentFeature instanceof TextWizardFeature) {
+            design.currentFeatureLayout.addComponent(new TextWizardFeatureLayout((TextWizardFeature) currentFeature,
+                    bottomFeatureNavigationLayout.getNextButton()));
+        } else {
+            throw new UnsupportedOperationException();
+        }
 
         design.featureSetLayout
                 .addComponent(new WizardFeatureSetLayout(Optional.of(currentFeature), _getEventBus(), featureSet));

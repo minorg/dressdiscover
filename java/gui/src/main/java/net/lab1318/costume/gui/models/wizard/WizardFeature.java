@@ -4,11 +4,14 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
+import com.vaadin.server.ErrorMessage;
 
 public abstract class WizardFeature {
     protected WizardFeature(final String name) {
         this.name = checkNotNull(name);
     }
+
+    public abstract void addSelected(final String value);
 
     public String getName() {
         return name;
@@ -26,7 +29,9 @@ public abstract class WizardFeature {
 
     public abstract void resetSelected();
 
-    public abstract void addSelected(final String value);
+    public Optional<ErrorMessage> validateSelected() {
+        return Optional.absent();
+    }
 
     void setNextFeature(final WizardFeature nextFeature) {
         this.nextFeature = Optional.of(nextFeature);
