@@ -2,11 +2,14 @@ package net.lab1318.costume.gui.models.wizard;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.io.IOException;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import com.google.common.base.Charsets;
 import com.google.common.collect.ImmutableList;
+import com.opencsv.CSVWriter;
 
 import net.lab1318.costume.api.models.object.ObjectQuery;
 
@@ -47,6 +50,22 @@ public abstract class WizardFeatureSet {
         for (final WizardFeature feature : features) {
             feature.resetSelected();
         }
+    }
+
+    public String toCsv() {
+        final StringWriter csvStringWriter = new StringWriter();
+        try (final CSVWriter csvWriter = new CSVWriter(csvStringWriter)) {
+            csvWriter.writeNext(new String[] { "Feature name", "Feature value" });
+            for (final WizardFeature feature : features) {
+                for (final String featureValue : feature.getSelected()) {
+                    csvWriter.writeNext(new String[] { feature.getName(), featureValue });
+                }
+            }
+            csvWriter.flush();
+        } catch (final IOException e) {
+            throw new IllegalStateException(e);
+        }
+        return csvStringWriter.toString();
     }
 
     public final String toUrlString() {

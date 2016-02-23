@@ -49,7 +49,7 @@ public class QueryWizardFeaturePresenter extends AbstractWizardFeaturePresenter<
     }
 
     @Override
-    protected final void _navigateToFinish(final WizardFeatureSet featureSet) {
+    protected final void _navigateToSummary(final WizardFeatureSet featureSet) {
         UI.getCurrent().getNavigator().navigateTo(QueryWizardSummaryView.NAME + "/" + featureSet.toUrlString());
     }
 

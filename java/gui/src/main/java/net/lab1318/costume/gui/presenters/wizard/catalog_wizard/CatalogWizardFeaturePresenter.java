@@ -18,6 +18,7 @@ import net.lab1318.costume.gui.models.wizard.WizardFeatureSetFactories;
 import net.lab1318.costume.gui.models.wizard.WizardMode;
 import net.lab1318.costume.gui.presenters.wizard.AbstractWizardFeaturePresenter;
 import net.lab1318.costume.gui.views.wizard.catalog_wizard.CatalogWizardFeatureView;
+import net.lab1318.costume.gui.views.wizard.catalog_wizard.CatalogWizardSummaryView;
 
 @SessionScoped
 public class CatalogWizardFeaturePresenter extends AbstractWizardFeaturePresenter<CatalogWizardFeatureView> {
@@ -39,9 +40,8 @@ public class CatalogWizardFeaturePresenter extends AbstractWizardFeaturePresente
     }
 
     @Override
-    protected final void _navigateToFinish(final WizardFeatureSet featureSet) {
-        // UI.getCurrent().getNavigator().navigateTo(CatalogWizardSummaryView.NAME
-        // + "/" + featureSet.toUrlString());
+    protected final void _navigateToSummary(final WizardFeatureSet featureSet) {
+        UI.getCurrent().getNavigator().navigateTo(CatalogWizardSummaryView.NAME + "/" + featureSet.toUrlString());
     }
 
     @Override
