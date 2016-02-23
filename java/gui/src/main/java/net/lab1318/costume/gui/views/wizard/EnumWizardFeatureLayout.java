@@ -26,7 +26,7 @@ import net.lab1318.costume.gui.models.wizard.EnumWizardFeatureValue;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 
 @SuppressWarnings("serial")
-public final class EnumWizardFeatureGrid extends VerticalLayout {
+public final class EnumWizardFeatureLayout extends VerticalLayout {
     private static int __getRowCount(final EnumWizardFeature feature) {
         int rowCount = feature.getValues().size() / 4;
         if (feature.getValues().size() % 4 != 0) {
@@ -35,7 +35,7 @@ public final class EnumWizardFeatureGrid extends VerticalLayout {
         return rowCount;
     }
 
-    public EnumWizardFeatureGrid(final EventBus eventBus, final EnumWizardFeature feature,
+    public EnumWizardFeatureLayout(final EventBus eventBus, final EnumWizardFeature feature,
             final WizardFeatureSet featureSet) {
         setSizeFull();
 

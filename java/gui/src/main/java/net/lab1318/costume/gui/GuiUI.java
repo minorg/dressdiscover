@@ -35,7 +35,7 @@ import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardView;
 
 @SuppressWarnings("serial")
 @Theme("costume")
-@Title("Costume Explorer")
+@Title("DressDiscover")
 @Widgetset("net.lab1318.costume.gui.GuiWidgetSet")
 public final class GuiUI extends UI {
     @Override

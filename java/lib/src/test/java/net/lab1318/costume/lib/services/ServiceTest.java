@@ -1,7 +1,5 @@
 package net.lab1318.costume.lib.services;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.thryft.waf.lib.PropertiesModule;
 
@@ -27,7 +25,9 @@ public abstract class ServiceTest {
     @Before
     public final void checkReadWrite() {
         if (!readOnly) {
-            assertEquals("dev", properties.getEnvironment());
+            if (!properties.getEnvironment().equals("dev") && !properties.getEnvironment().equals("jenkins")) {
+                throw new AssertionError();
+            }
         }
     }
 

@@ -11,6 +11,8 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.vaadin.server.ErrorMessage;
+import com.vaadin.server.UserError;
 
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.collection.InvalidCollectionIdException;
@@ -78,7 +80,16 @@ public class CostumeCoreWizardFeatureSetFactory implements WizardFeatureSetFacto
 
         final ImmutableList.Builder<WizardFeature> featuresBuilder = ImmutableList.builder();
         if (mode == WizardMode.CATALOG) {
-            featuresBuilder.add(new TextWizardFeature("Title"));
+            featuresBuilder.add(new TextWizardFeature("Title", true) {
+                @Override
+                public Optional<ErrorMessage> validateSelected() {
+                    if (getSelected().isEmpty() || getSelected().get(0).isEmpty()) {
+                        return Optional.of(new UserError("Must specify title"));
+                    } else {
+                        return Optional.absent();
+                    }
+                }
+            });
         }
         for (final Map.Entry<String, Collection<String>> featureEntry : CostumeCore.FEATURES.asMap().entrySet()) {
             final String featureName = featureEntry.getKey();
