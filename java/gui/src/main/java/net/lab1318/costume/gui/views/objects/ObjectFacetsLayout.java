@@ -13,7 +13,6 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.GridLayout;
-import com.vaadin.ui.NativeButton;
 
 import net.lab1318.costume.api.models.gender.Gender;
 import net.lab1318.costume.api.models.institution.Institution;

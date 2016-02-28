@@ -40,6 +40,18 @@ $v-selection-item-border-radius: 0;
   	padding: 10px;
   }
 
+  .objectEntryLayout > .rightPaneLayout {
+    margin-left: auto;
+  }
+
+  .rightsLayout .v-panel-caption {
+  	font-size: 8pt;
+  }
+
+  .rightsLayout .v-table-cell-content {
+    font-size: 8pt;
+  }
+
   .v-checkbox-all {
   	font-weight: bold;
   }
@@ -78,7 +90,8 @@ $v-selection-item-border-radius: 0;
   	text-align: center;
   }
 
-  .v-table-cell-wrapper{
+  .v-table-cell-wrapper {
+    overflow: auto;
     white-space: normal;
   }
 

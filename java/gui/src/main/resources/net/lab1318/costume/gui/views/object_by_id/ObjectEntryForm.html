@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<v-horizontal-layout size-full :spacing>
-		<v-vertical-layout :expand="1" :spacing :left :top>
+	<v-horizontal-layout size-full spacing="true" style-name="objectEntryLayout">
+		<v-vertical-layout :left spacing="true" :top>
 			<v-label _id="titleLabel"></v-label>
-			<v-panel>
-				<v-form-layout _id="formLayout" size-full :spacing></v-form-layout>
-			</v-panel>
-			<v-vertical-layout _id="rightsLayout"></v-vertical-layout>
+			<v-form-layout _id="formLayout" size-full spacing="true"></v-form-layout>
+			<v-vertical-layout _id="rightsLayout" spacing="true"></v-vertical-layout>
 		</v-vertical-layout>
-		<v-vertical-layout :expand="1" _id="rightPaneLayout" size-full :right :top></v-vertical-layout>
+		<v-vertical-layout _id="rightPaneLayout" size-full style-name="rightPaneLayout" :right :top></v-vertical-layout>
 	</v-horizontal-layout>
 </body>
 </html>

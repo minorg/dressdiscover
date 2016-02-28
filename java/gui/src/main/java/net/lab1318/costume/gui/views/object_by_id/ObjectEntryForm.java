@@ -4,22 +4,19 @@ import org.apache.commons.lang3.StringUtils;
 import org.thryft.waf.gui.EventBus;
 
 import com.vaadin.annotations.DesignRoot;
-import com.vaadin.server.ExternalResource;
-import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
-import com.vaadin.ui.Link;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.api.models.image.ImageVersion;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.title.Title;
 import net.lab1318.costume.gui.components.ImageWithRightsLayout;
+import net.lab1318.costume.gui.components.RightsLayout;
 import net.lab1318.costume.gui.models.gender.Genders;
 
 @SuppressWarnings("serial")
@@ -168,10 +165,12 @@ final class ObjectEntryForm extends CustomComponent {
             // }
 
             if (objectEntry.getModel().getRights().isPresent()) {
-                design.rightsLayout.addComponent(new RightsLabel(objectEntry.getModel().getRights().get()));
+                design.rightsLayout
+                        .addComponent(new RightsLayout("Object metadata", objectEntry.getModel().getRights().get()));
             }
             if (institution.getDataRights().isPresent()) {
-                design.rightsLayout.addComponent(new RightsLabel(institution.getDataRights().get()));
+                design.rightsLayout
+                        .addComponent(new RightsLayout("Institution metadata", institution.getDataRights().get()));
             }
         }
 
@@ -189,18 +188,8 @@ final class ObjectEntryForm extends CustomComponent {
                     } else {
                         continue;
                     }
-                    final VerticalLayout imageLayout = new VerticalLayout();
-                    final ImageWithRightsLayout imageView = new ImageWithRightsLayout("", bestImageModel,
-                            imageModel.getRights().or(objectEntry.getModel().getRights()));
-                    imageLayout.addComponent(imageView);
-                    if (imageModel.getOriginal().isPresent()) {
-                        final Link originalLink = new Link("",
-                                new ExternalResource(imageModel.getOriginal().get().getUrl().toString()));
-                        originalLink.setTargetName("_blank");
-                        originalLink.setIcon(FontAwesome.SEARCH_PLUS);
-                        imageLayout.addComponent(originalLink);
-                    }
-                    design.rightPaneLayout.addComponent(imageLayout);
+                    design.rightPaneLayout.addComponent(new ImageWithRightsLayout("", imageModel.getOriginal(),
+                            bestImageModel, imageModel.getRights().or(objectEntry.getModel().getRights())));
                 }
             }
         }
