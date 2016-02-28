@@ -45,7 +45,7 @@ final class LocationSetTable extends ElementSetTable {
             public Object generateCell(final Table source, final Object itemId, final Object columnId) {
                 final String locationText = (String) source.getContainerDataSource()
                         .getContainerProperty(itemId, columnId).getValue();
-                return new NativeButton(locationText, new Button.ClickListener() {
+                return new Button(locationText, new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {
                         eventBus.post(new ObjectElementSelectionRequest(ObjectFacetFilters.builder()

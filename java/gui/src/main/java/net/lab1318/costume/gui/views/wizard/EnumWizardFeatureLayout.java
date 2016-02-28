@@ -39,7 +39,7 @@ public final class EnumWizardFeatureLayout extends VerticalLayout {
             final WizardFeatureSet featureSet) {
         setSizeFull();
 
-        final Button resetButton = new NativeButton("Reset", new Button.ClickListener() {
+        final Button resetButton = new Button("Reset", new Button.ClickListener() {
             @Override
             public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
                 feature.resetSelected();

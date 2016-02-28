@@ -85,7 +85,7 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
                             .getContainerProperty(itemId, ObjectSummaryEntry.FieldMetadata.MODEL.getJavaName() + '.'
                                     + ObjectSummary.FieldMetadata.TITLE.getJavaName())
                             .getValue();
-                    final Button button = new NativeButton();
+                    final Button button = new Button();
                     @Nullable
                     final UserBookmarkEntry bookmarkEntry = ObjectSummaryEntriesTable.this.bookmarks.get(objectId);
                     if (bookmarkEntry != null) {
@@ -127,7 +127,7 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
                             final java.lang.Object columnId) {
                         final CollectionId collectionId = (CollectionId) source.getContainerDataSource()
                                 .getContainerProperty(itemId, columnId).getValue();
-                        return new NativeButton(collections.get(collectionId).getTitle(), new Button.ClickListener() {
+                        return new Button(collections.get(collectionId).getTitle(), new Button.ClickListener() {
                             @Override
                             public void buttonClick(final ClickEvent event) {
                                 eventBus.post(
@@ -145,7 +145,7 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
                             final java.lang.Object columnId) {
                         final InstitutionId institutionId = (InstitutionId) source.getContainerDataSource()
                                 .getContainerProperty(itemId, columnId).getValue();
-                        return new NativeButton(institutions.get(institutionId).getTitle(), new Button.ClickListener() {
+                        return new Button(institutions.get(institutionId).getTitle(), new Button.ClickListener() {
                             @Override
                             public void buttonClick(final ClickEvent event) {
                                 eventBus.post(
@@ -220,7 +220,7 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
                         if (bookmarkEntry != null && !bookmarkEntry.getModel().getName().equals(title)) {
                             title = String.format("%s (%s)", bookmarkEntry.getModel().getName(), title);
                         }
-                        return new NativeButton(title, new Button.ClickListener() {
+                        return new Button(title, new Button.ClickListener() {
                             @Override
                             public void buttonClick(final ClickEvent event) {
                                 eventBus.post(new ObjectQueryService.Messages.GetObjectByIdRequest(objectId));

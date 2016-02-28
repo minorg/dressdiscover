@@ -38,7 +38,7 @@ final class RelationSetTable extends ElementSetTable {
                 if (relationText.isEmpty()) {
                     return new Label();
                 }
-                return new NativeButton(relationText, new Button.ClickListener() {
+                return new Button(relationText, new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {
                         eventBus.post(GetObjectSummariesRequest.builder().setQuery(ObjectQuery.builder()

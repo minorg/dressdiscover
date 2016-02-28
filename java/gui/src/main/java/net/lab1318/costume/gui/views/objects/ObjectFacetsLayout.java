@@ -35,7 +35,7 @@ final class ObjectFacetsLayout extends CustomComponent {
             final ObjectFacets resultObjectFacets) {
         int rowI = 0;
 
-        final Button resetButton = new NativeButton("Reset filters", new Button.ClickListener() {
+        final Button resetButton = new Button("Reset filters", new Button.ClickListener() {
             @Override
             public void buttonClick(final ClickEvent event) {
                 eventBus.post(ObjectSummaryQueryService.Messages.GetObjectSummariesRequest.builder()
