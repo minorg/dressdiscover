@@ -28,7 +28,7 @@ final class CategoriesTable extends Table {
             public Object generateCell(final Table source, final Object itemId, final Object columnId) {
                 final String category = (String) source.getContainerDataSource().getContainerProperty(itemId, columnId)
                         .getValue();
-                return new NativeButton(category, new Button.ClickListener() {
+                return new Button(category, new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {
                         eventBus.post(new ObjectElementSelectionRequest(

@@ -29,7 +29,7 @@ public final class ObjectSummaryEntriesCarousel extends CustomComponent {
         carousel.setSpacing(true);
 
         for (final ObjectSummaryEntry objectSummaryEntry : objectSummaryEntries) {
-            final Button titleButton = new NativeButton(objectSummaryEntry.getModel().getTitle(),
+            final Button titleButton = new Button(objectSummaryEntry.getModel().getTitle(),
                     new Button.ClickListener() {
                         @Override
                         public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {

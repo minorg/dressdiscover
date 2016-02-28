@@ -48,10 +48,6 @@ $v-selection-item-border-radius: 0;
   	font-style: italic;
   }
 
-  .v-nativebutton {
-	background: transparent;
-  }
-
   .v-align-center > .v-widget {
   	text-align: center;
   }
@@ -64,13 +60,8 @@ $v-selection-item-border-radius: 0;
   	background: none;
   }
 
-  .v-nativebutton-home {
-  	background: none;
-  	width: 2em;
-  }
-
-  .v-nativebutton-search {
-  	background: none;
+  .v-button {
+	background: transparent;
   }
 
   .v-panel-content {

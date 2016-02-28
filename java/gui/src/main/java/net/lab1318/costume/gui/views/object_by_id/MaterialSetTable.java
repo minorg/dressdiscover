@@ -38,7 +38,7 @@ final class MaterialSetTable extends ElementSetTable {
             @Override
             public Object generateCell(final Table source, final Object itemId, final Object columnId) {
                 final String materialText = (String) container.getItem(itemId).getItemProperty(columnId).getValue();
-                final Button button = new NativeButton(materialText, new Button.ClickListener() {
+                final Button button = new Button(materialText, new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {
                         eventBus.post(new ObjectElementSelectionRequest(ObjectFacetFilters.builder()

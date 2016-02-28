@@ -18,7 +18,7 @@ public final class WizardFeatureSetLayout extends VerticalLayout {
             final WizardFeatureSet featureSet) {
         for (final WizardFeature feature : featureSet.getFeatures()) {
             final VerticalLayout featureNavigationLayout = new VerticalLayout();
-            final Button featureButton = new NativeButton(feature.getName(), new Button.ClickListener() {
+            final Button featureButton = new Button(feature.getName(), new Button.ClickListener() {
                 @Override
                 public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
                     eventBus.post(new WizardFeatureGotoRequest(feature.getName(), featureSet));
