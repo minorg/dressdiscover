@@ -3,6 +3,7 @@ package net.lab1318.costume.gui.components;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.Table;
+import com.vaadin.ui.Table.CellStyleGenerator;
 import com.vaadin.ui.Table.ColumnHeaderMode;
 
 import net.lab1318.costume.api.models.rights.RightsSet;
@@ -27,6 +28,12 @@ public final class RightsLayout extends CustomComponent {
         final Table rootTable = new Table();
         rootTable.addContainerProperty("caption", String.class, null);
         rootTable.addContainerProperty("text", String.class, null);
+        rootTable.setCellStyleGenerator(new CellStyleGenerator() {
+            @Override
+            public String getStyle(final Table source, final Object itemId, final Object propertyId) {
+                return propertyId != null ? "rights-" + propertyId.toString() : null;
+            }
+        });
         // rootTable.addGeneratedColumn("text", new ColumnGenerator() {
         // @Override
         // public Object generateCell(final Table source, final Object itemId,
@@ -86,6 +93,6 @@ public final class RightsLayout extends CustomComponent {
         panel.setContent(rootTable);
 
         setCompositionRoot(panel);
-        addStyleName("rightsLayout");
+        addStyleName("rights-layout");
     }
 }

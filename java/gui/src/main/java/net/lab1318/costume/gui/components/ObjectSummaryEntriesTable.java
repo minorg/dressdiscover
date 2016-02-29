@@ -247,6 +247,7 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
                     });
         }
 
+        table.setStyleName("object-summary-entries-table");
         table.setVisibleColumns(columns.keySet().toArray());
         {
             final String[] columnHeaders = new String[columns.size()];

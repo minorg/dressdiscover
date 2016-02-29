@@ -40,15 +40,30 @@ $v-selection-item-border-radius: 0;
   	padding: 10px;
   }
 
-  .objectEntryLayout > .rightPaneLayout {
-    margin-left: auto;
+  .object-by-id-view .collection-button {
+  	font-style: italic;
+    font-weight: bold;
   }
 
-  .rightsLayout .v-panel-caption {
+  .object-by-id-view .institution-button {
+  	font-style: italic;
+    font-weight: bold;
+  }
+
+  .object-entry-layout h3 {
+    font-size: large;
+  	font-weight: bold;
+  }
+
+  .object-entry-layout .v-formlayout .v-caption {
+  	font-weight: bold;
+  }
+
+  .rights-layout .v-panel-caption {
   	font-size: 8pt;
   }
 
-  .rightsLayout .v-table-cell-content {
+  .rights-layout .v-table-cell-content {
     font-size: 8pt;
   }
 
@@ -58,14 +73,6 @@ $v-selection-item-border-radius: 0;
 
   .v-checkbox-unknown {
   	font-style: italic;
-  }
-
-  .v-align-center > .v-widget {
-  	text-align: center;
-  }
-
-  .v-formlayout .v-caption {
-  	vertical-align: top;
   }
 
   .v-menubar {
@@ -80,26 +87,12 @@ $v-selection-item-border-radius: 0;
   	overflow: auto;
   }
 
-  .v-table-cell-content-thumbnail > .v-table-cell-wrapper {
-    padding: 2px;
-    text-align: center;
-  }
-
-  .v-table-cell-content-thumbnail > .v-table-cell-wrapper > .v-widget {
-    margin: 0px;
-  	text-align: center;
+  .v-table-cell-content-thumbnail .v-caption {
+    display: none;
   }
 
   .v-table-cell-wrapper {
     overflow: auto;
     white-space: normal;
-  }
-
-  .v-table-focus .v-table-cell-wrapper {
-    white-space: normal;
-  }
-
-  [class*="margin-top"] > tbody > [class*="firstrow"] > td {
-  	padding-top: 0px;
   }
 }
