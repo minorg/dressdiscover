@@ -21,7 +21,6 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
-import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.Table.ColumnGenerator;
 import com.vaadin.ui.UI;
@@ -175,8 +174,8 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
                             return new Label(); // TODO: return an empty image
                         }
 
-                        final ImageWithRightsLayout thumbnailView = new ImageWithRightsLayout("", thumbnailModel,
-                                Optional.fromNullable(imageModel.getRights()));
+                        final ImageWithRightsLayout thumbnailView = new ImageWithRightsLayout("", Optional.absent(),
+                                thumbnailModel, Optional.fromNullable(imageModel.getRights()));
                         thumbnailView.addStyleName("thumbnail");
                         thumbnailView.addClickListener(new ClickListener() {
                             @Override
@@ -248,6 +247,7 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
                     });
         }
 
+        table.setStyleName("object-summary-entries-table");
         table.setVisibleColumns(columns.keySet().toArray());
         {
             final String[] columnHeaders = new String[columns.size()];

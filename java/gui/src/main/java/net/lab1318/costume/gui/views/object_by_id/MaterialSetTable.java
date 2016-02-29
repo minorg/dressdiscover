@@ -9,7 +9,6 @@ import com.google.common.collect.ImmutableSet;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.Table;
 
 import net.lab1318.costume.api.models.material.Material;

@@ -5,7 +5,6 @@ import org.thryft.waf.gui.EventBus;
 import com.google.common.base.Optional;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.gui.events.wizard.WizardFeatureGotoRequest;

@@ -6,15 +6,11 @@ import org.thryft.waf.gui.EventBus;
 import com.google.common.primitives.UnsignedInteger;
 import com.vaadin.event.MouseEvents.ClickEvent;
 import com.vaadin.event.MouseEvents.ClickListener;
-import com.vaadin.server.ExternalResource;
-import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Link;
-import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.api.models.image.Image;
@@ -59,8 +55,8 @@ public final class EnumWizardFeatureLayout extends VerticalLayout {
 
             final Image image = featureValue.getImage().or(placeholderImage);
 
-            final ImageWithRightsLayout thumbnailImage = new ImageWithRightsLayout("", image.getSquareThumbnail().get(),
-                    image.getRights());
+            final ImageWithRightsLayout thumbnailImage = new ImageWithRightsLayout("", image.getOriginal(),
+                    image.getSquareThumbnail().get(), image.getRights());
             availableFeatureLayout.addComponent(thumbnailImage);
             availableFeatureLayout.setComponentAlignment(thumbnailImage, Alignment.MIDDLE_CENTER);
 
@@ -79,14 +75,6 @@ public final class EnumWizardFeatureLayout extends VerticalLayout {
             });
             captionLayout.addComponent(checkBox);
             captionLayout.setComponentAlignment(checkBox, Alignment.MIDDLE_CENTER);
-            if (image.getOriginal().isPresent()) {
-                final Link originalLink = new Link("",
-                        new ExternalResource(image.getOriginal().get().getUrl().toString()));
-                originalLink.setTargetName("_blank");
-                originalLink.setIcon(FontAwesome.SEARCH_PLUS);
-                captionLayout.addComponent(originalLink);
-                captionLayout.setComponentAlignment(originalLink, Alignment.MIDDLE_CENTER);
-            }
             availableFeatureLayout.addComponent(captionLayout);
 
             grid.addComponent(availableFeatureLayout, columnI, rowI);

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<v-vertical-layout size-full>
+	<v-vertical-layout size-full style-name="object-by-id-view">
 		<v-horizontal-layout size-full>
 			<v-vertical-layout :expand="1">
-				<v-button _id="institutionButton"></v-button>
+				<v-button _id="institutionButton" style-name="institution-button"></v-button>
 				<v-label><br/></v-label>
-				<v-button _id="collectionButton"></v-button>
+				<v-button _id="collectionButton" style-name="collection-button"></v-button>
 			</v-vertical-layout>
 			<v-button :expand="1" _id="moreLikeThisButton" :center :middle>More like this</v-button>
 		</v-horizontal-layout>

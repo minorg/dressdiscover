@@ -5,7 +5,6 @@ import org.thryft.waf.gui.EventBus;
 import com.google.common.collect.ImmutableSet;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.Table;
 
 import net.lab1318.costume.api.models.location.Location;
