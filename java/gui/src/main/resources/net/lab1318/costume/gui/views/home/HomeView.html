@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<v-horizontal-layout size-full>
-		<v-vertical-layout :expand="2" :left>
-			<v-button _id="institutionsButton"><b>Browse institutions</b></v-button>
+	<v-horizontal-layout style-name="home-view">
+		<v-vertical-layout style-name="left-pane-layout">
+			<v-button _id="institutionsButton" height="2em" width="100%" style-name="institution-button"><b>Browse institutions</b></v-button>
 			<v-label><br/></v-label>
-			<v-button _id="catalogWizardButton"><b>Catalog wizard</b></v-button>
+			<v-button _id="catalogWizardButton" height="2em" width="100%" style-name="catalog-wizard-button"><b>Catalog wizard</b></v-button>
 			<v-label><br/></v-label>
-			<v-button _id="queryWizardButton"><b>Query wizard</b></v-button>
+			<v-button _id="queryWizardButton" height="2em" width="100%" style-name="query-wizard-button"><b>Query wizard</b></v-button>
 		</v-vertical-layout>
-		<v-vertical-layout :expand="8">
-			<vaadin-label :center :middle><h1>Welcome to DressDiscover!</h1></vaadin-label>
+		<v-vertical-layout style-name="right-pane-layout">
+			<vaadin-label style-name="welcome-label"><h1>Welcome to DressDiscover!</h1></vaadin-label>
 		</v-vertical-layout>
 	</v-horizontal-layout>
 </body>

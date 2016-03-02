@@ -62,8 +62,7 @@ public final class EnumWizardFeatureLayout extends VerticalLayout {
 
             final HorizontalLayout captionLayout = new HorizontalLayout();
             captionLayout.setSizeFull();
-            final CheckBox checkBox = new CheckBox(featureValue.getName());
-            checkBox.setValue(featureValue.isSelected());
+            final CheckBox checkBox = new CheckBox(featureValue.getName(), featureValue.isSelected());
             thumbnailImage.addClickListener(new ClickListener() {
                 @Override
                 public void click(final ClickEvent event) {

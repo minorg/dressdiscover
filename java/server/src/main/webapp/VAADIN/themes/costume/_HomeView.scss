@@ -1,0 +1,41 @@
+@mixin HomeView {
+  .home-view {
+  	height: 100%;
+  	width: 100%;
+
+	.catalog-wizard-button {
+	  	background-color: $blue;
+	  	color: white;
+	  	height: 2em;
+	  	width: 100%;
+	}
+
+	  .query-wizard-button {
+	  	background-color: $dark-blue;
+	  	color: white;
+	  	height: 2em;
+	  	width: 100%;
+	  }
+
+	  .institution-button {
+        background-color: $red;
+        color: white;
+	  	height: 2em;
+	  	width: 100%;
+	  }
+
+	  .v-slot-left-pane-layout {
+	  	width: 30%;
+	  }
+
+	  .right-pane-layout {
+	  }
+
+	  .welcome-label {
+	  	height: 100%;
+	  	padding: 0px;
+	  	text-align: center;
+	  	vertical-align: middle;
+	  }
+  }
+}

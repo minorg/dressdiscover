@@ -1,0 +1,16 @@
+@mixin ObjectFacetsLayout {
+    .object-facets-layout {
+      .v-checkbox-all {
+        font-weight: bold;
+      }
+
+      .reset-button {
+        background-color: $lighter-red;
+        color: white;
+      }
+
+      .v-checkbox-unknown {
+        font-style: italic;
+      }
+    }
+}

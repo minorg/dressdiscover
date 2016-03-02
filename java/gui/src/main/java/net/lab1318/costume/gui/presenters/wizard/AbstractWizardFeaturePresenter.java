@@ -71,7 +71,7 @@ public abstract class AbstractWizardFeaturePresenter<ViewT extends View> extends
 
     @Subscribe
     public final void onWizardFeatureRefreshEvent(final WizardFeatureRefreshRequest event) {
-        _refreshView(event.getCurrentFeature(), event.getFeatureSet());
+        _navigateToFeature(event.getCurrentFeature(), event.getFeatureSet());
     }
 
     protected abstract void _navigateToFeature(final WizardFeature feature, final WizardFeatureSet featureSet);

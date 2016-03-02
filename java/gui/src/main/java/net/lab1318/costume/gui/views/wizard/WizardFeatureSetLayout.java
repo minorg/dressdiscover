@@ -24,7 +24,7 @@ public final class WizardFeatureSetLayout extends VerticalLayout {
                 }
             });
             if (currentFeature.isPresent() && feature.getName().equals(currentFeature.get().getName())) {
-                featureButton.addStyleName("bold-button");
+                featureButton.addStyleName("selected-feature-button");
             }
             featureNavigationLayout.addComponent(featureButton);
 

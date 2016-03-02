@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<v-horizontal-layout height="2em" width="100%">
-		<v-button height="100%" _id="homeButton" style-name="home" :left :middle></v-button>
-		<v-horizontal-layout height="100%" :center :middle>
-			<v-text-field height="100%" _id="searchTextField" width="32em"></v-text-field>
-			<v-button height="100%" _id="searchButton" size-full style-name="search"></v-button>
+	<v-horizontal-layout style-name="navbar">
+		<v-button _id="homeButton" style-name="home-button"></v-button>
+		<v-horizontal-layout style-name="search-layout">
+			<v-text-field _id="searchTextField" style-name="search-text-field"></v-text-field>
+			<v-button _id="searchButton" size-full style-name="search-button"></v-button>
 		</v-horizontal-layout>
-		<v-menu-bar height="100%" _id="rightMenuBar" :middle :right></v-menu-bar>
+		<v-horizontal-layout style-name="right-menu-layout">
+			<v-menu-bar _id="rightMenuBar" style-name="right-menu-bar"></v-menu-bar>
+		</v-horizontal-layout>
 	</v-horizontal-layout>
 </body>
 </html>
