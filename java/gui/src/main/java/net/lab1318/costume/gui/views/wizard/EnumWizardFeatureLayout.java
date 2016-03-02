@@ -6,7 +6,6 @@ import org.thryft.waf.gui.EventBus;
 import com.google.common.primitives.UnsignedInteger;
 import com.vaadin.event.MouseEvents.ClickEvent;
 import com.vaadin.event.MouseEvents.ClickListener;
-import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.GridLayout;
@@ -33,7 +32,7 @@ public final class EnumWizardFeatureLayout extends VerticalLayout {
 
     public EnumWizardFeatureLayout(final EventBus eventBus, final EnumWizardFeature feature,
             final WizardFeatureSet featureSet) {
-        setSizeFull();
+        setStyleName("enum-wizard-feature-layout");
 
         final Button resetButton = new Button("Reset", new Button.ClickListener() {
             @Override
@@ -42,27 +41,30 @@ public final class EnumWizardFeatureLayout extends VerticalLayout {
                 eventBus.post(new WizardFeatureRefreshRequest(feature, featureSet));
             }
         });
+        resetButton.setStyleName("reset-button");
         addComponent(resetButton);
-        setComponentAlignment(resetButton, Alignment.MIDDLE_RIGHT);
 
         final GridLayout grid = new GridLayout(4, __getRowCount(feature));
-        grid.setSizeFull();
         grid.setSpacing(true);
+        grid.setStyleName("grid");
         int columnI = 0;
         int rowI = 0;
         for (final EnumWizardFeatureValue featureValue : feature.getValues()) {
-            final VerticalLayout availableFeatureLayout = new VerticalLayout();
+            final VerticalLayout featureValueLayout = new VerticalLayout();
+            featureValueLayout.setSpacing(true);
+            featureValueLayout.setStyleName("feature-value-layout");
 
             final Image image = featureValue.getImage().or(placeholderImage);
 
             final ImageWithRightsLayout thumbnailImage = new ImageWithRightsLayout("", image.getOriginal(),
                     image.getSquareThumbnail().get(), image.getRights());
-            availableFeatureLayout.addComponent(thumbnailImage);
-            availableFeatureLayout.setComponentAlignment(thumbnailImage, Alignment.MIDDLE_CENTER);
+            thumbnailImage.setStyleName("thumbnail");
+            featureValueLayout.addComponent(thumbnailImage);
 
             final HorizontalLayout captionLayout = new HorizontalLayout();
             captionLayout.setSizeFull();
             final CheckBox checkBox = new CheckBox(featureValue.getName(), featureValue.isSelected());
+            checkBox.setStyleName("caption-checkbox");
             thumbnailImage.addClickListener(new ClickListener() {
                 @Override
                 public void click(final ClickEvent event) {
@@ -70,13 +72,12 @@ public final class EnumWizardFeatureLayout extends VerticalLayout {
                     featureValue.setSelected(checkBox.getValue());
                     eventBus.post(new WizardFeatureRefreshRequest(feature, featureSet));
                 }
-
             });
             captionLayout.addComponent(checkBox);
-            captionLayout.setComponentAlignment(checkBox, Alignment.MIDDLE_CENTER);
-            availableFeatureLayout.addComponent(captionLayout);
+            captionLayout.setStyleName("caption-layout");
+            featureValueLayout.addComponent(captionLayout);
 
-            grid.addComponent(availableFeatureLayout, columnI, rowI);
+            grid.addComponent(featureValueLayout, columnI, rowI);
             if (++columnI == 4) {
                 columnI = 0;
                 rowI++;

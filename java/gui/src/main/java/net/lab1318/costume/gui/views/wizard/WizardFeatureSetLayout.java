@@ -15,8 +15,11 @@ import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 public final class WizardFeatureSetLayout extends VerticalLayout {
     public WizardFeatureSetLayout(final Optional<WizardFeature> currentFeature, final EventBus eventBus,
             final WizardFeatureSet featureSet) {
+        setStyleName("wizard-feature-set-layout");
+
         for (final WizardFeature feature : featureSet.getFeatures()) {
-            final VerticalLayout featureNavigationLayout = new VerticalLayout();
+            final VerticalLayout featureLayout = new VerticalLayout();
+            featureLayout.setStyleName("feature-layout");
             final Button featureButton = new Button(feature.getName(), new Button.ClickListener() {
                 @Override
                 public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
@@ -24,9 +27,11 @@ public final class WizardFeatureSetLayout extends VerticalLayout {
                 }
             });
             if (currentFeature.isPresent() && feature.getName().equals(currentFeature.get().getName())) {
-                featureButton.addStyleName("selected-feature-button");
+                featureButton.setStyleName("current-feature-button");
+            } else {
+                featureButton.setStyleName("feature-button");
             }
-            featureNavigationLayout.addComponent(featureButton);
+            featureLayout.addComponent(featureButton);
 
             String selectedFeatureValuesString = "";
             for (final String featureValue : feature.getSelected()) {
@@ -35,9 +40,11 @@ public final class WizardFeatureSetLayout extends VerticalLayout {
                 }
                 selectedFeatureValuesString += '"' + featureValue + '"';
             }
-            featureNavigationLayout.addComponent(new Label(selectedFeatureValuesString));
+            final Label selectedFeatureValueLabel = new Label(selectedFeatureValuesString);
+            selectedFeatureValueLabel.setStyleName("selected-feature-value-label");
+            featureLayout.addComponent(selectedFeatureValueLabel);
 
-            addComponent(featureNavigationLayout);
+            addComponent(featureLayout);
         }
     }
 }

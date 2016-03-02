@@ -1,0 +1,34 @@
+@mixin EnumWizardFeatureLayout {
+    .enum-wizard-feature-layout {
+        width: 100%;
+
+        .feature-value-layout {
+            .caption-checkbox {
+            }
+
+            .caption-layout {
+            }
+
+            .thumbnail {
+            }
+        }
+
+        .grid {
+            width: 100%;
+
+            .v-gridlayout-spacing-on {
+                padding-left: 40px;
+                padding-top: 40px;
+            }
+        }
+
+        .reset-button {
+            background-color: $costume-color-red;
+            color: white;
+        }
+
+        .v-slot-reset-button {
+            float: left;
+        }
+    }
+}

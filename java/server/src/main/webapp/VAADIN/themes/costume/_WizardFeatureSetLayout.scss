@@ -1,0 +1,24 @@
+@mixin WizardFeatureSetLayout {
+  .wizard-feature-set-layout {
+    .current-feature-button {
+        background-color: $costume-color-darker-green;
+    }
+
+    .feature-button {
+        background-color: $costume-color-green;
+    }
+
+    .feature-layout {
+        padding-bottom: 20px;
+    }
+
+    .selected-feature-value-label {
+    }
+
+    .v-button {
+        color: white;
+        font-weight: bold;
+        width: 50%;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+@mixin WizardFeatureNavigationLayout {
+  .wizard-feature-navigation-layout {
+    vertical-align: middle;
+    width: 100%;
+
+    .v-button {
+        background-color: $costume-color-blue;
+        color: white;
+    }
+
+    .v-slot-back-button {
+        width: 20%;
+    }
+
+    .v-slot-finish-button {
+        width: 20%;
+    }
+
+    .v-slot-next-button {
+        width: 60%;
+    }
+  }
+}

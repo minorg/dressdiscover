@@ -27,6 +27,8 @@ $v-selection-item-border-radius: 0;
 
 @import "../valo/valo";
 
+@import "CatalogWizardFeatureView";
+@import "EnumWizardFeatureLayout";
 @import "Navbar";
 @import "HomeView";
 @import "ObjectByIdView";
@@ -34,6 +36,8 @@ $v-selection-item-border-radius: 0;
 @import "ObjectFacetsLayout";
 @import "ObjectSummaryEntriesTable";
 @import "RightsLayout";
+@import "WizardFeatureNavigationLayout";
+@import "WizardFeatureSetLayout";
 
 @mixin costume {
   @include valo;
@@ -43,10 +47,6 @@ $v-selection-item-border-radius: 0;
     background: transparent;
     box-shadow: none;
     font-style: italic;
-    font-weight: bold;
-  }
-
-  .selected-feature-button {
     font-weight: bold;
   }
 
@@ -98,6 +98,8 @@ $v-selection-item-border-radius: 0;
     white-space: normal;
   }
 
+  @include CatalogWizardFeatureView;
+  @include EnumWizardFeatureLayout;
   @include HomeView;
   @include Navbar;
   @include ObjectByIdView;
@@ -105,4 +107,6 @@ $v-selection-item-border-radius: 0;
   @include ObjectFacetsLayout;
   @include ObjectSummaryEntriesTable;
   @include RightsLayout;
+  @include WizardFeatureNavigationLayout;
+  @include WizardFeatureSetLayout;
 }
