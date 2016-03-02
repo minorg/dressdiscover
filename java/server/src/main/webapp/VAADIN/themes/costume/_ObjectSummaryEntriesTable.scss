@@ -1,11 +1,11 @@
 @mixin ObjectSummaryEntriesTable {
     .object-summary-entries-table {
         .bookmark-button {
-          color: green;
+          color: $costume-color-green;
         }
 
         .title-button {
-          background-color: $blue;
+          background-color: $costume-color-blue;
           color: white;
         }
     }
