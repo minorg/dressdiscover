@@ -1,0 +1,38 @@
+@mixin Navbar {
+  .navbar {
+      display: inline-block;
+      height: 2em;
+      vertical-align: middle;
+      width: 100%;
+
+      .home-button {
+        background-color: $dark-red;
+        color: white;
+      }
+
+      .right-menu-layout {
+        float: right;
+      }
+
+      .search-button {
+        background-color: $dark-blue;
+        color: white;
+      }
+
+      .search-text-field {
+        width: 32em;
+      }
+
+      .v-slot-home-button {
+        width: 30%;
+      }
+
+      .v-slot-right-menu-layout {
+        width: 30%;
+      }
+
+      .v-slot-search-layout {
+        width: 40%;
+      }
+  }
+}

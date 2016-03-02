@@ -41,13 +41,16 @@ public abstract class TopLevelView extends View {
     protected void setCompositionRoot(final Component compositionRoot) {
         final VerticalLayout frameLayout = new VerticalLayout();
         frameLayout.setSizeFull();
-        frameLayout.setSpacing(false);
+        frameLayout.setStyleName("top-level-view-frame");
 
         frameLayout.addComponent(navbar);
 
         frameLayout.addComponent(new Label("<hr />", ContentMode.HTML));
 
-        frameLayout.addComponent(compositionRoot);
+        final VerticalLayout bodyLayout = new VerticalLayout();
+        bodyLayout.addComponent(compositionRoot);
+        bodyLayout.setStyleName("top-level-view-body");
+        frameLayout.addComponent(bodyLayout);
 
         frameLayout.addComponent(new Label("<hr />", ContentMode.HTML));
 

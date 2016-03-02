@@ -97,6 +97,7 @@ public final class Navbar extends CustomComponent {
                     eventBus.post(new GetUserBookmarksByUserIdRequest(currentUser.get().getId()));
                 }
             });
+            bookmarksMenuItem.setStyleName("bookmarks-menubar-menuitem");
             bookmarksMenuItem.setVisible(false);
             currentUserMenuItem = design.rightMenuBar.addItem("Guest user", null);
         }

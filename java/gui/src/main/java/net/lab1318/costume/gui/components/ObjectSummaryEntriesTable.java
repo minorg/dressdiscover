@@ -106,13 +106,14 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
                                                 PostUserBookmarkRequest.builder()
                                                         .setUserBookmark(UserBookmark.builder().setObjectId(objectId)
                                                                 .setName(name).setUserId(currentUserId.get()).build())
-                                                .build());
+                                                        .build());
                                     }
                                 });
                             }
                         });
                         button.setIcon(FontAwesome.STAR_O);
                     }
+                    button.setStyleName("bookmark-button");
                     return button;
                 }
             });
@@ -120,19 +121,21 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
 
         table.addGeneratedColumn(ObjectSummaryEntry.FieldMetadata.MODEL.getJavaName() + '.'
                 + ObjectSummary.FieldMetadata.COLLECTION_ID.getJavaName(), new ColumnGenerator() {
-
                     @Override
                     public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
                             final java.lang.Object columnId) {
                         final CollectionId collectionId = (CollectionId) source.getContainerDataSource()
                                 .getContainerProperty(itemId, columnId).getValue();
-                        return new Button(collections.get(collectionId).getTitle(), new Button.ClickListener() {
-                            @Override
-                            public void buttonClick(final ClickEvent event) {
-                                eventBus.post(
-                                        new CollectionQueryService.Messages.GetCollectionByIdRequest(collectionId));
-                            }
-                        });
+                        final Button button = new Button(collections.get(collectionId).getTitle(),
+                                new Button.ClickListener() {
+                                    @Override
+                                    public void buttonClick(final ClickEvent event) {
+                                        eventBus.post(new CollectionQueryService.Messages.GetCollectionByIdRequest(
+                                                collectionId));
+                                    }
+                                });
+                        button.setStyleName("collection-button");
+                        return button;
                     }
                 });
 
@@ -144,19 +147,21 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
                             final java.lang.Object columnId) {
                         final InstitutionId institutionId = (InstitutionId) source.getContainerDataSource()
                                 .getContainerProperty(itemId, columnId).getValue();
-                        return new Button(institutions.get(institutionId).getTitle(), new Button.ClickListener() {
-                            @Override
-                            public void buttonClick(final ClickEvent event) {
-                                eventBus.post(
-                                        new InstitutionQueryService.Messages.GetInstitutionByIdRequest(institutionId));
-                            }
-                        });
+                        final Button button = new Button(institutions.get(institutionId).getTitle(),
+                                new Button.ClickListener() {
+                                    @Override
+                                    public void buttonClick(final ClickEvent event) {
+                                        eventBus.post(new InstitutionQueryService.Messages.GetInstitutionByIdRequest(
+                                                institutionId));
+                                    }
+                                });
+                        button.setStyleName("institution-button");
+                        return button;
                     }
                 });
 
         table.addGeneratedColumn(ObjectSummaryEntry.FieldMetadata.MODEL.getJavaName() + '.'
                 + ObjectSummary.FieldMetadata.IMAGE.getJavaName(), new ColumnGenerator() {
-
                     @Override
                     public java.lang.Object generateCell(final Table source, final java.lang.Object itemId,
                             final java.lang.Object columnId) {
@@ -190,7 +195,6 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
                 });
 
         table.setCellStyleGenerator(new Table.CellStyleGenerator() {
-
             @Override
             public String getStyle(final Table source, final java.lang.Object itemId,
                     final java.lang.Object propertyId) {
@@ -219,12 +223,14 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
                         if (bookmarkEntry != null && !bookmarkEntry.getModel().getName().equals(title)) {
                             title = String.format("%s (%s)", bookmarkEntry.getModel().getName(), title);
                         }
-                        return new Button(title, new Button.ClickListener() {
+                        final Button button = new Button(title, new Button.ClickListener() {
                             @Override
                             public void buttonClick(final ClickEvent event) {
                                 eventBus.post(new ObjectQueryService.Messages.GetObjectByIdRequest(objectId));
                             }
                         });
+                        button.setStyleName("title-button");
+                        return button;
                     }
                 });
 

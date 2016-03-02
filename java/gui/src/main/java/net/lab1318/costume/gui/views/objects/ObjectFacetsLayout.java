@@ -27,6 +27,7 @@ final class ObjectFacetsLayout extends CustomComponent {
     public ObjectFacetsLayout(final EventBus eventBus) {
         this.eventBus = checkNotNull(eventBus);
         setCompositionRoot(rootLayout);
+        setStyleName("object-facets-layout");
     }
 
     public void setModels(final ObjectFacets availableObjectFacets,
@@ -41,6 +42,7 @@ final class ObjectFacetsLayout extends CustomComponent {
                         .setQuery(ObjectQuery.builder(objectQuery).unsetFacetFilters().build()).build());
             }
         });
+        resetButton.setStyleName("reset-button");
         if (rootLayout.getComponent(0, rowI) != null) {
             rootLayout.removeComponent(0, rowI);
         }
