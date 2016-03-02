@@ -1,16 +1,56 @@
 // Global variable overrides. Must be declared before importing Valo.
 
+// Triad http://paletton.com/#uid=3000u0k++jRZJvm+Xpg+Zec+X6Q
+// Export
+$color-primary-0: #9E0000;	// Main Primary color */
+$color-primary-1: #FA0000;
+$color-primary-2: #C90000;
+$color-primary-3: #710000;
+$color-primary-4: #360000;
+
+$color-secondary-1-0: #005F5F;	// Main Secondary color (1) */
+$color-secondary-1-1: #009696;
+$color-secondary-1-2: #007979;
+$color-secondary-1-3: #004444;
+$color-secondary-1-4: #002121;
+
+$color-secondary-2-0: #629400;	// Main Secondary color (2) */
+$color-secondary-2-1: #9BE900;
+$color-secondary-2-2: #7DBC00;
+$color-secondary-2-3: #466A00;
+$color-secondary-2-4: #223300;
+
+// Symbolic names
+$red: #9E0000;	// Main Primary color */
+$lighter-red: #FA0000;
+$light-red: #C90000;
+$dark-red: #710000;
+$darker-red: #360000;
+
+$blue: #005F5F;	// Main Secondary color (1) */
+$lighter-blue: #009696;
+$light-blue: #007979;
+$dark-blue: #004444;
+$darker-blue: #002121;
+
+$green: #629400;	// Main Secondary color (2) */
+$lighter-green: #9BE900;
+$light-green: #7DBC00;
+$dark-green: #466A00;
+$darker-green: #223300;
+
+
 $v-app-loading-text: "DressDiscover";
-$v-background-color: #fafafa;
-$v-app-background-color: #e7ebf2;
+$v-background-color: #fff;
+$v-app-background-color: #fff;
 $v-panel-background-color: #fff;
-$v-focus-color: #3b5998;
+$v-focus-color: #fff;
 $v-focus-style: 0 0 1px 1px rgba($v-focus-color, .5);
 $v-border-radius: 3px;
 $v-textfield-border-radius: 0;
 $v-font-family: Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
 $v-font-size: 14px;
-$v-font-color: #37404E;
+$v-font-color: #000;
 $v-font-weight: 400;
 $v-link-text-decoration: none;
 $v-shadow: 0 1px 0 (v-shade 0.2);
