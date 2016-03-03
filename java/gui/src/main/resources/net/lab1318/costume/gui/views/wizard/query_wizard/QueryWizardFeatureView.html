@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<v-horizontal-layout size-full>
-		<v-vertical-layout :expand="2">
-			<v-label><h3>Currently selected features:</h3></v-label>
-			<v-button _id="selectedObjectCountButton"></v-button>
-			<v-label><br/></v-label>
+	<v-horizontal-layout style-name="query-wizard-feature-view">
+		<v-vertical-layout style-name="left-pane-layout">
+			<v-label style-name="feature-set-label"><h3>Currently selected features:</h3></v-label>
+			<v-button _id="selectedObjectCountButton" style-name="selected-object-count-button"></v-button>
+			<v-label style-name="feature-set-hr-label"><hr/></v-label>
 			<v-vertical-layout _id="featureSetLayout"></v-vertical-layout>
 		</v-vertical-layout>
-		<v-vertical-layout :expand="8" size-full>
-			<v-horizontal-layout _id="topNavigationLayout" size-full></v-horizontal-layout>
-			<v-label _id="currentFeatureNameLabel" :middle :center></v-label>
-			<v-horizontal-layout _id="currentFeatureLayout" size-full></v-horizontal-layout>
-			<v-horizontal-layout _id="bottomNavigationLayout" size-full></v-horizontal-layout>
+		<v-vertical-layout style-name="right-pane-layout">
+			<v-horizontal-layout _id="topNavigationLayout" style-name="top-navigation-layout"></v-horizontal-layout>
+			<v-label _id="currentFeatureNameLabel" style-name="current-feature-name-label"></v-label>
+			<v-horizontal-layout _id="currentFeatureLayout"></v-horizontal-layout>
+			<v-horizontal-layout _id="bottomNavigationLayout" style-name="bottom-navigation-layout"></v-horizontal-layout>
 		</v-vertical-layout>
 	</v-horizontal-layout>
 </body>

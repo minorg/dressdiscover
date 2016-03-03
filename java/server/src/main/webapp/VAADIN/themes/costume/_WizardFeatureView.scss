@@ -1,0 +1,27 @@
+@mixin WizardFeatureView {
+    .current-feature-name-label {
+    }
+
+    .feature-set-label {
+    }
+
+    .bottom-navigation-layout {
+        width: 100%;
+    }
+
+    .top-navigation-layout {
+        width: 100%;
+    }
+
+    .v-slot-left-pane-layout {
+        width: 20%;
+    }
+
+    .v-slot-right-pane-layout {
+        width: 80%;
+    }
+
+    .v-slot-wizard-feature-navigation-layout {
+        width: 100%;
+    }
+}

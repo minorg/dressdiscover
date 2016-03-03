@@ -1,15 +1,9 @@
+@import "WizardFeatureView";
+
 @mixin CatalogWizardFeatureView {
     .catalog-wizard-feature-view {
-        .current-feature-name-label {
-        }
+        width: 100%;
 
-        .feature-set-label {
-        }
-
-        .left-pane-layout {
-        }
-
-        .right-pane-layout {
-        }
+        @include WizardFeatureView;
     }
 }
