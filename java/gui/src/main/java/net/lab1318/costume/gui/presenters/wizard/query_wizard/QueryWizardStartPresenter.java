@@ -11,13 +11,13 @@ import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.api.services.user.UserCommandService;
 import net.lab1318.costume.api.services.user.UserQueryService;
 import net.lab1318.costume.gui.presenters.Presenter;
-import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardView;
+import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardStartView;
 
 @SessionScoped
-public class QueryWizardPresenter extends Presenter<QueryWizardView> {
+public class QueryWizardStartPresenter extends Presenter<QueryWizardStartView> {
     @Inject
-    public QueryWizardPresenter(final EventBus eventBus, final UserCommandService userCommandService,
-            final UserQueryService userQueryService, final QueryWizardView view) {
+    public QueryWizardStartPresenter(final EventBus eventBus, final UserCommandService userCommandService,
+            final UserQueryService userQueryService, final QueryWizardStartView view) {
         super(eventBus, userCommandService, userQueryService, view);
     }
 

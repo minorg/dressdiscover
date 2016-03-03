@@ -1,0 +1,7 @@
+@import "WizardStartView";
+
+@mixin CatalogWizardStartView {
+    .catalog-wizard-start-view {
+        @include WizardStartView;
+    }
+}

@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.views.wizard.catalog_wizard;
+package net.lab1318.costume.gui.views.wizard.query_wizard;
 
 import org.thryft.waf.gui.EventBus;
 
@@ -16,8 +16,8 @@ import net.lab1318.costume.gui.views.TopLevelView;
 
 @SuppressWarnings("serial")
 @SessionScoped
-public class CatalogWizardView extends TopLevelView {
-    @DesignRoot("CatalogWizardView.html")
+public class QueryWizardStartView extends TopLevelView {
+    @DesignRoot("QueryWizardStartView.html")
     private final static class Design extends VerticalLayout {
         public Design() {
             com.vaadin.ui.declarative.Design.read(this);
@@ -27,7 +27,7 @@ public class CatalogWizardView extends TopLevelView {
     }
 
     @Inject
-    public CatalogWizardView(final EventBus eventBus) {
+    public QueryWizardStartView(final EventBus eventBus) {
         super(eventBus);
     }
 
@@ -37,11 +37,11 @@ public class CatalogWizardView extends TopLevelView {
             @Override
             public void buttonClick(final ClickEvent event) {
                 UI.getCurrent().getNavigator()
-                        .navigateTo(CatalogWizardFeatureView.NAME + "/" + CostumeCoreWizardFeatureSet.URL_NAME);
+                        .navigateTo(QueryWizardFeatureView.NAME + "/" + CostumeCoreWizardFeatureSet.URL_NAME);
             }
         });
         setCompositionRoot(design);
     }
 
-    public final static String NAME = "catalog_wizard";
+    public final static String NAME = "query_wizard";
 }

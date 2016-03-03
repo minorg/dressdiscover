@@ -11,13 +11,13 @@ import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.api.services.user.UserCommandService;
 import net.lab1318.costume.api.services.user.UserQueryService;
 import net.lab1318.costume.gui.presenters.Presenter;
-import net.lab1318.costume.gui.views.wizard.catalog_wizard.CatalogWizardView;
+import net.lab1318.costume.gui.views.wizard.catalog_wizard.CatalogWizardStartView;
 
 @SessionScoped
-public class CatalogWizardPresenter extends Presenter<CatalogWizardView> {
+public class CatalogWizardStartPresenter extends Presenter<CatalogWizardStartView> {
     @Inject
-    public CatalogWizardPresenter(final EventBus eventBus, final UserCommandService userCommandService,
-            final UserQueryService userQueryService, final CatalogWizardView view) {
+    public CatalogWizardStartPresenter(final EventBus eventBus, final UserCommandService userCommandService,
+            final UserQueryService userQueryService, final CatalogWizardStartView view) {
         super(eventBus, userCommandService, userQueryService, view);
     }
 

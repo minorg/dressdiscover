@@ -100,6 +100,7 @@ public final class Navbar extends CustomComponent {
             bookmarksMenuItem.setStyleName("bookmarks-menubar-menuitem");
             bookmarksMenuItem.setVisible(false);
             currentUserMenuItem = design.rightMenuBar.addItem("Guest user", null);
+            currentUserMenuItem.setStyleName("current-user-menu-item");
         }
 
         setCompositionRoot(design);

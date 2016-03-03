@@ -1,0 +1,16 @@
+@mixin WizardStartView {
+    .feature-set-button {
+        background-color: $costume-color-red;
+        color: white;
+        text-align: center;
+    }
+
+    .v-label {
+        text-align: center;
+    }
+
+    .v-slot {
+        margin-left: auto;
+        text-align: center;
+    }
+}

@@ -13,8 +13,8 @@ import com.vaadin.ui.UI;
 
 import net.lab1318.costume.gui.views.TopLevelView;
 import net.lab1318.costume.gui.views.institutions.InstitutionsView;
-import net.lab1318.costume.gui.views.wizard.catalog_wizard.CatalogWizardView;
-import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardView;
+import net.lab1318.costume.gui.views.wizard.catalog_wizard.CatalogWizardStartView;
+import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardStartView;
 
 @SuppressWarnings("serial")
 @SessionScoped
@@ -40,7 +40,7 @@ public class HomeView extends TopLevelView {
         design.catalogWizardButton.addClickListener(new ClickListener() {
             @Override
             public void buttonClick(final ClickEvent event) {
-                UI.getCurrent().getNavigator().navigateTo(CatalogWizardView.NAME);
+                UI.getCurrent().getNavigator().navigateTo(CatalogWizardStartView.NAME);
             }
         });
         design.institutionsButton.addClickListener(new ClickListener() {
@@ -52,7 +52,7 @@ public class HomeView extends TopLevelView {
         design.queryWizardButton.addClickListener(new ClickListener() {
             @Override
             public void buttonClick(final ClickEvent event) {
-                UI.getCurrent().getNavigator().navigateTo(QueryWizardView.NAME);
+                UI.getCurrent().getNavigator().navigateTo(QueryWizardStartView.NAME);
             }
         });
         setCompositionRoot(design);

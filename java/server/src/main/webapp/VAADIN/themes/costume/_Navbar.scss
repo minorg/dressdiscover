@@ -23,6 +23,11 @@
         width: 32em;
       }
 
+      .v-menubar-menuitem-current-user-menu-item {
+        background-color: $costume-color-light-blue;
+        color: white;
+      }
+
       .v-slot-home-button {
         width: 30%;
       }
