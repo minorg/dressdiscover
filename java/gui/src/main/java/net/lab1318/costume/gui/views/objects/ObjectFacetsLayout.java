@@ -27,6 +27,7 @@ final class ObjectFacetsLayout extends CustomComponent {
     public ObjectFacetsLayout(final EventBus eventBus) {
         this.eventBus = checkNotNull(eventBus);
         setCompositionRoot(rootLayout);
+        rootLayout.setSizeFull();
         setStyleName("object-facets-layout");
     }
 
@@ -115,8 +116,6 @@ final class ObjectFacetsLayout extends CustomComponent {
                         ObjectFacets.FieldMetadata.WORK_TYPE_TEXTS, objectQuery, resultObjectFacets,
                         UNKNOWN_TEXT_FACET_KEY),
                 rowI++);
-
-        rootLayout.setSizeFull();
     }
 
     private void __addFacetPicker(final ObjectFacets availableObjectFacets, final ObjectFacetPicker<?> facetPicker,

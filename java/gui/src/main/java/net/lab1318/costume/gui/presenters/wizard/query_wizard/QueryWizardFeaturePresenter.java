@@ -30,6 +30,15 @@ import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardSummaryView;
 
 @SessionScoped
 public class QueryWizardFeaturePresenter extends AbstractWizardFeaturePresenter<QueryWizardFeatureView> {
+    static void navigateToFeature(final WizardFeature feature, final WizardFeatureSet featureSet) {
+        try {
+            UI.getCurrent().getNavigator().navigateTo(QueryWizardFeatureView.NAME + '/' + featureSet.toUrlString() + '/'
+                    + URLEncoder.encode(feature.getName(), Charsets.UTF_8.toString()));
+        } catch (final UnsupportedEncodingException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
     @Inject
     public QueryWizardFeaturePresenter(final EventBus eventBus, final WizardFeatureSetFactories featureSetFactories,
             final ObjectSummaryQueryService objectSummaryQueryService, final UserCommandService userCommandService,
@@ -40,12 +49,7 @@ public class QueryWizardFeaturePresenter extends AbstractWizardFeaturePresenter<
 
     @Override
     protected final void _navigateToFeature(final WizardFeature feature, final WizardFeatureSet featureSet) {
-        try {
-            UI.getCurrent().getNavigator().navigateTo(QueryWizardFeatureView.NAME + '/' + featureSet.toUrlString() + '/'
-                    + URLEncoder.encode(feature.getName(), Charsets.UTF_8.toString()));
-        } catch (final UnsupportedEncodingException e) {
-            throw new IllegalStateException(e);
-        }
+        navigateToFeature(feature, featureSet);
     }
 
     @Override

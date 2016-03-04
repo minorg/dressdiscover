@@ -22,6 +22,15 @@ import net.lab1318.costume.gui.views.wizard.catalog_wizard.CatalogWizardSummaryV
 
 @SessionScoped
 public class CatalogWizardFeaturePresenter extends AbstractWizardFeaturePresenter<CatalogWizardFeatureView> {
+    static void navigateToFeature(final WizardFeature feature, final WizardFeatureSet featureSet) {
+        try {
+            UI.getCurrent().getNavigator().navigateTo(CatalogWizardFeatureView.NAME + '/' + featureSet.toUrlString()
+                    + '/' + URLEncoder.encode(feature.getName(), Charsets.UTF_8.toString()));
+        } catch (final UnsupportedEncodingException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
     @Inject
     public CatalogWizardFeaturePresenter(final EventBus eventBus, final WizardFeatureSetFactories featureSetFactories,
             final UserCommandService userCommandService, final UserQueryService userQueryService,
@@ -31,12 +40,7 @@ public class CatalogWizardFeaturePresenter extends AbstractWizardFeaturePresente
 
     @Override
     protected final void _navigateToFeature(final WizardFeature feature, final WizardFeatureSet featureSet) {
-        try {
-            UI.getCurrent().getNavigator().navigateTo(CatalogWizardFeatureView.NAME + '/' + featureSet.toUrlString()
-                    + '/' + URLEncoder.encode(feature.getName(), Charsets.UTF_8.toString()));
-        } catch (final UnsupportedEncodingException e) {
-            throw new IllegalStateException(e);
-        }
+        navigateToFeature(feature, featureSet);
     }
 
     @Override

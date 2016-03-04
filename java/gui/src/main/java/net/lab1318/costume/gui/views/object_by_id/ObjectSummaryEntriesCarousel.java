@@ -75,7 +75,6 @@ public final class ObjectSummaryEntriesCarousel extends CustomComponent {
         }
 
         final Panel panel = new Panel(caption, carousel);
-        panel.setSizeFull();
         setCompositionRoot(panel);
     }
 }

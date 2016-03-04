@@ -72,7 +72,6 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
 
         table.setContainerDataSource(objects);
         table.setPageLength(6);
-        table.setSizeFull();
 
         if (currentUserId.isPresent()) {
             table.addGeneratedColumn("bookmark", new ColumnGenerator() {

@@ -62,7 +62,7 @@ public final class EnumWizardFeatureLayout extends VerticalLayout {
             featureValueLayout.addComponent(thumbnailImage);
 
             final HorizontalLayout captionLayout = new HorizontalLayout();
-            captionLayout.setSizeFull();
+            captionLayout.setStyleName("caption-layout");
             final CheckBox checkBox = new CheckBox(featureValue.getName(), featureValue.isSelected());
             checkBox.setStyleName("caption-checkbox");
             thumbnailImage.addClickListener(new ClickListener() {
@@ -74,7 +74,6 @@ public final class EnumWizardFeatureLayout extends VerticalLayout {
                 }
             });
             captionLayout.addComponent(checkBox);
-            captionLayout.setStyleName("caption-layout");
             featureValueLayout.addComponent(captionLayout);
 
             grid.addComponent(featureValueLayout, columnI, rowI);

@@ -1,5 +1,7 @@
 @mixin ObjectFacetsLayout {
     .object-facets-layout {
+      width: 100%;
+
       .v-checkbox-all {
         font-weight: bold;
       }

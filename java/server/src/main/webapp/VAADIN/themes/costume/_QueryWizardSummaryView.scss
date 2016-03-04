@@ -1,0 +1,16 @@
+@import "WizardSummaryView";
+
+@mixin QueryWizardSummaryView {
+    .query-wizard-summary-view {
+        @include WizardSummaryView;
+
+        .v-slot-search-button {
+            text-align: center;
+        }
+
+        .search-button {
+            background-color: $costume-color-dark-blue;
+            color: white;
+        }
+    }
+}

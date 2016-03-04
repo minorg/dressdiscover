@@ -5,6 +5,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.thryft.waf.gui.EventBus;
 
 import com.google.common.base.Optional;
+import com.google.common.eventbus.Subscribe;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.SystemError;
 import com.vaadin.server.UserError;
@@ -13,6 +14,8 @@ import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.user.UserCommandService;
 import net.lab1318.costume.api.services.user.UserQueryService;
+import net.lab1318.costume.gui.events.wizard.WizardFeatureGotoRequest;
+import net.lab1318.costume.gui.models.wizard.WizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSetFactories;
 import net.lab1318.costume.gui.models.wizard.WizardMode;
@@ -27,6 +30,13 @@ public abstract class AbstractWizardSummaryPresenter<ViewT extends AbstractWizar
         this.featureSetFactories = checkNotNull(featureSetFactories);
         this.mode = checkNotNull(mode);
     }
+
+    @Subscribe
+    public final void onWizardFeatureGotoRequest(final WizardFeatureGotoRequest event) {
+        _navigateToFeature(event.getFeatureSet().getFeatureByName(event.getFeatureName()), event.getFeatureSet());
+    }
+
+    protected abstract void _navigateToFeature(final WizardFeature feature, final WizardFeatureSet featureSet);
 
     @Override
     protected final void _onViewEnter(final Optional<UserEntry> currentUser, final ViewChangeEvent event) {

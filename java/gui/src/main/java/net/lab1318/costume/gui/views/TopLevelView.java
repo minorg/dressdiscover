@@ -40,7 +40,6 @@ public abstract class TopLevelView extends View {
     @Override
     protected void setCompositionRoot(final Component compositionRoot) {
         final VerticalLayout frameLayout = new VerticalLayout();
-        frameLayout.setSizeFull();
         frameLayout.setStyleName("top-level-view-frame");
 
         frameLayout.addComponent(navbar);

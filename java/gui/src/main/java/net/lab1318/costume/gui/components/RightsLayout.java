@@ -48,7 +48,7 @@ public final class RightsLayout extends CustomComponent {
         // });
         rootTable.setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
         rootTable.setPageLength(rightsRowCount);
-        rootTable.setSizeFull();
+        rootTable.setStyleName("rights-table");
 
         for (final RightsBean rights_ : model.getElements()) {
             String typeCaption;
