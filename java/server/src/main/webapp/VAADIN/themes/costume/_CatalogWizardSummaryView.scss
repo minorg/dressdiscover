@@ -1,0 +1,16 @@
+@import "WizardSummaryView";
+
+@mixin CatalogWizardSummaryView {
+    .catalog-wizard-summary-view {
+        @include WizardSummaryView;
+
+        .v-slot-export-as-csv-link {
+            text-align: center;
+        }
+
+        .export-as-csv-link {
+            background-color: $costume-color-dark-blue;
+            color: white;
+        }
+    }
+}

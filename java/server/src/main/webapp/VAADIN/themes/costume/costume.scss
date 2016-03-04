@@ -29,6 +29,7 @@ $v-selection-item-border-radius: 0;
 
 @import "CatalogWizardFeatureView";
 @import "CatalogWizardStartView";
+@import "CatalogWizardSummaryView";
 @import "EnumWizardFeatureLayout";
 @import "Navbar";
 @import "HomeView";
@@ -52,6 +53,7 @@ $v-selection-item-border-radius: 0;
     box-shadow: none;
     font-style: italic;
     font-weight: bold;
+    text-shadow: none;
   }
 
   .bookmark-name-dialog {
@@ -104,6 +106,7 @@ $v-selection-item-border-radius: 0;
 
   @include CatalogWizardFeatureView;
   @include CatalogWizardStartView;
+  @include CatalogWizardSummaryView;
   @include EnumWizardFeatureLayout;
   @include HomeView;
   @include Navbar;

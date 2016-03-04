@@ -39,6 +39,7 @@ public class CatalogWizardSummaryView extends AbstractWizardSummaryView {
     public void setModels(final WizardFeatureSet featureSet) {
         final Design design = new Design();
 
+        design.exportAsCsvLink.addStyleName("v-button");
         design.exportAsCsvLink.setCaptionAsHtml(true);
         // try {
         design.exportAsCsvLink.setResource(new ExternalResource("data:text/csv;charset=utf-8;base64,"

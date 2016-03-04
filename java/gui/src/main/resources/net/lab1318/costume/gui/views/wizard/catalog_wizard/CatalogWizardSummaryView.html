@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<v-vertical-layout size-full>
-		<v-label :center><h1>Catalog Wizard: Summary</h1></v-label>
-		<v-vertical-layout size-full>
-			<v-label><h3>Features:</h3></v-label>
-			<v-vertical-layout :center _id="featureSetLayout" size-full></v-vertical-layout>
+	<v-vertical-layout style-name="catalog-wizard-summary-view">
+		<v-label style-name="header-label"><h1>Catalog Wizard: Summary</h1></v-label>
+		<v-vertical-layout>
+			<v-label style-name="feature-set-label"><h3>Features:</h3></v-label>
+			<v-vertical-layout _id="featureSetLayout" style-name="feature-set-layout"></v-vertical-layout>
 		</v-vertical-layout>
-		<v-link :bottom caption="<b>Export as CSV</b>" :center download="features.csv" href="#" _id="exportAsCsvLink"></v-link>
+		<v-link caption="<b>Export as CSV</b>" href="#" _id="exportAsCsvLink" style-name="export-as-csv-link"></v-link>
 	</v-vertical-layout>
 </body>
 </html>
