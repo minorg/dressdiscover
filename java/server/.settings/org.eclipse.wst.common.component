@@ -5,16 +5,16 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/gen/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <dependent-module archiveName="costume-gui-1.0.6-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/costume-java-gui/costume-java-gui">
+        <dependent-module archiveName="costume-gui-1.0.7-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/costume-java-gui/costume-java-gui">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="thryft-waf-gui-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/thryft-waf-java-gui/thryft-waf-java-gui">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="costume-lib-1.0.6-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/costume-java-lib/costume-java-lib">
+        <dependent-module archiveName="costume-lib-1.0.7-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/costume-java-lib/costume-java-lib">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="costume-api-1.0.6-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/costume-java-api/costume-java-api">
+        <dependent-module archiveName="costume-api-1.0.7-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/costume-java-api/costume-java-api">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="thryft-waf-api-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/thryft-waf-java-api/thryft-waf-java-api">
