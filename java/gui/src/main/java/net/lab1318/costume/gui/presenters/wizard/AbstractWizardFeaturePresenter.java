@@ -26,6 +26,7 @@ import net.lab1318.costume.gui.events.wizard.WizardFeatureFinishRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureGotoRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureNextRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
+import net.lab1318.costume.gui.models.wizard.UnknownWizardFeatureSetException;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSetFactories;
@@ -89,11 +90,11 @@ public abstract class AbstractWizardFeaturePresenter<ViewT extends View> extends
         WizardFeatureSet featureSet;
         try {
             featureSet = featureSetFactories.createFeatureSetFromUrlString(mode, parametersSplit[0]);
-        } catch (final IllegalArgumentException e) {
-            _getView().setComponentError(new UserError(e.getMessage()));
-            return;
         } catch (final IoException e) {
             _getView().setComponentError(new SystemError("I/O exception", e));
+            return;
+        } catch (final UnknownWizardFeatureSetException e) {
+            _getView().setComponentError(new UserError(e.getMessage()));
             return;
         }
 

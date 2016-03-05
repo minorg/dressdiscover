@@ -24,13 +24,13 @@ public class WizardFeatureSetFactories {
     }
 
     public final WizardFeatureSet createFeatureSetFromUrlString(final WizardMode mode, final String urlString)
-            throws IoException {
+            throws IoException, UnknownWizardFeatureSetException {
         final String[] urlStringSplit = StringUtils.splitByWholeSeparator(urlString,
                 WizardFeatureSet.URL_STRING_SEPARATOR, 2);
 
         final WizardFeatureSetFactory factory = byUrlName.get(urlStringSplit[0].toLowerCase());
         if (factory == null) {
-            throw new IllegalArgumentException(String.format("unknown feature set '%s'", urlStringSplit[0]));
+            throw new UnknownWizardFeatureSetException(String.format("unknown feature set '%s'", urlStringSplit[0]));
         }
 
         final WizardFeatureSet featureSet = factory.createFeatureSet(mode);
