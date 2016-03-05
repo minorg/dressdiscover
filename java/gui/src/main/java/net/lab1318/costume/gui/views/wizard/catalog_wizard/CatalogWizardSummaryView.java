@@ -1,6 +1,8 @@
 package net.lab1318.costume.gui.views.wizard.catalog_wizard;
 
-import org.apache.commons.codec.binary.Base64;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import org.thryft.waf.gui.EventBus;
 
 import com.google.common.base.Charsets;
@@ -39,17 +41,16 @@ public class CatalogWizardSummaryView extends AbstractWizardSummaryView {
     public void setModels(final WizardFeatureSet featureSet) {
         final Design design = new Design();
 
-        design.exportAsCsvLink.addStyleName("v-button");
         design.exportAsCsvLink.setCaptionAsHtml(true);
-        // try {
-        design.exportAsCsvLink.setResource(new ExternalResource("data:text/csv;charset=utf-8;base64,"
-                + Base64.encodeBase64URLSafeString(featureSet.toCsv().getBytes(Charsets.UTF_8))));
-        // } catch (final UnsupportedEncodingException e) {
-        // setComponentError(new SystemError("error constructing CSV data URI",
-        // e));
-        // return;
-        // }
-
+        try {
+            design.exportAsCsvLink.setResource(new ExternalResource("/catalog_wizard_export/csv/"
+                    + featureSet.toUrlString() + "/"
+                    + URLEncoder.encode(featureSet.getExportFileBaseName(), Charsets.UTF_8.name()).replace("+", "%20")
+                    + ".csv"));
+        } catch (final UnsupportedEncodingException e) {
+            throw new IllegalStateException(e);
+        }
+        design.exportAsCsvLink.setTargetName("_blank");
         design.featureSetLayout.addComponent(new WizardFeatureSetLayout(Optional.absent(), _getEventBus(), featureSet));
 
         setCompositionRoot(design);

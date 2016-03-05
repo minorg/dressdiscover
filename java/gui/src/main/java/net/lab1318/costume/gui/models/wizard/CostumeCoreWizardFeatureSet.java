@@ -20,6 +20,27 @@ public final class CostumeCoreWizardFeatureSet extends WizardFeatureSet {
     }
 
     @Override
+    public String getExportFileBaseName() {
+        for (final WizardFeature feature : getFeatures()) {
+            if (!(feature instanceof TextWizardFeature)) {
+                continue;
+            }
+            if (!feature.getName().equals("Title")) {
+                continue;
+            }
+            final ImmutableList<String> selected = feature.getSelected();
+            if (selected.isEmpty()) {
+                continue;
+            }
+            if (selected.get(0).isEmpty()) {
+                continue;
+            }
+            return selected.get(0);
+        }
+        return super.getExportFileBaseName();
+    }
+
+    @Override
     public ObjectQuery getSelectedAsQuery() {
         ObjectQuery.Builder queryBuilder = ObjectQuery.builder().setFacetFilters(
                 ObjectFacetFilters.builder().setIncludeWorkTypeTexts(ImmutableSet.of("PhysicalObject")).build());

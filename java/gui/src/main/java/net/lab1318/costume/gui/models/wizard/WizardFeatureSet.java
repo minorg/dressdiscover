@@ -29,6 +29,10 @@ public abstract class WizardFeatureSet {
 
     public abstract String getDisplayName();
 
+    public String getExportFileBaseName() {
+        return "features";
+    }
+
     public final WizardFeature getFeatureByName(final String name) {
         for (final WizardFeature feature : features) {
             if (feature.getName().equals(name)) {
