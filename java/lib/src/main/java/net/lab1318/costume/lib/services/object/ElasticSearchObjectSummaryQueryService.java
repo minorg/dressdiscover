@@ -273,7 +273,8 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
             }
         }
         // !present || (!match AND !match AND !match ...)
-        return QueryBuilders.boolQuery().should(QueryBuilders.missingQuery(field.getThriftProtocolKey()))
+        return QueryBuilders.boolQuery()
+                .should(QueryBuilders.boolQuery().mustNot(QueryBuilders.existsQuery(field.getThriftProtocolKey())))
                 .should(excludeFilter);
     }
 
@@ -353,10 +354,10 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
                                                                         .valueOfThriftName(
                                                                                 sort.getField().name().toLowerCase())
                                                                         .getThriftProtocolKey())
-                                                        .missing("_last")
-                                                        .order(sort
-                                                                .getOrder() == net.lab1318.costume.api.models.SortOrder.ASC
-                                                                        ? SortOrder.ASC : SortOrder.DESC));
+                                                                .missing("_last")
+                                                                .order(sort
+                                                                        .getOrder() == net.lab1318.costume.api.models.SortOrder.ASC
+                                                                                ? SortOrder.ASC : SortOrder.DESC));
                                     }
                                 }
                             }
@@ -429,7 +430,8 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
                         outFilters.add(QueryBuilders.existsQuery(field.getThriftProtocolKey()));
                     } else {
                         // Include unknown
-                        outFilters.add(QueryBuilders.missingQuery(field.getThriftProtocolKey()));
+                        outFilters.add(QueryBuilders.boolQuery()
+                                .mustNot(QueryBuilders.existsQuery(field.getThriftProtocolKey())));
                     }
                 }
             }
@@ -546,8 +548,8 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
         }
 
         if (!query.get().getIncludeHidden().or(Boolean.FALSE)) {
-            filtersTranslated
-                    .add(QueryBuilders.missingQuery(ObjectSummary.FieldMetadata.HIDDEN.getThriftProtocolKey()));
+            filtersTranslated.add(QueryBuilders.boolQuery()
+                    .mustNot(QueryBuilders.existsQuery(ObjectSummary.FieldMetadata.HIDDEN.getThriftProtocolKey())));
         }
 
         if (query.get().getInstitutionId().isPresent()) {
@@ -645,7 +647,8 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
                         outFilters.add(QueryBuilders.existsQuery(field.getThriftProtocolKey()));
                     } else {
                         // Include unknown
-                        outFilters.add(QueryBuilders.missingQuery(field.getThriftProtocolKey()));
+                        outFilters.add(QueryBuilders.boolQuery()
+                                .mustNot(QueryBuilders.existsQuery(field.getThriftProtocolKey())));
                     }
                 }
             }
