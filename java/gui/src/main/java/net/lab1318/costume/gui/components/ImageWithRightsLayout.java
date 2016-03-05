@@ -52,7 +52,10 @@ public final class ImageWithRightsLayout extends CustomComponent {
         }
 
         if (rights.isPresent()) {
-            rootLayout.addComponent(new RightsLayout("Image", rights.get()));
+            final RightsLayout rightsLayout = new RightsLayout("Image", rights.get());
+            if (!rightsLayout.isEmpty()) {
+                rootLayout.addComponent(rightsLayout);
+            }
         }
 
         setCompositionRoot(rootLayout);

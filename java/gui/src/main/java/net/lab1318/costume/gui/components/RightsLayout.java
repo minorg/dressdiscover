@@ -24,11 +24,15 @@ public final class RightsLayout extends CustomComponent {
                 rightsRowCount++;
             }
         }
+        if (rightsRowCount == 0) {
+            empty = true;
+            return;
+        }
 
-        final Table rootTable = new Table();
-        rootTable.addContainerProperty("caption", String.class, null);
-        rootTable.addContainerProperty("text", String.class, null);
-        rootTable.setCellStyleGenerator(new CellStyleGenerator() {
+        final Table table = new Table();
+        table.addContainerProperty("caption", String.class, null);
+        table.addContainerProperty("text", String.class, null);
+        table.setCellStyleGenerator(new CellStyleGenerator() {
             @Override
             public String getStyle(final Table source, final Object itemId, final Object propertyId) {
                 return propertyId != null ? "rights-" + propertyId.toString() : null;
@@ -46,10 +50,11 @@ public final class RightsLayout extends CustomComponent {
         // return value;
         // }
         // });
-        rootTable.setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
-        rootTable.setPageLength(rightsRowCount);
-        rootTable.setStyleName("rights-table");
+        table.setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
+        table.setPageLength(rightsRowCount);
+        table.setStyleName("rights-table");
 
+        boolean empty = true;
         for (final RightsBean rights_ : model.getElements()) {
             String typeCaption;
             Object typeText;
@@ -81,18 +86,29 @@ public final class RightsLayout extends CustomComponent {
                 throw new UnsupportedOperationException();
             }
 
-            rootTable.addItem(new Object[] { typeCaption, typeText }, null);
+            table.addItem(new Object[] { typeCaption, typeText }, null);
+            empty = false;
 
             if (rights_.getRightsHolder() != null) {
-                rootTable.addItem(new Object[] { "Rights holder", rights_.getRightsHolder() }, null);
+                table.addItem(new Object[] { "Rights holder", rights_.getRightsHolder() }, null);
             }
+        }
+        this.empty = empty;
+        if (empty) {
+            return;
         }
 
         final Panel panel = new Panel();
         panel.setCaption(entity + " rights");
-        panel.setContent(rootTable);
+        panel.setContent(table);
 
         setCompositionRoot(panel);
         addStyleName("rights-layout");
     }
+
+    public final boolean isEmpty() {
+        return empty;
+    }
+
+    private final boolean empty;
 }
