@@ -26,7 +26,6 @@ final class ComponentSetTable extends CustomComponent {
 
         if (haveNestedBeans) {
             final VerticalLayout rootLayout = new VerticalLayout();
-            rootLayout.setSpacing(true);
             for (final Component component : components.getElements()) {
                 final VerticalLayout componentLayout = new VerticalLayout();
                 if (component.getStructures().isPresent()) {

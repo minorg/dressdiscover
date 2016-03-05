@@ -51,7 +51,6 @@ public final class EnumWizardFeatureLayout extends VerticalLayout {
         int rowI = 0;
         for (final EnumWizardFeatureValue featureValue : feature.getValues()) {
             final VerticalLayout featureValueLayout = new VerticalLayout();
-            featureValueLayout.setSpacing(true);
             featureValueLayout.setStyleName("feature-value-layout");
 
             final Image image = featureValue.getImage().or(placeholderImage);
