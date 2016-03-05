@@ -9,8 +9,27 @@
         }
 
         .export-as-csv-link {
+            // Adapted from v-button
+            position: relative;
+            text-align: center;
+            white-space: nowrap;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            cursor: pointer;
+            height: 30px;
+            padding: 0 13px;
+            border-radius: 3px;
+            border: 1px solid #c9c9c9;
+
             background-color: $costume-color-dark-blue;
             color: white;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        .export-as-csv-link a {
+            vertical-align: middle;
         }
     }
 }

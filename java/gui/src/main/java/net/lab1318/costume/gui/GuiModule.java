@@ -6,7 +6,7 @@ import org.thryft.waf.gui.EventBusModule;
 
 import com.google.inject.AbstractModule;
 
-import net.lab1318.costume.gui.controllers.GuiControllersModule;
+import net.lab1318.costume.gui.controllers.wizard.GuiControllersModule;
 import net.lab1318.costume.lib.CostumeProperties;
 
 public final class GuiModule extends AbstractModule {
