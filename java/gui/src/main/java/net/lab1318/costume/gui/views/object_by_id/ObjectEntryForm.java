@@ -165,12 +165,18 @@ final class ObjectEntryForm extends CustomComponent {
             // }
 
             if (objectEntry.getModel().getRights().isPresent()) {
-                design.rightsLayout
-                        .addComponent(new RightsLayout("Object metadata", objectEntry.getModel().getRights().get()));
+                final RightsLayout objectRightsLayout = new RightsLayout("Object metadata",
+                        objectEntry.getModel().getRights().get());
+                if (!objectRightsLayout.isEmpty()) {
+                    design.rightsLayout.addComponent(objectRightsLayout);
+                }
             }
             if (institution.getDataRights().isPresent()) {
-                design.rightsLayout
-                        .addComponent(new RightsLayout("Institution metadata", institution.getDataRights().get()));
+                final RightsLayout institutionRightsLayout = new RightsLayout("Institution metadata",
+                        institution.getDataRights().get());
+                if (!institutionRightsLayout.isEmpty()) {
+                    design.rightsLayout.addComponent(institutionRightsLayout);
+                }
             }
         }
 

@@ -25,7 +25,7 @@ public final class ObjectSummaryEntriesCarousel extends CustomComponent {
     public ObjectSummaryEntriesCarousel(final String caption, final EventBus eventBus,
             final ImmutableList<ObjectSummaryEntry> objectSummaryEntries) {
         final HorizontalLayout carousel = new HorizontalLayout();
-        carousel.setSpacing(true);
+        carousel.setStyleName("object-summary-entries-carousel");
 
         for (final ObjectSummaryEntry objectSummaryEntry : objectSummaryEntries) {
             final Button titleButton = new Button(objectSummaryEntry.getModel().getTitle(), new Button.ClickListener() {
@@ -34,6 +34,7 @@ public final class ObjectSummaryEntriesCarousel extends CustomComponent {
                     eventBus.post(new ObjectQueryService.Messages.GetObjectByIdRequest(objectSummaryEntry.getId()));
                 }
             });
+            titleButton.setStyleName("title-button");
 
             if (objectSummaryEntry.getModel().getImage().isPresent()) {
                 final net.lab1318.costume.api.models.image.Image imageModel = objectSummaryEntry.getModel().getImage()
@@ -42,6 +43,7 @@ public final class ObjectSummaryEntriesCarousel extends CustomComponent {
                         .or(imageModel.getThumbnail());
                 if (imageVersionModel.isPresent()) {
                     final VerticalLayout imageLayout = new VerticalLayout();
+                    imageLayout.setStyleName("image-layout");
                     final Image imageView = new Image("",
                             new ExternalResource(imageVersionModel.get().getUrl().toString()));
                     if (imageVersionModel.get().getHeightPx().isPresent()) {
@@ -61,8 +63,9 @@ public final class ObjectSummaryEntriesCarousel extends CustomComponent {
                     if (imageModel.getOriginal().isPresent()) {
                         final Link originalLink = new Link("",
                                 new ExternalResource(imageModel.getOriginal().get().getUrl().toString()));
-                        originalLink.setTargetName("_blank");
                         originalLink.setIcon(FontAwesome.SEARCH_PLUS);
+                        originalLink.setStyleName("original-link");
+                        originalLink.setTargetName("_blank");
                         imageLayout.addComponent(originalLink);
                     }
                     imageLayout.addComponent(titleButton);

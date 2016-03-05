@@ -1,0 +1,13 @@
+@mixin ObjectSummaryEntriesCarousel {
+    .object-summary-entries-carousel {
+        .image-layout {
+            margin-right: 20px;
+            text-align: center;
+        }
+
+        .title-button {
+          background-color: $costume-color-blue;
+          color: white;
+        }
+    }
+}
