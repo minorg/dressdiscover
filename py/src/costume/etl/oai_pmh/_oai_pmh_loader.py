@@ -4,10 +4,10 @@ import urllib
 from xml.etree import ElementTree
 
 from costume.api.models.object.object import Object
-from costume.etl._loader import _Loader
+from costume.etl._institution_loader import _InstitutionLoader
 
 
-class _OaiPmhLoader(_Loader):
+class _OaiPmhLoader(_InstitutionLoader):
     class _ObjectBuilder(object):
         def __init__(self, record_identifier, **kwds):
             self.__object_builder = Object.Builder(**kwds)
@@ -25,7 +25,7 @@ class _OaiPmhLoader(_Loader):
             return self.__record_identifier
 
     def __init__(self, collection_id, **kwds):
-        _Loader.__init__(self, **kwds)
+        _InstitutionLoader.__init__(self, **kwds)
         self.__collection_id = collection_id
 
     @property

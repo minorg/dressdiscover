@@ -7,18 +7,16 @@ from costume.api.models.collection.collection import Collection
 from costume.api.models.date.date_time_granularity import DateTimeGranularity
 from costume.api.models.model_metadata import ModelMetadata
 from costume.api.models.object.object_entry import ObjectEntry
-from costume.api.services.institution.no_such_institution_exception import NoSuchInstitutionException
 from costume.etl._main import _Main
 from costume.lib.costume_properties import CostumeProperties
 from services import Services
 
 
 class _Loader(_Main):
-    def __init__(self, institution_id, clean=False, dry_run=False, **kwds):
+    def __init__(self, clean=False, dry_run=False, **kwds):
         _Main.__init__(self, **kwds)
         self.__clean = clean
         self.__dry_run = dry_run
-        self.__institution_id = institution_id
         self.__properties = CostumeProperties.load()
         self.__services = Services(properties=self.__properties)
 
@@ -27,14 +25,9 @@ class _Loader(_Main):
         argument_parser.add_argument('--clean', action='store_true')
         argument_parser.add_argument('--dry-run', action='store_true')
 
-    def _clean(self):
-        if self.__dry_run:
-            self._logger.info("dry run, not deleting insittution %s", self._institution_id)
-            return
-        try:
-            self._services.institution_command_service.delete_institution_by_id(self._institution_id)
-        except NoSuchInstitutionException:
-            self._logger.debug("institution %s does not exist (yet)", self._institution_id)
+    @property
+    def _dry_run(self):
+        return self.__dry_run
 
     @staticmethod
     def __get_nonempty_value(dict_, key):
@@ -44,10 +37,6 @@ class _Loader(_Main):
         elif len(value) == 0:
             return None
         return value
-
-    @property
-    def _institution_id(self):
-        return self.__institution_id
 
     def _load(self):
         raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__)
@@ -103,7 +92,7 @@ class _Loader(_Main):
     def _properties(self):
         return self.__properties
 
-    def _put_collection(self, collection_id, title, hidden=None):
+    def _put_collection(self, collection_id, institution_id, title, hidden=None):
         self._services.collection_command_service.put_collection(
             collection_id,
             Collection.Builder()

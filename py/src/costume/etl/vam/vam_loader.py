@@ -17,15 +17,15 @@ from costume.api.models.rights.rights_set import RightsSet
 from costume.api.models.rights.rights_type import RightsType
 from costume.api.models.technique.technique import Technique
 from costume.api.models.technique.technique_set import TechniqueSet
-from costume.etl._loader import _Loader
+from costume.etl._institution_loader import _InstitutionLoader
 
 
-class VamLoader(_Loader):
+class VamLoader(_InstitutionLoader):
     INSTITUTION_ID = 'vam'
     COLLECTION_ID = INSTITUTION_ID + '/' + 't&f'
 
     def __init__(self, **kwds):
-        _Loader.__init__(self, institution_id=self.INSTITUTION_ID, **kwds)
+        _InstitutionLoader.__init__(self, institution_id=self.INSTITUTION_ID, **kwds)
 
     def _load(self):
         self._services.institution_command_service.put_institution(

@@ -41,7 +41,6 @@ from costume.api.models.vocab import Vocab
 from costume.api.models.vocab_ref import VocabRef
 from costume.api.models.work_type.work_type import WorkType
 from costume.api.models.work_type.work_type_set import WorkTypeSet
-from costume.etl._loader import _Loader
 from costume.etl.dcmi_types import DCMI_TYPES_BASE_URL
 from costume.etl.oai_pmh._oai_pmh_loader import _OaiPmhLoader
 
@@ -627,7 +626,7 @@ class TxfcLoader(_OaiPmhLoader):
         )
 
     def _put_collection(self):
-        _Loader._put_collection(
+        _OaiPmhLoader._put_collection(
             self,
             collection_id=self._collection_id,
             title="Texas Fashion Collection"

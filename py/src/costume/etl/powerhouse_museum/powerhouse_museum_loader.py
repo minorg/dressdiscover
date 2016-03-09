@@ -9,15 +9,15 @@ from costume.api.models.object.object import Object
 from costume.api.models.rights.rights import Rights
 from costume.api.models.rights.rights_set import RightsSet
 from costume.api.models.rights.rights_type import RightsType
-from costume.etl._loader import _Loader
+from costume.etl._institution_loader import _InstitutionLoader
 
 
-class PowerhouseMuseumLoader(_Loader):
+class PowerhouseMuseumLoader(_InstitutionLoader):
     INSTITUTION_ID = 'powerhouse_museum'
     COLLECTION_ID = INSTITUTION_ID + '/10'
 
     def __init__(self, **kwds):
-        _Loader.__init__(self, institution_id=self.INSTITUTION_ID, **kwds)
+        _InstitutionLoader.__init__(self, institution_id=self.INSTITUTION_ID, **kwds)
 
     def _load(self):
         self._services.institution_command_service.put_institution(

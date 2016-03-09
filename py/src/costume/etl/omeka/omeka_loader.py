@@ -53,12 +53,12 @@ from costume.api.models.vocab import Vocab
 from costume.api.models.vocab_ref import VocabRef
 from costume.api.models.work_type.work_type import WorkType
 from costume.api.models.work_type.work_type_set import WorkTypeSet
-from costume.etl._loader import _Loader
+from costume.etl._institution_loader import _InstitutionLoader
 from costume.etl.dcmi_types import DCMI_TYPES, DCMI_TYPES_BASE_URL
 from yomeka.client.omeka_json_parser import OmekaJsonParser
 
 
-class OmekaLoader(_Loader):
+class OmekaLoader(_InstitutionLoader):
     class _ObjectBuilder(object):
         def __init__(
             self,
@@ -75,7 +75,7 @@ class OmekaLoader(_Loader):
                 Object.Builder()\
                     .set_collection_id(collection_id)\
                     .set_institution_id(institution_id)\
-                    .set_model_metadata(_Loader._new_model_metadata())
+                    .set_model_metadata(_InstitutionLoader._new_model_metadata())
             self.__logger = logger
             self.__object_id = object_id
             self.__omeka_collection_id = omeka_collection_id
@@ -241,7 +241,7 @@ class OmekaLoader(_Loader):
         square_thumbnail_width_px,
         **kwds
     ):
-        _Loader.__init__(self, **kwds)
+        _InstitutionLoader.__init__(self, **kwds)
         if not endpoint_url.endswith('/'):
             endpoint_url = endpoint_url + '/'
         self.__endpoint_url = endpoint_url
@@ -253,7 +253,7 @@ class OmekaLoader(_Loader):
 
     @classmethod
     def _add_arguments(cls, argument_parser):
-        _Loader._add_arguments(argument_parser)
+        _InstitutionLoader._add_arguments(argument_parser)
         cls._add_institution_arguments(argument_parser)
         argument_parser.add_argument('--square-thumbnail-height-px', default=150)
         argument_parser.add_argument('--square-thumbnail-width-px', default=150)
