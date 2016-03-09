@@ -54,6 +54,9 @@ public class InstitutionsPresenter extends Presenter<InstitutionsView> {
                 continue;
             }
             for (final InstitutionEntry institutionEntry : institutionEntries) {
+                if (institutionEntry.getModel().getExternal().or(Boolean.FALSE)) {
+                    continue;
+                }
                 if (institutionEntry.getModel().getHidden().or(Boolean.FALSE)) {
                     continue;
                 }

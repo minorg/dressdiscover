@@ -97,7 +97,7 @@ class _Loader(_Main):
             collection_id,
             Collection.Builder()
                 .set_hidden(hidden)
-                .set_institution_id(self._institution_id)
+                .set_institution_id(institution_id)
                 .set_model_metadata(self._new_model_metadata())
                 .set_title(title)
                 .build()

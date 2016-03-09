@@ -4,6 +4,7 @@ namespace * costume.api.models.collection
 
 include "costume/api/models/model_metadata.thrift"
 include "costume/api/models/institution/institution_id.thrift"
+include "costume/api/models/location/location_set.thrift"
 include "costume/api/models/work_type/work_type_set.thrift"
 
 // @java_implements org.thryft.waf.api.models.Model
@@ -18,8 +19,13 @@ struct Collection {
 	// @validation {"minLength": 1}
 	4: optional string description;
 
+    // @validation {"acceptance": true}
+    7: optional bool external;
+
 	// @validation {"acceptance": true}
 	5: optional bool hidden;
+
+    8: optional location_set.LocationSet locations;
 
 	6: optional work_type_set.WorkTypeSet work_types;
 }
