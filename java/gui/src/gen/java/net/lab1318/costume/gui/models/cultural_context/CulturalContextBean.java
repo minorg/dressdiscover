@@ -111,7 +111,7 @@ public class CulturalContextBean implements org.thryft.StructBean {
         final CulturalContextBean other = (CulturalContextBean)otherObject;
         return
             getText().equals(other.getText()) &&
-            (getVocabRef() != null ? getVocabRef().equals(other.getVocabRef()) : other.getVocabRef() == null);
+            ((getVocabRef() != null && other.getVocabRef() != null) ? (getVocabRef().equals(other.getVocabRef())) : (getVocabRef() == null && other.getVocabRef() == null));
     }
 
     @Override

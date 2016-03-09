@@ -409,9 +409,9 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
         return
             getName().equals(other.getName()) &&
             getUserId().equals(other.getUserId()) &&
-            getFolder().equals(other.getFolder()) &&
-            getObjectId().equals(other.getObjectId()) &&
-            getObjectQuery().equals(other.getObjectQuery());
+            ((getFolder().isPresent() && other.getFolder().isPresent()) ? (getFolder().get().equals(other.getFolder().get())) : (!getFolder().isPresent() && !other.getFolder().isPresent())) &&
+            ((getObjectId().isPresent() && other.getObjectId().isPresent()) ? (getObjectId().get().equals(other.getObjectId().get())) : (!getObjectId().isPresent() && !other.getObjectId().isPresent())) &&
+            ((getObjectQuery().isPresent() && other.getObjectQuery().isPresent()) ? (getObjectQuery().get().equals(other.getObjectQuery().get())) : (!getObjectQuery().isPresent() && !other.getObjectQuery().isPresent()));
     }
 
     @Override

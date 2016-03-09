@@ -125,8 +125,8 @@ public class ColorSetBean implements org.thryft.StructBean {
         final ColorSetBean other = (ColorSetBean)otherObject;
         return
             getElements().equals(other.getElements()) &&
-            (getDisplay() != null ? getDisplay().equals(other.getDisplay()) : other.getDisplay() == null) &&
-            (getNotes() != null ? getNotes().equals(other.getNotes()) : other.getNotes() == null);
+            ((getDisplay() != null && other.getDisplay() != null) ? (getDisplay().equals(other.getDisplay())) : (getDisplay() == null && other.getDisplay() == null)) &&
+            ((getNotes() != null && other.getNotes() != null) ? (getNotes().equals(other.getNotes())) : (getNotes() == null && other.getNotes() == null));
     }
 
     @Override

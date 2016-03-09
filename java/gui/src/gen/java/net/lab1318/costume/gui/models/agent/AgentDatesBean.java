@@ -116,8 +116,8 @@ public class AgentDatesBean implements org.thryft.StructBean {
         final AgentDatesBean other = (AgentDatesBean)otherObject;
         return
             getType().equals(other.getType()) &&
-            (getEarliestDate() != null ? getEarliestDate().equals(other.getEarliestDate()) : other.getEarliestDate() == null) &&
-            (getLatestDate() != null ? getLatestDate().equals(other.getLatestDate()) : other.getLatestDate() == null);
+            ((getEarliestDate() != null && other.getEarliestDate() != null) ? (getEarliestDate().equals(other.getEarliestDate())) : (getEarliestDate() == null && other.getEarliestDate() == null)) &&
+            ((getLatestDate() != null && other.getLatestDate() != null) ? (getLatestDate().equals(other.getLatestDate())) : (getLatestDate() == null && other.getLatestDate() == null));
     }
 
     @Override

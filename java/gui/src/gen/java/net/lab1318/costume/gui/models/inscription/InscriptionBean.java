@@ -125,8 +125,8 @@ public class InscriptionBean implements org.thryft.StructBean {
         final InscriptionBean other = (InscriptionBean)otherObject;
         return
             getTexts().equals(other.getTexts()) &&
-            (getAuthor() != null ? getAuthor().equals(other.getAuthor()) : other.getAuthor() == null) &&
-            (getPosition() != null ? getPosition().equals(other.getPosition()) : other.getPosition() == null);
+            ((getAuthor() != null && other.getAuthor() != null) ? (getAuthor().equals(other.getAuthor())) : (getAuthor() == null && other.getAuthor() == null)) &&
+            ((getPosition() != null && other.getPosition() != null) ? (getPosition().equals(other.getPosition())) : (getPosition() == null && other.getPosition() == null));
     }
 
     @Override

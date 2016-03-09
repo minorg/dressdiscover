@@ -111,7 +111,7 @@ public class TechniqueBean implements org.thryft.StructBean {
         final TechniqueBean other = (TechniqueBean)otherObject;
         return
             getText().equals(other.getText()) &&
-            (getVocabRef() != null ? getVocabRef().equals(other.getVocabRef()) : other.getVocabRef() == null);
+            ((getVocabRef() != null && other.getVocabRef() != null) ? (getVocabRef().equals(other.getVocabRef())) : (getVocabRef() == null && other.getVocabRef() == null));
     }
 
     @Override

@@ -290,7 +290,7 @@ public class Component implements org.thryft.Struct, net.lab1318.costume.api.mod
         final Component other = (Component)otherObject;
         return
             getTerm().equals(other.getTerm()) &&
-            getStructures().equals(other.getStructures());
+            ((getStructures().isPresent() && other.getStructures().isPresent()) ? (getStructures().get().equals(other.getStructures().get())) : (!getStructures().isPresent() && !other.getStructures().isPresent()));
     }
 
     @Override

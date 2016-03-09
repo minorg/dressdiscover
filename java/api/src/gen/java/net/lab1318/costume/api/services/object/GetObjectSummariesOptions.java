@@ -420,10 +420,10 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
 
         final GetObjectSummariesOptions other = (GetObjectSummariesOptions)otherObject;
         return
-            getFrom().equals(other.getFrom()) &&
-            getIncludeFacets().equals(other.getIncludeFacets()) &&
-            getSize().equals(other.getSize()) &&
-            getSorts().equals(other.getSorts());
+            ((getFrom().isPresent() && other.getFrom().isPresent()) ? (getFrom().get().equals(other.getFrom().get())) : (!getFrom().isPresent() && !other.getFrom().isPresent())) &&
+            ((getIncludeFacets().isPresent() && other.getIncludeFacets().isPresent()) ? (getIncludeFacets().get() == other.getIncludeFacets().get()) : (!getIncludeFacets().isPresent() && !other.getIncludeFacets().isPresent())) &&
+            ((getSize().isPresent() && other.getSize().isPresent()) ? (getSize().get().equals(other.getSize().get())) : (!getSize().isPresent() && !other.getSize().isPresent())) &&
+            ((getSorts().isPresent() && other.getSorts().isPresent()) ? (getSorts().get().equals(other.getSorts().get())) : (!getSorts().isPresent() && !other.getSorts().isPresent()));
     }
 
     @Override

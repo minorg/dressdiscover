@@ -7,6 +7,7 @@ public class LocationBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.location.LocationType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),
+        COORDINATES("coordinates", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.location.LocationCoordinatesBean>() {}, false, 4, "coordinates", org.thryft.protocol.Type.STRUCT),
         NAMES("names", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.location.LocationNameBean>>() {}, false, 2, "names", org.thryft.protocol.Type.LIST),
         REFIDS("refids", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.location.LocationRefidBean>>() {}, false, 3, "refids", org.thryft.protocol.Type.LIST);
 
@@ -53,6 +54,7 @@ public class LocationBean implements org.thryft.StructBean {
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
             case "type": return TYPE;
+            case "coordinates": return COORDINATES;
             case "names": return NAMES;
             case "refids": return REFIDS;
             default:
@@ -63,6 +65,7 @@ public class LocationBean implements org.thryft.StructBean {
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
             case "type": return TYPE;
+            case "coordinates": return COORDINATES;
             case "names": return NAMES;
             case "refids": return REFIDS;
             default:
@@ -95,12 +98,14 @@ public class LocationBean implements org.thryft.StructBean {
 
     public LocationBean() {
         type = null;
+        coordinates = null;
         names = null;
         refids = null;
     }
 
     public LocationBean(final net.lab1318.costume.api.models.location.Location other) {
         this.type = other.getType();
+        this.coordinates = other.getCoordinates().isPresent() ? new net.lab1318.costume.gui.models.location.LocationCoordinatesBean(other.getCoordinates().get()) : null;
         this.names = other.getNames().isPresent() ? (new com.google.common.base.Function<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationName>, java.util.List<net.lab1318.costume.gui.models.location.LocationNameBean>>() {
             @Override
             public java.util.List<net.lab1318.costume.gui.models.location.LocationNameBean> apply(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationName> other) {
@@ -134,8 +139,9 @@ public class LocationBean implements org.thryft.StructBean {
         final LocationBean other = (LocationBean)otherObject;
         return
             getType().equals(other.getType()) &&
-            (getNames() != null ? getNames().equals(other.getNames()) : other.getNames() == null) &&
-            (getRefids() != null ? getRefids().equals(other.getRefids()) : other.getRefids() == null);
+            ((getCoordinates() != null && other.getCoordinates() != null) ? (getCoordinates().equals(other.getCoordinates())) : (getCoordinates() == null && other.getCoordinates() == null)) &&
+            ((getNames() != null && other.getNames() != null) ? (getNames().equals(other.getNames())) : (getNames() == null && other.getNames() == null)) &&
+            ((getRefids() != null && other.getRefids() != null) ? (getRefids().equals(other.getRefids())) : (getRefids() == null && other.getRefids() == null));
     }
 
     @Override
@@ -154,11 +160,16 @@ public class LocationBean implements org.thryft.StructBean {
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
         case TYPE: return getType();
+        case COORDINATES: return getCoordinates();
         case NAMES: return getNames();
         case REFIDS: return getRefids();
         default:
             throw new IllegalStateException();
         }
+    }
+
+    public net.lab1318.costume.gui.models.location.LocationCoordinatesBean getCoordinates() {
+        return coordinates;
     }
 
     public java.util.List<net.lab1318.costume.gui.models.location.LocationNameBean> getNames() {
@@ -177,6 +188,9 @@ public class LocationBean implements org.thryft.StructBean {
     public int hashCode() {
         int hashCode = 17;
         hashCode = 31 * hashCode + getType().ordinal();
+        if (getCoordinates() != null) {
+            hashCode = 31 * hashCode + getCoordinates().hashCode();
+        }
         if (getNames() != null) {
             hashCode = 31 * hashCode + getNames().hashCode();
         }
@@ -189,6 +203,10 @@ public class LocationBean implements org.thryft.StructBean {
     @Override
     public boolean isEmpty() {
         return false;
+    }
+
+    public void setCoordinates(final net.lab1318.costume.gui.models.location.LocationCoordinatesBean coordinates) {
+        this.coordinates = coordinates;
     }
 
     public void setNames(final java.util.List<net.lab1318.costume.gui.models.location.LocationNameBean> names) {
@@ -205,10 +223,12 @@ public class LocationBean implements org.thryft.StructBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("type", getType()).add("names", getNames()).add("refids", getRefids()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("type", getType()).add("coordinates", getCoordinates()).add("names", getNames()).add("refids", getRefids()).toString();
     }
 
     private net.lab1318.costume.api.models.location.LocationType type;
+
+    private net.lab1318.costume.gui.models.location.LocationCoordinatesBean coordinates;
 
     private java.util.List<net.lab1318.costume.gui.models.location.LocationNameBean> names;
 

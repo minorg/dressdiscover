@@ -7,22 +7,28 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
     public static class Builder {
         public Builder() {
             type = null;
+            coordinates = com.google.common.base.Optional.absent();
             names = com.google.common.base.Optional.absent();
             refids = com.google.common.base.Optional.absent();
         }
 
         public Builder(final Location other) {
             this.type = other.getType();
+            this.coordinates = other.getCoordinates();
             this.names = other.getNames();
             this.refids = other.getRefids();
         }
 
-        protected Location _build(final net.lab1318.costume.api.models.location.LocationType type, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationName>> names, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationRefid>> refids) {
-            return new Location(type, names, refids);
+        protected Location _build(final net.lab1318.costume.api.models.location.LocationType type, final com.google.common.base.Optional<net.lab1318.costume.api.models.location.LocationCoordinates> coordinates, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationName>> names, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationRefid>> refids) {
+            return new Location(type, coordinates, names, refids);
         }
 
         public Location build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.location.Location: missing type"), com.google.common.base.Preconditions.checkNotNull(names, "net.lab1318.costume.api.models.location.Location: missing names"), com.google.common.base.Preconditions.checkNotNull(refids, "net.lab1318.costume.api.models.location.Location: missing refids"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.location.Location: missing type"), com.google.common.base.Preconditions.checkNotNull(coordinates, "net.lab1318.costume.api.models.location.Location: missing coordinates"), com.google.common.base.Preconditions.checkNotNull(names, "net.lab1318.costume.api.models.location.Location: missing names"), com.google.common.base.Preconditions.checkNotNull(refids, "net.lab1318.costume.api.models.location.Location: missing refids"));
+        }
+
+        public final com.google.common.base.Optional<net.lab1318.costume.api.models.location.LocationCoordinates> getCoordinates() {
+            return coordinates;
         }
 
         public final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationName>> getNames() {
@@ -52,6 +58,9 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             type = iprot.readEnum(net.lab1318.costume.api.models.location.LocationType.class);
             if (__list.getSize() > 1) {
+                coordinates = com.google.common.base.Optional.of(net.lab1318.costume.api.models.location.LocationCoordinates.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 2) {
                 try {
                     names = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationName>>() {
                         @Override
@@ -72,7 +81,7 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                 }
             }
-            if (__list.getSize() > 2) {
+            if (__list.getSize() > 3) {
                 try {
                     refids = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationRefid>>() {
                         @Override
@@ -112,6 +121,12 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
                 case "type": {
                     if (!ifield.hasId() || ifield.getId() == 1) {
                         type = iprot.readEnum(net.lab1318.costume.api.models.location.LocationType.class);
+                    }
+                    break;
+                }
+                case "coordinates": {
+                    if (!ifield.hasId() || ifield.getId() == 4) {
+                        coordinates = com.google.common.base.Optional.of(net.lab1318.costume.api.models.location.LocationCoordinates.readAsStruct(iprot));
                     }
                     break;
                 }
@@ -175,10 +190,23 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
             return this;
         }
 
+        public Builder setCoordinates(final com.google.common.base.Optional<net.lab1318.costume.api.models.location.LocationCoordinates> coordinates) {
+            this.coordinates = com.google.common.base.Preconditions.checkNotNull(coordinates);
+            return this;
+        }
+
+        public Builder setCoordinates(@javax.annotation.Nullable final net.lab1318.costume.api.models.location.LocationCoordinates coordinates) {
+            this.coordinates = com.google.common.base.Optional.fromNullable(coordinates);
+            return this;
+        }
+
         public Builder setIfPresent(final Location other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
             setType(other.getType());
+            if (other.getCoordinates().isPresent()) {
+                setCoordinates(other.getCoordinates());
+            }
             if (other.getNames().isPresent()) {
                 setNames(other.getNames());
             }
@@ -220,11 +248,17 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
 
             switch (name.toLowerCase()) {
             case "type": setType((net.lab1318.costume.api.models.location.LocationType)value); return this;
+            case "coordinates": setCoordinates((net.lab1318.costume.api.models.location.LocationCoordinates)value); return this;
             case "names": setNames((com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationName>)value); return this;
             case "refids": setRefids((com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationRefid>)value); return this;
             default:
                 throw new IllegalArgumentException(name);
             }
+        }
+
+        public Builder unsetCoordinates() {
+            this.coordinates = com.google.common.base.Optional.absent();
+            return this;
         }
 
         public Builder unsetNames() {
@@ -247,6 +281,7 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
 
             switch (name.toLowerCase()) {
             case "type": return unsetType();
+            case "coordinates": return unsetCoordinates();
             case "names": return unsetNames();
             case "refids": return unsetRefids();
             default:
@@ -255,6 +290,7 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
         }
 
         private net.lab1318.costume.api.models.location.LocationType type;
+        private com.google.common.base.Optional<net.lab1318.costume.api.models.location.LocationCoordinates> coordinates;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationName>> names;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationRefid>> refids;
     }
@@ -262,6 +298,7 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.location.LocationType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),
+        COORDINATES("coordinates", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.location.LocationCoordinates>() {}, false, 4, "coordinates", org.thryft.protocol.Type.STRUCT),
         NAMES("names", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationName>>() {}, false, 2, "names", org.thryft.protocol.Type.LIST),
         REFIDS("refids", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationRefid>>() {}, false, 3, "refids", org.thryft.protocol.Type.LIST);
 
@@ -308,6 +345,7 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
             case "type": return TYPE;
+            case "coordinates": return COORDINATES;
             case "names": return NAMES;
             case "refids": return REFIDS;
             default:
@@ -318,6 +356,7 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
             case "type": return TYPE;
+            case "coordinates": return COORDINATES;
             case "names": return NAMES;
             case "refids": return REFIDS;
             default:
@@ -352,7 +391,7 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
      * Copy constructor
      */
     public Location(final Location other) {
-        this(other.getType(), other.getNames(), other.getRefids());
+        this(other.getType(), other.getCoordinates(), other.getNames(), other.getRefids());
     }
 
     /**
@@ -360,6 +399,7 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
      */
     public Location(final net.lab1318.costume.api.models.location.LocationType type) {
         this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.location.Location: missing type");
+        this.coordinates = com.google.common.base.Optional.absent();
         this.names = com.google.common.base.Optional.absent();
         this.refids = com.google.common.base.Optional.absent();
     }
@@ -367,8 +407,9 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
     /**
      * Total Nullable constructor
      */
-    public Location(final net.lab1318.costume.api.models.location.LocationType type, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationName> names, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationRefid> refids) {
+    public Location(final net.lab1318.costume.api.models.location.LocationType type, final @javax.annotation.Nullable net.lab1318.costume.api.models.location.LocationCoordinates coordinates, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationName> names, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationRefid> refids) {
         this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.location.Location: missing type");
+        this.coordinates = com.google.common.base.Optional.fromNullable(coordinates);
         this.names = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(names), "net.lab1318.costume.api.models.location.Location: names is empty");
         this.refids = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(refids), "net.lab1318.costume.api.models.location.Location: refids is empty");
     }
@@ -376,8 +417,9 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
     /**
      * Optional constructor
      */
-    public Location(final net.lab1318.costume.api.models.location.LocationType type, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationName>> names, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationRefid>> refids) {
+    public Location(final net.lab1318.costume.api.models.location.LocationType type, final com.google.common.base.Optional<net.lab1318.costume.api.models.location.LocationCoordinates> coordinates, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationName>> names, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationRefid>> refids) {
         this.type = com.google.common.base.Preconditions.checkNotNull(type, "net.lab1318.costume.api.models.location.Location: missing type");
+        this.coordinates = com.google.common.base.Preconditions.checkNotNull(coordinates, "net.lab1318.costume.api.models.location.Location: missing coordinates");
         this.names = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(names, "net.lab1318.costume.api.models.location.Location: missing names"), "net.lab1318.costume.api.models.location.Location: names is empty");
         this.refids = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(refids, "net.lab1318.costume.api.models.location.Location: missing refids"), "net.lab1318.costume.api.models.location.Location: refids is empty");
     }
@@ -405,8 +447,9 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
         final Location other = (Location)otherObject;
         return
             getType().equals(other.getType()) &&
-            getNames().equals(other.getNames()) &&
-            getRefids().equals(other.getRefids());
+            ((getCoordinates().isPresent() && other.getCoordinates().isPresent()) ? (getCoordinates().get().equals(other.getCoordinates().get())) : (!getCoordinates().isPresent() && !other.getCoordinates().isPresent())) &&
+            ((getNames().isPresent() && other.getNames().isPresent()) ? (getNames().get().equals(other.getNames().get())) : (!getNames().isPresent() && !other.getNames().isPresent())) &&
+            ((getRefids().isPresent() && other.getRefids().isPresent()) ? (getRefids().get().equals(other.getRefids().get())) : (!getRefids().isPresent() && !other.getRefids().isPresent()));
     }
 
     @Override
@@ -425,11 +468,16 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
         case TYPE: return getType();
+        case COORDINATES: return getCoordinates();
         case NAMES: return getNames();
         case REFIDS: return getRefids();
         default:
             throw new IllegalStateException();
         }
+    }
+
+    public final com.google.common.base.Optional<net.lab1318.costume.api.models.location.LocationCoordinates> getCoordinates() {
+        return coordinates;
     }
 
     public final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationName>> getNames() {
@@ -448,6 +496,9 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
     public int hashCode() {
         int hashCode = 17;
         hashCode = 31 * hashCode + getType().ordinal();
+        if (getCoordinates().isPresent()) {
+            hashCode = 31 * hashCode + getCoordinates().get().hashCode();
+        }
         if (getNames().isPresent()) {
             hashCode = 31 * hashCode + getNames().get().hashCode();
         }
@@ -475,12 +526,16 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
 
     public static Location readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         net.lab1318.costume.api.models.location.LocationType type = null;
+        com.google.common.base.Optional<net.lab1318.costume.api.models.location.LocationCoordinates> coordinates = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationName>> names = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationRefid>> refids = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         type = iprot.readEnum(net.lab1318.costume.api.models.location.LocationType.class);
         if (__list.getSize() > 1) {
+            coordinates = com.google.common.base.Optional.of(net.lab1318.costume.api.models.location.LocationCoordinates.readAsStruct(iprot));
+        }
+        if (__list.getSize() > 2) {
             try {
                 names = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationName>>() {
                     @Override
@@ -501,7 +556,7 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
             } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
             }
         }
-        if (__list.getSize() > 2) {
+        if (__list.getSize() > 3) {
             try {
                 refids = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationRefid>>() {
                     @Override
@@ -524,7 +579,7 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
         }
         iprot.readListEnd();
         try {
-            return new Location(type, names, refids);
+            return new Location(type, coordinates, names, refids);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -536,6 +591,7 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
 
     public static Location readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         net.lab1318.costume.api.models.location.LocationType type = null;
+        com.google.common.base.Optional<net.lab1318.costume.api.models.location.LocationCoordinates> coordinates = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationName>> names = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationRefid>> refids = com.google.common.base.Optional.absent();
 
@@ -549,6 +605,12 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
             case "type": {
                 if (!ifield.hasId() || ifield.getId() == 1) {
                     type = iprot.readEnum(net.lab1318.costume.api.models.location.LocationType.class);
+                }
+                break;
+            }
+            case "coordinates": {
+                if (!ifield.hasId() || ifield.getId() == 4) {
+                    coordinates = com.google.common.base.Optional.of(net.lab1318.costume.api.models.location.LocationCoordinates.readAsStruct(iprot));
                 }
                 break;
             }
@@ -610,14 +672,22 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
         }
         iprot.readStructEnd();
         try {
-            return new Location(type, names, refids);
+            return new Location(type, coordinates, names, refids);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
+    public Location replaceCoordinates(final com.google.common.base.Optional<net.lab1318.costume.api.models.location.LocationCoordinates> coordinates) {
+        return new Location(this.type, coordinates, this.names, this.refids);
+    }
+
+    public Location replaceCoordinates(final net.lab1318.costume.api.models.location.LocationCoordinates coordinates) {
+        return replaceCoordinates(com.google.common.base.Optional.fromNullable(coordinates));
+    }
+
     public Location replaceNames(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationName>> names) {
-        return new Location(this.type, names, this.refids);
+        return new Location(this.type, this.coordinates, names, this.refids);
     }
 
     public Location replaceNames(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationName> names) {
@@ -625,7 +695,7 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
     }
 
     public Location replaceRefids(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationRefid>> refids) {
-        return new Location(this.type, this.names, refids);
+        return new Location(this.type, this.coordinates, this.names, refids);
     }
 
     public Location replaceRefids(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationRefid> refids) {
@@ -633,19 +703,25 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
     }
 
     public Location replaceType(final net.lab1318.costume.api.models.location.LocationType type) {
-        return new Location(type, this.names, this.refids);
+        return new Location(type, this.coordinates, this.names, this.refids);
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("type", getType()).add("names", getNames().orNull()).add("refids", getRefids().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("type", getType()).add("coordinates", getCoordinates().orNull()).add("names", getNames().orNull()).add("refids", getRefids().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 4);
 
         oprot.writeEnum(getType());
+
+        if (getCoordinates().isPresent()) {
+            getCoordinates().get().writeAsStruct(oprot);
+        } else {
+            oprot.writeNull();
+        }
 
         if (getNames().isPresent()) {
             oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getNames().get().size());
@@ -683,6 +759,12 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
         oprot.writeEnum(getType());
         oprot.writeFieldEnd();
 
+        if (getCoordinates().isPresent()) {
+            oprot.writeFieldBegin("coordinates", org.thryft.protocol.Type.STRUCT, (short)4);
+            getCoordinates().get().writeAsStruct(oprot);
+            oprot.writeFieldEnd();
+        }
+
         if (getNames().isPresent()) {
             oprot.writeFieldBegin("names", org.thryft.protocol.Type.LIST, (short)2);
             oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getNames().get().size());
@@ -707,6 +789,8 @@ public class Location implements org.thryft.Struct, net.lab1318.costume.api.mode
     }
 
     private final net.lab1318.costume.api.models.location.LocationType type;
+
+    private final com.google.common.base.Optional<net.lab1318.costume.api.models.location.LocationCoordinates> coordinates;
 
     private final com.google.common.base.Optional<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.location.LocationName>> names;
 

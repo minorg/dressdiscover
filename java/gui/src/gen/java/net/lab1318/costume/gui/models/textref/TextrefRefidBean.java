@@ -117,7 +117,7 @@ public class TextrefRefidBean implements org.thryft.StructBean {
         return
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
-            (getHref() != null ? getHref().equals(other.getHref()) : other.getHref() == null);
+            ((getHref() != null && other.getHref() != null) ? (getHref().equals(other.getHref())) : (getHref() == null && other.getHref() == null));
     }
 
     @Override

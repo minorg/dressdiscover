@@ -321,7 +321,7 @@ public class InscriptionText implements org.thryft.Struct {
         return
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
-            getLang().equals(other.getLang());
+            ((getLang().isPresent() && other.getLang().isPresent()) ? (getLang().get().equals(other.getLang().get())) : (!getLang().isPresent() && !other.getLang().isPresent()));
     }
 
     @Override

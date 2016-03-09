@@ -344,8 +344,8 @@ public class AgentDates implements org.thryft.Struct {
         final AgentDates other = (AgentDates)otherObject;
         return
             getType().equals(other.getType()) &&
-            getEarliestDate().equals(other.getEarliestDate()) &&
-            getLatestDate().equals(other.getLatestDate());
+            ((getEarliestDate().isPresent() && other.getEarliestDate().isPresent()) ? (getEarliestDate().get().equals(other.getEarliestDate().get())) : (!getEarliestDate().isPresent() && !other.getEarliestDate().isPresent())) &&
+            ((getLatestDate().isPresent() && other.getLatestDate().isPresent()) ? (getLatestDate().get().equals(other.getLatestDate().get())) : (!getLatestDate().isPresent() && !other.getLatestDate().isPresent()));
     }
 
     @Override

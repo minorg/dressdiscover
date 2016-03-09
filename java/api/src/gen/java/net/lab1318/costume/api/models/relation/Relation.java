@@ -425,9 +425,9 @@ public class Relation implements org.thryft.Struct, net.lab1318.costume.api.mode
         final Relation other = (Relation)otherObject;
         return
             getType().equals(other.getType()) &&
-            getHref().equals(other.getHref()) &&
-            getRelids().equals(other.getRelids()) &&
-            getText().equals(other.getText());
+            ((getHref().isPresent() && other.getHref().isPresent()) ? (getHref().get().equals(other.getHref().get())) : (!getHref().isPresent() && !other.getHref().isPresent())) &&
+            ((getRelids().isPresent() && other.getRelids().isPresent()) ? (getRelids().get().equals(other.getRelids().get())) : (!getRelids().isPresent() && !other.getRelids().isPresent())) &&
+            ((getText().isPresent() && other.getText().isPresent()) ? (getText().get().equals(other.getText().get())) : (!getText().isPresent() && !other.getText().isPresent()));
     }
 
     @Override

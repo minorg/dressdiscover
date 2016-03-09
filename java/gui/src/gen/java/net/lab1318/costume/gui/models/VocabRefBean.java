@@ -113,8 +113,8 @@ public class VocabRefBean implements org.thryft.StructBean {
         final VocabRefBean other = (VocabRefBean)otherObject;
         return
             getVocab().equals(other.getVocab()) &&
-            (getRefid() != null ? getRefid().equals(other.getRefid()) : other.getRefid() == null) &&
-            (getUri() != null ? getUri().equals(other.getUri()) : other.getUri() == null);
+            ((getRefid() != null && other.getRefid() != null) ? (getRefid().equals(other.getRefid())) : (getRefid() == null && other.getRefid() == null)) &&
+            ((getUri() != null && other.getUri() != null) ? (getUri().equals(other.getUri())) : (getUri() == null && other.getUri() == null));
     }
 
     @Override

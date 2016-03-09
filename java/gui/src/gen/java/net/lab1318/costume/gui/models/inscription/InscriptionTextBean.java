@@ -114,7 +114,7 @@ public class InscriptionTextBean implements org.thryft.StructBean {
         return
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
-            (getLang() != null ? getLang().equals(other.getLang()) : other.getLang() == null);
+            ((getLang() != null && other.getLang() != null) ? (getLang().equals(other.getLang())) : (getLang() == null && other.getLang() == null));
     }
 
     @Override

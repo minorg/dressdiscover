@@ -309,7 +309,7 @@ public interface UserQueryService {
                 final GetUserBookmarksByUserIdRequest other = (GetUserBookmarksByUserIdRequest)otherObject;
                 return
                     getUserId().equals(other.getUserId()) &&
-                    getObjectIdsOnly().equals(other.getObjectIdsOnly());
+                    ((getObjectIdsOnly().isPresent() && other.getObjectIdsOnly().isPresent()) ? (getObjectIdsOnly().get() == other.getObjectIdsOnly().get()) : (!getObjectIdsOnly().isPresent() && !other.getObjectIdsOnly().isPresent()));
             }
 
             @Override

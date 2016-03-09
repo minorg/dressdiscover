@@ -346,7 +346,7 @@ public class GetObjectSummariesResult implements org.thryft.Struct {
         return
             getHits().equals(other.getHits()) &&
             getTotalHits().equals(other.getTotalHits()) &&
-            getFacets().equals(other.getFacets());
+            ((getFacets().isPresent() && other.getFacets().isPresent()) ? (getFacets().get().equals(other.getFacets().get())) : (!getFacets().isPresent() && !other.getFacets().isPresent()));
     }
 
     @Override

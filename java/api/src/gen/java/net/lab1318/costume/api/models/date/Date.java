@@ -406,8 +406,8 @@ public class Date implements org.thryft.Struct, net.lab1318.costume.api.models.E
             getEarliestDate().equals(other.getEarliestDate()) &&
             getLatestDate().equals(other.getLatestDate()) &&
             getType().equals(other.getType()) &&
-            getHref().equals(other.getHref()) &&
-            getSource().equals(other.getSource());
+            ((getHref().isPresent() && other.getHref().isPresent()) ? (getHref().get().equals(other.getHref().get())) : (!getHref().isPresent() && !other.getHref().isPresent())) &&
+            ((getSource().isPresent() && other.getSource().isPresent()) ? (getSource().get().equals(other.getSource().get())) : (!getSource().isPresent() && !other.getSource().isPresent()));
     }
 
     @Override

@@ -206,23 +206,23 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
             getInstitutionId().equals(other.getInstitutionId()) &&
             getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
-            (getAgentNameTexts() != null ? getAgentNameTexts().equals(other.getAgentNameTexts()) : other.getAgentNameTexts() == null) &&
-            (getCategories() != null ? getCategories().equals(other.getCategories()) : other.getCategories() == null) &&
-            (getColorTexts() != null ? getColorTexts().equals(other.getColorTexts()) : other.getColorTexts() == null) &&
-            (getCulturalContextTexts() != null ? getCulturalContextTexts().equals(other.getCulturalContextTexts()) : other.getCulturalContextTexts() == null) &&
-            (getDate() != null ? getDate().equals(other.getDate()) : other.getDate() == null) &&
-            (getDescription() != null ? getDescription().equals(other.getDescription()) : other.getDescription() == null) &&
-            (getGender() != null ? getGender().equals(other.getGender()) : other.getGender() == null) &&
-            (getHidden() != null ? getHidden().equals(other.getHidden()) : other.getHidden() == null) &&
-            (getImage() != null ? getImage().equals(other.getImage()) : other.getImage() == null) &&
-            (getLocationNameTexts() != null ? getLocationNameTexts().equals(other.getLocationNameTexts()) : other.getLocationNameTexts() == null) &&
-            (getMaterialTexts() != null ? getMaterialTexts().equals(other.getMaterialTexts()) : other.getMaterialTexts() == null) &&
-            (getRelationTexts() != null ? getRelationTexts().equals(other.getRelationTexts()) : other.getRelationTexts() == null) &&
-            (getStructureTexts() != null ? getStructureTexts().equals(other.getStructureTexts()) : other.getStructureTexts() == null) &&
-            (getSubjectTermTexts() != null ? getSubjectTermTexts().equals(other.getSubjectTermTexts()) : other.getSubjectTermTexts() == null) &&
-            (getTechniqueTexts() != null ? getTechniqueTexts().equals(other.getTechniqueTexts()) : other.getTechniqueTexts() == null) &&
-            (getUrl() != null ? getUrl().equals(other.getUrl()) : other.getUrl() == null) &&
-            (getWorkTypeTexts() != null ? getWorkTypeTexts().equals(other.getWorkTypeTexts()) : other.getWorkTypeTexts() == null);
+            ((getAgentNameTexts() != null && other.getAgentNameTexts() != null) ? (getAgentNameTexts().equals(other.getAgentNameTexts())) : (getAgentNameTexts() == null && other.getAgentNameTexts() == null)) &&
+            ((getCategories() != null && other.getCategories() != null) ? (getCategories().equals(other.getCategories())) : (getCategories() == null && other.getCategories() == null)) &&
+            ((getColorTexts() != null && other.getColorTexts() != null) ? (getColorTexts().equals(other.getColorTexts())) : (getColorTexts() == null && other.getColorTexts() == null)) &&
+            ((getCulturalContextTexts() != null && other.getCulturalContextTexts() != null) ? (getCulturalContextTexts().equals(other.getCulturalContextTexts())) : (getCulturalContextTexts() == null && other.getCulturalContextTexts() == null)) &&
+            ((getDate() != null && other.getDate() != null) ? (getDate().equals(other.getDate())) : (getDate() == null && other.getDate() == null)) &&
+            ((getDescription() != null && other.getDescription() != null) ? (getDescription().equals(other.getDescription())) : (getDescription() == null && other.getDescription() == null)) &&
+            ((getGender() != null && other.getGender() != null) ? (getGender().equals(other.getGender())) : (getGender() == null && other.getGender() == null)) &&
+            ((getHidden() != null && other.getHidden() != null) ? (getHidden() == other.getHidden()) : (getHidden() == null && other.getHidden() == null)) &&
+            ((getImage() != null && other.getImage() != null) ? (getImage().equals(other.getImage())) : (getImage() == null && other.getImage() == null)) &&
+            ((getLocationNameTexts() != null && other.getLocationNameTexts() != null) ? (getLocationNameTexts().equals(other.getLocationNameTexts())) : (getLocationNameTexts() == null && other.getLocationNameTexts() == null)) &&
+            ((getMaterialTexts() != null && other.getMaterialTexts() != null) ? (getMaterialTexts().equals(other.getMaterialTexts())) : (getMaterialTexts() == null && other.getMaterialTexts() == null)) &&
+            ((getRelationTexts() != null && other.getRelationTexts() != null) ? (getRelationTexts().equals(other.getRelationTexts())) : (getRelationTexts() == null && other.getRelationTexts() == null)) &&
+            ((getStructureTexts() != null && other.getStructureTexts() != null) ? (getStructureTexts().equals(other.getStructureTexts())) : (getStructureTexts() == null && other.getStructureTexts() == null)) &&
+            ((getSubjectTermTexts() != null && other.getSubjectTermTexts() != null) ? (getSubjectTermTexts().equals(other.getSubjectTermTexts())) : (getSubjectTermTexts() == null && other.getSubjectTermTexts() == null)) &&
+            ((getTechniqueTexts() != null && other.getTechniqueTexts() != null) ? (getTechniqueTexts().equals(other.getTechniqueTexts())) : (getTechniqueTexts() == null && other.getTechniqueTexts() == null)) &&
+            ((getUrl() != null && other.getUrl() != null) ? (getUrl().equals(other.getUrl())) : (getUrl() == null && other.getUrl() == null)) &&
+            ((getWorkTypeTexts() != null && other.getWorkTypeTexts() != null) ? (getWorkTypeTexts().equals(other.getWorkTypeTexts())) : (getWorkTypeTexts() == null && other.getWorkTypeTexts() == null));
     }
 
     @Override

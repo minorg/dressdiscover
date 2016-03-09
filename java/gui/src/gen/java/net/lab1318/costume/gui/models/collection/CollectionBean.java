@@ -130,9 +130,9 @@ public class CollectionBean implements org.thryft.StructBean {
             getInstitutionId().equals(other.getInstitutionId()) &&
             getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
-            (getDescription() != null ? getDescription().equals(other.getDescription()) : other.getDescription() == null) &&
-            (getHidden() != null ? getHidden().equals(other.getHidden()) : other.getHidden() == null) &&
-            (getWorkTypes() != null ? getWorkTypes().equals(other.getWorkTypes()) : other.getWorkTypes() == null);
+            ((getDescription() != null && other.getDescription() != null) ? (getDescription().equals(other.getDescription())) : (getDescription() == null && other.getDescription() == null)) &&
+            ((getHidden() != null && other.getHidden() != null) ? (getHidden() == other.getHidden()) : (getHidden() == null && other.getHidden() == null)) &&
+            ((getWorkTypes() != null && other.getWorkTypes() != null) ? (getWorkTypes().equals(other.getWorkTypes())) : (getWorkTypes() == null && other.getWorkTypes() == null));
     }
 
     @Override

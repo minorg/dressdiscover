@@ -121,9 +121,9 @@ public class DateBoundBean implements org.thryft.StructBean {
         final DateBoundBean other = (DateBoundBean)otherObject;
         return
             getText().equals(other.getText()) &&
-            (getCirca() != null ? getCirca().equals(other.getCirca()) : other.getCirca() == null) &&
-            (getParsedDateTime() != null ? getParsedDateTime().equals(other.getParsedDateTime()) : other.getParsedDateTime() == null) &&
-            (getParsedDateTimeGranularity() != null ? getParsedDateTimeGranularity().equals(other.getParsedDateTimeGranularity()) : other.getParsedDateTimeGranularity() == null);
+            ((getCirca() != null && other.getCirca() != null) ? (getCirca() == other.getCirca()) : (getCirca() == null && other.getCirca() == null)) &&
+            ((getParsedDateTime() != null && other.getParsedDateTime() != null) ? (getParsedDateTime().equals(other.getParsedDateTime())) : (getParsedDateTime() == null && other.getParsedDateTime() == null)) &&
+            ((getParsedDateTimeGranularity() != null && other.getParsedDateTimeGranularity() != null) ? (getParsedDateTimeGranularity().equals(other.getParsedDateTimeGranularity())) : (getParsedDateTimeGranularity() == null && other.getParsedDateTimeGranularity() == null));
     }
 
     @Override

@@ -127,9 +127,9 @@ public class RightsBean implements org.thryft.StructBean {
         return
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
-            (getLicenseVocabRef() != null ? getLicenseVocabRef().equals(other.getLicenseVocabRef()) : other.getLicenseVocabRef() == null) &&
-            (getNotes() != null ? getNotes().equals(other.getNotes()) : other.getNotes() == null) &&
-            (getRightsHolder() != null ? getRightsHolder().equals(other.getRightsHolder()) : other.getRightsHolder() == null);
+            ((getLicenseVocabRef() != null && other.getLicenseVocabRef() != null) ? (getLicenseVocabRef().equals(other.getLicenseVocabRef())) : (getLicenseVocabRef() == null && other.getLicenseVocabRef() == null)) &&
+            ((getNotes() != null && other.getNotes() != null) ? (getNotes().equals(other.getNotes())) : (getNotes() == null && other.getNotes() == null)) &&
+            ((getRightsHolder() != null && other.getRightsHolder() != null) ? (getRightsHolder().equals(other.getRightsHolder())) : (getRightsHolder() == null && other.getRightsHolder() == null));
     }
 
     @Override

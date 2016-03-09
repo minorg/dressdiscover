@@ -324,7 +324,7 @@ public class Title implements org.thryft.Struct, net.lab1318.costume.api.models.
         return
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
-            getPref().equals(other.getPref());
+            ((getPref().isPresent() && other.getPref().isPresent()) ? (getPref().get() == other.getPref().get()) : (!getPref().isPresent() && !other.getPref().isPresent()));
     }
 
     @Override

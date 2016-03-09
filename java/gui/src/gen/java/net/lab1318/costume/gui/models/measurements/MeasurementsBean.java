@@ -122,8 +122,8 @@ public class MeasurementsBean implements org.thryft.StructBean {
         return
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
-            (getExtent() != null ? getExtent().equals(other.getExtent()) : other.getExtent() == null) &&
-            (getUnit() != null ? getUnit().equals(other.getUnit()) : other.getUnit() == null);
+            ((getExtent() != null && other.getExtent() != null) ? (getExtent().equals(other.getExtent())) : (getExtent() == null && other.getExtent() == null)) &&
+            ((getUnit() != null && other.getUnit() != null) ? (getUnit().equals(other.getUnit())) : (getUnit() == null && other.getUnit() == null));
     }
 
     @Override

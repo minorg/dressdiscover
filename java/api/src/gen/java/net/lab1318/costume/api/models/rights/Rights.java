@@ -408,9 +408,9 @@ public class Rights implements org.thryft.Struct, net.lab1318.costume.api.models
         return
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
-            getLicenseVocabRef().equals(other.getLicenseVocabRef()) &&
-            getNotes().equals(other.getNotes()) &&
-            getRightsHolder().equals(other.getRightsHolder());
+            ((getLicenseVocabRef().isPresent() && other.getLicenseVocabRef().isPresent()) ? (getLicenseVocabRef().get().equals(other.getLicenseVocabRef().get())) : (!getLicenseVocabRef().isPresent() && !other.getLicenseVocabRef().isPresent())) &&
+            ((getNotes().isPresent() && other.getNotes().isPresent()) ? (getNotes().get().equals(other.getNotes().get())) : (!getNotes().isPresent() && !other.getNotes().isPresent())) &&
+            ((getRightsHolder().isPresent() && other.getRightsHolder().isPresent()) ? (getRightsHolder().get().equals(other.getRightsHolder().get())) : (!getRightsHolder().isPresent() && !other.getRightsHolder().isPresent()));
     }
 
     @Override

@@ -290,7 +290,7 @@ public class Technique implements org.thryft.Struct, net.lab1318.costume.api.mod
         final Technique other = (Technique)otherObject;
         return
             getText().equals(other.getText()) &&
-            getVocabRef().equals(other.getVocabRef());
+            ((getVocabRef().isPresent() && other.getVocabRef().isPresent()) ? (getVocabRef().get().equals(other.getVocabRef().get())) : (!getVocabRef().isPresent() && !other.getVocabRef().isPresent()));
     }
 
     @Override

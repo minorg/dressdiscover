@@ -1512,23 +1512,23 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
             getInstitutionId().equals(other.getInstitutionId()) &&
             getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
-            getAgentNameTexts().equals(other.getAgentNameTexts()) &&
-            getCategories().equals(other.getCategories()) &&
-            getColorTexts().equals(other.getColorTexts()) &&
-            getCulturalContextTexts().equals(other.getCulturalContextTexts()) &&
-            getDate().equals(other.getDate()) &&
-            getDescription().equals(other.getDescription()) &&
-            getGender().equals(other.getGender()) &&
-            getHidden().equals(other.getHidden()) &&
-            getImage().equals(other.getImage()) &&
-            getLocationNameTexts().equals(other.getLocationNameTexts()) &&
-            getMaterialTexts().equals(other.getMaterialTexts()) &&
-            getRelationTexts().equals(other.getRelationTexts()) &&
-            getStructureTexts().equals(other.getStructureTexts()) &&
-            getSubjectTermTexts().equals(other.getSubjectTermTexts()) &&
-            getTechniqueTexts().equals(other.getTechniqueTexts()) &&
-            getUrl().equals(other.getUrl()) &&
-            getWorkTypeTexts().equals(other.getWorkTypeTexts());
+            ((getAgentNameTexts().isPresent() && other.getAgentNameTexts().isPresent()) ? (getAgentNameTexts().get().equals(other.getAgentNameTexts().get())) : (!getAgentNameTexts().isPresent() && !other.getAgentNameTexts().isPresent())) &&
+            ((getCategories().isPresent() && other.getCategories().isPresent()) ? (getCategories().get().equals(other.getCategories().get())) : (!getCategories().isPresent() && !other.getCategories().isPresent())) &&
+            ((getColorTexts().isPresent() && other.getColorTexts().isPresent()) ? (getColorTexts().get().equals(other.getColorTexts().get())) : (!getColorTexts().isPresent() && !other.getColorTexts().isPresent())) &&
+            ((getCulturalContextTexts().isPresent() && other.getCulturalContextTexts().isPresent()) ? (getCulturalContextTexts().get().equals(other.getCulturalContextTexts().get())) : (!getCulturalContextTexts().isPresent() && !other.getCulturalContextTexts().isPresent())) &&
+            ((getDate().isPresent() && other.getDate().isPresent()) ? (getDate().get().equals(other.getDate().get())) : (!getDate().isPresent() && !other.getDate().isPresent())) &&
+            ((getDescription().isPresent() && other.getDescription().isPresent()) ? (getDescription().get().equals(other.getDescription().get())) : (!getDescription().isPresent() && !other.getDescription().isPresent())) &&
+            ((getGender().isPresent() && other.getGender().isPresent()) ? (getGender().get().equals(other.getGender().get())) : (!getGender().isPresent() && !other.getGender().isPresent())) &&
+            ((getHidden().isPresent() && other.getHidden().isPresent()) ? (getHidden().get() == other.getHidden().get()) : (!getHidden().isPresent() && !other.getHidden().isPresent())) &&
+            ((getImage().isPresent() && other.getImage().isPresent()) ? (getImage().get().equals(other.getImage().get())) : (!getImage().isPresent() && !other.getImage().isPresent())) &&
+            ((getLocationNameTexts().isPresent() && other.getLocationNameTexts().isPresent()) ? (getLocationNameTexts().get().equals(other.getLocationNameTexts().get())) : (!getLocationNameTexts().isPresent() && !other.getLocationNameTexts().isPresent())) &&
+            ((getMaterialTexts().isPresent() && other.getMaterialTexts().isPresent()) ? (getMaterialTexts().get().equals(other.getMaterialTexts().get())) : (!getMaterialTexts().isPresent() && !other.getMaterialTexts().isPresent())) &&
+            ((getRelationTexts().isPresent() && other.getRelationTexts().isPresent()) ? (getRelationTexts().get().equals(other.getRelationTexts().get())) : (!getRelationTexts().isPresent() && !other.getRelationTexts().isPresent())) &&
+            ((getStructureTexts().isPresent() && other.getStructureTexts().isPresent()) ? (getStructureTexts().get().equals(other.getStructureTexts().get())) : (!getStructureTexts().isPresent() && !other.getStructureTexts().isPresent())) &&
+            ((getSubjectTermTexts().isPresent() && other.getSubjectTermTexts().isPresent()) ? (getSubjectTermTexts().get().equals(other.getSubjectTermTexts().get())) : (!getSubjectTermTexts().isPresent() && !other.getSubjectTermTexts().isPresent())) &&
+            ((getTechniqueTexts().isPresent() && other.getTechniqueTexts().isPresent()) ? (getTechniqueTexts().get().equals(other.getTechniqueTexts().get())) : (!getTechniqueTexts().isPresent() && !other.getTechniqueTexts().isPresent())) &&
+            ((getUrl().isPresent() && other.getUrl().isPresent()) ? (getUrl().get().equals(other.getUrl().get())) : (!getUrl().isPresent() && !other.getUrl().isPresent())) &&
+            ((getWorkTypeTexts().isPresent() && other.getWorkTypeTexts().isPresent()) ? (getWorkTypeTexts().get().equals(other.getWorkTypeTexts().get())) : (!getWorkTypeTexts().isPresent() && !other.getWorkTypeTexts().isPresent()));
     }
 
     @Override

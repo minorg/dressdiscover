@@ -421,11 +421,11 @@ public class Image implements org.thryft.Struct {
 
         final Image other = (Image)otherObject;
         return
-            getFullSize().equals(other.getFullSize()) &&
-            getOriginal().equals(other.getOriginal()) &&
-            getRights().equals(other.getRights()) &&
-            getSquareThumbnail().equals(other.getSquareThumbnail()) &&
-            getThumbnail().equals(other.getThumbnail());
+            ((getFullSize().isPresent() && other.getFullSize().isPresent()) ? (getFullSize().get().equals(other.getFullSize().get())) : (!getFullSize().isPresent() && !other.getFullSize().isPresent())) &&
+            ((getOriginal().isPresent() && other.getOriginal().isPresent()) ? (getOriginal().get().equals(other.getOriginal().get())) : (!getOriginal().isPresent() && !other.getOriginal().isPresent())) &&
+            ((getRights().isPresent() && other.getRights().isPresent()) ? (getRights().get().equals(other.getRights().get())) : (!getRights().isPresent() && !other.getRights().isPresent())) &&
+            ((getSquareThumbnail().isPresent() && other.getSquareThumbnail().isPresent()) ? (getSquareThumbnail().get().equals(other.getSquareThumbnail().get())) : (!getSquareThumbnail().isPresent() && !other.getSquareThumbnail().isPresent())) &&
+            ((getThumbnail().isPresent() && other.getThumbnail().isPresent()) ? (getThumbnail().get().equals(other.getThumbnail().get())) : (!getThumbnail().isPresent() && !other.getThumbnail().isPresent()));
     }
 
     @Override

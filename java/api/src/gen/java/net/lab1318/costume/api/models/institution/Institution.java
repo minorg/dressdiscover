@@ -411,9 +411,9 @@ public class Institution implements org.thryft.Struct, org.thryft.waf.api.models
         return
             getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
-            getDataRights().equals(other.getDataRights()) &&
-            getHidden().equals(other.getHidden()) &&
-            getUrl().equals(other.getUrl());
+            ((getDataRights().isPresent() && other.getDataRights().isPresent()) ? (getDataRights().get().equals(other.getDataRights().get())) : (!getDataRights().isPresent() && !other.getDataRights().isPresent())) &&
+            ((getHidden().isPresent() && other.getHidden().isPresent()) ? (getHidden().get() == other.getHidden().get()) : (!getHidden().isPresent() && !other.getHidden().isPresent())) &&
+            ((getUrl().isPresent() && other.getUrl().isPresent()) ? (getUrl().get().equals(other.getUrl().get())) : (!getUrl().isPresent() && !other.getUrl().isPresent()));
     }
 
     @Override

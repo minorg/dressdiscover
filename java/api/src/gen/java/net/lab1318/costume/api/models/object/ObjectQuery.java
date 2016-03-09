@@ -762,16 +762,16 @@ public class ObjectQuery implements org.thryft.Struct {
 
         final ObjectQuery other = (ObjectQuery)otherObject;
         return
-            getCollectionId().equals(other.getCollectionId()) &&
-            getFacetFilters().equals(other.getFacetFilters()) &&
-            getIncludeHidden().equals(other.getIncludeHidden()) &&
-            getInstitutionId().equals(other.getInstitutionId()) &&
-            getMoreLikeObjectId().equals(other.getMoreLikeObjectId()) &&
-            getObjectIds().equals(other.getObjectIds()) &&
-            getQueryString().equals(other.getQueryString()) &&
-            getRelationText().equals(other.getRelationText()) &&
-            getStructureTexts().equals(other.getStructureTexts()) &&
-            getWorkTypeText().equals(other.getWorkTypeText());
+            ((getCollectionId().isPresent() && other.getCollectionId().isPresent()) ? (getCollectionId().get().equals(other.getCollectionId().get())) : (!getCollectionId().isPresent() && !other.getCollectionId().isPresent())) &&
+            ((getFacetFilters().isPresent() && other.getFacetFilters().isPresent()) ? (getFacetFilters().get().equals(other.getFacetFilters().get())) : (!getFacetFilters().isPresent() && !other.getFacetFilters().isPresent())) &&
+            ((getIncludeHidden().isPresent() && other.getIncludeHidden().isPresent()) ? (getIncludeHidden().get() == other.getIncludeHidden().get()) : (!getIncludeHidden().isPresent() && !other.getIncludeHidden().isPresent())) &&
+            ((getInstitutionId().isPresent() && other.getInstitutionId().isPresent()) ? (getInstitutionId().get().equals(other.getInstitutionId().get())) : (!getInstitutionId().isPresent() && !other.getInstitutionId().isPresent())) &&
+            ((getMoreLikeObjectId().isPresent() && other.getMoreLikeObjectId().isPresent()) ? (getMoreLikeObjectId().get().equals(other.getMoreLikeObjectId().get())) : (!getMoreLikeObjectId().isPresent() && !other.getMoreLikeObjectId().isPresent())) &&
+            ((getObjectIds().isPresent() && other.getObjectIds().isPresent()) ? (getObjectIds().get().equals(other.getObjectIds().get())) : (!getObjectIds().isPresent() && !other.getObjectIds().isPresent())) &&
+            ((getQueryString().isPresent() && other.getQueryString().isPresent()) ? (getQueryString().get().equals(other.getQueryString().get())) : (!getQueryString().isPresent() && !other.getQueryString().isPresent())) &&
+            ((getRelationText().isPresent() && other.getRelationText().isPresent()) ? (getRelationText().get().equals(other.getRelationText().get())) : (!getRelationText().isPresent() && !other.getRelationText().isPresent())) &&
+            ((getStructureTexts().isPresent() && other.getStructureTexts().isPresent()) ? (getStructureTexts().get().equals(other.getStructureTexts().get())) : (!getStructureTexts().isPresent() && !other.getStructureTexts().isPresent())) &&
+            ((getWorkTypeText().isPresent() && other.getWorkTypeText().isPresent()) ? (getWorkTypeText().get().equals(other.getWorkTypeText().get())) : (!getWorkTypeText().isPresent() && !other.getWorkTypeText().isPresent()));
     }
 
     @Override

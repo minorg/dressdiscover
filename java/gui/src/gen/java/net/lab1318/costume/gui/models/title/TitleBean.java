@@ -117,7 +117,7 @@ public class TitleBean implements org.thryft.StructBean {
         return
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
-            (getPref() != null ? getPref().equals(other.getPref()) : other.getPref() == null);
+            ((getPref() != null && other.getPref() != null) ? (getPref() == other.getPref()) : (getPref() == null && other.getPref() == null));
     }
 
     @Override

@@ -108,7 +108,7 @@ public class InscriptionAuthorBean implements org.thryft.StructBean {
         final InscriptionAuthorBean other = (InscriptionAuthorBean)otherObject;
         return
             getText().equals(other.getText()) &&
-            (getVocabRef() != null ? getVocabRef().equals(other.getVocabRef()) : other.getVocabRef() == null);
+            ((getVocabRef() != null && other.getVocabRef() != null) ? (getVocabRef().equals(other.getVocabRef())) : (getVocabRef() == null && other.getVocabRef() == null));
     }
 
     @Override

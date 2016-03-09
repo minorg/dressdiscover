@@ -124,9 +124,9 @@ public class InstitutionBean implements org.thryft.StructBean {
         return
             getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
-            (getDataRights() != null ? getDataRights().equals(other.getDataRights()) : other.getDataRights() == null) &&
-            (getHidden() != null ? getHidden().equals(other.getHidden()) : other.getHidden() == null) &&
-            (getUrl() != null ? getUrl().equals(other.getUrl()) : other.getUrl() == null);
+            ((getDataRights() != null && other.getDataRights() != null) ? (getDataRights().equals(other.getDataRights())) : (getDataRights() == null && other.getDataRights() == null)) &&
+            ((getHidden() != null && other.getHidden() != null) ? (getHidden() == other.getHidden()) : (getHidden() == null && other.getHidden() == null)) &&
+            ((getUrl() != null && other.getUrl() != null) ? (getUrl().equals(other.getUrl())) : (getUrl() == null && other.getUrl() == null));
     }
 
     @Override

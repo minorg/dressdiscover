@@ -341,8 +341,8 @@ public class ImageVersion implements org.thryft.Struct {
         final ImageVersion other = (ImageVersion)otherObject;
         return
             getUrl().equals(other.getUrl()) &&
-            getHeightPx().equals(other.getHeightPx()) &&
-            getWidthPx().equals(other.getWidthPx());
+            ((getHeightPx().isPresent() && other.getHeightPx().isPresent()) ? (getHeightPx().get().equals(other.getHeightPx().get())) : (!getHeightPx().isPresent() && !other.getHeightPx().isPresent())) &&
+            ((getWidthPx().isPresent() && other.getWidthPx().isPresent()) ? (getWidthPx().get().equals(other.getWidthPx().get())) : (!getWidthPx().isPresent() && !other.getWidthPx().isPresent()));
     }
 
     @Override

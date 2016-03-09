@@ -338,8 +338,8 @@ public class Description implements org.thryft.Struct, net.lab1318.costume.api.m
         final Description other = (Description)otherObject;
         return
             getText().equals(other.getText()) &&
-            getSource().equals(other.getSource()) &&
-            getType().equals(other.getType());
+            ((getSource().isPresent() && other.getSource().isPresent()) ? (getSource().get().equals(other.getSource().get())) : (!getSource().isPresent() && !other.getSource().isPresent())) &&
+            ((getType().isPresent() && other.getType().isPresent()) ? (getType().get().equals(other.getType().get())) : (!getType().isPresent() && !other.getType().isPresent()));
     }
 
     @Override
