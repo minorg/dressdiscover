@@ -7,6 +7,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             elasticSearchHost = "elasticsearch";
             elasticSearchPort = com.google.common.primitives.UnsignedInteger.valueOf(9300);
             environment = null;
+            googleApiKey = null;
             googleOauthKey = null;
             googleOauthSecret = null;
             homeDirectoryPath = null;
@@ -20,6 +21,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             this.elasticSearchHost = other.getElasticSearchHost();
             this.elasticSearchPort = other.getElasticSearchPort();
             this.environment = other.getEnvironment();
+            this.googleApiKey = other.getGoogleApiKey();
             this.googleOauthKey = other.getGoogleOauthKey();
             this.googleOauthSecret = other.getGoogleOauthSecret();
             this.homeDirectoryPath = other.getHomeDirectoryPath();
@@ -28,12 +30,12 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             this.resummarizeObjectsBulkRequestSize = other.getResummarizeObjectsBulkRequestSize();
         }
 
-        protected CostumeProperties _build(final org.thryft.native_.Url apiUrl, final String elasticSearchHost, final com.google.common.primitives.UnsignedInteger elasticSearchPort, final String environment, final String googleOauthKey, final String googleOauthSecret, final String homeDirectoryPath, final com.google.common.primitives.UnsignedInteger objectSummariesResultCacheSize, final com.google.common.primitives.UnsignedInteger objectSummaryCacheSize, final com.google.common.primitives.UnsignedInteger resummarizeObjectsBulkRequestSize) {
-            return new CostumeProperties(apiUrl, elasticSearchHost, elasticSearchPort, environment, googleOauthKey, googleOauthSecret, homeDirectoryPath, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
+        protected CostumeProperties _build(final org.thryft.native_.Url apiUrl, final String elasticSearchHost, final com.google.common.primitives.UnsignedInteger elasticSearchPort, final String environment, final String googleApiKey, final String googleOauthKey, final String googleOauthSecret, final String homeDirectoryPath, final com.google.common.primitives.UnsignedInteger objectSummariesResultCacheSize, final com.google.common.primitives.UnsignedInteger objectSummaryCacheSize, final com.google.common.primitives.UnsignedInteger resummarizeObjectsBulkRequestSize) {
+            return new CostumeProperties(apiUrl, elasticSearchHost, elasticSearchPort, environment, googleApiKey, googleOauthKey, googleOauthSecret, homeDirectoryPath, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
         }
 
         public CostumeProperties build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(apiUrl, "net.lab1318.costume.lib.CostumeProperties: missing apiUrl"), com.google.common.base.Preconditions.checkNotNull(elasticSearchHost, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchHost"), com.google.common.base.Preconditions.checkNotNull(elasticSearchPort, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchPort"), com.google.common.base.Preconditions.checkNotNull(environment, "net.lab1318.costume.lib.CostumeProperties: missing environment"), com.google.common.base.Preconditions.checkNotNull(googleOauthKey, "net.lab1318.costume.lib.CostumeProperties: missing googleOauthKey"), com.google.common.base.Preconditions.checkNotNull(googleOauthSecret, "net.lab1318.costume.lib.CostumeProperties: missing googleOauthSecret"), com.google.common.base.Preconditions.checkNotNull(homeDirectoryPath, "net.lab1318.costume.lib.CostumeProperties: missing homeDirectoryPath"), com.google.common.base.Preconditions.checkNotNull(objectSummariesResultCacheSize, "net.lab1318.costume.lib.CostumeProperties: missing objectSummariesResultCacheSize"), com.google.common.base.Preconditions.checkNotNull(objectSummaryCacheSize, "net.lab1318.costume.lib.CostumeProperties: missing objectSummaryCacheSize"), com.google.common.base.Preconditions.checkNotNull(resummarizeObjectsBulkRequestSize, "net.lab1318.costume.lib.CostumeProperties: missing resummarizeObjectsBulkRequestSize"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(apiUrl, "net.lab1318.costume.lib.CostumeProperties: missing apiUrl"), com.google.common.base.Preconditions.checkNotNull(elasticSearchHost, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchHost"), com.google.common.base.Preconditions.checkNotNull(elasticSearchPort, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchPort"), com.google.common.base.Preconditions.checkNotNull(environment, "net.lab1318.costume.lib.CostumeProperties: missing environment"), com.google.common.base.Preconditions.checkNotNull(googleApiKey, "net.lab1318.costume.lib.CostumeProperties: missing googleApiKey"), com.google.common.base.Preconditions.checkNotNull(googleOauthKey, "net.lab1318.costume.lib.CostumeProperties: missing googleOauthKey"), com.google.common.base.Preconditions.checkNotNull(googleOauthSecret, "net.lab1318.costume.lib.CostumeProperties: missing googleOauthSecret"), com.google.common.base.Preconditions.checkNotNull(homeDirectoryPath, "net.lab1318.costume.lib.CostumeProperties: missing homeDirectoryPath"), com.google.common.base.Preconditions.checkNotNull(objectSummariesResultCacheSize, "net.lab1318.costume.lib.CostumeProperties: missing objectSummariesResultCacheSize"), com.google.common.base.Preconditions.checkNotNull(objectSummaryCacheSize, "net.lab1318.costume.lib.CostumeProperties: missing objectSummaryCacheSize"), com.google.common.base.Preconditions.checkNotNull(resummarizeObjectsBulkRequestSize, "net.lab1318.costume.lib.CostumeProperties: missing resummarizeObjectsBulkRequestSize"));
         }
 
         public final org.thryft.native_.Url getApiUrl() {
@@ -53,6 +55,10 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
          */
         public final String getEnvironment() {
             return environment;
+        }
+
+        public final String getGoogleApiKey() {
+            return googleApiKey;
         }
 
         public final String getGoogleOauthKey() {
@@ -96,6 +102,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             elasticSearchHost = iprot.readString();
             elasticSearchPort = iprot.readU32();
             environment = iprot.readString();
+            googleApiKey = iprot.readString();
             googleOauthKey = iprot.readString();
             googleOauthSecret = iprot.readString();
             homeDirectoryPath = iprot.readString();
@@ -132,6 +139,10 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
                 }
                 case "environment": {
                     environment = iprot.readString();
+                    break;
+                }
+                case "google_api_key": {
+                    googleApiKey = iprot.readString();
                     break;
                 }
                 case "google_oauth_key": {
@@ -190,6 +201,11 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             return this;
         }
 
+        public Builder setGoogleApiKey(final String googleApiKey) {
+            this.googleApiKey = com.google.common.base.Preconditions.checkNotNull(googleApiKey);
+            return this;
+        }
+
         public Builder setGoogleOauthKey(final String googleOauthKey) {
             this.googleOauthKey = com.google.common.base.Preconditions.checkNotNull(googleOauthKey);
             return this;
@@ -212,6 +228,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             setElasticSearchHost(other.getElasticSearchHost());
             setElasticSearchPort(other.getElasticSearchPort());
             setEnvironment(other.getEnvironment());
+            setGoogleApiKey(other.getGoogleApiKey());
             setGoogleOauthKey(other.getGoogleOauthKey());
             setGoogleOauthSecret(other.getGoogleOauthSecret());
             setHomeDirectoryPath(other.getHomeDirectoryPath());
@@ -245,6 +262,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             case "elastic_search_host": setElasticSearchHost((String)value); return this;
             case "elastic_search_port": setElasticSearchPort((com.google.common.primitives.UnsignedInteger)value); return this;
             case "environment": setEnvironment((String)value); return this;
+            case "google_api_key": setGoogleApiKey((String)value); return this;
             case "google_oauth_key": setGoogleOauthKey((String)value); return this;
             case "google_oauth_secret": setGoogleOauthSecret((String)value); return this;
             case "home_directory_path": setHomeDirectoryPath((String)value); return this;
@@ -273,6 +291,11 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
 
         public Builder unsetEnvironment() {
             this.environment = null;
+            return this;
+        }
+
+        public Builder unsetGoogleApiKey() {
+            this.googleApiKey = null;
             return this;
         }
 
@@ -314,6 +337,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             case "elastic_search_host": return unsetElasticSearchHost();
             case "elastic_search_port": return unsetElasticSearchPort();
             case "environment": return unsetEnvironment();
+            case "google_api_key": return unsetGoogleApiKey();
             case "google_oauth_key": return unsetGoogleOauthKey();
             case "google_oauth_secret": return unsetGoogleOauthSecret();
             case "home_directory_path": return unsetHomeDirectoryPath();
@@ -332,6 +356,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
          * dev, staging, production, etc.
          */
         private String environment;
+        private String googleApiKey;
         private String googleOauthKey;
         private String googleOauthSecret;
         private String homeDirectoryPath;
@@ -346,6 +371,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         ELASTIC_SEARCH_HOST("elasticSearchHost", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "elastic_search_host", org.thryft.protocol.Type.STRING),
         ELASTIC_SEARCH_PORT("elasticSearchPort", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, true, 0, "elastic_search_port", org.thryft.protocol.Type.I32),
         ENVIRONMENT("environment", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "environment", org.thryft.protocol.Type.STRING),
+        GOOGLE_API_KEY("googleApiKey", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "google_api_key", org.thryft.protocol.Type.STRING),
         GOOGLE_OAUTH_KEY("googleOauthKey", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "google_oauth_key", org.thryft.protocol.Type.STRING),
         GOOGLE_OAUTH_SECRET("googleOauthSecret", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "google_oauth_secret", org.thryft.protocol.Type.STRING),
         HOME_DIRECTORY_PATH("homeDirectoryPath", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "home_directory_path", org.thryft.protocol.Type.STRING),
@@ -399,6 +425,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             case "elasticSearchHost": return ELASTIC_SEARCH_HOST;
             case "elasticSearchPort": return ELASTIC_SEARCH_PORT;
             case "environment": return ENVIRONMENT;
+            case "googleApiKey": return GOOGLE_API_KEY;
             case "googleOauthKey": return GOOGLE_OAUTH_KEY;
             case "googleOauthSecret": return GOOGLE_OAUTH_SECRET;
             case "homeDirectoryPath": return HOME_DIRECTORY_PATH;
@@ -416,6 +443,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             case "elastic_search_host": return ELASTIC_SEARCH_HOST;
             case "elastic_search_port": return ELASTIC_SEARCH_PORT;
             case "environment": return ENVIRONMENT;
+            case "google_api_key": return GOOGLE_API_KEY;
             case "google_oauth_key": return GOOGLE_OAUTH_KEY;
             case "google_oauth_secret": return GOOGLE_OAUTH_SECRET;
             case "home_directory_path": return HOME_DIRECTORY_PATH;
@@ -454,17 +482,18 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
      * Copy constructor
      */
     public CostumeProperties(final CostumeProperties other) {
-        this(other.getApiUrl(), other.getElasticSearchHost(), other.getElasticSearchPort(), other.getEnvironment(), other.getGoogleOauthKey(), other.getGoogleOauthSecret(), other.getHomeDirectoryPath(), other.getObjectSummariesResultCacheSize(), other.getObjectSummaryCacheSize(), other.getResummarizeObjectsBulkRequestSize());
+        this(other.getApiUrl(), other.getElasticSearchHost(), other.getElasticSearchPort(), other.getEnvironment(), other.getGoogleApiKey(), other.getGoogleOauthKey(), other.getGoogleOauthSecret(), other.getHomeDirectoryPath(), other.getObjectSummariesResultCacheSize(), other.getObjectSummaryCacheSize(), other.getResummarizeObjectsBulkRequestSize());
     }
 
     /**
      * Required constructor
      */
-    public CostumeProperties(final String environment, final String googleOauthKey, final String googleOauthSecret, final String homeDirectoryPath) {
+    public CostumeProperties(final String environment, final String googleApiKey, final String googleOauthKey, final String googleOauthSecret, final String homeDirectoryPath) {
         this.apiUrl = org.thryft.native_.Url.parse("http://middleware:8082/api/");
         this.elasticSearchHost = "elasticsearch";
         this.elasticSearchPort = com.google.common.primitives.UnsignedInteger.valueOf(9300);
         this.environment = com.google.common.base.Preconditions.checkNotNull(environment, "net.lab1318.costume.lib.CostumeProperties: missing environment");
+        this.googleApiKey = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleApiKey, "net.lab1318.costume.lib.CostumeProperties: missing googleApiKey"), "net.lab1318.costume.lib.CostumeProperties: googleApiKey is empty");
         this.googleOauthKey = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleOauthKey, "net.lab1318.costume.lib.CostumeProperties: missing googleOauthKey"), "net.lab1318.costume.lib.CostumeProperties: googleOauthKey is empty");
         this.googleOauthSecret = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleOauthSecret, "net.lab1318.costume.lib.CostumeProperties: missing googleOauthSecret"), "net.lab1318.costume.lib.CostumeProperties: googleOauthSecret is empty");
         this.homeDirectoryPath = com.google.common.base.Preconditions.checkNotNull(homeDirectoryPath, "net.lab1318.costume.lib.CostumeProperties: missing homeDirectoryPath");
@@ -476,11 +505,12 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
     /**
      * Optional constructor
      */
-    public CostumeProperties(final org.thryft.native_.Url apiUrl, final String elasticSearchHost, final com.google.common.primitives.UnsignedInteger elasticSearchPort, final String environment, final String googleOauthKey, final String googleOauthSecret, final String homeDirectoryPath, final com.google.common.primitives.UnsignedInteger objectSummariesResultCacheSize, final com.google.common.primitives.UnsignedInteger objectSummaryCacheSize, final com.google.common.primitives.UnsignedInteger resummarizeObjectsBulkRequestSize) {
+    public CostumeProperties(final org.thryft.native_.Url apiUrl, final String elasticSearchHost, final com.google.common.primitives.UnsignedInteger elasticSearchPort, final String environment, final String googleApiKey, final String googleOauthKey, final String googleOauthSecret, final String homeDirectoryPath, final com.google.common.primitives.UnsignedInteger objectSummariesResultCacheSize, final com.google.common.primitives.UnsignedInteger objectSummaryCacheSize, final com.google.common.primitives.UnsignedInteger resummarizeObjectsBulkRequestSize) {
         this.apiUrl = com.google.common.base.Preconditions.checkNotNull(apiUrl, "net.lab1318.costume.lib.CostumeProperties: missing apiUrl");
         this.elasticSearchHost = com.google.common.base.Preconditions.checkNotNull(elasticSearchHost, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchHost");
         this.elasticSearchPort = com.google.common.base.Preconditions.checkNotNull(elasticSearchPort, "net.lab1318.costume.lib.CostumeProperties: missing elasticSearchPort");
         this.environment = com.google.common.base.Preconditions.checkNotNull(environment, "net.lab1318.costume.lib.CostumeProperties: missing environment");
+        this.googleApiKey = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleApiKey, "net.lab1318.costume.lib.CostumeProperties: missing googleApiKey"), "net.lab1318.costume.lib.CostumeProperties: googleApiKey is empty");
         this.googleOauthKey = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleOauthKey, "net.lab1318.costume.lib.CostumeProperties: missing googleOauthKey"), "net.lab1318.costume.lib.CostumeProperties: googleOauthKey is empty");
         this.googleOauthSecret = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleOauthSecret, "net.lab1318.costume.lib.CostumeProperties: missing googleOauthSecret"), "net.lab1318.costume.lib.CostumeProperties: googleOauthSecret is empty");
         this.homeDirectoryPath = com.google.common.base.Preconditions.checkNotNull(homeDirectoryPath, "net.lab1318.costume.lib.CostumeProperties: missing homeDirectoryPath");
@@ -566,6 +596,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             getElasticSearchHost().equals(other.getElasticSearchHost()) &&
             getElasticSearchPort().equals(other.getElasticSearchPort()) &&
             getEnvironment().equals(other.getEnvironment()) &&
+            getGoogleApiKey().equals(other.getGoogleApiKey()) &&
             getGoogleOauthKey().equals(other.getGoogleOauthKey()) &&
             getGoogleOauthSecret().equals(other.getGoogleOauthSecret()) &&
             getHomeDirectoryPath().equals(other.getHomeDirectoryPath()) &&
@@ -593,6 +624,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         case ELASTIC_SEARCH_HOST: return getElasticSearchHost();
         case ELASTIC_SEARCH_PORT: return getElasticSearchPort();
         case ENVIRONMENT: return getEnvironment();
+        case GOOGLE_API_KEY: return getGoogleApiKey();
         case GOOGLE_OAUTH_KEY: return getGoogleOauthKey();
         case GOOGLE_OAUTH_SECRET: return getGoogleOauthSecret();
         case HOME_DIRECTORY_PATH: return getHomeDirectoryPath();
@@ -621,6 +653,10 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
      */
     public final String getEnvironment() {
         return environment;
+    }
+
+    public final String getGoogleApiKey() {
+        return googleApiKey;
     }
 
     public final String getGoogleOauthKey() {
@@ -654,6 +690,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         hashCode = 31 * hashCode + getElasticSearchHost().hashCode();
         hashCode = 31 * hashCode + getElasticSearchPort().hashCode();
         hashCode = 31 * hashCode + getEnvironment().hashCode();
+        hashCode = 31 * hashCode + getGoogleApiKey().hashCode();
         hashCode = 31 * hashCode + getGoogleOauthKey().hashCode();
         hashCode = 31 * hashCode + getGoogleOauthSecret().hashCode();
         hashCode = 31 * hashCode + getHomeDirectoryPath().hashCode();
@@ -676,7 +713,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
     public static CostumeProperties load(final com.google.common.base.Optional<java.io.File> commandLinePropertiesFilePath) {
         java.util.Properties __properties = new java.util.Properties();
 
-        String[] __propertyNames = {"api_url", "elastic_search_host", "elastic_search_port", "environment", "google_oauth_key", "google_oauth_secret", "home_directory_path", "object_summaries_result_cache_size", "object_summary_cache_size", "resummarize_objects_bulk_request_size"};
+        String[] __propertyNames = {"api_url", "elastic_search_host", "elastic_search_port", "environment", "google_api_key", "google_oauth_key", "google_oauth_secret", "home_directory_path", "object_summaries_result_cache_size", "object_summary_cache_size", "resummarize_objects_bulk_request_size"};
         for (final String propertyName : __propertyNames) {
             final String propertyValue = System.getenv("COSTUME_" + propertyName.toUpperCase());
             if (propertyValue != null) {
@@ -751,6 +788,21 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
                     throw new RuntimeException("property environment is empty");
                 } else {
                     environment = environmentString;
+                }
+            }
+        }
+
+        final String googleApiKey;
+        {
+            Object googleApiKeyObject = __properties.remove("google_api_key");
+            if (!(googleApiKeyObject instanceof String)) {
+                throw new RuntimeException("no such property google_api_key");
+            } else {
+                final String googleApiKeyString = ((String)googleApiKeyObject).trim();
+                if (googleApiKeyString.isEmpty()) {
+                    throw new RuntimeException("property google_api_key is empty");
+                } else {
+                    googleApiKey = googleApiKeyString;
                 }
             }
         }
@@ -849,7 +901,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             throw new RuntimeException("properties file(s) have unknown property " + entry.getKey().toString());
         }
 
-        return new CostumeProperties(apiUrl, elasticSearchHost, elasticSearchPort, environment, googleOauthKey, googleOauthSecret, homeDirectoryPath, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
+        return new CostumeProperties(apiUrl, elasticSearchHost, elasticSearchPort, environment, googleApiKey, googleOauthKey, googleOauthSecret, homeDirectoryPath, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
     }
 
     public static CostumeProperties readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -868,6 +920,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         String elasticSearchHost = "elasticsearch";
         com.google.common.primitives.UnsignedInteger elasticSearchPort = com.google.common.primitives.UnsignedInteger.valueOf(9300);
         String environment = null;
+        String googleApiKey = null;
         String googleOauthKey = null;
         String googleOauthSecret = null;
         String homeDirectoryPath = null;
@@ -880,6 +933,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         elasticSearchHost = iprot.readString();
         elasticSearchPort = iprot.readU32();
         environment = iprot.readString();
+        googleApiKey = iprot.readString();
         googleOauthKey = iprot.readString();
         googleOauthSecret = iprot.readString();
         homeDirectoryPath = iprot.readString();
@@ -888,7 +942,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         resummarizeObjectsBulkRequestSize = iprot.readU32();
         iprot.readListEnd();
         try {
-            return new CostumeProperties(apiUrl, elasticSearchHost, elasticSearchPort, environment, googleOauthKey, googleOauthSecret, homeDirectoryPath, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
+            return new CostumeProperties(apiUrl, elasticSearchHost, elasticSearchPort, environment, googleApiKey, googleOauthKey, googleOauthSecret, homeDirectoryPath, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -903,6 +957,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         String elasticSearchHost = "elasticsearch";
         com.google.common.primitives.UnsignedInteger elasticSearchPort = com.google.common.primitives.UnsignedInteger.valueOf(9300);
         String environment = null;
+        String googleApiKey = null;
         String googleOauthKey = null;
         String googleOauthSecret = null;
         String homeDirectoryPath = null;
@@ -931,6 +986,10 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
             }
             case "environment": {
                 environment = iprot.readString();
+                break;
+            }
+            case "google_api_key": {
+                googleApiKey = iprot.readString();
                 break;
             }
             case "google_oauth_key": {
@@ -967,50 +1026,54 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         }
         iprot.readStructEnd();
         try {
-            return new CostumeProperties(apiUrl, elasticSearchHost, elasticSearchPort, environment, googleOauthKey, googleOauthSecret, homeDirectoryPath, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
+            return new CostumeProperties(apiUrl, elasticSearchHost, elasticSearchPort, environment, googleApiKey, googleOauthKey, googleOauthSecret, homeDirectoryPath, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public CostumeProperties replaceApiUrl(final org.thryft.native_.Url apiUrl) {
-        return new CostumeProperties(apiUrl, this.elasticSearchHost, this.elasticSearchPort, this.environment, this.googleOauthKey, this.googleOauthSecret, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
+        return new CostumeProperties(apiUrl, this.elasticSearchHost, this.elasticSearchPort, this.environment, this.googleApiKey, this.googleOauthKey, this.googleOauthSecret, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public CostumeProperties replaceElasticSearchHost(final String elasticSearchHost) {
-        return new CostumeProperties(this.apiUrl, elasticSearchHost, this.elasticSearchPort, this.environment, this.googleOauthKey, this.googleOauthSecret, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
+        return new CostumeProperties(this.apiUrl, elasticSearchHost, this.elasticSearchPort, this.environment, this.googleApiKey, this.googleOauthKey, this.googleOauthSecret, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public CostumeProperties replaceElasticSearchPort(final com.google.common.primitives.UnsignedInteger elasticSearchPort) {
-        return new CostumeProperties(this.apiUrl, this.elasticSearchHost, elasticSearchPort, this.environment, this.googleOauthKey, this.googleOauthSecret, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
+        return new CostumeProperties(this.apiUrl, this.elasticSearchHost, elasticSearchPort, this.environment, this.googleApiKey, this.googleOauthKey, this.googleOauthSecret, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public CostumeProperties replaceEnvironment(final String environment) {
-        return new CostumeProperties(this.apiUrl, this.elasticSearchHost, this.elasticSearchPort, environment, this.googleOauthKey, this.googleOauthSecret, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
+        return new CostumeProperties(this.apiUrl, this.elasticSearchHost, this.elasticSearchPort, environment, this.googleApiKey, this.googleOauthKey, this.googleOauthSecret, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
+    }
+
+    public CostumeProperties replaceGoogleApiKey(final String googleApiKey) {
+        return new CostumeProperties(this.apiUrl, this.elasticSearchHost, this.elasticSearchPort, this.environment, googleApiKey, this.googleOauthKey, this.googleOauthSecret, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public CostumeProperties replaceGoogleOauthKey(final String googleOauthKey) {
-        return new CostumeProperties(this.apiUrl, this.elasticSearchHost, this.elasticSearchPort, this.environment, googleOauthKey, this.googleOauthSecret, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
+        return new CostumeProperties(this.apiUrl, this.elasticSearchHost, this.elasticSearchPort, this.environment, this.googleApiKey, googleOauthKey, this.googleOauthSecret, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public CostumeProperties replaceGoogleOauthSecret(final String googleOauthSecret) {
-        return new CostumeProperties(this.apiUrl, this.elasticSearchHost, this.elasticSearchPort, this.environment, this.googleOauthKey, googleOauthSecret, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
+        return new CostumeProperties(this.apiUrl, this.elasticSearchHost, this.elasticSearchPort, this.environment, this.googleApiKey, this.googleOauthKey, googleOauthSecret, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public CostumeProperties replaceHomeDirectoryPath(final String homeDirectoryPath) {
-        return new CostumeProperties(this.apiUrl, this.elasticSearchHost, this.elasticSearchPort, this.environment, this.googleOauthKey, this.googleOauthSecret, homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
+        return new CostumeProperties(this.apiUrl, this.elasticSearchHost, this.elasticSearchPort, this.environment, this.googleApiKey, this.googleOauthKey, this.googleOauthSecret, homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public CostumeProperties replaceObjectSummariesResultCacheSize(final com.google.common.primitives.UnsignedInteger objectSummariesResultCacheSize) {
-        return new CostumeProperties(this.apiUrl, this.elasticSearchHost, this.elasticSearchPort, this.environment, this.googleOauthKey, this.googleOauthSecret, this.homeDirectoryPath, objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
+        return new CostumeProperties(this.apiUrl, this.elasticSearchHost, this.elasticSearchPort, this.environment, this.googleApiKey, this.googleOauthKey, this.googleOauthSecret, this.homeDirectoryPath, objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public CostumeProperties replaceObjectSummaryCacheSize(final com.google.common.primitives.UnsignedInteger objectSummaryCacheSize) {
-        return new CostumeProperties(this.apiUrl, this.elasticSearchHost, this.elasticSearchPort, this.environment, this.googleOauthKey, this.googleOauthSecret, this.homeDirectoryPath, this.objectSummariesResultCacheSize, objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
+        return new CostumeProperties(this.apiUrl, this.elasticSearchHost, this.elasticSearchPort, this.environment, this.googleApiKey, this.googleOauthKey, this.googleOauthSecret, this.homeDirectoryPath, this.objectSummariesResultCacheSize, objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public CostumeProperties replaceResummarizeObjectsBulkRequestSize(final com.google.common.primitives.UnsignedInteger resummarizeObjectsBulkRequestSize) {
-        return new CostumeProperties(this.apiUrl, this.elasticSearchHost, this.elasticSearchPort, this.environment, this.googleOauthKey, this.googleOauthSecret, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
+        return new CostumeProperties(this.apiUrl, this.elasticSearchHost, this.elasticSearchPort, this.environment, this.googleApiKey, this.googleOauthKey, this.googleOauthSecret, this.homeDirectoryPath, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
     }
 
     public com.google.common.collect.ImmutableMap<String, Object> toMap() {
@@ -1019,6 +1082,7 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         builder.put("elastic_search_host", getElasticSearchHost());
         builder.put("elastic_search_port", getElasticSearchPort());
         builder.put("environment", getEnvironment());
+        builder.put("google_api_key", getGoogleApiKey());
         builder.put("google_oauth_key", getGoogleOauthKey());
         builder.put("google_oauth_secret", getGoogleOauthSecret());
         builder.put("home_directory_path", getHomeDirectoryPath());
@@ -1030,12 +1094,12 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("api_url", getApiUrl()).add("elastic_search_host", getElasticSearchHost()).add("elastic_search_port", getElasticSearchPort()).add("environment", getEnvironment()).add("google_oauth_key", getGoogleOauthKey()).add("google_oauth_secret", getGoogleOauthSecret()).add("home_directory_path", getHomeDirectoryPath()).add("object_summaries_result_cache_size", getObjectSummariesResultCacheSize()).add("object_summary_cache_size", getObjectSummaryCacheSize()).add("resummarize_objects_bulk_request_size", getResummarizeObjectsBulkRequestSize()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("api_url", getApiUrl()).add("elastic_search_host", getElasticSearchHost()).add("elastic_search_port", getElasticSearchPort()).add("environment", getEnvironment()).add("google_api_key", getGoogleApiKey()).add("google_oauth_key", getGoogleOauthKey()).add("google_oauth_secret", getGoogleOauthSecret()).add("home_directory_path", getHomeDirectoryPath()).add("object_summaries_result_cache_size", getObjectSummariesResultCacheSize()).add("object_summary_cache_size", getObjectSummaryCacheSize()).add("resummarize_objects_bulk_request_size", getResummarizeObjectsBulkRequestSize()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 10);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 11);
 
         oprot.writeString(getApiUrl().toString());
 
@@ -1044,6 +1108,8 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         oprot.writeU32(getElasticSearchPort());
 
         oprot.writeString(getEnvironment());
+
+        oprot.writeString(getGoogleApiKey());
 
         oprot.writeString(getGoogleOauthKey());
 
@@ -1085,6 +1151,10 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
         oprot.writeString(getEnvironment());
         oprot.writeFieldEnd();
 
+        oprot.writeFieldBegin("google_api_key", org.thryft.protocol.Type.STRING, (short)0);
+        oprot.writeString(getGoogleApiKey());
+        oprot.writeFieldEnd();
+
         oprot.writeFieldBegin("google_oauth_key", org.thryft.protocol.Type.STRING, (short)0);
         oprot.writeString(getGoogleOauthKey());
         oprot.writeFieldEnd();
@@ -1122,6 +1192,8 @@ public class CostumeProperties implements org.thryft.Struct, org.thryft.waf.lib.
      * dev, staging, production, etc.
      */
     private final String environment;
+
+    private final String googleApiKey;
 
     private final String googleOauthKey;
 
