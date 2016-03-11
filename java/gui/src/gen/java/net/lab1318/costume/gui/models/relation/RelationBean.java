@@ -121,9 +121,9 @@ public class RelationBean implements org.thryft.StructBean {
         final RelationBean other = (RelationBean)otherObject;
         return
             getType().equals(other.getType()) &&
-            (getHref() != null ? getHref().equals(other.getHref()) : other.getHref() == null) &&
-            (getRelids() != null ? getRelids().equals(other.getRelids()) : other.getRelids() == null) &&
-            (getText() != null ? getText().equals(other.getText()) : other.getText() == null);
+            ((getHref() != null && other.getHref() != null) ? (getHref().equals(other.getHref())) : (getHref() == null && other.getHref() == null)) &&
+            ((getRelids() != null && other.getRelids() != null) ? (getRelids().equals(other.getRelids())) : (getRelids() == null && other.getRelids() == null)) &&
+            ((getText() != null && other.getText() != null) ? (getText().equals(other.getText())) : (getText() == null && other.getText() == null));
     }
 
     @Override

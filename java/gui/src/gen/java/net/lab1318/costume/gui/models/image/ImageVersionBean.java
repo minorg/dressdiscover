@@ -113,8 +113,8 @@ public class ImageVersionBean implements org.thryft.StructBean {
         final ImageVersionBean other = (ImageVersionBean)otherObject;
         return
             getUrl().equals(other.getUrl()) &&
-            (getHeightPx() != null ? getHeightPx().equals(other.getHeightPx()) : other.getHeightPx() == null) &&
-            (getWidthPx() != null ? getWidthPx().equals(other.getWidthPx()) : other.getWidthPx() == null);
+            ((getHeightPx() != null && other.getHeightPx() != null) ? (getHeightPx().equals(other.getHeightPx())) : (getHeightPx() == null && other.getHeightPx() == null)) &&
+            ((getWidthPx() != null && other.getWidthPx() != null) ? (getWidthPx().equals(other.getWidthPx())) : (getWidthPx() == null && other.getWidthPx() == null));
     }
 
     @Override

@@ -287,7 +287,7 @@ public class ClosurePlacement implements org.thryft.Struct {
         final ClosurePlacement other = (ClosurePlacement)otherObject;
         return
             getText().equals(other.getText()) &&
-            getVocabRef().equals(other.getVocabRef());
+            ((getVocabRef().isPresent() && other.getVocabRef().isPresent()) ? (getVocabRef().get().equals(other.getVocabRef().get())) : (!getVocabRef().isPresent() && !other.getVocabRef().isPresent()));
     }
 
     @Override

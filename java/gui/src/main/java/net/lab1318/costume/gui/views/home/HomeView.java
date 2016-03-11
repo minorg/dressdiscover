@@ -25,8 +25,9 @@ public class HomeView extends TopLevelView {
             com.vaadin.ui.declarative.Design.read(this);
         }
 
+        Button browseObjectsByInstitutionButton;
+        Button collectionDirectoryButton;
         Button catalogWizardButton;
-        Button institutionsButton;
         Button queryWizardButton;
     }
 
@@ -37,24 +38,35 @@ public class HomeView extends TopLevelView {
 
     public void setModels() {
         final Design design = new Design();
+
+        design.browseObjectsByInstitutionButton.addClickListener(new ClickListener() {
+            @Override
+            public void buttonClick(final ClickEvent event) {
+                UI.getCurrent().getNavigator().navigateTo(InstitutionsView.NAME);
+            }
+        });
+
+        design.collectionDirectoryButton.addClickListener(new ClickListener() {
+            @Override
+            public void buttonClick(final ClickEvent event) {
+                UI.getCurrent().getNavigator().navigateTo(InstitutionsView.NAME + "/include_external");
+            }
+        });
+
         design.catalogWizardButton.addClickListener(new ClickListener() {
             @Override
             public void buttonClick(final ClickEvent event) {
                 UI.getCurrent().getNavigator().navigateTo(CatalogWizardStartView.NAME);
             }
         });
-        design.institutionsButton.addClickListener(new ClickListener() {
-            @Override
-            public void buttonClick(final ClickEvent event) {
-                UI.getCurrent().getNavigator().navigateTo(InstitutionsView.NAME);
-            }
-        });
+
         design.queryWizardButton.addClickListener(new ClickListener() {
             @Override
             public void buttonClick(final ClickEvent event) {
                 UI.getCurrent().getNavigator().navigateTo(QueryWizardStartView.NAME);
             }
         });
+
         setCompositionRoot(design);
     }
 

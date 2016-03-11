@@ -117,7 +117,7 @@ public class MaterialBean implements org.thryft.StructBean {
         return
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
-            (getVocabRef() != null ? getVocabRef().equals(other.getVocabRef()) : other.getVocabRef() == null);
+            ((getVocabRef() != null && other.getVocabRef() != null) ? (getVocabRef().equals(other.getVocabRef())) : (getVocabRef() == null && other.getVocabRef() == null));
     }
 
     @Override

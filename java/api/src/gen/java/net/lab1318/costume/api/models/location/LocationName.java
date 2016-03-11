@@ -366,8 +366,8 @@ public class LocationName implements org.thryft.Struct {
         return
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
-            getExtent().equals(other.getExtent()) &&
-            getVocabRef().equals(other.getVocabRef());
+            ((getExtent().isPresent() && other.getExtent().isPresent()) ? (getExtent().get().equals(other.getExtent().get())) : (!getExtent().isPresent() && !other.getExtent().isPresent())) &&
+            ((getVocabRef().isPresent() && other.getVocabRef().isPresent()) ? (getVocabRef().get().equals(other.getVocabRef().get())) : (!getVocabRef().isPresent() && !other.getVocabRef().isPresent()));
     }
 
     @Override

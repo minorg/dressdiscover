@@ -122,11 +122,11 @@ public class ImageBean implements org.thryft.StructBean {
 
         final ImageBean other = (ImageBean)otherObject;
         return
-            (getFullSize() != null ? getFullSize().equals(other.getFullSize()) : other.getFullSize() == null) &&
-            (getOriginal() != null ? getOriginal().equals(other.getOriginal()) : other.getOriginal() == null) &&
-            (getRights() != null ? getRights().equals(other.getRights()) : other.getRights() == null) &&
-            (getSquareThumbnail() != null ? getSquareThumbnail().equals(other.getSquareThumbnail()) : other.getSquareThumbnail() == null) &&
-            (getThumbnail() != null ? getThumbnail().equals(other.getThumbnail()) : other.getThumbnail() == null);
+            ((getFullSize() != null && other.getFullSize() != null) ? (getFullSize().equals(other.getFullSize())) : (getFullSize() == null && other.getFullSize() == null)) &&
+            ((getOriginal() != null && other.getOriginal() != null) ? (getOriginal().equals(other.getOriginal())) : (getOriginal() == null && other.getOriginal() == null)) &&
+            ((getRights() != null && other.getRights() != null) ? (getRights().equals(other.getRights())) : (getRights() == null && other.getRights() == null)) &&
+            ((getSquareThumbnail() != null && other.getSquareThumbnail() != null) ? (getSquareThumbnail().equals(other.getSquareThumbnail())) : (getSquareThumbnail() == null && other.getSquareThumbnail() == null)) &&
+            ((getThumbnail() != null && other.getThumbnail() != null) ? (getThumbnail().equals(other.getThumbnail())) : (getThumbnail() == null && other.getThumbnail() == null));
     }
 
     @Override

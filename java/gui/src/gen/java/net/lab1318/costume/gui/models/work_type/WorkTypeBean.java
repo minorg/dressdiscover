@@ -111,7 +111,7 @@ public class WorkTypeBean implements org.thryft.StructBean {
         final WorkTypeBean other = (WorkTypeBean)otherObject;
         return
             getText().equals(other.getText()) &&
-            (getVocabRef() != null ? getVocabRef().equals(other.getVocabRef()) : other.getVocabRef() == null);
+            ((getVocabRef() != null && other.getVocabRef() != null) ? (getVocabRef().equals(other.getVocabRef())) : (getVocabRef() == null && other.getVocabRef() == null));
     }
 
     @Override

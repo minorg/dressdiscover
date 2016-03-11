@@ -335,8 +335,8 @@ public class VocabRef implements org.thryft.Struct {
         final VocabRef other = (VocabRef)otherObject;
         return
             getVocab().equals(other.getVocab()) &&
-            getRefid().equals(other.getRefid()) &&
-            getUri().equals(other.getUri());
+            ((getRefid().isPresent() && other.getRefid().isPresent()) ? (getRefid().get().equals(other.getRefid().get())) : (!getRefid().isPresent() && !other.getRefid().isPresent())) &&
+            ((getUri().isPresent() && other.getUri().isPresent()) ? (getUri().get().equals(other.getUri().get())) : (!getUri().isPresent() && !other.getUri().isPresent()));
     }
 
     @Override

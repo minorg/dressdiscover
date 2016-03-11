@@ -128,8 +128,8 @@ public class DateBean implements org.thryft.StructBean {
             getEarliestDate().equals(other.getEarliestDate()) &&
             getLatestDate().equals(other.getLatestDate()) &&
             getType().equals(other.getType()) &&
-            (getHref() != null ? getHref().equals(other.getHref()) : other.getHref() == null) &&
-            (getSource() != null ? getSource().equals(other.getSource()) : other.getSource() == null);
+            ((getHref() != null && other.getHref() != null) ? (getHref().equals(other.getHref())) : (getHref() == null && other.getHref() == null)) &&
+            ((getSource() != null && other.getSource() != null) ? (getSource().equals(other.getSource())) : (getSource() == null && other.getSource() == null));
     }
 
     @Override

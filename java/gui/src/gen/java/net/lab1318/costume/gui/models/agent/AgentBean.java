@@ -135,10 +135,10 @@ public class AgentBean implements org.thryft.StructBean {
         final AgentBean other = (AgentBean)otherObject;
         return
             getName().equals(other.getName()) &&
-            (getAttribution() != null ? getAttribution().equals(other.getAttribution()) : other.getAttribution() == null) &&
-            (getCulture() != null ? getCulture().equals(other.getCulture()) : other.getCulture() == null) &&
-            (getDates() != null ? getDates().equals(other.getDates()) : other.getDates() == null) &&
-            (getRole() != null ? getRole().equals(other.getRole()) : other.getRole() == null);
+            ((getAttribution() != null && other.getAttribution() != null) ? (getAttribution().equals(other.getAttribution())) : (getAttribution() == null && other.getAttribution() == null)) &&
+            ((getCulture() != null && other.getCulture() != null) ? (getCulture().equals(other.getCulture())) : (getCulture() == null && other.getCulture() == null)) &&
+            ((getDates() != null && other.getDates() != null) ? (getDates().equals(other.getDates())) : (getDates() == null && other.getDates() == null)) &&
+            ((getRole() != null && other.getRole() != null) ? (getRole().equals(other.getRole())) : (getRole() == null && other.getRole() == null));
     }
 
     @Override

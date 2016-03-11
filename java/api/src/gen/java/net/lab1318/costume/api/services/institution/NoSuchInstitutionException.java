@@ -257,7 +257,7 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
 
         final NoSuchInstitutionException other = (NoSuchInstitutionException)otherObject;
         return
-            getId().equals(other.getId());
+            ((getId().isPresent() && other.getId().isPresent()) ? (getId().get().equals(other.getId().get())) : (!getId().isPresent() && !other.getId().isPresent()));
     }
 
     @Override

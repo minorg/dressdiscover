@@ -3,7 +3,10 @@
 <body>
 	<v-vertical-layout style-name="institutions-view">
 		<vaadin-label><h1>Institutions</h1></vaadin-label>
-		<v-vertical-layout _id="treeLayout"></v-vertical-layout>
+		<v-horizontal-layout style-name="two-pane-layout">
+			<v-vertical-layout _id="treeLayout" style-name="left-pane-layout"></v-vertical-layout>
+			<v-vertical-layout _id="mapLayout" style-name="right-pane-layout"></v-vertical-layout>
+		</v-horizontal-layout>
 	</v-vertical-layout>
 </body>
 </html>

@@ -7,7 +7,10 @@ public class CollectionBean implements org.thryft.StructBean {
         MODEL_METADATA("modelMetadata", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.ModelMetadataBean>() {}, true, 3, "model_metadata", org.thryft.protocol.Type.STRUCT),
         TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "title", org.thryft.protocol.Type.STRING),
         DESCRIPTION("description", new com.google.common.reflect.TypeToken<String>() {}, false, 4, "description", org.thryft.protocol.Type.STRING),
+        EXTERNAL("external", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 7, "external", org.thryft.protocol.Type.BOOL),
         HIDDEN("hidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 5, "hidden", org.thryft.protocol.Type.BOOL),
+        LOCATIONS("locations", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.location.LocationSetBean>() {}, false, 8, "locations", org.thryft.protocol.Type.STRUCT),
+        URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 9, "url", org.thryft.protocol.Type.STRING),
         WORK_TYPES("workTypes", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.work_type.WorkTypeSetBean>() {}, false, 6, "work_types", org.thryft.protocol.Type.STRUCT);
 
         @Override
@@ -56,7 +59,10 @@ public class CollectionBean implements org.thryft.StructBean {
             case "modelMetadata": return MODEL_METADATA;
             case "title": return TITLE;
             case "description": return DESCRIPTION;
+            case "external": return EXTERNAL;
             case "hidden": return HIDDEN;
+            case "locations": return LOCATIONS;
+            case "url": return URL;
             case "workTypes": return WORK_TYPES;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -69,7 +75,10 @@ public class CollectionBean implements org.thryft.StructBean {
             case "model_metadata": return MODEL_METADATA;
             case "title": return TITLE;
             case "description": return DESCRIPTION;
+            case "external": return EXTERNAL;
             case "hidden": return HIDDEN;
+            case "locations": return LOCATIONS;
+            case "url": return URL;
             case "work_types": return WORK_TYPES;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -104,7 +113,10 @@ public class CollectionBean implements org.thryft.StructBean {
         modelMetadata = null;
         title = null;
         description = null;
+        external = null;
         hidden = null;
+        locations = null;
+        url = null;
         workTypes = null;
     }
 
@@ -113,7 +125,10 @@ public class CollectionBean implements org.thryft.StructBean {
         this.modelMetadata = new net.lab1318.costume.gui.models.ModelMetadataBean(other.getModelMetadata());
         this.title = other.getTitle();
         this.description = other.getDescription().isPresent() ? other.getDescription().get() : null;
+        this.external = other.getExternal().isPresent() ? other.getExternal().get() : null;
         this.hidden = other.getHidden().isPresent() ? other.getHidden().get() : null;
+        this.locations = other.getLocations().isPresent() ? new net.lab1318.costume.gui.models.location.LocationSetBean(other.getLocations().get()) : null;
+        this.url = other.getUrl().isPresent() ? other.getUrl().get() : null;
         this.workTypes = other.getWorkTypes().isPresent() ? new net.lab1318.costume.gui.models.work_type.WorkTypeSetBean(other.getWorkTypes().get()) : null;
     }
 
@@ -130,9 +145,12 @@ public class CollectionBean implements org.thryft.StructBean {
             getInstitutionId().equals(other.getInstitutionId()) &&
             getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
-            (getDescription() != null ? getDescription().equals(other.getDescription()) : other.getDescription() == null) &&
-            (getHidden() != null ? getHidden().equals(other.getHidden()) : other.getHidden() == null) &&
-            (getWorkTypes() != null ? getWorkTypes().equals(other.getWorkTypes()) : other.getWorkTypes() == null);
+            ((getDescription() != null && other.getDescription() != null) ? (getDescription().equals(other.getDescription())) : (getDescription() == null && other.getDescription() == null)) &&
+            ((getExternal() != null && other.getExternal() != null) ? (getExternal() == other.getExternal()) : (getExternal() == null && other.getExternal() == null)) &&
+            ((getHidden() != null && other.getHidden() != null) ? (getHidden() == other.getHidden()) : (getHidden() == null && other.getHidden() == null)) &&
+            ((getLocations() != null && other.getLocations() != null) ? (getLocations().equals(other.getLocations())) : (getLocations() == null && other.getLocations() == null)) &&
+            ((getUrl() != null && other.getUrl() != null) ? (getUrl().equals(other.getUrl())) : (getUrl() == null && other.getUrl() == null)) &&
+            ((getWorkTypes() != null && other.getWorkTypes() != null) ? (getWorkTypes().equals(other.getWorkTypes())) : (getWorkTypes() == null && other.getWorkTypes() == null));
     }
 
     @Override
@@ -154,7 +172,10 @@ public class CollectionBean implements org.thryft.StructBean {
         case MODEL_METADATA: return getModelMetadata();
         case TITLE: return getTitle();
         case DESCRIPTION: return getDescription();
+        case EXTERNAL: return getExternal();
         case HIDDEN: return getHidden();
+        case LOCATIONS: return getLocations();
+        case URL: return getUrl();
         case WORK_TYPES: return getWorkTypes();
         default:
             throw new IllegalStateException();
@@ -165,6 +186,10 @@ public class CollectionBean implements org.thryft.StructBean {
         return description;
     }
 
+    public Boolean getExternal() {
+        return external;
+    }
+
     public Boolean getHidden() {
         return hidden;
     }
@@ -173,12 +198,20 @@ public class CollectionBean implements org.thryft.StructBean {
         return institutionId;
     }
 
+    public net.lab1318.costume.gui.models.location.LocationSetBean getLocations() {
+        return locations;
+    }
+
     public net.lab1318.costume.gui.models.ModelMetadataBean getModelMetadata() {
         return modelMetadata;
     }
 
     public String getTitle() {
         return title;
+    }
+
+    public org.thryft.native_.Url getUrl() {
+        return url;
     }
 
     public net.lab1318.costume.gui.models.work_type.WorkTypeSetBean getWorkTypes() {
@@ -194,8 +227,17 @@ public class CollectionBean implements org.thryft.StructBean {
         if (getDescription() != null) {
             hashCode = 31 * hashCode + getDescription().hashCode();
         }
+        if (getExternal() != null) {
+            hashCode = 31 * hashCode + (getExternal() ? 1 : 0);
+        }
         if (getHidden() != null) {
             hashCode = 31 * hashCode + (getHidden() ? 1 : 0);
+        }
+        if (getLocations() != null) {
+            hashCode = 31 * hashCode + getLocations().hashCode();
+        }
+        if (getUrl() != null) {
+            hashCode = 31 * hashCode + getUrl().hashCode();
         }
         if (getWorkTypes() != null) {
             hashCode = 31 * hashCode + getWorkTypes().hashCode();
@@ -212,12 +254,20 @@ public class CollectionBean implements org.thryft.StructBean {
         this.description = description;
     }
 
+    public void setExternal(final Boolean external) {
+        this.external = external;
+    }
+
     public void setHidden(final Boolean hidden) {
         this.hidden = hidden;
     }
 
     public void setInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
         this.institutionId = institutionId;
+    }
+
+    public void setLocations(final net.lab1318.costume.gui.models.location.LocationSetBean locations) {
+        this.locations = locations;
     }
 
     public void setModelMetadata(final net.lab1318.costume.gui.models.ModelMetadataBean modelMetadata) {
@@ -228,13 +278,17 @@ public class CollectionBean implements org.thryft.StructBean {
         this.title = title;
     }
 
+    public void setUrl(final org.thryft.native_.Url url) {
+        this.url = url;
+    }
+
     public void setWorkTypes(final net.lab1318.costume.gui.models.work_type.WorkTypeSetBean workTypes) {
         this.workTypes = workTypes;
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("description", getDescription()).add("hidden", getHidden()).add("work_types", getWorkTypes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("description", getDescription()).add("external", getExternal()).add("hidden", getHidden()).add("locations", getLocations()).add("url", getUrl()).add("work_types", getWorkTypes()).toString();
     }
 
     private net.lab1318.costume.api.models.institution.InstitutionId institutionId;
@@ -245,7 +299,13 @@ public class CollectionBean implements org.thryft.StructBean {
 
     private String description;
 
+    private Boolean external;
+
     private Boolean hidden;
+
+    private net.lab1318.costume.gui.models.location.LocationSetBean locations;
+
+    private org.thryft.native_.Url url;
 
     private net.lab1318.costume.gui.models.work_type.WorkTypeSetBean workTypes;
 }

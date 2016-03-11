@@ -111,7 +111,7 @@ public class ComponentBean implements org.thryft.StructBean {
         final ComponentBean other = (ComponentBean)otherObject;
         return
             getTerm().equals(other.getTerm()) &&
-            (getStructures() != null ? getStructures().equals(other.getStructures()) : other.getStructures() == null);
+            ((getStructures() != null && other.getStructures() != null) ? (getStructures().equals(other.getStructures())) : (getStructures() == null && other.getStructures() == null));
     }
 
     @Override

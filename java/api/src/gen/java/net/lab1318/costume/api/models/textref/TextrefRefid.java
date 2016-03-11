@@ -330,7 +330,7 @@ public class TextrefRefid implements org.thryft.Struct {
         return
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
-            getHref().equals(other.getHref());
+            ((getHref().isPresent() && other.getHref().isPresent()) ? (getHref().get().equals(other.getHref().get())) : (!getHref().isPresent() && !other.getHref().isPresent()));
     }
 
     @Override

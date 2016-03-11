@@ -116,8 +116,8 @@ public class DescriptionBean implements org.thryft.StructBean {
         final DescriptionBean other = (DescriptionBean)otherObject;
         return
             getText().equals(other.getText()) &&
-            (getSource() != null ? getSource().equals(other.getSource()) : other.getSource() == null) &&
-            (getType() != null ? getType().equals(other.getType()) : other.getType() == null);
+            ((getSource() != null && other.getSource() != null) ? (getSource().equals(other.getSource())) : (getSource() == null && other.getSource() == null)) &&
+            ((getType() != null && other.getType() != null) ? (getType().equals(other.getType())) : (getType() == null && other.getType() == null));
     }
 
     @Override

@@ -307,8 +307,8 @@ public interface ObjectSummaryQueryService {
 
                 final GetObjectSummariesRequest other = (GetObjectSummariesRequest)otherObject;
                 return
-                    getOptions().equals(other.getOptions()) &&
-                    getQuery().equals(other.getQuery());
+                    ((getOptions().isPresent() && other.getOptions().isPresent()) ? (getOptions().get().equals(other.getOptions().get())) : (!getOptions().isPresent() && !other.getOptions().isPresent())) &&
+                    ((getQuery().isPresent() && other.getQuery().isPresent()) ? (getQuery().get().equals(other.getQuery().get())) : (!getQuery().isPresent() && !other.getQuery().isPresent()));
             }
 
             @Override

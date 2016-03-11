@@ -212,29 +212,29 @@ public class ObjectFacetFiltersBean implements org.thryft.StructBean {
 
         final ObjectFacetFiltersBean other = (ObjectFacetFiltersBean)otherObject;
         return
-            (getExcludeAll() != null ? getExcludeAll().equals(other.getExcludeAll()) : other.getExcludeAll() == null) &&
-            (getExcludeCategories() != null ? getExcludeCategories().equals(other.getExcludeCategories()) : other.getExcludeCategories() == null) &&
-            (getExcludeCollections() != null ? getExcludeCollections().equals(other.getExcludeCollections()) : other.getExcludeCollections() == null) &&
-            (getExcludeColorTexts() != null ? getExcludeColorTexts().equals(other.getExcludeColorTexts()) : other.getExcludeColorTexts() == null) &&
-            (getExcludeCulturalContextTexts() != null ? getExcludeCulturalContextTexts().equals(other.getExcludeCulturalContextTexts()) : other.getExcludeCulturalContextTexts() == null) &&
-            (getExcludeGenders() != null ? getExcludeGenders().equals(other.getExcludeGenders()) : other.getExcludeGenders() == null) &&
-            (getExcludeInstitutions() != null ? getExcludeInstitutions().equals(other.getExcludeInstitutions()) : other.getExcludeInstitutions() == null) &&
-            (getExcludeLocationNameTexts() != null ? getExcludeLocationNameTexts().equals(other.getExcludeLocationNameTexts()) : other.getExcludeLocationNameTexts() == null) &&
-            (getExcludeMaterialTexts() != null ? getExcludeMaterialTexts().equals(other.getExcludeMaterialTexts()) : other.getExcludeMaterialTexts() == null) &&
-            (getExcludeSubjectTermTexts() != null ? getExcludeSubjectTermTexts().equals(other.getExcludeSubjectTermTexts()) : other.getExcludeSubjectTermTexts() == null) &&
-            (getExcludeTechniqueTexts() != null ? getExcludeTechniqueTexts().equals(other.getExcludeTechniqueTexts()) : other.getExcludeTechniqueTexts() == null) &&
-            (getExcludeWorkTypeTexts() != null ? getExcludeWorkTypeTexts().equals(other.getExcludeWorkTypeTexts()) : other.getExcludeWorkTypeTexts() == null) &&
-            (getIncludeCategories() != null ? getIncludeCategories().equals(other.getIncludeCategories()) : other.getIncludeCategories() == null) &&
-            (getIncludeCollections() != null ? getIncludeCollections().equals(other.getIncludeCollections()) : other.getIncludeCollections() == null) &&
-            (getIncludeColorTexts() != null ? getIncludeColorTexts().equals(other.getIncludeColorTexts()) : other.getIncludeColorTexts() == null) &&
-            (getIncludeCulturalContextTexts() != null ? getIncludeCulturalContextTexts().equals(other.getIncludeCulturalContextTexts()) : other.getIncludeCulturalContextTexts() == null) &&
-            (getIncludeGenders() != null ? getIncludeGenders().equals(other.getIncludeGenders()) : other.getIncludeGenders() == null) &&
-            (getIncludeInstitutions() != null ? getIncludeInstitutions().equals(other.getIncludeInstitutions()) : other.getIncludeInstitutions() == null) &&
-            (getIncludeLocationNameTexts() != null ? getIncludeLocationNameTexts().equals(other.getIncludeLocationNameTexts()) : other.getIncludeLocationNameTexts() == null) &&
-            (getIncludeMaterialTexts() != null ? getIncludeMaterialTexts().equals(other.getIncludeMaterialTexts()) : other.getIncludeMaterialTexts() == null) &&
-            (getIncludeSubjectTermTexts() != null ? getIncludeSubjectTermTexts().equals(other.getIncludeSubjectTermTexts()) : other.getIncludeSubjectTermTexts() == null) &&
-            (getIncludeTechniqueTexts() != null ? getIncludeTechniqueTexts().equals(other.getIncludeTechniqueTexts()) : other.getIncludeTechniqueTexts() == null) &&
-            (getIncludeWorkTypeTexts() != null ? getIncludeWorkTypeTexts().equals(other.getIncludeWorkTypeTexts()) : other.getIncludeWorkTypeTexts() == null);
+            ((getExcludeAll() != null && other.getExcludeAll() != null) ? (getExcludeAll() == other.getExcludeAll()) : (getExcludeAll() == null && other.getExcludeAll() == null)) &&
+            ((getExcludeCategories() != null && other.getExcludeCategories() != null) ? (getExcludeCategories().equals(other.getExcludeCategories())) : (getExcludeCategories() == null && other.getExcludeCategories() == null)) &&
+            ((getExcludeCollections() != null && other.getExcludeCollections() != null) ? (getExcludeCollections().equals(other.getExcludeCollections())) : (getExcludeCollections() == null && other.getExcludeCollections() == null)) &&
+            ((getExcludeColorTexts() != null && other.getExcludeColorTexts() != null) ? (getExcludeColorTexts().equals(other.getExcludeColorTexts())) : (getExcludeColorTexts() == null && other.getExcludeColorTexts() == null)) &&
+            ((getExcludeCulturalContextTexts() != null && other.getExcludeCulturalContextTexts() != null) ? (getExcludeCulturalContextTexts().equals(other.getExcludeCulturalContextTexts())) : (getExcludeCulturalContextTexts() == null && other.getExcludeCulturalContextTexts() == null)) &&
+            ((getExcludeGenders() != null && other.getExcludeGenders() != null) ? (getExcludeGenders().equals(other.getExcludeGenders())) : (getExcludeGenders() == null && other.getExcludeGenders() == null)) &&
+            ((getExcludeInstitutions() != null && other.getExcludeInstitutions() != null) ? (getExcludeInstitutions().equals(other.getExcludeInstitutions())) : (getExcludeInstitutions() == null && other.getExcludeInstitutions() == null)) &&
+            ((getExcludeLocationNameTexts() != null && other.getExcludeLocationNameTexts() != null) ? (getExcludeLocationNameTexts().equals(other.getExcludeLocationNameTexts())) : (getExcludeLocationNameTexts() == null && other.getExcludeLocationNameTexts() == null)) &&
+            ((getExcludeMaterialTexts() != null && other.getExcludeMaterialTexts() != null) ? (getExcludeMaterialTexts().equals(other.getExcludeMaterialTexts())) : (getExcludeMaterialTexts() == null && other.getExcludeMaterialTexts() == null)) &&
+            ((getExcludeSubjectTermTexts() != null && other.getExcludeSubjectTermTexts() != null) ? (getExcludeSubjectTermTexts().equals(other.getExcludeSubjectTermTexts())) : (getExcludeSubjectTermTexts() == null && other.getExcludeSubjectTermTexts() == null)) &&
+            ((getExcludeTechniqueTexts() != null && other.getExcludeTechniqueTexts() != null) ? (getExcludeTechniqueTexts().equals(other.getExcludeTechniqueTexts())) : (getExcludeTechniqueTexts() == null && other.getExcludeTechniqueTexts() == null)) &&
+            ((getExcludeWorkTypeTexts() != null && other.getExcludeWorkTypeTexts() != null) ? (getExcludeWorkTypeTexts().equals(other.getExcludeWorkTypeTexts())) : (getExcludeWorkTypeTexts() == null && other.getExcludeWorkTypeTexts() == null)) &&
+            ((getIncludeCategories() != null && other.getIncludeCategories() != null) ? (getIncludeCategories().equals(other.getIncludeCategories())) : (getIncludeCategories() == null && other.getIncludeCategories() == null)) &&
+            ((getIncludeCollections() != null && other.getIncludeCollections() != null) ? (getIncludeCollections().equals(other.getIncludeCollections())) : (getIncludeCollections() == null && other.getIncludeCollections() == null)) &&
+            ((getIncludeColorTexts() != null && other.getIncludeColorTexts() != null) ? (getIncludeColorTexts().equals(other.getIncludeColorTexts())) : (getIncludeColorTexts() == null && other.getIncludeColorTexts() == null)) &&
+            ((getIncludeCulturalContextTexts() != null && other.getIncludeCulturalContextTexts() != null) ? (getIncludeCulturalContextTexts().equals(other.getIncludeCulturalContextTexts())) : (getIncludeCulturalContextTexts() == null && other.getIncludeCulturalContextTexts() == null)) &&
+            ((getIncludeGenders() != null && other.getIncludeGenders() != null) ? (getIncludeGenders().equals(other.getIncludeGenders())) : (getIncludeGenders() == null && other.getIncludeGenders() == null)) &&
+            ((getIncludeInstitutions() != null && other.getIncludeInstitutions() != null) ? (getIncludeInstitutions().equals(other.getIncludeInstitutions())) : (getIncludeInstitutions() == null && other.getIncludeInstitutions() == null)) &&
+            ((getIncludeLocationNameTexts() != null && other.getIncludeLocationNameTexts() != null) ? (getIncludeLocationNameTexts().equals(other.getIncludeLocationNameTexts())) : (getIncludeLocationNameTexts() == null && other.getIncludeLocationNameTexts() == null)) &&
+            ((getIncludeMaterialTexts() != null && other.getIncludeMaterialTexts() != null) ? (getIncludeMaterialTexts().equals(other.getIncludeMaterialTexts())) : (getIncludeMaterialTexts() == null && other.getIncludeMaterialTexts() == null)) &&
+            ((getIncludeSubjectTermTexts() != null && other.getIncludeSubjectTermTexts() != null) ? (getIncludeSubjectTermTexts().equals(other.getIncludeSubjectTermTexts())) : (getIncludeSubjectTermTexts() == null && other.getIncludeSubjectTermTexts() == null)) &&
+            ((getIncludeTechniqueTexts() != null && other.getIncludeTechniqueTexts() != null) ? (getIncludeTechniqueTexts().equals(other.getIncludeTechniqueTexts())) : (getIncludeTechniqueTexts() == null && other.getIncludeTechniqueTexts() == null)) &&
+            ((getIncludeWorkTypeTexts() != null && other.getIncludeWorkTypeTexts() != null) ? (getIncludeWorkTypeTexts().equals(other.getIncludeWorkTypeTexts())) : (getIncludeWorkTypeTexts() == null && other.getIncludeWorkTypeTexts() == null));
     }
 
     @Override

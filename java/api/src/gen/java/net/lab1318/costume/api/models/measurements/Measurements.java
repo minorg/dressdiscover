@@ -372,8 +372,8 @@ public class Measurements implements org.thryft.Struct, net.lab1318.costume.api.
         return
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
-            getExtent().equals(other.getExtent()) &&
-            getUnit().equals(other.getUnit());
+            ((getExtent().isPresent() && other.getExtent().isPresent()) ? (getExtent().get().equals(other.getExtent().get())) : (!getExtent().isPresent() && !other.getExtent().isPresent())) &&
+            ((getUnit().isPresent() && other.getUnit().isPresent()) ? (getUnit().get().equals(other.getUnit().get())) : (!getUnit().isPresent() && !other.getUnit().isPresent()));
     }
 
     @Override

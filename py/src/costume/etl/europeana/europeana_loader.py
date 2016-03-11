@@ -1,5 +1,4 @@
 from costume.api.models.institution.institution import Institution
-from costume.etl._loader import _Loader
 from costume.etl.oai_pmh._oai_pmh_loader import _OaiPmhLoader
 
 
@@ -88,7 +87,7 @@ class EuropeanaLoader(_OaiPmhLoader):
                 self.__unique_edm_types[edm_type_text] = None
 
     def _put_collection(self):
-        _Loader._put_collection(
+        _OaiPmhLoader._put_collection(
             self,
             collection_id=self._collection_id,
             title="Europeana Fashion"

@@ -386,9 +386,9 @@ public class DateBound implements org.thryft.Struct {
         final DateBound other = (DateBound)otherObject;
         return
             getText().equals(other.getText()) &&
-            getCirca().equals(other.getCirca()) &&
-            getParsedDateTime().equals(other.getParsedDateTime()) &&
-            getParsedDateTimeGranularity().equals(other.getParsedDateTimeGranularity());
+            ((getCirca().isPresent() && other.getCirca().isPresent()) ? (getCirca().get() == other.getCirca().get()) : (!getCirca().isPresent() && !other.getCirca().isPresent())) &&
+            ((getParsedDateTime().isPresent() && other.getParsedDateTime().isPresent()) ? (getParsedDateTime().get().equals(other.getParsedDateTime().get())) : (!getParsedDateTime().isPresent() && !other.getParsedDateTime().isPresent())) &&
+            ((getParsedDateTimeGranularity().isPresent() && other.getParsedDateTimeGranularity().isPresent()) ? (getParsedDateTimeGranularity().get().equals(other.getParsedDateTimeGranularity().get())) : (!getParsedDateTimeGranularity().isPresent() && !other.getParsedDateTimeGranularity().isPresent()));
     }
 
     @Override

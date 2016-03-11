@@ -363,8 +363,8 @@ public class MeasurementsSet implements org.thryft.Struct, net.lab1318.costume.a
         final MeasurementsSet other = (MeasurementsSet)otherObject;
         return
             getElements().equals(other.getElements()) &&
-            getDisplay().equals(other.getDisplay()) &&
-            getNotes().equals(other.getNotes());
+            ((getDisplay().isPresent() && other.getDisplay().isPresent()) ? (getDisplay().get().equals(other.getDisplay().get())) : (!getDisplay().isPresent() && !other.getDisplay().isPresent())) &&
+            ((getNotes().isPresent() && other.getNotes().isPresent()) ? (getNotes().get().equals(other.getNotes().get())) : (!getNotes().isPresent() && !other.getNotes().isPresent()));
     }
 
     @Override

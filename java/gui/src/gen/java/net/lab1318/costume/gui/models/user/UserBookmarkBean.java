@@ -124,9 +124,9 @@ public class UserBookmarkBean implements org.thryft.StructBean {
         return
             getName().equals(other.getName()) &&
             getUserId().equals(other.getUserId()) &&
-            (getFolder() != null ? getFolder().equals(other.getFolder()) : other.getFolder() == null) &&
-            (getObjectId() != null ? getObjectId().equals(other.getObjectId()) : other.getObjectId() == null) &&
-            (getObjectQuery() != null ? getObjectQuery().equals(other.getObjectQuery()) : other.getObjectQuery() == null);
+            ((getFolder() != null && other.getFolder() != null) ? (getFolder().equals(other.getFolder())) : (getFolder() == null && other.getFolder() == null)) &&
+            ((getObjectId() != null && other.getObjectId() != null) ? (getObjectId().equals(other.getObjectId())) : (getObjectId() == null && other.getObjectId() == null)) &&
+            ((getObjectQuery() != null && other.getObjectQuery() != null) ? (getObjectQuery().equals(other.getObjectQuery())) : (getObjectQuery() == null && other.getObjectQuery() == null));
     }
 
     @Override

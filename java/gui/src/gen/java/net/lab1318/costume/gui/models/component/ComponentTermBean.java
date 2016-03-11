@@ -108,7 +108,7 @@ public class ComponentTermBean implements org.thryft.StructBean {
         final ComponentTermBean other = (ComponentTermBean)otherObject;
         return
             getText().equals(other.getText()) &&
-            (getVocabRef() != null ? getVocabRef().equals(other.getVocabRef()) : other.getVocabRef() == null);
+            ((getVocabRef() != null && other.getVocabRef() != null) ? (getVocabRef().equals(other.getVocabRef())) : (getVocabRef() == null && other.getVocabRef() == null));
     }
 
     @Override

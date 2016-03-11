@@ -36,6 +36,8 @@ public class InstitutionsPresenter extends Presenter<InstitutionsView> {
 
     @Override
     protected void _onViewEnter(final Optional<UserEntry> currentUser, final ViewChangeEvent event) {
+        final boolean includeExternal = event.getParameters().equals("include_external");
+
         final ImmutableList<CollectionEntry> collectionEntries;
         final ImmutableList<InstitutionEntry> institutionEntries;
         try {
@@ -54,6 +56,9 @@ public class InstitutionsPresenter extends Presenter<InstitutionsView> {
                 continue;
             }
             for (final InstitutionEntry institutionEntry : institutionEntries) {
+                if (!includeExternal && institutionEntry.getModel().getExternal().or(Boolean.FALSE)) {
+                    continue;
+                }
                 if (institutionEntry.getModel().getHidden().or(Boolean.FALSE)) {
                     continue;
                 }

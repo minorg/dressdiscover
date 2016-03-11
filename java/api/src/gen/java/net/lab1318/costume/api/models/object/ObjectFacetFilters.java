@@ -1972,29 +1972,29 @@ public class ObjectFacetFilters implements org.thryft.Struct {
 
         final ObjectFacetFilters other = (ObjectFacetFilters)otherObject;
         return
-            getExcludeAll().equals(other.getExcludeAll()) &&
-            getExcludeCategories().equals(other.getExcludeCategories()) &&
-            getExcludeCollections().equals(other.getExcludeCollections()) &&
-            getExcludeColorTexts().equals(other.getExcludeColorTexts()) &&
-            getExcludeCulturalContextTexts().equals(other.getExcludeCulturalContextTexts()) &&
-            getExcludeGenders().equals(other.getExcludeGenders()) &&
-            getExcludeInstitutions().equals(other.getExcludeInstitutions()) &&
-            getExcludeLocationNameTexts().equals(other.getExcludeLocationNameTexts()) &&
-            getExcludeMaterialTexts().equals(other.getExcludeMaterialTexts()) &&
-            getExcludeSubjectTermTexts().equals(other.getExcludeSubjectTermTexts()) &&
-            getExcludeTechniqueTexts().equals(other.getExcludeTechniqueTexts()) &&
-            getExcludeWorkTypeTexts().equals(other.getExcludeWorkTypeTexts()) &&
-            getIncludeCategories().equals(other.getIncludeCategories()) &&
-            getIncludeCollections().equals(other.getIncludeCollections()) &&
-            getIncludeColorTexts().equals(other.getIncludeColorTexts()) &&
-            getIncludeCulturalContextTexts().equals(other.getIncludeCulturalContextTexts()) &&
-            getIncludeGenders().equals(other.getIncludeGenders()) &&
-            getIncludeInstitutions().equals(other.getIncludeInstitutions()) &&
-            getIncludeLocationNameTexts().equals(other.getIncludeLocationNameTexts()) &&
-            getIncludeMaterialTexts().equals(other.getIncludeMaterialTexts()) &&
-            getIncludeSubjectTermTexts().equals(other.getIncludeSubjectTermTexts()) &&
-            getIncludeTechniqueTexts().equals(other.getIncludeTechniqueTexts()) &&
-            getIncludeWorkTypeTexts().equals(other.getIncludeWorkTypeTexts());
+            ((getExcludeAll().isPresent() && other.getExcludeAll().isPresent()) ? (getExcludeAll().get() == other.getExcludeAll().get()) : (!getExcludeAll().isPresent() && !other.getExcludeAll().isPresent())) &&
+            ((getExcludeCategories().isPresent() && other.getExcludeCategories().isPresent()) ? (getExcludeCategories().get().equals(other.getExcludeCategories().get())) : (!getExcludeCategories().isPresent() && !other.getExcludeCategories().isPresent())) &&
+            ((getExcludeCollections().isPresent() && other.getExcludeCollections().isPresent()) ? (getExcludeCollections().get().equals(other.getExcludeCollections().get())) : (!getExcludeCollections().isPresent() && !other.getExcludeCollections().isPresent())) &&
+            ((getExcludeColorTexts().isPresent() && other.getExcludeColorTexts().isPresent()) ? (getExcludeColorTexts().get().equals(other.getExcludeColorTexts().get())) : (!getExcludeColorTexts().isPresent() && !other.getExcludeColorTexts().isPresent())) &&
+            ((getExcludeCulturalContextTexts().isPresent() && other.getExcludeCulturalContextTexts().isPresent()) ? (getExcludeCulturalContextTexts().get().equals(other.getExcludeCulturalContextTexts().get())) : (!getExcludeCulturalContextTexts().isPresent() && !other.getExcludeCulturalContextTexts().isPresent())) &&
+            ((getExcludeGenders().isPresent() && other.getExcludeGenders().isPresent()) ? (getExcludeGenders().get().equals(other.getExcludeGenders().get())) : (!getExcludeGenders().isPresent() && !other.getExcludeGenders().isPresent())) &&
+            ((getExcludeInstitutions().isPresent() && other.getExcludeInstitutions().isPresent()) ? (getExcludeInstitutions().get().equals(other.getExcludeInstitutions().get())) : (!getExcludeInstitutions().isPresent() && !other.getExcludeInstitutions().isPresent())) &&
+            ((getExcludeLocationNameTexts().isPresent() && other.getExcludeLocationNameTexts().isPresent()) ? (getExcludeLocationNameTexts().get().equals(other.getExcludeLocationNameTexts().get())) : (!getExcludeLocationNameTexts().isPresent() && !other.getExcludeLocationNameTexts().isPresent())) &&
+            ((getExcludeMaterialTexts().isPresent() && other.getExcludeMaterialTexts().isPresent()) ? (getExcludeMaterialTexts().get().equals(other.getExcludeMaterialTexts().get())) : (!getExcludeMaterialTexts().isPresent() && !other.getExcludeMaterialTexts().isPresent())) &&
+            ((getExcludeSubjectTermTexts().isPresent() && other.getExcludeSubjectTermTexts().isPresent()) ? (getExcludeSubjectTermTexts().get().equals(other.getExcludeSubjectTermTexts().get())) : (!getExcludeSubjectTermTexts().isPresent() && !other.getExcludeSubjectTermTexts().isPresent())) &&
+            ((getExcludeTechniqueTexts().isPresent() && other.getExcludeTechniqueTexts().isPresent()) ? (getExcludeTechniqueTexts().get().equals(other.getExcludeTechniqueTexts().get())) : (!getExcludeTechniqueTexts().isPresent() && !other.getExcludeTechniqueTexts().isPresent())) &&
+            ((getExcludeWorkTypeTexts().isPresent() && other.getExcludeWorkTypeTexts().isPresent()) ? (getExcludeWorkTypeTexts().get().equals(other.getExcludeWorkTypeTexts().get())) : (!getExcludeWorkTypeTexts().isPresent() && !other.getExcludeWorkTypeTexts().isPresent())) &&
+            ((getIncludeCategories().isPresent() && other.getIncludeCategories().isPresent()) ? (getIncludeCategories().get().equals(other.getIncludeCategories().get())) : (!getIncludeCategories().isPresent() && !other.getIncludeCategories().isPresent())) &&
+            ((getIncludeCollections().isPresent() && other.getIncludeCollections().isPresent()) ? (getIncludeCollections().get().equals(other.getIncludeCollections().get())) : (!getIncludeCollections().isPresent() && !other.getIncludeCollections().isPresent())) &&
+            ((getIncludeColorTexts().isPresent() && other.getIncludeColorTexts().isPresent()) ? (getIncludeColorTexts().get().equals(other.getIncludeColorTexts().get())) : (!getIncludeColorTexts().isPresent() && !other.getIncludeColorTexts().isPresent())) &&
+            ((getIncludeCulturalContextTexts().isPresent() && other.getIncludeCulturalContextTexts().isPresent()) ? (getIncludeCulturalContextTexts().get().equals(other.getIncludeCulturalContextTexts().get())) : (!getIncludeCulturalContextTexts().isPresent() && !other.getIncludeCulturalContextTexts().isPresent())) &&
+            ((getIncludeGenders().isPresent() && other.getIncludeGenders().isPresent()) ? (getIncludeGenders().get().equals(other.getIncludeGenders().get())) : (!getIncludeGenders().isPresent() && !other.getIncludeGenders().isPresent())) &&
+            ((getIncludeInstitutions().isPresent() && other.getIncludeInstitutions().isPresent()) ? (getIncludeInstitutions().get().equals(other.getIncludeInstitutions().get())) : (!getIncludeInstitutions().isPresent() && !other.getIncludeInstitutions().isPresent())) &&
+            ((getIncludeLocationNameTexts().isPresent() && other.getIncludeLocationNameTexts().isPresent()) ? (getIncludeLocationNameTexts().get().equals(other.getIncludeLocationNameTexts().get())) : (!getIncludeLocationNameTexts().isPresent() && !other.getIncludeLocationNameTexts().isPresent())) &&
+            ((getIncludeMaterialTexts().isPresent() && other.getIncludeMaterialTexts().isPresent()) ? (getIncludeMaterialTexts().get().equals(other.getIncludeMaterialTexts().get())) : (!getIncludeMaterialTexts().isPresent() && !other.getIncludeMaterialTexts().isPresent())) &&
+            ((getIncludeSubjectTermTexts().isPresent() && other.getIncludeSubjectTermTexts().isPresent()) ? (getIncludeSubjectTermTexts().get().equals(other.getIncludeSubjectTermTexts().get())) : (!getIncludeSubjectTermTexts().isPresent() && !other.getIncludeSubjectTermTexts().isPresent())) &&
+            ((getIncludeTechniqueTexts().isPresent() && other.getIncludeTechniqueTexts().isPresent()) ? (getIncludeTechniqueTexts().get().equals(other.getIncludeTechniqueTexts().get())) : (!getIncludeTechniqueTexts().isPresent() && !other.getIncludeTechniqueTexts().isPresent())) &&
+            ((getIncludeWorkTypeTexts().isPresent() && other.getIncludeWorkTypeTexts().isPresent()) ? (getIncludeWorkTypeTexts().get().equals(other.getIncludeWorkTypeTexts().get())) : (!getIncludeWorkTypeTexts().isPresent() && !other.getIncludeWorkTypeTexts().isPresent()));
     }
 
     @Override

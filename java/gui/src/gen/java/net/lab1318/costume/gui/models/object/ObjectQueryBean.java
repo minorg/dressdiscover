@@ -156,16 +156,16 @@ public class ObjectQueryBean implements org.thryft.StructBean {
 
         final ObjectQueryBean other = (ObjectQueryBean)otherObject;
         return
-            (getCollectionId() != null ? getCollectionId().equals(other.getCollectionId()) : other.getCollectionId() == null) &&
-            (getFacetFilters() != null ? getFacetFilters().equals(other.getFacetFilters()) : other.getFacetFilters() == null) &&
-            (getIncludeHidden() != null ? getIncludeHidden().equals(other.getIncludeHidden()) : other.getIncludeHidden() == null) &&
-            (getInstitutionId() != null ? getInstitutionId().equals(other.getInstitutionId()) : other.getInstitutionId() == null) &&
-            (getMoreLikeObjectId() != null ? getMoreLikeObjectId().equals(other.getMoreLikeObjectId()) : other.getMoreLikeObjectId() == null) &&
-            (getObjectIds() != null ? getObjectIds().equals(other.getObjectIds()) : other.getObjectIds() == null) &&
-            (getQueryString() != null ? getQueryString().equals(other.getQueryString()) : other.getQueryString() == null) &&
-            (getRelationText() != null ? getRelationText().equals(other.getRelationText()) : other.getRelationText() == null) &&
-            (getStructureTexts() != null ? getStructureTexts().equals(other.getStructureTexts()) : other.getStructureTexts() == null) &&
-            (getWorkTypeText() != null ? getWorkTypeText().equals(other.getWorkTypeText()) : other.getWorkTypeText() == null);
+            ((getCollectionId() != null && other.getCollectionId() != null) ? (getCollectionId().equals(other.getCollectionId())) : (getCollectionId() == null && other.getCollectionId() == null)) &&
+            ((getFacetFilters() != null && other.getFacetFilters() != null) ? (getFacetFilters().equals(other.getFacetFilters())) : (getFacetFilters() == null && other.getFacetFilters() == null)) &&
+            ((getIncludeHidden() != null && other.getIncludeHidden() != null) ? (getIncludeHidden() == other.getIncludeHidden()) : (getIncludeHidden() == null && other.getIncludeHidden() == null)) &&
+            ((getInstitutionId() != null && other.getInstitutionId() != null) ? (getInstitutionId().equals(other.getInstitutionId())) : (getInstitutionId() == null && other.getInstitutionId() == null)) &&
+            ((getMoreLikeObjectId() != null && other.getMoreLikeObjectId() != null) ? (getMoreLikeObjectId().equals(other.getMoreLikeObjectId())) : (getMoreLikeObjectId() == null && other.getMoreLikeObjectId() == null)) &&
+            ((getObjectIds() != null && other.getObjectIds() != null) ? (getObjectIds().equals(other.getObjectIds())) : (getObjectIds() == null && other.getObjectIds() == null)) &&
+            ((getQueryString() != null && other.getQueryString() != null) ? (getQueryString().equals(other.getQueryString())) : (getQueryString() == null && other.getQueryString() == null)) &&
+            ((getRelationText() != null && other.getRelationText() != null) ? (getRelationText().equals(other.getRelationText())) : (getRelationText() == null && other.getRelationText() == null)) &&
+            ((getStructureTexts() != null && other.getStructureTexts() != null) ? (getStructureTexts().equals(other.getStructureTexts())) : (getStructureTexts() == null && other.getStructureTexts() == null)) &&
+            ((getWorkTypeText() != null && other.getWorkTypeText() != null) ? (getWorkTypeText().equals(other.getWorkTypeText())) : (getWorkTypeText() == null && other.getWorkTypeText() == null));
     }
 
     @Override

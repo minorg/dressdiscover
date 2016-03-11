@@ -363,8 +363,8 @@ public class Inscription implements org.thryft.Struct, net.lab1318.costume.api.m
         final Inscription other = (Inscription)otherObject;
         return
             getTexts().equals(other.getTexts()) &&
-            getAuthor().equals(other.getAuthor()) &&
-            getPosition().equals(other.getPosition());
+            ((getAuthor().isPresent() && other.getAuthor().isPresent()) ? (getAuthor().get().equals(other.getAuthor().get())) : (!getAuthor().isPresent() && !other.getAuthor().isPresent())) &&
+            ((getPosition().isPresent() && other.getPosition().isPresent()) ? (getPosition().get().equals(other.getPosition().get())) : (!getPosition().isPresent() && !other.getPosition().isPresent()));
     }
 
     @Override

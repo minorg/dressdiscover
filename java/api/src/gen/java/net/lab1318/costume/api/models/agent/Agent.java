@@ -453,10 +453,10 @@ public class Agent implements org.thryft.Struct, net.lab1318.costume.api.models.
         final Agent other = (Agent)otherObject;
         return
             getName().equals(other.getName()) &&
-            getAttribution().equals(other.getAttribution()) &&
-            getCulture().equals(other.getCulture()) &&
-            getDates().equals(other.getDates()) &&
-            getRole().equals(other.getRole());
+            ((getAttribution().isPresent() && other.getAttribution().isPresent()) ? (getAttribution().get().equals(other.getAttribution().get())) : (!getAttribution().isPresent() && !other.getAttribution().isPresent())) &&
+            ((getCulture().isPresent() && other.getCulture().isPresent()) ? (getCulture().get().equals(other.getCulture().get())) : (!getCulture().isPresent() && !other.getCulture().isPresent())) &&
+            ((getDates().isPresent() && other.getDates().isPresent()) ? (getDates().get().equals(other.getDates().get())) : (!getDates().isPresent() && !other.getDates().isPresent())) &&
+            ((getRole().isPresent() && other.getRole().isPresent()) ? (getRole().get().equals(other.getRole().get())) : (!getRole().isPresent() && !other.getRole().isPresent()));
     }
 
     @Override

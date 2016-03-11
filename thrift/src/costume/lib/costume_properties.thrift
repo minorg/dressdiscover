@@ -14,6 +14,9 @@ struct CostumeProperties {
 	// dev, staging, production, etc.
 	string environment;
 
+    // @validation {"minLength": 1}
+	string google_api_key;
+
 	// @validation {"minLength": 1}
 	string google_oauth_key;
 	// @validation {"minLength": 1}

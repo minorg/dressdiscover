@@ -324,7 +324,7 @@ public class Material implements org.thryft.Struct, net.lab1318.costume.api.mode
         return
             getText().equals(other.getText()) &&
             getType().equals(other.getType()) &&
-            getVocabRef().equals(other.getVocabRef());
+            ((getVocabRef().isPresent() && other.getVocabRef().isPresent()) ? (getVocabRef().get().equals(other.getVocabRef().get())) : (!getVocabRef().isPresent() && !other.getVocabRef().isPresent()));
     }
 
     @Override

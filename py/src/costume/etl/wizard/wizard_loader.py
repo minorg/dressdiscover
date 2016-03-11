@@ -19,19 +19,19 @@ from costume.api.models.title.title_type import TitleType
 from costume.api.models.view_type.view_type import ViewType
 from costume.api.models.vocab import Vocab
 from costume.api.models.vocab_ref import VocabRef
-from costume.etl._loader import _Loader
+from costume.etl._institution_loader import _InstitutionLoader
 from costume.etl.costume_core.costume_core_controlled_vocabularies import COSTUME_CORE_CONTROLLED_VOCABULARIES
 from yomeka.client.omeka_json_parser import OmekaJsonParser
 
 
-class WizardLoader(_Loader):
+class WizardLoader(_InstitutionLoader):
     INSTITUTION_ID = 'wizard'
     COLLECTION_ID = INSTITUTION_ID + '/wizard'
     SQUARE_THUMBNAIL_HEIGHT_PX = 200
     SQUARE_THUMBNAIL_WIDTH_PX = 200
 
     def __init__(self, **kwds):
-        _Loader.__init__(self, institution_id=WizardLoader.INSTITUTION_ID, **kwds)
+        _InstitutionLoader.__init__(self, institution_id=WizardLoader.INSTITUTION_ID, **kwds)
 
     def _load(self, dry_run):
         if not dry_run:

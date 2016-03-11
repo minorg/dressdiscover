@@ -3,6 +3,7 @@ namespace java net.lab1318.costume.api.models.institution
 namespace * costume.api.models.institution
 
 include "costume/api/models/model_metadata.thrift"
+include "costume/api/models/location/location_set.thrift"
 include "costume/api/models/rights/rights_set.thrift"
 include "thryft/native/url.thrift"
 
@@ -14,8 +15,13 @@ struct Institution {
 
 	5: optional rights_set.RightsSet	data_rights;
 
+    // @validation {"acceptance": true}
+    7: optional bool external;
+
 	// @validation {"acceptance": true}
 	6: optional bool hidden;
+
+    8: optional location_set.LocationSet locations;
 
 	3: optional url.Url url;
 }

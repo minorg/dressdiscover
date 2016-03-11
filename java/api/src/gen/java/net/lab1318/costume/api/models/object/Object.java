@@ -1558,32 +1558,32 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
             getInstitutionId().equals(other.getInstitutionId()) &&
             getModelMetadata().equals(other.getModelMetadata()) &&
             getTitles().equals(other.getTitles()) &&
-            getAgents().equals(other.getAgents()) &&
-            getCategories().equals(other.getCategories()) &&
-            getClosures().equals(other.getClosures()) &&
-            getColors().equals(other.getColors()) &&
-            getComponents().equals(other.getComponents()) &&
-            getCondition().equals(other.getCondition()) &&
-            getCulturalContexts().equals(other.getCulturalContexts()) &&
-            getDates().equals(other.getDates()) &&
-            getDescriptions().equals(other.getDescriptions()) &&
-            getGender().equals(other.getGender()) &&
-            getHidden().equals(other.getHidden()) &&
-            getImages().equals(other.getImages()) &&
-            getInscriptions().equals(other.getInscriptions()) &&
-            getLocations().equals(other.getLocations()) &&
-            getMaterials().equals(other.getMaterials()) &&
-            getMeasurements().equals(other.getMeasurements()) &&
-            getProvenance().equals(other.getProvenance()) &&
-            getQuantity().equals(other.getQuantity()) &&
-            getRelations().equals(other.getRelations()) &&
-            getRights().equals(other.getRights()) &&
-            getStructures().equals(other.getStructures()) &&
-            getSubjects().equals(other.getSubjects()) &&
-            getTechniques().equals(other.getTechniques()) &&
-            getTextrefs().equals(other.getTextrefs()) &&
-            getViewType().equals(other.getViewType()) &&
-            getWorkTypes().equals(other.getWorkTypes());
+            ((getAgents().isPresent() && other.getAgents().isPresent()) ? (getAgents().get().equals(other.getAgents().get())) : (!getAgents().isPresent() && !other.getAgents().isPresent())) &&
+            ((getCategories().isPresent() && other.getCategories().isPresent()) ? (getCategories().get().equals(other.getCategories().get())) : (!getCategories().isPresent() && !other.getCategories().isPresent())) &&
+            ((getClosures().isPresent() && other.getClosures().isPresent()) ? (getClosures().get().equals(other.getClosures().get())) : (!getClosures().isPresent() && !other.getClosures().isPresent())) &&
+            ((getColors().isPresent() && other.getColors().isPresent()) ? (getColors().get().equals(other.getColors().get())) : (!getColors().isPresent() && !other.getColors().isPresent())) &&
+            ((getComponents().isPresent() && other.getComponents().isPresent()) ? (getComponents().get().equals(other.getComponents().get())) : (!getComponents().isPresent() && !other.getComponents().isPresent())) &&
+            ((getCondition().isPresent() && other.getCondition().isPresent()) ? (getCondition().get().equals(other.getCondition().get())) : (!getCondition().isPresent() && !other.getCondition().isPresent())) &&
+            ((getCulturalContexts().isPresent() && other.getCulturalContexts().isPresent()) ? (getCulturalContexts().get().equals(other.getCulturalContexts().get())) : (!getCulturalContexts().isPresent() && !other.getCulturalContexts().isPresent())) &&
+            ((getDates().isPresent() && other.getDates().isPresent()) ? (getDates().get().equals(other.getDates().get())) : (!getDates().isPresent() && !other.getDates().isPresent())) &&
+            ((getDescriptions().isPresent() && other.getDescriptions().isPresent()) ? (getDescriptions().get().equals(other.getDescriptions().get())) : (!getDescriptions().isPresent() && !other.getDescriptions().isPresent())) &&
+            ((getGender().isPresent() && other.getGender().isPresent()) ? (getGender().get().equals(other.getGender().get())) : (!getGender().isPresent() && !other.getGender().isPresent())) &&
+            ((getHidden().isPresent() && other.getHidden().isPresent()) ? (getHidden().get() == other.getHidden().get()) : (!getHidden().isPresent() && !other.getHidden().isPresent())) &&
+            ((getImages().isPresent() && other.getImages().isPresent()) ? (getImages().get().equals(other.getImages().get())) : (!getImages().isPresent() && !other.getImages().isPresent())) &&
+            ((getInscriptions().isPresent() && other.getInscriptions().isPresent()) ? (getInscriptions().get().equals(other.getInscriptions().get())) : (!getInscriptions().isPresent() && !other.getInscriptions().isPresent())) &&
+            ((getLocations().isPresent() && other.getLocations().isPresent()) ? (getLocations().get().equals(other.getLocations().get())) : (!getLocations().isPresent() && !other.getLocations().isPresent())) &&
+            ((getMaterials().isPresent() && other.getMaterials().isPresent()) ? (getMaterials().get().equals(other.getMaterials().get())) : (!getMaterials().isPresent() && !other.getMaterials().isPresent())) &&
+            ((getMeasurements().isPresent() && other.getMeasurements().isPresent()) ? (getMeasurements().get().equals(other.getMeasurements().get())) : (!getMeasurements().isPresent() && !other.getMeasurements().isPresent())) &&
+            ((getProvenance().isPresent() && other.getProvenance().isPresent()) ? (getProvenance().get().equals(other.getProvenance().get())) : (!getProvenance().isPresent() && !other.getProvenance().isPresent())) &&
+            ((getQuantity().isPresent() && other.getQuantity().isPresent()) ? (getQuantity().get().equals(other.getQuantity().get())) : (!getQuantity().isPresent() && !other.getQuantity().isPresent())) &&
+            ((getRelations().isPresent() && other.getRelations().isPresent()) ? (getRelations().get().equals(other.getRelations().get())) : (!getRelations().isPresent() && !other.getRelations().isPresent())) &&
+            ((getRights().isPresent() && other.getRights().isPresent()) ? (getRights().get().equals(other.getRights().get())) : (!getRights().isPresent() && !other.getRights().isPresent())) &&
+            ((getStructures().isPresent() && other.getStructures().isPresent()) ? (getStructures().get().equals(other.getStructures().get())) : (!getStructures().isPresent() && !other.getStructures().isPresent())) &&
+            ((getSubjects().isPresent() && other.getSubjects().isPresent()) ? (getSubjects().get().equals(other.getSubjects().get())) : (!getSubjects().isPresent() && !other.getSubjects().isPresent())) &&
+            ((getTechniques().isPresent() && other.getTechniques().isPresent()) ? (getTechniques().get().equals(other.getTechniques().get())) : (!getTechniques().isPresent() && !other.getTechniques().isPresent())) &&
+            ((getTextrefs().isPresent() && other.getTextrefs().isPresent()) ? (getTextrefs().get().equals(other.getTextrefs().get())) : (!getTextrefs().isPresent() && !other.getTextrefs().isPresent())) &&
+            ((getViewType().isPresent() && other.getViewType().isPresent()) ? (getViewType().get().equals(other.getViewType().get())) : (!getViewType().isPresent() && !other.getViewType().isPresent())) &&
+            ((getWorkTypes().isPresent() && other.getWorkTypes().isPresent()) ? (getWorkTypes().get().equals(other.getWorkTypes().get())) : (!getWorkTypes().isPresent() && !other.getWorkTypes().isPresent()));
     }
 
     @Override
