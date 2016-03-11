@@ -6,6 +6,7 @@ include "costume/api/models/model_metadata.thrift"
 include "costume/api/models/institution/institution_id.thrift"
 include "costume/api/models/location/location_set.thrift"
 include "costume/api/models/work_type/work_type_set.thrift"
+include "thryft/native/url.thrift"
 
 // @java_implements org.thryft.waf.api.models.Model
 struct Collection {
@@ -26,6 +27,8 @@ struct Collection {
 	5: optional bool hidden;
 
     8: optional location_set.LocationSet locations;
+
+    9: optional url.Url url;
 
 	6: optional work_type_set.WorkTypeSet work_types;
 }

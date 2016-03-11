@@ -1,0 +1,21 @@
+@mixin InstitutionsView {
+    .institutions-view {
+        vertical-align: top;
+
+        .two-pane-layout {
+            width: 100%;
+        }
+
+        .v-slot-left-pane-layout {
+            width: 50%;
+        }
+
+        .v-slot-right-pane-layout {
+            margin-left: auto;
+        }
+
+        .v-slot-two-pane-layout {
+            width: 100%;
+        }
+    }
+}

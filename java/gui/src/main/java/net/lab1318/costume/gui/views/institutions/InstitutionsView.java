@@ -12,6 +12,7 @@ import com.vaadin.ui.VerticalLayout;
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.gui.views.TopLevelView;
+import net.lab1318.costume.lib.CostumeProperties;
 
 @SuppressWarnings("serial")
 @SessionScoped
@@ -23,11 +24,13 @@ public class InstitutionsView extends TopLevelView {
         }
 
         Layout treeLayout;
+        Layout mapLayout;
     }
 
     @Inject
-    public InstitutionsView(final EventBus eventBus) {
+    public InstitutionsView(final EventBus eventBus, final CostumeProperties properties) {
         super(eventBus);
+        this.googleApiKey = properties.getGoogleApiKey();
     }
 
     public void setModels(final ImmutableMultimap<InstitutionEntry, CollectionEntry> modelTree) {
@@ -35,8 +38,11 @@ public class InstitutionsView extends TopLevelView {
 
         design.treeLayout.addComponent(new InstitutionTree(_getEventBus(), modelTree));
 
+        design.mapLayout.addComponent(new InstitutionMap(_getEventBus(), googleApiKey, modelTree));
+
         setCompositionRoot(design);
     }
 
+    private final String googleApiKey;
     public final static String NAME = "institutions";
 }

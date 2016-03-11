@@ -1,0 +1,8 @@
+@mixin InstitutionMap {
+    .institution-map {
+        .googlemap {
+            height: 50em;
+            width: 50em;
+        }
+    }
+}

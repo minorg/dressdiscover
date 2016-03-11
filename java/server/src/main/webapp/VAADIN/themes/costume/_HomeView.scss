@@ -3,25 +3,24 @@
   	height: 100%;
   	width: 100%;
 
-	.catalog-wizard-button {
-	  	background-color: $costume-color-blue;
-	  	color: white;
-	  	height: 2em;
-	  	width: 100%;
-	}
+      .browse-objects-by-institution-button {
+        background-color: $costume-color-red;
+        color: white;
+      }
+
+      .catalog-wizard-button {
+        background-color: $costume-color-blue;
+        color: white;
+      }
+
+      .collection-directory-button {
+        background-color: $costume-color-red;
+        color: white;
+      }
 
 	  .query-wizard-button {
 	  	background-color: $costume-color-dark-blue;
 	  	color: white;
-	  	height: 2em;
-	  	width: 100%;
-	  }
-
-	  .institution-button {
-        background-color: $costume-color-red;
-        color: white;
-	  	height: 2em;
-	  	width: 100%;
 	  }
 
 	  .v-slot-left-pane-layout {
@@ -29,6 +28,11 @@
 	  }
 
 	  .right-pane-layout {
+	  }
+
+	  .v-button {
+        height: 2em;
+        width: 100%;
 	  }
 
 	  .welcome-label {

@@ -23,21 +23,20 @@ final class InstitutionTree extends Tree {
     @SuppressWarnings("unchecked")
     public InstitutionTree(final EventBus eventBus,
             final ImmutableMultimap<InstitutionEntry, CollectionEntry> modelTree) {
-        final Tree viewTree = new Tree();
-        viewTree.addContainerProperty("name", String.class, null);
-        viewTree.setItemCaptionMode(ItemCaptionMode.PROPERTY);
-        viewTree.setItemCaptionPropertyId("name");
-        viewTree.addItemClickListener(new ItemClickListener() {
+        addContainerProperty("name", String.class, null);
+        setItemCaptionMode(ItemCaptionMode.PROPERTY);
+        setItemCaptionPropertyId("name");
+        addItemClickListener(new ItemClickListener() {
             @Override
             public void itemClick(final ItemClickEvent event) {
                 if (event.getItemId() instanceof CollectionId) {
                     eventBus.post(new CollectionQueryService.Messages.GetCollectionByIdRequest(
                             (CollectionId) event.getItemId()));
                 } else if (event.getItemId() instanceof InstitutionId) {
-                    if (!viewTree.isExpanded(event.getItemId())) {
-                        viewTree.expandItem(event.getItemId());
+                    if (!isExpanded(event.getItemId())) {
+                        expandItem(event.getItemId());
                     } else {
-                        viewTree.collapseItem(event.getItemId());
+                        collapseItem(event.getItemId());
                     }
                 }
             }
@@ -46,7 +45,7 @@ final class InstitutionTree extends Tree {
         for (final Map.Entry<InstitutionEntry, Collection<CollectionEntry>> modelTreeEntry : modelTree.asMap()
                 .entrySet()) {
             final InstitutionEntry institutionEntry = modelTreeEntry.getKey();
-            final Item institutionTreeItem = viewTree.addItem(institutionEntry.getId());
+            final Item institutionTreeItem = addItem(institutionEntry.getId());
             institutionTreeItem.getItemProperty("name")
                     .setValue("Institution: " + institutionEntry.getModel().getTitle());
 
@@ -68,11 +67,13 @@ final class InstitutionTree extends Tree {
                     continue;
                 }
 
-                final Item collectionTreeItem = viewTree.addItem(collectionEntry.getId());
+                final Object collectionTreeItemId = collectionEntry.getModel().getExternal().or(Boolean.FALSE)
+                        ? collectionEntry.getId().toString() : collectionEntry.getId();
+                final Item collectionTreeItem = addItem(collectionTreeItemId);
                 collectionTreeItem.getItemProperty("name")
                         .setValue("Collection: " + collectionEntry.getModel().getTitle());
-                viewTree.setChildrenAllowed(collectionEntry.getId(), false);
-                viewTree.setParent(collectionEntry.getId(), institutionEntry.getId());
+                setChildrenAllowed(collectionTreeItemId, false);
+                setParent(collectionTreeItemId, institutionEntry.getId());
             }
         }
     }

@@ -15,6 +15,7 @@ class Collection(object):
             external=None,
             hidden=None,
             locations=None,
+            url=None,
             work_types=None,
         ):
             '''
@@ -25,6 +26,7 @@ class Collection(object):
             :type external: bool or None
             :type hidden: bool or None
             :type locations: costume.api.models.location.location_set.LocationSet or None
+            :type url: str or None
             :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
             '''
 
@@ -35,10 +37,11 @@ class Collection(object):
             self.__external = external
             self.__hidden = hidden
             self.__locations = locations
+            self.__url = url
             self.__work_types = work_types
 
         def build(self):
-            return Collection(institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, description=self.__description, external=self.__external, hidden=self.__hidden, locations=self.__locations, work_types=self.__work_types)
+            return Collection(institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, description=self.__description, external=self.__external, hidden=self.__hidden, locations=self.__locations, url=self.__url, work_types=self.__work_types)
 
         @property
         def description(self):
@@ -144,6 +147,14 @@ class Collection(object):
             self.__title = title
             return self
 
+        def set_url(self, url):
+            '''
+            :type url: str or None
+            '''
+
+            self.__url = url
+            return self
+
         def set_work_types(self, work_types):
             '''
             :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
@@ -169,6 +180,7 @@ class Collection(object):
             :type external: bool or None
             :type hidden: bool or None
             :type locations: costume.api.models.location.location_set.LocationSet or None
+            :type url: str or None
             :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
             '''
 
@@ -180,6 +192,7 @@ class Collection(object):
                 self.set_external(collection.external)
                 self.set_hidden(collection.hidden)
                 self.set_locations(collection.locations)
+                self.set_url(collection.url)
                 self.set_work_types(collection.work_types)
             elif isinstance(collection, dict):
                 for key, value in collection.iteritems():
@@ -187,6 +200,14 @@ class Collection(object):
             else:
                 raise TypeError(collection)
             return self
+
+        @property
+        def url(self):
+            '''
+            :rtype: str
+            '''
+
+            return self.__url
 
         @property
         def work_types(self):
@@ -252,6 +273,14 @@ class Collection(object):
 
             self.set_title(title)
 
+        @url.setter
+        def url(self, url):
+            '''
+            :type url: str or None
+            '''
+
+            self.set_url(url)
+
         @work_types.setter
         def work_types(self, work_types):
             '''
@@ -269,6 +298,7 @@ class Collection(object):
         external=None,
         hidden=None,
         locations=None,
+        url=None,
         work_types=None,
     ):
         '''
@@ -279,6 +309,7 @@ class Collection(object):
         :type external: bool or None
         :type hidden: bool or None
         :type locations: costume.api.models.location.location_set.LocationSet or None
+        :type url: str or None
         :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
         '''
 
@@ -324,6 +355,11 @@ class Collection(object):
                 raise TypeError("expected locations to be a costume.api.models.location.location_set.LocationSet but it is a %s" % getattr(__builtin__, 'type')(locations))
         self.__locations = locations
 
+        if url is not None:
+            if not isinstance(url, basestring):
+                raise TypeError("expected url to be a str but it is a %s" % getattr(__builtin__, 'type')(url))
+        self.__url = url
+
         if work_types is not None:
             if not isinstance(work_types, costume.api.models.work_type.work_type_set.WorkTypeSet):
                 raise TypeError("expected work_types to be a costume.api.models.work_type.work_type_set.WorkTypeSet but it is a %s" % getattr(__builtin__, 'type')(work_types))
@@ -344,12 +380,14 @@ class Collection(object):
             return False
         if self.locations != other.locations:
             return False
+        if self.url != other.url:
+            return False
         if self.work_types != other.work_types:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.institution_id,self.model_metadata,self.title,self.description,self.external,self.hidden,self.locations,self.work_types,))
+        return hash((self.institution_id,self.model_metadata,self.title,self.description,self.external,self.hidden,self.locations,self.url,self.work_types,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -370,6 +408,8 @@ class Collection(object):
             field_reprs.append('hidden=' + repr(self.hidden))
         if self.locations is not None:
             field_reprs.append('locations=' + repr(self.locations))
+        if self.url is not None:
+            field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
         if self.work_types is not None:
             field_reprs.append('work_types=' + repr(self.work_types))
         return 'Collection(' + ', '.join(field_reprs) + ')'
@@ -387,6 +427,8 @@ class Collection(object):
             field_reprs.append('hidden=' + repr(self.hidden))
         if self.locations is not None:
             field_reprs.append('locations=' + repr(self.locations))
+        if self.url is not None:
+            field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
         if self.work_types is not None:
             field_reprs.append('work_types=' + repr(self.work_types))
         return 'Collection(' + ', '.join(field_reprs) + ')'
@@ -398,7 +440,7 @@ class Collection(object):
         :rtype: dict
         '''
 
-        return {'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'description': self.description, 'external': self.external, 'hidden': self.hidden, 'locations': self.locations, 'work_types': self.work_types}
+        return {'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'description': self.description, 'external': self.external, 'hidden': self.hidden, 'locations': self.locations, 'url': self.url, 'work_types': self.work_types}
 
     def as_tuple(self):
         '''
@@ -407,7 +449,7 @@ class Collection(object):
         :rtype: tuple
         '''
 
-        return (self.institution_id, self.model_metadata, self.title, self.description, self.external, self.hidden, self.locations, self.work_types,)
+        return (self.institution_id, self.model_metadata, self.title, self.description, self.external, self.hidden, self.locations, self.url, self.work_types,)
 
     @property
     def description(self):
@@ -496,6 +538,11 @@ class Collection(object):
                     pass
             elif ifield_name == 'locations' and ifield_id == 8:
                 init_kwds['locations'] = costume.api.models.location.location_set.LocationSet.read(iprot)
+            elif ifield_name == 'url' and ifield_id == 9:
+                try:
+                    init_kwds['url'] = iprot.read_string()
+                except (TypeError, ValueError,):
+                    pass
             elif ifield_name == 'work_types' and ifield_id == 6:
                 init_kwds['work_types'] = costume.api.models.work_type.work_type_set.WorkTypeSet.read(iprot)
             iprot.read_field_end()
@@ -512,6 +559,7 @@ class Collection(object):
         external=None,
         hidden=None,
         locations=None,
+        url=None,
         work_types=None,
     ):
         '''
@@ -524,6 +572,7 @@ class Collection(object):
         :type external: bool or None
         :type hidden: bool or None
         :type locations: costume.api.models.location.location_set.LocationSet or None
+        :type url: str or None
         :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
         :rtype: costume.api.models.collection.collection.Collection
         '''
@@ -542,9 +591,11 @@ class Collection(object):
             hidden = self.hidden
         if locations is None:
             locations = self.locations
+        if url is None:
+            url = self.url
         if work_types is None:
             work_types = self.work_types
-        return self.__class__(institution_id=institution_id, model_metadata=model_metadata, title=title, description=description, external=external, hidden=hidden, locations=locations, work_types=work_types)
+        return self.__class__(institution_id=institution_id, model_metadata=model_metadata, title=title, description=description, external=external, hidden=hidden, locations=locations, url=url, work_types=work_types)
 
     @property
     def title(self):
@@ -553,6 +604,14 @@ class Collection(object):
         '''
 
         return self.__title
+
+    @property
+    def url(self):
+        '''
+        :rtype: str
+        '''
+
+        return self.__url
 
     @property
     def work_types(self):
@@ -602,6 +661,11 @@ class Collection(object):
         if self.locations is not None:
             oprot.write_field_begin(name='locations', type=12, id=8)
             self.locations.write(oprot)
+            oprot.write_field_end()
+
+        if self.url is not None:
+            oprot.write_field_begin(name='url', type=11, id=9)
+            oprot.write_string(self.url)
             oprot.write_field_end()
 
         if self.work_types is not None:

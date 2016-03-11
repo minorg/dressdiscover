@@ -55,6 +55,7 @@ class DccLoader(_Loader):
                         .set_locations(self.__get_locations('Institution', row))
                         .set_model_metadata(self._new_model_metadata())
                         .set_title(row['Collection Title'])
+                        .set_url(row['Collection URL'])
                         .build()
                 )
 
