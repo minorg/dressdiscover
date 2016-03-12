@@ -2,13 +2,10 @@ package net.lab1318.costume.gui.presenters.wizard.query_wizard;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
 import org.thryft.waf.gui.EventBus;
 
-import com.google.common.base.Charsets;
 import com.google.common.base.Optional;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
@@ -31,12 +28,10 @@ import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardSummaryView;
 @SessionScoped
 public class QueryWizardFeaturePresenter extends AbstractWizardFeaturePresenter<QueryWizardFeatureView> {
     static void navigateToFeature(final WizardFeature feature, final WizardFeatureSet featureSet) {
-        try {
-            UI.getCurrent().getNavigator().navigateTo(QueryWizardFeatureView.NAME + '/' + featureSet.getSelectedAsUrlEncodedString() + '/'
-                    + URLEncoder.encode(feature.getName(), Charsets.UTF_8.toString()));
-        } catch (final UnsupportedEncodingException e) {
-            throw new IllegalStateException(e);
-        }
+        UI.getCurrent().getNavigator()
+                .navigateTo(QueryWizardFeatureView.NAME + '/'
+                        + new NamedParameters(ImmutableMap.of("feature", feature.getName(), "feature_set",
+                                featureSet.getSelectedAsUrlEncodedString())).toUrlEncodedString());
     }
 
     @Inject
@@ -54,11 +49,13 @@ public class QueryWizardFeaturePresenter extends AbstractWizardFeaturePresenter<
 
     @Override
     protected final void _navigateToSummary(final WizardFeatureSet featureSet) {
-        UI.getCurrent().getNavigator().navigateTo(QueryWizardSummaryView.NAME + "/" + featureSet.getSelectedAsUrlEncodedString());
+        UI.getCurrent().getNavigator()
+                .navigateTo(QueryWizardSummaryView.NAME + "/" + featureSet.getSelectedAsUrlEncodedString());
     }
 
     @Override
-    protected final void _refreshView(final WizardFeature currentFeature, final WizardFeatureSet featureSet) {
+    protected final void _refreshView(final WizardFeature currentFeature, final WizardFeatureSet featureSet,
+            final NamedParameters parameters) {
         final UnsignedInteger selectedObjectCount;
         try {
             selectedObjectCount = objectSummaryQueryService

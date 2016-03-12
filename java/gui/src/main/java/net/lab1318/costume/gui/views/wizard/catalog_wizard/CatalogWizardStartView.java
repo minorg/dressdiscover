@@ -36,8 +36,8 @@ public class CatalogWizardStartView extends TopLevelView {
         design.costumeCoreButton.addClickListener(new ClickListener() {
             @Override
             public void buttonClick(final ClickEvent event) {
-                UI.getCurrent().getNavigator()
-                        .navigateTo(CatalogWizardFeatureView.NAME + "/" + CostumeCoreWizardFeatureSet.URL_NAME);
+                UI.getCurrent().getNavigator().navigateTo(
+                        CatalogWizardFeatureView.NAME + "/feature_set=" + CostumeCoreWizardFeatureSet.URL_NAME);
             }
         });
         setCompositionRoot(design);

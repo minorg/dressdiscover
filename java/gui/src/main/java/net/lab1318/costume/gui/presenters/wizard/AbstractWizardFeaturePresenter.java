@@ -2,13 +2,9 @@ package net.lab1318.costume.gui.presenters.wizard;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-
 import org.thryft.waf.gui.EventBus;
 import org.thryft.waf.gui.views.View;
 
-import com.google.common.base.Charsets;
 import com.google.common.base.Optional;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
@@ -81,15 +77,17 @@ public abstract class AbstractWizardFeaturePresenter<ViewT extends View> extends
 
     @Override
     protected final void _onViewEnter(final Optional<UserEntry> currentUser, final ViewChangeEvent event) {
-        if (event.getParameters().isEmpty()) {
+        final NamedParameters parameters = NamedParameters.fromUrlEncodedString(event.getParameters());
+
+        final Optional<String> featureSetName = parameters.getFirst("feature_set");
+        if (!featureSetName.isPresent()) {
             _getView().setComponentError(new UserError("missing feature set"));
             return;
         }
 
-        final String[] parametersSplit = event.getParameters().split("/", 2);
         WizardFeatureSet featureSet;
         try {
-            featureSet = featureSetFactories.createFeatureSetFromUrlEncodedString(mode, parametersSplit[0]);
+            featureSet = featureSetFactories.createFeatureSetFromUrlEncodedString(mode, featureSetName.get());
         } catch (final IoException e) {
             _getView().setComponentError(new SystemError("I/O exception", e));
             return;
@@ -98,30 +96,24 @@ public abstract class AbstractWizardFeaturePresenter<ViewT extends View> extends
             return;
         }
 
-        String featureName;
-        try {
-            featureName = parametersSplit.length >= 2 ? URLDecoder.decode(parametersSplit[1], Charsets.UTF_8.name())
-                    : "";
-        } catch (final UnsupportedEncodingException e) {
-            throw new IllegalStateException(e);
-        }
-        if (featureName.isEmpty()) {
+        final Optional<String> featureName = parameters.getFirst("feature");
+        if (!featureName.isPresent() || featureName.get().isEmpty()) {
             _navigateToFeature(featureSet.getFeatures().get(0), featureSet);
             return;
         }
 
         WizardFeature currentFeature;
         try {
-            currentFeature = featureSet.getFeatureByName(featureName);
+            currentFeature = featureSet.getFeatureByName(featureName.get());
         } catch (final IllegalArgumentException e) {
             _getView().setComponentError(new UserError("no such feature " + featureName));
             return;
         }
 
-        _refreshView(currentFeature, featureSet);
+        _refreshView(currentFeature, featureSet, parameters);
     }
 
-    protected abstract void _refreshView(final WizardFeature currentFeature, final WizardFeatureSet featureSet);
+    protected abstract void _refreshView(final WizardFeature currentFeature, final WizardFeatureSet featureSet, final NamedParameters parameters);
 
     private final WizardFeatureSetFactories featureSetFactories;
     private final WizardMode mode;
