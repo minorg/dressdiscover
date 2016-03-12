@@ -43,7 +43,7 @@ public abstract class AbstractWizardSummaryPresenter<ViewT extends AbstractWizar
     protected final void _onViewEnter(final Optional<UserEntry> currentUser, final ViewChangeEvent event) {
         WizardFeatureSet featureSet;
         try {
-            featureSet = featureSetFactories.createFeatureSetFromUrlString(mode, event.getParameters());
+            featureSet = featureSetFactories.createFeatureSetFromUrlEncodedString(mode, event.getParameters());
         } catch (final IoException e) {
             _getView().setComponentError(new SystemError("I/O exception", e));
             return;

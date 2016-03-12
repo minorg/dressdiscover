@@ -44,7 +44,7 @@ public class CatalogWizardSummaryView extends AbstractWizardSummaryView {
         design.exportAsCsvLink.setCaptionAsHtml(true);
         try {
             design.exportAsCsvLink.setResource(new ExternalResource("/catalog_wizard_export/csv/"
-                    + featureSet.toUrlString() + "/"
+                    + featureSet.getSelectedAsUrlEncodedString() + "/"
                     + URLEncoder.encode(featureSet.getExportFileBaseName(), Charsets.UTF_8.name()).replace("+", "%20")
                     + ".csv"));
         } catch (final UnsupportedEncodingException e) {

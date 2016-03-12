@@ -53,7 +53,7 @@ public class CatalogWizardExportController extends HttpServlet {
 
         final WizardFeatureSet featureSet;
         try {
-            featureSet = featureSetFactories.createFeatureSetFromUrlString(WizardMode.CATALOG, featureSetString);
+            featureSet = featureSetFactories.createFeatureSetFromUrlEncodedString(WizardMode.CATALOG, featureSetString);
         } catch (final IoException e) {
             logger.error(logMarker, "I/O exception: ", e);
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
@@ -67,7 +67,7 @@ public class CatalogWizardExportController extends HttpServlet {
         switch (format) {
         case "csv":
             resp.setContentType("text/csv");
-            resp.getWriter().write(featureSet.toCsv());
+            resp.getWriter().write(featureSet.getSelectedAsCsv());
             break;
         default:
             logger.warn(logMarker, "unknown format '{}'", format);

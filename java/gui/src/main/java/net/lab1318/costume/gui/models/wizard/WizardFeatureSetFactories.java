@@ -23,47 +23,25 @@ public class WizardFeatureSetFactories {
         byUrlName = byUrlNameBuilder.build();
     }
 
-    public final WizardFeatureSet createFeatureSetFromUrlString(final WizardMode mode, final String urlString)
-            throws IoException, UnknownWizardFeatureSetException {
-        final String[] urlStringSplit = StringUtils.splitByWholeSeparator(urlString,
-                WizardFeatureSet.URL_STRING_SEPARATOR, 2);
+    public final WizardFeatureSet createFeatureSetFromUrlEncodedString(final WizardMode mode,
+            final String urlEncodedString) throws IoException, UnknownWizardFeatureSetException {
+        String urlDecodedString;
+        try {
+            urlDecodedString = URLDecoder.decode(urlEncodedString, Charsets.UTF_8.name());
+        } catch (final UnsupportedEncodingException e) {
+            throw new IllegalStateException();
+        }
 
-        final WizardFeatureSetFactory factory = byUrlName.get(urlStringSplit[0].toLowerCase());
+        final String[] urlDecodedStringSplit = StringUtils.splitByWholeSeparator(urlDecodedString, "?", 2);
+
+        final WizardFeatureSetFactory factory = byUrlName.get(urlDecodedStringSplit[0].toLowerCase());
         if (factory == null) {
-            throw new UnknownWizardFeatureSetException(String.format("unknown feature set '%s'", urlStringSplit[0]));
+            throw new UnknownWizardFeatureSetException(
+                    String.format("unknown feature set '%s'", urlDecodedStringSplit[0]));
         }
 
         final WizardFeatureSet featureSet = factory.createFeatureSet(mode);
-        if (urlStringSplit.length == 1 || urlStringSplit[1].isEmpty()) {
-            return featureSet;
-        }
-
-        for (final String nameValuePairString : urlStringSplit[1].split("&")) {
-            final String[] nameValuePairSplit = nameValuePairString.split("=", 2);
-            if (nameValuePairSplit.length == 1) {
-                continue;
-            }
-            String selectedName, selectedValue;
-            try {
-                selectedName = URLDecoder.decode(nameValuePairSplit[0], Charsets.UTF_8.name());
-                if (selectedName.isEmpty()) {
-                    continue;
-                }
-                selectedValue = URLDecoder.decode(nameValuePairSplit[1], Charsets.UTF_8.name());
-                if (selectedValue.isEmpty()) {
-                    continue;
-                }
-            } catch (final UnsupportedEncodingException e) {
-                throw new IllegalStateException(e);
-            }
-            for (final WizardFeature feature : featureSet.getFeatures()) {
-                if (!feature.getName().equals(selectedName)) {
-                    continue;
-                }
-                feature.addSelected(selectedValue);
-                break;
-            }
-        }
+        featureSet.setSelectedFromUrlDecodedString(urlDecodedString);
 
         return featureSet;
     }

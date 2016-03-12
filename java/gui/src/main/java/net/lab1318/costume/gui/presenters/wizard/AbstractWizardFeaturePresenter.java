@@ -89,7 +89,7 @@ public abstract class AbstractWizardFeaturePresenter<ViewT extends View> extends
         final String[] parametersSplit = event.getParameters().split("/", 2);
         WizardFeatureSet featureSet;
         try {
-            featureSet = featureSetFactories.createFeatureSetFromUrlString(mode, parametersSplit[0]);
+            featureSet = featureSetFactories.createFeatureSetFromUrlEncodedString(mode, parametersSplit[0]);
         } catch (final IoException e) {
             _getView().setComponentError(new SystemError("I/O exception", e));
             return;

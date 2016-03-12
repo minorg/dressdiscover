@@ -24,7 +24,7 @@ import net.lab1318.costume.gui.views.wizard.catalog_wizard.CatalogWizardSummaryV
 public class CatalogWizardFeaturePresenter extends AbstractWizardFeaturePresenter<CatalogWizardFeatureView> {
     static void navigateToFeature(final WizardFeature feature, final WizardFeatureSet featureSet) {
         try {
-            UI.getCurrent().getNavigator().navigateTo(CatalogWizardFeatureView.NAME + '/' + featureSet.toUrlString()
+            UI.getCurrent().getNavigator().navigateTo(CatalogWizardFeatureView.NAME + '/' + featureSet.getSelectedAsUrlEncodedString()
                     + '/' + URLEncoder.encode(feature.getName(), Charsets.UTF_8.toString()));
         } catch (final UnsupportedEncodingException e) {
             throw new IllegalStateException(e);
@@ -45,7 +45,7 @@ public class CatalogWizardFeaturePresenter extends AbstractWizardFeaturePresente
 
     @Override
     protected final void _navigateToSummary(final WizardFeatureSet featureSet) {
-        UI.getCurrent().getNavigator().navigateTo(CatalogWizardSummaryView.NAME + "/" + featureSet.toUrlString());
+        UI.getCurrent().getNavigator().navigateTo(CatalogWizardSummaryView.NAME + "/" + featureSet.getSelectedAsUrlEncodedString());
     }
 
     @Override
