@@ -15,13 +15,13 @@ import com.vaadin.ui.Layout;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.VerticalLayout;
 
-import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
+import net.lab1318.costume.gui.models.wizard.catalog_wizard.CatalogWizardState;
 import net.lab1318.costume.gui.views.wizard.AbstractWizardSummaryView;
 import net.lab1318.costume.gui.views.wizard.WizardFeatureSetLayout;
 
 @SuppressWarnings("serial")
 @SessionScoped
-public class CatalogWizardSummaryView extends AbstractWizardSummaryView {
+public class CatalogWizardSummaryView extends AbstractWizardSummaryView<CatalogWizardState> {
     @DesignRoot("CatalogWizardSummaryView.html")
     private final static class Design extends VerticalLayout {
         public Design() {
@@ -38,20 +38,21 @@ public class CatalogWizardSummaryView extends AbstractWizardSummaryView {
     }
 
     @Override
-    public void setModels(final WizardFeatureSet featureSet) {
+    public void setModels(final CatalogWizardState state) {
         final Design design = new Design();
 
         design.exportAsCsvLink.setCaptionAsHtml(true);
         try {
-            design.exportAsCsvLink.setResource(new ExternalResource("/catalog_wizard_export/csv/"
-                    + featureSet.getSelectedAsUrlEncodedString() + "/"
-                    + URLEncoder.encode(featureSet.getExportFileBaseName(), Charsets.UTF_8.name()).replace("+", "%20")
-                    + ".csv"));
+            design.exportAsCsvLink.setResource(new ExternalResource(
+                    "/catalog_wizard_export/csv/" + state.getFeatureSet().getSelectedAsUrlEncodedString() + "/"
+                            + URLEncoder.encode(state.getFeatureSet().getExportFileBaseName(), Charsets.UTF_8.name())
+                                    .replace("+", "%20")
+                            + ".csv"));
         } catch (final UnsupportedEncodingException e) {
             throw new IllegalStateException(e);
         }
         design.exportAsCsvLink.setTargetName("_blank");
-        design.featureSetLayout.addComponent(new WizardFeatureSetLayout(Optional.absent(), _getEventBus(), featureSet));
+        design.featureSetLayout.addComponent(new WizardFeatureSetLayout(Optional.absent(), _getEventBus(), state));
 
         setCompositionRoot(design);
     }

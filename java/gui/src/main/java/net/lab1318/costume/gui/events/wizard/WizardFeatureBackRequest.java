@@ -1,10 +1,9 @@
 package net.lab1318.costume.gui.events.wizard;
 
-import net.lab1318.costume.gui.models.wizard.WizardFeature;
-import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
+import net.lab1318.costume.gui.models.wizard.WizardState;
 
 public final class WizardFeatureBackRequest extends AbstractWizardFeatureNavigationRequest {
-    public WizardFeatureBackRequest(final WizardFeature currentFeature, final WizardFeatureSet featureSet) {
-        super(currentFeature, featureSet);
+    public WizardFeatureBackRequest(final WizardState state) {
+        super(state);
     }
 }

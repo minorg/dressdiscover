@@ -12,13 +12,13 @@ import com.vaadin.ui.Layout;
 import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
-import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
+import net.lab1318.costume.gui.models.wizard.query_wizard.QueryWizardState;
 import net.lab1318.costume.gui.views.wizard.AbstractWizardSummaryView;
 import net.lab1318.costume.gui.views.wizard.WizardFeatureSetLayout;
 
 @SuppressWarnings("serial")
 @SessionScoped
-public class QueryWizardSummaryView extends AbstractWizardSummaryView {
+public class QueryWizardSummaryView extends AbstractWizardSummaryView<QueryWizardState> {
     @DesignRoot("QueryWizardSummaryView.html")
     private final static class Design extends VerticalLayout {
         public Design() {
@@ -35,16 +35,16 @@ public class QueryWizardSummaryView extends AbstractWizardSummaryView {
     }
 
     @Override
-    public void setModels(final WizardFeatureSet featureSet) {
+    public void setModels(final QueryWizardState state) {
         final Design design = new Design();
 
-        design.featureSetLayout.addComponent(new WizardFeatureSetLayout(Optional.absent(), _getEventBus(), featureSet));
+        design.featureSetLayout.addComponent(new WizardFeatureSetLayout(Optional.absent(), _getEventBus(), state));
 
         design.searchButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(final ClickEvent event) {
-                _getEventBus()
-                        .post(GetObjectSummariesRequest.builder().setQuery(featureSet.getSelectedAsQuery()).build());
+                _getEventBus().post(GetObjectSummariesRequest.builder()
+                        .setQuery(state.getFeatureSet().getSelectedAsQuery()).build());
             }
         });
 

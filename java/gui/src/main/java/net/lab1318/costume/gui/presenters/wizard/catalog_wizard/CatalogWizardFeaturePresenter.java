@@ -17,6 +17,7 @@ import net.lab1318.costume.gui.models.wizard.WizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSetFactories;
 import net.lab1318.costume.gui.models.wizard.WizardMode;
+import net.lab1318.costume.gui.models.wizard.catalog_wizard.CatalogWizardState;
 import net.lab1318.costume.gui.presenters.NamedPresenterParameters;
 import net.lab1318.costume.gui.presenters.wizard.AbstractWizardFeaturePresenter;
 import net.lab1318.costume.gui.views.wizard.catalog_wizard.CatalogWizardFeatureView;
@@ -24,18 +25,7 @@ import net.lab1318.costume.gui.views.wizard.catalog_wizard.CatalogWizardSummaryV
 
 @SessionScoped
 public class CatalogWizardFeaturePresenter
-        extends AbstractWizardFeaturePresenter<CatalogWizardFeaturePresenter.Parameters, CatalogWizardFeatureView> {
-    public final static class Parameters extends AbstractWizardFeaturePresenter.Parameters {
-        public Parameters(final WizardFeature feature, final WizardFeatureSet featureSet) {
-            super(feature, featureSet);
-        }
-    }
-
-    static void navigateToFeature(final Parameters parameters) {
-        UI.getCurrent().getNavigator().navigateTo(
-                CatalogWizardFeatureView.NAME + '/' + parameters.toNamedPresenterParameters().toUrlEncodedString());
-    }
-
+        extends AbstractWizardFeaturePresenter<CatalogWizardState, CatalogWizardFeatureView> {
     @Inject
     public CatalogWizardFeaturePresenter(final EventBus eventBus, final WizardFeatureSetFactories featureSetFactories,
             final UserCommandService userCommandService, final UserQueryService userQueryService,
@@ -44,25 +34,29 @@ public class CatalogWizardFeaturePresenter
     }
 
     @Override
-    protected final void _navigateToFeature(final WizardFeature feature, final WizardFeatureSet featureSet) {
-        navigateToFeature(new Parameters(feature, featureSet));
+    protected final void _navigateToFeature(final WizardFeature feature, final CatalogWizardState state) {
+        state.setCurrentFeature(feature);
+        UI.getCurrent().getNavigator().navigateTo(
+                CatalogWizardFeatureView.NAME + '/' + new NamedPresenterParameters(state.toMap()).toUrlEncodedString());
     }
 
     @Override
-    protected final void _navigateToSummary(final WizardFeatureSet featureSet) {
-        UI.getCurrent().getNavigator()
-                .navigateTo(CatalogWizardSummaryView.NAME + "/" + featureSet.getSelectedAsUrlEncodedString());
+    protected final void _navigateToSummary(final CatalogWizardState state) {
+        state.setCurrentFeature(Optional.absent());
+        UI.getCurrent().getNavigator().navigateTo(
+                CatalogWizardSummaryView.NAME + "/" + new NamedPresenterParameters(state.toMap()).toUrlEncodedString());
     }
 
     @Override
-    protected void _onViewEnter(final Optional<UserEntry> currentUser, final Parameters parameters) {
-        _getView().setModels(parameters.getFeature(), parameters.getFeatureSet());
+    protected void _onViewEnter(final Optional<UserEntry> currentUser, final CatalogWizardState state) {
+        _getView().setModels(state);
     }
 
     @Override
-    protected Parameters _parseParameters(final NamedPresenterParameters parameters)
+    protected CatalogWizardState _parseParameters(final NamedPresenterParameters parameters)
             throws IoException, UnknownWizardFeatureException, UnknownWizardFeatureSetException {
         final WizardFeatureSet featureSet = _parseFeatureSetParameter(parameters);
-        return new Parameters(_parseFeatureParameter(featureSet, parameters), featureSet);
+        return new CatalogWizardState(Optional.of(_parseFeatureParameter(featureSet, parameters)), featureSet,
+                Optional.absent());
     }
 }

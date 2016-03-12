@@ -2,7 +2,6 @@ package net.lab1318.costume.gui.views.wizard.query_wizard;
 
 import org.thryft.waf.gui.EventBus;
 
-import com.google.common.base.Optional;
 import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
@@ -16,7 +15,7 @@ import com.vaadin.ui.Layout;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
 import net.lab1318.costume.gui.models.wizard.EnumWizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
-import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
+import net.lab1318.costume.gui.models.wizard.query_wizard.QueryWizardState;
 import net.lab1318.costume.gui.views.TopLevelView;
 import net.lab1318.costume.gui.views.wizard.EnumWizardFeatureLayout;
 import net.lab1318.costume.gui.views.wizard.WizardFeatureNavigationLayout;
@@ -44,37 +43,38 @@ public class QueryWizardFeatureView extends TopLevelView {
         super(eventBus);
     }
 
-    public void setModels(final WizardFeature currentFeature, final WizardFeatureSet featureSet,
-            final UnsignedInteger selectedObjectCount) {
+    public void setModels(final UnsignedInteger selectedObjectCount, final QueryWizardState state) {
+        final WizardFeature currentFeature = state.getCurrentFeature().get();
+
         if (!(currentFeature instanceof EnumWizardFeature)) {
             throw new UnsupportedOperationException();
         }
 
         final Design design = new Design();
 
-        design.currentFeatureLayout.addComponent(
-                new EnumWizardFeatureLayout(_getEventBus(), (EnumWizardFeature) currentFeature, featureSet));
+        design.currentFeatureLayout
+                .addComponent(new EnumWizardFeatureLayout(_getEventBus(), (EnumWizardFeature) currentFeature, state));
 
         design.currentFeatureNameLabel.setCaptionAsHtml(true);
         design.currentFeatureNameLabel.setCaption("<h1>Selecting: " + currentFeature.getName() + "</h1>");
 
         design.bottomNavigationLayout
-                .addComponent(new WizardFeatureNavigationLayout(currentFeature, _getEventBus(), featureSet));
+                .addComponent(new WizardFeatureNavigationLayout(currentFeature, _getEventBus(), state));
 
         design.featureSetLayout
-                .addComponent(new WizardFeatureSetLayout(Optional.of(currentFeature), _getEventBus(), featureSet));
+                .addComponent(new WizardFeatureSetLayout(state.getCurrentFeature(), _getEventBus(), state));
 
         design.selectedObjectCountButton.setCaption(selectedObjectCount + " objects");
         design.selectedObjectCountButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(final ClickEvent event) {
-                _getEventBus()
-                        .post(GetObjectSummariesRequest.builder().setQuery(featureSet.getSelectedAsQuery()).build());
+                _getEventBus().post(GetObjectSummariesRequest.builder()
+                        .setQuery(state.getFeatureSet().getSelectedAsQuery()).build());
             }
         });
 
         design.topNavigationLayout
-                .addComponent(new WizardFeatureNavigationLayout(currentFeature, _getEventBus(), featureSet));
+                .addComponent(new WizardFeatureNavigationLayout(currentFeature, _getEventBus(), state));
 
         setCompositionRoot(design);
     }

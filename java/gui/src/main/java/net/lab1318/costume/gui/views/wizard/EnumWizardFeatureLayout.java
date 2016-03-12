@@ -18,7 +18,7 @@ import net.lab1318.costume.gui.components.ImageWithRightsLayout;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
 import net.lab1318.costume.gui.models.wizard.EnumWizardFeature;
 import net.lab1318.costume.gui.models.wizard.EnumWizardFeatureValue;
-import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
+import net.lab1318.costume.gui.models.wizard.WizardState;
 
 @SuppressWarnings("serial")
 public final class EnumWizardFeatureLayout extends VerticalLayout {
@@ -30,15 +30,14 @@ public final class EnumWizardFeatureLayout extends VerticalLayout {
         return rowCount;
     }
 
-    public EnumWizardFeatureLayout(final EventBus eventBus, final EnumWizardFeature feature,
-            final WizardFeatureSet featureSet) {
+    public EnumWizardFeatureLayout(final EventBus eventBus, final EnumWizardFeature feature, final WizardState state) {
         setStyleName("enum-wizard-feature-layout");
 
         final Button resetButton = new Button("Reset", new Button.ClickListener() {
             @Override
             public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
                 feature.resetSelected();
-                eventBus.post(new WizardFeatureRefreshRequest(feature, featureSet));
+                eventBus.post(new WizardFeatureRefreshRequest(state));
             }
         });
         resetButton.setStyleName("reset-button");
@@ -69,7 +68,7 @@ public final class EnumWizardFeatureLayout extends VerticalLayout {
                 public void click(final ClickEvent event) {
                     checkBox.setValue(!checkBox.getValue());
                     featureValue.setSelected(checkBox.getValue());
-                    eventBus.post(new WizardFeatureRefreshRequest(feature, featureSet));
+                    eventBus.post(new WizardFeatureRefreshRequest(state));
                 }
             });
             captionLayout.addComponent(checkBox);
