@@ -2,23 +2,16 @@ package net.lab1318.costume.gui.events.wizard;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import net.lab1318.costume.gui.models.wizard.WizardFeature;
-import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
+import net.lab1318.costume.gui.models.wizard.WizardState;
 
 abstract class AbstractWizardFeatureNavigationRequest {
-    protected AbstractWizardFeatureNavigationRequest(final WizardFeature currentFeature, final WizardFeatureSet featureSet) {
-        this.currentFeature = checkNotNull(currentFeature);
-        this.featureSet = checkNotNull(featureSet);
+    protected AbstractWizardFeatureNavigationRequest(final WizardState state) {
+        this.state = checkNotNull(state);
     }
 
-    public final WizardFeature getCurrentFeature() {
-        return currentFeature;
+    public WizardState getState() {
+        return state;
     }
 
-    public final WizardFeatureSet getFeatureSet() {
-        return featureSet;
-    }
-
-    private final WizardFeature currentFeature;
-    private final WizardFeatureSet featureSet;
+    private final WizardState state;
 }

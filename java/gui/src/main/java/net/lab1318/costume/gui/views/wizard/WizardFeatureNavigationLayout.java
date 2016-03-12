@@ -15,20 +15,20 @@ import net.lab1318.costume.gui.events.wizard.WizardFeatureBackRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureFinishRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureNextRequest;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
-import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
+import net.lab1318.costume.gui.models.wizard.WizardState;
 
 @SuppressWarnings("serial")
 @DesignRoot
 public final class WizardFeatureNavigationLayout extends HorizontalLayout {
     public WizardFeatureNavigationLayout(final WizardFeature currentFeature, final EventBus eventBus,
-            final WizardFeatureSet featureSet) {
+            final WizardState state) {
         Design.read(this);
 
         backButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
                 if (__validateSelected(currentFeature)) {
-                    eventBus.post(new WizardFeatureBackRequest(currentFeature, featureSet));
+                    eventBus.post(new WizardFeatureBackRequest(state));
                 }
             }
         });
@@ -37,7 +37,7 @@ public final class WizardFeatureNavigationLayout extends HorizontalLayout {
             @Override
             public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
                 if (__validateSelected(currentFeature)) {
-                    eventBus.post(new WizardFeatureFinishRequest(currentFeature, featureSet));
+                    eventBus.post(new WizardFeatureFinishRequest(state));
                 }
             }
         });
@@ -46,7 +46,7 @@ public final class WizardFeatureNavigationLayout extends HorizontalLayout {
             @Override
             public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
                 if (__validateSelected(currentFeature)) {
-                    eventBus.post(new WizardFeatureNextRequest(currentFeature, featureSet));
+                    eventBus.post(new WizardFeatureNextRequest(state));
                 }
             }
         });

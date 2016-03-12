@@ -12,8 +12,7 @@ import com.vaadin.ui.Layout;
 
 import net.lab1318.costume.gui.models.wizard.EnumWizardFeature;
 import net.lab1318.costume.gui.models.wizard.TextWizardFeature;
-import net.lab1318.costume.gui.models.wizard.WizardFeature;
-import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
+import net.lab1318.costume.gui.models.wizard.catalog_wizard.CatalogWizardState;
 import net.lab1318.costume.gui.views.TopLevelView;
 import net.lab1318.costume.gui.views.wizard.EnumWizardFeatureLayout;
 import net.lab1318.costume.gui.views.wizard.TextWizardFeatureLayout;
@@ -41,31 +40,32 @@ public class CatalogWizardFeatureView extends TopLevelView {
         super(eventBus);
     }
 
-    public void setModels(final WizardFeature currentFeature, final WizardFeatureSet featureSet) {
+    public void setModels(final CatalogWizardState state) {
         final Design design = new Design();
 
         design.currentFeatureNameLabel.setCaptionAsHtml(true);
-        design.currentFeatureNameLabel.setCaption("<h1>" + currentFeature.getName() + "</h1>");
+        design.currentFeatureNameLabel.setCaption("<h1>" + state.getCurrentFeature().get().getName() + "</h1>");
 
         final WizardFeatureNavigationLayout bottomFeatureNavigationLayout = new WizardFeatureNavigationLayout(
-                currentFeature, _getEventBus(), featureSet);
+                state.getCurrentFeature().get(), _getEventBus(), state);
         design.bottomNavigationLayout.addComponent(bottomFeatureNavigationLayout);
 
-        if (currentFeature instanceof EnumWizardFeature) {
-            design.currentFeatureLayout.addComponent(
-                    new EnumWizardFeatureLayout(_getEventBus(), (EnumWizardFeature) currentFeature, featureSet));
-        } else if (currentFeature instanceof TextWizardFeature) {
-            design.currentFeatureLayout.addComponent(new TextWizardFeatureLayout((TextWizardFeature) currentFeature,
-                    bottomFeatureNavigationLayout.getNextButton()));
+        if (state.getCurrentFeature().get() instanceof EnumWizardFeature) {
+            design.currentFeatureLayout.addComponent(new EnumWizardFeatureLayout(_getEventBus(),
+                    (EnumWizardFeature) state.getCurrentFeature().get(), state));
+        } else if (state.getCurrentFeature().get() instanceof TextWizardFeature) {
+            design.currentFeatureLayout
+                    .addComponent(new TextWizardFeatureLayout((TextWizardFeature) state.getCurrentFeature().get(),
+                            bottomFeatureNavigationLayout.getNextButton()));
         } else {
             throw new UnsupportedOperationException();
         }
 
-        design.featureSetLayout
-                .addComponent(new WizardFeatureSetLayout(Optional.of(currentFeature), _getEventBus(), featureSet));
+        design.featureSetLayout.addComponent(
+                new WizardFeatureSetLayout(Optional.of(state.getCurrentFeature().get()), _getEventBus(), state));
 
-        design.topNavigationLayout
-                .addComponent(new WizardFeatureNavigationLayout(currentFeature, _getEventBus(), featureSet));
+        design.topNavigationLayout.addComponent(
+                new WizardFeatureNavigationLayout(state.getCurrentFeature().get(), _getEventBus(), state));
 
         setCompositionRoot(design);
     }

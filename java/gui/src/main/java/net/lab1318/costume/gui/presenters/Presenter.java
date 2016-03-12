@@ -147,7 +147,7 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
 
     protected final ImmutableMap<CollectionId, Collection> _getCollections(
             final ImmutableList<CollectionId> collectionIds, final CollectionQueryService collectionQueryService)
-                    throws IoException, NoSuchCollectionException {
+            throws IoException, NoSuchCollectionException {
         final ImmutableList<Collection> collections = collectionQueryService.getCollectionsByIds(collectionIds);
         checkState(collectionIds.size() == collections.size());
         final ImmutableMap.Builder<CollectionId, Collection> collectionMapBuilder = ImmutableMap.builder();
@@ -163,7 +163,7 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
 
     protected final ImmutableMap<InstitutionId, Institution> _getInstitutions(
             final ImmutableList<InstitutionId> institutionIds, final InstitutionQueryService institutionQueryService)
-                    throws IoException, NoSuchInstitutionException {
+            throws IoException, NoSuchInstitutionException {
         final ImmutableList<Institution> institutions = institutionQueryService.getInstitutionsByIds(institutionIds);
         checkState(institutionIds.size() == institutions.size());
         final ImmutableMap.Builder<InstitutionId, Institution> institutionMapBuilder = ImmutableMap.builder();

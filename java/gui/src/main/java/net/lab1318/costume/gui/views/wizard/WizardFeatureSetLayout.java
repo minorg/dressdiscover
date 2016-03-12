@@ -9,21 +9,21 @@ import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.gui.events.wizard.WizardFeatureGotoRequest;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
-import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
+import net.lab1318.costume.gui.models.wizard.WizardState;
 
 @SuppressWarnings("serial")
 public final class WizardFeatureSetLayout extends VerticalLayout {
     public WizardFeatureSetLayout(final Optional<WizardFeature> currentFeature, final EventBus eventBus,
-            final WizardFeatureSet featureSet) {
+            final WizardState state) {
         setStyleName("wizard-feature-set-layout");
 
-        for (final WizardFeature feature : featureSet.getFeatures()) {
+        for (final WizardFeature feature : state.getFeatureSet().getFeatures()) {
             final VerticalLayout featureLayout = new VerticalLayout();
             featureLayout.setStyleName("feature-layout");
             final Button featureButton = new Button(feature.getName(), new Button.ClickListener() {
                 @Override
                 public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
-                    eventBus.post(new WizardFeatureGotoRequest(feature.getName(), featureSet));
+                    eventBus.post(new WizardFeatureGotoRequest(feature.getName(), state));
                 }
             });
             if (currentFeature.isPresent() && feature.getName().equals(currentFeature.get().getName())) {

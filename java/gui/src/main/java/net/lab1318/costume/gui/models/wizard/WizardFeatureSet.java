@@ -1,10 +1,12 @@
 package net.lab1318.costume.gui.models.wizard;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 import com.google.common.base.Charsets;
@@ -12,6 +14,7 @@ import com.google.common.collect.ImmutableList;
 import com.opencsv.CSVWriter;
 
 import net.lab1318.costume.api.models.object.ObjectQuery;
+import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
 
 public abstract class WizardFeatureSet {
     public WizardFeatureSet(final ImmutableList<WizardFeature> features) {
@@ -33,30 +36,20 @@ public abstract class WizardFeatureSet {
         return "features";
     }
 
-    public final WizardFeature getFeatureByName(final String name) {
+    public final WizardFeature getFeatureByName(final String name) throws UnknownWizardFeatureException {
         for (final WizardFeature feature : features) {
             if (feature.getName().equals(name)) {
                 return feature;
             }
         }
-        throw new IllegalArgumentException(name);
+        throw new UnknownWizardFeatureException(String.format("unknown feature '%s'", name));
     }
 
     public final ImmutableList<WizardFeature> getFeatures() {
         return features;
     }
 
-    public abstract ObjectQuery getSelectedAsQuery();
-
-    public abstract String getUrlName();
-
-    public final void resetSelected() {
-        for (final WizardFeature feature : features) {
-            feature.resetSelected();
-        }
-    }
-
-    public String toCsv() {
+    public String getSelectedAsCsv() {
         final StringWriter csvStringWriter = new StringWriter();
         try (final CSVWriter csvWriter = new CSVWriter(csvStringWriter)) {
             csvWriter.writeNext(new String[] { "Feature name", "Feature value" });
@@ -72,7 +65,9 @@ public abstract class WizardFeatureSet {
         return csvStringWriter.toString();
     }
 
-    public final String toUrlString() {
+    public abstract ObjectQuery getSelectedAsQuery();
+
+    public final String getSelectedAsUrlEncodedString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getUrlName());
         boolean haveSelectedFeatureValue = false;
@@ -81,7 +76,7 @@ public abstract class WizardFeatureSet {
                 if (haveSelectedFeatureValue) {
                     builder.append('&');
                 } else {
-                    builder.append(URL_STRING_SEPARATOR);
+                    builder.append('?');
                 }
                 try {
                     builder.append(URLEncoder.encode(feature.getName(), Charsets.UTF_8.name()));
@@ -93,18 +88,57 @@ public abstract class WizardFeatureSet {
                 haveSelectedFeatureValue = true;
             }
         }
-        return builder.toString();
-    }
-
-    private final ImmutableList<WizardFeature> features;
-
-    public final static String URL_STRING_SEPARATOR;
-
-    static {
         try {
-            URL_STRING_SEPARATOR = URLEncoder.encode("?", Charsets.UTF_8.name());
+            return URLEncoder.encode(builder.toString(), Charsets.UTF_8.name());
         } catch (final UnsupportedEncodingException e) {
             throw new IllegalStateException(e);
         }
     }
+
+    public abstract String getUrlName();
+
+    public final void resetSelected() {
+        for (final WizardFeature feature : features) {
+            feature.resetSelected();
+        }
+    }
+
+    public final void setSelectedFromUrlDecodedString(final String urlDecodedString) {
+        final String[] urlDecodedStringSplit = StringUtils.splitByWholeSeparator(urlDecodedString, "?", 2);
+
+        checkState(urlDecodedStringSplit[0].toLowerCase().equals(getUrlName()));
+
+        if (urlDecodedStringSplit.length == 1 || urlDecodedStringSplit[1].isEmpty()) {
+            return;
+        }
+
+        for (final String nameValuePairString : urlDecodedStringSplit[1].split("&")) {
+            final String[] nameValuePairSplit = nameValuePairString.split("=", 2);
+            if (nameValuePairSplit.length == 1) {
+                continue;
+            }
+            String selectedName, selectedValue;
+            try {
+                selectedName = URLDecoder.decode(nameValuePairSplit[0], Charsets.UTF_8.name());
+                if (selectedName.isEmpty()) {
+                    continue;
+                }
+                selectedValue = URLDecoder.decode(nameValuePairSplit[1], Charsets.UTF_8.name());
+                if (selectedValue.isEmpty()) {
+                    continue;
+                }
+            } catch (final UnsupportedEncodingException e) {
+                throw new IllegalStateException(e);
+            }
+            for (final WizardFeature feature : getFeatures()) {
+                if (!feature.getName().equals(selectedName)) {
+                    continue;
+                }
+                feature.addSelected(selectedValue);
+                break;
+            }
+        }
+    }
+
+    private final ImmutableList<WizardFeature> features;
 }

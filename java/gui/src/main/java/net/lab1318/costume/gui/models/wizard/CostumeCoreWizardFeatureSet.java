@@ -70,27 +70,6 @@ public final class CostumeCoreWizardFeatureSet extends WizardFeatureSet {
         return URL_NAME;
     }
 
-    // @Override
-    // public void setSelectedFromQuery(final ObjectQuery query) {
-    // if (!query.getStructureTexts().isPresent()) {
-    // return;
-    // }
-    // final ImmutableMap<String, ImmutableList<String>> structuredTexts =
-    // query.getStructureTexts().get();
-    // for (final WizardFeature feature : getFeatures()) {
-    // final ImmutableList<String> structuredTextValues =
-    // structuredTexts.get(feature.getName());
-    // if (structuredTextValues == null) {
-    // continue;
-    // }
-    // for (final WizardFeatureValue featureValue : feature.getValues()) {
-    // if (structuredTextValues.contains(featureValue.getName())) {
-    // featureValue.setSelected(true);
-    // }
-    // }
-    // }
-    // }
-
     public final static String DISPLAY_NAME = "Costume Core";
     public final static String URL_NAME = "costume_core";
 }
