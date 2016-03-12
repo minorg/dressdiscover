@@ -20,65 +20,68 @@ import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.lib.services.ServiceTest;
 import net.lab1318.costume.lib.services.TestData;
+import net.lab1318.costume.lib.stores.object.ObjectSummaryElasticSearchIndex;
 
 public abstract class ObjectServiceTest extends ServiceTest {
-	@Before
-	public void setUp() throws Exception {
-		collectionCommandService = _getInjector().getInstance(CollectionCommandService.class);
-		collectionQueryService = _getInjector().getInstance(CollectionQueryService.class);
-		institutionCommandService = _getInjector().getInstance(InstitutionCommandService.class);
-		objectCommandService = _getInjector().getInstance(ObjectCommandService.class);
-		objectQueryService = _getInjector().getInstance(ObjectQueryService.class);
-		objectSummaryQueryService = _getInjector().getInstance(ObjectSummaryQueryService.class);
-		tearDown();
-	}
+    @Before
+    public void setUp() throws Exception {
+        collectionCommandService = _getInjector().getInstance(CollectionCommandService.class);
+        collectionQueryService = _getInjector().getInstance(CollectionQueryService.class);
+        institutionCommandService = _getInjector().getInstance(InstitutionCommandService.class);
+        objectCommandService = _getInjector().getInstance(ObjectCommandService.class);
+        objectQueryService = _getInjector().getInstance(ObjectQueryService.class);
+        objectSummaryElasticSearchIndex = _getInjector().getInstance(ObjectSummaryElasticSearchIndex.class);
+        objectSummaryQueryService = _getInjector().getInstance(ObjectSummaryQueryService.class);
+        tearDown();
+    }
 
-	@After
-	public void tearDown() throws Exception {
-		objectCommandService.deleteObjects();
-		collectionCommandService.deleteCollections();
-		institutionCommandService.deleteInstitutions();
-		Thread.sleep(1000);
-	}
+    @After
+    public void tearDown() throws Exception {
+        objectCommandService.deleteObjects();
+        collectionCommandService.deleteCollections();
+        institutionCommandService.deleteInstitutions();
+        objectSummaryElasticSearchIndex.refresh();
+    }
 
-	protected final int _getObjectCount() throws Exception {
-		return _getObjectCount(Optional.absent());
-	}
+    protected final int _getObjectCount() throws Exception {
+        return _getObjectCount(Optional.absent());
+    }
 
-	protected final int _getObjectCount(final Optional<ObjectQuery> query) throws Exception {
-		return objectSummaryQueryService
-				.getObjectSummaries(
-						Optional.of(GetObjectSummariesOptions.builder().setSize(UnsignedInteger.ZERO).build()), query)
-				.getTotalHits().intValue();
-	}
+    protected final int _getObjectCount(final Optional<ObjectQuery> query) throws Exception {
+        return objectSummaryQueryService
+                .getObjectSummaries(
+                        Optional.of(GetObjectSummariesOptions.builder().setSize(UnsignedInteger.ZERO).build()), query)
+                .getTotalHits().intValue();
+    }
 
-	protected final int _getObjectCountByCollectionId(final CollectionId collectionId) throws Exception {
-		return _getObjectCount(Optional.of(ObjectQuery.builder().setCollectionId(collectionId).build()));
-	}
+    protected final int _getObjectCountByCollectionId(final CollectionId collectionId) throws Exception {
+        return _getObjectCount(Optional.of(ObjectQuery.builder().setCollectionId(collectionId).build()));
+    }
 
-	protected final int _getObjectCountByInstitutionId(final InstitutionId institutionId) throws Exception {
-		return _getObjectCount(Optional.of(ObjectQuery.builder().setInstitutionId(institutionId).build()));
-	}
+    protected final int _getObjectCountByInstitutionId(final InstitutionId institutionId) throws Exception {
+        return _getObjectCount(Optional.of(ObjectQuery.builder().setInstitutionId(institutionId).build()));
+    }
 
-	protected final ObjectEntry _putObject() throws Exception {
-		for (final ObjectEntry objectEntry : TestData.getInstance().getObjects().values()) {
-			objectCommandService.putObject(objectEntry.getId(), objectEntry.getModel());
-			Thread.sleep(500); // Let writes settle
-			return objectEntry;
-		}
-		throw new IllegalStateException();
-	}
+    protected final ObjectEntry _putObject() throws Exception {
+        for (final ObjectEntry objectEntry : TestData.getInstance().getObjects().values()) {
+            objectCommandService.putObject(objectEntry.getId(), objectEntry.getModel());
+            objectSummaryElasticSearchIndex.refresh();
+            return objectEntry;
+        }
+        throw new IllegalStateException();
+    }
 
-	protected final ImmutableList<ObjectEntry> _putObjects() throws Exception {
-		objectCommandService.putObjects(ImmutableList.copyOf(TestData.getInstance().getObjects().values()));
-		Thread.sleep(1000); // Let writes settle
-		return ImmutableList.copyOf(TestData.getInstance().getObjects().values());
-	}
+    protected final ImmutableList<ObjectEntry> _putObjects() throws Exception {
+        objectCommandService.putObjects(ImmutableList.copyOf(TestData.getInstance().getObjects().values()));
+        objectSummaryElasticSearchIndex.refresh();
+        return ImmutableList.copyOf(TestData.getInstance().getObjects().values());
+    }
 
-	private CollectionCommandService collectionCommandService;
-	protected CollectionQueryService collectionQueryService;
-	private InstitutionCommandService institutionCommandService;
-	protected ObjectCommandService objectCommandService;
-	protected ObjectQueryService objectQueryService;
-	protected ObjectSummaryQueryService objectSummaryQueryService;
+    private CollectionCommandService collectionCommandService;
+    protected CollectionQueryService collectionQueryService;
+    private InstitutionCommandService institutionCommandService;
+    protected ObjectCommandService objectCommandService;
+    protected ObjectQueryService objectQueryService;
+    protected ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex;
+    protected ObjectSummaryQueryService objectSummaryQueryService;
 }

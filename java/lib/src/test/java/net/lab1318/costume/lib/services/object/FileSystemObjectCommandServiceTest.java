@@ -14,10 +14,9 @@ public final class FileSystemObjectCommandServiceTest extends ObjectServiceTest 
     public void testDeleteObjects() throws Exception {
         assertEquals(0, _getObjectCount());
         _putObjects();
-        Thread.sleep(1000); // Let writes settle
         assertNotEquals(0, _getObjectCount());
         objectCommandService.deleteObjects();
-        Thread.sleep(1000); // Let writes settle
+        objectSummaryElasticSearchIndex.refresh();
         assertEquals(0, _getObjectCount());
     }
 
@@ -27,7 +26,7 @@ public final class FileSystemObjectCommandServiceTest extends ObjectServiceTest 
         for (final CollectionEntry collectionEntry : collectionQueryService.getCollections()) {
             assertNotEquals(0, _getObjectCountByCollectionId(collectionEntry.getId()));
             objectCommandService.deleteObjectsByCollectionId(collectionEntry.getId());
-            Thread.sleep(1000); // Let writes settle
+            objectSummaryElasticSearchIndex.refresh();
             assertEquals(0, _getObjectCountByCollectionId(collectionEntry.getId()));
         }
     }
@@ -40,7 +39,7 @@ public final class FileSystemObjectCommandServiceTest extends ObjectServiceTest 
             assertNotEquals(0, objectCount);
             assertEquals(objectCount,
                     objectCommandService.deleteObjectsByInstitutionId(institutionEntry.getId()).intValue());
-            Thread.sleep(1000); // Let writes settle
+            objectSummaryElasticSearchIndex.refresh();
             assertEquals(0, _getObjectCountByInstitutionId(institutionEntry.getId()));
         }
     }
@@ -49,7 +48,7 @@ public final class FileSystemObjectCommandServiceTest extends ObjectServiceTest 
     public void testPutObject() throws Exception {
         assertEquals(0, _getObjectCount());
         _putObject();
-        Thread.sleep(1000); // Let writes settle
+        objectSummaryElasticSearchIndex.refresh();
         assertEquals(1, _getObjectCount());
     }
 
@@ -57,7 +56,7 @@ public final class FileSystemObjectCommandServiceTest extends ObjectServiceTest 
     public void testPutObjects() throws Exception {
         assertEquals(0, _getObjectCount());
         _putObjects();
-        Thread.sleep(1000); // Let writes settle
+        objectSummaryElasticSearchIndex.refresh();
         assertEquals(TestData.getInstance().getObjects().size(), _getObjectCount());
     }
 

@@ -22,7 +22,6 @@ public abstract class CollectionServiceTest extends ServiceTest {
         for (final CollectionEntry collectionEntry : TestData.getInstance().getCollections().values()) {
             collectionCommandService.putCollection(collectionEntry.getId(), collectionEntry.getModel());
         }
-        Thread.sleep(1000); // Let writes settle
         return ImmutableList.copyOf(TestData.getInstance().getCollections().values());
     }
 
@@ -38,7 +37,6 @@ public abstract class CollectionServiceTest extends ServiceTest {
     public void tearDown() throws Exception {
         collectionCommandService.deleteCollections();
         institutionCommandService.deleteInstitutions();
-        Thread.sleep(1000);
     }
 
     protected final ImmutableList<CollectionEntry> _putCollections() throws Exception {
