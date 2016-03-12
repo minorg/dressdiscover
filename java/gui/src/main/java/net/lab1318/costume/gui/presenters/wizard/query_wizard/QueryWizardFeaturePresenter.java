@@ -21,6 +21,7 @@ import net.lab1318.costume.gui.models.wizard.WizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSetFactories;
 import net.lab1318.costume.gui.models.wizard.WizardMode;
+import net.lab1318.costume.gui.presenters.NamedPresenterParameters;
 import net.lab1318.costume.gui.presenters.wizard.AbstractWizardFeaturePresenter;
 import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardFeatureView;
 import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardSummaryView;
@@ -30,7 +31,7 @@ public class QueryWizardFeaturePresenter extends AbstractWizardFeaturePresenter<
     static void navigateToFeature(final WizardFeature feature, final WizardFeatureSet featureSet) {
         UI.getCurrent().getNavigator()
                 .navigateTo(QueryWizardFeatureView.NAME + '/'
-                        + new NamedParameters(ImmutableMap.of("feature", feature.getName(), "feature_set",
+                        + new NamedPresenterParameters(ImmutableMap.of("feature", feature.getName(), "feature_set",
                                 featureSet.getSelectedAsUrlEncodedString())).toUrlEncodedString());
     }
 
@@ -55,7 +56,7 @@ public class QueryWizardFeaturePresenter extends AbstractWizardFeaturePresenter<
 
     @Override
     protected final void _refreshView(final WizardFeature currentFeature, final WizardFeatureSet featureSet,
-            final NamedParameters parameters) {
+            final NamedPresenterParameters parameters) {
         final UnsignedInteger selectedObjectCount;
         try {
             selectedObjectCount = objectSummaryQueryService

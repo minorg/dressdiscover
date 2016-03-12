@@ -36,13 +36,13 @@ public abstract class WizardFeatureSet {
         return "features";
     }
 
-    public final WizardFeature getFeatureByName(final String name) {
+    public final WizardFeature getFeatureByName(final String name) throws UnknownWizardFeatureException {
         for (final WizardFeature feature : features) {
             if (feature.getName().equals(name)) {
                 return feature;
             }
         }
-        throw new IllegalArgumentException(name);
+        throw new UnknownWizardFeatureException(String.format("unknown feature '%s'", name));
     }
 
     public final ImmutableList<WizardFeature> getFeatures() {
