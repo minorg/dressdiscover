@@ -21,7 +21,6 @@ import net.lab1318.costume.gui.models.NameValuePairs;
 import net.lab1318.costume.gui.models.wizard.UnknownWizardFeatureException;
 import net.lab1318.costume.gui.models.wizard.UnknownWizardFeatureSetException;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
-import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSetFactories;
 import net.lab1318.costume.gui.models.wizard.WizardMode;
 import net.lab1318.costume.gui.models.wizard.query_wizard.QueryWizardState;
@@ -43,14 +42,14 @@ public class QueryWizardFeaturePresenter
     @Override
     protected final void _navigateToFeature(final WizardFeature feature, final QueryWizardState state) {
         state.setCurrentFeature(feature);
-        UI.getCurrent().getNavigator().navigateTo(
-                QueryWizardFeatureView.NAME + '/' + new NameValuePairs(state.toMap()).toUrlEncodedString());
+        UI.getCurrent().getNavigator()
+                .navigateTo(QueryWizardFeatureView.NAME + '/' + state.toNameValuePairs().toUrlEncodedString());
     }
 
     @Override
     protected final void _navigateToSummary(final QueryWizardState state) {
-        UI.getCurrent().getNavigator().navigateTo(
-                QueryWizardSummaryView.NAME + "/" + new NameValuePairs(state.toMap()).toUrlEncodedString());
+        UI.getCurrent().getNavigator()
+                .navigateTo(QueryWizardSummaryView.NAME + "/" + state.toNameValuePairs().toUrlEncodedString());
     }
 
     @Override
@@ -70,8 +69,7 @@ public class QueryWizardFeaturePresenter
     @Override
     protected QueryWizardState _parseParameters(final NameValuePairs parameters)
             throws IoException, UnknownWizardFeatureException, UnknownWizardFeatureSetException {
-        final WizardFeatureSet featureSet = _parseFeatureSetParameter(parameters);
-        return new QueryWizardState(Optional.of(_parseFeatureParameter(featureSet, parameters)), featureSet);
+        return QueryWizardState.fromNameValuePairs(_getFeatureSetFactories(), parameters);
     }
 
     private final ObjectSummaryQueryService objectSummaryQueryService;

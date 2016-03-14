@@ -35,9 +35,8 @@ public class QueryWizardSummaryPresenter
     protected void _navigateToFeature(final WizardFeature feature, final QueryWizardState state) {
         UI.getCurrent().getNavigator()
                 .navigateTo(CatalogWizardFeatureView.NAME + '/'
-                        + new NameValuePairs(
-                                new QueryWizardState(Optional.of(feature), state.getFeatureSet()).toMap())
-                                        .toUrlEncodedString());
+                        + new QueryWizardState(Optional.of(feature), state.getFeatureSet()).toNameValuePairs()
+                                .toUrlEncodedString());
     }
 
     @Override

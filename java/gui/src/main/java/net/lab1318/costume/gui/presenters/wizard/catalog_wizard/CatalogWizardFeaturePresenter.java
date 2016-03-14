@@ -15,7 +15,6 @@ import net.lab1318.costume.gui.models.NameValuePairs;
 import net.lab1318.costume.gui.models.wizard.UnknownWizardFeatureException;
 import net.lab1318.costume.gui.models.wizard.UnknownWizardFeatureSetException;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
-import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSetFactories;
 import net.lab1318.costume.gui.models.wizard.WizardMode;
 import net.lab1318.costume.gui.models.wizard.catalog_wizard.CatalogWizardState;
@@ -36,15 +35,15 @@ public class CatalogWizardFeaturePresenter
     @Override
     protected final void _navigateToFeature(final WizardFeature feature, final CatalogWizardState state) {
         state.setCurrentFeature(feature);
-        UI.getCurrent().getNavigator().navigateTo(
-                CatalogWizardFeatureView.NAME + '/' + new NameValuePairs(state.toMap()).toUrlEncodedString());
+        UI.getCurrent().getNavigator()
+                .navigateTo(CatalogWizardFeatureView.NAME + '/' + state.toNameValuePairs().toUrlEncodedString());
     }
 
     @Override
     protected final void _navigateToSummary(final CatalogWizardState state) {
         state.setCurrentFeature(Optional.absent());
-        UI.getCurrent().getNavigator().navigateTo(
-                CatalogWizardSummaryView.NAME + "/" + new NameValuePairs(state.toMap()).toUrlEncodedString());
+        UI.getCurrent().getNavigator()
+                .navigateTo(CatalogWizardSummaryView.NAME + "/" + state.toNameValuePairs().toUrlEncodedString());
     }
 
     @Override
@@ -55,8 +54,6 @@ public class CatalogWizardFeaturePresenter
     @Override
     protected CatalogWizardState _parseParameters(final NameValuePairs parameters)
             throws IoException, UnknownWizardFeatureException, UnknownWizardFeatureSetException {
-        final WizardFeatureSet featureSet = _parseFeatureSetParameter(parameters);
-        return new CatalogWizardState(Optional.of(_parseFeatureParameter(featureSet, parameters)), featureSet,
-                Optional.absent());
+        return CatalogWizardState.fromNameValuePairs(_getFeatureSetFactories(), _getMode(), parameters);
     }
 }

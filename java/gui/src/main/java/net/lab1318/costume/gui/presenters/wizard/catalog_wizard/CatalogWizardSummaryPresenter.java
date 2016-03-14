@@ -33,9 +33,10 @@ public class CatalogWizardSummaryPresenter
 
     @Override
     protected void _navigateToFeature(final WizardFeature feature, final CatalogWizardState state) {
-        UI.getCurrent().getNavigator().navigateTo(CatalogWizardFeatureView.NAME + '/' + new NameValuePairs(
-                new CatalogWizardState(Optional.of(feature), state.getFeatureSet(), state.getObjectId()).toMap())
-                        .toUrlEncodedString());
+        UI.getCurrent().getNavigator()
+                .navigateTo(CatalogWizardFeatureView.NAME + '/'
+                        + new CatalogWizardState(Optional.of(feature), state.getFeatureSet(), state.getObjectId())
+                                .toNameValuePairs().toUrlEncodedString());
     }
 
     @Override
