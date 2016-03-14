@@ -17,6 +17,7 @@ import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.api.services.user.UserCommandService;
 import net.lab1318.costume.api.services.user.UserQueryService;
+import net.lab1318.costume.gui.models.NameValuePairs;
 import net.lab1318.costume.gui.models.wizard.UnknownWizardFeatureException;
 import net.lab1318.costume.gui.models.wizard.UnknownWizardFeatureSetException;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
@@ -24,7 +25,6 @@ import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSetFactories;
 import net.lab1318.costume.gui.models.wizard.WizardMode;
 import net.lab1318.costume.gui.models.wizard.query_wizard.QueryWizardState;
-import net.lab1318.costume.gui.presenters.NamedPresenterParameters;
 import net.lab1318.costume.gui.presenters.wizard.AbstractWizardFeaturePresenter;
 import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardFeatureView;
 import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardSummaryView;
@@ -44,13 +44,13 @@ public class QueryWizardFeaturePresenter
     protected final void _navigateToFeature(final WizardFeature feature, final QueryWizardState state) {
         state.setCurrentFeature(feature);
         UI.getCurrent().getNavigator().navigateTo(
-                QueryWizardFeatureView.NAME + '/' + new NamedPresenterParameters(state.toMap()).toUrlEncodedString());
+                QueryWizardFeatureView.NAME + '/' + new NameValuePairs(state.toMap()).toUrlEncodedString());
     }
 
     @Override
     protected final void _navigateToSummary(final QueryWizardState state) {
         UI.getCurrent().getNavigator().navigateTo(
-                QueryWizardSummaryView.NAME + "/" + new NamedPresenterParameters(state.toMap()).toUrlEncodedString());
+                QueryWizardSummaryView.NAME + "/" + new NameValuePairs(state.toMap()).toUrlEncodedString());
     }
 
     @Override
@@ -68,7 +68,7 @@ public class QueryWizardFeaturePresenter
     }
 
     @Override
-    protected QueryWizardState _parseParameters(final NamedPresenterParameters parameters)
+    protected QueryWizardState _parseParameters(final NameValuePairs parameters)
             throws IoException, UnknownWizardFeatureException, UnknownWizardFeatureSetException {
         final WizardFeatureSet featureSet = _parseFeatureSetParameter(parameters);
         return new QueryWizardState(Optional.of(_parseFeatureParameter(featureSet, parameters)), featureSet);

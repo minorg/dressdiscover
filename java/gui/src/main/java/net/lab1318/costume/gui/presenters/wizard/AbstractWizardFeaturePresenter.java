@@ -13,13 +13,13 @@ import net.lab1318.costume.gui.events.wizard.WizardFeatureBackRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureFinishRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureNextRequest;
 import net.lab1318.costume.gui.events.wizard.WizardFeatureRefreshRequest;
+import net.lab1318.costume.gui.models.NameValuePairs;
 import net.lab1318.costume.gui.models.wizard.UnknownWizardFeatureException;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSet;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSetFactories;
 import net.lab1318.costume.gui.models.wizard.WizardMode;
 import net.lab1318.costume.gui.models.wizard.WizardState;
-import net.lab1318.costume.gui.presenters.NamedPresenterParameters;
 
 public abstract class AbstractWizardFeaturePresenter<StateT extends WizardState, ViewT extends View>
         extends AbstractWizardPresenter<StateT, ViewT> {
@@ -64,7 +64,7 @@ public abstract class AbstractWizardFeaturePresenter<StateT extends WizardState,
     protected abstract void _navigateToSummary(final StateT state);
 
     protected final WizardFeature _parseFeatureParameter(final WizardFeatureSet featureSet,
-            final NamedPresenterParameters parameters) throws IoException, UnknownWizardFeatureException {
+            final NameValuePairs parameters) throws IoException, UnknownWizardFeatureException {
         final Optional<String> featureName = parameters.getFirst("feature");
         if (!featureName.isPresent() || featureName.get().isEmpty()) {
             return featureSet.getFeatures().get(0);

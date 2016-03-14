@@ -10,13 +10,13 @@ import com.vaadin.ui.UI;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.user.UserCommandService;
 import net.lab1318.costume.api.services.user.UserQueryService;
+import net.lab1318.costume.gui.models.NameValuePairs;
 import net.lab1318.costume.gui.models.wizard.UnknownWizardFeatureException;
 import net.lab1318.costume.gui.models.wizard.UnknownWizardFeatureSetException;
 import net.lab1318.costume.gui.models.wizard.WizardFeature;
 import net.lab1318.costume.gui.models.wizard.WizardFeatureSetFactories;
 import net.lab1318.costume.gui.models.wizard.WizardMode;
 import net.lab1318.costume.gui.models.wizard.catalog_wizard.CatalogWizardState;
-import net.lab1318.costume.gui.presenters.NamedPresenterParameters;
 import net.lab1318.costume.gui.presenters.wizard.AbstractWizardSummaryPresenter;
 import net.lab1318.costume.gui.views.wizard.catalog_wizard.CatalogWizardFeatureView;
 import net.lab1318.costume.gui.views.wizard.catalog_wizard.CatalogWizardSummaryView;
@@ -33,13 +33,13 @@ public class CatalogWizardSummaryPresenter
 
     @Override
     protected void _navigateToFeature(final WizardFeature feature, final CatalogWizardState state) {
-        UI.getCurrent().getNavigator().navigateTo(CatalogWizardFeatureView.NAME + '/' + new NamedPresenterParameters(
+        UI.getCurrent().getNavigator().navigateTo(CatalogWizardFeatureView.NAME + '/' + new NameValuePairs(
                 new CatalogWizardState(Optional.of(feature), state.getFeatureSet(), state.getObjectId()).toMap())
                         .toUrlEncodedString());
     }
 
     @Override
-    protected CatalogWizardState _parseParameters(final NamedPresenterParameters parameters)
+    protected CatalogWizardState _parseParameters(final NameValuePairs parameters)
             throws IoException, UnknownWizardFeatureException, UnknownWizardFeatureSetException {
         return new CatalogWizardState(Optional.absent(), _parseFeatureSetParameter(parameters), Optional.absent());
     }
