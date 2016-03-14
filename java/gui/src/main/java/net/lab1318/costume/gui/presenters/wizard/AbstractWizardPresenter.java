@@ -11,6 +11,7 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.SystemError;
 import com.vaadin.server.UserError;
 
+import net.lab1318.costume.api.models.object.InvalidObjectIdException;
 import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.user.UserCommandService;
@@ -67,7 +68,7 @@ public abstract class AbstractWizardPresenter<StateT extends WizardState, ViewT 
         } catch (final IoException e) {
             _getView().setComponentError(new SystemError("I/O exception", e));
             return;
-        } catch (final UnknownWizardFeatureException | UnknownWizardFeatureSetException e) {
+        } catch (final InvalidObjectIdException | UnknownWizardFeatureException | UnknownWizardFeatureSetException e) {
             _getView().setComponentError(new UserError(e.getMessage()));
             return;
         }
@@ -85,8 +86,8 @@ public abstract class AbstractWizardPresenter<StateT extends WizardState, ViewT 
         return featureSetFactories.createFeatureSetFromUrlEncodedString(mode, featureSetName.get());
     }
 
-    protected abstract StateT _parseParameters(final NameValuePairs parameters)
-            throws IoException, UnknownWizardFeatureException, UnknownWizardFeatureSetException;
+    protected abstract StateT _parseParameters(final NameValuePairs parameters) throws InvalidObjectIdException,
+            IoException, UnknownWizardFeatureException, UnknownWizardFeatureSetException;
 
     private final WizardFeatureSetFactories featureSetFactories;
     private final WizardMode mode;
