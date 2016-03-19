@@ -8,7 +8,6 @@ import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
 import com.vaadin.annotations.DesignRoot;
-import com.vaadin.ui.Alignment;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
@@ -68,9 +67,8 @@ public class ObjectsView extends TopLevelView {
         if (objectSummariesSize > 0) {
             final Label hitCountsLabel = new Label(
                     String.format("%d object(s) in %d collection(s)", objectSummariesSize, collections.size()));
-            hitCountsLabel.setWidth(100, Unit.PERCENTAGE);
+            hitCountsLabel.setStyleName("hit-counts-label");
             design.rightPaneLayout.addComponent(hitCountsLabel);
-            design.rightPaneLayout.setComponentAlignment(hitCountsLabel, Alignment.MIDDLE_CENTER);
 
             objectSummaryEntriesTable = new ObjectSummaryEntriesTable(bookmarks, collections, currentUserId,
                     _getEventBus(), institutions, objectSummaries);
