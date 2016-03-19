@@ -17,7 +17,6 @@ import net.lab1318.costume.gui.models.component.ComponentTermBean;
 final class ComponentSetTable extends CustomComponent {
     public ComponentSetTable(final ComponentSet components) {
         setCaption("Components");
-        setWidth("100%");
 
         boolean haveNestedBeans = false;
         for (final Component component : components.getElements()) {
@@ -47,7 +46,8 @@ final class ComponentSetTable extends CustomComponent {
             table.setContainerDataSource(container);
             table.setPageLength(container.size());
             table.setVisibleColumns(ImmutableList.of(ComponentTerm.FieldMetadata.TEXT.getJavaName()).toArray());
-            table.setWidth("100%");
+            table.addStyleName("element-set-table");
+            table.addStyleName("component-set-table");
             setCompositionRoot(table);
         }
     }

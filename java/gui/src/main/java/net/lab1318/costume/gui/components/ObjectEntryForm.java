@@ -4,7 +4,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.thryft.waf.gui.EventBus;
 
 import com.vaadin.annotations.DesignRoot;
-import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
@@ -17,22 +16,11 @@ import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.title.Title;
 import net.lab1318.costume.gui.models.gender.Genders;
 
+@DesignRoot
 @SuppressWarnings("serial")
-public final class ObjectEntryForm extends CustomComponent {
-    @DesignRoot("ObjectEntryForm.html")
-    private final static class Design extends HorizontalLayout {
-        public Design() {
-            com.vaadin.ui.declarative.Design.read(this);
-        }
-
-        FormLayout formLayout;
-        Layout rightPaneLayout;
-        Layout rightsLayout;
-        Label titleLabel;
-    }
-
-    public ObjectEntryForm(final EventBus eventBus, final ObjectEntry objectEntry, final Institution institution) {
-        final Design design = new Design();
+public final class ObjectEntryForm extends HorizontalLayout {
+    public ObjectEntryForm(final EventBus eventBus, final Institution institution, final ObjectEntry objectEntry) {
+        com.vaadin.ui.declarative.Design.read(this);
 
         {
             Title preferredTitle = objectEntry.getModel().getTitles().getElements().get(0);
@@ -42,13 +30,11 @@ public final class ObjectEntryForm extends CustomComponent {
                     break;
                 }
             }
-            design.titleLabel.setCaptionAsHtml(true);
-            design.titleLabel.setCaption("<h3>" + preferredTitle.getText() + "</h3>");
+            titleLabel.setCaptionAsHtml(true);
+            titleLabel.setCaption("<h3>" + preferredTitle.getText() + "</h3>");
         }
 
         {
-            final FormLayout formLayout = design.formLayout;
-
             if (objectEntry.getModel().getDates().isPresent()) {
                 formLayout.addComponent(new DateSetTable(objectEntry.getModel().getDates().get()));
             }
@@ -170,14 +156,14 @@ public final class ObjectEntryForm extends CustomComponent {
                 final RightsLayout objectRightsLayout = new RightsLayout("Object metadata",
                         objectEntry.getModel().getRights().get());
                 if (!objectRightsLayout.isEmpty()) {
-                    design.rightsLayout.addComponent(objectRightsLayout);
+                    rightsLayout.addComponent(objectRightsLayout);
                 }
             }
             if (institution.getDataRights().isPresent()) {
                 final RightsLayout institutionRightsLayout = new RightsLayout("Institution metadata",
                         institution.getDataRights().get());
                 if (!institutionRightsLayout.isEmpty()) {
-                    design.rightsLayout.addComponent(institutionRightsLayout);
+                    rightsLayout.addComponent(institutionRightsLayout);
                 }
             }
         }
@@ -196,13 +182,11 @@ public final class ObjectEntryForm extends CustomComponent {
                     } else {
                         continue;
                     }
-                    design.rightPaneLayout.addComponent(new ImageWithRightsLayout("", imageModel.getOriginal(),
-                            bestImageModel, imageModel.getRights().or(objectEntry.getModel().getRights())));
+                    rightPaneLayout.addComponent(new ImageWithRightsLayout("", imageModel.getOriginal(), bestImageModel,
+                            imageModel.getRights().or(objectEntry.getModel().getRights())));
                 }
             }
         }
-
-        setCompositionRoot(design);
     }
 
     // private TextArea __createTextArea(final String caption, final String
@@ -228,4 +212,9 @@ public final class ObjectEntryForm extends CustomComponent {
         }
         return textField;
     }
+
+    FormLayout formLayout;
+    Layout rightPaneLayout;
+    Layout rightsLayout;
+    Label titleLabel;
 }

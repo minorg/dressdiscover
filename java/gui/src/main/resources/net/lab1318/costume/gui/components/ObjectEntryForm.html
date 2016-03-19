@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<v-horizontal-layout size-full style-name="object-entry-form">
-		<v-vertical-layout :left :top width="50%">
+	<v-horizontal-layout style-name="object-entry-form">
+		<v-vertical-layout style-name="left-pane-layout">
 			<v-label _id="titleLabel" style-name="title-label"></v-label>
 			<v-form-layout _id="formLayout"></v-form-layout>
 			<v-vertical-layout _id="rightsLayout"></v-vertical-layout>
 		</v-vertical-layout>
-		<v-vertical-layout _id="rightPaneLayout" style-name="right-pane-layout" :right :top></v-vertical-layout>
+		<v-vertical-layout _id="rightPaneLayout" style-name="right-pane-layout"></v-vertical-layout>
 	</v-horizontal-layout>
 </body>
 </html>

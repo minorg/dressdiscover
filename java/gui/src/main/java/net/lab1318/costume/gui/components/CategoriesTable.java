@@ -42,6 +42,5 @@ final class CategoriesTable extends Table {
         });
         setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
         setPageLength(getContainerDataSource().size());
-        setWidth("100%");
     }
 }

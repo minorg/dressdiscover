@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<v-vertical-layout size-full style-name="object-by-id-view">
+	<v-vertical-layout style-name="object-by-id-view">
 		<v-horizontal-layout style-name="buttons-layout">
 			<v-vertical-layout style-name="left-buttons-layout">
 				<v-button _id="institutionButton" style-name="institution-button"></v-button>
 				<v-label><br/></v-label>
 				<v-button _id="collectionButton" style-name="collection-button"></v-button>
 			</v-vertical-layout style-name="right-buttons-layout">
-			<v-vertical-layout :expand="1">
+			<v-vertical-layout>
 	            <v-button _id="moreLikeThisButton" style-name="more-like-this-button">More like this</v-button>
                 <v-label><br/></v-label>
                 <v-button _id="addMetadataButton" style-name="add-metadata-button">Add metadata</v-button>

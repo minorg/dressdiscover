@@ -88,7 +88,7 @@ public class ObjectByIdView extends TopLevelView {
         });
 
         design.objectEntryFormLayout
-                .addComponent(new ObjectEntryForm(_getEventBus(), objectEntry, institutionEntry.getModel()));
+                .addComponent(new ObjectEntryForm(_getEventBus(), institutionEntry.getModel(), objectEntry));
 
         if (objectEntry.getModel().getRelations().isPresent()) {
             design.carouselLayout.addComponent(new Label("&nbsp;", ContentMode.HTML));

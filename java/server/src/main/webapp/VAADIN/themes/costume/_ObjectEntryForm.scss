@@ -1,5 +1,7 @@
 @mixin ObjectEntryForm {
     .object-entry-form {
+        width: 100%;
+
         h3 {
           font-size: large;
           font-weight: bold;
@@ -12,9 +14,17 @@
           width: 100%;
         }
 
+        .element-set-table {
+          width: 100%;
+        }
+
         .title-button {
           background-color: $costume-color-blue;
           color: white;
+        }
+
+        .left-pane-layout {
+          width: 30%;
         }
 
         .material-button {
@@ -36,6 +46,11 @@
           width: 100%;
         }
 
+        .right-pane-layout {
+          text-align: center;
+          width: 100%;
+        }
+
         .subject-button {
           background-color: $costume-color-dark-green;
           color: white;
@@ -45,6 +60,10 @@
 
         .v-formlayout .v-caption {
           font-weight: bold;
+        }
+
+        .v-slot-right-pane-layout {
+          width: 80%;
         }
 
         .v-table-header-cell {
