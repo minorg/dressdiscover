@@ -6,7 +6,6 @@ import org.thryft.waf.cli.CommandParser;
 import org.thryft.waf.lib.PropertiesModule;
 import org.thryft.waf.lib.logging.LoggingUtils;
 
-import com.google.common.base.Optional;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
@@ -32,7 +31,7 @@ public final class CliMain extends org.thryft.waf.lib.AbstractMain {
 
         _configureLogging(args, "costume");
 
-        final CostumeProperties properties = CostumeProperties.load(Optional.fromNullable(args.properties));
+        final CostumeProperties properties = CostumeProperties.load();
         _getLogger().debug(_getLogMarker(), "properties: {}", properties);
 
         final Injector injector = Guice.createInjector(new PropertiesModule<CostumeProperties>(properties),

@@ -60,7 +60,8 @@ final class ObjectEntryForm extends CustomComponent {
             }
 
             if (objectEntry.getModel().getCategories().isPresent()) {
-                formLayout.addComponent(new CategoriesTable(objectEntry.getModel().getCategories().get(), eventBus));
+                formLayout.addComponent(new CategoriesTable(objectEntry.getModel().getCategories().get(), eventBus,
+                        objectEntry.getId()));
             }
 
             if (objectEntry.getModel().getClosures().isPresent()) {
@@ -101,11 +102,13 @@ final class ObjectEntryForm extends CustomComponent {
             }
 
             if (objectEntry.getModel().getLocations().isPresent()) {
-                formLayout.addComponent(new LocationSetTable(eventBus, objectEntry.getModel().getLocations().get()));
+                formLayout.addComponent(new LocationSetTable(eventBus, objectEntry.getModel().getLocations().get(),
+                        objectEntry.getId()));
             }
 
             if (objectEntry.getModel().getMaterials().isPresent()) {
-                formLayout.addComponent(new MaterialSetTable(eventBus, objectEntry.getModel().getMaterials().get()));
+                formLayout.addComponent(new MaterialSetTable(eventBus, objectEntry.getModel().getMaterials().get(),
+                        objectEntry.getId()));
             }
 
             if (objectEntry.getModel().getMeasurements().isPresent()) {
@@ -122,7 +125,8 @@ final class ObjectEntryForm extends CustomComponent {
             }
 
             if (objectEntry.getModel().getSubjects().isPresent()) {
-                formLayout.addComponent(new SubjectSetTable(eventBus, objectEntry.getModel().getSubjects().get()));
+                formLayout.addComponent(
+                        new SubjectSetTable(eventBus, objectEntry.getId(), objectEntry.getModel().getSubjects().get()));
             }
 
             if (objectEntry.getModel().getRelations().isPresent()) {

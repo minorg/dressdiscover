@@ -1,6 +1,7 @@
 package net.lab1318.costume.gui.views.wizard.catalog_wizard;
 
 import org.thryft.waf.gui.EventBus;
+import org.vaadin.viritin.components.DisclosurePanel;
 
 import com.google.common.base.Optional;
 import com.google.inject.Inject;
@@ -31,6 +32,7 @@ public class CatalogWizardFeatureView extends TopLevelView {
         Layout bottomNavigationLayout;
         Layout currentFeatureLayout;
         Label currentFeatureNameLabel;
+        Layout existingObjectLayout;
         Layout featureSetLayout;
         Layout topNavigationLayout;
     }
@@ -42,9 +44,6 @@ public class CatalogWizardFeatureView extends TopLevelView {
 
     public void setModels(final CatalogWizardState state) {
         final Design design = new Design();
-
-        design.currentFeatureNameLabel.setCaptionAsHtml(true);
-        design.currentFeatureNameLabel.setCaption("<h1>" + state.getCurrentFeature().get().getName() + "</h1>");
 
         final WizardFeatureNavigationLayout bottomFeatureNavigationLayout = new WizardFeatureNavigationLayout(
                 state.getCurrentFeature().get(), _getEventBus(), state);
@@ -59,6 +58,14 @@ public class CatalogWizardFeatureView extends TopLevelView {
                             bottomFeatureNavigationLayout.getNextButton()));
         } else {
             throw new UnsupportedOperationException();
+        }
+
+        design.currentFeatureNameLabel.setCaptionAsHtml(true);
+        design.currentFeatureNameLabel.setCaption("<h1>" + state.getCurrentFeature().get().getName() + "</h1>");
+
+        if (state.getObjectId().isPresent()) {
+            final DisclosurePanel disclosurePanel = new DisclosurePanel("Object " + state.getObjectId().get(), iframe);
+            design.existingObjectLayout.addComponent(disclosurePanel);
         }
 
         design.featureSetLayout.addComponent(

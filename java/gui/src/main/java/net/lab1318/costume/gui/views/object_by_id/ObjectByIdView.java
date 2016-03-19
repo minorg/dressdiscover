@@ -23,6 +23,7 @@ import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 import net.lab1318.costume.api.models.relation.Relation;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
+import net.lab1318.costume.gui.events.object_by_id.ObjectAddMetadataRequest;
 import net.lab1318.costume.gui.events.object_by_id.ObjectMoreLikeThisRequest;
 import net.lab1318.costume.gui.views.TopLevelView;
 
@@ -35,6 +36,7 @@ public class ObjectByIdView extends TopLevelView {
             com.vaadin.ui.declarative.Design.read(this);
         }
 
+        Button addMetadataButton;
         Layout carouselLayout;
         Button collectionButton;
         Button institutionButton;
@@ -51,6 +53,13 @@ public class ObjectByIdView extends TopLevelView {
             final ObjectEntry objectEntry,
             final ImmutableMap<ObjectId, ObjectSummaryEntry> relatedObjectSummaryEntries) {
         final Design design = new Design();
+
+        design.addMetadataButton.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(final ClickEvent event) {
+                _getEventBus().post(new ObjectAddMetadataRequest(objectEntry.getId()));
+            }
+        });
 
         design.collectionButton.addClickListener(new Button.ClickListener() {
             @Override
@@ -73,7 +82,7 @@ public class ObjectByIdView extends TopLevelView {
         design.moreLikeThisButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(final ClickEvent event) {
-                _getEventBus().post(new ObjectMoreLikeThisRequest());
+                _getEventBus().post(new ObjectMoreLikeThisRequest(objectEntry.getId()));
             }
         });
 

@@ -12,11 +12,12 @@ import net.lab1318.costume.api.models.location.LocationName;
 import net.lab1318.costume.api.models.location.LocationRefid;
 import net.lab1318.costume.api.models.location.LocationSet;
 import net.lab1318.costume.api.models.object.ObjectFacetFilters;
+import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.gui.events.object_by_id.ObjectElementSelectionRequest;
 
 @SuppressWarnings("serial")
 final class LocationSetTable extends ElementSetTable {
-    public LocationSetTable(final EventBus eventBus, final LocationSet locations) {
+    public LocationSetTable(final EventBus eventBus, final LocationSet locations, final ObjectId objectId) {
         super("Locations", locations);
 
         addContainerProperty("Type", String.class, null);
@@ -47,8 +48,11 @@ final class LocationSetTable extends ElementSetTable {
                 return new Button(locationText, new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {
-                        eventBus.post(new ObjectElementSelectionRequest(ObjectFacetFilters.builder()
-                                .setIncludeLocationNameTexts(ImmutableSet.of(locationText)).build()));
+                        eventBus.post(
+                                new ObjectElementSelectionRequest(
+                                        ObjectFacetFilters.builder()
+                                                .setIncludeLocationNameTexts(ImmutableSet.of(locationText)).build(),
+                                        objectId));
                     }
                 });
             }
