@@ -5,14 +5,42 @@
           font-weight: bold;
         }
 
+        .category-button {
+          background-color: $costume-color-dark-green;
+          color: white;
+          text-align: center;
+          width: 100%;
+        }
+
         .title-button {
           background-color: $costume-color-blue;
           color: white;
         }
 
+        .material-button {
+          background-color: $costume-color-dark-green;
+          color: white;
+          text-align: center;
+          width: 100%;
+        }
+
         .more-like-this-button {
           background-color: $costume-color-blue;
           color: white;
+        }
+
+        .relation-button {
+          background-color: $costume-color-dark-green;
+          color: white;
+          text-align: center;
+          width: 100%;
+        }
+
+        .subject-button {
+          background-color: $costume-color-dark-green;
+          color: white;
+          text-align: center;
+          width: 100%;
         }
 
         .v-formlayout .v-caption {

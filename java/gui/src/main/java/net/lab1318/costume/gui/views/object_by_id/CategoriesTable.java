@@ -27,16 +27,19 @@ final class CategoriesTable extends Table {
             public Object generateCell(final Table source, final Object itemId, final Object columnId) {
                 final String category = (String) source.getContainerDataSource().getContainerProperty(itemId, columnId)
                         .getValue();
-                return new Button(category, new Button.ClickListener() {
+                final Button button = new Button(category, new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {
                         eventBus.post(new ObjectElementSelectionRequest(
                                 ObjectFacetFilters.builder().setIncludeCategories(ImmutableSet.of(category)).build()));
                     }
                 });
+                button.setStyleName("category-button");
+                return button;
             }
         });
         setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
         setPageLength(getContainerDataSource().size());
+        setWidth("100%");
     }
 }

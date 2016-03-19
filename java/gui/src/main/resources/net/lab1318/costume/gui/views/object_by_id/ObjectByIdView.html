@@ -2,17 +2,21 @@
 <html>
 <body>
 	<v-vertical-layout size-full style-name="object-by-id-view">
-		<v-horizontal-layout size-full>
-			<v-vertical-layout :expand="1">
+		<v-horizontal-layout style-name="buttons-layout">
+			<v-vertical-layout style-name="left-buttons-layout">
 				<v-button _id="institutionButton" style-name="institution-button"></v-button>
 				<v-label><br/></v-label>
 				<v-button _id="collectionButton" style-name="collection-button"></v-button>
+			</v-vertical-layout style-name="right-buttons-layout">
+			<v-vertical-layout :expand="1">
+	            <v-button _id="moreLikeThisButton" style-name="more-like-this-button">More like this</v-button>
+                <v-label><br/></v-label>
+                <v-button _id="addMetadataButton" style-name="add-metadata-button">Add metadata</v-button>
 			</v-vertical-layout>
-			<v-button :expand="1" _id="moreLikeThisButton" :center :middle style-name="more-like-this-button">More like this</v-button>
 		</v-horizontal-layout>
 		<v-label><br/></v-label>
 		<v-vertical-layout _id="objectEntryFormLayout"></v-vertical-layout>
-		<v-vertical-layout _id="carouselLayout" size-full></v-vertical-layout>
+		<v-vertical-layout _id="carouselLayout"></v-vertical-layout>
 	</v-vertical-layout>
 </body>
 </html>

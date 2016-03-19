@@ -1,8 +1,34 @@
 @mixin ObjectByIdView {
     .object-by-id-view {
-        .more-like-this-button {
-          background-color: $costume-color-blue;
+        .add-metadata-button {
+          background-color: $costume-color-darker-blue;
           color: white;
+        }
+
+        .collection-button {
+          width: 100%;
+        }
+
+        .v-slot-buttons-layout {
+          width: 100%;
+        }
+
+        .buttons-layout {
+          width: 100%;
+        }
+
+        .v-slot-left-buttons-layout {
+          width: 80%;
+        }
+
+        .more-like-this-button {
+          background-color: $costume-color-dark-blue;
+          color: white;
+        }
+
+        .right-buttons-layout {
+          margin-left: auto;
+          width: auto;
         }
     }
 }

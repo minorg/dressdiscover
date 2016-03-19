@@ -37,13 +37,15 @@ final class RelationSetTable extends ElementSetTable {
                 if (relationText.isEmpty()) {
                     return new Label();
                 }
-                return new Button(relationText, new Button.ClickListener() {
+                final Button button = new Button(relationText, new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {
                         eventBus.post(GetObjectSummariesRequest.builder().setQuery(ObjectQuery.builder()
                                 .setInstitutionId(institutionId).setRelationText(relationText).build()).build());
                     }
                 });
+                button.setStyleName("relation-button");
+                return button;
             }
         });
 

@@ -12,5 +12,6 @@ abstract class ElementSetTable extends Table {
         } else {
             setCaption(captionPrefix);
         }
+        setWidth("100%");
     }
 }

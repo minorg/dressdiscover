@@ -41,6 +41,7 @@ final class SubjectSetTable extends ElementSetTable {
                                 .setIncludeSubjectTermTexts(ImmutableSet.of(subjectTermText)).build()));
                     }
                 });
+                button.setStyleName("subject-button");
                 return button;
             }
         });

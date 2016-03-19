@@ -57,7 +57,7 @@ public final class RightsLayout extends CustomComponent {
         boolean empty = true;
         for (final RightsBean rights_ : model.getElements()) {
             String typeCaption;
-            Object typeText;
+            String typeText;
             switch (rights_.getType()) {
             case COPYRIGHTED:
                 typeCaption = "Copyright";

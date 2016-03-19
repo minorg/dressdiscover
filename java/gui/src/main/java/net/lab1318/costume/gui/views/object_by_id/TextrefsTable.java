@@ -52,5 +52,6 @@ final class TextrefsTable extends ElementSetTable {
                         Textref.FieldMetadata.REFID.getJavaName() + '.' + TextrefName.FieldMetadata.TYPE.getJavaName())
                 .toArray());
         setColumnHeaders("Name", "Name type", "Reference", "Reference type");
+        setHeightUndefined();
     }
 }

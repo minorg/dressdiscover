@@ -44,6 +44,7 @@ final class MaterialSetTable extends ElementSetTable {
                                 .setIncludeMaterialTexts(ImmutableSet.of(materialText)).build()));
                     }
                 });
+                button.setStyleName("material-button");
                 return button;
             }
         });
