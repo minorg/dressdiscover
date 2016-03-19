@@ -23,6 +23,7 @@ import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 import net.lab1318.costume.api.models.relation.Relation;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
+import net.lab1318.costume.gui.components.ObjectEntryForm;
 import net.lab1318.costume.gui.events.object_by_id.ObjectAddMetadataRequest;
 import net.lab1318.costume.gui.events.object_by_id.ObjectMoreLikeThisRequest;
 import net.lab1318.costume.gui.views.TopLevelView;

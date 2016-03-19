@@ -64,6 +64,7 @@ public class CatalogWizardFeatureView extends TopLevelView {
         design.currentFeatureNameLabel.setCaption("<h1>" + state.getCurrentFeature().get().getName() + "</h1>");
 
         if (state.getObjectId().isPresent()) {
+            ObjectEntryf
             final DisclosurePanel disclosurePanel = new DisclosurePanel("Object " + state.getObjectId().get(), iframe);
             design.existingObjectLayout.addComponent(disclosurePanel);
         }

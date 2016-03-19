@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.views.object_by_id;
+package net.lab1318.costume.gui.components;
 
 import org.apache.commons.lang3.StringUtils;
 import org.thryft.waf.gui.EventBus;
@@ -15,12 +15,10 @@ import net.lab1318.costume.api.models.image.ImageVersion;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.title.Title;
-import net.lab1318.costume.gui.components.ImageWithRightsLayout;
-import net.lab1318.costume.gui.components.RightsLayout;
 import net.lab1318.costume.gui.models.gender.Genders;
 
 @SuppressWarnings("serial")
-final class ObjectEntryForm extends CustomComponent {
+public final class ObjectEntryForm extends CustomComponent {
     @DesignRoot("ObjectEntryForm.html")
     private final static class Design extends HorizontalLayout {
         public Design() {

@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.views.object_by_id;
+package net.lab1318.costume.gui.components;
 
 import org.thryft.waf.gui.EventBus;
 
