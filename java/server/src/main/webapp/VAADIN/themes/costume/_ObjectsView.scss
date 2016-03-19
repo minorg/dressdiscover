@@ -1,6 +1,15 @@
 @mixin ObjectsView {
     .objects-view {
+        width: 100%;
+
+        .hit-counts-label {
+        }
+
         .left-pane-layout {
+            width: 100%;
+        }
+
+        .right-pane-layout {
             width: 100%;
         }
 
@@ -12,8 +21,17 @@
             width: 100% !important;
         }
 
+        .v-slot-hit-counts-label {
+            text-align: center;
+            width: 80%;
+        }
+
         .v-slot-left-pane-layout {
             width: 20%;
+        }
+
+        .v-slot-right-pane-layout {
+            width: 100%;
         }
     }
 }
