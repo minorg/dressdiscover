@@ -11,7 +11,6 @@ import com.vaadin.annotations.DesignRoot;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 import net.lab1318.costume.api.models.collection.Collection;
@@ -35,16 +34,16 @@ public class ObjectsView extends TopLevelView {
             com.vaadin.ui.declarative.Design.read(this);
         }
 
-        Panel leftPanePanel;
-        VerticalLayout rightPaneContentLayout;
+        VerticalLayout leftPaneLayout;
+        VerticalLayout rightPaneLayout;
     }
 
     @Inject
     public ObjectsView(final EventBus eventBus) {
         super(eventBus);
 
-        leftPaneContentLayout = new ObjectFacetsLayout(_getEventBus());
-        design.leftPanePanel.setContent(leftPaneContentLayout);
+        objectFacetsLayout = new ObjectFacetsLayout(_getEventBus());
+        design.leftPaneLayout.addComponent(objectFacetsLayout);
         setCompositionRoot(design);
     }
 
@@ -63,26 +62,26 @@ public class ObjectsView extends TopLevelView {
 
         final int objectSummariesSize = objectSummaries.size();
 
-        leftPaneContentLayout.setModels(availableObjectFacets, institutions, objectQuery, resultObjectFacets);
+        objectFacetsLayout.setModels(availableObjectFacets, institutions, objectQuery, resultObjectFacets);
 
-        design.rightPaneContentLayout.removeAllComponents();
+        design.rightPaneLayout.removeAllComponents();
         if (objectSummariesSize > 0) {
             final Label hitCountsLabel = new Label(
                     String.format("%d object(s) in %d collection(s)", objectSummariesSize, collections.size()));
             hitCountsLabel.setWidth(100, Unit.PERCENTAGE);
-            design.rightPaneContentLayout.addComponent(hitCountsLabel);
-            design.rightPaneContentLayout.setComponentAlignment(hitCountsLabel, Alignment.MIDDLE_CENTER);
+            design.rightPaneLayout.addComponent(hitCountsLabel);
+            design.rightPaneLayout.setComponentAlignment(hitCountsLabel, Alignment.MIDDLE_CENTER);
 
             objectSummaryEntriesTable = new ObjectSummaryEntriesTable(bookmarks, collections, currentUserId,
                     _getEventBus(), institutions, objectSummaries);
-            design.rightPaneContentLayout.addComponent(objectSummaryEntriesTable);
+            design.rightPaneLayout.addComponent(objectSummaryEntriesTable);
         } else {
-            design.rightPaneContentLayout.addComponent(new Label("No objects match your criteria."));
+            design.rightPaneLayout.addComponent(new Label("No objects match your criteria."));
         }
     }
 
     private final Design design = new Design();
-    private final ObjectFacetsLayout leftPaneContentLayout;
+    private final ObjectFacetsLayout objectFacetsLayout;
     private ObjectSummaryEntriesTable objectSummaryEntriesTable;
     public final static String NAME = "objects";
 }
