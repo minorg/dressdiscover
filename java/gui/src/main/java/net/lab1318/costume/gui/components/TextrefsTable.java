@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.views.object_by_id;
+package net.lab1318.costume.gui.components;
 
 import com.google.common.collect.ImmutableList;
 import com.vaadin.data.util.BeanItemContainer;
@@ -52,5 +52,6 @@ final class TextrefsTable extends ElementSetTable {
                         Textref.FieldMetadata.REFID.getJavaName() + '.' + TextrefName.FieldMetadata.TYPE.getJavaName())
                 .toArray());
         setColumnHeaders("Name", "Name type", "Reference", "Reference type");
+        setHeightUndefined();
     }
 }

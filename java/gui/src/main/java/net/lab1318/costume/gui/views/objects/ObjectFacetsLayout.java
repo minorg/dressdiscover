@@ -27,7 +27,6 @@ final class ObjectFacetsLayout extends CustomComponent {
     public ObjectFacetsLayout(final EventBus eventBus) {
         this.eventBus = checkNotNull(eventBus);
         setCompositionRoot(rootLayout);
-        rootLayout.setSizeFull();
         setStyleName("object-facets-layout");
     }
 

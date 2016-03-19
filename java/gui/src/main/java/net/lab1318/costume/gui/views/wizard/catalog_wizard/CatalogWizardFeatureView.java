@@ -6,10 +6,15 @@ import com.google.common.base.Optional;
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
 import com.vaadin.annotations.DesignRoot;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 
+import net.lab1318.costume.api.models.institution.Institution;
+import net.lab1318.costume.api.models.object.Object;
+import net.lab1318.costume.api.models.object.ObjectEntry;
+import net.lab1318.costume.gui.components.ObjectEntryForm;
 import net.lab1318.costume.gui.models.wizard.EnumWizardFeature;
 import net.lab1318.costume.gui.models.wizard.TextWizardFeature;
 import net.lab1318.costume.gui.models.wizard.catalog_wizard.CatalogWizardState;
@@ -31,6 +36,7 @@ public class CatalogWizardFeatureView extends TopLevelView {
         Layout bottomNavigationLayout;
         Layout currentFeatureLayout;
         Label currentFeatureNameLabel;
+        Layout existingObjectLayout;
         Layout featureSetLayout;
         Layout topNavigationLayout;
     }
@@ -40,11 +46,9 @@ public class CatalogWizardFeatureView extends TopLevelView {
         super(eventBus);
     }
 
-    public void setModels(final CatalogWizardState state) {
+    public void setModels(final CatalogWizardState state, final Optional<Object> object,
+            final Optional<Institution> objectInstitution) {
         final Design design = new Design();
-
-        design.currentFeatureNameLabel.setCaptionAsHtml(true);
-        design.currentFeatureNameLabel.setCaption("<h1>" + state.getCurrentFeature().get().getName() + "</h1>");
 
         final WizardFeatureNavigationLayout bottomFeatureNavigationLayout = new WizardFeatureNavigationLayout(
                 state.getCurrentFeature().get(), _getEventBus(), state);
@@ -59,6 +63,21 @@ public class CatalogWizardFeatureView extends TopLevelView {
                             bottomFeatureNavigationLayout.getNextButton()));
         } else {
             throw new UnsupportedOperationException();
+        }
+
+        design.currentFeatureNameLabel.setCaptionAsHtml(true);
+        design.currentFeatureNameLabel.setCaption("<h1>" + state.getCurrentFeature().get().getName() + "</h1>");
+
+        if (state.getObjectId().isPresent()) {
+            final Label hrLabel = new Label("<hr/>", ContentMode.HTML);
+            hrLabel.setStyleName("hr-label");
+            design.existingObjectLayout.addComponent(hrLabel);
+            final Label label = new Label("<h2>Existing object</h2>", ContentMode.HTML);
+            label.setStyleName("existing-object-label");
+            design.existingObjectLayout.addComponent(label);
+            final ObjectEntryForm objectEntryForm = new ObjectEntryForm(_getEventBus(), objectInstitution.get(),
+                    new ObjectEntry(state.getObjectId().get(), object.get()));
+            design.existingObjectLayout.addComponent(objectEntryForm);
         }
 
         design.featureSetLayout.addComponent(

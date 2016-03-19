@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.views.object_by_id;
+package net.lab1318.costume.gui.components;
 
 import com.google.common.collect.ImmutableList;
 import com.vaadin.data.util.BeanItemContainer;
@@ -16,6 +16,8 @@ import net.lab1318.costume.gui.models.component.ComponentTermBean;
 @SuppressWarnings("serial")
 final class ComponentSetTable extends CustomComponent {
     public ComponentSetTable(final ComponentSet components) {
+        setCaption("Components");
+
         boolean haveNestedBeans = false;
         for (final Component component : components.getElements()) {
             if (component.getStructures().isPresent()) {
@@ -44,6 +46,8 @@ final class ComponentSetTable extends CustomComponent {
             table.setContainerDataSource(container);
             table.setPageLength(container.size());
             table.setVisibleColumns(ImmutableList.of(ComponentTerm.FieldMetadata.TEXT.getJavaName()).toArray());
+            table.addStyleName("element-set-table");
+            table.addStyleName("component-set-table");
             setCompositionRoot(table);
         }
     }

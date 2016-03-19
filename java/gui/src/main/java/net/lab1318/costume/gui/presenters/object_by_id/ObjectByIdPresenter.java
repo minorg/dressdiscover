@@ -1,7 +1,6 @@
 package net.lab1318.costume.gui.presenters.object_by_id;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import org.thryft.waf.gui.EventBus;
 import org.thryft.waf.lib.stores.ElasticSearchIndex;
@@ -16,6 +15,7 @@ import com.google.inject.servlet.SessionScoped;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.SystemError;
 import com.vaadin.server.UserError;
+import com.vaadin.ui.UI;
 
 import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionEntry;
@@ -40,10 +40,13 @@ import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.api.services.user.UserCommandService;
 import net.lab1318.costume.api.services.user.UserQueryService;
+import net.lab1318.costume.gui.events.object_by_id.ObjectAddMetadataRequest;
 import net.lab1318.costume.gui.events.object_by_id.ObjectElementSelectionRequest;
 import net.lab1318.costume.gui.events.object_by_id.ObjectMoreLikeThisRequest;
+import net.lab1318.costume.gui.models.NameValuePairs;
 import net.lab1318.costume.gui.presenters.Presenter;
 import net.lab1318.costume.gui.views.object_by_id.ObjectByIdView;
+import net.lab1318.costume.gui.views.wizard.catalog_wizard.CatalogWizardStartView;
 
 @SessionScoped
 public class ObjectByIdPresenter extends Presenter<ObjectByIdView> {
@@ -60,21 +63,29 @@ public class ObjectByIdPresenter extends Presenter<ObjectByIdView> {
     }
 
     @Subscribe
+    public void onObjectAddMetadataRequest(final ObjectAddMetadataRequest event) {
+        UI.getCurrent().getNavigator()
+                .navigateTo(CatalogWizardStartView.NAME + '/'
+                        + new NameValuePairs(ImmutableMap.of("object_id", event.getObjectId().toString()))
+                                .toUrlEncodedString());
+    }
+
+    @Subscribe
     public void onObjectElementSelectionRequest(final ObjectElementSelectionRequest event) {
-        checkState(objectId != null);
-        _navigateTo(ObjectQuery.builder().setCollectionId(objectId.getCollectionId())
-                .setInstitutionId(objectId.getInstitutionId()).setFacetFilters(event.getFilter()).build());
+        _navigateTo(ObjectQuery.builder().setCollectionId(event.getObjectId().getCollectionId())
+                .setInstitutionId(event.getObjectId().getInstitutionId()).setFacetFilters(event.getFilter()).build());
     }
 
     @Subscribe
     public void onObjectMoreLikeThisRequest(final ObjectMoreLikeThisRequest event) {
-        checkState(objectId != null);
-        _navigateTo(ObjectQuery.builder().setCollectionId(objectId.getCollectionId())
-                .setInstitutionId(objectId.getInstitutionId()).setMoreLikeObjectId(objectId).build());
+        _navigateTo(ObjectQuery.builder().setCollectionId(event.getObjectId().getCollectionId())
+                .setInstitutionId(event.getObjectId().getInstitutionId()).setMoreLikeObjectId(event.getObjectId())
+                .build());
     }
 
     @Override
     protected void _onViewEnter(final Optional<UserEntry> currentUser, final ViewChangeEvent event) {
+        ObjectId objectId;
         try {
             objectId = ObjectId.parse(event.getParameters());
         } catch (final InvalidObjectIdException e) {
@@ -131,7 +142,8 @@ public class ObjectByIdPresenter extends Presenter<ObjectByIdView> {
                                             .setSize(
                                                     UnsignedInteger.valueOf(ElasticSearchIndex.SEARCH_REQUEST_SIZE_MAX))
                                             .build()),
-                            Optional.of(ObjectQuery.builder().setObjectIds(relatedObjectIds).build())).getHits()) {
+                                    Optional.of(ObjectQuery.builder().setObjectIds(relatedObjectIds).build()))
+                            .getHits()) {
                         relatedObjectSummaryEntriesBuilder.put(objectSummaryEntry.getId(), objectSummaryEntry);
                     }
                     relatedObjectSummaryEntries = relatedObjectSummaryEntriesBuilder.build();
@@ -154,6 +166,5 @@ public class ObjectByIdPresenter extends Presenter<ObjectByIdView> {
     private final ObjectSummaryQueryService objectSummaryQueryService;
     private final CollectionQueryService collectionQueryService;
     private final InstitutionQueryService institutionQueryService;
-    private ObjectId objectId;
     private final ObjectQueryService objectQueryService;
 }

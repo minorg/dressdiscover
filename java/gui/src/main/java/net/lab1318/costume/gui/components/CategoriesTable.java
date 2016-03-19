@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.views.object_by_id;
+package net.lab1318.costume.gui.components;
 
 import org.thryft.waf.gui.EventBus;
 
@@ -9,11 +9,12 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Table;
 
 import net.lab1318.costume.api.models.object.ObjectFacetFilters;
+import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.gui.events.object_by_id.ObjectElementSelectionRequest;
 
 @SuppressWarnings("serial")
 final class CategoriesTable extends Table {
-    public CategoriesTable(final ImmutableList<String> categories, final EventBus eventBus) {
+    public CategoriesTable(final ImmutableList<String> categories, final EventBus eventBus, final ObjectId objectId) {
         setCaption("Categories");
         addContainerProperty("Text", String.class, null);
         for (final String category : categories) {
@@ -27,13 +28,16 @@ final class CategoriesTable extends Table {
             public Object generateCell(final Table source, final Object itemId, final Object columnId) {
                 final String category = (String) source.getContainerDataSource().getContainerProperty(itemId, columnId)
                         .getValue();
-                return new Button(category, new Button.ClickListener() {
+                final Button button = new Button(category, new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {
                         eventBus.post(new ObjectElementSelectionRequest(
-                                ObjectFacetFilters.builder().setIncludeCategories(ImmutableSet.of(category)).build()));
+                                ObjectFacetFilters.builder().setIncludeCategories(ImmutableSet.of(category)).build(),
+                                objectId));
                     }
                 });
+                button.setStyleName("category-button");
+                return button;
             }
         });
         setColumnHeaderMode(ColumnHeaderMode.HIDDEN);

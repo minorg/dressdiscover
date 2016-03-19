@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.views.object_by_id;
+package net.lab1318.costume.gui.components;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +14,13 @@ import com.vaadin.ui.Table;
 import net.lab1318.costume.api.models.material.Material;
 import net.lab1318.costume.api.models.material.MaterialSet;
 import net.lab1318.costume.api.models.object.ObjectFacetFilters;
+import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.gui.events.object_by_id.ObjectElementSelectionRequest;
 import net.lab1318.costume.gui.models.material.MaterialBean;
 
 @SuppressWarnings("serial")
 final class MaterialSetTable extends ElementSetTable {
-    public MaterialSetTable(final EventBus eventBus, final MaterialSet materials) {
+    public MaterialSetTable(final EventBus eventBus, final MaterialSet materials, final ObjectId objectId) {
         super("Materials", materials);
 
         final BeanItemContainer<MaterialBean> container = new BeanItemContainer<>(MaterialBean.class);
@@ -40,10 +41,14 @@ final class MaterialSetTable extends ElementSetTable {
                 final Button button = new Button(materialText, new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {
-                        eventBus.post(new ObjectElementSelectionRequest(ObjectFacetFilters.builder()
-                                .setIncludeMaterialTexts(ImmutableSet.of(materialText)).build()));
+                        eventBus.post(
+                                new ObjectElementSelectionRequest(
+                                        ObjectFacetFilters.builder()
+                                                .setIncludeMaterialTexts(ImmutableSet.of(materialText)).build(),
+                                        objectId));
                     }
                 });
+                button.setStyleName("material-button");
                 return button;
             }
         });

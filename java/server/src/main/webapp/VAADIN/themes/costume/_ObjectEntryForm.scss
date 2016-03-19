@@ -1,8 +1,21 @@
 @mixin ObjectEntryForm {
     .object-entry-form {
+        width: 100%;
+
         h3 {
           font-size: large;
           font-weight: bold;
+        }
+
+        .category-button {
+          background-color: $costume-color-dark-green;
+          color: white;
+          text-align: center;
+          width: 100%;
+        }
+
+        .element-set-table {
+          width: 100%;
         }
 
         .title-button {
@@ -10,13 +23,47 @@
           color: white;
         }
 
+        .left-pane-layout {
+          width: 30%;
+        }
+
+        .material-button {
+          background-color: $costume-color-dark-green;
+          color: white;
+          text-align: center;
+          width: 100%;
+        }
+
         .more-like-this-button {
           background-color: $costume-color-blue;
           color: white;
         }
 
+        .relation-button {
+          background-color: $costume-color-dark-green;
+          color: white;
+          text-align: center;
+          width: 100%;
+        }
+
+        .right-pane-layout {
+          text-align: center;
+          width: 100%;
+        }
+
+        .subject-button {
+          background-color: $costume-color-dark-green;
+          color: white;
+          text-align: center;
+          width: 100%;
+        }
+
         .v-formlayout .v-caption {
           font-weight: bold;
+        }
+
+        .v-slot-right-pane-layout {
+          width: 80%;
         }
 
         .v-table-header-cell {

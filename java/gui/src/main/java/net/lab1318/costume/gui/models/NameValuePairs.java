@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.presenters;
+package net.lab1318.costume.gui.models;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -15,8 +15,8 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 
-public final class NamedPresenterParameters implements Iterable<ImmutablePair<String, String>> {
-    public static NamedPresenterParameters fromUrlEncodedString(final String urlEncodedString) {
+public final class NameValuePairs implements Iterable<ImmutablePair<String, String>> {
+    public static NameValuePairs fromUrlEncodedString(final String urlEncodedString) {
         final ImmutableList.Builder<ImmutablePair<String, String>> listBuilder = ImmutableList.builder();
 
         for (final String nameValuePairString : urlEncodedString.split("&")) {
@@ -39,10 +39,10 @@ public final class NamedPresenterParameters implements Iterable<ImmutablePair<St
             listBuilder.add(ImmutablePair.of(name, value));
         }
 
-        return new NamedPresenterParameters(listBuilder.build());
+        return new NameValuePairs(listBuilder.build());
     }
 
-    public NamedPresenterParameters(final Map<String, String> map) {
+    public NameValuePairs(final Map<String, String> map) {
         final ImmutableList.Builder<ImmutablePair<String, String>> listBuilder = ImmutableList.builder();
         for (final Map.Entry<String, String> entry : map.entrySet()) {
             listBuilder.add(ImmutablePair.of(entry.getKey(), entry.getValue()));
@@ -50,7 +50,7 @@ public final class NamedPresenterParameters implements Iterable<ImmutablePair<St
         list = listBuilder.build();
     }
 
-    private NamedPresenterParameters(final ImmutableList<ImmutablePair<String, String>> list) {
+    private NameValuePairs(final ImmutableList<ImmutablePair<String, String>> list) {
         this.list = checkNotNull(list);
     }
 

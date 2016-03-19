@@ -1,10 +1,9 @@
-package net.lab1318.costume.gui.views.object_by_id;
+package net.lab1318.costume.gui.components;
 
 import org.apache.commons.lang3.StringUtils;
 import org.thryft.waf.gui.EventBus;
 
 import com.vaadin.annotations.DesignRoot;
-import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
@@ -15,26 +14,13 @@ import net.lab1318.costume.api.models.image.ImageVersion;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.title.Title;
-import net.lab1318.costume.gui.components.ImageWithRightsLayout;
-import net.lab1318.costume.gui.components.RightsLayout;
 import net.lab1318.costume.gui.models.gender.Genders;
 
+@DesignRoot
 @SuppressWarnings("serial")
-final class ObjectEntryForm extends CustomComponent {
-    @DesignRoot("ObjectEntryForm.html")
-    private final static class Design extends HorizontalLayout {
-        public Design() {
-            com.vaadin.ui.declarative.Design.read(this);
-        }
-
-        FormLayout formLayout;
-        Layout rightPaneLayout;
-        Layout rightsLayout;
-        Label titleLabel;
-    }
-
-    public ObjectEntryForm(final EventBus eventBus, final ObjectEntry objectEntry, final Institution institution) {
-        final Design design = new Design();
+public final class ObjectEntryForm extends HorizontalLayout {
+    public ObjectEntryForm(final EventBus eventBus, final Institution institution, final ObjectEntry objectEntry) {
+        com.vaadin.ui.declarative.Design.read(this);
 
         {
             Title preferredTitle = objectEntry.getModel().getTitles().getElements().get(0);
@@ -44,13 +30,11 @@ final class ObjectEntryForm extends CustomComponent {
                     break;
                 }
             }
-            design.titleLabel.setCaptionAsHtml(true);
-            design.titleLabel.setCaption("<h3>" + preferredTitle.getText() + "</h3>");
+            titleLabel.setCaptionAsHtml(true);
+            titleLabel.setCaption("<h3>" + preferredTitle.getText() + "</h3>");
         }
 
         {
-            final FormLayout formLayout = design.formLayout;
-
             if (objectEntry.getModel().getDates().isPresent()) {
                 formLayout.addComponent(new DateSetTable(objectEntry.getModel().getDates().get()));
             }
@@ -60,7 +44,8 @@ final class ObjectEntryForm extends CustomComponent {
             }
 
             if (objectEntry.getModel().getCategories().isPresent()) {
-                formLayout.addComponent(new CategoriesTable(objectEntry.getModel().getCategories().get(), eventBus));
+                formLayout.addComponent(new CategoriesTable(objectEntry.getModel().getCategories().get(), eventBus,
+                        objectEntry.getId()));
             }
 
             if (objectEntry.getModel().getClosures().isPresent()) {
@@ -101,11 +86,13 @@ final class ObjectEntryForm extends CustomComponent {
             }
 
             if (objectEntry.getModel().getLocations().isPresent()) {
-                formLayout.addComponent(new LocationSetTable(eventBus, objectEntry.getModel().getLocations().get()));
+                formLayout.addComponent(new LocationSetTable(eventBus, objectEntry.getModel().getLocations().get(),
+                        objectEntry.getId()));
             }
 
             if (objectEntry.getModel().getMaterials().isPresent()) {
-                formLayout.addComponent(new MaterialSetTable(eventBus, objectEntry.getModel().getMaterials().get()));
+                formLayout.addComponent(new MaterialSetTable(eventBus, objectEntry.getModel().getMaterials().get(),
+                        objectEntry.getId()));
             }
 
             if (objectEntry.getModel().getMeasurements().isPresent()) {
@@ -122,7 +109,8 @@ final class ObjectEntryForm extends CustomComponent {
             }
 
             if (objectEntry.getModel().getSubjects().isPresent()) {
-                formLayout.addComponent(new SubjectSetTable(eventBus, objectEntry.getModel().getSubjects().get()));
+                formLayout.addComponent(
+                        new SubjectSetTable(eventBus, objectEntry.getId(), objectEntry.getModel().getSubjects().get()));
             }
 
             if (objectEntry.getModel().getRelations().isPresent()) {
@@ -168,14 +156,14 @@ final class ObjectEntryForm extends CustomComponent {
                 final RightsLayout objectRightsLayout = new RightsLayout("Object metadata",
                         objectEntry.getModel().getRights().get());
                 if (!objectRightsLayout.isEmpty()) {
-                    design.rightsLayout.addComponent(objectRightsLayout);
+                    rightsLayout.addComponent(objectRightsLayout);
                 }
             }
             if (institution.getDataRights().isPresent()) {
                 final RightsLayout institutionRightsLayout = new RightsLayout("Institution metadata",
                         institution.getDataRights().get());
                 if (!institutionRightsLayout.isEmpty()) {
-                    design.rightsLayout.addComponent(institutionRightsLayout);
+                    rightsLayout.addComponent(institutionRightsLayout);
                 }
             }
         }
@@ -194,13 +182,11 @@ final class ObjectEntryForm extends CustomComponent {
                     } else {
                         continue;
                     }
-                    design.rightPaneLayout.addComponent(new ImageWithRightsLayout("", imageModel.getOriginal(),
-                            bestImageModel, imageModel.getRights().or(objectEntry.getModel().getRights())));
+                    rightPaneLayout.addComponent(new ImageWithRightsLayout("", imageModel.getOriginal(), bestImageModel,
+                            imageModel.getRights().or(objectEntry.getModel().getRights())));
                 }
             }
         }
-
-        setCompositionRoot(design);
     }
 
     // private TextArea __createTextArea(final String caption, final String
@@ -226,4 +212,9 @@ final class ObjectEntryForm extends CustomComponent {
         }
         return textField;
     }
+
+    FormLayout formLayout;
+    Layout rightPaneLayout;
+    Layout rightsLayout;
+    Label titleLabel;
 }

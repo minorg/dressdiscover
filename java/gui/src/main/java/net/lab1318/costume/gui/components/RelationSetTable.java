@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.views.object_by_id;
+package net.lab1318.costume.gui.components;
 
 import org.thryft.waf.gui.EventBus;
 
@@ -37,13 +37,15 @@ final class RelationSetTable extends ElementSetTable {
                 if (relationText.isEmpty()) {
                     return new Label();
                 }
-                return new Button(relationText, new Button.ClickListener() {
+                final Button button = new Button(relationText, new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {
                         eventBus.post(GetObjectSummariesRequest.builder().setQuery(ObjectQuery.builder()
                                 .setInstitutionId(institutionId).setRelationText(relationText).build()).build());
                     }
                 });
+                button.setStyleName("relation-button");
+                return button;
             }
         });
 

@@ -1,4 +1,4 @@
-package net.lab1318.costume.gui.views.object_by_id;
+package net.lab1318.costume.gui.components;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,7 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Table;
 
 import net.lab1318.costume.api.models.object.ObjectFacetFilters;
+import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.models.subject.Subject;
 import net.lab1318.costume.api.models.subject.SubjectSet;
 import net.lab1318.costume.api.models.subject.SubjectTerm;
@@ -20,7 +21,7 @@ import net.lab1318.costume.gui.models.subject.SubjectTermBean;
 
 @SuppressWarnings("serial")
 final class SubjectSetTable extends ElementSetTable {
-    public SubjectSetTable(final EventBus eventBus, final SubjectSet subjects) {
+    public SubjectSetTable(final EventBus eventBus, final ObjectId objectId, final SubjectSet subjects) {
         super("Subjects", subjects);
 
         final BeanItemContainer<SubjectTermBean> container = new BeanItemContainer<>(SubjectTermBean.class);
@@ -37,10 +38,13 @@ final class SubjectSetTable extends ElementSetTable {
                 final Button button = new Button(subjectTermText, new Button.ClickListener() {
                     @Override
                     public void buttonClick(final ClickEvent event) {
-                        eventBus.post(new ObjectElementSelectionRequest(ObjectFacetFilters.builder()
-                                .setIncludeSubjectTermTexts(ImmutableSet.of(subjectTermText)).build()));
+                        eventBus.post(new ObjectElementSelectionRequest(
+                                ObjectFacetFilters.builder()
+                                        .setIncludeSubjectTermTexts(ImmutableSet.of(subjectTermText)).build(),
+                                objectId));
                     }
                 });
+                button.setStyleName("subject-button");
                 return button;
             }
         });

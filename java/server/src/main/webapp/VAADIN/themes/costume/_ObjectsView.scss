@@ -1,0 +1,19 @@
+@mixin ObjectsView {
+    .objects-view {
+        .left-pane-layout {
+            width: 100%;
+        }
+
+        .v-gridlayout {
+            width: 100% !important;
+        }
+
+        .v-gridlayout-slot {
+            width: 100% !important;
+        }
+
+        .v-slot-left-pane-layout {
+            width: 20%;
+        }
+    }
+}
