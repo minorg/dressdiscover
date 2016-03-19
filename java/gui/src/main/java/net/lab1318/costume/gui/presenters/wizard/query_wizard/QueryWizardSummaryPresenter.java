@@ -42,6 +42,6 @@ public class QueryWizardSummaryPresenter
     @Override
     protected QueryWizardState _parseParameters(final NameValuePairs parameters)
             throws IoException, UnknownWizardFeatureException, UnknownWizardFeatureSetException {
-        return new QueryWizardState(Optional.absent(), _parseFeatureSetParameter(parameters));
+        return QueryWizardState.fromNameValuePairs(_getFeatureSetFactories(), parameters);
     }
 }

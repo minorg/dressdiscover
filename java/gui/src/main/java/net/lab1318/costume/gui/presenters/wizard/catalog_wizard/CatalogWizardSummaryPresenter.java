@@ -7,6 +7,7 @@ import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
 import com.vaadin.ui.UI;
 
+import net.lab1318.costume.api.models.object.InvalidObjectIdException;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.user.UserCommandService;
 import net.lab1318.costume.api.services.user.UserQueryService;
@@ -40,8 +41,8 @@ public class CatalogWizardSummaryPresenter
     }
 
     @Override
-    protected CatalogWizardState _parseParameters(final NameValuePairs parameters)
-            throws IoException, UnknownWizardFeatureException, UnknownWizardFeatureSetException {
-        return new CatalogWizardState(Optional.absent(), _parseFeatureSetParameter(parameters), Optional.absent());
+    protected CatalogWizardState _parseParameters(final NameValuePairs parameters) throws InvalidObjectIdException,
+            IoException, UnknownWizardFeatureException, UnknownWizardFeatureSetException {
+        return CatalogWizardState.fromNameValuePairs(_getFeatureSetFactories(), _getMode(), parameters);
     }
 }
