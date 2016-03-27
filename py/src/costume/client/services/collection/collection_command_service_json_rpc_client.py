@@ -125,11 +125,6 @@ class CollectionCommandServiceJsonRpcClient(costume.api.services.collection.coll
 
         self.__request(method='delete_collection_by_id', params=oprot.value)
 
-    def _delete_collections(
-        self,
-    ):
-        self.__request(method='delete_collections', params={})
-
     def _delete_collections_by_institution_id(
         self,
         institution_id,

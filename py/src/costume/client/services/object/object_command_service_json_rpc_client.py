@@ -1,5 +1,6 @@
 from urlparse import urlparse
 import base64
+import costume.api.services.collection.no_such_collection_exception  # @UnusedImport
 import costume.api.services.io_exception  # @UnusedImport
 import costume.api.services.object.object_command_service
 import json
@@ -111,13 +112,6 @@ class ObjectCommandServiceJsonRpcClient(costume.api.services.object.object_comma
 
         return response.get('result')
 
-    def _delete_objects(
-        self,
-    ):
-        return_value = self.__request(method='delete_objects', params={})
-        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
-        return iprot.read_u32()
-
     def _delete_objects_by_collection_id(
         self,
         collection_id,
@@ -130,21 +124,6 @@ class ObjectCommandServiceJsonRpcClient(costume.api.services.object.object_comma
         oprot.write_struct_end()
 
         return_value = self.__request(method='delete_objects_by_collection_id', params=oprot.value)
-        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
-        return iprot.read_u32()
-
-    def _delete_objects_by_institution_id(
-        self,
-        institution_id,
-    ):
-        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
-        oprot.write_struct_begin()
-        oprot.write_field_begin(name='institution_id', type=11, id=None)
-        oprot.write_string(institution_id)
-        oprot.write_field_end()
-        oprot.write_struct_end()
-
-        return_value = self.__request(method='delete_objects_by_institution_id', params=oprot.value)
         iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
         return iprot.read_u32()
 

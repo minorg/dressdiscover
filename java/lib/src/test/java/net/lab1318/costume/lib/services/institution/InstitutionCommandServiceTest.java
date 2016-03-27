@@ -1,7 +1,6 @@
 package net.lab1318.costume.lib.services.institution;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
@@ -24,15 +23,6 @@ public abstract class InstitutionCommandServiceTest extends InstitutionServiceTe
             } catch (final NoSuchInstitutionException e) {
             }
         }
-    }
-
-    @Test
-    public void testDeleteInstitutions() throws Exception {
-        assertEquals(0, institutionQueryService.getInstitutions().size());
-        _putInstitutions();
-        assertNotEquals(0, institutionQueryService.getInstitutions().size());
-        institutionCommandService.deleteInstitutions();
-        assertEquals(0, institutionQueryService.getInstitutions().size());
     }
 
     @Test

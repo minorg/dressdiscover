@@ -59,6 +59,11 @@
 			</exclusions>
 		</dependency>
 		<dependency>
+			<groupId>org.python</groupId>
+			<artifactId>jython-standalone</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+		<dependency>
 			<groupId>org.thryft</groupId>
 			<artifactId>thryft-waf-lib</artifactId>
 			<version>${thryft-waf.version}</version>

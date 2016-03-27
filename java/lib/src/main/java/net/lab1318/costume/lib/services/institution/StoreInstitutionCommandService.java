@@ -38,17 +38,6 @@ class StoreInstitutionCommandService implements InstitutionCommandService {
     }
 
     @Override
-    public void deleteInstitutions() throws IoException {
-        try {
-            store.deleteInstitutions(logger, Markers.DELETE_INSTITUTIONS);
-        } catch (final IOException e) {
-            throw IoExceptions.wrap(e, "error deleting institutions");
-        }
-
-        collectionCommandService.deleteCollections();
-    }
-
-    @Override
     public void putInstitution(final InstitutionId id, final Institution institution) throws IoException {
         try {
             store.putInstitution(institution, id, logger, Markers.PUT_INSTITUTION);

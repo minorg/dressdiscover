@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.lab1318.costume.api.models.collection.Collection;
+import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.services.IoException;
@@ -37,25 +38,23 @@ abstract class StoreCollectionCommandService implements CollectionCommandService
     }
 
     @Override
-    public void deleteCollections() throws IoException {
-        try {
-            store.deleteCollections(logger, Markers.DELETE_COLLECTIONS);
-        } catch (final IOException e) {
-            throw IoExceptions.wrap(e, "error deleting collections");
-        }
-
-        objectCommandService.deleteObjects();
-    }
-
-    @Override
     public void deleteCollectionsByInstitutionId(final InstitutionId institutionId) throws IoException {
         try {
-            store.deleteCollectionsByInstitutionId(institutionId, logger, Markers.DELETE_COLLECTION_BY_ID);
+            for (final CollectionEntry collectionEntry : store.getCollectionsByInstitutionId(institutionId, logger,
+                    Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID)) {
+                try {
+                    objectCommandService.deleteObjectsByCollectionId(collectionEntry.getId());
+                } catch (final NoSuchCollectionException e) {
+                    logger.warn(Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID, "no such collection {} when deleting?",
+                            collectionEntry.getId());
+                }
+            }
+
+            store.deleteCollectionsByInstitutionId(institutionId, logger, Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID);
         } catch (final IOException e) {
             throw IoExceptions.wrap(e, "error deleting collections by institution ID");
         }
 
-        objectCommandService.deleteObjectsByInstitutionId(institutionId);
     }
 
     @Override

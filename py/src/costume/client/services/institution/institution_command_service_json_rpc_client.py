@@ -125,11 +125,6 @@ class InstitutionCommandServiceJsonRpcClient(costume.api.services.institution.in
 
         self.__request(method='delete_institution_by_id', params=oprot.value)
 
-    def _delete_institutions(
-        self,
-    ):
-        self.__request(method='delete_institutions', params={})
-
     def _put_institution(
         self,
         id,  # @ReservedAssignment

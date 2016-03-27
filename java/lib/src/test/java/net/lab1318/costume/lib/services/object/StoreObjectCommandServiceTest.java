@@ -6,20 +6,9 @@ import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
 
 import net.lab1318.costume.api.models.collection.CollectionEntry;
-import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.lib.services.TestData;
 
-public final class FileSystemObjectCommandServiceTest extends ObjectServiceTest {
-    @Test
-    public void testDeleteObjects() throws Exception {
-        assertEquals(0, _getObjectCount());
-        _putObjects();
-        assertNotEquals(0, _getObjectCount());
-        objectCommandService.deleteObjects();
-        objectSummaryElasticSearchIndex.refresh();
-        assertEquals(0, _getObjectCount());
-    }
-
+public final class StoreObjectCommandServiceTest extends ObjectServiceTest {
     @Test
     public void testDeleteObjectsByCollectionId() throws Exception {
         _putObjects();
@@ -28,19 +17,6 @@ public final class FileSystemObjectCommandServiceTest extends ObjectServiceTest 
             objectCommandService.deleteObjectsByCollectionId(collectionEntry.getId());
             objectSummaryElasticSearchIndex.refresh();
             assertEquals(0, _getObjectCountByCollectionId(collectionEntry.getId()));
-        }
-    }
-
-    @Test
-    public void testDeleteObjectsByInstitutionId() throws Exception {
-        _putObjects();
-        for (final InstitutionEntry institutionEntry : TestData.getInstance().getInstitutions()) {
-            final int objectCount = _getObjectCountByInstitutionId(institutionEntry.getId());
-            assertNotEquals(0, objectCount);
-            assertEquals(objectCount,
-                    objectCommandService.deleteObjectsByInstitutionId(institutionEntry.getId()).intValue());
-            objectSummaryElasticSearchIndex.refresh();
-            assertEquals(0, _getObjectCountByInstitutionId(institutionEntry.getId()));
         }
     }
 

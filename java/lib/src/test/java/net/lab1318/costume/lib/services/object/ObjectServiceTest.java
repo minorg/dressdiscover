@@ -20,26 +20,29 @@ import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.lib.services.ServiceTest;
 import net.lab1318.costume.lib.services.TestData;
+import net.lab1318.costume.lib.services.collection.CollectionServiceTest;
+import net.lab1318.costume.lib.services.institution.InstitutionServiceTest;
 import net.lab1318.costume.lib.stores.object.ObjectSummaryElasticSearchIndex;
 
 public abstract class ObjectServiceTest extends ServiceTest {
     @Before
     public void setUp() throws Exception {
-        collectionCommandService = _getInjector().getInstance(CollectionCommandService.class);
         collectionQueryService = _getInjector().getInstance(CollectionQueryService.class);
         institutionCommandService = _getInjector().getInstance(InstitutionCommandService.class);
         objectCommandService = _getInjector().getInstance(ObjectCommandService.class);
         objectQueryService = _getInjector().getInstance(ObjectQueryService.class);
         objectSummaryElasticSearchIndex = _getInjector().getInstance(ObjectSummaryElasticSearchIndex.class);
         objectSummaryQueryService = _getInjector().getInstance(ObjectSummaryQueryService.class);
-        tearDown();
+
+        InstitutionServiceTest.deleteInstitutions(institutionCommandService);
+
+        CollectionServiceTest.putCollections(institutionCommandService,
+                _getInjector().getInstance(CollectionCommandService.class));
     }
 
     @After
     public void tearDown() throws Exception {
-        objectCommandService.deleteObjects();
-        collectionCommandService.deleteCollections();
-        institutionCommandService.deleteInstitutions();
+        InstitutionServiceTest.deleteInstitutions(institutionCommandService);
         objectSummaryElasticSearchIndex.refresh();
     }
 
@@ -77,7 +80,6 @@ public abstract class ObjectServiceTest extends ServiceTest {
         return ImmutableList.copyOf(TestData.getInstance().getObjects().values());
     }
 
-    private CollectionCommandService collectionCommandService;
     protected CollectionQueryService collectionQueryService;
     private InstitutionCommandService institutionCommandService;
     protected ObjectCommandService objectCommandService;

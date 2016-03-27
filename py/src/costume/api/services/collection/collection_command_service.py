@@ -24,16 +24,6 @@ class CollectionCommandService(object):
     ):
         raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._delete_collection_by_id')
 
-    def delete_collections(
-        self,
-    ):
-        self._delete_collections()
-
-    def _delete_collections(
-        self,
-    ):
-        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._delete_collections')
-
     def delete_collections_by_institution_id(
         self,
         institution_id=None,

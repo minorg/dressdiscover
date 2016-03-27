@@ -10,6 +10,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             external = com.google.common.base.Optional.absent();
             hidden = com.google.common.base.Optional.absent();
             locations = com.google.common.base.Optional.absent();
+            objectStoreUrl = com.google.common.base.Optional.absent();
             url = com.google.common.base.Optional.absent();
             workTypes = com.google.common.base.Optional.absent();
         }
@@ -22,16 +23,17 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             this.external = other.getExternal();
             this.hidden = other.getHidden();
             this.locations = other.getLocations();
+            this.objectStoreUrl = other.getObjectStoreUrl();
             this.url = other.getUrl();
             this.workTypes = other.getWorkTypes();
         }
 
-        protected Collection _build(final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<net.lab1318.costume.api.models.location.LocationSet> locations, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<net.lab1318.costume.api.models.work_type.WorkTypeSet> workTypes) {
-            return new Collection(institutionId, modelMetadata, title, description, external, hidden, locations, url, workTypes);
+        protected Collection _build(final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<net.lab1318.costume.api.models.location.LocationSet> locations, final com.google.common.base.Optional<org.thryft.native_.Url> objectStoreUrl, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<net.lab1318.costume.api.models.work_type.WorkTypeSet> workTypes) {
+            return new Collection(institutionId, modelMetadata, title, description, external, hidden, locations, objectStoreUrl, url, workTypes);
         }
 
         public Collection build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.collection.Collection: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.collection.Collection: missing modelMetadata"), com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.collection.Collection: missing title"), com.google.common.base.Preconditions.checkNotNull(description, "net.lab1318.costume.api.models.collection.Collection: missing description"), com.google.common.base.Preconditions.checkNotNull(external, "net.lab1318.costume.api.models.collection.Collection: missing external"), com.google.common.base.Preconditions.checkNotNull(hidden, "net.lab1318.costume.api.models.collection.Collection: missing hidden"), com.google.common.base.Preconditions.checkNotNull(locations, "net.lab1318.costume.api.models.collection.Collection: missing locations"), com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.collection.Collection: missing url"), com.google.common.base.Preconditions.checkNotNull(workTypes, "net.lab1318.costume.api.models.collection.Collection: missing workTypes"));
+            return _build(com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.collection.Collection: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.collection.Collection: missing modelMetadata"), com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.collection.Collection: missing title"), com.google.common.base.Preconditions.checkNotNull(description, "net.lab1318.costume.api.models.collection.Collection: missing description"), com.google.common.base.Preconditions.checkNotNull(external, "net.lab1318.costume.api.models.collection.Collection: missing external"), com.google.common.base.Preconditions.checkNotNull(hidden, "net.lab1318.costume.api.models.collection.Collection: missing hidden"), com.google.common.base.Preconditions.checkNotNull(locations, "net.lab1318.costume.api.models.collection.Collection: missing locations"), com.google.common.base.Preconditions.checkNotNull(objectStoreUrl, "net.lab1318.costume.api.models.collection.Collection: missing objectStoreUrl"), com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.collection.Collection: missing url"), com.google.common.base.Preconditions.checkNotNull(workTypes, "net.lab1318.costume.api.models.collection.Collection: missing workTypes"));
         }
 
         public final com.google.common.base.Optional<String> getDescription() {
@@ -56,6 +58,10 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
 
         public final net.lab1318.costume.api.models.ModelMetadata getModelMetadata() {
             return modelMetadata;
+        }
+
+        public final com.google.common.base.Optional<org.thryft.native_.Url> getObjectStoreUrl() {
+            return objectStoreUrl;
         }
 
         public final String getTitle() {
@@ -104,11 +110,17 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             }
             if (__list.getSize() > 7) {
                 try {
-                    url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                    objectStoreUrl = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
                 } catch (final java.lang.IllegalArgumentException e) {
                 }
             }
             if (__list.getSize() > 8) {
+                try {
+                    url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                } catch (final java.lang.IllegalArgumentException e) {
+                }
+            }
+            if (__list.getSize() > 9) {
                 workTypes = com.google.common.base.Optional.of(net.lab1318.costume.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
             }
             iprot.readListEnd();
@@ -170,6 +182,15 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
                 case "locations": {
                     if (!ifield.hasId() || ifield.getId() == 8) {
                         locations = com.google.common.base.Optional.of(net.lab1318.costume.api.models.location.LocationSet.readAsStruct(iprot));
+                    }
+                    break;
+                }
+                case "object_store_url": {
+                    if (!ifield.hasId() || ifield.getId() == 10) {
+                        try {
+                            objectStoreUrl = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                        } catch (final java.lang.IllegalArgumentException e) {
+                        }
                     }
                     break;
                 }
@@ -248,6 +269,9 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             if (other.getLocations().isPresent()) {
                 setLocations(other.getLocations());
             }
+            if (other.getObjectStoreUrl().isPresent()) {
+                setObjectStoreUrl(other.getObjectStoreUrl());
+            }
             if (other.getUrl().isPresent()) {
                 setUrl(other.getUrl());
             }
@@ -275,6 +299,16 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
 
         public Builder setModelMetadata(final net.lab1318.costume.api.models.ModelMetadata modelMetadata) {
             this.modelMetadata = com.google.common.base.Preconditions.checkNotNull(modelMetadata);
+            return this;
+        }
+
+        public Builder setObjectStoreUrl(final com.google.common.base.Optional<org.thryft.native_.Url> objectStoreUrl) {
+            this.objectStoreUrl = com.google.common.base.Preconditions.checkNotNull(objectStoreUrl);
+            return this;
+        }
+
+        public Builder setObjectStoreUrl(@javax.annotation.Nullable final org.thryft.native_.Url objectStoreUrl) {
+            this.objectStoreUrl = com.google.common.base.Optional.fromNullable(objectStoreUrl);
             return this;
         }
 
@@ -314,6 +348,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             case "external": setExternal((Boolean)value); return this;
             case "hidden": setHidden((Boolean)value); return this;
             case "locations": setLocations((net.lab1318.costume.api.models.location.LocationSet)value); return this;
+            case "object_store_url": setObjectStoreUrl((org.thryft.native_.Url)value); return this;
             case "url": setUrl((org.thryft.native_.Url)value); return this;
             case "work_types": setWorkTypes((net.lab1318.costume.api.models.work_type.WorkTypeSet)value); return this;
             default:
@@ -351,6 +386,11 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             return this;
         }
 
+        public Builder unsetObjectStoreUrl() {
+            this.objectStoreUrl = com.google.common.base.Optional.absent();
+            return this;
+        }
+
         public Builder unsetTitle() {
             this.title = null;
             return this;
@@ -377,6 +417,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             case "external": return unsetExternal();
             case "hidden": return unsetHidden();
             case "locations": return unsetLocations();
+            case "object_store_url": return unsetObjectStoreUrl();
             case "url": return unsetUrl();
             case "work_types": return unsetWorkTypes();
             default:
@@ -391,6 +432,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         private com.google.common.base.Optional<Boolean> external;
         private com.google.common.base.Optional<Boolean> hidden;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.location.LocationSet> locations;
+        private com.google.common.base.Optional<org.thryft.native_.Url> objectStoreUrl;
         private com.google.common.base.Optional<org.thryft.native_.Url> url;
         private com.google.common.base.Optional<net.lab1318.costume.api.models.work_type.WorkTypeSet> workTypes;
     }
@@ -404,6 +446,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         EXTERNAL("external", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 7, "external", org.thryft.protocol.Type.BOOL),
         HIDDEN("hidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 5, "hidden", org.thryft.protocol.Type.BOOL),
         LOCATIONS("locations", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.location.LocationSet>() {}, false, 8, "locations", org.thryft.protocol.Type.STRUCT),
+        OBJECT_STORE_URL("objectStoreUrl", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 10, "object_store_url", org.thryft.protocol.Type.STRING),
         URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 9, "url", org.thryft.protocol.Type.STRING),
         WORK_TYPES("workTypes", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.work_type.WorkTypeSet>() {}, false, 6, "work_types", org.thryft.protocol.Type.STRUCT);
 
@@ -456,6 +499,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             case "external": return EXTERNAL;
             case "hidden": return HIDDEN;
             case "locations": return LOCATIONS;
+            case "objectStoreUrl": return OBJECT_STORE_URL;
             case "url": return URL;
             case "workTypes": return WORK_TYPES;
             default:
@@ -472,6 +516,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             case "external": return EXTERNAL;
             case "hidden": return HIDDEN;
             case "locations": return LOCATIONS;
+            case "object_store_url": return OBJECT_STORE_URL;
             case "url": return URL;
             case "work_types": return WORK_TYPES;
             default:
@@ -506,7 +551,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
      * Copy constructor
      */
     public Collection(final Collection other) {
-        this(other.getInstitutionId(), other.getModelMetadata(), other.getTitle(), other.getDescription(), other.getExternal(), other.getHidden(), other.getLocations(), other.getUrl(), other.getWorkTypes());
+        this(other.getInstitutionId(), other.getModelMetadata(), other.getTitle(), other.getDescription(), other.getExternal(), other.getHidden(), other.getLocations(), other.getObjectStoreUrl(), other.getUrl(), other.getWorkTypes());
     }
 
     /**
@@ -520,6 +565,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         this.external = com.google.common.base.Optional.absent();
         this.hidden = com.google.common.base.Optional.absent();
         this.locations = com.google.common.base.Optional.absent();
+        this.objectStoreUrl = com.google.common.base.Optional.absent();
         this.url = com.google.common.base.Optional.absent();
         this.workTypes = com.google.common.base.Optional.absent();
     }
@@ -527,7 +573,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
     /**
      * Total Nullable constructor
      */
-    public Collection(final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final @javax.annotation.Nullable String description, final @javax.annotation.Nullable Boolean external, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable net.lab1318.costume.api.models.location.LocationSet locations, final @javax.annotation.Nullable org.thryft.native_.Url url, final @javax.annotation.Nullable net.lab1318.costume.api.models.work_type.WorkTypeSet workTypes) {
+    public Collection(final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final @javax.annotation.Nullable String description, final @javax.annotation.Nullable Boolean external, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable net.lab1318.costume.api.models.location.LocationSet locations, final @javax.annotation.Nullable org.thryft.native_.Url objectStoreUrl, final @javax.annotation.Nullable org.thryft.native_.Url url, final @javax.annotation.Nullable net.lab1318.costume.api.models.work_type.WorkTypeSet workTypes) {
         this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.collection.Collection: missing institutionId");
         this.modelMetadata = com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.collection.Collection: missing modelMetadata");
         this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.collection.Collection: missing title"), "net.lab1318.costume.api.models.collection.Collection: title is empty");
@@ -535,6 +581,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         this.external = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(external), "net.lab1318.costume.api.models.collection.Collection: external must be true");
         this.hidden = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(hidden), "net.lab1318.costume.api.models.collection.Collection: hidden must be true");
         this.locations = com.google.common.base.Optional.fromNullable(locations);
+        this.objectStoreUrl = com.google.common.base.Optional.fromNullable(objectStoreUrl);
         this.url = com.google.common.base.Optional.fromNullable(url);
         this.workTypes = com.google.common.base.Optional.fromNullable(workTypes);
     }
@@ -542,7 +589,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
     /**
      * Optional constructor
      */
-    public Collection(final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<net.lab1318.costume.api.models.location.LocationSet> locations, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<net.lab1318.costume.api.models.work_type.WorkTypeSet> workTypes) {
+    public Collection(final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final net.lab1318.costume.api.models.ModelMetadata modelMetadata, final String title, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<net.lab1318.costume.api.models.location.LocationSet> locations, final com.google.common.base.Optional<org.thryft.native_.Url> objectStoreUrl, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<net.lab1318.costume.api.models.work_type.WorkTypeSet> workTypes) {
         this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "net.lab1318.costume.api.models.collection.Collection: missing institutionId");
         this.modelMetadata = com.google.common.base.Preconditions.checkNotNull(modelMetadata, "net.lab1318.costume.api.models.collection.Collection: missing modelMetadata");
         this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "net.lab1318.costume.api.models.collection.Collection: missing title"), "net.lab1318.costume.api.models.collection.Collection: title is empty");
@@ -550,6 +597,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         this.external = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(external, "net.lab1318.costume.api.models.collection.Collection: missing external"), "net.lab1318.costume.api.models.collection.Collection: external must be true");
         this.hidden = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(hidden, "net.lab1318.costume.api.models.collection.Collection: missing hidden"), "net.lab1318.costume.api.models.collection.Collection: hidden must be true");
         this.locations = com.google.common.base.Preconditions.checkNotNull(locations, "net.lab1318.costume.api.models.collection.Collection: missing locations");
+        this.objectStoreUrl = com.google.common.base.Preconditions.checkNotNull(objectStoreUrl, "net.lab1318.costume.api.models.collection.Collection: missing objectStoreUrl");
         this.url = com.google.common.base.Preconditions.checkNotNull(url, "net.lab1318.costume.api.models.collection.Collection: missing url");
         this.workTypes = com.google.common.base.Preconditions.checkNotNull(workTypes, "net.lab1318.costume.api.models.collection.Collection: missing workTypes");
     }
@@ -583,6 +631,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             ((getExternal().isPresent() && other.getExternal().isPresent()) ? (getExternal().get() == other.getExternal().get()) : (!getExternal().isPresent() && !other.getExternal().isPresent())) &&
             ((getHidden().isPresent() && other.getHidden().isPresent()) ? (getHidden().get() == other.getHidden().get()) : (!getHidden().isPresent() && !other.getHidden().isPresent())) &&
             ((getLocations().isPresent() && other.getLocations().isPresent()) ? (getLocations().get().equals(other.getLocations().get())) : (!getLocations().isPresent() && !other.getLocations().isPresent())) &&
+            ((getObjectStoreUrl().isPresent() && other.getObjectStoreUrl().isPresent()) ? (getObjectStoreUrl().get().equals(other.getObjectStoreUrl().get())) : (!getObjectStoreUrl().isPresent() && !other.getObjectStoreUrl().isPresent())) &&
             ((getUrl().isPresent() && other.getUrl().isPresent()) ? (getUrl().get().equals(other.getUrl().get())) : (!getUrl().isPresent() && !other.getUrl().isPresent())) &&
             ((getWorkTypes().isPresent() && other.getWorkTypes().isPresent()) ? (getWorkTypes().get().equals(other.getWorkTypes().get())) : (!getWorkTypes().isPresent() && !other.getWorkTypes().isPresent()));
     }
@@ -609,6 +658,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         case EXTERNAL: return getExternal();
         case HIDDEN: return getHidden();
         case LOCATIONS: return getLocations();
+        case OBJECT_STORE_URL: return getObjectStoreUrl();
         case URL: return getUrl();
         case WORK_TYPES: return getWorkTypes();
         default:
@@ -640,6 +690,10 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         return modelMetadata;
     }
 
+    public final com.google.common.base.Optional<org.thryft.native_.Url> getObjectStoreUrl() {
+        return objectStoreUrl;
+    }
+
     public final String getTitle() {
         return title;
     }
@@ -669,6 +723,9 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         }
         if (getLocations().isPresent()) {
             hashCode = 31 * hashCode + getLocations().get().hashCode();
+        }
+        if (getObjectStoreUrl().isPresent()) {
+            hashCode = 31 * hashCode + getObjectStoreUrl().get().hashCode();
         }
         if (getUrl().isPresent()) {
             hashCode = 31 * hashCode + getUrl().get().hashCode();
@@ -703,6 +760,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         com.google.common.base.Optional<Boolean> external = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<Boolean> hidden = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.location.LocationSet> locations = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.thryft.native_.Url> objectStoreUrl = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.work_type.WorkTypeSet> workTypes = com.google.common.base.Optional.absent();
 
@@ -728,16 +786,22 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         }
         if (__list.getSize() > 7) {
             try {
-                url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                objectStoreUrl = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
             } catch (final java.lang.IllegalArgumentException e) {
             }
         }
         if (__list.getSize() > 8) {
+            try {
+                url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+            } catch (final java.lang.IllegalArgumentException e) {
+            }
+        }
+        if (__list.getSize() > 9) {
             workTypes = com.google.common.base.Optional.of(net.lab1318.costume.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
         }
         iprot.readListEnd();
         try {
-            return new Collection(institutionId, modelMetadata, title, description, external, hidden, locations, url, workTypes);
+            return new Collection(institutionId, modelMetadata, title, description, external, hidden, locations, objectStoreUrl, url, workTypes);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
@@ -755,6 +819,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         com.google.common.base.Optional<Boolean> external = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<Boolean> hidden = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.location.LocationSet> locations = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.thryft.native_.Url> objectStoreUrl = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<net.lab1318.costume.api.models.work_type.WorkTypeSet> workTypes = com.google.common.base.Optional.absent();
 
@@ -811,6 +876,15 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
                 }
                 break;
             }
+            case "object_store_url": {
+                if (!ifield.hasId() || ifield.getId() == 10) {
+                    try {
+                        objectStoreUrl = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                    } catch (final java.lang.IllegalArgumentException e) {
+                    }
+                }
+                break;
+            }
             case "url": {
                 if (!ifield.hasId() || ifield.getId() == 9) {
                     try {
@@ -836,14 +910,14 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         }
         iprot.readStructEnd();
         try {
-            return new Collection(institutionId, modelMetadata, title, description, external, hidden, locations, url, workTypes);
+            return new Collection(institutionId, modelMetadata, title, description, external, hidden, locations, objectStoreUrl, url, workTypes);
         } catch (final IllegalArgumentException | NullPointerException e) {
             throw new org.thryft.protocol.InputProtocolException(e);
         }
     }
 
     public Collection replaceDescription(final com.google.common.base.Optional<String> description) {
-        return new Collection(this.institutionId, this.modelMetadata, this.title, description, this.external, this.hidden, this.locations, this.url, this.workTypes);
+        return new Collection(this.institutionId, this.modelMetadata, this.title, description, this.external, this.hidden, this.locations, this.objectStoreUrl, this.url, this.workTypes);
     }
 
     public Collection replaceDescription(final String description) {
@@ -851,7 +925,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
     }
 
     public Collection replaceExternal(final com.google.common.base.Optional<Boolean> external) {
-        return new Collection(this.institutionId, this.modelMetadata, this.title, this.description, external, this.hidden, this.locations, this.url, this.workTypes);
+        return new Collection(this.institutionId, this.modelMetadata, this.title, this.description, external, this.hidden, this.locations, this.objectStoreUrl, this.url, this.workTypes);
     }
 
     public Collection replaceExternal(final boolean external) {
@@ -859,7 +933,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
     }
 
     public Collection replaceHidden(final com.google.common.base.Optional<Boolean> hidden) {
-        return new Collection(this.institutionId, this.modelMetadata, this.title, this.description, this.external, hidden, this.locations, this.url, this.workTypes);
+        return new Collection(this.institutionId, this.modelMetadata, this.title, this.description, this.external, hidden, this.locations, this.objectStoreUrl, this.url, this.workTypes);
     }
 
     public Collection replaceHidden(final boolean hidden) {
@@ -867,11 +941,11 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
     }
 
     public Collection replaceInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
-        return new Collection(institutionId, this.modelMetadata, this.title, this.description, this.external, this.hidden, this.locations, this.url, this.workTypes);
+        return new Collection(institutionId, this.modelMetadata, this.title, this.description, this.external, this.hidden, this.locations, this.objectStoreUrl, this.url, this.workTypes);
     }
 
     public Collection replaceLocations(final com.google.common.base.Optional<net.lab1318.costume.api.models.location.LocationSet> locations) {
-        return new Collection(this.institutionId, this.modelMetadata, this.title, this.description, this.external, this.hidden, locations, this.url, this.workTypes);
+        return new Collection(this.institutionId, this.modelMetadata, this.title, this.description, this.external, this.hidden, locations, this.objectStoreUrl, this.url, this.workTypes);
     }
 
     public Collection replaceLocations(final net.lab1318.costume.api.models.location.LocationSet locations) {
@@ -879,15 +953,23 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
     }
 
     public Collection replaceModelMetadata(final net.lab1318.costume.api.models.ModelMetadata modelMetadata) {
-        return new Collection(this.institutionId, modelMetadata, this.title, this.description, this.external, this.hidden, this.locations, this.url, this.workTypes);
+        return new Collection(this.institutionId, modelMetadata, this.title, this.description, this.external, this.hidden, this.locations, this.objectStoreUrl, this.url, this.workTypes);
+    }
+
+    public Collection replaceObjectStoreUrl(final com.google.common.base.Optional<org.thryft.native_.Url> objectStoreUrl) {
+        return new Collection(this.institutionId, this.modelMetadata, this.title, this.description, this.external, this.hidden, this.locations, objectStoreUrl, this.url, this.workTypes);
+    }
+
+    public Collection replaceObjectStoreUrl(final org.thryft.native_.Url objectStoreUrl) {
+        return replaceObjectStoreUrl(com.google.common.base.Optional.fromNullable(objectStoreUrl));
     }
 
     public Collection replaceTitle(final String title) {
-        return new Collection(this.institutionId, this.modelMetadata, title, this.description, this.external, this.hidden, this.locations, this.url, this.workTypes);
+        return new Collection(this.institutionId, this.modelMetadata, title, this.description, this.external, this.hidden, this.locations, this.objectStoreUrl, this.url, this.workTypes);
     }
 
     public Collection replaceUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) {
-        return new Collection(this.institutionId, this.modelMetadata, this.title, this.description, this.external, this.hidden, this.locations, url, this.workTypes);
+        return new Collection(this.institutionId, this.modelMetadata, this.title, this.description, this.external, this.hidden, this.locations, this.objectStoreUrl, url, this.workTypes);
     }
 
     public Collection replaceUrl(final org.thryft.native_.Url url) {
@@ -895,7 +977,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
     }
 
     public Collection replaceWorkTypes(final com.google.common.base.Optional<net.lab1318.costume.api.models.work_type.WorkTypeSet> workTypes) {
-        return new Collection(this.institutionId, this.modelMetadata, this.title, this.description, this.external, this.hidden, this.locations, this.url, workTypes);
+        return new Collection(this.institutionId, this.modelMetadata, this.title, this.description, this.external, this.hidden, this.locations, this.objectStoreUrl, this.url, workTypes);
     }
 
     public Collection replaceWorkTypes(final net.lab1318.costume.api.models.work_type.WorkTypeSet workTypes) {
@@ -904,12 +986,12 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("description", getDescription().orNull()).add("external", getExternal().orNull()).add("hidden", getHidden().orNull()).add("locations", getLocations().orNull()).add("url", getUrl().orNull()).add("work_types", getWorkTypes().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("description", getDescription().orNull()).add("external", getExternal().orNull()).add("hidden", getHidden().orNull()).add("locations", getLocations().orNull()).add("object_store_url", getObjectStoreUrl().orNull()).add("url", getUrl().orNull()).add("work_types", getWorkTypes().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 9);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 10);
 
         oprot.writeString(getInstitutionId().toString());
 
@@ -937,6 +1019,12 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
 
         if (getLocations().isPresent()) {
             getLocations().get().writeAsStruct(oprot);
+        } else {
+            oprot.writeNull();
+        }
+
+        if (getObjectStoreUrl().isPresent()) {
+            oprot.writeString(getObjectStoreUrl().get().toString());
         } else {
             oprot.writeNull();
         }
@@ -1001,6 +1089,12 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             oprot.writeFieldEnd();
         }
 
+        if (getObjectStoreUrl().isPresent()) {
+            oprot.writeFieldBegin("object_store_url", org.thryft.protocol.Type.STRING, (short)10);
+            oprot.writeString(getObjectStoreUrl().get().toString());
+            oprot.writeFieldEnd();
+        }
+
         if (getUrl().isPresent()) {
             oprot.writeFieldBegin("url", org.thryft.protocol.Type.STRING, (short)9);
             oprot.writeString(getUrl().get().toString());
@@ -1029,6 +1123,8 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
     private final com.google.common.base.Optional<Boolean> hidden;
 
     private final com.google.common.base.Optional<net.lab1318.costume.api.models.location.LocationSet> locations;
+
+    private final com.google.common.base.Optional<org.thryft.native_.Url> objectStoreUrl;
 
     private final com.google.common.base.Optional<org.thryft.native_.Url> url;
 
