@@ -8,6 +8,7 @@ namespace * costume.api.services.object
 include "costume/api/models/object/object.thrift"
 include "costume/api/models/object/object_id.thrift"
 include "costume/api/services/io_exception.thrift"
+include "costume/api/services/collection/no_such_collection_exception.thrift"
 include "costume/api/services/object/no_such_object_exception.thrift"
 
 service ObjectQueryService {
@@ -16,6 +17,7 @@ service ObjectQueryService {
 		object_id.ObjectId id
 	) throws (
 		io_exception.IoException e1,
-		no_such_object_exception.NoSuchObjectException e2
+        no_such_collection_exception.NoSuchCollectionException e2,
+		no_such_object_exception.NoSuchObjectException e3
 	);
 }

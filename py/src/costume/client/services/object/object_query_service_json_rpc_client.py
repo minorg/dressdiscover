@@ -1,6 +1,7 @@
 from urlparse import urlparse
 import base64
 import costume.api.models.object.object
+import costume.api.services.collection.no_such_collection_exception  # @UnusedImport
 import costume.api.services.io_exception  # @UnusedImport
 import costume.api.services.object.no_such_object_exception  # @UnusedImport
 import costume.api.services.object.object_query_service

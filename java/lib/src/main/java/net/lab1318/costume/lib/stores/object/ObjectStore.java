@@ -8,16 +8,12 @@ import org.thryft.waf.lib.stores.InvalidModelException;
 import org.thryft.waf.lib.stores.NoSuchModelException;
 
 import net.lab1318.costume.api.models.collection.CollectionId;
-import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.object.ObjectId;
 
 public interface ObjectStore {
     public long deleteObjectsByCollectionId(final CollectionId collectionId, final Logger logger,
-            final Marker logMarker) throws IOException;
-
-    public long deleteObjectsByInstitutionId(final InstitutionId institutionId, final Logger logger,
             final Marker logMarker) throws IOException;
 
     public Object getObjectById(final Logger logger, final Marker logMarker, final ObjectId objectId)

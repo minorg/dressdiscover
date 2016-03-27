@@ -97,6 +97,9 @@ public class ObjectByIdPresenter extends Presenter<ObjectByIdView> {
             Object object;
             try {
                 object = objectQueryService.getObjectById(objectId);
+            } catch (final NoSuchCollectionException e) {
+                _getView().setComponentError(new UserError("no such collection " + objectId));
+                return;
             } catch (final NoSuchObjectException e) {
                 _getView().setComponentError(new UserError("no such object " + objectId));
                 return;
