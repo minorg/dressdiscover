@@ -12,6 +12,12 @@ import net.lab1318.costume.lib.services.ServiceTest;
 import net.lab1318.costume.lib.services.TestData;
 
 public abstract class InstitutionServiceTest extends ServiceTest {
+    public static void deleteInstitutions(final InstitutionCommandService institutionCommandService) throws Exception {
+        for (final InstitutionEntry entry : TestData.getInstance().getInstitutions()) {
+            institutionCommandService.deleteInstitutionById(entry.getId());
+        }
+    }
+
     public static ImmutableList<InstitutionEntry> putInstitutions(
             final InstitutionCommandService institutionCommandService) throws Exception {
         for (final InstitutionEntry entry : TestData.getInstance().getInstitutions()) {
@@ -29,7 +35,7 @@ public abstract class InstitutionServiceTest extends ServiceTest {
 
     @After
     public void tearDown() throws Exception {
-        institutionCommandService.deleteInstitutions();
+        deleteInstitutions(institutionCommandService);
     }
 
     protected final ImmutableList<InstitutionEntry> _putInstitutions() throws Exception {

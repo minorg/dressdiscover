@@ -21,12 +21,6 @@ service CollectionCommandService {
 	);
 
 	void
-	delete_collections(
-	) throws (
-		io_exception.IoException e
-	);
-
-	void
 	delete_collections_by_institution_id(
 		institution_id.InstitutionId institution_id
 	) throws (

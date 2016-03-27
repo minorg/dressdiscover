@@ -111,13 +111,6 @@ class ObjectCommandServiceJsonRpcClient(costume.api.services.object.object_comma
 
         return response.get('result')
 
-    def _delete_objects(
-        self,
-    ):
-        return_value = self.__request(method='delete_objects', params={})
-        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
-        return iprot.read_u32()
-
     def _delete_objects_by_collection_id(
         self,
         collection_id,

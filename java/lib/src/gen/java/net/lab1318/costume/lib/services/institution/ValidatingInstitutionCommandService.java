@@ -20,11 +20,6 @@ public class ValidatingInstitutionCommandService implements net.lab1318.costume.
     }
 
     @Override
-    public final void deleteInstitutions() throws net.lab1318.costume.api.services.IoException {
-        delegate.deleteInstitutions();
-    }
-
-    @Override
     public final void putInstitution(final net.lab1318.costume.api.models.institution.InstitutionId id, final net.lab1318.costume.api.models.institution.Institution institution) throws net.lab1318.costume.api.services.IoException {
         _validatePutInstitutionParameters(id, institution);
         delegate.putInstitution(id, institution);

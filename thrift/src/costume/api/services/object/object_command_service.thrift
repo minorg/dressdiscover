@@ -15,12 +15,6 @@ include "thryft/native/u32.thrift"
 
 service ObjectCommandService {
 	u32.u32
-	delete_objects(
-	) throws (
-		io_exception.IoException e
-	);
-
-	u32.u32
 	delete_objects_by_collection_id(
 		collection_id.CollectionId collection_id
 	) throws (

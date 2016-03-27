@@ -20,12 +20,6 @@ service InstitutionCommandService {
 	);
 
 	void
-	delete_institutions(
-	) throws (
-		io_exception.IoException e
-	);
-
-	void
 	put_institution(
 		institution_id.InstitutionId id,
 		institution.Institution institution

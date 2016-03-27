@@ -31,15 +31,6 @@ public abstract class CollectionCommandServiceTest extends CollectionServiceTest
     }
 
     @Test
-    public void testDeleteCollections() throws Exception {
-        assertEquals(0, collectionQueryService.getCollections().size());
-        _putCollections();
-        assertNotEquals(0, collectionQueryService.getCollections().size());
-        collectionCommandService.deleteCollections();
-        assertEquals(0, collectionQueryService.getCollections().size());
-    }
-
-    @Test
     public void testDeleteCollectionsByInstitutionId() throws Exception {
         assertEquals(0, collectionQueryService.getCollections().size());
         _putCollections();

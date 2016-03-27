@@ -28,6 +28,8 @@ struct Collection {
 
     8: optional location_set.LocationSet locations;
 
+    10: optional url.Url object_store_url;
+
     9: optional url.Url url;
 
 	6: optional work_type_set.WorkTypeSet work_types;

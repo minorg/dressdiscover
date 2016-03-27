@@ -10,6 +10,7 @@ public class CollectionBean implements org.thryft.StructBean {
         EXTERNAL("external", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 7, "external", org.thryft.protocol.Type.BOOL),
         HIDDEN("hidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 5, "hidden", org.thryft.protocol.Type.BOOL),
         LOCATIONS("locations", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.location.LocationSetBean>() {}, false, 8, "locations", org.thryft.protocol.Type.STRUCT),
+        OBJECT_STORE_URL("objectStoreUrl", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 10, "object_store_url", org.thryft.protocol.Type.STRING),
         URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 9, "url", org.thryft.protocol.Type.STRING),
         WORK_TYPES("workTypes", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.work_type.WorkTypeSetBean>() {}, false, 6, "work_types", org.thryft.protocol.Type.STRUCT);
 
@@ -62,6 +63,7 @@ public class CollectionBean implements org.thryft.StructBean {
             case "external": return EXTERNAL;
             case "hidden": return HIDDEN;
             case "locations": return LOCATIONS;
+            case "objectStoreUrl": return OBJECT_STORE_URL;
             case "url": return URL;
             case "workTypes": return WORK_TYPES;
             default:
@@ -78,6 +80,7 @@ public class CollectionBean implements org.thryft.StructBean {
             case "external": return EXTERNAL;
             case "hidden": return HIDDEN;
             case "locations": return LOCATIONS;
+            case "object_store_url": return OBJECT_STORE_URL;
             case "url": return URL;
             case "work_types": return WORK_TYPES;
             default:
@@ -116,6 +119,7 @@ public class CollectionBean implements org.thryft.StructBean {
         external = null;
         hidden = null;
         locations = null;
+        objectStoreUrl = null;
         url = null;
         workTypes = null;
     }
@@ -128,6 +132,7 @@ public class CollectionBean implements org.thryft.StructBean {
         this.external = other.getExternal().isPresent() ? other.getExternal().get() : null;
         this.hidden = other.getHidden().isPresent() ? other.getHidden().get() : null;
         this.locations = other.getLocations().isPresent() ? new net.lab1318.costume.gui.models.location.LocationSetBean(other.getLocations().get()) : null;
+        this.objectStoreUrl = other.getObjectStoreUrl().isPresent() ? other.getObjectStoreUrl().get() : null;
         this.url = other.getUrl().isPresent() ? other.getUrl().get() : null;
         this.workTypes = other.getWorkTypes().isPresent() ? new net.lab1318.costume.gui.models.work_type.WorkTypeSetBean(other.getWorkTypes().get()) : null;
     }
@@ -149,6 +154,7 @@ public class CollectionBean implements org.thryft.StructBean {
             ((getExternal() != null && other.getExternal() != null) ? (getExternal() == other.getExternal()) : (getExternal() == null && other.getExternal() == null)) &&
             ((getHidden() != null && other.getHidden() != null) ? (getHidden() == other.getHidden()) : (getHidden() == null && other.getHidden() == null)) &&
             ((getLocations() != null && other.getLocations() != null) ? (getLocations().equals(other.getLocations())) : (getLocations() == null && other.getLocations() == null)) &&
+            ((getObjectStoreUrl() != null && other.getObjectStoreUrl() != null) ? (getObjectStoreUrl().equals(other.getObjectStoreUrl())) : (getObjectStoreUrl() == null && other.getObjectStoreUrl() == null)) &&
             ((getUrl() != null && other.getUrl() != null) ? (getUrl().equals(other.getUrl())) : (getUrl() == null && other.getUrl() == null)) &&
             ((getWorkTypes() != null && other.getWorkTypes() != null) ? (getWorkTypes().equals(other.getWorkTypes())) : (getWorkTypes() == null && other.getWorkTypes() == null));
     }
@@ -175,6 +181,7 @@ public class CollectionBean implements org.thryft.StructBean {
         case EXTERNAL: return getExternal();
         case HIDDEN: return getHidden();
         case LOCATIONS: return getLocations();
+        case OBJECT_STORE_URL: return getObjectStoreUrl();
         case URL: return getUrl();
         case WORK_TYPES: return getWorkTypes();
         default:
@@ -206,6 +213,10 @@ public class CollectionBean implements org.thryft.StructBean {
         return modelMetadata;
     }
 
+    public org.thryft.native_.Url getObjectStoreUrl() {
+        return objectStoreUrl;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -235,6 +246,9 @@ public class CollectionBean implements org.thryft.StructBean {
         }
         if (getLocations() != null) {
             hashCode = 31 * hashCode + getLocations().hashCode();
+        }
+        if (getObjectStoreUrl() != null) {
+            hashCode = 31 * hashCode + getObjectStoreUrl().hashCode();
         }
         if (getUrl() != null) {
             hashCode = 31 * hashCode + getUrl().hashCode();
@@ -274,6 +288,10 @@ public class CollectionBean implements org.thryft.StructBean {
         this.modelMetadata = modelMetadata;
     }
 
+    public void setObjectStoreUrl(final org.thryft.native_.Url objectStoreUrl) {
+        this.objectStoreUrl = objectStoreUrl;
+    }
+
     public void setTitle(final String title) {
         this.title = title;
     }
@@ -288,7 +306,7 @@ public class CollectionBean implements org.thryft.StructBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("description", getDescription()).add("external", getExternal()).add("hidden", getHidden()).add("locations", getLocations()).add("url", getUrl()).add("work_types", getWorkTypes()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("description", getDescription()).add("external", getExternal()).add("hidden", getHidden()).add("locations", getLocations()).add("object_store_url", getObjectStoreUrl()).add("url", getUrl()).add("work_types", getWorkTypes()).toString();
     }
 
     private net.lab1318.costume.api.models.institution.InstitutionId institutionId;
@@ -304,6 +322,8 @@ public class CollectionBean implements org.thryft.StructBean {
     private Boolean hidden;
 
     private net.lab1318.costume.gui.models.location.LocationSetBean locations;
+
+    private org.thryft.native_.Url objectStoreUrl;
 
     private org.thryft.native_.Url url;
 

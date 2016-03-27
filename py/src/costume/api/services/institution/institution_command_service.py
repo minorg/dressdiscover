@@ -24,16 +24,6 @@ class InstitutionCommandService(object):
     ):
         raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._delete_institution_by_id')
 
-    def delete_institutions(
-        self,
-    ):
-        self._delete_institutions()
-
-    def _delete_institutions(
-        self,
-    ):
-        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._delete_institutions')
-
     def put_institution(
         self,
         id=None,  # @ReservedAssignment

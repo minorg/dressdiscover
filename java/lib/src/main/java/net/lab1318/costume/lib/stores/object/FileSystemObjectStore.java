@@ -28,13 +28,13 @@ import net.lab1318.costume.lib.CostumeProperties;
 import net.lab1318.costume.lib.stores.AbstractInstitutionCollectionObjectFileSystem;
 
 @Singleton
-public class ObjectFileSystem extends AbstractInstitutionCollectionObjectFileSystem<Object> implements ObjectStore {
+public class FileSystemObjectStore extends AbstractInstitutionCollectionObjectFileSystem<Object>
+        implements ObjectStore {
     @Inject
-    public ObjectFileSystem(final CostumeProperties properties) {
+    public FileSystemObjectStore(final CostumeProperties properties) {
         super(properties);
     }
 
-    @Override
     public final long deleteObjects(final Logger logger, final Marker logMarker) throws IOException {
         long count = 0;
         for (final File institutionDirectoryPath : _getInstitutionDirectoryPaths(logger, logMarker)) {

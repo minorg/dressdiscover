@@ -4,14 +4,12 @@ package net.lab1318.costume.lib.services.collection;
 public class LoggingCollectionCommandService implements net.lab1318.costume.api.services.collection.CollectionCommandService {
     public static class Markers {
         public final static org.slf4j.Marker DELETE_COLLECTION_BY_ID = org.slf4j.MarkerFactory.getMarker("DELETE_COLLECTION_BY_ID");
-        public final static org.slf4j.Marker DELETE_COLLECTIONS = org.slf4j.MarkerFactory.getMarker("DELETE_COLLECTIONS");
         public final static org.slf4j.Marker DELETE_COLLECTIONS_BY_INSTITUTION_ID = org.slf4j.MarkerFactory.getMarker("DELETE_COLLECTIONS_BY_INSTITUTION_ID");
         public final static org.slf4j.Marker PUT_COLLECTION = org.slf4j.MarkerFactory.getMarker("PUT_COLLECTION");
 
         public final static org.slf4j.Marker COLLECTION_COMMAND_SERVICE = org.slf4j.MarkerFactory.getMarker("COLLECTION_COMMAND_SERVICE");
         static {
             COLLECTION_COMMAND_SERVICE.add(DELETE_COLLECTION_BY_ID);
-            COLLECTION_COMMAND_SERVICE.add(DELETE_COLLECTIONS);
             COLLECTION_COMMAND_SERVICE.add(DELETE_COLLECTIONS_BY_INSTITUTION_ID);
             COLLECTION_COMMAND_SERVICE.add(PUT_COLLECTION);
         }
@@ -46,25 +44,6 @@ public class LoggingCollectionCommandService implements net.lab1318.costume.api.
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.DELETE_COLLECTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
-            throw e;
-        }
-    }
-
-    public void deleteCollections() throws net.lab1318.costume.api.services.IoException {
-        final StringBuilder __logMessageStringBuilder = new StringBuilder();
-        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
-
-        __logMessageStringBuilder.append("delete_collections(");
-        __logMessageStringBuilder.append(")");
-
-        try {
-            delegate.deleteCollections();
-
-            logger.debug(Markers.DELETE_COLLECTIONS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
-        } catch (final net.lab1318.costume.api.services.IoException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.DELETE_COLLECTIONS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
         }
     }

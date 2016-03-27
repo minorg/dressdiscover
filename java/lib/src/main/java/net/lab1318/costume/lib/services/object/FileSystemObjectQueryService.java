@@ -19,12 +19,12 @@ import net.lab1318.costume.api.services.object.NoSuchObjectException;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.lib.services.IoExceptions;
 import net.lab1318.costume.lib.services.object.LoggingObjectQueryService.Markers;
-import net.lab1318.costume.lib.stores.object.ObjectFileSystem;
+import net.lab1318.costume.lib.stores.object.FileSystemObjectStore;
 
 @Singleton
 public class FileSystemObjectQueryService implements ObjectQueryService {
     @Inject
-    public FileSystemObjectQueryService(final ObjectFileSystem fileSystem) {
+    public FileSystemObjectQueryService(final FileSystemObjectStore fileSystem) {
         this.fileSystem = checkNotNull(fileSystem);
     }
 
@@ -42,6 +42,6 @@ public class FileSystemObjectQueryService implements ObjectQueryService {
         }
     }
 
-    private final ObjectFileSystem fileSystem;
+    private final FileSystemObjectStore fileSystem;
     private final static Logger logger = LoggerFactory.getLogger(FileSystemObjectQueryService.class);
 }

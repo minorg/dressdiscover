@@ -14,8 +14,6 @@ import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.object.ObjectId;
 
 public interface ObjectStore {
-    public long deleteObjects(final Logger logger, final Marker logMarker) throws IOException;
-
     public long deleteObjectsByCollectionId(final CollectionId collectionId, final Logger logger,
             final Marker logMarker) throws IOException;
 

@@ -20,11 +20,6 @@ public class ValidatingCollectionCommandService implements net.lab1318.costume.a
     }
 
     @Override
-    public final void deleteCollections() throws net.lab1318.costume.api.services.IoException {
-        delegate.deleteCollections();
-    }
-
-    @Override
     public final void deleteCollectionsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws net.lab1318.costume.api.services.IoException {
         _validateDeleteCollectionsByInstitutionIdParameters(institutionId);
         delegate.deleteCollectionsByInstitutionId(institutionId);

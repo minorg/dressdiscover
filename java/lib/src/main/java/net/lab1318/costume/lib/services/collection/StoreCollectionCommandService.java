@@ -37,17 +37,6 @@ abstract class StoreCollectionCommandService implements CollectionCommandService
     }
 
     @Override
-    public void deleteCollections() throws IoException {
-        try {
-            store.deleteCollections(logger, Markers.DELETE_COLLECTIONS);
-        } catch (final IOException e) {
-            throw IoExceptions.wrap(e, "error deleting collections");
-        }
-
-        objectCommandService.deleteObjects();
-    }
-
-    @Override
     public void deleteCollectionsByInstitutionId(final InstitutionId institutionId) throws IoException {
         try {
             store.deleteCollectionsByInstitutionId(institutionId, logger, Markers.DELETE_COLLECTION_BY_ID);

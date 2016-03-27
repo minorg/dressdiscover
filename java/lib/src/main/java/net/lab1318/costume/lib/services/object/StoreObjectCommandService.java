@@ -27,40 +27,20 @@ import net.lab1318.costume.api.services.object.ObjectCommandService;
 import net.lab1318.costume.lib.CostumeProperties;
 import net.lab1318.costume.lib.services.IoExceptions;
 import net.lab1318.costume.lib.services.object.LoggingObjectCommandService.Markers;
-import net.lab1318.costume.lib.stores.object.ObjectFileSystem;
+import net.lab1318.costume.lib.stores.object.ObjectStoreCache;
 import net.lab1318.costume.lib.stores.object.ObjectSummaryElasticSearchIndex;
 
 @Singleton
-public class FileSystemObjectCommandService implements ObjectCommandService {
+public class StoreObjectCommandService implements ObjectCommandService {
     @Inject
-    public FileSystemObjectCommandService(final ObjectFileSystem objectFileSystem,
+    public StoreObjectCommandService(final ObjectStoreCache objectStoreCache,
             final ObjectSummariesResultCache objectSummariesResultCache, final ObjectSummaryCache objectSummaryCache,
             final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex, final CostumeProperties properties) {
-        this.objectFileSystem = checkNotNull(objectFileSystem);
+        this.objectStoreCache = checkNotNull(objectStoreCache);
         this.objectSummariesResultCache = checkNotNull(objectSummariesResultCache);
         this.objectSummaryCache = checkNotNull(objectSummaryCache);
         this.objectSummaryElasticSearchIndex = checkNotNull(objectSummaryElasticSearchIndex);
         resummarizeObjectsBulkRequestSize = properties.getResummarizeObjectsBulkRequestSize().intValue();
-    }
-
-    @Override
-    public final UnsignedInteger deleteObjects() throws IoException {
-        __invalidateCaches();
-
-        UnsignedInteger result;
-        try {
-            result = UnsignedInteger.valueOf(objectFileSystem.deleteObjects(logger, Markers.DELETE_OBJECTS));
-        } catch (final IOException e) {
-            throw IoExceptions.wrap(e, "error deleting objects");
-        }
-
-        try {
-            objectSummaryElasticSearchIndex.deleteModels(logger, Markers.DELETE_OBJECTS);
-        } catch (final IOException e) {
-            throw IoExceptions.wrap(e, "error deleting object summaries");
-        }
-
-        return result;
     }
 
     @Override
@@ -186,10 +166,10 @@ public class FileSystemObjectCommandService implements ObjectCommandService {
         objectSummaryCache.invalidateAll();
     }
 
-    private final ObjectFileSystem objectFileSystem;
+    private final ObjectStoreCache objectStoreCache;
     private final ObjectSummariesResultCache objectSummariesResultCache;
     private final ObjectSummaryCache objectSummaryCache;
     private final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex;
     private final int resummarizeObjectsBulkRequestSize;
-    private final static Logger logger = LoggerFactory.getLogger(FileSystemObjectCommandService.class);
+    private final static Logger logger = LoggerFactory.getLogger(StoreObjectCommandService.class);
 }

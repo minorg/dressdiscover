@@ -5,25 +5,6 @@ import costume.api.models.object.object_entry
 
 
 class ObjectCommandService(object):
-    def delete_objects(
-        self,
-    ):
-        '''
-        :rtype: int
-        '''
-
-        delete_objects_return_value = self._delete_objects()
-
-        if not isinstance(delete_objects_return_value, (int, long)) and delete_objects_return_value >= 0:
-            raise TypeError(getattr(__builtin__, 'type')(delete_objects_return_value))
-
-        return delete_objects_return_value
-
-    def _delete_objects(
-        self,
-    ):
-        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._delete_objects')
-
     def delete_objects_by_collection_id(
         self,
         collection_id=None,

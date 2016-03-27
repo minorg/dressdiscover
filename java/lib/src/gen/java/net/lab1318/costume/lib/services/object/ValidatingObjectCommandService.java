@@ -10,11 +10,6 @@ public class ValidatingObjectCommandService implements net.lab1318.costume.api.s
     }
 
     @Override
-    public final com.google.common.primitives.UnsignedInteger deleteObjects() throws net.lab1318.costume.api.services.IoException {
-        return com.google.common.base.Preconditions.checkNotNull(delegate.deleteObjects(), "net.lab1318.costume.api.services.object.ObjectCommandService.deleteObjects: missing returnValue");
-    }
-
-    @Override
     public final com.google.common.primitives.UnsignedInteger deleteObjectsByCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) throws net.lab1318.costume.api.services.IoException {
         _validateDeleteObjectsByCollectionIdParameters(collectionId);
         return com.google.common.base.Preconditions.checkNotNull(delegate.deleteObjectsByCollectionId(collectionId), "net.lab1318.costume.api.services.object.ObjectCommandService.deleteObjectsByCollectionId: missing returnValue");
