@@ -1,4 +1,4 @@
-package net.lab1318.costume.lib.services;
+package net.lab1318.costume.testdata;
 
 import java.util.Date;
 

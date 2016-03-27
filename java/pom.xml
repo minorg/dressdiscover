@@ -40,6 +40,7 @@
 		<module>gui</module>
 		<module>lib</module>
 		<module>server</module>
+		<module>testdata</module>
 	</modules>
 
 	<properties>

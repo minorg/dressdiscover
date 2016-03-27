@@ -12,7 +12,7 @@ import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
-import net.lab1318.costume.lib.services.TestData;
+import net.lab1318.costume.testdata.TestData;
 
 public abstract class CollectionQueryServiceTest extends CollectionServiceTest {
     @Test

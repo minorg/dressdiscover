@@ -6,7 +6,7 @@ import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
 
 import net.lab1318.costume.api.models.collection.CollectionEntry;
-import net.lab1318.costume.lib.services.TestData;
+import net.lab1318.costume.testdata.TestData;
 
 public final class StoreObjectCommandServiceTest extends ObjectServiceTest {
     @Test
