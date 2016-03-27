@@ -7,4 +7,4 @@ class TestObjectStoreFactory(ObjectStoreFactory):
         return None
 
 
-ObjectStoreFactoryRegistry.registerObjectStoreFactory(TestObjectStoreFactory(), 'test')
+ObjectStoreFactoryRegistry.getInstance().registerObjectStoreFactory(TestObjectStoreFactory(), 'test')  # @UndefinedVariable

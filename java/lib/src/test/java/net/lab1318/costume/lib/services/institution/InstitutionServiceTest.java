@@ -6,15 +6,21 @@ import org.junit.Before;
 import com.google.common.collect.ImmutableList;
 
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
+import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.institution.InstitutionCommandService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
+import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
 import net.lab1318.costume.lib.services.ServiceTest;
 import net.lab1318.costume.lib.services.TestData;
 
 public abstract class InstitutionServiceTest extends ServiceTest {
-    public static void deleteInstitutions(final InstitutionCommandService institutionCommandService) throws Exception {
+    public static void deleteInstitutions(final InstitutionCommandService institutionCommandService)
+            throws IoException {
         for (final InstitutionEntry entry : TestData.getInstance().getInstitutions()) {
-            institutionCommandService.deleteInstitutionById(entry.getId());
+            try {
+                institutionCommandService.deleteInstitutionById(entry.getId());
+            } catch (final NoSuchInstitutionException e) {
+            }
         }
     }
 

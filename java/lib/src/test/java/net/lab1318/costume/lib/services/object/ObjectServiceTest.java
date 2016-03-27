@@ -11,6 +11,7 @@ import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.object.ObjectQuery;
+import net.lab1318.costume.api.services.collection.CollectionCommandService;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionCommandService;
 import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
@@ -19,6 +20,7 @@ import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.lib.services.ServiceTest;
 import net.lab1318.costume.lib.services.TestData;
+import net.lab1318.costume.lib.services.collection.CollectionServiceTest;
 import net.lab1318.costume.lib.services.institution.InstitutionServiceTest;
 import net.lab1318.costume.lib.stores.object.ObjectSummaryElasticSearchIndex;
 
@@ -31,7 +33,11 @@ public abstract class ObjectServiceTest extends ServiceTest {
         objectQueryService = _getInjector().getInstance(ObjectQueryService.class);
         objectSummaryElasticSearchIndex = _getInjector().getInstance(ObjectSummaryElasticSearchIndex.class);
         objectSummaryQueryService = _getInjector().getInstance(ObjectSummaryQueryService.class);
-        tearDown();
+
+        InstitutionServiceTest.deleteInstitutions(institutionCommandService);
+
+        CollectionServiceTest.putCollections(institutionCommandService,
+                _getInjector().getInstance(CollectionCommandService.class));
     }
 
     @After
