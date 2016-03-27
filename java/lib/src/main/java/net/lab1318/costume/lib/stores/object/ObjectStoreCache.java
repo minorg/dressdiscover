@@ -30,9 +30,9 @@ public class ObjectStoreCache {
         this.properties = checkNotNull(properties);
     }
 
-    public ObjectStore getObjectStore(final ObjectId objectId) throws IoException, NoSuchCollectionException {
+    public ObjectStore getObjectStore(final CollectionId collectionId) throws IoException, NoSuchCollectionException {
         try {
-            return cache.get(objectId.getCollectionId());
+            return cache.get(collectionId);
         } catch (final ExecutionException e) {
             if (e.getCause() instanceof IoException) {
                 throw (IoException) e.getCause();
@@ -42,6 +42,10 @@ public class ObjectStoreCache {
                 throw new UnsupportedOperationException(e);
             }
         }
+    }
+
+    public ObjectStore getObjectStore(final ObjectId objectId) throws IoException, NoSuchCollectionException {
+        return getObjectStore(objectId.getCollectionId());
     }
 
     private final LoadingCache<CollectionId, ObjectStore> cache = CacheBuilder.newBuilder()

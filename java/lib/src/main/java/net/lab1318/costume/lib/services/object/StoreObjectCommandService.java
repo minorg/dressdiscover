@@ -15,14 +15,16 @@ import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.collection.CollectionId;
-import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.models.object.ObjectSummary;
 import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 import net.lab1318.costume.api.services.IoException;
+import net.lab1318.costume.api.services.collection.CollectionQueryService;
+import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
 import net.lab1318.costume.api.services.object.ObjectCommandService;
 import net.lab1318.costume.lib.CostumeProperties;
 import net.lab1318.costume.lib.services.IoExceptions;
@@ -33,9 +35,11 @@ import net.lab1318.costume.lib.stores.object.ObjectSummaryElasticSearchIndex;
 @Singleton
 public class StoreObjectCommandService implements ObjectCommandService {
     @Inject
-    public StoreObjectCommandService(final ObjectStoreCache objectStoreCache,
-            final ObjectSummariesResultCache objectSummariesResultCache, final ObjectSummaryCache objectSummaryCache,
+    public StoreObjectCommandService(final CollectionQueryService collectionQueryService,
+            final ObjectStoreCache objectStoreCache, final ObjectSummariesResultCache objectSummariesResultCache,
+            final ObjectSummaryCache objectSummaryCache,
             final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex, final CostumeProperties properties) {
+        this.collectionQueryService = checkNotNull(collectionQueryService);
         this.objectStoreCache = checkNotNull(objectStoreCache);
         this.objectSummariesResultCache = checkNotNull(objectSummariesResultCache);
         this.objectSummaryCache = checkNotNull(objectSummaryCache);
@@ -44,13 +48,14 @@ public class StoreObjectCommandService implements ObjectCommandService {
     }
 
     @Override
-    public final UnsignedInteger deleteObjectsByCollectionId(final CollectionId collectionId) throws IoException {
+    public final UnsignedInteger deleteObjectsByCollectionId(final CollectionId collectionId)
+            throws NoSuchCollectionException, IoException {
         __invalidateCaches();
 
         UnsignedInteger result;
         try {
-            result = UnsignedInteger.valueOf(objectFileSystem.deleteObjectsByCollectionId(collectionId, logger,
-                    Markers.DELETE_OBJECTS_BY_COLLECTION_ID));
+            result = UnsignedInteger.valueOf(objectStoreCache.getObjectStore(collectionId)
+                    .deleteObjectsByCollectionId(collectionId, logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID));
         } catch (final IOException e) {
             throw IoExceptions.wrap(e, "error deleting objects by collection id");
         }
@@ -69,36 +74,11 @@ public class StoreObjectCommandService implements ObjectCommandService {
     }
 
     @Override
-    public final UnsignedInteger deleteObjectsByInstitutionId(final InstitutionId institutionId) throws IoException {
-        __invalidateCaches();
-
-        UnsignedInteger result;
-        try {
-            result = UnsignedInteger.valueOf(objectFileSystem.deleteObjectsByInstitutionId(institutionId, logger,
-                    Markers.DELETE_OBJECTS_BY_INSTITUTION_ID));
-        } catch (final IOException e) {
-            throw IoExceptions.wrap(e, "error deleting objects by institution id");
-        }
-
-        try {
-            objectSummaryElasticSearchIndex.deleteModels(logger, Markers.DELETE_OBJECTS_BY_INSTITUTION_ID,
-                    QueryBuilders.boolQuery()
-                            .filter(QueryBuilders.termQuery(
-                                    ObjectSummary.FieldMetadata.INSTITUTION_ID.getThriftProtocolKey(),
-                                    institutionId.toString())));
-        } catch (final IOException e) {
-            throw IoExceptions.wrap(e, "error deleting object summaries by institution id");
-        }
-
-        return result;
-    }
-
-    @Override
-    public final void putObject(final ObjectId id, final Object object) throws IoException {
+    public final void putObject(final ObjectId id, final Object object) throws NoSuchCollectionException, IoException {
         __invalidateCaches();
 
         try {
-            objectFileSystem.putObject(logger, Markers.PUT_OBJECT, object, id);
+            objectStoreCache.getObjectStore(id).putObject(logger, Markers.PUT_OBJECT, object, id);
         } catch (final IOException e) {
             throw IoExceptions.wrap(e, "error putting object");
         }
@@ -112,12 +92,14 @@ public class StoreObjectCommandService implements ObjectCommandService {
     }
 
     @Override
-    public final void putObjects(final ImmutableList<ObjectEntry> objects) throws IoException {
+    public final void putObjects(final ImmutableList<ObjectEntry> objects)
+            throws NoSuchCollectionException, IoException {
         __invalidateCaches();
 
         for (final ObjectEntry objectEntry : objects) {
             try {
-                objectFileSystem.putObject(logger, Markers.PUT_OBJECTS, objectEntry.getModel(), objectEntry.getId());
+                objectStoreCache.getObjectStore(objectEntry.getId()).putObject(logger, Markers.PUT_OBJECTS,
+                        objectEntry.getModel(), objectEntry.getId());
             } catch (final IOException e) {
                 throw IoExceptions.wrap(e, "error putting objects");
             }
@@ -141,14 +123,21 @@ public class StoreObjectCommandService implements ObjectCommandService {
             objectSummaryElasticSearchIndex.deleteModels(logger, Markers.RESUMMARIZE_OBJECTS);
 
             final List<ObjectSummaryEntry> objectSummaries = new ArrayList<>();
-            for (final ObjectEntry objectEntry : objectFileSystem.getObjects(logger, Markers.RESUMMARIZE_OBJECTS)) {
-                objectSummaries.add(new ObjectSummaryEntry(objectEntry.getId(),
-                        ObjectSummarizer.getInstance().summarizeObject(objectEntry.getModel())));
-                if (objectSummaries.size() == resummarizeObjectsBulkRequestSize) {
-                    objectSummaryElasticSearchIndex.putModels(logger, Markers.RESUMMARIZE_OBJECTS,
-                            ImmutableList.copyOf(objectSummaries));
-                    logger.info(Markers.RESUMMARIZE_OBJECTS, "put {} object summaries", objectSummaries.size());
-                    objectSummaries.clear();
+            for (final CollectionEntry collectionEntry : collectionQueryService.getCollections()) {
+                try {
+                    for (final ObjectEntry objectEntry : objectStoreCache.getObjectStore(collectionEntry.getId())
+                            .getObjects(logger, Markers.RESUMMARIZE_OBJECTS)) {
+                        objectSummaries.add(new ObjectSummaryEntry(objectEntry.getId(),
+                                ObjectSummarizer.getInstance().summarizeObject(objectEntry.getModel())));
+                        if (objectSummaries.size() == resummarizeObjectsBulkRequestSize) {
+                            objectSummaryElasticSearchIndex.putModels(logger, Markers.RESUMMARIZE_OBJECTS,
+                                    ImmutableList.copyOf(objectSummaries));
+                            logger.info(Markers.RESUMMARIZE_OBJECTS, "put {} object summaries", objectSummaries.size());
+                            objectSummaries.clear();
+                        }
+                    }
+                } catch (final NoSuchCollectionException e) {
+                    logger.warn(Markers.RESUMMARIZE_OBJECTS, "no such collection {}", collectionEntry.getId());
                 }
             }
             if (!objectSummaries.isEmpty()) {
@@ -166,6 +155,7 @@ public class StoreObjectCommandService implements ObjectCommandService {
         objectSummaryCache.invalidateAll();
     }
 
+    private final CollectionQueryService collectionQueryService;
     private final ObjectStoreCache objectStoreCache;
     private final ObjectSummariesResultCache objectSummariesResultCache;
     private final ObjectSummaryCache objectSummaryCache;

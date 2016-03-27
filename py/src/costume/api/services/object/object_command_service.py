@@ -32,33 +32,6 @@ class ObjectCommandService(object):
     ):
         raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._delete_objects_by_collection_id')
 
-    def delete_objects_by_institution_id(
-        self,
-        institution_id=None,
-    ):
-        '''
-        :type institution_id: str
-        :rtype: int
-        '''
-
-        if institution_id is None:
-            raise ValueError('institution_id is required')
-        if not isinstance(institution_id, basestring):
-            raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
-
-        delete_objects_by_institution_id_return_value = self._delete_objects_by_institution_id(institution_id=institution_id)
-
-        if not isinstance(delete_objects_by_institution_id_return_value, (int, long)) and delete_objects_by_institution_id_return_value >= 0:
-            raise TypeError(getattr(__builtin__, 'type')(delete_objects_by_institution_id_return_value))
-
-        return delete_objects_by_institution_id_return_value
-
-    def _delete_objects_by_institution_id(
-        self,
-        institution_id,
-    ):
-        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._delete_objects_by_institution_id')
-
     def put_object(
         self,
         id=None,  # @ReservedAssignment

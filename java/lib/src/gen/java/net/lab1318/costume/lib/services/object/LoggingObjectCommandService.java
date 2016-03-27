@@ -4,7 +4,6 @@ package net.lab1318.costume.lib.services.object;
 public class LoggingObjectCommandService implements net.lab1318.costume.api.services.object.ObjectCommandService {
     public static class Markers {
         public final static org.slf4j.Marker DELETE_OBJECTS_BY_COLLECTION_ID = org.slf4j.MarkerFactory.getMarker("DELETE_OBJECTS_BY_COLLECTION_ID");
-        public final static org.slf4j.Marker DELETE_OBJECTS_BY_INSTITUTION_ID = org.slf4j.MarkerFactory.getMarker("DELETE_OBJECTS_BY_INSTITUTION_ID");
         public final static org.slf4j.Marker PUT_OBJECT = org.slf4j.MarkerFactory.getMarker("PUT_OBJECT");
         public final static org.slf4j.Marker PUT_OBJECTS = org.slf4j.MarkerFactory.getMarker("PUT_OBJECTS");
         public final static org.slf4j.Marker RESUMMARIZE_OBJECTS = org.slf4j.MarkerFactory.getMarker("RESUMMARIZE_OBJECTS");
@@ -12,7 +11,6 @@ public class LoggingObjectCommandService implements net.lab1318.costume.api.serv
         public final static org.slf4j.Marker OBJECT_COMMAND_SERVICE = org.slf4j.MarkerFactory.getMarker("OBJECT_COMMAND_SERVICE");
         static {
             OBJECT_COMMAND_SERVICE.add(DELETE_OBJECTS_BY_COLLECTION_ID);
-            OBJECT_COMMAND_SERVICE.add(DELETE_OBJECTS_BY_INSTITUTION_ID);
             OBJECT_COMMAND_SERVICE.add(PUT_OBJECT);
             OBJECT_COMMAND_SERVICE.add(PUT_OBJECTS);
             OBJECT_COMMAND_SERVICE.add(RESUMMARIZE_OBJECTS);
@@ -26,7 +24,7 @@ public class LoggingObjectCommandService implements net.lab1318.costume.api.serv
         this.delegate = com.google.common.base.Preconditions.checkNotNull(delegate);
     }
 
-    public com.google.common.primitives.UnsignedInteger deleteObjectsByCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) throws net.lab1318.costume.api.services.IoException {
+    public com.google.common.primitives.UnsignedInteger deleteObjectsByCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -49,36 +47,15 @@ public class LoggingObjectCommandService implements net.lab1318.costume.api.serv
             __logMessageArgs.add(e.toString());
             logger.error(Markers.DELETE_OBJECTS_BY_COLLECTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
-        }
-    }
-
-    public com.google.common.primitives.UnsignedInteger deleteObjectsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws net.lab1318.costume.api.services.IoException {
-        final StringBuilder __logMessageStringBuilder = new StringBuilder();
-        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
-
-        __logMessageStringBuilder.append("delete_objects_by_institution_id(");
-        __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.DeleteObjectsByInstitutionIdRequest(institutionId));
-        __logMessageStringBuilder.append(")");
-
-        try {
-            com.google.common.primitives.UnsignedInteger __returnValue = delegate.deleteObjectsByInstitutionId(institutionId);
-
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(__returnValue);
-
-            logger.debug(Markers.DELETE_OBJECTS_BY_INSTITUTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
-
-            return __returnValue;
-        } catch (final net.lab1318.costume.api.services.IoException e) {
+        } catch (final net.lab1318.costume.api.services.collection.NoSuchCollectionException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
-            logger.error(Markers.DELETE_OBJECTS_BY_INSTITUTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.error(Markers.DELETE_OBJECTS_BY_COLLECTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
         }
     }
 
-    public void putObject(final net.lab1318.costume.api.models.object.ObjectId id, final net.lab1318.costume.api.models.object.Object object) throws net.lab1318.costume.api.services.IoException {
+    public void putObject(final net.lab1318.costume.api.models.object.ObjectId id, final net.lab1318.costume.api.models.object.Object object) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -96,10 +73,15 @@ public class LoggingObjectCommandService implements net.lab1318.costume.api.serv
             __logMessageArgs.add(e.toString());
             logger.error(Markers.PUT_OBJECT, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
+        } catch (final net.lab1318.costume.api.services.collection.NoSuchCollectionException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.PUT_OBJECT, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
         }
     }
 
-    public void putObjects(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> objects) throws net.lab1318.costume.api.services.IoException {
+    public void putObjects(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> objects) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -113,6 +95,11 @@ public class LoggingObjectCommandService implements net.lab1318.costume.api.serv
 
             logger.debug(Markers.PUT_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
         } catch (final net.lab1318.costume.api.services.IoException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.PUT_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        } catch (final net.lab1318.costume.api.services.collection.NoSuchCollectionException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.PUT_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
