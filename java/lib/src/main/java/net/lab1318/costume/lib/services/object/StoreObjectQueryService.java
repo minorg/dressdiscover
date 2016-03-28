@@ -15,23 +15,25 @@ import com.google.inject.Singleton;
 import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.services.IoException;
+import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
 import net.lab1318.costume.api.services.object.NoSuchObjectException;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.lib.services.IoExceptions;
 import net.lab1318.costume.lib.services.object.LoggingObjectQueryService.Markers;
-import net.lab1318.costume.lib.stores.object.FileSystemObjectStore;
+import net.lab1318.costume.lib.stores.object.ObjectStoreCache;
 
 @Singleton
-public class FileSystemObjectQueryService implements ObjectQueryService {
+public class StoreObjectQueryService implements ObjectQueryService {
     @Inject
-    public FileSystemObjectQueryService(final FileSystemObjectStore fileSystem) {
-        this.fileSystem = checkNotNull(fileSystem);
+    public StoreObjectQueryService(final ObjectStoreCache objectStoreCache) {
+        this.objectStoreCache = checkNotNull(objectStoreCache);
     }
 
     @Override
-    public Object getObjectById(final ObjectId id) throws IoException, NoSuchObjectException {
+    public Object getObjectById(final ObjectId id)
+            throws IoException, NoSuchCollectionException, NoSuchObjectException {
         try {
-            return fileSystem.getObjectById(logger, Markers.GET_OBJECT_BY_ID, id);
+            return objectStoreCache.getObjectStore(id).getObjectById(logger, Markers.GET_OBJECT_BY_ID, id);
         } catch (final InvalidModelException e) {
             logger.warn(Markers.GET_OBJECT_BY_ID, "invalid object model {}: ", id, e);
             throw new NoSuchObjectException();
@@ -42,6 +44,6 @@ public class FileSystemObjectQueryService implements ObjectQueryService {
         }
     }
 
-    private final FileSystemObjectStore fileSystem;
-    private final static Logger logger = LoggerFactory.getLogger(FileSystemObjectQueryService.class);
+    private final ObjectStoreCache objectStoreCache;
+    private final static Logger logger = LoggerFactory.getLogger(StoreObjectQueryService.class);
 }

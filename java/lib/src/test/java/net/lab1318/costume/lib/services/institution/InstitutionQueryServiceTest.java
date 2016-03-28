@@ -10,7 +10,7 @@ import com.google.common.collect.ImmutableList;
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionId;
-import net.lab1318.costume.lib.services.TestData;
+import net.lab1318.costume.testdata.TestData;
 
 public abstract class InstitutionQueryServiceTest extends InstitutionServiceTest {
     @Test

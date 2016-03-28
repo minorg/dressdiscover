@@ -11,7 +11,7 @@ import net.lab1318.costume.api.services.institution.InstitutionCommandService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
 import net.lab1318.costume.lib.services.ServiceTest;
-import net.lab1318.costume.lib.services.TestData;
+import net.lab1318.costume.testdata.TestData;
 
 public abstract class InstitutionServiceTest extends ServiceTest {
     public static void deleteInstitutions(final InstitutionCommandService institutionCommandService)

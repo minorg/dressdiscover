@@ -18,9 +18,9 @@ import net.lab1318.costume.api.models.user.UserBookmarkEntry;
 import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.api.services.user.DuplicateUserBookmarkException;
 import net.lab1318.costume.api.services.user.NoSuchUserException;
-import net.lab1318.costume.lib.services.TestData;
+import net.lab1318.costume.testdata.TestData;
 
-public final class UserCommandServiceTest extends UserServiceTest {
+public final class JdbcUserCommandServiceTest extends UserServiceTest {
     @Test
     public void testDeleteUserBookmarkById() throws Exception {
         final UserEntry userEntry = _postUsers().get(0);

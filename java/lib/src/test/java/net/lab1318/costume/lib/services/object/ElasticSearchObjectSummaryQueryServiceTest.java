@@ -17,7 +17,7 @@ import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.api.models.object.ObjectFacets;
 import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
 import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
-import net.lab1318.costume.lib.services.TestData;
+import net.lab1318.costume.testdata.TestData;
 
 public final class ElasticSearchObjectSummaryQueryServiceTest extends ObjectServiceTest {
     @Test

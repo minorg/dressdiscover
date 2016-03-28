@@ -19,7 +19,6 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import net.lab1318.costume.api.models.collection.CollectionId;
-import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.models.object.InvalidObjectIdException;
 import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectEntry;
@@ -35,16 +34,20 @@ public class FileSystemObjectStore extends AbstractInstitutionCollectionObjectFi
         super(properties);
     }
 
-    public final long deleteObjects(final Logger logger, final Marker logMarker) throws IOException {
-        long count = 0;
-        for (final File institutionDirectoryPath : _getInstitutionDirectoryPaths(logger, logMarker)) {
-            for (final File collectionDirectoryPath : _getSubdirectoryPaths(institutionDirectoryPath, logger,
-                    logMarker)) {
-                count += _deleteDirectoryContents(false, collectionDirectoryPath, logger, logMarker);
-            }
-        }
-        return count;
-    }
+    // public final long deleteObjects(final Logger logger, final Marker
+    // logMarker) throws IOException {
+    // long count = 0;
+    // for (final File institutionDirectoryPath :
+    // _getInstitutionDirectoryPaths(logger, logMarker)) {
+    // for (final File collectionDirectoryPath :
+    // _getSubdirectoryPaths(institutionDirectoryPath, logger,
+    // logMarker)) {
+    // count += _deleteDirectoryContents(false, collectionDirectoryPath, logger,
+    // logMarker);
+    // }
+    // }
+    // return count;
+    // }
 
     @Override
     public final long deleteObjectsByCollectionId(final CollectionId collectionId, final Logger logger,
@@ -52,16 +55,20 @@ public class FileSystemObjectStore extends AbstractInstitutionCollectionObjectFi
         return _deleteDirectoryContents(false, _getCollectionDirectoryPath(collectionId), logger, logMarker);
     }
 
-    @Override
-    public final long deleteObjectsByInstitutionId(final InstitutionId institutionId, final Logger logger,
-            final Marker logMarker) throws IOException {
-        long count = 0;
-        final File institutionDirectoryPath = _getInstitutionDirectoryPath(institutionId);
-        for (final File collectionDirectoryPath : _getSubdirectoryPaths(institutionDirectoryPath, logger, logMarker)) {
-            count += _deleteDirectoryContents(false, collectionDirectoryPath, logger, logMarker);
-        }
-        return count;
-    }
+    // @Override
+    // public final long deleteObjectsByInstitutionId(final InstitutionId
+    // institutionId, final Logger logger,
+    // final Marker logMarker) throws IOException {
+    // long count = 0;
+    // final File institutionDirectoryPath =
+    // _getInstitutionDirectoryPath(institutionId);
+    // for (final File collectionDirectoryPath :
+    // _getSubdirectoryPaths(institutionDirectoryPath, logger, logMarker)) {
+    // count += _deleteDirectoryContents(false, collectionDirectoryPath, logger,
+    // logMarker);
+    // }
+    // return count;
+    // }
 
     @Override
     public final Object getObjectById(final Logger logger, final Marker logMarker, final ObjectId objectId)

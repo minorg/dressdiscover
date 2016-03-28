@@ -10,9 +10,9 @@ import com.google.common.collect.ImmutableList;
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.models.object.ObjectEntry;
-import net.lab1318.costume.lib.services.TestData;
+import net.lab1318.costume.testdata.TestData;
 
-public final class FileSystemObjectQueryServiceTest extends ObjectServiceTest {
+public final class StoreObjectQueryServiceTest extends ObjectServiceTest {
     @Test
     public void testGetObjectById() throws Exception {
         final ImmutableList<ObjectEntry> expected = _putObjects();

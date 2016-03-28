@@ -10,8 +10,8 @@ import net.lab1318.costume.api.services.collection.CollectionCommandService;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionCommandService;
 import net.lab1318.costume.lib.services.ServiceTest;
-import net.lab1318.costume.lib.services.TestData;
 import net.lab1318.costume.lib.services.institution.InstitutionServiceTest;
+import net.lab1318.costume.testdata.TestData;
 
 public abstract class CollectionServiceTest extends ServiceTest {
     public static ImmutableList<CollectionEntry> putCollections(

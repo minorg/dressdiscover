@@ -19,10 +19,10 @@ import net.lab1318.costume.api.services.object.ObjectCommandService;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.lib.services.ServiceTest;
-import net.lab1318.costume.lib.services.TestData;
 import net.lab1318.costume.lib.services.collection.CollectionServiceTest;
 import net.lab1318.costume.lib.services.institution.InstitutionServiceTest;
 import net.lab1318.costume.lib.stores.object.ObjectSummaryElasticSearchIndex;
+import net.lab1318.costume.testdata.TestData;
 
 public abstract class ObjectServiceTest extends ServiceTest {
     @Before

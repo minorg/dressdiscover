@@ -20,9 +20,9 @@ import net.lab1318.costume.api.services.user.UserQueryService;
 import net.lab1318.costume.lib.CostumeProperties;
 import net.lab1318.costume.lib.services.ServiceTest;
 import net.lab1318.costume.lib.services.ServicesModule;
-import net.lab1318.costume.lib.services.TestData;
 import net.lab1318.costume.lib.stores.user.UserBookmarkJdbcTable;
 import net.lab1318.costume.lib.stores.user.UserJdbcTable;
+import net.lab1318.costume.testdata.TestData;
 
 public abstract class UserServiceTest extends ServiceTest {
     public static ImmutableList<UserEntry> postUsers(final UserCommandService userCommandService) throws Exception {

@@ -25,7 +25,7 @@ import net.lab1318.costume.lib.services.institution.ValidatingInstitutionCommand
 import net.lab1318.costume.lib.services.institution.ValidatingInstitutionQueryService;
 import net.lab1318.costume.lib.services.object.ElasticSearchObjectSummaryQueryService;
 import net.lab1318.costume.lib.services.object.StoreObjectCommandService;
-import net.lab1318.costume.lib.services.object.FileSystemObjectQueryService;
+import net.lab1318.costume.lib.services.object.StoreObjectQueryService;
 import net.lab1318.costume.lib.services.object.LoggingObjectCommandService;
 import net.lab1318.costume.lib.services.object.LoggingObjectQueryService;
 import net.lab1318.costume.lib.services.object.LoggingObjectSummaryQueryService;
@@ -83,7 +83,7 @@ public class ServicesModule extends AbstractModule {
 
     protected void _configureObjectQueryService() {
         bind(ObjectQueryService.class).annotatedWith(LoggingObjectQueryService.DELEGATE_NAME)
-                .to(FileSystemObjectQueryService.class).asEagerSingleton();
+                .to(StoreObjectQueryService.class).asEagerSingleton();
         bind(ObjectQueryService.class).annotatedWith(ValidatingObjectQueryService.DELEGATE_NAME)
                 .to(LoggingObjectQueryService.class).asEagerSingleton();
         bind(ObjectQueryService.class).to(ValidatingObjectQueryService.class).asEagerSingleton();

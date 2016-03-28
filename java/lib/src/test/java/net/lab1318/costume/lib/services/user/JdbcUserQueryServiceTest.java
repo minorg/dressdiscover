@@ -9,9 +9,9 @@ import com.google.common.collect.ImmutableList;
 
 import net.lab1318.costume.api.models.user.UserBookmarkEntry;
 import net.lab1318.costume.api.models.user.UserEntry;
-import net.lab1318.costume.lib.services.TestData;
+import net.lab1318.costume.testdata.TestData;
 
-public final class UserQueryServiceTest extends UserServiceTest {
+public final class JdbcUserQueryServiceTest extends UserServiceTest {
     @Test
     public void testGetUserBookmarksById() throws Exception {
         final UserEntry user = _postUsers().iterator().next();

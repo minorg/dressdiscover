@@ -11,7 +11,7 @@ import com.google.common.collect.ImmutableList;
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
-import net.lab1318.costume.lib.services.TestData;
+import net.lab1318.costume.testdata.TestData;
 
 public abstract class CollectionCommandServiceTest extends CollectionServiceTest {
     @Test

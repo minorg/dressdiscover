@@ -16,6 +16,7 @@ import net.lab1318.costume.api.models.object.InvalidObjectIdException;
 import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.api.services.IoException;
+import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
 import net.lab1318.costume.api.services.object.NoSuchObjectException;
@@ -68,6 +69,9 @@ public class CatalogWizardFeaturePresenter
             try {
                 try {
                     object = Optional.of(objectQueryService.getObjectById(state.getObjectId().get()));
+                } catch (final NoSuchCollectionException e) {
+                    _getView().setComponentError(new UserError("No such collection"));
+                    return;
                 } catch (final NoSuchObjectException e) {
                     _getView().setComponentError(new UserError("No such object"));
                     return;
