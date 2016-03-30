@@ -6,6 +6,7 @@ import org.junit.Before;
 import com.google.common.collect.ImmutableList;
 
 import net.lab1318.costume.api.models.collection.CollectionEntry;
+import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.services.collection.CollectionCommandService;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionCommandService;
@@ -30,6 +31,7 @@ public abstract class CollectionServiceTest extends ServiceTest {
         collectionCommandService = _getInjector().getInstance(CollectionCommandService.class);
         collectionQueryService = _getInjector().getInstance(CollectionQueryService.class);
         institutionCommandService = _getInjector().getInstance(InstitutionCommandService.class);
+        institutionId = TestData.getInstance().getInstitutions().get(0).getId();
         tearDown();
     }
 
@@ -44,5 +46,6 @@ public abstract class CollectionServiceTest extends ServiceTest {
 
     protected CollectionCommandService collectionCommandService;
     protected CollectionQueryService collectionQueryService;
+    protected InstitutionId institutionId;
     private InstitutionCommandService institutionCommandService;
 }

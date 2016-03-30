@@ -128,6 +128,9 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
         } catch (final NoSuchCollectionException e) {
             _getView().setComponentError(new SystemError("no such collection " + e.getId().get(), e));
             return;
+        } catch (final NoSuchInstitutionException e) {
+            _getView().setComponentError(new SystemError("no such institution " + e.getId().get(), e));
+            return;
         }
 
         ImmutableMap<InstitutionId, Institution> institutionMap;

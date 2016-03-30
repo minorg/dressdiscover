@@ -72,6 +72,9 @@ public class CatalogWizardFeaturePresenter
                 } catch (final NoSuchCollectionException e) {
                     _getView().setComponentError(new UserError("No such collection"));
                     return;
+                } catch (final NoSuchInstitutionException e) {
+                    _getView().setComponentError(new UserError("No such institution"));
+                    return;
                 } catch (final NoSuchObjectException e) {
                     _getView().setComponentError(new UserError("No such object"));
                     return;

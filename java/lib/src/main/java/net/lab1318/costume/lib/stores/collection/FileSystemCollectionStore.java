@@ -24,10 +24,10 @@ import net.lab1318.costume.lib.stores.AbstractInstitutionCollectionObjectFileSys
 import net.logstash.logback.encoder.org.apache.commons.lang.exception.ExceptionUtils;
 
 @Singleton
-public class CollectionFileSystem extends AbstractInstitutionCollectionObjectFileSystem<Collection>
+public class FileSystemCollectionStore extends AbstractInstitutionCollectionObjectFileSystem<Collection>
         implements CollectionStore {
     @Inject
-    public CollectionFileSystem(final CostumeProperties properties) {
+    public FileSystemCollectionStore(final CostumeProperties properties) {
         super(properties);
     }
 

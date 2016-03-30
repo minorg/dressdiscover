@@ -1,4 +1,4 @@
-package net.lab1318.costume.lib.stores.object;
+package net.lab1318.costume.lib.stores.collection;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -11,26 +11,26 @@ import net.lab1318.costume.lib.CostumeProperties;
 import net.lab1318.costume.lib.stores.AbstractStoreFactoryRegistry;
 
 @Singleton
-public class ObjectStoreFactoryRegistry extends AbstractStoreFactoryRegistry<ObjectStoreFactory> {
-    public static ObjectStoreFactoryRegistry getInstance() {
+public class CollectionStoreFactoryRegistry extends AbstractStoreFactoryRegistry<CollectionStoreFactory> {
+    public static CollectionStoreFactoryRegistry getInstance() {
         return checkNotNull(instance);
     }
 
     @Inject
-    public ObjectStoreFactoryRegistry(final CostumeProperties properties) {
+    public CollectionStoreFactoryRegistry(final CostumeProperties properties) {
         super(properties);
         instance = this;
         _registerPythonStoreFactories();
     }
 
-    public final synchronized ObjectStoreFactory getObjectStoreFactory(final Url url) {
+    public final synchronized CollectionStoreFactory getCollectionStoreFactory(final Url url) {
         return _getStoreFactory(url);
     }
 
-    public final synchronized void registerObjectStoreFactory(final ObjectStoreFactory factory,
+    public final synchronized void registerCollectionStoreFactory(final CollectionStoreFactory factory,
             final String urlScheme) {
         _registerStoreFactory(factory, urlScheme);
     }
 
-    private static ObjectStoreFactoryRegistry instance = null;
+    private static CollectionStoreFactoryRegistry instance = null;
 }

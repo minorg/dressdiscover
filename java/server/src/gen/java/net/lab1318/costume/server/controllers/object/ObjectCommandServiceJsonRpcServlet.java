@@ -169,6 +169,9 @@ public class ObjectCommandServiceJsonRpcServlet extends javax.servlet.http.HttpS
         } catch (final net.lab1318.costume.api.services.collection.NoSuchCollectionException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
+        } catch (final net.lab1318.costume.api.services.institution.NoSuchInstitutionException e) {
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            return;
         }
 
         final String httpServletResponseBody;
@@ -205,6 +208,9 @@ public class ObjectCommandServiceJsonRpcServlet extends javax.servlet.http.HttpS
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
         } catch (final net.lab1318.costume.api.services.collection.NoSuchCollectionException e) {
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            return;
+        } catch (final net.lab1318.costume.api.services.institution.NoSuchInstitutionException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
         }
@@ -244,6 +250,9 @@ public class ObjectCommandServiceJsonRpcServlet extends javax.servlet.http.HttpS
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
         } catch (final net.lab1318.costume.api.services.collection.NoSuchCollectionException e) {
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            return;
+        } catch (final net.lab1318.costume.api.services.institution.NoSuchInstitutionException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
         }

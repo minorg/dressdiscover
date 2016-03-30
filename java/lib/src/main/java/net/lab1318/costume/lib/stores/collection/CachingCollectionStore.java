@@ -20,8 +20,8 @@ import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 
-public class CollectionCache implements CollectionStore {
-    public CollectionCache(final CollectionStore underlyingCollectionStore) {
+public class CachingCollectionStore implements CollectionStore {
+    public CachingCollectionStore(final CollectionStore underlyingCollectionStore) {
         this.underlyingCollectionStore = checkNotNull(underlyingCollectionStore);
     }
 

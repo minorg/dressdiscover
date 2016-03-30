@@ -24,7 +24,7 @@ public class LoggingObjectCommandService implements net.lab1318.costume.api.serv
         this.delegate = com.google.common.base.Preconditions.checkNotNull(delegate);
     }
 
-    public com.google.common.primitives.UnsignedInteger deleteObjectsByCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException {
+    public com.google.common.primitives.UnsignedInteger deleteObjectsByCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException, net.lab1318.costume.api.services.institution.NoSuchInstitutionException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -52,10 +52,15 @@ public class LoggingObjectCommandService implements net.lab1318.costume.api.serv
             __logMessageArgs.add(e.toString());
             logger.error(Markers.DELETE_OBJECTS_BY_COLLECTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
+        } catch (final net.lab1318.costume.api.services.institution.NoSuchInstitutionException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.DELETE_OBJECTS_BY_COLLECTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
         }
     }
 
-    public void putObject(final net.lab1318.costume.api.models.object.ObjectId id, final net.lab1318.costume.api.models.object.Object object) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException {
+    public void putObject(final net.lab1318.costume.api.models.object.ObjectId id, final net.lab1318.costume.api.models.object.Object object) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException, net.lab1318.costume.api.services.institution.NoSuchInstitutionException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -78,10 +83,15 @@ public class LoggingObjectCommandService implements net.lab1318.costume.api.serv
             __logMessageArgs.add(e.toString());
             logger.error(Markers.PUT_OBJECT, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
+        } catch (final net.lab1318.costume.api.services.institution.NoSuchInstitutionException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.PUT_OBJECT, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
         }
     }
 
-    public void putObjects(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> objects) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException {
+    public void putObjects(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> objects) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException, net.lab1318.costume.api.services.institution.NoSuchInstitutionException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -100,6 +110,11 @@ public class LoggingObjectCommandService implements net.lab1318.costume.api.serv
             logger.error(Markers.PUT_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
         } catch (final net.lab1318.costume.api.services.collection.NoSuchCollectionException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.PUT_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        } catch (final net.lab1318.costume.api.services.institution.NoSuchInstitutionException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.PUT_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());

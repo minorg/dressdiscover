@@ -11,6 +11,7 @@ include "costume/api/models/collection/collection_id.thrift"
 include "costume/api/models/institution/institution_id.thrift"
 include "costume/api/services/io_exception.thrift"
 include "costume/api/services/collection/no_such_collection_exception.thrift"
+include "costume/api/services/institution/no_such_institution_exception.thrift"
 
 service CollectionQueryService {
 	collection.Collection
@@ -18,13 +19,8 @@ service CollectionQueryService {
 		collection_id.CollectionId id
 	) throws (
 		io_exception.IoException e1,
-		no_such_collection_exception.NoSuchCollectionException e2
-	);
-
-	list<collection_entry.CollectionEntry>
-	get_collections(
-	) throws (
-		io_exception.IoException e
+		no_such_collection_exception.NoSuchCollectionException e2,
+        no_such_institution_exception.NoSuchInstitutionException e3
 	);
 
 	list<collection.Collection>
@@ -32,13 +28,15 @@ service CollectionQueryService {
 		list<collection_id.CollectionId> ids
 	) throws (
 		io_exception.IoException e1,
-		no_such_collection_exception.NoSuchCollectionException e2
+		no_such_collection_exception.NoSuchCollectionException e2,
+        no_such_institution_exception.NoSuchInstitutionException e3
 	);
 
 	list<collection_entry.CollectionEntry>
 	get_collections_by_institution_id(
 		institution_id.InstitutionId institution_id
 	) throws (
-		io_exception.IoException e
+		io_exception.IoException e1,
+        no_such_institution_exception.NoSuchInstitutionException e2
 	);
 }

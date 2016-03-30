@@ -16,6 +16,7 @@ import net.lab1318.costume.api.models.object.Object;
 import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
+import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
 import net.lab1318.costume.api.services.object.NoSuchObjectException;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.lib.services.IoExceptions;
@@ -31,7 +32,7 @@ public class StoreObjectQueryService implements ObjectQueryService {
 
     @Override
     public Object getObjectById(final ObjectId id)
-            throws IoException, NoSuchCollectionException, NoSuchObjectException {
+            throws IoException, NoSuchCollectionException, NoSuchInstitutionException, NoSuchObjectException {
         try {
             return objectStoreCache.getObjectStore(id).getObjectById(logger, Markers.GET_OBJECT_BY_ID, id);
         } catch (final InvalidModelException e) {

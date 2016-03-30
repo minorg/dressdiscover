@@ -18,6 +18,7 @@ import net.lab1318.costume.api.models.user.UserEntry;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionQueryService;
+import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
 import net.lab1318.costume.api.services.user.UserCommandService;
 import net.lab1318.costume.api.services.user.UserQueryService;
 import net.lab1318.costume.gui.presenters.Presenter;
@@ -41,8 +42,19 @@ public class InstitutionsPresenter extends Presenter<InstitutionsView> {
         final ImmutableList<CollectionEntry> collectionEntries;
         final ImmutableList<InstitutionEntry> institutionEntries;
         try {
-            collectionEntries = collectionQueryService.getCollections();
             institutionEntries = institutionQueryService.getInstitutions();
+
+            final ImmutableList.Builder<CollectionEntry> collectionEntriesBuilder = ImmutableList.builder();
+            for (final InstitutionEntry institutionEntry : institutionEntries) {
+                try {
+                    collectionEntriesBuilder
+                            .addAll(collectionQueryService.getCollectionsByInstitutionId(institutionEntry.getId()));
+                } catch (final NoSuchInstitutionException e) {
+                    _getView().setComponentError(new SystemError("Error retrieving collections", e));
+                    return;
+                }
+            }
+            collectionEntries = collectionEntriesBuilder.build();
         } catch (final IoException e) {
             _getView().setComponentError(new SystemError("I/O exception", e));
             return;

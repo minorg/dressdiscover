@@ -8,6 +8,9 @@ include "thryft/native/url.thrift"
 struct CostumeProperties {
 	url.Url api_url = "http://middleware:8082/api/";
 
+    bool cache_collections = true;
+    bool cache_institutions = true;
+
 	string elastic_search_host = "elasticsearch";
 	u32.u32 elastic_search_port = 9300;
 

@@ -7,6 +7,9 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
 import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.collection.CollectionId;
@@ -14,22 +17,28 @@ import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionCommandService;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
+import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
 import net.lab1318.costume.api.services.object.ObjectCommandService;
 import net.lab1318.costume.lib.services.IoExceptions;
 import net.lab1318.costume.lib.services.collection.LoggingCollectionCommandService.Markers;
 import net.lab1318.costume.lib.stores.collection.CollectionStore;
+import net.lab1318.costume.lib.stores.collection.CollectionStoreCache;
 
-abstract class StoreCollectionCommandService implements CollectionCommandService {
-    protected StoreCollectionCommandService(final ObjectCommandService objectCommandService,
-            final CollectionStore store) {
+@Singleton
+public class StoreCollectionCommandService implements CollectionCommandService {
+    @Inject
+    public StoreCollectionCommandService(final CollectionStoreCache collectionStoreCache,
+            final ObjectCommandService objectCommandService) {
+        this.collectionStoreCache = checkNotNull(collectionStoreCache);
         this.objectCommandService = checkNotNull(objectCommandService);
-        this.store = checkNotNull(store);
     }
 
     @Override
-    public void deleteCollectionById(final CollectionId id) throws IoException, NoSuchCollectionException {
+    public void deleteCollectionById(final CollectionId id)
+            throws IoException, NoSuchCollectionException, NoSuchInstitutionException {
         try {
-            if (!store.deleteCollectionById(id, logger, Markers.DELETE_COLLECTION_BY_ID)) {
+            if (!collectionStoreCache.getCollectionStore(id).deleteCollectionById(id, logger,
+                    Markers.DELETE_COLLECTION_BY_ID)) {
                 throw new NoSuchCollectionException();
             }
         } catch (final IOException e) {
@@ -38,10 +47,13 @@ abstract class StoreCollectionCommandService implements CollectionCommandService
     }
 
     @Override
-    public void deleteCollectionsByInstitutionId(final InstitutionId institutionId) throws IoException {
+    public void deleteCollectionsByInstitutionId(final InstitutionId institutionId)
+            throws IoException, NoSuchInstitutionException {
         try {
-            for (final CollectionEntry collectionEntry : store.getCollectionsByInstitutionId(institutionId, logger,
-                    Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID)) {
+            final CollectionStore collectionStore = collectionStoreCache.getCollectionStore(institutionId);
+
+            for (final CollectionEntry collectionEntry : collectionStore.getCollectionsByInstitutionId(institutionId,
+                    logger, Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID)) {
                 try {
                     objectCommandService.deleteObjectsByCollectionId(collectionEntry.getId());
                 } catch (final NoSuchCollectionException e) {
@@ -50,23 +62,24 @@ abstract class StoreCollectionCommandService implements CollectionCommandService
                 }
             }
 
-            store.deleteCollectionsByInstitutionId(institutionId, logger, Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID);
+            collectionStore.deleteCollectionsByInstitutionId(institutionId, logger,
+                    Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID);
         } catch (final IOException e) {
             throw IoExceptions.wrap(e, "error deleting collections by institution ID");
         }
-
     }
 
     @Override
-    public void putCollection(final CollectionId id, final Collection collection) throws IoException {
+    public void putCollection(final CollectionId id, final Collection collection)
+            throws IoException, NoSuchInstitutionException {
         try {
-            store.putCollection(collection, id, logger, Markers.PUT_COLLECTION);
+            collectionStoreCache.getCollectionStore(id).putCollection(collection, id, logger, Markers.PUT_COLLECTION);
         } catch (final IOException e) {
             throw IoExceptions.wrap(e, "error putting collection");
         }
     }
 
+    private final CollectionStoreCache collectionStoreCache;
     private final ObjectCommandService objectCommandService;
-    private final CollectionStore store;
     private final static Logger logger = LoggerFactory.getLogger(StoreCollectionCommandService.class);
 }

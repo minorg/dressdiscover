@@ -10,7 +10,7 @@ public class ValidatingObjectCommandService implements net.lab1318.costume.api.s
     }
 
     @Override
-    public final com.google.common.primitives.UnsignedInteger deleteObjectsByCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException {
+    public final com.google.common.primitives.UnsignedInteger deleteObjectsByCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException, net.lab1318.costume.api.services.institution.NoSuchInstitutionException {
         _validateDeleteObjectsByCollectionIdParameters(collectionId);
         return com.google.common.base.Preconditions.checkNotNull(delegate.deleteObjectsByCollectionId(collectionId), "net.lab1318.costume.api.services.object.ObjectCommandService.deleteObjectsByCollectionId: missing returnValue");
     }
@@ -20,7 +20,7 @@ public class ValidatingObjectCommandService implements net.lab1318.costume.api.s
     }
 
     @Override
-    public final void putObject(final net.lab1318.costume.api.models.object.ObjectId id, final net.lab1318.costume.api.models.object.Object object) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException {
+    public final void putObject(final net.lab1318.costume.api.models.object.ObjectId id, final net.lab1318.costume.api.models.object.Object object) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException, net.lab1318.costume.api.services.institution.NoSuchInstitutionException {
         _validatePutObjectParameters(id, object);
         delegate.putObject(id, object);
     }
@@ -31,7 +31,7 @@ public class ValidatingObjectCommandService implements net.lab1318.costume.api.s
     }
 
     @Override
-    public final void putObjects(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> objects) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException {
+    public final void putObjects(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.object.ObjectEntry> objects) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException, net.lab1318.costume.api.services.institution.NoSuchInstitutionException {
         _validatePutObjectsParameters(objects);
         delegate.putObjects(objects);
     }

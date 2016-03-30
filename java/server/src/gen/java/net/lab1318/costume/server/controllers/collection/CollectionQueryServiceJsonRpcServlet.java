@@ -48,8 +48,6 @@ public class CollectionQueryServiceJsonRpcServlet extends javax.servlet.http.Htt
             }
             if (messageBegin.getName().equals("get_collection_by_id")) {
                 doPostGetCollectionById(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
-            } else if (messageBegin.getName().equals("get_collections")) {
-                doPostGetCollections(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
             } else if (messageBegin.getName().equals("get_collections_by_ids")) {
                 doPostGetCollectionsByIds(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
             } else if (messageBegin.getName().equals("get_collections_by_institution_id")) {
@@ -169,31 +167,7 @@ public class CollectionQueryServiceJsonRpcServlet extends javax.servlet.http.Htt
         } catch (final net.lab1318.costume.api.services.collection.NoSuchCollectionException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
-        }
-
-        final String httpServletResponseBody;
-        {
-            final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
-            try {
-                final org.thryft.protocol.JsonRpcOutputProtocol oprot = new org.thryft.protocol.JsonRpcOutputProtocol(new org.thryft.protocol.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
-                oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                result.writeAsStruct(oprot);
-                oprot.writeMessageEnd();
-                oprot.flush();
-            } catch (final org.thryft.protocol.OutputProtocolException e) {
-                logger.error("error serializing service error response: ", e);
-                throw new IllegalStateException(e);
-            }
-            httpServletResponseBody = httpServletResponseBodyWriter.toString();
-        }
-        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
-    }
-
-    public void doPostGetCollections(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionEntry> result;
-        try {
-            result = service.getCollections();
-        } catch (final net.lab1318.costume.api.services.IoException e) {
+        } catch (final net.lab1318.costume.api.services.institution.NoSuchInstitutionException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
         }
@@ -204,11 +178,7 @@ public class CollectionQueryServiceJsonRpcServlet extends javax.servlet.http.Htt
             try {
                 final org.thryft.protocol.JsonRpcOutputProtocol oprot = new org.thryft.protocol.JsonRpcOutputProtocol(new org.thryft.protocol.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
                 oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, result.size());
-                for (final net.lab1318.costume.api.models.collection.CollectionEntry _iter0 : result) {
-                    _iter0.writeAsStruct(oprot);
-                }
-                oprot.writeListEnd();
+                result.writeAsStruct(oprot);
                 oprot.writeMessageEnd();
                 oprot.flush();
             } catch (final org.thryft.protocol.OutputProtocolException e) {
@@ -237,6 +207,9 @@ public class CollectionQueryServiceJsonRpcServlet extends javax.servlet.http.Htt
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
         } catch (final net.lab1318.costume.api.services.collection.NoSuchCollectionException e) {
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            return;
+        } catch (final net.lab1318.costume.api.services.institution.NoSuchInstitutionException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
         }
@@ -277,6 +250,9 @@ public class CollectionQueryServiceJsonRpcServlet extends javax.servlet.http.Htt
         try {
             result = service.getCollectionsByInstitutionId(serviceRequest.getInstitutionId());
         } catch (final net.lab1318.costume.api.services.IoException e) {
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            return;
+        } catch (final net.lab1318.costume.api.services.institution.NoSuchInstitutionException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
         }

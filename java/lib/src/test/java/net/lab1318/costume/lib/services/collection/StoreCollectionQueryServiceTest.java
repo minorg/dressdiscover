@@ -2,7 +2,6 @@ package net.lab1318.costume.lib.services.collection;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -14,30 +13,12 @@ import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.testdata.TestData;
 
-public abstract class CollectionQueryServiceTest extends CollectionServiceTest {
+public abstract class StoreCollectionQueryServiceTest extends CollectionServiceTest {
     @Test
     public void testGetCollectionById() throws Exception {
         final ImmutableList<CollectionEntry> expected = _putCollections();
         for (final CollectionEntry collectionEntry : expected) {
             assertEquals(collectionEntry.getModel(), collectionQueryService.getCollectionById(collectionEntry.getId()));
-        }
-    }
-
-    @Test
-    public void testGetCollections() throws Exception {
-        final ImmutableList<CollectionEntry> expected = _putCollections();
-        final ImmutableList<CollectionEntry> actual = collectionQueryService.getCollections();
-        assertEquals(expected.size(), actual.size());
-        for (final CollectionEntry expectedEntry : expected) {
-            boolean found = false;
-            for (final CollectionEntry actualEntry : actual) {
-                if (actualEntry.getId().equals(expectedEntry.getId())) {
-                    found = true;
-                    assertEquals(expectedEntry.getModel(), actualEntry.getModel());
-                    break;
-                }
-            }
-            assertTrue(found);
         }
     }
 
