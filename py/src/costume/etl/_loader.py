@@ -103,16 +103,6 @@ class _Loader(_Main):
                 .build()
         )
 
-    def _put_objects_by_id(self, objects_by_id):
-        if len(objects_by_id) == 0:
-            return
-        self._logger.debug("putting %d objects to the service", len(objects_by_id))
-        self._services.object_command_service.put_objects(
-            tuple(ObjectEntry(object_id, object_)
-                  for object_id, object_ in objects_by_id.iteritems())
-        )
-        self._logger.info("put %d objects to the service", len(objects_by_id))
-
     def _run(self):
         if self.__clean:
             self._clean()
