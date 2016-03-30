@@ -213,11 +213,12 @@ class OmekaItemToObjectMapper(object):
         object.__init__(self)
         self._logger = logging.getLogger(self.__class__.__module__ + '.' + self.__class__.__name__)
 
-    def map_omeka_items(self, collection_id, omeka_collection, omeka_items):
+    def map_omeka_items(self, collection_id, omeka_collection, omeka_files_by_item_id, omeka_items):
         object_builders_by_id = \
             self._map_omeka_collection_items(
                 collection_id=collection_id,
                 omeka_collection=omeka_collection,
+                omeka_files_by_item_id=omeka_files_by_item_id,
                 omeka_items=omeka_items
             )
 
