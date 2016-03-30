@@ -13,6 +13,8 @@ struct Institution {
 
 	1: string title;
 
+    9: optional url.Url collection_store_url;
+
 	5: optional rights_set.RightsSet	data_rights;
 
     // @validation {"acceptance": true}

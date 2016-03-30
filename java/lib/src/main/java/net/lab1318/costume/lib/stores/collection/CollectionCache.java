@@ -14,39 +14,29 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Multimap;
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
 import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionEntry;
 import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 
-@Singleton
 public class CollectionCache implements CollectionStore {
-    @Inject
-    public CollectionCache(final CollectionFileSystem fileSystem) {
-        this.fileSystem = checkNotNull(fileSystem);
+    public CollectionCache(final CollectionStore underlyingCollectionStore) {
+        this.underlyingCollectionStore = checkNotNull(underlyingCollectionStore);
     }
 
     @Override
     public synchronized boolean deleteCollectionById(final CollectionId collectionId, final Logger logger,
             final Marker logMarker) throws IOException {
         __clear(logger, logMarker);
-        return fileSystem.deleteCollectionById(collectionId, logger, logMarker);
-    }
-
-    @Override
-    public synchronized void deleteCollections(final Logger logger, final Marker logMarker) throws IOException {
-        __clear(logger, logMarker);
-        fileSystem.deleteCollections(logger, logMarker);
+        return underlyingCollectionStore.deleteCollectionById(collectionId, logger, logMarker);
     }
 
     @Override
     public synchronized void deleteCollectionsByInstitutionId(final InstitutionId institutionId, final Logger logger,
             final Marker logMarker) throws IOException {
         __clear(logger, logMarker);
-        fileSystem.deleteCollectionsByInstitutionId(institutionId, logger, logMarker);
+        underlyingCollectionStore.deleteCollectionsByInstitutionId(institutionId, logger, logMarker);
     }
 
     @Override
@@ -84,7 +74,7 @@ public class CollectionCache implements CollectionStore {
     public synchronized void putCollection(final Collection collection, final CollectionId collectionId,
             final Logger logger, final Marker logMarker) throws IOException {
         __clear(logger, logMarker);
-        fileSystem.putCollection(collection, collectionId, logger, logMarker);
+        underlyingCollectionStore.putCollection(collection, collectionId, logger, logMarker);
     }
 
     private void __clear(final Logger logger, final Marker logMarker) {
@@ -99,7 +89,7 @@ public class CollectionCache implements CollectionStore {
 
         logger.debug(logMarker, "filling collection cache");
 
-        collections = fileSystem.getCollections(logger, logMarker);
+        collections = underlyingCollectionStore.getCollections(logger, logMarker);
 
         {
             final ImmutableMap.Builder<CollectionId, Collection> collectionsByIdBuilder = ImmutableMap.builder();
@@ -128,5 +118,5 @@ public class CollectionCache implements CollectionStore {
     private ImmutableList<CollectionEntry> collections = ImmutableList.of();
     private ImmutableMap<CollectionId, Collection> collectionsById = ImmutableMap.of();
     private ImmutableMap<InstitutionId, ImmutableList<CollectionEntry>> collectionsByInstitutionId = ImmutableMap.of();
-    private final CollectionFileSystem fileSystem;
+    private final CollectionStore underlyingCollectionStore;
 }
