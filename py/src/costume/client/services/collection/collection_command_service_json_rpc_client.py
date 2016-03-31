@@ -2,6 +2,7 @@ from urlparse import urlparse
 import base64
 import costume.api.services.collection.collection_command_service
 import costume.api.services.collection.no_such_collection_exception  # @UnusedImport
+import costume.api.services.institution.no_such_institution_exception  # @UnusedImport
 import costume.api.services.io_exception  # @UnusedImport
 import json
 import thryft.protocol.json_input_protocol

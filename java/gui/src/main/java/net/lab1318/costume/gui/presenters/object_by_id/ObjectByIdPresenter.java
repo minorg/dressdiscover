@@ -100,6 +100,9 @@ public class ObjectByIdPresenter extends Presenter<ObjectByIdView> {
             } catch (final NoSuchCollectionException e) {
                 _getView().setComponentError(new UserError("no such collection " + objectId));
                 return;
+            } catch (final NoSuchInstitutionException e) {
+                _getView().setComponentError(new UserError("no such institution " + objectId));
+                return;
             } catch (final NoSuchObjectException e) {
                 _getView().setComponentError(new UserError("no such object " + objectId));
                 return;
@@ -110,6 +113,9 @@ public class ObjectByIdPresenter extends Presenter<ObjectByIdView> {
                 collection = collectionQueryService.getCollectionById(object.getCollectionId());
             } catch (final NoSuchCollectionException e) {
                 _getView().setComponentError(new UserError("no such collection " + object.getCollectionId()));
+                return;
+            } catch (final NoSuchInstitutionException e) {
+                _getView().setComponentError(new UserError("no such institution " + object.getInstitutionId()));
                 return;
             }
 

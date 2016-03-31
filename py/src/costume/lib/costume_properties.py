@@ -7,6 +7,8 @@ class CostumeProperties(object):
         def __init__(
             self,
             api_url="http://middleware:8082/api/",
+            cache_collections=True,
+            cache_institutions=True,
             elastic_search_host="elasticsearch",
             elastic_search_port=9300,
             environment=None,
@@ -20,6 +22,8 @@ class CostumeProperties(object):
         ):
             '''
             :type api_url: str
+            :type cache_collections: bool
+            :type cache_institutions: bool
             :type elastic_search_host: str
             :type elastic_search_port: int
             :type environment: str
@@ -33,6 +37,8 @@ class CostumeProperties(object):
             '''
 
             self.__api_url = api_url
+            self.__cache_collections = cache_collections
+            self.__cache_institutions = cache_institutions
             self.__elastic_search_host = elastic_search_host
             self.__elastic_search_port = elastic_search_port
             self.__environment = environment
@@ -45,7 +51,7 @@ class CostumeProperties(object):
             self.__resummarize_objects_bulk_request_size = resummarize_objects_bulk_request_size
 
         def build(self):
-            return CostumeProperties(api_url=self.__api_url, elastic_search_host=self.__elastic_search_host, elastic_search_port=self.__elastic_search_port, environment=self.__environment, google_api_key=self.__google_api_key, google_oauth_key=self.__google_oauth_key, google_oauth_secret=self.__google_oauth_secret, home_directory_path=self.__home_directory_path, object_summaries_result_cache_size=self.__object_summaries_result_cache_size, object_summary_cache_size=self.__object_summary_cache_size, resummarize_objects_bulk_request_size=self.__resummarize_objects_bulk_request_size)
+            return CostumeProperties(api_url=self.__api_url, cache_collections=self.__cache_collections, cache_institutions=self.__cache_institutions, elastic_search_host=self.__elastic_search_host, elastic_search_port=self.__elastic_search_port, environment=self.__environment, google_api_key=self.__google_api_key, google_oauth_key=self.__google_oauth_key, google_oauth_secret=self.__google_oauth_secret, home_directory_path=self.__home_directory_path, object_summaries_result_cache_size=self.__object_summaries_result_cache_size, object_summary_cache_size=self.__object_summary_cache_size, resummarize_objects_bulk_request_size=self.__resummarize_objects_bulk_request_size)
 
         @property
         def api_url(self):
@@ -54,6 +60,22 @@ class CostumeProperties(object):
             '''
 
             return self.__api_url
+
+        @property
+        def cache_collections(self):
+            '''
+            :rtype: bool
+            '''
+
+            return self.__cache_collections
+
+        @property
+        def cache_institutions(self):
+            '''
+            :rtype: bool
+            '''
+
+            return self.__cache_institutions
 
         @property
         def elastic_search_host(self):
@@ -143,6 +165,22 @@ class CostumeProperties(object):
             self.__api_url = api_url
             return self
 
+        def set_cache_collections(self, cache_collections):
+            '''
+            :type cache_collections: bool
+            '''
+
+            self.__cache_collections = cache_collections
+            return self
+
+        def set_cache_institutions(self, cache_institutions):
+            '''
+            :type cache_institutions: bool
+            '''
+
+            self.__cache_institutions = cache_institutions
+            return self
+
         def set_elastic_search_host(self, elastic_search_host):
             '''
             :type elastic_search_host: str
@@ -226,6 +264,8 @@ class CostumeProperties(object):
         def update(self, costume_properties):
             '''
             :type api_url: str
+            :type cache_collections: bool
+            :type cache_institutions: bool
             :type elastic_search_host: str
             :type elastic_search_port: int
             :type environment: str
@@ -240,6 +280,8 @@ class CostumeProperties(object):
 
             if isinstance(costume_properties, CostumeProperties):
                 self.set_api_url(costume_properties.api_url)
+                self.set_cache_collections(costume_properties.cache_collections)
+                self.set_cache_institutions(costume_properties.cache_institutions)
                 self.set_elastic_search_host(costume_properties.elastic_search_host)
                 self.set_elastic_search_port(costume_properties.elastic_search_port)
                 self.set_environment(costume_properties.environment)
@@ -264,6 +306,22 @@ class CostumeProperties(object):
             '''
 
             self.set_api_url(api_url)
+
+        @cache_collections.setter
+        def cache_collections(self, cache_collections):
+            '''
+            :type cache_collections: bool
+            '''
+
+            self.set_cache_collections(cache_collections)
+
+        @cache_institutions.setter
+        def cache_institutions(self, cache_institutions):
+            '''
+            :type cache_institutions: bool
+            '''
+
+            self.set_cache_institutions(cache_institutions)
 
         @elastic_search_host.setter
         def elastic_search_host(self, elastic_search_host):
@@ -353,6 +411,8 @@ class CostumeProperties(object):
         google_oauth_secret,
         home_directory_path,
         api_url="http://middleware:8082/api/",
+        cache_collections=True,
+        cache_institutions=True,
         elastic_search_host="elasticsearch",
         elastic_search_port=9300,
         object_summaries_result_cache_size=1024,
@@ -361,6 +421,8 @@ class CostumeProperties(object):
     ):
         '''
         :type api_url: str
+        :type cache_collections: bool
+        :type cache_institutions: bool
         :type elastic_search_host: str
         :type elastic_search_port: int
         :type environment: str
@@ -378,6 +440,18 @@ class CostumeProperties(object):
         if not isinstance(api_url, basestring):
             raise TypeError("expected api_url to be a str but it is a %s" % getattr(__builtin__, 'type')(api_url))
         self.__api_url = api_url
+
+        if cache_collections is None:
+            raise ValueError('cache_collections is required')
+        if not isinstance(cache_collections, bool):
+            raise TypeError("expected cache_collections to be a bool but it is a %s" % getattr(__builtin__, 'type')(cache_collections))
+        self.__cache_collections = cache_collections
+
+        if cache_institutions is None:
+            raise ValueError('cache_institutions is required')
+        if not isinstance(cache_institutions, bool):
+            raise TypeError("expected cache_institutions to be a bool but it is a %s" % getattr(__builtin__, 'type')(cache_institutions))
+        self.__cache_institutions = cache_institutions
 
         if elastic_search_host is None:
             raise ValueError('elastic_search_host is required')
@@ -448,6 +522,10 @@ class CostumeProperties(object):
     def __eq__(self, other):
         if self.api_url != other.api_url:
             return False
+        if self.cache_collections != other.cache_collections:
+            return False
+        if self.cache_institutions != other.cache_institutions:
+            return False
         if self.elastic_search_host != other.elastic_search_host:
             return False
         if self.elastic_search_port != other.elastic_search_port:
@@ -471,7 +549,7 @@ class CostumeProperties(object):
         return True
 
     def __hash__(self):
-        return hash((self.api_url,self.elastic_search_host,self.elastic_search_port,self.environment,self.google_api_key,self.google_oauth_key,self.google_oauth_secret,self.home_directory_path,self.object_summaries_result_cache_size,self.object_summary_cache_size,self.resummarize_objects_bulk_request_size,))
+        return hash((self.api_url,self.cache_collections,self.cache_institutions,self.elastic_search_host,self.elastic_search_port,self.environment,self.google_api_key,self.google_oauth_key,self.google_oauth_secret,self.home_directory_path,self.object_summaries_result_cache_size,self.object_summary_cache_size,self.resummarize_objects_bulk_request_size,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -482,6 +560,8 @@ class CostumeProperties(object):
     def __repr__(self):
         field_reprs = []
         field_reprs.append('api_url=' + "'" + self.api_url.encode('ascii', 'replace') + "'")
+        field_reprs.append('cache_collections=' + repr(self.cache_collections))
+        field_reprs.append('cache_institutions=' + repr(self.cache_institutions))
         field_reprs.append('elastic_search_host=' + "'" + self.elastic_search_host.encode('ascii', 'replace') + "'")
         field_reprs.append('elastic_search_port=' + repr(self.elastic_search_port))
         field_reprs.append('environment=' + "'" + self.environment.encode('ascii', 'replace') + "'")
@@ -497,6 +577,8 @@ class CostumeProperties(object):
     def __str__(self):
         field_reprs = []
         field_reprs.append('api_url=' + "'" + self.api_url.encode('ascii', 'replace') + "'")
+        field_reprs.append('cache_collections=' + repr(self.cache_collections))
+        field_reprs.append('cache_institutions=' + repr(self.cache_institutions))
         field_reprs.append('elastic_search_host=' + "'" + self.elastic_search_host.encode('ascii', 'replace') + "'")
         field_reprs.append('elastic_search_port=' + repr(self.elastic_search_port))
         field_reprs.append('environment=' + "'" + self.environment.encode('ascii', 'replace') + "'")
@@ -524,7 +606,7 @@ class CostumeProperties(object):
         :rtype: dict
         '''
 
-        return {'api_url': self.api_url, 'elastic_search_host': self.elastic_search_host, 'elastic_search_port': self.elastic_search_port, 'environment': self.environment, 'google_api_key': self.google_api_key, 'google_oauth_key': self.google_oauth_key, 'google_oauth_secret': self.google_oauth_secret, 'home_directory_path': self.home_directory_path, 'object_summaries_result_cache_size': self.object_summaries_result_cache_size, 'object_summary_cache_size': self.object_summary_cache_size, 'resummarize_objects_bulk_request_size': self.resummarize_objects_bulk_request_size}
+        return {'api_url': self.api_url, 'cache_collections': self.cache_collections, 'cache_institutions': self.cache_institutions, 'elastic_search_host': self.elastic_search_host, 'elastic_search_port': self.elastic_search_port, 'environment': self.environment, 'google_api_key': self.google_api_key, 'google_oauth_key': self.google_oauth_key, 'google_oauth_secret': self.google_oauth_secret, 'home_directory_path': self.home_directory_path, 'object_summaries_result_cache_size': self.object_summaries_result_cache_size, 'object_summary_cache_size': self.object_summary_cache_size, 'resummarize_objects_bulk_request_size': self.resummarize_objects_bulk_request_size}
 
     def as_tuple(self):
         '''
@@ -533,7 +615,23 @@ class CostumeProperties(object):
         :rtype: tuple
         '''
 
-        return (self.api_url, self.elastic_search_host, self.elastic_search_port, self.environment, self.google_api_key, self.google_oauth_key, self.google_oauth_secret, self.home_directory_path, self.object_summaries_result_cache_size, self.object_summary_cache_size, self.resummarize_objects_bulk_request_size,)
+        return (self.api_url, self.cache_collections, self.cache_institutions, self.elastic_search_host, self.elastic_search_port, self.environment, self.google_api_key, self.google_oauth_key, self.google_oauth_secret, self.home_directory_path, self.object_summaries_result_cache_size, self.object_summary_cache_size, self.resummarize_objects_bulk_request_size,)
+
+    @property
+    def cache_collections(self):
+        '''
+        :rtype: bool
+        '''
+
+        return self.__cache_collections
+
+    @property
+    def cache_institutions(self):
+        '''
+        :rtype: bool
+        '''
+
+        return self.__cache_institutions
 
     @property
     def elastic_search_host(self):
@@ -603,7 +701,7 @@ class CostumeProperties(object):
 
         properties = {}
 
-        for property_name in ('api_url', 'elastic_search_host', 'elastic_search_port', 'environment', 'google_api_key', 'google_oauth_key', 'google_oauth_secret', 'home_directory_path', 'object_summaries_result_cache_size', 'object_summary_cache_size', 'resummarize_objects_bulk_request_size',):
+        for property_name in ('api_url', 'cache_collections', 'cache_institutions', 'elastic_search_host', 'elastic_search_port', 'environment', 'google_api_key', 'google_oauth_key', 'google_oauth_secret', 'home_directory_path', 'object_summaries_result_cache_size', 'object_summary_cache_size', 'resummarize_objects_bulk_request_size',):
             property_value = os.getenv('COSTUME_' + property_name.upper())
             if property_value is not None and len(property_value) > 0:
                 properties[property_name] = property_value
@@ -628,6 +726,12 @@ class CostumeProperties(object):
                         properties[property_name] = property_value
             except IOError:
                 raise IOError("failed to load properties file %s" % properties_file_path)
+
+        if 'cache_collections' in properties:
+            properties['cache_collections'] = (properties['cache_collections'].lower() == 'true')
+
+        if 'cache_institutions' in properties:
+            properties['cache_institutions'] = (properties['cache_institutions'].lower() == 'true')
 
         if 'elastic_search_port' in properties:
             properties['elastic_search_port'] = int(properties['elastic_search_port'])
@@ -677,6 +781,10 @@ class CostumeProperties(object):
                 break
             elif ifield_name == 'api_url':
                 init_kwds['api_url'] = iprot.read_string()
+            elif ifield_name == 'cache_collections':
+                init_kwds['cache_collections'] = iprot.read_bool()
+            elif ifield_name == 'cache_institutions':
+                init_kwds['cache_institutions'] = iprot.read_bool()
             elif ifield_name == 'elastic_search_host':
                 init_kwds['elastic_search_host'] = iprot.read_string()
             elif ifield_name == 'elastic_search_port':
@@ -705,6 +813,8 @@ class CostumeProperties(object):
     def replace(
         self,
         api_url="http://middleware:8082/api/",
+        cache_collections=True,
+        cache_institutions=True,
         elastic_search_host="elasticsearch",
         elastic_search_port=9300,
         environment=None,
@@ -720,6 +830,8 @@ class CostumeProperties(object):
         Copy this object, replace one or more fields, and return the copy.
 
         :type api_url: str or None
+        :type cache_collections: bool or None
+        :type cache_institutions: bool or None
         :type elastic_search_host: str or None
         :type elastic_search_port: int or None
         :type environment: str or None
@@ -735,6 +847,10 @@ class CostumeProperties(object):
 
         if api_url is None:
             api_url = self.api_url
+        if cache_collections is None:
+            cache_collections = self.cache_collections
+        if cache_institutions is None:
+            cache_institutions = self.cache_institutions
         if elastic_search_host is None:
             elastic_search_host = self.elastic_search_host
         if elastic_search_port is None:
@@ -755,7 +871,7 @@ class CostumeProperties(object):
             object_summary_cache_size = self.object_summary_cache_size
         if resummarize_objects_bulk_request_size is None:
             resummarize_objects_bulk_request_size = self.resummarize_objects_bulk_request_size
-        return self.__class__(api_url=api_url, elastic_search_host=elastic_search_host, elastic_search_port=elastic_search_port, environment=environment, google_api_key=google_api_key, google_oauth_key=google_oauth_key, google_oauth_secret=google_oauth_secret, home_directory_path=home_directory_path, object_summaries_result_cache_size=object_summaries_result_cache_size, object_summary_cache_size=object_summary_cache_size, resummarize_objects_bulk_request_size=resummarize_objects_bulk_request_size)
+        return self.__class__(api_url=api_url, cache_collections=cache_collections, cache_institutions=cache_institutions, elastic_search_host=elastic_search_host, elastic_search_port=elastic_search_port, environment=environment, google_api_key=google_api_key, google_oauth_key=google_oauth_key, google_oauth_secret=google_oauth_secret, home_directory_path=home_directory_path, object_summaries_result_cache_size=object_summaries_result_cache_size, object_summary_cache_size=object_summary_cache_size, resummarize_objects_bulk_request_size=resummarize_objects_bulk_request_size)
 
     @property
     def resummarize_objects_bulk_request_size(self):
@@ -777,6 +893,14 @@ class CostumeProperties(object):
 
         oprot.write_field_begin(name='api_url', type=11, id=None)
         oprot.write_string(self.api_url)
+        oprot.write_field_end()
+
+        oprot.write_field_begin(name='cache_collections', type=2, id=None)
+        oprot.write_bool(self.cache_collections)
+        oprot.write_field_end()
+
+        oprot.write_field_begin(name='cache_institutions', type=2, id=None)
+        oprot.write_bool(self.cache_institutions)
         oprot.write_field_end()
 
         oprot.write_field_begin(name='elastic_search_host', type=11, id=None)

@@ -30,8 +30,11 @@ public final class StoreObjectQueryServiceTest extends ObjectServiceTest {
     @Test
     public void testGetObjectCountByCollectionId() throws Exception {
         _putObjects();
-        for (final CollectionEntry collectionEntry : collectionQueryService.getCollections()) {
-            assertNotEquals(0, _getObjectCountByCollectionId(collectionEntry.getId()));
+        for (final InstitutionEntry institutionEntry : TestData.getInstance().getInstitutions()) {
+            for (final CollectionEntry collectionEntry : collectionQueryService
+                    .getCollectionsByInstitutionId(institutionEntry.getId())) {
+                assertNotEquals(0, _getObjectCountByCollectionId(collectionEntry.getId()));
+            }
         }
     }
 

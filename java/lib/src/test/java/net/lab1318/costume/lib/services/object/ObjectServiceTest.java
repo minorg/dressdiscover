@@ -14,6 +14,7 @@ import net.lab1318.costume.api.models.object.ObjectQuery;
 import net.lab1318.costume.api.services.collection.CollectionCommandService;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.institution.InstitutionCommandService;
+import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
 import net.lab1318.costume.api.services.object.ObjectCommandService;
 import net.lab1318.costume.api.services.object.ObjectQueryService;
@@ -29,6 +30,7 @@ public abstract class ObjectServiceTest extends ServiceTest {
     public void setUp() throws Exception {
         collectionQueryService = _getInjector().getInstance(CollectionQueryService.class);
         institutionCommandService = _getInjector().getInstance(InstitutionCommandService.class);
+        institutionQueryService = _getInjector().getInstance(InstitutionQueryService.class);
         objectCommandService = _getInjector().getInstance(ObjectCommandService.class);
         objectQueryService = _getInjector().getInstance(ObjectQueryService.class);
         objectSummaryElasticSearchIndex = _getInjector().getInstance(ObjectSummaryElasticSearchIndex.class);
@@ -82,6 +84,7 @@ public abstract class ObjectServiceTest extends ServiceTest {
 
     protected CollectionQueryService collectionQueryService;
     private InstitutionCommandService institutionCommandService;
+    protected InstitutionQueryService institutionQueryService;
     protected ObjectCommandService objectCommandService;
     protected ObjectQueryService objectQueryService;
     protected ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex;

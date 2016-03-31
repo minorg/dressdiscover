@@ -1,5 +1,7 @@
 package net.lab1318.costume.lib.services;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.inject.AbstractModule;
 
 import net.lab1318.costume.api.services.collection.CollectionCommandService;
@@ -11,39 +13,47 @@ import net.lab1318.costume.api.services.object.ObjectQueryService;
 import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
 import net.lab1318.costume.api.services.user.UserCommandService;
 import net.lab1318.costume.api.services.user.UserQueryService;
-import net.lab1318.costume.lib.services.collection.CachingCollectionCommandService;
-import net.lab1318.costume.lib.services.collection.CachingCollectionQueryService;
+import net.lab1318.costume.lib.CostumeProperties;
 import net.lab1318.costume.lib.services.collection.LoggingCollectionCommandService;
 import net.lab1318.costume.lib.services.collection.LoggingCollectionQueryService;
+import net.lab1318.costume.lib.services.collection.StoreCollectionCommandService;
+import net.lab1318.costume.lib.services.collection.StoreCollectionQueryService;
 import net.lab1318.costume.lib.services.collection.ValidatingCollectionCommandService;
 import net.lab1318.costume.lib.services.collection.ValidatingCollectionQueryService;
-import net.lab1318.costume.lib.services.institution.CachingInstitutionCommandService;
-import net.lab1318.costume.lib.services.institution.CachingInstitutionQueryService;
 import net.lab1318.costume.lib.services.institution.LoggingInstitutionCommandService;
 import net.lab1318.costume.lib.services.institution.LoggingInstitutionQueryService;
+import net.lab1318.costume.lib.services.institution.StoreInstitutionCommandService;
+import net.lab1318.costume.lib.services.institution.StoreInstitutionQueryService;
 import net.lab1318.costume.lib.services.institution.ValidatingInstitutionCommandService;
 import net.lab1318.costume.lib.services.institution.ValidatingInstitutionQueryService;
 import net.lab1318.costume.lib.services.object.ElasticSearchObjectSummaryQueryService;
-import net.lab1318.costume.lib.services.object.StoreObjectCommandService;
-import net.lab1318.costume.lib.services.object.StoreObjectQueryService;
 import net.lab1318.costume.lib.services.object.LoggingObjectCommandService;
 import net.lab1318.costume.lib.services.object.LoggingObjectQueryService;
 import net.lab1318.costume.lib.services.object.LoggingObjectSummaryQueryService;
+import net.lab1318.costume.lib.services.object.StoreObjectCommandService;
+import net.lab1318.costume.lib.services.object.StoreObjectQueryService;
 import net.lab1318.costume.lib.services.object.ValidatingObjectCommandService;
 import net.lab1318.costume.lib.services.object.ValidatingObjectQueryService;
 import net.lab1318.costume.lib.services.object.ValidatingObjectSummaryQueryService;
+import net.lab1318.costume.lib.services.user.IterableUserQueryService;
 import net.lab1318.costume.lib.services.user.JdbcUserCommandService;
 import net.lab1318.costume.lib.services.user.JdbcUserQueryService;
-import net.lab1318.costume.lib.services.user.IterableUserQueryService;
 import net.lab1318.costume.lib.services.user.LoggingUserCommandService;
 import net.lab1318.costume.lib.services.user.LoggingUserQueryService;
 import net.lab1318.costume.lib.services.user.ValidatingUserCommandService;
 import net.lab1318.costume.lib.services.user.ValidatingUserQueryService;
+import net.lab1318.costume.lib.stores.institution.CachingInstitutionStore;
+import net.lab1318.costume.lib.stores.institution.FileSystemInstitutionStore;
+import net.lab1318.costume.lib.stores.institution.InstitutionStore;
 
 public class ServicesModule extends AbstractModule {
+    public ServicesModule(final CostumeProperties properties) {
+        this.properties = checkNotNull(properties);
+    }
+
     protected void _configureCollectionCommandService() {
         bind(CollectionCommandService.class).annotatedWith(LoggingCollectionCommandService.DELEGATE_NAME)
-                .to(CachingCollectionCommandService.class).asEagerSingleton();
+                .to(StoreCollectionCommandService.class).asEagerSingleton();
         bind(CollectionCommandService.class).annotatedWith(ValidatingCollectionCommandService.DELEGATE_NAME)
                 .to(LoggingCollectionCommandService.class).asEagerSingleton();
         bind(CollectionCommandService.class).to(ValidatingCollectionCommandService.class).asEagerSingleton();
@@ -51,7 +61,7 @@ public class ServicesModule extends AbstractModule {
 
     protected void _configureCollectionQueryService() {
         bind(CollectionQueryService.class).annotatedWith(LoggingCollectionQueryService.DELEGATE_NAME)
-                .to(CachingCollectionQueryService.class).asEagerSingleton();
+                .to(StoreCollectionQueryService.class).asEagerSingleton();
         bind(CollectionQueryService.class).annotatedWith(ValidatingCollectionQueryService.DELEGATE_NAME)
                 .to(LoggingCollectionQueryService.class).asEagerSingleton();
         bind(CollectionQueryService.class).to(ValidatingCollectionQueryService.class).asEagerSingleton();
@@ -59,7 +69,7 @@ public class ServicesModule extends AbstractModule {
 
     protected void _configureInstitutionCommandService() {
         bind(InstitutionCommandService.class).annotatedWith(LoggingInstitutionCommandService.DELEGATE_NAME)
-                .to(CachingInstitutionCommandService.class).asEagerSingleton();
+                .to(StoreInstitutionCommandService.class).asEagerSingleton();
         bind(InstitutionCommandService.class).annotatedWith(ValidatingInstitutionCommandService.DELEGATE_NAME)
                 .to(LoggingInstitutionCommandService.class).asEagerSingleton();
         bind(InstitutionCommandService.class).to(ValidatingInstitutionCommandService.class).asEagerSingleton();
@@ -67,10 +77,15 @@ public class ServicesModule extends AbstractModule {
 
     protected void _configureInstitutionQueryService() {
         bind(InstitutionQueryService.class).annotatedWith(LoggingInstitutionQueryService.DELEGATE_NAME)
-                .to(CachingInstitutionQueryService.class).asEagerSingleton();
+                .to(StoreInstitutionQueryService.class).asEagerSingleton();
         bind(InstitutionQueryService.class).annotatedWith(ValidatingInstitutionQueryService.DELEGATE_NAME)
                 .to(LoggingInstitutionQueryService.class).asEagerSingleton();
         bind(InstitutionQueryService.class).to(ValidatingInstitutionQueryService.class).asEagerSingleton();
+    }
+
+    protected void _configureInstitutionStore() {
+        bind(InstitutionStore.class).to(
+                properties.getCacheInstitutions() ? CachingInstitutionStore.class : FileSystemInstitutionStore.class);
     }
 
     protected void _configureObjectCommandService() {
@@ -108,8 +123,8 @@ public class ServicesModule extends AbstractModule {
     protected void _configureUserQueryService() {
         bind(IterableUserQueryService.class).annotatedWith(LoggingUserQueryService.DELEGATE_NAME)
                 .to(JdbcUserQueryService.class).asEagerSingleton();
-        bind(UserQueryService.class).annotatedWith(LoggingUserQueryService.DELEGATE_NAME)
-                .to(JdbcUserQueryService.class).asEagerSingleton();
+        bind(UserQueryService.class).annotatedWith(LoggingUserQueryService.DELEGATE_NAME).to(JdbcUserQueryService.class)
+                .asEagerSingleton();
         bind(UserQueryService.class).annotatedWith(ValidatingUserQueryService.DELEGATE_NAME)
                 .to(LoggingUserQueryService.class).asEagerSingleton();
         bind(UserQueryService.class).to(ValidatingUserQueryService.class).asEagerSingleton();
@@ -121,10 +136,13 @@ public class ServicesModule extends AbstractModule {
         _configureCollectionQueryService();
         _configureInstitutionCommandService();
         _configureInstitutionQueryService();
+        _configureInstitutionStore();
         _configureObjectCommandService();
         _configureObjectQueryService();
         _configureObjectSummaryQueryService();
         _configureUserCommandService();
         _configureUserQueryService();
     }
+
+    private final CostumeProperties properties;
 }

@@ -36,7 +36,7 @@ public abstract class ServiceTest {
     }
 
     protected ServicesModule _newServicesModule(final CostumeProperties properties) {
-        return new ServicesModule();
+        return new ServicesModule(properties);
     }
 
     private final boolean readOnly;

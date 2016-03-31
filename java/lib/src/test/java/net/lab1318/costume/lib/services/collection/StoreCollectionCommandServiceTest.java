@@ -13,10 +13,9 @@ import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
 import net.lab1318.costume.testdata.TestData;
 
-public abstract class CollectionCommandServiceTest extends CollectionServiceTest {
+public final class StoreCollectionCommandServiceTest extends CollectionServiceTest {
     @Test
     public void testDeleteCollectionById() throws Exception {
-        assertEquals(0, collectionQueryService.getCollections().size());
         final ImmutableList<CollectionEntry> expected = _putCollections();
         assertNotEquals(0, expected.size());
         for (final CollectionEntry collectionEntry : expected) {
@@ -32,7 +31,6 @@ public abstract class CollectionCommandServiceTest extends CollectionServiceTest
 
     @Test
     public void testDeleteCollectionsByInstitutionId() throws Exception {
-        assertEquals(0, collectionQueryService.getCollections().size());
         _putCollections();
         for (final InstitutionEntry institution : TestData.getInstance().getInstitutions()) {
             assertNotEquals(0, collectionQueryService.getCollectionsByInstitutionId(institution.getId()));
@@ -43,8 +41,8 @@ public abstract class CollectionCommandServiceTest extends CollectionServiceTest
 
     @Test
     public void testPutCollection() throws Exception {
-        assertEquals(0, collectionQueryService.getCollections().size());
         _putCollections();
-        assertEquals(TestData.getInstance().getCollections().size(), collectionQueryService.getCollections().size());
+        assertEquals(TestData.getInstance().getCollections().size(),
+                collectionQueryService.getCollectionsByInstitutionId(institutionId).size());
     }
 }

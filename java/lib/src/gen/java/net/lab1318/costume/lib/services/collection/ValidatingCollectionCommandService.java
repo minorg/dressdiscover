@@ -10,7 +10,7 @@ public class ValidatingCollectionCommandService implements net.lab1318.costume.a
     }
 
     @Override
-    public final void deleteCollectionById(final net.lab1318.costume.api.models.collection.CollectionId id) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException {
+    public final void deleteCollectionById(final net.lab1318.costume.api.models.collection.CollectionId id) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException, net.lab1318.costume.api.services.institution.NoSuchInstitutionException {
         _validateDeleteCollectionByIdParameters(id);
         delegate.deleteCollectionById(id);
     }
@@ -20,7 +20,7 @@ public class ValidatingCollectionCommandService implements net.lab1318.costume.a
     }
 
     @Override
-    public final void deleteCollectionsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws net.lab1318.costume.api.services.IoException {
+    public final void deleteCollectionsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.institution.NoSuchInstitutionException {
         _validateDeleteCollectionsByInstitutionIdParameters(institutionId);
         delegate.deleteCollectionsByInstitutionId(institutionId);
     }
@@ -30,7 +30,7 @@ public class ValidatingCollectionCommandService implements net.lab1318.costume.a
     }
 
     @Override
-    public final void putCollection(final net.lab1318.costume.api.models.collection.CollectionId id, final net.lab1318.costume.api.models.collection.Collection collection) throws net.lab1318.costume.api.services.IoException {
+    public final void putCollection(final net.lab1318.costume.api.models.collection.CollectionId id, final net.lab1318.costume.api.models.collection.Collection collection) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.institution.NoSuchInstitutionException {
         _validatePutCollectionParameters(id, collection);
         delegate.putCollection(id, collection);
     }

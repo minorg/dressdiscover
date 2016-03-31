@@ -147,7 +147,7 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
 
     protected final ImmutableMap<CollectionId, Collection> _getCollections(
             final ImmutableList<CollectionId> collectionIds, final CollectionQueryService collectionQueryService)
-            throws IoException, NoSuchCollectionException {
+            throws IoException, NoSuchCollectionException, NoSuchInstitutionException {
         final ImmutableList<Collection> collections = collectionQueryService.getCollectionsByIds(collectionIds);
         checkState(collectionIds.size() == collections.size());
         final ImmutableMap.Builder<CollectionId, Collection> collectionMapBuilder = ImmutableMap.builder();

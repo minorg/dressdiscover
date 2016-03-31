@@ -12,7 +12,8 @@ public final class StoreObjectCommandServiceTest extends ObjectServiceTest {
     @Test
     public void testDeleteObjectsByCollectionId() throws Exception {
         _putObjects();
-        for (final CollectionEntry collectionEntry : collectionQueryService.getCollections()) {
+        for (final CollectionEntry collectionEntry : collectionQueryService
+                .getCollectionsByInstitutionId(TestData.getInstance().getInstitutions().get(0).getId())) {
             assertNotEquals(0, _getObjectCountByCollectionId(collectionEntry.getId()));
             objectCommandService.deleteObjectsByCollectionId(collectionEntry.getId());
             objectSummaryElasticSearchIndex.refresh();

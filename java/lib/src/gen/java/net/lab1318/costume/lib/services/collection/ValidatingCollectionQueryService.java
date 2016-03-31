@@ -10,7 +10,7 @@ public class ValidatingCollectionQueryService implements net.lab1318.costume.api
     }
 
     @Override
-    public final net.lab1318.costume.api.models.collection.Collection getCollectionById(final net.lab1318.costume.api.models.collection.CollectionId id) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException {
+    public final net.lab1318.costume.api.models.collection.Collection getCollectionById(final net.lab1318.costume.api.models.collection.CollectionId id) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException, net.lab1318.costume.api.services.institution.NoSuchInstitutionException {
         _validateGetCollectionByIdParameters(id);
         return com.google.common.base.Preconditions.checkNotNull(delegate.getCollectionById(id), "net.lab1318.costume.api.services.collection.CollectionQueryService.getCollectionById: missing returnValue");
     }
@@ -20,12 +20,7 @@ public class ValidatingCollectionQueryService implements net.lab1318.costume.api
     }
 
     @Override
-    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionEntry> getCollections() throws net.lab1318.costume.api.services.IoException {
-        return com.google.common.base.Preconditions.checkNotNull(delegate.getCollections(), "net.lab1318.costume.api.services.collection.CollectionQueryService.getCollections: missing returnValue");
-    }
-
-    @Override
-    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> getCollectionsByIds(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> ids) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException {
+    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> getCollectionsByIds(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> ids) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException, net.lab1318.costume.api.services.institution.NoSuchInstitutionException {
         _validateGetCollectionsByIdsParameters(ids);
         return com.google.common.base.Preconditions.checkNotNull(delegate.getCollectionsByIds(ids), "net.lab1318.costume.api.services.collection.CollectionQueryService.getCollectionsByIds: missing returnValue");
     }
@@ -35,7 +30,7 @@ public class ValidatingCollectionQueryService implements net.lab1318.costume.api
     }
 
     @Override
-    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionEntry> getCollectionsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws net.lab1318.costume.api.services.IoException {
+    public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionEntry> getCollectionsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.institution.NoSuchInstitutionException {
         _validateGetCollectionsByInstitutionIdParameters(institutionId);
         return com.google.common.base.Preconditions.checkNotNull(delegate.getCollectionsByInstitutionId(institutionId), "net.lab1318.costume.api.services.collection.CollectionQueryService.getCollectionsByInstitutionId: missing returnValue");
     }

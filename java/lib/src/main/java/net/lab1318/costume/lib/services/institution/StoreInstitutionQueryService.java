@@ -10,6 +10,8 @@ import org.thryft.waf.lib.stores.InvalidModelException;
 import org.thryft.waf.lib.stores.NoSuchModelException;
 
 import com.google.common.collect.ImmutableList;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
 import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.institution.InstitutionEntry;
@@ -21,13 +23,15 @@ import net.lab1318.costume.lib.services.IoExceptions;
 import net.lab1318.costume.lib.services.institution.LoggingInstitutionQueryService.Markers;
 import net.lab1318.costume.lib.stores.institution.InstitutionStore;
 
-class StoreInstitutionQueryService implements InstitutionQueryService {
-    protected StoreInstitutionQueryService(final InstitutionStore store) {
+@Singleton
+public class StoreInstitutionQueryService implements InstitutionQueryService {
+    @Inject
+    public StoreInstitutionQueryService(final InstitutionStore store) {
         this.store = checkNotNull(store);
     }
 
     @Override
-    public Institution getInstitutionById(final InstitutionId id) throws IoException, NoSuchInstitutionException {
+    public final Institution getInstitutionById(final InstitutionId id) throws IoException, NoSuchInstitutionException {
         try {
             return store.getInstitutionById(id, logger, Markers.GET_INSTITUTION_BY_ID);
         } catch (final InvalidModelException e) {
@@ -41,7 +45,7 @@ class StoreInstitutionQueryService implements InstitutionQueryService {
     }
 
     @Override
-    public ImmutableList<InstitutionEntry> getInstitutions() throws IoException {
+    public final ImmutableList<InstitutionEntry> getInstitutions() throws IoException {
         try {
             return store.getInstitutions(logger, Markers.GET_INSTITUTIONS);
         } catch (final IOException e) {
@@ -50,7 +54,7 @@ class StoreInstitutionQueryService implements InstitutionQueryService {
     }
 
     @Override
-    public ImmutableList<Institution> getInstitutionsByIds(final ImmutableList<InstitutionId> ids)
+    public final ImmutableList<Institution> getInstitutionsByIds(final ImmutableList<InstitutionId> ids)
             throws IoException, NoSuchInstitutionException {
         if (ids.isEmpty()) {
             return ImmutableList.of();

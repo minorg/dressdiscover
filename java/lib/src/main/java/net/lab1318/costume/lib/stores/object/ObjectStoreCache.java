@@ -16,6 +16,7 @@ import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
+import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
 import net.lab1318.costume.lib.CostumeProperties;
 
 @Singleton
@@ -30,7 +31,8 @@ public class ObjectStoreCache {
         this.properties = checkNotNull(properties);
     }
 
-    public ObjectStore getObjectStore(final CollectionId collectionId) throws IoException, NoSuchCollectionException {
+    public final ObjectStore getObjectStore(final CollectionId collectionId)
+            throws IoException, NoSuchCollectionException, NoSuchInstitutionException {
         try {
             return cache.get(collectionId);
         } catch (final ExecutionException e) {
@@ -38,20 +40,24 @@ public class ObjectStoreCache {
                 throw (IoException) e.getCause();
             } else if (e.getCause() instanceof NoSuchCollectionException) {
                 throw (NoSuchCollectionException) e.getCause();
+            } else if (e.getCause() instanceof NoSuchInstitutionException) {
+                throw (NoSuchInstitutionException) e.getCause();
             } else {
                 throw new UnsupportedOperationException(e);
             }
         }
     }
 
-    public ObjectStore getObjectStore(final ObjectId objectId) throws IoException, NoSuchCollectionException {
+    public final ObjectStore getObjectStore(final ObjectId objectId)
+            throws IoException, NoSuchCollectionException, NoSuchInstitutionException {
         return getObjectStore(objectId.getCollectionId());
     }
 
     private final LoadingCache<CollectionId, ObjectStore> cache = CacheBuilder.newBuilder()
             .build(new CacheLoader<CollectionId, ObjectStore>() {
                 @Override
-                public ObjectStore load(final CollectionId key) throws IoException, NoSuchCollectionException {
+                public ObjectStore load(final CollectionId key)
+                        throws IoException, NoSuchCollectionException, NoSuchInstitutionException {
                     final Collection collection = collectionQueryService.getCollectionById(key);
                     if (collection.getObjectStoreUrl().isPresent()) {
                         final ObjectStoreFactory factory = objectStoreFactoryRegistry

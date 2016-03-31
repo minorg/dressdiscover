@@ -11,6 +11,7 @@ include "costume/api/models/object/object_entry.thrift"
 include "costume/api/models/object/object_id.thrift"
 include "costume/api/services/io_exception.thrift"
 include "costume/api/services/collection/no_such_collection_exception.thrift"
+include "costume/api/services/institution/no_such_institution_exception.thrift"
 include "thryft/native/u32.thrift"
 
 service ObjectCommandService {
@@ -19,7 +20,8 @@ service ObjectCommandService {
 		collection_id.CollectionId collection_id
 	) throws (
 		io_exception.IoException e1,
-		no_such_collection_exception.NoSuchCollectionException e2
+		no_such_collection_exception.NoSuchCollectionException e2,
+        no_such_institution_exception.NoSuchInstitutionException e3
 	);
 
 	void
@@ -28,7 +30,8 @@ service ObjectCommandService {
 		object.Object object
 	) throws (
 		io_exception.IoException e1,
-        no_such_collection_exception.NoSuchCollectionException e2
+        no_such_collection_exception.NoSuchCollectionException e2,
+        no_such_institution_exception.NoSuchInstitutionException e3
 	);
 
 	void
@@ -36,7 +39,8 @@ service ObjectCommandService {
 		list<object_entry.ObjectEntry> objects
 	) throws (
 		io_exception.IoException e1,
-        no_such_collection_exception.NoSuchCollectionException e2
+        no_such_collection_exception.NoSuchCollectionException e2,
+        no_such_institution_exception.NoSuchInstitutionException e3
 	);
 
 	void

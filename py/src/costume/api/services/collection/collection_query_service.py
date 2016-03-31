@@ -32,25 +32,6 @@ class CollectionQueryService(object):
     ):
         raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_collection_by_id')
 
-    def get_collections(
-        self,
-    ):
-        '''
-        :rtype: tuple(costume.api.models.collection.collection_entry.CollectionEntry)
-        '''
-
-        get_collections_return_value = self._get_collections()
-
-        if not (isinstance(get_collections_return_value, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.collection.collection_entry.CollectionEntry), get_collections_return_value))) == 0):
-            raise TypeError(getattr(__builtin__, 'type')(get_collections_return_value))
-
-        return get_collections_return_value
-
-    def _get_collections(
-        self,
-    ):
-        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_collections')
-
     def get_collections_by_ids(
         self,
         ids=None,

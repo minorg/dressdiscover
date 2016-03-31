@@ -10,6 +10,7 @@ include "costume/api/models/collection/collection_id.thrift"
 include "costume/api/models/institution/institution_id.thrift"
 include "costume/api/services/io_exception.thrift"
 include "costume/api/services/collection/no_such_collection_exception.thrift"
+include "costume/api/services/institution/no_such_institution_exception.thrift"
 
 service CollectionCommandService {
 	void
@@ -17,14 +18,16 @@ service CollectionCommandService {
 		collection_id.CollectionId id
 	) throws (
 		io_exception.IoException e1,
-		no_such_collection_exception.NoSuchCollectionException e2
+		no_such_collection_exception.NoSuchCollectionException e2,
+		no_such_institution_exception.NoSuchInstitutionException e3
 	);
 
 	void
 	delete_collections_by_institution_id(
 		institution_id.InstitutionId institution_id
 	) throws (
-		io_exception.IoException e
+		io_exception.IoException e1,
+        no_such_institution_exception.NoSuchInstitutionException e2
 	);
 
 	void
@@ -32,6 +35,7 @@ service CollectionCommandService {
 		collection_id.CollectionId id,
 		collection.Collection collection
 	) throws (
-		io_exception.IoException e1
+		io_exception.IoException e1,
+        no_such_institution_exception.NoSuchInstitutionException e2
 	);
 }

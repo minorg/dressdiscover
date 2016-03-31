@@ -12,7 +12,7 @@ import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 import net.lab1318.costume.testdata.TestData;
 
-public abstract class InstitutionQueryServiceTest extends InstitutionServiceTest {
+public final class StoreInstitutionQueryServiceTest extends InstitutionServiceTest {
     @Test
     public void testGetInstitutionById() throws Exception {
         _putInstitutions();

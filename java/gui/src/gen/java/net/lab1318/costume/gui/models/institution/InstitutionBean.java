@@ -5,6 +5,7 @@ public class InstitutionBean implements org.thryft.StructBean {
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         MODEL_METADATA("modelMetadata", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.ModelMetadataBean>() {}, true, 4, "model_metadata", org.thryft.protocol.Type.STRUCT),
         TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "title", org.thryft.protocol.Type.STRING),
+        COLLECTION_STORE_URL("collectionStoreUrl", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 9, "collection_store_url", org.thryft.protocol.Type.STRING),
         DATA_RIGHTS("dataRights", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.rights.RightsSetBean>() {}, false, 5, "data_rights", org.thryft.protocol.Type.STRUCT),
         EXTERNAL("external", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 7, "external", org.thryft.protocol.Type.BOOL),
         HIDDEN("hidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 6, "hidden", org.thryft.protocol.Type.BOOL),
@@ -55,6 +56,7 @@ public class InstitutionBean implements org.thryft.StructBean {
             switch (javaName) {
             case "modelMetadata": return MODEL_METADATA;
             case "title": return TITLE;
+            case "collectionStoreUrl": return COLLECTION_STORE_URL;
             case "dataRights": return DATA_RIGHTS;
             case "external": return EXTERNAL;
             case "hidden": return HIDDEN;
@@ -69,6 +71,7 @@ public class InstitutionBean implements org.thryft.StructBean {
             switch (thriftName) {
             case "model_metadata": return MODEL_METADATA;
             case "title": return TITLE;
+            case "collection_store_url": return COLLECTION_STORE_URL;
             case "data_rights": return DATA_RIGHTS;
             case "external": return EXTERNAL;
             case "hidden": return HIDDEN;
@@ -105,6 +108,7 @@ public class InstitutionBean implements org.thryft.StructBean {
     public InstitutionBean() {
         modelMetadata = null;
         title = null;
+        collectionStoreUrl = null;
         dataRights = null;
         external = null;
         hidden = null;
@@ -115,6 +119,7 @@ public class InstitutionBean implements org.thryft.StructBean {
     public InstitutionBean(final net.lab1318.costume.api.models.institution.Institution other) {
         this.modelMetadata = new net.lab1318.costume.gui.models.ModelMetadataBean(other.getModelMetadata());
         this.title = other.getTitle();
+        this.collectionStoreUrl = other.getCollectionStoreUrl().isPresent() ? other.getCollectionStoreUrl().get() : null;
         this.dataRights = other.getDataRights().isPresent() ? new net.lab1318.costume.gui.models.rights.RightsSetBean(other.getDataRights().get()) : null;
         this.external = other.getExternal().isPresent() ? other.getExternal().get() : null;
         this.hidden = other.getHidden().isPresent() ? other.getHidden().get() : null;
@@ -134,6 +139,7 @@ public class InstitutionBean implements org.thryft.StructBean {
         return
             getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
+            ((getCollectionStoreUrl() != null && other.getCollectionStoreUrl() != null) ? (getCollectionStoreUrl().equals(other.getCollectionStoreUrl())) : (getCollectionStoreUrl() == null && other.getCollectionStoreUrl() == null)) &&
             ((getDataRights() != null && other.getDataRights() != null) ? (getDataRights().equals(other.getDataRights())) : (getDataRights() == null && other.getDataRights() == null)) &&
             ((getExternal() != null && other.getExternal() != null) ? (getExternal() == other.getExternal()) : (getExternal() == null && other.getExternal() == null)) &&
             ((getHidden() != null && other.getHidden() != null) ? (getHidden() == other.getHidden()) : (getHidden() == null && other.getHidden() == null)) &&
@@ -158,6 +164,7 @@ public class InstitutionBean implements org.thryft.StructBean {
         switch (fieldMetadata) {
         case MODEL_METADATA: return getModelMetadata();
         case TITLE: return getTitle();
+        case COLLECTION_STORE_URL: return getCollectionStoreUrl();
         case DATA_RIGHTS: return getDataRights();
         case EXTERNAL: return getExternal();
         case HIDDEN: return getHidden();
@@ -166,6 +173,10 @@ public class InstitutionBean implements org.thryft.StructBean {
         default:
             throw new IllegalStateException();
         }
+    }
+
+    public org.thryft.native_.Url getCollectionStoreUrl() {
+        return collectionStoreUrl;
     }
 
     public net.lab1318.costume.gui.models.rights.RightsSetBean getDataRights() {
@@ -201,6 +212,9 @@ public class InstitutionBean implements org.thryft.StructBean {
         int hashCode = 17;
         hashCode = 31 * hashCode + getModelMetadata().hashCode();
         hashCode = 31 * hashCode + getTitle().hashCode();
+        if (getCollectionStoreUrl() != null) {
+            hashCode = 31 * hashCode + getCollectionStoreUrl().hashCode();
+        }
         if (getDataRights() != null) {
             hashCode = 31 * hashCode + getDataRights().hashCode();
         }
@@ -222,6 +236,10 @@ public class InstitutionBean implements org.thryft.StructBean {
     @Override
     public boolean isEmpty() {
         return false;
+    }
+
+    public void setCollectionStoreUrl(final org.thryft.native_.Url collectionStoreUrl) {
+        this.collectionStoreUrl = collectionStoreUrl;
     }
 
     public void setDataRights(final net.lab1318.costume.gui.models.rights.RightsSetBean dataRights) {
@@ -254,12 +272,14 @@ public class InstitutionBean implements org.thryft.StructBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("model_metadata", getModelMetadata()).add("title", getTitle()).add("data_rights", getDataRights()).add("external", getExternal()).add("hidden", getHidden()).add("locations", getLocations()).add("url", getUrl()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("model_metadata", getModelMetadata()).add("title", getTitle()).add("collection_store_url", getCollectionStoreUrl()).add("data_rights", getDataRights()).add("external", getExternal()).add("hidden", getHidden()).add("locations", getLocations()).add("url", getUrl()).toString();
     }
 
     private net.lab1318.costume.gui.models.ModelMetadataBean modelMetadata;
 
     private String title;
+
+    private org.thryft.native_.Url collectionStoreUrl;
 
     private net.lab1318.costume.gui.models.rights.RightsSetBean dataRights;
 

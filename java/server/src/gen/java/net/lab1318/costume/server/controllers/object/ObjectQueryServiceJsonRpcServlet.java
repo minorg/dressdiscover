@@ -163,6 +163,9 @@ public class ObjectQueryServiceJsonRpcServlet extends javax.servlet.http.HttpSer
         } catch (final net.lab1318.costume.api.services.collection.NoSuchCollectionException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
+        } catch (final net.lab1318.costume.api.services.institution.NoSuchInstitutionException e) {
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            return;
         } catch (final net.lab1318.costume.api.services.object.NoSuchObjectException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;

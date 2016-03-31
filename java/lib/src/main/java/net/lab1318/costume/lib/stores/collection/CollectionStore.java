@@ -17,8 +17,6 @@ import net.lab1318.costume.api.models.institution.InstitutionId;
 public interface CollectionStore {
     public boolean deleteCollectionById(CollectionId collectionId, Logger logger, Marker logMarker) throws IOException;
 
-    public void deleteCollections(Logger logger, Marker logMarker) throws IOException;
-
     public void deleteCollectionsByInstitutionId(final InstitutionId institutionId, final Logger logger,
             final Marker logMarker) throws IOException;
 

@@ -32,7 +32,7 @@ public final class ServletContextListener extends AbstractServletContextListener
         return Guice.createInjector(
                 // Order is important
                 new PropertiesModule<CostumeProperties>(properties), new ServerControllersModule(),
-                new ServicesModule(), new GuiModule(properties));
+                new ServicesModule(properties), new GuiModule(properties));
     }
 
     private CostumeProperties properties;
