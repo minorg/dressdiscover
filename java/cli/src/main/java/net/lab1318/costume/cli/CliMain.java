@@ -35,7 +35,7 @@ public final class CliMain extends org.thryft.waf.lib.AbstractMain {
         _getLogger().debug(_getLogMarker(), "properties: {}", properties);
 
         final Injector injector = Guice.createInjector(new PropertiesModule<CostumeProperties>(properties),
-                new ServicesModule());
+                new ServicesModule(properties));
 
         argParser.getCommand().run(injector);
     }

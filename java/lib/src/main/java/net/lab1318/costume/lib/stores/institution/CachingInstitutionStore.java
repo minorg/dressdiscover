@@ -19,23 +19,23 @@ import net.lab1318.costume.api.models.institution.InstitutionEntry;
 import net.lab1318.costume.api.models.institution.InstitutionId;
 
 @Singleton
-public class InstitutionCache implements InstitutionStore {
+public class CachingInstitutionStore implements InstitutionStore {
     @Inject
-    public InstitutionCache(final InstitutionFileSystem fileSystem) {
-        this.fileSystem = checkNotNull(fileSystem);
+    public CachingInstitutionStore(final FileSystemInstitutionStore underlyingInstitutionStore) {
+        this.underlyingInstitutionStore = checkNotNull(underlyingInstitutionStore);
     }
 
     @Override
     public final synchronized boolean deleteInstitutionById(final InstitutionId institutionId, final Logger logger,
             final Marker logMarker) throws IOException {
         __clear(logger, logMarker);
-        return fileSystem.deleteInstitutionById(institutionId, logger, logMarker);
+        return underlyingInstitutionStore.deleteInstitutionById(institutionId, logger, logMarker);
     }
 
     @Override
     public final synchronized void deleteInstitutions(final Logger logger, final Marker logMarker) throws IOException {
         __clear(logger, logMarker);
-        fileSystem.deleteInstitutions(logger, logMarker);
+        underlyingInstitutionStore.deleteInstitutions(logger, logMarker);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class InstitutionCache implements InstitutionStore {
     public final synchronized void putInstitution(final Institution institution, final InstitutionId institutionId,
             final Logger logger, final Marker logMarker) throws IOException {
         __clear(logger, logMarker);
-        fileSystem.putInstitution(institution, institutionId, logger, logMarker);
+        underlyingInstitutionStore.putInstitution(institution, institutionId, logger, logMarker);
     }
 
     private void __clear(final Logger logger, final Marker logMarker) {
@@ -77,7 +77,7 @@ public class InstitutionCache implements InstitutionStore {
 
         logger.debug(logMarker, "filling institution cache");
 
-        institutions = fileSystem.getInstitutions(logger, logMarker);
+        institutions = underlyingInstitutionStore.getInstitutions(logger, logMarker);
 
         final ImmutableMap.Builder<InstitutionId, Institution> institutionsByIdBuilder = ImmutableMap.builder();
         for (final InstitutionEntry institutionEntry : institutions) {
@@ -88,5 +88,5 @@ public class InstitutionCache implements InstitutionStore {
 
     private ImmutableList<InstitutionEntry> institutions = ImmutableList.of();
     private ImmutableMap<InstitutionId, Institution> institutionsById = ImmutableMap.of();
-    private final InstitutionFileSystem fileSystem;
+    private final InstitutionStore underlyingInstitutionStore;
 }

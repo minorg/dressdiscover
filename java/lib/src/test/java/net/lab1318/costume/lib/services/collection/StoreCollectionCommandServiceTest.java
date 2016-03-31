@@ -16,7 +16,6 @@ import net.lab1318.costume.testdata.TestData;
 public final class StoreCollectionCommandServiceTest extends CollectionServiceTest {
     @Test
     public void testDeleteCollectionById() throws Exception {
-        assertEquals(0, collectionQueryService.getCollectionsByInstitutionId(institutionId).size());
         final ImmutableList<CollectionEntry> expected = _putCollections();
         assertNotEquals(0, expected.size());
         for (final CollectionEntry collectionEntry : expected) {
@@ -32,7 +31,6 @@ public final class StoreCollectionCommandServiceTest extends CollectionServiceTe
 
     @Test
     public void testDeleteCollectionsByInstitutionId() throws Exception {
-        assertEquals(0, collectionQueryService.getCollectionsByInstitutionId(institutionId).size());
         _putCollections();
         for (final InstitutionEntry institution : TestData.getInstance().getInstitutions()) {
             assertNotEquals(0, collectionQueryService.getCollectionsByInstitutionId(institution.getId()));
@@ -43,7 +41,6 @@ public final class StoreCollectionCommandServiceTest extends CollectionServiceTe
 
     @Test
     public void testPutCollection() throws Exception {
-        assertEquals(0, collectionQueryService.getCollectionsByInstitutionId(institutionId).size());
         _putCollections();
         assertEquals(TestData.getInstance().getCollections().size(),
                 collectionQueryService.getCollectionsByInstitutionId(institutionId).size());

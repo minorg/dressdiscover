@@ -51,7 +51,7 @@ public abstract class UserServiceTest extends ServiceTest {
 
     @Override
     protected final ServicesModule _newServicesModule(final CostumeProperties properties) {
-        return new ServicesModule() {
+        return new ServicesModule(properties) {
             @Override
             protected void _configureUserCommandService() {
                 bind(UserCommandService.class).to(JdbcUserCommandService.class);
