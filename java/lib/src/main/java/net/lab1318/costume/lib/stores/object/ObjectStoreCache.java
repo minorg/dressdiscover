@@ -59,10 +59,10 @@ public class ObjectStoreCache {
                 public ObjectStore load(final CollectionId key)
                         throws IoException, NoSuchCollectionException, NoSuchInstitutionException {
                     final Collection collection = collectionQueryService.getCollectionById(key);
-                    if (collection.getObjectStoreUrl().isPresent()) {
+                    if (collection.getObjectStoreUri().isPresent()) {
                         final ObjectStoreFactory factory = objectStoreFactoryRegistry
-                                .getObjectStoreFactory(collection.getObjectStoreUrl().get());
-                        return factory.createObjectStore(properties, collection.getObjectStoreUrl().get());
+                                .getObjectStoreFactory(collection.getObjectStoreUri().get());
+                        return factory.createObjectStore(properties, collection.getObjectStoreUri().get());
                     } else {
                         return defaultObjectStore;
                     }

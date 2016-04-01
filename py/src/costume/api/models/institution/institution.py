@@ -8,7 +8,7 @@ class Institution(object):
         def __init__(
             self,
             title=None,
-            collection_store_url=None,
+            collection_store_uri=None,
             data_rights=None,
             external=None,
             hidden=None,
@@ -17,7 +17,7 @@ class Institution(object):
         ):
             '''
             :type title: str
-            :type collection_store_url: str or None
+            :type collection_store_uri: str or None
             :type data_rights: costume.api.models.rights.rights_set.RightsSet or None
             :type external: bool or None
             :type hidden: bool or None
@@ -26,7 +26,7 @@ class Institution(object):
             '''
 
             self.__title = title
-            self.__collection_store_url = collection_store_url
+            self.__collection_store_uri = collection_store_uri
             self.__data_rights = data_rights
             self.__external = external
             self.__hidden = hidden
@@ -34,15 +34,15 @@ class Institution(object):
             self.__url = url
 
         def build(self):
-            return Institution(title=self.__title, collection_store_url=self.__collection_store_url, data_rights=self.__data_rights, external=self.__external, hidden=self.__hidden, locations=self.__locations, url=self.__url)
+            return Institution(title=self.__title, collection_store_uri=self.__collection_store_uri, data_rights=self.__data_rights, external=self.__external, hidden=self.__hidden, locations=self.__locations, url=self.__url)
 
         @property
-        def collection_store_url(self):
+        def collection_store_uri(self):
             '''
             :rtype: str
             '''
 
-            return self.__collection_store_url
+            return self.__collection_store_uri
 
         @property
         def data_rights(self):
@@ -76,12 +76,12 @@ class Institution(object):
 
             return self.__locations
 
-        def set_collection_store_url(self, collection_store_url):
+        def set_collection_store_uri(self, collection_store_uri):
             '''
-            :type collection_store_url: str or None
+            :type collection_store_uri: str or None
             '''
 
-            self.__collection_store_url = collection_store_url
+            self.__collection_store_uri = collection_store_uri
             return self
 
         def set_data_rights(self, data_rights):
@@ -143,7 +143,7 @@ class Institution(object):
         def update(self, institution):
             '''
             :type title: str
-            :type collection_store_url: str or None
+            :type collection_store_uri: str or None
             :type data_rights: costume.api.models.rights.rights_set.RightsSet or None
             :type external: bool or None
             :type hidden: bool or None
@@ -153,7 +153,7 @@ class Institution(object):
 
             if isinstance(institution, Institution):
                 self.set_title(institution.title)
-                self.set_collection_store_url(institution.collection_store_url)
+                self.set_collection_store_uri(institution.collection_store_uri)
                 self.set_data_rights(institution.data_rights)
                 self.set_external(institution.external)
                 self.set_hidden(institution.hidden)
@@ -174,13 +174,13 @@ class Institution(object):
 
             return self.__url
 
-        @collection_store_url.setter
-        def collection_store_url(self, collection_store_url):
+        @collection_store_uri.setter
+        def collection_store_uri(self, collection_store_uri):
             '''
-            :type collection_store_url: str or None
+            :type collection_store_uri: str or None
             '''
 
-            self.set_collection_store_url(collection_store_url)
+            self.set_collection_store_uri(collection_store_uri)
 
         @data_rights.setter
         def data_rights(self, data_rights):
@@ -233,7 +233,7 @@ class Institution(object):
     def __init__(
         self,
         title,
-        collection_store_url=None,
+        collection_store_uri=None,
         data_rights=None,
         external=None,
         hidden=None,
@@ -242,7 +242,7 @@ class Institution(object):
     ):
         '''
         :type title: str
-        :type collection_store_url: str or None
+        :type collection_store_uri: str or None
         :type data_rights: costume.api.models.rights.rights_set.RightsSet or None
         :type external: bool or None
         :type hidden: bool or None
@@ -256,10 +256,10 @@ class Institution(object):
             raise TypeError("expected title to be a str but it is a %s" % getattr(__builtin__, 'type')(title))
         self.__title = title
 
-        if collection_store_url is not None:
-            if not isinstance(collection_store_url, basestring):
-                raise TypeError("expected collection_store_url to be a str but it is a %s" % getattr(__builtin__, 'type')(collection_store_url))
-        self.__collection_store_url = collection_store_url
+        if collection_store_uri is not None:
+            if not isinstance(collection_store_uri, basestring):
+                raise TypeError("expected collection_store_uri to be a str but it is a %s" % getattr(__builtin__, 'type')(collection_store_uri))
+        self.__collection_store_uri = collection_store_uri
 
         if data_rights is not None:
             if not isinstance(data_rights, costume.api.models.rights.rights_set.RightsSet):
@@ -289,7 +289,7 @@ class Institution(object):
     def __eq__(self, other):
         if self.title != other.title:
             return False
-        if self.collection_store_url != other.collection_store_url:
+        if self.collection_store_uri != other.collection_store_uri:
             return False
         if self.data_rights != other.data_rights:
             return False
@@ -304,7 +304,7 @@ class Institution(object):
         return True
 
     def __hash__(self):
-        return hash((self.title,self.collection_store_url,self.data_rights,self.external,self.hidden,self.locations,self.url,))
+        return hash((self.title,self.collection_store_uri,self.data_rights,self.external,self.hidden,self.locations,self.url,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -315,8 +315,8 @@ class Institution(object):
     def __repr__(self):
         field_reprs = []
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
-        if self.collection_store_url is not None:
-            field_reprs.append('collection_store_url=' + "'" + self.collection_store_url.encode('ascii', 'replace') + "'")
+        if self.collection_store_uri is not None:
+            field_reprs.append('collection_store_uri=' + "'" + self.collection_store_uri.encode('ascii', 'replace') + "'")
         if self.data_rights is not None:
             field_reprs.append('data_rights=' + repr(self.data_rights))
         if self.external is not None:
@@ -332,8 +332,8 @@ class Institution(object):
     def __str__(self):
         field_reprs = []
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
-        if self.collection_store_url is not None:
-            field_reprs.append('collection_store_url=' + "'" + self.collection_store_url.encode('ascii', 'replace') + "'")
+        if self.collection_store_uri is not None:
+            field_reprs.append('collection_store_uri=' + "'" + self.collection_store_uri.encode('ascii', 'replace') + "'")
         if self.data_rights is not None:
             field_reprs.append('data_rights=' + repr(self.data_rights))
         if self.external is not None:
@@ -353,7 +353,7 @@ class Institution(object):
         :rtype: dict
         '''
 
-        return {'title': self.title, 'collection_store_url': self.collection_store_url, 'data_rights': self.data_rights, 'external': self.external, 'hidden': self.hidden, 'locations': self.locations, 'url': self.url}
+        return {'title': self.title, 'collection_store_uri': self.collection_store_uri, 'data_rights': self.data_rights, 'external': self.external, 'hidden': self.hidden, 'locations': self.locations, 'url': self.url}
 
     def as_tuple(self):
         '''
@@ -362,15 +362,15 @@ class Institution(object):
         :rtype: tuple
         '''
 
-        return (self.title, self.collection_store_url, self.data_rights, self.external, self.hidden, self.locations, self.url,)
+        return (self.title, self.collection_store_uri, self.data_rights, self.external, self.hidden, self.locations, self.url,)
 
     @property
-    def collection_store_url(self):
+    def collection_store_uri(self):
         '''
         :rtype: str
         '''
 
-        return self.__collection_store_url
+        return self.__collection_store_uri
 
     @property
     def data_rights(self):
@@ -422,9 +422,9 @@ class Institution(object):
                 break
             elif ifield_name == 'title' and ifield_id == 1:
                 init_kwds['title'] = iprot.read_string()
-            elif ifield_name == 'collection_store_url' and ifield_id == 9:
+            elif ifield_name == 'collection_store_uri' and ifield_id == 9:
                 try:
-                    init_kwds['collection_store_url'] = iprot.read_string()
+                    init_kwds['collection_store_uri'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
             elif ifield_name == 'data_rights' and ifield_id == 5:
@@ -454,7 +454,7 @@ class Institution(object):
     def replace(
         self,
         title=None,
-        collection_store_url=None,
+        collection_store_uri=None,
         data_rights=None,
         external=None,
         hidden=None,
@@ -465,7 +465,7 @@ class Institution(object):
         Copy this object, replace one or more fields, and return the copy.
 
         :type title: str or None
-        :type collection_store_url: str or None
+        :type collection_store_uri: str or None
         :type data_rights: costume.api.models.rights.rights_set.RightsSet or None
         :type external: bool or None
         :type hidden: bool or None
@@ -476,8 +476,8 @@ class Institution(object):
 
         if title is None:
             title = self.title
-        if collection_store_url is None:
-            collection_store_url = self.collection_store_url
+        if collection_store_uri is None:
+            collection_store_uri = self.collection_store_uri
         if data_rights is None:
             data_rights = self.data_rights
         if external is None:
@@ -488,7 +488,7 @@ class Institution(object):
             locations = self.locations
         if url is None:
             url = self.url
-        return self.__class__(title=title, collection_store_url=collection_store_url, data_rights=data_rights, external=external, hidden=hidden, locations=locations, url=url)
+        return self.__class__(title=title, collection_store_uri=collection_store_uri, data_rights=data_rights, external=external, hidden=hidden, locations=locations, url=url)
 
     @property
     def title(self):
@@ -520,9 +520,9 @@ class Institution(object):
         oprot.write_string(self.title)
         oprot.write_field_end()
 
-        if self.collection_store_url is not None:
-            oprot.write_field_begin(name='collection_store_url', type=11, id=9)
-            oprot.write_string(self.collection_store_url)
+        if self.collection_store_uri is not None:
+            oprot.write_field_begin(name='collection_store_uri', type=11, id=9)
+            oprot.write_string(self.collection_store_uri)
             oprot.write_field_end()
 
         if self.data_rights is not None:

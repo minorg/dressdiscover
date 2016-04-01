@@ -5,6 +5,7 @@ namespace * costume.api.models.collection
 include "costume/api/models/institution/institution_id.thrift"
 include "costume/api/models/location/location_set.thrift"
 include "costume/api/models/work_type/work_type_set.thrift"
+include "thryft/native/uri.thrift"
 include "thryft/native/url.thrift"
 
 // @java_implements org.thryft.waf.api.models.Model
@@ -25,7 +26,7 @@ struct Collection {
 
     8: optional location_set.LocationSet locations;
 
-    10: optional url.Url object_store_url;
+    10: optional uri.Uri object_store_uri;
 
     9: optional url.Url url;
 

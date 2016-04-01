@@ -2,7 +2,7 @@ package net.lab1318.costume.lib.stores.object;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.thryft.native_.Url;
+import org.thryft.native_.Uri;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -23,13 +23,13 @@ public class ObjectStoreFactoryRegistry extends AbstractStoreFactoryRegistry<Obj
         _registerPythonStoreFactories();
     }
 
-    public final synchronized ObjectStoreFactory getObjectStoreFactory(final Url url) {
-        return _getStoreFactory(url);
+    public final synchronized ObjectStoreFactory getObjectStoreFactory(final Uri uri) {
+        return _getStoreFactory(uri);
     }
 
     public final synchronized void registerObjectStoreFactory(final ObjectStoreFactory factory,
-            final String urlScheme) {
-        _registerStoreFactory(factory, urlScheme);
+            final String uriScheme) {
+        _registerStoreFactory(factory, uriScheme);
     }
 
     private static ObjectStoreFactoryRegistry instance = null;

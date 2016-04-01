@@ -4,13 +4,14 @@ namespace * costume.api.models.institution
 
 include "costume/api/models/location/location_set.thrift"
 include "costume/api/models/rights/rights_set.thrift"
+include "thryft/native/uri.thrift"
 include "thryft/native/url.thrift"
 
 // @java_implements org.thryft.waf.api.models.Model
 struct Institution {
 	1: string title;
 
-    9: optional url.Url collection_store_url;
+    9: optional uri.Uri collection_store_uri;
 
 	5: optional rights_set.RightsSet	data_rights;
 

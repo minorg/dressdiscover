@@ -13,7 +13,7 @@ class Collection(object):
             external=None,
             hidden=None,
             locations=None,
-            object_store_url=None,
+            object_store_uri=None,
             url=None,
             work_types=None,
         ):
@@ -24,7 +24,7 @@ class Collection(object):
             :type external: bool or None
             :type hidden: bool or None
             :type locations: costume.api.models.location.location_set.LocationSet or None
-            :type object_store_url: str or None
+            :type object_store_uri: str or None
             :type url: str or None
             :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
             '''
@@ -35,12 +35,12 @@ class Collection(object):
             self.__external = external
             self.__hidden = hidden
             self.__locations = locations
-            self.__object_store_url = object_store_url
+            self.__object_store_uri = object_store_uri
             self.__url = url
             self.__work_types = work_types
 
         def build(self):
-            return Collection(institution_id=self.__institution_id, title=self.__title, description=self.__description, external=self.__external, hidden=self.__hidden, locations=self.__locations, object_store_url=self.__object_store_url, url=self.__url, work_types=self.__work_types)
+            return Collection(institution_id=self.__institution_id, title=self.__title, description=self.__description, external=self.__external, hidden=self.__hidden, locations=self.__locations, object_store_uri=self.__object_store_uri, url=self.__url, work_types=self.__work_types)
 
         @property
         def description(self):
@@ -83,12 +83,12 @@ class Collection(object):
             return self.__locations
 
         @property
-        def object_store_url(self):
+        def object_store_uri(self):
             '''
             :rtype: str
             '''
 
-            return self.__object_store_url
+            return self.__object_store_uri
 
         def set_description(self, description):
             '''
@@ -130,12 +130,12 @@ class Collection(object):
             self.__locations = locations
             return self
 
-        def set_object_store_url(self, object_store_url):
+        def set_object_store_uri(self, object_store_uri):
             '''
-            :type object_store_url: str or None
+            :type object_store_uri: str or None
             '''
 
-            self.__object_store_url = object_store_url
+            self.__object_store_uri = object_store_uri
             return self
 
         def set_title(self, title):
@@ -178,7 +178,7 @@ class Collection(object):
             :type external: bool or None
             :type hidden: bool or None
             :type locations: costume.api.models.location.location_set.LocationSet or None
-            :type object_store_url: str or None
+            :type object_store_uri: str or None
             :type url: str or None
             :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
             '''
@@ -190,7 +190,7 @@ class Collection(object):
                 self.set_external(collection.external)
                 self.set_hidden(collection.hidden)
                 self.set_locations(collection.locations)
-                self.set_object_store_url(collection.object_store_url)
+                self.set_object_store_uri(collection.object_store_uri)
                 self.set_url(collection.url)
                 self.set_work_types(collection.work_types)
             elif isinstance(collection, dict):
@@ -256,13 +256,13 @@ class Collection(object):
 
             self.set_locations(locations)
 
-        @object_store_url.setter
-        def object_store_url(self, object_store_url):
+        @object_store_uri.setter
+        def object_store_uri(self, object_store_uri):
             '''
-            :type object_store_url: str or None
+            :type object_store_uri: str or None
             '''
 
-            self.set_object_store_url(object_store_url)
+            self.set_object_store_uri(object_store_uri)
 
         @title.setter
         def title(self, title):
@@ -296,7 +296,7 @@ class Collection(object):
         external=None,
         hidden=None,
         locations=None,
-        object_store_url=None,
+        object_store_uri=None,
         url=None,
         work_types=None,
     ):
@@ -307,7 +307,7 @@ class Collection(object):
         :type external: bool or None
         :type hidden: bool or None
         :type locations: costume.api.models.location.location_set.LocationSet or None
-        :type object_store_url: str or None
+        :type object_store_uri: str or None
         :type url: str or None
         :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
         '''
@@ -348,10 +348,10 @@ class Collection(object):
                 raise TypeError("expected locations to be a costume.api.models.location.location_set.LocationSet but it is a %s" % getattr(__builtin__, 'type')(locations))
         self.__locations = locations
 
-        if object_store_url is not None:
-            if not isinstance(object_store_url, basestring):
-                raise TypeError("expected object_store_url to be a str but it is a %s" % getattr(__builtin__, 'type')(object_store_url))
-        self.__object_store_url = object_store_url
+        if object_store_uri is not None:
+            if not isinstance(object_store_uri, basestring):
+                raise TypeError("expected object_store_uri to be a str but it is a %s" % getattr(__builtin__, 'type')(object_store_uri))
+        self.__object_store_uri = object_store_uri
 
         if url is not None:
             if not isinstance(url, basestring):
@@ -376,7 +376,7 @@ class Collection(object):
             return False
         if self.locations != other.locations:
             return False
-        if self.object_store_url != other.object_store_url:
+        if self.object_store_uri != other.object_store_uri:
             return False
         if self.url != other.url:
             return False
@@ -385,7 +385,7 @@ class Collection(object):
         return True
 
     def __hash__(self):
-        return hash((self.institution_id,self.title,self.description,self.external,self.hidden,self.locations,self.object_store_url,self.url,self.work_types,))
+        return hash((self.institution_id,self.title,self.description,self.external,self.hidden,self.locations,self.object_store_uri,self.url,self.work_types,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -405,8 +405,8 @@ class Collection(object):
             field_reprs.append('hidden=' + repr(self.hidden))
         if self.locations is not None:
             field_reprs.append('locations=' + repr(self.locations))
-        if self.object_store_url is not None:
-            field_reprs.append('object_store_url=' + "'" + self.object_store_url.encode('ascii', 'replace') + "'")
+        if self.object_store_uri is not None:
+            field_reprs.append('object_store_uri=' + "'" + self.object_store_uri.encode('ascii', 'replace') + "'")
         if self.url is not None:
             field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
         if self.work_types is not None:
@@ -425,8 +425,8 @@ class Collection(object):
             field_reprs.append('hidden=' + repr(self.hidden))
         if self.locations is not None:
             field_reprs.append('locations=' + repr(self.locations))
-        if self.object_store_url is not None:
-            field_reprs.append('object_store_url=' + "'" + self.object_store_url.encode('ascii', 'replace') + "'")
+        if self.object_store_uri is not None:
+            field_reprs.append('object_store_uri=' + "'" + self.object_store_uri.encode('ascii', 'replace') + "'")
         if self.url is not None:
             field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
         if self.work_types is not None:
@@ -440,7 +440,7 @@ class Collection(object):
         :rtype: dict
         '''
 
-        return {'institution_id': self.institution_id, 'title': self.title, 'description': self.description, 'external': self.external, 'hidden': self.hidden, 'locations': self.locations, 'object_store_url': self.object_store_url, 'url': self.url, 'work_types': self.work_types}
+        return {'institution_id': self.institution_id, 'title': self.title, 'description': self.description, 'external': self.external, 'hidden': self.hidden, 'locations': self.locations, 'object_store_uri': self.object_store_uri, 'url': self.url, 'work_types': self.work_types}
 
     def as_tuple(self):
         '''
@@ -449,7 +449,7 @@ class Collection(object):
         :rtype: tuple
         '''
 
-        return (self.institution_id, self.title, self.description, self.external, self.hidden, self.locations, self.object_store_url, self.url, self.work_types,)
+        return (self.institution_id, self.title, self.description, self.external, self.hidden, self.locations, self.object_store_uri, self.url, self.work_types,)
 
     @property
     def description(self):
@@ -492,12 +492,12 @@ class Collection(object):
         return self.__locations
 
     @property
-    def object_store_url(self):
+    def object_store_uri(self):
         '''
         :rtype: str
         '''
 
-        return self.__object_store_url
+        return self.__object_store_uri
 
     @classmethod
     def read(cls, iprot):
@@ -536,9 +536,9 @@ class Collection(object):
                     pass
             elif ifield_name == 'locations' and ifield_id == 8:
                 init_kwds['locations'] = costume.api.models.location.location_set.LocationSet.read(iprot)
-            elif ifield_name == 'object_store_url' and ifield_id == 10:
+            elif ifield_name == 'object_store_uri' and ifield_id == 10:
                 try:
-                    init_kwds['object_store_url'] = iprot.read_string()
+                    init_kwds['object_store_uri'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
             elif ifield_name == 'url' and ifield_id == 9:
@@ -561,7 +561,7 @@ class Collection(object):
         external=None,
         hidden=None,
         locations=None,
-        object_store_url=None,
+        object_store_uri=None,
         url=None,
         work_types=None,
     ):
@@ -574,7 +574,7 @@ class Collection(object):
         :type external: bool or None
         :type hidden: bool or None
         :type locations: costume.api.models.location.location_set.LocationSet or None
-        :type object_store_url: str or None
+        :type object_store_uri: str or None
         :type url: str or None
         :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
         :rtype: costume.api.models.collection.collection.Collection
@@ -592,13 +592,13 @@ class Collection(object):
             hidden = self.hidden
         if locations is None:
             locations = self.locations
-        if object_store_url is None:
-            object_store_url = self.object_store_url
+        if object_store_uri is None:
+            object_store_uri = self.object_store_uri
         if url is None:
             url = self.url
         if work_types is None:
             work_types = self.work_types
-        return self.__class__(institution_id=institution_id, title=title, description=description, external=external, hidden=hidden, locations=locations, object_store_url=object_store_url, url=url, work_types=work_types)
+        return self.__class__(institution_id=institution_id, title=title, description=description, external=external, hidden=hidden, locations=locations, object_store_uri=object_store_uri, url=url, work_types=work_types)
 
     @property
     def title(self):
@@ -662,9 +662,9 @@ class Collection(object):
             self.locations.write(oprot)
             oprot.write_field_end()
 
-        if self.object_store_url is not None:
-            oprot.write_field_begin(name='object_store_url', type=11, id=10)
-            oprot.write_string(self.object_store_url)
+        if self.object_store_uri is not None:
+            oprot.write_field_begin(name='object_store_uri', type=11, id=10)
+            oprot.write_string(self.object_store_uri)
             oprot.write_field_end()
 
         if self.url is not None:
