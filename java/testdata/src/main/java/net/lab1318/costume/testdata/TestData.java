@@ -9,7 +9,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableTable;
 
-import net.lab1318.costume.api.models.ModelMetadata;
 import net.lab1318.costume.api.models.agent.Agent;
 import net.lab1318.costume.api.models.agent.AgentName;
 import net.lab1318.costume.api.models.agent.AgentNameType;
@@ -46,11 +45,6 @@ public final class TestData {
         return instance;
     }
 
-    private static ModelMetadata __newModelMetadata() {
-        final Date current = new Date();
-        return ModelMetadata.builder().setCtime(current).setMtime(current).build();
-    }
-
     private TestData() {
         final ImmutableList.Builder<InstitutionEntry> institutionsBuilder = ImmutableList.builder();
         final ImmutableMultimap.Builder<InstitutionId, CollectionEntry> collectionsBuilder = ImmutableMultimap
@@ -74,7 +68,8 @@ public final class TestData {
             subjects = ImmutableList.<Subject> builder()
                     .add(Subject.builder().setTerms(ImmutableList.of(
                             SubjectTerm.builder().setText("Test subject").setType(SubjectTermType.FAMILY_NAME).build()))
-                    .build()).build();
+                            .build())
+                    .build();
         }
 
         try {
@@ -83,11 +78,11 @@ public final class TestData {
                         Institution.builder().setDataRights(RightsSet.builder().setDisplay("Copyright notice")
                                 .setElements(ImmutableList.of(Rights.builder().setRightsHolder("Test rights holder")
                                         .setText("Test rights text").setType(RightsType.COPYRIGHTED).build()))
-                                .build()).setModelMetadata(__newModelMetadata()).setTitle("Test institution")
-                        .setUrl(Url.parse("http://example.com")).build()));
+                                .build()).setTitle("Test institution").setUrl(Url.parse("http://example.com"))
+                                .build()));
 
                 final Collection collection = Collection.builder().setInstitutionId(institutionId)
-                        .setModelMetadata(__newModelMetadata()).setTitle("Test collection").build();
+                        .setTitle("Test collection").build();
                 final CollectionId collectionId = CollectionId.parse(institutionId.toString() + "/test_collection");
 
                 collectionsBuilder.put(institutionId, new CollectionEntry(collectionId, collection));
@@ -95,7 +90,7 @@ public final class TestData {
                 {
                     final Object.Builder objectBuilder = Object.builder().setAgents(new AgentSet(agents))
                             .setCategories(categories).setCollectionId(collectionId).setInstitutionId(institutionId)
-                            .setModelMetadata(__newModelMetadata()).setSubjects(new SubjectSet(subjects))
+                            .setSubjects(new SubjectSet(subjects))
                             .setTitles(TitleSet.builder().setElements(ImmutableList
                                     .of(Title.builder().setText("Test object").setType(TitleType.DESCRIPTIVE).build()))
                                     .build());

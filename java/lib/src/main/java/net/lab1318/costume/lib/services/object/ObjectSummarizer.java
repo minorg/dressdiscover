@@ -169,8 +169,6 @@ public final class ObjectSummarizer {
             builder.setMaterialTexts(materialTextsBuilder.build());
         }
 
-        builder.setModelMetadata(object.getModelMetadata());
-
         if (object.getRelations().isPresent()) {
             final ImmutableList.Builder<String> relationTextsBuilder = ImmutableList.builder();
             for (final Relation relation : object.getRelations().get().getElements()) {
