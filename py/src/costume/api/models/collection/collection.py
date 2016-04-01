@@ -1,6 +1,5 @@
 import __builtin__
 import costume.api.models.location.location_set
-import costume.api.models.model_metadata
 import costume.api.models.work_type.work_type_set
 
 
@@ -9,7 +8,6 @@ class Collection(object):
         def __init__(
             self,
             institution_id=None,
-            model_metadata=None,
             title=None,
             description=None,
             external=None,
@@ -21,7 +19,6 @@ class Collection(object):
         ):
             '''
             :type institution_id: str
-            :type model_metadata: costume.api.models.model_metadata.ModelMetadata
             :type title: str
             :type description: str or None
             :type external: bool or None
@@ -33,7 +30,6 @@ class Collection(object):
             '''
 
             self.__institution_id = institution_id
-            self.__model_metadata = model_metadata
             self.__title = title
             self.__description = description
             self.__external = external
@@ -44,7 +40,7 @@ class Collection(object):
             self.__work_types = work_types
 
         def build(self):
-            return Collection(institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, description=self.__description, external=self.__external, hidden=self.__hidden, locations=self.__locations, object_store_url=self.__object_store_url, url=self.__url, work_types=self.__work_types)
+            return Collection(institution_id=self.__institution_id, title=self.__title, description=self.__description, external=self.__external, hidden=self.__hidden, locations=self.__locations, object_store_url=self.__object_store_url, url=self.__url, work_types=self.__work_types)
 
         @property
         def description(self):
@@ -85,14 +81,6 @@ class Collection(object):
             '''
 
             return self.__locations
-
-        @property
-        def model_metadata(self):
-            '''
-            :rtype: costume.api.models.model_metadata.ModelMetadata
-            '''
-
-            return self.__model_metadata
 
         @property
         def object_store_url(self):
@@ -142,14 +130,6 @@ class Collection(object):
             self.__locations = locations
             return self
 
-        def set_model_metadata(self, model_metadata):
-            '''
-            :type model_metadata: costume.api.models.model_metadata.ModelMetadata
-            '''
-
-            self.__model_metadata = model_metadata
-            return self
-
         def set_object_store_url(self, object_store_url):
             '''
             :type object_store_url: str or None
@@ -193,7 +173,6 @@ class Collection(object):
         def update(self, collection):
             '''
             :type institution_id: str
-            :type model_metadata: costume.api.models.model_metadata.ModelMetadata
             :type title: str
             :type description: str or None
             :type external: bool or None
@@ -206,7 +185,6 @@ class Collection(object):
 
             if isinstance(collection, Collection):
                 self.set_institution_id(collection.institution_id)
-                self.set_model_metadata(collection.model_metadata)
                 self.set_title(collection.title)
                 self.set_description(collection.description)
                 self.set_external(collection.external)
@@ -278,14 +256,6 @@ class Collection(object):
 
             self.set_locations(locations)
 
-        @model_metadata.setter
-        def model_metadata(self, model_metadata):
-            '''
-            :type model_metadata: costume.api.models.model_metadata.ModelMetadata
-            '''
-
-            self.set_model_metadata(model_metadata)
-
         @object_store_url.setter
         def object_store_url(self, object_store_url):
             '''
@@ -321,7 +291,6 @@ class Collection(object):
     def __init__(
         self,
         institution_id,
-        model_metadata,
         title,
         description=None,
         external=None,
@@ -333,7 +302,6 @@ class Collection(object):
     ):
         '''
         :type institution_id: str
-        :type model_metadata: costume.api.models.model_metadata.ModelMetadata
         :type title: str
         :type description: str or None
         :type external: bool or None
@@ -349,12 +317,6 @@ class Collection(object):
         if not isinstance(institution_id, basestring):
             raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
         self.__institution_id = institution_id
-
-        if model_metadata is None:
-            raise ValueError('model_metadata is required')
-        if not isinstance(model_metadata, costume.api.models.model_metadata.ModelMetadata):
-            raise TypeError("expected model_metadata to be a costume.api.models.model_metadata.ModelMetadata but it is a %s" % getattr(__builtin__, 'type')(model_metadata))
-        self.__model_metadata = model_metadata
 
         if title is None:
             raise ValueError('title is required')
@@ -404,8 +366,6 @@ class Collection(object):
     def __eq__(self, other):
         if self.institution_id != other.institution_id:
             return False
-        if self.model_metadata != other.model_metadata:
-            return False
         if self.title != other.title:
             return False
         if self.description != other.description:
@@ -425,7 +385,7 @@ class Collection(object):
         return True
 
     def __hash__(self):
-        return hash((self.institution_id,self.model_metadata,self.title,self.description,self.external,self.hidden,self.locations,self.object_store_url,self.url,self.work_types,))
+        return hash((self.institution_id,self.title,self.description,self.external,self.hidden,self.locations,self.object_store_url,self.url,self.work_types,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -436,7 +396,6 @@ class Collection(object):
     def __repr__(self):
         field_reprs = []
         field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
-        field_reprs.append('model_metadata=' + repr(self.model_metadata))
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
         if self.description is not None:
             field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
@@ -457,7 +416,6 @@ class Collection(object):
     def __str__(self):
         field_reprs = []
         field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
-        field_reprs.append('model_metadata=' + repr(self.model_metadata))
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
         if self.description is not None:
             field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
@@ -482,7 +440,7 @@ class Collection(object):
         :rtype: dict
         '''
 
-        return {'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'description': self.description, 'external': self.external, 'hidden': self.hidden, 'locations': self.locations, 'object_store_url': self.object_store_url, 'url': self.url, 'work_types': self.work_types}
+        return {'institution_id': self.institution_id, 'title': self.title, 'description': self.description, 'external': self.external, 'hidden': self.hidden, 'locations': self.locations, 'object_store_url': self.object_store_url, 'url': self.url, 'work_types': self.work_types}
 
     def as_tuple(self):
         '''
@@ -491,7 +449,7 @@ class Collection(object):
         :rtype: tuple
         '''
 
-        return (self.institution_id, self.model_metadata, self.title, self.description, self.external, self.hidden, self.locations, self.object_store_url, self.url, self.work_types,)
+        return (self.institution_id, self.title, self.description, self.external, self.hidden, self.locations, self.object_store_url, self.url, self.work_types,)
 
     @property
     def description(self):
@@ -534,14 +492,6 @@ class Collection(object):
         return self.__locations
 
     @property
-    def model_metadata(self):
-        '''
-        :rtype: costume.api.models.model_metadata.ModelMetadata
-        '''
-
-        return self.__model_metadata
-
-    @property
     def object_store_url(self):
         '''
         :rtype: str
@@ -567,8 +517,6 @@ class Collection(object):
                 break
             elif ifield_name == 'institution_id' and ifield_id == 1:
                 init_kwds['institution_id'] = iprot.read_string()
-            elif ifield_name == 'model_metadata' and ifield_id == 3:
-                init_kwds['model_metadata'] = costume.api.models.model_metadata.ModelMetadata.read(iprot)
             elif ifield_name == 'title' and ifield_id == 2:
                 init_kwds['title'] = iprot.read_string()
             elif ifield_name == 'description' and ifield_id == 4:
@@ -608,7 +556,6 @@ class Collection(object):
     def replace(
         self,
         institution_id=None,
-        model_metadata=None,
         title=None,
         description=None,
         external=None,
@@ -622,7 +569,6 @@ class Collection(object):
         Copy this object, replace one or more fields, and return the copy.
 
         :type institution_id: str or None
-        :type model_metadata: costume.api.models.model_metadata.ModelMetadata or None
         :type title: str or None
         :type description: str or None
         :type external: bool or None
@@ -636,8 +582,6 @@ class Collection(object):
 
         if institution_id is None:
             institution_id = self.institution_id
-        if model_metadata is None:
-            model_metadata = self.model_metadata
         if title is None:
             title = self.title
         if description is None:
@@ -654,7 +598,7 @@ class Collection(object):
             url = self.url
         if work_types is None:
             work_types = self.work_types
-        return self.__class__(institution_id=institution_id, model_metadata=model_metadata, title=title, description=description, external=external, hidden=hidden, locations=locations, object_store_url=object_store_url, url=url, work_types=work_types)
+        return self.__class__(institution_id=institution_id, title=title, description=description, external=external, hidden=hidden, locations=locations, object_store_url=object_store_url, url=url, work_types=work_types)
 
     @property
     def title(self):
@@ -692,10 +636,6 @@ class Collection(object):
 
         oprot.write_field_begin(name='institution_id', type=11, id=1)
         oprot.write_string(self.institution_id)
-        oprot.write_field_end()
-
-        oprot.write_field_begin(name='model_metadata', type=12, id=3)
-        self.model_metadata.write(oprot)
         oprot.write_field_end()
 
         oprot.write_field_begin(name='title', type=11, id=2)

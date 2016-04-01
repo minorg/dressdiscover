@@ -58,28 +58,6 @@ class OmekaLoader(_InstitutionLoader):
             json.dump(vocabulary_used_alphabetical, f, indent=4)
 
     def _load_collection(self, dry_run, omeka_collection):
-        self._logger.debug("reading collection %d", omeka_collection.id)
-
-        collection_id = self._institution_id + '/' + str(omeka_collection.id)
-
-        collection_builder = \
-            Collection.Builder()\
-                .set_institution_id(self._institution_id)\
-                .set_model_metadata(self._new_model_metadata())
-
-        for element_text in omeka_collection.element_texts:
-            if len(element_text.text) == 0:
-                continue
-
-            if element_text.element_set.name == 'Dublin Core':
-                if element_text.element.name == 'Contributor':
-                    pass
-                elif element_text.element.name == 'Description':
-                    collection_builder.set_description(element_text.text)
-                elif element_text.element.name == 'Title':
-                    collection_builder.set_title(element_text.text)
-
-        collection = collection_builder.build()
 
         if dry_run:
             self._logger.info("dry run, not putting collection %s", collection_id)
@@ -127,11 +105,6 @@ class OmekaLoader(_InstitutionLoader):
             omeka_collections=self._read_omeka_collections()
         )
 
-    def _read_omeka_collections(self):
-        file_path = os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'collections.json')
-        self._logger.info("reading collections from %s", file_path)
-        with open(file_path) as f:
-            return OmekaJsonParser().parse_collection_dicts(json.loads(f.read()))
 
     def _read_omeka_items(self, omeka_collection):
         file_path = os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'collection', str(omeka_collection.id), 'items.json')

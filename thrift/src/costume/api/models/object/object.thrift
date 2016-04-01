@@ -2,7 +2,6 @@ namespace bean_java net.lab1318.costume.gui.models.object
 namespace java net.lab1318.costume.api.models.object
 namespace * costume.api.models.object
 
-include "costume/api/models/model_metadata.thrift"
 include "costume/api/models/agent/agent_set.thrift"
 include "costume/api/models/closure/closure_set.thrift"
 include "costume/api/models/collection/collection_id.thrift"
@@ -35,8 +34,6 @@ struct Object {
 	1: collection_id.CollectionId collection_id;
 
 	2: institution_id.InstitutionId institution_id;
-
-	14: model_metadata.ModelMetadata model_metadata;
 
 	3: title_set.TitleSet titles;
 

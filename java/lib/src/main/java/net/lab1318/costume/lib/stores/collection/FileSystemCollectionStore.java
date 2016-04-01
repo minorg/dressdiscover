@@ -62,15 +62,19 @@ public class FileSystemCollectionStore extends AbstractInstitutionCollectionObje
         return _getModel(__getCollectionFilePath(collectionId), logger, logMarker);
     }
 
-    @Override
-    public final ImmutableList<CollectionEntry> getCollections(final Logger logger, final Marker logMarker)
-            throws IOException {
-        final ImmutableList.Builder<CollectionEntry> resultBuilder = ImmutableList.builder();
-        for (final File institutionDirectoryPath : _getInstitutionDirectoryPaths(logger, logMarker)) {
-            __getCollectionsByInstitution(institutionDirectoryPath, logger, logMarker, resultBuilder);
-        }
-        return resultBuilder.build();
-    }
+    // @Override
+    // public final ImmutableList<CollectionEntry> getCollections(final Logger
+    // logger, final Marker logMarker)
+    // throws IOException {
+    // final ImmutableList.Builder<CollectionEntry> resultBuilder =
+    // ImmutableList.builder();
+    // for (final File institutionDirectoryPath :
+    // _getInstitutionDirectoryPaths(logger, logMarker)) {
+    // __getCollectionsByInstitution(institutionDirectoryPath, logger,
+    // logMarker, resultBuilder);
+    // }
+    // return resultBuilder.build();
+    // }
 
     @Override
     public final ImmutableList<CollectionEntry> getCollectionsByInstitutionId(final InstitutionId institutionId,

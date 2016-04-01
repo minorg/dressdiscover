@@ -14,7 +14,6 @@ import costume.api.models.inscription.inscription_set
 import costume.api.models.location.location_set
 import costume.api.models.material.material_set
 import costume.api.models.measurements.measurements_set
-import costume.api.models.model_metadata
 import costume.api.models.relation.relation_set
 import costume.api.models.rights.rights_set
 import costume.api.models.structure.structure_set
@@ -32,7 +31,6 @@ class Object(object):
             self,
             collection_id=None,
             institution_id=None,
-            model_metadata=None,
             titles=None,
             agents=None,
             categories=None,
@@ -64,7 +62,6 @@ class Object(object):
             '''
             :type collection_id: str
             :type institution_id: str
-            :type model_metadata: costume.api.models.model_metadata.ModelMetadata
             :type titles: costume.api.models.title.title_set.TitleSet
             :type agents: costume.api.models.agent.agent_set.AgentSet or None
             :type categories: tuple(str) or None
@@ -96,7 +93,6 @@ class Object(object):
 
             self.__collection_id = collection_id
             self.__institution_id = institution_id
-            self.__model_metadata = model_metadata
             self.__titles = titles
             self.__agents = agents
             self.__categories = categories
@@ -126,7 +122,7 @@ class Object(object):
             self.__work_types = work_types
 
         def build(self):
-            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, titles=self.__titles, agents=self.__agents, categories=self.__categories, closures=self.__closures, colors=self.__colors, components=self.__components, condition=self.__condition, cultural_contexts=self.__cultural_contexts, dates=self.__dates, descriptions=self.__descriptions, gender=self.__gender, hidden=self.__hidden, images=self.__images, inscriptions=self.__inscriptions, locations=self.__locations, materials=self.__materials, measurements=self.__measurements, provenance=self.__provenance, quantity=self.__quantity, relations=self.__relations, rights=self.__rights, structures=self.__structures, subjects=self.__subjects, techniques=self.__techniques, textrefs=self.__textrefs, view_type=self.__view_type, work_types=self.__work_types)
+            return Object(collection_id=self.__collection_id, institution_id=self.__institution_id, titles=self.__titles, agents=self.__agents, categories=self.__categories, closures=self.__closures, colors=self.__colors, components=self.__components, condition=self.__condition, cultural_contexts=self.__cultural_contexts, dates=self.__dates, descriptions=self.__descriptions, gender=self.__gender, hidden=self.__hidden, images=self.__images, inscriptions=self.__inscriptions, locations=self.__locations, materials=self.__materials, measurements=self.__measurements, provenance=self.__provenance, quantity=self.__quantity, relations=self.__relations, rights=self.__rights, structures=self.__structures, subjects=self.__subjects, techniques=self.__techniques, textrefs=self.__textrefs, view_type=self.__view_type, work_types=self.__work_types)
 
         @property
         def agents(self):
@@ -271,14 +267,6 @@ class Object(object):
             '''
 
             return self.__measurements
-
-        @property
-        def model_metadata(self):
-            '''
-            :rtype: costume.api.models.model_metadata.ModelMetadata
-            '''
-
-            return self.__model_metadata
 
         @property
         def provenance(self):
@@ -456,14 +444,6 @@ class Object(object):
             self.__measurements = measurements
             return self
 
-        def set_model_metadata(self, model_metadata):
-            '''
-            :type model_metadata: costume.api.models.model_metadata.ModelMetadata
-            '''
-
-            self.__model_metadata = model_metadata
-            return self
-
         def set_provenance(self, provenance):
             '''
             :type provenance: str or None
@@ -596,7 +576,6 @@ class Object(object):
             '''
             :type collection_id: str
             :type institution_id: str
-            :type model_metadata: costume.api.models.model_metadata.ModelMetadata
             :type titles: costume.api.models.title.title_set.TitleSet
             :type agents: costume.api.models.agent.agent_set.AgentSet or None
             :type categories: tuple(str) or None
@@ -629,7 +608,6 @@ class Object(object):
             if isinstance(object, Object):
                 self.set_collection_id(object.collection_id)
                 self.set_institution_id(object.institution_id)
-                self.set_model_metadata(object.model_metadata)
                 self.set_titles(object.titles)
                 self.set_agents(object.agents)
                 self.set_categories(object.categories)
@@ -824,14 +802,6 @@ class Object(object):
 
             self.set_measurements(measurements)
 
-        @model_metadata.setter
-        def model_metadata(self, model_metadata):
-            '''
-            :type model_metadata: costume.api.models.model_metadata.ModelMetadata
-            '''
-
-            self.set_model_metadata(model_metadata)
-
         @provenance.setter
         def provenance(self, provenance):
             '''
@@ -924,7 +894,6 @@ class Object(object):
         self,
         collection_id,
         institution_id,
-        model_metadata,
         titles,
         agents=None,
         categories=None,
@@ -956,7 +925,6 @@ class Object(object):
         '''
         :type collection_id: str
         :type institution_id: str
-        :type model_metadata: costume.api.models.model_metadata.ModelMetadata
         :type titles: costume.api.models.title.title_set.TitleSet
         :type agents: costume.api.models.agent.agent_set.AgentSet or None
         :type categories: tuple(str) or None
@@ -997,12 +965,6 @@ class Object(object):
         if not isinstance(institution_id, basestring):
             raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
         self.__institution_id = institution_id
-
-        if model_metadata is None:
-            raise ValueError('model_metadata is required')
-        if not isinstance(model_metadata, costume.api.models.model_metadata.ModelMetadata):
-            raise TypeError("expected model_metadata to be a costume.api.models.model_metadata.ModelMetadata but it is a %s" % getattr(__builtin__, 'type')(model_metadata))
-        self.__model_metadata = model_metadata
 
         if titles is None:
             raise ValueError('titles is required')
@@ -1151,8 +1113,6 @@ class Object(object):
             return False
         if self.institution_id != other.institution_id:
             return False
-        if self.model_metadata != other.model_metadata:
-            return False
         if self.titles != other.titles:
             return False
         if self.agents != other.agents:
@@ -1210,7 +1170,7 @@ class Object(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.model_metadata,self.titles,self.agents,self.categories,self.closures,self.colors,self.components,self.condition,self.cultural_contexts,self.dates,self.descriptions,self.gender,self.hidden,self.images,self.inscriptions,self.locations,self.materials,self.measurements,self.provenance,self.quantity,self.relations,self.rights,self.structures,self.subjects,self.techniques,self.textrefs,self.view_type,self.work_types,))
+        return hash((self.collection_id,self.institution_id,self.titles,self.agents,self.categories,self.closures,self.colors,self.components,self.condition,self.cultural_contexts,self.dates,self.descriptions,self.gender,self.hidden,self.images,self.inscriptions,self.locations,self.materials,self.measurements,self.provenance,self.quantity,self.relations,self.rights,self.structures,self.subjects,self.techniques,self.textrefs,self.view_type,self.work_types,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -1222,7 +1182,6 @@ class Object(object):
         field_reprs = []
         field_reprs.append('collection_id=' + "'" + self.collection_id.encode('ascii', 'replace') + "'")
         field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
-        field_reprs.append('model_metadata=' + repr(self.model_metadata))
         field_reprs.append('titles=' + repr(self.titles))
         if self.agents is not None:
             field_reprs.append('agents=' + repr(self.agents))
@@ -1282,7 +1241,6 @@ class Object(object):
         field_reprs = []
         field_reprs.append('collection_id=' + "'" + self.collection_id.encode('ascii', 'replace') + "'")
         field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
-        field_reprs.append('model_metadata=' + repr(self.model_metadata))
         field_reprs.append('titles=' + repr(self.titles))
         if self.agents is not None:
             field_reprs.append('agents=' + repr(self.agents))
@@ -1353,7 +1311,7 @@ class Object(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'titles': self.titles, 'agents': self.agents, 'categories': self.categories, 'closures': self.closures, 'colors': self.colors, 'components': self.components, 'condition': self.condition, 'cultural_contexts': self.cultural_contexts, 'dates': self.dates, 'descriptions': self.descriptions, 'gender': self.gender, 'hidden': self.hidden, 'images': self.images, 'inscriptions': self.inscriptions, 'locations': self.locations, 'materials': self.materials, 'measurements': self.measurements, 'provenance': self.provenance, 'quantity': self.quantity, 'relations': self.relations, 'rights': self.rights, 'structures': self.structures, 'subjects': self.subjects, 'techniques': self.techniques, 'textrefs': self.textrefs, 'view_type': self.view_type, 'work_types': self.work_types}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'titles': self.titles, 'agents': self.agents, 'categories': self.categories, 'closures': self.closures, 'colors': self.colors, 'components': self.components, 'condition': self.condition, 'cultural_contexts': self.cultural_contexts, 'dates': self.dates, 'descriptions': self.descriptions, 'gender': self.gender, 'hidden': self.hidden, 'images': self.images, 'inscriptions': self.inscriptions, 'locations': self.locations, 'materials': self.materials, 'measurements': self.measurements, 'provenance': self.provenance, 'quantity': self.quantity, 'relations': self.relations, 'rights': self.rights, 'structures': self.structures, 'subjects': self.subjects, 'techniques': self.techniques, 'textrefs': self.textrefs, 'view_type': self.view_type, 'work_types': self.work_types}
 
     def as_tuple(self):
         '''
@@ -1362,7 +1320,7 @@ class Object(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.model_metadata, self.titles, self.agents, self.categories, self.closures, self.colors, self.components, self.condition, self.cultural_contexts, self.dates, self.descriptions, self.gender, self.hidden, self.images, self.inscriptions, self.locations, self.materials, self.measurements, self.provenance, self.quantity, self.relations, self.rights, self.structures, self.subjects, self.techniques, self.textrefs, self.view_type, self.work_types,)
+        return (self.collection_id, self.institution_id, self.titles, self.agents, self.categories, self.closures, self.colors, self.components, self.condition, self.cultural_contexts, self.dates, self.descriptions, self.gender, self.hidden, self.images, self.inscriptions, self.locations, self.materials, self.measurements, self.provenance, self.quantity, self.relations, self.rights, self.structures, self.subjects, self.techniques, self.textrefs, self.view_type, self.work_types,)
 
     @property
     def categories(self):
@@ -1501,14 +1459,6 @@ class Object(object):
         return self.__measurements
 
     @property
-    def model_metadata(self):
-        '''
-        :rtype: costume.api.models.model_metadata.ModelMetadata
-        '''
-
-        return self.__model_metadata
-
-    @property
     def provenance(self):
         '''
         :rtype: str
@@ -1544,8 +1494,6 @@ class Object(object):
                 init_kwds['collection_id'] = iprot.read_string()
             elif ifield_name == 'institution_id' and ifield_id == 2:
                 init_kwds['institution_id'] = iprot.read_string()
-            elif ifield_name == 'model_metadata' and ifield_id == 14:
-                init_kwds['model_metadata'] = costume.api.models.model_metadata.ModelMetadata.read(iprot)
             elif ifield_name == 'titles' and ifield_id == 3:
                 init_kwds['titles'] = costume.api.models.title.title_set.TitleSet.read(iprot)
             elif ifield_name == 'agents' and ifield_id == 20:
@@ -1635,7 +1583,6 @@ class Object(object):
         self,
         collection_id=None,
         institution_id=None,
-        model_metadata=None,
         titles=None,
         agents=None,
         categories=None,
@@ -1669,7 +1616,6 @@ class Object(object):
 
         :type collection_id: str or None
         :type institution_id: str or None
-        :type model_metadata: costume.api.models.model_metadata.ModelMetadata or None
         :type titles: costume.api.models.title.title_set.TitleSet or None
         :type agents: costume.api.models.agent.agent_set.AgentSet or None
         :type categories: tuple(str) or None
@@ -1704,8 +1650,6 @@ class Object(object):
             collection_id = self.collection_id
         if institution_id is None:
             institution_id = self.institution_id
-        if model_metadata is None:
-            model_metadata = self.model_metadata
         if titles is None:
             titles = self.titles
         if agents is None:
@@ -1760,7 +1704,7 @@ class Object(object):
             view_type = self.view_type
         if work_types is None:
             work_types = self.work_types
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, titles=titles, agents=agents, categories=categories, closures=closures, colors=colors, components=components, condition=condition, cultural_contexts=cultural_contexts, dates=dates, descriptions=descriptions, gender=gender, hidden=hidden, images=images, inscriptions=inscriptions, locations=locations, materials=materials, measurements=measurements, provenance=provenance, quantity=quantity, relations=relations, rights=rights, structures=structures, subjects=subjects, techniques=techniques, textrefs=textrefs, view_type=view_type, work_types=work_types)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, titles=titles, agents=agents, categories=categories, closures=closures, colors=colors, components=components, condition=condition, cultural_contexts=cultural_contexts, dates=dates, descriptions=descriptions, gender=gender, hidden=hidden, images=images, inscriptions=inscriptions, locations=locations, materials=materials, measurements=measurements, provenance=provenance, quantity=quantity, relations=relations, rights=rights, structures=structures, subjects=subjects, techniques=techniques, textrefs=textrefs, view_type=view_type, work_types=work_types)
 
     @property
     def rights(self):
@@ -1842,10 +1786,6 @@ class Object(object):
 
         oprot.write_field_begin(name='institution_id', type=11, id=2)
         oprot.write_string(self.institution_id)
-        oprot.write_field_end()
-
-        oprot.write_field_begin(name='model_metadata', type=12, id=14)
-        self.model_metadata.write(oprot)
         oprot.write_field_end()
 
         oprot.write_field_begin(name='titles', type=12, id=3)

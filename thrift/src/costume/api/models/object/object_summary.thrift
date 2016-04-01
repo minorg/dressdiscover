@@ -2,7 +2,6 @@ namespace bean_java net.lab1318.costume.gui.models.object
 namespace java net.lab1318.costume.api.models.object
 namespace * costume.api.models.object
 
-include "costume/api/models/model_metadata.thrift"
 include "costume/api/models/collection/collection_id.thrift"
 include "costume/api/models/gender/gender.thrift"
 include "costume/api/models/image/image.thrift"
@@ -14,8 +13,6 @@ struct ObjectSummary {
 	1: collection_id.CollectionId collection_id;
 
 	2: institution_id.InstitutionId institution_id;
-
-	3: model_metadata.ModelMetadata model_metadata;
 
 	// Dublin Core title
 	// @validation {"minLength": 1}
