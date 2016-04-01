@@ -23,9 +23,6 @@ public interface CollectionStore {
     public Collection getCollectionById(final CollectionId collectionId, final Logger logger, final Marker logMarker)
             throws InvalidModelException, IOException, NoSuchModelException;
 
-    public ImmutableList<CollectionEntry> getCollections(final Logger logger, final Marker logMarker)
-            throws IOException;
-
     public ImmutableList<CollectionEntry> getCollectionsByInstitutionId(final InstitutionId institutionId,
             final Logger logger, final Marker logMarker) throws IOException;
 

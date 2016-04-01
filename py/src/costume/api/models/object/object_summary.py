@@ -2,7 +2,6 @@ from itertools import ifilterfalse
 import __builtin__
 import costume.api.models.gender.gender
 import costume.api.models.image.image
-import costume.api.models.model_metadata
 
 
 class ObjectSummary(object):
@@ -11,7 +10,6 @@ class ObjectSummary(object):
             self,
             collection_id=None,
             institution_id=None,
-            model_metadata=None,
             title=None,
             agent_name_texts=None,
             categories=None,
@@ -34,7 +32,6 @@ class ObjectSummary(object):
             '''
             :type collection_id: str
             :type institution_id: str
-            :type model_metadata: costume.api.models.model_metadata.ModelMetadata
             :type title: str
             :type agent_name_texts: tuple(str) or None
             :type categories: tuple(str) or None
@@ -57,7 +54,6 @@ class ObjectSummary(object):
 
             self.__collection_id = collection_id
             self.__institution_id = institution_id
-            self.__model_metadata = model_metadata
             self.__title = title
             self.__agent_name_texts = agent_name_texts
             self.__categories = categories
@@ -78,7 +74,7 @@ class ObjectSummary(object):
             self.__work_type_texts = work_type_texts
 
         def build(self):
-            return ObjectSummary(collection_id=self.__collection_id, institution_id=self.__institution_id, model_metadata=self.__model_metadata, title=self.__title, agent_name_texts=self.__agent_name_texts, categories=self.__categories, color_texts=self.__color_texts, cultural_context_texts=self.__cultural_context_texts, date=self.__date, description=self.__description, gender=self.__gender, hidden=self.__hidden, image=self.__image, location_name_texts=self.__location_name_texts, material_texts=self.__material_texts, relation_texts=self.__relation_texts, structure_texts=self.__structure_texts, subject_term_texts=self.__subject_term_texts, technique_texts=self.__technique_texts, url=self.__url, work_type_texts=self.__work_type_texts)
+            return ObjectSummary(collection_id=self.__collection_id, institution_id=self.__institution_id, title=self.__title, agent_name_texts=self.__agent_name_texts, categories=self.__categories, color_texts=self.__color_texts, cultural_context_texts=self.__cultural_context_texts, date=self.__date, description=self.__description, gender=self.__gender, hidden=self.__hidden, image=self.__image, location_name_texts=self.__location_name_texts, material_texts=self.__material_texts, relation_texts=self.__relation_texts, structure_texts=self.__structure_texts, subject_term_texts=self.__subject_term_texts, technique_texts=self.__technique_texts, url=self.__url, work_type_texts=self.__work_type_texts)
 
         @property
         def agent_name_texts(self):
@@ -183,14 +179,6 @@ class ObjectSummary(object):
             '''
 
             return self.__material_texts
-
-        @property
-        def model_metadata(self):
-            '''
-            :rtype: costume.api.models.model_metadata.ModelMetadata
-            '''
-
-            return self.__model_metadata
 
         @property
         def relation_texts(self):
@@ -304,14 +292,6 @@ class ObjectSummary(object):
             self.__material_texts = material_texts
             return self
 
-        def set_model_metadata(self, model_metadata):
-            '''
-            :type model_metadata: costume.api.models.model_metadata.ModelMetadata
-            '''
-
-            self.__model_metadata = model_metadata
-            return self
-
         def set_relation_texts(self, relation_texts):
             '''
             :type relation_texts: tuple(str) or None
@@ -404,7 +384,6 @@ class ObjectSummary(object):
             '''
             :type collection_id: str
             :type institution_id: str
-            :type model_metadata: costume.api.models.model_metadata.ModelMetadata
             :type title: str
             :type agent_name_texts: tuple(str) or None
             :type categories: tuple(str) or None
@@ -428,7 +407,6 @@ class ObjectSummary(object):
             if isinstance(object_summary, ObjectSummary):
                 self.set_collection_id(object_summary.collection_id)
                 self.set_institution_id(object_summary.institution_id)
-                self.set_model_metadata(object_summary.model_metadata)
                 self.set_title(object_summary.title)
                 self.set_agent_name_texts(object_summary.agent_name_texts)
                 self.set_categories(object_summary.categories)
@@ -574,14 +552,6 @@ class ObjectSummary(object):
 
             self.set_material_texts(material_texts)
 
-        @model_metadata.setter
-        def model_metadata(self, model_metadata):
-            '''
-            :type model_metadata: costume.api.models.model_metadata.ModelMetadata
-            '''
-
-            self.set_model_metadata(model_metadata)
-
         @relation_texts.setter
         def relation_texts(self, relation_texts):
             '''
@@ -642,7 +612,6 @@ class ObjectSummary(object):
         self,
         collection_id,
         institution_id,
-        model_metadata,
         title,
         agent_name_texts=None,
         categories=None,
@@ -665,7 +634,6 @@ class ObjectSummary(object):
         '''
         :type collection_id: str
         :type institution_id: str
-        :type model_metadata: costume.api.models.model_metadata.ModelMetadata
         :type title: str
         :type agent_name_texts: tuple(str) or None
         :type categories: tuple(str) or None
@@ -697,12 +665,6 @@ class ObjectSummary(object):
         if not isinstance(institution_id, basestring):
             raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
         self.__institution_id = institution_id
-
-        if model_metadata is None:
-            raise ValueError('model_metadata is required')
-        if not isinstance(model_metadata, costume.api.models.model_metadata.ModelMetadata):
-            raise TypeError("expected model_metadata to be a costume.api.models.model_metadata.ModelMetadata but it is a %s" % getattr(__builtin__, 'type')(model_metadata))
-        self.__model_metadata = model_metadata
 
         if title is None:
             raise ValueError('title is required')
@@ -828,8 +790,6 @@ class ObjectSummary(object):
             return False
         if self.institution_id != other.institution_id:
             return False
-        if self.model_metadata != other.model_metadata:
-            return False
         if self.title != other.title:
             return False
         if self.agent_name_texts != other.agent_name_texts:
@@ -869,7 +829,7 @@ class ObjectSummary(object):
         return True
 
     def __hash__(self):
-        return hash((self.collection_id,self.institution_id,self.model_metadata,self.title,self.agent_name_texts,self.categories,self.color_texts,self.cultural_context_texts,self.date,self.description,self.gender,self.hidden,self.image,self.location_name_texts,self.material_texts,self.relation_texts,self.structure_texts,self.subject_term_texts,self.technique_texts,self.url,self.work_type_texts,))
+        return hash((self.collection_id,self.institution_id,self.title,self.agent_name_texts,self.categories,self.color_texts,self.cultural_context_texts,self.date,self.description,self.gender,self.hidden,self.image,self.location_name_texts,self.material_texts,self.relation_texts,self.structure_texts,self.subject_term_texts,self.technique_texts,self.url,self.work_type_texts,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -881,7 +841,6 @@ class ObjectSummary(object):
         field_reprs = []
         field_reprs.append('collection_id=' + "'" + self.collection_id.encode('ascii', 'replace') + "'")
         field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
-        field_reprs.append('model_metadata=' + repr(self.model_metadata))
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
         if self.agent_name_texts is not None:
             field_reprs.append('agent_name_texts=' + repr(self.agent_name_texts))
@@ -923,7 +882,6 @@ class ObjectSummary(object):
         field_reprs = []
         field_reprs.append('collection_id=' + "'" + self.collection_id.encode('ascii', 'replace') + "'")
         field_reprs.append('institution_id=' + "'" + self.institution_id.encode('ascii', 'replace') + "'")
-        field_reprs.append('model_metadata=' + repr(self.model_metadata))
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
         if self.agent_name_texts is not None:
             field_reprs.append('agent_name_texts=' + repr(self.agent_name_texts))
@@ -976,7 +934,7 @@ class ObjectSummary(object):
         :rtype: dict
         '''
 
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'model_metadata': self.model_metadata, 'title': self.title, 'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'color_texts': self.color_texts, 'cultural_context_texts': self.cultural_context_texts, 'date': self.date, 'description': self.description, 'gender': self.gender, 'hidden': self.hidden, 'image': self.image, 'location_name_texts': self.location_name_texts, 'material_texts': self.material_texts, 'relation_texts': self.relation_texts, 'structure_texts': self.structure_texts, 'subject_term_texts': self.subject_term_texts, 'technique_texts': self.technique_texts, 'url': self.url, 'work_type_texts': self.work_type_texts}
+        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'title': self.title, 'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'color_texts': self.color_texts, 'cultural_context_texts': self.cultural_context_texts, 'date': self.date, 'description': self.description, 'gender': self.gender, 'hidden': self.hidden, 'image': self.image, 'location_name_texts': self.location_name_texts, 'material_texts': self.material_texts, 'relation_texts': self.relation_texts, 'structure_texts': self.structure_texts, 'subject_term_texts': self.subject_term_texts, 'technique_texts': self.technique_texts, 'url': self.url, 'work_type_texts': self.work_type_texts}
 
     def as_tuple(self):
         '''
@@ -985,7 +943,7 @@ class ObjectSummary(object):
         :rtype: tuple
         '''
 
-        return (self.collection_id, self.institution_id, self.model_metadata, self.title, self.agent_name_texts, self.categories, self.color_texts, self.cultural_context_texts, self.date, self.description, self.gender, self.hidden, self.image, self.location_name_texts, self.material_texts, self.relation_texts, self.structure_texts, self.subject_term_texts, self.technique_texts, self.url, self.work_type_texts,)
+        return (self.collection_id, self.institution_id, self.title, self.agent_name_texts, self.categories, self.color_texts, self.cultural_context_texts, self.date, self.description, self.gender, self.hidden, self.image, self.location_name_texts, self.material_texts, self.relation_texts, self.structure_texts, self.subject_term_texts, self.technique_texts, self.url, self.work_type_texts,)
 
     @property
     def categories(self):
@@ -1083,14 +1041,6 @@ class ObjectSummary(object):
 
         return self.__material_texts
 
-    @property
-    def model_metadata(self):
-        '''
-        :rtype: costume.api.models.model_metadata.ModelMetadata
-        '''
-
-        return self.__model_metadata
-
     @classmethod
     def read(cls, iprot):
         '''
@@ -1111,8 +1061,6 @@ class ObjectSummary(object):
                 init_kwds['collection_id'] = iprot.read_string()
             elif ifield_name == 'institution_id' and ifield_id == 2:
                 init_kwds['institution_id'] = iprot.read_string()
-            elif ifield_name == 'model_metadata' and ifield_id == 3:
-                init_kwds['model_metadata'] = costume.api.models.model_metadata.ModelMetadata.read(iprot)
             elif ifield_name == 'title' and ifield_id == 4:
                 init_kwds['title'] = iprot.read_string()
             elif ifield_name == 'agent_name_texts' and ifield_id == 6:
@@ -1181,7 +1129,6 @@ class ObjectSummary(object):
         self,
         collection_id=None,
         institution_id=None,
-        model_metadata=None,
         title=None,
         agent_name_texts=None,
         categories=None,
@@ -1206,7 +1153,6 @@ class ObjectSummary(object):
 
         :type collection_id: str or None
         :type institution_id: str or None
-        :type model_metadata: costume.api.models.model_metadata.ModelMetadata or None
         :type title: str or None
         :type agent_name_texts: tuple(str) or None
         :type categories: tuple(str) or None
@@ -1232,8 +1178,6 @@ class ObjectSummary(object):
             collection_id = self.collection_id
         if institution_id is None:
             institution_id = self.institution_id
-        if model_metadata is None:
-            model_metadata = self.model_metadata
         if title is None:
             title = self.title
         if agent_name_texts is None:
@@ -1270,7 +1214,7 @@ class ObjectSummary(object):
             url = self.url
         if work_type_texts is None:
             work_type_texts = self.work_type_texts
-        return self.__class__(collection_id=collection_id, institution_id=institution_id, model_metadata=model_metadata, title=title, agent_name_texts=agent_name_texts, categories=categories, color_texts=color_texts, cultural_context_texts=cultural_context_texts, date=date, description=description, gender=gender, hidden=hidden, image=image, location_name_texts=location_name_texts, material_texts=material_texts, relation_texts=relation_texts, structure_texts=structure_texts, subject_term_texts=subject_term_texts, technique_texts=technique_texts, url=url, work_type_texts=work_type_texts)
+        return self.__class__(collection_id=collection_id, institution_id=institution_id, title=title, agent_name_texts=agent_name_texts, categories=categories, color_texts=color_texts, cultural_context_texts=cultural_context_texts, date=date, description=description, gender=gender, hidden=hidden, image=image, location_name_texts=location_name_texts, material_texts=material_texts, relation_texts=relation_texts, structure_texts=structure_texts, subject_term_texts=subject_term_texts, technique_texts=technique_texts, url=url, work_type_texts=work_type_texts)
 
     @property
     def structure_texts(self):
@@ -1336,10 +1280,6 @@ class ObjectSummary(object):
 
         oprot.write_field_begin(name='institution_id', type=11, id=2)
         oprot.write_string(self.institution_id)
-        oprot.write_field_end()
-
-        oprot.write_field_begin(name='model_metadata', type=12, id=3)
-        self.model_metadata.write(oprot)
         oprot.write_field_end()
 
         oprot.write_field_begin(name='title', type=11, id=4)

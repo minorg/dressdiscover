@@ -5,7 +5,6 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.CollectionId>() {}, true, 1, "collection_id", org.thryft.protocol.Type.STRING),
         INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, true, 2, "institution_id", org.thryft.protocol.Type.STRING),
-        MODEL_METADATA("modelMetadata", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.ModelMetadataBean>() {}, true, 3, "model_metadata", org.thryft.protocol.Type.STRUCT),
         TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 4, "title", org.thryft.protocol.Type.STRING),
         AGENT_NAME_TEXTS("agentNameTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 6, "agent_name_texts", org.thryft.protocol.Type.LIST),
         CATEGORIES("categories", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 7, "categories", org.thryft.protocol.Type.LIST),
@@ -69,7 +68,6 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
             switch (javaName) {
             case "collectionId": return COLLECTION_ID;
             case "institutionId": return INSTITUTION_ID;
-            case "modelMetadata": return MODEL_METADATA;
             case "title": return TITLE;
             case "agentNameTexts": return AGENT_NAME_TEXTS;
             case "categories": return CATEGORIES;
@@ -97,7 +95,6 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
             switch (thriftName) {
             case "collection_id": return COLLECTION_ID;
             case "institution_id": return INSTITUTION_ID;
-            case "model_metadata": return MODEL_METADATA;
             case "title": return TITLE;
             case "agent_name_texts": return AGENT_NAME_TEXTS;
             case "categories": return CATEGORIES;
@@ -147,7 +144,6 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
     public ObjectSummaryBean() {
         collectionId = null;
         institutionId = null;
-        modelMetadata = null;
         title = null;
         agentNameTexts = null;
         categories = null;
@@ -171,7 +167,6 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
     public ObjectSummaryBean(final net.lab1318.costume.api.models.object.ObjectSummary other) {
         this.collectionId = other.getCollectionId();
         this.institutionId = other.getInstitutionId();
-        this.modelMetadata = new net.lab1318.costume.gui.models.ModelMetadataBean(other.getModelMetadata());
         this.title = other.getTitle();
         this.agentNameTexts = other.getAgentNameTexts().isPresent() ? new java.util.ArrayList<String>(other.getAgentNameTexts().get()) : null;
         this.categories = other.getCategories().isPresent() ? new java.util.ArrayList<String>(other.getCategories().get()) : null;
@@ -204,7 +199,6 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         return
             getCollectionId().equals(other.getCollectionId()) &&
             getInstitutionId().equals(other.getInstitutionId()) &&
-            getModelMetadata().equals(other.getModelMetadata()) &&
             getTitle().equals(other.getTitle()) &&
             ((getAgentNameTexts() != null && other.getAgentNameTexts() != null) ? (getAgentNameTexts().equals(other.getAgentNameTexts())) : (getAgentNameTexts() == null && other.getAgentNameTexts() == null)) &&
             ((getCategories() != null && other.getCategories() != null) ? (getCategories().equals(other.getCategories())) : (getCategories() == null && other.getCategories() == null)) &&
@@ -242,7 +236,6 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         switch (fieldMetadata) {
         case COLLECTION_ID: return getCollectionId();
         case INSTITUTION_ID: return getInstitutionId();
-        case MODEL_METADATA: return getModelMetadata();
         case TITLE: return getTitle();
         case AGENT_NAME_TEXTS: return getAgentNameTexts();
         case CATEGORIES: return getCategories();
@@ -324,10 +317,6 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         return materialTexts;
     }
 
-    public net.lab1318.costume.gui.models.ModelMetadataBean getModelMetadata() {
-        return modelMetadata;
-    }
-
     public java.util.List<String> getRelationTexts() {
         return relationTexts;
     }
@@ -364,7 +353,6 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         int hashCode = 17;
         hashCode = 31 * hashCode + getCollectionId().hashCode();
         hashCode = 31 * hashCode + getInstitutionId().hashCode();
-        hashCode = 31 * hashCode + getModelMetadata().hashCode();
         hashCode = 31 * hashCode + getTitle().hashCode();
         if (getAgentNameTexts() != null) {
             hashCode = 31 * hashCode + getAgentNameTexts().hashCode();
@@ -477,10 +465,6 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         this.materialTexts = materialTexts;
     }
 
-    public void setModelMetadata(final net.lab1318.costume.gui.models.ModelMetadataBean modelMetadata) {
-        this.modelMetadata = modelMetadata;
-    }
-
     public void setRelationTexts(final java.util.List<String> relationTexts) {
         this.relationTexts = relationTexts;
     }
@@ -511,14 +495,12 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("model_metadata", getModelMetadata()).add("title", getTitle()).add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("color_texts", getColorTexts()).add("cultural_context_texts", getCulturalContextTexts()).add("date", getDate()).add("description", getDescription()).add("gender", getGender()).add("hidden", getHidden()).add("image", getImage()).add("location_name_texts", getLocationNameTexts()).add("material_texts", getMaterialTexts()).add("relation_texts", getRelationTexts()).add("structure_texts", getStructureTexts()).add("subject_term_texts", getSubjectTermTexts()).add("technique_texts", getTechniqueTexts()).add("url", getUrl()).add("work_type_texts", getWorkTypeTexts()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("title", getTitle()).add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("color_texts", getColorTexts()).add("cultural_context_texts", getCulturalContextTexts()).add("date", getDate()).add("description", getDescription()).add("gender", getGender()).add("hidden", getHidden()).add("image", getImage()).add("location_name_texts", getLocationNameTexts()).add("material_texts", getMaterialTexts()).add("relation_texts", getRelationTexts()).add("structure_texts", getStructureTexts()).add("subject_term_texts", getSubjectTermTexts()).add("technique_texts", getTechniqueTexts()).add("url", getUrl()).add("work_type_texts", getWorkTypeTexts()).toString();
     }
 
     private net.lab1318.costume.api.models.collection.CollectionId collectionId;
 
     private net.lab1318.costume.api.models.institution.InstitutionId institutionId;
-
-    private net.lab1318.costume.gui.models.ModelMetadataBean modelMetadata;
 
     /**
      * Dublin Core title
