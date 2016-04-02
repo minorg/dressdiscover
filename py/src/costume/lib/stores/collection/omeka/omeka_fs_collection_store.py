@@ -17,12 +17,12 @@ class OmekaFsCollectionStore(_OmekaCollectionStore):
         raise NoSuchCollectionException(collectionId)
 
     def getCollectionsByInstitutionId(self, institutionId, logger, logMarker):
-        print self._url
-        file_path = os.path.join(self.__data_dir_path, 'extracted', str(institutionId), 'collections.json')
+        data_dir_path = self._uri.path.get()[1:].replace('/', os.path.sep)
+        file_path = os.path.join(data_dir_path, 'extracted', str(institutionId), 'collections.json')
         with open(file_path) as f:
             omeka_collections = OmekaJsonParser().parse_collection_dicts(json.loads(f.read()))
             return ImmutableList.copyOf(self._mapper.map_omeka_collection(
-                                            collection_store_url=self._url,
+                                            collection_store_uri=self._uri,
                                             institution_id=institutionId,
                                             omeka_collection=omeka_collection,
                                         )

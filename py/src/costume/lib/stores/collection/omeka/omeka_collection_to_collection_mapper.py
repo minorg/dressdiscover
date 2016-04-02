@@ -3,7 +3,7 @@ from net.lab1318.costume.api.models.collection import Collection, \
 
 
 class OmekaCollectionToCollectionMapper(object):
-    def map_omeka_collection(self, collection_store_url, institution_id, omeka_collection):
+    def map_omeka_collection(self, collection_store_uri, institution_id, omeka_collection):
         collection_id = CollectionId.parse(str(institution_id) + '/' + str(omeka_collection.id))
 
         collection_builder = Collection.Builder()
@@ -21,7 +21,7 @@ class OmekaCollectionToCollectionMapper(object):
                 elif element_text.element.name == 'Title':
                     collection_builder.setTitle(element_text.text)
 
-        collection_builder.setObjectStoreUrl(collection_store_url)
+        collection_builder.setObjectStoreUri(collection_store_uri)
 
         collection = collection_builder.build()
 

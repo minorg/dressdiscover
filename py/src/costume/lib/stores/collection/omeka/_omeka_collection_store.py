@@ -3,16 +3,16 @@ from net.lab1318.costume.lib.stores.collection import AbstractReadOnlyCollection
 
 
 class _OmekaCollectionStore(AbstractReadOnlyCollectionStore):
-    def __init__(self, url, mapper=None):
+    def __init__(self, uri, mapper=None):
         if mapper is None:
             mapper = OmekaCollectionToCollectionMapper()
         self.__mapper = mapper
-        self.__url = url
+        self.__uri = uri
 
     @property
     def _mapper(self):
         return self.__mapper
 
     @property
-    def _url(self):
-        return self.__url
+    def _uri(self):
+        return self.__uri
