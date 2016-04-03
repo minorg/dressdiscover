@@ -1,11 +1,6 @@
-from collections import OrderedDict
-import java.util
-import json
 import logging
 
-from costume.lib.stores.object.omeka.dcmi_types import DCMI_TYPES, \
-    DCMI_TYPES_BASE_URL
-from net.lab1318.costume.api.models import ModelMetadata, VocabRef, Vocab
+from net.lab1318.costume.api.models import VocabRef, Vocab
 from net.lab1318.costume.api.models.agent import AgentSet, Agent, AgentName, \
     AgentNameType, AgentRole
 from net.lab1318.costume.api.models.cultural_context import CulturalContextSet
@@ -20,7 +15,7 @@ from net.lab1318.costume.api.models.material import MaterialSet, Material, \
     MaterialType
 from net.lab1318.costume.api.models.measurements import MeasurementsSet, \
     Measurements, MeasurementsType
-from net.lab1318.costume.api.models.object import Object
+from net.lab1318.costume.api.models.object import Object, ObjectEntry
 from net.lab1318.costume.api.models.relation import RelationSet, Relation, \
     RelationType
 from net.lab1318.costume.api.models.rights import RightsSet, Rights, RightsType
@@ -31,7 +26,9 @@ from net.lab1318.costume.api.models.textref import Textref, TextrefName, \
     TextrefNameType, TextrefRefid, TextrefRefidType, TextrefSet
 from net.lab1318.costume.api.models.title import TitleSet, Title, TitleType
 from net.lab1318.costume.api.models.work_type import WorkTypeSet, WorkType
-import os.path
+
+from costume.lib.stores.object.omeka.dcmi_types import DCMI_TYPES, \
+    DCMI_TYPES_BASE_URL
 
 
 class OmekaItemToObjectMapper(object):
@@ -39,24 +36,17 @@ class OmekaItemToObjectMapper(object):
         def __init__(
             self,
             endpoint_url,
-            collection_id,
-            institution_id,
             logger,
             object_id,
-            omeka_collection_id,
-            omeka_item_id
+            omeka_item
         ):
-            self.__institution_id = institution_id
-            datetime_now = java.util.Date()
             self._object_builder = \
                 Object.Builder()\
-                    .set_collection_id(collection_id)\
-                    .set_institution_id(institution_id)\
-                    .set_model_metadata(ModelMetadata.Builder().set_ctime(datetime_now).set_mtime(datetime_now).build())
+                    .setCollectionId(object_id.getCollectionId())\
+                    .setInstitutionId(object_id.getInstitutionId())
             self.__logger = logger
             self.__object_id = object_id
-            self.__omeka_collection_id = omeka_collection_id
-            self.__omeka_item_id = omeka_item_id
+            self.__omeka_item = omeka_item
 
             self.agents = []
             self.categories = []
@@ -80,16 +70,16 @@ class OmekaItemToObjectMapper(object):
 
             self.textrefs.append(
                 Textref.Builder()
-                    .set_name(
+                    .setName(
                         TextrefName.Builder()
                             .set_text("Omeka item URL")
                             .set_type(TextrefNameType.ELECTRONIC)
                             .build()
                     )
-                    .set_refid(
+                    .setRefid(
                         TextrefRefid.Builder()
-                            .set_href(endpoint_url + 'items/show/' + str(omeka_item_id))
-                            .set_text(endpoint_url + 'items/show/' + str(omeka_item_id))
+                            .set_href(endpoint_url + 'items/show/' + str(omeka_item.id))
+                            .set_text(endpoint_url + 'items/show/' + str(omeka_item.id))
                             .set_type(TextrefRefidType.URI)
                             .build()
                     )
@@ -168,7 +158,7 @@ class OmekaItemToObjectMapper(object):
                     if unique:
                         existing_relation_builders.append(relation_builder)
                     else:
-                        self.__logger.warn("item %d has duplicate relation type=%s, text=%s", self.__omeka_item_id, relation_builder.type, relation_builder.text)
+                        self.__logger.warn("item %d has duplicate relation type=%s, text=%s", self.__omeka_item.id, relation_builder.type, relation_builder.text)
                 unique_relation_builders = []
                 for relation_builders in unique_relation_builders_by_text.values():
                     unique_relation_builders.extend(relation_builders)
@@ -202,59 +192,29 @@ class OmekaItemToObjectMapper(object):
             return self.__object_id
 
         @property
-        def omeka_collection_id(self):
-            return self.__omeka_collection_id
-
-        @property
-        def omeka_item_id(self):
-            return self.__omeka_item_id
+        def omeka_item(self):
+            return self.__omeka_item
 
     def __init__(self):
         object.__init__(self)
         self._logger = logging.getLogger(self.__class__.__module__ + '.' + self.__class__.__name__)
 
-    def map_omeka_items(self, collection_id, omeka_collection, omeka_files_by_item_id, omeka_items):
-        object_builders_by_id = \
-            self._map_omeka_collection_items(
-                collection_id=collection_id,
-                omeka_collection=omeka_collection,
-                omeka_files_by_item_id=omeka_files_by_item_id,
-                omeka_items=omeka_items
+    def map_omeka_item(self, collection_id, omeka_item, omeka_item_files):
+        object_id = collection_id + '/' + str(omeka_item.id)
+
+        object_builder = \
+            self._ObjectBuilder(
+                endpoint_url=self.__endpoint_url,
+                logger=self._logger,
+                object_id=object_id,
+                omeka_item=omeka_item
             )
 
-        self._logger.info("loaded %d objects from %d collections", len(object_builders_by_id), len(omeka_items))
+        self._map_omeka_item(
+            object_builder=object_builder,
+            omeka_item=omeka_item
+        )
 
-        # All objects are parsed
-        # Build a map of relations across collections
-        relations = {}
-        for object_id, object_builder in object_builders_by_id.iteritems():
-            for relation_builder in object_builder.relation_builders:
-                if relation_builder.text is None:
-                    continue
-                assert relation_builder.type is not None
-                relations.setdefault(relation_builder.text, []).append(object_builder)
-        # Link up relation relids
-        for object_id, object_builder in object_builders_by_id.iteritems():
-            for relation_builder in object_builder.relation_builders:
-                if relation_builder.text is None:
-                    continue
-                related_object_builders = relations.get(relation_builder.text, None)
-                if related_object_builders is None:
-                    continue
-                relids = \
-                    frozenset(related_object_builder.object_id
-                                for related_object_builder in related_object_builders
-                                if related_object_builder.object_id != object_id)
-                if len(relids) > 0:
-                    relation_builder.relids = relids
-
-        objects_by_id = OrderedDict()
-        for object_id, object_builder in object_builders_by_id.iteritems():
-            objects_by_id[object_id] = object_builder.build()
-
-        return objects_by_id
-
-    def _map_omeka_item(self, object_builder, omeka_item):
         for element_text in omeka_item.element_texts:
             text = element_text.text.strip()
             if len(text) == 0:
@@ -269,7 +229,8 @@ class OmekaItemToObjectMapper(object):
 
         self._map_omeka_item_files(
             object_builder=object_builder,
-            omeka_item=omeka_item
+            omeka_item=omeka_item,
+            omeka_item_files=omeka_item_files
         )
 
         if len(object_builder.work_types) == 0 and omeka_item.item_type is not None:
@@ -285,41 +246,7 @@ class OmekaItemToObjectMapper(object):
                 tag_names=tuple(tag_names)
             )
 
-    def _map_omeka_items(self, collection_id, omeka_collection, omeka_items):
-        object_builders_by_id = OrderedDict()
-
-        for omeka_item_i, omeka_item in enumerate(omeka_items):
-            object_id = collection_id + '/' + str(omeka_item.id)
-
-            object_builder = \
-                self._ObjectBuilder(
-                    collection_id=collection_id,
-                    endpoint_url=self.__endpoint_url,
-                    institution_id=self._institution_id,
-                    logger=self._logger,
-                    object_id=object_id,
-                    omeka_item_id=omeka_item.id,
-                )
-
-            self._map_omeka_item(
-                object_builder=object_builder,
-                omeka_item=omeka_item
-            )
-
-            # Try to build the object here, even though we won't use the result,
-            # so that we catch errors before adding objects to a collection.
-            # This is to ensure that we don't create empty collections.
-            try:
-                object_builder.build()
-            except ValueError, e:
-                self._logger.info("ignoring object %s: %s", object_id, str(e))
-                continue
-
-            object_builders_by_id[object_id] = object_builder
-
-            self._logger.debug("loaded %d/%d items from collection %d", omeka_item_i + 1, len(omeka_items), omeka_collection.id)
-
-        return object_builders_by_id
+        return ObjectEntry(object_id, object_builder.build())
 
     def _map_omeka_item_element(self, element_name, element_set_name, object_builder, text):
         if element_set_name == 'Dublin Core':
@@ -327,14 +254,14 @@ class OmekaItemToObjectMapper(object):
             try:
                 method = getattr(self, method_name)
             except AttributeError:
-                self._logger.warn("no method %s, skipping item %d Dublin Core element %s: %s", method_name, object_builder.omeka_item_id, element_name, text.encode('ascii', 'ignore'))
+                self._logger.warn("no method %s, skipping item %d Dublin Core element %s: %s", method_name, object_builder.omeka_item.id, element_name, text.encode('ascii', 'ignore'))
                 return
         elif element_set_name == 'Item Type Metadata':
             method_name = '_map_omeka_item_element_itm_' + element_name.lower().replace(' ', '_')
             try:
                 method = getattr(self, method_name)
             except AttributeError:
-                self._logger.warn("no method %s, skipping item %d Item Type Metadata element %s: %s", method_name, object_builder.omeka_item_id, element_name, text.encode('ascii', 'ignore'))
+                self._logger.warn("no method %s, skipping item %d Item Type Metadata element %s: %s", method_name, object_builder.omeka_item.id, element_name, text.encode('ascii', 'ignore'))
                 return
         else:
             self._logger.warn("skipping item %s element set", element_set_name)
@@ -390,7 +317,7 @@ class OmekaItemToObjectMapper(object):
             earliest_date, latest_date = self._parse_date_range(text)
             object_builder.dc_date_builder.set_earliest_date(earliest_date).set_latest_date(latest_date)
         else:
-            self._logger.warn("item %d in collection %d has two dates: %s", object_builder.omeka_item_id, object_builder.omeka_collection_id, text)
+            self._logger.warn("item %d in collection %d has two dates: %s", object_builder.omeka_item.id, object_builder.collection_id, text)
 
     def _map_omeka_item_element_dc_date_created(self, object_builder, text):
         earliest_date = self._parse_date(text)
@@ -518,24 +445,13 @@ class OmekaItemToObjectMapper(object):
     def _map_omeka_item_files(
         self,
         object_builder,
-        omeka_item
+        omeka_item,
+        omeka_item_files
     ):
         if omeka_item.files_count is None or omeka_item.files_count == 0:
             return
 
-        file_dicts = []
-        files_dir_path = os.path.join(self._data_dir_path, 'extracted', self._institution_id, 'files_by_item_id', str(omeka_item.id))
-        if os.path.isdir(files_dir_path):
-            for file_file_path in os.listdir(files_dir_path):
-                if not file_file_path.endswith('.json'):
-                    continue
-                file_file_path = os.path.join(files_dir_path, file_file_path)
-                if not os.path.isfile(file_file_path):
-                    continue
-                with open(file_file_path, 'rb') as f:
-                    file_dict = json.load(f)
-                    file_dicts.append(file_dict)
-        for file_dict in file_dicts:
+        for omeka_file in omeka_item_files:
             # file_id = file_dict['id']
             file_mime_type = file_dict['mime_type']
             if not file_mime_type.startswith('image/'):
