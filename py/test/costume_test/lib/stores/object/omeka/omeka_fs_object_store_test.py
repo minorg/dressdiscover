@@ -10,7 +10,10 @@ class OmekaFsObjectStoreTest(_OmekaObjectStoreTest):
     def __init__(self, *args, **kwds):
         _OmekaObjectStoreTest.__init__(self, *args, **kwds)
         data_dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', '..', '..', '..', 'data'))
-        self._store = OmekaFsObjectStore(uri=Uri.parse('omekafs:/' + data_dir_path.replace(os.path.sep, '/')))
+        self._store = OmekaFsObjectStore(endpoint_url=self.ENDPOINT_URL, uri=Uri.parse('omekafs:/' + data_dir_path.replace(os.path.sep, '/')))
 
     def test_getObjectById(self):
         self._test_getObjectById()
+
+    def test_getObjectsByCollectionId(self):
+        self._test_getObjectsByCollectionId()
