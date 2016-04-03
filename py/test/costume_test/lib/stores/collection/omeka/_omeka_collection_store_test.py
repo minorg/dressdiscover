@@ -12,7 +12,7 @@ class _OmekaCollectionStoreTest(TestCase):
     LOG_MARKER = MarkerFactory.getMarker('OmekaCollectionStoreTest')
 
     def _test_getCollectionById(self):
-        self._store.getCollectionById(self.COLLECTION_ID, self.LOGGER, self.LOG_MARKER)
+        collection = self._store.getCollectionById(self.COLLECTION_ID, self.LOGGER, self.LOG_MARKER)  # @UnusedVariable
 
     def _test_getCollectionsByInstitutionId(self):
         self._store.getCollectionsByInstitutionId(self.INSTITUTION_ID, self.LOGGER, self.LOG_MARKER)

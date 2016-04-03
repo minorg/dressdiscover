@@ -56,11 +56,11 @@ public class CollectionStoreCache {
                 @Override
                 public CollectionStore load(final InstitutionId key) throws IoException, NoSuchInstitutionException {
                     final Institution institution = institutionQueryService.getInstitutionById(key);
-                    if (institution.getCollectionStoreUrl().isPresent()) {
+                    if (institution.getCollectionStoreUri().isPresent()) {
                         final CollectionStoreFactory factory = collectionStoreFactoryRegistry
-                                .getCollectionStoreFactory(institution.getCollectionStoreUrl().get());
+                                .getCollectionStoreFactory(institution.getCollectionStoreUri().get());
                         CollectionStore collectionStore = factory.createCollectionStore(properties,
-                                institution.getCollectionStoreUrl().get());
+                                institution.getCollectionStoreUri().get());
                         if (properties.getCacheCollections()) {
                             collectionStore = new CachingCollectionStore(collectionStore);
                         }

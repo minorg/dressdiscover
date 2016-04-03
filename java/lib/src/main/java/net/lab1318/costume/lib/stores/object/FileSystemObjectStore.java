@@ -76,8 +76,63 @@ public class FileSystemObjectStore extends AbstractInstitutionCollectionObjectFi
         return _getModel(__getObjectFilePath(objectId), logger, logMarker);
     }
 
+    // @Override
+    // public final Iterable<ObjectEntry> getObjects(final Logger logger, final
+    // Marker logMarker) {
+    // return new Iterable<ObjectEntry>() {
+    // @Override
+    // public Iterator<ObjectEntry> iterator() {
+    // return new Iterator<ObjectEntry>() {
+    // @Override
+    // public boolean hasNext() {
+    // return fileIterator.hasNext();
+    // }
+    //
+    // @Override
+    // public ObjectEntry next() {
+    // final File objectFilePath = fileIterator.next();
+    // final File collectionDirectoryPath = objectFilePath.getParentFile();
+    // final File institutionDirectoryPath =
+    // collectionDirectoryPath.getParentFile();
+    // final ObjectId objectId;
+    // try {
+    // objectId =
+    // ObjectId.parse(_decodeFileName(institutionDirectoryPath.getName()) + '/'
+    // + _decodeFileName(collectionDirectoryPath.getName()) + '/'
+    // + _decodeFileName(FilenameUtils.getBaseName(objectFilePath.getName())));
+    // } catch (final InvalidObjectIdException e) {
+    // throw new RuntimeException(e);
+    // }
+    // try {
+    // return new ObjectEntry(objectId, _getModel(objectFilePath, logger,
+    // logMarker));
+    // } catch (InvalidModelException | IOException | NoSuchModelException e) {
+    // throw new RuntimeException(e);
+    // }
+    // }
+    //
+    // private final Iterator<File> fileIterator =
+    // FileUtils.iterateFiles(_getInstitutionsDirectoryPath(),
+    // new IOFileFilter() {
+    // @Override
+    // public boolean accept(final File file) {
+    // return file.getName().charAt(0) != '.' &&
+    // file.getName().endsWith(".json");
+    // }
+    //
+    // @Override
+    // public boolean accept(final File dir, final String name) {
+    // return name.charAt(0) != '.' && name.endsWith(".json");
+    // }
+    // }, TrueFileFilter.INSTANCE);
+    // };
+    // }
+    // };
+    // }
+
     @Override
-    public final Iterable<ObjectEntry> getObjects(final Logger logger, final Marker logMarker) {
+    public final Iterable<ObjectEntry> getObjectsByCollectionId(final CollectionId collectionId, final Logger logger,
+            final Marker logMarker) {
         return new Iterable<ObjectEntry>() {
             @Override
             public Iterator<ObjectEntry> iterator() {
@@ -107,8 +162,8 @@ public class FileSystemObjectStore extends AbstractInstitutionCollectionObjectFi
                         }
                     }
 
-                    private final Iterator<File> fileIterator = FileUtils.iterateFiles(_getInstitutionsDirectoryPath(),
-                            new IOFileFilter() {
+                    private final Iterator<File> fileIterator = FileUtils
+                            .iterateFiles(_getCollectionDirectoryPath(collectionId), new IOFileFilter() {
                                 @Override
                                 public boolean accept(final File file) {
                                     return file.getName().charAt(0) != '.' && file.getName().endsWith(".json");

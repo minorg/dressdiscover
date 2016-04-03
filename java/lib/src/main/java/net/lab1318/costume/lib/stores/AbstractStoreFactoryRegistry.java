@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.python.util.PythonInterpreter;
-import org.thryft.native_.Url;
+import org.thryft.native_.Uri;
 
 import net.lab1318.costume.lib.CostumeProperties;
 
@@ -21,13 +21,13 @@ public abstract class AbstractStoreFactoryRegistry<StoreFactoryT extends StoreFa
         pythonInterpreter = new PythonInterpreter();
     }
 
-    protected final synchronized StoreFactoryT _getStoreFactory(final Url url) {
-        final String urlScheme = url.getScheme().toLowerCase();
-        final StoreFactoryT result = registry.get(urlScheme);
+    protected final synchronized StoreFactoryT _getStoreFactory(final Uri uri) {
+        final String uriScheme = uri.getScheme().toLowerCase();
+        final StoreFactoryT result = registry.get(uriScheme);
         if (result != null) {
             return result;
         } else {
-            throw new IllegalStateException("missing factory for URL scheme " + urlScheme);
+            throw new IllegalStateException("missing factory for URI scheme " + uriScheme);
         }
     }
 
@@ -36,10 +36,10 @@ public abstract class AbstractStoreFactoryRegistry<StoreFactoryT extends StoreFa
         pythonInterpreter.exec("import costume.lib.stores." + packageNameSplit[packageNameSplit.length - 1]);
     }
 
-    protected final synchronized void _registerStoreFactory(final StoreFactoryT factory, String urlScheme) {
-        urlScheme = urlScheme.toLowerCase();
-        checkState(registry.get(urlScheme) == null, urlScheme);
-        registry.put(urlScheme, factory);
+    protected final synchronized void _registerStoreFactory(final StoreFactoryT factory, String uriScheme) {
+        uriScheme = uriScheme.toLowerCase();
+        checkState(registry.get(uriScheme) == null, uriScheme);
+        registry.put(uriScheme, factory);
     }
 
     private final Map<String, StoreFactoryT> registry = new HashMap<>();
