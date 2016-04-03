@@ -14,6 +14,7 @@ import org.thryft.waf.lib.logging.LoggingUtils;
 import com.google.common.collect.ImmutableList;
 
 import net.lab1318.costume.api.models.collection.CollectionEntry;
+import net.lab1318.costume.api.models.collection.CollectionId;
 import net.lab1318.costume.api.models.object.ObjectEntry;
 import net.lab1318.costume.lib.CostumeProperties;
 import net.lab1318.costume.testdata.TestData;
@@ -33,20 +34,24 @@ public final class FileSystemObjectStoreTest {
 
     @Test
     public void testDeleteObjectsByCollectionId() throws Exception {
-        assertEquals(0, __getObjectCount());
         __putObjects();
-        assertEquals(TestData.getInstance().getObjects().size(), __getObjectCount());
         for (final CollectionEntry collectionEntry : TestData.getInstance().getCollections().values()) {
+            assertEquals(TestData.getInstance().getObjects().column(collectionEntry.getId()).size(),
+                    __getObjectCount(collectionEntry.getId()));
             store.deleteObjectsByCollectionId(collectionEntry.getId(), logger, logMarker);
+            assertEquals(0, __getObjectCount(collectionEntry.getId()));
         }
-        assertEquals(0, __getObjectCount());
     }
 
     @Test
-    public void testGetObjects() throws Exception {
+    public void testGetObjectsByCollectionId() throws Exception {
         __putObjects();
-        for (final ObjectEntry objectEntry : store.getObjects(logger, logMarker)) {
-            assertTrue(TestData.getInstance().getObjects().containsValue(objectEntry));
+
+        for (final CollectionEntry collectionEntry : TestData.getInstance().getCollections().values()) {
+            for (final ObjectEntry objectEntry : store.getObjectsByCollectionId(collectionEntry.getId(), logger,
+                    logMarker)) {
+                assertTrue(TestData.getInstance().getObjects().containsValue(objectEntry));
+            }
         }
     }
 
@@ -55,8 +60,8 @@ public final class FileSystemObjectStoreTest {
         __putObjects();
     }
 
-    private int __getObjectCount() throws Exception {
-        return ImmutableList.copyOf(store.getObjects(logger, logMarker)).size();
+    private int __getObjectCount(final CollectionId collectionId) throws Exception {
+        return ImmutableList.copyOf(store.getObjectsByCollectionId(collectionId, logger, logMarker)).size();
     }
 
     private void __putObjects() throws Exception {

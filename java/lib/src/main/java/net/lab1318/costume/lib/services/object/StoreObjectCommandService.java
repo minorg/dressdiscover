@@ -134,8 +134,8 @@ public class StoreObjectCommandService implements ObjectCommandService {
                             .getCollectionsByInstitutionId(institutionEntry.getId())) {
                         try {
                             for (final ObjectEntry objectEntry : objectStoreCache
-                                    .getObjectStore(collectionEntry.getId())
-                                    .getObjects(logger, Markers.RESUMMARIZE_OBJECTS)) {
+                                    .getObjectStore(collectionEntry.getId()).getObjectsByCollectionId(
+                                            collectionEntry.getId(), logger, Markers.RESUMMARIZE_OBJECTS)) {
                                 objectSummaries.add(new ObjectSummaryEntry(objectEntry.getId(),
                                         ObjectSummarizer.getInstance().summarizeObject(objectEntry.getModel())));
                                 if (objectSummaries.size() == resummarizeObjectsBulkRequestSize) {

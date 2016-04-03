@@ -19,7 +19,8 @@ public interface ObjectStore {
     public Object getObjectById(final Logger logger, final Marker logMarker, final ObjectId objectId)
             throws InvalidModelException, IOException, NoSuchModelException;
 
-    public Iterable<ObjectEntry> getObjects(final Logger logger, final Marker logMarker);
+    public Iterable<ObjectEntry> getObjectsByCollectionId(final CollectionId collectionId, final Logger logger,
+            final Marker logMarker);
 
     public void putObject(final Logger logger, final Marker logMarker, final Object object, final ObjectId objectId)
             throws IOException;
