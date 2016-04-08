@@ -3,9 +3,9 @@ from os.path import os
 
 from com.google.common.collect import ImmutableList
 
+from costume.api.services.collection.no_such_collection_exception import NoSuchCollectionException
 from costume.lib.stores.collection.omeka._omeka_collection_store import _OmekaCollectionStore
 from yomeka.client.omeka_json_parser import OmekaJsonParser
-from costume.api.services.collection.no_such_collection_exception import NoSuchCollectionException
 
 
 class OmekaFsCollectionStore(_OmekaCollectionStore):
