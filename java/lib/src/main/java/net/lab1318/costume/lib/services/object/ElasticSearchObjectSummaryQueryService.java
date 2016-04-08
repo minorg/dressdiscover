@@ -83,13 +83,7 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
         }
 
         @Override
-        public ObjectEntry createModelEntryFromFields(final String id, final Map<String, List<?>> fields)
-                throws InvalidModelException {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public ObjectEntry createModelEntryFromSource(final String id, final BytesReference document)
+        public ObjectEntry createModelEntry(final String id, final BytesReference document)
                 throws InvalidModelException {
             try {
                 return new ObjectEntry(ObjectId.parse(id),
@@ -110,13 +104,7 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
         }
 
         @Override
-        public ObjectSummaryEntry createModelEntryFromFields(final String id, final Map<String, List<?>> fields)
-                throws InvalidModelException {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public ObjectSummaryEntry createModelEntryFromSource(final String id, final BytesReference document)
+        public ObjectSummaryEntry createModelEntry(final String id, final BytesReference document)
                 throws InvalidModelException {
             ObjectId objectId;
             try {
@@ -383,7 +371,7 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
                                 final ImmutableList.Builder<ObjectSummaryEntry> hitsBuilder = ImmutableList.builder();
                                 for (final SearchHit searchHit : searchResponse.getHits().getHits()) {
                                     hitsBuilder.add(objectSummaryElasticSearchModelFactory
-                                            .createModelEntryFromSource(searchHit.getId(), searchHit.getSourceRef()));
+                                            .createModelEntry(searchHit.getId(), searchHit.getSourceRef()));
                                 }
                                 resultBuilder.setHits(hitsBuilder.build());
                             } else {
