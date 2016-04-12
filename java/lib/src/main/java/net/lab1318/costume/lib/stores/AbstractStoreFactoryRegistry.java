@@ -2,23 +2,19 @@ package net.lab1318.costume.lib.stores;
 
 import static com.google.common.base.Preconditions.checkState;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 import org.python.util.PythonInterpreter;
 import org.thryft.native_.Uri;
 
 import net.lab1318.costume.lib.CostumeProperties;
+import net.lab1318.costume.lib.python.PythonInterpreterFactory;
 
 public abstract class AbstractStoreFactoryRegistry<StoreFactoryT extends StoreFactory> {
-    protected AbstractStoreFactoryRegistry(final CostumeProperties properties) {
-        final Properties pythonInterpreterProperties = new Properties();
-        pythonInterpreterProperties.setProperty("python.path",
-                new File(new File(new File(properties.getHomeDirectoryPath()), "py"), "src").toString());
-        PythonInterpreter.initialize(System.getProperties(), pythonInterpreterProperties, new String[] { "" });
-        pythonInterpreter = new PythonInterpreter();
+    protected AbstractStoreFactoryRegistry(final CostumeProperties properties,
+            final PythonInterpreterFactory pythonInterpreterFactory) {
+        pythonInterpreter = pythonInterpreterFactory.createPythonInterpreter();
     }
 
     protected final synchronized StoreFactoryT _getStoreFactory(final Uri uri) {
