@@ -15,6 +15,10 @@ import net.lab1318.costume.lib.CostumeProperties;
 
 @Singleton
 public class PythonInterpreterFactory {
+    public static PythonInterpreterFactory getInstance() {
+        return instance;
+    }
+
     @Inject
     public PythonInterpreterFactory(final Injector injector, final CostumeProperties properties) {
         final Properties pythonInterpreterProperties = new Properties();
@@ -22,13 +26,17 @@ public class PythonInterpreterFactory {
                 new File(new File(new File(properties.getHomeDirectoryPath()), "py"), "src").toString());
         PythonInterpreter.initialize(System.getProperties(), pythonInterpreterProperties, new String[] { "" });
         this.injector = checkNotNull(injector);
+        instance = this;
     }
 
     public final PythonInterpreter createPythonInterpreter() {
-        final PythonInterpreter pythonInterpreter = new PythonInterpreter();
-        pythonInterpreter.set("injector", injector);
-        return pythonInterpreter;
+        return new PythonInterpreter();
+    }
+
+    public final Injector getInjector() {
+        return injector;
     }
 
     private final Injector injector;
+    private static PythonInterpreterFactory instance;
 }

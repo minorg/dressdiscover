@@ -29,11 +29,11 @@ import net.lab1318.costume.gui.views.object_by_id.ObjectByIdView;
 import net.lab1318.costume.gui.views.objects.ObjectsView;
 import net.lab1318.costume.gui.views.user_bookmarks.UserBookmarksView;
 import net.lab1318.costume.gui.views.wizard.catalog_wizard.CatalogWizardFeatureView;
-import net.lab1318.costume.gui.views.wizard.catalog_wizard.CatalogWizardSummaryView;
 import net.lab1318.costume.gui.views.wizard.catalog_wizard.CatalogWizardStartView;
+import net.lab1318.costume.gui.views.wizard.catalog_wizard.CatalogWizardSummaryView;
 import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardFeatureView;
-import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardSummaryView;
 import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardStartView;
+import net.lab1318.costume.gui.views.wizard.query_wizard.QueryWizardSummaryView;
 
 @SuppressWarnings("serial")
 @Theme("costume")

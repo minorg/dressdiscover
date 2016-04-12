@@ -4,6 +4,7 @@ import static com.google.common.base.Preconditions.checkState;
 
 import javax.servlet.ServletContextEvent;
 
+import org.python.util.PythonInterpreter;
 import org.thryft.waf.lib.PropertiesModule;
 import org.thryft.waf.server.AbstractServletContextListener;
 
@@ -12,6 +13,7 @@ import com.google.inject.Injector;
 
 import net.lab1318.costume.gui.GuiModule;
 import net.lab1318.costume.lib.CostumeProperties;
+import net.lab1318.costume.lib.python.PythonInterpreterFactory;
 import net.lab1318.costume.lib.services.ServicesModule;
 import net.lab1318.costume.server.controllers.ServerControllersModule;
 
@@ -25,15 +27,23 @@ public final class ServletContextListener extends AbstractServletContextListener
         _createVaadinScssCache("costume", servletContextEvent);
 
         super.contextInitialized(servletContextEvent);
+
+        final PythonInterpreter pythonInterpreter = injector.getInstance(PythonInterpreterFactory.class)
+                .createPythonInterpreter();
+        pythonInterpreter.exec("import ddsite");
     }
 
     @Override
     protected Injector getInjector() {
-        return Guice.createInjector(
-                // Order is important
-                new PropertiesModule<CostumeProperties>(properties), new ServerControllersModule(),
-                new ServicesModule(properties), new GuiModule(properties));
+        if (injector == null) {
+            injector = Guice.createInjector(
+                    // Order is important
+                    new PropertiesModule<CostumeProperties>(properties), new ServerControllersModule(),
+                    new ServicesModule(properties), new GuiModule(properties));
+        }
+        return injector;
     }
 
+    private Injector injector;
     private CostumeProperties properties;
 }
