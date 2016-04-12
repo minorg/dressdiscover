@@ -20,6 +20,7 @@
         </filter>
 	</appender>
 
+    <logger name="org.atmosphere" level="INFO" />
 	<logger name="org.eclipse.jetty" level="WARN" />
 	<logger name="org.elasticsearch" level="WARN" />
 

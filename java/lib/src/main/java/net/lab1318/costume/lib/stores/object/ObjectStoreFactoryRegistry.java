@@ -1,25 +1,20 @@
 package net.lab1318.costume.lib.stores.object;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.thryft.native_.Uri;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import net.lab1318.costume.lib.CostumeProperties;
+import net.lab1318.costume.lib.python.PythonInterpreterFactory;
 import net.lab1318.costume.lib.stores.AbstractStoreFactoryRegistry;
 
 @Singleton
 public class ObjectStoreFactoryRegistry extends AbstractStoreFactoryRegistry<ObjectStoreFactory> {
-    public static ObjectStoreFactoryRegistry getInstance() {
-        return checkNotNull(instance);
-    }
-
     @Inject
-    public ObjectStoreFactoryRegistry(final CostumeProperties properties) {
-        super(properties);
-        instance = this;
+    public ObjectStoreFactoryRegistry(final CostumeProperties properties,
+            final PythonInterpreterFactory pythonInterpreterFactory) {
+        super(properties, pythonInterpreterFactory);
         _registerPythonStoreFactories();
     }
 
@@ -31,6 +26,4 @@ public class ObjectStoreFactoryRegistry extends AbstractStoreFactoryRegistry<Obj
             final String uriScheme) {
         _registerStoreFactory(factory, uriScheme);
     }
-
-    private static ObjectStoreFactoryRegistry instance = null;
 }
