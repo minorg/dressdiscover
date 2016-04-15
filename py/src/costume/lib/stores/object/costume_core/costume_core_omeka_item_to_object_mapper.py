@@ -53,7 +53,6 @@ from costume.lib.stores.object.omeka.omeka_item_to_object_mapper import OmekaIte
 import java.util.Date
 
 
-# import pytz
 class CostumeCoreOmekaItemToObjectMapper(OmekaItemToObjectMapper):
     _COSTUME_CORE_VOCAB_REF = vocab_ref=VocabRef(vocab=Vocab.COSTUME_CORE)
 

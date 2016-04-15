@@ -7,6 +7,7 @@ import java.util.concurrent.ExecutionException;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -59,7 +60,8 @@ public class CollectionStoreCache {
                     if (institution.getCollectionStoreUri().isPresent()) {
                         final CollectionStoreFactory factory = collectionStoreFactoryRegistry
                                 .getCollectionStoreFactory(institution.getCollectionStoreUri().get());
-                        CollectionStore collectionStore = factory.createCollectionStore(properties,
+                        CollectionStore collectionStore = factory.createCollectionStore(
+                                institution.getStoreParameters().or(ImmutableMap.of()), properties,
                                 institution.getCollectionStoreUri().get());
                         if (properties.getCacheCollections()) {
                             collectionStore = new CachingCollectionStore(collectionStore);

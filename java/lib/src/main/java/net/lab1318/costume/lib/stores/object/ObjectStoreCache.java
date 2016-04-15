@@ -7,15 +7,18 @@ import java.util.concurrent.ExecutionException;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import net.lab1318.costume.api.models.collection.Collection;
 import net.lab1318.costume.api.models.collection.CollectionId;
+import net.lab1318.costume.api.models.institution.Institution;
 import net.lab1318.costume.api.models.object.ObjectId;
 import net.lab1318.costume.api.services.IoException;
 import net.lab1318.costume.api.services.collection.CollectionQueryService;
 import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
+import net.lab1318.costume.api.services.institution.InstitutionQueryService;
 import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
 import net.lab1318.costume.lib.CostumeProperties;
 
@@ -23,10 +26,11 @@ import net.lab1318.costume.lib.CostumeProperties;
 public class ObjectStoreCache {
     @Inject
     public ObjectStoreCache(final CollectionQueryService collectionQueryService,
-            final FileSystemObjectStore defaultObjectStore, final ObjectStoreFactoryRegistry objectStoreFactoryRegistry,
-            final CostumeProperties properties) {
+            final FileSystemObjectStore defaultObjectStore, final InstitutionQueryService institutionQueryService,
+            final ObjectStoreFactoryRegistry objectStoreFactoryRegistry, final CostumeProperties properties) {
         this.collectionQueryService = checkNotNull(collectionQueryService);
         this.defaultObjectStore = checkNotNull(defaultObjectStore);
+        this.institutionQueryService = checkNotNull(institutionQueryService);
         this.objectStoreFactoryRegistry = checkNotNull(objectStoreFactoryRegistry);
         this.properties = checkNotNull(properties);
     }
@@ -59,10 +63,12 @@ public class ObjectStoreCache {
                 public ObjectStore load(final CollectionId key)
                         throws IoException, NoSuchCollectionException, NoSuchInstitutionException {
                     final Collection collection = collectionQueryService.getCollectionById(key);
+                    final Institution institution = institutionQueryService.getInstitutionById(key.getInstitutionId());
                     if (collection.getObjectStoreUri().isPresent()) {
                         final ObjectStoreFactory factory = objectStoreFactoryRegistry
                                 .getObjectStoreFactory(collection.getObjectStoreUri().get());
-                        return factory.createObjectStore(properties, collection.getObjectStoreUri().get());
+                        return factory.createObjectStore(institution.getStoreParameters().or(ImmutableMap.of()),
+                                properties, collection.getObjectStoreUri().get());
                     } else {
                         return defaultObjectStore;
                     }
@@ -71,6 +77,7 @@ public class ObjectStoreCache {
 
     private final CollectionQueryService collectionQueryService;
     private final FileSystemObjectStore defaultObjectStore;
+    private final InstitutionQueryService institutionQueryService;
     private final ObjectStoreFactoryRegistry objectStoreFactoryRegistry;
     private final CostumeProperties properties;
 }

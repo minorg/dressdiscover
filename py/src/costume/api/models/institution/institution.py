@@ -1,3 +1,4 @@
+from itertools import ifilterfalse
 import __builtin__
 import costume.api.models.location.location_set
 import costume.api.models.rights.rights_set
@@ -13,6 +14,7 @@ class Institution(object):
             external=None,
             hidden=None,
             locations=None,
+            store_parameters=None,
             url=None,
         ):
             '''
@@ -22,6 +24,7 @@ class Institution(object):
             :type external: bool or None
             :type hidden: bool or None
             :type locations: costume.api.models.location.location_set.LocationSet or None
+            :type store_parameters: dict(str: str) or None
             :type url: str or None
             '''
 
@@ -31,10 +34,11 @@ class Institution(object):
             self.__external = external
             self.__hidden = hidden
             self.__locations = locations
+            self.__store_parameters = store_parameters
             self.__url = url
 
         def build(self):
-            return Institution(title=self.__title, collection_store_uri=self.__collection_store_uri, data_rights=self.__data_rights, external=self.__external, hidden=self.__hidden, locations=self.__locations, url=self.__url)
+            return Institution(title=self.__title, collection_store_uri=self.__collection_store_uri, data_rights=self.__data_rights, external=self.__external, hidden=self.__hidden, locations=self.__locations, store_parameters=self.__store_parameters, url=self.__url)
 
         @property
         def collection_store_uri(self):
@@ -116,6 +120,14 @@ class Institution(object):
             self.__locations = locations
             return self
 
+        def set_store_parameters(self, store_parameters):
+            '''
+            :type store_parameters: dict(str: str) or None
+            '''
+
+            self.__store_parameters = store_parameters
+            return self
+
         def set_title(self, title):
             '''
             :type title: str
@@ -133,6 +145,14 @@ class Institution(object):
             return self
 
         @property
+        def store_parameters(self):
+            '''
+            :rtype: dict(str: str)
+            '''
+
+            return self.__store_parameters.copy() if self.__store_parameters is not None else None
+
+        @property
         def title(self):
             '''
             :rtype: str
@@ -148,6 +168,7 @@ class Institution(object):
             :type external: bool or None
             :type hidden: bool or None
             :type locations: costume.api.models.location.location_set.LocationSet or None
+            :type store_parameters: dict(str: str) or None
             :type url: str or None
             '''
 
@@ -158,6 +179,7 @@ class Institution(object):
                 self.set_external(institution.external)
                 self.set_hidden(institution.hidden)
                 self.set_locations(institution.locations)
+                self.set_store_parameters(institution.store_parameters)
                 self.set_url(institution.url)
             elif isinstance(institution, dict):
                 for key, value in institution.iteritems():
@@ -214,6 +236,14 @@ class Institution(object):
 
             self.set_locations(locations)
 
+        @store_parameters.setter
+        def store_parameters(self, store_parameters):
+            '''
+            :type store_parameters: dict(str: str) or None
+            '''
+
+            self.set_store_parameters(store_parameters)
+
         @title.setter
         def title(self, title):
             '''
@@ -238,6 +268,7 @@ class Institution(object):
         external=None,
         hidden=None,
         locations=None,
+        store_parameters=None,
         url=None,
     ):
         '''
@@ -247,6 +278,7 @@ class Institution(object):
         :type external: bool or None
         :type hidden: bool or None
         :type locations: costume.api.models.location.location_set.LocationSet or None
+        :type store_parameters: dict(str: str) or None
         :type url: str or None
         '''
 
@@ -281,6 +313,13 @@ class Institution(object):
                 raise TypeError("expected locations to be a costume.api.models.location.location_set.LocationSet but it is a %s" % getattr(__builtin__, 'type')(locations))
         self.__locations = locations
 
+        if store_parameters is not None:
+            if not (isinstance(store_parameters, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], basestring) and isinstance(__item[1], basestring), store_parameters.iteritems()))) == 0):
+                raise TypeError("expected store_parameters to be a dict(str: str) but it is a %s" % getattr(__builtin__, 'type')(store_parameters))
+            if len(store_parameters) < 1:
+                raise ValueError("expected len(store_parameters) to be >= 1, was %d" % len(store_parameters))
+        self.__store_parameters = store_parameters.copy() if store_parameters is not None else None
+
         if url is not None:
             if not isinstance(url, basestring):
                 raise TypeError("expected url to be a str but it is a %s" % getattr(__builtin__, 'type')(url))
@@ -299,12 +338,14 @@ class Institution(object):
             return False
         if self.locations != other.locations:
             return False
+        if self.store_parameters != other.store_parameters:
+            return False
         if self.url != other.url:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.title,self.collection_store_uri,self.data_rights,self.external,self.hidden,self.locations,self.url,))
+        return hash((self.title,self.collection_store_uri,self.data_rights,self.external,self.hidden,self.locations,self.store_parameters,self.url,))
 
     def __iter__(self):
         return iter(self.as_tuple())
@@ -325,6 +366,8 @@ class Institution(object):
             field_reprs.append('hidden=' + repr(self.hidden))
         if self.locations is not None:
             field_reprs.append('locations=' + repr(self.locations))
+        if self.store_parameters is not None:
+            field_reprs.append('store_parameters=' + repr(self.store_parameters))
         if self.url is not None:
             field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
         return 'Institution(' + ', '.join(field_reprs) + ')'
@@ -342,6 +385,8 @@ class Institution(object):
             field_reprs.append('hidden=' + repr(self.hidden))
         if self.locations is not None:
             field_reprs.append('locations=' + repr(self.locations))
+        if self.store_parameters is not None:
+            field_reprs.append('store_parameters=' + repr(self.store_parameters))
         if self.url is not None:
             field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
         return 'Institution(' + ', '.join(field_reprs) + ')'
@@ -353,7 +398,7 @@ class Institution(object):
         :rtype: dict
         '''
 
-        return {'title': self.title, 'collection_store_uri': self.collection_store_uri, 'data_rights': self.data_rights, 'external': self.external, 'hidden': self.hidden, 'locations': self.locations, 'url': self.url}
+        return {'title': self.title, 'collection_store_uri': self.collection_store_uri, 'data_rights': self.data_rights, 'external': self.external, 'hidden': self.hidden, 'locations': self.locations, 'store_parameters': self.store_parameters, 'url': self.url}
 
     def as_tuple(self):
         '''
@@ -362,7 +407,7 @@ class Institution(object):
         :rtype: tuple
         '''
 
-        return (self.title, self.collection_store_uri, self.data_rights, self.external, self.hidden, self.locations, self.url,)
+        return (self.title, self.collection_store_uri, self.data_rights, self.external, self.hidden, self.locations, self.store_parameters, self.url,)
 
     @property
     def collection_store_uri(self):
@@ -441,6 +486,8 @@ class Institution(object):
                     pass
             elif ifield_name == 'locations' and ifield_id == 8:
                 init_kwds['locations'] = costume.api.models.location.location_set.LocationSet.read(iprot)
+            elif ifield_name == 'store_parameters' and ifield_id == 10:
+                init_kwds['store_parameters'] = dict([(iprot.read_string(), iprot.read_string()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'url' and ifield_id == 3:
                 try:
                     init_kwds['url'] = iprot.read_string()
@@ -459,6 +506,7 @@ class Institution(object):
         external=None,
         hidden=None,
         locations=None,
+        store_parameters=None,
         url=None,
     ):
         '''
@@ -470,6 +518,7 @@ class Institution(object):
         :type external: bool or None
         :type hidden: bool or None
         :type locations: costume.api.models.location.location_set.LocationSet or None
+        :type store_parameters: dict(str: str) or None
         :type url: str or None
         :rtype: costume.api.models.institution.institution.Institution
         '''
@@ -486,9 +535,19 @@ class Institution(object):
             hidden = self.hidden
         if locations is None:
             locations = self.locations
+        if store_parameters is None:
+            store_parameters = self.store_parameters
         if url is None:
             url = self.url
-        return self.__class__(title=title, collection_store_uri=collection_store_uri, data_rights=data_rights, external=external, hidden=hidden, locations=locations, url=url)
+        return self.__class__(title=title, collection_store_uri=collection_store_uri, data_rights=data_rights, external=external, hidden=hidden, locations=locations, store_parameters=store_parameters, url=url)
+
+    @property
+    def store_parameters(self):
+        '''
+        :rtype: dict(str: str)
+        '''
+
+        return self.__store_parameters.copy() if self.__store_parameters is not None else None
 
     @property
     def title(self):
@@ -543,6 +602,15 @@ class Institution(object):
         if self.locations is not None:
             oprot.write_field_begin(name='locations', type=12, id=8)
             self.locations.write(oprot)
+            oprot.write_field_end()
+
+        if self.store_parameters is not None:
+            oprot.write_field_begin(name='store_parameters', type=13, id=10)
+            oprot.write_map_begin(11, len(self.store_parameters), 11)
+            for __key0, __value0 in self.store_parameters.iteritems():
+                oprot.write_string(__key0)
+                oprot.write_string(__value0)
+            oprot.write_map_end()
             oprot.write_field_end()
 
         if self.url is not None:

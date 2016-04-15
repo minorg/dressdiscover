@@ -9,6 +9,7 @@ public class InstitutionBean implements org.thryft.StructBean {
         EXTERNAL("external", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 7, "external", org.thryft.protocol.Type.BOOL),
         HIDDEN("hidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 6, "hidden", org.thryft.protocol.Type.BOOL),
         LOCATIONS("locations", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.location.LocationSetBean>() {}, false, 8, "locations", org.thryft.protocol.Type.STRUCT),
+        STORE_PARAMETERS("storeParameters", new com.google.common.reflect.TypeToken<java.util.Map<String, String>>() {}, false, 10, "store_parameters", org.thryft.protocol.Type.MAP),
         URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 3, "url", org.thryft.protocol.Type.STRING);
 
         @Override
@@ -59,6 +60,7 @@ public class InstitutionBean implements org.thryft.StructBean {
             case "external": return EXTERNAL;
             case "hidden": return HIDDEN;
             case "locations": return LOCATIONS;
+            case "storeParameters": return STORE_PARAMETERS;
             case "url": return URL;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -73,6 +75,7 @@ public class InstitutionBean implements org.thryft.StructBean {
             case "external": return EXTERNAL;
             case "hidden": return HIDDEN;
             case "locations": return LOCATIONS;
+            case "store_parameters": return STORE_PARAMETERS;
             case "url": return URL;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -109,6 +112,7 @@ public class InstitutionBean implements org.thryft.StructBean {
         external = null;
         hidden = null;
         locations = null;
+        storeParameters = null;
         url = null;
     }
 
@@ -119,6 +123,7 @@ public class InstitutionBean implements org.thryft.StructBean {
         this.external = other.getExternal().isPresent() ? other.getExternal().get() : null;
         this.hidden = other.getHidden().isPresent() ? other.getHidden().get() : null;
         this.locations = other.getLocations().isPresent() ? new net.lab1318.costume.gui.models.location.LocationSetBean(other.getLocations().get()) : null;
+        this.storeParameters = other.getStoreParameters().isPresent() ? new java.util.HashMap<String, String>(other.getStoreParameters().get()) : null;
         this.url = other.getUrl().isPresent() ? other.getUrl().get() : null;
     }
 
@@ -138,6 +143,7 @@ public class InstitutionBean implements org.thryft.StructBean {
             ((getExternal() != null && other.getExternal() != null) ? (getExternal() == other.getExternal()) : (getExternal() == null && other.getExternal() == null)) &&
             ((getHidden() != null && other.getHidden() != null) ? (getHidden() == other.getHidden()) : (getHidden() == null && other.getHidden() == null)) &&
             ((getLocations() != null && other.getLocations() != null) ? (getLocations().equals(other.getLocations())) : (getLocations() == null && other.getLocations() == null)) &&
+            ((getStoreParameters() != null && other.getStoreParameters() != null) ? (getStoreParameters().equals(other.getStoreParameters())) : (getStoreParameters() == null && other.getStoreParameters() == null)) &&
             ((getUrl() != null && other.getUrl() != null) ? (getUrl().equals(other.getUrl())) : (getUrl() == null && other.getUrl() == null));
     }
 
@@ -162,6 +168,7 @@ public class InstitutionBean implements org.thryft.StructBean {
         case EXTERNAL: return getExternal();
         case HIDDEN: return getHidden();
         case LOCATIONS: return getLocations();
+        case STORE_PARAMETERS: return getStoreParameters();
         case URL: return getUrl();
         default:
             throw new IllegalStateException();
@@ -186,6 +193,10 @@ public class InstitutionBean implements org.thryft.StructBean {
 
     public net.lab1318.costume.gui.models.location.LocationSetBean getLocations() {
         return locations;
+    }
+
+    public java.util.Map<String, String> getStoreParameters() {
+        return storeParameters;
     }
 
     public String getTitle() {
@@ -214,6 +225,9 @@ public class InstitutionBean implements org.thryft.StructBean {
         }
         if (getLocations() != null) {
             hashCode = 31 * hashCode + getLocations().hashCode();
+        }
+        if (getStoreParameters() != null) {
+            hashCode = 31 * hashCode + getStoreParameters().hashCode();
         }
         if (getUrl() != null) {
             hashCode = 31 * hashCode + getUrl().hashCode();
@@ -246,6 +260,10 @@ public class InstitutionBean implements org.thryft.StructBean {
         this.locations = locations;
     }
 
+    public void setStoreParameters(final java.util.Map<String, String> storeParameters) {
+        this.storeParameters = storeParameters;
+    }
+
     public void setTitle(final String title) {
         this.title = title;
     }
@@ -256,7 +274,7 @@ public class InstitutionBean implements org.thryft.StructBean {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("title", getTitle()).add("collection_store_uri", getCollectionStoreUri()).add("data_rights", getDataRights()).add("external", getExternal()).add("hidden", getHidden()).add("locations", getLocations()).add("url", getUrl()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("title", getTitle()).add("collection_store_uri", getCollectionStoreUri()).add("data_rights", getDataRights()).add("external", getExternal()).add("hidden", getHidden()).add("locations", getLocations()).add("store_parameters", getStoreParameters()).add("url", getUrl()).toString();
     }
 
     private String title;
@@ -270,6 +288,8 @@ public class InstitutionBean implements org.thryft.StructBean {
     private Boolean hidden;
 
     private net.lab1318.costume.gui.models.location.LocationSetBean locations;
+
+    private java.util.Map<String, String> storeParameters;
 
     private org.thryft.native_.Url url;
 }
