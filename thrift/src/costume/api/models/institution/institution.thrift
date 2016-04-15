@@ -23,5 +23,8 @@ struct Institution {
 
     8: optional location_set.LocationSet locations;
 
+    // @validation {"minLength": 1}
+    10: optional map<string, string> store_parameters;
+
 	3: optional url.Url url;
 }
