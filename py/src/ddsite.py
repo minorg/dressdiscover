@@ -45,6 +45,7 @@ put_institution(
     institution_title='Vassar College Costume Collection',
     institution_url=Url.parse('http://vcomeka.com/vccc/'),
     store_parameters=ImmutableMap.of(
-        'endpoint_url', 'http://vcomeka.com/vccc'
+        'endpoint_url', 'http://vcomeka.com/vccc',
+        'mapper', 'costume.lib.stores.vccc.vccc_omeka_item_to_object_mapper.VcccOmekaItemToObjectMapper'
     )
 )
