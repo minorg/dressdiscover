@@ -1,14 +1,20 @@
 from net.lab1318.costume.lib.stores.object import ObjectStore
 
-from costume.lib.stores.object.omeka.omeka_item_to_object_mapper import OmekaItemToObjectMapper
+from costume.lib.stores.omeka_resource_mapper import OmekaResourceMapper
 
 
 class _OmekaObjectStore(ObjectStore):
-    def __init__(self, endpoint_url, uri, mapper=None):
+    def __init__(self, endpoint_url, properties, uri, resource_mapper=None):
         self.__endpoint_url = endpoint_url
-        if mapper is None:
-            mapper = OmekaItemToObjectMapper()
-        self.__mapper = mapper
+        if resource_mapper is None:
+            resource_mapper = OmekaResourceMapper()
+        elif isinstance(resource_mapper, basestring):
+            resource_mapper_class_qname_split = resource_mapper.split('.')
+            resource_mapper_class = __import__('.'.join(resource_mapper_class_qname_split[:-1]))
+            for component in resource_mapper_class_qname_split[1:]:
+                resource_mapper_class = getattr(resource_mapper_class, component)
+            resource_mapper = resource_mapper_class()
+        self.__resource_mapper = resource_mapper
         self.__uri = uri
 
     @property
@@ -16,8 +22,8 @@ class _OmekaObjectStore(ObjectStore):
         return self.__endpoint_url
 
     @property
-    def _mapper(self):
-        return self.__mapper
+    def _resource_mapper(self):
+        return self.__resource_mapper
 
     @property
     def _uri(self):

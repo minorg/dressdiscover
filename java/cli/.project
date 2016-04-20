@@ -3,6 +3,7 @@
 	<name>costume-java-cli</name>
 	<comment></comment>
 	<projects>
+		<project>costume-py</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

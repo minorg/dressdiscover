@@ -1,5 +1,6 @@
 package net.lab1318.costume.cli;
 
+import org.python.util.PythonInterpreter;
 import org.slf4j.Marker;
 import org.thryft.waf.cli.Command;
 import org.thryft.waf.cli.CommandParser;
@@ -12,6 +13,7 @@ import com.google.inject.Injector;
 import net.lab1318.costume.cli.commands.PutElasticSearchTemplatesCommand;
 import net.lab1318.costume.cli.commands.ResummarizeObjectsCommand;
 import net.lab1318.costume.lib.CostumeProperties;
+import net.lab1318.costume.lib.python.PythonInterpreterFactory;
 import net.lab1318.costume.lib.services.ServicesModule;
 
 public final class CliMain extends org.thryft.waf.lib.AbstractMain {
@@ -36,6 +38,10 @@ public final class CliMain extends org.thryft.waf.lib.AbstractMain {
 
         final Injector injector = Guice.createInjector(new PropertiesModule<CostumeProperties>(properties),
                 new ServicesModule(properties));
+
+        final PythonInterpreter pythonInterpreter = injector.getInstance(PythonInterpreterFactory.class)
+                .createPythonInterpreter();
+        pythonInterpreter.exec("import ddsite");
 
         argParser.getCommand().run(injector);
     }

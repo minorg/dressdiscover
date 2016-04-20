@@ -1,9 +1,9 @@
 from net.lab1318.costume.api.models.color import ColorType
 
-from costume.lib.stores.object.costume_core.costume_core_omeka_item_to_object_mapper import CostumeCoreOmekaItemToObjectMapper
+from costume.lib.stores.object.costume_core.costume_core_omeka_resource_mapper import CostumeCoreOmekaResourceMapper
 
 
-class VcccOmekaItemToObjectMapper(CostumeCoreOmekaItemToObjectMapper):
+class VcccOmekaResourceMapper(CostumeCoreOmekaResourceMapper):
     def _map_omeka_item_element_itm_color_main(self, **kwds):
         self._map_omeka_item_element_itm_color(type_=ColorType.PRIMARY, **kwds)
 
