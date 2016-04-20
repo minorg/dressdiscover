@@ -8,8 +8,10 @@ from net.lab1318.costume.api.models.institution import Institution, \
 from net.lab1318.costume.api.models.rights import RightsSet, Rights, RightsType
 from org.thryft.native_ import Url, Uri
 
+
 from costume.lib.stores.collection.omeka.omeka_fs_collection_store import OmekaFsCollectionStore
-from costume.lib.stores.object.vccc.vccc_omeka_item_to_object_mapper import VcccOmekaItemToObjectMapper
+from costume.lib.stores.object.omeka.omeka_fs_object_store import OmekaFsObjectStore  # Force registration # @UnusedImport
+from costume.lib.stores.object.vccc.vccc_omeka_resource_mapper import VcccOmekaResourceMapper
 from net.lab1318.costume.lib.python import PythonApi
 
 
@@ -45,6 +47,6 @@ put_institution(
     institution_url=Url.parse('http://vcomeka.com/vccc/'),
     store_parameters=ImmutableMap.of(
         'endpoint_url', 'http://vcomeka.com/vccc',
-        'mapper', VcccOmekaItemToObjectMapper.__module__ + '.' + VcccOmekaItemToObjectMapper.__name__  # @UndefinedVariable
+        'resource_mapper', VcccOmekaResourceMapper.__module__ + '.' + VcccOmekaResourceMapper.__name__  # @UndefinedVariable
     ),
 )

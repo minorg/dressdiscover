@@ -22,7 +22,7 @@ class OmekaApiObjectStore(_OmekaObjectStore):
         except NoSuchOmekaItemException:
             raise NoSuchObjectException
         return \
-            self._mapper.map_omeka_item(
+            self._resource_mapper.map_omeka_item(
                 collection_id=object_id.getCollectionId(),
                 endpoint_url=self._endpoint_url,
                 omeka_item=omeka_item,
@@ -34,7 +34,7 @@ class OmekaApiObjectStore(_OmekaObjectStore):
         omeka_items = self.__api_client.get_all_items(collection=int(collection_id.getUnqualifiedCollectionId()))
         for omeka_item in omeka_items:
             objects.append(
-                self._mapper.map_omeka_item(
+                self._resource_mapper.map_omeka_item(
                     collection_id=collection_id,
                     endpoint_url=self._endpoint_url,
                     omeka_item=omeka_item,

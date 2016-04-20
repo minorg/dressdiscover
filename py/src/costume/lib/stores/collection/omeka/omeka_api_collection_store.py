@@ -21,7 +21,7 @@ class OmekaApiCollectionStore(_OmekaCollectionStore):
         except NoSuchOmekaCollectionException:
             raise NoSuchCollectionException
         return \
-            self._mapper.map_omeka_collection(
+            self._resource_mapper.map_omeka_collection(
                 collection_store_uri=self._uri,
                 institution_id=collectionId.getInstitutionId(),
                 omeka_collection=omeka_collection,
@@ -29,7 +29,7 @@ class OmekaApiCollectionStore(_OmekaCollectionStore):
 
     def getCollectionsByInstitutionId(self, institutionId, logger, logMarker):
         omeka_collections = self.__api_client.get_all_collections()
-        return ImmutableList.copyOf(self._mapper.map_omeka_collection(
+        return ImmutableList.copyOf(self._resource_mapper.map_omeka_collection(
                                         collection_store_uri=self._uri,
                                         institution_id=institutionId,
                                         omeka_collection=omeka_collection,

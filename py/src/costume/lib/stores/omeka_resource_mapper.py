@@ -6,6 +6,8 @@ from com.google.common.primitives import UnsignedInteger
 from net.lab1318.costume.api.models import VocabRef, Vocab
 from net.lab1318.costume.api.models.agent import AgentSet, Agent, AgentName, \
     AgentNameType, AgentRole
+from net.lab1318.costume.api.models.collection import CollectionId, Collection, \
+    CollectionEntry
 from net.lab1318.costume.api.models.cultural_context import CulturalContextSet
 from net.lab1318.costume.api.models.date import DateType, DateBound, DateSet, \
     Date
@@ -36,7 +38,7 @@ from costume.lib.stores.object.omeka.dcmi_types import DCMI_TYPES, \
     DCMI_TYPES_BASE_URL
 
 
-class OmekaItemToObjectMapper(object):
+class OmekaResourceMapper(object):
     class _ObjectBuilder(object):
         def __init__(
             self,
@@ -208,6 +210,30 @@ class OmekaItemToObjectMapper(object):
         self.__square_thumbnail_height_px = square_thumbnail_height_px
         self.__square_thumbnail_width_px = square_thumbnail_width_px
         self.__vocabulary_used = {}
+
+    def map_omeka_collection(self, collection_store_uri, institution_id, omeka_collection):
+        collection_id = CollectionId.parse(str(institution_id) + '/' + str(omeka_collection.id))
+
+        collection_builder = Collection.Builder()
+        collection_builder.setInstitutionId(institution_id)
+
+        for element_text in omeka_collection.element_texts:
+            if len(element_text.text) == 0:
+                continue
+
+            if element_text.element_set.name == 'Dublin Core':
+                if element_text.element.name == 'Contributor':
+                    pass
+                elif element_text.element.name == 'Description':
+                    collection_builder.setDescription(element_text.text)
+                elif element_text.element.name == 'Title':
+                    collection_builder.setTitle(element_text.text)
+
+        collection_builder.setObjectStoreUri(collection_store_uri)
+
+        collection = collection_builder.build()
+
+        return CollectionEntry(collection_id, collection)
 
     def map_omeka_item(self, collection_id, endpoint_url, omeka_item, omeka_item_files):
         object_id = ObjectId.parse(str(collection_id) + '/' + str(omeka_item.id))

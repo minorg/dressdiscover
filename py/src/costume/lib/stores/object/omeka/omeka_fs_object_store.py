@@ -21,7 +21,7 @@ class OmekaFsObjectStore(_OmekaObjectStore):
         for omeka_item in self.__get_omeka_items(collection_id=object_id.getCollectionId()):
             if str(omeka_item.id) == str(object_id.getUnqualifiedObjectId()):
                 return \
-                    self._mapper.map_omeka_item(
+                    self._resource_mapper.map_omeka_item(
                         collection_id=object_id.getCollectionId(),
                         endpoint_url=self._endpoint_url,
                         omeka_item=omeka_item,
@@ -33,7 +33,7 @@ class OmekaFsObjectStore(_OmekaObjectStore):
         objects = []
         for omeka_item in self.__get_omeka_items(collection_id=collection_id):
             objects.append(
-                self._mapper.map_omeka_item(
+                self._resource_mapper.map_omeka_item(
                     collection_id=collection_id,
                     endpoint_url=self._endpoint_url,
                     omeka_item=omeka_item,
