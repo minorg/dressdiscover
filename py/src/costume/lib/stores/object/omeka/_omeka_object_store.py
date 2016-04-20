@@ -4,10 +4,16 @@ from costume.lib.stores.object.omeka.omeka_item_to_object_mapper import OmekaIte
 
 
 class _OmekaObjectStore(ObjectStore):
-    def __init__(self, endpoint_url, uri, mapper=None):
+    def __init__(self, endpoint_url, properties, uri, mapper=None):
         self.__endpoint_url = endpoint_url
         if mapper is None:
             mapper = OmekaItemToObjectMapper()
+        elif isinstance(mapper, basestring):
+            mapper_class_qname_split = mapper.split('.')
+            mapper_class = __import__('.'.join(mapper_class_qname_split[:-1]))
+            for component in mapper_class_qname_split[1:]:
+                mapper_class = getattr(mapper_class, component)
+            mapper = mapper_class()
         self.__mapper = mapper
         self.__uri = uri
 

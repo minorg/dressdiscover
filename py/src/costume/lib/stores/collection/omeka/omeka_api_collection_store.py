@@ -2,11 +2,15 @@ from com.google.common.collect import ImmutableList
 
 from costume.api.services.collection.no_such_collection_exception import NoSuchCollectionException
 from costume.lib.stores.collection.omeka._omeka_collection_store import _OmekaCollectionStore
+from costume.lib.stores.collection.py_collection_store_factory import PyCollectionStoreFactory
+from net.lab1318.costume.lib.python import PythonApi
 from yomeka.api.no_such_omeka_collection_exception import NoSuchOmekaCollectionException
 from yomeka.client.omeka_rest_api_client import OmekaRestApiClient
 
 
 class OmekaApiCollectionStore(_OmekaCollectionStore):
+    URI_SCHEME = 'omekaapi'
+
     def __init__(self, api_key, **kwds):
         _OmekaCollectionStore.__init__(self, **kwds)
         self.__api_client = OmekaRestApiClient(api_key=api_key, endpoint_url='http://' + str(self._uri.getAuthority().get()) + (self._uri.getPath().get() if self._uri.getPath().isPresent() else ''))
@@ -31,3 +35,5 @@ class OmekaApiCollectionStore(_OmekaCollectionStore):
                                         omeka_collection=omeka_collection,
                                     )
                                     for omeka_collection in omeka_collections)
+
+PythonApi.getInstance().getCollectionStoreFactoryRegistry().registerCollectionStoreFactory(PyCollectionStoreFactory(OmekaApiCollectionStore), OmekaApiCollectionStore.URI_SCHEME)

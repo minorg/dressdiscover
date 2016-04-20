@@ -1,13 +1,18 @@
 import json
 from os.path import os
 
-from costume.lib.stores.object.omeka._omeka_object_store import _OmekaObjectStore
-from yomeka.client.omeka_json_parser import OmekaJsonParser
-from net.lab1318.costume.api.services.object import NoSuchObjectException
 from com.google.common.collect import ImmutableList
+from net.lab1318.costume.api.services.object import NoSuchObjectException
+
+from costume.lib.stores.object.omeka._omeka_object_store import _OmekaObjectStore
+from costume.lib.stores.object.py_object_store_factory import PyObjectStoreFactory
+from net.lab1318.costume.lib.python import PythonApi
+from yomeka.client.omeka_json_parser import OmekaJsonParser
 
 
 class OmekaFsObjectStore(_OmekaObjectStore):
+    URI_SCHEME = 'omekafs'
+
     def __init__(self, *args, **kwds):
         _OmekaObjectStore.__init__(self, *args, **kwds)
         self.__data_dir_path = self._uri.path.get()[1:].replace('/', os.path.sep)
@@ -38,7 +43,7 @@ class OmekaFsObjectStore(_OmekaObjectStore):
         return ImmutableList.copyOf(objects)
 
     def __get_omeka_item_files(self, institution_id, omeka_item):
-        files_dir_path = os.path.join(self.__data_dir_path, 'extracted', str(institution_id), 'files_by_item_id', str(omeka_item.id))
+        files_dir_path = os.path.join(self.__data_dir_path, str(institution_id), 'files_by_item_id', str(omeka_item.id))
         if not os.path.isdir(files_dir_path):
             return tuple()
         omeka_item_files = []
@@ -54,6 +59,8 @@ class OmekaFsObjectStore(_OmekaObjectStore):
         return tuple(omeka_item_files)
 
     def __get_omeka_items(self, collection_id):
-        items_file_path = os.path.join(self.__data_dir_path, 'extracted', str(collection_id.getInstitutionId()), 'collection', str(collection_id.getUnqualifiedCollectionId()), 'items.json')
+        items_file_path = os.path.join(self.__data_dir_path, str(collection_id.getInstitutionId()), 'collection', str(collection_id.getUnqualifiedCollectionId()), 'items.json')
         with open(items_file_path) as f:
             return OmekaJsonParser().parse_item_dicts(json.loads(f.read()))
+
+PythonApi.getInstance().getObjectStoreFactoryRegistry().registerObjectStoreFactory(PyObjectStoreFactory(OmekaFsObjectStore), OmekaFsObjectStore.URI_SCHEME)
