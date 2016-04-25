@@ -97,7 +97,7 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
                                 .build()
                         )
                 else:
-                    self.__logger.warn("item %d has different numbers of closure placements and closure types: %d vs. %d", self.__omeka_item_id, len(self.closure_placements), len(self.closure_types))
+                    self.__logger.warn("item %d has different numbers of closure placements and closure types: %d vs. %d", self.omeka_item.id, len(self.closure_placements), len(self.closure_types))
                 if len(closures) > 0:
                     self._object_builder.setClosures(ClosureSet.builder().setElements(ImmutableList.copyOf(closures)).build())
             if len(self.component_builders_by_letter) > 0:
@@ -110,9 +110,9 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
                     component = component_builder.build()
                     components.append(component)
                 for letter in self.structures_by_component_letter.iterkeys():
-                    self.__logger.warn("structure(s) specified for unknown component %s on item %d", letter, self.__omeka_item_id)
+                    self.__logger.warn("structure(s) specified for unknown component %s on item %d", letter, self.omeka_item.id)
                 for letter in self.structures_by_extent.iterkeys():
-                    self.__logger.warn("structure(s) specified for unknown extent %s on item %d", letter, self.__omeka_item_id)
+                    self.__logger.warn("structure(s) specified for unknown extent %s on item %d", letter, self.omeka_item.id)
                 self._object_builder.setComponents(ComponentSet.builder().setElements(ImmutableList.copyOf(components)).build())
             if len(self.colors) > 0:
                 self._object_builder.setColors(ColorSet.builder().setElements(ImmutableList.copyOf(self.colors)).build())
@@ -121,16 +121,18 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
 
             return OmekaResourceMapper._ObjectBuilder.build(self)
 
-    def map_omeka_item(self, *args, **kwds):
+    def __init__(self, **kwds):
+        OmekaResourceMapper.__init__(self, **kwds)
         self.__structure_counts_by_omeka_item_id = Counter()
 
-        OmekaResourceMapper.map_omeka_item(self, *args, **kwds)
-
-        print "Omeka items with most structure:"
-        structure_count_items = list(self.__structure_counts_by_omeka_item_id.items())
-        structure_count_items.sort(lambda left, right: -1 * cmp(left[1], right[1]))
-        for structure_count_item in structure_count_items:
-            print "%d,%d" % structure_count_item
+#     def map_omeka_item(self, *args, **kwds):
+#         OmekaResourceMapper.map_omeka_item(self, *args, **kwds)
+#
+#         print "Omeka items with most structure:"
+#         structure_count_items = list(self.__structure_counts_by_omeka_item_id.items())
+#         structure_count_items.sort(lambda left, right: -1 * cmp(left[1], right[1]))
+#         for structure_count_item in structure_count_items:
+#             print "%d,%d" % structure_count_item
 
     # Components
     def _map_omeka_item_element_itm_a(self, **kwds):
@@ -309,32 +311,32 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
         elif text == 'worn in':
             object_builder.dc_date_builder.setType(DateType.PERFORMANCE)
         else:
-            self._logger.warn("item %d in collection %d has unrecognized Date Certainty '%s'", object_builder.omeka_item.id, object_builder.omeka_collection_id, text)
+            self._logger.warn("item %d in has unrecognized Date Certainty '%s'", object_builder.omeka_item.id, text)
         self._update_vocabulary_used('Item Type Metadata', 'Date Certainty', text)
 
     def _map_omeka_item_element_itm_date_earliest(self, object_builder, text):
         earliest_date = self._parse_date(text)
-        if object_builder.dc_date_builder.earliest_date.isPresent():
+        if object_builder.dc_date_builder.earliestDate is not None:
             self._logger.info(
                 "replacing item %d's earliest date (%s) from Date with Date Earliest '%s' = %s",
                 object_builder.omeka_item.id,
-                object_builder.dc_date_builder.earliest_date,
+                object_builder.dc_date_builder.earliestDate,
                 text,
                 earliest_date
             )
-        object_builder.dc_date_builder.earliest_date = earliest_date
+        object_builder.dc_date_builder.earliestDate = earliest_date
 
     def _map_omeka_item_element_itm_date_latest(self, object_builder, text):
         latest_date = self._parse_date(text)
-        if object_builder.dc_date_builder.latest_date.isPresent():
+        if object_builder.dc_date_builder.latestDate is not None:
             self._logger.info(
                 "replacing item %d's latest date (%s) from Date with Date Earliest '%s' = %s",
                 object_builder.omeka_item.id,
-                object_builder.dc_date_builder.latest_date,
+                object_builder.dc_date_builder.latestDate,
                 text,
                 latest_date
             )
-        object_builder.dc_date_builder.latest_date = latest_date
+        object_builder.dc_date_builder.latestDate = latest_date
 
     def _map_omeka_item_element_itm_description(self, object_builder, text):
         object_builder.descriptions.append(
@@ -431,7 +433,7 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
         else:
             raise NotImplementedError(text)
         if object_builder.gender.isPresent():
-            assert object_builder.gender.get() == gender, "%s vs. %s" % (object_builder.gender, gender)
+            assert object_builder.gender.get() == gender, "%s vs. %s" % (object_builder.gender.get(), gender)
         object_builder.setGender(gender)
         self._update_vocabulary_used('Item Type Metadata', 'Gender', text)
 
@@ -486,7 +488,7 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
             self._logger.warn("unparseable quantity: %s", text)
             return
         if object_builder.quantity.isPresent():
-            assert object_builder.quantity.get() == quantity, "%d vs. %d" % (object_builder.quantity, quantity)
+            assert object_builder.quantity.get().intValue() == quantity, "%d vs. %d" % (object_builder.quantity.get().intValue(), quantity)
         object_builder.setQuantity(UnsignedInteger.valueOf(quantity))
 
     def _map_omeka_item_element_itm_references(self, object_builder, text):
@@ -577,34 +579,34 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
                 object_builder.structures_by_component_letter.setdefault(letter, []).append(self._parse_structure(object_builder=object_builder, text=structure_text, type_=type_))
 
     def _map_omeka_item_element_itm_structure_cut(self, **kwds):
-        self.__map_omeka_item_element_itm_structure(type_=StructureType(text='Structure Cut', vocab_ref=self._COSTUME_CORE_VOCAB_REF), **kwds)
+        self.__map_omeka_item_element_itm_structure(type_=StructureType.Builder().setText('Structure Cut').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
 
     def _map_omeka_item_element_itm_structure_hem(self, **kwds):
-        self.__map_omeka_item_element_itm_structure(type_=StructureType(text='Structure Lining', vocab_ref=self._COSTUME_CORE_VOCAB_REF), **kwds)
+        self.__map_omeka_item_element_itm_structure(type_=StructureType.Builder().setText('Structure Lining').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
 
     def _map_omeka_item_element_itm_structure_lining(self, **kwds):
-        self.__map_omeka_item_element_itm_structure(type_=StructureType(text='Structure Lining', vocab_ref=self._COSTUME_CORE_VOCAB_REF), **kwds)
+        self.__map_omeka_item_element_itm_structure(type_=StructureType.Builder().setText('Structure Lining').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
 
     def _map_omeka_item_element_itm_structure_neckline(self, **kwds):
-        self.__map_omeka_item_element_itm_structure(type_=StructureType(text='Structure Neckline', vocab_ref=self._COSTUME_CORE_VOCAB_REF), **kwds)
+        self.__map_omeka_item_element_itm_structure(type_=StructureType.Builder().setText('Structure Neckline').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
 
     def _map_omeka_item_element_itm_structure_pants(self, **kwds):
-        self.__map_omeka_item_element_itm_structure(type_=StructureType(text='Structure Pants', vocab_ref=self._COSTUME_CORE_VOCAB_REF), **kwds)
+        self.__map_omeka_item_element_itm_structure(type_=StructureType.Builder().setText('Structure Pants').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
 
     def _map_omeka_item_element_itm_structure_silhouette(self, **kwds):
-        self.__map_omeka_item_element_itm_structure(type_=StructureType(text='Overall Silhouette', vocab_ref=self._COSTUME_CORE_VOCAB_REF), **kwds)
+        self.__map_omeka_item_element_itm_structure(type_=StructureType.Builder().setText('Overall Silhouette').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
 
     def _map_omeka_item_element_itm_structure_skirt(self, **kwds):
-        self.__map_omeka_item_element_itm_structure(type_=StructureType(text='Structure Skirt', vocab_ref=self._COSTUME_CORE_VOCAB_REF), **kwds)
+        self.__map_omeka_item_element_itm_structure(type_=StructureType.Builder().setText('Structure Skirt').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
 
     def _map_omeka_item_element_itm_structure_sleeves(self, **kwds):
-        self.__map_omeka_item_element_itm_structure(type_=StructureType(text='Structure Sleeves', vocab_ref=self._COSTUME_CORE_VOCAB_REF), **kwds)
+        self.__map_omeka_item_element_itm_structure(type_=StructureType.Builder().setText('Structure Sleeves').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
 
     def _map_omeka_item_element_itm_structure_torso(self, **kwds):
-        self.__map_omeka_item_element_itm_structure(type_=StructureType(text='Structure Torso', vocab_ref=self._COSTUME_CORE_VOCAB_REF), **kwds)
+        self.__map_omeka_item_element_itm_structure(type_=StructureType.Builder().setText('Structure Torso').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
 
     def _map_omeka_item_element_itm_structure_waist(self, **kwds):
-        self.__map_omeka_item_element_itm_structure(type_=StructureType(text='Structure Waist', vocab_ref=self._COSTUME_CORE_VOCAB_REF), **kwds)
+        self.__map_omeka_item_element_itm_structure(type_=StructureType.Builder().setText('Structure Waist').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
 
     def _map_omeka_item_element_itm_suffix(self, object_builder, text):
         pass # Accession number suffix
@@ -631,7 +633,7 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
         pass # ObjectVR URL
 
     def _map_omeka_item_element_itm_view_type(self, object_builder, text):
-        assert object_builder.view_type is None
+        assert not object_builder.viewType.isPresent()
         try:
             object_builder.setViewType(getattr(ViewType, text.upper().replace(' ', '_')))
         except AttributeError:

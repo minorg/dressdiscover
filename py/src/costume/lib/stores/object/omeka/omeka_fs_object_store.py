@@ -32,14 +32,17 @@ class OmekaFsObjectStore(_OmekaObjectStore):
     def getObjectsByCollectionId(self, collection_id, logger, log_marker):
         objects = []
         for omeka_item in self.__get_omeka_items(collection_id=collection_id):
-            objects.append(
-                self._resource_mapper.map_omeka_item(
-                    collection_id=collection_id,
-                    endpoint_url=self._endpoint_url,
-                    omeka_item=omeka_item,
-                    omeka_item_files=self.__get_omeka_item_files(institution_id=collection_id.getInstitutionId(), omeka_item=omeka_item)
+            try:
+                objects.append(
+                    self._resource_mapper.map_omeka_item(
+                        collection_id=collection_id,
+                        endpoint_url=self._endpoint_url,
+                        omeka_item=omeka_item,
+                        omeka_item_files=self.__get_omeka_item_files(institution_id=collection_id.getInstitutionId(), omeka_item=omeka_item)
+                    )
                 )
-            )
+            except ValueError, e:
+                logger.debug(log_marker, str(e))
         return ImmutableList.copyOf(objects)
 
     def __get_omeka_item_files(self, institution_id, omeka_item):
