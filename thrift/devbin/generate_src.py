@@ -100,9 +100,6 @@ class Main(thryft.main.Main):
                     os.path.join(ROOT_DIR_PATH, 'py', 'src', 'thryft')
                 )
 
-                costume_core_controlled_vocabularies = self.__generate_costume_core_py()
-                self.__generate_costume_core_java(costume_core_controlled_vocabularies)
-
             for thrift_subdir_name in ('api', 'gui', 'lib', 'server'):
                 thrift_src_dir_path = os.path.join(thrift_src_root_dir_path, 'costume', thrift_subdir_name)
                 if not os.path.isdir(thrift_src_dir_path):
@@ -221,82 +218,6 @@ class Main(thryft.main.Main):
                         out=os.path.join(ROOT_DIR_PATH, 'py', 'src'),
                         **compile_kwds
                     )
-
-    def __generate_costume_core_java(self, costume_core_controlled_vocabularies):
-        put_features = []
-        INCLUDE_COSTUME_CORE_FEATURE_NAMES = \
-            (
-                "Closure Type",
-                "Material",
-                "Structure Cut",
-                "Structure Neckline",
-                "Structure Skirt",
-                "Structure Sleeves",
-                "Structure Torso",
-                "Structure Waist",
-                "Technique"
-            )
-        for feature_name in sorted(costume_core_controlled_vocabularies.iterkeys()):
-            if feature_name in EXCLUDE_COSTUME_CORE_FEATURE_NAMES:
-                continue
-            elif feature_name not in INCLUDE_COSTUME_CORE_FEATURE_NAMES:
-                continue
-
-            for feature_value in sorted(costume_core_controlled_vocabularies[feature_name].keys()):
-                put_features.append(""".put("%(feature_name)s", "%(feature_value)s")""" % locals())
-        put_features = ''.join(put_features)
-
-        out_dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'java', 'gui', 'src', 'gen', 'java', 'net', 'lab1318', 'costume', 'gui', 'models', 'wizard'))
-        if not os.path.isdir(out_dir_path):
-            os.makedirs(out_dir_path)
-        out_file_path = os.path.join(out_dir_path, 'CostumeCore.java')
-
-        with open(out_file_path, 'w+b') as f:
-            f.write("""\
-package net.lab1318.costume.gui.models.wizard;
-
-import com.google.common.collect.ImmutableMultimap;
-
-final class CostumeCore {
-    public final static ImmutableMultimap<String, String> FEATURES = ImmutableMultimap.<String, String> builder()%(put_features)s.build();
-}
-""" % locals())
-
-    def __generate_costume_core_py(self):
-        csv_file_name = 'Costume Core Controlled Vocabularies - 2nd draft, Jan 2013.csv'
-        csv_file_path = os.path.join(os.path.dirname(__file__), '..', '..', 'devdata', csv_file_name)
-        assert os.path.exists(csv_file_path), csv_file_path
-        out_file_path = os.path.join(os.path.dirname(__file__), '..', '..', 'py', 'src', 'costume', 'etl', 'costume_core', 'costume_core_controlled_vocabularies.py')
-
-        out = {}
-        header_row = {}
-        with open(csv_file_path, 'rb') as f:
-            for row_i, row in enumerate(csv.reader(f)):
-                for column_i, column in enumerate(row):
-                    if column_i == 0:
-                        continue
-                    column = column.strip()
-                    if len(column) == 0:
-                        continue
-
-                    if row_i == 0:
-                        header_row[column_i] = column
-                        out[column] = {}
-                        continue
-                    elif row_i == 1:
-                        # Description of the column
-                        continue
-                    elif row_i == 2:
-                        # Source of the vocabulary
-                        continue
-
-                    out[header_row[column_i]][column] = None
-
-        with open(out_file_path, 'w+b') as f:
-            f.write('COSTUME_CORE_CONTROLLED_VOCABULARIES = ' + pformat(out))
-
-        return out
-
 
 assert __name__ == '__main__'
 Main.main()
