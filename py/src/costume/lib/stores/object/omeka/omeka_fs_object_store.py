@@ -20,13 +20,15 @@ class OmekaFsObjectStore(_OmekaObjectStore):
     def getObjectById(self, logger, log_marker, object_id):
         for omeka_item in self.__get_omeka_items(collection_id=object_id.getCollectionId()):
             if str(omeka_item.id) == str(object_id.getUnqualifiedObjectId()):
-                return \
-                    self._resource_mapper.map_omeka_item(
-                        collection_id=object_id.getCollectionId(),
-                        endpoint_url=self._endpoint_url,
-                        omeka_item=omeka_item,
-                        omeka_item_files=self.__get_omeka_item_files(institution_id=object_id.getInstitutionId(), omeka_item=omeka_item)
-                    )
+                try:
+                    return \
+                        self._map_omeka_item(
+                            collection_id=object_id.getCollectionId(),
+                            omeka_item=omeka_item,
+                            omeka_item_files=self.__get_omeka_item_files(institution_id=object_id.getInstitutionId(), omeka_item=omeka_item)
+                        )
+                except ValueError:
+                    raise NoSuchObjectException
         raise NoSuchObjectException
 
     def getObjectsByCollectionId(self, collection_id, logger, log_marker):
@@ -34,9 +36,8 @@ class OmekaFsObjectStore(_OmekaObjectStore):
         for omeka_item in self.__get_omeka_items(collection_id=collection_id):
             try:
                 objects.append(
-                    self._resource_mapper.map_omeka_item(
+                    self._map_omeka_item(
                         collection_id=collection_id,
-                        endpoint_url=self._endpoint_url,
                         omeka_item=omeka_item,
                         omeka_item_files=self.__get_omeka_item_files(institution_id=collection_id.getInstitutionId(), omeka_item=omeka_item)
                     )

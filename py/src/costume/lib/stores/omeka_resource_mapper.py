@@ -204,11 +204,9 @@ class OmekaResourceMapper(object):
         def omeka_item(self):
             return self.__omeka_item
 
-    def __init__(self, square_thumbnail_height_px=150, square_thumbnail_width_px=150):
+    def __init__(self):
         object.__init__(self)
         self._logger = logging.getLogger(self.__class__.__module__ + '.' + self.__class__.__name__)
-        self.__square_thumbnail_height_px = square_thumbnail_height_px
-        self.__square_thumbnail_width_px = square_thumbnail_width_px
         self.__vocabulary_used = {}
 
     def map_omeka_collection(self, collection_store_uri, institution_id, omeka_collection):
@@ -235,7 +233,7 @@ class OmekaResourceMapper(object):
 
         return CollectionEntry(collection_id, collection)
 
-    def map_omeka_item(self, collection_id, endpoint_url, omeka_item, omeka_item_files):
+    def map_omeka_item(self, collection_id, endpoint_url, omeka_item, omeka_item_files, square_thumbnail_height_px, square_thumbnail_width_px):
         object_id = ObjectId.parse(str(collection_id) + '/' + str(omeka_item.id))
 
         object_builder = \
@@ -261,7 +259,9 @@ class OmekaResourceMapper(object):
         self._map_omeka_item_files(
             object_builder=object_builder,
             omeka_item=omeka_item,
-            omeka_item_files=omeka_item_files
+            omeka_item_files=omeka_item_files,
+            square_thumbnail_height_px=square_thumbnail_height_px,
+            square_thumbnail_width_px=square_thumbnail_width_px
         )
 
         if len(object_builder.work_types) == 0 and omeka_item.item_type is not None:
@@ -477,7 +477,9 @@ class OmekaResourceMapper(object):
         self,
         object_builder,
         omeka_item,
-        omeka_item_files
+        omeka_item_files,
+        square_thumbnail_height_px,
+        square_thumbnail_width_px
     ):
         if omeka_item.files_count is None or omeka_item.files_count == 0:
             return
@@ -508,9 +510,9 @@ class OmekaResourceMapper(object):
             if omeka_file.file_urls.square_thumbnail is not None:
                 image_builder.setSquareThumbnail(
                     ImageVersion.builder()
-                        .setHeightPx(UnsignedInteger.valueOf(self.__square_thumbnail_height_px))
+                        .setHeightPx(UnsignedInteger.valueOf(square_thumbnail_height_px))
                         .setUrl(Url.parse(omeka_file.file_urls.fullsize))
-                        .setWidthPx(UnsignedInteger.valueOf(self.__square_thumbnail_width_px))
+                        .setWidthPx(UnsignedInteger.valueOf(square_thumbnail_width_px))
                         .build()
                 )
             if omeka_file.file_urls.thumbnail is not None:

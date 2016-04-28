@@ -1,8 +1,6 @@
 import json
 from os.path import os
 
-from com.google.common.collect import ImmutableList
-
 from costume.api.services.collection.no_such_collection_exception import NoSuchCollectionException
 from costume.lib.stores.collection.omeka._omeka_collection_store import _OmekaCollectionStore
 from costume.lib.stores.collection.py_collection_store_factory import PyCollectionStoreFactory
@@ -24,12 +22,10 @@ class OmekaFsCollectionStore(_OmekaCollectionStore):
         data_dir_path = self._uri.path.get()[1:].replace('/', os.path.sep)
         file_path = os.path.join(data_dir_path, str(institutionId), 'collections.json')
         with open(file_path) as f:
-            omeka_collections = OmekaJsonParser().parse_collection_dicts(json.loads(f.read()))
-            return ImmutableList.copyOf(self._resource_mapper.map_omeka_collection(
-                                            collection_store_uri=self._uri,
-                                            institution_id=institutionId,
-                                            omeka_collection=omeka_collection,
-                                        )
-                                        for omeka_collection in omeka_collections)
+            return \
+                self._map_omeka_collections(
+                    institution_id=institutionId,
+                    omeka_collections=OmekaJsonParser().parse_collection_dicts(json.loads(f.read()))
+                )
 
 PythonApi.getInstance().getCollectionStoreFactoryRegistry().registerCollectionStoreFactory(PyCollectionStoreFactory(OmekaFsCollectionStore), OmekaFsCollectionStore.URI_SCHEME)
