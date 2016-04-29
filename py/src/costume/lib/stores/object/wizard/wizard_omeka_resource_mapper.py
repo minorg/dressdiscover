@@ -19,15 +19,48 @@ from costume.lib.stores.omeka_resource_mapper import OmekaResourceMapper
 
 
 class WizardOmekaResourceMapper(OmekaResourceMapper):
-    OMEKA_COLLECTIONS = {
-        'Closure Type': 18,
-        'Neckline': 19,
-        'Sleeve Type': 14
-    }
+    OMEKA_COLLECTIONS = \
+{
+ # u'14': 27,
+ # u'Border Design Series from the Rexford Costume Research Archive': 11,
+ u'Closure Placement': 17,
+ u'Closure Type': 18,
+ u'Components': 16,
+ #u'Costume Core Vocabulary Terms': 13,
+ #u'Costume Objects': 1,
+ #u'Costume Objects Represented in the Rexford Costume Research Archive': 6,
+ #u'Costumes in the Smith College Historic Costume Collection': 9,
+ #u'Essays': 4,
+ u'Hem': 31,
+ u'Main Color': 15,
+ u'Material': 23,
+ u'Neckline': 19,
+ #u'Notebook Series from the Rexford Costume Research Archive': 5,
+ #u'Research Materials': 2,
+ #u'Shawls Represented in the Rexford Costume Research Archive': 7,
+ #u'Shawls in the Smith College Historic Costume Collection': 8,
+ u'Skirt': 22,
+ u'Sleeve Type': 14,
+ u'Technique': 24,
+ u'Torso': 20,
+ u'Waist': 21,
+ #u'Wrapper Series from the Rexford Costume Research Archive': 10,
+ #u'Wrappers from the Smith College Historic Costume Collection': 12
+ }
 
     OMEKA_ENDPOINT_URL = 'http://historicdress.org/omeka2/'
 
+#     def __init__(self, *args, **kwds):
+#         OmekaResourceMapper.__init__(self, *args, **kwds)
+#         self.__omeka_collections = {}
+
     def map_omeka_collection(self, collection_store_uri, institution_id, omeka_collection):
+#         for element_text in omeka_collection.element_texts:
+#             if len(element_text.text) == 0:
+#                 continue
+#             if element_text.element_set.name == 'Dublin Core' and element_text.element.name == 'Title':
+#                 self.__omeka_collections[element_text.text.strip()] = omeka_collection.id
+#         import pprint; pprint.pprint(self.__omeka_collections)
         if not omeka_collection.id in self.OMEKA_COLLECTIONS.values():
             return
         collection_entry = OmekaResourceMapper.map_omeka_collection(self, collection_store_uri, institution_id, omeka_collection)
@@ -37,6 +70,14 @@ class WizardOmekaResourceMapper(OmekaResourceMapper):
         object_id = ObjectId.parse(str(collection_id) + '/' + str(omeka_item.id))
 
         vocab_ref = VocabRef.Builder().setVocab(Vocab.COSTUME_CORE).build()
+
+        feature_name = None
+        omeka_collection_id = int(collection_id.getUnqualifiedCollectionId())
+        for item in self.OMEKA_COLLECTIONS.iteritems():
+            if item[1] == omeka_collection_id:
+                feature_name = item[0]
+                break
+        assert feature_name is not None
 
         feature_value = None
         item_image_credit_line = item_image_license = None
@@ -67,7 +108,7 @@ class WizardOmekaResourceMapper(OmekaResourceMapper):
                             .setText(feature_value)
                             .setType(
                                 StructureType.Builder()
-                                    .setText(feature_value)
+                                    .setText(feature_name)
                                     .setVocabRef(vocab_ref)
                                     .build()
                             )
