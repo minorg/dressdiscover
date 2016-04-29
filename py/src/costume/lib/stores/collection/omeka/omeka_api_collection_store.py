@@ -1,5 +1,3 @@
-from com.google.common.collect import ImmutableList
-
 from costume.api.services.collection.no_such_collection_exception import NoSuchCollectionException
 from costume.lib.stores.collection.omeka._omeka_collection_store import _OmekaCollectionStore
 from costume.lib.stores.collection.py_collection_store_factory import PyCollectionStoreFactory
@@ -11,29 +9,23 @@ from yomeka.client.omeka_rest_api_client import OmekaRestApiClient
 class OmekaApiCollectionStore(_OmekaCollectionStore):
     URI_SCHEME = 'omekaapi'
 
-    def __init__(self, api_key, **kwds):
-        _OmekaCollectionStore.__init__(self, **kwds)
-        self.__api_client = OmekaRestApiClient(api_key=api_key, endpoint_url='http://' + str(self._uri.getAuthority().get()) + (self._uri.getPath().get() if self._uri.getPath().isPresent() else ''))
+    def __init__(self, api_key, uri, **kwds):
+        endpoint_url = 'http://' + str(uri.getAuthority().get()) + (uri.getPath().get() if uri.getPath().isPresent() else '')
+        _OmekaCollectionStore.__init__(self, endpoint_url=endpoint_url, uri=uri, **kwds)
+        self.__api_client = OmekaRestApiClient(api_key=api_key, endpoint_url=endpoint_url)
 
     def getCollectionById(self, collectionId, logger, logMarker):
         try:
             omeka_collection = self.__api_client.get_collection(int(collectionId.getUnqualifiedCollectionId()))
         except NoSuchOmekaCollectionException:
             raise NoSuchCollectionException
-        return \
-            self._resource_mapper.map_omeka_collection(
-                collection_store_uri=self._uri,
-                institution_id=collectionId.getInstitutionId(),
-                omeka_collection=omeka_collection,
-            )
+        collection_entry = self._map_omeka_collection(institution_id=collectionId.getInstitutionId(), omeka_collection=omeka_collection)
+        if collection_entry is not None:
+            return collection_entry.model
+        else:
+            raise NoSuchCollectionException
 
     def getCollectionsByInstitutionId(self, institutionId, logger, logMarker):
-        omeka_collections = self.__api_client.get_all_collections()
-        return ImmutableList.copyOf(self._resource_mapper.map_omeka_collection(
-                                        collection_store_uri=self._uri,
-                                        institution_id=institutionId,
-                                        omeka_collection=omeka_collection,
-                                    )
-                                    for omeka_collection in omeka_collections)
+        return self._map_omeka_collections(institution_id=institutionId, omeka_collections=self.__api_client.get_all_collections())
 
 PythonApi.getInstance().getCollectionStoreFactoryRegistry().registerCollectionStoreFactory(PyCollectionStoreFactory(OmekaApiCollectionStore), OmekaApiCollectionStore.URI_SCHEME)
