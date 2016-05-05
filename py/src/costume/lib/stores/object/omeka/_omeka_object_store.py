@@ -4,7 +4,7 @@ from costume.lib.stores.omeka_resource_mapper import OmekaResourceMapper
 
 
 class _OmekaObjectStore(ObjectStore):
-    def __init__(self, endpoint_url, properties, uri, resource_mapper=None, square_thumbnail_height_px=150, square_thumbnail_width_px=150):
+    def __init__(self, endpoint_url, uri, resource_mapper=None, square_thumbnail_height_px=150, square_thumbnail_width_px=150, **kwds):
         self.__endpoint_url = endpoint_url
         if resource_mapper is None:
             resource_mapper = OmekaResourceMapper()
