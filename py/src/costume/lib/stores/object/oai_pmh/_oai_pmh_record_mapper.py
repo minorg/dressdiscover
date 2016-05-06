@@ -1,10 +1,12 @@
-from costume.api.models.object.object import Object
+import logging
+
+from net.lab1318.costume.api.models.object import Object
 
 
 class _OaiPmhRecordMapper(object):
     class _ObjectBuilder(object):
-        def __init__(self, record_identifier, **kwds):
-            self.__object_builder = Object.Builder(**kwds)
+        def __init__(self, collection_id, institution_id, record_identifier, **kwds):
+            self.__object_builder = Object.Builder().setCollectionId(collection_id).setInstitutionId(institution_id)
             self.__record_identifier = record_identifier
 
         def build(self):
@@ -17,6 +19,10 @@ class _OaiPmhRecordMapper(object):
         @property
         def record_identifier(self):
             return self.__record_identifier
+
+    def __init__(self):
+        object.__init__(self)
+        self._logger = logging.getLogger(self.__class__.__module__ + '.' + self.__class__.__name__)
 
     def map_oai_pmh_record(self, collection_id, record_etree):
         raise NotImplementedError

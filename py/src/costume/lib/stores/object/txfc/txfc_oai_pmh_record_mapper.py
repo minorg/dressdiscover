@@ -2,10 +2,14 @@ from os.path import os
 import urllib
 from xml.etree import ElementTree
 
+from com.google.common.base import Optional
+from com.google.common.collect import ImmutableList
+from com.google.common.primitives import UnsignedInteger
 from net.lab1318.costume.api.models import VocabRef, Vocab
 from net.lab1318.costume.api.models.agent import AgentSet, Agent, AgentRole, \
     AgentNameType, AgentName
-from net.lab1318.costume.api.models.date import DateType, DateSet, DateBound
+from net.lab1318.costume.api.models.date import DateType, DateSet, DateBound, \
+    Date
 from net.lab1318.costume.api.models.description import DescriptionSet, \
     DescriptionType, Description
 from net.lab1318.costume.api.models.image import Image, ImageVersion
@@ -19,8 +23,9 @@ from net.lab1318.costume.api.models.textref import TextrefSet, Textref, \
     TextrefName, TextrefNameType, TextrefRefid, TextrefRefidType
 from net.lab1318.costume.api.models.title import TitleSet, TitleType, Title
 from net.lab1318.costume.api.models.work_type import WorkTypeSet, WorkType
+from org.thryft.native_ import Uri, Url
 
-from costume.api.models.date.date import Date
+from costume.lib.models.date.date_parser import DateParser
 from costume.lib.stores.object.oai_pmh._oai_pmh_record_mapper import _OaiPmhRecordMapper
 from costume.lib.stores.object.omeka.dcmi_types import DCMI_TYPES_BASE_URL
 
@@ -28,6 +33,8 @@ from costume.lib.stores.object.omeka.dcmi_types import DCMI_TYPES_BASE_URL
 class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
     _RIGHTS_HOLDER = "University of North Texas"
     _UNTL_NS = '{http://digital2.library.unt.edu/untl/}'
+    _SQUARE_THUMBNAIL_HEIGHT_PX = UnsignedInteger.valueOf(75)
+    _SQUARE_THUMBNAIL_WIDTH_PX = UnsignedInteger.valueOf(75)
 
     class _ObjectBuilder(_OaiPmhRecordMapper._ObjectBuilder):
         def __init__(self, **kwds):
@@ -49,32 +56,32 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
             if self.start_date_bound is not None and self.end_date_bound is not None:
                 self.dates.append(
                     Date.Builder()
-                        .set_earliest_date(self.start_date_bound)
-                        .set_latest_date(self.end_date_bound)
-                        .set_type(DateType.CREATION)
+                        .setEarliestDate(self.start_date_bound)
+                        .setLatestDate(self.end_date_bound)
+                        .setType(DateType.CREATION)
                         .build()
                 )
 
             if len(self.agents) > 0:
-                self._object_builder.set_agents(AgentSet.Builder().set_elements(tuple(self.agents)).build())
+                self._object_builder.setAgents(AgentSet.Builder().setElements(ImmutableList.copyOf(self.agents)).build())
             if len(self.dates) > 0:
-                self._object_builder.set_dates(DateSet.Builder().set_elements(tuple(self.dates)).build())
+                self._object_builder.setDates(DateSet.Builder().setElements(ImmutableList.copyOf(self.dates)).build())
             if len(self.descriptions) > 0:
-                self._object_builder.set_descriptions(DescriptionSet.Builder().set_elements(tuple(self.descriptions)).build())
+                self._object_builder.setDescriptions(DescriptionSet.Builder().setElements(ImmutableList.copyOf(self.descriptions)).build())
             if len(self.images) > 0:
-                self._object_builder.set_images(tuple(self.images))
+                self._object_builder.setImages(ImmutableList.copyOf(self.images))
             if len(self.locations) > 0:
-                self._object_builder.set_locations(LocationSet.Builder().set_elements(tuple(self.locations)).build())
+                self._object_builder.setLocations(LocationSet.Builder().setElements(ImmutableList.copyOf(self.locations)).build())
             if len(self.rights) > 0:
-                self._object_builder.set_rights(RightsSet.Builder().set_elements(tuple(self.rights)).build())
+                self._object_builder.setRights(RightsSet.Builder().setElements(ImmutableList.copyOf(self.rights)).build())
             if len(self.subjects) > 0:
-                self._object_builder.set_subjects(SubjectSet.Builder().set_elements(tuple(self.subjects)).build())
+                self._object_builder.setSubjects(SubjectSet.Builder().setElements(ImmutableList.copyOf(self.subjects)).build())
             if len(self.textrefs) > 0:
-                self._object_builder.set_textrefs(TextrefSet.Builder().set_elements(tuple(self.textrefs)).build())
+                self._object_builder.setTextrefs(TextrefSet.Builder().setElements(ImmutableList.copyOf(self.textrefs)).build())
             if len(self.titles) > 0:
-                self._object_builder.set_titles(TitleSet.Builder().set_elements(tuple(self.titles)).build())
+                self._object_builder.setTitles(TitleSet.Builder().setElements(ImmutableList.copyOf(self.titles)).build())
             if len(self.work_types) > 0:
-                self._object_builder.set_work_types(WorkTypeSet.Builder().set_elements(tuple(self.work_types)).build())
+                self._object_builder.setWorkTypes(WorkTypeSet.Builder().setElements(ImmutableList.copyOf(self.work_types)).build())
             return self._object_builder.build()
 
     def __init__(self, *args, **kwds):
@@ -126,18 +133,18 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
         return ObjectEntry(object_id, object_builder.build())
 
     def __parse_date(self, text, circa=None):
-        date_bound_builder = DateBound.Builder().set_text(text)
+        date_bound_builder = DateBound.Builder().setText(text)
 
         if text[-1] == 'u':
-            date_bound_builder.set_circa(True)
+            date_bound_builder.setCirca(True)
             text = text[:-1] + '0'
         elif text[-1] == '~':
-            date_bound_builder.set_circa(True)
+            date_bound_builder.setCirca(True)
             text = text[:-1]
         elif circa is not None:
-            date_bound_builder.set_circa(circa)
+            date_bound_builder.setCirca(circa)
 
-        self._parse_certain_date(
+        DateParser.parse_certain_date(
             date_bound_builder=date_bound_builder,
             text=text
         )
@@ -176,7 +183,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
             earliest_date = latest_date = self.__parse_date(text, circa=circa)
             date_range = earliest_date, latest_date
 
-        if date_range[0].parsed_date_time is None or date_range[1].parsed_date_time is None:
+        if date_range[0].getParsedDateTime() is None or date_range[1].getParsedDateTime() is None:
             self._logger.warn("unable to parse date range '%s'", original_text)
         else:
             self._logger.debug("parsed date range '%s' from '%s'", date_range, original_text)
@@ -190,12 +197,12 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
             self._logger.warn("ignoring agent element without qualifier on record %s", object_builder.record_identifier)
             return
 
-        role = AgentRole.Builder().set_text(self.__agent_qualifiers[qualifier]).build()
-        agent_builder.set_role(role)
+        role = AgentRole.Builder().setText(self.__agent_qualifiers[qualifier]).build()
+        agent_builder.setRole(role)
 
         info = element.find(self._UNTL_NS + 'info')
         if info is not None and len(info.text) > 0:
-            agent_builder.attribution = info.text
+            agent_builder.setAttribution(info.text)
 
         name = element.find(self._UNTL_NS + 'name')
         if name is not None and len(name.text) > 0:
@@ -217,7 +224,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
         else:
             name_type = AgentNameType.OTHER
 
-        agent_builder.name = AgentName.Builder().set_text(name_text).set_type(name_type).build()
+        agent_builder.name = AgentName.Builder().setText(name_text).setType(name_type).build()
 
         object_builder.agents.append(agent_builder.build())
 
@@ -294,15 +301,15 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
 
             object_builder.locations.append(
                 Location.Builder()
-                    .set_names(tuple(
+                    .setNames(ImmutableList.copyOf(
                         LocationName.Builder()
-                            .set_extent(extent)
-                            .set_text(text)
-                            .set_type(LocationNameType.GEOGRAPHIC)
+                            .setExtent(extent)
+                            .setText(text)
+                            .setType(LocationNameType.GEOGRAPHIC)
                             .build()
                         for extent, text in location_names_by_extent.iteritems()
                     ))
-                    .set_type(LocationType.OTHER)
+                    .setType(LocationType.OTHER)
                     .build()
             )
         elif qualifier == 'sDate':
@@ -336,9 +343,9 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
         earliest_date, latest_date = self.__parse_date_range(text)
         object_builder.dates.append(
             Date.Builder()
-                .set_earliest_date(earliest_date)
-                .set_latest_date(latest_date)
-                .set_type(date_type)
+                .setEarliestDate(earliest_date)
+                .setLatestDate(latest_date)
+                .setType(date_type)
                 .build()
         )
 
@@ -359,8 +366,8 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
 
         object_builder.descriptions.append(
             Description.Builder()
-                .set_text(text)
-                .set_type(description_type)
+                .setText(text)
+                .setType(Optional.fromNullable(description_type))
                 .build()
         )
 
@@ -379,17 +386,17 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
         elif qualifier == 'itemURL':
             object_builder.textrefs.append(
                 Textref.Builder()
-                    .set_name(
+                    .setName(
                         TextrefName.Builder()
-                            .set_text("Item URL")
-                            .set_type(TextrefNameType.ELECTRONIC)
+                            .setText("Item URL")
+                            .setType(TextrefNameType.ELECTRONIC)
                             .build()
                     )
-                    .set_refid(
+                    .setRefid(
                         TextrefRefid.Builder()
-                            .set_href(text)
-                            .set_text(text)
-                            .set_type(TextrefRefidType.URI)
+                            .setHref(Url.parse(text))
+                            .setText(text)
+                            .setType(TextrefRefidType.URI)
                             .build()
                     )
                     .build()
@@ -397,26 +404,26 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
         elif qualifier == 'thumbnailURL':
             object_builder.images.append(
                 Image.Builder()
-                    .set_full_size(
+                    .setFullSize(
                         ImageVersion.Builder()
-                            .set_url("http://digital.library.unt.edu/ark:" + object_builder.record_identifier[len('info:ark'):] + '/m1/1/med_res/')
+                            .setUrl(Url.parse("http://digital.library.unt.edu/ark:" + object_builder.record_identifier[len('info:ark'):] + '/m1/1/med_res/'))
                             .build()
                     )
-                    .set_original(
+                    .setOriginal(
                         ImageVersion.Builder()
-                            .set_url("http://digital.library.unt.edu/ark:" + object_builder.record_identifier[len('info:ark'):] + '/m1/1/high_res/')
+                            .setUrl(Url.parse("http://digital.library.unt.edu/ark:" + object_builder.record_identifier[len('info:ark'):] + '/m1/1/high_res/'))
                             .build()
                     )
-                    .set_square_thumbnail(
+                    .setSquareThumbnail(
                         ImageVersion.Builder()
-                            .set_height_px(75)
-                            .set_url("http://digital.library.unt.edu/ark:" + object_builder.record_identifier[len('info:ark'):] + '/m1/1/square/')
-                            .set_width_px(75)
+                            .setHeightPx(self._SQUARE_THUMBNAIL_HEIGHT_PX)
+                            .setUrl(Url.parse("http://digital.library.unt.edu/ark:" + object_builder.record_identifier[len('info:ark'):] + '/m1/1/square/'))
+                            .setWidthPx(self._SQUARE_THUMBNAIL_WIDTH_PX)
                             .build()
                     )
-                    .set_thumbnail(
+                    .setThumbnail(
                         ImageVersion.Builder()
-                            .set_url(text)
+                            .setUrl(Url.parse(text))
                             .build()
                     )
                     .build()
@@ -457,15 +464,15 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
         if qualifier == 'digitalPreservation':
             object_builder.descriptions.append(
                 Description.Builder()
-                    .set_text(text)
-                    .set_type(DescriptionType.HISTORY)
+                    .setText(text)
+                    .setType(DescriptionType.HISTORY)
                     .build()
             )
         elif qualifier == 'display':
             object_builder.descriptions.append(
                 Description.Builder()
-                    .set_text(text)
-                    .set_type(DescriptionType.PUBLIC)
+                    .setText(text)
+                    .setType(DescriptionType.PUBLIC)
                     .build()
             )
         elif qualifier == 'nonDisplay':
@@ -473,8 +480,8 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
         else:
             object_builder.descriptions.append(
                 Description.Builder()
-                    .set_text(text)
-                    .set_type(DescriptionType.HISTORY)
+                    .setText(text)
+                    .setType(DescriptionType.HISTORY)
                     .build()
             )
 #             self._logger.warn("ignoring unknown note qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
@@ -499,12 +506,12 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
 
         object_builder.work_types.append(
             WorkType.Builder()\
-                .set_text(text)\
-                .set_vocab_ref(
+                .setText(text)\
+                .setVocabRef(
                     VocabRef.Builder()
-                        .set_refid(text)\
-                        .set_vocab(Vocab.DCMI_TYPE)\
-                        .set_uri(DCMI_TYPES_BASE_URL + text)\
+                        .setRefid(text)\
+                        .setVocab(Vocab.DCMI_TYPE)\
+                        .setUri(Uri.parse(DCMI_TYPES_BASE_URL + text))\
                         .build()
                 )\
                 .build()
@@ -526,8 +533,8 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
             if text == 'by-nc-nd':
                 license_vocab_ref = \
                     VocabRef.Builder()\
-                        .set_vocab(Vocab.CREATIVE_COMMONS)\
-                        .set_uri('https://creativecommons.org/licenses/by-nc-nd/2.0/')\
+                        .setVocab(Vocab.CREATIVE_COMMONS)\
+                        .setUri(Uri.parse('https://creativecommons.org/licenses/by-nc-nd/2.0/'))\
                         .build()
             else:
                 license_vocab_ref = None
@@ -535,18 +542,18 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
 
             object_builder.rights.append(
                 Rights.Builder()
-                    .set_license_vocab_ref(license_vocab_ref)
-                    .set_rights_holder(self._RIGHTS_HOLDER)
-                    .set_text(text)
-                    .set_type(RightsType.LICENSED)
+                    .setLicenseVocabRef(license_vocab_ref)
+                    .setRightsHolder(self._RIGHTS_HOLDER)
+                    .setText(text)
+                    .setType(RightsType.LICENSED)
                     .build()
             )
         elif qualifier == 'statement':
             object_builder.rights.append(
                 Rights.Builder()
-                    .set_rights_holder(self._RIGHTS_HOLDER)
-                    .set_text(text)
-                    .set_type(RightsType.COPYRIGHTED)
+                    .setRightsHolder(self._RIGHTS_HOLDER)
+                    .setText(text)
+                    .setType(RightsType.COPYRIGHTED)
                     .build()
             )
         else:
@@ -559,21 +566,21 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
 
         subject_term_builder = \
             SubjectTerm.Builder()\
-                .set_text(text)\
-                .set_type(SubjectTermType.OTHER_TOPIC)\
+                .setText(text)\
+                .setType(SubjectTermType.OTHER_TOPIC)\
 
         qualifier = element.get('qualifier', None)
         if qualifier is not None:
             try:
                 vocab = getattr(Vocab, qualifier)
-                subject_term_builder.set_vocab_ref(VocabRef.Builder().set_vocab(vocab).build())
+                subject_term_builder.setVocabRef(VocabRef.Builder().setVocab(vocab).build())
             except AttributeError:
                 if qualifier not in ('named_person', 'UNTL-BS',):
                     self._logger.warn("unknown subject vocabulary '%s'", qualifier)
 
         object_builder.subjects.append(
             Subject.Builder()
-                .set_terms((subject_term_builder.build(),))
+                .setTerms(ImmutableList.of(subject_term_builder.build()))
                 .build()
         )
 
@@ -598,8 +605,8 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
 
         object_builder.titles.append(
             Title.Builder()
-                .set_text(element.text)
-                .set_type(title_type)
+                .setText(element.text)
+                .setType(title_type)
                 .build()
         )
 
