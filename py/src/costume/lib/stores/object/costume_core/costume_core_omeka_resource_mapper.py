@@ -50,7 +50,6 @@ from net.lab1318.costume.api.models.textref import TextrefRefid
 from net.lab1318.costume.api.models.textref import TextrefRefidType
 from net.lab1318.costume.api.models.view_type import ViewType
 
-from costume.etl.costume_core.costume_core_controlled_vocabularies import COSTUME_CORE_CONTROLLED_VOCABULARIES
 from costume.lib.stores.omeka_resource_mapper import OmekaResourceMapper
 
 
@@ -216,8 +215,8 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
     def _map_omeka_item_element_itm_closure_placement(self, object_builder, text):
         self.__structure_counts_by_omeka_item_id[object_builder.omeka_item.id] += 1
 
-        if text not in COSTUME_CORE_CONTROLLED_VOCABULARIES['Closure Placement']:
-            self._logger.warn("using uncontrolled closure placement %s from item %d", text, object_builder.omeka_item.id)
+#         if text not in COSTUME_CORE_CONTROLLED_VOCABULARIES['Closure Placement']:
+#             self._logger.warn("using uncontrolled closure placement %s from item %d", text, object_builder.omeka_item.id)
         object_builder.closure_placements.append(
             ClosurePlacement.builder()\
                 .setText(text)\
@@ -229,8 +228,8 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
     def _map_omeka_item_element_itm_closure_type(self, object_builder, text):
         self.__structure_counts_by_omeka_item_id[object_builder.omeka_item.id] += 1
 
-        if text not in COSTUME_CORE_CONTROLLED_VOCABULARIES['Closure Type']:
-            self._logger.warn("using uncontrolled closure type %s from item %d", text, object_builder.omeka_item.id)
+#         if text not in COSTUME_CORE_CONTROLLED_VOCABULARIES['Closure Type']:
+#             self._logger.warn("using uncontrolled closure type %s from item %d", text, object_builder.omeka_item.id)
         object_builder.closure_types.append(
             ClosureType.builder()\
                 .setText(text)\
@@ -246,15 +245,15 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
                 .setText(text)\
                 .setType(type_)
 
-        if text in COSTUME_CORE_CONTROLLED_VOCABULARIES['Main Color']:
-            builder.setVocabRef(
-                VocabRef.builder()
-                    .setRefid(text)
-                    .setVocab(Vocab.QUILT_INDEX)
-                    .build()
-            )
-        else:
-            self._logger.warn("color '%s' is not in Quilt Index list", text)
+#         if text in COSTUME_CORE_CONTROLLED_VOCABULARIES['Main Color']:
+        builder.setVocabRef(
+            VocabRef.builder()
+                .setRefid(text)
+                .setVocab(Vocab.QUILT_INDEX)
+                .build()
+        )
+#         else:
+#             self._logger.warn("color '%s' is not in Quilt Index list", text)
 
         object_builder.colors.append(builder.build())
 
@@ -657,20 +656,20 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
         )
 
     def _parse_structure(self, object_builder, text, type_):
-        try:
-            controlled_vocabulary = COSTUME_CORE_CONTROLLED_VOCABULARIES[type_.text]
-        except KeyError:
-            controlled_vocabulary = None
-            self._logger.warn('unable to find controlled vocabulary for structure type %s', type_.text)
-
-        if controlled_vocabulary is not None:
-            if text in controlled_vocabulary:
-                self._logger.debug("structure %s from item %d has controlled text '%s'", type_.text, object_builder.omeka_item.id, text)
-            elif text.lower() in controlled_vocabulary:
-                text = text.lower()
-                self._logger.debug("structure %s from item %d has controlled text '%s' after lower-casing", type_.text, object_builder.omeka_item.id, text)
-            else:
-                self._logger.warn("structure %s from item %d has uncontrolled text '%s'", type_.text, object_builder.omeka_item.id, text)
+#         try:
+#             controlled_vocabulary = COSTUME_CORE_CONTROLLED_VOCABULARIES[type_.text]
+#         except KeyError:
+#             controlled_vocabulary = None
+#             self._logger.warn('unable to find controlled vocabulary for structure type %s', type_.text)
+#
+#         if controlled_vocabulary is not None:
+#             if text in controlled_vocabulary:
+#                 self._logger.debug("structure %s from item %d has controlled text '%s'", type_.text, object_builder.omeka_item.id, text)
+#             elif text.lower() in controlled_vocabulary:
+#                 text = text.lower()
+#                 self._logger.debug("structure %s from item %d has controlled text '%s' after lower-casing", type_.text, object_builder.omeka_item.id, text)
+#             else:
+#                 self._logger.warn("structure %s from item %d has uncontrolled text '%s'", type_.text, object_builder.omeka_item.id, text)
 
         self._update_vocabulary_used('Item Type Metadata', type_.text, text)
 

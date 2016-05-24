@@ -21,12 +21,14 @@ class OmekaFsObjectStore(_OmekaObjectStore):
         for omeka_item in self.__get_omeka_items(collection_id=object_id.getCollectionId()):
             if str(omeka_item.id) == str(object_id.getUnqualifiedObjectId()):
                 try:
-                    return \
+                    object_entry = \
                         self._map_omeka_item(
                             collection_id=object_id.getCollectionId(),
                             omeka_item=omeka_item,
                             omeka_item_files=self.__get_omeka_item_files(institution_id=object_id.getInstitutionId(), omeka_item=omeka_item)
                         )
+                    assert object_entry is not None
+                    return object_entry.model
                 except ValueError:
                     raise NoSuchObjectException
         raise NoSuchObjectException
