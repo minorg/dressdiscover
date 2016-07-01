@@ -1,10 +1,11 @@
 import json
 from os.path import os
 
-from dressdiscover.api.services.collection.no_such_collection_exception import NoSuchCollectionException
+from org.dressdiscover.api.services.collection import NoSuchCollectionException
+from org.dressdiscover.lib.python import PythonApi
+
 from dressdiscover.lib.stores.collection.omeka._omeka_collection_store import _OmekaCollectionStore
 from dressdiscover.lib.stores.collection.py_collection_store_factory import PyCollectionStoreFactory
-from org.dressdiscover.lib.python import PythonApi
 from yomeka.client.omeka_json_parser import OmekaJsonParser
 
 

@@ -26,11 +26,12 @@ class OaiPmhFsObjectStore(ObjectStore):
 
     def getObjectById(self, logger, log_marker, object_id):
         record_identifier = object_id.getUnqualifiedObjectId()
-        record_identifier = urllib.unquote(record_identifier)
-        file_path = os.path.join(self.__data_dir_path, 'record', record_identifier + '.xml')
+        unquoted_record_identifier = urllib.unquote(record_identifier)
+        safe_record_identifier = unquoted_record_identifier.replace('/', '_').replace(':', '_')
+        file_path = os.path.join(self.__data_dir_path, 'record', safe_record_identifier + '.xml')
         if not os.path.isfile(file_path):
             raise NoSuchObjectException
-        return self.__map_oai_pmh_record(collection_id=object_id.getCollectionId(), file_path=file_path)
+        return self.__map_oai_pmh_record(collection_id=object_id.getCollectionId(), file_path=file_path).model
 
     def getObjectsByCollectionId(self, collection_id, logger, log_marker):
         objects = []
