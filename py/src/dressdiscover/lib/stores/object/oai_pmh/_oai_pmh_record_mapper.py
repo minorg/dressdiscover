@@ -1,6 +1,6 @@
 import logging
 
-from net.lab1318.costume.api.models.object import Object
+from org.dressdiscover.api.models.object import Object
 
 
 class _OaiPmhRecordMapper(object):

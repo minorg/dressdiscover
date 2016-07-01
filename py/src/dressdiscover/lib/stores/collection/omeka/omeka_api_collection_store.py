@@ -1,7 +1,7 @@
 from dressdiscover.api.services.collection.no_such_collection_exception import NoSuchCollectionException
 from dressdiscover.lib.stores.collection.omeka._omeka_collection_store import _OmekaCollectionStore
 from dressdiscover.lib.stores.collection.py_collection_store_factory import PyCollectionStoreFactory
-from net.lab1318.costume.lib.python import PythonApi
+from org.dressdiscover.lib.python import PythonApi
 from yomeka.api.no_such_omeka_collection_exception import NoSuchOmekaCollectionException
 from yomeka.client.omeka_rest_api_client import OmekaRestApiClient
 

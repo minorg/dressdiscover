@@ -3,34 +3,34 @@ import logging
 
 from com.google.common.collect import ImmutableList
 from com.google.common.primitives import UnsignedInteger
-from net.lab1318.costume.api.models import VocabRef, Vocab
-from net.lab1318.costume.api.models.agent import AgentSet, Agent, AgentName, \
+from org.dressdiscover.api.models import VocabRef, Vocab
+from org.dressdiscover.api.models.agent import AgentSet, Agent, AgentName, \
     AgentNameType, AgentRole
-from net.lab1318.costume.api.models.collection import CollectionId, Collection, \
+from org.dressdiscover.api.models.collection import CollectionId, Collection, \
     CollectionEntry
-from net.lab1318.costume.api.models.cultural_context import CulturalContextSet
-from net.lab1318.costume.api.models.date import DateType, DateBound, DateSet, \
+from org.dressdiscover.api.models.cultural_context import CulturalContextSet
+from org.dressdiscover.api.models.date import DateType, DateBound, DateSet, \
     Date
-from net.lab1318.costume.api.models.description import DescriptionSet, \
+from org.dressdiscover.api.models.description import DescriptionSet, \
     Description
-from net.lab1318.costume.api.models.image import Image, ImageVersion
-from net.lab1318.costume.api.models.inscription import InscriptionSet
-from net.lab1318.costume.api.models.location import LocationSet
-from net.lab1318.costume.api.models.material import MaterialSet, Material, \
+from org.dressdiscover.api.models.image import Image, ImageVersion
+from org.dressdiscover.api.models.inscription import InscriptionSet
+from org.dressdiscover.api.models.location import LocationSet
+from org.dressdiscover.api.models.material import MaterialSet, Material, \
     MaterialType
-from net.lab1318.costume.api.models.measurements import MeasurementsSet, \
+from org.dressdiscover.api.models.measurements import MeasurementsSet, \
     Measurements, MeasurementsType
-from net.lab1318.costume.api.models.object import Object, ObjectEntry, ObjectId
-from net.lab1318.costume.api.models.relation import RelationSet, Relation, \
+from org.dressdiscover.api.models.object import Object, ObjectEntry, ObjectId
+from org.dressdiscover.api.models.relation import RelationSet, Relation, \
     RelationType
-from net.lab1318.costume.api.models.rights import RightsSet, Rights, RightsType
-from net.lab1318.costume.api.models.subject import SubjectSet, Subject, \
+from org.dressdiscover.api.models.rights import RightsSet, Rights, RightsType
+from org.dressdiscover.api.models.subject import SubjectSet, Subject, \
     SubjectTerm, SubjectTermType
-from net.lab1318.costume.api.models.technique import TechniqueSet
-from net.lab1318.costume.api.models.textref import Textref, TextrefName, \
+from org.dressdiscover.api.models.technique import TechniqueSet
+from org.dressdiscover.api.models.textref import Textref, TextrefName, \
     TextrefNameType, TextrefRefid, TextrefRefidType, TextrefSet
-from net.lab1318.costume.api.models.title import TitleSet, Title, TitleType
-from net.lab1318.costume.api.models.work_type import WorkTypeSet, WorkType
+from org.dressdiscover.api.models.title import TitleSet, Title, TitleType
+from org.dressdiscover.api.models.work_type import WorkTypeSet, WorkType
 from org.thryft.native_ import Url, Uri
 
 from dressdiscover.lib.models.date.date_parser import DateParser

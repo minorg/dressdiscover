@@ -3,11 +3,11 @@ import urllib
 from xml.etree import ElementTree
 
 from com.google.common.collect import ImmutableList
-from net.lab1318.costume.api.services.object import NoSuchObjectException
-from net.lab1318.costume.lib.stores.object import ObjectStore
+from org.dressdiscover.api.services.object import NoSuchObjectException
+from org.dressdiscover.lib.stores.object import ObjectStore
 
 from dressdiscover.lib.stores.object.py_object_store_factory import PyObjectStoreFactory
-from net.lab1318.costume.lib.python import PythonApi
+from org.dressdiscover.lib.python import PythonApi
 
 
 class OaiPmhFsObjectStore(ObjectStore):

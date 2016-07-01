@@ -119,18 +119,18 @@ class Main(thryft.main.Main):
                     if pass_i == 0:
                         continue
 
-                    if thrift_file_name == 'costume_properties.thrift':
+                    if thrift_subdir_name == 'lib' and thrift_file_name.endswith('_properties.thrift'):
                         self._compile_thrift_file(
                             generator=PropertiesJavaGenerator(project_name='dressdiscover'),
                             out=os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'gen', 'java'),
                             **compile_kwds
                         )
 
-                        self._compile_thrift_file(
-                            generator=PropertiesPyGenerator(project_name='dressdiscover'),
-                            out=os.path.join(ROOT_DIR_PATH, 'py', 'src'),
-                            **compile_kwds
-                        )
+#                         self._compile_thrift_file(
+#                             generator=PropertiesPyGenerator(project_name='dressdiscover'),
+#                             out=os.path.join(ROOT_DIR_PATH, 'py', 'src'),
+#                             **compile_kwds
+#                         )
 
                         continue
 
@@ -148,11 +148,11 @@ class Main(thryft.main.Main):
                         )
 
                     if thrift_subdir_name == 'api':
-                        self._compile_thrift_file(
-                            generator=PyGenerator(),
-                            out=os.path.join(ROOT_DIR_PATH, 'py', 'src'),
-                            **compile_kwds
-                        )
+#                         self._compile_thrift_file(
+#                             generator=PyGenerator(),
+#                             out=os.path.join(ROOT_DIR_PATH, 'py', 'src'),
+#                             **compile_kwds
+#                         )
 
                         if thrift_file_base_name in ('user', 'user_bookmark',):
                             out_dir_path = os.path.join(ROOT_DIR_PATH, 'sql')
@@ -213,11 +213,11 @@ class Main(thryft.main.Main):
                         # Only generate Python for the API services
                         continue
 
-                    self._compile_thrift_file(
-                        generator=JsonRpcClientPyGenerator(),
-                        out=os.path.join(ROOT_DIR_PATH, 'py', 'src'),
-                        **compile_kwds
-                    )
+#                     self._compile_thrift_file(
+#                         generator=JsonRpcClientPyGenerator(),
+#                         out=os.path.join(ROOT_DIR_PATH, 'py', 'src'),
+#                         **compile_kwds
+#                     )
 
 assert __name__ == '__main__'
 Main.main()

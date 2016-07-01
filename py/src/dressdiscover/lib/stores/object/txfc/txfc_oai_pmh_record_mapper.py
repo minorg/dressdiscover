@@ -5,24 +5,24 @@ from xml.etree import ElementTree
 from com.google.common.base import Optional
 from com.google.common.collect import ImmutableList
 from com.google.common.primitives import UnsignedInteger
-from net.lab1318.costume.api.models import VocabRef, Vocab
-from net.lab1318.costume.api.models.agent import AgentSet, Agent, AgentRole, \
+from org.dressdiscover.api.models import VocabRef, Vocab
+from org.dressdiscover.api.models.agent import AgentSet, Agent, AgentRole, \
     AgentNameType, AgentName
-from net.lab1318.costume.api.models.date import DateType, DateSet, DateBound, \
+from org.dressdiscover.api.models.date import DateType, DateSet, DateBound, \
     Date
-from net.lab1318.costume.api.models.description import DescriptionSet, \
+from org.dressdiscover.api.models.description import DescriptionSet, \
     DescriptionType, Description
-from net.lab1318.costume.api.models.image import Image, ImageVersion
-from net.lab1318.costume.api.models.location import LocationSet, Location, \
+from org.dressdiscover.api.models.image import Image, ImageVersion
+from org.dressdiscover.api.models.location import LocationSet, Location, \
     LocationName, LocationNameType, LocationType
-from net.lab1318.costume.api.models.object import ObjectId, ObjectEntry
-from net.lab1318.costume.api.models.rights import RightsSet, Rights, RightsType
-from net.lab1318.costume.api.models.subject import SubjectSet, SubjectTerm, \
+from org.dressdiscover.api.models.object import ObjectId, ObjectEntry
+from org.dressdiscover.api.models.rights import RightsSet, Rights, RightsType
+from org.dressdiscover.api.models.subject import SubjectSet, SubjectTerm, \
     SubjectTermType, Subject
-from net.lab1318.costume.api.models.textref import TextrefSet, Textref, \
+from org.dressdiscover.api.models.textref import TextrefSet, Textref, \
     TextrefName, TextrefNameType, TextrefRefid, TextrefRefidType
-from net.lab1318.costume.api.models.title import TitleSet, TitleType, Title
-from net.lab1318.costume.api.models.work_type import WorkTypeSet, WorkType
+from org.dressdiscover.api.models.title import TitleSet, TitleType, Title
+from org.dressdiscover.api.models.work_type import WorkTypeSet, WorkType
 from org.thryft.native_ import Uri, Url
 
 from dressdiscover.lib.models.date.date_parser import DateParser

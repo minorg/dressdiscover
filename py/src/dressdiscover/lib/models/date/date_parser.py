@@ -1,7 +1,7 @@
 from datetime import datetime
 from java.util import Date
 
-from net.lab1318.costume.api.models.date import DateTimeGranularity
+from org.dressdiscover.api.models.date import DateTimeGranularity
 
 
 try:

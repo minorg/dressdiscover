@@ -1,4 +1,4 @@
-from net.lab1318.costume.lib.stores.object import ObjectStore
+from org.dressdiscover.lib.stores.object import ObjectStore
 
 from dressdiscover.lib.stores.omeka_resource_mapper import OmekaResourceMapper
 

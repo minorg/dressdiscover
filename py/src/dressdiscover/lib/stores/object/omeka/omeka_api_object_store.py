@@ -1,9 +1,9 @@
 from com.google.common.collect import ImmutableList
-from net.lab1318.costume.api.services.object import NoSuchObjectException
+from org.dressdiscover.api.services.object import NoSuchObjectException
 
 from dressdiscover.lib.stores.object.omeka._omeka_object_store import _OmekaObjectStore
 from dressdiscover.lib.stores.object.py_object_store_factory import PyObjectStoreFactory
-from net.lab1318.costume.lib.python import PythonApi
+from org.dressdiscover.lib.python import PythonApi
 from yomeka.api.no_such_omeka_item_exception import NoSuchOmekaItemException
 from yomeka.client.omeka_rest_api_client import OmekaRestApiClient
 

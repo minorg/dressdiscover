@@ -1,8 +1,8 @@
 from os.path import os
 import unittest
 
-from net.lab1318.costume.api.models.collection import CollectionId
-from net.lab1318.costume.api.models.object import ObjectId
+from org.dressdiscover.api.models.collection import CollectionId
+from org.dressdiscover.api.models.object import ObjectId
 from org.slf4j import LoggerFactory, MarkerFactory
 from org.thryft.native_ import Uri
 

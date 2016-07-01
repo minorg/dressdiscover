@@ -3,16 +3,16 @@ import urllib
 from com.google.common.base import Optional
 from com.google.common.collect import ImmutableList
 from com.google.common.primitives import UnsignedInteger
-from net.lab1318.costume.api.models import VocabRef, Vocab
-from net.lab1318.costume.api.models.collection import Collection, \
+from org.dressdiscover.api.models import VocabRef, Vocab
+from org.dressdiscover.api.models.collection import Collection, \
     CollectionEntry
-from net.lab1318.costume.api.models.image import Image, ImageVersion
-from net.lab1318.costume.api.models.object import ObjectId, Object, ObjectEntry
-from net.lab1318.costume.api.models.rights import RightsType, RightsSet, Rights
-from net.lab1318.costume.api.models.structure import StructureSet, Structure, \
+from org.dressdiscover.api.models.image import Image, ImageVersion
+from org.dressdiscover.api.models.object import ObjectId, Object, ObjectEntry
+from org.dressdiscover.api.models.rights import RightsType, RightsSet, Rights
+from org.dressdiscover.api.models.structure import StructureSet, Structure, \
     StructureType
-from net.lab1318.costume.api.models.title import TitleSet, Title, TitleType
-from net.lab1318.costume.api.models.view_type import ViewType
+from org.dressdiscover.api.models.title import TitleSet, Title, TitleType
+from org.dressdiscover.api.models.view_type import ViewType
 from org.thryft.native_ import Uri, Url
 
 from dressdiscover.lib.stores.omeka_resource_mapper import OmekaResourceMapper

@@ -2,7 +2,7 @@ import __builtin__
 import os.path
 
 
-class CostumeProperties(object):
+class DressDiscoverProperties(object):
     class Builder(object):
         def __init__(
             self,
@@ -51,7 +51,7 @@ class CostumeProperties(object):
             self.__resummarize_objects_bulk_request_size = resummarize_objects_bulk_request_size
 
         def build(self):
-            return CostumeProperties(api_url=self.__api_url, cache_collections=self.__cache_collections, cache_institutions=self.__cache_institutions, elastic_search_host=self.__elastic_search_host, elastic_search_port=self.__elastic_search_port, environment=self.__environment, google_api_key=self.__google_api_key, google_oauth_key=self.__google_oauth_key, google_oauth_secret=self.__google_oauth_secret, home_directory_path=self.__home_directory_path, object_summaries_result_cache_size=self.__object_summaries_result_cache_size, object_summary_cache_size=self.__object_summary_cache_size, resummarize_objects_bulk_request_size=self.__resummarize_objects_bulk_request_size)
+            return DressDiscoverProperties(api_url=self.__api_url, cache_collections=self.__cache_collections, cache_institutions=self.__cache_institutions, elastic_search_host=self.__elastic_search_host, elastic_search_port=self.__elastic_search_port, environment=self.__environment, google_api_key=self.__google_api_key, google_oauth_key=self.__google_oauth_key, google_oauth_secret=self.__google_oauth_secret, home_directory_path=self.__home_directory_path, object_summaries_result_cache_size=self.__object_summaries_result_cache_size, object_summary_cache_size=self.__object_summary_cache_size, resummarize_objects_bulk_request_size=self.__resummarize_objects_bulk_request_size)
 
         @property
         def api_url(self):
@@ -261,7 +261,7 @@ class CostumeProperties(object):
             self.__resummarize_objects_bulk_request_size = resummarize_objects_bulk_request_size
             return self
 
-        def update(self, costume_properties):
+        def update(self, dress_discover_properties):
             '''
             :type api_url: str
             :type cache_collections: bool
@@ -278,25 +278,25 @@ class CostumeProperties(object):
             :type resummarize_objects_bulk_request_size: int
             '''
 
-            if isinstance(costume_properties, CostumeProperties):
-                self.set_api_url(costume_properties.api_url)
-                self.set_cache_collections(costume_properties.cache_collections)
-                self.set_cache_institutions(costume_properties.cache_institutions)
-                self.set_elastic_search_host(costume_properties.elastic_search_host)
-                self.set_elastic_search_port(costume_properties.elastic_search_port)
-                self.set_environment(costume_properties.environment)
-                self.set_google_api_key(costume_properties.google_api_key)
-                self.set_google_oauth_key(costume_properties.google_oauth_key)
-                self.set_google_oauth_secret(costume_properties.google_oauth_secret)
-                self.set_home_directory_path(costume_properties.home_directory_path)
-                self.set_object_summaries_result_cache_size(costume_properties.object_summaries_result_cache_size)
-                self.set_object_summary_cache_size(costume_properties.object_summary_cache_size)
-                self.set_resummarize_objects_bulk_request_size(costume_properties.resummarize_objects_bulk_request_size)
-            elif isinstance(costume_properties, dict):
-                for key, value in costume_properties.iteritems():
+            if isinstance(dress_discover_properties, DressDiscoverProperties):
+                self.set_api_url(dress_discover_properties.api_url)
+                self.set_cache_collections(dress_discover_properties.cache_collections)
+                self.set_cache_institutions(dress_discover_properties.cache_institutions)
+                self.set_elastic_search_host(dress_discover_properties.elastic_search_host)
+                self.set_elastic_search_port(dress_discover_properties.elastic_search_port)
+                self.set_environment(dress_discover_properties.environment)
+                self.set_google_api_key(dress_discover_properties.google_api_key)
+                self.set_google_oauth_key(dress_discover_properties.google_oauth_key)
+                self.set_google_oauth_secret(dress_discover_properties.google_oauth_secret)
+                self.set_home_directory_path(dress_discover_properties.home_directory_path)
+                self.set_object_summaries_result_cache_size(dress_discover_properties.object_summaries_result_cache_size)
+                self.set_object_summary_cache_size(dress_discover_properties.object_summary_cache_size)
+                self.set_resummarize_objects_bulk_request_size(dress_discover_properties.resummarize_objects_bulk_request_size)
+            elif isinstance(dress_discover_properties, dict):
+                for key, value in dress_discover_properties.iteritems():
                     getattr(self, 'set_' + key)(value)
             else:
-                raise TypeError(costume_properties)
+                raise TypeError(dress_discover_properties)
             return self
 
         @api_url.setter
@@ -572,7 +572,7 @@ class CostumeProperties(object):
         field_reprs.append('object_summaries_result_cache_size=' + repr(self.object_summaries_result_cache_size))
         field_reprs.append('object_summary_cache_size=' + repr(self.object_summary_cache_size))
         field_reprs.append('resummarize_objects_bulk_request_size=' + repr(self.resummarize_objects_bulk_request_size))
-        return 'CostumeProperties(' + ', '.join(field_reprs) + ')'
+        return 'DressDiscoverProperties(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
@@ -589,7 +589,7 @@ class CostumeProperties(object):
         field_reprs.append('object_summaries_result_cache_size=' + repr(self.object_summaries_result_cache_size))
         field_reprs.append('object_summary_cache_size=' + repr(self.object_summary_cache_size))
         field_reprs.append('resummarize_objects_bulk_request_size=' + repr(self.resummarize_objects_bulk_request_size))
-        return 'CostumeProperties(' + ', '.join(field_reprs) + ')'
+        return 'DressDiscoverProperties(' + ', '.join(field_reprs) + ')'
 
     @property
     def api_url(self):
@@ -694,7 +694,7 @@ class CostumeProperties(object):
         '''
         Load properties, in order of precedence, from one of four places:
         1 - Those specified on the command line via the --properties option
-        1 - The user's home directory: ~/.dressdiscover/costume.properties
+        1 - The user's home directory: ~/.dressdiscover/dress_discover.properties
         2 - The system properties file: /etc/dressdiscover/server.properties
         3 - Environment variables (DRESSDISCOVER_{property_name_upper})
         '''
@@ -707,8 +707,8 @@ class CostumeProperties(object):
                 properties[property_name] = property_value
 
         properties_file_paths = []
-        properties_file_paths.append(os.path.join('/', 'etc', 'dressdiscover', 'costume.properties'))
-        properties_file_paths.append(os.path.join(os.path.expanduser('~'), '.dressdiscover', 'costume.properties'))
+        properties_file_paths.append(os.path.join('/', 'etc', 'dressdiscover', 'dress_discover.properties'))
+        properties_file_paths.append(os.path.join(os.path.expanduser('~'), '.dressdiscover', 'dress_discover.properties'))
         if command_line_properties_file_path is not None:
             properties_file_paths.append(command_line_properties_file_path)
         for properties_file_path in properties_file_paths:
@@ -769,7 +769,7 @@ class CostumeProperties(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: dressdiscover.lib.costume_properties.CostumeProperties
+        :rtype: dressdiscover.lib.dress_discover_properties.DressDiscoverProperties
         '''
 
         init_kwds = {}
@@ -842,7 +842,7 @@ class CostumeProperties(object):
         :type object_summaries_result_cache_size: int or None
         :type object_summary_cache_size: int or None
         :type resummarize_objects_bulk_request_size: int or None
-        :rtype: dressdiscover.lib.costume_properties.CostumeProperties
+        :rtype: dressdiscover.lib.dress_discover_properties.DressDiscoverProperties
         '''
 
         if api_url is None:
@@ -886,10 +886,10 @@ class CostumeProperties(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: dressdiscover.lib.costume_properties.CostumeProperties
+        :rtype: dressdiscover.lib.dress_discover_properties.DressDiscoverProperties
         '''
 
-        oprot.write_struct_begin('CostumeProperties')
+        oprot.write_struct_begin('DressDiscoverProperties')
 
         oprot.write_field_begin(name='api_url', type=11, id=None)
         oprot.write_string(self.api_url)

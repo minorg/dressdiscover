@@ -1,4 +1,4 @@
-from net.lab1318.costume.lib.stores.collection import CollectionStoreFactory
+from org.dressdiscover.lib.stores.collection import CollectionStoreFactory
 
 
 class PyCollectionStoreFactory(CollectionStoreFactory):

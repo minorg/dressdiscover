@@ -1,4 +1,4 @@
-from net.lab1318.costume.lib.stores.object import ObjectStoreFactory
+from org.dressdiscover.lib.stores.object import ObjectStoreFactory
 
 
 class PyObjectStoreFactory(ObjectStoreFactory):

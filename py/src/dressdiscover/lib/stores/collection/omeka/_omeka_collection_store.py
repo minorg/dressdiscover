@@ -1,5 +1,5 @@
 from com.google.common.collect import ImmutableList
-from net.lab1318.costume.lib.stores.collection import AbstractReadOnlyCollectionStore
+from org.dressdiscover.lib.stores.collection import AbstractReadOnlyCollectionStore
 
 from dressdiscover.lib.stores.omeka_resource_mapper import OmekaResourceMapper
 

@@ -3,11 +3,11 @@ from os.path import os
 
 from com.google.common.base import Optional
 from com.google.common.collect import ImmutableMap, ImmutableList
-from net.lab1318.costume.api.models.collection import CollectionId, Collection
-from net.lab1318.costume.api.models.institution import Institution, \
+from org.dressdiscover.api.models.collection import CollectionId, Collection
+from org.dressdiscover.api.models.institution import Institution, \
     InstitutionId
-from net.lab1318.costume.api.models.rights import RightsSet, Rights, RightsType
-from net.lab1318.costume.lib.python import PythonApi
+from org.dressdiscover.api.models.rights import RightsSet, Rights, RightsType
+from org.dressdiscover.lib.python import PythonApi
 from org.thryft.native_ import Url, Uri
 
 from dressdiscover.lib.stores.collection.omeka.omeka_api_collection_store import OmekaApiCollectionStore  # @UnusedImport

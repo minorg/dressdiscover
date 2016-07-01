@@ -5,7 +5,7 @@ include "thryft/native/u32.thrift"
 include "thryft/native/url.thrift"
 
 // @java_implements org.thryft.waf.lib.Properties
-struct CostumeProperties {
+struct DressDiscoverProperties {
 	url.Url api_url = "http://middleware:8082/api/";
 
     bool cache_collections = true;
