@@ -7,12 +7,12 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.Table;
 
-import net.lab1318.costume.api.models.textref.Textref;
-import net.lab1318.costume.api.models.textref.TextrefName;
-import net.lab1318.costume.api.models.textref.TextrefRefid;
-import net.lab1318.costume.api.models.textref.TextrefRefidType;
-import net.lab1318.costume.api.models.textref.TextrefSet;
-import net.lab1318.costume.gui.models.textref.TextrefBean;
+import org.dressdiscover.api.models.textref.Textref;
+import org.dressdiscover.api.models.textref.TextrefName;
+import org.dressdiscover.api.models.textref.TextrefRefid;
+import org.dressdiscover.api.models.textref.TextrefRefidType;
+import org.dressdiscover.api.models.textref.TextrefSet;
+import org.dressdiscover.gui.models.textref.TextrefBean;
 
 @SuppressWarnings("serial")
 final class TextrefsTable extends ElementSetTable {

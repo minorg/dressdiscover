@@ -3,9 +3,9 @@ package org.dressdiscover.gui.components;
 import com.google.common.collect.ImmutableList;
 import com.vaadin.data.util.BeanItemContainer;
 
-import net.lab1318.costume.api.models.title.Title;
-import net.lab1318.costume.api.models.title.TitleSet;
-import net.lab1318.costume.gui.models.title.TitleBean;
+import org.dressdiscover.api.models.title.Title;
+import org.dressdiscover.api.models.title.TitleSet;
+import org.dressdiscover.gui.models.title.TitleBean;
 
 @SuppressWarnings("serial")
 final class TitleSetTable extends ElementSetTable {

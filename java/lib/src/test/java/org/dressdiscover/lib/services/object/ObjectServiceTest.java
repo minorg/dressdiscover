@@ -16,14 +16,14 @@ import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.primitives.UnsignedInteger;
 
-import net.lab1318.costume.api.services.collection.CollectionCommandService;
-import net.lab1318.costume.api.services.collection.CollectionQueryService;
-import net.lab1318.costume.api.services.institution.InstitutionCommandService;
-import net.lab1318.costume.api.services.institution.InstitutionQueryService;
-import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
-import net.lab1318.costume.api.services.object.ObjectCommandService;
-import net.lab1318.costume.api.services.object.ObjectQueryService;
-import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
+import org.dressdiscover.api.services.collection.CollectionCommandService;
+import org.dressdiscover.api.services.collection.CollectionQueryService;
+import org.dressdiscover.api.services.institution.InstitutionCommandService;
+import org.dressdiscover.api.services.institution.InstitutionQueryService;
+import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
+import org.dressdiscover.api.services.object.ObjectCommandService;
+import org.dressdiscover.api.services.object.ObjectQueryService;
+import org.dressdiscover.api.services.object.ObjectSummaryQueryService;
 
 public abstract class ObjectServiceTest extends ServiceTest {
     @Before

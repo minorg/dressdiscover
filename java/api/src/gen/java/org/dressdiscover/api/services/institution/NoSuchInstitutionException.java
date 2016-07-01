@@ -11,7 +11,7 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
             this.id = other.getId();
         }
 
-        protected NoSuchInstitutionException _build(final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> id) {
+        protected NoSuchInstitutionException _build(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) {
             return new NoSuchInstitutionException(id);
         }
 
@@ -19,7 +19,7 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
             return _build(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.NoSuchInstitutionException: missing id"));
         }
 
-        public final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> getId() {
+        public final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> getId() {
             return id;
         }
 
@@ -42,8 +42,8 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             if (__list.getSize() > 0) {
                 try {
-                    id = com.google.common.base.Optional.of(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
-                } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                    id = com.google.common.base.Optional.of(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
+                } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                 }
             }
             iprot.readListEnd();
@@ -64,8 +64,8 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
                 switch (ifield.getName()) {
                 case "id": {
                     try {
-                        id = com.google.common.base.Optional.of(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
-                    } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                        id = com.google.common.base.Optional.of(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
+                    } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                     }
                     break;
                 }
@@ -96,18 +96,18 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
             com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
             switch (fieldMetadata) {
-            case ID: setId((net.lab1318.costume.api.models.institution.InstitutionId)value); return this;
+            case ID: setId((org.dressdiscover.api.models.institution.InstitutionId)value); return this;
             default:
                 throw new IllegalStateException();
             }
         }
 
-        public Builder setId(final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> id) {
+        public Builder setId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) {
             this.id = com.google.common.base.Preconditions.checkNotNull(id);
             return this;
         }
 
-        public Builder setId(@javax.annotation.Nullable final net.lab1318.costume.api.models.institution.InstitutionId id) {
+        public Builder setId(@javax.annotation.Nullable final org.dressdiscover.api.models.institution.InstitutionId id) {
             this.id = com.google.common.base.Optional.fromNullable(id);
             return this;
         }
@@ -148,11 +148,11 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
             return this;
         }
 
-        private com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> id;
+        private com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id;
     }
 
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        ID("id", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, false, 0, "id", org.thryft.protocol.Type.STRING);
+        ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, false, 0, "id", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -250,14 +250,14 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
     /**
      * Total Nullable constructor
      */
-    public NoSuchInstitutionException(final @javax.annotation.Nullable net.lab1318.costume.api.models.institution.InstitutionId id) {
+    public NoSuchInstitutionException(final @javax.annotation.Nullable org.dressdiscover.api.models.institution.InstitutionId id) {
         this.id = com.google.common.base.Optional.fromNullable(id);
     }
 
     /**
      * Optional constructor
      */
-    public NoSuchInstitutionException(final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> id) {
+    public NoSuchInstitutionException(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) {
         this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.NoSuchInstitutionException: missing id");
     }
 
@@ -307,7 +307,7 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
         }
     }
 
-    public final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> getId() {
+    public final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> getId() {
         return id;
     }
 
@@ -351,13 +351,13 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
     }
 
     public static NoSuchInstitutionException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> id = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         if (__list.getSize() > 0) {
             try {
-                id = com.google.common.base.Optional.of(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
-            } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                id = com.google.common.base.Optional.of(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
+            } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
             }
         }
         iprot.readListEnd();
@@ -373,7 +373,7 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
     }
 
     public static NoSuchInstitutionException readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> id = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id = com.google.common.base.Optional.absent();
 
         iprot.readStructBegin();
         while (true) {
@@ -384,8 +384,8 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
             switch (ifield.getName()) {
             case "id": {
                 try {
-                    id = com.google.common.base.Optional.of(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
-                } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                    id = com.google.common.base.Optional.of(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
+                } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                 }
                 break;
             }
@@ -405,11 +405,11 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
         }
     }
 
-    public NoSuchInstitutionException replaceId(final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> id) {
+    public NoSuchInstitutionException replaceId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) {
         return new NoSuchInstitutionException(id);
     }
 
-    public NoSuchInstitutionException replaceId(final net.lab1318.costume.api.models.institution.InstitutionId id) {
+    public NoSuchInstitutionException replaceId(final org.dressdiscover.api.models.institution.InstitutionId id) {
         return replaceId(com.google.common.base.Optional.fromNullable(id));
     }
 
@@ -463,5 +463,5 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
         oprot.writeFieldStop();
     }
 
-    private final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> id;
+    private final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id;
 }

@@ -14,15 +14,15 @@ import com.google.inject.servlet.SessionScoped;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.SystemError;
 
-import net.lab1318.costume.api.models.collection.CollectionEntry;
-import net.lab1318.costume.api.models.institution.InstitutionEntry;
-import net.lab1318.costume.api.models.user.UserEntry;
-import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.collection.CollectionQueryService;
-import net.lab1318.costume.api.services.institution.InstitutionQueryService;
-import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
-import net.lab1318.costume.api.services.user.UserCommandService;
-import net.lab1318.costume.api.services.user.UserQueryService;
+import org.dressdiscover.api.models.collection.CollectionEntry;
+import org.dressdiscover.api.models.institution.InstitutionEntry;
+import org.dressdiscover.api.models.user.UserEntry;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.collection.CollectionQueryService;
+import org.dressdiscover.api.services.institution.InstitutionQueryService;
+import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
+import org.dressdiscover.api.services.user.UserCommandService;
+import org.dressdiscover.api.services.user.UserQueryService;
 
 @SessionScoped
 public class InstitutionsPresenter extends Presenter<InstitutionsView> {

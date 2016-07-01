@@ -8,9 +8,9 @@ import org.thryft.waf.gui.EventBus;
 
 import com.google.common.base.Optional;
 
-import net.lab1318.costume.api.models.user.UserEntry;
-import net.lab1318.costume.api.services.user.UserCommandService;
-import net.lab1318.costume.api.services.user.UserQueryService;
+import org.dressdiscover.api.models.user.UserEntry;
+import org.dressdiscover.api.services.user.UserCommandService;
+import org.dressdiscover.api.services.user.UserQueryService;
 
 public abstract class AbstractWizardSummaryPresenter<StateT extends WizardState, ViewT extends AbstractWizardSummaryView<StateT>>
         extends AbstractWizardPresenter<StateT, ViewT> {

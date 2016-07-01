@@ -3,9 +3,9 @@ package org.dressdiscover.gui.components;
 import com.google.common.collect.ImmutableList;
 import com.vaadin.data.util.BeanItemContainer;
 
-import net.lab1318.costume.api.models.cultural_context.CulturalContext;
-import net.lab1318.costume.api.models.cultural_context.CulturalContextSet;
-import net.lab1318.costume.gui.models.cultural_context.CulturalContextBean;
+import org.dressdiscover.api.models.cultural_context.CulturalContext;
+import org.dressdiscover.api.models.cultural_context.CulturalContextSet;
+import org.dressdiscover.gui.models.cultural_context.CulturalContextBean;
 
 @SuppressWarnings("serial")
 final class CulturalContextSetTable extends ElementSetTable {

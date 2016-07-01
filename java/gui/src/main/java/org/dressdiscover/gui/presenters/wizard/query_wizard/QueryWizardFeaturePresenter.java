@@ -21,12 +21,12 @@ import com.google.inject.servlet.SessionScoped;
 import com.vaadin.server.SystemError;
 import com.vaadin.ui.UI;
 
-import net.lab1318.costume.api.models.user.UserEntry;
-import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
-import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
-import net.lab1318.costume.api.services.user.UserCommandService;
-import net.lab1318.costume.api.services.user.UserQueryService;
+import org.dressdiscover.api.models.user.UserEntry;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
+import org.dressdiscover.api.services.object.ObjectSummaryQueryService;
+import org.dressdiscover.api.services.user.UserCommandService;
+import org.dressdiscover.api.services.user.UserQueryService;
 
 @SessionScoped
 public class QueryWizardFeaturePresenter

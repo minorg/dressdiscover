@@ -5,7 +5,7 @@ import org.dressdiscover.gui.models.object.ObjectSummaryBean;
 import org.dressdiscover.gui.models.object.ObjectSummaryEntryBean;
 import org.vaadin.addons.lazyquerycontainer.LazyQueryDefinition;
 
-import net.lab1318.costume.api.services.object.ObjectSummarySortField;
+import org.dressdiscover.api.services.object.ObjectSummarySortField;
 
 @SuppressWarnings("serial")
 public final class ObjectSummaryEntryBeanQueryDefinition extends LazyQueryDefinition {

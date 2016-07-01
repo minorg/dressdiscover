@@ -15,8 +15,8 @@ import org.thryft.native_.EmailAddress;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 
-import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.user.NoSuchUserException;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.user.NoSuchUserException;
 
 abstract class StoreUserQueryService implements IterableUserQueryService {
     protected StoreUserQueryService(final UserBookmarkStore userBookmarkStore, final UserStore userStore) {

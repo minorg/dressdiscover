@@ -48,7 +48,7 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
             this.workTypeTexts = other.getWorkTypeTexts();
         }
 
-        protected ObjectSummary _build(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts, final com.google.common.base.Optional<String> date, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
+        protected ObjectSummary _build(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts, final com.google.common.base.Optional<String> date, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
             return new ObjectSummary(collectionId, institutionId, title, agentNameTexts, categories, colorTexts, culturalContextTexts, date, description, gender, hidden, image, locationNameTexts, materialTexts, relationTexts, structureTexts, subjectTermTexts, techniqueTexts, url, workTypeTexts);
         }
 
@@ -64,7 +64,7 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
             return categories;
         }
 
-        public final net.lab1318.costume.api.models.collection.CollectionId getCollectionId() {
+        public final org.dressdiscover.api.models.collection.CollectionId getCollectionId() {
             return collectionId;
         }
 
@@ -102,7 +102,7 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
             return image;
         }
 
-        public final net.lab1318.costume.api.models.institution.InstitutionId getInstitutionId() {
+        public final org.dressdiscover.api.models.institution.InstitutionId getInstitutionId() {
             return institutionId;
         }
 
@@ -163,13 +163,13 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             try {
-                collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-            } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+            } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                  throw new org.thryft.protocol.InputProtocolException(e);
             }
             try {
-                institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
-            } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+            } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                  throw new org.thryft.protocol.InputProtocolException(e);
             }
             title = iprot.readString();
@@ -451,8 +451,8 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
                 case "collection_id": {
                     if (!ifield.hasId() || ifield.getId() == 1) {
                         try {
-                            collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                        } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                            collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                        } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                              throw new org.thryft.protocol.InputProtocolException(e);
                         }
                     }
@@ -461,8 +461,8 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
                 case "institution_id": {
                     if (!ifield.hasId() || ifield.getId() == 2) {
                         try {
-                            institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
-                        } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                            institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                        } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                              throw new org.thryft.protocol.InputProtocolException(e);
                         }
                     }
@@ -812,8 +812,8 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
             com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
             switch (fieldMetadata) {
-            case COLLECTION_ID: setCollectionId((net.lab1318.costume.api.models.collection.CollectionId)value); return this;
-            case INSTITUTION_ID: setInstitutionId((net.lab1318.costume.api.models.institution.InstitutionId)value); return this;
+            case COLLECTION_ID: setCollectionId((org.dressdiscover.api.models.collection.CollectionId)value); return this;
+            case INSTITUTION_ID: setInstitutionId((org.dressdiscover.api.models.institution.InstitutionId)value); return this;
             case TITLE: setTitle((String)value); return this;
             case AGENT_NAME_TEXTS: setAgentNameTexts((com.google.common.collect.ImmutableList<String>)value); return this;
             case CATEGORIES: setCategories((com.google.common.collect.ImmutableList<String>)value); return this;
@@ -857,7 +857,7 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
             return this;
         }
 
-        public Builder setCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) {
+        public Builder setCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
             this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId);
             return this;
         }
@@ -993,7 +993,7 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
             return this;
         }
 
-        public Builder setInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
+        public Builder setInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
             this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId);
             return this;
         }
@@ -1223,8 +1223,8 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
             return this;
         }
 
-        private net.lab1318.costume.api.models.collection.CollectionId collectionId;
-        private net.lab1318.costume.api.models.institution.InstitutionId institutionId;
+        private org.dressdiscover.api.models.collection.CollectionId collectionId;
+        private org.dressdiscover.api.models.institution.InstitutionId institutionId;
         /**
          * Dublin Core title
          */
@@ -1256,8 +1256,8 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.CollectionId>() {}, true, 1, "collection_id", org.thryft.protocol.Type.STRING),
-        INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, true, 2, "institution_id", org.thryft.protocol.Type.STRING),
+        COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, true, 1, "collection_id", org.thryft.protocol.Type.STRING),
+        INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, true, 2, "institution_id", org.thryft.protocol.Type.STRING),
         TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 4, "title", org.thryft.protocol.Type.STRING),
         AGENT_NAME_TEXTS("agentNameTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 6, "agent_name_texts", org.thryft.protocol.Type.LIST),
         CATEGORIES("categories", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 7, "categories", org.thryft.protocol.Type.LIST),
@@ -1404,7 +1404,7 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
     /**
      * Required constructor
      */
-    public ObjectSummary(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final String title) {
+    public ObjectSummary(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title) {
         this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.ObjectSummary: missing collectionId");
         this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.ObjectSummary: missing institutionId");
         this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.object.ObjectSummary: missing title"), "org.dressdiscover.api.models.object.ObjectSummary: title is empty");
@@ -1430,7 +1430,7 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
     /**
      * Total Nullable constructor
      */
-    public ObjectSummary(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final String title, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> agentNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> categories, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> colorTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> culturalContextTexts, final @javax.annotation.Nullable String date, final @javax.annotation.Nullable String description, final @javax.annotation.Nullable org.dressdiscover.api.models.gender.Gender gender, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable org.dressdiscover.api.models.image.Image image, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> locationNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> materialTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> relationTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, String> structureTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> subjectTermTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> techniqueTexts, final @javax.annotation.Nullable org.thryft.native_.Url url, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> workTypeTexts) {
+    public ObjectSummary(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> agentNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> categories, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> colorTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> culturalContextTexts, final @javax.annotation.Nullable String date, final @javax.annotation.Nullable String description, final @javax.annotation.Nullable org.dressdiscover.api.models.gender.Gender gender, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable org.dressdiscover.api.models.image.Image image, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> locationNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> materialTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> relationTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, String> structureTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> subjectTermTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> techniqueTexts, final @javax.annotation.Nullable org.thryft.native_.Url url, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> workTypeTexts) {
         this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.ObjectSummary: missing collectionId");
         this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.ObjectSummary: missing institutionId");
         this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.object.ObjectSummary: missing title"), "org.dressdiscover.api.models.object.ObjectSummary: title is empty");
@@ -1456,7 +1456,7 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
     /**
      * Optional constructor
      */
-    public ObjectSummary(final net.lab1318.costume.api.models.collection.CollectionId collectionId, final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts, final com.google.common.base.Optional<String> date, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
+    public ObjectSummary(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts, final com.google.common.base.Optional<String> date, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
         this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.ObjectSummary: missing collectionId");
         this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.ObjectSummary: missing institutionId");
         this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.object.ObjectSummary: missing title"), "org.dressdiscover.api.models.object.ObjectSummary: title is empty");
@@ -1571,7 +1571,7 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
         return categories;
     }
 
-    public final net.lab1318.costume.api.models.collection.CollectionId getCollectionId() {
+    public final org.dressdiscover.api.models.collection.CollectionId getCollectionId() {
         return collectionId;
     }
 
@@ -1609,7 +1609,7 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
         return image;
     }
 
-    public final net.lab1318.costume.api.models.institution.InstitutionId getInstitutionId() {
+    public final org.dressdiscover.api.models.institution.InstitutionId getInstitutionId() {
         return institutionId;
     }
 
@@ -1733,8 +1733,8 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
     }
 
     public static ObjectSummary readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        net.lab1318.costume.api.models.collection.CollectionId collectionId = null;
-        net.lab1318.costume.api.models.institution.InstitutionId institutionId = null;
+        org.dressdiscover.api.models.collection.CollectionId collectionId = null;
+        org.dressdiscover.api.models.institution.InstitutionId institutionId = null;
         String title = null;
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories = com.google.common.base.Optional.absent();
@@ -1756,13 +1756,13 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         try {
-            collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-        } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+            collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+        } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
              throw new org.thryft.protocol.InputProtocolException(e);
         }
         try {
-            institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
-        } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+            institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+        } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
              throw new org.thryft.protocol.InputProtocolException(e);
         }
         title = iprot.readString();
@@ -2038,8 +2038,8 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
     }
 
     public static ObjectSummary readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        net.lab1318.costume.api.models.collection.CollectionId collectionId = null;
-        net.lab1318.costume.api.models.institution.InstitutionId institutionId = null;
+        org.dressdiscover.api.models.collection.CollectionId collectionId = null;
+        org.dressdiscover.api.models.institution.InstitutionId institutionId = null;
         String title = null;
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories = com.google.common.base.Optional.absent();
@@ -2069,8 +2069,8 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
             case "collection_id": {
                 if (!ifield.hasId() || ifield.getId() == 1) {
                     try {
-                        collectionId = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                        collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                    } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                          throw new org.thryft.protocol.InputProtocolException(e);
                     }
                 }
@@ -2079,8 +2079,8 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
             case "institution_id": {
                 if (!ifield.hasId() || ifield.getId() == 2) {
                     try {
-                        institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                        institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                    } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                          throw new org.thryft.protocol.InputProtocolException(e);
                     }
                 }
@@ -2434,7 +2434,7 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
         return replaceCategories(com.google.common.base.Optional.fromNullable(categories));
     }
 
-    public ObjectSummary replaceCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) {
+    public ObjectSummary replaceCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
         return new ObjectSummary(collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts);
     }
 
@@ -2494,7 +2494,7 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
         return replaceImage(com.google.common.base.Optional.fromNullable(image));
     }
 
-    public ObjectSummary replaceInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
+    public ObjectSummary replaceInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
         return new ObjectSummary(this.collectionId, institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts);
     }
 
@@ -2902,9 +2902,9 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
         oprot.writeFieldStop();
     }
 
-    private final net.lab1318.costume.api.models.collection.CollectionId collectionId;
+    private final org.dressdiscover.api.models.collection.CollectionId collectionId;
 
-    private final net.lab1318.costume.api.models.institution.InstitutionId institutionId;
+    private final org.dressdiscover.api.models.institution.InstitutionId institutionId;
 
     /**
      * Dublin Core title

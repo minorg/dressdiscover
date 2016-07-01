@@ -31,7 +31,7 @@ public interface UserCommandService {
                     this.id = other.getId();
                 }
 
-                protected DeleteUserBookmarkByIdRequest _build(final net.lab1318.costume.api.models.user.UserBookmarkId id) {
+                protected DeleteUserBookmarkByIdRequest _build(final org.dressdiscover.api.models.user.UserBookmarkId id) {
                     return new DeleteUserBookmarkByIdRequest(id);
                 }
 
@@ -39,7 +39,7 @@ public interface UserCommandService {
                     return _build(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.DeleteUserBookmarkByIdRequest: missing id"));
                 }
 
-                public final net.lab1318.costume.api.models.user.UserBookmarkId getId() {
+                public final org.dressdiscover.api.models.user.UserBookmarkId getId() {
                     return id;
                 }
 
@@ -61,8 +61,8 @@ public interface UserCommandService {
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
                     try {
-                        id = net.lab1318.costume.api.models.user.UserBookmarkId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.models.user.InvalidUserBookmarkIdException e) {
+                        id = org.dressdiscover.api.models.user.UserBookmarkId.parse(iprot.readString());
+                    } catch (final org.dressdiscover.api.models.user.InvalidUserBookmarkIdException e) {
                          throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     iprot.readListEnd();
@@ -83,8 +83,8 @@ public interface UserCommandService {
                         switch (ifield.getName()) {
                         case "id": {
                             try {
-                                id = net.lab1318.costume.api.models.user.UserBookmarkId.parse(iprot.readString());
-                            } catch (final net.lab1318.costume.api.models.user.InvalidUserBookmarkIdException e) {
+                                id = org.dressdiscover.api.models.user.UserBookmarkId.parse(iprot.readString());
+                            } catch (final org.dressdiscover.api.models.user.InvalidUserBookmarkIdException e) {
                                  throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             break;
@@ -116,13 +116,13 @@ public interface UserCommandService {
                     com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
                     switch (fieldMetadata) {
-                    case ID: setId((net.lab1318.costume.api.models.user.UserBookmarkId)value); return this;
+                    case ID: setId((org.dressdiscover.api.models.user.UserBookmarkId)value); return this;
                     default:
                         throw new IllegalStateException();
                     }
                 }
 
-                public Builder setId(final net.lab1318.costume.api.models.user.UserBookmarkId id) {
+                public Builder setId(final org.dressdiscover.api.models.user.UserBookmarkId id) {
                     this.id = com.google.common.base.Preconditions.checkNotNull(id);
                     return this;
                 }
@@ -161,12 +161,12 @@ public interface UserCommandService {
                     return this;
                 }
 
-                private net.lab1318.costume.api.models.user.UserBookmarkId id;
+                private org.dressdiscover.api.models.user.UserBookmarkId id;
             }
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                ID("id", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.user.UserBookmarkId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING);
+                ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserBookmarkId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING);
 
                 @Override
                 public String getJavaName() {
@@ -257,7 +257,7 @@ public interface UserCommandService {
             /**
              * Optional constructor
              */
-            public DeleteUserBookmarkByIdRequest(final net.lab1318.costume.api.models.user.UserBookmarkId id) {
+            public DeleteUserBookmarkByIdRequest(final org.dressdiscover.api.models.user.UserBookmarkId id) {
                 this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.DeleteUserBookmarkByIdRequest: missing id");
             }
 
@@ -307,7 +307,7 @@ public interface UserCommandService {
                 }
             }
 
-            public final net.lab1318.costume.api.models.user.UserBookmarkId getId() {
+            public final org.dressdiscover.api.models.user.UserBookmarkId getId() {
                 return id;
             }
 
@@ -339,12 +339,12 @@ public interface UserCommandService {
             }
 
             public static DeleteUserBookmarkByIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.user.UserBookmarkId id = null;
+                org.dressdiscover.api.models.user.UserBookmarkId id = null;
 
                 iprot.readListBegin();
                 try {
-                    id = net.lab1318.costume.api.models.user.UserBookmarkId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.models.user.InvalidUserBookmarkIdException e) {
+                    id = org.dressdiscover.api.models.user.UserBookmarkId.parse(iprot.readString());
+                } catch (final org.dressdiscover.api.models.user.InvalidUserBookmarkIdException e) {
                      throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 iprot.readListEnd();
@@ -360,7 +360,7 @@ public interface UserCommandService {
             }
 
             public static DeleteUserBookmarkByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.user.UserBookmarkId id = null;
+                org.dressdiscover.api.models.user.UserBookmarkId id = null;
 
                 iprot.readStructBegin();
                 while (true) {
@@ -371,8 +371,8 @@ public interface UserCommandService {
                     switch (ifield.getName()) {
                     case "id": {
                         try {
-                            id = net.lab1318.costume.api.models.user.UserBookmarkId.parse(iprot.readString());
-                        } catch (final net.lab1318.costume.api.models.user.InvalidUserBookmarkIdException e) {
+                            id = org.dressdiscover.api.models.user.UserBookmarkId.parse(iprot.readString());
+                        } catch (final org.dressdiscover.api.models.user.InvalidUserBookmarkIdException e) {
                              throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         break;
@@ -393,7 +393,7 @@ public interface UserCommandService {
                 }
             }
 
-            public DeleteUserBookmarkByIdRequest replaceId(final net.lab1318.costume.api.models.user.UserBookmarkId id) {
+            public DeleteUserBookmarkByIdRequest replaceId(final org.dressdiscover.api.models.user.UserBookmarkId id) {
                 return new DeleteUserBookmarkByIdRequest(id);
             }
 
@@ -427,7 +427,7 @@ public interface UserCommandService {
                 oprot.writeFieldStop();
             }
 
-            private final net.lab1318.costume.api.models.user.UserBookmarkId id;
+            private final org.dressdiscover.api.models.user.UserBookmarkId id;
         }
 
         public final static class DeleteUserBookmarkByIdResponse implements org.thryft.Struct {
@@ -656,7 +656,7 @@ public interface UserCommandService {
                     this.id = other.getId();
                 }
 
-                protected DeleteUserByIdRequest _build(final net.lab1318.costume.api.models.user.UserId id) {
+                protected DeleteUserByIdRequest _build(final org.dressdiscover.api.models.user.UserId id) {
                     return new DeleteUserByIdRequest(id);
                 }
 
@@ -664,7 +664,7 @@ public interface UserCommandService {
                     return _build(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.DeleteUserByIdRequest: missing id"));
                 }
 
-                public final net.lab1318.costume.api.models.user.UserId getId() {
+                public final org.dressdiscover.api.models.user.UserId getId() {
                     return id;
                 }
 
@@ -686,8 +686,8 @@ public interface UserCommandService {
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
                     try {
-                        id = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
+                        id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                    } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                          throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     iprot.readListEnd();
@@ -708,8 +708,8 @@ public interface UserCommandService {
                         switch (ifield.getName()) {
                         case "id": {
                             try {
-                                id = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
-                            } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
+                                id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                            } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                                  throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             break;
@@ -741,13 +741,13 @@ public interface UserCommandService {
                     com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
                     switch (fieldMetadata) {
-                    case ID: setId((net.lab1318.costume.api.models.user.UserId)value); return this;
+                    case ID: setId((org.dressdiscover.api.models.user.UserId)value); return this;
                     default:
                         throw new IllegalStateException();
                     }
                 }
 
-                public Builder setId(final net.lab1318.costume.api.models.user.UserId id) {
+                public Builder setId(final org.dressdiscover.api.models.user.UserId id) {
                     this.id = com.google.common.base.Preconditions.checkNotNull(id);
                     return this;
                 }
@@ -786,12 +786,12 @@ public interface UserCommandService {
                     return this;
                 }
 
-                private net.lab1318.costume.api.models.user.UserId id;
+                private org.dressdiscover.api.models.user.UserId id;
             }
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                ID("id", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.user.UserId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING);
+                ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING);
 
                 @Override
                 public String getJavaName() {
@@ -882,7 +882,7 @@ public interface UserCommandService {
             /**
              * Optional constructor
              */
-            public DeleteUserByIdRequest(final net.lab1318.costume.api.models.user.UserId id) {
+            public DeleteUserByIdRequest(final org.dressdiscover.api.models.user.UserId id) {
                 this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.DeleteUserByIdRequest: missing id");
             }
 
@@ -932,7 +932,7 @@ public interface UserCommandService {
                 }
             }
 
-            public final net.lab1318.costume.api.models.user.UserId getId() {
+            public final org.dressdiscover.api.models.user.UserId getId() {
                 return id;
             }
 
@@ -964,12 +964,12 @@ public interface UserCommandService {
             }
 
             public static DeleteUserByIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.user.UserId id = null;
+                org.dressdiscover.api.models.user.UserId id = null;
 
                 iprot.readListBegin();
                 try {
-                    id = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
+                    id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                      throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 iprot.readListEnd();
@@ -985,7 +985,7 @@ public interface UserCommandService {
             }
 
             public static DeleteUserByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.user.UserId id = null;
+                org.dressdiscover.api.models.user.UserId id = null;
 
                 iprot.readStructBegin();
                 while (true) {
@@ -996,8 +996,8 @@ public interface UserCommandService {
                     switch (ifield.getName()) {
                     case "id": {
                         try {
-                            id = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
-                        } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
+                            id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                        } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                              throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         break;
@@ -1018,7 +1018,7 @@ public interface UserCommandService {
                 }
             }
 
-            public DeleteUserByIdRequest replaceId(final net.lab1318.costume.api.models.user.UserId id) {
+            public DeleteUserByIdRequest replaceId(final org.dressdiscover.api.models.user.UserId id) {
                 return new DeleteUserByIdRequest(id);
             }
 
@@ -1052,7 +1052,7 @@ public interface UserCommandService {
                 oprot.writeFieldStop();
             }
 
-            private final net.lab1318.costume.api.models.user.UserId id;
+            private final org.dressdiscover.api.models.user.UserId id;
         }
 
         public final static class DeleteUserByIdResponse implements org.thryft.Struct {
@@ -2106,7 +2106,7 @@ public interface UserCommandService {
                     this.returnValue = other.getReturnValue();
                 }
 
-                protected PostUserResponse _build(final net.lab1318.costume.api.models.user.UserId returnValue) {
+                protected PostUserResponse _build(final org.dressdiscover.api.models.user.UserId returnValue) {
                     return new PostUserResponse(returnValue);
                 }
 
@@ -2114,7 +2114,7 @@ public interface UserCommandService {
                     return _build(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.user.PostUserResponse: missing returnValue"));
                 }
 
-                public final net.lab1318.costume.api.models.user.UserId getReturnValue() {
+                public final org.dressdiscover.api.models.user.UserId getReturnValue() {
                     return returnValue;
                 }
 
@@ -2136,8 +2136,8 @@ public interface UserCommandService {
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
                     try {
-                        returnValue = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
+                        returnValue = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                    } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                          throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     iprot.readListEnd();
@@ -2158,8 +2158,8 @@ public interface UserCommandService {
                         switch (ifield.getName()) {
                         case "return_value": {
                             try {
-                                returnValue = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
-                            } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
+                                returnValue = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                            } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                                  throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             break;
@@ -2191,7 +2191,7 @@ public interface UserCommandService {
                     com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
                     switch (fieldMetadata) {
-                    case RETURN_VALUE: setReturnValue((net.lab1318.costume.api.models.user.UserId)value); return this;
+                    case RETURN_VALUE: setReturnValue((org.dressdiscover.api.models.user.UserId)value); return this;
                     default:
                         throw new IllegalStateException();
                     }
@@ -2205,7 +2205,7 @@ public interface UserCommandService {
                     return this;
                 }
 
-                public Builder setReturnValue(final net.lab1318.costume.api.models.user.UserId returnValue) {
+                public Builder setReturnValue(final org.dressdiscover.api.models.user.UserId returnValue) {
                     this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue);
                     return this;
                 }
@@ -2236,12 +2236,12 @@ public interface UserCommandService {
                     return this;
                 }
 
-                private net.lab1318.costume.api.models.user.UserId returnValue;
+                private org.dressdiscover.api.models.user.UserId returnValue;
             }
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.user.UserId>() {}, true, 0, "return_value", org.thryft.protocol.Type.STRING);
+                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, 0, "return_value", org.thryft.protocol.Type.STRING);
 
                 @Override
                 public String getJavaName() {
@@ -2332,7 +2332,7 @@ public interface UserCommandService {
             /**
              * Optional constructor
              */
-            public PostUserResponse(final net.lab1318.costume.api.models.user.UserId returnValue) {
+            public PostUserResponse(final org.dressdiscover.api.models.user.UserId returnValue) {
                 this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.user.UserCommandService.postUser: missing returnValue");
             }
 
@@ -2382,7 +2382,7 @@ public interface UserCommandService {
                 }
             }
 
-            public final net.lab1318.costume.api.models.user.UserId getReturnValue() {
+            public final org.dressdiscover.api.models.user.UserId getReturnValue() {
                 return returnValue;
             }
 
@@ -2414,12 +2414,12 @@ public interface UserCommandService {
             }
 
             public static PostUserResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.user.UserId returnValue = null;
+                org.dressdiscover.api.models.user.UserId returnValue = null;
 
                 iprot.readListBegin();
                 try {
-                    returnValue = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
+                    returnValue = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                      throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 iprot.readListEnd();
@@ -2435,7 +2435,7 @@ public interface UserCommandService {
             }
 
             public static PostUserResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.user.UserId returnValue = null;
+                org.dressdiscover.api.models.user.UserId returnValue = null;
 
                 iprot.readStructBegin();
                 while (true) {
@@ -2446,8 +2446,8 @@ public interface UserCommandService {
                     switch (ifield.getName()) {
                     case "return_value": {
                         try {
-                            returnValue = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
-                        } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
+                            returnValue = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                        } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                              throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         break;
@@ -2468,7 +2468,7 @@ public interface UserCommandService {
                 }
             }
 
-            public PostUserResponse replaceReturnValue(final net.lab1318.costume.api.models.user.UserId returnValue) {
+            public PostUserResponse replaceReturnValue(final org.dressdiscover.api.models.user.UserId returnValue) {
                 return new PostUserResponse(returnValue);
             }
 
@@ -2502,7 +2502,7 @@ public interface UserCommandService {
                 oprot.writeFieldStop();
             }
 
-            private final net.lab1318.costume.api.models.user.UserId returnValue;
+            private final org.dressdiscover.api.models.user.UserId returnValue;
         }
 
         public final static class PostUserBookmarkRequest implements org.thryft.Struct {
@@ -2908,7 +2908,7 @@ public interface UserCommandService {
                     this.returnValue = other.getReturnValue();
                 }
 
-                protected PostUserBookmarkResponse _build(final net.lab1318.costume.api.models.user.UserBookmarkId returnValue) {
+                protected PostUserBookmarkResponse _build(final org.dressdiscover.api.models.user.UserBookmarkId returnValue) {
                     return new PostUserBookmarkResponse(returnValue);
                 }
 
@@ -2916,7 +2916,7 @@ public interface UserCommandService {
                     return _build(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.user.PostUserBookmarkResponse: missing returnValue"));
                 }
 
-                public final net.lab1318.costume.api.models.user.UserBookmarkId getReturnValue() {
+                public final org.dressdiscover.api.models.user.UserBookmarkId getReturnValue() {
                     return returnValue;
                 }
 
@@ -2938,8 +2938,8 @@ public interface UserCommandService {
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
                     try {
-                        returnValue = net.lab1318.costume.api.models.user.UserBookmarkId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.models.user.InvalidUserBookmarkIdException e) {
+                        returnValue = org.dressdiscover.api.models.user.UserBookmarkId.parse(iprot.readString());
+                    } catch (final org.dressdiscover.api.models.user.InvalidUserBookmarkIdException e) {
                          throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     iprot.readListEnd();
@@ -2960,8 +2960,8 @@ public interface UserCommandService {
                         switch (ifield.getName()) {
                         case "return_value": {
                             try {
-                                returnValue = net.lab1318.costume.api.models.user.UserBookmarkId.parse(iprot.readString());
-                            } catch (final net.lab1318.costume.api.models.user.InvalidUserBookmarkIdException e) {
+                                returnValue = org.dressdiscover.api.models.user.UserBookmarkId.parse(iprot.readString());
+                            } catch (final org.dressdiscover.api.models.user.InvalidUserBookmarkIdException e) {
                                  throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             break;
@@ -2993,7 +2993,7 @@ public interface UserCommandService {
                     com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
                     switch (fieldMetadata) {
-                    case RETURN_VALUE: setReturnValue((net.lab1318.costume.api.models.user.UserBookmarkId)value); return this;
+                    case RETURN_VALUE: setReturnValue((org.dressdiscover.api.models.user.UserBookmarkId)value); return this;
                     default:
                         throw new IllegalStateException();
                     }
@@ -3007,7 +3007,7 @@ public interface UserCommandService {
                     return this;
                 }
 
-                public Builder setReturnValue(final net.lab1318.costume.api.models.user.UserBookmarkId returnValue) {
+                public Builder setReturnValue(final org.dressdiscover.api.models.user.UserBookmarkId returnValue) {
                     this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue);
                     return this;
                 }
@@ -3038,12 +3038,12 @@ public interface UserCommandService {
                     return this;
                 }
 
-                private net.lab1318.costume.api.models.user.UserBookmarkId returnValue;
+                private org.dressdiscover.api.models.user.UserBookmarkId returnValue;
             }
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.user.UserBookmarkId>() {}, true, 0, "return_value", org.thryft.protocol.Type.STRING);
+                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserBookmarkId>() {}, true, 0, "return_value", org.thryft.protocol.Type.STRING);
 
                 @Override
                 public String getJavaName() {
@@ -3134,7 +3134,7 @@ public interface UserCommandService {
             /**
              * Optional constructor
              */
-            public PostUserBookmarkResponse(final net.lab1318.costume.api.models.user.UserBookmarkId returnValue) {
+            public PostUserBookmarkResponse(final org.dressdiscover.api.models.user.UserBookmarkId returnValue) {
                 this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.user.UserCommandService.postUserBookmark: missing returnValue");
             }
 
@@ -3184,7 +3184,7 @@ public interface UserCommandService {
                 }
             }
 
-            public final net.lab1318.costume.api.models.user.UserBookmarkId getReturnValue() {
+            public final org.dressdiscover.api.models.user.UserBookmarkId getReturnValue() {
                 return returnValue;
             }
 
@@ -3216,12 +3216,12 @@ public interface UserCommandService {
             }
 
             public static PostUserBookmarkResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.user.UserBookmarkId returnValue = null;
+                org.dressdiscover.api.models.user.UserBookmarkId returnValue = null;
 
                 iprot.readListBegin();
                 try {
-                    returnValue = net.lab1318.costume.api.models.user.UserBookmarkId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.models.user.InvalidUserBookmarkIdException e) {
+                    returnValue = org.dressdiscover.api.models.user.UserBookmarkId.parse(iprot.readString());
+                } catch (final org.dressdiscover.api.models.user.InvalidUserBookmarkIdException e) {
                      throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 iprot.readListEnd();
@@ -3237,7 +3237,7 @@ public interface UserCommandService {
             }
 
             public static PostUserBookmarkResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.user.UserBookmarkId returnValue = null;
+                org.dressdiscover.api.models.user.UserBookmarkId returnValue = null;
 
                 iprot.readStructBegin();
                 while (true) {
@@ -3248,8 +3248,8 @@ public interface UserCommandService {
                     switch (ifield.getName()) {
                     case "return_value": {
                         try {
-                            returnValue = net.lab1318.costume.api.models.user.UserBookmarkId.parse(iprot.readString());
-                        } catch (final net.lab1318.costume.api.models.user.InvalidUserBookmarkIdException e) {
+                            returnValue = org.dressdiscover.api.models.user.UserBookmarkId.parse(iprot.readString());
+                        } catch (final org.dressdiscover.api.models.user.InvalidUserBookmarkIdException e) {
                              throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         break;
@@ -3270,7 +3270,7 @@ public interface UserCommandService {
                 }
             }
 
-            public PostUserBookmarkResponse replaceReturnValue(final net.lab1318.costume.api.models.user.UserBookmarkId returnValue) {
+            public PostUserBookmarkResponse replaceReturnValue(final org.dressdiscover.api.models.user.UserBookmarkId returnValue) {
                 return new PostUserBookmarkResponse(returnValue);
             }
 
@@ -3304,7 +3304,7 @@ public interface UserCommandService {
                 oprot.writeFieldStop();
             }
 
-            private final net.lab1318.costume.api.models.user.UserBookmarkId returnValue;
+            private final org.dressdiscover.api.models.user.UserBookmarkId returnValue;
         }
 
         public final static class PutUserRequest implements org.thryft.Struct {
@@ -3319,7 +3319,7 @@ public interface UserCommandService {
                     this.user = other.getUser();
                 }
 
-                protected PutUserRequest _build(final net.lab1318.costume.api.models.user.UserId id, final org.dressdiscover.api.models.user.User user) {
+                protected PutUserRequest _build(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.User user) {
                     return new PutUserRequest(id, user);
                 }
 
@@ -3327,7 +3327,7 @@ public interface UserCommandService {
                     return _build(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.PutUserRequest: missing id"), com.google.common.base.Preconditions.checkNotNull(user, "org.dressdiscover.api.services.user.PutUserRequest: missing user"));
                 }
 
-                public final net.lab1318.costume.api.models.user.UserId getId() {
+                public final org.dressdiscover.api.models.user.UserId getId() {
                     return id;
                 }
 
@@ -3353,8 +3353,8 @@ public interface UserCommandService {
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
                     try {
-                        id = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
+                        id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                    } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                          throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     user = org.dressdiscover.api.models.user.User.readAsStruct(iprot);
@@ -3376,8 +3376,8 @@ public interface UserCommandService {
                         switch (ifield.getName()) {
                         case "id": {
                             try {
-                                id = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
-                            } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
+                                id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                            } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                                  throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             break;
@@ -3413,14 +3413,14 @@ public interface UserCommandService {
                     com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
                     switch (fieldMetadata) {
-                    case ID: setId((net.lab1318.costume.api.models.user.UserId)value); return this;
+                    case ID: setId((org.dressdiscover.api.models.user.UserId)value); return this;
                     case USER: setUser((org.dressdiscover.api.models.user.User)value); return this;
                     default:
                         throw new IllegalStateException();
                     }
                 }
 
-                public Builder setId(final net.lab1318.costume.api.models.user.UserId id) {
+                public Builder setId(final org.dressdiscover.api.models.user.UserId id) {
                     this.id = com.google.common.base.Preconditions.checkNotNull(id);
                     return this;
                 }
@@ -3471,13 +3471,13 @@ public interface UserCommandService {
                     return this;
                 }
 
-                private net.lab1318.costume.api.models.user.UserId id;
+                private org.dressdiscover.api.models.user.UserId id;
                 private org.dressdiscover.api.models.user.User user;
             }
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                ID("id", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.user.UserId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),
+                ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),
                 USER("user", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.User>() {}, true, 0, "user", org.thryft.protocol.Type.STRUCT);
 
                 @Override
@@ -3571,7 +3571,7 @@ public interface UserCommandService {
             /**
              * Optional constructor
              */
-            public PutUserRequest(final net.lab1318.costume.api.models.user.UserId id, final org.dressdiscover.api.models.user.User user) {
+            public PutUserRequest(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.User user) {
                 this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.PutUserRequest: missing id");
                 this.user = com.google.common.base.Preconditions.checkNotNull(user, "org.dressdiscover.api.services.user.PutUserRequest: missing user");
             }
@@ -3624,7 +3624,7 @@ public interface UserCommandService {
                 }
             }
 
-            public final net.lab1318.costume.api.models.user.UserId getId() {
+            public final org.dressdiscover.api.models.user.UserId getId() {
                 return id;
             }
 
@@ -3661,13 +3661,13 @@ public interface UserCommandService {
             }
 
             public static PutUserRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.user.UserId id = null;
+                org.dressdiscover.api.models.user.UserId id = null;
                 org.dressdiscover.api.models.user.User user = null;
 
                 iprot.readListBegin();
                 try {
-                    id = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
+                    id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                      throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 user = org.dressdiscover.api.models.user.User.readAsStruct(iprot);
@@ -3684,7 +3684,7 @@ public interface UserCommandService {
             }
 
             public static PutUserRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.user.UserId id = null;
+                org.dressdiscover.api.models.user.UserId id = null;
                 org.dressdiscover.api.models.user.User user = null;
 
                 iprot.readStructBegin();
@@ -3696,8 +3696,8 @@ public interface UserCommandService {
                     switch (ifield.getName()) {
                     case "id": {
                         try {
-                            id = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
-                        } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
+                            id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                        } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                              throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         break;
@@ -3722,7 +3722,7 @@ public interface UserCommandService {
                 }
             }
 
-            public PutUserRequest replaceId(final net.lab1318.costume.api.models.user.UserId id) {
+            public PutUserRequest replaceId(final org.dressdiscover.api.models.user.UserId id) {
                 return new PutUserRequest(id, this.user);
             }
 
@@ -3766,7 +3766,7 @@ public interface UserCommandService {
                 oprot.writeFieldStop();
             }
 
-            private final net.lab1318.costume.api.models.user.UserId id;
+            private final org.dressdiscover.api.models.user.UserId id;
 
             private final org.dressdiscover.api.models.user.User user;
         }
@@ -3988,15 +3988,15 @@ public interface UserCommandService {
         }
     }
 
-    public void deleteUserBookmarkById(final net.lab1318.costume.api.models.user.UserBookmarkId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserBookmarkException;
+    public void deleteUserBookmarkById(final org.dressdiscover.api.models.user.UserBookmarkId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserBookmarkException;
 
-    public void deleteUserById(final net.lab1318.costume.api.models.user.UserId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException;
+    public void deleteUserById(final org.dressdiscover.api.models.user.UserId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException;
 
     public void deleteUsers() throws org.dressdiscover.api.services.IoException;
 
-    public net.lab1318.costume.api.models.user.UserId postUser(final org.dressdiscover.api.models.user.User user) throws org.dressdiscover.api.services.user.DuplicateUserException, org.dressdiscover.api.services.IoException;
+    public org.dressdiscover.api.models.user.UserId postUser(final org.dressdiscover.api.models.user.User user) throws org.dressdiscover.api.services.user.DuplicateUserException, org.dressdiscover.api.services.IoException;
 
-    public net.lab1318.costume.api.models.user.UserBookmarkId postUserBookmark(final org.dressdiscover.api.models.user.UserBookmark userBookmark) throws org.dressdiscover.api.services.user.DuplicateUserBookmarkException, org.dressdiscover.api.services.IoException;
+    public org.dressdiscover.api.models.user.UserBookmarkId postUserBookmark(final org.dressdiscover.api.models.user.UserBookmark userBookmark) throws org.dressdiscover.api.services.user.DuplicateUserBookmarkException, org.dressdiscover.api.services.IoException;
 
-    public void putUser(final net.lab1318.costume.api.models.user.UserId id, final org.dressdiscover.api.models.user.User user) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException;
+    public void putUser(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.User user) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException;
 }

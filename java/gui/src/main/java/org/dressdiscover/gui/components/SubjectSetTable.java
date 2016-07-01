@@ -13,11 +13,11 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Table;
 
-import net.lab1318.costume.api.models.object.ObjectFacetFilters;
-import net.lab1318.costume.api.models.subject.Subject;
-import net.lab1318.costume.api.models.subject.SubjectSet;
-import net.lab1318.costume.api.models.subject.SubjectTerm;
-import net.lab1318.costume.gui.models.subject.SubjectTermBean;
+import org.dressdiscover.api.models.object.ObjectFacetFilters;
+import org.dressdiscover.api.models.subject.Subject;
+import org.dressdiscover.api.models.subject.SubjectSet;
+import org.dressdiscover.api.models.subject.SubjectTerm;
+import org.dressdiscover.gui.models.subject.SubjectTermBean;
 
 @SuppressWarnings("serial")
 final class SubjectSetTable extends ElementSetTable {

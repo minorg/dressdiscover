@@ -9,9 +9,9 @@ import org.slf4j.Marker;
 
 import com.google.common.collect.ImmutableList;
 
-import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.user.DuplicateUserBookmarkException;
-import net.lab1318.costume.api.services.user.NoSuchUserBookmarkException;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.user.DuplicateUserBookmarkException;
+import org.dressdiscover.api.services.user.NoSuchUserBookmarkException;
 
 public interface UserBookmarkStore {
     public void deleteUserBookmarkById(Logger logger, Marker logMarker, UserBookmarkId userBookmarkId)

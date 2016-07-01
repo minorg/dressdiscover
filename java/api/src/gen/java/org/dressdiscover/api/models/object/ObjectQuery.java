@@ -28,7 +28,7 @@ public class ObjectQuery implements org.thryft.Struct {
             this.workTypeText = other.getWorkTypeText();
         }
 
-        protected ObjectQuery _build(final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> collectionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters, final com.google.common.base.Optional<Boolean> includeHidden, final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> institutionId, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> objectIds, final com.google.common.base.Optional<String> queryString, final com.google.common.base.Optional<String> relationText, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts, final com.google.common.base.Optional<String> workTypeText) {
+        protected ObjectQuery _build(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters, final com.google.common.base.Optional<Boolean> includeHidden, final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds, final com.google.common.base.Optional<String> queryString, final com.google.common.base.Optional<String> relationText, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts, final com.google.common.base.Optional<String> workTypeText) {
             return new ObjectQuery(collectionId, facetFilters, includeHidden, institutionId, moreLikeObjectId, objectIds, queryString, relationText, structureTexts, workTypeText);
         }
 
@@ -36,7 +36,7 @@ public class ObjectQuery implements org.thryft.Struct {
             return _build(com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.ObjectQuery: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(facetFilters, "org.dressdiscover.api.models.object.ObjectQuery: missing facetFilters"), com.google.common.base.Preconditions.checkNotNull(includeHidden, "org.dressdiscover.api.models.object.ObjectQuery: missing includeHidden"), com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.ObjectQuery: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(moreLikeObjectId, "org.dressdiscover.api.models.object.ObjectQuery: missing moreLikeObjectId"), com.google.common.base.Preconditions.checkNotNull(objectIds, "org.dressdiscover.api.models.object.ObjectQuery: missing objectIds"), com.google.common.base.Preconditions.checkNotNull(queryString, "org.dressdiscover.api.models.object.ObjectQuery: missing queryString"), com.google.common.base.Preconditions.checkNotNull(relationText, "org.dressdiscover.api.models.object.ObjectQuery: missing relationText"), com.google.common.base.Preconditions.checkNotNull(structureTexts, "org.dressdiscover.api.models.object.ObjectQuery: missing structureTexts"), com.google.common.base.Preconditions.checkNotNull(workTypeText, "org.dressdiscover.api.models.object.ObjectQuery: missing workTypeText"));
         }
 
-        public final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> getCollectionId() {
+        public final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> getCollectionId() {
             return collectionId;
         }
 
@@ -48,15 +48,15 @@ public class ObjectQuery implements org.thryft.Struct {
             return includeHidden;
         }
 
-        public final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> getInstitutionId() {
+        public final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> getInstitutionId() {
             return institutionId;
         }
 
-        public final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> getMoreLikeObjectId() {
+        public final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> getMoreLikeObjectId() {
             return moreLikeObjectId;
         }
 
-        public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> getObjectIds() {
+        public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> getObjectIds() {
             return objectIds;
         }
 
@@ -98,8 +98,8 @@ public class ObjectQuery implements org.thryft.Struct {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             if (__list.getSize() > 0) {
                 try {
-                    collectionId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
-                } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                    collectionId = com.google.common.base.Optional.of(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
+                } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                 }
             }
             if (__list.getSize() > 1) {
@@ -110,28 +110,28 @@ public class ObjectQuery implements org.thryft.Struct {
             }
             if (__list.getSize() > 3) {
                 try {
-                    institutionId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
-                } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                    institutionId = com.google.common.base.Optional.of(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
+                } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                 }
             }
             if (__list.getSize() > 4) {
                 try {
-                    moreLikeObjectId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString()));
-                } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
+                    moreLikeObjectId = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
+                } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                 }
             }
             if (__list.getSize() > 5) {
                 try {
-                    objectIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>>() {
+                    objectIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>>() {
                         @Override
-                        public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId> apply(final org.thryft.protocol.InputProtocol iprot) {
+                        public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.object.ObjectId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.models.object.ObjectId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                     try {
-                                        sequenceBuilder.add(net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString()));
-                                    } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
+                                        sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
+                                    } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                                          throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
@@ -216,8 +216,8 @@ public class ObjectQuery implements org.thryft.Struct {
                 switch (ifield.getName()) {
                 case "collection_id": {
                     try {
-                        collectionId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
-                    } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                        collectionId = com.google.common.base.Optional.of(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
+                    } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                     }
                     break;
                 }
@@ -231,30 +231,30 @@ public class ObjectQuery implements org.thryft.Struct {
                 }
                 case "institution_id": {
                     try {
-                        institutionId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
-                    } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                        institutionId = com.google.common.base.Optional.of(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
+                    } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                     }
                     break;
                 }
                 case "more_like_object_id": {
                     try {
-                        moreLikeObjectId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString()));
-                    } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
+                        moreLikeObjectId = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
+                    } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                     }
                     break;
                 }
                 case "object_ids": {
                     try {
-                        objectIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>>() {
+                        objectIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>>() {
                             @Override
-                            public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.object.ObjectId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
+                                    final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.models.object.ObjectId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                         try {
-                                            sequenceBuilder.add(net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString()));
-                                        } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
+                                            sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
+                                        } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                                              throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
                                     }
@@ -354,12 +354,12 @@ public class ObjectQuery implements org.thryft.Struct {
             com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
             switch (fieldMetadata) {
-            case COLLECTION_ID: setCollectionId((net.lab1318.costume.api.models.collection.CollectionId)value); return this;
+            case COLLECTION_ID: setCollectionId((org.dressdiscover.api.models.collection.CollectionId)value); return this;
             case FACET_FILTERS: setFacetFilters((org.dressdiscover.api.models.object.ObjectFacetFilters)value); return this;
             case INCLUDE_HIDDEN: setIncludeHidden((Boolean)value); return this;
-            case INSTITUTION_ID: setInstitutionId((net.lab1318.costume.api.models.institution.InstitutionId)value); return this;
-            case MORE_LIKE_OBJECT_ID: setMoreLikeObjectId((net.lab1318.costume.api.models.object.ObjectId)value); return this;
-            case OBJECT_IDS: setObjectIds((com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>)value); return this;
+            case INSTITUTION_ID: setInstitutionId((org.dressdiscover.api.models.institution.InstitutionId)value); return this;
+            case MORE_LIKE_OBJECT_ID: setMoreLikeObjectId((org.dressdiscover.api.models.object.ObjectId)value); return this;
+            case OBJECT_IDS: setObjectIds((com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>)value); return this;
             case QUERY_STRING: setQueryString((String)value); return this;
             case RELATION_TEXT: setRelationText((String)value); return this;
             case STRUCTURE_TEXTS: setStructureTexts((com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>)value); return this;
@@ -369,12 +369,12 @@ public class ObjectQuery implements org.thryft.Struct {
             }
         }
 
-        public Builder setCollectionId(final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> collectionId) {
+        public Builder setCollectionId(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId) {
             this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId);
             return this;
         }
 
-        public Builder setCollectionId(@javax.annotation.Nullable final net.lab1318.costume.api.models.collection.CollectionId collectionId) {
+        public Builder setCollectionId(@javax.annotation.Nullable final org.dressdiscover.api.models.collection.CollectionId collectionId) {
             this.collectionId = com.google.common.base.Optional.fromNullable(collectionId);
             return this;
         }
@@ -436,32 +436,32 @@ public class ObjectQuery implements org.thryft.Struct {
             return this;
         }
 
-        public Builder setInstitutionId(final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> institutionId) {
+        public Builder setInstitutionId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId) {
             this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId);
             return this;
         }
 
-        public Builder setInstitutionId(@javax.annotation.Nullable final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
+        public Builder setInstitutionId(@javax.annotation.Nullable final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
             this.institutionId = com.google.common.base.Optional.fromNullable(institutionId);
             return this;
         }
 
-        public Builder setMoreLikeObjectId(final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId) {
+        public Builder setMoreLikeObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId) {
             this.moreLikeObjectId = com.google.common.base.Preconditions.checkNotNull(moreLikeObjectId);
             return this;
         }
 
-        public Builder setMoreLikeObjectId(@javax.annotation.Nullable final net.lab1318.costume.api.models.object.ObjectId moreLikeObjectId) {
+        public Builder setMoreLikeObjectId(@javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectId moreLikeObjectId) {
             this.moreLikeObjectId = com.google.common.base.Optional.fromNullable(moreLikeObjectId);
             return this;
         }
 
-        public Builder setObjectIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> objectIds) {
+        public Builder setObjectIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds) {
             this.objectIds = com.google.common.base.Preconditions.checkNotNull(objectIds);
             return this;
         }
 
-        public Builder setObjectIds(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId> objectIds) {
+        public Builder setObjectIds(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> objectIds) {
             this.objectIds = com.google.common.base.Optional.fromNullable(objectIds);
             return this;
         }
@@ -586,12 +586,12 @@ public class ObjectQuery implements org.thryft.Struct {
             return this;
         }
 
-        private com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> collectionId;
+        private com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId;
         private com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters;
         private com.google.common.base.Optional<Boolean> includeHidden;
-        private com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> institutionId;
-        private com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId;
-        private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> objectIds;
+        private com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId;
+        private com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId;
+        private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds;
         private com.google.common.base.Optional<String> queryString;
         private com.google.common.base.Optional<String> relationText;
         /**
@@ -603,12 +603,12 @@ public class ObjectQuery implements org.thryft.Struct {
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.CollectionId>() {}, false, 0, "collection_id", org.thryft.protocol.Type.STRING),
+        COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, false, 0, "collection_id", org.thryft.protocol.Type.STRING),
         FACET_FILTERS("facetFilters", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectFacetFilters>() {}, false, 0, "facet_filters", org.thryft.protocol.Type.STRUCT),
         INCLUDE_HIDDEN("includeHidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 0, "include_hidden", org.thryft.protocol.Type.BOOL),
-        INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, false, 0, "institution_id", org.thryft.protocol.Type.STRING),
-        MORE_LIKE_OBJECT_ID("moreLikeObjectId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.object.ObjectId>() {}, false, 0, "more_like_object_id", org.thryft.protocol.Type.STRING),
-        OBJECT_IDS("objectIds", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>>() {}, false, 0, "object_ids", org.thryft.protocol.Type.SET),
+        INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, false, 0, "institution_id", org.thryft.protocol.Type.STRING),
+        MORE_LIKE_OBJECT_ID("moreLikeObjectId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectId>() {}, false, 0, "more_like_object_id", org.thryft.protocol.Type.STRING),
+        OBJECT_IDS("objectIds", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>>() {}, false, 0, "object_ids", org.thryft.protocol.Type.SET),
         QUERY_STRING("queryString", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "query_string", org.thryft.protocol.Type.STRING),
         RELATION_TEXT("relationText", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "relation_text", org.thryft.protocol.Type.STRING),
         STRUCTURE_TEXTS("structureTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>>() {}, false, 0, "structure_texts", org.thryft.protocol.Type.MAP),
@@ -737,7 +737,7 @@ public class ObjectQuery implements org.thryft.Struct {
     /**
      * Total Nullable constructor
      */
-    public ObjectQuery(final @javax.annotation.Nullable net.lab1318.costume.api.models.collection.CollectionId collectionId, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectFacetFilters facetFilters, final @javax.annotation.Nullable Boolean includeHidden, final @javax.annotation.Nullable net.lab1318.costume.api.models.institution.InstitutionId institutionId, final @javax.annotation.Nullable net.lab1318.costume.api.models.object.ObjectId moreLikeObjectId, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId> objectIds, final @javax.annotation.Nullable String queryString, final @javax.annotation.Nullable String relationText, final @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>> structureTexts, final @javax.annotation.Nullable String workTypeText) {
+    public ObjectQuery(final @javax.annotation.Nullable org.dressdiscover.api.models.collection.CollectionId collectionId, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectFacetFilters facetFilters, final @javax.annotation.Nullable Boolean includeHidden, final @javax.annotation.Nullable org.dressdiscover.api.models.institution.InstitutionId institutionId, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectId moreLikeObjectId, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> objectIds, final @javax.annotation.Nullable String queryString, final @javax.annotation.Nullable String relationText, final @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>> structureTexts, final @javax.annotation.Nullable String workTypeText) {
         this.collectionId = com.google.common.base.Optional.fromNullable(collectionId);
         this.facetFilters = org.thryft.Preconditions.checkOptionalCompoundTypeNotEmpty(com.google.common.base.Optional.fromNullable(facetFilters), "org.dressdiscover.api.models.object.ObjectQuery: facetFilters is empty");
         this.includeHidden = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(includeHidden), "org.dressdiscover.api.models.object.ObjectQuery: includeHidden must be true");
@@ -753,7 +753,7 @@ public class ObjectQuery implements org.thryft.Struct {
     /**
      * Optional constructor
      */
-    public ObjectQuery(final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> collectionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters, final com.google.common.base.Optional<Boolean> includeHidden, final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> institutionId, final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> objectIds, final com.google.common.base.Optional<String> queryString, final com.google.common.base.Optional<String> relationText, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts, final com.google.common.base.Optional<String> workTypeText) {
+    public ObjectQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters, final com.google.common.base.Optional<Boolean> includeHidden, final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds, final com.google.common.base.Optional<String> queryString, final com.google.common.base.Optional<String> relationText, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts, final com.google.common.base.Optional<String> workTypeText) {
         this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.ObjectQuery: missing collectionId");
         this.facetFilters = org.thryft.Preconditions.checkOptionalCompoundTypeNotEmpty(com.google.common.base.Preconditions.checkNotNull(facetFilters, "org.dressdiscover.api.models.object.ObjectQuery: missing facetFilters"), "org.dressdiscover.api.models.object.ObjectQuery: facetFilters is empty");
         this.includeHidden = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(includeHidden, "org.dressdiscover.api.models.object.ObjectQuery: missing includeHidden"), "org.dressdiscover.api.models.object.ObjectQuery: includeHidden must be true");
@@ -830,7 +830,7 @@ public class ObjectQuery implements org.thryft.Struct {
         }
     }
 
-    public final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> getCollectionId() {
+    public final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> getCollectionId() {
         return collectionId;
     }
 
@@ -842,15 +842,15 @@ public class ObjectQuery implements org.thryft.Struct {
         return includeHidden;
     }
 
-    public final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> getInstitutionId() {
+    public final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> getInstitutionId() {
         return institutionId;
     }
 
-    public final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> getMoreLikeObjectId() {
+    public final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> getMoreLikeObjectId() {
         return moreLikeObjectId;
     }
 
-    public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> getObjectIds() {
+    public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> getObjectIds() {
         return objectIds;
     }
 
@@ -930,12 +930,12 @@ public class ObjectQuery implements org.thryft.Struct {
     }
 
     public static ObjectQuery readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> collectionId = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<Boolean> includeHidden = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> institutionId = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> objectIds = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> queryString = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> relationText = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts = com.google.common.base.Optional.absent();
@@ -944,8 +944,8 @@ public class ObjectQuery implements org.thryft.Struct {
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         if (__list.getSize() > 0) {
             try {
-                collectionId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
-            } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                collectionId = com.google.common.base.Optional.of(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
+            } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
             }
         }
         if (__list.getSize() > 1) {
@@ -956,28 +956,28 @@ public class ObjectQuery implements org.thryft.Struct {
         }
         if (__list.getSize() > 3) {
             try {
-                institutionId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
-            } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                institutionId = com.google.common.base.Optional.of(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
+            } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
             }
         }
         if (__list.getSize() > 4) {
             try {
-                moreLikeObjectId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString()));
-            } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
+                moreLikeObjectId = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
+            } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
             }
         }
         if (__list.getSize() > 5) {
             try {
-                objectIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>>() {
+                objectIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>>() {
                     @Override
-                    public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId> apply(final org.thryft.protocol.InputProtocol iprot) {
+                    public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                            final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.object.ObjectId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
+                            final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.models.object.ObjectId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                 try {
-                                    sequenceBuilder.add(net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString()));
-                                } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
+                                    sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
+                                } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                                      throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
@@ -1057,12 +1057,12 @@ public class ObjectQuery implements org.thryft.Struct {
     }
 
     public static ObjectQuery readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> collectionId = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<Boolean> includeHidden = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> institutionId = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> objectIds = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> queryString = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> relationText = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts = com.google.common.base.Optional.absent();
@@ -1077,8 +1077,8 @@ public class ObjectQuery implements org.thryft.Struct {
             switch (ifield.getName()) {
             case "collection_id": {
                 try {
-                    collectionId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString()));
-                } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                    collectionId = com.google.common.base.Optional.of(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
+                } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                 }
                 break;
             }
@@ -1092,30 +1092,30 @@ public class ObjectQuery implements org.thryft.Struct {
             }
             case "institution_id": {
                 try {
-                    institutionId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
-                } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                    institutionId = com.google.common.base.Optional.of(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
+                } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                 }
                 break;
             }
             case "more_like_object_id": {
                 try {
-                    moreLikeObjectId = com.google.common.base.Optional.of(net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString()));
-                } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
+                    moreLikeObjectId = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
+                } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                 }
                 break;
             }
             case "object_ids": {
                 try {
-                    objectIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>>() {
+                    objectIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>>() {
                         @Override
-                        public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId> apply(final org.thryft.protocol.InputProtocol iprot) {
+                        public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.object.ObjectId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.models.object.ObjectId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                     try {
-                                        sequenceBuilder.add(net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString()));
-                                    } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
+                                        sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
+                                    } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                                          throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
@@ -1203,11 +1203,11 @@ public class ObjectQuery implements org.thryft.Struct {
         }
     }
 
-    public ObjectQuery replaceCollectionId(final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> collectionId) {
+    public ObjectQuery replaceCollectionId(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId) {
         return new ObjectQuery(collectionId, this.facetFilters, this.includeHidden, this.institutionId, this.moreLikeObjectId, this.objectIds, this.queryString, this.relationText, this.structureTexts, this.workTypeText);
     }
 
-    public ObjectQuery replaceCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) {
+    public ObjectQuery replaceCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
         return replaceCollectionId(com.google.common.base.Optional.fromNullable(collectionId));
     }
 
@@ -1227,27 +1227,27 @@ public class ObjectQuery implements org.thryft.Struct {
         return replaceIncludeHidden(com.google.common.base.Optional.fromNullable(includeHidden));
     }
 
-    public ObjectQuery replaceInstitutionId(final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> institutionId) {
+    public ObjectQuery replaceInstitutionId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId) {
         return new ObjectQuery(this.collectionId, this.facetFilters, this.includeHidden, institutionId, this.moreLikeObjectId, this.objectIds, this.queryString, this.relationText, this.structureTexts, this.workTypeText);
     }
 
-    public ObjectQuery replaceInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
+    public ObjectQuery replaceInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
         return replaceInstitutionId(com.google.common.base.Optional.fromNullable(institutionId));
     }
 
-    public ObjectQuery replaceMoreLikeObjectId(final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId) {
+    public ObjectQuery replaceMoreLikeObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId) {
         return new ObjectQuery(this.collectionId, this.facetFilters, this.includeHidden, this.institutionId, moreLikeObjectId, this.objectIds, this.queryString, this.relationText, this.structureTexts, this.workTypeText);
     }
 
-    public ObjectQuery replaceMoreLikeObjectId(final net.lab1318.costume.api.models.object.ObjectId moreLikeObjectId) {
+    public ObjectQuery replaceMoreLikeObjectId(final org.dressdiscover.api.models.object.ObjectId moreLikeObjectId) {
         return replaceMoreLikeObjectId(com.google.common.base.Optional.fromNullable(moreLikeObjectId));
     }
 
-    public ObjectQuery replaceObjectIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> objectIds) {
+    public ObjectQuery replaceObjectIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds) {
         return new ObjectQuery(this.collectionId, this.facetFilters, this.includeHidden, this.institutionId, this.moreLikeObjectId, objectIds, this.queryString, this.relationText, this.structureTexts, this.workTypeText);
     }
 
-    public ObjectQuery replaceObjectIds(final com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId> objectIds) {
+    public ObjectQuery replaceObjectIds(final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> objectIds) {
         return replaceObjectIds(com.google.common.base.Optional.fromNullable(objectIds));
     }
 
@@ -1324,7 +1324,7 @@ public class ObjectQuery implements org.thryft.Struct {
 
         if (getObjectIds().isPresent()) {
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getObjectIds().get().size());
-            for (final net.lab1318.costume.api.models.object.ObjectId _iter0 : getObjectIds().get()) {
+            for (final org.dressdiscover.api.models.object.ObjectId _iter0 : getObjectIds().get()) {
                 oprot.writeString(_iter0.toString());
             }
             oprot.writeSetEnd();
@@ -1410,7 +1410,7 @@ public class ObjectQuery implements org.thryft.Struct {
         if (getObjectIds().isPresent()) {
             oprot.writeFieldBegin("object_ids", org.thryft.protocol.Type.SET, (short)0);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getObjectIds().get().size());
-            for (final net.lab1318.costume.api.models.object.ObjectId _iter0 : getObjectIds().get()) {
+            for (final org.dressdiscover.api.models.object.ObjectId _iter0 : getObjectIds().get()) {
                 oprot.writeString(_iter0.toString());
             }
             oprot.writeSetEnd();
@@ -1453,17 +1453,17 @@ public class ObjectQuery implements org.thryft.Struct {
         oprot.writeFieldStop();
     }
 
-    private final com.google.common.base.Optional<net.lab1318.costume.api.models.collection.CollectionId> collectionId;
+    private final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId;
 
     private final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters;
 
     private final com.google.common.base.Optional<Boolean> includeHidden;
 
-    private final com.google.common.base.Optional<net.lab1318.costume.api.models.institution.InstitutionId> institutionId;
+    private final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId;
 
-    private final com.google.common.base.Optional<net.lab1318.costume.api.models.object.ObjectId> moreLikeObjectId;
+    private final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId;
 
-    private final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> objectIds;
+    private final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds;
 
     private final com.google.common.base.Optional<String> queryString;
 

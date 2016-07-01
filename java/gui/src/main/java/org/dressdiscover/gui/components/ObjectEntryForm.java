@@ -11,10 +11,10 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.TextField;
 
-import net.lab1318.costume.api.models.image.ImageVersion;
-import net.lab1318.costume.api.models.institution.Institution;
-import net.lab1318.costume.api.models.object.ObjectEntry;
-import net.lab1318.costume.api.models.title.Title;
+import org.dressdiscover.api.models.image.ImageVersion;
+import org.dressdiscover.api.models.institution.Institution;
+import org.dressdiscover.api.models.object.ObjectEntry;
+import org.dressdiscover.api.models.title.Title;
 
 @DesignRoot
 @SuppressWarnings("serial")

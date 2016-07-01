@@ -11,7 +11,7 @@ import org.dressdiscover.gui.models.wizard.WizardState;
 
 import com.google.common.base.Optional;
 
-import net.lab1318.costume.api.services.IoException;
+import org.dressdiscover.api.services.IoException;
 
 public final class QueryWizardState extends WizardState {
     public static QueryWizardState fromNameValuePairs(final WizardFeatureSetFactories featureSetFactories,

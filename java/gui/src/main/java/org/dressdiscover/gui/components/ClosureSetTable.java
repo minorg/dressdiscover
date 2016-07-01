@@ -2,11 +2,11 @@ package org.dressdiscover.gui.components;
 
 import com.vaadin.data.util.BeanItemContainer;
 
-import net.lab1318.costume.api.models.closure.Closure;
-import net.lab1318.costume.api.models.closure.ClosureSet;
-import net.lab1318.costume.gui.models.closure.ClosureBean;
-import net.lab1318.costume.gui.models.closure.ClosurePlacementBean;
-import net.lab1318.costume.gui.models.closure.ClosureTypeBean;
+import org.dressdiscover.api.models.closure.Closure;
+import org.dressdiscover.api.models.closure.ClosureSet;
+import org.dressdiscover.gui.models.closure.ClosureBean;
+import org.dressdiscover.gui.models.closure.ClosurePlacementBean;
+import org.dressdiscover.gui.models.closure.ClosureTypeBean;
 
 @SuppressWarnings("serial")
 final class ClosureSetTable extends ElementSetTable {

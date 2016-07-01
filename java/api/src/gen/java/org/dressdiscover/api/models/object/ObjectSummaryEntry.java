@@ -12,7 +12,7 @@ public class ObjectSummaryEntry implements org.thryft.Struct, org.thryft.waf.api
             this.model = other.getModel();
         }
 
-        protected ObjectSummaryEntry _build(final net.lab1318.costume.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.ObjectSummary model) {
+        protected ObjectSummaryEntry _build(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.ObjectSummary model) {
             return new ObjectSummaryEntry(id, model);
         }
 
@@ -20,7 +20,7 @@ public class ObjectSummaryEntry implements org.thryft.Struct, org.thryft.waf.api
             return _build(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.models.object.ObjectSummaryEntry: missing id"), com.google.common.base.Preconditions.checkNotNull(model, "org.dressdiscover.api.models.object.ObjectSummaryEntry: missing model"));
         }
 
-        public final net.lab1318.costume.api.models.object.ObjectId getId() {
+        public final org.dressdiscover.api.models.object.ObjectId getId() {
             return id;
         }
 
@@ -46,8 +46,8 @@ public class ObjectSummaryEntry implements org.thryft.Struct, org.thryft.waf.api
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             iprot.readListBegin();
             try {
-                id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
-            } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
+                id = org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString());
+            } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                  throw new org.thryft.protocol.InputProtocolException(e);
             }
             model = org.dressdiscover.api.models.object.ObjectSummary.readAsStruct(iprot);
@@ -69,8 +69,8 @@ public class ObjectSummaryEntry implements org.thryft.Struct, org.thryft.waf.api
                 switch (ifield.getName()) {
                 case "id": {
                     try {
-                        id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
+                        id = org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString());
+                    } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                          throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     break;
@@ -106,14 +106,14 @@ public class ObjectSummaryEntry implements org.thryft.Struct, org.thryft.waf.api
             com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
             switch (fieldMetadata) {
-            case ID: setId((net.lab1318.costume.api.models.object.ObjectId)value); return this;
+            case ID: setId((org.dressdiscover.api.models.object.ObjectId)value); return this;
             case MODEL: setModel((org.dressdiscover.api.models.object.ObjectSummary)value); return this;
             default:
                 throw new IllegalStateException();
             }
         }
 
-        public Builder setId(final net.lab1318.costume.api.models.object.ObjectId id) {
+        public Builder setId(final org.dressdiscover.api.models.object.ObjectId id) {
             this.id = com.google.common.base.Preconditions.checkNotNull(id);
             return this;
         }
@@ -164,13 +164,13 @@ public class ObjectSummaryEntry implements org.thryft.Struct, org.thryft.waf.api
             return this;
         }
 
-        private net.lab1318.costume.api.models.object.ObjectId id;
+        private org.dressdiscover.api.models.object.ObjectId id;
         private org.dressdiscover.api.models.object.ObjectSummary model;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        ID("id", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.object.ObjectId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),
+        ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),
         MODEL("model", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectSummary>() {}, true, 0, "model", org.thryft.protocol.Type.STRUCT);
 
         @Override
@@ -264,7 +264,7 @@ public class ObjectSummaryEntry implements org.thryft.Struct, org.thryft.waf.api
     /**
      * Optional constructor
      */
-    public ObjectSummaryEntry(final net.lab1318.costume.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.ObjectSummary model) {
+    public ObjectSummaryEntry(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.ObjectSummary model) {
         this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.models.object.ObjectSummaryEntry: missing id");
         this.model = com.google.common.base.Preconditions.checkNotNull(model, "org.dressdiscover.api.models.object.ObjectSummaryEntry: missing model");
     }
@@ -317,7 +317,7 @@ public class ObjectSummaryEntry implements org.thryft.Struct, org.thryft.waf.api
         }
     }
 
-    public final net.lab1318.costume.api.models.object.ObjectId getId() {
+    public final org.dressdiscover.api.models.object.ObjectId getId() {
         return id;
     }
 
@@ -354,13 +354,13 @@ public class ObjectSummaryEntry implements org.thryft.Struct, org.thryft.waf.api
     }
 
     public static ObjectSummaryEntry readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        net.lab1318.costume.api.models.object.ObjectId id = null;
+        org.dressdiscover.api.models.object.ObjectId id = null;
         org.dressdiscover.api.models.object.ObjectSummary model = null;
 
         iprot.readListBegin();
         try {
-            id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
-        } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
+            id = org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString());
+        } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
              throw new org.thryft.protocol.InputProtocolException(e);
         }
         model = org.dressdiscover.api.models.object.ObjectSummary.readAsStruct(iprot);
@@ -377,7 +377,7 @@ public class ObjectSummaryEntry implements org.thryft.Struct, org.thryft.waf.api
     }
 
     public static ObjectSummaryEntry readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        net.lab1318.costume.api.models.object.ObjectId id = null;
+        org.dressdiscover.api.models.object.ObjectId id = null;
         org.dressdiscover.api.models.object.ObjectSummary model = null;
 
         iprot.readStructBegin();
@@ -389,8 +389,8 @@ public class ObjectSummaryEntry implements org.thryft.Struct, org.thryft.waf.api
             switch (ifield.getName()) {
             case "id": {
                 try {
-                    id = net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
+                    id = org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString());
+                } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                      throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 break;
@@ -415,7 +415,7 @@ public class ObjectSummaryEntry implements org.thryft.Struct, org.thryft.waf.api
         }
     }
 
-    public ObjectSummaryEntry replaceId(final net.lab1318.costume.api.models.object.ObjectId id) {
+    public ObjectSummaryEntry replaceId(final org.dressdiscover.api.models.object.ObjectId id) {
         return new ObjectSummaryEntry(id, this.model);
     }
 
@@ -459,7 +459,7 @@ public class ObjectSummaryEntry implements org.thryft.Struct, org.thryft.waf.api
         oprot.writeFieldStop();
     }
 
-    private final net.lab1318.costume.api.models.object.ObjectId id;
+    private final org.dressdiscover.api.models.object.ObjectId id;
 
     private final org.dressdiscover.api.models.object.ObjectSummary model;
 }

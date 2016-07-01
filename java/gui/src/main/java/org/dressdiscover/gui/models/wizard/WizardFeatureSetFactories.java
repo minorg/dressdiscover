@@ -8,7 +8,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import net.lab1318.costume.api.services.IoException;
+import org.dressdiscover.api.services.IoException;
 import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
 
 @Singleton

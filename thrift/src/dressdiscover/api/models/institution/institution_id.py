@@ -5,7 +5,7 @@ from _id import _Id
 
 class InstitutionId(_Id):
     def java_read_protocol_throws_checked(self):
-        return ['net.lab1318.costume.api.models.institution.InvalidInstitutionIdException']
+        return ['org.dressdiscover.api.models.institution.InvalidInstitutionIdException']
 
     def java_qname(self):
-        return 'net.lab1318.costume.api.models.institution.InstitutionId'
+        return 'org.dressdiscover.api.models.institution.InstitutionId'

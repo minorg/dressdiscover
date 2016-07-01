@@ -4,7 +4,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Optional;
 
-import net.lab1318.costume.api.models.image.Image;
+import org.dressdiscover.api.models.image.Image;
 
 public final class EnumWizardFeatureValue {
     EnumWizardFeatureValue(final Optional<Image> image, final String name) {

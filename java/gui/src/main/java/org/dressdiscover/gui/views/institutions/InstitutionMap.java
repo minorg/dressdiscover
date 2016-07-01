@@ -21,12 +21,12 @@ import com.vaadin.tapio.googlemaps.client.overlays.GoogleMapMarker;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.UI;
 
-import net.lab1318.costume.api.models.collection.CollectionEntry;
-import net.lab1318.costume.api.models.institution.InstitutionEntry;
-import net.lab1318.costume.api.models.location.Location;
-import net.lab1318.costume.api.models.location.LocationCoordinates;
-import net.lab1318.costume.api.models.location.LocationSet;
-import net.lab1318.costume.api.services.collection.CollectionQueryService;
+import org.dressdiscover.api.models.collection.CollectionEntry;
+import org.dressdiscover.api.models.institution.InstitutionEntry;
+import org.dressdiscover.api.models.location.Location;
+import org.dressdiscover.api.models.location.LocationCoordinates;
+import org.dressdiscover.api.models.location.LocationSet;
+import org.dressdiscover.api.services.collection.CollectionQueryService;
 
 @SuppressWarnings("serial")
 final class InstitutionMap extends CustomComponent {

@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import com.google.common.collect.ImmutableList;
 
-import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
+import org.dressdiscover.api.services.collection.NoSuchCollectionException;
 
 public final class StoreCollectionCommandServiceTest extends CollectionServiceTest {
     @Test

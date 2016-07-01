@@ -18,13 +18,13 @@ import com.google.inject.Singleton;
 import com.vaadin.server.ErrorMessage;
 import com.vaadin.server.UserError;
 
-import net.lab1318.costume.api.models.image.Image;
-import net.lab1318.costume.api.models.institution.InvalidInstitutionIdException;
-import net.lab1318.costume.api.models.object.ObjectQuery;
-import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
-import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
-import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
+import org.dressdiscover.api.models.image.Image;
+import org.dressdiscover.api.models.institution.InvalidInstitutionIdException;
+import org.dressdiscover.api.models.object.ObjectQuery;
+import org.dressdiscover.api.models.object.ObjectSummaryEntry;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
+import org.dressdiscover.api.services.object.ObjectSummaryQueryService;
 
 @Singleton
 public class CostumeCoreWizardFeatureSetFactory implements WizardFeatureSetFactory {

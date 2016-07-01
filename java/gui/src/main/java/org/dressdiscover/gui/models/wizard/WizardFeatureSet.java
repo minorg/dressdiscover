@@ -13,7 +13,7 @@ import com.google.common.base.Charsets;
 import com.google.common.collect.ImmutableList;
 import com.opencsv.CSVWriter;
 
-import net.lab1318.costume.api.models.object.ObjectQuery;
+import org.dressdiscover.api.models.object.ObjectQuery;
 import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
 
 public abstract class WizardFeatureSet {

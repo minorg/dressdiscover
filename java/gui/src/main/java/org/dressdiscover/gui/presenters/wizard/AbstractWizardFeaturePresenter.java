@@ -12,8 +12,8 @@ import org.thryft.waf.gui.views.View;
 
 import com.google.common.eventbus.Subscribe;
 
-import net.lab1318.costume.api.services.user.UserCommandService;
-import net.lab1318.costume.api.services.user.UserQueryService;
+import org.dressdiscover.api.services.user.UserCommandService;
+import org.dressdiscover.api.services.user.UserQueryService;
 
 public abstract class AbstractWizardFeaturePresenter<StateT extends WizardState, ViewT extends View>
         extends AbstractWizardPresenter<StateT, ViewT> {

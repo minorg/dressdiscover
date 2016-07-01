@@ -4,8 +4,8 @@ import org.thryft.waf.cli.Command;
 
 import com.google.inject.Injector;
 
-import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.object.ObjectCommandService;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.object.ObjectCommandService;
 
 public final class ResummarizeObjectsCommand extends Command {
     @Override

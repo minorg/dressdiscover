@@ -13,10 +13,10 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Table;
 
-import net.lab1318.costume.api.models.material.Material;
-import net.lab1318.costume.api.models.material.MaterialSet;
-import net.lab1318.costume.api.models.object.ObjectFacetFilters;
-import net.lab1318.costume.gui.models.material.MaterialBean;
+import org.dressdiscover.api.models.material.Material;
+import org.dressdiscover.api.models.material.MaterialSet;
+import org.dressdiscover.api.models.object.ObjectFacetFilters;
+import org.dressdiscover.gui.models.material.MaterialBean;
 
 @SuppressWarnings("serial")
 final class MaterialSetTable extends ElementSetTable {

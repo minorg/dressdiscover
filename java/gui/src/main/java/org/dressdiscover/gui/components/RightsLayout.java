@@ -6,9 +6,9 @@ import com.vaadin.ui.Table;
 import com.vaadin.ui.Table.CellStyleGenerator;
 import com.vaadin.ui.Table.ColumnHeaderMode;
 
-import net.lab1318.costume.api.models.rights.RightsSet;
-import net.lab1318.costume.gui.models.rights.RightsBean;
-import net.lab1318.costume.gui.models.rights.RightsSetBean;
+import org.dressdiscover.api.models.rights.RightsSet;
+import org.dressdiscover.gui.models.rights.RightsBean;
+import org.dressdiscover.gui.models.rights.RightsSetBean;
 
 @SuppressWarnings("serial")
 public final class RightsLayout extends CustomComponent {

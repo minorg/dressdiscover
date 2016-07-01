@@ -16,9 +16,9 @@ import com.vaadin.ui.Link;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-import net.lab1318.costume.api.models.image.ImageVersion;
-import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
-import net.lab1318.costume.api.services.object.ObjectQueryService;
+import org.dressdiscover.api.models.image.ImageVersion;
+import org.dressdiscover.api.models.object.ObjectSummaryEntry;
+import org.dressdiscover.api.services.object.ObjectQueryService;
 
 @SuppressWarnings("serial")
 public final class ObjectSummaryEntriesCarousel extends CustomComponent {

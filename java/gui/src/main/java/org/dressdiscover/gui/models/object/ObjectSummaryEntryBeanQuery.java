@@ -16,15 +16,15 @@ import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.primitives.UnsignedInteger;
 
-import net.lab1318.costume.api.models.SortOrder;
-import net.lab1318.costume.api.models.object.ObjectQuery;
-import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
-import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
-import net.lab1318.costume.api.services.object.GetObjectSummariesResult;
-import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
-import net.lab1318.costume.api.services.object.ObjectSummarySort;
-import net.lab1318.costume.api.services.object.ObjectSummarySortField;
+import org.dressdiscover.api.models.SortOrder;
+import org.dressdiscover.api.models.object.ObjectQuery;
+import org.dressdiscover.api.models.object.ObjectSummaryEntry;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
+import org.dressdiscover.api.services.object.GetObjectSummariesResult;
+import org.dressdiscover.api.services.object.ObjectSummaryQueryService;
+import org.dressdiscover.api.services.object.ObjectSummarySort;
+import org.dressdiscover.api.services.object.ObjectSummarySortField;
 
 @SuppressWarnings("serial")
 public final class ObjectSummaryEntryBeanQuery extends AbstractBeanQuery<ObjectSummaryEntryBean> {

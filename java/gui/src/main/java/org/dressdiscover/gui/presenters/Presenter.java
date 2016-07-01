@@ -36,27 +36,27 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.SystemError;
 import com.vaadin.ui.UI;
 
-import net.lab1318.costume.api.models.collection.Collection;
-import net.lab1318.costume.api.models.institution.Institution;
-import net.lab1318.costume.api.models.object.ObjectQuery;
-import net.lab1318.costume.api.models.user.InvalidUserIdException;
-import net.lab1318.costume.api.models.user.UserBookmark;
-import net.lab1318.costume.api.models.user.UserEntry;
-import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.collection.CollectionQueryService;
-import net.lab1318.costume.api.services.collection.CollectionQueryService.Messages.GetCollectionByIdRequest;
-import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
-import net.lab1318.costume.api.services.institution.InstitutionQueryService;
-import net.lab1318.costume.api.services.institution.InstitutionQueryService.Messages.GetInstitutionByIdRequest;
-import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
-import net.lab1318.costume.api.services.object.ObjectQueryService.Messages.GetObjectByIdRequest;
-import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
-import net.lab1318.costume.api.services.user.DuplicateUserBookmarkException;
-import net.lab1318.costume.api.services.user.NoSuchUserBookmarkException;
-import net.lab1318.costume.api.services.user.NoSuchUserException;
-import net.lab1318.costume.api.services.user.UserCommandService;
-import net.lab1318.costume.api.services.user.UserQueryService;
-import net.lab1318.costume.api.services.user.UserQueryService.Messages.GetUserBookmarksByUserIdRequest;
+import org.dressdiscover.api.models.collection.Collection;
+import org.dressdiscover.api.models.institution.Institution;
+import org.dressdiscover.api.models.object.ObjectQuery;
+import org.dressdiscover.api.models.user.InvalidUserIdException;
+import org.dressdiscover.api.models.user.UserBookmark;
+import org.dressdiscover.api.models.user.UserEntry;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.collection.CollectionQueryService;
+import org.dressdiscover.api.services.collection.CollectionQueryService.Messages.GetCollectionByIdRequest;
+import org.dressdiscover.api.services.collection.NoSuchCollectionException;
+import org.dressdiscover.api.services.institution.InstitutionQueryService;
+import org.dressdiscover.api.services.institution.InstitutionQueryService.Messages.GetInstitutionByIdRequest;
+import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
+import org.dressdiscover.api.services.object.ObjectQueryService.Messages.GetObjectByIdRequest;
+import org.dressdiscover.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
+import org.dressdiscover.api.services.user.DuplicateUserBookmarkException;
+import org.dressdiscover.api.services.user.NoSuchUserBookmarkException;
+import org.dressdiscover.api.services.user.NoSuchUserException;
+import org.dressdiscover.api.services.user.UserCommandService;
+import org.dressdiscover.api.services.user.UserQueryService;
+import org.dressdiscover.api.services.user.UserQueryService.Messages.GetUserBookmarksByUserIdRequest;
 
 public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.presenters.Presenter<ViewT> {
     protected static void _navigateTo(final ObjectQuery query) {

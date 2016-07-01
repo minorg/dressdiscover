@@ -10,12 +10,12 @@ public class ValidatingObjectQueryService implements org.dressdiscover.api.servi
     }
 
     @Override
-    public final org.dressdiscover.api.models.object.Object getObjectById(final net.lab1318.costume.api.models.object.ObjectId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException, org.dressdiscover.api.services.object.NoSuchObjectException {
+    public final org.dressdiscover.api.models.object.Object getObjectById(final org.dressdiscover.api.models.object.ObjectId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException, org.dressdiscover.api.services.object.NoSuchObjectException {
         _validateGetObjectByIdParameters(id);
         return com.google.common.base.Preconditions.checkNotNull(delegate.getObjectById(id), "org.dressdiscover.api.services.object.ObjectQueryService.getObjectById: missing returnValue");
     }
 
-    protected void _validateGetObjectByIdParameters(final net.lab1318.costume.api.models.object.ObjectId id) {
+    protected void _validateGetObjectByIdParameters(final org.dressdiscover.api.models.object.ObjectId id) {
         com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.object.ObjectQueryService.getObjectById: missing id");
     }
 

@@ -21,18 +21,18 @@ import com.vaadin.server.SystemError;
 import com.vaadin.server.UserError;
 import com.vaadin.ui.UI;
 
-import net.lab1318.costume.api.models.institution.Institution;
-import net.lab1318.costume.api.models.object.InvalidObjectIdException;
-import net.lab1318.costume.api.models.object.Object;
-import net.lab1318.costume.api.models.user.UserEntry;
-import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
-import net.lab1318.costume.api.services.institution.InstitutionQueryService;
-import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
-import net.lab1318.costume.api.services.object.NoSuchObjectException;
-import net.lab1318.costume.api.services.object.ObjectQueryService;
-import net.lab1318.costume.api.services.user.UserCommandService;
-import net.lab1318.costume.api.services.user.UserQueryService;
+import org.dressdiscover.api.models.institution.Institution;
+import org.dressdiscover.api.models.object.InvalidObjectIdException;
+import org.dressdiscover.api.models.object.Object;
+import org.dressdiscover.api.models.user.UserEntry;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.collection.NoSuchCollectionException;
+import org.dressdiscover.api.services.institution.InstitutionQueryService;
+import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
+import org.dressdiscover.api.services.object.NoSuchObjectException;
+import org.dressdiscover.api.services.object.ObjectQueryService;
+import org.dressdiscover.api.services.user.UserCommandService;
+import org.dressdiscover.api.services.user.UserQueryService;
 
 @SessionScoped
 public class CatalogWizardFeaturePresenter

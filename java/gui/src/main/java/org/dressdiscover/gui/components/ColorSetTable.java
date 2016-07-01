@@ -3,9 +3,9 @@ package org.dressdiscover.gui.components;
 import com.google.common.collect.ImmutableList;
 import com.vaadin.data.util.BeanItemContainer;
 
-import net.lab1318.costume.api.models.color.Color;
-import net.lab1318.costume.api.models.color.ColorSet;
-import net.lab1318.costume.gui.models.color.ColorBean;
+import org.dressdiscover.api.models.color.Color;
+import org.dressdiscover.api.models.color.ColorSet;
+import org.dressdiscover.gui.models.color.ColorBean;
 
 @SuppressWarnings("serial")
 final class ColorSetTable extends ElementSetTable {

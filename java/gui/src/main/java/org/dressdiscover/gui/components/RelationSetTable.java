@@ -10,11 +10,11 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Table;
 
-import net.lab1318.costume.api.models.object.ObjectQuery;
-import net.lab1318.costume.api.models.relation.Relation;
-import net.lab1318.costume.api.models.relation.RelationSet;
-import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
-import net.lab1318.costume.gui.models.relation.RelationBean;
+import org.dressdiscover.api.models.object.ObjectQuery;
+import org.dressdiscover.api.models.relation.Relation;
+import org.dressdiscover.api.models.relation.RelationSet;
+import org.dressdiscover.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
+import org.dressdiscover.gui.models.relation.RelationBean;
 
 @SuppressWarnings("serial")
 final class RelationSetTable extends ElementSetTable {

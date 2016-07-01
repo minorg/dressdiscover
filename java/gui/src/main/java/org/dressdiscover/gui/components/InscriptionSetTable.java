@@ -3,9 +3,9 @@ package org.dressdiscover.gui.components;
 import com.google.common.base.CaseFormat;
 import com.vaadin.data.Item;
 
-import net.lab1318.costume.api.models.inscription.Inscription;
-import net.lab1318.costume.api.models.inscription.InscriptionSet;
-import net.lab1318.costume.api.models.inscription.InscriptionText;
+import org.dressdiscover.api.models.inscription.Inscription;
+import org.dressdiscover.api.models.inscription.InscriptionSet;
+import org.dressdiscover.api.models.inscription.InscriptionText;
 
 @SuppressWarnings("serial")
 final class InscriptionSetTable extends ElementSetTable {

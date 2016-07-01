@@ -16,9 +16,9 @@ import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.institution.InstitutionQueryService;
-import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.institution.InstitutionQueryService;
+import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
 
 @Singleton
 public class CollectionStoreCache {

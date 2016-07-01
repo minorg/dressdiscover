@@ -21,7 +21,7 @@ import org.thryft.waf.lib.logging.LoggingUtils;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import net.lab1318.costume.api.services.IoException;
+import org.dressdiscover.api.services.IoException;
 
 @Singleton
 @SuppressWarnings("serial")

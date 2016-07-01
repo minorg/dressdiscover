@@ -25,10 +25,10 @@ import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 
-import net.lab1318.costume.api.models.object.ObjectQuery;
-import net.lab1318.costume.api.models.user.UserEntry;
-import net.lab1318.costume.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
-import net.lab1318.costume.api.services.user.UserQueryService.Messages.GetUserBookmarksByUserIdRequest;
+import org.dressdiscover.api.models.object.ObjectQuery;
+import org.dressdiscover.api.models.user.UserEntry;
+import org.dressdiscover.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
+import org.dressdiscover.api.services.user.UserQueryService.Messages.GetUserBookmarksByUserIdRequest;
 
 @SuppressWarnings("serial")
 public final class Navbar extends CustomComponent {

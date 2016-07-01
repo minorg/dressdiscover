@@ -3,9 +3,9 @@ package org.dressdiscover.gui.components;
 import com.google.common.collect.ImmutableList;
 import com.vaadin.data.util.BeanItemContainer;
 
-import net.lab1318.costume.api.models.work_type.WorkType;
-import net.lab1318.costume.api.models.work_type.WorkTypeSet;
-import net.lab1318.costume.gui.models.work_type.WorkTypeBean;
+import org.dressdiscover.api.models.work_type.WorkType;
+import org.dressdiscover.api.models.work_type.WorkTypeSet;
+import org.dressdiscover.gui.models.work_type.WorkTypeBean;
 
 @SuppressWarnings("serial")
 final class WorkTypeSetTable extends ElementSetTable {

@@ -22,20 +22,20 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableTable;
 
-import net.lab1318.costume.api.models.agent.Agent;
-import net.lab1318.costume.api.models.agent.AgentName;
-import net.lab1318.costume.api.models.agent.AgentNameType;
-import net.lab1318.costume.api.models.agent.AgentSet;
-import net.lab1318.costume.api.models.rights.Rights;
-import net.lab1318.costume.api.models.rights.RightsSet;
-import net.lab1318.costume.api.models.rights.RightsType;
-import net.lab1318.costume.api.models.subject.Subject;
-import net.lab1318.costume.api.models.subject.SubjectSet;
-import net.lab1318.costume.api.models.subject.SubjectTerm;
-import net.lab1318.costume.api.models.subject.SubjectTermType;
-import net.lab1318.costume.api.models.title.Title;
-import net.lab1318.costume.api.models.title.TitleSet;
-import net.lab1318.costume.api.models.title.TitleType;
+import org.dressdiscover.api.models.agent.Agent;
+import org.dressdiscover.api.models.agent.AgentName;
+import org.dressdiscover.api.models.agent.AgentNameType;
+import org.dressdiscover.api.models.agent.AgentSet;
+import org.dressdiscover.api.models.rights.Rights;
+import org.dressdiscover.api.models.rights.RightsSet;
+import org.dressdiscover.api.models.rights.RightsType;
+import org.dressdiscover.api.models.subject.Subject;
+import org.dressdiscover.api.models.subject.SubjectSet;
+import org.dressdiscover.api.models.subject.SubjectTerm;
+import org.dressdiscover.api.models.subject.SubjectTermType;
+import org.dressdiscover.api.models.title.Title;
+import org.dressdiscover.api.models.title.TitleSet;
+import org.dressdiscover.api.models.title.TitleType;
 
 public final class TestData {
     public static synchronized TestData getInstance() {

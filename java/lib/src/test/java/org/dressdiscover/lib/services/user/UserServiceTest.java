@@ -24,8 +24,8 @@ import org.junit.Before;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
-import net.lab1318.costume.api.services.user.UserCommandService;
-import net.lab1318.costume.api.services.user.UserQueryService;
+import org.dressdiscover.api.services.user.UserCommandService;
+import org.dressdiscover.api.services.user.UserQueryService;
 
 public abstract class UserServiceTest extends ServiceTest {
     public static ImmutableList<UserEntry> postUsers(final UserCommandService userCommandService) throws Exception {

@@ -6,8 +6,8 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 
-import net.lab1318.costume.api.models.object.ObjectFacetFilters;
-import net.lab1318.costume.api.models.object.ObjectQuery;
+import org.dressdiscover.api.models.object.ObjectFacetFilters;
+import org.dressdiscover.api.models.object.ObjectQuery;
 
 public final class CostumeCoreWizardFeatureSet extends WizardFeatureSet {
     CostumeCoreWizardFeatureSet(final ImmutableList<WizardFeature> features) {

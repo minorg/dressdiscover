@@ -19,10 +19,10 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.UserError;
 import com.vaadin.ui.UI;
 
-import net.lab1318.costume.api.models.object.InvalidObjectIdException;
-import net.lab1318.costume.api.models.user.UserEntry;
-import net.lab1318.costume.api.services.user.UserCommandService;
-import net.lab1318.costume.api.services.user.UserQueryService;
+import org.dressdiscover.api.models.object.InvalidObjectIdException;
+import org.dressdiscover.api.models.user.UserEntry;
+import org.dressdiscover.api.services.user.UserCommandService;
+import org.dressdiscover.api.services.user.UserQueryService;
 
 @SessionScoped
 public class CatalogWizardStartPresenter extends Presenter<CatalogWizardStartView> {

@@ -21,11 +21,11 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.SystemError;
 import com.vaadin.server.UserError;
 
-import net.lab1318.costume.api.models.object.InvalidObjectIdException;
-import net.lab1318.costume.api.models.user.UserEntry;
-import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.user.UserCommandService;
-import net.lab1318.costume.api.services.user.UserQueryService;
+import org.dressdiscover.api.models.object.InvalidObjectIdException;
+import org.dressdiscover.api.models.user.UserEntry;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.user.UserCommandService;
+import org.dressdiscover.api.services.user.UserQueryService;
 
 public abstract class AbstractWizardPresenter<StateT extends WizardState, ViewT extends View> extends Presenter<ViewT> {
     protected AbstractWizardPresenter(final EventBus eventBus, final WizardFeatureSetFactories featureSetFactories,

@@ -3,10 +3,10 @@ package org.dressdiscover.gui.components;
 import com.google.common.collect.ImmutableList;
 import com.vaadin.data.util.BeanItemContainer;
 
-import net.lab1318.costume.api.models.description.Description;
-import net.lab1318.costume.api.models.description.DescriptionSet;
-import net.lab1318.costume.api.models.description.DescriptionType;
-import net.lab1318.costume.gui.models.description.DescriptionBean;
+import org.dressdiscover.api.models.description.Description;
+import org.dressdiscover.api.models.description.DescriptionSet;
+import org.dressdiscover.api.models.description.DescriptionType;
+import org.dressdiscover.gui.models.description.DescriptionBean;
 
 @SuppressWarnings("serial")
 final class DescriptionSetTable extends ElementSetTable {

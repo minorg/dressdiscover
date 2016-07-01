@@ -17,8 +17,8 @@ import org.thryft.native_.EmailAddress;
 
 import com.google.common.collect.ImmutableList;
 
-import net.lab1318.costume.api.services.user.DuplicateUserBookmarkException;
-import net.lab1318.costume.api.services.user.NoSuchUserException;
+import org.dressdiscover.api.services.user.DuplicateUserBookmarkException;
+import org.dressdiscover.api.services.user.NoSuchUserException;
 
 public final class JdbcUserCommandServiceTest extends UserServiceTest {
     @Test

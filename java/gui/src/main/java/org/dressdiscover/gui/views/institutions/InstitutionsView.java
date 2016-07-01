@@ -11,8 +11,8 @@ import com.vaadin.annotations.DesignRoot;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.VerticalLayout;
 
-import net.lab1318.costume.api.models.collection.CollectionEntry;
-import net.lab1318.costume.api.models.institution.InstitutionEntry;
+import org.dressdiscover.api.models.collection.CollectionEntry;
+import org.dressdiscover.api.models.institution.InstitutionEntry;
 
 @SuppressWarnings("serial")
 @SessionScoped

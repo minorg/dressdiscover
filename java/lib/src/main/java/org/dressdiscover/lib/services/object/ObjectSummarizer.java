@@ -12,26 +12,26 @@ import org.thryft.native_.Url;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
-import net.lab1318.costume.api.models.agent.Agent;
-import net.lab1318.costume.api.models.color.Color;
-import net.lab1318.costume.api.models.cultural_context.CulturalContext;
-import net.lab1318.costume.api.models.date.Date;
-import net.lab1318.costume.api.models.date.DateType;
-import net.lab1318.costume.api.models.description.Description;
-import net.lab1318.costume.api.models.description.DescriptionType;
-import net.lab1318.costume.api.models.image.Image;
-import net.lab1318.costume.api.models.location.Location;
-import net.lab1318.costume.api.models.location.LocationName;
-import net.lab1318.costume.api.models.material.Material;
-import net.lab1318.costume.api.models.relation.Relation;
-import net.lab1318.costume.api.models.structure.Structure;
-import net.lab1318.costume.api.models.subject.Subject;
-import net.lab1318.costume.api.models.subject.SubjectTerm;
-import net.lab1318.costume.api.models.technique.Technique;
-import net.lab1318.costume.api.models.textref.Textref;
-import net.lab1318.costume.api.models.textref.TextrefRefidType;
-import net.lab1318.costume.api.models.title.Title;
-import net.lab1318.costume.api.models.work_type.WorkType;
+import org.dressdiscover.api.models.agent.Agent;
+import org.dressdiscover.api.models.color.Color;
+import org.dressdiscover.api.models.cultural_context.CulturalContext;
+import org.dressdiscover.api.models.date.Date;
+import org.dressdiscover.api.models.date.DateType;
+import org.dressdiscover.api.models.description.Description;
+import org.dressdiscover.api.models.description.DescriptionType;
+import org.dressdiscover.api.models.image.Image;
+import org.dressdiscover.api.models.location.Location;
+import org.dressdiscover.api.models.location.LocationName;
+import org.dressdiscover.api.models.material.Material;
+import org.dressdiscover.api.models.relation.Relation;
+import org.dressdiscover.api.models.structure.Structure;
+import org.dressdiscover.api.models.subject.Subject;
+import org.dressdiscover.api.models.subject.SubjectTerm;
+import org.dressdiscover.api.models.technique.Technique;
+import org.dressdiscover.api.models.textref.Textref;
+import org.dressdiscover.api.models.textref.TextrefRefidType;
+import org.dressdiscover.api.models.title.Title;
+import org.dressdiscover.api.models.work_type.WorkType;
 
 public final class ObjectSummarizer {
     public static ObjectSummarizer getInstance() {

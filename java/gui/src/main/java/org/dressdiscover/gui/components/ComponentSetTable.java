@@ -8,10 +8,10 @@ import com.vaadin.ui.Table;
 import com.vaadin.ui.Table.ColumnHeaderMode;
 import com.vaadin.ui.VerticalLayout;
 
-import net.lab1318.costume.api.models.component.Component;
-import net.lab1318.costume.api.models.component.ComponentSet;
-import net.lab1318.costume.api.models.component.ComponentTerm;
-import net.lab1318.costume.gui.models.component.ComponentTermBean;
+import org.dressdiscover.api.models.component.Component;
+import org.dressdiscover.api.models.component.ComponentSet;
+import org.dressdiscover.api.models.component.ComponentTerm;
+import org.dressdiscover.gui.models.component.ComponentTermBean;
 
 @SuppressWarnings("serial")
 final class ComponentSetTable extends CustomComponent {

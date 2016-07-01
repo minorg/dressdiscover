@@ -12,7 +12,7 @@ public class UserEntry implements org.thryft.Struct, org.thryft.waf.api.models.M
             this.model = other.getModel();
         }
 
-        protected UserEntry _build(final net.lab1318.costume.api.models.user.UserId id, final org.dressdiscover.api.models.user.User model) {
+        protected UserEntry _build(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.User model) {
             return new UserEntry(id, model);
         }
 
@@ -20,7 +20,7 @@ public class UserEntry implements org.thryft.Struct, org.thryft.waf.api.models.M
             return _build(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.models.user.UserEntry: missing id"), com.google.common.base.Preconditions.checkNotNull(model, "org.dressdiscover.api.models.user.UserEntry: missing model"));
         }
 
-        public final net.lab1318.costume.api.models.user.UserId getId() {
+        public final org.dressdiscover.api.models.user.UserId getId() {
             return id;
         }
 
@@ -46,8 +46,8 @@ public class UserEntry implements org.thryft.Struct, org.thryft.waf.api.models.M
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             iprot.readListBegin();
             try {
-                id = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
-            } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
+                id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+            } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                  throw new org.thryft.protocol.InputProtocolException(e);
             }
             model = org.dressdiscover.api.models.user.User.readAsStruct(iprot);
@@ -69,8 +69,8 @@ public class UserEntry implements org.thryft.Struct, org.thryft.waf.api.models.M
                 switch (ifield.getName()) {
                 case "id": {
                     try {
-                        id = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
+                        id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                    } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                          throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     break;
@@ -106,14 +106,14 @@ public class UserEntry implements org.thryft.Struct, org.thryft.waf.api.models.M
             com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
             switch (fieldMetadata) {
-            case ID: setId((net.lab1318.costume.api.models.user.UserId)value); return this;
+            case ID: setId((org.dressdiscover.api.models.user.UserId)value); return this;
             case MODEL: setModel((org.dressdiscover.api.models.user.User)value); return this;
             default:
                 throw new IllegalStateException();
             }
         }
 
-        public Builder setId(final net.lab1318.costume.api.models.user.UserId id) {
+        public Builder setId(final org.dressdiscover.api.models.user.UserId id) {
             this.id = com.google.common.base.Preconditions.checkNotNull(id);
             return this;
         }
@@ -164,13 +164,13 @@ public class UserEntry implements org.thryft.Struct, org.thryft.waf.api.models.M
             return this;
         }
 
-        private net.lab1318.costume.api.models.user.UserId id;
+        private org.dressdiscover.api.models.user.UserId id;
         private org.dressdiscover.api.models.user.User model;
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        ID("id", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.user.UserId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),
+        ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),
         MODEL("model", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.User>() {}, true, 0, "model", org.thryft.protocol.Type.STRUCT);
 
         @Override
@@ -264,7 +264,7 @@ public class UserEntry implements org.thryft.Struct, org.thryft.waf.api.models.M
     /**
      * Optional constructor
      */
-    public UserEntry(final net.lab1318.costume.api.models.user.UserId id, final org.dressdiscover.api.models.user.User model) {
+    public UserEntry(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.User model) {
         this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.models.user.UserEntry: missing id");
         this.model = com.google.common.base.Preconditions.checkNotNull(model, "org.dressdiscover.api.models.user.UserEntry: missing model");
     }
@@ -317,7 +317,7 @@ public class UserEntry implements org.thryft.Struct, org.thryft.waf.api.models.M
         }
     }
 
-    public final net.lab1318.costume.api.models.user.UserId getId() {
+    public final org.dressdiscover.api.models.user.UserId getId() {
         return id;
     }
 
@@ -354,13 +354,13 @@ public class UserEntry implements org.thryft.Struct, org.thryft.waf.api.models.M
     }
 
     public static UserEntry readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        net.lab1318.costume.api.models.user.UserId id = null;
+        org.dressdiscover.api.models.user.UserId id = null;
         org.dressdiscover.api.models.user.User model = null;
 
         iprot.readListBegin();
         try {
-            id = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
-        } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
+            id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+        } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
              throw new org.thryft.protocol.InputProtocolException(e);
         }
         model = org.dressdiscover.api.models.user.User.readAsStruct(iprot);
@@ -377,7 +377,7 @@ public class UserEntry implements org.thryft.Struct, org.thryft.waf.api.models.M
     }
 
     public static UserEntry readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        net.lab1318.costume.api.models.user.UserId id = null;
+        org.dressdiscover.api.models.user.UserId id = null;
         org.dressdiscover.api.models.user.User model = null;
 
         iprot.readStructBegin();
@@ -389,8 +389,8 @@ public class UserEntry implements org.thryft.Struct, org.thryft.waf.api.models.M
             switch (ifield.getName()) {
             case "id": {
                 try {
-                    id = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
+                    id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                      throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 break;
@@ -415,7 +415,7 @@ public class UserEntry implements org.thryft.Struct, org.thryft.waf.api.models.M
         }
     }
 
-    public UserEntry replaceId(final net.lab1318.costume.api.models.user.UserId id) {
+    public UserEntry replaceId(final org.dressdiscover.api.models.user.UserId id) {
         return new UserEntry(id, this.model);
     }
 
@@ -459,7 +459,7 @@ public class UserEntry implements org.thryft.Struct, org.thryft.waf.api.models.M
         oprot.writeFieldStop();
     }
 
-    private final net.lab1318.costume.api.models.user.UserId id;
+    private final org.dressdiscover.api.models.user.UserId id;
 
     private final org.dressdiscover.api.models.user.User model;
 }

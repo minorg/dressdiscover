@@ -10,22 +10,22 @@ public class ValidatingObjectCommandService implements org.dressdiscover.api.ser
     }
 
     @Override
-    public final com.google.common.primitives.UnsignedInteger deleteObjectsByCollectionId(final net.lab1318.costume.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
+    public final com.google.common.primitives.UnsignedInteger deleteObjectsByCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         _validateDeleteObjectsByCollectionIdParameters(collectionId);
         return com.google.common.base.Preconditions.checkNotNull(delegate.deleteObjectsByCollectionId(collectionId), "org.dressdiscover.api.services.object.ObjectCommandService.deleteObjectsByCollectionId: missing returnValue");
     }
 
-    protected void _validateDeleteObjectsByCollectionIdParameters(final net.lab1318.costume.api.models.collection.CollectionId collectionId) {
+    protected void _validateDeleteObjectsByCollectionIdParameters(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
         com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.services.object.ObjectCommandService.deleteObjectsByCollectionId: missing collectionId");
     }
 
     @Override
-    public final void putObject(final net.lab1318.costume.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object object) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
+    public final void putObject(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object object) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         _validatePutObjectParameters(id, object);
         delegate.putObject(id, object);
     }
 
-    protected void _validatePutObjectParameters(final net.lab1318.costume.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object object) {
+    protected void _validatePutObjectParameters(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object object) {
         com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.object.ObjectCommandService.putObject: missing id");
         com.google.common.base.Preconditions.checkNotNull(object, "org.dressdiscover.api.services.object.ObjectCommandService.putObject: missing object");
     }

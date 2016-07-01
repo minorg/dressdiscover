@@ -23,8 +23,8 @@ import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.user.NoSuchUserException;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.user.NoSuchUserException;
 
 @Singleton
 public final class UserJdbcTable extends AbstractJdbcTable<User> implements UserStore {

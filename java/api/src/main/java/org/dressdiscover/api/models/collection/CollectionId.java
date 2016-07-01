@@ -5,8 +5,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.dressdiscover.api.models.institution.InstitutionId;
 import org.thryft.waf.api.models.StringModelId;
 
-import net.lab1318.costume.api.models.collection.InvalidCollectionIdException;
-import net.lab1318.costume.api.models.institution.InvalidInstitutionIdException;
+import org.dressdiscover.api.models.collection.InvalidCollectionIdException;
+import org.dressdiscover.api.models.institution.InvalidInstitutionIdException;
 
 public final class CollectionId extends StringModelId {
     public static CollectionId parse(final String value) throws InvalidCollectionIdException {

@@ -1,6 +1,6 @@
 package org.dressdiscover.gui.models.gender;
 
-import net.lab1318.costume.api.models.gender.Gender;
+import org.dressdiscover.api.models.gender.Gender;
 
 public final class Genders {
     public static String getCaption(final Gender gender) {

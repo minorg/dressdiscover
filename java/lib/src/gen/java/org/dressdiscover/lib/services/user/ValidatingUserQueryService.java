@@ -10,12 +10,12 @@ public class ValidatingUserQueryService implements org.dressdiscover.api.service
     }
 
     @Override
-    public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> getUserBookmarksByUserId(final net.lab1318.costume.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
+    public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> getUserBookmarksByUserId(final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
         _validateGetUserBookmarksByUserIdParameters(userId, objectIdsOnly);
         return com.google.common.base.Preconditions.checkNotNull(delegate.getUserBookmarksByUserId(userId, objectIdsOnly), "org.dressdiscover.api.services.user.UserQueryService.getUserBookmarksByUserId: missing returnValue");
     }
 
-    protected void _validateGetUserBookmarksByUserIdParameters(final net.lab1318.costume.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) {
+    protected void _validateGetUserBookmarksByUserIdParameters(final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) {
         com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.services.user.UserQueryService.getUserBookmarksByUserId: missing userId");
         com.google.common.base.Preconditions.checkNotNull(objectIdsOnly, "org.dressdiscover.api.services.user.UserQueryService.getUserBookmarksByUserId: missing objectIdsOnly");
     }
@@ -31,12 +31,12 @@ public class ValidatingUserQueryService implements org.dressdiscover.api.service
     }
 
     @Override
-    public final org.dressdiscover.api.models.user.User getUserById(final net.lab1318.costume.api.models.user.UserId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
+    public final org.dressdiscover.api.models.user.User getUserById(final org.dressdiscover.api.models.user.UserId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
         _validateGetUserByIdParameters(id);
         return com.google.common.base.Preconditions.checkNotNull(delegate.getUserById(id), "org.dressdiscover.api.services.user.UserQueryService.getUserById: missing returnValue");
     }
 
-    protected void _validateGetUserByIdParameters(final net.lab1318.costume.api.models.user.UserId id) {
+    protected void _validateGetUserByIdParameters(final org.dressdiscover.api.models.user.UserId id) {
         com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.UserQueryService.getUserById: missing id");
     }
 

@@ -3,10 +3,10 @@ package org.dressdiscover.gui.components;
 import com.google.common.collect.ImmutableList;
 import com.vaadin.data.util.BeanItemContainer;
 
-import net.lab1318.costume.api.models.structure.Structure;
-import net.lab1318.costume.api.models.structure.StructureSet;
-import net.lab1318.costume.api.models.structure.StructureType;
-import net.lab1318.costume.gui.models.structure.StructureBean;
+import org.dressdiscover.api.models.structure.Structure;
+import org.dressdiscover.api.models.structure.StructureSet;
+import org.dressdiscover.api.models.structure.StructureType;
+import org.dressdiscover.gui.models.structure.StructureBean;
 
 @SuppressWarnings("serial")
 final class StructureSetTable extends ElementSetTable {

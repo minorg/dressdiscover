@@ -19,7 +19,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
             this.text = other.getText();
         }
 
-        protected Relation _build(final org.dressdiscover.api.models.relation.RelationType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> relids, final com.google.common.base.Optional<String> text) {
+        protected Relation _build(final org.dressdiscover.api.models.relation.RelationType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids, final com.google.common.base.Optional<String> text) {
             return new Relation(type, href, relids, text);
         }
 
@@ -31,7 +31,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
             return href;
         }
 
-        public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> getRelids() {
+        public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> getRelids() {
             return relids;
         }
 
@@ -69,16 +69,16 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
             }
             if (__list.getSize() > 2) {
                 try {
-                    relids = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>>() {
+                    relids = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>>() {
                         @Override
-                        public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId> apply(final org.thryft.protocol.InputProtocol iprot) {
+                        public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.object.ObjectId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
+                                final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.models.object.ObjectId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                     try {
-                                        sequenceBuilder.add(net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString()));
-                                    } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
+                                        sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
+                                    } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                                          throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
@@ -129,16 +129,16 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
                 case "relids": {
                     if (!ifield.hasId() || ifield.getId() == 3) {
                         try {
-                            relids = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>>() {
+                            relids = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>>() {
                                 @Override
-                                public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
                                         final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                        final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.object.ObjectId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
+                                        final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.models.object.ObjectId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                             try {
-                                                sequenceBuilder.add(net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString()));
-                                            } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
+                                                sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
+                                            } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                                                  throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
                                         }
@@ -190,7 +190,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
             switch (fieldMetadata) {
             case TYPE: setType((org.dressdiscover.api.models.relation.RelationType)value); return this;
             case HREF: setHref((org.thryft.native_.Url)value); return this;
-            case RELIDS: setRelids((com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>)value); return this;
+            case RELIDS: setRelids((com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>)value); return this;
             case TEXT: setText((String)value); return this;
             default:
                 throw new IllegalStateException();
@@ -224,12 +224,12 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
             return this;
         }
 
-        public Builder setRelids(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> relids) {
+        public Builder setRelids(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids) {
             this.relids = com.google.common.base.Preconditions.checkNotNull(relids);
             return this;
         }
 
-        public Builder setRelids(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId> relids) {
+        public Builder setRelids(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> relids) {
             this.relids = com.google.common.base.Optional.fromNullable(relids);
             return this;
         }
@@ -295,7 +295,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
 
         private org.dressdiscover.api.models.relation.RelationType type;
         private com.google.common.base.Optional<org.thryft.native_.Url> href;
-        private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> relids;
+        private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids;
         private com.google.common.base.Optional<String> text;
     }
 
@@ -303,7 +303,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TYPE("type", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.relation.RelationType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),
         HREF("href", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 2, "href", org.thryft.protocol.Type.STRING),
-        RELIDS("relids", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>>() {}, false, 3, "relids", org.thryft.protocol.Type.SET),
+        RELIDS("relids", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>>() {}, false, 3, "relids", org.thryft.protocol.Type.SET),
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, false, 4, "text", org.thryft.protocol.Type.STRING);
 
         @Override
@@ -411,7 +411,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
     /**
      * Total Nullable constructor
      */
-    public Relation(final org.dressdiscover.api.models.relation.RelationType type, final @javax.annotation.Nullable org.thryft.native_.Url href, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId> relids, final @javax.annotation.Nullable String text) {
+    public Relation(final org.dressdiscover.api.models.relation.RelationType type, final @javax.annotation.Nullable org.thryft.native_.Url href, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> relids, final @javax.annotation.Nullable String text) {
         this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.relation.Relation: missing type");
         this.href = com.google.common.base.Optional.fromNullable(href);
         this.relids = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(relids), "org.dressdiscover.api.models.relation.Relation: relids is empty");
@@ -421,7 +421,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
     /**
      * Optional constructor
      */
-    public Relation(final org.dressdiscover.api.models.relation.RelationType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> relids, final com.google.common.base.Optional<String> text) {
+    public Relation(final org.dressdiscover.api.models.relation.RelationType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids, final com.google.common.base.Optional<String> text) {
         this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.relation.Relation: missing type");
         this.href = com.google.common.base.Preconditions.checkNotNull(href, "org.dressdiscover.api.models.relation.Relation: missing href");
         this.relids = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(relids, "org.dressdiscover.api.models.relation.Relation: missing relids"), "org.dressdiscover.api.models.relation.Relation: relids is empty");
@@ -484,7 +484,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
         return href;
     }
 
-    public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> getRelids() {
+    public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> getRelids() {
         return relids;
     }
 
@@ -535,7 +535,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
     public static Relation readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         org.dressdiscover.api.models.relation.RelationType type = null;
         com.google.common.base.Optional<org.thryft.native_.Url> href = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> relids = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> text = com.google.common.base.Optional.absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
@@ -548,16 +548,16 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
         }
         if (__list.getSize() > 2) {
             try {
-                relids = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>>() {
+                relids = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>>() {
                     @Override
-                    public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId> apply(final org.thryft.protocol.InputProtocol iprot) {
+                    public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                            final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.object.ObjectId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
+                            final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.models.object.ObjectId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                 try {
-                                    sequenceBuilder.add(net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString()));
-                                } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
+                                    sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
+                                } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                                      throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
@@ -589,7 +589,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
     public static Relation readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         org.dressdiscover.api.models.relation.RelationType type = null;
         com.google.common.base.Optional<org.thryft.native_.Url> href = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> relids = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<String> text = com.google.common.base.Optional.absent();
 
         iprot.readStructBegin();
@@ -617,16 +617,16 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
             case "relids": {
                 if (!ifield.hasId() || ifield.getId() == 3) {
                     try {
-                        relids = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>>() {
+                        relids = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>>() {
                             @Override
-                            public com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<net.lab1318.costume.api.models.object.ObjectId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
+                                    final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.models.object.ObjectId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                         try {
-                                            sequenceBuilder.add(net.lab1318.costume.api.models.object.ObjectId.parse(iprot.readString()));
-                                        } catch (final net.lab1318.costume.api.models.object.InvalidObjectIdException e) {
+                                            sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
+                                        } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                                              throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
                                     }
@@ -672,11 +672,11 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
         return replaceHref(com.google.common.base.Optional.fromNullable(href));
     }
 
-    public Relation replaceRelids(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> relids) {
+    public Relation replaceRelids(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids) {
         return new Relation(this.type, this.href, relids, this.text);
     }
 
-    public Relation replaceRelids(final com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId> relids) {
+    public Relation replaceRelids(final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> relids) {
         return replaceRelids(com.google.common.base.Optional.fromNullable(relids));
     }
 
@@ -711,7 +711,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
 
         if (getRelids().isPresent()) {
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getRelids().get().size());
-            for (final net.lab1318.costume.api.models.object.ObjectId _iter0 : getRelids().get()) {
+            for (final org.dressdiscover.api.models.object.ObjectId _iter0 : getRelids().get()) {
                 oprot.writeString(_iter0.toString());
             }
             oprot.writeSetEnd();
@@ -750,7 +750,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
         if (getRelids().isPresent()) {
             oprot.writeFieldBegin("relids", org.thryft.protocol.Type.SET, (short)3);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getRelids().get().size());
-            for (final net.lab1318.costume.api.models.object.ObjectId _iter0 : getRelids().get()) {
+            for (final org.dressdiscover.api.models.object.ObjectId _iter0 : getRelids().get()) {
                 oprot.writeString(_iter0.toString());
             }
             oprot.writeSetEnd();
@@ -770,7 +770,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
 
     private final com.google.common.base.Optional<org.thryft.native_.Url> href;
 
-    private final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<net.lab1318.costume.api.models.object.ObjectId>> relids;
+    private final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids;
 
     private final com.google.common.base.Optional<String> text;
 }

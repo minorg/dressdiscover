@@ -18,11 +18,11 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
-import net.lab1318.costume.api.models.collection.Collection;
-import net.lab1318.costume.api.models.institution.Institution;
-import net.lab1318.costume.api.models.object.ObjectFacets;
-import net.lab1318.costume.api.models.object.ObjectQuery;
-import net.lab1318.costume.api.models.user.UserBookmarkEntry;
+import org.dressdiscover.api.models.collection.Collection;
+import org.dressdiscover.api.models.institution.Institution;
+import org.dressdiscover.api.models.object.ObjectFacets;
+import org.dressdiscover.api.models.object.ObjectQuery;
+import org.dressdiscover.api.models.user.UserBookmarkEntry;
 
 @SuppressWarnings("serial")
 @SessionScoped

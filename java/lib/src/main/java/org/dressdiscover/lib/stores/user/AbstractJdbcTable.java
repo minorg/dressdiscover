@@ -8,7 +8,7 @@ import java.sql.Statement;
 import org.dressdiscover.lib.CostumeProperties;
 import org.thryft.waf.api.models.Model;
 
-import net.lab1318.costume.api.services.IoException;
+import org.dressdiscover.api.services.IoException;
 
 abstract class AbstractJdbcTable<ModelT extends Model> extends org.thryft.waf.lib.stores.AbstractJdbcTable<ModelT> {
     protected static IoException _wrap(final SQLException cause, final String message) {

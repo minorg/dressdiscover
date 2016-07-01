@@ -7,7 +7,7 @@ import org.dressdiscover.api.models.institution.InstitutionEntry;
 import org.dressdiscover.testdata.TestData;
 import org.junit.Test;
 
-import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
+import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
 
 public final class StoreInstitutionCommandServiceTest extends InstitutionServiceTest {
     @Test

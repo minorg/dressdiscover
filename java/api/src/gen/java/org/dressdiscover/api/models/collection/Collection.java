@@ -26,7 +26,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             this.workTypes = other.getWorkTypes();
         }
 
-        protected Collection _build(final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations, final com.google.common.base.Optional<org.thryft.native_.Uri> objectStoreUri, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
+        protected Collection _build(final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations, final com.google.common.base.Optional<org.thryft.native_.Uri> objectStoreUri, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
             return new Collection(institutionId, title, description, external, hidden, locations, objectStoreUri, url, workTypes);
         }
 
@@ -46,7 +46,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             return hidden;
         }
 
-        public final net.lab1318.costume.api.models.institution.InstitutionId getInstitutionId() {
+        public final org.dressdiscover.api.models.institution.InstitutionId getInstitutionId() {
             return institutionId;
         }
 
@@ -88,8 +88,8 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             try {
-                institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
-            } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+            } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                  throw new org.thryft.protocol.InputProtocolException(e);
             }
             title = iprot.readString();
@@ -139,8 +139,8 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
                 case "institution_id": {
                     if (!ifield.hasId() || ifield.getId() == 1) {
                         try {
-                            institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
-                        } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                            institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                        } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                              throw new org.thryft.protocol.InputProtocolException(e);
                         }
                     }
@@ -227,7 +227,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
             switch (fieldMetadata) {
-            case INSTITUTION_ID: setInstitutionId((net.lab1318.costume.api.models.institution.InstitutionId)value); return this;
+            case INSTITUTION_ID: setInstitutionId((org.dressdiscover.api.models.institution.InstitutionId)value); return this;
             case TITLE: setTitle((String)value); return this;
             case DESCRIPTION: setDescription((String)value); return this;
             case EXTERNAL: setExternal((Boolean)value); return this;
@@ -301,7 +301,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             return this;
         }
 
-        public Builder setInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
+        public Builder setInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
             this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId);
             return this;
         }
@@ -425,7 +425,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             return this;
         }
 
-        private net.lab1318.costume.api.models.institution.InstitutionId institutionId;
+        private org.dressdiscover.api.models.institution.InstitutionId institutionId;
         private String title;
         private com.google.common.base.Optional<String> description;
         private com.google.common.base.Optional<Boolean> external;
@@ -438,7 +438,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, true, 1, "institution_id", org.thryft.protocol.Type.STRING),
+        INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, true, 1, "institution_id", org.thryft.protocol.Type.STRING),
         TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "title", org.thryft.protocol.Type.STRING),
         DESCRIPTION("description", new com.google.common.reflect.TypeToken<String>() {}, false, 4, "description", org.thryft.protocol.Type.STRING),
         EXTERNAL("external", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 7, "external", org.thryft.protocol.Type.BOOL),
@@ -553,7 +553,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
     /**
      * Required constructor
      */
-    public Collection(final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final String title) {
+    public Collection(final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title) {
         this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.collection.Collection: missing institutionId");
         this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.collection.Collection: missing title"), "org.dressdiscover.api.models.collection.Collection: title is empty");
         this.description = com.google.common.base.Optional.absent();
@@ -568,7 +568,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
     /**
      * Total Nullable constructor
      */
-    public Collection(final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final String title, final @javax.annotation.Nullable String description, final @javax.annotation.Nullable Boolean external, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable org.dressdiscover.api.models.location.LocationSet locations, final @javax.annotation.Nullable org.thryft.native_.Uri objectStoreUri, final @javax.annotation.Nullable org.thryft.native_.Url url, final @javax.annotation.Nullable org.dressdiscover.api.models.work_type.WorkTypeSet workTypes) {
+    public Collection(final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final @javax.annotation.Nullable String description, final @javax.annotation.Nullable Boolean external, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable org.dressdiscover.api.models.location.LocationSet locations, final @javax.annotation.Nullable org.thryft.native_.Uri objectStoreUri, final @javax.annotation.Nullable org.thryft.native_.Url url, final @javax.annotation.Nullable org.dressdiscover.api.models.work_type.WorkTypeSet workTypes) {
         this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.collection.Collection: missing institutionId");
         this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.collection.Collection: missing title"), "org.dressdiscover.api.models.collection.Collection: title is empty");
         this.description = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(description), "org.dressdiscover.api.models.collection.Collection: description is empty");
@@ -583,7 +583,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
     /**
      * Optional constructor
      */
-    public Collection(final net.lab1318.costume.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations, final com.google.common.base.Optional<org.thryft.native_.Uri> objectStoreUri, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
+    public Collection(final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations, final com.google.common.base.Optional<org.thryft.native_.Uri> objectStoreUri, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
         this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.collection.Collection: missing institutionId");
         this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.collection.Collection: missing title"), "org.dressdiscover.api.models.collection.Collection: title is empty");
         this.description = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(description, "org.dressdiscover.api.models.collection.Collection: missing description"), "org.dressdiscover.api.models.collection.Collection: description is empty");
@@ -669,7 +669,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         return hidden;
     }
 
-    public final net.lab1318.costume.api.models.institution.InstitutionId getInstitutionId() {
+    public final org.dressdiscover.api.models.institution.InstitutionId getInstitutionId() {
         return institutionId;
     }
 
@@ -743,7 +743,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
     }
 
     public static Collection readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        net.lab1318.costume.api.models.institution.InstitutionId institutionId = null;
+        org.dressdiscover.api.models.institution.InstitutionId institutionId = null;
         String title = null;
         com.google.common.base.Optional<String> description = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<Boolean> external = com.google.common.base.Optional.absent();
@@ -755,8 +755,8 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         try {
-            institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
-        } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+            institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+        } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
              throw new org.thryft.protocol.InputProtocolException(e);
         }
         title = iprot.readString();
@@ -800,7 +800,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
     }
 
     public static Collection readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        net.lab1318.costume.api.models.institution.InstitutionId institutionId = null;
+        org.dressdiscover.api.models.institution.InstitutionId institutionId = null;
         String title = null;
         com.google.common.base.Optional<String> description = com.google.common.base.Optional.absent();
         com.google.common.base.Optional<Boolean> external = com.google.common.base.Optional.absent();
@@ -820,8 +820,8 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
             case "institution_id": {
                 if (!ifield.hasId() || ifield.getId() == 1) {
                     try {
-                        institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                        institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                    } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                          throw new org.thryft.protocol.InputProtocolException(e);
                     }
                 }
@@ -921,7 +921,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         return replaceHidden(com.google.common.base.Optional.fromNullable(hidden));
     }
 
-    public Collection replaceInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
+    public Collection replaceInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
         return new Collection(institutionId, this.title, this.description, this.external, this.hidden, this.locations, this.objectStoreUri, this.url, this.workTypes);
     }
 
@@ -1081,7 +1081,7 @@ public class Collection implements org.thryft.Struct, org.thryft.waf.api.models.
         oprot.writeFieldStop();
     }
 
-    private final net.lab1318.costume.api.models.institution.InstitutionId institutionId;
+    private final org.dressdiscover.api.models.institution.InstitutionId institutionId;
 
     private final String title;
 

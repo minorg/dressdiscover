@@ -15,10 +15,10 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.collection.CollectionCommandService;
-import net.lab1318.costume.api.services.institution.InstitutionCommandService;
-import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.collection.CollectionCommandService;
+import org.dressdiscover.api.services.institution.InstitutionCommandService;
+import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
 
 @Singleton
 public class StoreInstitutionCommandService implements InstitutionCommandService {

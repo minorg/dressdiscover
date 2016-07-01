@@ -12,10 +12,10 @@ import com.vaadin.ui.Image;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.VerticalLayout;
 
-import net.lab1318.costume.api.models.image.ImageVersion;
-import net.lab1318.costume.api.models.rights.RightsSet;
-import net.lab1318.costume.gui.models.image.ImageVersionBean;
-import net.lab1318.costume.gui.models.rights.RightsSetBean;
+import org.dressdiscover.api.models.image.ImageVersion;
+import org.dressdiscover.api.models.rights.RightsSet;
+import org.dressdiscover.gui.models.image.ImageVersionBean;
+import org.dressdiscover.gui.models.rights.RightsSetBean;
 
 @SuppressWarnings("serial")
 public final class ImageWithRightsLayout extends CustomComponent {

@@ -9,11 +9,11 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Table;
 
-import net.lab1318.costume.api.models.location.Location;
-import net.lab1318.costume.api.models.location.LocationName;
-import net.lab1318.costume.api.models.location.LocationRefid;
-import net.lab1318.costume.api.models.location.LocationSet;
-import net.lab1318.costume.api.models.object.ObjectFacetFilters;
+import org.dressdiscover.api.models.location.Location;
+import org.dressdiscover.api.models.location.LocationName;
+import org.dressdiscover.api.models.location.LocationRefid;
+import org.dressdiscover.api.models.location.LocationSet;
+import org.dressdiscover.api.models.object.ObjectFacetFilters;
 
 @SuppressWarnings("serial")
 final class LocationSetTable extends ElementSetTable {

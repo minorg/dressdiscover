@@ -17,11 +17,11 @@ import org.thryft.waf.lib.stores.NoSuchModelException;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
-import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
-import net.lab1318.costume.api.services.object.NoSuchObjectException;
-import net.lab1318.costume.api.services.object.ObjectQueryService;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.collection.NoSuchCollectionException;
+import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
+import org.dressdiscover.api.services.object.NoSuchObjectException;
+import org.dressdiscover.api.services.object.ObjectQueryService;
 
 @Singleton
 public class StoreObjectQueryService implements ObjectQueryService {

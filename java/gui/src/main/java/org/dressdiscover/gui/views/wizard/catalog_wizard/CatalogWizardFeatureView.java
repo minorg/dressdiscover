@@ -20,9 +20,9 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 
-import net.lab1318.costume.api.models.institution.Institution;
-import net.lab1318.costume.api.models.object.Object;
-import net.lab1318.costume.api.models.object.ObjectEntry;
+import org.dressdiscover.api.models.institution.Institution;
+import org.dressdiscover.api.models.object.Object;
+import org.dressdiscover.api.models.object.ObjectEntry;
 
 @SuppressWarnings("serial")
 @SessionScoped

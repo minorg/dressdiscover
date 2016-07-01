@@ -3,9 +3,9 @@ package org.dressdiscover.gui.components;
 import com.google.common.collect.ImmutableList;
 import com.vaadin.data.util.BeanItemContainer;
 
-import net.lab1318.costume.api.models.measurements.Measurements;
-import net.lab1318.costume.api.models.measurements.MeasurementsSet;
-import net.lab1318.costume.gui.models.measurements.MeasurementsBean;
+import org.dressdiscover.api.models.measurements.Measurements;
+import org.dressdiscover.api.models.measurements.MeasurementsSet;
+import org.dressdiscover.gui.models.measurements.MeasurementsBean;
 
 @SuppressWarnings("serial")
 final class MeasurementsSetTable extends ElementSetTable {

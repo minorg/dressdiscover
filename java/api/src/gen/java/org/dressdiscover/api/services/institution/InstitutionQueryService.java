@@ -28,7 +28,7 @@ public interface InstitutionQueryService {
                     this.id = other.getId();
                 }
 
-                protected GetInstitutionByIdRequest _build(final net.lab1318.costume.api.models.institution.InstitutionId id) {
+                protected GetInstitutionByIdRequest _build(final org.dressdiscover.api.models.institution.InstitutionId id) {
                     return new GetInstitutionByIdRequest(id);
                 }
 
@@ -36,7 +36,7 @@ public interface InstitutionQueryService {
                     return _build(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.GetInstitutionByIdRequest: missing id"));
                 }
 
-                public final net.lab1318.costume.api.models.institution.InstitutionId getId() {
+                public final org.dressdiscover.api.models.institution.InstitutionId getId() {
                     return id;
                 }
 
@@ -58,8 +58,8 @@ public interface InstitutionQueryService {
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
                     try {
-                        id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                        id = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                    } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                          throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     iprot.readListEnd();
@@ -80,8 +80,8 @@ public interface InstitutionQueryService {
                         switch (ifield.getName()) {
                         case "id": {
                             try {
-                                id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
-                            } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                                id = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                            } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                                  throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             break;
@@ -113,13 +113,13 @@ public interface InstitutionQueryService {
                     com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
                     switch (fieldMetadata) {
-                    case ID: setId((net.lab1318.costume.api.models.institution.InstitutionId)value); return this;
+                    case ID: setId((org.dressdiscover.api.models.institution.InstitutionId)value); return this;
                     default:
                         throw new IllegalStateException();
                     }
                 }
 
-                public Builder setId(final net.lab1318.costume.api.models.institution.InstitutionId id) {
+                public Builder setId(final org.dressdiscover.api.models.institution.InstitutionId id) {
                     this.id = com.google.common.base.Preconditions.checkNotNull(id);
                     return this;
                 }
@@ -158,12 +158,12 @@ public interface InstitutionQueryService {
                     return this;
                 }
 
-                private net.lab1318.costume.api.models.institution.InstitutionId id;
+                private org.dressdiscover.api.models.institution.InstitutionId id;
             }
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                ID("id", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING);
+                ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING);
 
                 @Override
                 public String getJavaName() {
@@ -254,7 +254,7 @@ public interface InstitutionQueryService {
             /**
              * Optional constructor
              */
-            public GetInstitutionByIdRequest(final net.lab1318.costume.api.models.institution.InstitutionId id) {
+            public GetInstitutionByIdRequest(final org.dressdiscover.api.models.institution.InstitutionId id) {
                 this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.GetInstitutionByIdRequest: missing id");
             }
 
@@ -304,7 +304,7 @@ public interface InstitutionQueryService {
                 }
             }
 
-            public final net.lab1318.costume.api.models.institution.InstitutionId getId() {
+            public final org.dressdiscover.api.models.institution.InstitutionId getId() {
                 return id;
             }
 
@@ -336,12 +336,12 @@ public interface InstitutionQueryService {
             }
 
             public static GetInstitutionByIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.institution.InstitutionId id = null;
+                org.dressdiscover.api.models.institution.InstitutionId id = null;
 
                 iprot.readListBegin();
                 try {
-                    id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                    id = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                      throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 iprot.readListEnd();
@@ -357,7 +357,7 @@ public interface InstitutionQueryService {
             }
 
             public static GetInstitutionByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.institution.InstitutionId id = null;
+                org.dressdiscover.api.models.institution.InstitutionId id = null;
 
                 iprot.readStructBegin();
                 while (true) {
@@ -368,8 +368,8 @@ public interface InstitutionQueryService {
                     switch (ifield.getName()) {
                     case "id": {
                         try {
-                            id = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
-                        } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                            id = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                        } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                              throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         break;
@@ -390,7 +390,7 @@ public interface InstitutionQueryService {
                 }
             }
 
-            public GetInstitutionByIdRequest replaceId(final net.lab1318.costume.api.models.institution.InstitutionId id) {
+            public GetInstitutionByIdRequest replaceId(final org.dressdiscover.api.models.institution.InstitutionId id) {
                 return new GetInstitutionByIdRequest(id);
             }
 
@@ -424,7 +424,7 @@ public interface InstitutionQueryService {
                 oprot.writeFieldStop();
             }
 
-            private final net.lab1318.costume.api.models.institution.InstitutionId id;
+            private final org.dressdiscover.api.models.institution.InstitutionId id;
         }
 
         public final static class GetInstitutionByIdResponse implements org.thryft.Struct {
@@ -1508,7 +1508,7 @@ public interface InstitutionQueryService {
                     this.ids = other.getIds();
                 }
 
-                protected GetInstitutionsByIdsRequest _build(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId> ids) {
+                protected GetInstitutionsByIdsRequest _build(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) {
                     return new GetInstitutionsByIdsRequest(ids);
                 }
 
@@ -1516,7 +1516,7 @@ public interface InstitutionQueryService {
                     return _build(com.google.common.base.Preconditions.checkNotNull(ids, "org.dressdiscover.api.services.institution.GetInstitutionsByIdsRequest: missing ids"));
                 }
 
-                public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId> getIds() {
+                public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> getIds() {
                     return ids;
                 }
 
@@ -1537,16 +1537,16 @@ public interface InstitutionQueryService {
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
-                    ids = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId>>() {
+                    ids = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId>>() {
                         @Override
-                        public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
+                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
                                 final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.institution.InstitutionId> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.institution.InstitutionId> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                     try {
-                                        sequenceBuilder.add(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
-                                    } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                                        sequenceBuilder.add(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
+                                    } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                                          throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
@@ -1574,16 +1574,16 @@ public interface InstitutionQueryService {
                         }
                         switch (ifield.getName()) {
                         case "ids": {
-                            ids = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId>>() {
+                            ids = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId>>() {
                                 @Override
-                                public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
                                         final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.institution.InstitutionId> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.institution.InstitutionId> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                             try {
-                                                sequenceBuilder.add(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
-                                            } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                                                sequenceBuilder.add(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
+                                            } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                                                  throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
                                         }
@@ -1624,13 +1624,13 @@ public interface InstitutionQueryService {
                     com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
                     switch (fieldMetadata) {
-                    case IDS: setIds((com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId>)value); return this;
+                    case IDS: setIds((com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId>)value); return this;
                     default:
                         throw new IllegalStateException();
                     }
                 }
 
-                public Builder setIds(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId> ids) {
+                public Builder setIds(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) {
                     this.ids = com.google.common.base.Preconditions.checkNotNull(ids);
                     return this;
                 }
@@ -1669,12 +1669,12 @@ public interface InstitutionQueryService {
                     return this;
                 }
 
-                private com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId> ids;
+                private com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids;
             }
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                IDS("ids", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId>>() {}, true, 0, "ids", org.thryft.protocol.Type.LIST);
+                IDS("ids", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId>>() {}, true, 0, "ids", org.thryft.protocol.Type.LIST);
 
                 @Override
                 public String getJavaName() {
@@ -1765,7 +1765,7 @@ public interface InstitutionQueryService {
             /**
              * Optional constructor
              */
-            public GetInstitutionsByIdsRequest(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId> ids) {
+            public GetInstitutionsByIdsRequest(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) {
                 this.ids = com.google.common.base.Preconditions.checkNotNull(ids, "org.dressdiscover.api.services.institution.GetInstitutionsByIdsRequest: missing ids");
             }
 
@@ -1815,7 +1815,7 @@ public interface InstitutionQueryService {
                 }
             }
 
-            public final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId> getIds() {
+            public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> getIds() {
                 return ids;
             }
 
@@ -1847,19 +1847,19 @@ public interface InstitutionQueryService {
             }
 
             public static GetInstitutionsByIdsRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId> ids = null;
+                com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids = null;
 
                 iprot.readListBegin();
-                ids = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId>>() {
+                ids = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId>>() {
                     @Override
-                    public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
+                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                         try {
                             final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                            final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.institution.InstitutionId> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.institution.InstitutionId> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                 try {
-                                    sequenceBuilder.add(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
-                                } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                                    sequenceBuilder.add(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
+                                } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                                      throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
@@ -1883,7 +1883,7 @@ public interface InstitutionQueryService {
             }
 
             public static GetInstitutionsByIdsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId> ids = null;
+                com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids = null;
 
                 iprot.readStructBegin();
                 while (true) {
@@ -1893,16 +1893,16 @@ public interface InstitutionQueryService {
                     }
                     switch (ifield.getName()) {
                     case "ids": {
-                        ids = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId>>() {
+                        ids = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId>>() {
                             @Override
-                            public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
                                     final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                    final com.google.common.collect.ImmutableList.Builder<net.lab1318.costume.api.models.institution.InstitutionId> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                    final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.institution.InstitutionId> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
                                         try {
-                                            sequenceBuilder.add(net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString()));
-                                        } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                                            sequenceBuilder.add(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
+                                        } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                                              throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
                                     }
@@ -1931,7 +1931,7 @@ public interface InstitutionQueryService {
                 }
             }
 
-            public GetInstitutionsByIdsRequest replaceIds(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId> ids) {
+            public GetInstitutionsByIdsRequest replaceIds(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) {
                 return new GetInstitutionsByIdsRequest(ids);
             }
 
@@ -1945,7 +1945,7 @@ public interface InstitutionQueryService {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
 
                 oprot.writeListBegin(org.thryft.protocol.Type.STRING, getIds().size());
-                for (final net.lab1318.costume.api.models.institution.InstitutionId _iter0 : getIds()) {
+                for (final org.dressdiscover.api.models.institution.InstitutionId _iter0 : getIds()) {
                     oprot.writeString(_iter0.toString());
                 }
                 oprot.writeListEnd();
@@ -1964,7 +1964,7 @@ public interface InstitutionQueryService {
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeFieldBegin("ids", org.thryft.protocol.Type.LIST, (short)0);
                 oprot.writeListBegin(org.thryft.protocol.Type.STRING, getIds().size());
-                for (final net.lab1318.costume.api.models.institution.InstitutionId _iter0 : getIds()) {
+                for (final org.dressdiscover.api.models.institution.InstitutionId _iter0 : getIds()) {
                     oprot.writeString(_iter0.toString());
                 }
                 oprot.writeListEnd();
@@ -1973,7 +1973,7 @@ public interface InstitutionQueryService {
                 oprot.writeFieldStop();
             }
 
-            private final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId> ids;
+            private final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids;
         }
 
         public final static class GetInstitutionsByIdsResponse implements org.thryft.Struct {
@@ -2439,9 +2439,9 @@ public interface InstitutionQueryService {
         }
     }
 
-    public org.dressdiscover.api.models.institution.Institution getInstitutionById(final net.lab1318.costume.api.models.institution.InstitutionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException;
+    public org.dressdiscover.api.models.institution.Institution getInstitutionById(final org.dressdiscover.api.models.institution.InstitutionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException;
 
     public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> getInstitutions() throws org.dressdiscover.api.services.IoException;
 
-    public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> getInstitutionsByIds(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.institution.InstitutionId> ids) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException;
+    public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> getInstitutionsByIds(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException;
 }

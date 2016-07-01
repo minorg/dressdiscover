@@ -16,11 +16,11 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.GridLayout;
 
-import net.lab1318.costume.api.models.gender.Gender;
-import net.lab1318.costume.api.models.institution.Institution;
-import net.lab1318.costume.api.models.object.ObjectFacets;
-import net.lab1318.costume.api.models.object.ObjectQuery;
-import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
+import org.dressdiscover.api.models.gender.Gender;
+import org.dressdiscover.api.models.institution.Institution;
+import org.dressdiscover.api.models.object.ObjectFacets;
+import org.dressdiscover.api.models.object.ObjectQuery;
+import org.dressdiscover.api.services.object.ObjectSummaryQueryService;
 
 @SuppressWarnings("serial")
 final class ObjectFacetsLayout extends CustomComponent {

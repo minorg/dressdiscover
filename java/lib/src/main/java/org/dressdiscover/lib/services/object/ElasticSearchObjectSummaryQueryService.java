@@ -65,12 +65,12 @@ import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import net.lab1318.costume.api.models.gender.Gender;
-import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
-import net.lab1318.costume.api.services.object.GetObjectSummariesResult;
-import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
-import net.lab1318.costume.api.services.object.ObjectSummarySort;
+import org.dressdiscover.api.models.gender.Gender;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
+import org.dressdiscover.api.services.object.GetObjectSummariesResult;
+import org.dressdiscover.api.services.object.ObjectSummaryQueryService;
+import org.dressdiscover.api.services.object.ObjectSummarySort;
 
 @Singleton
 public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQueryService {

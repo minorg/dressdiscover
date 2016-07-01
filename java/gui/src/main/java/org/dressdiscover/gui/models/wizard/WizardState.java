@@ -7,7 +7,7 @@ import org.dressdiscover.gui.models.NameValuePairs;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 
-import net.lab1318.costume.api.services.IoException;
+import org.dressdiscover.api.services.IoException;
 
 public abstract class WizardState {
     protected static WizardFeature _parseFeature(final WizardFeatureSet featureSet, final NameValuePairs parameters)

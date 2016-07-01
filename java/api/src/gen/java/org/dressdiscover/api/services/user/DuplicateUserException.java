@@ -13,7 +13,7 @@ public class DuplicateUserException extends org.thryft.Exception {
             this.userId = other.getUserId();
         }
 
-        protected DuplicateUserException _build(final String causeMessage, final net.lab1318.costume.api.models.user.UserId userId) {
+        protected DuplicateUserException _build(final String causeMessage, final org.dressdiscover.api.models.user.UserId userId) {
             return new DuplicateUserException(causeMessage, userId);
         }
 
@@ -28,7 +28,7 @@ public class DuplicateUserException extends org.thryft.Exception {
             return causeMessage;
         }
 
-        public final net.lab1318.costume.api.models.user.UserId getUserId() {
+        public final org.dressdiscover.api.models.user.UserId getUserId() {
             return userId;
         }
 
@@ -51,8 +51,8 @@ public class DuplicateUserException extends org.thryft.Exception {
             iprot.readListBegin();
             causeMessage = iprot.readString();
             try {
-                userId = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
-            } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
+                userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+            } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                  throw new org.thryft.protocol.InputProtocolException(e);
             }
             iprot.readListEnd();
@@ -77,8 +77,8 @@ public class DuplicateUserException extends org.thryft.Exception {
                 }
                 case "user_id": {
                     try {
-                        userId = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
+                        userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                    } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                          throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     break;
@@ -111,7 +111,7 @@ public class DuplicateUserException extends org.thryft.Exception {
 
             switch (fieldMetadata) {
             case CAUSE_MESSAGE: setCauseMessage((String)value); return this;
-            case USER_ID: setUserId((net.lab1318.costume.api.models.user.UserId)value); return this;
+            case USER_ID: setUserId((org.dressdiscover.api.models.user.UserId)value); return this;
             default:
                 throw new IllegalStateException();
             }
@@ -131,7 +131,7 @@ public class DuplicateUserException extends org.thryft.Exception {
             return this;
         }
 
-        public Builder setUserId(final net.lab1318.costume.api.models.user.UserId userId) {
+        public Builder setUserId(final org.dressdiscover.api.models.user.UserId userId) {
             this.userId = com.google.common.base.Preconditions.checkNotNull(userId);
             return this;
         }
@@ -172,12 +172,12 @@ public class DuplicateUserException extends org.thryft.Exception {
          * validation {"minLength": 1}
          */
         private String causeMessage;
-        private net.lab1318.costume.api.models.user.UserId userId;
+        private org.dressdiscover.api.models.user.UserId userId;
     }
 
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         CAUSE_MESSAGE("causeMessage", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "cause_message", org.thryft.protocol.Type.STRING),
-        USER_ID("userId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.user.UserId>() {}, true, 0, "user_id", org.thryft.protocol.Type.STRING);
+        USER_ID("userId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, 0, "user_id", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -270,7 +270,7 @@ public class DuplicateUserException extends org.thryft.Exception {
     /**
      * Optional constructor
      */
-    public DuplicateUserException(final String causeMessage, final net.lab1318.costume.api.models.user.UserId userId) {
+    public DuplicateUserException(final String causeMessage, final org.dressdiscover.api.models.user.UserId userId) {
         this.causeMessage = com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.services.user.DuplicateUserException: missing causeMessage");
         this.userId = com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.services.user.DuplicateUserException: missing userId");
     }
@@ -340,7 +340,7 @@ public class DuplicateUserException extends org.thryft.Exception {
         return "dressdiscover.api.services.user.duplicate_user_exception.DuplicateUserException";
     }
 
-    public final net.lab1318.costume.api.models.user.UserId getUserId() {
+    public final org.dressdiscover.api.models.user.UserId getUserId() {
         return userId;
     }
 
@@ -374,13 +374,13 @@ public class DuplicateUserException extends org.thryft.Exception {
 
     public static DuplicateUserException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         String causeMessage = null;
-        net.lab1318.costume.api.models.user.UserId userId = null;
+        org.dressdiscover.api.models.user.UserId userId = null;
 
         iprot.readListBegin();
         causeMessage = iprot.readString();
         try {
-            userId = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
-        } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
+            userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+        } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
              throw new org.thryft.protocol.InputProtocolException(e);
         }
         iprot.readListEnd();
@@ -397,7 +397,7 @@ public class DuplicateUserException extends org.thryft.Exception {
 
     public static DuplicateUserException readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         String causeMessage = null;
-        net.lab1318.costume.api.models.user.UserId userId = null;
+        org.dressdiscover.api.models.user.UserId userId = null;
 
         iprot.readStructBegin();
         while (true) {
@@ -412,8 +412,8 @@ public class DuplicateUserException extends org.thryft.Exception {
             }
             case "user_id": {
                 try {
-                    userId = net.lab1318.costume.api.models.user.UserId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.models.user.InvalidUserIdException e) {
+                    userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                      throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 break;
@@ -438,7 +438,7 @@ public class DuplicateUserException extends org.thryft.Exception {
         return new DuplicateUserException(causeMessage, this.userId);
     }
 
-    public DuplicateUserException replaceUserId(final net.lab1318.costume.api.models.user.UserId userId) {
+    public DuplicateUserException replaceUserId(final org.dressdiscover.api.models.user.UserId userId) {
         return new DuplicateUserException(this.causeMessage, userId);
     }
 
@@ -499,5 +499,5 @@ public class DuplicateUserException extends org.thryft.Exception {
      */
     private final String causeMessage;
 
-    private final net.lab1318.costume.api.models.user.UserId userId;
+    private final org.dressdiscover.api.models.user.UserId userId;
 }

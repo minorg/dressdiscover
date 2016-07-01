@@ -28,7 +28,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
         this.delegate = com.google.common.base.Preconditions.checkNotNull(delegate);
     }
 
-    public void deleteUserBookmarkById(final net.lab1318.costume.api.models.user.UserBookmarkId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserBookmarkException {
+    public void deleteUserBookmarkById(final org.dressdiscover.api.models.user.UserBookmarkId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserBookmarkException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -54,7 +54,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
         }
     }
 
-    public void deleteUserById(final net.lab1318.costume.api.models.user.UserId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
+    public void deleteUserById(final org.dressdiscover.api.models.user.UserId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -99,7 +99,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
         }
     }
 
-    public net.lab1318.costume.api.models.user.UserId postUser(final org.dressdiscover.api.models.user.User user) throws org.dressdiscover.api.services.user.DuplicateUserException, org.dressdiscover.api.services.IoException {
+    public org.dressdiscover.api.models.user.UserId postUser(final org.dressdiscover.api.models.user.User user) throws org.dressdiscover.api.services.user.DuplicateUserException, org.dressdiscover.api.services.IoException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -109,7 +109,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
         __logMessageStringBuilder.append(")");
 
         try {
-            net.lab1318.costume.api.models.user.UserId __returnValue = delegate.postUser(user);
+            org.dressdiscover.api.models.user.UserId __returnValue = delegate.postUser(user);
 
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(__returnValue);
@@ -130,7 +130,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
         }
     }
 
-    public net.lab1318.costume.api.models.user.UserBookmarkId postUserBookmark(final org.dressdiscover.api.models.user.UserBookmark userBookmark) throws org.dressdiscover.api.services.user.DuplicateUserBookmarkException, org.dressdiscover.api.services.IoException {
+    public org.dressdiscover.api.models.user.UserBookmarkId postUserBookmark(final org.dressdiscover.api.models.user.UserBookmark userBookmark) throws org.dressdiscover.api.services.user.DuplicateUserBookmarkException, org.dressdiscover.api.services.IoException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -140,7 +140,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
         __logMessageStringBuilder.append(")");
 
         try {
-            net.lab1318.costume.api.models.user.UserBookmarkId __returnValue = delegate.postUserBookmark(userBookmark);
+            org.dressdiscover.api.models.user.UserBookmarkId __returnValue = delegate.postUserBookmark(userBookmark);
 
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(__returnValue);
@@ -161,7 +161,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
         }
     }
 
-    public void putUser(final net.lab1318.costume.api.models.user.UserId id, final org.dressdiscover.api.models.user.User user) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
+    public void putUser(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.User user) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 

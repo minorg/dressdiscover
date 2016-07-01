@@ -9,8 +9,8 @@ import org.thryft.native_.EmailAddress;
 
 import com.google.common.collect.ImmutableList;
 
-import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.user.NoSuchUserException;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.user.NoSuchUserException;
 
 public interface UserStore {
     public void deleteUserById(Logger logger, Marker logMarker, UserId userId) throws IoException, NoSuchUserException;

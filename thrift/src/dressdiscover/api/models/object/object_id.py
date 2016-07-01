@@ -5,7 +5,7 @@ from _id import _Id
 
 class ObjectId(_Id):
     def java_read_protocol_throws_checked(self):
-        return ['net.lab1318.costume.api.models.object.InvalidObjectIdException']
+        return ['org.dressdiscover.api.models.object.InvalidObjectIdException']
 
     def java_qname(self):
-        return 'net.lab1318.costume.api.models.object.ObjectId'
+        return 'org.dressdiscover.api.models.object.ObjectId'

@@ -17,7 +17,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.primitives.UnsignedInteger;
 
-import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
+import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
 
 public final class ElasticSearchObjectSummaryQueryServiceTest extends ObjectServiceTest {
     @Test

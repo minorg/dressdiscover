@@ -13,7 +13,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 
-import net.lab1318.costume.api.models.user.UserEntry;
+import org.dressdiscover.api.models.user.UserEntry;
 
 @SuppressWarnings("serial")
 public abstract class TopLevelView extends View {

@@ -6,7 +6,7 @@ import org.dressdiscover.api.models.institution.InstitutionId;
 
 import com.vaadin.data.util.converter.Converter;
 
-import net.lab1318.costume.api.models.institution.InvalidInstitutionIdException;
+import org.dressdiscover.api.models.institution.InvalidInstitutionIdException;
 
 @SuppressWarnings("serial")
 final class StringToInstitutionIdConverter implements Converter<String, InstitutionId> {

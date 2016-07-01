@@ -10,9 +10,9 @@ import org.junit.Before;
 
 import com.google.common.collect.ImmutableList;
 
-import net.lab1318.costume.api.services.collection.CollectionCommandService;
-import net.lab1318.costume.api.services.collection.CollectionQueryService;
-import net.lab1318.costume.api.services.institution.InstitutionCommandService;
+import org.dressdiscover.api.services.collection.CollectionCommandService;
+import org.dressdiscover.api.services.collection.CollectionQueryService;
+import org.dressdiscover.api.services.institution.InstitutionCommandService;
 
 public abstract class CollectionServiceTest extends ServiceTest {
     public static ImmutableList<CollectionEntry> putCollections(

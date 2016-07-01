@@ -10,22 +10,22 @@ public class ValidatingUserCommandService implements org.dressdiscover.api.servi
     }
 
     @Override
-    public final void deleteUserBookmarkById(final net.lab1318.costume.api.models.user.UserBookmarkId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserBookmarkException {
+    public final void deleteUserBookmarkById(final org.dressdiscover.api.models.user.UserBookmarkId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserBookmarkException {
         _validateDeleteUserBookmarkByIdParameters(id);
         delegate.deleteUserBookmarkById(id);
     }
 
-    protected void _validateDeleteUserBookmarkByIdParameters(final net.lab1318.costume.api.models.user.UserBookmarkId id) {
+    protected void _validateDeleteUserBookmarkByIdParameters(final org.dressdiscover.api.models.user.UserBookmarkId id) {
         com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.UserCommandService.deleteUserBookmarkById: missing id");
     }
 
     @Override
-    public final void deleteUserById(final net.lab1318.costume.api.models.user.UserId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
+    public final void deleteUserById(final org.dressdiscover.api.models.user.UserId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
         _validateDeleteUserByIdParameters(id);
         delegate.deleteUserById(id);
     }
 
-    protected void _validateDeleteUserByIdParameters(final net.lab1318.costume.api.models.user.UserId id) {
+    protected void _validateDeleteUserByIdParameters(final org.dressdiscover.api.models.user.UserId id) {
         com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.UserCommandService.deleteUserById: missing id");
     }
 
@@ -35,7 +35,7 @@ public class ValidatingUserCommandService implements org.dressdiscover.api.servi
     }
 
     @Override
-    public final net.lab1318.costume.api.models.user.UserId postUser(final org.dressdiscover.api.models.user.User user) throws org.dressdiscover.api.services.user.DuplicateUserException, org.dressdiscover.api.services.IoException {
+    public final org.dressdiscover.api.models.user.UserId postUser(final org.dressdiscover.api.models.user.User user) throws org.dressdiscover.api.services.user.DuplicateUserException, org.dressdiscover.api.services.IoException {
         _validatePostUserParameters(user);
         return com.google.common.base.Preconditions.checkNotNull(delegate.postUser(user), "org.dressdiscover.api.services.user.UserCommandService.postUser: missing returnValue");
     }
@@ -45,7 +45,7 @@ public class ValidatingUserCommandService implements org.dressdiscover.api.servi
     }
 
     @Override
-    public final net.lab1318.costume.api.models.user.UserBookmarkId postUserBookmark(final org.dressdiscover.api.models.user.UserBookmark userBookmark) throws org.dressdiscover.api.services.user.DuplicateUserBookmarkException, org.dressdiscover.api.services.IoException {
+    public final org.dressdiscover.api.models.user.UserBookmarkId postUserBookmark(final org.dressdiscover.api.models.user.UserBookmark userBookmark) throws org.dressdiscover.api.services.user.DuplicateUserBookmarkException, org.dressdiscover.api.services.IoException {
         _validatePostUserBookmarkParameters(userBookmark);
         return com.google.common.base.Preconditions.checkNotNull(delegate.postUserBookmark(userBookmark), "org.dressdiscover.api.services.user.UserCommandService.postUserBookmark: missing returnValue");
     }
@@ -55,12 +55,12 @@ public class ValidatingUserCommandService implements org.dressdiscover.api.servi
     }
 
     @Override
-    public final void putUser(final net.lab1318.costume.api.models.user.UserId id, final org.dressdiscover.api.models.user.User user) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
+    public final void putUser(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.User user) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
         _validatePutUserParameters(id, user);
         delegate.putUser(id, user);
     }
 
-    protected void _validatePutUserParameters(final net.lab1318.costume.api.models.user.UserId id, final org.dressdiscover.api.models.user.User user) {
+    protected void _validatePutUserParameters(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.User user) {
         com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.UserCommandService.putUser: missing id");
         com.google.common.base.Preconditions.checkNotNull(user, "org.dressdiscover.api.services.user.UserCommandService.putUser: missing user");
     }

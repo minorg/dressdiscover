@@ -12,12 +12,12 @@ import org.dressdiscover.lib.stores.user.UserStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.user.DuplicateUserBookmarkException;
-import net.lab1318.costume.api.services.user.DuplicateUserException;
-import net.lab1318.costume.api.services.user.NoSuchUserBookmarkException;
-import net.lab1318.costume.api.services.user.NoSuchUserException;
-import net.lab1318.costume.api.services.user.UserCommandService;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.user.DuplicateUserBookmarkException;
+import org.dressdiscover.api.services.user.DuplicateUserException;
+import org.dressdiscover.api.services.user.NoSuchUserBookmarkException;
+import org.dressdiscover.api.services.user.NoSuchUserException;
+import org.dressdiscover.api.services.user.UserCommandService;
 
 abstract class StoreUserCommandService implements UserCommandService {
     protected StoreUserCommandService(final UserBookmarkStore userBookmarkStore, final UserStore userStore) {

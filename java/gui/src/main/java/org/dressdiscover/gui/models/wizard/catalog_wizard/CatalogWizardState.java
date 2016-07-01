@@ -15,8 +15,8 @@ import org.dressdiscover.gui.models.wizard.WizardState;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap.Builder;
 
-import net.lab1318.costume.api.models.object.InvalidObjectIdException;
-import net.lab1318.costume.api.services.IoException;
+import org.dressdiscover.api.models.object.InvalidObjectIdException;
+import org.dressdiscover.api.services.IoException;
 
 public final class CatalogWizardState extends WizardState {
     public static CatalogWizardState fromNameValuePairs(final WizardFeatureSetFactories featureSetFactories,

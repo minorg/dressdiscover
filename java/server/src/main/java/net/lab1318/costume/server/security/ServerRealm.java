@@ -17,7 +17,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.inject.Singleton;
 
-import net.lab1318.costume.api.models.user.UserEntry;
+import org.dressdiscover.api.models.user.UserEntry;
 
 @Singleton
 public class ServerRealm extends AuthenticatingRealm {

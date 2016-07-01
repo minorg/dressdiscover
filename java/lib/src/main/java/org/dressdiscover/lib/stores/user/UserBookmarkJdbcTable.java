@@ -29,9 +29,9 @@ import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.user.DuplicateUserBookmarkException;
-import net.lab1318.costume.api.services.user.NoSuchUserBookmarkException;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.user.DuplicateUserBookmarkException;
+import org.dressdiscover.api.services.user.NoSuchUserBookmarkException;
 
 @Singleton
 public class UserBookmarkJdbcTable extends AbstractJdbcTable<UserBookmark> implements UserBookmarkStore {

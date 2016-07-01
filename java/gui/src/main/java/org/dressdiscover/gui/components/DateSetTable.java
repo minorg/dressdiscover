@@ -3,10 +3,10 @@ package org.dressdiscover.gui.components;
 import com.google.common.collect.ImmutableList;
 import com.vaadin.data.util.BeanItemContainer;
 
-import net.lab1318.costume.api.models.date.Date;
-import net.lab1318.costume.api.models.date.DateSet;
-import net.lab1318.costume.gui.models.date.DateBean;
-import net.lab1318.costume.gui.models.date.DateBoundBean;
+import org.dressdiscover.api.models.date.Date;
+import org.dressdiscover.api.models.date.DateSet;
+import org.dressdiscover.gui.models.date.DateBean;
+import org.dressdiscover.gui.models.date.DateBoundBean;
 
 @SuppressWarnings("serial")
 final class DateSetTable extends ElementSetTable {

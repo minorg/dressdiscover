@@ -26,23 +26,23 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.SystemError;
 import com.vaadin.server.UserError;
 
-import net.lab1318.costume.api.models.collection.Collection;
-import net.lab1318.costume.api.models.institution.Institution;
-import net.lab1318.costume.api.models.object.ObjectQuery;
-import net.lab1318.costume.api.models.user.UserBookmarkEntry;
-import net.lab1318.costume.api.models.user.UserEntry;
-import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.collection.CollectionQueryService;
-import net.lab1318.costume.api.services.collection.NoSuchCollectionException;
-import net.lab1318.costume.api.services.institution.InstitutionQueryService;
-import net.lab1318.costume.api.services.institution.NoSuchInstitutionException;
-import net.lab1318.costume.api.services.object.GetObjectSummariesOptions;
-import net.lab1318.costume.api.services.object.GetObjectSummariesResult;
-import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
-import net.lab1318.costume.api.services.user.NoSuchUserException;
-import net.lab1318.costume.api.services.user.UserCommandService;
-import net.lab1318.costume.api.services.user.UserCommandService.Messages.DeleteUserBookmarkByIdRequest;
-import net.lab1318.costume.api.services.user.UserQueryService;
+import org.dressdiscover.api.models.collection.Collection;
+import org.dressdiscover.api.models.institution.Institution;
+import org.dressdiscover.api.models.object.ObjectQuery;
+import org.dressdiscover.api.models.user.UserBookmarkEntry;
+import org.dressdiscover.api.models.user.UserEntry;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.collection.CollectionQueryService;
+import org.dressdiscover.api.services.collection.NoSuchCollectionException;
+import org.dressdiscover.api.services.institution.InstitutionQueryService;
+import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
+import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
+import org.dressdiscover.api.services.object.GetObjectSummariesResult;
+import org.dressdiscover.api.services.object.ObjectSummaryQueryService;
+import org.dressdiscover.api.services.user.NoSuchUserException;
+import org.dressdiscover.api.services.user.UserCommandService;
+import org.dressdiscover.api.services.user.UserCommandService.Messages.DeleteUserBookmarkByIdRequest;
+import org.dressdiscover.api.services.user.UserQueryService;
 
 @SessionScoped
 public class UserBookmarksPresenter extends Presenter<UserBookmarksView> {

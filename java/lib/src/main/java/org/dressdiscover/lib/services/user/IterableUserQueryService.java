@@ -5,8 +5,8 @@ import org.dressdiscover.lib.services.user.LoggingUserQueryService;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
-import net.lab1318.costume.api.services.IoException;
-import net.lab1318.costume.api.services.user.UserQueryService;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.user.UserQueryService;
 
 public interface IterableUserQueryService extends UserQueryService {
     public final static class Markers extends LoggingUserQueryService.Markers {

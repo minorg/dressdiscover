@@ -3,11 +3,11 @@ package org.dressdiscover.gui.components;
 import com.google.common.collect.ImmutableList;
 import com.vaadin.data.util.BeanItemContainer;
 
-import net.lab1318.costume.api.models.agent.Agent;
-import net.lab1318.costume.api.models.agent.AgentName;
-import net.lab1318.costume.api.models.agent.AgentRole;
-import net.lab1318.costume.api.models.agent.AgentSet;
-import net.lab1318.costume.gui.models.agent.AgentBean;
+import org.dressdiscover.api.models.agent.Agent;
+import org.dressdiscover.api.models.agent.AgentName;
+import org.dressdiscover.api.models.agent.AgentRole;
+import org.dressdiscover.api.models.agent.AgentSet;
+import org.dressdiscover.gui.models.agent.AgentBean;
 
 @SuppressWarnings("serial")
 final class AgentSetTable extends ElementSetTable {

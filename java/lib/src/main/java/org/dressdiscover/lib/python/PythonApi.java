@@ -9,8 +9,8 @@ import org.dressdiscover.lib.stores.object.ObjectStoreFactoryRegistry;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import net.lab1318.costume.api.services.collection.CollectionCommandService;
-import net.lab1318.costume.api.services.institution.InstitutionCommandService;
+import org.dressdiscover.api.services.collection.CollectionCommandService;
+import org.dressdiscover.api.services.institution.InstitutionCommandService;
 
 @Singleton
 public class PythonApi {

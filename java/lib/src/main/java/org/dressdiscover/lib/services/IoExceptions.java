@@ -7,7 +7,7 @@ import org.thryft.protocol.OutputProtocolException;
 import org.thryft.waf.lib.ExceptionUtils;
 import org.xml.sax.SAXException;
 
-import net.lab1318.costume.api.services.IoException;
+import org.dressdiscover.api.services.IoException;
 
 public final class IoExceptions {
     public static IoException wrap(final ElasticsearchException cause, final String message) {

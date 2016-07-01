@@ -29,19 +29,19 @@ import com.vaadin.ui.Table;
 import com.vaadin.ui.Table.ColumnGenerator;
 import com.vaadin.ui.UI;
 
-import net.lab1318.costume.api.models.collection.Collection;
-import net.lab1318.costume.api.models.institution.Institution;
-import net.lab1318.costume.api.models.object.ObjectSummary;
-import net.lab1318.costume.api.models.object.ObjectSummaryEntry;
-import net.lab1318.costume.api.models.user.UserBookmark;
-import net.lab1318.costume.api.models.user.UserBookmarkEntry;
-import net.lab1318.costume.api.services.collection.CollectionQueryService;
-import net.lab1318.costume.api.services.institution.InstitutionQueryService;
-import net.lab1318.costume.api.services.object.ObjectQueryService;
-import net.lab1318.costume.api.services.user.UserCommandService.Messages.DeleteUserBookmarkByIdRequest;
-import net.lab1318.costume.api.services.user.UserCommandService.Messages.PostUserBookmarkRequest;
-import net.lab1318.costume.gui.models.image.ImageBean;
-import net.lab1318.costume.gui.models.image.ImageVersionBean;
+import org.dressdiscover.api.models.collection.Collection;
+import org.dressdiscover.api.models.institution.Institution;
+import org.dressdiscover.api.models.object.ObjectSummary;
+import org.dressdiscover.api.models.object.ObjectSummaryEntry;
+import org.dressdiscover.api.models.user.UserBookmark;
+import org.dressdiscover.api.models.user.UserBookmarkEntry;
+import org.dressdiscover.api.services.collection.CollectionQueryService;
+import org.dressdiscover.api.services.institution.InstitutionQueryService;
+import org.dressdiscover.api.services.object.ObjectQueryService;
+import org.dressdiscover.api.services.user.UserCommandService.Messages.DeleteUserBookmarkByIdRequest;
+import org.dressdiscover.api.services.user.UserCommandService.Messages.PostUserBookmarkRequest;
+import org.dressdiscover.gui.models.image.ImageBean;
+import org.dressdiscover.gui.models.image.ImageVersionBean;
 
 @SuppressWarnings("serial")
 public final class ObjectSummaryEntriesTable extends CustomComponent {

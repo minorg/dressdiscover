@@ -17,8 +17,8 @@ import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.VerticalLayout;
 
-import net.lab1318.costume.api.models.image.Image;
-import net.lab1318.costume.api.models.image.ImageVersion;
+import org.dressdiscover.api.models.image.Image;
+import org.dressdiscover.api.models.image.ImageVersion;
 
 @SuppressWarnings("serial")
 public final class EnumWizardFeatureLayout extends VerticalLayout {

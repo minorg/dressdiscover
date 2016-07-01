@@ -5,9 +5,9 @@ import java.util.List;
 
 import com.vaadin.data.util.BeanItemContainer;
 
-import net.lab1318.costume.api.models.technique.Technique;
-import net.lab1318.costume.api.models.technique.TechniqueSet;
-import net.lab1318.costume.gui.models.technique.TechniqueBean;
+import org.dressdiscover.api.models.technique.Technique;
+import org.dressdiscover.api.models.technique.TechniqueSet;
+import org.dressdiscover.gui.models.technique.TechniqueBean;
 
 @SuppressWarnings("serial")
 final class TechniqueSetTable extends ElementSetTable {

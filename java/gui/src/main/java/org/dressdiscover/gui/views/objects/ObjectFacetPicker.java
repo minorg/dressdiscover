@@ -23,10 +23,10 @@ import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-import net.lab1318.costume.api.models.object.ObjectFacetFilters;
-import net.lab1318.costume.api.models.object.ObjectFacets;
-import net.lab1318.costume.api.models.object.ObjectQuery;
-import net.lab1318.costume.api.services.object.ObjectSummaryQueryService;
+import org.dressdiscover.api.models.object.ObjectFacetFilters;
+import org.dressdiscover.api.models.object.ObjectFacets;
+import org.dressdiscover.api.models.object.ObjectQuery;
+import org.dressdiscover.api.services.object.ObjectSummaryQueryService;
 
 @SuppressWarnings("serial")
 class ObjectFacetPicker<KeyT> extends CustomComponent {

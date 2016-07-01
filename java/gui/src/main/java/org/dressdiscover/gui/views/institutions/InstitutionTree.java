@@ -13,10 +13,10 @@ import com.vaadin.event.ItemClickEvent;
 import com.vaadin.event.ItemClickEvent.ItemClickListener;
 import com.vaadin.ui.Tree;
 
-import net.lab1318.costume.api.models.collection.CollectionEntry;
-import net.lab1318.costume.api.models.institution.InstitutionEntry;
-import net.lab1318.costume.api.models.work_type.WorkType;
-import net.lab1318.costume.api.services.collection.CollectionQueryService;
+import org.dressdiscover.api.models.collection.CollectionEntry;
+import org.dressdiscover.api.models.institution.InstitutionEntry;
+import org.dressdiscover.api.models.work_type.WorkType;
+import org.dressdiscover.api.services.collection.CollectionQueryService;
 
 @SuppressWarnings("serial")
 final class InstitutionTree extends Tree {

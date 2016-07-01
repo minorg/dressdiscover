@@ -28,7 +28,7 @@ public interface CollectionCommandService {
                     this.id = other.getId();
                 }
 
-                protected DeleteCollectionByIdRequest _build(final net.lab1318.costume.api.models.collection.CollectionId id) {
+                protected DeleteCollectionByIdRequest _build(final org.dressdiscover.api.models.collection.CollectionId id) {
                     return new DeleteCollectionByIdRequest(id);
                 }
 
@@ -36,7 +36,7 @@ public interface CollectionCommandService {
                     return _build(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.collection.DeleteCollectionByIdRequest: missing id"));
                 }
 
-                public final net.lab1318.costume.api.models.collection.CollectionId getId() {
+                public final org.dressdiscover.api.models.collection.CollectionId getId() {
                     return id;
                 }
 
@@ -58,8 +58,8 @@ public interface CollectionCommandService {
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
                     try {
-                        id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                        id = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                    } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                          throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     iprot.readListEnd();
@@ -80,8 +80,8 @@ public interface CollectionCommandService {
                         switch (ifield.getName()) {
                         case "id": {
                             try {
-                                id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                            } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                                id = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                            } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                                  throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             break;
@@ -113,13 +113,13 @@ public interface CollectionCommandService {
                     com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
                     switch (fieldMetadata) {
-                    case ID: setId((net.lab1318.costume.api.models.collection.CollectionId)value); return this;
+                    case ID: setId((org.dressdiscover.api.models.collection.CollectionId)value); return this;
                     default:
                         throw new IllegalStateException();
                     }
                 }
 
-                public Builder setId(final net.lab1318.costume.api.models.collection.CollectionId id) {
+                public Builder setId(final org.dressdiscover.api.models.collection.CollectionId id) {
                     this.id = com.google.common.base.Preconditions.checkNotNull(id);
                     return this;
                 }
@@ -158,12 +158,12 @@ public interface CollectionCommandService {
                     return this;
                 }
 
-                private net.lab1318.costume.api.models.collection.CollectionId id;
+                private org.dressdiscover.api.models.collection.CollectionId id;
             }
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                ID("id", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.CollectionId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING);
+                ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING);
 
                 @Override
                 public String getJavaName() {
@@ -254,7 +254,7 @@ public interface CollectionCommandService {
             /**
              * Optional constructor
              */
-            public DeleteCollectionByIdRequest(final net.lab1318.costume.api.models.collection.CollectionId id) {
+            public DeleteCollectionByIdRequest(final org.dressdiscover.api.models.collection.CollectionId id) {
                 this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.collection.DeleteCollectionByIdRequest: missing id");
             }
 
@@ -304,7 +304,7 @@ public interface CollectionCommandService {
                 }
             }
 
-            public final net.lab1318.costume.api.models.collection.CollectionId getId() {
+            public final org.dressdiscover.api.models.collection.CollectionId getId() {
                 return id;
             }
 
@@ -336,12 +336,12 @@ public interface CollectionCommandService {
             }
 
             public static DeleteCollectionByIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.collection.CollectionId id = null;
+                org.dressdiscover.api.models.collection.CollectionId id = null;
 
                 iprot.readListBegin();
                 try {
-                    id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                    id = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                      throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 iprot.readListEnd();
@@ -357,7 +357,7 @@ public interface CollectionCommandService {
             }
 
             public static DeleteCollectionByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.collection.CollectionId id = null;
+                org.dressdiscover.api.models.collection.CollectionId id = null;
 
                 iprot.readStructBegin();
                 while (true) {
@@ -368,8 +368,8 @@ public interface CollectionCommandService {
                     switch (ifield.getName()) {
                     case "id": {
                         try {
-                            id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                        } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                            id = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                        } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                              throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         break;
@@ -390,7 +390,7 @@ public interface CollectionCommandService {
                 }
             }
 
-            public DeleteCollectionByIdRequest replaceId(final net.lab1318.costume.api.models.collection.CollectionId id) {
+            public DeleteCollectionByIdRequest replaceId(final org.dressdiscover.api.models.collection.CollectionId id) {
                 return new DeleteCollectionByIdRequest(id);
             }
 
@@ -424,7 +424,7 @@ public interface CollectionCommandService {
                 oprot.writeFieldStop();
             }
 
-            private final net.lab1318.costume.api.models.collection.CollectionId id;
+            private final org.dressdiscover.api.models.collection.CollectionId id;
         }
 
         public final static class DeleteCollectionByIdResponse implements org.thryft.Struct {
@@ -653,7 +653,7 @@ public interface CollectionCommandService {
                     this.institutionId = other.getInstitutionId();
                 }
 
-                protected DeleteCollectionsByInstitutionIdRequest _build(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
+                protected DeleteCollectionsByInstitutionIdRequest _build(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
                     return new DeleteCollectionsByInstitutionIdRequest(institutionId);
                 }
 
@@ -661,7 +661,7 @@ public interface CollectionCommandService {
                     return _build(com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.services.collection.DeleteCollectionsByInstitutionIdRequest: missing institutionId"));
                 }
 
-                public final net.lab1318.costume.api.models.institution.InstitutionId getInstitutionId() {
+                public final org.dressdiscover.api.models.institution.InstitutionId getInstitutionId() {
                     return institutionId;
                 }
 
@@ -683,8 +683,8 @@ public interface CollectionCommandService {
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
                     try {
-                        institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                        institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                    } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                          throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     iprot.readListEnd();
@@ -705,8 +705,8 @@ public interface CollectionCommandService {
                         switch (ifield.getName()) {
                         case "institution_id": {
                             try {
-                                institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
-                            } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                                institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                            } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                                  throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             break;
@@ -738,7 +738,7 @@ public interface CollectionCommandService {
                     com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
                     switch (fieldMetadata) {
-                    case INSTITUTION_ID: setInstitutionId((net.lab1318.costume.api.models.institution.InstitutionId)value); return this;
+                    case INSTITUTION_ID: setInstitutionId((org.dressdiscover.api.models.institution.InstitutionId)value); return this;
                     default:
                         throw new IllegalStateException();
                     }
@@ -752,7 +752,7 @@ public interface CollectionCommandService {
                     return this;
                 }
 
-                public Builder setInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
+                public Builder setInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
                     this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId);
                     return this;
                 }
@@ -783,12 +783,12 @@ public interface CollectionCommandService {
                     return this;
                 }
 
-                private net.lab1318.costume.api.models.institution.InstitutionId institutionId;
+                private org.dressdiscover.api.models.institution.InstitutionId institutionId;
             }
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, true, 0, "institution_id", org.thryft.protocol.Type.STRING);
+                INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, true, 0, "institution_id", org.thryft.protocol.Type.STRING);
 
                 @Override
                 public String getJavaName() {
@@ -879,7 +879,7 @@ public interface CollectionCommandService {
             /**
              * Optional constructor
              */
-            public DeleteCollectionsByInstitutionIdRequest(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
+            public DeleteCollectionsByInstitutionIdRequest(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
                 this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.services.collection.DeleteCollectionsByInstitutionIdRequest: missing institutionId");
             }
 
@@ -929,7 +929,7 @@ public interface CollectionCommandService {
                 }
             }
 
-            public final net.lab1318.costume.api.models.institution.InstitutionId getInstitutionId() {
+            public final org.dressdiscover.api.models.institution.InstitutionId getInstitutionId() {
                 return institutionId;
             }
 
@@ -961,12 +961,12 @@ public interface CollectionCommandService {
             }
 
             public static DeleteCollectionsByInstitutionIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.institution.InstitutionId institutionId = null;
+                org.dressdiscover.api.models.institution.InstitutionId institutionId = null;
 
                 iprot.readListBegin();
                 try {
-                    institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                    institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                      throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 iprot.readListEnd();
@@ -982,7 +982,7 @@ public interface CollectionCommandService {
             }
 
             public static DeleteCollectionsByInstitutionIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.institution.InstitutionId institutionId = null;
+                org.dressdiscover.api.models.institution.InstitutionId institutionId = null;
 
                 iprot.readStructBegin();
                 while (true) {
@@ -993,8 +993,8 @@ public interface CollectionCommandService {
                     switch (ifield.getName()) {
                     case "institution_id": {
                         try {
-                            institutionId = net.lab1318.costume.api.models.institution.InstitutionId.parse(iprot.readString());
-                        } catch (final net.lab1318.costume.api.models.institution.InvalidInstitutionIdException e) {
+                            institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                        } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                              throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         break;
@@ -1015,7 +1015,7 @@ public interface CollectionCommandService {
                 }
             }
 
-            public DeleteCollectionsByInstitutionIdRequest replaceInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
+            public DeleteCollectionsByInstitutionIdRequest replaceInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
                 return new DeleteCollectionsByInstitutionIdRequest(institutionId);
             }
 
@@ -1049,7 +1049,7 @@ public interface CollectionCommandService {
                 oprot.writeFieldStop();
             }
 
-            private final net.lab1318.costume.api.models.institution.InstitutionId institutionId;
+            private final org.dressdiscover.api.models.institution.InstitutionId institutionId;
         }
 
         public final static class DeleteCollectionsByInstitutionIdResponse implements org.thryft.Struct {
@@ -1280,7 +1280,7 @@ public interface CollectionCommandService {
                     this.collection = other.getCollection();
                 }
 
-                protected PutCollectionRequest _build(final net.lab1318.costume.api.models.collection.CollectionId id, final org.dressdiscover.api.models.collection.Collection collection) {
+                protected PutCollectionRequest _build(final org.dressdiscover.api.models.collection.CollectionId id, final org.dressdiscover.api.models.collection.Collection collection) {
                     return new PutCollectionRequest(id, collection);
                 }
 
@@ -1292,7 +1292,7 @@ public interface CollectionCommandService {
                     return collection;
                 }
 
-                public final net.lab1318.costume.api.models.collection.CollectionId getId() {
+                public final org.dressdiscover.api.models.collection.CollectionId getId() {
                     return id;
                 }
 
@@ -1314,8 +1314,8 @@ public interface CollectionCommandService {
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     iprot.readListBegin();
                     try {
-                        id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                    } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                        id = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                    } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                          throw new org.thryft.protocol.InputProtocolException(e);
                     }
                     collection = org.dressdiscover.api.models.collection.Collection.readAsStruct(iprot);
@@ -1337,8 +1337,8 @@ public interface CollectionCommandService {
                         switch (ifield.getName()) {
                         case "id": {
                             try {
-                                id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                            } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                                id = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                            } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                                  throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             break;
@@ -1374,7 +1374,7 @@ public interface CollectionCommandService {
                     com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
                     switch (fieldMetadata) {
-                    case ID: setId((net.lab1318.costume.api.models.collection.CollectionId)value); return this;
+                    case ID: setId((org.dressdiscover.api.models.collection.CollectionId)value); return this;
                     case COLLECTION: setCollection((org.dressdiscover.api.models.collection.Collection)value); return this;
                     default:
                         throw new IllegalStateException();
@@ -1386,7 +1386,7 @@ public interface CollectionCommandService {
                     return this;
                 }
 
-                public Builder setId(final net.lab1318.costume.api.models.collection.CollectionId id) {
+                public Builder setId(final org.dressdiscover.api.models.collection.CollectionId id) {
                     this.id = com.google.common.base.Preconditions.checkNotNull(id);
                     return this;
                 }
@@ -1432,13 +1432,13 @@ public interface CollectionCommandService {
                     return this;
                 }
 
-                private net.lab1318.costume.api.models.collection.CollectionId id;
+                private org.dressdiscover.api.models.collection.CollectionId id;
                 private org.dressdiscover.api.models.collection.Collection collection;
             }
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                ID("id", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.collection.CollectionId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),
+                ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),
                 COLLECTION("collection", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.Collection>() {}, true, 0, "collection", org.thryft.protocol.Type.STRUCT);
 
                 @Override
@@ -1532,7 +1532,7 @@ public interface CollectionCommandService {
             /**
              * Optional constructor
              */
-            public PutCollectionRequest(final net.lab1318.costume.api.models.collection.CollectionId id, final org.dressdiscover.api.models.collection.Collection collection) {
+            public PutCollectionRequest(final org.dressdiscover.api.models.collection.CollectionId id, final org.dressdiscover.api.models.collection.Collection collection) {
                 this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.collection.PutCollectionRequest: missing id");
                 this.collection = com.google.common.base.Preconditions.checkNotNull(collection, "org.dressdiscover.api.services.collection.PutCollectionRequest: missing collection");
             }
@@ -1589,7 +1589,7 @@ public interface CollectionCommandService {
                 return collection;
             }
 
-            public final net.lab1318.costume.api.models.collection.CollectionId getId() {
+            public final org.dressdiscover.api.models.collection.CollectionId getId() {
                 return id;
             }
 
@@ -1622,13 +1622,13 @@ public interface CollectionCommandService {
             }
 
             public static PutCollectionRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.collection.CollectionId id = null;
+                org.dressdiscover.api.models.collection.CollectionId id = null;
                 org.dressdiscover.api.models.collection.Collection collection = null;
 
                 iprot.readListBegin();
                 try {
-                    id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                    id = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                      throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 collection = org.dressdiscover.api.models.collection.Collection.readAsStruct(iprot);
@@ -1645,7 +1645,7 @@ public interface CollectionCommandService {
             }
 
             public static PutCollectionRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                net.lab1318.costume.api.models.collection.CollectionId id = null;
+                org.dressdiscover.api.models.collection.CollectionId id = null;
                 org.dressdiscover.api.models.collection.Collection collection = null;
 
                 iprot.readStructBegin();
@@ -1657,8 +1657,8 @@ public interface CollectionCommandService {
                     switch (ifield.getName()) {
                     case "id": {
                         try {
-                            id = net.lab1318.costume.api.models.collection.CollectionId.parse(iprot.readString());
-                        } catch (final net.lab1318.costume.api.models.collection.InvalidCollectionIdException e) {
+                            id = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                        } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                              throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         break;
@@ -1687,7 +1687,7 @@ public interface CollectionCommandService {
                 return new PutCollectionRequest(this.id, collection);
             }
 
-            public PutCollectionRequest replaceId(final net.lab1318.costume.api.models.collection.CollectionId id) {
+            public PutCollectionRequest replaceId(final org.dressdiscover.api.models.collection.CollectionId id) {
                 return new PutCollectionRequest(id, this.collection);
             }
 
@@ -1727,7 +1727,7 @@ public interface CollectionCommandService {
                 oprot.writeFieldStop();
             }
 
-            private final net.lab1318.costume.api.models.collection.CollectionId id;
+            private final org.dressdiscover.api.models.collection.CollectionId id;
 
             private final org.dressdiscover.api.models.collection.Collection collection;
         }
@@ -1949,9 +1949,9 @@ public interface CollectionCommandService {
         }
     }
 
-    public void deleteCollectionById(final net.lab1318.costume.api.models.collection.CollectionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException;
+    public void deleteCollectionById(final org.dressdiscover.api.models.collection.CollectionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException;
 
-    public void deleteCollectionsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException;
+    public void deleteCollectionsByInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException;
 
-    public void putCollection(final net.lab1318.costume.api.models.collection.CollectionId id, final org.dressdiscover.api.models.collection.Collection collection) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException;
+    public void putCollection(final org.dressdiscover.api.models.collection.CollectionId id, final org.dressdiscover.api.models.collection.Collection collection) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException;
 }

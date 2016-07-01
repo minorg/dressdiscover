@@ -6,8 +6,8 @@ import org.dressdiscover.api.models.collection.CollectionId;
 import org.dressdiscover.api.models.institution.InstitutionId;
 import org.thryft.waf.api.models.StringModelId;
 
-import net.lab1318.costume.api.models.collection.InvalidCollectionIdException;
-import net.lab1318.costume.api.models.object.InvalidObjectIdException;
+import org.dressdiscover.api.models.collection.InvalidCollectionIdException;
+import org.dressdiscover.api.models.object.InvalidObjectIdException;
 
 public final class ObjectId extends StringModelId {
     public static ObjectId parse(final String value) throws InvalidObjectIdException {

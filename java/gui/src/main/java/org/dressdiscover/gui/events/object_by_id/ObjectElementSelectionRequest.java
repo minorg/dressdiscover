@@ -4,7 +4,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.dressdiscover.api.models.object.ObjectId;
 
-import net.lab1318.costume.api.models.object.ObjectFacetFilters;
+import org.dressdiscover.api.models.object.ObjectFacetFilters;
 
 public final class ObjectElementSelectionRequest extends AbstractObjectByIdRequest {
     public ObjectElementSelectionRequest(final ObjectFacetFilters filter, final ObjectId objectId) {
