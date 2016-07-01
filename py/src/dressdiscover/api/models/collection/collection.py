@@ -1,6 +1,6 @@
 import __builtin__
-import costume.api.models.location.location_set
-import costume.api.models.work_type.work_type_set
+import dressdiscover.api.models.location.location_set
+import dressdiscover.api.models.work_type.work_type_set
 
 
 class Collection(object):
@@ -23,10 +23,10 @@ class Collection(object):
             :type description: str or None
             :type external: bool or None
             :type hidden: bool or None
-            :type locations: costume.api.models.location.location_set.LocationSet or None
+            :type locations: dressdiscover.api.models.location.location_set.LocationSet or None
             :type object_store_uri: str or None
             :type url: str or None
-            :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
+            :type work_types: dressdiscover.api.models.work_type.work_type_set.WorkTypeSet or None
             '''
 
             self.__institution_id = institution_id
@@ -77,7 +77,7 @@ class Collection(object):
         @property
         def locations(self):
             '''
-            :rtype: costume.api.models.location.location_set.LocationSet
+            :rtype: dressdiscover.api.models.location.location_set.LocationSet
             '''
 
             return self.__locations
@@ -124,7 +124,7 @@ class Collection(object):
 
         def set_locations(self, locations):
             '''
-            :type locations: costume.api.models.location.location_set.LocationSet or None
+            :type locations: dressdiscover.api.models.location.location_set.LocationSet or None
             '''
 
             self.__locations = locations
@@ -156,7 +156,7 @@ class Collection(object):
 
         def set_work_types(self, work_types):
             '''
-            :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
+            :type work_types: dressdiscover.api.models.work_type.work_type_set.WorkTypeSet or None
             '''
 
             self.__work_types = work_types
@@ -177,10 +177,10 @@ class Collection(object):
             :type description: str or None
             :type external: bool or None
             :type hidden: bool or None
-            :type locations: costume.api.models.location.location_set.LocationSet or None
+            :type locations: dressdiscover.api.models.location.location_set.LocationSet or None
             :type object_store_uri: str or None
             :type url: str or None
-            :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
+            :type work_types: dressdiscover.api.models.work_type.work_type_set.WorkTypeSet or None
             '''
 
             if isinstance(collection, Collection):
@@ -211,7 +211,7 @@ class Collection(object):
         @property
         def work_types(self):
             '''
-            :rtype: costume.api.models.work_type.work_type_set.WorkTypeSet
+            :rtype: dressdiscover.api.models.work_type.work_type_set.WorkTypeSet
             '''
 
             return self.__work_types
@@ -251,7 +251,7 @@ class Collection(object):
         @locations.setter
         def locations(self, locations):
             '''
-            :type locations: costume.api.models.location.location_set.LocationSet or None
+            :type locations: dressdiscover.api.models.location.location_set.LocationSet or None
             '''
 
             self.set_locations(locations)
@@ -283,7 +283,7 @@ class Collection(object):
         @work_types.setter
         def work_types(self, work_types):
             '''
-            :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
+            :type work_types: dressdiscover.api.models.work_type.work_type_set.WorkTypeSet or None
             '''
 
             self.set_work_types(work_types)
@@ -306,10 +306,10 @@ class Collection(object):
         :type description: str or None
         :type external: bool or None
         :type hidden: bool or None
-        :type locations: costume.api.models.location.location_set.LocationSet or None
+        :type locations: dressdiscover.api.models.location.location_set.LocationSet or None
         :type object_store_uri: str or None
         :type url: str or None
-        :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
+        :type work_types: dressdiscover.api.models.work_type.work_type_set.WorkTypeSet or None
         '''
 
         if institution_id is None:
@@ -344,8 +344,8 @@ class Collection(object):
         self.__hidden = hidden
 
         if locations is not None:
-            if not isinstance(locations, costume.api.models.location.location_set.LocationSet):
-                raise TypeError("expected locations to be a costume.api.models.location.location_set.LocationSet but it is a %s" % getattr(__builtin__, 'type')(locations))
+            if not isinstance(locations, dressdiscover.api.models.location.location_set.LocationSet):
+                raise TypeError("expected locations to be a dressdiscover.api.models.location.location_set.LocationSet but it is a %s" % getattr(__builtin__, 'type')(locations))
         self.__locations = locations
 
         if object_store_uri is not None:
@@ -359,8 +359,8 @@ class Collection(object):
         self.__url = url
 
         if work_types is not None:
-            if not isinstance(work_types, costume.api.models.work_type.work_type_set.WorkTypeSet):
-                raise TypeError("expected work_types to be a costume.api.models.work_type.work_type_set.WorkTypeSet but it is a %s" % getattr(__builtin__, 'type')(work_types))
+            if not isinstance(work_types, dressdiscover.api.models.work_type.work_type_set.WorkTypeSet):
+                raise TypeError("expected work_types to be a dressdiscover.api.models.work_type.work_type_set.WorkTypeSet but it is a %s" % getattr(__builtin__, 'type')(work_types))
         self.__work_types = work_types
 
     def __eq__(self, other):
@@ -486,7 +486,7 @@ class Collection(object):
     @property
     def locations(self):
         '''
-        :rtype: costume.api.models.location.location_set.LocationSet
+        :rtype: dressdiscover.api.models.location.location_set.LocationSet
         '''
 
         return self.__locations
@@ -505,7 +505,7 @@ class Collection(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.collection.collection.Collection
+        :rtype: dressdiscover.api.models.collection.collection.Collection
         '''
 
         init_kwds = {}
@@ -535,7 +535,7 @@ class Collection(object):
                 except (TypeError, ValueError,):
                     pass
             elif ifield_name == 'locations' and ifield_id == 8:
-                init_kwds['locations'] = costume.api.models.location.location_set.LocationSet.read(iprot)
+                init_kwds['locations'] = dressdiscover.api.models.location.location_set.LocationSet.read(iprot)
             elif ifield_name == 'object_store_uri' and ifield_id == 10:
                 try:
                     init_kwds['object_store_uri'] = iprot.read_string()
@@ -547,7 +547,7 @@ class Collection(object):
                 except (TypeError, ValueError,):
                     pass
             elif ifield_name == 'work_types' and ifield_id == 6:
-                init_kwds['work_types'] = costume.api.models.work_type.work_type_set.WorkTypeSet.read(iprot)
+                init_kwds['work_types'] = dressdiscover.api.models.work_type.work_type_set.WorkTypeSet.read(iprot)
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -573,11 +573,11 @@ class Collection(object):
         :type description: str or None
         :type external: bool or None
         :type hidden: bool or None
-        :type locations: costume.api.models.location.location_set.LocationSet or None
+        :type locations: dressdiscover.api.models.location.location_set.LocationSet or None
         :type object_store_uri: str or None
         :type url: str or None
-        :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
-        :rtype: costume.api.models.collection.collection.Collection
+        :type work_types: dressdiscover.api.models.work_type.work_type_set.WorkTypeSet or None
+        :rtype: dressdiscover.api.models.collection.collection.Collection
         '''
 
         if institution_id is None:
@@ -619,7 +619,7 @@ class Collection(object):
     @property
     def work_types(self):
         '''
-        :rtype: costume.api.models.work_type.work_type_set.WorkTypeSet
+        :rtype: dressdiscover.api.models.work_type.work_type_set.WorkTypeSet
         '''
 
         return self.__work_types
@@ -629,7 +629,7 @@ class Collection(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.collection.collection.Collection
+        :rtype: dressdiscover.api.models.collection.collection.Collection
         '''
 
         oprot.write_struct_begin('Collection')

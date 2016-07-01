@@ -1,5 +1,5 @@
 import __builtin__
-import costume.api.models.institution.institution
+import dressdiscover.api.models.institution.institution
 
 
 class InstitutionCommandService(object):
@@ -31,7 +31,7 @@ class InstitutionCommandService(object):
     ):
         '''
         :type id: str
-        :type institution: costume.api.models.institution.institution.Institution
+        :type institution: dressdiscover.api.models.institution.institution.Institution
         '''
 
         if id is None:
@@ -40,8 +40,8 @@ class InstitutionCommandService(object):
             raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
         if institution is None:
             raise ValueError('institution is required')
-        if not isinstance(institution, costume.api.models.institution.institution.Institution):
-            raise TypeError("expected institution to be a costume.api.models.institution.institution.Institution but it is a %s" % getattr(__builtin__, 'type')(institution))
+        if not isinstance(institution, dressdiscover.api.models.institution.institution.Institution):
+            raise TypeError("expected institution to be a dressdiscover.api.models.institution.institution.Institution but it is a %s" % getattr(__builtin__, 'type')(institution))
 
         self._put_institution(id=id, institution=institution)
 

@@ -1,7 +1,7 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.models.gender.gender
-import costume.api.models.image.image
+import dressdiscover.api.models.gender.gender
+import dressdiscover.api.models.image.image
 
 
 class ObjectSummary(object):
@@ -39,9 +39,9 @@ class ObjectSummary(object):
             :type cultural_context_texts: tuple(str) or None
             :type date: str or None
             :type description: str or None
-            :type gender: costume.api.models.gender.gender.Gender or None
+            :type gender: dressdiscover.api.models.gender.gender.Gender or None
             :type hidden: bool or None
-            :type image: costume.api.models.image.image.Image or None
+            :type image: dressdiscover.api.models.image.image.Image or None
             :type location_name_texts: tuple(str) or None
             :type material_texts: tuple(str) or None
             :type relation_texts: tuple(str) or None
@@ -135,7 +135,7 @@ class ObjectSummary(object):
         @property
         def gender(self):
             '''
-            :rtype: costume.api.models.gender.gender.Gender
+            :rtype: dressdiscover.api.models.gender.gender.Gender
             '''
 
             return self.__gender
@@ -151,7 +151,7 @@ class ObjectSummary(object):
         @property
         def image(self):
             '''
-            :rtype: costume.api.models.image.image.Image
+            :rtype: dressdiscover.api.models.image.image.Image
             '''
 
             return self.__image
@@ -246,7 +246,7 @@ class ObjectSummary(object):
 
         def set_gender(self, gender):
             '''
-            :type gender: costume.api.models.gender.gender.Gender or None
+            :type gender: dressdiscover.api.models.gender.gender.Gender or None
             '''
 
             self.__gender = gender
@@ -262,7 +262,7 @@ class ObjectSummary(object):
 
         def set_image(self, image):
             '''
-            :type image: costume.api.models.image.image.Image or None
+            :type image: dressdiscover.api.models.image.image.Image or None
             '''
 
             self.__image = image
@@ -391,9 +391,9 @@ class ObjectSummary(object):
             :type cultural_context_texts: tuple(str) or None
             :type date: str or None
             :type description: str or None
-            :type gender: costume.api.models.gender.gender.Gender or None
+            :type gender: dressdiscover.api.models.gender.gender.Gender or None
             :type hidden: bool or None
-            :type image: costume.api.models.image.image.Image or None
+            :type image: dressdiscover.api.models.image.image.Image or None
             :type location_name_texts: tuple(str) or None
             :type material_texts: tuple(str) or None
             :type relation_texts: tuple(str) or None
@@ -507,7 +507,7 @@ class ObjectSummary(object):
         @gender.setter
         def gender(self, gender):
             '''
-            :type gender: costume.api.models.gender.gender.Gender or None
+            :type gender: dressdiscover.api.models.gender.gender.Gender or None
             '''
 
             self.set_gender(gender)
@@ -523,7 +523,7 @@ class ObjectSummary(object):
         @image.setter
         def image(self, image):
             '''
-            :type image: costume.api.models.image.image.Image or None
+            :type image: dressdiscover.api.models.image.image.Image or None
             '''
 
             self.set_image(image)
@@ -641,9 +641,9 @@ class ObjectSummary(object):
         :type cultural_context_texts: tuple(str) or None
         :type date: str or None
         :type description: str or None
-        :type gender: costume.api.models.gender.gender.Gender or None
+        :type gender: dressdiscover.api.models.gender.gender.Gender or None
         :type hidden: bool or None
-        :type image: costume.api.models.image.image.Image or None
+        :type image: dressdiscover.api.models.image.image.Image or None
         :type location_name_texts: tuple(str) or None
         :type material_texts: tuple(str) or None
         :type relation_texts: tuple(str) or None
@@ -717,8 +717,8 @@ class ObjectSummary(object):
         self.__description = description
 
         if gender is not None:
-            if not isinstance(gender, costume.api.models.gender.gender.Gender):
-                raise TypeError("expected gender to be a costume.api.models.gender.gender.Gender but it is a %s" % getattr(__builtin__, 'type')(gender))
+            if not isinstance(gender, dressdiscover.api.models.gender.gender.Gender):
+                raise TypeError("expected gender to be a dressdiscover.api.models.gender.gender.Gender but it is a %s" % getattr(__builtin__, 'type')(gender))
         self.__gender = gender
 
         if hidden is not None:
@@ -727,8 +727,8 @@ class ObjectSummary(object):
         self.__hidden = hidden
 
         if image is not None:
-            if not isinstance(image, costume.api.models.image.image.Image):
-                raise TypeError("expected image to be a costume.api.models.image.image.Image but it is a %s" % getattr(__builtin__, 'type')(image))
+            if not isinstance(image, dressdiscover.api.models.image.image.Image):
+                raise TypeError("expected image to be a dressdiscover.api.models.image.image.Image but it is a %s" % getattr(__builtin__, 'type')(image))
         self.__image = image
 
         if location_name_texts is not None:
@@ -996,7 +996,7 @@ class ObjectSummary(object):
     @property
     def gender(self):
         '''
-        :rtype: costume.api.models.gender.gender.Gender
+        :rtype: dressdiscover.api.models.gender.gender.Gender
         '''
 
         return self.__gender
@@ -1012,7 +1012,7 @@ class ObjectSummary(object):
     @property
     def image(self):
         '''
-        :rtype: costume.api.models.image.image.Image
+        :rtype: dressdiscover.api.models.image.image.Image
         '''
 
         return self.__image
@@ -1047,7 +1047,7 @@ class ObjectSummary(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.object.object_summary.ObjectSummary
+        :rtype: dressdiscover.api.models.object.object_summary.ObjectSummary
         '''
 
         init_kwds = {}
@@ -1083,7 +1083,7 @@ class ObjectSummary(object):
                     pass
             elif ifield_name == 'gender' and ifield_id == 8:
                 try:
-                    init_kwds['gender'] = costume.api.models.gender.gender.Gender.value_of(iprot.read_string().strip().upper())
+                    init_kwds['gender'] = dressdiscover.api.models.gender.gender.Gender.value_of(iprot.read_string().strip().upper())
                 except (TypeError,):
                     pass
             elif ifield_name == 'hidden' and ifield_id == 22:
@@ -1092,7 +1092,7 @@ class ObjectSummary(object):
                 except (TypeError, ValueError,):
                     pass
             elif ifield_name == 'image' and ifield_id == 21:
-                init_kwds['image'] = costume.api.models.image.image.Image.read(iprot)
+                init_kwds['image'] = dressdiscover.api.models.image.image.Image.read(iprot)
             elif ifield_name == 'location_name_texts' and ifield_id == 19:
                 init_kwds['location_name_texts'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'material_texts' and ifield_id == 14:
@@ -1160,9 +1160,9 @@ class ObjectSummary(object):
         :type cultural_context_texts: tuple(str) or None
         :type date: str or None
         :type description: str or None
-        :type gender: costume.api.models.gender.gender.Gender or None
+        :type gender: dressdiscover.api.models.gender.gender.Gender or None
         :type hidden: bool or None
-        :type image: costume.api.models.image.image.Image or None
+        :type image: dressdiscover.api.models.image.image.Image or None
         :type location_name_texts: tuple(str) or None
         :type material_texts: tuple(str) or None
         :type relation_texts: tuple(str) or None
@@ -1171,7 +1171,7 @@ class ObjectSummary(object):
         :type technique_texts: tuple(str) or None
         :type url: str or None
         :type work_type_texts: tuple(str) or None
-        :rtype: costume.api.models.object.object_summary.ObjectSummary
+        :rtype: dressdiscover.api.models.object.object_summary.ObjectSummary
         '''
 
         if collection_id is None:
@@ -1269,7 +1269,7 @@ class ObjectSummary(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.object.object_summary.ObjectSummary
+        :rtype: dressdiscover.api.models.object.object_summary.ObjectSummary
         '''
 
         oprot.write_struct_begin('ObjectSummary')

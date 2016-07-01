@@ -1,20 +1,20 @@
 from urlparse import urlparse
 import base64
-import costume.api.services.io_exception  # @UnusedImport
-import costume.api.services.user.duplicate_user_bookmark_exception  # @UnusedImport
-import costume.api.services.user.duplicate_user_exception  # @UnusedImport
-import costume.api.services.user.no_such_user_bookmark_exception  # @UnusedImport
-import costume.api.services.user.no_such_user_exception  # @UnusedImport
-import costume.api.services.user.user_command_service
+import dressdiscover.api.services.io_exception  # @UnusedImport
+import dressdiscover.api.services.user.duplicate_user_bookmark_exception  # @UnusedImport
+import dressdiscover.api.services.user.duplicate_user_exception  # @UnusedImport
+import dressdiscover.api.services.user.no_such_user_bookmark_exception  # @UnusedImport
+import dressdiscover.api.services.user.no_such_user_exception  # @UnusedImport
+import dressdiscover.api.services.user.user_command_service
 import json
 import thryft.protocol.json_input_protocol
 import thryft.protocol.json_output_protocol
 import urllib2
 
 
-class UserCommandServiceJsonRpcClient(costume.api.services.user.user_command_service.UserCommandService):
+class UserCommandServiceJsonRpcClient(dressdiscover.api.services.user.user_command_service.UserCommandService):
     def __init__(self, api_url, headers=None):
-        costume.api.services.user.user_command_service.UserCommandService.__init__(self)
+        dressdiscover.api.services.user.user_command_service.UserCommandService.__init__(self)
 
         if headers is None:
             headers = {}

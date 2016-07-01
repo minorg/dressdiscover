@@ -1,7 +1,7 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.models.institution.institution
-import costume.api.models.institution.institution_entry
+import dressdiscover.api.models.institution.institution
+import dressdiscover.api.models.institution.institution_entry
 
 
 class InstitutionQueryService(object):
@@ -11,7 +11,7 @@ class InstitutionQueryService(object):
     ):
         '''
         :type id: str
-        :rtype: costume.api.models.institution.institution.Institution
+        :rtype: dressdiscover.api.models.institution.institution.Institution
         '''
 
         if id is None:
@@ -21,7 +21,7 @@ class InstitutionQueryService(object):
 
         get_institution_by_id_return_value = self._get_institution_by_id(id=id)
 
-        if not isinstance(get_institution_by_id_return_value, costume.api.models.institution.institution.Institution):
+        if not isinstance(get_institution_by_id_return_value, dressdiscover.api.models.institution.institution.Institution):
             raise TypeError(getattr(__builtin__, 'type')(get_institution_by_id_return_value))
 
         return get_institution_by_id_return_value
@@ -36,12 +36,12 @@ class InstitutionQueryService(object):
         self,
     ):
         '''
-        :rtype: tuple(costume.api.models.institution.institution_entry.InstitutionEntry)
+        :rtype: tuple(dressdiscover.api.models.institution.institution_entry.InstitutionEntry)
         '''
 
         get_institutions_return_value = self._get_institutions()
 
-        if not (isinstance(get_institutions_return_value, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.institution.institution_entry.InstitutionEntry), get_institutions_return_value))) == 0):
+        if not (isinstance(get_institutions_return_value, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.institution.institution_entry.InstitutionEntry), get_institutions_return_value))) == 0):
             raise TypeError(getattr(__builtin__, 'type')(get_institutions_return_value))
 
         return get_institutions_return_value
@@ -57,7 +57,7 @@ class InstitutionQueryService(object):
     ):
         '''
         :type ids: tuple(str)
-        :rtype: tuple(costume.api.models.institution.institution.Institution)
+        :rtype: tuple(dressdiscover.api.models.institution.institution.Institution)
         '''
 
         if ids is None:
@@ -67,7 +67,7 @@ class InstitutionQueryService(object):
 
         get_institutions_by_ids_return_value = self._get_institutions_by_ids(ids=ids)
 
-        if not (isinstance(get_institutions_by_ids_return_value, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.institution.institution.Institution), get_institutions_by_ids_return_value))) == 0):
+        if not (isinstance(get_institutions_by_ids_return_value, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.institution.institution.Institution), get_institutions_by_ids_return_value))) == 0):
             raise TypeError(getattr(__builtin__, 'type')(get_institutions_by_ids_return_value))
 
         return get_institutions_by_ids_return_value

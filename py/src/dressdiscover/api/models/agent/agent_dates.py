@@ -1,6 +1,6 @@
 from datetime import datetime
 import __builtin__
-import costume.api.models.agent.agent_dates_type
+import dressdiscover.api.models.agent.agent_dates_type
 
 
 class AgentDates(object):
@@ -12,7 +12,7 @@ class AgentDates(object):
             latest_date=None,
         ):
             '''
-            :type type: costume.api.models.agent.agent_dates_type.AgentDatesType
+            :type type: dressdiscover.api.models.agent.agent_dates_type.AgentDatesType
             :type earliest_date: datetime or None
             :type latest_date: datetime or None
             '''
@@ -58,7 +58,7 @@ class AgentDates(object):
 
         def set_type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.agent.agent_dates_type.AgentDatesType
+            :type type: dressdiscover.api.models.agent.agent_dates_type.AgentDatesType
             '''
 
             self.__type = type
@@ -67,14 +67,14 @@ class AgentDates(object):
         @property
         def type(self):  # @ReservedAssignment
             '''
-            :rtype: costume.api.models.agent.agent_dates_type.AgentDatesType
+            :rtype: dressdiscover.api.models.agent.agent_dates_type.AgentDatesType
             '''
 
             return self.__type
 
         def update(self, agent_dates):
             '''
-            :type type: costume.api.models.agent.agent_dates_type.AgentDatesType
+            :type type: dressdiscover.api.models.agent.agent_dates_type.AgentDatesType
             :type earliest_date: datetime or None
             :type latest_date: datetime or None
             '''
@@ -109,7 +109,7 @@ class AgentDates(object):
         @type.setter
         def type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.agent.agent_dates_type.AgentDatesType
+            :type type: dressdiscover.api.models.agent.agent_dates_type.AgentDatesType
             '''
 
             self.set_type(type)
@@ -121,15 +121,15 @@ class AgentDates(object):
         latest_date=None,
     ):
         '''
-        :type type: costume.api.models.agent.agent_dates_type.AgentDatesType
+        :type type: dressdiscover.api.models.agent.agent_dates_type.AgentDatesType
         :type earliest_date: datetime or None
         :type latest_date: datetime or None
         '''
 
         if type is None:
             raise ValueError('type is required')
-        if not isinstance(type, costume.api.models.agent.agent_dates_type.AgentDatesType):
-            raise TypeError("expected type to be a costume.api.models.agent.agent_dates_type.AgentDatesType but it is a %s" % getattr(__builtin__, 'type')(type))
+        if not isinstance(type, dressdiscover.api.models.agent.agent_dates_type.AgentDatesType):
+            raise TypeError("expected type to be a dressdiscover.api.models.agent.agent_dates_type.AgentDatesType but it is a %s" % getattr(__builtin__, 'type')(type))
         self.__type = type
 
         if earliest_date is not None:
@@ -218,7 +218,7 @@ class AgentDates(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.agent.agent_dates.AgentDates
+        :rtype: dressdiscover.api.models.agent.agent_dates.AgentDates
         '''
 
         init_kwds = {}
@@ -229,7 +229,7 @@ class AgentDates(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'type' and ifield_id == 1:
-                init_kwds['type'] = costume.api.models.agent.agent_dates_type.AgentDatesType.value_of(iprot.read_string().strip().upper())
+                init_kwds['type'] = dressdiscover.api.models.agent.agent_dates_type.AgentDatesType.value_of(iprot.read_string().strip().upper())
             elif ifield_name == 'earliest_date' and ifield_id == 2:
                 try:
                     init_kwds['earliest_date'] = iprot.read_date_time()
@@ -254,10 +254,10 @@ class AgentDates(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type type: costume.api.models.agent.agent_dates_type.AgentDatesType or None
+        :type type: dressdiscover.api.models.agent.agent_dates_type.AgentDatesType or None
         :type earliest_date: datetime or None
         :type latest_date: datetime or None
-        :rtype: costume.api.models.agent.agent_dates.AgentDates
+        :rtype: dressdiscover.api.models.agent.agent_dates.AgentDates
         '''
 
         if type is None:
@@ -271,7 +271,7 @@ class AgentDates(object):
     @property
     def type(self):  # @ReservedAssignment
         '''
-        :rtype: costume.api.models.agent.agent_dates_type.AgentDatesType
+        :rtype: dressdiscover.api.models.agent.agent_dates_type.AgentDatesType
         '''
 
         return self.__type
@@ -281,7 +281,7 @@ class AgentDates(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.agent.agent_dates.AgentDates
+        :rtype: dressdiscover.api.models.agent.agent_dates.AgentDates
         '''
 
         oprot.write_struct_begin('AgentDates')

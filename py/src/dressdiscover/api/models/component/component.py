@@ -1,6 +1,6 @@
 import __builtin__
-import costume.api.models.component.component_term
-import costume.api.models.structure.structure_set
+import dressdiscover.api.models.component.component_term
+import dressdiscover.api.models.structure.structure_set
 
 
 class Component(object):
@@ -11,8 +11,8 @@ class Component(object):
             structures=None,
         ):
             '''
-            :type term: costume.api.models.component.component_term.ComponentTerm
-            :type structures: costume.api.models.structure.structure_set.StructureSet or None
+            :type term: dressdiscover.api.models.component.component_term.ComponentTerm
+            :type structures: dressdiscover.api.models.structure.structure_set.StructureSet or None
             '''
 
             self.__term = term
@@ -23,7 +23,7 @@ class Component(object):
 
         def set_structures(self, structures):
             '''
-            :type structures: costume.api.models.structure.structure_set.StructureSet or None
+            :type structures: dressdiscover.api.models.structure.structure_set.StructureSet or None
             '''
 
             self.__structures = structures
@@ -31,7 +31,7 @@ class Component(object):
 
         def set_term(self, term):
             '''
-            :type term: costume.api.models.component.component_term.ComponentTerm
+            :type term: dressdiscover.api.models.component.component_term.ComponentTerm
             '''
 
             self.__term = term
@@ -40,7 +40,7 @@ class Component(object):
         @property
         def structures(self):
             '''
-            :rtype: costume.api.models.structure.structure_set.StructureSet
+            :rtype: dressdiscover.api.models.structure.structure_set.StructureSet
             '''
 
             return self.__structures
@@ -48,15 +48,15 @@ class Component(object):
         @property
         def term(self):
             '''
-            :rtype: costume.api.models.component.component_term.ComponentTerm
+            :rtype: dressdiscover.api.models.component.component_term.ComponentTerm
             '''
 
             return self.__term
 
         def update(self, component):
             '''
-            :type term: costume.api.models.component.component_term.ComponentTerm
-            :type structures: costume.api.models.structure.structure_set.StructureSet or None
+            :type term: dressdiscover.api.models.component.component_term.ComponentTerm
+            :type structures: dressdiscover.api.models.structure.structure_set.StructureSet or None
             '''
 
             if isinstance(component, Component):
@@ -72,7 +72,7 @@ class Component(object):
         @structures.setter
         def structures(self, structures):
             '''
-            :type structures: costume.api.models.structure.structure_set.StructureSet or None
+            :type structures: dressdiscover.api.models.structure.structure_set.StructureSet or None
             '''
 
             self.set_structures(structures)
@@ -80,7 +80,7 @@ class Component(object):
         @term.setter
         def term(self, term):
             '''
-            :type term: costume.api.models.component.component_term.ComponentTerm
+            :type term: dressdiscover.api.models.component.component_term.ComponentTerm
             '''
 
             self.set_term(term)
@@ -91,19 +91,19 @@ class Component(object):
         structures=None,
     ):
         '''
-        :type term: costume.api.models.component.component_term.ComponentTerm
-        :type structures: costume.api.models.structure.structure_set.StructureSet or None
+        :type term: dressdiscover.api.models.component.component_term.ComponentTerm
+        :type structures: dressdiscover.api.models.structure.structure_set.StructureSet or None
         '''
 
         if term is None:
             raise ValueError('term is required')
-        if not isinstance(term, costume.api.models.component.component_term.ComponentTerm):
-            raise TypeError("expected term to be a costume.api.models.component.component_term.ComponentTerm but it is a %s" % getattr(__builtin__, 'type')(term))
+        if not isinstance(term, dressdiscover.api.models.component.component_term.ComponentTerm):
+            raise TypeError("expected term to be a dressdiscover.api.models.component.component_term.ComponentTerm but it is a %s" % getattr(__builtin__, 'type')(term))
         self.__term = term
 
         if structures is not None:
-            if not isinstance(structures, costume.api.models.structure.structure_set.StructureSet):
-                raise TypeError("expected structures to be a costume.api.models.structure.structure_set.StructureSet but it is a %s" % getattr(__builtin__, 'type')(structures))
+            if not isinstance(structures, dressdiscover.api.models.structure.structure_set.StructureSet):
+                raise TypeError("expected structures to be a dressdiscover.api.models.structure.structure_set.StructureSet but it is a %s" % getattr(__builtin__, 'type')(structures))
         self.__structures = structures
 
     def __eq__(self, other):
@@ -160,7 +160,7 @@ class Component(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.component.component.Component
+        :rtype: dressdiscover.api.models.component.component.Component
         '''
 
         init_kwds = {}
@@ -171,9 +171,9 @@ class Component(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'term' and ifield_id == 1:
-                init_kwds['term'] = costume.api.models.component.component_term.ComponentTerm.read(iprot)
+                init_kwds['term'] = dressdiscover.api.models.component.component_term.ComponentTerm.read(iprot)
             elif ifield_name == 'structures' and ifield_id == 2:
-                init_kwds['structures'] = costume.api.models.structure.structure_set.StructureSet.read(iprot)
+                init_kwds['structures'] = dressdiscover.api.models.structure.structure_set.StructureSet.read(iprot)
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -187,9 +187,9 @@ class Component(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type term: costume.api.models.component.component_term.ComponentTerm or None
-        :type structures: costume.api.models.structure.structure_set.StructureSet or None
-        :rtype: costume.api.models.component.component.Component
+        :type term: dressdiscover.api.models.component.component_term.ComponentTerm or None
+        :type structures: dressdiscover.api.models.structure.structure_set.StructureSet or None
+        :rtype: dressdiscover.api.models.component.component.Component
         '''
 
         if term is None:
@@ -201,7 +201,7 @@ class Component(object):
     @property
     def structures(self):
         '''
-        :rtype: costume.api.models.structure.structure_set.StructureSet
+        :rtype: dressdiscover.api.models.structure.structure_set.StructureSet
         '''
 
         return self.__structures
@@ -209,7 +209,7 @@ class Component(object):
     @property
     def term(self):
         '''
-        :rtype: costume.api.models.component.component_term.ComponentTerm
+        :rtype: dressdiscover.api.models.component.component_term.ComponentTerm
         '''
 
         return self.__term
@@ -219,7 +219,7 @@ class Component(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.component.component.Component
+        :rtype: dressdiscover.api.models.component.component.Component
         '''
 
         oprot.write_struct_begin('Component')

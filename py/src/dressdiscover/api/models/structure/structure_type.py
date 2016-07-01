@@ -1,5 +1,5 @@
 import __builtin__
-import costume.api.models.vocab_ref
+import dressdiscover.api.models.vocab_ref
 
 
 class StructureType(object):
@@ -11,7 +11,7 @@ class StructureType(object):
         ):
             '''
             :type text: str
-            :type vocab_ref: costume.api.models.vocab_ref.VocabRef or None
+            :type vocab_ref: dressdiscover.api.models.vocab_ref.VocabRef or None
             '''
 
             self.__text = text
@@ -30,7 +30,7 @@ class StructureType(object):
 
         def set_vocab_ref(self, vocab_ref):
             '''
-            :type vocab_ref: costume.api.models.vocab_ref.VocabRef or None
+            :type vocab_ref: dressdiscover.api.models.vocab_ref.VocabRef or None
             '''
 
             self.__vocab_ref = vocab_ref
@@ -47,7 +47,7 @@ class StructureType(object):
         def update(self, structure_type):
             '''
             :type text: str
-            :type vocab_ref: costume.api.models.vocab_ref.VocabRef or None
+            :type vocab_ref: dressdiscover.api.models.vocab_ref.VocabRef or None
             '''
 
             if isinstance(structure_type, StructureType):
@@ -63,7 +63,7 @@ class StructureType(object):
         @property
         def vocab_ref(self):
             '''
-            :rtype: costume.api.models.vocab_ref.VocabRef
+            :rtype: dressdiscover.api.models.vocab_ref.VocabRef
             '''
 
             return self.__vocab_ref
@@ -79,7 +79,7 @@ class StructureType(object):
         @vocab_ref.setter
         def vocab_ref(self, vocab_ref):
             '''
-            :type vocab_ref: costume.api.models.vocab_ref.VocabRef or None
+            :type vocab_ref: dressdiscover.api.models.vocab_ref.VocabRef or None
             '''
 
             self.set_vocab_ref(vocab_ref)
@@ -91,7 +91,7 @@ class StructureType(object):
     ):
         '''
         :type text: str
-        :type vocab_ref: costume.api.models.vocab_ref.VocabRef or None
+        :type vocab_ref: dressdiscover.api.models.vocab_ref.VocabRef or None
         '''
 
         if text is None:
@@ -103,8 +103,8 @@ class StructureType(object):
         self.__text = text
 
         if vocab_ref is not None:
-            if not isinstance(vocab_ref, costume.api.models.vocab_ref.VocabRef):
-                raise TypeError("expected vocab_ref to be a costume.api.models.vocab_ref.VocabRef but it is a %s" % getattr(__builtin__, 'type')(vocab_ref))
+            if not isinstance(vocab_ref, dressdiscover.api.models.vocab_ref.VocabRef):
+                raise TypeError("expected vocab_ref to be a dressdiscover.api.models.vocab_ref.VocabRef but it is a %s" % getattr(__builtin__, 'type')(vocab_ref))
         self.__vocab_ref = vocab_ref
 
     def __eq__(self, other):
@@ -161,7 +161,7 @@ class StructureType(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.structure.structure_type.StructureType
+        :rtype: dressdiscover.api.models.structure.structure_type.StructureType
         '''
 
         init_kwds = {}
@@ -174,7 +174,7 @@ class StructureType(object):
             elif ifield_name == 'text' and ifield_id == 1:
                 init_kwds['text'] = iprot.read_string()
             elif ifield_name == 'vocab_ref' and ifield_id == 2:
-                init_kwds['vocab_ref'] = costume.api.models.vocab_ref.VocabRef.read(iprot)
+                init_kwds['vocab_ref'] = dressdiscover.api.models.vocab_ref.VocabRef.read(iprot)
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -189,8 +189,8 @@ class StructureType(object):
         Copy this object, replace one or more fields, and return the copy.
 
         :type text: str or None
-        :type vocab_ref: costume.api.models.vocab_ref.VocabRef or None
-        :rtype: costume.api.models.structure.structure_type.StructureType
+        :type vocab_ref: dressdiscover.api.models.vocab_ref.VocabRef or None
+        :rtype: dressdiscover.api.models.structure.structure_type.StructureType
         '''
 
         if text is None:
@@ -210,7 +210,7 @@ class StructureType(object):
     @property
     def vocab_ref(self):
         '''
-        :rtype: costume.api.models.vocab_ref.VocabRef
+        :rtype: dressdiscover.api.models.vocab_ref.VocabRef
         '''
 
         return self.__vocab_ref
@@ -220,7 +220,7 @@ class StructureType(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.structure.structure_type.StructureType
+        :rtype: dressdiscover.api.models.structure.structure_type.StructureType
         '''
 
         oprot.write_struct_begin('StructureType')

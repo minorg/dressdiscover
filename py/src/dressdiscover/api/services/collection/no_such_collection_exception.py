@@ -125,7 +125,7 @@ class NoSuchCollectionException(Exception):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.services.collection.no_such_collection_exception.NoSuchCollectionException
+        :rtype: dressdiscover.api.services.collection.no_such_collection_exception.NoSuchCollectionException
         '''
 
         init_kwds = {}
@@ -153,7 +153,7 @@ class NoSuchCollectionException(Exception):
         Copy this object, replace one or more fields, and return the copy.
 
         :type id: str or None
-        :rtype: costume.api.services.collection.no_such_collection_exception.NoSuchCollectionException
+        :rtype: dressdiscover.api.services.collection.no_such_collection_exception.NoSuchCollectionException
         '''
 
         if id is None:
@@ -165,7 +165,7 @@ class NoSuchCollectionException(Exception):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.services.collection.no_such_collection_exception.NoSuchCollectionException
+        :rtype: dressdiscover.api.services.collection.no_such_collection_exception.NoSuchCollectionException
         '''
 
         oprot.write_struct_begin('NoSuchCollectionException')

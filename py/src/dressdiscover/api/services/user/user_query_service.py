@@ -1,8 +1,8 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.models.user.user
-import costume.api.models.user.user_bookmark_entry
-import costume.api.models.user.user_entry
+import dressdiscover.api.models.user.user
+import dressdiscover.api.models.user.user_bookmark_entry
+import dressdiscover.api.models.user.user_entry
 
 
 class UserQueryService(object):
@@ -14,7 +14,7 @@ class UserQueryService(object):
         '''
         :type user_id: str
         :type object_ids_only: bool or None
-        :rtype: tuple(costume.api.models.user.user_bookmark_entry.UserBookmarkEntry)
+        :rtype: tuple(dressdiscover.api.models.user.user_bookmark_entry.UserBookmarkEntry)
         '''
 
         if user_id is None:
@@ -27,7 +27,7 @@ class UserQueryService(object):
 
         get_user_bookmarks_by_user_id_return_value = self._get_user_bookmarks_by_user_id(user_id=user_id, object_ids_only=object_ids_only)
 
-        if not (isinstance(get_user_bookmarks_by_user_id_return_value, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.user.user_bookmark_entry.UserBookmarkEntry), get_user_bookmarks_by_user_id_return_value))) == 0):
+        if not (isinstance(get_user_bookmarks_by_user_id_return_value, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.user.user_bookmark_entry.UserBookmarkEntry), get_user_bookmarks_by_user_id_return_value))) == 0):
             raise TypeError(getattr(__builtin__, 'type')(get_user_bookmarks_by_user_id_return_value))
 
         return get_user_bookmarks_by_user_id_return_value
@@ -45,7 +45,7 @@ class UserQueryService(object):
     ):
         '''
         :type email_address: str
-        :rtype: costume.api.models.user.user_entry.UserEntry
+        :rtype: dressdiscover.api.models.user.user_entry.UserEntry
         '''
 
         if email_address is None:
@@ -55,7 +55,7 @@ class UserQueryService(object):
 
         get_user_by_email_address_return_value = self._get_user_by_email_address(email_address=email_address)
 
-        if not isinstance(get_user_by_email_address_return_value, costume.api.models.user.user_entry.UserEntry):
+        if not isinstance(get_user_by_email_address_return_value, dressdiscover.api.models.user.user_entry.UserEntry):
             raise TypeError(getattr(__builtin__, 'type')(get_user_by_email_address_return_value))
 
         return get_user_by_email_address_return_value
@@ -72,7 +72,7 @@ class UserQueryService(object):
     ):
         '''
         :type id: str
-        :rtype: costume.api.models.user.user.User
+        :rtype: dressdiscover.api.models.user.user.User
         '''
 
         if id is None:
@@ -82,7 +82,7 @@ class UserQueryService(object):
 
         get_user_by_id_return_value = self._get_user_by_id(id=id)
 
-        if not isinstance(get_user_by_id_return_value, costume.api.models.user.user.User):
+        if not isinstance(get_user_by_id_return_value, dressdiscover.api.models.user.user.User):
             raise TypeError(getattr(__builtin__, 'type')(get_user_by_id_return_value))
 
         return get_user_by_id_return_value

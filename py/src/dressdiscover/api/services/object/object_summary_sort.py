@@ -1,6 +1,6 @@
 import __builtin__
-import costume.api.models.sort_order
-import costume.api.services.object.object_summary_sort_field
+import dressdiscover.api.models.sort_order
+import dressdiscover.api.services.object.object_summary_sort_field
 
 
 class ObjectSummarySort(object):
@@ -11,8 +11,8 @@ class ObjectSummarySort(object):
             order=None,
         ):
             '''
-            :type field: costume.api.services.object.object_summary_sort_field.ObjectSummarySortField
-            :type order: costume.api.models.sort_order.SortOrder
+            :type field: dressdiscover.api.services.object.object_summary_sort_field.ObjectSummarySortField
+            :type order: dressdiscover.api.models.sort_order.SortOrder
             '''
 
             self.__field = field
@@ -24,7 +24,7 @@ class ObjectSummarySort(object):
         @property
         def field(self):
             '''
-            :rtype: costume.api.services.object.object_summary_sort_field.ObjectSummarySortField
+            :rtype: dressdiscover.api.services.object.object_summary_sort_field.ObjectSummarySortField
             '''
 
             return self.__field
@@ -32,14 +32,14 @@ class ObjectSummarySort(object):
         @property
         def order(self):
             '''
-            :rtype: costume.api.models.sort_order.SortOrder
+            :rtype: dressdiscover.api.models.sort_order.SortOrder
             '''
 
             return self.__order
 
         def set_field(self, field):
             '''
-            :type field: costume.api.services.object.object_summary_sort_field.ObjectSummarySortField
+            :type field: dressdiscover.api.services.object.object_summary_sort_field.ObjectSummarySortField
             '''
 
             self.__field = field
@@ -47,7 +47,7 @@ class ObjectSummarySort(object):
 
         def set_order(self, order):
             '''
-            :type order: costume.api.models.sort_order.SortOrder
+            :type order: dressdiscover.api.models.sort_order.SortOrder
             '''
 
             self.__order = order
@@ -55,8 +55,8 @@ class ObjectSummarySort(object):
 
         def update(self, object_summary_sort):
             '''
-            :type field: costume.api.services.object.object_summary_sort_field.ObjectSummarySortField
-            :type order: costume.api.models.sort_order.SortOrder
+            :type field: dressdiscover.api.services.object.object_summary_sort_field.ObjectSummarySortField
+            :type order: dressdiscover.api.models.sort_order.SortOrder
             '''
 
             if isinstance(object_summary_sort, ObjectSummarySort):
@@ -72,7 +72,7 @@ class ObjectSummarySort(object):
         @field.setter
         def field(self, field):
             '''
-            :type field: costume.api.services.object.object_summary_sort_field.ObjectSummarySortField
+            :type field: dressdiscover.api.services.object.object_summary_sort_field.ObjectSummarySortField
             '''
 
             self.set_field(field)
@@ -80,7 +80,7 @@ class ObjectSummarySort(object):
         @order.setter
         def order(self, order):
             '''
-            :type order: costume.api.models.sort_order.SortOrder
+            :type order: dressdiscover.api.models.sort_order.SortOrder
             '''
 
             self.set_order(order)
@@ -91,20 +91,20 @@ class ObjectSummarySort(object):
         order,
     ):
         '''
-        :type field: costume.api.services.object.object_summary_sort_field.ObjectSummarySortField
-        :type order: costume.api.models.sort_order.SortOrder
+        :type field: dressdiscover.api.services.object.object_summary_sort_field.ObjectSummarySortField
+        :type order: dressdiscover.api.models.sort_order.SortOrder
         '''
 
         if field is None:
             raise ValueError('field is required')
-        if not isinstance(field, costume.api.services.object.object_summary_sort_field.ObjectSummarySortField):
-            raise TypeError("expected field to be a costume.api.services.object.object_summary_sort_field.ObjectSummarySortField but it is a %s" % getattr(__builtin__, 'type')(field))
+        if not isinstance(field, dressdiscover.api.services.object.object_summary_sort_field.ObjectSummarySortField):
+            raise TypeError("expected field to be a dressdiscover.api.services.object.object_summary_sort_field.ObjectSummarySortField but it is a %s" % getattr(__builtin__, 'type')(field))
         self.__field = field
 
         if order is None:
             raise ValueError('order is required')
-        if not isinstance(order, costume.api.models.sort_order.SortOrder):
-            raise TypeError("expected order to be a costume.api.models.sort_order.SortOrder but it is a %s" % getattr(__builtin__, 'type')(order))
+        if not isinstance(order, dressdiscover.api.models.sort_order.SortOrder):
+            raise TypeError("expected order to be a dressdiscover.api.models.sort_order.SortOrder but it is a %s" % getattr(__builtin__, 'type')(order))
         self.__order = order
 
     def __eq__(self, other):
@@ -156,7 +156,7 @@ class ObjectSummarySort(object):
     @property
     def field(self):
         '''
-        :rtype: costume.api.services.object.object_summary_sort_field.ObjectSummarySortField
+        :rtype: dressdiscover.api.services.object.object_summary_sort_field.ObjectSummarySortField
         '''
 
         return self.__field
@@ -164,7 +164,7 @@ class ObjectSummarySort(object):
     @property
     def order(self):
         '''
-        :rtype: costume.api.models.sort_order.SortOrder
+        :rtype: dressdiscover.api.models.sort_order.SortOrder
         '''
 
         return self.__order
@@ -175,7 +175,7 @@ class ObjectSummarySort(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.services.object.object_summary_sort.ObjectSummarySort
+        :rtype: dressdiscover.api.services.object.object_summary_sort.ObjectSummarySort
         '''
 
         init_kwds = {}
@@ -186,9 +186,9 @@ class ObjectSummarySort(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'field':
-                init_kwds['field'] = costume.api.services.object.object_summary_sort_field.ObjectSummarySortField.value_of(iprot.read_string().strip().upper())
+                init_kwds['field'] = dressdiscover.api.services.object.object_summary_sort_field.ObjectSummarySortField.value_of(iprot.read_string().strip().upper())
             elif ifield_name == 'order':
-                init_kwds['order'] = costume.api.models.sort_order.SortOrder.value_of(iprot.read_string().strip().upper())
+                init_kwds['order'] = dressdiscover.api.models.sort_order.SortOrder.value_of(iprot.read_string().strip().upper())
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -202,9 +202,9 @@ class ObjectSummarySort(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type field: costume.api.services.object.object_summary_sort_field.ObjectSummarySortField or None
-        :type order: costume.api.models.sort_order.SortOrder or None
-        :rtype: costume.api.services.object.object_summary_sort.ObjectSummarySort
+        :type field: dressdiscover.api.services.object.object_summary_sort_field.ObjectSummarySortField or None
+        :type order: dressdiscover.api.models.sort_order.SortOrder or None
+        :rtype: dressdiscover.api.services.object.object_summary_sort.ObjectSummarySort
         '''
 
         if field is None:
@@ -218,7 +218,7 @@ class ObjectSummarySort(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.services.object.object_summary_sort.ObjectSummarySort
+        :rtype: dressdiscover.api.services.object.object_summary_sort.ObjectSummarySort
         '''
 
         oprot.write_struct_begin('ObjectSummarySort')

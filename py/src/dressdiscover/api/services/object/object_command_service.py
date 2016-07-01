@@ -1,7 +1,7 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.models.object.object
-import costume.api.models.object.object_entry
+import dressdiscover.api.models.object.object
+import dressdiscover.api.models.object.object_entry
 
 
 class ObjectCommandService(object):
@@ -39,7 +39,7 @@ class ObjectCommandService(object):
     ):
         '''
         :type id: str
-        :type object: costume.api.models.object.object.Object
+        :type object: dressdiscover.api.models.object.object.Object
         '''
 
         if id is None:
@@ -48,8 +48,8 @@ class ObjectCommandService(object):
             raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
         if object is None:
             raise ValueError('object is required')
-        if not isinstance(object, costume.api.models.object.object.Object):
-            raise TypeError("expected object to be a costume.api.models.object.object.Object but it is a %s" % getattr(__builtin__, 'type')(object))
+        if not isinstance(object, dressdiscover.api.models.object.object.Object):
+            raise TypeError("expected object to be a dressdiscover.api.models.object.object.Object but it is a %s" % getattr(__builtin__, 'type')(object))
 
         self._put_object(id=id, object=object)
 
@@ -65,13 +65,13 @@ class ObjectCommandService(object):
         objects=None,
     ):
         '''
-        :type objects: tuple(costume.api.models.object.object_entry.ObjectEntry)
+        :type objects: tuple(dressdiscover.api.models.object.object_entry.ObjectEntry)
         '''
 
         if objects is None:
             raise ValueError('objects is required')
-        if not (isinstance(objects, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.object.object_entry.ObjectEntry), objects))) == 0):
-            raise TypeError("expected objects to be a tuple(costume.api.models.object.object_entry.ObjectEntry) but it is a %s" % getattr(__builtin__, 'type')(objects))
+        if not (isinstance(objects, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.object.object_entry.ObjectEntry), objects))) == 0):
+            raise TypeError("expected objects to be a tuple(dressdiscover.api.models.object.object_entry.ObjectEntry) but it is a %s" % getattr(__builtin__, 'type')(objects))
 
         self._put_objects(objects=objects)
 

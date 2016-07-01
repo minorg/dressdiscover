@@ -1,5 +1,5 @@
 import __builtin__
-import costume.api.models.title.title_type
+import dressdiscover.api.models.title.title_type
 
 
 class Title(object):
@@ -12,7 +12,7 @@ class Title(object):
         ):
             '''
             :type text: str
-            :type type: costume.api.models.title.title_type.TitleType
+            :type type: dressdiscover.api.models.title.title_type.TitleType
             :type pref: bool or None
             '''
 
@@ -49,7 +49,7 @@ class Title(object):
 
         def set_type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.title.title_type.TitleType
+            :type type: dressdiscover.api.models.title.title_type.TitleType
             '''
 
             self.__type = type
@@ -66,7 +66,7 @@ class Title(object):
         @property
         def type(self):  # @ReservedAssignment
             '''
-            :rtype: costume.api.models.title.title_type.TitleType
+            :rtype: dressdiscover.api.models.title.title_type.TitleType
             '''
 
             return self.__type
@@ -74,7 +74,7 @@ class Title(object):
         def update(self, title):
             '''
             :type text: str
-            :type type: costume.api.models.title.title_type.TitleType
+            :type type: dressdiscover.api.models.title.title_type.TitleType
             :type pref: bool or None
             '''
 
@@ -108,7 +108,7 @@ class Title(object):
         @type.setter
         def type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.title.title_type.TitleType
+            :type type: dressdiscover.api.models.title.title_type.TitleType
             '''
 
             self.set_type(type)
@@ -121,7 +121,7 @@ class Title(object):
     ):
         '''
         :type text: str
-        :type type: costume.api.models.title.title_type.TitleType
+        :type type: dressdiscover.api.models.title.title_type.TitleType
         :type pref: bool or None
         '''
 
@@ -135,8 +135,8 @@ class Title(object):
 
         if type is None:
             raise ValueError('type is required')
-        if not isinstance(type, costume.api.models.title.title_type.TitleType):
-            raise TypeError("expected type to be a costume.api.models.title.title_type.TitleType but it is a %s" % getattr(__builtin__, 'type')(type))
+        if not isinstance(type, dressdiscover.api.models.title.title_type.TitleType):
+            raise TypeError("expected type to be a dressdiscover.api.models.title.title_type.TitleType but it is a %s" % getattr(__builtin__, 'type')(type))
         self.__type = type
 
         if pref is not None:
@@ -210,7 +210,7 @@ class Title(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.title.title.Title
+        :rtype: dressdiscover.api.models.title.title.Title
         '''
 
         init_kwds = {}
@@ -223,7 +223,7 @@ class Title(object):
             elif ifield_name == 'text' and ifield_id == 1:
                 init_kwds['text'] = iprot.read_string()
             elif ifield_name == 'type' and ifield_id == 2:
-                init_kwds['type'] = costume.api.models.title.title_type.TitleType.value_of(iprot.read_string().strip().upper())
+                init_kwds['type'] = dressdiscover.api.models.title.title_type.TitleType.value_of(iprot.read_string().strip().upper())
             elif ifield_name == 'pref' and ifield_id == 3:
                 try:
                     init_kwds['pref'] = iprot.read_bool()
@@ -244,9 +244,9 @@ class Title(object):
         Copy this object, replace one or more fields, and return the copy.
 
         :type text: str or None
-        :type type: costume.api.models.title.title_type.TitleType or None
+        :type type: dressdiscover.api.models.title.title_type.TitleType or None
         :type pref: bool or None
-        :rtype: costume.api.models.title.title.Title
+        :rtype: dressdiscover.api.models.title.title.Title
         '''
 
         if text is None:
@@ -268,7 +268,7 @@ class Title(object):
     @property
     def type(self):  # @ReservedAssignment
         '''
-        :rtype: costume.api.models.title.title_type.TitleType
+        :rtype: dressdiscover.api.models.title.title_type.TitleType
         '''
 
         return self.__type
@@ -278,7 +278,7 @@ class Title(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.title.title.Title
+        :rtype: dressdiscover.api.models.title.title.Title
         '''
 
         oprot.write_struct_begin('Title')

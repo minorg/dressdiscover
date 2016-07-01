@@ -1,18 +1,18 @@
 from urlparse import urlparse
 import base64
-import costume.api.services.collection.no_such_collection_exception  # @UnusedImport
-import costume.api.services.institution.no_such_institution_exception  # @UnusedImport
-import costume.api.services.io_exception  # @UnusedImport
-import costume.api.services.object.object_command_service
+import dressdiscover.api.services.collection.no_such_collection_exception  # @UnusedImport
+import dressdiscover.api.services.institution.no_such_institution_exception  # @UnusedImport
+import dressdiscover.api.services.io_exception  # @UnusedImport
+import dressdiscover.api.services.object.object_command_service
 import json
 import thryft.protocol.json_input_protocol
 import thryft.protocol.json_output_protocol
 import urllib2
 
 
-class ObjectCommandServiceJsonRpcClient(costume.api.services.object.object_command_service.ObjectCommandService):
+class ObjectCommandServiceJsonRpcClient(dressdiscover.api.services.object.object_command_service.ObjectCommandService):
     def __init__(self, api_url, headers=None):
-        costume.api.services.object.object_command_service.ObjectCommandService.__init__(self)
+        dressdiscover.api.services.object.object_command_service.ObjectCommandService.__init__(self)
 
         if headers is None:
             headers = {}

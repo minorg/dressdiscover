@@ -1,5 +1,5 @@
 import __builtin__
-import costume.api.models.textref.textref_name_type
+import dressdiscover.api.models.textref.textref_name_type
 
 
 class TextrefName(object):
@@ -11,7 +11,7 @@ class TextrefName(object):
         ):
             '''
             :type text: str
-            :type type: costume.api.models.textref.textref_name_type.TextrefNameType
+            :type type: dressdiscover.api.models.textref.textref_name_type.TextrefNameType
             '''
 
             self.__text = text
@@ -30,7 +30,7 @@ class TextrefName(object):
 
         def set_type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.textref.textref_name_type.TextrefNameType
+            :type type: dressdiscover.api.models.textref.textref_name_type.TextrefNameType
             '''
 
             self.__type = type
@@ -47,7 +47,7 @@ class TextrefName(object):
         @property
         def type(self):  # @ReservedAssignment
             '''
-            :rtype: costume.api.models.textref.textref_name_type.TextrefNameType
+            :rtype: dressdiscover.api.models.textref.textref_name_type.TextrefNameType
             '''
 
             return self.__type
@@ -55,7 +55,7 @@ class TextrefName(object):
         def update(self, textref_name):
             '''
             :type text: str
-            :type type: costume.api.models.textref.textref_name_type.TextrefNameType
+            :type type: dressdiscover.api.models.textref.textref_name_type.TextrefNameType
             '''
 
             if isinstance(textref_name, TextrefName):
@@ -79,7 +79,7 @@ class TextrefName(object):
         @type.setter
         def type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.textref.textref_name_type.TextrefNameType
+            :type type: dressdiscover.api.models.textref.textref_name_type.TextrefNameType
             '''
 
             self.set_type(type)
@@ -91,7 +91,7 @@ class TextrefName(object):
     ):
         '''
         :type text: str
-        :type type: costume.api.models.textref.textref_name_type.TextrefNameType
+        :type type: dressdiscover.api.models.textref.textref_name_type.TextrefNameType
         '''
 
         if text is None:
@@ -104,8 +104,8 @@ class TextrefName(object):
 
         if type is None:
             raise ValueError('type is required')
-        if not isinstance(type, costume.api.models.textref.textref_name_type.TextrefNameType):
-            raise TypeError("expected type to be a costume.api.models.textref.textref_name_type.TextrefNameType but it is a %s" % getattr(__builtin__, 'type')(type))
+        if not isinstance(type, dressdiscover.api.models.textref.textref_name_type.TextrefNameType):
+            raise TypeError("expected type to be a dressdiscover.api.models.textref.textref_name_type.TextrefNameType but it is a %s" % getattr(__builtin__, 'type')(type))
         self.__type = type
 
     def __eq__(self, other):
@@ -160,7 +160,7 @@ class TextrefName(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.textref.textref_name.TextrefName
+        :rtype: dressdiscover.api.models.textref.textref_name.TextrefName
         '''
 
         init_kwds = {}
@@ -173,7 +173,7 @@ class TextrefName(object):
             elif ifield_name == 'text' and ifield_id == 1:
                 init_kwds['text'] = iprot.read_string()
             elif ifield_name == 'type' and ifield_id == 2:
-                init_kwds['type'] = costume.api.models.textref.textref_name_type.TextrefNameType.value_of(iprot.read_string().strip().upper())
+                init_kwds['type'] = dressdiscover.api.models.textref.textref_name_type.TextrefNameType.value_of(iprot.read_string().strip().upper())
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -188,8 +188,8 @@ class TextrefName(object):
         Copy this object, replace one or more fields, and return the copy.
 
         :type text: str or None
-        :type type: costume.api.models.textref.textref_name_type.TextrefNameType or None
-        :rtype: costume.api.models.textref.textref_name.TextrefName
+        :type type: dressdiscover.api.models.textref.textref_name_type.TextrefNameType or None
+        :rtype: dressdiscover.api.models.textref.textref_name.TextrefName
         '''
 
         if text is None:
@@ -209,7 +209,7 @@ class TextrefName(object):
     @property
     def type(self):  # @ReservedAssignment
         '''
-        :rtype: costume.api.models.textref.textref_name_type.TextrefNameType
+        :rtype: dressdiscover.api.models.textref.textref_name_type.TextrefNameType
         '''
 
         return self.__type
@@ -219,7 +219,7 @@ class TextrefName(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.textref.textref_name.TextrefName
+        :rtype: dressdiscover.api.models.textref.textref_name.TextrefName
         '''
 
         oprot.write_struct_begin('TextrefName')

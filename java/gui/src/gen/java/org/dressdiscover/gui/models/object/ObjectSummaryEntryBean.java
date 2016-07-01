@@ -3,8 +3,8 @@ package org.dressdiscover.gui.models.object;
 public class ObjectSummaryEntryBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),
-        MODEL("model", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.object.ObjectSummaryBean>() {}, true, 0, "model", org.thryft.protocol.Type.STRUCT);
+        ID("id", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),
+        MODEL("model", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.object.ObjectSummaryBean>() {}, true, 0, "model", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -92,9 +92,9 @@ public class ObjectSummaryEntryBean implements org.thryft.StructBean {
         model = null;
     }
 
-    public ObjectSummaryEntryBean(final net.lab1318.costume.api.models.object.ObjectSummaryEntry other) {
+    public ObjectSummaryEntryBean(final org.dressdiscover.api.models.object.ObjectSummaryEntry other) {
         this.id = other.getId();
-        this.model = new net.lab1318.costume.gui.models.object.ObjectSummaryBean(other.getModel());
+        this.model = new org.dressdiscover.gui.models.object.ObjectSummaryBean(other.getModel());
     }
 
     @Override
@@ -133,11 +133,11 @@ public class ObjectSummaryEntryBean implements org.thryft.StructBean {
         }
     }
 
-    public org.dressdiscover.api.models.object.ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public net.lab1318.costume.gui.models.object.ObjectSummaryBean getModel() {
+    public org.dressdiscover.gui.models.object.ObjectSummaryBean getModel() {
         return model;
     }
 
@@ -154,11 +154,11 @@ public class ObjectSummaryEntryBean implements org.thryft.StructBean {
         return false;
     }
 
-    public void setId(final org.dressdiscover.api.models.object.ObjectId id) {
+    public void setId(final String id) {
         this.id = id;
     }
 
-    public void setModel(final net.lab1318.costume.gui.models.object.ObjectSummaryBean model) {
+    public void setModel(final org.dressdiscover.gui.models.object.ObjectSummaryBean model) {
         this.model = model;
     }
 
@@ -167,7 +167,7 @@ public class ObjectSummaryEntryBean implements org.thryft.StructBean {
         return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("id", getId()).add("model", getModel()).toString();
     }
 
-    private org.dressdiscover.api.models.object.ObjectId id;
+    private String id;
 
-    private net.lab1318.costume.gui.models.object.ObjectSummaryBean model;
+    private org.dressdiscover.gui.models.object.ObjectSummaryBean model;
 }

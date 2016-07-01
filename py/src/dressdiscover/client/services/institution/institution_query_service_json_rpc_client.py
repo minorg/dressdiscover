@@ -1,18 +1,18 @@
 from urlparse import urlparse
 import base64
-import costume.api.models.institution.institution
-import costume.api.services.institution.institution_query_service
-import costume.api.services.institution.no_such_institution_exception  # @UnusedImport
-import costume.api.services.io_exception  # @UnusedImport
+import dressdiscover.api.models.institution.institution
+import dressdiscover.api.services.institution.institution_query_service
+import dressdiscover.api.services.institution.no_such_institution_exception  # @UnusedImport
+import dressdiscover.api.services.io_exception  # @UnusedImport
 import json
 import thryft.protocol.json_input_protocol
 import thryft.protocol.json_output_protocol
 import urllib2
 
 
-class InstitutionQueryServiceJsonRpcClient(costume.api.services.institution.institution_query_service.InstitutionQueryService):
+class InstitutionQueryServiceJsonRpcClient(dressdiscover.api.services.institution.institution_query_service.InstitutionQueryService):
     def __init__(self, api_url, headers=None):
-        costume.api.services.institution.institution_query_service.InstitutionQueryService.__init__(self)
+        dressdiscover.api.services.institution.institution_query_service.InstitutionQueryService.__init__(self)
 
         if headers is None:
             headers = {}
@@ -126,14 +126,14 @@ class InstitutionQueryServiceJsonRpcClient(costume.api.services.institution.inst
 
         return_value = self.__request(method='get_institution_by_id', params=oprot.value)
         iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
-        return costume.api.models.institution.institution.Institution.read(iprot)
+        return dressdiscover.api.models.institution.institution.Institution.read(iprot)
 
     def _get_institutions(
         self,
     ):
         return_value = self.__request(method='get_institutions', params={})
         iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
-        return tuple([costume.api.models.institution.institution_entry.InstitutionEntry.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+        return tuple([dressdiscover.api.models.institution.institution_entry.InstitutionEntry.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
 
     def _get_institutions_by_ids(
         self,
@@ -151,5 +151,5 @@ class InstitutionQueryServiceJsonRpcClient(costume.api.services.institution.inst
 
         return_value = self.__request(method='get_institutions_by_ids', params=oprot.value)
         iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
-        return tuple([costume.api.models.institution.institution.Institution.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+        return tuple([dressdiscover.api.models.institution.institution.Institution.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
 

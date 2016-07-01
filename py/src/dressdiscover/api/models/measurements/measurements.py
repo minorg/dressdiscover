@@ -1,6 +1,6 @@
 import __builtin__
-import costume.api.models.measurements.measurements_type
-import costume.api.models.measurements.measurements_unit
+import dressdiscover.api.models.measurements.measurements_type
+import dressdiscover.api.models.measurements.measurements_unit
 
 
 class Measurements(object):
@@ -14,9 +14,9 @@ class Measurements(object):
         ):
             '''
             :type text: str
-            :type type: costume.api.models.measurements.measurements_type.MeasurementsType
+            :type type: dressdiscover.api.models.measurements.measurements_type.MeasurementsType
             :type extent: str or None
-            :type unit: costume.api.models.measurements.measurements_unit.MeasurementsUnit or None
+            :type unit: dressdiscover.api.models.measurements.measurements_unit.MeasurementsUnit or None
             '''
 
             self.__text = text
@@ -53,7 +53,7 @@ class Measurements(object):
 
         def set_type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.measurements.measurements_type.MeasurementsType
+            :type type: dressdiscover.api.models.measurements.measurements_type.MeasurementsType
             '''
 
             self.__type = type
@@ -61,7 +61,7 @@ class Measurements(object):
 
         def set_unit(self, unit):
             '''
-            :type unit: costume.api.models.measurements.measurements_unit.MeasurementsUnit or None
+            :type unit: dressdiscover.api.models.measurements.measurements_unit.MeasurementsUnit or None
             '''
 
             self.__unit = unit
@@ -78,7 +78,7 @@ class Measurements(object):
         @property
         def type(self):  # @ReservedAssignment
             '''
-            :rtype: costume.api.models.measurements.measurements_type.MeasurementsType
+            :rtype: dressdiscover.api.models.measurements.measurements_type.MeasurementsType
             '''
 
             return self.__type
@@ -86,7 +86,7 @@ class Measurements(object):
         @property
         def unit(self):
             '''
-            :rtype: costume.api.models.measurements.measurements_unit.MeasurementsUnit
+            :rtype: dressdiscover.api.models.measurements.measurements_unit.MeasurementsUnit
             '''
 
             return self.__unit
@@ -94,9 +94,9 @@ class Measurements(object):
         def update(self, measurements):
             '''
             :type text: str
-            :type type: costume.api.models.measurements.measurements_type.MeasurementsType
+            :type type: dressdiscover.api.models.measurements.measurements_type.MeasurementsType
             :type extent: str or None
-            :type unit: costume.api.models.measurements.measurements_unit.MeasurementsUnit or None
+            :type unit: dressdiscover.api.models.measurements.measurements_unit.MeasurementsUnit or None
             '''
 
             if isinstance(measurements, Measurements):
@@ -130,7 +130,7 @@ class Measurements(object):
         @type.setter
         def type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.measurements.measurements_type.MeasurementsType
+            :type type: dressdiscover.api.models.measurements.measurements_type.MeasurementsType
             '''
 
             self.set_type(type)
@@ -138,7 +138,7 @@ class Measurements(object):
         @unit.setter
         def unit(self, unit):
             '''
-            :type unit: costume.api.models.measurements.measurements_unit.MeasurementsUnit or None
+            :type unit: dressdiscover.api.models.measurements.measurements_unit.MeasurementsUnit or None
             '''
 
             self.set_unit(unit)
@@ -152,9 +152,9 @@ class Measurements(object):
     ):
         '''
         :type text: str
-        :type type: costume.api.models.measurements.measurements_type.MeasurementsType
+        :type type: dressdiscover.api.models.measurements.measurements_type.MeasurementsType
         :type extent: str or None
-        :type unit: costume.api.models.measurements.measurements_unit.MeasurementsUnit or None
+        :type unit: dressdiscover.api.models.measurements.measurements_unit.MeasurementsUnit or None
         '''
 
         if text is None:
@@ -167,8 +167,8 @@ class Measurements(object):
 
         if type is None:
             raise ValueError('type is required')
-        if not isinstance(type, costume.api.models.measurements.measurements_type.MeasurementsType):
-            raise TypeError("expected type to be a costume.api.models.measurements.measurements_type.MeasurementsType but it is a %s" % getattr(__builtin__, 'type')(type))
+        if not isinstance(type, dressdiscover.api.models.measurements.measurements_type.MeasurementsType):
+            raise TypeError("expected type to be a dressdiscover.api.models.measurements.measurements_type.MeasurementsType but it is a %s" % getattr(__builtin__, 'type')(type))
         self.__type = type
 
         if extent is not None:
@@ -179,8 +179,8 @@ class Measurements(object):
         self.__extent = extent
 
         if unit is not None:
-            if not isinstance(unit, costume.api.models.measurements.measurements_unit.MeasurementsUnit):
-                raise TypeError("expected unit to be a costume.api.models.measurements.measurements_unit.MeasurementsUnit but it is a %s" % getattr(__builtin__, 'type')(unit))
+            if not isinstance(unit, dressdiscover.api.models.measurements.measurements_unit.MeasurementsUnit):
+                raise TypeError("expected unit to be a dressdiscover.api.models.measurements.measurements_unit.MeasurementsUnit but it is a %s" % getattr(__builtin__, 'type')(unit))
         self.__unit = unit
 
     def __eq__(self, other):
@@ -255,7 +255,7 @@ class Measurements(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.measurements.measurements.Measurements
+        :rtype: dressdiscover.api.models.measurements.measurements.Measurements
         '''
 
         init_kwds = {}
@@ -268,7 +268,7 @@ class Measurements(object):
             elif ifield_name == 'text' and ifield_id == 1:
                 init_kwds['text'] = iprot.read_string()
             elif ifield_name == 'type' and ifield_id == 2:
-                init_kwds['type'] = costume.api.models.measurements.measurements_type.MeasurementsType.value_of(iprot.read_string().strip().upper())
+                init_kwds['type'] = dressdiscover.api.models.measurements.measurements_type.MeasurementsType.value_of(iprot.read_string().strip().upper())
             elif ifield_name == 'extent' and ifield_id == 3:
                 try:
                     init_kwds['extent'] = iprot.read_string()
@@ -276,7 +276,7 @@ class Measurements(object):
                     pass
             elif ifield_name == 'unit' and ifield_id == 4:
                 try:
-                    init_kwds['unit'] = costume.api.models.measurements.measurements_unit.MeasurementsUnit.value_of(iprot.read_string().strip().upper())
+                    init_kwds['unit'] = dressdiscover.api.models.measurements.measurements_unit.MeasurementsUnit.value_of(iprot.read_string().strip().upper())
                 except (TypeError,):
                     pass
             iprot.read_field_end()
@@ -295,10 +295,10 @@ class Measurements(object):
         Copy this object, replace one or more fields, and return the copy.
 
         :type text: str or None
-        :type type: costume.api.models.measurements.measurements_type.MeasurementsType or None
+        :type type: dressdiscover.api.models.measurements.measurements_type.MeasurementsType or None
         :type extent: str or None
-        :type unit: costume.api.models.measurements.measurements_unit.MeasurementsUnit or None
-        :rtype: costume.api.models.measurements.measurements.Measurements
+        :type unit: dressdiscover.api.models.measurements.measurements_unit.MeasurementsUnit or None
+        :rtype: dressdiscover.api.models.measurements.measurements.Measurements
         '''
 
         if text is None:
@@ -322,7 +322,7 @@ class Measurements(object):
     @property
     def type(self):  # @ReservedAssignment
         '''
-        :rtype: costume.api.models.measurements.measurements_type.MeasurementsType
+        :rtype: dressdiscover.api.models.measurements.measurements_type.MeasurementsType
         '''
 
         return self.__type
@@ -330,7 +330,7 @@ class Measurements(object):
     @property
     def unit(self):
         '''
-        :rtype: costume.api.models.measurements.measurements_unit.MeasurementsUnit
+        :rtype: dressdiscover.api.models.measurements.measurements_unit.MeasurementsUnit
         '''
 
         return self.__unit
@@ -340,7 +340,7 @@ class Measurements(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.measurements.measurements.Measurements
+        :rtype: dressdiscover.api.models.measurements.measurements.Measurements
         '''
 
         oprot.write_struct_begin('Measurements')

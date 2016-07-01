@@ -1,9 +1,9 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.models.location.location_coordinates
-import costume.api.models.location.location_name
-import costume.api.models.location.location_refid
-import costume.api.models.location.location_type
+import dressdiscover.api.models.location.location_coordinates
+import dressdiscover.api.models.location.location_name
+import dressdiscover.api.models.location.location_refid
+import dressdiscover.api.models.location.location_type
 
 
 class Location(object):
@@ -16,10 +16,10 @@ class Location(object):
             refids=None,
         ):
             '''
-            :type type: costume.api.models.location.location_type.LocationType
-            :type coordinates: costume.api.models.location.location_coordinates.LocationCoordinates or None
-            :type names: tuple(costume.api.models.location.location_name.LocationName) or None
-            :type refids: tuple(costume.api.models.location.location_refid.LocationRefid) or None
+            :type type: dressdiscover.api.models.location.location_type.LocationType
+            :type coordinates: dressdiscover.api.models.location.location_coordinates.LocationCoordinates or None
+            :type names: tuple(dressdiscover.api.models.location.location_name.LocationName) or None
+            :type refids: tuple(dressdiscover.api.models.location.location_refid.LocationRefid) or None
             '''
 
             self.__type = type
@@ -33,7 +33,7 @@ class Location(object):
         @property
         def coordinates(self):
             '''
-            :rtype: costume.api.models.location.location_coordinates.LocationCoordinates
+            :rtype: dressdiscover.api.models.location.location_coordinates.LocationCoordinates
             '''
 
             return self.__coordinates
@@ -41,7 +41,7 @@ class Location(object):
         @property
         def names(self):
             '''
-            :rtype: tuple(costume.api.models.location.location_name.LocationName)
+            :rtype: tuple(dressdiscover.api.models.location.location_name.LocationName)
             '''
 
             return self.__names
@@ -49,14 +49,14 @@ class Location(object):
         @property
         def refids(self):
             '''
-            :rtype: tuple(costume.api.models.location.location_refid.LocationRefid)
+            :rtype: tuple(dressdiscover.api.models.location.location_refid.LocationRefid)
             '''
 
             return self.__refids
 
         def set_coordinates(self, coordinates):
             '''
-            :type coordinates: costume.api.models.location.location_coordinates.LocationCoordinates or None
+            :type coordinates: dressdiscover.api.models.location.location_coordinates.LocationCoordinates or None
             '''
 
             self.__coordinates = coordinates
@@ -64,7 +64,7 @@ class Location(object):
 
         def set_names(self, names):
             '''
-            :type names: tuple(costume.api.models.location.location_name.LocationName) or None
+            :type names: tuple(dressdiscover.api.models.location.location_name.LocationName) or None
             '''
 
             self.__names = names
@@ -72,7 +72,7 @@ class Location(object):
 
         def set_refids(self, refids):
             '''
-            :type refids: tuple(costume.api.models.location.location_refid.LocationRefid) or None
+            :type refids: tuple(dressdiscover.api.models.location.location_refid.LocationRefid) or None
             '''
 
             self.__refids = refids
@@ -80,7 +80,7 @@ class Location(object):
 
         def set_type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.location.location_type.LocationType
+            :type type: dressdiscover.api.models.location.location_type.LocationType
             '''
 
             self.__type = type
@@ -89,17 +89,17 @@ class Location(object):
         @property
         def type(self):  # @ReservedAssignment
             '''
-            :rtype: costume.api.models.location.location_type.LocationType
+            :rtype: dressdiscover.api.models.location.location_type.LocationType
             '''
 
             return self.__type
 
         def update(self, location):
             '''
-            :type type: costume.api.models.location.location_type.LocationType
-            :type coordinates: costume.api.models.location.location_coordinates.LocationCoordinates or None
-            :type names: tuple(costume.api.models.location.location_name.LocationName) or None
-            :type refids: tuple(costume.api.models.location.location_refid.LocationRefid) or None
+            :type type: dressdiscover.api.models.location.location_type.LocationType
+            :type coordinates: dressdiscover.api.models.location.location_coordinates.LocationCoordinates or None
+            :type names: tuple(dressdiscover.api.models.location.location_name.LocationName) or None
+            :type refids: tuple(dressdiscover.api.models.location.location_refid.LocationRefid) or None
             '''
 
             if isinstance(location, Location):
@@ -117,7 +117,7 @@ class Location(object):
         @coordinates.setter
         def coordinates(self, coordinates):
             '''
-            :type coordinates: costume.api.models.location.location_coordinates.LocationCoordinates or None
+            :type coordinates: dressdiscover.api.models.location.location_coordinates.LocationCoordinates or None
             '''
 
             self.set_coordinates(coordinates)
@@ -125,7 +125,7 @@ class Location(object):
         @names.setter
         def names(self, names):
             '''
-            :type names: tuple(costume.api.models.location.location_name.LocationName) or None
+            :type names: tuple(dressdiscover.api.models.location.location_name.LocationName) or None
             '''
 
             self.set_names(names)
@@ -133,7 +133,7 @@ class Location(object):
         @refids.setter
         def refids(self, refids):
             '''
-            :type refids: tuple(costume.api.models.location.location_refid.LocationRefid) or None
+            :type refids: tuple(dressdiscover.api.models.location.location_refid.LocationRefid) or None
             '''
 
             self.set_refids(refids)
@@ -141,7 +141,7 @@ class Location(object):
         @type.setter
         def type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.location.location_type.LocationType
+            :type type: dressdiscover.api.models.location.location_type.LocationType
             '''
 
             self.set_type(type)
@@ -154,33 +154,33 @@ class Location(object):
         refids=None,
     ):
         '''
-        :type type: costume.api.models.location.location_type.LocationType
-        :type coordinates: costume.api.models.location.location_coordinates.LocationCoordinates or None
-        :type names: tuple(costume.api.models.location.location_name.LocationName) or None
-        :type refids: tuple(costume.api.models.location.location_refid.LocationRefid) or None
+        :type type: dressdiscover.api.models.location.location_type.LocationType
+        :type coordinates: dressdiscover.api.models.location.location_coordinates.LocationCoordinates or None
+        :type names: tuple(dressdiscover.api.models.location.location_name.LocationName) or None
+        :type refids: tuple(dressdiscover.api.models.location.location_refid.LocationRefid) or None
         '''
 
         if type is None:
             raise ValueError('type is required')
-        if not isinstance(type, costume.api.models.location.location_type.LocationType):
-            raise TypeError("expected type to be a costume.api.models.location.location_type.LocationType but it is a %s" % getattr(__builtin__, 'type')(type))
+        if not isinstance(type, dressdiscover.api.models.location.location_type.LocationType):
+            raise TypeError("expected type to be a dressdiscover.api.models.location.location_type.LocationType but it is a %s" % getattr(__builtin__, 'type')(type))
         self.__type = type
 
         if coordinates is not None:
-            if not isinstance(coordinates, costume.api.models.location.location_coordinates.LocationCoordinates):
-                raise TypeError("expected coordinates to be a costume.api.models.location.location_coordinates.LocationCoordinates but it is a %s" % getattr(__builtin__, 'type')(coordinates))
+            if not isinstance(coordinates, dressdiscover.api.models.location.location_coordinates.LocationCoordinates):
+                raise TypeError("expected coordinates to be a dressdiscover.api.models.location.location_coordinates.LocationCoordinates but it is a %s" % getattr(__builtin__, 'type')(coordinates))
         self.__coordinates = coordinates
 
         if names is not None:
-            if not (isinstance(names, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.location.location_name.LocationName), names))) == 0):
-                raise TypeError("expected names to be a tuple(costume.api.models.location.location_name.LocationName) but it is a %s" % getattr(__builtin__, 'type')(names))
+            if not (isinstance(names, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.location.location_name.LocationName), names))) == 0):
+                raise TypeError("expected names to be a tuple(dressdiscover.api.models.location.location_name.LocationName) but it is a %s" % getattr(__builtin__, 'type')(names))
             if len(names) < 1:
                 raise ValueError("expected len(names) to be >= 1, was %d" % len(names))
         self.__names = names
 
         if refids is not None:
-            if not (isinstance(refids, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.location.location_refid.LocationRefid), refids))) == 0):
-                raise TypeError("expected refids to be a tuple(costume.api.models.location.location_refid.LocationRefid) but it is a %s" % getattr(__builtin__, 'type')(refids))
+            if not (isinstance(refids, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.location.location_refid.LocationRefid), refids))) == 0):
+                raise TypeError("expected refids to be a tuple(dressdiscover.api.models.location.location_refid.LocationRefid) but it is a %s" % getattr(__builtin__, 'type')(refids))
             if len(refids) < 1:
                 raise ValueError("expected len(refids) to be >= 1, was %d" % len(refids))
         self.__refids = refids
@@ -248,7 +248,7 @@ class Location(object):
     @property
     def coordinates(self):
         '''
-        :rtype: costume.api.models.location.location_coordinates.LocationCoordinates
+        :rtype: dressdiscover.api.models.location.location_coordinates.LocationCoordinates
         '''
 
         return self.__coordinates
@@ -256,7 +256,7 @@ class Location(object):
     @property
     def names(self):
         '''
-        :rtype: tuple(costume.api.models.location.location_name.LocationName)
+        :rtype: tuple(dressdiscover.api.models.location.location_name.LocationName)
         '''
 
         return self.__names
@@ -267,7 +267,7 @@ class Location(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.location.location.Location
+        :rtype: dressdiscover.api.models.location.location.Location
         '''
 
         init_kwds = {}
@@ -278,13 +278,13 @@ class Location(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'type' and ifield_id == 1:
-                init_kwds['type'] = costume.api.models.location.location_type.LocationType.value_of(iprot.read_string().strip().upper())
+                init_kwds['type'] = dressdiscover.api.models.location.location_type.LocationType.value_of(iprot.read_string().strip().upper())
             elif ifield_name == 'coordinates' and ifield_id == 4:
-                init_kwds['coordinates'] = costume.api.models.location.location_coordinates.LocationCoordinates.read(iprot)
+                init_kwds['coordinates'] = dressdiscover.api.models.location.location_coordinates.LocationCoordinates.read(iprot)
             elif ifield_name == 'names' and ifield_id == 2:
-                init_kwds['names'] = tuple([costume.api.models.location.location_name.LocationName.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+                init_kwds['names'] = tuple([dressdiscover.api.models.location.location_name.LocationName.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'refids' and ifield_id == 3:
-                init_kwds['refids'] = tuple([costume.api.models.location.location_refid.LocationRefid.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+                init_kwds['refids'] = tuple([dressdiscover.api.models.location.location_refid.LocationRefid.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -293,7 +293,7 @@ class Location(object):
     @property
     def refids(self):
         '''
-        :rtype: tuple(costume.api.models.location.location_refid.LocationRefid)
+        :rtype: tuple(dressdiscover.api.models.location.location_refid.LocationRefid)
         '''
 
         return self.__refids
@@ -308,11 +308,11 @@ class Location(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type type: costume.api.models.location.location_type.LocationType or None
-        :type coordinates: costume.api.models.location.location_coordinates.LocationCoordinates or None
-        :type names: tuple(costume.api.models.location.location_name.LocationName) or None
-        :type refids: tuple(costume.api.models.location.location_refid.LocationRefid) or None
-        :rtype: costume.api.models.location.location.Location
+        :type type: dressdiscover.api.models.location.location_type.LocationType or None
+        :type coordinates: dressdiscover.api.models.location.location_coordinates.LocationCoordinates or None
+        :type names: tuple(dressdiscover.api.models.location.location_name.LocationName) or None
+        :type refids: tuple(dressdiscover.api.models.location.location_refid.LocationRefid) or None
+        :rtype: dressdiscover.api.models.location.location.Location
         '''
 
         if type is None:
@@ -328,7 +328,7 @@ class Location(object):
     @property
     def type(self):  # @ReservedAssignment
         '''
-        :rtype: costume.api.models.location.location_type.LocationType
+        :rtype: dressdiscover.api.models.location.location_type.LocationType
         '''
 
         return self.__type
@@ -338,7 +338,7 @@ class Location(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.location.location.Location
+        :rtype: dressdiscover.api.models.location.location.Location
         '''
 
         oprot.write_struct_begin('Location')

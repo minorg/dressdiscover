@@ -1,6 +1,6 @@
 import __builtin__
-import costume.api.models.image.image_version
-import costume.api.models.rights.rights_set
+import dressdiscover.api.models.image.image_version
+import dressdiscover.api.models.rights.rights_set
 
 
 class Image(object):
@@ -14,11 +14,11 @@ class Image(object):
             thumbnail=None,
         ):
             '''
-            :type full_size: costume.api.models.image.image_version.ImageVersion or None
-            :type original: costume.api.models.image.image_version.ImageVersion or None
-            :type rights: costume.api.models.rights.rights_set.RightsSet or None
-            :type square_thumbnail: costume.api.models.image.image_version.ImageVersion or None
-            :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
+            :type full_size: dressdiscover.api.models.image.image_version.ImageVersion or None
+            :type original: dressdiscover.api.models.image.image_version.ImageVersion or None
+            :type rights: dressdiscover.api.models.rights.rights_set.RightsSet or None
+            :type square_thumbnail: dressdiscover.api.models.image.image_version.ImageVersion or None
+            :type thumbnail: dressdiscover.api.models.image.image_version.ImageVersion or None
             '''
 
             self.__full_size = full_size
@@ -33,7 +33,7 @@ class Image(object):
         @property
         def full_size(self):
             '''
-            :rtype: costume.api.models.image.image_version.ImageVersion
+            :rtype: dressdiscover.api.models.image.image_version.ImageVersion
             '''
 
             return self.__full_size
@@ -41,7 +41,7 @@ class Image(object):
         @property
         def original(self):
             '''
-            :rtype: costume.api.models.image.image_version.ImageVersion
+            :rtype: dressdiscover.api.models.image.image_version.ImageVersion
             '''
 
             return self.__original
@@ -49,14 +49,14 @@ class Image(object):
         @property
         def rights(self):
             '''
-            :rtype: costume.api.models.rights.rights_set.RightsSet
+            :rtype: dressdiscover.api.models.rights.rights_set.RightsSet
             '''
 
             return self.__rights
 
         def set_full_size(self, full_size):
             '''
-            :type full_size: costume.api.models.image.image_version.ImageVersion or None
+            :type full_size: dressdiscover.api.models.image.image_version.ImageVersion or None
             '''
 
             self.__full_size = full_size
@@ -64,7 +64,7 @@ class Image(object):
 
         def set_original(self, original):
             '''
-            :type original: costume.api.models.image.image_version.ImageVersion or None
+            :type original: dressdiscover.api.models.image.image_version.ImageVersion or None
             '''
 
             self.__original = original
@@ -72,7 +72,7 @@ class Image(object):
 
         def set_rights(self, rights):
             '''
-            :type rights: costume.api.models.rights.rights_set.RightsSet or None
+            :type rights: dressdiscover.api.models.rights.rights_set.RightsSet or None
             '''
 
             self.__rights = rights
@@ -80,7 +80,7 @@ class Image(object):
 
         def set_square_thumbnail(self, square_thumbnail):
             '''
-            :type square_thumbnail: costume.api.models.image.image_version.ImageVersion or None
+            :type square_thumbnail: dressdiscover.api.models.image.image_version.ImageVersion or None
             '''
 
             self.__square_thumbnail = square_thumbnail
@@ -88,7 +88,7 @@ class Image(object):
 
         def set_thumbnail(self, thumbnail):
             '''
-            :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
+            :type thumbnail: dressdiscover.api.models.image.image_version.ImageVersion or None
             '''
 
             self.__thumbnail = thumbnail
@@ -97,7 +97,7 @@ class Image(object):
         @property
         def square_thumbnail(self):
             '''
-            :rtype: costume.api.models.image.image_version.ImageVersion
+            :rtype: dressdiscover.api.models.image.image_version.ImageVersion
             '''
 
             return self.__square_thumbnail
@@ -105,18 +105,18 @@ class Image(object):
         @property
         def thumbnail(self):
             '''
-            :rtype: costume.api.models.image.image_version.ImageVersion
+            :rtype: dressdiscover.api.models.image.image_version.ImageVersion
             '''
 
             return self.__thumbnail
 
         def update(self, image):
             '''
-            :type full_size: costume.api.models.image.image_version.ImageVersion or None
-            :type original: costume.api.models.image.image_version.ImageVersion or None
-            :type rights: costume.api.models.rights.rights_set.RightsSet or None
-            :type square_thumbnail: costume.api.models.image.image_version.ImageVersion or None
-            :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
+            :type full_size: dressdiscover.api.models.image.image_version.ImageVersion or None
+            :type original: dressdiscover.api.models.image.image_version.ImageVersion or None
+            :type rights: dressdiscover.api.models.rights.rights_set.RightsSet or None
+            :type square_thumbnail: dressdiscover.api.models.image.image_version.ImageVersion or None
+            :type thumbnail: dressdiscover.api.models.image.image_version.ImageVersion or None
             '''
 
             if isinstance(image, Image):
@@ -135,7 +135,7 @@ class Image(object):
         @full_size.setter
         def full_size(self, full_size):
             '''
-            :type full_size: costume.api.models.image.image_version.ImageVersion or None
+            :type full_size: dressdiscover.api.models.image.image_version.ImageVersion or None
             '''
 
             self.set_full_size(full_size)
@@ -143,7 +143,7 @@ class Image(object):
         @original.setter
         def original(self, original):
             '''
-            :type original: costume.api.models.image.image_version.ImageVersion or None
+            :type original: dressdiscover.api.models.image.image_version.ImageVersion or None
             '''
 
             self.set_original(original)
@@ -151,7 +151,7 @@ class Image(object):
         @rights.setter
         def rights(self, rights):
             '''
-            :type rights: costume.api.models.rights.rights_set.RightsSet or None
+            :type rights: dressdiscover.api.models.rights.rights_set.RightsSet or None
             '''
 
             self.set_rights(rights)
@@ -159,7 +159,7 @@ class Image(object):
         @square_thumbnail.setter
         def square_thumbnail(self, square_thumbnail):
             '''
-            :type square_thumbnail: costume.api.models.image.image_version.ImageVersion or None
+            :type square_thumbnail: dressdiscover.api.models.image.image_version.ImageVersion or None
             '''
 
             self.set_square_thumbnail(square_thumbnail)
@@ -167,7 +167,7 @@ class Image(object):
         @thumbnail.setter
         def thumbnail(self, thumbnail):
             '''
-            :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
+            :type thumbnail: dressdiscover.api.models.image.image_version.ImageVersion or None
             '''
 
             self.set_thumbnail(thumbnail)
@@ -181,36 +181,36 @@ class Image(object):
         thumbnail=None,
     ):
         '''
-        :type full_size: costume.api.models.image.image_version.ImageVersion or None
-        :type original: costume.api.models.image.image_version.ImageVersion or None
-        :type rights: costume.api.models.rights.rights_set.RightsSet or None
-        :type square_thumbnail: costume.api.models.image.image_version.ImageVersion or None
-        :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
+        :type full_size: dressdiscover.api.models.image.image_version.ImageVersion or None
+        :type original: dressdiscover.api.models.image.image_version.ImageVersion or None
+        :type rights: dressdiscover.api.models.rights.rights_set.RightsSet or None
+        :type square_thumbnail: dressdiscover.api.models.image.image_version.ImageVersion or None
+        :type thumbnail: dressdiscover.api.models.image.image_version.ImageVersion or None
         '''
 
         if full_size is not None:
-            if not isinstance(full_size, costume.api.models.image.image_version.ImageVersion):
-                raise TypeError("expected full_size to be a costume.api.models.image.image_version.ImageVersion but it is a %s" % getattr(__builtin__, 'type')(full_size))
+            if not isinstance(full_size, dressdiscover.api.models.image.image_version.ImageVersion):
+                raise TypeError("expected full_size to be a dressdiscover.api.models.image.image_version.ImageVersion but it is a %s" % getattr(__builtin__, 'type')(full_size))
         self.__full_size = full_size
 
         if original is not None:
-            if not isinstance(original, costume.api.models.image.image_version.ImageVersion):
-                raise TypeError("expected original to be a costume.api.models.image.image_version.ImageVersion but it is a %s" % getattr(__builtin__, 'type')(original))
+            if not isinstance(original, dressdiscover.api.models.image.image_version.ImageVersion):
+                raise TypeError("expected original to be a dressdiscover.api.models.image.image_version.ImageVersion but it is a %s" % getattr(__builtin__, 'type')(original))
         self.__original = original
 
         if rights is not None:
-            if not isinstance(rights, costume.api.models.rights.rights_set.RightsSet):
-                raise TypeError("expected rights to be a costume.api.models.rights.rights_set.RightsSet but it is a %s" % getattr(__builtin__, 'type')(rights))
+            if not isinstance(rights, dressdiscover.api.models.rights.rights_set.RightsSet):
+                raise TypeError("expected rights to be a dressdiscover.api.models.rights.rights_set.RightsSet but it is a %s" % getattr(__builtin__, 'type')(rights))
         self.__rights = rights
 
         if square_thumbnail is not None:
-            if not isinstance(square_thumbnail, costume.api.models.image.image_version.ImageVersion):
-                raise TypeError("expected square_thumbnail to be a costume.api.models.image.image_version.ImageVersion but it is a %s" % getattr(__builtin__, 'type')(square_thumbnail))
+            if not isinstance(square_thumbnail, dressdiscover.api.models.image.image_version.ImageVersion):
+                raise TypeError("expected square_thumbnail to be a dressdiscover.api.models.image.image_version.ImageVersion but it is a %s" % getattr(__builtin__, 'type')(square_thumbnail))
         self.__square_thumbnail = square_thumbnail
 
         if thumbnail is not None:
-            if not isinstance(thumbnail, costume.api.models.image.image_version.ImageVersion):
-                raise TypeError("expected thumbnail to be a costume.api.models.image.image_version.ImageVersion but it is a %s" % getattr(__builtin__, 'type')(thumbnail))
+            if not isinstance(thumbnail, dressdiscover.api.models.image.image_version.ImageVersion):
+                raise TypeError("expected thumbnail to be a dressdiscover.api.models.image.image_version.ImageVersion but it is a %s" % getattr(__builtin__, 'type')(thumbnail))
         self.__thumbnail = thumbnail
 
     def __eq__(self, other):
@@ -284,7 +284,7 @@ class Image(object):
     @property
     def full_size(self):
         '''
-        :rtype: costume.api.models.image.image_version.ImageVersion
+        :rtype: dressdiscover.api.models.image.image_version.ImageVersion
         '''
 
         return self.__full_size
@@ -292,7 +292,7 @@ class Image(object):
     @property
     def original(self):
         '''
-        :rtype: costume.api.models.image.image_version.ImageVersion
+        :rtype: dressdiscover.api.models.image.image_version.ImageVersion
         '''
 
         return self.__original
@@ -303,7 +303,7 @@ class Image(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.image.image.Image
+        :rtype: dressdiscover.api.models.image.image.Image
         '''
 
         init_kwds = {}
@@ -314,15 +314,15 @@ class Image(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'full_size' and ifield_id == 2:
-                init_kwds['full_size'] = costume.api.models.image.image_version.ImageVersion.read(iprot)
+                init_kwds['full_size'] = dressdiscover.api.models.image.image_version.ImageVersion.read(iprot)
             elif ifield_name == 'original' and ifield_id == 3:
-                init_kwds['original'] = costume.api.models.image.image_version.ImageVersion.read(iprot)
+                init_kwds['original'] = dressdiscover.api.models.image.image_version.ImageVersion.read(iprot)
             elif ifield_name == 'rights' and ifield_id == 6:
-                init_kwds['rights'] = costume.api.models.rights.rights_set.RightsSet.read(iprot)
+                init_kwds['rights'] = dressdiscover.api.models.rights.rights_set.RightsSet.read(iprot)
             elif ifield_name == 'square_thumbnail' and ifield_id == 4:
-                init_kwds['square_thumbnail'] = costume.api.models.image.image_version.ImageVersion.read(iprot)
+                init_kwds['square_thumbnail'] = dressdiscover.api.models.image.image_version.ImageVersion.read(iprot)
             elif ifield_name == 'thumbnail' and ifield_id == 5:
-                init_kwds['thumbnail'] = costume.api.models.image.image_version.ImageVersion.read(iprot)
+                init_kwds['thumbnail'] = dressdiscover.api.models.image.image_version.ImageVersion.read(iprot)
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -339,12 +339,12 @@ class Image(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type full_size: costume.api.models.image.image_version.ImageVersion or None
-        :type original: costume.api.models.image.image_version.ImageVersion or None
-        :type rights: costume.api.models.rights.rights_set.RightsSet or None
-        :type square_thumbnail: costume.api.models.image.image_version.ImageVersion or None
-        :type thumbnail: costume.api.models.image.image_version.ImageVersion or None
-        :rtype: costume.api.models.image.image.Image
+        :type full_size: dressdiscover.api.models.image.image_version.ImageVersion or None
+        :type original: dressdiscover.api.models.image.image_version.ImageVersion or None
+        :type rights: dressdiscover.api.models.rights.rights_set.RightsSet or None
+        :type square_thumbnail: dressdiscover.api.models.image.image_version.ImageVersion or None
+        :type thumbnail: dressdiscover.api.models.image.image_version.ImageVersion or None
+        :rtype: dressdiscover.api.models.image.image.Image
         '''
 
         if full_size is None:
@@ -362,7 +362,7 @@ class Image(object):
     @property
     def rights(self):
         '''
-        :rtype: costume.api.models.rights.rights_set.RightsSet
+        :rtype: dressdiscover.api.models.rights.rights_set.RightsSet
         '''
 
         return self.__rights
@@ -370,7 +370,7 @@ class Image(object):
     @property
     def square_thumbnail(self):
         '''
-        :rtype: costume.api.models.image.image_version.ImageVersion
+        :rtype: dressdiscover.api.models.image.image_version.ImageVersion
         '''
 
         return self.__square_thumbnail
@@ -378,7 +378,7 @@ class Image(object):
     @property
     def thumbnail(self):
         '''
-        :rtype: costume.api.models.image.image_version.ImageVersion
+        :rtype: dressdiscover.api.models.image.image_version.ImageVersion
         '''
 
         return self.__thumbnail
@@ -388,7 +388,7 @@ class Image(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.image.image.Image
+        :rtype: dressdiscover.api.models.image.image.Image
         '''
 
         oprot.write_struct_begin('Image')

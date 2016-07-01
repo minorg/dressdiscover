@@ -1,28 +1,28 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.models.agent.agent_set
-import costume.api.models.closure.closure_set
-import costume.api.models.color.color_set
-import costume.api.models.component.component_set
-import costume.api.models.condition.condition
-import costume.api.models.cultural_context.cultural_context_set
-import costume.api.models.date.date_set
-import costume.api.models.description.description_set
-import costume.api.models.gender.gender
-import costume.api.models.image.image
-import costume.api.models.inscription.inscription_set
-import costume.api.models.location.location_set
-import costume.api.models.material.material_set
-import costume.api.models.measurements.measurements_set
-import costume.api.models.relation.relation_set
-import costume.api.models.rights.rights_set
-import costume.api.models.structure.structure_set
-import costume.api.models.subject.subject_set
-import costume.api.models.technique.technique_set
-import costume.api.models.textref.textref_set
-import costume.api.models.title.title_set
-import costume.api.models.view_type.view_type
-import costume.api.models.work_type.work_type_set
+import dressdiscover.api.models.agent.agent_set
+import dressdiscover.api.models.closure.closure_set
+import dressdiscover.api.models.color.color_set
+import dressdiscover.api.models.component.component_set
+import dressdiscover.api.models.condition.condition
+import dressdiscover.api.models.cultural_context.cultural_context_set
+import dressdiscover.api.models.date.date_set
+import dressdiscover.api.models.description.description_set
+import dressdiscover.api.models.gender.gender
+import dressdiscover.api.models.image.image
+import dressdiscover.api.models.inscription.inscription_set
+import dressdiscover.api.models.location.location_set
+import dressdiscover.api.models.material.material_set
+import dressdiscover.api.models.measurements.measurements_set
+import dressdiscover.api.models.relation.relation_set
+import dressdiscover.api.models.rights.rights_set
+import dressdiscover.api.models.structure.structure_set
+import dressdiscover.api.models.subject.subject_set
+import dressdiscover.api.models.technique.technique_set
+import dressdiscover.api.models.textref.textref_set
+import dressdiscover.api.models.title.title_set
+import dressdiscover.api.models.view_type.view_type
+import dressdiscover.api.models.work_type.work_type_set
 
 
 class Object(object):
@@ -62,33 +62,33 @@ class Object(object):
             '''
             :type collection_id: str
             :type institution_id: str
-            :type titles: costume.api.models.title.title_set.TitleSet
-            :type agents: costume.api.models.agent.agent_set.AgentSet or None
+            :type titles: dressdiscover.api.models.title.title_set.TitleSet
+            :type agents: dressdiscover.api.models.agent.agent_set.AgentSet or None
             :type categories: tuple(str) or None
-            :type closures: costume.api.models.closure.closure_set.ClosureSet or None
-            :type colors: costume.api.models.color.color_set.ColorSet or None
-            :type components: costume.api.models.component.component_set.ComponentSet or None
-            :type condition: costume.api.models.condition.condition.Condition or None
-            :type cultural_contexts: costume.api.models.cultural_context.cultural_context_set.CulturalContextSet or None
-            :type dates: costume.api.models.date.date_set.DateSet or None
-            :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
-            :type gender: costume.api.models.gender.gender.Gender or None
+            :type closures: dressdiscover.api.models.closure.closure_set.ClosureSet or None
+            :type colors: dressdiscover.api.models.color.color_set.ColorSet or None
+            :type components: dressdiscover.api.models.component.component_set.ComponentSet or None
+            :type condition: dressdiscover.api.models.condition.condition.Condition or None
+            :type cultural_contexts: dressdiscover.api.models.cultural_context.cultural_context_set.CulturalContextSet or None
+            :type dates: dressdiscover.api.models.date.date_set.DateSet or None
+            :type descriptions: dressdiscover.api.models.description.description_set.DescriptionSet or None
+            :type gender: dressdiscover.api.models.gender.gender.Gender or None
             :type hidden: bool or None
-            :type images: tuple(costume.api.models.image.image.Image) or None
-            :type inscriptions: costume.api.models.inscription.inscription_set.InscriptionSet or None
-            :type locations: costume.api.models.location.location_set.LocationSet or None
-            :type materials: costume.api.models.material.material_set.MaterialSet or None
-            :type measurements: costume.api.models.measurements.measurements_set.MeasurementsSet or None
+            :type images: tuple(dressdiscover.api.models.image.image.Image) or None
+            :type inscriptions: dressdiscover.api.models.inscription.inscription_set.InscriptionSet or None
+            :type locations: dressdiscover.api.models.location.location_set.LocationSet or None
+            :type materials: dressdiscover.api.models.material.material_set.MaterialSet or None
+            :type measurements: dressdiscover.api.models.measurements.measurements_set.MeasurementsSet or None
             :type provenance: str or None
             :type quantity: int or None
-            :type relations: costume.api.models.relation.relation_set.RelationSet or None
-            :type rights: costume.api.models.rights.rights_set.RightsSet or None
-            :type structures: costume.api.models.structure.structure_set.StructureSet or None
-            :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
-            :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
-            :type textrefs: costume.api.models.textref.textref_set.TextrefSet or None
-            :type view_type: costume.api.models.view_type.view_type.ViewType or None
-            :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
+            :type relations: dressdiscover.api.models.relation.relation_set.RelationSet or None
+            :type rights: dressdiscover.api.models.rights.rights_set.RightsSet or None
+            :type structures: dressdiscover.api.models.structure.structure_set.StructureSet or None
+            :type subjects: dressdiscover.api.models.subject.subject_set.SubjectSet or None
+            :type techniques: dressdiscover.api.models.technique.technique_set.TechniqueSet or None
+            :type textrefs: dressdiscover.api.models.textref.textref_set.TextrefSet or None
+            :type view_type: dressdiscover.api.models.view_type.view_type.ViewType or None
+            :type work_types: dressdiscover.api.models.work_type.work_type_set.WorkTypeSet or None
             '''
 
             self.__collection_id = collection_id
@@ -127,7 +127,7 @@ class Object(object):
         @property
         def agents(self):
             '''
-            :rtype: costume.api.models.agent.agent_set.AgentSet
+            :rtype: dressdiscover.api.models.agent.agent_set.AgentSet
             '''
 
             return self.__agents
@@ -143,7 +143,7 @@ class Object(object):
         @property
         def closures(self):
             '''
-            :rtype: costume.api.models.closure.closure_set.ClosureSet
+            :rtype: dressdiscover.api.models.closure.closure_set.ClosureSet
             '''
 
             return self.__closures
@@ -159,7 +159,7 @@ class Object(object):
         @property
         def colors(self):
             '''
-            :rtype: costume.api.models.color.color_set.ColorSet
+            :rtype: dressdiscover.api.models.color.color_set.ColorSet
             '''
 
             return self.__colors
@@ -167,7 +167,7 @@ class Object(object):
         @property
         def components(self):
             '''
-            :rtype: costume.api.models.component.component_set.ComponentSet
+            :rtype: dressdiscover.api.models.component.component_set.ComponentSet
             '''
 
             return self.__components
@@ -175,7 +175,7 @@ class Object(object):
         @property
         def condition(self):
             '''
-            :rtype: costume.api.models.condition.condition.Condition
+            :rtype: dressdiscover.api.models.condition.condition.Condition
             '''
 
             return self.__condition
@@ -183,7 +183,7 @@ class Object(object):
         @property
         def cultural_contexts(self):
             '''
-            :rtype: costume.api.models.cultural_context.cultural_context_set.CulturalContextSet
+            :rtype: dressdiscover.api.models.cultural_context.cultural_context_set.CulturalContextSet
             '''
 
             return self.__cultural_contexts
@@ -191,7 +191,7 @@ class Object(object):
         @property
         def dates(self):
             '''
-            :rtype: costume.api.models.date.date_set.DateSet
+            :rtype: dressdiscover.api.models.date.date_set.DateSet
             '''
 
             return self.__dates
@@ -199,7 +199,7 @@ class Object(object):
         @property
         def descriptions(self):
             '''
-            :rtype: costume.api.models.description.description_set.DescriptionSet
+            :rtype: dressdiscover.api.models.description.description_set.DescriptionSet
             '''
 
             return self.__descriptions
@@ -207,7 +207,7 @@ class Object(object):
         @property
         def gender(self):
             '''
-            :rtype: costume.api.models.gender.gender.Gender
+            :rtype: dressdiscover.api.models.gender.gender.Gender
             '''
 
             return self.__gender
@@ -223,7 +223,7 @@ class Object(object):
         @property
         def images(self):
             '''
-            :rtype: tuple(costume.api.models.image.image.Image)
+            :rtype: tuple(dressdiscover.api.models.image.image.Image)
             '''
 
             return self.__images
@@ -231,7 +231,7 @@ class Object(object):
         @property
         def inscriptions(self):
             '''
-            :rtype: costume.api.models.inscription.inscription_set.InscriptionSet
+            :rtype: dressdiscover.api.models.inscription.inscription_set.InscriptionSet
             '''
 
             return self.__inscriptions
@@ -247,7 +247,7 @@ class Object(object):
         @property
         def locations(self):
             '''
-            :rtype: costume.api.models.location.location_set.LocationSet
+            :rtype: dressdiscover.api.models.location.location_set.LocationSet
             '''
 
             return self.__locations
@@ -255,7 +255,7 @@ class Object(object):
         @property
         def materials(self):
             '''
-            :rtype: costume.api.models.material.material_set.MaterialSet
+            :rtype: dressdiscover.api.models.material.material_set.MaterialSet
             '''
 
             return self.__materials
@@ -263,7 +263,7 @@ class Object(object):
         @property
         def measurements(self):
             '''
-            :rtype: costume.api.models.measurements.measurements_set.MeasurementsSet
+            :rtype: dressdiscover.api.models.measurements.measurements_set.MeasurementsSet
             '''
 
             return self.__measurements
@@ -287,7 +287,7 @@ class Object(object):
         @property
         def relations(self):
             '''
-            :rtype: costume.api.models.relation.relation_set.RelationSet
+            :rtype: dressdiscover.api.models.relation.relation_set.RelationSet
             '''
 
             return self.__relations
@@ -295,14 +295,14 @@ class Object(object):
         @property
         def rights(self):
             '''
-            :rtype: costume.api.models.rights.rights_set.RightsSet
+            :rtype: dressdiscover.api.models.rights.rights_set.RightsSet
             '''
 
             return self.__rights
 
         def set_agents(self, agents):
             '''
-            :type agents: costume.api.models.agent.agent_set.AgentSet or None
+            :type agents: dressdiscover.api.models.agent.agent_set.AgentSet or None
             '''
 
             self.__agents = agents
@@ -318,7 +318,7 @@ class Object(object):
 
         def set_closures(self, closures):
             '''
-            :type closures: costume.api.models.closure.closure_set.ClosureSet or None
+            :type closures: dressdiscover.api.models.closure.closure_set.ClosureSet or None
             '''
 
             self.__closures = closures
@@ -334,7 +334,7 @@ class Object(object):
 
         def set_colors(self, colors):
             '''
-            :type colors: costume.api.models.color.color_set.ColorSet or None
+            :type colors: dressdiscover.api.models.color.color_set.ColorSet or None
             '''
 
             self.__colors = colors
@@ -342,7 +342,7 @@ class Object(object):
 
         def set_components(self, components):
             '''
-            :type components: costume.api.models.component.component_set.ComponentSet or None
+            :type components: dressdiscover.api.models.component.component_set.ComponentSet or None
             '''
 
             self.__components = components
@@ -350,7 +350,7 @@ class Object(object):
 
         def set_condition(self, condition):
             '''
-            :type condition: costume.api.models.condition.condition.Condition or None
+            :type condition: dressdiscover.api.models.condition.condition.Condition or None
             '''
 
             self.__condition = condition
@@ -358,7 +358,7 @@ class Object(object):
 
         def set_cultural_contexts(self, cultural_contexts):
             '''
-            :type cultural_contexts: costume.api.models.cultural_context.cultural_context_set.CulturalContextSet or None
+            :type cultural_contexts: dressdiscover.api.models.cultural_context.cultural_context_set.CulturalContextSet or None
             '''
 
             self.__cultural_contexts = cultural_contexts
@@ -366,7 +366,7 @@ class Object(object):
 
         def set_dates(self, dates):
             '''
-            :type dates: costume.api.models.date.date_set.DateSet or None
+            :type dates: dressdiscover.api.models.date.date_set.DateSet or None
             '''
 
             self.__dates = dates
@@ -374,7 +374,7 @@ class Object(object):
 
         def set_descriptions(self, descriptions):
             '''
-            :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
+            :type descriptions: dressdiscover.api.models.description.description_set.DescriptionSet or None
             '''
 
             self.__descriptions = descriptions
@@ -382,7 +382,7 @@ class Object(object):
 
         def set_gender(self, gender):
             '''
-            :type gender: costume.api.models.gender.gender.Gender or None
+            :type gender: dressdiscover.api.models.gender.gender.Gender or None
             '''
 
             self.__gender = gender
@@ -398,7 +398,7 @@ class Object(object):
 
         def set_images(self, images):
             '''
-            :type images: tuple(costume.api.models.image.image.Image) or None
+            :type images: tuple(dressdiscover.api.models.image.image.Image) or None
             '''
 
             self.__images = images
@@ -406,7 +406,7 @@ class Object(object):
 
         def set_inscriptions(self, inscriptions):
             '''
-            :type inscriptions: costume.api.models.inscription.inscription_set.InscriptionSet or None
+            :type inscriptions: dressdiscover.api.models.inscription.inscription_set.InscriptionSet or None
             '''
 
             self.__inscriptions = inscriptions
@@ -422,7 +422,7 @@ class Object(object):
 
         def set_locations(self, locations):
             '''
-            :type locations: costume.api.models.location.location_set.LocationSet or None
+            :type locations: dressdiscover.api.models.location.location_set.LocationSet or None
             '''
 
             self.__locations = locations
@@ -430,7 +430,7 @@ class Object(object):
 
         def set_materials(self, materials):
             '''
-            :type materials: costume.api.models.material.material_set.MaterialSet or None
+            :type materials: dressdiscover.api.models.material.material_set.MaterialSet or None
             '''
 
             self.__materials = materials
@@ -438,7 +438,7 @@ class Object(object):
 
         def set_measurements(self, measurements):
             '''
-            :type measurements: costume.api.models.measurements.measurements_set.MeasurementsSet or None
+            :type measurements: dressdiscover.api.models.measurements.measurements_set.MeasurementsSet or None
             '''
 
             self.__measurements = measurements
@@ -462,7 +462,7 @@ class Object(object):
 
         def set_relations(self, relations):
             '''
-            :type relations: costume.api.models.relation.relation_set.RelationSet or None
+            :type relations: dressdiscover.api.models.relation.relation_set.RelationSet or None
             '''
 
             self.__relations = relations
@@ -470,7 +470,7 @@ class Object(object):
 
         def set_rights(self, rights):
             '''
-            :type rights: costume.api.models.rights.rights_set.RightsSet or None
+            :type rights: dressdiscover.api.models.rights.rights_set.RightsSet or None
             '''
 
             self.__rights = rights
@@ -478,7 +478,7 @@ class Object(object):
 
         def set_structures(self, structures):
             '''
-            :type structures: costume.api.models.structure.structure_set.StructureSet or None
+            :type structures: dressdiscover.api.models.structure.structure_set.StructureSet or None
             '''
 
             self.__structures = structures
@@ -486,7 +486,7 @@ class Object(object):
 
         def set_subjects(self, subjects):
             '''
-            :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
+            :type subjects: dressdiscover.api.models.subject.subject_set.SubjectSet or None
             '''
 
             self.__subjects = subjects
@@ -494,7 +494,7 @@ class Object(object):
 
         def set_techniques(self, techniques):
             '''
-            :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
+            :type techniques: dressdiscover.api.models.technique.technique_set.TechniqueSet or None
             '''
 
             self.__techniques = techniques
@@ -502,7 +502,7 @@ class Object(object):
 
         def set_textrefs(self, textrefs):
             '''
-            :type textrefs: costume.api.models.textref.textref_set.TextrefSet or None
+            :type textrefs: dressdiscover.api.models.textref.textref_set.TextrefSet or None
             '''
 
             self.__textrefs = textrefs
@@ -510,7 +510,7 @@ class Object(object):
 
         def set_titles(self, titles):
             '''
-            :type titles: costume.api.models.title.title_set.TitleSet
+            :type titles: dressdiscover.api.models.title.title_set.TitleSet
             '''
 
             self.__titles = titles
@@ -518,7 +518,7 @@ class Object(object):
 
         def set_view_type(self, view_type):
             '''
-            :type view_type: costume.api.models.view_type.view_type.ViewType or None
+            :type view_type: dressdiscover.api.models.view_type.view_type.ViewType or None
             '''
 
             self.__view_type = view_type
@@ -526,7 +526,7 @@ class Object(object):
 
         def set_work_types(self, work_types):
             '''
-            :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
+            :type work_types: dressdiscover.api.models.work_type.work_type_set.WorkTypeSet or None
             '''
 
             self.__work_types = work_types
@@ -535,7 +535,7 @@ class Object(object):
         @property
         def structures(self):
             '''
-            :rtype: costume.api.models.structure.structure_set.StructureSet
+            :rtype: dressdiscover.api.models.structure.structure_set.StructureSet
             '''
 
             return self.__structures
@@ -543,7 +543,7 @@ class Object(object):
         @property
         def subjects(self):
             '''
-            :rtype: costume.api.models.subject.subject_set.SubjectSet
+            :rtype: dressdiscover.api.models.subject.subject_set.SubjectSet
             '''
 
             return self.__subjects
@@ -551,7 +551,7 @@ class Object(object):
         @property
         def techniques(self):
             '''
-            :rtype: costume.api.models.technique.technique_set.TechniqueSet
+            :rtype: dressdiscover.api.models.technique.technique_set.TechniqueSet
             '''
 
             return self.__techniques
@@ -559,7 +559,7 @@ class Object(object):
         @property
         def textrefs(self):
             '''
-            :rtype: costume.api.models.textref.textref_set.TextrefSet
+            :rtype: dressdiscover.api.models.textref.textref_set.TextrefSet
             '''
 
             return self.__textrefs
@@ -567,7 +567,7 @@ class Object(object):
         @property
         def titles(self):
             '''
-            :rtype: costume.api.models.title.title_set.TitleSet
+            :rtype: dressdiscover.api.models.title.title_set.TitleSet
             '''
 
             return self.__titles
@@ -576,33 +576,33 @@ class Object(object):
             '''
             :type collection_id: str
             :type institution_id: str
-            :type titles: costume.api.models.title.title_set.TitleSet
-            :type agents: costume.api.models.agent.agent_set.AgentSet or None
+            :type titles: dressdiscover.api.models.title.title_set.TitleSet
+            :type agents: dressdiscover.api.models.agent.agent_set.AgentSet or None
             :type categories: tuple(str) or None
-            :type closures: costume.api.models.closure.closure_set.ClosureSet or None
-            :type colors: costume.api.models.color.color_set.ColorSet or None
-            :type components: costume.api.models.component.component_set.ComponentSet or None
-            :type condition: costume.api.models.condition.condition.Condition or None
-            :type cultural_contexts: costume.api.models.cultural_context.cultural_context_set.CulturalContextSet or None
-            :type dates: costume.api.models.date.date_set.DateSet or None
-            :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
-            :type gender: costume.api.models.gender.gender.Gender or None
+            :type closures: dressdiscover.api.models.closure.closure_set.ClosureSet or None
+            :type colors: dressdiscover.api.models.color.color_set.ColorSet or None
+            :type components: dressdiscover.api.models.component.component_set.ComponentSet or None
+            :type condition: dressdiscover.api.models.condition.condition.Condition or None
+            :type cultural_contexts: dressdiscover.api.models.cultural_context.cultural_context_set.CulturalContextSet or None
+            :type dates: dressdiscover.api.models.date.date_set.DateSet or None
+            :type descriptions: dressdiscover.api.models.description.description_set.DescriptionSet or None
+            :type gender: dressdiscover.api.models.gender.gender.Gender or None
             :type hidden: bool or None
-            :type images: tuple(costume.api.models.image.image.Image) or None
-            :type inscriptions: costume.api.models.inscription.inscription_set.InscriptionSet or None
-            :type locations: costume.api.models.location.location_set.LocationSet or None
-            :type materials: costume.api.models.material.material_set.MaterialSet or None
-            :type measurements: costume.api.models.measurements.measurements_set.MeasurementsSet or None
+            :type images: tuple(dressdiscover.api.models.image.image.Image) or None
+            :type inscriptions: dressdiscover.api.models.inscription.inscription_set.InscriptionSet or None
+            :type locations: dressdiscover.api.models.location.location_set.LocationSet or None
+            :type materials: dressdiscover.api.models.material.material_set.MaterialSet or None
+            :type measurements: dressdiscover.api.models.measurements.measurements_set.MeasurementsSet or None
             :type provenance: str or None
             :type quantity: int or None
-            :type relations: costume.api.models.relation.relation_set.RelationSet or None
-            :type rights: costume.api.models.rights.rights_set.RightsSet or None
-            :type structures: costume.api.models.structure.structure_set.StructureSet or None
-            :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
-            :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
-            :type textrefs: costume.api.models.textref.textref_set.TextrefSet or None
-            :type view_type: costume.api.models.view_type.view_type.ViewType or None
-            :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
+            :type relations: dressdiscover.api.models.relation.relation_set.RelationSet or None
+            :type rights: dressdiscover.api.models.rights.rights_set.RightsSet or None
+            :type structures: dressdiscover.api.models.structure.structure_set.StructureSet or None
+            :type subjects: dressdiscover.api.models.subject.subject_set.SubjectSet or None
+            :type techniques: dressdiscover.api.models.technique.technique_set.TechniqueSet or None
+            :type textrefs: dressdiscover.api.models.textref.textref_set.TextrefSet or None
+            :type view_type: dressdiscover.api.models.view_type.view_type.ViewType or None
+            :type work_types: dressdiscover.api.models.work_type.work_type_set.WorkTypeSet or None
             '''
 
             if isinstance(object, Object):
@@ -645,7 +645,7 @@ class Object(object):
         @property
         def view_type(self):
             '''
-            :rtype: costume.api.models.view_type.view_type.ViewType
+            :rtype: dressdiscover.api.models.view_type.view_type.ViewType
             '''
 
             return self.__view_type
@@ -653,7 +653,7 @@ class Object(object):
         @property
         def work_types(self):
             '''
-            :rtype: costume.api.models.work_type.work_type_set.WorkTypeSet
+            :rtype: dressdiscover.api.models.work_type.work_type_set.WorkTypeSet
             '''
 
             return self.__work_types
@@ -661,7 +661,7 @@ class Object(object):
         @agents.setter
         def agents(self, agents):
             '''
-            :type agents: costume.api.models.agent.agent_set.AgentSet or None
+            :type agents: dressdiscover.api.models.agent.agent_set.AgentSet or None
             '''
 
             self.set_agents(agents)
@@ -677,7 +677,7 @@ class Object(object):
         @closures.setter
         def closures(self, closures):
             '''
-            :type closures: costume.api.models.closure.closure_set.ClosureSet or None
+            :type closures: dressdiscover.api.models.closure.closure_set.ClosureSet or None
             '''
 
             self.set_closures(closures)
@@ -693,7 +693,7 @@ class Object(object):
         @colors.setter
         def colors(self, colors):
             '''
-            :type colors: costume.api.models.color.color_set.ColorSet or None
+            :type colors: dressdiscover.api.models.color.color_set.ColorSet or None
             '''
 
             self.set_colors(colors)
@@ -701,7 +701,7 @@ class Object(object):
         @components.setter
         def components(self, components):
             '''
-            :type components: costume.api.models.component.component_set.ComponentSet or None
+            :type components: dressdiscover.api.models.component.component_set.ComponentSet or None
             '''
 
             self.set_components(components)
@@ -709,7 +709,7 @@ class Object(object):
         @condition.setter
         def condition(self, condition):
             '''
-            :type condition: costume.api.models.condition.condition.Condition or None
+            :type condition: dressdiscover.api.models.condition.condition.Condition or None
             '''
 
             self.set_condition(condition)
@@ -717,7 +717,7 @@ class Object(object):
         @cultural_contexts.setter
         def cultural_contexts(self, cultural_contexts):
             '''
-            :type cultural_contexts: costume.api.models.cultural_context.cultural_context_set.CulturalContextSet or None
+            :type cultural_contexts: dressdiscover.api.models.cultural_context.cultural_context_set.CulturalContextSet or None
             '''
 
             self.set_cultural_contexts(cultural_contexts)
@@ -725,7 +725,7 @@ class Object(object):
         @dates.setter
         def dates(self, dates):
             '''
-            :type dates: costume.api.models.date.date_set.DateSet or None
+            :type dates: dressdiscover.api.models.date.date_set.DateSet or None
             '''
 
             self.set_dates(dates)
@@ -733,7 +733,7 @@ class Object(object):
         @descriptions.setter
         def descriptions(self, descriptions):
             '''
-            :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
+            :type descriptions: dressdiscover.api.models.description.description_set.DescriptionSet or None
             '''
 
             self.set_descriptions(descriptions)
@@ -741,7 +741,7 @@ class Object(object):
         @gender.setter
         def gender(self, gender):
             '''
-            :type gender: costume.api.models.gender.gender.Gender or None
+            :type gender: dressdiscover.api.models.gender.gender.Gender or None
             '''
 
             self.set_gender(gender)
@@ -757,7 +757,7 @@ class Object(object):
         @images.setter
         def images(self, images):
             '''
-            :type images: tuple(costume.api.models.image.image.Image) or None
+            :type images: tuple(dressdiscover.api.models.image.image.Image) or None
             '''
 
             self.set_images(images)
@@ -765,7 +765,7 @@ class Object(object):
         @inscriptions.setter
         def inscriptions(self, inscriptions):
             '''
-            :type inscriptions: costume.api.models.inscription.inscription_set.InscriptionSet or None
+            :type inscriptions: dressdiscover.api.models.inscription.inscription_set.InscriptionSet or None
             '''
 
             self.set_inscriptions(inscriptions)
@@ -781,7 +781,7 @@ class Object(object):
         @locations.setter
         def locations(self, locations):
             '''
-            :type locations: costume.api.models.location.location_set.LocationSet or None
+            :type locations: dressdiscover.api.models.location.location_set.LocationSet or None
             '''
 
             self.set_locations(locations)
@@ -789,7 +789,7 @@ class Object(object):
         @materials.setter
         def materials(self, materials):
             '''
-            :type materials: costume.api.models.material.material_set.MaterialSet or None
+            :type materials: dressdiscover.api.models.material.material_set.MaterialSet or None
             '''
 
             self.set_materials(materials)
@@ -797,7 +797,7 @@ class Object(object):
         @measurements.setter
         def measurements(self, measurements):
             '''
-            :type measurements: costume.api.models.measurements.measurements_set.MeasurementsSet or None
+            :type measurements: dressdiscover.api.models.measurements.measurements_set.MeasurementsSet or None
             '''
 
             self.set_measurements(measurements)
@@ -821,7 +821,7 @@ class Object(object):
         @relations.setter
         def relations(self, relations):
             '''
-            :type relations: costume.api.models.relation.relation_set.RelationSet or None
+            :type relations: dressdiscover.api.models.relation.relation_set.RelationSet or None
             '''
 
             self.set_relations(relations)
@@ -829,7 +829,7 @@ class Object(object):
         @rights.setter
         def rights(self, rights):
             '''
-            :type rights: costume.api.models.rights.rights_set.RightsSet or None
+            :type rights: dressdiscover.api.models.rights.rights_set.RightsSet or None
             '''
 
             self.set_rights(rights)
@@ -837,7 +837,7 @@ class Object(object):
         @structures.setter
         def structures(self, structures):
             '''
-            :type structures: costume.api.models.structure.structure_set.StructureSet or None
+            :type structures: dressdiscover.api.models.structure.structure_set.StructureSet or None
             '''
 
             self.set_structures(structures)
@@ -845,7 +845,7 @@ class Object(object):
         @subjects.setter
         def subjects(self, subjects):
             '''
-            :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
+            :type subjects: dressdiscover.api.models.subject.subject_set.SubjectSet or None
             '''
 
             self.set_subjects(subjects)
@@ -853,7 +853,7 @@ class Object(object):
         @techniques.setter
         def techniques(self, techniques):
             '''
-            :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
+            :type techniques: dressdiscover.api.models.technique.technique_set.TechniqueSet or None
             '''
 
             self.set_techniques(techniques)
@@ -861,7 +861,7 @@ class Object(object):
         @textrefs.setter
         def textrefs(self, textrefs):
             '''
-            :type textrefs: costume.api.models.textref.textref_set.TextrefSet or None
+            :type textrefs: dressdiscover.api.models.textref.textref_set.TextrefSet or None
             '''
 
             self.set_textrefs(textrefs)
@@ -869,7 +869,7 @@ class Object(object):
         @titles.setter
         def titles(self, titles):
             '''
-            :type titles: costume.api.models.title.title_set.TitleSet
+            :type titles: dressdiscover.api.models.title.title_set.TitleSet
             '''
 
             self.set_titles(titles)
@@ -877,7 +877,7 @@ class Object(object):
         @view_type.setter
         def view_type(self, view_type):
             '''
-            :type view_type: costume.api.models.view_type.view_type.ViewType or None
+            :type view_type: dressdiscover.api.models.view_type.view_type.ViewType or None
             '''
 
             self.set_view_type(view_type)
@@ -885,7 +885,7 @@ class Object(object):
         @work_types.setter
         def work_types(self, work_types):
             '''
-            :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
+            :type work_types: dressdiscover.api.models.work_type.work_type_set.WorkTypeSet or None
             '''
 
             self.set_work_types(work_types)
@@ -925,33 +925,33 @@ class Object(object):
         '''
         :type collection_id: str
         :type institution_id: str
-        :type titles: costume.api.models.title.title_set.TitleSet
-        :type agents: costume.api.models.agent.agent_set.AgentSet or None
+        :type titles: dressdiscover.api.models.title.title_set.TitleSet
+        :type agents: dressdiscover.api.models.agent.agent_set.AgentSet or None
         :type categories: tuple(str) or None
-        :type closures: costume.api.models.closure.closure_set.ClosureSet or None
-        :type colors: costume.api.models.color.color_set.ColorSet or None
-        :type components: costume.api.models.component.component_set.ComponentSet or None
-        :type condition: costume.api.models.condition.condition.Condition or None
-        :type cultural_contexts: costume.api.models.cultural_context.cultural_context_set.CulturalContextSet or None
-        :type dates: costume.api.models.date.date_set.DateSet or None
-        :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
-        :type gender: costume.api.models.gender.gender.Gender or None
+        :type closures: dressdiscover.api.models.closure.closure_set.ClosureSet or None
+        :type colors: dressdiscover.api.models.color.color_set.ColorSet or None
+        :type components: dressdiscover.api.models.component.component_set.ComponentSet or None
+        :type condition: dressdiscover.api.models.condition.condition.Condition or None
+        :type cultural_contexts: dressdiscover.api.models.cultural_context.cultural_context_set.CulturalContextSet or None
+        :type dates: dressdiscover.api.models.date.date_set.DateSet or None
+        :type descriptions: dressdiscover.api.models.description.description_set.DescriptionSet or None
+        :type gender: dressdiscover.api.models.gender.gender.Gender or None
         :type hidden: bool or None
-        :type images: tuple(costume.api.models.image.image.Image) or None
-        :type inscriptions: costume.api.models.inscription.inscription_set.InscriptionSet or None
-        :type locations: costume.api.models.location.location_set.LocationSet or None
-        :type materials: costume.api.models.material.material_set.MaterialSet or None
-        :type measurements: costume.api.models.measurements.measurements_set.MeasurementsSet or None
+        :type images: tuple(dressdiscover.api.models.image.image.Image) or None
+        :type inscriptions: dressdiscover.api.models.inscription.inscription_set.InscriptionSet or None
+        :type locations: dressdiscover.api.models.location.location_set.LocationSet or None
+        :type materials: dressdiscover.api.models.material.material_set.MaterialSet or None
+        :type measurements: dressdiscover.api.models.measurements.measurements_set.MeasurementsSet or None
         :type provenance: str or None
         :type quantity: int or None
-        :type relations: costume.api.models.relation.relation_set.RelationSet or None
-        :type rights: costume.api.models.rights.rights_set.RightsSet or None
-        :type structures: costume.api.models.structure.structure_set.StructureSet or None
-        :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
-        :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
-        :type textrefs: costume.api.models.textref.textref_set.TextrefSet or None
-        :type view_type: costume.api.models.view_type.view_type.ViewType or None
-        :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
+        :type relations: dressdiscover.api.models.relation.relation_set.RelationSet or None
+        :type rights: dressdiscover.api.models.rights.rights_set.RightsSet or None
+        :type structures: dressdiscover.api.models.structure.structure_set.StructureSet or None
+        :type subjects: dressdiscover.api.models.subject.subject_set.SubjectSet or None
+        :type techniques: dressdiscover.api.models.technique.technique_set.TechniqueSet or None
+        :type textrefs: dressdiscover.api.models.textref.textref_set.TextrefSet or None
+        :type view_type: dressdiscover.api.models.view_type.view_type.ViewType or None
+        :type work_types: dressdiscover.api.models.work_type.work_type_set.WorkTypeSet or None
         '''
 
         if collection_id is None:
@@ -968,13 +968,13 @@ class Object(object):
 
         if titles is None:
             raise ValueError('titles is required')
-        if not isinstance(titles, costume.api.models.title.title_set.TitleSet):
-            raise TypeError("expected titles to be a costume.api.models.title.title_set.TitleSet but it is a %s" % getattr(__builtin__, 'type')(titles))
+        if not isinstance(titles, dressdiscover.api.models.title.title_set.TitleSet):
+            raise TypeError("expected titles to be a dressdiscover.api.models.title.title_set.TitleSet but it is a %s" % getattr(__builtin__, 'type')(titles))
         self.__titles = titles
 
         if agents is not None:
-            if not isinstance(agents, costume.api.models.agent.agent_set.AgentSet):
-                raise TypeError("expected agents to be a costume.api.models.agent.agent_set.AgentSet but it is a %s" % getattr(__builtin__, 'type')(agents))
+            if not isinstance(agents, dressdiscover.api.models.agent.agent_set.AgentSet):
+                raise TypeError("expected agents to be a dressdiscover.api.models.agent.agent_set.AgentSet but it is a %s" % getattr(__builtin__, 'type')(agents))
         self.__agents = agents
 
         if categories is not None:
@@ -985,43 +985,43 @@ class Object(object):
         self.__categories = categories
 
         if closures is not None:
-            if not isinstance(closures, costume.api.models.closure.closure_set.ClosureSet):
-                raise TypeError("expected closures to be a costume.api.models.closure.closure_set.ClosureSet but it is a %s" % getattr(__builtin__, 'type')(closures))
+            if not isinstance(closures, dressdiscover.api.models.closure.closure_set.ClosureSet):
+                raise TypeError("expected closures to be a dressdiscover.api.models.closure.closure_set.ClosureSet but it is a %s" % getattr(__builtin__, 'type')(closures))
         self.__closures = closures
 
         if colors is not None:
-            if not isinstance(colors, costume.api.models.color.color_set.ColorSet):
-                raise TypeError("expected colors to be a costume.api.models.color.color_set.ColorSet but it is a %s" % getattr(__builtin__, 'type')(colors))
+            if not isinstance(colors, dressdiscover.api.models.color.color_set.ColorSet):
+                raise TypeError("expected colors to be a dressdiscover.api.models.color.color_set.ColorSet but it is a %s" % getattr(__builtin__, 'type')(colors))
         self.__colors = colors
 
         if components is not None:
-            if not isinstance(components, costume.api.models.component.component_set.ComponentSet):
-                raise TypeError("expected components to be a costume.api.models.component.component_set.ComponentSet but it is a %s" % getattr(__builtin__, 'type')(components))
+            if not isinstance(components, dressdiscover.api.models.component.component_set.ComponentSet):
+                raise TypeError("expected components to be a dressdiscover.api.models.component.component_set.ComponentSet but it is a %s" % getattr(__builtin__, 'type')(components))
         self.__components = components
 
         if condition is not None:
-            if not isinstance(condition, costume.api.models.condition.condition.Condition):
-                raise TypeError("expected condition to be a costume.api.models.condition.condition.Condition but it is a %s" % getattr(__builtin__, 'type')(condition))
+            if not isinstance(condition, dressdiscover.api.models.condition.condition.Condition):
+                raise TypeError("expected condition to be a dressdiscover.api.models.condition.condition.Condition but it is a %s" % getattr(__builtin__, 'type')(condition))
         self.__condition = condition
 
         if cultural_contexts is not None:
-            if not isinstance(cultural_contexts, costume.api.models.cultural_context.cultural_context_set.CulturalContextSet):
-                raise TypeError("expected cultural_contexts to be a costume.api.models.cultural_context.cultural_context_set.CulturalContextSet but it is a %s" % getattr(__builtin__, 'type')(cultural_contexts))
+            if not isinstance(cultural_contexts, dressdiscover.api.models.cultural_context.cultural_context_set.CulturalContextSet):
+                raise TypeError("expected cultural_contexts to be a dressdiscover.api.models.cultural_context.cultural_context_set.CulturalContextSet but it is a %s" % getattr(__builtin__, 'type')(cultural_contexts))
         self.__cultural_contexts = cultural_contexts
 
         if dates is not None:
-            if not isinstance(dates, costume.api.models.date.date_set.DateSet):
-                raise TypeError("expected dates to be a costume.api.models.date.date_set.DateSet but it is a %s" % getattr(__builtin__, 'type')(dates))
+            if not isinstance(dates, dressdiscover.api.models.date.date_set.DateSet):
+                raise TypeError("expected dates to be a dressdiscover.api.models.date.date_set.DateSet but it is a %s" % getattr(__builtin__, 'type')(dates))
         self.__dates = dates
 
         if descriptions is not None:
-            if not isinstance(descriptions, costume.api.models.description.description_set.DescriptionSet):
-                raise TypeError("expected descriptions to be a costume.api.models.description.description_set.DescriptionSet but it is a %s" % getattr(__builtin__, 'type')(descriptions))
+            if not isinstance(descriptions, dressdiscover.api.models.description.description_set.DescriptionSet):
+                raise TypeError("expected descriptions to be a dressdiscover.api.models.description.description_set.DescriptionSet but it is a %s" % getattr(__builtin__, 'type')(descriptions))
         self.__descriptions = descriptions
 
         if gender is not None:
-            if not isinstance(gender, costume.api.models.gender.gender.Gender):
-                raise TypeError("expected gender to be a costume.api.models.gender.gender.Gender but it is a %s" % getattr(__builtin__, 'type')(gender))
+            if not isinstance(gender, dressdiscover.api.models.gender.gender.Gender):
+                raise TypeError("expected gender to be a dressdiscover.api.models.gender.gender.Gender but it is a %s" % getattr(__builtin__, 'type')(gender))
         self.__gender = gender
 
         if hidden is not None:
@@ -1030,30 +1030,30 @@ class Object(object):
         self.__hidden = hidden
 
         if images is not None:
-            if not (isinstance(images, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.image.image.Image), images))) == 0):
-                raise TypeError("expected images to be a tuple(costume.api.models.image.image.Image) but it is a %s" % getattr(__builtin__, 'type')(images))
+            if not (isinstance(images, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.image.image.Image), images))) == 0):
+                raise TypeError("expected images to be a tuple(dressdiscover.api.models.image.image.Image) but it is a %s" % getattr(__builtin__, 'type')(images))
             if len(images) < 1:
                 raise ValueError("expected len(images) to be >= 1, was %d" % len(images))
         self.__images = images
 
         if inscriptions is not None:
-            if not isinstance(inscriptions, costume.api.models.inscription.inscription_set.InscriptionSet):
-                raise TypeError("expected inscriptions to be a costume.api.models.inscription.inscription_set.InscriptionSet but it is a %s" % getattr(__builtin__, 'type')(inscriptions))
+            if not isinstance(inscriptions, dressdiscover.api.models.inscription.inscription_set.InscriptionSet):
+                raise TypeError("expected inscriptions to be a dressdiscover.api.models.inscription.inscription_set.InscriptionSet but it is a %s" % getattr(__builtin__, 'type')(inscriptions))
         self.__inscriptions = inscriptions
 
         if locations is not None:
-            if not isinstance(locations, costume.api.models.location.location_set.LocationSet):
-                raise TypeError("expected locations to be a costume.api.models.location.location_set.LocationSet but it is a %s" % getattr(__builtin__, 'type')(locations))
+            if not isinstance(locations, dressdiscover.api.models.location.location_set.LocationSet):
+                raise TypeError("expected locations to be a dressdiscover.api.models.location.location_set.LocationSet but it is a %s" % getattr(__builtin__, 'type')(locations))
         self.__locations = locations
 
         if materials is not None:
-            if not isinstance(materials, costume.api.models.material.material_set.MaterialSet):
-                raise TypeError("expected materials to be a costume.api.models.material.material_set.MaterialSet but it is a %s" % getattr(__builtin__, 'type')(materials))
+            if not isinstance(materials, dressdiscover.api.models.material.material_set.MaterialSet):
+                raise TypeError("expected materials to be a dressdiscover.api.models.material.material_set.MaterialSet but it is a %s" % getattr(__builtin__, 'type')(materials))
         self.__materials = materials
 
         if measurements is not None:
-            if not isinstance(measurements, costume.api.models.measurements.measurements_set.MeasurementsSet):
-                raise TypeError("expected measurements to be a costume.api.models.measurements.measurements_set.MeasurementsSet but it is a %s" % getattr(__builtin__, 'type')(measurements))
+            if not isinstance(measurements, dressdiscover.api.models.measurements.measurements_set.MeasurementsSet):
+                raise TypeError("expected measurements to be a dressdiscover.api.models.measurements.measurements_set.MeasurementsSet but it is a %s" % getattr(__builtin__, 'type')(measurements))
         self.__measurements = measurements
 
         if provenance is not None:
@@ -1069,43 +1069,43 @@ class Object(object):
         self.__quantity = quantity
 
         if relations is not None:
-            if not isinstance(relations, costume.api.models.relation.relation_set.RelationSet):
-                raise TypeError("expected relations to be a costume.api.models.relation.relation_set.RelationSet but it is a %s" % getattr(__builtin__, 'type')(relations))
+            if not isinstance(relations, dressdiscover.api.models.relation.relation_set.RelationSet):
+                raise TypeError("expected relations to be a dressdiscover.api.models.relation.relation_set.RelationSet but it is a %s" % getattr(__builtin__, 'type')(relations))
         self.__relations = relations
 
         if rights is not None:
-            if not isinstance(rights, costume.api.models.rights.rights_set.RightsSet):
-                raise TypeError("expected rights to be a costume.api.models.rights.rights_set.RightsSet but it is a %s" % getattr(__builtin__, 'type')(rights))
+            if not isinstance(rights, dressdiscover.api.models.rights.rights_set.RightsSet):
+                raise TypeError("expected rights to be a dressdiscover.api.models.rights.rights_set.RightsSet but it is a %s" % getattr(__builtin__, 'type')(rights))
         self.__rights = rights
 
         if structures is not None:
-            if not isinstance(structures, costume.api.models.structure.structure_set.StructureSet):
-                raise TypeError("expected structures to be a costume.api.models.structure.structure_set.StructureSet but it is a %s" % getattr(__builtin__, 'type')(structures))
+            if not isinstance(structures, dressdiscover.api.models.structure.structure_set.StructureSet):
+                raise TypeError("expected structures to be a dressdiscover.api.models.structure.structure_set.StructureSet but it is a %s" % getattr(__builtin__, 'type')(structures))
         self.__structures = structures
 
         if subjects is not None:
-            if not isinstance(subjects, costume.api.models.subject.subject_set.SubjectSet):
-                raise TypeError("expected subjects to be a costume.api.models.subject.subject_set.SubjectSet but it is a %s" % getattr(__builtin__, 'type')(subjects))
+            if not isinstance(subjects, dressdiscover.api.models.subject.subject_set.SubjectSet):
+                raise TypeError("expected subjects to be a dressdiscover.api.models.subject.subject_set.SubjectSet but it is a %s" % getattr(__builtin__, 'type')(subjects))
         self.__subjects = subjects
 
         if techniques is not None:
-            if not isinstance(techniques, costume.api.models.technique.technique_set.TechniqueSet):
-                raise TypeError("expected techniques to be a costume.api.models.technique.technique_set.TechniqueSet but it is a %s" % getattr(__builtin__, 'type')(techniques))
+            if not isinstance(techniques, dressdiscover.api.models.technique.technique_set.TechniqueSet):
+                raise TypeError("expected techniques to be a dressdiscover.api.models.technique.technique_set.TechniqueSet but it is a %s" % getattr(__builtin__, 'type')(techniques))
         self.__techniques = techniques
 
         if textrefs is not None:
-            if not isinstance(textrefs, costume.api.models.textref.textref_set.TextrefSet):
-                raise TypeError("expected textrefs to be a costume.api.models.textref.textref_set.TextrefSet but it is a %s" % getattr(__builtin__, 'type')(textrefs))
+            if not isinstance(textrefs, dressdiscover.api.models.textref.textref_set.TextrefSet):
+                raise TypeError("expected textrefs to be a dressdiscover.api.models.textref.textref_set.TextrefSet but it is a %s" % getattr(__builtin__, 'type')(textrefs))
         self.__textrefs = textrefs
 
         if view_type is not None:
-            if not isinstance(view_type, costume.api.models.view_type.view_type.ViewType):
-                raise TypeError("expected view_type to be a costume.api.models.view_type.view_type.ViewType but it is a %s" % getattr(__builtin__, 'type')(view_type))
+            if not isinstance(view_type, dressdiscover.api.models.view_type.view_type.ViewType):
+                raise TypeError("expected view_type to be a dressdiscover.api.models.view_type.view_type.ViewType but it is a %s" % getattr(__builtin__, 'type')(view_type))
         self.__view_type = view_type
 
         if work_types is not None:
-            if not isinstance(work_types, costume.api.models.work_type.work_type_set.WorkTypeSet):
-                raise TypeError("expected work_types to be a costume.api.models.work_type.work_type_set.WorkTypeSet but it is a %s" % getattr(__builtin__, 'type')(work_types))
+            if not isinstance(work_types, dressdiscover.api.models.work_type.work_type_set.WorkTypeSet):
+                raise TypeError("expected work_types to be a dressdiscover.api.models.work_type.work_type_set.WorkTypeSet but it is a %s" % getattr(__builtin__, 'type')(work_types))
         self.__work_types = work_types
 
     def __eq__(self, other):
@@ -1299,7 +1299,7 @@ class Object(object):
     @property
     def agents(self):
         '''
-        :rtype: costume.api.models.agent.agent_set.AgentSet
+        :rtype: dressdiscover.api.models.agent.agent_set.AgentSet
         '''
 
         return self.__agents
@@ -1333,7 +1333,7 @@ class Object(object):
     @property
     def closures(self):
         '''
-        :rtype: costume.api.models.closure.closure_set.ClosureSet
+        :rtype: dressdiscover.api.models.closure.closure_set.ClosureSet
         '''
 
         return self.__closures
@@ -1349,7 +1349,7 @@ class Object(object):
     @property
     def colors(self):
         '''
-        :rtype: costume.api.models.color.color_set.ColorSet
+        :rtype: dressdiscover.api.models.color.color_set.ColorSet
         '''
 
         return self.__colors
@@ -1357,7 +1357,7 @@ class Object(object):
     @property
     def components(self):
         '''
-        :rtype: costume.api.models.component.component_set.ComponentSet
+        :rtype: dressdiscover.api.models.component.component_set.ComponentSet
         '''
 
         return self.__components
@@ -1365,7 +1365,7 @@ class Object(object):
     @property
     def condition(self):
         '''
-        :rtype: costume.api.models.condition.condition.Condition
+        :rtype: dressdiscover.api.models.condition.condition.Condition
         '''
 
         return self.__condition
@@ -1373,7 +1373,7 @@ class Object(object):
     @property
     def cultural_contexts(self):
         '''
-        :rtype: costume.api.models.cultural_context.cultural_context_set.CulturalContextSet
+        :rtype: dressdiscover.api.models.cultural_context.cultural_context_set.CulturalContextSet
         '''
 
         return self.__cultural_contexts
@@ -1381,7 +1381,7 @@ class Object(object):
     @property
     def dates(self):
         '''
-        :rtype: costume.api.models.date.date_set.DateSet
+        :rtype: dressdiscover.api.models.date.date_set.DateSet
         '''
 
         return self.__dates
@@ -1389,7 +1389,7 @@ class Object(object):
     @property
     def descriptions(self):
         '''
-        :rtype: costume.api.models.description.description_set.DescriptionSet
+        :rtype: dressdiscover.api.models.description.description_set.DescriptionSet
         '''
 
         return self.__descriptions
@@ -1397,7 +1397,7 @@ class Object(object):
     @property
     def gender(self):
         '''
-        :rtype: costume.api.models.gender.gender.Gender
+        :rtype: dressdiscover.api.models.gender.gender.Gender
         '''
 
         return self.__gender
@@ -1413,7 +1413,7 @@ class Object(object):
     @property
     def images(self):
         '''
-        :rtype: tuple(costume.api.models.image.image.Image)
+        :rtype: tuple(dressdiscover.api.models.image.image.Image)
         '''
 
         return self.__images
@@ -1421,7 +1421,7 @@ class Object(object):
     @property
     def inscriptions(self):
         '''
-        :rtype: costume.api.models.inscription.inscription_set.InscriptionSet
+        :rtype: dressdiscover.api.models.inscription.inscription_set.InscriptionSet
         '''
 
         return self.__inscriptions
@@ -1437,7 +1437,7 @@ class Object(object):
     @property
     def locations(self):
         '''
-        :rtype: costume.api.models.location.location_set.LocationSet
+        :rtype: dressdiscover.api.models.location.location_set.LocationSet
         '''
 
         return self.__locations
@@ -1445,7 +1445,7 @@ class Object(object):
     @property
     def materials(self):
         '''
-        :rtype: costume.api.models.material.material_set.MaterialSet
+        :rtype: dressdiscover.api.models.material.material_set.MaterialSet
         '''
 
         return self.__materials
@@ -1453,7 +1453,7 @@ class Object(object):
     @property
     def measurements(self):
         '''
-        :rtype: costume.api.models.measurements.measurements_set.MeasurementsSet
+        :rtype: dressdiscover.api.models.measurements.measurements_set.MeasurementsSet
         '''
 
         return self.__measurements
@@ -1480,7 +1480,7 @@ class Object(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.object.object.Object
+        :rtype: dressdiscover.api.models.object.object.Object
         '''
 
         init_kwds = {}
@@ -1495,31 +1495,31 @@ class Object(object):
             elif ifield_name == 'institution_id' and ifield_id == 2:
                 init_kwds['institution_id'] = iprot.read_string()
             elif ifield_name == 'titles' and ifield_id == 3:
-                init_kwds['titles'] = costume.api.models.title.title_set.TitleSet.read(iprot)
+                init_kwds['titles'] = dressdiscover.api.models.title.title_set.TitleSet.read(iprot)
             elif ifield_name == 'agents' and ifield_id == 20:
-                init_kwds['agents'] = costume.api.models.agent.agent_set.AgentSet.read(iprot)
+                init_kwds['agents'] = dressdiscover.api.models.agent.agent_set.AgentSet.read(iprot)
             elif ifield_name == 'categories' and ifield_id == 18:
                 init_kwds['categories'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'closures' and ifield_id == 34:
-                init_kwds['closures'] = costume.api.models.closure.closure_set.ClosureSet.read(iprot)
+                init_kwds['closures'] = dressdiscover.api.models.closure.closure_set.ClosureSet.read(iprot)
             elif ifield_name == 'colors' and ifield_id == 30:
-                init_kwds['colors'] = costume.api.models.color.color_set.ColorSet.read(iprot)
+                init_kwds['colors'] = dressdiscover.api.models.color.color_set.ColorSet.read(iprot)
             elif ifield_name == 'components' and ifield_id == 32:
-                init_kwds['components'] = costume.api.models.component.component_set.ComponentSet.read(iprot)
+                init_kwds['components'] = dressdiscover.api.models.component.component_set.ComponentSet.read(iprot)
             elif ifield_name == 'condition' and ifield_id == 27:
                 try:
-                    init_kwds['condition'] = costume.api.models.condition.condition.Condition.value_of(iprot.read_string().strip().upper())
+                    init_kwds['condition'] = dressdiscover.api.models.condition.condition.Condition.value_of(iprot.read_string().strip().upper())
                 except (TypeError,):
                     pass
             elif ifield_name == 'cultural_contexts' and ifield_id == 35:
-                init_kwds['cultural_contexts'] = costume.api.models.cultural_context.cultural_context_set.CulturalContextSet.read(iprot)
+                init_kwds['cultural_contexts'] = dressdiscover.api.models.cultural_context.cultural_context_set.CulturalContextSet.read(iprot)
             elif ifield_name == 'dates' and ifield_id == 10:
-                init_kwds['dates'] = costume.api.models.date.date_set.DateSet.read(iprot)
+                init_kwds['dates'] = dressdiscover.api.models.date.date_set.DateSet.read(iprot)
             elif ifield_name == 'descriptions' and ifield_id == 4:
-                init_kwds['descriptions'] = costume.api.models.description.description_set.DescriptionSet.read(iprot)
+                init_kwds['descriptions'] = dressdiscover.api.models.description.description_set.DescriptionSet.read(iprot)
             elif ifield_name == 'gender' and ifield_id == 25:
                 try:
-                    init_kwds['gender'] = costume.api.models.gender.gender.Gender.value_of(iprot.read_string().strip().upper())
+                    init_kwds['gender'] = dressdiscover.api.models.gender.gender.Gender.value_of(iprot.read_string().strip().upper())
                 except (TypeError,):
                     pass
             elif ifield_name == 'hidden' and ifield_id == 37:
@@ -1528,15 +1528,15 @@ class Object(object):
                 except (TypeError, ValueError,):
                     pass
             elif ifield_name == 'images' and ifield_id == 23:
-                init_kwds['images'] = tuple([costume.api.models.image.image.Image.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+                init_kwds['images'] = tuple([dressdiscover.api.models.image.image.Image.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'inscriptions' and ifield_id == 17:
-                init_kwds['inscriptions'] = costume.api.models.inscription.inscription_set.InscriptionSet.read(iprot)
+                init_kwds['inscriptions'] = dressdiscover.api.models.inscription.inscription_set.InscriptionSet.read(iprot)
             elif ifield_name == 'locations' and ifield_id == 36:
-                init_kwds['locations'] = costume.api.models.location.location_set.LocationSet.read(iprot)
+                init_kwds['locations'] = dressdiscover.api.models.location.location_set.LocationSet.read(iprot)
             elif ifield_name == 'materials' and ifield_id == 15:
-                init_kwds['materials'] = costume.api.models.material.material_set.MaterialSet.read(iprot)
+                init_kwds['materials'] = dressdiscover.api.models.material.material_set.MaterialSet.read(iprot)
             elif ifield_name == 'measurements' and ifield_id == 31:
-                init_kwds['measurements'] = costume.api.models.measurements.measurements_set.MeasurementsSet.read(iprot)
+                init_kwds['measurements'] = dressdiscover.api.models.measurements.measurements_set.MeasurementsSet.read(iprot)
             elif ifield_name == 'provenance' and ifield_id == 5:
                 try:
                     init_kwds['provenance'] = iprot.read_string()
@@ -1548,24 +1548,24 @@ class Object(object):
                 except (TypeError,):
                     pass
             elif ifield_name == 'relations' and ifield_id == 29:
-                init_kwds['relations'] = costume.api.models.relation.relation_set.RelationSet.read(iprot)
+                init_kwds['relations'] = dressdiscover.api.models.relation.relation_set.RelationSet.read(iprot)
             elif ifield_name == 'rights' and ifield_id == 22:
-                init_kwds['rights'] = costume.api.models.rights.rights_set.RightsSet.read(iprot)
+                init_kwds['rights'] = dressdiscover.api.models.rights.rights_set.RightsSet.read(iprot)
             elif ifield_name == 'structures' and ifield_id == 33:
-                init_kwds['structures'] = costume.api.models.structure.structure_set.StructureSet.read(iprot)
+                init_kwds['structures'] = dressdiscover.api.models.structure.structure_set.StructureSet.read(iprot)
             elif ifield_name == 'subjects' and ifield_id == 21:
-                init_kwds['subjects'] = costume.api.models.subject.subject_set.SubjectSet.read(iprot)
+                init_kwds['subjects'] = dressdiscover.api.models.subject.subject_set.SubjectSet.read(iprot)
             elif ifield_name == 'techniques' and ifield_id == 16:
-                init_kwds['techniques'] = costume.api.models.technique.technique_set.TechniqueSet.read(iprot)
+                init_kwds['techniques'] = dressdiscover.api.models.technique.technique_set.TechniqueSet.read(iprot)
             elif ifield_name == 'textrefs' and ifield_id == 9:
-                init_kwds['textrefs'] = costume.api.models.textref.textref_set.TextrefSet.read(iprot)
+                init_kwds['textrefs'] = dressdiscover.api.models.textref.textref_set.TextrefSet.read(iprot)
             elif ifield_name == 'view_type' and ifield_id == 28:
                 try:
-                    init_kwds['view_type'] = costume.api.models.view_type.view_type.ViewType.value_of(iprot.read_string().strip().upper())
+                    init_kwds['view_type'] = dressdiscover.api.models.view_type.view_type.ViewType.value_of(iprot.read_string().strip().upper())
                 except (TypeError,):
                     pass
             elif ifield_name == 'work_types' and ifield_id == 24:
-                init_kwds['work_types'] = costume.api.models.work_type.work_type_set.WorkTypeSet.read(iprot)
+                init_kwds['work_types'] = dressdiscover.api.models.work_type.work_type_set.WorkTypeSet.read(iprot)
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -1574,7 +1574,7 @@ class Object(object):
     @property
     def relations(self):
         '''
-        :rtype: costume.api.models.relation.relation_set.RelationSet
+        :rtype: dressdiscover.api.models.relation.relation_set.RelationSet
         '''
 
         return self.__relations
@@ -1616,34 +1616,34 @@ class Object(object):
 
         :type collection_id: str or None
         :type institution_id: str or None
-        :type titles: costume.api.models.title.title_set.TitleSet or None
-        :type agents: costume.api.models.agent.agent_set.AgentSet or None
+        :type titles: dressdiscover.api.models.title.title_set.TitleSet or None
+        :type agents: dressdiscover.api.models.agent.agent_set.AgentSet or None
         :type categories: tuple(str) or None
-        :type closures: costume.api.models.closure.closure_set.ClosureSet or None
-        :type colors: costume.api.models.color.color_set.ColorSet or None
-        :type components: costume.api.models.component.component_set.ComponentSet or None
-        :type condition: costume.api.models.condition.condition.Condition or None
-        :type cultural_contexts: costume.api.models.cultural_context.cultural_context_set.CulturalContextSet or None
-        :type dates: costume.api.models.date.date_set.DateSet or None
-        :type descriptions: costume.api.models.description.description_set.DescriptionSet or None
-        :type gender: costume.api.models.gender.gender.Gender or None
+        :type closures: dressdiscover.api.models.closure.closure_set.ClosureSet or None
+        :type colors: dressdiscover.api.models.color.color_set.ColorSet or None
+        :type components: dressdiscover.api.models.component.component_set.ComponentSet or None
+        :type condition: dressdiscover.api.models.condition.condition.Condition or None
+        :type cultural_contexts: dressdiscover.api.models.cultural_context.cultural_context_set.CulturalContextSet or None
+        :type dates: dressdiscover.api.models.date.date_set.DateSet or None
+        :type descriptions: dressdiscover.api.models.description.description_set.DescriptionSet or None
+        :type gender: dressdiscover.api.models.gender.gender.Gender or None
         :type hidden: bool or None
-        :type images: tuple(costume.api.models.image.image.Image) or None
-        :type inscriptions: costume.api.models.inscription.inscription_set.InscriptionSet or None
-        :type locations: costume.api.models.location.location_set.LocationSet or None
-        :type materials: costume.api.models.material.material_set.MaterialSet or None
-        :type measurements: costume.api.models.measurements.measurements_set.MeasurementsSet or None
+        :type images: tuple(dressdiscover.api.models.image.image.Image) or None
+        :type inscriptions: dressdiscover.api.models.inscription.inscription_set.InscriptionSet or None
+        :type locations: dressdiscover.api.models.location.location_set.LocationSet or None
+        :type materials: dressdiscover.api.models.material.material_set.MaterialSet or None
+        :type measurements: dressdiscover.api.models.measurements.measurements_set.MeasurementsSet or None
         :type provenance: str or None
         :type quantity: int or None
-        :type relations: costume.api.models.relation.relation_set.RelationSet or None
-        :type rights: costume.api.models.rights.rights_set.RightsSet or None
-        :type structures: costume.api.models.structure.structure_set.StructureSet or None
-        :type subjects: costume.api.models.subject.subject_set.SubjectSet or None
-        :type techniques: costume.api.models.technique.technique_set.TechniqueSet or None
-        :type textrefs: costume.api.models.textref.textref_set.TextrefSet or None
-        :type view_type: costume.api.models.view_type.view_type.ViewType or None
-        :type work_types: costume.api.models.work_type.work_type_set.WorkTypeSet or None
-        :rtype: costume.api.models.object.object.Object
+        :type relations: dressdiscover.api.models.relation.relation_set.RelationSet or None
+        :type rights: dressdiscover.api.models.rights.rights_set.RightsSet or None
+        :type structures: dressdiscover.api.models.structure.structure_set.StructureSet or None
+        :type subjects: dressdiscover.api.models.subject.subject_set.SubjectSet or None
+        :type techniques: dressdiscover.api.models.technique.technique_set.TechniqueSet or None
+        :type textrefs: dressdiscover.api.models.textref.textref_set.TextrefSet or None
+        :type view_type: dressdiscover.api.models.view_type.view_type.ViewType or None
+        :type work_types: dressdiscover.api.models.work_type.work_type_set.WorkTypeSet or None
+        :rtype: dressdiscover.api.models.object.object.Object
         '''
 
         if collection_id is None:
@@ -1709,7 +1709,7 @@ class Object(object):
     @property
     def rights(self):
         '''
-        :rtype: costume.api.models.rights.rights_set.RightsSet
+        :rtype: dressdiscover.api.models.rights.rights_set.RightsSet
         '''
 
         return self.__rights
@@ -1717,7 +1717,7 @@ class Object(object):
     @property
     def structures(self):
         '''
-        :rtype: costume.api.models.structure.structure_set.StructureSet
+        :rtype: dressdiscover.api.models.structure.structure_set.StructureSet
         '''
 
         return self.__structures
@@ -1725,7 +1725,7 @@ class Object(object):
     @property
     def subjects(self):
         '''
-        :rtype: costume.api.models.subject.subject_set.SubjectSet
+        :rtype: dressdiscover.api.models.subject.subject_set.SubjectSet
         '''
 
         return self.__subjects
@@ -1733,7 +1733,7 @@ class Object(object):
     @property
     def techniques(self):
         '''
-        :rtype: costume.api.models.technique.technique_set.TechniqueSet
+        :rtype: dressdiscover.api.models.technique.technique_set.TechniqueSet
         '''
 
         return self.__techniques
@@ -1741,7 +1741,7 @@ class Object(object):
     @property
     def textrefs(self):
         '''
-        :rtype: costume.api.models.textref.textref_set.TextrefSet
+        :rtype: dressdiscover.api.models.textref.textref_set.TextrefSet
         '''
 
         return self.__textrefs
@@ -1749,7 +1749,7 @@ class Object(object):
     @property
     def titles(self):
         '''
-        :rtype: costume.api.models.title.title_set.TitleSet
+        :rtype: dressdiscover.api.models.title.title_set.TitleSet
         '''
 
         return self.__titles
@@ -1757,7 +1757,7 @@ class Object(object):
     @property
     def view_type(self):
         '''
-        :rtype: costume.api.models.view_type.view_type.ViewType
+        :rtype: dressdiscover.api.models.view_type.view_type.ViewType
         '''
 
         return self.__view_type
@@ -1765,7 +1765,7 @@ class Object(object):
     @property
     def work_types(self):
         '''
-        :rtype: costume.api.models.work_type.work_type_set.WorkTypeSet
+        :rtype: dressdiscover.api.models.work_type.work_type_set.WorkTypeSet
         '''
 
         return self.__work_types
@@ -1775,7 +1775,7 @@ class Object(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.object.object.Object
+        :rtype: dressdiscover.api.models.object.object.Object
         '''
 
         oprot.write_struct_begin('Object')

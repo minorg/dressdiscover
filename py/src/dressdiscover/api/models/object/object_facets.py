@@ -1,6 +1,6 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.models.gender.gender
+import dressdiscover.api.models.gender.gender
 
 
 class ObjectFacets(object):
@@ -24,7 +24,7 @@ class ObjectFacets(object):
             :type collections: dict(str: int)
             :type color_texts: dict(str: int)
             :type cultural_context_texts: dict(str: int)
-            :type genders: dict(costume.api.models.gender.gender.Gender: int)
+            :type genders: dict(dressdiscover.api.models.gender.gender.Gender: int)
             :type institutions: dict(str: int)
             :type location_name_texts: dict(str: int)
             :type material_texts: dict(str: int)
@@ -83,7 +83,7 @@ class ObjectFacets(object):
         @property
         def genders(self):
             '''
-            :rtype: dict(costume.api.models.gender.gender.Gender: int)
+            :rtype: dict(dressdiscover.api.models.gender.gender.Gender: int)
             '''
 
             return self.__genders.copy() if self.__genders is not None else None
@@ -146,7 +146,7 @@ class ObjectFacets(object):
 
         def set_genders(self, genders):
             '''
-            :type genders: dict(costume.api.models.gender.gender.Gender: int)
+            :type genders: dict(dressdiscover.api.models.gender.gender.Gender: int)
             '''
 
             self.__genders = genders
@@ -222,7 +222,7 @@ class ObjectFacets(object):
             :type collections: dict(str: int)
             :type color_texts: dict(str: int)
             :type cultural_context_texts: dict(str: int)
-            :type genders: dict(costume.api.models.gender.gender.Gender: int)
+            :type genders: dict(dressdiscover.api.models.gender.gender.Gender: int)
             :type institutions: dict(str: int)
             :type location_name_texts: dict(str: int)
             :type material_texts: dict(str: int)
@@ -293,7 +293,7 @@ class ObjectFacets(object):
         @genders.setter
         def genders(self, genders):
             '''
-            :type genders: dict(costume.api.models.gender.gender.Gender: int)
+            :type genders: dict(dressdiscover.api.models.gender.gender.Gender: int)
             '''
 
             self.set_genders(genders)
@@ -365,7 +365,7 @@ class ObjectFacets(object):
         :type collections: dict(str: int)
         :type color_texts: dict(str: int)
         :type cultural_context_texts: dict(str: int)
-        :type genders: dict(costume.api.models.gender.gender.Gender: int)
+        :type genders: dict(dressdiscover.api.models.gender.gender.Gender: int)
         :type institutions: dict(str: int)
         :type location_name_texts: dict(str: int)
         :type material_texts: dict(str: int)
@@ -400,8 +400,8 @@ class ObjectFacets(object):
 
         if genders is None:
             raise ValueError('genders is required')
-        if not (isinstance(genders, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], costume.api.models.gender.gender.Gender) and isinstance(__item[1], (int, long)) and __item[1] >= 0, genders.iteritems()))) == 0):
-            raise TypeError("expected genders to be a dict(costume.api.models.gender.gender.Gender: int) but it is a %s" % getattr(__builtin__, 'type')(genders))
+        if not (isinstance(genders, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], dressdiscover.api.models.gender.gender.Gender) and isinstance(__item[1], (int, long)) and __item[1] >= 0, genders.iteritems()))) == 0):
+            raise TypeError("expected genders to be a dict(dressdiscover.api.models.gender.gender.Gender: int) but it is a %s" % getattr(__builtin__, 'type')(genders))
         self.__genders = genders.copy() if genders is not None else None
 
         if institutions is None:
@@ -557,7 +557,7 @@ class ObjectFacets(object):
     @property
     def genders(self):
         '''
-        :rtype: dict(costume.api.models.gender.gender.Gender: int)
+        :rtype: dict(dressdiscover.api.models.gender.gender.Gender: int)
         '''
 
         return self.__genders.copy() if self.__genders is not None else None
@@ -592,7 +592,7 @@ class ObjectFacets(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.object.object_facets.ObjectFacets
+        :rtype: dressdiscover.api.models.object.object_facets.ObjectFacets
         '''
 
         init_kwds = {}
@@ -611,7 +611,7 @@ class ObjectFacets(object):
             elif ifield_name == 'cultural_context_texts':
                 init_kwds['cultural_context_texts'] = dict([(iprot.read_string(), iprot.read_u32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'genders':
-                init_kwds['genders'] = dict([(costume.api.models.gender.gender.Gender.value_of(iprot.read_string().strip().upper()), iprot.read_u32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
+                init_kwds['genders'] = dict([(dressdiscover.api.models.gender.gender.Gender.value_of(iprot.read_string().strip().upper()), iprot.read_u32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'institutions':
                 init_kwds['institutions'] = dict([(iprot.read_string(), iprot.read_u32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'location_name_texts':
@@ -650,14 +650,14 @@ class ObjectFacets(object):
         :type collections: dict(str: int) or None
         :type color_texts: dict(str: int) or None
         :type cultural_context_texts: dict(str: int) or None
-        :type genders: dict(costume.api.models.gender.gender.Gender: int) or None
+        :type genders: dict(dressdiscover.api.models.gender.gender.Gender: int) or None
         :type institutions: dict(str: int) or None
         :type location_name_texts: dict(str: int) or None
         :type material_texts: dict(str: int) or None
         :type subject_term_texts: dict(str: int) or None
         :type technique_texts: dict(str: int) or None
         :type work_type_texts: dict(str: int) or None
-        :rtype: costume.api.models.object.object_facets.ObjectFacets
+        :rtype: dressdiscover.api.models.object.object_facets.ObjectFacets
         '''
 
         if categories is None:
@@ -713,7 +713,7 @@ class ObjectFacets(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.object.object_facets.ObjectFacets
+        :rtype: dressdiscover.api.models.object.object_facets.ObjectFacets
         '''
 
         oprot.write_struct_begin('ObjectFacets')

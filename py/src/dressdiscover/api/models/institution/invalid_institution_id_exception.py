@@ -124,7 +124,7 @@ class InvalidInstitutionIdException(Exception):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.institution.invalid_institution_id_exception.InvalidInstitutionIdException
+        :rtype: dressdiscover.api.models.institution.invalid_institution_id_exception.InvalidInstitutionIdException
         '''
 
         init_kwds = {}
@@ -149,7 +149,7 @@ class InvalidInstitutionIdException(Exception):
         Copy this object, replace one or more fields, and return the copy.
 
         :type cause_message: str or None
-        :rtype: costume.api.models.institution.invalid_institution_id_exception.InvalidInstitutionIdException
+        :rtype: dressdiscover.api.models.institution.invalid_institution_id_exception.InvalidInstitutionIdException
         '''
 
         if cause_message is None:
@@ -161,7 +161,7 @@ class InvalidInstitutionIdException(Exception):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.institution.invalid_institution_id_exception.InvalidInstitutionIdException
+        :rtype: dressdiscover.api.models.institution.invalid_institution_id_exception.InvalidInstitutionIdException
         '''
 
         oprot.write_struct_begin('InvalidInstitutionIdException')

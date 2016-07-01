@@ -1,5 +1,5 @@
 import __builtin__
-import costume.api.models.collection.collection
+import dressdiscover.api.models.collection.collection
 
 
 class CollectionCommandService(object):
@@ -52,7 +52,7 @@ class CollectionCommandService(object):
     ):
         '''
         :type id: str
-        :type collection: costume.api.models.collection.collection.Collection
+        :type collection: dressdiscover.api.models.collection.collection.Collection
         '''
 
         if id is None:
@@ -61,8 +61,8 @@ class CollectionCommandService(object):
             raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
         if collection is None:
             raise ValueError('collection is required')
-        if not isinstance(collection, costume.api.models.collection.collection.Collection):
-            raise TypeError("expected collection to be a costume.api.models.collection.collection.Collection but it is a %s" % getattr(__builtin__, 'type')(collection))
+        if not isinstance(collection, dressdiscover.api.models.collection.collection.Collection):
+            raise TypeError("expected collection to be a dressdiscover.api.models.collection.collection.Collection but it is a %s" % getattr(__builtin__, 'type')(collection))
 
         self._put_collection(id=id, collection=collection)
 

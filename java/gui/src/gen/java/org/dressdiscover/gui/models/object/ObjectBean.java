@@ -3,35 +3,35 @@ package org.dressdiscover.gui.models.object;
 public class ObjectBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, true, 1, "collection_id", org.thryft.protocol.Type.STRING),
-        INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, true, 2, "institution_id", org.thryft.protocol.Type.STRING),
-        TITLES("titles", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.title.TitleSetBean>() {}, true, 3, "titles", org.thryft.protocol.Type.STRUCT),
-        AGENTS("agents", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.agent.AgentSetBean>() {}, false, 20, "agents", org.thryft.protocol.Type.STRUCT),
+        COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "collection_id", org.thryft.protocol.Type.STRING),
+        INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "institution_id", org.thryft.protocol.Type.STRING),
+        TITLES("titles", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.title.TitleSetBean>() {}, true, 3, "titles", org.thryft.protocol.Type.STRUCT),
+        AGENTS("agents", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.agent.AgentSetBean>() {}, false, 20, "agents", org.thryft.protocol.Type.STRUCT),
         CATEGORIES("categories", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 18, "categories", org.thryft.protocol.Type.LIST),
-        CLOSURES("closures", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.closure.ClosureSetBean>() {}, false, 34, "closures", org.thryft.protocol.Type.STRUCT),
-        COLORS("colors", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.color.ColorSetBean>() {}, false, 30, "colors", org.thryft.protocol.Type.STRUCT),
-        COMPONENTS("components", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.component.ComponentSetBean>() {}, false, 32, "components", org.thryft.protocol.Type.STRUCT),
-        CONDITION("condition", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.condition.Condition>() {}, false, 27, "condition", org.thryft.protocol.Type.STRING),
-        CULTURAL_CONTEXTS("culturalContexts", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.cultural_context.CulturalContextSetBean>() {}, false, 35, "cultural_contexts", org.thryft.protocol.Type.STRUCT),
-        DATES("dates", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.date.DateSetBean>() {}, false, 10, "dates", org.thryft.protocol.Type.STRUCT),
-        DESCRIPTIONS("descriptions", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.description.DescriptionSetBean>() {}, false, 4, "descriptions", org.thryft.protocol.Type.STRUCT),
-        GENDER("gender", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.gender.Gender>() {}, false, 25, "gender", org.thryft.protocol.Type.STRING),
+        CLOSURES("closures", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.closure.ClosureSetBean>() {}, false, 34, "closures", org.thryft.protocol.Type.STRUCT),
+        COLORS("colors", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.color.ColorSetBean>() {}, false, 30, "colors", org.thryft.protocol.Type.STRUCT),
+        COMPONENTS("components", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.component.ComponentSetBean>() {}, false, 32, "components", org.thryft.protocol.Type.STRUCT),
+        CONDITION("condition", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.condition.Condition>() {}, false, 27, "condition", org.thryft.protocol.Type.STRING),
+        CULTURAL_CONTEXTS("culturalContexts", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.cultural_context.CulturalContextSetBean>() {}, false, 35, "cultural_contexts", org.thryft.protocol.Type.STRUCT),
+        DATES("dates", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.date.DateSetBean>() {}, false, 10, "dates", org.thryft.protocol.Type.STRUCT),
+        DESCRIPTIONS("descriptions", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.description.DescriptionSetBean>() {}, false, 4, "descriptions", org.thryft.protocol.Type.STRUCT),
+        GENDER("gender", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.gender.Gender>() {}, false, 25, "gender", org.thryft.protocol.Type.STRING),
         HIDDEN("hidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 37, "hidden", org.thryft.protocol.Type.BOOL),
-        IMAGES("images", new com.google.common.reflect.TypeToken<java.util.List<net.lab1318.costume.gui.models.image.ImageBean>>() {}, false, 23, "images", org.thryft.protocol.Type.LIST),
-        INSCRIPTIONS("inscriptions", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.inscription.InscriptionSetBean>() {}, false, 17, "inscriptions", org.thryft.protocol.Type.STRUCT),
-        LOCATIONS("locations", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.location.LocationSetBean>() {}, false, 36, "locations", org.thryft.protocol.Type.STRUCT),
-        MATERIALS("materials", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.material.MaterialSetBean>() {}, false, 15, "materials", org.thryft.protocol.Type.STRUCT),
-        MEASUREMENTS("measurements", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.measurements.MeasurementsSetBean>() {}, false, 31, "measurements", org.thryft.protocol.Type.STRUCT),
+        IMAGES("images", new com.google.common.reflect.TypeToken<java.util.List<org.dressdiscover.gui.models.image.ImageBean>>() {}, false, 23, "images", org.thryft.protocol.Type.LIST),
+        INSCRIPTIONS("inscriptions", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.inscription.InscriptionSetBean>() {}, false, 17, "inscriptions", org.thryft.protocol.Type.STRUCT),
+        LOCATIONS("locations", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.location.LocationSetBean>() {}, false, 36, "locations", org.thryft.protocol.Type.STRUCT),
+        MATERIALS("materials", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.material.MaterialSetBean>() {}, false, 15, "materials", org.thryft.protocol.Type.STRUCT),
+        MEASUREMENTS("measurements", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.measurements.MeasurementsSetBean>() {}, false, 31, "measurements", org.thryft.protocol.Type.STRUCT),
         PROVENANCE("provenance", new com.google.common.reflect.TypeToken<String>() {}, false, 5, "provenance", org.thryft.protocol.Type.STRING),
         QUANTITY("quantity", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, false, 26, "quantity", org.thryft.protocol.Type.I32),
-        RELATIONS("relations", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.relation.RelationSetBean>() {}, false, 29, "relations", org.thryft.protocol.Type.STRUCT),
-        RIGHTS("rights", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.rights.RightsSetBean>() {}, false, 22, "rights", org.thryft.protocol.Type.STRUCT),
-        STRUCTURES("structures", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.structure.StructureSetBean>() {}, false, 33, "structures", org.thryft.protocol.Type.STRUCT),
-        SUBJECTS("subjects", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.subject.SubjectSetBean>() {}, false, 21, "subjects", org.thryft.protocol.Type.STRUCT),
-        TECHNIQUES("techniques", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.technique.TechniqueSetBean>() {}, false, 16, "techniques", org.thryft.protocol.Type.STRUCT),
-        TEXTREFS("textrefs", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.textref.TextrefSetBean>() {}, false, 9, "textrefs", org.thryft.protocol.Type.STRUCT),
-        VIEW_TYPE("viewType", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.view_type.ViewType>() {}, false, 28, "view_type", org.thryft.protocol.Type.STRING),
-        WORK_TYPES("workTypes", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.work_type.WorkTypeSetBean>() {}, false, 24, "work_types", org.thryft.protocol.Type.STRUCT);
+        RELATIONS("relations", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.relation.RelationSetBean>() {}, false, 29, "relations", org.thryft.protocol.Type.STRUCT),
+        RIGHTS("rights", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.rights.RightsSetBean>() {}, false, 22, "rights", org.thryft.protocol.Type.STRUCT),
+        STRUCTURES("structures", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.structure.StructureSetBean>() {}, false, 33, "structures", org.thryft.protocol.Type.STRUCT),
+        SUBJECTS("subjects", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.subject.SubjectSetBean>() {}, false, 21, "subjects", org.thryft.protocol.Type.STRUCT),
+        TECHNIQUES("techniques", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.technique.TechniqueSetBean>() {}, false, 16, "techniques", org.thryft.protocol.Type.STRUCT),
+        TEXTREFS("textrefs", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.textref.TextrefSetBean>() {}, false, 9, "textrefs", org.thryft.protocol.Type.STRUCT),
+        VIEW_TYPE("viewType", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.view_type.ViewType>() {}, false, 28, "view_type", org.thryft.protocol.Type.STRING),
+        WORK_TYPES("workTypes", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.work_type.WorkTypeSetBean>() {}, false, 24, "work_types", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -200,45 +200,45 @@ public class ObjectBean implements org.thryft.StructBean {
         workTypes = null;
     }
 
-    public ObjectBean(final net.lab1318.costume.api.models.object.Object other) {
+    public ObjectBean(final org.dressdiscover.api.models.object.Object other) {
         this.collectionId = other.getCollectionId();
         this.institutionId = other.getInstitutionId();
-        this.titles = new net.lab1318.costume.gui.models.title.TitleSetBean(other.getTitles());
-        this.agents = other.getAgents().isPresent() ? new net.lab1318.costume.gui.models.agent.AgentSetBean(other.getAgents().get()) : null;
+        this.titles = new org.dressdiscover.gui.models.title.TitleSetBean(other.getTitles());
+        this.agents = other.getAgents().isPresent() ? new org.dressdiscover.gui.models.agent.AgentSetBean(other.getAgents().get()) : null;
         this.categories = other.getCategories().isPresent() ? new java.util.ArrayList<String>(other.getCategories().get()) : null;
-        this.closures = other.getClosures().isPresent() ? new net.lab1318.costume.gui.models.closure.ClosureSetBean(other.getClosures().get()) : null;
-        this.colors = other.getColors().isPresent() ? new net.lab1318.costume.gui.models.color.ColorSetBean(other.getColors().get()) : null;
-        this.components = other.getComponents().isPresent() ? new net.lab1318.costume.gui.models.component.ComponentSetBean(other.getComponents().get()) : null;
+        this.closures = other.getClosures().isPresent() ? new org.dressdiscover.gui.models.closure.ClosureSetBean(other.getClosures().get()) : null;
+        this.colors = other.getColors().isPresent() ? new org.dressdiscover.gui.models.color.ColorSetBean(other.getColors().get()) : null;
+        this.components = other.getComponents().isPresent() ? new org.dressdiscover.gui.models.component.ComponentSetBean(other.getComponents().get()) : null;
         this.condition = other.getCondition().isPresent() ? other.getCondition().get() : null;
-        this.culturalContexts = other.getCulturalContexts().isPresent() ? new net.lab1318.costume.gui.models.cultural_context.CulturalContextSetBean(other.getCulturalContexts().get()) : null;
-        this.dates = other.getDates().isPresent() ? new net.lab1318.costume.gui.models.date.DateSetBean(other.getDates().get()) : null;
-        this.descriptions = other.getDescriptions().isPresent() ? new net.lab1318.costume.gui.models.description.DescriptionSetBean(other.getDescriptions().get()) : null;
+        this.culturalContexts = other.getCulturalContexts().isPresent() ? new org.dressdiscover.gui.models.cultural_context.CulturalContextSetBean(other.getCulturalContexts().get()) : null;
+        this.dates = other.getDates().isPresent() ? new org.dressdiscover.gui.models.date.DateSetBean(other.getDates().get()) : null;
+        this.descriptions = other.getDescriptions().isPresent() ? new org.dressdiscover.gui.models.description.DescriptionSetBean(other.getDescriptions().get()) : null;
         this.gender = other.getGender().isPresent() ? other.getGender().get() : null;
         this.hidden = other.getHidden().isPresent() ? other.getHidden().get() : null;
-        this.images = other.getImages().isPresent() ? (new com.google.common.base.Function<com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image>, java.util.List<net.lab1318.costume.gui.models.image.ImageBean>>() {
+        this.images = other.getImages().isPresent() ? (new com.google.common.base.Function<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>, java.util.List<org.dressdiscover.gui.models.image.ImageBean>>() {
             @Override
-            public java.util.List<net.lab1318.costume.gui.models.image.ImageBean> apply(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.image.Image> other) {
-                final java.util.List<net.lab1318.costume.gui.models.image.ImageBean> copy = new java.util.ArrayList<net.lab1318.costume.gui.models.image.ImageBean>();
-                for (final net.lab1318.costume.api.models.image.Image element : other) {
-                    copy.add(new net.lab1318.costume.gui.models.image.ImageBean(element));
+            public java.util.List<org.dressdiscover.gui.models.image.ImageBean> apply(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> other) {
+                final java.util.List<org.dressdiscover.gui.models.image.ImageBean> copy = new java.util.ArrayList<org.dressdiscover.gui.models.image.ImageBean>();
+                for (final org.dressdiscover.api.models.image.Image element : other) {
+                    copy.add(new org.dressdiscover.gui.models.image.ImageBean(element));
                 }
                 return copy;
             }
         }).apply(other.getImages().get()) : null;
-        this.inscriptions = other.getInscriptions().isPresent() ? new net.lab1318.costume.gui.models.inscription.InscriptionSetBean(other.getInscriptions().get()) : null;
-        this.locations = other.getLocations().isPresent() ? new net.lab1318.costume.gui.models.location.LocationSetBean(other.getLocations().get()) : null;
-        this.materials = other.getMaterials().isPresent() ? new net.lab1318.costume.gui.models.material.MaterialSetBean(other.getMaterials().get()) : null;
-        this.measurements = other.getMeasurements().isPresent() ? new net.lab1318.costume.gui.models.measurements.MeasurementsSetBean(other.getMeasurements().get()) : null;
+        this.inscriptions = other.getInscriptions().isPresent() ? new org.dressdiscover.gui.models.inscription.InscriptionSetBean(other.getInscriptions().get()) : null;
+        this.locations = other.getLocations().isPresent() ? new org.dressdiscover.gui.models.location.LocationSetBean(other.getLocations().get()) : null;
+        this.materials = other.getMaterials().isPresent() ? new org.dressdiscover.gui.models.material.MaterialSetBean(other.getMaterials().get()) : null;
+        this.measurements = other.getMeasurements().isPresent() ? new org.dressdiscover.gui.models.measurements.MeasurementsSetBean(other.getMeasurements().get()) : null;
         this.provenance = other.getProvenance().isPresent() ? other.getProvenance().get() : null;
         this.quantity = other.getQuantity().isPresent() ? other.getQuantity().get() : null;
-        this.relations = other.getRelations().isPresent() ? new net.lab1318.costume.gui.models.relation.RelationSetBean(other.getRelations().get()) : null;
-        this.rights = other.getRights().isPresent() ? new net.lab1318.costume.gui.models.rights.RightsSetBean(other.getRights().get()) : null;
-        this.structures = other.getStructures().isPresent() ? new net.lab1318.costume.gui.models.structure.StructureSetBean(other.getStructures().get()) : null;
-        this.subjects = other.getSubjects().isPresent() ? new net.lab1318.costume.gui.models.subject.SubjectSetBean(other.getSubjects().get()) : null;
-        this.techniques = other.getTechniques().isPresent() ? new net.lab1318.costume.gui.models.technique.TechniqueSetBean(other.getTechniques().get()) : null;
-        this.textrefs = other.getTextrefs().isPresent() ? new net.lab1318.costume.gui.models.textref.TextrefSetBean(other.getTextrefs().get()) : null;
+        this.relations = other.getRelations().isPresent() ? new org.dressdiscover.gui.models.relation.RelationSetBean(other.getRelations().get()) : null;
+        this.rights = other.getRights().isPresent() ? new org.dressdiscover.gui.models.rights.RightsSetBean(other.getRights().get()) : null;
+        this.structures = other.getStructures().isPresent() ? new org.dressdiscover.gui.models.structure.StructureSetBean(other.getStructures().get()) : null;
+        this.subjects = other.getSubjects().isPresent() ? new org.dressdiscover.gui.models.subject.SubjectSetBean(other.getSubjects().get()) : null;
+        this.techniques = other.getTechniques().isPresent() ? new org.dressdiscover.gui.models.technique.TechniqueSetBean(other.getTechniques().get()) : null;
+        this.textrefs = other.getTextrefs().isPresent() ? new org.dressdiscover.gui.models.textref.TextrefSetBean(other.getTextrefs().get()) : null;
         this.viewType = other.getViewType().isPresent() ? other.getViewType().get() : null;
-        this.workTypes = other.getWorkTypes().isPresent() ? new net.lab1318.costume.gui.models.work_type.WorkTypeSetBean(other.getWorkTypes().get()) : null;
+        this.workTypes = other.getWorkTypes().isPresent() ? new org.dressdiscover.gui.models.work_type.WorkTypeSetBean(other.getWorkTypes().get()) : null;
     }
 
     @Override
@@ -331,7 +331,7 @@ public class ObjectBean implements org.thryft.StructBean {
         }
     }
 
-    public net.lab1318.costume.gui.models.agent.AgentSetBean getAgents() {
+    public org.dressdiscover.gui.models.agent.AgentSetBean getAgents() {
         return agents;
     }
 
@@ -339,39 +339,39 @@ public class ObjectBean implements org.thryft.StructBean {
         return categories;
     }
 
-    public net.lab1318.costume.gui.models.closure.ClosureSetBean getClosures() {
+    public org.dressdiscover.gui.models.closure.ClosureSetBean getClosures() {
         return closures;
     }
 
-    public org.dressdiscover.api.models.collection.CollectionId getCollectionId() {
+    public String getCollectionId() {
         return collectionId;
     }
 
-    public net.lab1318.costume.gui.models.color.ColorSetBean getColors() {
+    public org.dressdiscover.gui.models.color.ColorSetBean getColors() {
         return colors;
     }
 
-    public net.lab1318.costume.gui.models.component.ComponentSetBean getComponents() {
+    public org.dressdiscover.gui.models.component.ComponentSetBean getComponents() {
         return components;
     }
 
-    public net.lab1318.costume.api.models.condition.Condition getCondition() {
+    public org.dressdiscover.api.models.condition.Condition getCondition() {
         return condition;
     }
 
-    public net.lab1318.costume.gui.models.cultural_context.CulturalContextSetBean getCulturalContexts() {
+    public org.dressdiscover.gui.models.cultural_context.CulturalContextSetBean getCulturalContexts() {
         return culturalContexts;
     }
 
-    public net.lab1318.costume.gui.models.date.DateSetBean getDates() {
+    public org.dressdiscover.gui.models.date.DateSetBean getDates() {
         return dates;
     }
 
-    public net.lab1318.costume.gui.models.description.DescriptionSetBean getDescriptions() {
+    public org.dressdiscover.gui.models.description.DescriptionSetBean getDescriptions() {
         return descriptions;
     }
 
-    public net.lab1318.costume.api.models.gender.Gender getGender() {
+    public org.dressdiscover.api.models.gender.Gender getGender() {
         return gender;
     }
 
@@ -379,27 +379,27 @@ public class ObjectBean implements org.thryft.StructBean {
         return hidden;
     }
 
-    public java.util.List<net.lab1318.costume.gui.models.image.ImageBean> getImages() {
+    public java.util.List<org.dressdiscover.gui.models.image.ImageBean> getImages() {
         return images;
     }
 
-    public net.lab1318.costume.gui.models.inscription.InscriptionSetBean getInscriptions() {
+    public org.dressdiscover.gui.models.inscription.InscriptionSetBean getInscriptions() {
         return inscriptions;
     }
 
-    public org.dressdiscover.api.models.institution.InstitutionId getInstitutionId() {
+    public String getInstitutionId() {
         return institutionId;
     }
 
-    public net.lab1318.costume.gui.models.location.LocationSetBean getLocations() {
+    public org.dressdiscover.gui.models.location.LocationSetBean getLocations() {
         return locations;
     }
 
-    public net.lab1318.costume.gui.models.material.MaterialSetBean getMaterials() {
+    public org.dressdiscover.gui.models.material.MaterialSetBean getMaterials() {
         return materials;
     }
 
-    public net.lab1318.costume.gui.models.measurements.MeasurementsSetBean getMeasurements() {
+    public org.dressdiscover.gui.models.measurements.MeasurementsSetBean getMeasurements() {
         return measurements;
     }
 
@@ -414,39 +414,39 @@ public class ObjectBean implements org.thryft.StructBean {
         return quantity;
     }
 
-    public net.lab1318.costume.gui.models.relation.RelationSetBean getRelations() {
+    public org.dressdiscover.gui.models.relation.RelationSetBean getRelations() {
         return relations;
     }
 
-    public net.lab1318.costume.gui.models.rights.RightsSetBean getRights() {
+    public org.dressdiscover.gui.models.rights.RightsSetBean getRights() {
         return rights;
     }
 
-    public net.lab1318.costume.gui.models.structure.StructureSetBean getStructures() {
+    public org.dressdiscover.gui.models.structure.StructureSetBean getStructures() {
         return structures;
     }
 
-    public net.lab1318.costume.gui.models.subject.SubjectSetBean getSubjects() {
+    public org.dressdiscover.gui.models.subject.SubjectSetBean getSubjects() {
         return subjects;
     }
 
-    public net.lab1318.costume.gui.models.technique.TechniqueSetBean getTechniques() {
+    public org.dressdiscover.gui.models.technique.TechniqueSetBean getTechniques() {
         return techniques;
     }
 
-    public net.lab1318.costume.gui.models.textref.TextrefSetBean getTextrefs() {
+    public org.dressdiscover.gui.models.textref.TextrefSetBean getTextrefs() {
         return textrefs;
     }
 
-    public net.lab1318.costume.gui.models.title.TitleSetBean getTitles() {
+    public org.dressdiscover.gui.models.title.TitleSetBean getTitles() {
         return titles;
     }
 
-    public net.lab1318.costume.api.models.view_type.ViewType getViewType() {
+    public org.dressdiscover.api.models.view_type.ViewType getViewType() {
         return viewType;
     }
 
-    public net.lab1318.costume.gui.models.work_type.WorkTypeSetBean getWorkTypes() {
+    public org.dressdiscover.gui.models.work_type.WorkTypeSetBean getWorkTypes() {
         return workTypes;
     }
 
@@ -542,7 +542,7 @@ public class ObjectBean implements org.thryft.StructBean {
         return false;
     }
 
-    public void setAgents(final net.lab1318.costume.gui.models.agent.AgentSetBean agents) {
+    public void setAgents(final org.dressdiscover.gui.models.agent.AgentSetBean agents) {
         this.agents = agents;
     }
 
@@ -550,39 +550,39 @@ public class ObjectBean implements org.thryft.StructBean {
         this.categories = categories;
     }
 
-    public void setClosures(final net.lab1318.costume.gui.models.closure.ClosureSetBean closures) {
+    public void setClosures(final org.dressdiscover.gui.models.closure.ClosureSetBean closures) {
         this.closures = closures;
     }
 
-    public void setCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
+    public void setCollectionId(final String collectionId) {
         this.collectionId = collectionId;
     }
 
-    public void setColors(final net.lab1318.costume.gui.models.color.ColorSetBean colors) {
+    public void setColors(final org.dressdiscover.gui.models.color.ColorSetBean colors) {
         this.colors = colors;
     }
 
-    public void setComponents(final net.lab1318.costume.gui.models.component.ComponentSetBean components) {
+    public void setComponents(final org.dressdiscover.gui.models.component.ComponentSetBean components) {
         this.components = components;
     }
 
-    public void setCondition(final net.lab1318.costume.api.models.condition.Condition condition) {
+    public void setCondition(final org.dressdiscover.api.models.condition.Condition condition) {
         this.condition = condition;
     }
 
-    public void setCulturalContexts(final net.lab1318.costume.gui.models.cultural_context.CulturalContextSetBean culturalContexts) {
+    public void setCulturalContexts(final org.dressdiscover.gui.models.cultural_context.CulturalContextSetBean culturalContexts) {
         this.culturalContexts = culturalContexts;
     }
 
-    public void setDates(final net.lab1318.costume.gui.models.date.DateSetBean dates) {
+    public void setDates(final org.dressdiscover.gui.models.date.DateSetBean dates) {
         this.dates = dates;
     }
 
-    public void setDescriptions(final net.lab1318.costume.gui.models.description.DescriptionSetBean descriptions) {
+    public void setDescriptions(final org.dressdiscover.gui.models.description.DescriptionSetBean descriptions) {
         this.descriptions = descriptions;
     }
 
-    public void setGender(final net.lab1318.costume.api.models.gender.Gender gender) {
+    public void setGender(final org.dressdiscover.api.models.gender.Gender gender) {
         this.gender = gender;
     }
 
@@ -590,27 +590,27 @@ public class ObjectBean implements org.thryft.StructBean {
         this.hidden = hidden;
     }
 
-    public void setImages(final java.util.List<net.lab1318.costume.gui.models.image.ImageBean> images) {
+    public void setImages(final java.util.List<org.dressdiscover.gui.models.image.ImageBean> images) {
         this.images = images;
     }
 
-    public void setInscriptions(final net.lab1318.costume.gui.models.inscription.InscriptionSetBean inscriptions) {
+    public void setInscriptions(final org.dressdiscover.gui.models.inscription.InscriptionSetBean inscriptions) {
         this.inscriptions = inscriptions;
     }
 
-    public void setInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
+    public void setInstitutionId(final String institutionId) {
         this.institutionId = institutionId;
     }
 
-    public void setLocations(final net.lab1318.costume.gui.models.location.LocationSetBean locations) {
+    public void setLocations(final org.dressdiscover.gui.models.location.LocationSetBean locations) {
         this.locations = locations;
     }
 
-    public void setMaterials(final net.lab1318.costume.gui.models.material.MaterialSetBean materials) {
+    public void setMaterials(final org.dressdiscover.gui.models.material.MaterialSetBean materials) {
         this.materials = materials;
     }
 
-    public void setMeasurements(final net.lab1318.costume.gui.models.measurements.MeasurementsSetBean measurements) {
+    public void setMeasurements(final org.dressdiscover.gui.models.measurements.MeasurementsSetBean measurements) {
         this.measurements = measurements;
     }
 
@@ -622,39 +622,39 @@ public class ObjectBean implements org.thryft.StructBean {
         this.quantity = quantity;
     }
 
-    public void setRelations(final net.lab1318.costume.gui.models.relation.RelationSetBean relations) {
+    public void setRelations(final org.dressdiscover.gui.models.relation.RelationSetBean relations) {
         this.relations = relations;
     }
 
-    public void setRights(final net.lab1318.costume.gui.models.rights.RightsSetBean rights) {
+    public void setRights(final org.dressdiscover.gui.models.rights.RightsSetBean rights) {
         this.rights = rights;
     }
 
-    public void setStructures(final net.lab1318.costume.gui.models.structure.StructureSetBean structures) {
+    public void setStructures(final org.dressdiscover.gui.models.structure.StructureSetBean structures) {
         this.structures = structures;
     }
 
-    public void setSubjects(final net.lab1318.costume.gui.models.subject.SubjectSetBean subjects) {
+    public void setSubjects(final org.dressdiscover.gui.models.subject.SubjectSetBean subjects) {
         this.subjects = subjects;
     }
 
-    public void setTechniques(final net.lab1318.costume.gui.models.technique.TechniqueSetBean techniques) {
+    public void setTechniques(final org.dressdiscover.gui.models.technique.TechniqueSetBean techniques) {
         this.techniques = techniques;
     }
 
-    public void setTextrefs(final net.lab1318.costume.gui.models.textref.TextrefSetBean textrefs) {
+    public void setTextrefs(final org.dressdiscover.gui.models.textref.TextrefSetBean textrefs) {
         this.textrefs = textrefs;
     }
 
-    public void setTitles(final net.lab1318.costume.gui.models.title.TitleSetBean titles) {
+    public void setTitles(final org.dressdiscover.gui.models.title.TitleSetBean titles) {
         this.titles = titles;
     }
 
-    public void setViewType(final net.lab1318.costume.api.models.view_type.ViewType viewType) {
+    public void setViewType(final org.dressdiscover.api.models.view_type.ViewType viewType) {
         this.viewType = viewType;
     }
 
-    public void setWorkTypes(final net.lab1318.costume.gui.models.work_type.WorkTypeSetBean workTypes) {
+    public void setWorkTypes(final org.dressdiscover.gui.models.work_type.WorkTypeSetBean workTypes) {
         this.workTypes = workTypes;
     }
 
@@ -663,43 +663,43 @@ public class ObjectBean implements org.thryft.StructBean {
         return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("titles", getTitles()).add("agents", getAgents()).add("categories", getCategories()).add("closures", getClosures()).add("colors", getColors()).add("components", getComponents()).add("condition", getCondition()).add("cultural_contexts", getCulturalContexts()).add("dates", getDates()).add("descriptions", getDescriptions()).add("gender", getGender()).add("hidden", getHidden()).add("images", getImages()).add("inscriptions", getInscriptions()).add("locations", getLocations()).add("materials", getMaterials()).add("measurements", getMeasurements()).add("provenance", getProvenance()).add("quantity", getQuantity()).add("relations", getRelations()).add("rights", getRights()).add("structures", getStructures()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("view_type", getViewType()).add("work_types", getWorkTypes()).toString();
     }
 
-    private org.dressdiscover.api.models.collection.CollectionId collectionId;
+    private String collectionId;
 
-    private org.dressdiscover.api.models.institution.InstitutionId institutionId;
+    private String institutionId;
 
-    private net.lab1318.costume.gui.models.title.TitleSetBean titles;
+    private org.dressdiscover.gui.models.title.TitleSetBean titles;
 
-    private net.lab1318.costume.gui.models.agent.AgentSetBean agents;
+    private org.dressdiscover.gui.models.agent.AgentSetBean agents;
 
     private java.util.List<String> categories;
 
-    private net.lab1318.costume.gui.models.closure.ClosureSetBean closures;
+    private org.dressdiscover.gui.models.closure.ClosureSetBean closures;
 
-    private net.lab1318.costume.gui.models.color.ColorSetBean colors;
+    private org.dressdiscover.gui.models.color.ColorSetBean colors;
 
-    private net.lab1318.costume.gui.models.component.ComponentSetBean components;
+    private org.dressdiscover.gui.models.component.ComponentSetBean components;
 
-    private net.lab1318.costume.api.models.condition.Condition condition;
+    private org.dressdiscover.api.models.condition.Condition condition;
 
-    private net.lab1318.costume.gui.models.cultural_context.CulturalContextSetBean culturalContexts;
+    private org.dressdiscover.gui.models.cultural_context.CulturalContextSetBean culturalContexts;
 
-    private net.lab1318.costume.gui.models.date.DateSetBean dates;
+    private org.dressdiscover.gui.models.date.DateSetBean dates;
 
-    private net.lab1318.costume.gui.models.description.DescriptionSetBean descriptions;
+    private org.dressdiscover.gui.models.description.DescriptionSetBean descriptions;
 
-    private net.lab1318.costume.api.models.gender.Gender gender;
+    private org.dressdiscover.api.models.gender.Gender gender;
 
     private Boolean hidden;
 
-    private java.util.List<net.lab1318.costume.gui.models.image.ImageBean> images;
+    private java.util.List<org.dressdiscover.gui.models.image.ImageBean> images;
 
-    private net.lab1318.costume.gui.models.inscription.InscriptionSetBean inscriptions;
+    private org.dressdiscover.gui.models.inscription.InscriptionSetBean inscriptions;
 
-    private net.lab1318.costume.gui.models.location.LocationSetBean locations;
+    private org.dressdiscover.gui.models.location.LocationSetBean locations;
 
-    private net.lab1318.costume.gui.models.material.MaterialSetBean materials;
+    private org.dressdiscover.gui.models.material.MaterialSetBean materials;
 
-    private net.lab1318.costume.gui.models.measurements.MeasurementsSetBean measurements;
+    private org.dressdiscover.gui.models.measurements.MeasurementsSetBean measurements;
 
     /**
      * Dublin Core freetext provenance
@@ -708,19 +708,19 @@ public class ObjectBean implements org.thryft.StructBean {
 
     private com.google.common.primitives.UnsignedInteger quantity;
 
-    private net.lab1318.costume.gui.models.relation.RelationSetBean relations;
+    private org.dressdiscover.gui.models.relation.RelationSetBean relations;
 
-    private net.lab1318.costume.gui.models.rights.RightsSetBean rights;
+    private org.dressdiscover.gui.models.rights.RightsSetBean rights;
 
-    private net.lab1318.costume.gui.models.structure.StructureSetBean structures;
+    private org.dressdiscover.gui.models.structure.StructureSetBean structures;
 
-    private net.lab1318.costume.gui.models.subject.SubjectSetBean subjects;
+    private org.dressdiscover.gui.models.subject.SubjectSetBean subjects;
 
-    private net.lab1318.costume.gui.models.technique.TechniqueSetBean techniques;
+    private org.dressdiscover.gui.models.technique.TechniqueSetBean techniques;
 
-    private net.lab1318.costume.gui.models.textref.TextrefSetBean textrefs;
+    private org.dressdiscover.gui.models.textref.TextrefSetBean textrefs;
 
-    private net.lab1318.costume.api.models.view_type.ViewType viewType;
+    private org.dressdiscover.api.models.view_type.ViewType viewType;
 
-    private net.lab1318.costume.gui.models.work_type.WorkTypeSetBean workTypes;
+    private org.dressdiscover.gui.models.work_type.WorkTypeSetBean workTypes;
 }

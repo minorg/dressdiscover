@@ -42,7 +42,7 @@ class NoSuchObjectException(Exception):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.services.object.no_such_object_exception.NoSuchObjectException
+        :rtype: dressdiscover.api.services.object.no_such_object_exception.NoSuchObjectException
         '''
 
         iprot.read_struct_begin()
@@ -54,7 +54,7 @@ class NoSuchObjectException(Exception):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.services.object.no_such_object_exception.NoSuchObjectException
+        :rtype: dressdiscover.api.services.object.no_such_object_exception.NoSuchObjectException
         '''
 
         oprot.write_struct_begin('NoSuchObjectException')

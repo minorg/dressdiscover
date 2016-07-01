@@ -1,7 +1,7 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.models.inscription.inscription_author
-import costume.api.models.inscription.inscription_text
+import dressdiscover.api.models.inscription.inscription_author
+import dressdiscover.api.models.inscription.inscription_text
 
 
 class Inscription(object):
@@ -13,8 +13,8 @@ class Inscription(object):
             position=None,
         ):
             '''
-            :type texts: tuple(costume.api.models.inscription.inscription_text.InscriptionText)
-            :type author: costume.api.models.inscription.inscription_author.InscriptionAuthor or None
+            :type texts: tuple(dressdiscover.api.models.inscription.inscription_text.InscriptionText)
+            :type author: dressdiscover.api.models.inscription.inscription_author.InscriptionAuthor or None
             :type position: str or None
             '''
 
@@ -28,7 +28,7 @@ class Inscription(object):
         @property
         def author(self):
             '''
-            :rtype: costume.api.models.inscription.inscription_author.InscriptionAuthor
+            :rtype: dressdiscover.api.models.inscription.inscription_author.InscriptionAuthor
             '''
 
             return self.__author
@@ -43,7 +43,7 @@ class Inscription(object):
 
         def set_author(self, author):
             '''
-            :type author: costume.api.models.inscription.inscription_author.InscriptionAuthor or None
+            :type author: dressdiscover.api.models.inscription.inscription_author.InscriptionAuthor or None
             '''
 
             self.__author = author
@@ -59,7 +59,7 @@ class Inscription(object):
 
         def set_texts(self, texts):
             '''
-            :type texts: tuple(costume.api.models.inscription.inscription_text.InscriptionText)
+            :type texts: tuple(dressdiscover.api.models.inscription.inscription_text.InscriptionText)
             '''
 
             self.__texts = texts
@@ -68,15 +68,15 @@ class Inscription(object):
         @property
         def texts(self):
             '''
-            :rtype: tuple(costume.api.models.inscription.inscription_text.InscriptionText)
+            :rtype: tuple(dressdiscover.api.models.inscription.inscription_text.InscriptionText)
             '''
 
             return self.__texts
 
         def update(self, inscription):
             '''
-            :type texts: tuple(costume.api.models.inscription.inscription_text.InscriptionText)
-            :type author: costume.api.models.inscription.inscription_author.InscriptionAuthor or None
+            :type texts: tuple(dressdiscover.api.models.inscription.inscription_text.InscriptionText)
+            :type author: dressdiscover.api.models.inscription.inscription_author.InscriptionAuthor or None
             :type position: str or None
             '''
 
@@ -94,7 +94,7 @@ class Inscription(object):
         @author.setter
         def author(self, author):
             '''
-            :type author: costume.api.models.inscription.inscription_author.InscriptionAuthor or None
+            :type author: dressdiscover.api.models.inscription.inscription_author.InscriptionAuthor or None
             '''
 
             self.set_author(author)
@@ -110,7 +110,7 @@ class Inscription(object):
         @texts.setter
         def texts(self, texts):
             '''
-            :type texts: tuple(costume.api.models.inscription.inscription_text.InscriptionText)
+            :type texts: tuple(dressdiscover.api.models.inscription.inscription_text.InscriptionText)
             '''
 
             self.set_texts(texts)
@@ -122,22 +122,22 @@ class Inscription(object):
         position=None,
     ):
         '''
-        :type texts: tuple(costume.api.models.inscription.inscription_text.InscriptionText)
-        :type author: costume.api.models.inscription.inscription_author.InscriptionAuthor or None
+        :type texts: tuple(dressdiscover.api.models.inscription.inscription_text.InscriptionText)
+        :type author: dressdiscover.api.models.inscription.inscription_author.InscriptionAuthor or None
         :type position: str or None
         '''
 
         if texts is None:
             raise ValueError('texts is required')
-        if not (isinstance(texts, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.inscription.inscription_text.InscriptionText), texts))) == 0):
-            raise TypeError("expected texts to be a tuple(costume.api.models.inscription.inscription_text.InscriptionText) but it is a %s" % getattr(__builtin__, 'type')(texts))
+        if not (isinstance(texts, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.inscription.inscription_text.InscriptionText), texts))) == 0):
+            raise TypeError("expected texts to be a tuple(dressdiscover.api.models.inscription.inscription_text.InscriptionText) but it is a %s" % getattr(__builtin__, 'type')(texts))
         if len(texts) < 1:
             raise ValueError("expected len(texts) to be >= 1, was %d" % len(texts))
         self.__texts = texts
 
         if author is not None:
-            if not isinstance(author, costume.api.models.inscription.inscription_author.InscriptionAuthor):
-                raise TypeError("expected author to be a costume.api.models.inscription.inscription_author.InscriptionAuthor but it is a %s" % getattr(__builtin__, 'type')(author))
+            if not isinstance(author, dressdiscover.api.models.inscription.inscription_author.InscriptionAuthor):
+                raise TypeError("expected author to be a dressdiscover.api.models.inscription.inscription_author.InscriptionAuthor but it is a %s" % getattr(__builtin__, 'type')(author))
         self.__author = author
 
         if position is not None:
@@ -204,7 +204,7 @@ class Inscription(object):
     @property
     def author(self):
         '''
-        :rtype: costume.api.models.inscription.inscription_author.InscriptionAuthor
+        :rtype: dressdiscover.api.models.inscription.inscription_author.InscriptionAuthor
         '''
 
         return self.__author
@@ -223,7 +223,7 @@ class Inscription(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.inscription.inscription.Inscription
+        :rtype: dressdiscover.api.models.inscription.inscription.Inscription
         '''
 
         init_kwds = {}
@@ -234,9 +234,9 @@ class Inscription(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'texts' and ifield_id == 1:
-                init_kwds['texts'] = tuple([costume.api.models.inscription.inscription_text.InscriptionText.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+                init_kwds['texts'] = tuple([dressdiscover.api.models.inscription.inscription_text.InscriptionText.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'author' and ifield_id == 2:
-                init_kwds['author'] = costume.api.models.inscription.inscription_author.InscriptionAuthor.read(iprot)
+                init_kwds['author'] = dressdiscover.api.models.inscription.inscription_author.InscriptionAuthor.read(iprot)
             elif ifield_name == 'position' and ifield_id == 3:
                 try:
                     init_kwds['position'] = iprot.read_string()
@@ -256,10 +256,10 @@ class Inscription(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type texts: tuple(costume.api.models.inscription.inscription_text.InscriptionText) or None
-        :type author: costume.api.models.inscription.inscription_author.InscriptionAuthor or None
+        :type texts: tuple(dressdiscover.api.models.inscription.inscription_text.InscriptionText) or None
+        :type author: dressdiscover.api.models.inscription.inscription_author.InscriptionAuthor or None
         :type position: str or None
-        :rtype: costume.api.models.inscription.inscription.Inscription
+        :rtype: dressdiscover.api.models.inscription.inscription.Inscription
         '''
 
         if texts is None:
@@ -273,7 +273,7 @@ class Inscription(object):
     @property
     def texts(self):
         '''
-        :rtype: tuple(costume.api.models.inscription.inscription_text.InscriptionText)
+        :rtype: tuple(dressdiscover.api.models.inscription.inscription_text.InscriptionText)
         '''
 
         return self.__texts
@@ -283,7 +283,7 @@ class Inscription(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.inscription.inscription.Inscription
+        :rtype: dressdiscover.api.models.inscription.inscription.Inscription
         '''
 
         oprot.write_struct_begin('Inscription')

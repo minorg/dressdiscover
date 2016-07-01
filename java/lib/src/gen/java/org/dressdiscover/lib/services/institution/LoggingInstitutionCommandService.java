@@ -1,7 +1,7 @@
 package org.dressdiscover.lib.services.institution;
 
 @com.google.inject.Singleton
-public class LoggingInstitutionCommandService implements net.lab1318.costume.api.services.institution.InstitutionCommandService {
+public class LoggingInstitutionCommandService implements org.dressdiscover.api.services.institution.InstitutionCommandService {
     public static class Markers {
         public final static org.slf4j.Marker DELETE_INSTITUTION_BY_ID = org.slf4j.MarkerFactory.getMarker("DELETE_INSTITUTION_BY_ID");
         public final static org.slf4j.Marker PUT_INSTITUTION = org.slf4j.MarkerFactory.getMarker("PUT_INSTITUTION");
@@ -13,14 +13,14 @@ public class LoggingInstitutionCommandService implements net.lab1318.costume.api
         }
     }
 
-    public final static com.google.inject.name.Named DELEGATE_NAME = com.google.inject.name.Names.named("net.lab1318.costume.lib.services.institution.LoggingInstitutionCommandService.delegate");
+    public final static com.google.inject.name.Named DELEGATE_NAME = com.google.inject.name.Names.named("org.dressdiscover.lib.services.institution.LoggingInstitutionCommandService.delegate");
 
     @com.google.inject.Inject
-    public LoggingInstitutionCommandService(@com.google.inject.name.Named("net.lab1318.costume.lib.services.institution.LoggingInstitutionCommandService.delegate") final net.lab1318.costume.api.services.institution.InstitutionCommandService delegate) {
+    public LoggingInstitutionCommandService(@com.google.inject.name.Named("org.dressdiscover.lib.services.institution.LoggingInstitutionCommandService.delegate") final org.dressdiscover.api.services.institution.InstitutionCommandService delegate) {
         this.delegate = com.google.common.base.Preconditions.checkNotNull(delegate);
     }
 
-    public void deleteInstitutionById(final org.dressdiscover.api.models.institution.InstitutionId id) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.institution.NoSuchInstitutionException {
+    public void deleteInstitutionById(final net.lab1318.costume.api.models.institution.InstitutionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -33,12 +33,12 @@ public class LoggingInstitutionCommandService implements net.lab1318.costume.api
             delegate.deleteInstitutionById(id);
 
             logger.debug(Markers.DELETE_INSTITUTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
-        } catch (final net.lab1318.costume.api.services.IoException e) {
+        } catch (final org.dressdiscover.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.DELETE_INSTITUTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
-        } catch (final net.lab1318.costume.api.services.institution.NoSuchInstitutionException e) {
+        } catch (final org.dressdiscover.api.services.institution.NoSuchInstitutionException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.DELETE_INSTITUTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
@@ -46,7 +46,7 @@ public class LoggingInstitutionCommandService implements net.lab1318.costume.api
         }
     }
 
-    public void putInstitution(final org.dressdiscover.api.models.institution.InstitutionId id, final net.lab1318.costume.api.models.institution.Institution institution) throws net.lab1318.costume.api.services.IoException {
+    public void putInstitution(final net.lab1318.costume.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution) throws org.dressdiscover.api.services.IoException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -59,7 +59,7 @@ public class LoggingInstitutionCommandService implements net.lab1318.costume.api
             delegate.putInstitution(id, institution);
 
             logger.debug(Markers.PUT_INSTITUTION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
-        } catch (final net.lab1318.costume.api.services.IoException e) {
+        } catch (final org.dressdiscover.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.PUT_INSTITUTION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
@@ -68,5 +68,5 @@ public class LoggingInstitutionCommandService implements net.lab1318.costume.api
     }
 
     private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(LoggingInstitutionCommandService.class);
-    private final net.lab1318.costume.api.services.institution.InstitutionCommandService delegate;
+    private final org.dressdiscover.api.services.institution.InstitutionCommandService delegate;
 }

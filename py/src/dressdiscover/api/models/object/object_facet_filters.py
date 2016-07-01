@@ -1,6 +1,6 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.models.gender.gender
+import dressdiscover.api.models.gender.gender
 
 
 class ObjectFacetFilters(object):
@@ -37,7 +37,7 @@ class ObjectFacetFilters(object):
             :type exclude_collections: frozenset(str) or None
             :type exclude_color_texts: frozenset(str) or None
             :type exclude_cultural_context_texts: frozenset(str) or None
-            :type exclude_genders: frozenset(costume.api.models.gender.gender.Gender) or None
+            :type exclude_genders: frozenset(dressdiscover.api.models.gender.gender.Gender) or None
             :type exclude_institutions: frozenset(str) or None
             :type exclude_location_name_texts: frozenset(str) or None
             :type exclude_material_texts: frozenset(str) or None
@@ -48,7 +48,7 @@ class ObjectFacetFilters(object):
             :type include_collections: frozenset(str) or None
             :type include_color_texts: frozenset(str) or None
             :type include_cultural_context_texts: frozenset(str) or None
-            :type include_genders: frozenset(costume.api.models.gender.gender.Gender) or None
+            :type include_genders: frozenset(dressdiscover.api.models.gender.gender.Gender) or None
             :type include_institutions: frozenset(str) or None
             :type include_location_name_texts: frozenset(str) or None
             :type include_material_texts: frozenset(str) or None
@@ -127,7 +127,7 @@ class ObjectFacetFilters(object):
         @property
         def exclude_genders(self):
             '''
-            :rtype: frozenset(costume.api.models.gender.gender.Gender)
+            :rtype: frozenset(dressdiscover.api.models.gender.gender.Gender)
             '''
 
             return self.__exclude_genders
@@ -215,7 +215,7 @@ class ObjectFacetFilters(object):
         @property
         def include_genders(self):
             '''
-            :rtype: frozenset(costume.api.models.gender.gender.Gender)
+            :rtype: frozenset(dressdiscover.api.models.gender.gender.Gender)
             '''
 
             return self.__include_genders
@@ -310,7 +310,7 @@ class ObjectFacetFilters(object):
 
         def set_exclude_genders(self, exclude_genders):
             '''
-            :type exclude_genders: frozenset(costume.api.models.gender.gender.Gender) or None
+            :type exclude_genders: frozenset(dressdiscover.api.models.gender.gender.Gender) or None
             '''
 
             self.__exclude_genders = exclude_genders
@@ -398,7 +398,7 @@ class ObjectFacetFilters(object):
 
         def set_include_genders(self, include_genders):
             '''
-            :type include_genders: frozenset(costume.api.models.gender.gender.Gender) or None
+            :type include_genders: frozenset(dressdiscover.api.models.gender.gender.Gender) or None
             '''
 
             self.__include_genders = include_genders
@@ -459,7 +459,7 @@ class ObjectFacetFilters(object):
             :type exclude_collections: frozenset(str) or None
             :type exclude_color_texts: frozenset(str) or None
             :type exclude_cultural_context_texts: frozenset(str) or None
-            :type exclude_genders: frozenset(costume.api.models.gender.gender.Gender) or None
+            :type exclude_genders: frozenset(dressdiscover.api.models.gender.gender.Gender) or None
             :type exclude_institutions: frozenset(str) or None
             :type exclude_location_name_texts: frozenset(str) or None
             :type exclude_material_texts: frozenset(str) or None
@@ -470,7 +470,7 @@ class ObjectFacetFilters(object):
             :type include_collections: frozenset(str) or None
             :type include_color_texts: frozenset(str) or None
             :type include_cultural_context_texts: frozenset(str) or None
-            :type include_genders: frozenset(costume.api.models.gender.gender.Gender) or None
+            :type include_genders: frozenset(dressdiscover.api.models.gender.gender.Gender) or None
             :type include_institutions: frozenset(str) or None
             :type include_location_name_texts: frozenset(str) or None
             :type include_material_texts: frozenset(str) or None
@@ -553,7 +553,7 @@ class ObjectFacetFilters(object):
         @exclude_genders.setter
         def exclude_genders(self, exclude_genders):
             '''
-            :type exclude_genders: frozenset(costume.api.models.gender.gender.Gender) or None
+            :type exclude_genders: frozenset(dressdiscover.api.models.gender.gender.Gender) or None
             '''
 
             self.set_exclude_genders(exclude_genders)
@@ -641,7 +641,7 @@ class ObjectFacetFilters(object):
         @include_genders.setter
         def include_genders(self, include_genders):
             '''
-            :type include_genders: frozenset(costume.api.models.gender.gender.Gender) or None
+            :type include_genders: frozenset(dressdiscover.api.models.gender.gender.Gender) or None
             '''
 
             self.set_include_genders(include_genders)
@@ -726,7 +726,7 @@ class ObjectFacetFilters(object):
         :type exclude_collections: frozenset(str) or None
         :type exclude_color_texts: frozenset(str) or None
         :type exclude_cultural_context_texts: frozenset(str) or None
-        :type exclude_genders: frozenset(costume.api.models.gender.gender.Gender) or None
+        :type exclude_genders: frozenset(dressdiscover.api.models.gender.gender.Gender) or None
         :type exclude_institutions: frozenset(str) or None
         :type exclude_location_name_texts: frozenset(str) or None
         :type exclude_material_texts: frozenset(str) or None
@@ -737,7 +737,7 @@ class ObjectFacetFilters(object):
         :type include_collections: frozenset(str) or None
         :type include_color_texts: frozenset(str) or None
         :type include_cultural_context_texts: frozenset(str) or None
-        :type include_genders: frozenset(costume.api.models.gender.gender.Gender) or None
+        :type include_genders: frozenset(dressdiscover.api.models.gender.gender.Gender) or None
         :type include_institutions: frozenset(str) or None
         :type include_location_name_texts: frozenset(str) or None
         :type include_material_texts: frozenset(str) or None
@@ -780,8 +780,8 @@ class ObjectFacetFilters(object):
         self.__exclude_cultural_context_texts = exclude_cultural_context_texts
 
         if exclude_genders is not None:
-            if not (isinstance(exclude_genders, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.gender.gender.Gender), exclude_genders))) == 0):
-                raise TypeError("expected exclude_genders to be a frozenset(costume.api.models.gender.gender.Gender) but it is a %s" % getattr(__builtin__, 'type')(exclude_genders))
+            if not (isinstance(exclude_genders, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.gender.gender.Gender), exclude_genders))) == 0):
+                raise TypeError("expected exclude_genders to be a frozenset(dressdiscover.api.models.gender.gender.Gender) but it is a %s" % getattr(__builtin__, 'type')(exclude_genders))
             if len(exclude_genders) < 1:
                 raise ValueError("expected len(exclude_genders) to be >= 1, was %d" % len(exclude_genders))
         self.__exclude_genders = exclude_genders
@@ -857,8 +857,8 @@ class ObjectFacetFilters(object):
         self.__include_cultural_context_texts = include_cultural_context_texts
 
         if include_genders is not None:
-            if not (isinstance(include_genders, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.gender.gender.Gender), include_genders))) == 0):
-                raise TypeError("expected include_genders to be a frozenset(costume.api.models.gender.gender.Gender) but it is a %s" % getattr(__builtin__, 'type')(include_genders))
+            if not (isinstance(include_genders, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.gender.gender.Gender), include_genders))) == 0):
+                raise TypeError("expected include_genders to be a frozenset(dressdiscover.api.models.gender.gender.Gender) but it is a %s" % getattr(__builtin__, 'type')(include_genders))
             if len(include_genders) < 1:
                 raise ValueError("expected len(include_genders) to be >= 1, was %d" % len(include_genders))
         self.__include_genders = include_genders
@@ -1124,7 +1124,7 @@ class ObjectFacetFilters(object):
     @property
     def exclude_genders(self):
         '''
-        :rtype: frozenset(costume.api.models.gender.gender.Gender)
+        :rtype: frozenset(dressdiscover.api.models.gender.gender.Gender)
         '''
 
         return self.__exclude_genders
@@ -1212,7 +1212,7 @@ class ObjectFacetFilters(object):
     @property
     def include_genders(self):
         '''
-        :rtype: frozenset(costume.api.models.gender.gender.Gender)
+        :rtype: frozenset(dressdiscover.api.models.gender.gender.Gender)
         '''
 
         return self.__include_genders
@@ -1271,7 +1271,7 @@ class ObjectFacetFilters(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.object.object_facet_filters.ObjectFacetFilters
+        :rtype: dressdiscover.api.models.object.object_facet_filters.ObjectFacetFilters
         '''
 
         init_kwds = {}
@@ -1295,7 +1295,7 @@ class ObjectFacetFilters(object):
             elif ifield_name == 'exclude_cultural_context_texts':
                 init_kwds['exclude_cultural_context_texts'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'exclude_genders':
-                init_kwds['exclude_genders'] = frozenset([costume.api.models.gender.gender.Gender.value_of(iprot.read_string().strip().upper()) for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
+                init_kwds['exclude_genders'] = frozenset([dressdiscover.api.models.gender.gender.Gender.value_of(iprot.read_string().strip().upper()) for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'exclude_institutions':
                 init_kwds['exclude_institutions'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'exclude_location_name_texts':
@@ -1317,7 +1317,7 @@ class ObjectFacetFilters(object):
             elif ifield_name == 'include_cultural_context_texts':
                 init_kwds['include_cultural_context_texts'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'include_genders':
-                init_kwds['include_genders'] = frozenset([costume.api.models.gender.gender.Gender.value_of(iprot.read_string().strip().upper()) for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
+                init_kwds['include_genders'] = frozenset([dressdiscover.api.models.gender.gender.Gender.value_of(iprot.read_string().strip().upper()) for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'include_institutions':
                 init_kwds['include_institutions'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'include_location_name_texts':
@@ -1369,7 +1369,7 @@ class ObjectFacetFilters(object):
         :type exclude_collections: frozenset(str) or None
         :type exclude_color_texts: frozenset(str) or None
         :type exclude_cultural_context_texts: frozenset(str) or None
-        :type exclude_genders: frozenset(costume.api.models.gender.gender.Gender) or None
+        :type exclude_genders: frozenset(dressdiscover.api.models.gender.gender.Gender) or None
         :type exclude_institutions: frozenset(str) or None
         :type exclude_location_name_texts: frozenset(str) or None
         :type exclude_material_texts: frozenset(str) or None
@@ -1380,14 +1380,14 @@ class ObjectFacetFilters(object):
         :type include_collections: frozenset(str) or None
         :type include_color_texts: frozenset(str) or None
         :type include_cultural_context_texts: frozenset(str) or None
-        :type include_genders: frozenset(costume.api.models.gender.gender.Gender) or None
+        :type include_genders: frozenset(dressdiscover.api.models.gender.gender.Gender) or None
         :type include_institutions: frozenset(str) or None
         :type include_location_name_texts: frozenset(str) or None
         :type include_material_texts: frozenset(str) or None
         :type include_subject_term_texts: frozenset(str) or None
         :type include_technique_texts: frozenset(str) or None
         :type include_work_type_texts: frozenset(str) or None
-        :rtype: costume.api.models.object.object_facet_filters.ObjectFacetFilters
+        :rtype: dressdiscover.api.models.object.object_facet_filters.ObjectFacetFilters
         '''
 
         if exclude_all is None:
@@ -1443,7 +1443,7 @@ class ObjectFacetFilters(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.object.object_facet_filters.ObjectFacetFilters
+        :rtype: dressdiscover.api.models.object.object_facet_filters.ObjectFacetFilters
         '''
 
         oprot.write_struct_begin('ObjectFacetFilters')

@@ -1,8 +1,8 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.models.agent.agent_dates
-import costume.api.models.agent.agent_name
-import costume.api.models.agent.agent_role
+import dressdiscover.api.models.agent.agent_dates
+import dressdiscover.api.models.agent.agent_name
+import dressdiscover.api.models.agent.agent_role
 
 
 class Agent(object):
@@ -16,11 +16,11 @@ class Agent(object):
             role=None,
         ):
             '''
-            :type name: costume.api.models.agent.agent_name.AgentName
+            :type name: dressdiscover.api.models.agent.agent_name.AgentName
             :type attribution: str or None
             :type culture: str or None
-            :type dates: tuple(costume.api.models.agent.agent_dates.AgentDates) or None
-            :type role: costume.api.models.agent.agent_role.AgentRole or None
+            :type dates: tuple(dressdiscover.api.models.agent.agent_dates.AgentDates) or None
+            :type role: dressdiscover.api.models.agent.agent_role.AgentRole or None
             '''
 
             self.__name = name
@@ -51,7 +51,7 @@ class Agent(object):
         @property
         def dates(self):
             '''
-            :rtype: tuple(costume.api.models.agent.agent_dates.AgentDates)
+            :rtype: tuple(dressdiscover.api.models.agent.agent_dates.AgentDates)
             '''
 
             return self.__dates
@@ -59,7 +59,7 @@ class Agent(object):
         @property
         def name(self):
             '''
-            :rtype: costume.api.models.agent.agent_name.AgentName
+            :rtype: dressdiscover.api.models.agent.agent_name.AgentName
             '''
 
             return self.__name
@@ -67,7 +67,7 @@ class Agent(object):
         @property
         def role(self):
             '''
-            :rtype: costume.api.models.agent.agent_role.AgentRole
+            :rtype: dressdiscover.api.models.agent.agent_role.AgentRole
             '''
 
             return self.__role
@@ -90,7 +90,7 @@ class Agent(object):
 
         def set_dates(self, dates):
             '''
-            :type dates: tuple(costume.api.models.agent.agent_dates.AgentDates) or None
+            :type dates: tuple(dressdiscover.api.models.agent.agent_dates.AgentDates) or None
             '''
 
             self.__dates = dates
@@ -98,7 +98,7 @@ class Agent(object):
 
         def set_name(self, name):
             '''
-            :type name: costume.api.models.agent.agent_name.AgentName
+            :type name: dressdiscover.api.models.agent.agent_name.AgentName
             '''
 
             self.__name = name
@@ -106,7 +106,7 @@ class Agent(object):
 
         def set_role(self, role):
             '''
-            :type role: costume.api.models.agent.agent_role.AgentRole or None
+            :type role: dressdiscover.api.models.agent.agent_role.AgentRole or None
             '''
 
             self.__role = role
@@ -114,11 +114,11 @@ class Agent(object):
 
         def update(self, agent):
             '''
-            :type name: costume.api.models.agent.agent_name.AgentName
+            :type name: dressdiscover.api.models.agent.agent_name.AgentName
             :type attribution: str or None
             :type culture: str or None
-            :type dates: tuple(costume.api.models.agent.agent_dates.AgentDates) or None
-            :type role: costume.api.models.agent.agent_role.AgentRole or None
+            :type dates: tuple(dressdiscover.api.models.agent.agent_dates.AgentDates) or None
+            :type role: dressdiscover.api.models.agent.agent_role.AgentRole or None
             '''
 
             if isinstance(agent, Agent):
@@ -153,7 +153,7 @@ class Agent(object):
         @dates.setter
         def dates(self, dates):
             '''
-            :type dates: tuple(costume.api.models.agent.agent_dates.AgentDates) or None
+            :type dates: tuple(dressdiscover.api.models.agent.agent_dates.AgentDates) or None
             '''
 
             self.set_dates(dates)
@@ -161,7 +161,7 @@ class Agent(object):
         @name.setter
         def name(self, name):
             '''
-            :type name: costume.api.models.agent.agent_name.AgentName
+            :type name: dressdiscover.api.models.agent.agent_name.AgentName
             '''
 
             self.set_name(name)
@@ -169,7 +169,7 @@ class Agent(object):
         @role.setter
         def role(self, role):
             '''
-            :type role: costume.api.models.agent.agent_role.AgentRole or None
+            :type role: dressdiscover.api.models.agent.agent_role.AgentRole or None
             '''
 
             self.set_role(role)
@@ -183,17 +183,17 @@ class Agent(object):
         role=None,
     ):
         '''
-        :type name: costume.api.models.agent.agent_name.AgentName
+        :type name: dressdiscover.api.models.agent.agent_name.AgentName
         :type attribution: str or None
         :type culture: str or None
-        :type dates: tuple(costume.api.models.agent.agent_dates.AgentDates) or None
-        :type role: costume.api.models.agent.agent_role.AgentRole or None
+        :type dates: tuple(dressdiscover.api.models.agent.agent_dates.AgentDates) or None
+        :type role: dressdiscover.api.models.agent.agent_role.AgentRole or None
         '''
 
         if name is None:
             raise ValueError('name is required')
-        if not isinstance(name, costume.api.models.agent.agent_name.AgentName):
-            raise TypeError("expected name to be a costume.api.models.agent.agent_name.AgentName but it is a %s" % getattr(__builtin__, 'type')(name))
+        if not isinstance(name, dressdiscover.api.models.agent.agent_name.AgentName):
+            raise TypeError("expected name to be a dressdiscover.api.models.agent.agent_name.AgentName but it is a %s" % getattr(__builtin__, 'type')(name))
         self.__name = name
 
         if attribution is not None:
@@ -211,15 +211,15 @@ class Agent(object):
         self.__culture = culture
 
         if dates is not None:
-            if not (isinstance(dates, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.agent.agent_dates.AgentDates), dates))) == 0):
-                raise TypeError("expected dates to be a tuple(costume.api.models.agent.agent_dates.AgentDates) but it is a %s" % getattr(__builtin__, 'type')(dates))
+            if not (isinstance(dates, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.agent.agent_dates.AgentDates), dates))) == 0):
+                raise TypeError("expected dates to be a tuple(dressdiscover.api.models.agent.agent_dates.AgentDates) but it is a %s" % getattr(__builtin__, 'type')(dates))
             if len(dates) < 1:
                 raise ValueError("expected len(dates) to be >= 1, was %d" % len(dates))
         self.__dates = dates
 
         if role is not None:
-            if not isinstance(role, costume.api.models.agent.agent_role.AgentRole):
-                raise TypeError("expected role to be a costume.api.models.agent.agent_role.AgentRole but it is a %s" % getattr(__builtin__, 'type')(role))
+            if not isinstance(role, dressdiscover.api.models.agent.agent_role.AgentRole):
+                raise TypeError("expected role to be a dressdiscover.api.models.agent.agent_role.AgentRole but it is a %s" % getattr(__builtin__, 'type')(role))
         self.__role = role
 
     def __eq__(self, other):
@@ -307,7 +307,7 @@ class Agent(object):
     @property
     def dates(self):
         '''
-        :rtype: tuple(costume.api.models.agent.agent_dates.AgentDates)
+        :rtype: tuple(dressdiscover.api.models.agent.agent_dates.AgentDates)
         '''
 
         return self.__dates
@@ -315,7 +315,7 @@ class Agent(object):
     @property
     def name(self):
         '''
-        :rtype: costume.api.models.agent.agent_name.AgentName
+        :rtype: dressdiscover.api.models.agent.agent_name.AgentName
         '''
 
         return self.__name
@@ -326,7 +326,7 @@ class Agent(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.agent.agent.Agent
+        :rtype: dressdiscover.api.models.agent.agent.Agent
         '''
 
         init_kwds = {}
@@ -337,7 +337,7 @@ class Agent(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'name' and ifield_id == 1:
-                init_kwds['name'] = costume.api.models.agent.agent_name.AgentName.read(iprot)
+                init_kwds['name'] = dressdiscover.api.models.agent.agent_name.AgentName.read(iprot)
             elif ifield_name == 'attribution' and ifield_id == 2:
                 try:
                     init_kwds['attribution'] = iprot.read_string()
@@ -349,9 +349,9 @@ class Agent(object):
                 except (TypeError, ValueError,):
                     pass
             elif ifield_name == 'dates' and ifield_id == 4:
-                init_kwds['dates'] = tuple([costume.api.models.agent.agent_dates.AgentDates.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+                init_kwds['dates'] = tuple([dressdiscover.api.models.agent.agent_dates.AgentDates.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'role' and ifield_id == 5:
-                init_kwds['role'] = costume.api.models.agent.agent_role.AgentRole.read(iprot)
+                init_kwds['role'] = dressdiscover.api.models.agent.agent_role.AgentRole.read(iprot)
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -368,12 +368,12 @@ class Agent(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type name: costume.api.models.agent.agent_name.AgentName or None
+        :type name: dressdiscover.api.models.agent.agent_name.AgentName or None
         :type attribution: str or None
         :type culture: str or None
-        :type dates: tuple(costume.api.models.agent.agent_dates.AgentDates) or None
-        :type role: costume.api.models.agent.agent_role.AgentRole or None
-        :rtype: costume.api.models.agent.agent.Agent
+        :type dates: tuple(dressdiscover.api.models.agent.agent_dates.AgentDates) or None
+        :type role: dressdiscover.api.models.agent.agent_role.AgentRole or None
+        :rtype: dressdiscover.api.models.agent.agent.Agent
         '''
 
         if name is None:
@@ -391,7 +391,7 @@ class Agent(object):
     @property
     def role(self):
         '''
-        :rtype: costume.api.models.agent.agent_role.AgentRole
+        :rtype: dressdiscover.api.models.agent.agent_role.AgentRole
         '''
 
         return self.__role
@@ -401,7 +401,7 @@ class Agent(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.agent.agent.Agent
+        :rtype: dressdiscover.api.models.agent.agent.Agent
         '''
 
         oprot.write_struct_begin('Agent')

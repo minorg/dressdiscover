@@ -1,6 +1,6 @@
 import __builtin__
-import costume.api.models.material.material_type
-import costume.api.models.vocab_ref
+import dressdiscover.api.models.material.material_type
+import dressdiscover.api.models.vocab_ref
 
 
 class Material(object):
@@ -13,8 +13,8 @@ class Material(object):
         ):
             '''
             :type text: str
-            :type type: costume.api.models.material.material_type.MaterialType
-            :type vocab_ref: costume.api.models.vocab_ref.VocabRef or None
+            :type type: dressdiscover.api.models.material.material_type.MaterialType
+            :type vocab_ref: dressdiscover.api.models.vocab_ref.VocabRef or None
             '''
 
             self.__text = text
@@ -34,7 +34,7 @@ class Material(object):
 
         def set_type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.material.material_type.MaterialType
+            :type type: dressdiscover.api.models.material.material_type.MaterialType
             '''
 
             self.__type = type
@@ -42,7 +42,7 @@ class Material(object):
 
         def set_vocab_ref(self, vocab_ref):
             '''
-            :type vocab_ref: costume.api.models.vocab_ref.VocabRef or None
+            :type vocab_ref: dressdiscover.api.models.vocab_ref.VocabRef or None
             '''
 
             self.__vocab_ref = vocab_ref
@@ -59,7 +59,7 @@ class Material(object):
         @property
         def type(self):  # @ReservedAssignment
             '''
-            :rtype: costume.api.models.material.material_type.MaterialType
+            :rtype: dressdiscover.api.models.material.material_type.MaterialType
             '''
 
             return self.__type
@@ -67,8 +67,8 @@ class Material(object):
         def update(self, material):
             '''
             :type text: str
-            :type type: costume.api.models.material.material_type.MaterialType
-            :type vocab_ref: costume.api.models.vocab_ref.VocabRef or None
+            :type type: dressdiscover.api.models.material.material_type.MaterialType
+            :type vocab_ref: dressdiscover.api.models.vocab_ref.VocabRef or None
             '''
 
             if isinstance(material, Material):
@@ -85,7 +85,7 @@ class Material(object):
         @property
         def vocab_ref(self):
             '''
-            :rtype: costume.api.models.vocab_ref.VocabRef
+            :rtype: dressdiscover.api.models.vocab_ref.VocabRef
             '''
 
             return self.__vocab_ref
@@ -101,7 +101,7 @@ class Material(object):
         @type.setter
         def type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.material.material_type.MaterialType
+            :type type: dressdiscover.api.models.material.material_type.MaterialType
             '''
 
             self.set_type(type)
@@ -109,7 +109,7 @@ class Material(object):
         @vocab_ref.setter
         def vocab_ref(self, vocab_ref):
             '''
-            :type vocab_ref: costume.api.models.vocab_ref.VocabRef or None
+            :type vocab_ref: dressdiscover.api.models.vocab_ref.VocabRef or None
             '''
 
             self.set_vocab_ref(vocab_ref)
@@ -122,8 +122,8 @@ class Material(object):
     ):
         '''
         :type text: str
-        :type type: costume.api.models.material.material_type.MaterialType
-        :type vocab_ref: costume.api.models.vocab_ref.VocabRef or None
+        :type type: dressdiscover.api.models.material.material_type.MaterialType
+        :type vocab_ref: dressdiscover.api.models.vocab_ref.VocabRef or None
         '''
 
         if text is None:
@@ -136,13 +136,13 @@ class Material(object):
 
         if type is None:
             raise ValueError('type is required')
-        if not isinstance(type, costume.api.models.material.material_type.MaterialType):
-            raise TypeError("expected type to be a costume.api.models.material.material_type.MaterialType but it is a %s" % getattr(__builtin__, 'type')(type))
+        if not isinstance(type, dressdiscover.api.models.material.material_type.MaterialType):
+            raise TypeError("expected type to be a dressdiscover.api.models.material.material_type.MaterialType but it is a %s" % getattr(__builtin__, 'type')(type))
         self.__type = type
 
         if vocab_ref is not None:
-            if not isinstance(vocab_ref, costume.api.models.vocab_ref.VocabRef):
-                raise TypeError("expected vocab_ref to be a costume.api.models.vocab_ref.VocabRef but it is a %s" % getattr(__builtin__, 'type')(vocab_ref))
+            if not isinstance(vocab_ref, dressdiscover.api.models.vocab_ref.VocabRef):
+                raise TypeError("expected vocab_ref to be a dressdiscover.api.models.vocab_ref.VocabRef but it is a %s" % getattr(__builtin__, 'type')(vocab_ref))
         self.__vocab_ref = vocab_ref
 
     def __eq__(self, other):
@@ -203,7 +203,7 @@ class Material(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.material.material.Material
+        :rtype: dressdiscover.api.models.material.material.Material
         '''
 
         init_kwds = {}
@@ -216,9 +216,9 @@ class Material(object):
             elif ifield_name == 'text' and ifield_id == 2:
                 init_kwds['text'] = iprot.read_string()
             elif ifield_name == 'type' and ifield_id == 1:
-                init_kwds['type'] = costume.api.models.material.material_type.MaterialType.value_of(iprot.read_string().strip().upper())
+                init_kwds['type'] = dressdiscover.api.models.material.material_type.MaterialType.value_of(iprot.read_string().strip().upper())
             elif ifield_name == 'vocab_ref' and ifield_id == 5:
-                init_kwds['vocab_ref'] = costume.api.models.vocab_ref.VocabRef.read(iprot)
+                init_kwds['vocab_ref'] = dressdiscover.api.models.vocab_ref.VocabRef.read(iprot)
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -234,9 +234,9 @@ class Material(object):
         Copy this object, replace one or more fields, and return the copy.
 
         :type text: str or None
-        :type type: costume.api.models.material.material_type.MaterialType or None
-        :type vocab_ref: costume.api.models.vocab_ref.VocabRef or None
-        :rtype: costume.api.models.material.material.Material
+        :type type: dressdiscover.api.models.material.material_type.MaterialType or None
+        :type vocab_ref: dressdiscover.api.models.vocab_ref.VocabRef or None
+        :rtype: dressdiscover.api.models.material.material.Material
         '''
 
         if text is None:
@@ -258,7 +258,7 @@ class Material(object):
     @property
     def type(self):  # @ReservedAssignment
         '''
-        :rtype: costume.api.models.material.material_type.MaterialType
+        :rtype: dressdiscover.api.models.material.material_type.MaterialType
         '''
 
         return self.__type
@@ -266,7 +266,7 @@ class Material(object):
     @property
     def vocab_ref(self):
         '''
-        :rtype: costume.api.models.vocab_ref.VocabRef
+        :rtype: dressdiscover.api.models.vocab_ref.VocabRef
         '''
 
         return self.__vocab_ref
@@ -276,7 +276,7 @@ class Material(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.material.material.Material
+        :rtype: dressdiscover.api.models.material.material.Material
         '''
 
         oprot.write_struct_begin('Material')

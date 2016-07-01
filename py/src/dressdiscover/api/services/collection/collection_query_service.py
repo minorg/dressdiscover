@@ -1,7 +1,7 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.models.collection.collection
-import costume.api.models.collection.collection_entry
+import dressdiscover.api.models.collection.collection
+import dressdiscover.api.models.collection.collection_entry
 
 
 class CollectionQueryService(object):
@@ -11,7 +11,7 @@ class CollectionQueryService(object):
     ):
         '''
         :type id: str
-        :rtype: costume.api.models.collection.collection.Collection
+        :rtype: dressdiscover.api.models.collection.collection.Collection
         '''
 
         if id is None:
@@ -21,7 +21,7 @@ class CollectionQueryService(object):
 
         get_collection_by_id_return_value = self._get_collection_by_id(id=id)
 
-        if not isinstance(get_collection_by_id_return_value, costume.api.models.collection.collection.Collection):
+        if not isinstance(get_collection_by_id_return_value, dressdiscover.api.models.collection.collection.Collection):
             raise TypeError(getattr(__builtin__, 'type')(get_collection_by_id_return_value))
 
         return get_collection_by_id_return_value
@@ -38,7 +38,7 @@ class CollectionQueryService(object):
     ):
         '''
         :type ids: tuple(str)
-        :rtype: tuple(costume.api.models.collection.collection.Collection)
+        :rtype: tuple(dressdiscover.api.models.collection.collection.Collection)
         '''
 
         if ids is None:
@@ -48,7 +48,7 @@ class CollectionQueryService(object):
 
         get_collections_by_ids_return_value = self._get_collections_by_ids(ids=ids)
 
-        if not (isinstance(get_collections_by_ids_return_value, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.collection.collection.Collection), get_collections_by_ids_return_value))) == 0):
+        if not (isinstance(get_collections_by_ids_return_value, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.collection.collection.Collection), get_collections_by_ids_return_value))) == 0):
             raise TypeError(getattr(__builtin__, 'type')(get_collections_by_ids_return_value))
 
         return get_collections_by_ids_return_value
@@ -65,7 +65,7 @@ class CollectionQueryService(object):
     ):
         '''
         :type institution_id: str
-        :rtype: tuple(costume.api.models.collection.collection_entry.CollectionEntry)
+        :rtype: tuple(dressdiscover.api.models.collection.collection_entry.CollectionEntry)
         '''
 
         if institution_id is None:
@@ -75,7 +75,7 @@ class CollectionQueryService(object):
 
         get_collections_by_institution_id_return_value = self._get_collections_by_institution_id(institution_id=institution_id)
 
-        if not (isinstance(get_collections_by_institution_id_return_value, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.collection.collection_entry.CollectionEntry), get_collections_by_institution_id_return_value))) == 0):
+        if not (isinstance(get_collections_by_institution_id_return_value, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.collection.collection_entry.CollectionEntry), get_collections_by_institution_id_return_value))) == 0):
             raise TypeError(getattr(__builtin__, 'type')(get_collections_by_institution_id_return_value))
 
         return get_collections_by_institution_id_return_value

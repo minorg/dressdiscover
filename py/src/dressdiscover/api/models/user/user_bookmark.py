@@ -1,5 +1,5 @@
 import __builtin__
-import costume.api.models.object.object_query
+import dressdiscover.api.models.object.object_query
 
 
 class UserBookmark(object):
@@ -17,7 +17,7 @@ class UserBookmark(object):
             :type user_id: str
             :type folder: str or None
             :type object_id: str or None
-            :type object_query: costume.api.models.object.object_query.ObjectQuery or None
+            :type object_query: dressdiscover.api.models.object.object_query.ObjectQuery or None
             '''
 
             self.__name = name
@@ -56,7 +56,7 @@ class UserBookmark(object):
         @property
         def object_query(self):
             '''
-            :rtype: costume.api.models.object.object_query.ObjectQuery
+            :rtype: dressdiscover.api.models.object.object_query.ObjectQuery
             '''
 
             return self.__object_query
@@ -87,7 +87,7 @@ class UserBookmark(object):
 
         def set_object_query(self, object_query):
             '''
-            :type object_query: costume.api.models.object.object_query.ObjectQuery or None
+            :type object_query: dressdiscover.api.models.object.object_query.ObjectQuery or None
             '''
 
             self.__object_query = object_query
@@ -107,7 +107,7 @@ class UserBookmark(object):
             :type user_id: str
             :type folder: str or None
             :type object_id: str or None
-            :type object_query: costume.api.models.object.object_query.ObjectQuery or None
+            :type object_query: dressdiscover.api.models.object.object_query.ObjectQuery or None
             '''
 
             if isinstance(user_bookmark, UserBookmark):
@@ -158,7 +158,7 @@ class UserBookmark(object):
         @object_query.setter
         def object_query(self, object_query):
             '''
-            :type object_query: costume.api.models.object.object_query.ObjectQuery or None
+            :type object_query: dressdiscover.api.models.object.object_query.ObjectQuery or None
             '''
 
             self.set_object_query(object_query)
@@ -184,7 +184,7 @@ class UserBookmark(object):
         :type user_id: str
         :type folder: str or None
         :type object_id: str or None
-        :type object_query: costume.api.models.object.object_query.ObjectQuery or None
+        :type object_query: dressdiscover.api.models.object.object_query.ObjectQuery or None
         '''
 
         if name is None:
@@ -214,8 +214,8 @@ class UserBookmark(object):
         self.__object_id = object_id
 
         if object_query is not None:
-            if not isinstance(object_query, costume.api.models.object.object_query.ObjectQuery):
-                raise TypeError("expected object_query to be a costume.api.models.object.object_query.ObjectQuery but it is a %s" % getattr(__builtin__, 'type')(object_query))
+            if not isinstance(object_query, dressdiscover.api.models.object.object_query.ObjectQuery):
+                raise TypeError("expected object_query to be a dressdiscover.api.models.object.object_query.ObjectQuery but it is a %s" % getattr(__builtin__, 'type')(object_query))
         self.__object_query = object_query
 
     def __eq__(self, other):
@@ -309,7 +309,7 @@ class UserBookmark(object):
     @property
     def object_query(self):
         '''
-        :rtype: costume.api.models.object.object_query.ObjectQuery
+        :rtype: dressdiscover.api.models.object.object_query.ObjectQuery
         '''
 
         return self.__object_query
@@ -320,7 +320,7 @@ class UserBookmark(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.user.user_bookmark.UserBookmark
+        :rtype: dressdiscover.api.models.user.user_bookmark.UserBookmark
         '''
 
         init_kwds = {}
@@ -345,7 +345,7 @@ class UserBookmark(object):
                 except (TypeError, ValueError,):
                     pass
             elif ifield_name == 'object_query':
-                init_kwds['object_query'] = costume.api.models.object.object_query.ObjectQuery.read(iprot)
+                init_kwds['object_query'] = dressdiscover.api.models.object.object_query.ObjectQuery.read(iprot)
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -366,8 +366,8 @@ class UserBookmark(object):
         :type user_id: str or None
         :type folder: str or None
         :type object_id: str or None
-        :type object_query: costume.api.models.object.object_query.ObjectQuery or None
-        :rtype: costume.api.models.user.user_bookmark.UserBookmark
+        :type object_query: dressdiscover.api.models.object.object_query.ObjectQuery or None
+        :rtype: dressdiscover.api.models.user.user_bookmark.UserBookmark
         '''
 
         if name is None:
@@ -395,7 +395,7 @@ class UserBookmark(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.user.user_bookmark.UserBookmark
+        :rtype: dressdiscover.api.models.user.user_bookmark.UserBookmark
         '''
 
         oprot.write_struct_begin('UserBookmark')

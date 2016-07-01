@@ -1,7 +1,7 @@
 package org.dressdiscover.lib.services.collection;
 
 @com.google.inject.Singleton
-public class LoggingCollectionQueryService implements net.lab1318.costume.api.services.collection.CollectionQueryService {
+public class LoggingCollectionQueryService implements org.dressdiscover.api.services.collection.CollectionQueryService {
     public static class Markers {
         public final static org.slf4j.Marker GET_COLLECTION_BY_ID = org.slf4j.MarkerFactory.getMarker("GET_COLLECTION_BY_ID");
         public final static org.slf4j.Marker GET_COLLECTIONS_BY_IDS = org.slf4j.MarkerFactory.getMarker("GET_COLLECTIONS_BY_IDS");
@@ -15,14 +15,14 @@ public class LoggingCollectionQueryService implements net.lab1318.costume.api.se
         }
     }
 
-    public final static com.google.inject.name.Named DELEGATE_NAME = com.google.inject.name.Names.named("net.lab1318.costume.lib.services.collection.LoggingCollectionQueryService.delegate");
+    public final static com.google.inject.name.Named DELEGATE_NAME = com.google.inject.name.Names.named("org.dressdiscover.lib.services.collection.LoggingCollectionQueryService.delegate");
 
     @com.google.inject.Inject
-    public LoggingCollectionQueryService(@com.google.inject.name.Named("net.lab1318.costume.lib.services.collection.LoggingCollectionQueryService.delegate") final net.lab1318.costume.api.services.collection.CollectionQueryService delegate) {
+    public LoggingCollectionQueryService(@com.google.inject.name.Named("org.dressdiscover.lib.services.collection.LoggingCollectionQueryService.delegate") final org.dressdiscover.api.services.collection.CollectionQueryService delegate) {
         this.delegate = com.google.common.base.Preconditions.checkNotNull(delegate);
     }
 
-    public net.lab1318.costume.api.models.collection.Collection getCollectionById(final org.dressdiscover.api.models.collection.CollectionId id) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException, net.lab1318.costume.api.services.institution.NoSuchInstitutionException {
+    public org.dressdiscover.api.models.collection.Collection getCollectionById(final net.lab1318.costume.api.models.collection.CollectionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -32,7 +32,7 @@ public class LoggingCollectionQueryService implements net.lab1318.costume.api.se
         __logMessageStringBuilder.append(")");
 
         try {
-            net.lab1318.costume.api.models.collection.Collection __returnValue = delegate.getCollectionById(id);
+            org.dressdiscover.api.models.collection.Collection __returnValue = delegate.getCollectionById(id);
 
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(__returnValue);
@@ -40,17 +40,17 @@ public class LoggingCollectionQueryService implements net.lab1318.costume.api.se
             logger.debug(Markers.GET_COLLECTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
 
             return __returnValue;
-        } catch (final net.lab1318.costume.api.services.IoException e) {
+        } catch (final org.dressdiscover.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.GET_COLLECTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
-        } catch (final net.lab1318.costume.api.services.collection.NoSuchCollectionException e) {
+        } catch (final org.dressdiscover.api.services.collection.NoSuchCollectionException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.GET_COLLECTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
-        } catch (final net.lab1318.costume.api.services.institution.NoSuchInstitutionException e) {
+        } catch (final org.dressdiscover.api.services.institution.NoSuchInstitutionException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.GET_COLLECTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
@@ -58,7 +58,7 @@ public class LoggingCollectionQueryService implements net.lab1318.costume.api.se
         }
     }
 
-    public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> getCollectionsByIds(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.CollectionId> ids) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.collection.NoSuchCollectionException, net.lab1318.costume.api.services.institution.NoSuchInstitutionException {
+    public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.Collection> getCollectionsByIds(final com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionId> ids) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -68,7 +68,7 @@ public class LoggingCollectionQueryService implements net.lab1318.costume.api.se
         __logMessageStringBuilder.append(")");
 
         try {
-            com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.Collection> __returnValue = delegate.getCollectionsByIds(ids);
+            com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.Collection> __returnValue = delegate.getCollectionsByIds(ids);
 
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(__returnValue);
@@ -76,17 +76,17 @@ public class LoggingCollectionQueryService implements net.lab1318.costume.api.se
             logger.debug(Markers.GET_COLLECTIONS_BY_IDS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
 
             return __returnValue;
-        } catch (final net.lab1318.costume.api.services.IoException e) {
+        } catch (final org.dressdiscover.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.GET_COLLECTIONS_BY_IDS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
-        } catch (final net.lab1318.costume.api.services.collection.NoSuchCollectionException e) {
+        } catch (final org.dressdiscover.api.services.collection.NoSuchCollectionException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.GET_COLLECTIONS_BY_IDS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
-        } catch (final net.lab1318.costume.api.services.institution.NoSuchInstitutionException e) {
+        } catch (final org.dressdiscover.api.services.institution.NoSuchInstitutionException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.GET_COLLECTIONS_BY_IDS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
@@ -94,7 +94,7 @@ public class LoggingCollectionQueryService implements net.lab1318.costume.api.se
         }
     }
 
-    public com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionEntry> getCollectionsByInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws net.lab1318.costume.api.services.IoException, net.lab1318.costume.api.services.institution.NoSuchInstitutionException {
+    public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.CollectionEntry> getCollectionsByInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -104,7 +104,7 @@ public class LoggingCollectionQueryService implements net.lab1318.costume.api.se
         __logMessageStringBuilder.append(")");
 
         try {
-            com.google.common.collect.ImmutableList<net.lab1318.costume.api.models.collection.CollectionEntry> __returnValue = delegate.getCollectionsByInstitutionId(institutionId);
+            com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.CollectionEntry> __returnValue = delegate.getCollectionsByInstitutionId(institutionId);
 
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(__returnValue);
@@ -112,12 +112,12 @@ public class LoggingCollectionQueryService implements net.lab1318.costume.api.se
             logger.debug(Markers.GET_COLLECTIONS_BY_INSTITUTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
 
             return __returnValue;
-        } catch (final net.lab1318.costume.api.services.IoException e) {
+        } catch (final org.dressdiscover.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.GET_COLLECTIONS_BY_INSTITUTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
-        } catch (final net.lab1318.costume.api.services.institution.NoSuchInstitutionException e) {
+        } catch (final org.dressdiscover.api.services.institution.NoSuchInstitutionException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.GET_COLLECTIONS_BY_INSTITUTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
@@ -126,5 +126,5 @@ public class LoggingCollectionQueryService implements net.lab1318.costume.api.se
     }
 
     private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(LoggingCollectionQueryService.class);
-    private final net.lab1318.costume.api.services.collection.CollectionQueryService delegate;
+    private final org.dressdiscover.api.services.collection.CollectionQueryService delegate;
 }

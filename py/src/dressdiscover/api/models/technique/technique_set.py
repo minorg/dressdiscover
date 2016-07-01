@@ -1,6 +1,6 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.models.technique.technique
+import dressdiscover.api.models.technique.technique
 
 
 class TechniqueSet(object):
@@ -12,7 +12,7 @@ class TechniqueSet(object):
             notes=None,
         ):
             '''
-            :type elements: tuple(costume.api.models.technique.technique.Technique)
+            :type elements: tuple(dressdiscover.api.models.technique.technique.Technique)
             :type display: str or None
             :type notes: str or None
             '''
@@ -35,7 +35,7 @@ class TechniqueSet(object):
         @property
         def elements(self):
             '''
-            :rtype: tuple(costume.api.models.technique.technique.Technique)
+            :rtype: tuple(dressdiscover.api.models.technique.technique.Technique)
             '''
 
             return self.__elements
@@ -58,7 +58,7 @@ class TechniqueSet(object):
 
         def set_elements(self, elements):
             '''
-            :type elements: tuple(costume.api.models.technique.technique.Technique)
+            :type elements: tuple(dressdiscover.api.models.technique.technique.Technique)
             '''
 
             self.__elements = elements
@@ -74,7 +74,7 @@ class TechniqueSet(object):
 
         def update(self, technique_set):
             '''
-            :type elements: tuple(costume.api.models.technique.technique.Technique)
+            :type elements: tuple(dressdiscover.api.models.technique.technique.Technique)
             :type display: str or None
             :type notes: str or None
             '''
@@ -101,7 +101,7 @@ class TechniqueSet(object):
         @elements.setter
         def elements(self, elements):
             '''
-            :type elements: tuple(costume.api.models.technique.technique.Technique)
+            :type elements: tuple(dressdiscover.api.models.technique.technique.Technique)
             '''
 
             self.set_elements(elements)
@@ -121,15 +121,15 @@ class TechniqueSet(object):
         notes=None,
     ):
         '''
-        :type elements: tuple(costume.api.models.technique.technique.Technique)
+        :type elements: tuple(dressdiscover.api.models.technique.technique.Technique)
         :type display: str or None
         :type notes: str or None
         '''
 
         if elements is None:
             raise ValueError('elements is required')
-        if not (isinstance(elements, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.technique.technique.Technique), elements))) == 0):
-            raise TypeError("expected elements to be a tuple(costume.api.models.technique.technique.Technique) but it is a %s" % getattr(__builtin__, 'type')(elements))
+        if not (isinstance(elements, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.technique.technique.Technique), elements))) == 0):
+            raise TypeError("expected elements to be a tuple(dressdiscover.api.models.technique.technique.Technique) but it is a %s" % getattr(__builtin__, 'type')(elements))
         if len(elements) < 1:
             raise ValueError("expected len(elements) to be >= 1, was %d" % len(elements))
         self.__elements = elements
@@ -213,7 +213,7 @@ class TechniqueSet(object):
     @property
     def elements(self):
         '''
-        :rtype: tuple(costume.api.models.technique.technique.Technique)
+        :rtype: tuple(dressdiscover.api.models.technique.technique.Technique)
         '''
 
         return self.__elements
@@ -232,7 +232,7 @@ class TechniqueSet(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.technique.technique_set.TechniqueSet
+        :rtype: dressdiscover.api.models.technique.technique_set.TechniqueSet
         '''
 
         init_kwds = {}
@@ -243,7 +243,7 @@ class TechniqueSet(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'elements' and ifield_id == 1:
-                init_kwds['elements'] = tuple([costume.api.models.technique.technique.Technique.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+                init_kwds['elements'] = tuple([dressdiscover.api.models.technique.technique.Technique.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'display' and ifield_id == 2:
                 try:
                     init_kwds['display'] = iprot.read_string()
@@ -268,10 +268,10 @@ class TechniqueSet(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type elements: tuple(costume.api.models.technique.technique.Technique) or None
+        :type elements: tuple(dressdiscover.api.models.technique.technique.Technique) or None
         :type display: str or None
         :type notes: str or None
-        :rtype: costume.api.models.technique.technique_set.TechniqueSet
+        :rtype: dressdiscover.api.models.technique.technique_set.TechniqueSet
         '''
 
         if elements is None:
@@ -287,7 +287,7 @@ class TechniqueSet(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.technique.technique_set.TechniqueSet
+        :rtype: dressdiscover.api.models.technique.technique_set.TechniqueSet
         '''
 
         oprot.write_struct_begin('TechniqueSet')

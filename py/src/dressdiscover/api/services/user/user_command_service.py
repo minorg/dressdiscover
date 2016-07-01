@@ -1,6 +1,6 @@
 import __builtin__
-import costume.api.models.user.user
-import costume.api.models.user.user_bookmark
+import dressdiscover.api.models.user.user
+import dressdiscover.api.models.user.user_bookmark
 
 
 class UserCommandService(object):
@@ -61,14 +61,14 @@ class UserCommandService(object):
         user=None,
     ):
         '''
-        :type user: costume.api.models.user.user.User
+        :type user: dressdiscover.api.models.user.user.User
         :rtype: str
         '''
 
         if user is None:
             raise ValueError('user is required')
-        if not isinstance(user, costume.api.models.user.user.User):
-            raise TypeError("expected user to be a costume.api.models.user.user.User but it is a %s" % getattr(__builtin__, 'type')(user))
+        if not isinstance(user, dressdiscover.api.models.user.user.User):
+            raise TypeError("expected user to be a dressdiscover.api.models.user.user.User but it is a %s" % getattr(__builtin__, 'type')(user))
 
         post_user_return_value = self._post_user(user=user)
 
@@ -88,14 +88,14 @@ class UserCommandService(object):
         user_bookmark=None,
     ):
         '''
-        :type user_bookmark: costume.api.models.user.user_bookmark.UserBookmark
+        :type user_bookmark: dressdiscover.api.models.user.user_bookmark.UserBookmark
         :rtype: str
         '''
 
         if user_bookmark is None:
             raise ValueError('user_bookmark is required')
-        if not isinstance(user_bookmark, costume.api.models.user.user_bookmark.UserBookmark):
-            raise TypeError("expected user_bookmark to be a costume.api.models.user.user_bookmark.UserBookmark but it is a %s" % getattr(__builtin__, 'type')(user_bookmark))
+        if not isinstance(user_bookmark, dressdiscover.api.models.user.user_bookmark.UserBookmark):
+            raise TypeError("expected user_bookmark to be a dressdiscover.api.models.user.user_bookmark.UserBookmark but it is a %s" % getattr(__builtin__, 'type')(user_bookmark))
 
         post_user_bookmark_return_value = self._post_user_bookmark(user_bookmark=user_bookmark)
 
@@ -117,7 +117,7 @@ class UserCommandService(object):
     ):
         '''
         :type id: str
-        :type user: costume.api.models.user.user.User
+        :type user: dressdiscover.api.models.user.user.User
         '''
 
         if id is None:
@@ -126,8 +126,8 @@ class UserCommandService(object):
             raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
         if user is None:
             raise ValueError('user is required')
-        if not isinstance(user, costume.api.models.user.user.User):
-            raise TypeError("expected user to be a costume.api.models.user.user.User but it is a %s" % getattr(__builtin__, 'type')(user))
+        if not isinstance(user, dressdiscover.api.models.user.user.User):
+            raise TypeError("expected user to be a dressdiscover.api.models.user.user.User but it is a %s" % getattr(__builtin__, 'type')(user))
 
         self._put_user(id=id, user=user)
 

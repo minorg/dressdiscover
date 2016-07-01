@@ -1,5 +1,5 @@
 import __builtin__
-import costume.api.models.inscription.inscription_text_type
+import dressdiscover.api.models.inscription.inscription_text_type
 
 
 class InscriptionText(object):
@@ -12,7 +12,7 @@ class InscriptionText(object):
         ):
             '''
             :type text: str
-            :type type: costume.api.models.inscription.inscription_text_type.InscriptionTextType
+            :type type: dressdiscover.api.models.inscription.inscription_text_type.InscriptionTextType
             :type lang: str or None
             '''
 
@@ -49,7 +49,7 @@ class InscriptionText(object):
 
         def set_type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.inscription.inscription_text_type.InscriptionTextType
+            :type type: dressdiscover.api.models.inscription.inscription_text_type.InscriptionTextType
             '''
 
             self.__type = type
@@ -66,7 +66,7 @@ class InscriptionText(object):
         @property
         def type(self):  # @ReservedAssignment
             '''
-            :rtype: costume.api.models.inscription.inscription_text_type.InscriptionTextType
+            :rtype: dressdiscover.api.models.inscription.inscription_text_type.InscriptionTextType
             '''
 
             return self.__type
@@ -74,7 +74,7 @@ class InscriptionText(object):
         def update(self, inscription_text):
             '''
             :type text: str
-            :type type: costume.api.models.inscription.inscription_text_type.InscriptionTextType
+            :type type: dressdiscover.api.models.inscription.inscription_text_type.InscriptionTextType
             :type lang: str or None
             '''
 
@@ -108,7 +108,7 @@ class InscriptionText(object):
         @type.setter
         def type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.inscription.inscription_text_type.InscriptionTextType
+            :type type: dressdiscover.api.models.inscription.inscription_text_type.InscriptionTextType
             '''
 
             self.set_type(type)
@@ -121,7 +121,7 @@ class InscriptionText(object):
     ):
         '''
         :type text: str
-        :type type: costume.api.models.inscription.inscription_text_type.InscriptionTextType
+        :type type: dressdiscover.api.models.inscription.inscription_text_type.InscriptionTextType
         :type lang: str or None
         '''
 
@@ -135,8 +135,8 @@ class InscriptionText(object):
 
         if type is None:
             raise ValueError('type is required')
-        if not isinstance(type, costume.api.models.inscription.inscription_text_type.InscriptionTextType):
-            raise TypeError("expected type to be a costume.api.models.inscription.inscription_text_type.InscriptionTextType but it is a %s" % getattr(__builtin__, 'type')(type))
+        if not isinstance(type, dressdiscover.api.models.inscription.inscription_text_type.InscriptionTextType):
+            raise TypeError("expected type to be a dressdiscover.api.models.inscription.inscription_text_type.InscriptionTextType but it is a %s" % getattr(__builtin__, 'type')(type))
         self.__type = type
 
         if lang is not None:
@@ -214,7 +214,7 @@ class InscriptionText(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.inscription.inscription_text.InscriptionText
+        :rtype: dressdiscover.api.models.inscription.inscription_text.InscriptionText
         '''
 
         init_kwds = {}
@@ -227,7 +227,7 @@ class InscriptionText(object):
             elif ifield_name == 'text' and ifield_id == 2:
                 init_kwds['text'] = iprot.read_string()
             elif ifield_name == 'type' and ifield_id == 1:
-                init_kwds['type'] = costume.api.models.inscription.inscription_text_type.InscriptionTextType.value_of(iprot.read_string().strip().upper())
+                init_kwds['type'] = dressdiscover.api.models.inscription.inscription_text_type.InscriptionTextType.value_of(iprot.read_string().strip().upper())
             elif ifield_name == 'lang' and ifield_id == 3:
                 try:
                     init_kwds['lang'] = iprot.read_string()
@@ -248,9 +248,9 @@ class InscriptionText(object):
         Copy this object, replace one or more fields, and return the copy.
 
         :type text: str or None
-        :type type: costume.api.models.inscription.inscription_text_type.InscriptionTextType or None
+        :type type: dressdiscover.api.models.inscription.inscription_text_type.InscriptionTextType or None
         :type lang: str or None
-        :rtype: costume.api.models.inscription.inscription_text.InscriptionText
+        :rtype: dressdiscover.api.models.inscription.inscription_text.InscriptionText
         '''
 
         if text is None:
@@ -272,7 +272,7 @@ class InscriptionText(object):
     @property
     def type(self):  # @ReservedAssignment
         '''
-        :rtype: costume.api.models.inscription.inscription_text_type.InscriptionTextType
+        :rtype: dressdiscover.api.models.inscription.inscription_text_type.InscriptionTextType
         '''
 
         return self.__type
@@ -282,7 +282,7 @@ class InscriptionText(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.inscription.inscription_text.InscriptionText
+        :rtype: dressdiscover.api.models.inscription.inscription_text.InscriptionText
         '''
 
         oprot.write_struct_begin('InscriptionText')

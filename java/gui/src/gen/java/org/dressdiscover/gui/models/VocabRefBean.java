@@ -3,7 +3,7 @@ package org.dressdiscover.gui.models;
 public class VocabRefBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        VOCAB("vocab", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.Vocab>() {}, true, 2, "vocab", org.thryft.protocol.Type.STRING),
+        VOCAB("vocab", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.Vocab>() {}, true, 2, "vocab", org.thryft.protocol.Type.STRING),
         REFID("refid", new com.google.common.reflect.TypeToken<String>() {}, false, 1, "refid", org.thryft.protocol.Type.STRING),
         URI("uri", new com.google.common.reflect.TypeToken<org.thryft.native_.Uri>() {}, false, 3, "uri", org.thryft.protocol.Type.STRING);
 
@@ -96,7 +96,7 @@ public class VocabRefBean implements org.thryft.StructBean {
         uri = null;
     }
 
-    public VocabRefBean(final net.lab1318.costume.api.models.VocabRef other) {
+    public VocabRefBean(final org.dressdiscover.api.models.VocabRef other) {
         this.vocab = other.getVocab();
         this.refid = other.getRefid().isPresent() ? other.getRefid().get() : null;
         this.uri = other.getUri().isPresent() ? other.getUri().get() : null;
@@ -148,7 +148,7 @@ public class VocabRefBean implements org.thryft.StructBean {
         return uri;
     }
 
-    public net.lab1318.costume.api.models.Vocab getVocab() {
+    public org.dressdiscover.api.models.Vocab getVocab() {
         return vocab;
     }
 
@@ -178,7 +178,7 @@ public class VocabRefBean implements org.thryft.StructBean {
         this.uri = uri;
     }
 
-    public void setVocab(final net.lab1318.costume.api.models.Vocab vocab) {
+    public void setVocab(final org.dressdiscover.api.models.Vocab vocab) {
         this.vocab = vocab;
     }
 
@@ -187,7 +187,7 @@ public class VocabRefBean implements org.thryft.StructBean {
         return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("vocab", getVocab()).add("refid", getRefid()).add("uri", getUri()).toString();
     }
 
-    private net.lab1318.costume.api.models.Vocab vocab;
+    private org.dressdiscover.api.models.Vocab vocab;
 
     private String refid;
 

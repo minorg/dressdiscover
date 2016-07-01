@@ -1,20 +1,20 @@
 from urlparse import urlparse
 import base64
-import costume.api.models.object.object
-import costume.api.services.collection.no_such_collection_exception  # @UnusedImport
-import costume.api.services.institution.no_such_institution_exception  # @UnusedImport
-import costume.api.services.io_exception  # @UnusedImport
-import costume.api.services.object.no_such_object_exception  # @UnusedImport
-import costume.api.services.object.object_query_service
+import dressdiscover.api.models.object.object
+import dressdiscover.api.services.collection.no_such_collection_exception  # @UnusedImport
+import dressdiscover.api.services.institution.no_such_institution_exception  # @UnusedImport
+import dressdiscover.api.services.io_exception  # @UnusedImport
+import dressdiscover.api.services.object.no_such_object_exception  # @UnusedImport
+import dressdiscover.api.services.object.object_query_service
 import json
 import thryft.protocol.json_input_protocol
 import thryft.protocol.json_output_protocol
 import urllib2
 
 
-class ObjectQueryServiceJsonRpcClient(costume.api.services.object.object_query_service.ObjectQueryService):
+class ObjectQueryServiceJsonRpcClient(dressdiscover.api.services.object.object_query_service.ObjectQueryService):
     def __init__(self, api_url, headers=None):
-        costume.api.services.object.object_query_service.ObjectQueryService.__init__(self)
+        dressdiscover.api.services.object.object_query_service.ObjectQueryService.__init__(self)
 
         if headers is None:
             headers = {}
@@ -128,5 +128,5 @@ class ObjectQueryServiceJsonRpcClient(costume.api.services.object.object_query_s
 
         return_value = self.__request(method='get_object_by_id', params=oprot.value)
         iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
-        return costume.api.models.object.object.Object.read(iprot)
+        return dressdiscover.api.models.object.object.Object.read(iprot)
 

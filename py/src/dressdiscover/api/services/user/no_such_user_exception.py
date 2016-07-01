@@ -125,7 +125,7 @@ class NoSuchUserException(Exception):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.services.user.no_such_user_exception.NoSuchUserException
+        :rtype: dressdiscover.api.services.user.no_such_user_exception.NoSuchUserException
         '''
 
         init_kwds = {}
@@ -153,7 +153,7 @@ class NoSuchUserException(Exception):
         Copy this object, replace one or more fields, and return the copy.
 
         :type id: str or None
-        :rtype: costume.api.services.user.no_such_user_exception.NoSuchUserException
+        :rtype: dressdiscover.api.services.user.no_such_user_exception.NoSuchUserException
         '''
 
         if id is None:
@@ -165,7 +165,7 @@ class NoSuchUserException(Exception):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.services.user.no_such_user_exception.NoSuchUserException
+        :rtype: dressdiscover.api.services.user.no_such_user_exception.NoSuchUserException
         '''
 
         oprot.write_struct_begin('NoSuchUserException')

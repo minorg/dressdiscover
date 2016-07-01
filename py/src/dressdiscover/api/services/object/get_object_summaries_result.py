@@ -1,7 +1,7 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.models.object.object_facets
-import costume.api.models.object.object_summary_entry
+import dressdiscover.api.models.object.object_facets
+import dressdiscover.api.models.object.object_summary_entry
 
 
 class GetObjectSummariesResult(object):
@@ -13,9 +13,9 @@ class GetObjectSummariesResult(object):
             facets=None,
         ):
             '''
-            :type hits: tuple(costume.api.models.object.object_summary_entry.ObjectSummaryEntry)
+            :type hits: tuple(dressdiscover.api.models.object.object_summary_entry.ObjectSummaryEntry)
             :type total_hits: int
-            :type facets: costume.api.models.object.object_facets.ObjectFacets or None
+            :type facets: dressdiscover.api.models.object.object_facets.ObjectFacets or None
             '''
 
             self.__hits = hits
@@ -28,7 +28,7 @@ class GetObjectSummariesResult(object):
         @property
         def facets(self):
             '''
-            :rtype: costume.api.models.object.object_facets.ObjectFacets
+            :rtype: dressdiscover.api.models.object.object_facets.ObjectFacets
             '''
 
             return self.__facets
@@ -36,14 +36,14 @@ class GetObjectSummariesResult(object):
         @property
         def hits(self):
             '''
-            :rtype: tuple(costume.api.models.object.object_summary_entry.ObjectSummaryEntry)
+            :rtype: tuple(dressdiscover.api.models.object.object_summary_entry.ObjectSummaryEntry)
             '''
 
             return self.__hits
 
         def set_facets(self, facets):
             '''
-            :type facets: costume.api.models.object.object_facets.ObjectFacets or None
+            :type facets: dressdiscover.api.models.object.object_facets.ObjectFacets or None
             '''
 
             self.__facets = facets
@@ -51,7 +51,7 @@ class GetObjectSummariesResult(object):
 
         def set_hits(self, hits):
             '''
-            :type hits: tuple(costume.api.models.object.object_summary_entry.ObjectSummaryEntry)
+            :type hits: tuple(dressdiscover.api.models.object.object_summary_entry.ObjectSummaryEntry)
             '''
 
             self.__hits = hits
@@ -75,9 +75,9 @@ class GetObjectSummariesResult(object):
 
         def update(self, get_object_summaries_result):
             '''
-            :type hits: tuple(costume.api.models.object.object_summary_entry.ObjectSummaryEntry)
+            :type hits: tuple(dressdiscover.api.models.object.object_summary_entry.ObjectSummaryEntry)
             :type total_hits: int
-            :type facets: costume.api.models.object.object_facets.ObjectFacets or None
+            :type facets: dressdiscover.api.models.object.object_facets.ObjectFacets or None
             '''
 
             if isinstance(get_object_summaries_result, GetObjectSummariesResult):
@@ -94,7 +94,7 @@ class GetObjectSummariesResult(object):
         @facets.setter
         def facets(self, facets):
             '''
-            :type facets: costume.api.models.object.object_facets.ObjectFacets or None
+            :type facets: dressdiscover.api.models.object.object_facets.ObjectFacets or None
             '''
 
             self.set_facets(facets)
@@ -102,7 +102,7 @@ class GetObjectSummariesResult(object):
         @hits.setter
         def hits(self, hits):
             '''
-            :type hits: tuple(costume.api.models.object.object_summary_entry.ObjectSummaryEntry)
+            :type hits: tuple(dressdiscover.api.models.object.object_summary_entry.ObjectSummaryEntry)
             '''
 
             self.set_hits(hits)
@@ -122,15 +122,15 @@ class GetObjectSummariesResult(object):
         facets=None,
     ):
         '''
-        :type hits: tuple(costume.api.models.object.object_summary_entry.ObjectSummaryEntry)
+        :type hits: tuple(dressdiscover.api.models.object.object_summary_entry.ObjectSummaryEntry)
         :type total_hits: int
-        :type facets: costume.api.models.object.object_facets.ObjectFacets or None
+        :type facets: dressdiscover.api.models.object.object_facets.ObjectFacets or None
         '''
 
         if hits is None:
             raise ValueError('hits is required')
-        if not (isinstance(hits, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.object.object_summary_entry.ObjectSummaryEntry), hits))) == 0):
-            raise TypeError("expected hits to be a tuple(costume.api.models.object.object_summary_entry.ObjectSummaryEntry) but it is a %s" % getattr(__builtin__, 'type')(hits))
+        if not (isinstance(hits, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.object.object_summary_entry.ObjectSummaryEntry), hits))) == 0):
+            raise TypeError("expected hits to be a tuple(dressdiscover.api.models.object.object_summary_entry.ObjectSummaryEntry) but it is a %s" % getattr(__builtin__, 'type')(hits))
         self.__hits = hits
 
         if total_hits is None:
@@ -140,8 +140,8 @@ class GetObjectSummariesResult(object):
         self.__total_hits = total_hits
 
         if facets is not None:
-            if not isinstance(facets, costume.api.models.object.object_facets.ObjectFacets):
-                raise TypeError("expected facets to be a costume.api.models.object.object_facets.ObjectFacets but it is a %s" % getattr(__builtin__, 'type')(facets))
+            if not isinstance(facets, dressdiscover.api.models.object.object_facets.ObjectFacets):
+                raise TypeError("expected facets to be a dressdiscover.api.models.object.object_facets.ObjectFacets but it is a %s" % getattr(__builtin__, 'type')(facets))
         self.__facets = facets
 
     def __eq__(self, other):
@@ -199,7 +199,7 @@ class GetObjectSummariesResult(object):
     @property
     def facets(self):
         '''
-        :rtype: costume.api.models.object.object_facets.ObjectFacets
+        :rtype: dressdiscover.api.models.object.object_facets.ObjectFacets
         '''
 
         return self.__facets
@@ -207,7 +207,7 @@ class GetObjectSummariesResult(object):
     @property
     def hits(self):
         '''
-        :rtype: tuple(costume.api.models.object.object_summary_entry.ObjectSummaryEntry)
+        :rtype: tuple(dressdiscover.api.models.object.object_summary_entry.ObjectSummaryEntry)
         '''
 
         return self.__hits
@@ -218,7 +218,7 @@ class GetObjectSummariesResult(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.services.object.get_object_summaries_result.GetObjectSummariesResult
+        :rtype: dressdiscover.api.services.object.get_object_summaries_result.GetObjectSummariesResult
         '''
 
         init_kwds = {}
@@ -229,11 +229,11 @@ class GetObjectSummariesResult(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'hits':
-                init_kwds['hits'] = tuple([costume.api.models.object.object_summary_entry.ObjectSummaryEntry.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+                init_kwds['hits'] = tuple([dressdiscover.api.models.object.object_summary_entry.ObjectSummaryEntry.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'total_hits':
                 init_kwds['total_hits'] = iprot.read_u32()
             elif ifield_name == 'facets':
-                init_kwds['facets'] = costume.api.models.object.object_facets.ObjectFacets.read(iprot)
+                init_kwds['facets'] = dressdiscover.api.models.object.object_facets.ObjectFacets.read(iprot)
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -248,10 +248,10 @@ class GetObjectSummariesResult(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type hits: tuple(costume.api.models.object.object_summary_entry.ObjectSummaryEntry) or None
+        :type hits: tuple(dressdiscover.api.models.object.object_summary_entry.ObjectSummaryEntry) or None
         :type total_hits: int or None
-        :type facets: costume.api.models.object.object_facets.ObjectFacets or None
-        :rtype: costume.api.services.object.get_object_summaries_result.GetObjectSummariesResult
+        :type facets: dressdiscover.api.models.object.object_facets.ObjectFacets or None
+        :rtype: dressdiscover.api.services.object.get_object_summaries_result.GetObjectSummariesResult
         '''
 
         if hits is None:
@@ -275,7 +275,7 @@ class GetObjectSummariesResult(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.services.object.get_object_summaries_result.GetObjectSummariesResult
+        :rtype: dressdiscover.api.services.object.get_object_summaries_result.GetObjectSummariesResult
         '''
 
         oprot.write_struct_begin('GetObjectSummariesResult')

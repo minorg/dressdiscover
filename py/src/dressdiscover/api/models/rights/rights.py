@@ -1,6 +1,6 @@
 import __builtin__
-import costume.api.models.rights.rights_type
-import costume.api.models.vocab_ref
+import dressdiscover.api.models.rights.rights_type
+import dressdiscover.api.models.vocab_ref
 
 
 class Rights(object):
@@ -15,8 +15,8 @@ class Rights(object):
         ):
             '''
             :type text: str
-            :type type: costume.api.models.rights.rights_type.RightsType
-            :type license_vocab_ref: costume.api.models.vocab_ref.VocabRef or None
+            :type type: dressdiscover.api.models.rights.rights_type.RightsType
+            :type license_vocab_ref: dressdiscover.api.models.vocab_ref.VocabRef or None
             :type notes: str or None
             :type rights_holder: str or None
             '''
@@ -33,7 +33,7 @@ class Rights(object):
         @property
         def license_vocab_ref(self):
             '''
-            :rtype: costume.api.models.vocab_ref.VocabRef
+            :rtype: dressdiscover.api.models.vocab_ref.VocabRef
             '''
 
             return self.__license_vocab_ref
@@ -56,7 +56,7 @@ class Rights(object):
 
         def set_license_vocab_ref(self, license_vocab_ref):
             '''
-            :type license_vocab_ref: costume.api.models.vocab_ref.VocabRef or None
+            :type license_vocab_ref: dressdiscover.api.models.vocab_ref.VocabRef or None
             '''
 
             self.__license_vocab_ref = license_vocab_ref
@@ -88,7 +88,7 @@ class Rights(object):
 
         def set_type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.rights.rights_type.RightsType
+            :type type: dressdiscover.api.models.rights.rights_type.RightsType
             '''
 
             self.__type = type
@@ -105,7 +105,7 @@ class Rights(object):
         @property
         def type(self):  # @ReservedAssignment
             '''
-            :rtype: costume.api.models.rights.rights_type.RightsType
+            :rtype: dressdiscover.api.models.rights.rights_type.RightsType
             '''
 
             return self.__type
@@ -113,8 +113,8 @@ class Rights(object):
         def update(self, rights):
             '''
             :type text: str
-            :type type: costume.api.models.rights.rights_type.RightsType
-            :type license_vocab_ref: costume.api.models.vocab_ref.VocabRef or None
+            :type type: dressdiscover.api.models.rights.rights_type.RightsType
+            :type license_vocab_ref: dressdiscover.api.models.vocab_ref.VocabRef or None
             :type notes: str or None
             :type rights_holder: str or None
             '''
@@ -135,7 +135,7 @@ class Rights(object):
         @license_vocab_ref.setter
         def license_vocab_ref(self, license_vocab_ref):
             '''
-            :type license_vocab_ref: costume.api.models.vocab_ref.VocabRef or None
+            :type license_vocab_ref: dressdiscover.api.models.vocab_ref.VocabRef or None
             '''
 
             self.set_license_vocab_ref(license_vocab_ref)
@@ -167,7 +167,7 @@ class Rights(object):
         @type.setter
         def type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.rights.rights_type.RightsType
+            :type type: dressdiscover.api.models.rights.rights_type.RightsType
             '''
 
             self.set_type(type)
@@ -182,8 +182,8 @@ class Rights(object):
     ):
         '''
         :type text: str
-        :type type: costume.api.models.rights.rights_type.RightsType
-        :type license_vocab_ref: costume.api.models.vocab_ref.VocabRef or None
+        :type type: dressdiscover.api.models.rights.rights_type.RightsType
+        :type license_vocab_ref: dressdiscover.api.models.vocab_ref.VocabRef or None
         :type notes: str or None
         :type rights_holder: str or None
         '''
@@ -198,13 +198,13 @@ class Rights(object):
 
         if type is None:
             raise ValueError('type is required')
-        if not isinstance(type, costume.api.models.rights.rights_type.RightsType):
-            raise TypeError("expected type to be a costume.api.models.rights.rights_type.RightsType but it is a %s" % getattr(__builtin__, 'type')(type))
+        if not isinstance(type, dressdiscover.api.models.rights.rights_type.RightsType):
+            raise TypeError("expected type to be a dressdiscover.api.models.rights.rights_type.RightsType but it is a %s" % getattr(__builtin__, 'type')(type))
         self.__type = type
 
         if license_vocab_ref is not None:
-            if not isinstance(license_vocab_ref, costume.api.models.vocab_ref.VocabRef):
-                raise TypeError("expected license_vocab_ref to be a costume.api.models.vocab_ref.VocabRef but it is a %s" % getattr(__builtin__, 'type')(license_vocab_ref))
+            if not isinstance(license_vocab_ref, dressdiscover.api.models.vocab_ref.VocabRef):
+                raise TypeError("expected license_vocab_ref to be a dressdiscover.api.models.vocab_ref.VocabRef but it is a %s" % getattr(__builtin__, 'type')(license_vocab_ref))
         self.__license_vocab_ref = license_vocab_ref
 
         if notes is not None:
@@ -288,7 +288,7 @@ class Rights(object):
     @property
     def license_vocab_ref(self):
         '''
-        :rtype: costume.api.models.vocab_ref.VocabRef
+        :rtype: dressdiscover.api.models.vocab_ref.VocabRef
         '''
 
         return self.__license_vocab_ref
@@ -307,7 +307,7 @@ class Rights(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.rights.rights.Rights
+        :rtype: dressdiscover.api.models.rights.rights.Rights
         '''
 
         init_kwds = {}
@@ -320,9 +320,9 @@ class Rights(object):
             elif ifield_name == 'text' and ifield_id == 2:
                 init_kwds['text'] = iprot.read_string()
             elif ifield_name == 'type' and ifield_id == 3:
-                init_kwds['type'] = costume.api.models.rights.rights_type.RightsType.value_of(iprot.read_string().strip().upper())
+                init_kwds['type'] = dressdiscover.api.models.rights.rights_type.RightsType.value_of(iprot.read_string().strip().upper())
             elif ifield_name == 'license_vocab_ref' and ifield_id == 5:
-                init_kwds['license_vocab_ref'] = costume.api.models.vocab_ref.VocabRef.read(iprot)
+                init_kwds['license_vocab_ref'] = dressdiscover.api.models.vocab_ref.VocabRef.read(iprot)
             elif ifield_name == 'notes' and ifield_id == 4:
                 try:
                     init_kwds['notes'] = iprot.read_string()
@@ -350,11 +350,11 @@ class Rights(object):
         Copy this object, replace one or more fields, and return the copy.
 
         :type text: str or None
-        :type type: costume.api.models.rights.rights_type.RightsType or None
-        :type license_vocab_ref: costume.api.models.vocab_ref.VocabRef or None
+        :type type: dressdiscover.api.models.rights.rights_type.RightsType or None
+        :type license_vocab_ref: dressdiscover.api.models.vocab_ref.VocabRef or None
         :type notes: str or None
         :type rights_holder: str or None
-        :rtype: costume.api.models.rights.rights.Rights
+        :rtype: dressdiscover.api.models.rights.rights.Rights
         '''
 
         if text is None:
@@ -388,7 +388,7 @@ class Rights(object):
     @property
     def type(self):  # @ReservedAssignment
         '''
-        :rtype: costume.api.models.rights.rights_type.RightsType
+        :rtype: dressdiscover.api.models.rights.rights_type.RightsType
         '''
 
         return self.__type
@@ -398,7 +398,7 @@ class Rights(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.rights.rights.Rights
+        :rtype: dressdiscover.api.models.rights.rights.Rights
         '''
 
         oprot.write_struct_begin('Rights')

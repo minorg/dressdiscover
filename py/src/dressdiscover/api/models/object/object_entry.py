@@ -1,5 +1,5 @@
 import __builtin__
-import costume.api.models.object.object
+import dressdiscover.api.models.object.object
 
 
 class ObjectEntry(object):
@@ -11,7 +11,7 @@ class ObjectEntry(object):
         ):
             '''
             :type id: str
-            :type model: costume.api.models.object.object.Object
+            :type model: dressdiscover.api.models.object.object.Object
             '''
 
             self.__id = id
@@ -31,7 +31,7 @@ class ObjectEntry(object):
         @property
         def model(self):
             '''
-            :rtype: costume.api.models.object.object.Object
+            :rtype: dressdiscover.api.models.object.object.Object
             '''
 
             return self.__model
@@ -46,7 +46,7 @@ class ObjectEntry(object):
 
         def set_model(self, model):
             '''
-            :type model: costume.api.models.object.object.Object
+            :type model: dressdiscover.api.models.object.object.Object
             '''
 
             self.__model = model
@@ -55,7 +55,7 @@ class ObjectEntry(object):
         def update(self, object_entry):
             '''
             :type id: str
-            :type model: costume.api.models.object.object.Object
+            :type model: dressdiscover.api.models.object.object.Object
             '''
 
             if isinstance(object_entry, ObjectEntry):
@@ -79,7 +79,7 @@ class ObjectEntry(object):
         @model.setter
         def model(self, model):
             '''
-            :type model: costume.api.models.object.object.Object
+            :type model: dressdiscover.api.models.object.object.Object
             '''
 
             self.set_model(model)
@@ -91,7 +91,7 @@ class ObjectEntry(object):
     ):
         '''
         :type id: str
-        :type model: costume.api.models.object.object.Object
+        :type model: dressdiscover.api.models.object.object.Object
         '''
 
         if id is None:
@@ -102,8 +102,8 @@ class ObjectEntry(object):
 
         if model is None:
             raise ValueError('model is required')
-        if not isinstance(model, costume.api.models.object.object.Object):
-            raise TypeError("expected model to be a costume.api.models.object.object.Object but it is a %s" % getattr(__builtin__, 'type')(model))
+        if not isinstance(model, dressdiscover.api.models.object.object.Object):
+            raise TypeError("expected model to be a dressdiscover.api.models.object.object.Object but it is a %s" % getattr(__builtin__, 'type')(model))
         self.__model = model
 
     def __eq__(self, other):
@@ -163,7 +163,7 @@ class ObjectEntry(object):
     @property
     def model(self):
         '''
-        :rtype: costume.api.models.object.object.Object
+        :rtype: dressdiscover.api.models.object.object.Object
         '''
 
         return self.__model
@@ -174,7 +174,7 @@ class ObjectEntry(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.object.object_entry.ObjectEntry
+        :rtype: dressdiscover.api.models.object.object_entry.ObjectEntry
         '''
 
         init_kwds = {}
@@ -187,7 +187,7 @@ class ObjectEntry(object):
             elif ifield_name == 'id':
                 init_kwds['id'] = iprot.read_string()
             elif ifield_name == 'model':
-                init_kwds['model'] = costume.api.models.object.object.Object.read(iprot)
+                init_kwds['model'] = dressdiscover.api.models.object.object.Object.read(iprot)
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -202,8 +202,8 @@ class ObjectEntry(object):
         Copy this object, replace one or more fields, and return the copy.
 
         :type id: str or None
-        :type model: costume.api.models.object.object.Object or None
-        :rtype: costume.api.models.object.object_entry.ObjectEntry
+        :type model: dressdiscover.api.models.object.object.Object or None
+        :rtype: dressdiscover.api.models.object.object_entry.ObjectEntry
         '''
 
         if id is None:
@@ -217,7 +217,7 @@ class ObjectEntry(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.object.object_entry.ObjectEntry
+        :rtype: dressdiscover.api.models.object.object_entry.ObjectEntry
         '''
 
         oprot.write_struct_begin('ObjectEntry')

@@ -1,5 +1,5 @@
 import __builtin__
-import costume.api.models.description.description_type
+import dressdiscover.api.models.description.description_type
 
 
 class Description(object):
@@ -13,7 +13,7 @@ class Description(object):
             '''
             :type text: str
             :type source: str or None
-            :type type: costume.api.models.description.description_type.DescriptionType or None
+            :type type: dressdiscover.api.models.description.description_type.DescriptionType or None
             '''
 
             self.__text = text
@@ -41,7 +41,7 @@ class Description(object):
 
         def set_type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.description.description_type.DescriptionType or None
+            :type type: dressdiscover.api.models.description.description_type.DescriptionType or None
             '''
 
             self.__type = type
@@ -66,7 +66,7 @@ class Description(object):
         @property
         def type(self):  # @ReservedAssignment
             '''
-            :rtype: costume.api.models.description.description_type.DescriptionType
+            :rtype: dressdiscover.api.models.description.description_type.DescriptionType
             '''
 
             return self.__type
@@ -75,7 +75,7 @@ class Description(object):
             '''
             :type text: str
             :type source: str or None
-            :type type: costume.api.models.description.description_type.DescriptionType or None
+            :type type: dressdiscover.api.models.description.description_type.DescriptionType or None
             '''
 
             if isinstance(description, Description):
@@ -108,7 +108,7 @@ class Description(object):
         @type.setter
         def type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.description.description_type.DescriptionType or None
+            :type type: dressdiscover.api.models.description.description_type.DescriptionType or None
             '''
 
             self.set_type(type)
@@ -122,7 +122,7 @@ class Description(object):
         '''
         :type text: str
         :type source: str or None
-        :type type: costume.api.models.description.description_type.DescriptionType or None
+        :type type: dressdiscover.api.models.description.description_type.DescriptionType or None
         '''
 
         if text is None:
@@ -141,8 +141,8 @@ class Description(object):
         self.__source = source
 
         if type is not None:
-            if not isinstance(type, costume.api.models.description.description_type.DescriptionType):
-                raise TypeError("expected type to be a costume.api.models.description.description_type.DescriptionType but it is a %s" % getattr(__builtin__, 'type')(type))
+            if not isinstance(type, dressdiscover.api.models.description.description_type.DescriptionType):
+                raise TypeError("expected type to be a dressdiscover.api.models.description.description_type.DescriptionType but it is a %s" % getattr(__builtin__, 'type')(type))
         self.__type = type
 
     def __eq__(self, other):
@@ -205,7 +205,7 @@ class Description(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.description.description.Description
+        :rtype: dressdiscover.api.models.description.description.Description
         '''
 
         init_kwds = {}
@@ -224,7 +224,7 @@ class Description(object):
                     pass
             elif ifield_name == 'type' and ifield_id == 3:
                 try:
-                    init_kwds['type'] = costume.api.models.description.description_type.DescriptionType.value_of(iprot.read_string().strip().upper())
+                    init_kwds['type'] = dressdiscover.api.models.description.description_type.DescriptionType.value_of(iprot.read_string().strip().upper())
                 except (TypeError,):
                     pass
             iprot.read_field_end()
@@ -243,8 +243,8 @@ class Description(object):
 
         :type text: str or None
         :type source: str or None
-        :type type: costume.api.models.description.description_type.DescriptionType or None
-        :rtype: costume.api.models.description.description.Description
+        :type type: dressdiscover.api.models.description.description_type.DescriptionType or None
+        :rtype: dressdiscover.api.models.description.description.Description
         '''
 
         if text is None:
@@ -274,7 +274,7 @@ class Description(object):
     @property
     def type(self):  # @ReservedAssignment
         '''
-        :rtype: costume.api.models.description.description_type.DescriptionType
+        :rtype: dressdiscover.api.models.description.description_type.DescriptionType
         '''
 
         return self.__type
@@ -284,7 +284,7 @@ class Description(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.description.description.Description
+        :rtype: dressdiscover.api.models.description.description.Description
         '''
 
         oprot.write_struct_begin('Description')

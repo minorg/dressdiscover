@@ -1,19 +1,19 @@
 from urlparse import urlparse
 import base64
-import costume.api.models.collection.collection
-import costume.api.services.collection.collection_query_service
-import costume.api.services.collection.no_such_collection_exception  # @UnusedImport
-import costume.api.services.institution.no_such_institution_exception  # @UnusedImport
-import costume.api.services.io_exception  # @UnusedImport
+import dressdiscover.api.models.collection.collection
+import dressdiscover.api.services.collection.collection_query_service
+import dressdiscover.api.services.collection.no_such_collection_exception  # @UnusedImport
+import dressdiscover.api.services.institution.no_such_institution_exception  # @UnusedImport
+import dressdiscover.api.services.io_exception  # @UnusedImport
 import json
 import thryft.protocol.json_input_protocol
 import thryft.protocol.json_output_protocol
 import urllib2
 
 
-class CollectionQueryServiceJsonRpcClient(costume.api.services.collection.collection_query_service.CollectionQueryService):
+class CollectionQueryServiceJsonRpcClient(dressdiscover.api.services.collection.collection_query_service.CollectionQueryService):
     def __init__(self, api_url, headers=None):
-        costume.api.services.collection.collection_query_service.CollectionQueryService.__init__(self)
+        dressdiscover.api.services.collection.collection_query_service.CollectionQueryService.__init__(self)
 
         if headers is None:
             headers = {}
@@ -127,7 +127,7 @@ class CollectionQueryServiceJsonRpcClient(costume.api.services.collection.collec
 
         return_value = self.__request(method='get_collection_by_id', params=oprot.value)
         iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
-        return costume.api.models.collection.collection.Collection.read(iprot)
+        return dressdiscover.api.models.collection.collection.Collection.read(iprot)
 
     def _get_collections_by_ids(
         self,
@@ -145,7 +145,7 @@ class CollectionQueryServiceJsonRpcClient(costume.api.services.collection.collec
 
         return_value = self.__request(method='get_collections_by_ids', params=oprot.value)
         iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
-        return tuple([costume.api.models.collection.collection.Collection.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+        return tuple([dressdiscover.api.models.collection.collection.Collection.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
 
     def _get_collections_by_institution_id(
         self,
@@ -160,5 +160,5 @@ class CollectionQueryServiceJsonRpcClient(costume.api.services.collection.collec
 
         return_value = self.__request(method='get_collections_by_institution_id', params=oprot.value)
         iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
-        return tuple([costume.api.models.collection.collection_entry.CollectionEntry.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+        return tuple([dressdiscover.api.models.collection.collection_entry.CollectionEntry.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
 

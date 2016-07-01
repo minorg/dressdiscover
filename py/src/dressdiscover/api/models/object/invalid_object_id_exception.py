@@ -124,7 +124,7 @@ class InvalidObjectIdException(Exception):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.object.invalid_object_id_exception.InvalidObjectIdException
+        :rtype: dressdiscover.api.models.object.invalid_object_id_exception.InvalidObjectIdException
         '''
 
         init_kwds = {}
@@ -149,7 +149,7 @@ class InvalidObjectIdException(Exception):
         Copy this object, replace one or more fields, and return the copy.
 
         :type cause_message: str or None
-        :rtype: costume.api.models.object.invalid_object_id_exception.InvalidObjectIdException
+        :rtype: dressdiscover.api.models.object.invalid_object_id_exception.InvalidObjectIdException
         '''
 
         if cause_message is None:
@@ -161,7 +161,7 @@ class InvalidObjectIdException(Exception):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.object.invalid_object_id_exception.InvalidObjectIdException
+        :rtype: dressdiscover.api.models.object.invalid_object_id_exception.InvalidObjectIdException
         '''
 
         oprot.write_struct_begin('InvalidObjectIdException')

@@ -694,21 +694,21 @@ class CostumeProperties(object):
         '''
         Load properties, in order of precedence, from one of four places:
         1 - Those specified on the command line via the --properties option
-        1 - The user's home directory: ~/.costume/costume.properties
-        2 - The system properties file: /etc/costume/server.properties
-        3 - Environment variables (COSTUME_{property_name_upper})
+        1 - The user's home directory: ~/.dressdiscover/costume.properties
+        2 - The system properties file: /etc/dressdiscover/server.properties
+        3 - Environment variables (DRESSDISCOVER_{property_name_upper})
         '''
 
         properties = {}
 
         for property_name in ('api_url', 'cache_collections', 'cache_institutions', 'elastic_search_host', 'elastic_search_port', 'environment', 'google_api_key', 'google_oauth_key', 'google_oauth_secret', 'home_directory_path', 'object_summaries_result_cache_size', 'object_summary_cache_size', 'resummarize_objects_bulk_request_size',):
-            property_value = os.getenv('COSTUME_' + property_name.upper())
+            property_value = os.getenv('DRESSDISCOVER_' + property_name.upper())
             if property_value is not None and len(property_value) > 0:
                 properties[property_name] = property_value
 
         properties_file_paths = []
-        properties_file_paths.append(os.path.join('/', 'etc', 'costume', 'costume.properties'))
-        properties_file_paths.append(os.path.join(os.path.expanduser('~'), '.costume', 'costume.properties'))
+        properties_file_paths.append(os.path.join('/', 'etc', 'dressdiscover', 'costume.properties'))
+        properties_file_paths.append(os.path.join(os.path.expanduser('~'), '.dressdiscover', 'costume.properties'))
         if command_line_properties_file_path is not None:
             properties_file_paths.append(command_line_properties_file_path)
         for properties_file_path in properties_file_paths:
@@ -769,7 +769,7 @@ class CostumeProperties(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.lib.costume_properties.CostumeProperties
+        :rtype: dressdiscover.lib.costume_properties.CostumeProperties
         '''
 
         init_kwds = {}
@@ -842,7 +842,7 @@ class CostumeProperties(object):
         :type object_summaries_result_cache_size: int or None
         :type object_summary_cache_size: int or None
         :type resummarize_objects_bulk_request_size: int or None
-        :rtype: costume.lib.costume_properties.CostumeProperties
+        :rtype: dressdiscover.lib.costume_properties.CostumeProperties
         '''
 
         if api_url is None:
@@ -886,7 +886,7 @@ class CostumeProperties(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.lib.costume_properties.CostumeProperties
+        :rtype: dressdiscover.lib.costume_properties.CostumeProperties
         '''
 
         oprot.write_struct_begin('CostumeProperties')

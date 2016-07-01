@@ -3,8 +3,8 @@ package org.dressdiscover.gui.models.object;
 public class ObjectSummaryBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, true, 1, "collection_id", org.thryft.protocol.Type.STRING),
-        INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, true, 2, "institution_id", org.thryft.protocol.Type.STRING),
+        COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "collection_id", org.thryft.protocol.Type.STRING),
+        INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "institution_id", org.thryft.protocol.Type.STRING),
         TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 4, "title", org.thryft.protocol.Type.STRING),
         AGENT_NAME_TEXTS("agentNameTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 6, "agent_name_texts", org.thryft.protocol.Type.LIST),
         CATEGORIES("categories", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 7, "categories", org.thryft.protocol.Type.LIST),
@@ -12,9 +12,9 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         CULTURAL_CONTEXT_TEXTS("culturalContextTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 18, "cultural_context_texts", org.thryft.protocol.Type.LIST),
         DATE("date", new com.google.common.reflect.TypeToken<String>() {}, false, 12, "date", org.thryft.protocol.Type.STRING),
         DESCRIPTION("description", new com.google.common.reflect.TypeToken<String>() {}, false, 5, "description", org.thryft.protocol.Type.STRING),
-        GENDER("gender", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.gender.Gender>() {}, false, 8, "gender", org.thryft.protocol.Type.STRING),
+        GENDER("gender", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.gender.Gender>() {}, false, 8, "gender", org.thryft.protocol.Type.STRING),
         HIDDEN("hidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 22, "hidden", org.thryft.protocol.Type.BOOL),
-        IMAGE("image", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.image.ImageBean>() {}, false, 21, "image", org.thryft.protocol.Type.STRUCT),
+        IMAGE("image", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.image.ImageBean>() {}, false, 21, "image", org.thryft.protocol.Type.STRUCT),
         LOCATION_NAME_TEXTS("locationNameTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 19, "location_name_texts", org.thryft.protocol.Type.LIST),
         MATERIAL_TEXTS("materialTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 14, "material_texts", org.thryft.protocol.Type.LIST),
         RELATION_TEXTS("relationTexts", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 16, "relation_texts", org.thryft.protocol.Type.LIST),
@@ -164,7 +164,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         workTypeTexts = null;
     }
 
-    public ObjectSummaryBean(final net.lab1318.costume.api.models.object.ObjectSummary other) {
+    public ObjectSummaryBean(final org.dressdiscover.api.models.object.ObjectSummary other) {
         this.collectionId = other.getCollectionId();
         this.institutionId = other.getInstitutionId();
         this.title = other.getTitle();
@@ -176,7 +176,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         this.description = other.getDescription().isPresent() ? other.getDescription().get() : null;
         this.gender = other.getGender().isPresent() ? other.getGender().get() : null;
         this.hidden = other.getHidden().isPresent() ? other.getHidden().get() : null;
-        this.image = other.getImage().isPresent() ? new net.lab1318.costume.gui.models.image.ImageBean(other.getImage().get()) : null;
+        this.image = other.getImage().isPresent() ? new org.dressdiscover.gui.models.image.ImageBean(other.getImage().get()) : null;
         this.locationNameTexts = other.getLocationNameTexts().isPresent() ? new java.util.ArrayList<String>(other.getLocationNameTexts().get()) : null;
         this.materialTexts = other.getMaterialTexts().isPresent() ? new java.util.ArrayList<String>(other.getMaterialTexts().get()) : null;
         this.relationTexts = other.getRelationTexts().isPresent() ? new java.util.ArrayList<String>(other.getRelationTexts().get()) : null;
@@ -267,7 +267,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         return categories;
     }
 
-    public org.dressdiscover.api.models.collection.CollectionId getCollectionId() {
+    public String getCollectionId() {
         return collectionId;
     }
 
@@ -293,7 +293,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         return description;
     }
 
-    public net.lab1318.costume.api.models.gender.Gender getGender() {
+    public org.dressdiscover.api.models.gender.Gender getGender() {
         return gender;
     }
 
@@ -301,11 +301,11 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         return hidden;
     }
 
-    public net.lab1318.costume.gui.models.image.ImageBean getImage() {
+    public org.dressdiscover.gui.models.image.ImageBean getImage() {
         return image;
     }
 
-    public org.dressdiscover.api.models.institution.InstitutionId getInstitutionId() {
+    public String getInstitutionId() {
         return institutionId;
     }
 
@@ -421,7 +421,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         this.categories = categories;
     }
 
-    public void setCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
+    public void setCollectionId(final String collectionId) {
         this.collectionId = collectionId;
     }
 
@@ -441,7 +441,7 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         this.description = description;
     }
 
-    public void setGender(final net.lab1318.costume.api.models.gender.Gender gender) {
+    public void setGender(final org.dressdiscover.api.models.gender.Gender gender) {
         this.gender = gender;
     }
 
@@ -449,11 +449,11 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         this.hidden = hidden;
     }
 
-    public void setImage(final net.lab1318.costume.gui.models.image.ImageBean image) {
+    public void setImage(final org.dressdiscover.gui.models.image.ImageBean image) {
         this.image = image;
     }
 
-    public void setInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
+    public void setInstitutionId(final String institutionId) {
         this.institutionId = institutionId;
     }
 
@@ -498,9 +498,9 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
         return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("title", getTitle()).add("agent_name_texts", getAgentNameTexts()).add("categories", getCategories()).add("color_texts", getColorTexts()).add("cultural_context_texts", getCulturalContextTexts()).add("date", getDate()).add("description", getDescription()).add("gender", getGender()).add("hidden", getHidden()).add("image", getImage()).add("location_name_texts", getLocationNameTexts()).add("material_texts", getMaterialTexts()).add("relation_texts", getRelationTexts()).add("structure_texts", getStructureTexts()).add("subject_term_texts", getSubjectTermTexts()).add("technique_texts", getTechniqueTexts()).add("url", getUrl()).add("work_type_texts", getWorkTypeTexts()).toString();
     }
 
-    private org.dressdiscover.api.models.collection.CollectionId collectionId;
+    private String collectionId;
 
-    private org.dressdiscover.api.models.institution.InstitutionId institutionId;
+    private String institutionId;
 
     /**
      * Dublin Core title
@@ -525,11 +525,11 @@ public class ObjectSummaryBean implements org.thryft.StructBean {
      */
     private String description;
 
-    private net.lab1318.costume.api.models.gender.Gender gender;
+    private org.dressdiscover.api.models.gender.Gender gender;
 
     private Boolean hidden;
 
-    private net.lab1318.costume.gui.models.image.ImageBean image;
+    private org.dressdiscover.gui.models.image.ImageBean image;
 
     private java.util.List<String> locationNameTexts;
 

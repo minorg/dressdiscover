@@ -1,5 +1,5 @@
 import __builtin__
-import costume.api.models.object.object
+import dressdiscover.api.models.object.object
 
 
 class ObjectQueryService(object):
@@ -9,7 +9,7 @@ class ObjectQueryService(object):
     ):
         '''
         :type id: str
-        :rtype: costume.api.models.object.object.Object
+        :rtype: dressdiscover.api.models.object.object.Object
         '''
 
         if id is None:
@@ -19,7 +19,7 @@ class ObjectQueryService(object):
 
         get_object_by_id_return_value = self._get_object_by_id(id=id)
 
-        if not isinstance(get_object_by_id_return_value, costume.api.models.object.object.Object):
+        if not isinstance(get_object_by_id_return_value, dressdiscover.api.models.object.object.Object):
             raise TypeError(getattr(__builtin__, 'type')(get_object_by_id_return_value))
 
         return get_object_by_id_return_value

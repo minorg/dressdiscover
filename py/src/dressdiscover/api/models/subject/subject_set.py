@@ -1,6 +1,6 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.models.subject.subject
+import dressdiscover.api.models.subject.subject
 
 
 class SubjectSet(object):
@@ -12,7 +12,7 @@ class SubjectSet(object):
             notes=None,
         ):
             '''
-            :type elements: tuple(costume.api.models.subject.subject.Subject)
+            :type elements: tuple(dressdiscover.api.models.subject.subject.Subject)
             :type display: str or None
             :type notes: str or None
             '''
@@ -35,7 +35,7 @@ class SubjectSet(object):
         @property
         def elements(self):
             '''
-            :rtype: tuple(costume.api.models.subject.subject.Subject)
+            :rtype: tuple(dressdiscover.api.models.subject.subject.Subject)
             '''
 
             return self.__elements
@@ -58,7 +58,7 @@ class SubjectSet(object):
 
         def set_elements(self, elements):
             '''
-            :type elements: tuple(costume.api.models.subject.subject.Subject)
+            :type elements: tuple(dressdiscover.api.models.subject.subject.Subject)
             '''
 
             self.__elements = elements
@@ -74,7 +74,7 @@ class SubjectSet(object):
 
         def update(self, subject_set):
             '''
-            :type elements: tuple(costume.api.models.subject.subject.Subject)
+            :type elements: tuple(dressdiscover.api.models.subject.subject.Subject)
             :type display: str or None
             :type notes: str or None
             '''
@@ -101,7 +101,7 @@ class SubjectSet(object):
         @elements.setter
         def elements(self, elements):
             '''
-            :type elements: tuple(costume.api.models.subject.subject.Subject)
+            :type elements: tuple(dressdiscover.api.models.subject.subject.Subject)
             '''
 
             self.set_elements(elements)
@@ -121,15 +121,15 @@ class SubjectSet(object):
         notes=None,
     ):
         '''
-        :type elements: tuple(costume.api.models.subject.subject.Subject)
+        :type elements: tuple(dressdiscover.api.models.subject.subject.Subject)
         :type display: str or None
         :type notes: str or None
         '''
 
         if elements is None:
             raise ValueError('elements is required')
-        if not (isinstance(elements, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.subject.subject.Subject), elements))) == 0):
-            raise TypeError("expected elements to be a tuple(costume.api.models.subject.subject.Subject) but it is a %s" % getattr(__builtin__, 'type')(elements))
+        if not (isinstance(elements, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.subject.subject.Subject), elements))) == 0):
+            raise TypeError("expected elements to be a tuple(dressdiscover.api.models.subject.subject.Subject) but it is a %s" % getattr(__builtin__, 'type')(elements))
         if len(elements) < 1:
             raise ValueError("expected len(elements) to be >= 1, was %d" % len(elements))
         self.__elements = elements
@@ -213,7 +213,7 @@ class SubjectSet(object):
     @property
     def elements(self):
         '''
-        :rtype: tuple(costume.api.models.subject.subject.Subject)
+        :rtype: tuple(dressdiscover.api.models.subject.subject.Subject)
         '''
 
         return self.__elements
@@ -232,7 +232,7 @@ class SubjectSet(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.subject.subject_set.SubjectSet
+        :rtype: dressdiscover.api.models.subject.subject_set.SubjectSet
         '''
 
         init_kwds = {}
@@ -243,7 +243,7 @@ class SubjectSet(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'elements' and ifield_id == 1:
-                init_kwds['elements'] = tuple([costume.api.models.subject.subject.Subject.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+                init_kwds['elements'] = tuple([dressdiscover.api.models.subject.subject.Subject.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'display' and ifield_id == 2:
                 try:
                     init_kwds['display'] = iprot.read_string()
@@ -268,10 +268,10 @@ class SubjectSet(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type elements: tuple(costume.api.models.subject.subject.Subject) or None
+        :type elements: tuple(dressdiscover.api.models.subject.subject.Subject) or None
         :type display: str or None
         :type notes: str or None
-        :rtype: costume.api.models.subject.subject_set.SubjectSet
+        :rtype: dressdiscover.api.models.subject.subject_set.SubjectSet
         '''
 
         if elements is None:
@@ -287,7 +287,7 @@ class SubjectSet(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.subject.subject_set.SubjectSet
+        :rtype: dressdiscover.api.models.subject.subject_set.SubjectSet
         '''
 
         oprot.write_struct_begin('SubjectSet')

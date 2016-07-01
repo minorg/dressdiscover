@@ -5,22 +5,22 @@ public class ObjectFacetFiltersBean implements org.thryft.StructBean {
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         EXCLUDE_ALL("excludeAll", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 0, "exclude_all", org.thryft.protocol.Type.BOOL),
         EXCLUDE_CATEGORIES("excludeCategories", new com.google.common.reflect.TypeToken<java.util.Set<String>>() {}, false, 0, "exclude_categories", org.thryft.protocol.Type.SET),
-        EXCLUDE_COLLECTIONS("excludeCollections", new com.google.common.reflect.TypeToken<java.util.Set<org.dressdiscover.api.models.collection.CollectionId>>() {}, false, 0, "exclude_collections", org.thryft.protocol.Type.SET),
+        EXCLUDE_COLLECTIONS("excludeCollections", new com.google.common.reflect.TypeToken<java.util.Set<String>>() {}, false, 0, "exclude_collections", org.thryft.protocol.Type.SET),
         EXCLUDE_COLOR_TEXTS("excludeColorTexts", new com.google.common.reflect.TypeToken<java.util.Set<String>>() {}, false, 0, "exclude_color_texts", org.thryft.protocol.Type.SET),
         EXCLUDE_CULTURAL_CONTEXT_TEXTS("excludeCulturalContextTexts", new com.google.common.reflect.TypeToken<java.util.Set<String>>() {}, false, 0, "exclude_cultural_context_texts", org.thryft.protocol.Type.SET),
-        EXCLUDE_GENDERS("excludeGenders", new com.google.common.reflect.TypeToken<java.util.Set<net.lab1318.costume.api.models.gender.Gender>>() {}, false, 0, "exclude_genders", org.thryft.protocol.Type.SET),
-        EXCLUDE_INSTITUTIONS("excludeInstitutions", new com.google.common.reflect.TypeToken<java.util.Set<org.dressdiscover.api.models.institution.InstitutionId>>() {}, false, 0, "exclude_institutions", org.thryft.protocol.Type.SET),
+        EXCLUDE_GENDERS("excludeGenders", new com.google.common.reflect.TypeToken<java.util.Set<org.dressdiscover.api.models.gender.Gender>>() {}, false, 0, "exclude_genders", org.thryft.protocol.Type.SET),
+        EXCLUDE_INSTITUTIONS("excludeInstitutions", new com.google.common.reflect.TypeToken<java.util.Set<String>>() {}, false, 0, "exclude_institutions", org.thryft.protocol.Type.SET),
         EXCLUDE_LOCATION_NAME_TEXTS("excludeLocationNameTexts", new com.google.common.reflect.TypeToken<java.util.Set<String>>() {}, false, 0, "exclude_location_name_texts", org.thryft.protocol.Type.SET),
         EXCLUDE_MATERIAL_TEXTS("excludeMaterialTexts", new com.google.common.reflect.TypeToken<java.util.Set<String>>() {}, false, 0, "exclude_material_texts", org.thryft.protocol.Type.SET),
         EXCLUDE_SUBJECT_TERM_TEXTS("excludeSubjectTermTexts", new com.google.common.reflect.TypeToken<java.util.Set<String>>() {}, false, 0, "exclude_subject_term_texts", org.thryft.protocol.Type.SET),
         EXCLUDE_TECHNIQUE_TEXTS("excludeTechniqueTexts", new com.google.common.reflect.TypeToken<java.util.Set<String>>() {}, false, 0, "exclude_technique_texts", org.thryft.protocol.Type.SET),
         EXCLUDE_WORK_TYPE_TEXTS("excludeWorkTypeTexts", new com.google.common.reflect.TypeToken<java.util.Set<String>>() {}, false, 0, "exclude_work_type_texts", org.thryft.protocol.Type.SET),
         INCLUDE_CATEGORIES("includeCategories", new com.google.common.reflect.TypeToken<java.util.Set<String>>() {}, false, 0, "include_categories", org.thryft.protocol.Type.SET),
-        INCLUDE_COLLECTIONS("includeCollections", new com.google.common.reflect.TypeToken<java.util.Set<org.dressdiscover.api.models.collection.CollectionId>>() {}, false, 0, "include_collections", org.thryft.protocol.Type.SET),
+        INCLUDE_COLLECTIONS("includeCollections", new com.google.common.reflect.TypeToken<java.util.Set<String>>() {}, false, 0, "include_collections", org.thryft.protocol.Type.SET),
         INCLUDE_COLOR_TEXTS("includeColorTexts", new com.google.common.reflect.TypeToken<java.util.Set<String>>() {}, false, 0, "include_color_texts", org.thryft.protocol.Type.SET),
         INCLUDE_CULTURAL_CONTEXT_TEXTS("includeCulturalContextTexts", new com.google.common.reflect.TypeToken<java.util.Set<String>>() {}, false, 0, "include_cultural_context_texts", org.thryft.protocol.Type.SET),
-        INCLUDE_GENDERS("includeGenders", new com.google.common.reflect.TypeToken<java.util.Set<net.lab1318.costume.api.models.gender.Gender>>() {}, false, 0, "include_genders", org.thryft.protocol.Type.SET),
-        INCLUDE_INSTITUTIONS("includeInstitutions", new com.google.common.reflect.TypeToken<java.util.Set<org.dressdiscover.api.models.institution.InstitutionId>>() {}, false, 0, "include_institutions", org.thryft.protocol.Type.SET),
+        INCLUDE_GENDERS("includeGenders", new com.google.common.reflect.TypeToken<java.util.Set<org.dressdiscover.api.models.gender.Gender>>() {}, false, 0, "include_genders", org.thryft.protocol.Type.SET),
+        INCLUDE_INSTITUTIONS("includeInstitutions", new com.google.common.reflect.TypeToken<java.util.Set<String>>() {}, false, 0, "include_institutions", org.thryft.protocol.Type.SET),
         INCLUDE_LOCATION_NAME_TEXTS("includeLocationNameTexts", new com.google.common.reflect.TypeToken<java.util.Set<String>>() {}, false, 0, "include_location_name_texts", org.thryft.protocol.Type.SET),
         INCLUDE_MATERIAL_TEXTS("includeMaterialTexts", new com.google.common.reflect.TypeToken<java.util.Set<String>>() {}, false, 0, "include_material_texts", org.thryft.protocol.Type.SET),
         INCLUDE_SUBJECT_TERM_TEXTS("includeSubjectTermTexts", new com.google.common.reflect.TypeToken<java.util.Set<String>>() {}, false, 0, "include_subject_term_texts", org.thryft.protocol.Type.SET),
@@ -176,25 +176,25 @@ public class ObjectFacetFiltersBean implements org.thryft.StructBean {
         includeWorkTypeTexts = null;
     }
 
-    public ObjectFacetFiltersBean(final net.lab1318.costume.api.models.object.ObjectFacetFilters other) {
+    public ObjectFacetFiltersBean(final org.dressdiscover.api.models.object.ObjectFacetFilters other) {
         this.excludeAll = other.getExcludeAll().isPresent() ? other.getExcludeAll().get() : null;
         this.excludeCategories = other.getExcludeCategories().isPresent() ? new java.util.LinkedHashSet<String>(other.getExcludeCategories().get()) : null;
-        this.excludeCollections = other.getExcludeCollections().isPresent() ? new java.util.LinkedHashSet<org.dressdiscover.api.models.collection.CollectionId>(other.getExcludeCollections().get()) : null;
+        this.excludeCollections = other.getExcludeCollections().isPresent() ? new java.util.LinkedHashSet<String>(other.getExcludeCollections().get()) : null;
         this.excludeColorTexts = other.getExcludeColorTexts().isPresent() ? new java.util.LinkedHashSet<String>(other.getExcludeColorTexts().get()) : null;
         this.excludeCulturalContextTexts = other.getExcludeCulturalContextTexts().isPresent() ? new java.util.LinkedHashSet<String>(other.getExcludeCulturalContextTexts().get()) : null;
-        this.excludeGenders = other.getExcludeGenders().isPresent() ? new java.util.LinkedHashSet<net.lab1318.costume.api.models.gender.Gender>(other.getExcludeGenders().get()) : null;
-        this.excludeInstitutions = other.getExcludeInstitutions().isPresent() ? new java.util.LinkedHashSet<org.dressdiscover.api.models.institution.InstitutionId>(other.getExcludeInstitutions().get()) : null;
+        this.excludeGenders = other.getExcludeGenders().isPresent() ? new java.util.LinkedHashSet<org.dressdiscover.api.models.gender.Gender>(other.getExcludeGenders().get()) : null;
+        this.excludeInstitutions = other.getExcludeInstitutions().isPresent() ? new java.util.LinkedHashSet<String>(other.getExcludeInstitutions().get()) : null;
         this.excludeLocationNameTexts = other.getExcludeLocationNameTexts().isPresent() ? new java.util.LinkedHashSet<String>(other.getExcludeLocationNameTexts().get()) : null;
         this.excludeMaterialTexts = other.getExcludeMaterialTexts().isPresent() ? new java.util.LinkedHashSet<String>(other.getExcludeMaterialTexts().get()) : null;
         this.excludeSubjectTermTexts = other.getExcludeSubjectTermTexts().isPresent() ? new java.util.LinkedHashSet<String>(other.getExcludeSubjectTermTexts().get()) : null;
         this.excludeTechniqueTexts = other.getExcludeTechniqueTexts().isPresent() ? new java.util.LinkedHashSet<String>(other.getExcludeTechniqueTexts().get()) : null;
         this.excludeWorkTypeTexts = other.getExcludeWorkTypeTexts().isPresent() ? new java.util.LinkedHashSet<String>(other.getExcludeWorkTypeTexts().get()) : null;
         this.includeCategories = other.getIncludeCategories().isPresent() ? new java.util.LinkedHashSet<String>(other.getIncludeCategories().get()) : null;
-        this.includeCollections = other.getIncludeCollections().isPresent() ? new java.util.LinkedHashSet<org.dressdiscover.api.models.collection.CollectionId>(other.getIncludeCollections().get()) : null;
+        this.includeCollections = other.getIncludeCollections().isPresent() ? new java.util.LinkedHashSet<String>(other.getIncludeCollections().get()) : null;
         this.includeColorTexts = other.getIncludeColorTexts().isPresent() ? new java.util.LinkedHashSet<String>(other.getIncludeColorTexts().get()) : null;
         this.includeCulturalContextTexts = other.getIncludeCulturalContextTexts().isPresent() ? new java.util.LinkedHashSet<String>(other.getIncludeCulturalContextTexts().get()) : null;
-        this.includeGenders = other.getIncludeGenders().isPresent() ? new java.util.LinkedHashSet<net.lab1318.costume.api.models.gender.Gender>(other.getIncludeGenders().get()) : null;
-        this.includeInstitutions = other.getIncludeInstitutions().isPresent() ? new java.util.LinkedHashSet<org.dressdiscover.api.models.institution.InstitutionId>(other.getIncludeInstitutions().get()) : null;
+        this.includeGenders = other.getIncludeGenders().isPresent() ? new java.util.LinkedHashSet<org.dressdiscover.api.models.gender.Gender>(other.getIncludeGenders().get()) : null;
+        this.includeInstitutions = other.getIncludeInstitutions().isPresent() ? new java.util.LinkedHashSet<String>(other.getIncludeInstitutions().get()) : null;
         this.includeLocationNameTexts = other.getIncludeLocationNameTexts().isPresent() ? new java.util.LinkedHashSet<String>(other.getIncludeLocationNameTexts().get()) : null;
         this.includeMaterialTexts = other.getIncludeMaterialTexts().isPresent() ? new java.util.LinkedHashSet<String>(other.getIncludeMaterialTexts().get()) : null;
         this.includeSubjectTermTexts = other.getIncludeSubjectTermTexts().isPresent() ? new java.util.LinkedHashSet<String>(other.getIncludeSubjectTermTexts().get()) : null;
@@ -288,7 +288,7 @@ public class ObjectFacetFiltersBean implements org.thryft.StructBean {
         return excludeCategories;
     }
 
-    public java.util.Set<org.dressdiscover.api.models.collection.CollectionId> getExcludeCollections() {
+    public java.util.Set<String> getExcludeCollections() {
         return excludeCollections;
     }
 
@@ -300,11 +300,11 @@ public class ObjectFacetFiltersBean implements org.thryft.StructBean {
         return excludeCulturalContextTexts;
     }
 
-    public java.util.Set<net.lab1318.costume.api.models.gender.Gender> getExcludeGenders() {
+    public java.util.Set<org.dressdiscover.api.models.gender.Gender> getExcludeGenders() {
         return excludeGenders;
     }
 
-    public java.util.Set<org.dressdiscover.api.models.institution.InstitutionId> getExcludeInstitutions() {
+    public java.util.Set<String> getExcludeInstitutions() {
         return excludeInstitutions;
     }
 
@@ -332,7 +332,7 @@ public class ObjectFacetFiltersBean implements org.thryft.StructBean {
         return includeCategories;
     }
 
-    public java.util.Set<org.dressdiscover.api.models.collection.CollectionId> getIncludeCollections() {
+    public java.util.Set<String> getIncludeCollections() {
         return includeCollections;
     }
 
@@ -344,11 +344,11 @@ public class ObjectFacetFiltersBean implements org.thryft.StructBean {
         return includeCulturalContextTexts;
     }
 
-    public java.util.Set<net.lab1318.costume.api.models.gender.Gender> getIncludeGenders() {
+    public java.util.Set<org.dressdiscover.api.models.gender.Gender> getIncludeGenders() {
         return includeGenders;
     }
 
-    public java.util.Set<org.dressdiscover.api.models.institution.InstitutionId> getIncludeInstitutions() {
+    public java.util.Set<String> getIncludeInstitutions() {
         return includeInstitutions;
     }
 
@@ -460,7 +460,7 @@ public class ObjectFacetFiltersBean implements org.thryft.StructBean {
         this.excludeCategories = excludeCategories;
     }
 
-    public void setExcludeCollections(final java.util.Set<org.dressdiscover.api.models.collection.CollectionId> excludeCollections) {
+    public void setExcludeCollections(final java.util.Set<String> excludeCollections) {
         this.excludeCollections = excludeCollections;
     }
 
@@ -472,11 +472,11 @@ public class ObjectFacetFiltersBean implements org.thryft.StructBean {
         this.excludeCulturalContextTexts = excludeCulturalContextTexts;
     }
 
-    public void setExcludeGenders(final java.util.Set<net.lab1318.costume.api.models.gender.Gender> excludeGenders) {
+    public void setExcludeGenders(final java.util.Set<org.dressdiscover.api.models.gender.Gender> excludeGenders) {
         this.excludeGenders = excludeGenders;
     }
 
-    public void setExcludeInstitutions(final java.util.Set<org.dressdiscover.api.models.institution.InstitutionId> excludeInstitutions) {
+    public void setExcludeInstitutions(final java.util.Set<String> excludeInstitutions) {
         this.excludeInstitutions = excludeInstitutions;
     }
 
@@ -504,7 +504,7 @@ public class ObjectFacetFiltersBean implements org.thryft.StructBean {
         this.includeCategories = includeCategories;
     }
 
-    public void setIncludeCollections(final java.util.Set<org.dressdiscover.api.models.collection.CollectionId> includeCollections) {
+    public void setIncludeCollections(final java.util.Set<String> includeCollections) {
         this.includeCollections = includeCollections;
     }
 
@@ -516,11 +516,11 @@ public class ObjectFacetFiltersBean implements org.thryft.StructBean {
         this.includeCulturalContextTexts = includeCulturalContextTexts;
     }
 
-    public void setIncludeGenders(final java.util.Set<net.lab1318.costume.api.models.gender.Gender> includeGenders) {
+    public void setIncludeGenders(final java.util.Set<org.dressdiscover.api.models.gender.Gender> includeGenders) {
         this.includeGenders = includeGenders;
     }
 
-    public void setIncludeInstitutions(final java.util.Set<org.dressdiscover.api.models.institution.InstitutionId> includeInstitutions) {
+    public void setIncludeInstitutions(final java.util.Set<String> includeInstitutions) {
         this.includeInstitutions = includeInstitutions;
     }
 
@@ -553,15 +553,15 @@ public class ObjectFacetFiltersBean implements org.thryft.StructBean {
 
     private java.util.Set<String> excludeCategories;
 
-    private java.util.Set<org.dressdiscover.api.models.collection.CollectionId> excludeCollections;
+    private java.util.Set<String> excludeCollections;
 
     private java.util.Set<String> excludeColorTexts;
 
     private java.util.Set<String> excludeCulturalContextTexts;
 
-    private java.util.Set<net.lab1318.costume.api.models.gender.Gender> excludeGenders;
+    private java.util.Set<org.dressdiscover.api.models.gender.Gender> excludeGenders;
 
-    private java.util.Set<org.dressdiscover.api.models.institution.InstitutionId> excludeInstitutions;
+    private java.util.Set<String> excludeInstitutions;
 
     private java.util.Set<String> excludeLocationNameTexts;
 
@@ -575,15 +575,15 @@ public class ObjectFacetFiltersBean implements org.thryft.StructBean {
 
     private java.util.Set<String> includeCategories;
 
-    private java.util.Set<org.dressdiscover.api.models.collection.CollectionId> includeCollections;
+    private java.util.Set<String> includeCollections;
 
     private java.util.Set<String> includeColorTexts;
 
     private java.util.Set<String> includeCulturalContextTexts;
 
-    private java.util.Set<net.lab1318.costume.api.models.gender.Gender> includeGenders;
+    private java.util.Set<org.dressdiscover.api.models.gender.Gender> includeGenders;
 
-    private java.util.Set<org.dressdiscover.api.models.institution.InstitutionId> includeInstitutions;
+    private java.util.Set<String> includeInstitutions;
 
     private java.util.Set<String> includeLocationNameTexts;
 

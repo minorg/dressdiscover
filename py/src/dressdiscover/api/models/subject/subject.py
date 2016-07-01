@@ -1,6 +1,6 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.models.subject.subject_term
+import dressdiscover.api.models.subject.subject_term
 
 
 class Subject(object):
@@ -10,7 +10,7 @@ class Subject(object):
             terms=None,
         ):
             '''
-            :type terms: tuple(costume.api.models.subject.subject_term.SubjectTerm)
+            :type terms: tuple(dressdiscover.api.models.subject.subject_term.SubjectTerm)
             '''
 
             self.__terms = terms
@@ -20,7 +20,7 @@ class Subject(object):
 
         def set_terms(self, terms):
             '''
-            :type terms: tuple(costume.api.models.subject.subject_term.SubjectTerm)
+            :type terms: tuple(dressdiscover.api.models.subject.subject_term.SubjectTerm)
             '''
 
             self.__terms = terms
@@ -29,14 +29,14 @@ class Subject(object):
         @property
         def terms(self):
             '''
-            :rtype: tuple(costume.api.models.subject.subject_term.SubjectTerm)
+            :rtype: tuple(dressdiscover.api.models.subject.subject_term.SubjectTerm)
             '''
 
             return self.__terms
 
         def update(self, subject):
             '''
-            :type terms: tuple(costume.api.models.subject.subject_term.SubjectTerm)
+            :type terms: tuple(dressdiscover.api.models.subject.subject_term.SubjectTerm)
             '''
 
             if isinstance(subject, Subject):
@@ -51,7 +51,7 @@ class Subject(object):
         @terms.setter
         def terms(self, terms):
             '''
-            :type terms: tuple(costume.api.models.subject.subject_term.SubjectTerm)
+            :type terms: tuple(dressdiscover.api.models.subject.subject_term.SubjectTerm)
             '''
 
             self.set_terms(terms)
@@ -61,13 +61,13 @@ class Subject(object):
         terms,
     ):
         '''
-        :type terms: tuple(costume.api.models.subject.subject_term.SubjectTerm)
+        :type terms: tuple(dressdiscover.api.models.subject.subject_term.SubjectTerm)
         '''
 
         if terms is None:
             raise ValueError('terms is required')
-        if not (isinstance(terms, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, costume.api.models.subject.subject_term.SubjectTerm), terms))) == 0):
-            raise TypeError("expected terms to be a tuple(costume.api.models.subject.subject_term.SubjectTerm) but it is a %s" % getattr(__builtin__, 'type')(terms))
+        if not (isinstance(terms, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.subject.subject_term.SubjectTerm), terms))) == 0):
+            raise TypeError("expected terms to be a tuple(dressdiscover.api.models.subject.subject_term.SubjectTerm) but it is a %s" % getattr(__builtin__, 'type')(terms))
         if len(terms) < 1:
             raise ValueError("expected len(terms) to be >= 1, was %d" % len(terms))
         self.__terms = terms
@@ -120,7 +120,7 @@ class Subject(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.subject.subject.Subject
+        :rtype: dressdiscover.api.models.subject.subject.Subject
         '''
 
         init_kwds = {}
@@ -131,7 +131,7 @@ class Subject(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'terms' and ifield_id == 1:
-                init_kwds['terms'] = tuple([costume.api.models.subject.subject_term.SubjectTerm.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+                init_kwds['terms'] = tuple([dressdiscover.api.models.subject.subject_term.SubjectTerm.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -144,8 +144,8 @@ class Subject(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type terms: tuple(costume.api.models.subject.subject_term.SubjectTerm) or None
-        :rtype: costume.api.models.subject.subject.Subject
+        :type terms: tuple(dressdiscover.api.models.subject.subject_term.SubjectTerm) or None
+        :rtype: dressdiscover.api.models.subject.subject.Subject
         '''
 
         if terms is None:
@@ -155,7 +155,7 @@ class Subject(object):
     @property
     def terms(self):
         '''
-        :rtype: tuple(costume.api.models.subject.subject_term.SubjectTerm)
+        :rtype: tuple(dressdiscover.api.models.subject.subject_term.SubjectTerm)
         '''
 
         return self.__terms
@@ -165,7 +165,7 @@ class Subject(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.subject.subject.Subject
+        :rtype: dressdiscover.api.models.subject.subject.Subject
         '''
 
         oprot.write_struct_begin('Subject')

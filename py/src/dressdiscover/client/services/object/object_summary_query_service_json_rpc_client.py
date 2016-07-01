@@ -1,17 +1,17 @@
 from urlparse import urlparse
 import base64
-import costume.api.services.io_exception  # @UnusedImport
-import costume.api.services.object.get_object_summaries_result
-import costume.api.services.object.object_summary_query_service
+import dressdiscover.api.services.io_exception  # @UnusedImport
+import dressdiscover.api.services.object.get_object_summaries_result
+import dressdiscover.api.services.object.object_summary_query_service
 import json
 import thryft.protocol.json_input_protocol
 import thryft.protocol.json_output_protocol
 import urllib2
 
 
-class ObjectSummaryQueryServiceJsonRpcClient(costume.api.services.object.object_summary_query_service.ObjectSummaryQueryService):
+class ObjectSummaryQueryServiceJsonRpcClient(dressdiscover.api.services.object.object_summary_query_service.ObjectSummaryQueryService):
     def __init__(self, api_url, headers=None):
-        costume.api.services.object.object_summary_query_service.ObjectSummaryQueryService.__init__(self)
+        dressdiscover.api.services.object.object_summary_query_service.ObjectSummaryQueryService.__init__(self)
 
         if headers is None:
             headers = {}
@@ -131,5 +131,5 @@ class ObjectSummaryQueryServiceJsonRpcClient(costume.api.services.object.object_
 
         return_value = self.__request(method='get_object_summaries', params=oprot.value)
         iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
-        return costume.api.services.object.get_object_summaries_result.GetObjectSummariesResult.read(iprot)
+        return dressdiscover.api.services.object.get_object_summaries_result.GetObjectSummariesResult.read(iprot)
 

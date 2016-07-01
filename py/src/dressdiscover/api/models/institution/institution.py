@@ -1,7 +1,7 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.models.location.location_set
-import costume.api.models.rights.rights_set
+import dressdiscover.api.models.location.location_set
+import dressdiscover.api.models.rights.rights_set
 
 
 class Institution(object):
@@ -20,10 +20,10 @@ class Institution(object):
             '''
             :type title: str
             :type collection_store_uri: str or None
-            :type data_rights: costume.api.models.rights.rights_set.RightsSet or None
+            :type data_rights: dressdiscover.api.models.rights.rights_set.RightsSet or None
             :type external: bool or None
             :type hidden: bool or None
-            :type locations: costume.api.models.location.location_set.LocationSet or None
+            :type locations: dressdiscover.api.models.location.location_set.LocationSet or None
             :type store_parameters: dict(str: str) or None
             :type url: str or None
             '''
@@ -51,7 +51,7 @@ class Institution(object):
         @property
         def data_rights(self):
             '''
-            :rtype: costume.api.models.rights.rights_set.RightsSet
+            :rtype: dressdiscover.api.models.rights.rights_set.RightsSet
             '''
 
             return self.__data_rights
@@ -75,7 +75,7 @@ class Institution(object):
         @property
         def locations(self):
             '''
-            :rtype: costume.api.models.location.location_set.LocationSet
+            :rtype: dressdiscover.api.models.location.location_set.LocationSet
             '''
 
             return self.__locations
@@ -90,7 +90,7 @@ class Institution(object):
 
         def set_data_rights(self, data_rights):
             '''
-            :type data_rights: costume.api.models.rights.rights_set.RightsSet or None
+            :type data_rights: dressdiscover.api.models.rights.rights_set.RightsSet or None
             '''
 
             self.__data_rights = data_rights
@@ -114,7 +114,7 @@ class Institution(object):
 
         def set_locations(self, locations):
             '''
-            :type locations: costume.api.models.location.location_set.LocationSet or None
+            :type locations: dressdiscover.api.models.location.location_set.LocationSet or None
             '''
 
             self.__locations = locations
@@ -164,10 +164,10 @@ class Institution(object):
             '''
             :type title: str
             :type collection_store_uri: str or None
-            :type data_rights: costume.api.models.rights.rights_set.RightsSet or None
+            :type data_rights: dressdiscover.api.models.rights.rights_set.RightsSet or None
             :type external: bool or None
             :type hidden: bool or None
-            :type locations: costume.api.models.location.location_set.LocationSet or None
+            :type locations: dressdiscover.api.models.location.location_set.LocationSet or None
             :type store_parameters: dict(str: str) or None
             :type url: str or None
             '''
@@ -207,7 +207,7 @@ class Institution(object):
         @data_rights.setter
         def data_rights(self, data_rights):
             '''
-            :type data_rights: costume.api.models.rights.rights_set.RightsSet or None
+            :type data_rights: dressdiscover.api.models.rights.rights_set.RightsSet or None
             '''
 
             self.set_data_rights(data_rights)
@@ -231,7 +231,7 @@ class Institution(object):
         @locations.setter
         def locations(self, locations):
             '''
-            :type locations: costume.api.models.location.location_set.LocationSet or None
+            :type locations: dressdiscover.api.models.location.location_set.LocationSet or None
             '''
 
             self.set_locations(locations)
@@ -274,10 +274,10 @@ class Institution(object):
         '''
         :type title: str
         :type collection_store_uri: str or None
-        :type data_rights: costume.api.models.rights.rights_set.RightsSet or None
+        :type data_rights: dressdiscover.api.models.rights.rights_set.RightsSet or None
         :type external: bool or None
         :type hidden: bool or None
-        :type locations: costume.api.models.location.location_set.LocationSet or None
+        :type locations: dressdiscover.api.models.location.location_set.LocationSet or None
         :type store_parameters: dict(str: str) or None
         :type url: str or None
         '''
@@ -294,8 +294,8 @@ class Institution(object):
         self.__collection_store_uri = collection_store_uri
 
         if data_rights is not None:
-            if not isinstance(data_rights, costume.api.models.rights.rights_set.RightsSet):
-                raise TypeError("expected data_rights to be a costume.api.models.rights.rights_set.RightsSet but it is a %s" % getattr(__builtin__, 'type')(data_rights))
+            if not isinstance(data_rights, dressdiscover.api.models.rights.rights_set.RightsSet):
+                raise TypeError("expected data_rights to be a dressdiscover.api.models.rights.rights_set.RightsSet but it is a %s" % getattr(__builtin__, 'type')(data_rights))
         self.__data_rights = data_rights
 
         if external is not None:
@@ -309,8 +309,8 @@ class Institution(object):
         self.__hidden = hidden
 
         if locations is not None:
-            if not isinstance(locations, costume.api.models.location.location_set.LocationSet):
-                raise TypeError("expected locations to be a costume.api.models.location.location_set.LocationSet but it is a %s" % getattr(__builtin__, 'type')(locations))
+            if not isinstance(locations, dressdiscover.api.models.location.location_set.LocationSet):
+                raise TypeError("expected locations to be a dressdiscover.api.models.location.location_set.LocationSet but it is a %s" % getattr(__builtin__, 'type')(locations))
         self.__locations = locations
 
         if store_parameters is not None:
@@ -420,7 +420,7 @@ class Institution(object):
     @property
     def data_rights(self):
         '''
-        :rtype: costume.api.models.rights.rights_set.RightsSet
+        :rtype: dressdiscover.api.models.rights.rights_set.RightsSet
         '''
 
         return self.__data_rights
@@ -444,7 +444,7 @@ class Institution(object):
     @property
     def locations(self):
         '''
-        :rtype: costume.api.models.location.location_set.LocationSet
+        :rtype: dressdiscover.api.models.location.location_set.LocationSet
         '''
 
         return self.__locations
@@ -455,7 +455,7 @@ class Institution(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.institution.institution.Institution
+        :rtype: dressdiscover.api.models.institution.institution.Institution
         '''
 
         init_kwds = {}
@@ -473,7 +473,7 @@ class Institution(object):
                 except (TypeError, ValueError,):
                     pass
             elif ifield_name == 'data_rights' and ifield_id == 5:
-                init_kwds['data_rights'] = costume.api.models.rights.rights_set.RightsSet.read(iprot)
+                init_kwds['data_rights'] = dressdiscover.api.models.rights.rights_set.RightsSet.read(iprot)
             elif ifield_name == 'external' and ifield_id == 7:
                 try:
                     init_kwds['external'] = iprot.read_bool()
@@ -485,7 +485,7 @@ class Institution(object):
                 except (TypeError, ValueError,):
                     pass
             elif ifield_name == 'locations' and ifield_id == 8:
-                init_kwds['locations'] = costume.api.models.location.location_set.LocationSet.read(iprot)
+                init_kwds['locations'] = dressdiscover.api.models.location.location_set.LocationSet.read(iprot)
             elif ifield_name == 'store_parameters' and ifield_id == 10:
                 init_kwds['store_parameters'] = dict([(iprot.read_string(), iprot.read_string()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'url' and ifield_id == 3:
@@ -514,13 +514,13 @@ class Institution(object):
 
         :type title: str or None
         :type collection_store_uri: str or None
-        :type data_rights: costume.api.models.rights.rights_set.RightsSet or None
+        :type data_rights: dressdiscover.api.models.rights.rights_set.RightsSet or None
         :type external: bool or None
         :type hidden: bool or None
-        :type locations: costume.api.models.location.location_set.LocationSet or None
+        :type locations: dressdiscover.api.models.location.location_set.LocationSet or None
         :type store_parameters: dict(str: str) or None
         :type url: str or None
-        :rtype: costume.api.models.institution.institution.Institution
+        :rtype: dressdiscover.api.models.institution.institution.Institution
         '''
 
         if title is None:
@@ -570,7 +570,7 @@ class Institution(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.institution.institution.Institution
+        :rtype: dressdiscover.api.models.institution.institution.Institution
         '''
 
         oprot.write_struct_begin('Institution')

@@ -1,5 +1,5 @@
 import __builtin__
-import costume.api.models.location.location_refid_type
+import dressdiscover.api.models.location.location_refid_type
 
 
 class LocationRefid(object):
@@ -11,7 +11,7 @@ class LocationRefid(object):
         ):
             '''
             :type text: str
-            :type type: costume.api.models.location.location_refid_type.LocationRefidType
+            :type type: dressdiscover.api.models.location.location_refid_type.LocationRefidType
             '''
 
             self.__text = text
@@ -30,7 +30,7 @@ class LocationRefid(object):
 
         def set_type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.location.location_refid_type.LocationRefidType
+            :type type: dressdiscover.api.models.location.location_refid_type.LocationRefidType
             '''
 
             self.__type = type
@@ -47,7 +47,7 @@ class LocationRefid(object):
         @property
         def type(self):  # @ReservedAssignment
             '''
-            :rtype: costume.api.models.location.location_refid_type.LocationRefidType
+            :rtype: dressdiscover.api.models.location.location_refid_type.LocationRefidType
             '''
 
             return self.__type
@@ -55,7 +55,7 @@ class LocationRefid(object):
         def update(self, location_refid):
             '''
             :type text: str
-            :type type: costume.api.models.location.location_refid_type.LocationRefidType
+            :type type: dressdiscover.api.models.location.location_refid_type.LocationRefidType
             '''
 
             if isinstance(location_refid, LocationRefid):
@@ -79,7 +79,7 @@ class LocationRefid(object):
         @type.setter
         def type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.location.location_refid_type.LocationRefidType
+            :type type: dressdiscover.api.models.location.location_refid_type.LocationRefidType
             '''
 
             self.set_type(type)
@@ -91,7 +91,7 @@ class LocationRefid(object):
     ):
         '''
         :type text: str
-        :type type: costume.api.models.location.location_refid_type.LocationRefidType
+        :type type: dressdiscover.api.models.location.location_refid_type.LocationRefidType
         '''
 
         if text is None:
@@ -104,8 +104,8 @@ class LocationRefid(object):
 
         if type is None:
             raise ValueError('type is required')
-        if not isinstance(type, costume.api.models.location.location_refid_type.LocationRefidType):
-            raise TypeError("expected type to be a costume.api.models.location.location_refid_type.LocationRefidType but it is a %s" % getattr(__builtin__, 'type')(type))
+        if not isinstance(type, dressdiscover.api.models.location.location_refid_type.LocationRefidType):
+            raise TypeError("expected type to be a dressdiscover.api.models.location.location_refid_type.LocationRefidType but it is a %s" % getattr(__builtin__, 'type')(type))
         self.__type = type
 
     def __eq__(self, other):
@@ -160,7 +160,7 @@ class LocationRefid(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.location.location_refid.LocationRefid
+        :rtype: dressdiscover.api.models.location.location_refid.LocationRefid
         '''
 
         init_kwds = {}
@@ -173,7 +173,7 @@ class LocationRefid(object):
             elif ifield_name == 'text' and ifield_id == 1:
                 init_kwds['text'] = iprot.read_string()
             elif ifield_name == 'type' and ifield_id == 2:
-                init_kwds['type'] = costume.api.models.location.location_refid_type.LocationRefidType.value_of(iprot.read_string().strip().upper())
+                init_kwds['type'] = dressdiscover.api.models.location.location_refid_type.LocationRefidType.value_of(iprot.read_string().strip().upper())
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -188,8 +188,8 @@ class LocationRefid(object):
         Copy this object, replace one or more fields, and return the copy.
 
         :type text: str or None
-        :type type: costume.api.models.location.location_refid_type.LocationRefidType or None
-        :rtype: costume.api.models.location.location_refid.LocationRefid
+        :type type: dressdiscover.api.models.location.location_refid_type.LocationRefidType or None
+        :rtype: dressdiscover.api.models.location.location_refid.LocationRefid
         '''
 
         if text is None:
@@ -209,7 +209,7 @@ class LocationRefid(object):
     @property
     def type(self):  # @ReservedAssignment
         '''
-        :rtype: costume.api.models.location.location_refid_type.LocationRefidType
+        :rtype: dressdiscover.api.models.location.location_refid_type.LocationRefidType
         '''
 
         return self.__type
@@ -219,7 +219,7 @@ class LocationRefid(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.location.location_refid.LocationRefid
+        :rtype: dressdiscover.api.models.location.location_refid.LocationRefid
         '''
 
         oprot.write_struct_begin('LocationRefid')

@@ -1,6 +1,6 @@
 import __builtin__
-import costume.api.models.closure.closure_placement
-import costume.api.models.closure.closure_type
+import dressdiscover.api.models.closure.closure_placement
+import dressdiscover.api.models.closure.closure_type
 
 
 class Closure(object):
@@ -11,8 +11,8 @@ class Closure(object):
             type=None,  # @ReservedAssignment
         ):
             '''
-            :type placement: costume.api.models.closure.closure_placement.ClosurePlacement
-            :type type: costume.api.models.closure.closure_type.ClosureType
+            :type placement: dressdiscover.api.models.closure.closure_placement.ClosurePlacement
+            :type type: dressdiscover.api.models.closure.closure_type.ClosureType
             '''
 
             self.__placement = placement
@@ -24,14 +24,14 @@ class Closure(object):
         @property
         def placement(self):
             '''
-            :rtype: costume.api.models.closure.closure_placement.ClosurePlacement
+            :rtype: dressdiscover.api.models.closure.closure_placement.ClosurePlacement
             '''
 
             return self.__placement
 
         def set_placement(self, placement):
             '''
-            :type placement: costume.api.models.closure.closure_placement.ClosurePlacement
+            :type placement: dressdiscover.api.models.closure.closure_placement.ClosurePlacement
             '''
 
             self.__placement = placement
@@ -39,7 +39,7 @@ class Closure(object):
 
         def set_type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.closure.closure_type.ClosureType
+            :type type: dressdiscover.api.models.closure.closure_type.ClosureType
             '''
 
             self.__type = type
@@ -48,15 +48,15 @@ class Closure(object):
         @property
         def type(self):  # @ReservedAssignment
             '''
-            :rtype: costume.api.models.closure.closure_type.ClosureType
+            :rtype: dressdiscover.api.models.closure.closure_type.ClosureType
             '''
 
             return self.__type
 
         def update(self, closure):
             '''
-            :type placement: costume.api.models.closure.closure_placement.ClosurePlacement
-            :type type: costume.api.models.closure.closure_type.ClosureType
+            :type placement: dressdiscover.api.models.closure.closure_placement.ClosurePlacement
+            :type type: dressdiscover.api.models.closure.closure_type.ClosureType
             '''
 
             if isinstance(closure, Closure):
@@ -72,7 +72,7 @@ class Closure(object):
         @placement.setter
         def placement(self, placement):
             '''
-            :type placement: costume.api.models.closure.closure_placement.ClosurePlacement
+            :type placement: dressdiscover.api.models.closure.closure_placement.ClosurePlacement
             '''
 
             self.set_placement(placement)
@@ -80,7 +80,7 @@ class Closure(object):
         @type.setter
         def type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.closure.closure_type.ClosureType
+            :type type: dressdiscover.api.models.closure.closure_type.ClosureType
             '''
 
             self.set_type(type)
@@ -91,20 +91,20 @@ class Closure(object):
         type,  # @ReservedAssignment
     ):
         '''
-        :type placement: costume.api.models.closure.closure_placement.ClosurePlacement
-        :type type: costume.api.models.closure.closure_type.ClosureType
+        :type placement: dressdiscover.api.models.closure.closure_placement.ClosurePlacement
+        :type type: dressdiscover.api.models.closure.closure_type.ClosureType
         '''
 
         if placement is None:
             raise ValueError('placement is required')
-        if not isinstance(placement, costume.api.models.closure.closure_placement.ClosurePlacement):
-            raise TypeError("expected placement to be a costume.api.models.closure.closure_placement.ClosurePlacement but it is a %s" % getattr(__builtin__, 'type')(placement))
+        if not isinstance(placement, dressdiscover.api.models.closure.closure_placement.ClosurePlacement):
+            raise TypeError("expected placement to be a dressdiscover.api.models.closure.closure_placement.ClosurePlacement but it is a %s" % getattr(__builtin__, 'type')(placement))
         self.__placement = placement
 
         if type is None:
             raise ValueError('type is required')
-        if not isinstance(type, costume.api.models.closure.closure_type.ClosureType):
-            raise TypeError("expected type to be a costume.api.models.closure.closure_type.ClosureType but it is a %s" % getattr(__builtin__, 'type')(type))
+        if not isinstance(type, dressdiscover.api.models.closure.closure_type.ClosureType):
+            raise TypeError("expected type to be a dressdiscover.api.models.closure.closure_type.ClosureType but it is a %s" % getattr(__builtin__, 'type')(type))
         self.__type = type
 
     def __eq__(self, other):
@@ -156,7 +156,7 @@ class Closure(object):
     @property
     def placement(self):
         '''
-        :rtype: costume.api.models.closure.closure_placement.ClosurePlacement
+        :rtype: dressdiscover.api.models.closure.closure_placement.ClosurePlacement
         '''
 
         return self.__placement
@@ -167,7 +167,7 @@ class Closure(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.closure.closure.Closure
+        :rtype: dressdiscover.api.models.closure.closure.Closure
         '''
 
         init_kwds = {}
@@ -178,9 +178,9 @@ class Closure(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'placement' and ifield_id == 1:
-                init_kwds['placement'] = costume.api.models.closure.closure_placement.ClosurePlacement.read(iprot)
+                init_kwds['placement'] = dressdiscover.api.models.closure.closure_placement.ClosurePlacement.read(iprot)
             elif ifield_name == 'type' and ifield_id == 2:
-                init_kwds['type'] = costume.api.models.closure.closure_type.ClosureType.read(iprot)
+                init_kwds['type'] = dressdiscover.api.models.closure.closure_type.ClosureType.read(iprot)
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -194,9 +194,9 @@ class Closure(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type placement: costume.api.models.closure.closure_placement.ClosurePlacement or None
-        :type type: costume.api.models.closure.closure_type.ClosureType or None
-        :rtype: costume.api.models.closure.closure.Closure
+        :type placement: dressdiscover.api.models.closure.closure_placement.ClosurePlacement or None
+        :type type: dressdiscover.api.models.closure.closure_type.ClosureType or None
+        :rtype: dressdiscover.api.models.closure.closure.Closure
         '''
 
         if placement is None:
@@ -208,7 +208,7 @@ class Closure(object):
     @property
     def type(self):  # @ReservedAssignment
         '''
-        :rtype: costume.api.models.closure.closure_type.ClosureType
+        :rtype: dressdiscover.api.models.closure.closure_type.ClosureType
         '''
 
         return self.__type
@@ -218,7 +218,7 @@ class Closure(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.closure.closure.Closure
+        :rtype: dressdiscover.api.models.closure.closure.Closure
         '''
 
         oprot.write_struct_begin('Closure')

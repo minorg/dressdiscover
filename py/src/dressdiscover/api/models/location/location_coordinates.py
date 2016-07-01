@@ -174,7 +174,7 @@ class LocationCoordinates(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.location.location_coordinates.LocationCoordinates
+        :rtype: dressdiscover.api.models.location.location_coordinates.LocationCoordinates
         '''
 
         init_kwds = {}
@@ -203,7 +203,7 @@ class LocationCoordinates(object):
 
         :type latitude: Decimal or None
         :type longitude: Decimal or None
-        :rtype: costume.api.models.location.location_coordinates.LocationCoordinates
+        :rtype: dressdiscover.api.models.location.location_coordinates.LocationCoordinates
         '''
 
         if latitude is None:
@@ -217,7 +217,7 @@ class LocationCoordinates(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.location.location_coordinates.LocationCoordinates
+        :rtype: dressdiscover.api.models.location.location_coordinates.LocationCoordinates
         '''
 
         oprot.write_struct_begin('LocationCoordinates')

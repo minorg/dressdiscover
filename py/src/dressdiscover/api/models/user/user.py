@@ -174,7 +174,7 @@ class User(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.user.user.User
+        :rtype: dressdiscover.api.models.user.user.User
         '''
 
         init_kwds = {}
@@ -203,7 +203,7 @@ class User(object):
 
         :type ctime: datetime or None
         :type email_address: str or None
-        :rtype: costume.api.models.user.user.User
+        :rtype: dressdiscover.api.models.user.user.User
         '''
 
         if ctime is None:
@@ -217,7 +217,7 @@ class User(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.user.user.User
+        :rtype: dressdiscover.api.models.user.user.User
         '''
 
         oprot.write_struct_begin('User')

@@ -1,6 +1,6 @@
 import __builtin__
-import costume.api.models.textref.textref_name
-import costume.api.models.textref.textref_refid
+import dressdiscover.api.models.textref.textref_name
+import dressdiscover.api.models.textref.textref_refid
 
 
 class Textref(object):
@@ -11,8 +11,8 @@ class Textref(object):
             refid=None,
         ):
             '''
-            :type name: costume.api.models.textref.textref_name.TextrefName
-            :type refid: costume.api.models.textref.textref_refid.TextrefRefid
+            :type name: dressdiscover.api.models.textref.textref_name.TextrefName
+            :type refid: dressdiscover.api.models.textref.textref_refid.TextrefRefid
             '''
 
             self.__name = name
@@ -24,7 +24,7 @@ class Textref(object):
         @property
         def name(self):
             '''
-            :rtype: costume.api.models.textref.textref_name.TextrefName
+            :rtype: dressdiscover.api.models.textref.textref_name.TextrefName
             '''
 
             return self.__name
@@ -32,14 +32,14 @@ class Textref(object):
         @property
         def refid(self):
             '''
-            :rtype: costume.api.models.textref.textref_refid.TextrefRefid
+            :rtype: dressdiscover.api.models.textref.textref_refid.TextrefRefid
             '''
 
             return self.__refid
 
         def set_name(self, name):
             '''
-            :type name: costume.api.models.textref.textref_name.TextrefName
+            :type name: dressdiscover.api.models.textref.textref_name.TextrefName
             '''
 
             self.__name = name
@@ -47,7 +47,7 @@ class Textref(object):
 
         def set_refid(self, refid):
             '''
-            :type refid: costume.api.models.textref.textref_refid.TextrefRefid
+            :type refid: dressdiscover.api.models.textref.textref_refid.TextrefRefid
             '''
 
             self.__refid = refid
@@ -55,8 +55,8 @@ class Textref(object):
 
         def update(self, textref):
             '''
-            :type name: costume.api.models.textref.textref_name.TextrefName
-            :type refid: costume.api.models.textref.textref_refid.TextrefRefid
+            :type name: dressdiscover.api.models.textref.textref_name.TextrefName
+            :type refid: dressdiscover.api.models.textref.textref_refid.TextrefRefid
             '''
 
             if isinstance(textref, Textref):
@@ -72,7 +72,7 @@ class Textref(object):
         @name.setter
         def name(self, name):
             '''
-            :type name: costume.api.models.textref.textref_name.TextrefName
+            :type name: dressdiscover.api.models.textref.textref_name.TextrefName
             '''
 
             self.set_name(name)
@@ -80,7 +80,7 @@ class Textref(object):
         @refid.setter
         def refid(self, refid):
             '''
-            :type refid: costume.api.models.textref.textref_refid.TextrefRefid
+            :type refid: dressdiscover.api.models.textref.textref_refid.TextrefRefid
             '''
 
             self.set_refid(refid)
@@ -91,20 +91,20 @@ class Textref(object):
         refid,
     ):
         '''
-        :type name: costume.api.models.textref.textref_name.TextrefName
-        :type refid: costume.api.models.textref.textref_refid.TextrefRefid
+        :type name: dressdiscover.api.models.textref.textref_name.TextrefName
+        :type refid: dressdiscover.api.models.textref.textref_refid.TextrefRefid
         '''
 
         if name is None:
             raise ValueError('name is required')
-        if not isinstance(name, costume.api.models.textref.textref_name.TextrefName):
-            raise TypeError("expected name to be a costume.api.models.textref.textref_name.TextrefName but it is a %s" % getattr(__builtin__, 'type')(name))
+        if not isinstance(name, dressdiscover.api.models.textref.textref_name.TextrefName):
+            raise TypeError("expected name to be a dressdiscover.api.models.textref.textref_name.TextrefName but it is a %s" % getattr(__builtin__, 'type')(name))
         self.__name = name
 
         if refid is None:
             raise ValueError('refid is required')
-        if not isinstance(refid, costume.api.models.textref.textref_refid.TextrefRefid):
-            raise TypeError("expected refid to be a costume.api.models.textref.textref_refid.TextrefRefid but it is a %s" % getattr(__builtin__, 'type')(refid))
+        if not isinstance(refid, dressdiscover.api.models.textref.textref_refid.TextrefRefid):
+            raise TypeError("expected refid to be a dressdiscover.api.models.textref.textref_refid.TextrefRefid but it is a %s" % getattr(__builtin__, 'type')(refid))
         self.__refid = refid
 
     def __eq__(self, other):
@@ -156,7 +156,7 @@ class Textref(object):
     @property
     def name(self):
         '''
-        :rtype: costume.api.models.textref.textref_name.TextrefName
+        :rtype: dressdiscover.api.models.textref.textref_name.TextrefName
         '''
 
         return self.__name
@@ -167,7 +167,7 @@ class Textref(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.textref.textref.Textref
+        :rtype: dressdiscover.api.models.textref.textref.Textref
         '''
 
         init_kwds = {}
@@ -178,9 +178,9 @@ class Textref(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'name' and ifield_id == 1:
-                init_kwds['name'] = costume.api.models.textref.textref_name.TextrefName.read(iprot)
+                init_kwds['name'] = dressdiscover.api.models.textref.textref_name.TextrefName.read(iprot)
             elif ifield_name == 'refid' and ifield_id == 2:
-                init_kwds['refid'] = costume.api.models.textref.textref_refid.TextrefRefid.read(iprot)
+                init_kwds['refid'] = dressdiscover.api.models.textref.textref_refid.TextrefRefid.read(iprot)
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -189,7 +189,7 @@ class Textref(object):
     @property
     def refid(self):
         '''
-        :rtype: costume.api.models.textref.textref_refid.TextrefRefid
+        :rtype: dressdiscover.api.models.textref.textref_refid.TextrefRefid
         '''
 
         return self.__refid
@@ -202,9 +202,9 @@ class Textref(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type name: costume.api.models.textref.textref_name.TextrefName or None
-        :type refid: costume.api.models.textref.textref_refid.TextrefRefid or None
-        :rtype: costume.api.models.textref.textref.Textref
+        :type name: dressdiscover.api.models.textref.textref_name.TextrefName or None
+        :type refid: dressdiscover.api.models.textref.textref_refid.TextrefRefid or None
+        :rtype: dressdiscover.api.models.textref.textref.Textref
         '''
 
         if name is None:
@@ -218,7 +218,7 @@ class Textref(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.textref.textref.Textref
+        :rtype: dressdiscover.api.models.textref.textref.Textref
         '''
 
         oprot.write_struct_begin('Textref')

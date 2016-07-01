@@ -1,5 +1,5 @@
 import __builtin__
-import costume.api.models.vocab
+import dressdiscover.api.models.vocab
 
 
 class VocabRef(object):
@@ -11,7 +11,7 @@ class VocabRef(object):
             uri=None,
         ):
             '''
-            :type vocab: costume.api.models.vocab.Vocab
+            :type vocab: dressdiscover.api.models.vocab.Vocab
             :type refid: str or None
             :type uri: str or None
             '''
@@ -49,7 +49,7 @@ class VocabRef(object):
 
         def set_vocab(self, vocab):
             '''
-            :type vocab: costume.api.models.vocab.Vocab
+            :type vocab: dressdiscover.api.models.vocab.Vocab
             '''
 
             self.__vocab = vocab
@@ -57,7 +57,7 @@ class VocabRef(object):
 
         def update(self, vocab_ref):
             '''
-            :type vocab: costume.api.models.vocab.Vocab
+            :type vocab: dressdiscover.api.models.vocab.Vocab
             :type refid: str or None
             :type uri: str or None
             '''
@@ -84,7 +84,7 @@ class VocabRef(object):
         @property
         def vocab(self):
             '''
-            :rtype: costume.api.models.vocab.Vocab
+            :rtype: dressdiscover.api.models.vocab.Vocab
             '''
 
             return self.__vocab
@@ -108,7 +108,7 @@ class VocabRef(object):
         @vocab.setter
         def vocab(self, vocab):
             '''
-            :type vocab: costume.api.models.vocab.Vocab
+            :type vocab: dressdiscover.api.models.vocab.Vocab
             '''
 
             self.set_vocab(vocab)
@@ -120,15 +120,15 @@ class VocabRef(object):
         uri=None,
     ):
         '''
-        :type vocab: costume.api.models.vocab.Vocab
+        :type vocab: dressdiscover.api.models.vocab.Vocab
         :type refid: str or None
         :type uri: str or None
         '''
 
         if vocab is None:
             raise ValueError('vocab is required')
-        if not isinstance(vocab, costume.api.models.vocab.Vocab):
-            raise TypeError("expected vocab to be a costume.api.models.vocab.Vocab but it is a %s" % getattr(__builtin__, 'type')(vocab))
+        if not isinstance(vocab, dressdiscover.api.models.vocab.Vocab):
+            raise TypeError("expected vocab to be a dressdiscover.api.models.vocab.Vocab but it is a %s" % getattr(__builtin__, 'type')(vocab))
         self.__vocab = vocab
 
         if refid is not None:
@@ -203,7 +203,7 @@ class VocabRef(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.vocab_ref.VocabRef
+        :rtype: dressdiscover.api.models.vocab_ref.VocabRef
         '''
 
         init_kwds = {}
@@ -214,7 +214,7 @@ class VocabRef(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'vocab' and ifield_id == 2:
-                init_kwds['vocab'] = costume.api.models.vocab.Vocab.value_of(iprot.read_string().strip().upper())
+                init_kwds['vocab'] = dressdiscover.api.models.vocab.Vocab.value_of(iprot.read_string().strip().upper())
             elif ifield_name == 'refid' and ifield_id == 1:
                 try:
                     init_kwds['refid'] = iprot.read_string()
@@ -247,10 +247,10 @@ class VocabRef(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type vocab: costume.api.models.vocab.Vocab or None
+        :type vocab: dressdiscover.api.models.vocab.Vocab or None
         :type refid: str or None
         :type uri: str or None
-        :rtype: costume.api.models.vocab_ref.VocabRef
+        :rtype: dressdiscover.api.models.vocab_ref.VocabRef
         '''
 
         if vocab is None:
@@ -272,7 +272,7 @@ class VocabRef(object):
     @property
     def vocab(self):
         '''
-        :rtype: costume.api.models.vocab.Vocab
+        :rtype: dressdiscover.api.models.vocab.Vocab
         '''
 
         return self.__vocab
@@ -282,7 +282,7 @@ class VocabRef(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.vocab_ref.VocabRef
+        :rtype: dressdiscover.api.models.vocab_ref.VocabRef
         '''
 
         oprot.write_struct_begin('VocabRef')

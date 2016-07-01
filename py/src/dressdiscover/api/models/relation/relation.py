@@ -1,6 +1,6 @@
 from itertools import ifilterfalse
 import __builtin__
-import costume.api.models.relation.relation_type
+import dressdiscover.api.models.relation.relation_type
 
 
 class Relation(object):
@@ -13,7 +13,7 @@ class Relation(object):
             text=None,
         ):
             '''
-            :type type: costume.api.models.relation.relation_type.RelationType
+            :type type: dressdiscover.api.models.relation.relation_type.RelationType
             :type href: str or None
             :type relids: frozenset(str) or None
             :type text: str or None
@@ -69,7 +69,7 @@ class Relation(object):
 
         def set_type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.relation.relation_type.RelationType
+            :type type: dressdiscover.api.models.relation.relation_type.RelationType
             '''
 
             self.__type = type
@@ -86,14 +86,14 @@ class Relation(object):
         @property
         def type(self):  # @ReservedAssignment
             '''
-            :rtype: costume.api.models.relation.relation_type.RelationType
+            :rtype: dressdiscover.api.models.relation.relation_type.RelationType
             '''
 
             return self.__type
 
         def update(self, relation):
             '''
-            :type type: costume.api.models.relation.relation_type.RelationType
+            :type type: dressdiscover.api.models.relation.relation_type.RelationType
             :type href: str or None
             :type relids: frozenset(str) or None
             :type text: str or None
@@ -138,7 +138,7 @@ class Relation(object):
         @type.setter
         def type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.relation.relation_type.RelationType
+            :type type: dressdiscover.api.models.relation.relation_type.RelationType
             '''
 
             self.set_type(type)
@@ -151,7 +151,7 @@ class Relation(object):
         text=None,
     ):
         '''
-        :type type: costume.api.models.relation.relation_type.RelationType
+        :type type: dressdiscover.api.models.relation.relation_type.RelationType
         :type href: str or None
         :type relids: frozenset(str) or None
         :type text: str or None
@@ -159,8 +159,8 @@ class Relation(object):
 
         if type is None:
             raise ValueError('type is required')
-        if not isinstance(type, costume.api.models.relation.relation_type.RelationType):
-            raise TypeError("expected type to be a costume.api.models.relation.relation_type.RelationType but it is a %s" % getattr(__builtin__, 'type')(type))
+        if not isinstance(type, dressdiscover.api.models.relation.relation_type.RelationType):
+            raise TypeError("expected type to be a dressdiscover.api.models.relation.relation_type.RelationType but it is a %s" % getattr(__builtin__, 'type')(type))
         self.__type = type
 
         if href is not None:
@@ -256,7 +256,7 @@ class Relation(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.relation.relation.Relation
+        :rtype: dressdiscover.api.models.relation.relation.Relation
         '''
 
         init_kwds = {}
@@ -267,7 +267,7 @@ class Relation(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'type' and ifield_id == 1:
-                init_kwds['type'] = costume.api.models.relation.relation_type.RelationType.value_of(iprot.read_string().strip().upper())
+                init_kwds['type'] = dressdiscover.api.models.relation.relation_type.RelationType.value_of(iprot.read_string().strip().upper())
             elif ifield_name == 'href' and ifield_id == 2:
                 try:
                     init_kwds['href'] = iprot.read_string()
@@ -303,11 +303,11 @@ class Relation(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type type: costume.api.models.relation.relation_type.RelationType or None
+        :type type: dressdiscover.api.models.relation.relation_type.RelationType or None
         :type href: str or None
         :type relids: frozenset(str) or None
         :type text: str or None
-        :rtype: costume.api.models.relation.relation.Relation
+        :rtype: dressdiscover.api.models.relation.relation.Relation
         '''
 
         if type is None:
@@ -331,7 +331,7 @@ class Relation(object):
     @property
     def type(self):  # @ReservedAssignment
         '''
-        :rtype: costume.api.models.relation.relation_type.RelationType
+        :rtype: dressdiscover.api.models.relation.relation_type.RelationType
         '''
 
         return self.__type
@@ -341,7 +341,7 @@ class Relation(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.relation.relation.Relation
+        :rtype: dressdiscover.api.models.relation.relation.Relation
         '''
 
         oprot.write_struct_begin('Relation')

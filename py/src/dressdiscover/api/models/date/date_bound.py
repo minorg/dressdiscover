@@ -1,6 +1,6 @@
 from datetime import datetime
 import __builtin__
-import costume.api.models.date.date_time_granularity
+import dressdiscover.api.models.date.date_time_granularity
 
 
 class DateBound(object):
@@ -16,7 +16,7 @@ class DateBound(object):
             :type text: str
             :type circa: bool or None
             :type parsed_date_time: datetime or None
-            :type parsed_date_time_granularity: costume.api.models.date.date_time_granularity.DateTimeGranularity or None
+            :type parsed_date_time_granularity: dressdiscover.api.models.date.date_time_granularity.DateTimeGranularity or None
             '''
 
             self.__text = text
@@ -46,7 +46,7 @@ class DateBound(object):
         @property
         def parsed_date_time_granularity(self):
             '''
-            :rtype: costume.api.models.date.date_time_granularity.DateTimeGranularity
+            :rtype: dressdiscover.api.models.date.date_time_granularity.DateTimeGranularity
             '''
 
             return self.__parsed_date_time_granularity
@@ -69,7 +69,7 @@ class DateBound(object):
 
         def set_parsed_date_time_granularity(self, parsed_date_time_granularity):
             '''
-            :type parsed_date_time_granularity: costume.api.models.date.date_time_granularity.DateTimeGranularity or None
+            :type parsed_date_time_granularity: dressdiscover.api.models.date.date_time_granularity.DateTimeGranularity or None
             '''
 
             self.__parsed_date_time_granularity = parsed_date_time_granularity
@@ -96,7 +96,7 @@ class DateBound(object):
             :type text: str
             :type circa: bool or None
             :type parsed_date_time: datetime or None
-            :type parsed_date_time_granularity: costume.api.models.date.date_time_granularity.DateTimeGranularity or None
+            :type parsed_date_time_granularity: dressdiscover.api.models.date.date_time_granularity.DateTimeGranularity or None
             '''
 
             if isinstance(date_bound, DateBound):
@@ -130,7 +130,7 @@ class DateBound(object):
         @parsed_date_time_granularity.setter
         def parsed_date_time_granularity(self, parsed_date_time_granularity):
             '''
-            :type parsed_date_time_granularity: costume.api.models.date.date_time_granularity.DateTimeGranularity or None
+            :type parsed_date_time_granularity: dressdiscover.api.models.date.date_time_granularity.DateTimeGranularity or None
             '''
 
             self.set_parsed_date_time_granularity(parsed_date_time_granularity)
@@ -154,7 +154,7 @@ class DateBound(object):
         :type text: str
         :type circa: bool or None
         :type parsed_date_time: datetime or None
-        :type parsed_date_time_granularity: costume.api.models.date.date_time_granularity.DateTimeGranularity or None
+        :type parsed_date_time_granularity: dressdiscover.api.models.date.date_time_granularity.DateTimeGranularity or None
         '''
 
         if text is None:
@@ -176,8 +176,8 @@ class DateBound(object):
         self.__parsed_date_time = parsed_date_time
 
         if parsed_date_time_granularity is not None:
-            if not isinstance(parsed_date_time_granularity, costume.api.models.date.date_time_granularity.DateTimeGranularity):
-                raise TypeError("expected parsed_date_time_granularity to be a costume.api.models.date.date_time_granularity.DateTimeGranularity but it is a %s" % getattr(__builtin__, 'type')(parsed_date_time_granularity))
+            if not isinstance(parsed_date_time_granularity, dressdiscover.api.models.date.date_time_granularity.DateTimeGranularity):
+                raise TypeError("expected parsed_date_time_granularity to be a dressdiscover.api.models.date.date_time_granularity.DateTimeGranularity but it is a %s" % getattr(__builtin__, 'type')(parsed_date_time_granularity))
         self.__parsed_date_time_granularity = parsed_date_time_granularity
 
     def __eq__(self, other):
@@ -259,7 +259,7 @@ class DateBound(object):
     @property
     def parsed_date_time_granularity(self):
         '''
-        :rtype: costume.api.models.date.date_time_granularity.DateTimeGranularity
+        :rtype: dressdiscover.api.models.date.date_time_granularity.DateTimeGranularity
         '''
 
         return self.__parsed_date_time_granularity
@@ -270,7 +270,7 @@ class DateBound(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.date.date_bound.DateBound
+        :rtype: dressdiscover.api.models.date.date_bound.DateBound
         '''
 
         init_kwds = {}
@@ -294,7 +294,7 @@ class DateBound(object):
                     pass
             elif ifield_name == 'parsed_date_time_granularity' and ifield_id == 4:
                 try:
-                    init_kwds['parsed_date_time_granularity'] = costume.api.models.date.date_time_granularity.DateTimeGranularity.value_of(iprot.read_string().strip().upper())
+                    init_kwds['parsed_date_time_granularity'] = dressdiscover.api.models.date.date_time_granularity.DateTimeGranularity.value_of(iprot.read_string().strip().upper())
                 except (TypeError,):
                     pass
             iprot.read_field_end()
@@ -315,8 +315,8 @@ class DateBound(object):
         :type text: str or None
         :type circa: bool or None
         :type parsed_date_time: datetime or None
-        :type parsed_date_time_granularity: costume.api.models.date.date_time_granularity.DateTimeGranularity or None
-        :rtype: costume.api.models.date.date_bound.DateBound
+        :type parsed_date_time_granularity: dressdiscover.api.models.date.date_time_granularity.DateTimeGranularity or None
+        :rtype: dressdiscover.api.models.date.date_bound.DateBound
         '''
 
         if text is None:
@@ -342,7 +342,7 @@ class DateBound(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.date.date_bound.DateBound
+        :rtype: dressdiscover.api.models.date.date_bound.DateBound
         '''
 
         oprot.write_struct_begin('DateBound')

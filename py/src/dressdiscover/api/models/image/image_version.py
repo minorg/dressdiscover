@@ -208,7 +208,7 @@ class ImageVersion(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.image.image_version.ImageVersion
+        :rtype: dressdiscover.api.models.image.image_version.ImageVersion
         '''
 
         init_kwds = {}
@@ -247,7 +247,7 @@ class ImageVersion(object):
         :type url: str or None
         :type height_px: int or None
         :type width_px: int or None
-        :rtype: costume.api.models.image.image_version.ImageVersion
+        :rtype: dressdiscover.api.models.image.image_version.ImageVersion
         '''
 
         if url is None:
@@ -279,7 +279,7 @@ class ImageVersion(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.image.image_version.ImageVersion
+        :rtype: dressdiscover.api.models.image.image_version.ImageVersion
         '''
 
         oprot.write_struct_begin('ImageVersion')

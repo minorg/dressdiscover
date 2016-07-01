@@ -1,6 +1,6 @@
 import __builtin__
-import costume.api.models.date.date_bound
-import costume.api.models.date.date_type
+import dressdiscover.api.models.date.date_bound
+import dressdiscover.api.models.date.date_type
 
 
 class Date(object):
@@ -14,9 +14,9 @@ class Date(object):
             source=None,
         ):
             '''
-            :type earliest_date: costume.api.models.date.date_bound.DateBound
-            :type latest_date: costume.api.models.date.date_bound.DateBound
-            :type type: costume.api.models.date.date_type.DateType
+            :type earliest_date: dressdiscover.api.models.date.date_bound.DateBound
+            :type latest_date: dressdiscover.api.models.date.date_bound.DateBound
+            :type type: dressdiscover.api.models.date.date_type.DateType
             :type href: str or None
             :type source: str or None
             '''
@@ -33,7 +33,7 @@ class Date(object):
         @property
         def earliest_date(self):
             '''
-            :rtype: costume.api.models.date.date_bound.DateBound
+            :rtype: dressdiscover.api.models.date.date_bound.DateBound
             '''
 
             return self.__earliest_date
@@ -49,14 +49,14 @@ class Date(object):
         @property
         def latest_date(self):
             '''
-            :rtype: costume.api.models.date.date_bound.DateBound
+            :rtype: dressdiscover.api.models.date.date_bound.DateBound
             '''
 
             return self.__latest_date
 
         def set_earliest_date(self, earliest_date):
             '''
-            :type earliest_date: costume.api.models.date.date_bound.DateBound
+            :type earliest_date: dressdiscover.api.models.date.date_bound.DateBound
             '''
 
             self.__earliest_date = earliest_date
@@ -72,7 +72,7 @@ class Date(object):
 
         def set_latest_date(self, latest_date):
             '''
-            :type latest_date: costume.api.models.date.date_bound.DateBound
+            :type latest_date: dressdiscover.api.models.date.date_bound.DateBound
             '''
 
             self.__latest_date = latest_date
@@ -88,7 +88,7 @@ class Date(object):
 
         def set_type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.date.date_type.DateType
+            :type type: dressdiscover.api.models.date.date_type.DateType
             '''
 
             self.__type = type
@@ -105,16 +105,16 @@ class Date(object):
         @property
         def type(self):  # @ReservedAssignment
             '''
-            :rtype: costume.api.models.date.date_type.DateType
+            :rtype: dressdiscover.api.models.date.date_type.DateType
             '''
 
             return self.__type
 
         def update(self, date):
             '''
-            :type earliest_date: costume.api.models.date.date_bound.DateBound
-            :type latest_date: costume.api.models.date.date_bound.DateBound
-            :type type: costume.api.models.date.date_type.DateType
+            :type earliest_date: dressdiscover.api.models.date.date_bound.DateBound
+            :type latest_date: dressdiscover.api.models.date.date_bound.DateBound
+            :type type: dressdiscover.api.models.date.date_type.DateType
             :type href: str or None
             :type source: str or None
             '''
@@ -135,7 +135,7 @@ class Date(object):
         @earliest_date.setter
         def earliest_date(self, earliest_date):
             '''
-            :type earliest_date: costume.api.models.date.date_bound.DateBound
+            :type earliest_date: dressdiscover.api.models.date.date_bound.DateBound
             '''
 
             self.set_earliest_date(earliest_date)
@@ -151,7 +151,7 @@ class Date(object):
         @latest_date.setter
         def latest_date(self, latest_date):
             '''
-            :type latest_date: costume.api.models.date.date_bound.DateBound
+            :type latest_date: dressdiscover.api.models.date.date_bound.DateBound
             '''
 
             self.set_latest_date(latest_date)
@@ -167,7 +167,7 @@ class Date(object):
         @type.setter
         def type(self, type):  # @ReservedAssignment
             '''
-            :type type: costume.api.models.date.date_type.DateType
+            :type type: dressdiscover.api.models.date.date_type.DateType
             '''
 
             self.set_type(type)
@@ -181,29 +181,29 @@ class Date(object):
         source=None,
     ):
         '''
-        :type earliest_date: costume.api.models.date.date_bound.DateBound
-        :type latest_date: costume.api.models.date.date_bound.DateBound
-        :type type: costume.api.models.date.date_type.DateType
+        :type earliest_date: dressdiscover.api.models.date.date_bound.DateBound
+        :type latest_date: dressdiscover.api.models.date.date_bound.DateBound
+        :type type: dressdiscover.api.models.date.date_type.DateType
         :type href: str or None
         :type source: str or None
         '''
 
         if earliest_date is None:
             raise ValueError('earliest_date is required')
-        if not isinstance(earliest_date, costume.api.models.date.date_bound.DateBound):
-            raise TypeError("expected earliest_date to be a costume.api.models.date.date_bound.DateBound but it is a %s" % getattr(__builtin__, 'type')(earliest_date))
+        if not isinstance(earliest_date, dressdiscover.api.models.date.date_bound.DateBound):
+            raise TypeError("expected earliest_date to be a dressdiscover.api.models.date.date_bound.DateBound but it is a %s" % getattr(__builtin__, 'type')(earliest_date))
         self.__earliest_date = earliest_date
 
         if latest_date is None:
             raise ValueError('latest_date is required')
-        if not isinstance(latest_date, costume.api.models.date.date_bound.DateBound):
-            raise TypeError("expected latest_date to be a costume.api.models.date.date_bound.DateBound but it is a %s" % getattr(__builtin__, 'type')(latest_date))
+        if not isinstance(latest_date, dressdiscover.api.models.date.date_bound.DateBound):
+            raise TypeError("expected latest_date to be a dressdiscover.api.models.date.date_bound.DateBound but it is a %s" % getattr(__builtin__, 'type')(latest_date))
         self.__latest_date = latest_date
 
         if type is None:
             raise ValueError('type is required')
-        if not isinstance(type, costume.api.models.date.date_type.DateType):
-            raise TypeError("expected type to be a costume.api.models.date.date_type.DateType but it is a %s" % getattr(__builtin__, 'type')(type))
+        if not isinstance(type, dressdiscover.api.models.date.date_type.DateType):
+            raise TypeError("expected type to be a dressdiscover.api.models.date.date_type.DateType but it is a %s" % getattr(__builtin__, 'type')(type))
         self.__type = type
 
         if href is not None:
@@ -283,7 +283,7 @@ class Date(object):
     @property
     def earliest_date(self):
         '''
-        :rtype: costume.api.models.date.date_bound.DateBound
+        :rtype: dressdiscover.api.models.date.date_bound.DateBound
         '''
 
         return self.__earliest_date
@@ -299,7 +299,7 @@ class Date(object):
     @property
     def latest_date(self):
         '''
-        :rtype: costume.api.models.date.date_bound.DateBound
+        :rtype: dressdiscover.api.models.date.date_bound.DateBound
         '''
 
         return self.__latest_date
@@ -310,7 +310,7 @@ class Date(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.models.date.date.Date
+        :rtype: dressdiscover.api.models.date.date.Date
         '''
 
         init_kwds = {}
@@ -321,11 +321,11 @@ class Date(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'earliest_date' and ifield_id == 1:
-                init_kwds['earliest_date'] = costume.api.models.date.date_bound.DateBound.read(iprot)
+                init_kwds['earliest_date'] = dressdiscover.api.models.date.date_bound.DateBound.read(iprot)
             elif ifield_name == 'latest_date' and ifield_id == 2:
-                init_kwds['latest_date'] = costume.api.models.date.date_bound.DateBound.read(iprot)
+                init_kwds['latest_date'] = dressdiscover.api.models.date.date_bound.DateBound.read(iprot)
             elif ifield_name == 'type' and ifield_id == 3:
-                init_kwds['type'] = costume.api.models.date.date_type.DateType.value_of(iprot.read_string().strip().upper())
+                init_kwds['type'] = dressdiscover.api.models.date.date_type.DateType.value_of(iprot.read_string().strip().upper())
             elif ifield_name == 'href' and ifield_id == 4:
                 try:
                     init_kwds['href'] = iprot.read_string()
@@ -352,12 +352,12 @@ class Date(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type earliest_date: costume.api.models.date.date_bound.DateBound or None
-        :type latest_date: costume.api.models.date.date_bound.DateBound or None
-        :type type: costume.api.models.date.date_type.DateType or None
+        :type earliest_date: dressdiscover.api.models.date.date_bound.DateBound or None
+        :type latest_date: dressdiscover.api.models.date.date_bound.DateBound or None
+        :type type: dressdiscover.api.models.date.date_type.DateType or None
         :type href: str or None
         :type source: str or None
-        :rtype: costume.api.models.date.date.Date
+        :rtype: dressdiscover.api.models.date.date.Date
         '''
 
         if earliest_date is None:
@@ -383,7 +383,7 @@ class Date(object):
     @property
     def type(self):  # @ReservedAssignment
         '''
-        :rtype: costume.api.models.date.date_type.DateType
+        :rtype: dressdiscover.api.models.date.date_type.DateType
         '''
 
         return self.__type
@@ -393,7 +393,7 @@ class Date(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.models.date.date.Date
+        :rtype: dressdiscover.api.models.date.date.Date
         '''
 
         oprot.write_struct_begin('Date')

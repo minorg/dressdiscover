@@ -124,7 +124,7 @@ class IoException(Exception):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: costume.api.services.io_exception.IoException
+        :rtype: dressdiscover.api.services.io_exception.IoException
         '''
 
         init_kwds = {}
@@ -149,7 +149,7 @@ class IoException(Exception):
         Copy this object, replace one or more fields, and return the copy.
 
         :type cause_message: str or None
-        :rtype: costume.api.services.io_exception.IoException
+        :rtype: dressdiscover.api.services.io_exception.IoException
         '''
 
         if cause_message is None:
@@ -161,7 +161,7 @@ class IoException(Exception):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: costume.api.services.io_exception.IoException
+        :rtype: dressdiscover.api.services.io_exception.IoException
         '''
 
         oprot.write_struct_begin('IoException')
