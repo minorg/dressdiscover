@@ -3,11 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>costume-parent</artifactId>
+		<artifactId>dressdiscover-parent</artifactId>
 		<groupId>org.dressdiscover</groupId>
 		<version>1.0.7-SNAPSHOT</version>
 	</parent>
-	<artifactId>costume-gui</artifactId>
+	<artifactId>dressdiscover-gui</artifactId>
 	<packaging>jar</packaging>
 
 	<build>
@@ -38,7 +38,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>costume-lib</artifactId>
+			<artifactId>dressdiscover-lib</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 		<!-- <dependency> <artifactId>guava-gwt</artifactId> <groupId>com.google.guava</groupId>

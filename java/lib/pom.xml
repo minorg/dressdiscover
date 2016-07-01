@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<artifactId>costume-lib</artifactId>
+	<artifactId>dressdiscover-lib</artifactId>
 	<description>${product} lib</description>
 	<modelVersion>4.0.0</modelVersion>
 	<packaging>jar</packaging>
 
 	<parent>
 		<groupId>org.dressdiscover</groupId>
-		<artifactId>costume-parent</artifactId>
+		<artifactId>dressdiscover-parent</artifactId>
 		<version>1.0.7-SNAPSHOT</version>
 	</parent>
 
@@ -57,12 +57,12 @@
 	<dependencies>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>costume-api</artifactId>
+			<artifactId>dressdiscover-api</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>costume-testdata</artifactId>
+			<artifactId>dressdiscover-testdata</artifactId>
 			<version>${project.parent.version}</version>
 			<scope>test</scope>
 		</dependency>
