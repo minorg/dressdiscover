@@ -2,7 +2,7 @@ namespace bean_java org.dressdiscover.gui.models.inscription
 namespace java org.dressdiscover.api.models.inscription
 namespace * dressdiscover.api.models.inscription
 
-include "costume/api/models/inscription/inscription.thrift"
+include "dressdiscover/api/models/inscription/inscription.thrift"
 
 // VRA Core 4.0 inscriptionSet element
 // @java_implements net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.inscription.Inscription>

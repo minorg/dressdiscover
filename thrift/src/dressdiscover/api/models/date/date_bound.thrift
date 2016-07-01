@@ -2,7 +2,7 @@ namespace bean_java org.dressdiscover.gui.models.date
 namespace java org.dressdiscover.api.models.date
 namespace * dressdiscover.api.models.date
 
-include "costume/api/models/date/date_time_granularity.thrift"
+include "dressdiscover/api/models/date/date_time_granularity.thrift"
 include "thryft/native/date_time.thrift"
 
 // VRA Core 4.0 date earliestDate or latestDate subelement

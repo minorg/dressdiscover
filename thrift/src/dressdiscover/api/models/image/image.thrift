@@ -2,8 +2,8 @@ namespace bean_java org.dressdiscover.gui.models.image
 namespace java org.dressdiscover.api.models.image
 namespace * dressdiscover.api.models.image
 
-include "costume/api/models/image/image_version.thrift"
-include "costume/api/models/rights/rights_set.thrift"
+include "dressdiscover/api/models/image/image_version.thrift"
+include "dressdiscover/api/models/rights/rights_set.thrift"
 
 struct Image {
 	2: optional image_version.ImageVersion full_size;

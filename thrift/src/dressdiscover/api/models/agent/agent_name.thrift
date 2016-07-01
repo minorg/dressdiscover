@@ -2,8 +2,8 @@ namespace bean_java org.dressdiscover.gui.models.agent
 namespace java org.dressdiscover.api.models.agent
 namespace * dressdiscover.api.models.agent
 
-include "costume/api/models/vocab_ref.thrift"
-include "costume/api/models/agent/agent_name_type.thrift"
+include "dressdiscover/api/models/vocab_ref.thrift"
+include "dressdiscover/api/models/agent/agent_name_type.thrift"
 
 // VRA Core 4.0 agent.name element
 struct AgentName {

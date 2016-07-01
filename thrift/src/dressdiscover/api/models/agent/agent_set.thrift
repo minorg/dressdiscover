@@ -2,7 +2,7 @@ namespace bean_java org.dressdiscover.gui.models.agent
 namespace java org.dressdiscover.api.models.agent
 namespace * dressdiscover.api.models.agent
 
-include "costume/api/models/agent/agent.thrift"
+include "dressdiscover/api/models/agent/agent.thrift"
 
 // VRA Core 4.0 agentSet element
 // @java_implements net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.agent.Agent>

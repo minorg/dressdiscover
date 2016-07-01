@@ -2,9 +2,9 @@ namespace bean_java org.dressdiscover.gui.models.user
 namespace java org.dressdiscover.api.models.user
 namespace * dressdiscover.api.models.user
 
-include "costume/api/models/object/object_id.thrift"
-include "costume/api/models/object/object_query.thrift"
-include "costume/api/models/user/user_id.thrift"
+include "dressdiscover/api/models/object/object_id.thrift"
+include "dressdiscover/api/models/object/object_query.thrift"
+include "dressdiscover/api/models/user/user_id.thrift"
 
 // @java_implements org.thryft.waf.api.models.Model
 // @sql_column object_query VARCHAR

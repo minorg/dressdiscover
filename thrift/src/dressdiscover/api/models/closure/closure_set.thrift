@@ -2,7 +2,7 @@ namespace bean_java org.dressdiscover.gui.models.closure
 namespace java org.dressdiscover.api.models.closure
 namespace * dressdiscover.api.models.closure
 
-include "costume/api/models/closure/closure.thrift"
+include "dressdiscover/api/models/closure/closure.thrift"
 
 // Costume Core closureSet
 // @java_implements net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.closure.Closure>

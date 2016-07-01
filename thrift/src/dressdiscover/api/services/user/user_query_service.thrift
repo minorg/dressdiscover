@@ -5,12 +5,12 @@ namespace servlet_java net.lab1318.costume.server.controllers.user
 namespace validating_service_java net.lab1318.costume.lib.services.user
 namespace * dressdiscover.api.services.user
 
-include "costume/api/models/user/user.thrift"
-include "costume/api/models/user/user_bookmark_entry.thrift"
-include "costume/api/models/user/user_entry.thrift"
-include "costume/api/models/user/user_id.thrift"
-include "costume/api/services/io_exception.thrift"
-include "costume/api/services/user/no_such_user_exception.thrift"
+include "dressdiscover/api/models/user/user.thrift"
+include "dressdiscover/api/models/user/user_bookmark_entry.thrift"
+include "dressdiscover/api/models/user/user_entry.thrift"
+include "dressdiscover/api/models/user/user_id.thrift"
+include "dressdiscover/api/services/io_exception.thrift"
+include "dressdiscover/api/services/user/no_such_user_exception.thrift"
 include "thryft/native/email_address.thrift"
 
 service UserQueryService {

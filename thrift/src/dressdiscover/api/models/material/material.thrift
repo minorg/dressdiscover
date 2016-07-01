@@ -2,8 +2,8 @@ namespace bean_java org.dressdiscover.gui.models.material
 namespace java org.dressdiscover.api.models.material
 namespace * dressdiscover.api.models.material
 
-include "costume/api/models/vocab_ref.thrift"
-include "costume/api/models/material/material_type.thrift"
+include "dressdiscover/api/models/vocab_ref.thrift"
+include "dressdiscover/api/models/material/material_type.thrift"
 
 // VRA Core 4.0 material element
 // @java_implements net.lab1318.costume.api.models.Element

@@ -1,7 +1,7 @@
 namespace java org.dressdiscover.api.services.user
 namespace * dressdiscover.api.services.user
 
-include "costume/api/models/user/user_id.thrift"
+include "dressdiscover/api/models/user/user_id.thrift"
 
 exception DuplicateUserException {
 	// validation {"minLength": 1}

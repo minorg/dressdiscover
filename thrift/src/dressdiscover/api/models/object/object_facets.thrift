@@ -1,9 +1,9 @@
 namespace java org.dressdiscover.api.models.object
 namespace * dressdiscover.api.models.object
 
-include "costume/api/models/collection/collection_id.thrift"
-include "costume/api/models/gender/gender.thrift"
-include "costume/api/models/institution/institution_id.thrift"
+include "dressdiscover/api/models/collection/collection_id.thrift"
+include "dressdiscover/api/models/gender/gender.thrift"
+include "dressdiscover/api/models/institution/institution_id.thrift"
 include "thryft/native/u32.thrift"
 
 struct ObjectFacets {

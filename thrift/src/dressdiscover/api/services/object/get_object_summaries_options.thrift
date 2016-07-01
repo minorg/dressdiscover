@@ -1,7 +1,7 @@
 namespace java org.dressdiscover.api.services.object
 namespace * dressdiscover.api.services.object
 
-include "costume/api/services/object/object_summary_sort.thrift"
+include "dressdiscover/api/services/object/object_summary_sort.thrift"
 include "thryft/native/u32.thrift"
 
 struct GetObjectSummariesOptions {

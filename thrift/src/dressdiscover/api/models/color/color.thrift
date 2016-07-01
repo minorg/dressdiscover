@@ -2,8 +2,8 @@ namespace bean_java org.dressdiscover.gui.models.color
 namespace java org.dressdiscover.api.models.color
 namespace * dressdiscover.api.models.color
 
-include "costume/api/models/color/color_type.thrift"
-include "costume/api/models/vocab_ref.thrift"
+include "dressdiscover/api/models/color/color_type.thrift"
+include "dressdiscover/api/models/vocab_ref.thrift"
 
 // Costume Core color element
 // @java_implements net.lab1318.costume.api.models.Element

@@ -2,9 +2,9 @@ namespace bean_java org.dressdiscover.gui.models.collection
 namespace java org.dressdiscover.api.models.collection
 namespace * dressdiscover.api.models.collection
 
-include "costume/api/models/institution/institution_id.thrift"
-include "costume/api/models/location/location_set.thrift"
-include "costume/api/models/work_type/work_type_set.thrift"
+include "dressdiscover/api/models/institution/institution_id.thrift"
+include "dressdiscover/api/models/location/location_set.thrift"
+include "dressdiscover/api/models/work_type/work_type_set.thrift"
 include "thryft/native/uri.thrift"
 include "thryft/native/url.thrift"
 

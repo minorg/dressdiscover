@@ -2,8 +2,8 @@ namespace bean_java org.dressdiscover.gui.models.relation
 namespace java org.dressdiscover.api.models.relation
 namespace * dressdiscover.api.models.relation
 
-include "costume/api/models/object/object_id.thrift"
-include "costume/api/models/relation/relation_type.thrift"
+include "dressdiscover/api/models/object/object_id.thrift"
+include "dressdiscover/api/models/relation/relation_type.thrift"
 include "thryft/native/url.thrift"
 
 // VRA Core 4.0 relation element

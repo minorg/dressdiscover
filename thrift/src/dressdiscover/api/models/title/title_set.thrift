@@ -2,7 +2,7 @@ namespace bean_java org.dressdiscover.gui.models.title
 namespace java org.dressdiscover.api.models.title
 namespace * dressdiscover.api.models.title
 
-include "costume/api/models/title/title.thrift"
+include "dressdiscover/api/models/title/title.thrift"
 
 // VRA Core 4.0 titleSet element
 // @java_implements net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.title.Title>

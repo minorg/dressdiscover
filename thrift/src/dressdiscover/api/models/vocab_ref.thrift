@@ -2,7 +2,7 @@ namespace bean_java org.dressdiscover.gui.models
 namespace java org.dressdiscover.api.models
 namespace * dressdiscover.api.models
 
-include "costume/api/models/vocab.thrift"
+include "dressdiscover/api/models/vocab.thrift"
 include "thryft/native/uri.thrift"
 
 struct VocabRef {

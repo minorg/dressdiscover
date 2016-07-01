@@ -2,7 +2,7 @@ namespace bean_java org.dressdiscover.gui.models.measurements
 namespace java org.dressdiscover.api.models.measurements
 namespace * dressdiscover.api.models.measurements
 
-include "costume/api/models/measurements/measurements.thrift"
+include "dressdiscover/api/models/measurements/measurements.thrift"
 
 // VRA Core 4.0 measurementsSet element
 // @java_implements net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.measurements.Measurements>

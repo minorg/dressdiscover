@@ -2,7 +2,7 @@ namespace bean_java org.dressdiscover.gui.models.inscription
 namespace java org.dressdiscover.api.models.inscription
 namespace * dressdiscover.api.models.inscription
 
-include "costume/api/models/vocab_ref.thrift"
+include "dressdiscover/api/models/vocab_ref.thrift"
 
 struct InscriptionAuthor {
 	// @validation {"minLength": 1}

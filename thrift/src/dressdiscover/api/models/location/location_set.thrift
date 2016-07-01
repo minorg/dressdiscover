@@ -2,7 +2,7 @@ namespace bean_java org.dressdiscover.gui.models.location
 namespace java org.dressdiscover.api.models.location
 namespace * dressdiscover.api.models.location
 
-include "costume/api/models/location/location.thrift"
+include "dressdiscover/api/models/location/location.thrift"
 
 // VRA Core 4.0 locationSet element
 // @java_implements net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.location.Location>

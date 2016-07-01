@@ -2,8 +2,8 @@ namespace bean_java org.dressdiscover.gui.models.date
 namespace java org.dressdiscover.api.models.date
 namespace * dressdiscover.api.models.date
 
-include "costume/api/models/date/date_bound.thrift"
-include "costume/api/models/date/date_type.thrift"
+include "dressdiscover/api/models/date/date_bound.thrift"
+include "dressdiscover/api/models/date/date_type.thrift"
 include "thryft/native/url.thrift"
 
 // VRA Core 4.0 date element

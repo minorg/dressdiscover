@@ -2,7 +2,7 @@ namespace bean_java org.dressdiscover.gui.models.work_type
 namespace java org.dressdiscover.api.models.work_type
 namespace * dressdiscover.api.models.work_type
 
-include "costume/api/models/work_type/work_type.thrift"
+include "dressdiscover/api/models/work_type/work_type.thrift"
 
 // VRA Core 4.0 workTypeSet element
 // @java_implements net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.work_type.WorkType>

@@ -2,7 +2,7 @@ namespace bean_java org.dressdiscover.gui.models.relation
 namespace java org.dressdiscover.api.models.relation
 namespace * dressdiscover.api.models.relation
 
-include "costume/api/models/relation/relation.thrift"
+include "dressdiscover/api/models/relation/relation.thrift"
 
 // VRA Core 4.0 relationSet element
 // @java_implements net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.relation.Relation>

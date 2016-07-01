@@ -2,7 +2,7 @@ namespace bean_java org.dressdiscover.gui.models.component
 namespace java org.dressdiscover.api.models.component
 namespace * dressdiscover.api.models.component
 
-include "costume/api/models/component/component.thrift"
+include "dressdiscover/api/models/component/component.thrift"
 
 // Costume Core componentSet element
 // @java_implements net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.component.Component>

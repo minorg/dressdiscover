@@ -2,8 +2,8 @@ namespace bean_java org.dressdiscover.gui.models.subject
 namespace java org.dressdiscover.api.models.subject
 namespace * dressdiscover.api.models.subject
 
-include "costume/api/models/vocab_ref.thrift"
-include "costume/api/models/subject/subject_term_type.thrift"
+include "dressdiscover/api/models/vocab_ref.thrift"
+include "dressdiscover/api/models/subject/subject_term_type.thrift"
 
 // VRA Core 4.0 subject term element
 struct SubjectTerm {

@@ -2,7 +2,7 @@ namespace bean_java org.dressdiscover.gui.models.cultural_context
 namespace java org.dressdiscover.api.models.cultural_context
 namespace * dressdiscover.api.models.cultural_context
 
-include "costume/api/models/cultural_context/cultural_context.thrift"
+include "dressdiscover/api/models/cultural_context/cultural_context.thrift"
 
 // VRA Core 4.0 culturalContextSet element
 // @java_implements net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.cultural_context.CulturalContext>
