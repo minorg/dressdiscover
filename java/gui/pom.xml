@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>dressdiscover-parent</artifactId>
 		<groupId>org.dressdiscover</groupId>
-		<version>1.0.7-SNAPSHOT</version>
+		<version>1.0.8-SNAPSHOT</version>
 	</parent>
 	<artifactId>dressdiscover-gui</artifactId>
 	<packaging>jar</packaging>

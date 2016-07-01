@@ -5,16 +5,16 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/gen/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <dependent-module archiveName="dressdiscover-gui-1.0.7-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dressdiscover-java-gui/dressdiscover-java-gui">
+        <dependent-module archiveName="dressdiscover-gui-1.0.8-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dressdiscover-java-gui/dressdiscover-java-gui">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="thryft-waf-gui-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/thryft-waf-java-gui/thryft-waf-java-gui">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="dressdiscover-lib-1.0.7-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dressdiscover-java-lib/dressdiscover-java-lib">
+        <dependent-module archiveName="dressdiscover-lib-1.0.8-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dressdiscover-java-lib/dressdiscover-java-lib">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="dressdiscover-api-1.0.7-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dressdiscover-java-api/dressdiscover-java-api">
+        <dependent-module archiveName="dressdiscover-api-1.0.8-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dressdiscover-java-api/dressdiscover-java-api">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="thryft-waf-api-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/thryft-waf-java-api/thryft-waf-java-api">
