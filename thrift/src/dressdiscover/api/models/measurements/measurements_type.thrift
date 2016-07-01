@@ -1,5 +1,5 @@
 namespace java org.dressdiscover.api.models.measurements
-namespace * costume.api.models.measurements
+namespace * dressdiscover.api.models.measurements
 
 // VRA Core 4.0 measurements type= attribute
 enum MeasurementsType {

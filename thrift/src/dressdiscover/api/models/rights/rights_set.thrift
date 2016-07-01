@@ -1,6 +1,6 @@
 namespace bean_java org.dressdiscover.gui.models.rights
 namespace java org.dressdiscover.api.models.rights
-namespace * costume.api.models.rights
+namespace * dressdiscover.api.models.rights
 
 include "costume/api/models/rights/rights.thrift"
 

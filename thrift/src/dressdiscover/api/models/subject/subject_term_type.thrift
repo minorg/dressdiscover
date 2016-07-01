@@ -1,5 +1,5 @@
 namespace java org.dressdiscover.api.models.subject
-namespace * costume.api.models.subject
+namespace * dressdiscover.api.models.subject
 
 // VRA Core 4.0 subject term type= attribute
 enum SubjectTermType {

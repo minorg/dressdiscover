@@ -1,6 +1,6 @@
 namespace bean_java org.dressdiscover.gui.models.color
 namespace java org.dressdiscover.api.models.color
-namespace * costume.api.models.color
+namespace * dressdiscover.api.models.color
 
 include "costume/api/models/color/color.thrift"
 

@@ -3,7 +3,7 @@ namespace json_rpc_client_py costume.client.services.user
 namespace logging_service_java net.lab1318.costume.lib.services.user
 namespace servlet_java net.lab1318.costume.server.controllers.user
 namespace validating_service_java net.lab1318.costume.lib.services.user
-namespace * costume.api.services.user
+namespace * dressdiscover.api.services.user
 
 include "costume/api/models/user/user.thrift"
 include "costume/api/models/user/user_bookmark.thrift"

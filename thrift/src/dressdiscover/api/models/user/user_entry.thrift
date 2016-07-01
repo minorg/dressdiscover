@@ -1,6 +1,6 @@
 namespace bean_java org.dressdiscover.gui.models.user
 namespace java org.dressdiscover.api.models.user
-namespace * costume.api.models.user
+namespace * dressdiscover.api.models.user
 
 include "costume/api/models/user/user.thrift"
 include "costume/api/models/user/user_id.thrift"

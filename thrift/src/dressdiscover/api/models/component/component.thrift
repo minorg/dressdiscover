@@ -1,6 +1,6 @@
 namespace bean_java org.dressdiscover.gui.models.component
 namespace java org.dressdiscover.api.models.component
-namespace * costume.api.models.component
+namespace * dressdiscover.api.models.component
 
 include "costume/api/models/component/component_term.thrift"
 include "costume/api/models/structure/structure_set.thrift"

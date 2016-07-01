@@ -1,5 +1,5 @@
 namespace java org.dressdiscover.api.models.relation
-namespace * costume.api.models.relation
+namespace * dressdiscover.api.models.relation
 
 // VRA Core 4.0 relation type= attribute
 enum RelationType {

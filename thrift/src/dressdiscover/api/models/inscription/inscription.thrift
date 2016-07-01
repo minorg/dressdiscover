@@ -1,6 +1,6 @@
 namespace bean_java org.dressdiscover.gui.models.inscription
 namespace java org.dressdiscover.api.models.inscription
-namespace * costume.api.models.inscription
+namespace * dressdiscover.api.models.inscription
 
 include "costume/api/models/inscription/inscription_author.thrift"
 include "costume/api/models/inscription/inscription_text.thrift"

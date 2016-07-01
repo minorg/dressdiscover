@@ -1,5 +1,5 @@
 namespace java org.dressdiscover.api.models.view_type
-namespace * costume.api.models.view_type
+namespace * dressdiscover.api.models.view_type
 
 enum ViewType {
     ACTION,

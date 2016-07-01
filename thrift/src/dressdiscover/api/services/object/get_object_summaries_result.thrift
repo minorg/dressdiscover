@@ -1,5 +1,5 @@
 namespace java org.dressdiscover.api.services.object
-namespace * costume.api.services.object
+namespace * dressdiscover.api.services.object
 
 include "costume/api/models/object/object_facets.thrift"
 include "costume/api/models/object/object_summary_entry.thrift"

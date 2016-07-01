@@ -1,5 +1,5 @@
 namespace java org.dressdiscover.lib
-namespace * costume.lib
+namespace * dressdiscover.lib
 
 include "thryft/native/u32.thrift"
 include "thryft/native/url.thrift"

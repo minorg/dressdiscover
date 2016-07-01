@@ -1,6 +1,6 @@
 namespace bean_java org.dressdiscover.gui.models.closure
 namespace java org.dressdiscover.api.models.closure
-namespace * costume.api.models.closure
+namespace * dressdiscover.api.models.closure
 
 include "costume/api/models/closure/closure_placement.thrift"
 include "costume/api/models/closure/closure_type.thrift"

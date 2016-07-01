@@ -1,6 +1,6 @@
 namespace bean_java org.dressdiscover.gui.models.cultural_context
 namespace java org.dressdiscover.api.models.cultural_context
-namespace * costume.api.models.cultural_context
+namespace * dressdiscover.api.models.cultural_context
 
 include "costume/api/models/cultural_context/cultural_context.thrift"
 

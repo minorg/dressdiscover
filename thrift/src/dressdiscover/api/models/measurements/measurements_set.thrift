@@ -1,6 +1,6 @@
 namespace bean_java org.dressdiscover.gui.models.measurements
 namespace java org.dressdiscover.api.models.measurements
-namespace * costume.api.models.measurements
+namespace * dressdiscover.api.models.measurements
 
 include "costume/api/models/measurements/measurements.thrift"
 

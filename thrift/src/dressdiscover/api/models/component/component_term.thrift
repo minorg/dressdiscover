@@ -1,6 +1,6 @@
 namespace bean_java org.dressdiscover.gui.models.component
 namespace java org.dressdiscover.api.models.component
-namespace * costume.api.models.component
+namespace * dressdiscover.api.models.component
 
 include "costume/api/models/vocab_ref.thrift"
 

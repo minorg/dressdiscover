@@ -1,5 +1,5 @@
 namespace java org.dressdiscover.api.services.institution
-namespace * costume.api.services.institution
+namespace * dressdiscover.api.services.institution
 
 include "costume/api/models/institution/institution_id.thrift"
 

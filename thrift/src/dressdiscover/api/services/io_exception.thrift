@@ -1,5 +1,5 @@
 namespace java org.dressdiscover.api.services
-namespace * costume.api.services
+namespace * dressdiscover.api.services
 
 exception IoException {
 	// validation {"minLength": 1}

@@ -1,5 +1,5 @@
 namespace java org.dressdiscover.api.models
-namespace * costume.api.models
+namespace * dressdiscover.api.models
 
 enum SortOrder {
 	ASC,
