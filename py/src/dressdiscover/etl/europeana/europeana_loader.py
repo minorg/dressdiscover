@@ -1,5 +1,5 @@
-from costume.api.models.institution.institution import Institution
-from costume.etl.oai_pmh._oai_pmh_loader import _OaiPmhLoader
+from dressdiscover.api.models.institution.institution import Institution
+from dressdiscover.etl.oai_pmh._oai_pmh_loader import _OaiPmhLoader
 
 
 class EuropeanaLoader(_OaiPmhLoader):

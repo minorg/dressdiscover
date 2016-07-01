@@ -1,9 +1,9 @@
 import json
 from os.path import os
 
-from costume.api.services.collection.no_such_collection_exception import NoSuchCollectionException
-from costume.lib.stores.collection.omeka._omeka_collection_store import _OmekaCollectionStore
-from costume.lib.stores.collection.py_collection_store_factory import PyCollectionStoreFactory
+from dressdiscover.api.services.collection.no_such_collection_exception import NoSuchCollectionException
+from dressdiscover.lib.stores.collection.omeka._omeka_collection_store import _OmekaCollectionStore
+from dressdiscover.lib.stores.collection.py_collection_store_factory import PyCollectionStoreFactory
 from net.lab1318.costume.lib.python import PythonApi
 from yomeka.client.omeka_json_parser import OmekaJsonParser
 

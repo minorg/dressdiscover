@@ -2,14 +2,14 @@ from datetime import datetime
 import json
 import os.path
 
-from costume.api.models.collection.collection import Collection
-from costume.api.models.image.image import Image
-from costume.api.models.institution.institution import Institution
-from costume.api.models.object.object import Object
-from costume.api.models.rights.rights import Rights
-from costume.api.models.rights.rights_set import RightsSet
-from costume.api.models.rights.rights_type import RightsType
-from costume.etl._institution_loader import _InstitutionLoader
+from dressdiscover.api.models.collection.collection import Collection
+from dressdiscover.api.models.image.image import Image
+from dressdiscover.api.models.institution.institution import Institution
+from dressdiscover.api.models.object.object import Object
+from dressdiscover.api.models.rights.rights import Rights
+from dressdiscover.api.models.rights.rights_set import RightsSet
+from dressdiscover.api.models.rights.rights_type import RightsType
+from dressdiscover.etl._institution_loader import _InstitutionLoader
 
 
 class PowerhouseMuseumLoader(_InstitutionLoader):

@@ -20,7 +20,7 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.3.7.v20160115</version>
 				<configuration>
-					<war>${project.basedir}/server/target/costume-server-${project.version}.war</war>
+					<war>${project.basedir}/server/target/dressdiscover-server-${project.version}.war</war>
 				</configuration>
 			</plugin>
 		</plugins>

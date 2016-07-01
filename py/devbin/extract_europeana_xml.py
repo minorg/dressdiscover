@@ -1,4 +1,4 @@
-from costume.etl.europeana.europeana_extractor import EuropeanaExtractor
+from dressdiscover.etl.europeana.europeana_extractor import EuropeanaExtractor
 
 
 EuropeanaExtractor.main()

@@ -33,8 +33,8 @@ from net.lab1318.costume.api.models.title import TitleSet, Title, TitleType
 from net.lab1318.costume.api.models.work_type import WorkTypeSet, WorkType
 from org.thryft.native_ import Url, Uri
 
-from costume.lib.models.date.date_parser import DateParser
-from costume.lib.stores.object.omeka.dcmi_types import DCMI_TYPES, \
+from dressdiscover.lib.models.date.date_parser import DateParser
+from dressdiscover.lib.stores.object.omeka.dcmi_types import DCMI_TYPES, \
     DCMI_TYPES_BASE_URL
 
 

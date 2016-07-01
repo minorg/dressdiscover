@@ -1,6 +1,6 @@
 from org.thryft.native_ import Uri
 
-from costume.lib.stores.collection.omeka.omeka_api_collection_store import OmekaApiCollectionStore
+from dressdiscover.lib.stores.collection.omeka.omeka_api_collection_store import OmekaApiCollectionStore
 from costume_test.lib.stores.collection.omeka._omeka_collection_store_test import _OmekaCollectionStoreTest
 from costume_test.lib.stores.collection.omeka.omeka_api_test_credentials import OMEKA_API_TEST_ENDPOINT_URL, \
     OMEKA_API_TEST_API_KEY

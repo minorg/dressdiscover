@@ -25,9 +25,9 @@ from net.lab1318.costume.api.models.title import TitleSet, TitleType, Title
 from net.lab1318.costume.api.models.work_type import WorkTypeSet, WorkType
 from org.thryft.native_ import Uri, Url
 
-from costume.lib.models.date.date_parser import DateParser
-from costume.lib.stores.object.oai_pmh._oai_pmh_record_mapper import _OaiPmhRecordMapper
-from costume.lib.stores.object.omeka.dcmi_types import DCMI_TYPES_BASE_URL
+from dressdiscover.lib.models.date.date_parser import DateParser
+from dressdiscover.lib.stores.object.oai_pmh._oai_pmh_record_mapper import _OaiPmhRecordMapper
+from dressdiscover.lib.stores.object.omeka.dcmi_types import DCMI_TYPES_BASE_URL
 
 
 class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):

@@ -1,4 +1,4 @@
-from costume.etl.vam.vam_loader import VamLoader
+from dressdiscover.etl.vam.vam_loader import VamLoader
 
 
 VamLoader.main()

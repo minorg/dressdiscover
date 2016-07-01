@@ -3,24 +3,24 @@ import json
 import os.path
 import urllib
 
-from costume.api.models.image.image import Image
-from costume.api.models.image.image_version import ImageVersion
-from costume.api.models.institution.institution import Institution
-from costume.api.models.object.object import Object
-from costume.api.models.rights.rights import Rights
-from costume.api.models.rights.rights_set import RightsSet
-from costume.api.models.rights.rights_type import RightsType
-from costume.api.models.structure.structure import Structure
-from costume.api.models.structure.structure_set import StructureSet
-from costume.api.models.structure.structure_type import StructureType
-from costume.api.models.title.title import Title
-from costume.api.models.title.title_set import TitleSet
-from costume.api.models.title.title_type import TitleType
-from costume.api.models.view_type.view_type import ViewType
-from costume.api.models.vocab import Vocab
-from costume.api.models.vocab_ref import VocabRef
-from costume.etl._institution_loader import _InstitutionLoader
-from costume.etl.costume_core.costume_core_controlled_vocabularies import COSTUME_CORE_CONTROLLED_VOCABULARIES
+from dressdiscover.api.models.image.image import Image
+from dressdiscover.api.models.image.image_version import ImageVersion
+from dressdiscover.api.models.institution.institution import Institution
+from dressdiscover.api.models.object.object import Object
+from dressdiscover.api.models.rights.rights import Rights
+from dressdiscover.api.models.rights.rights_set import RightsSet
+from dressdiscover.api.models.rights.rights_type import RightsType
+from dressdiscover.api.models.structure.structure import Structure
+from dressdiscover.api.models.structure.structure_set import StructureSet
+from dressdiscover.api.models.structure.structure_type import StructureType
+from dressdiscover.api.models.title.title import Title
+from dressdiscover.api.models.title.title_set import TitleSet
+from dressdiscover.api.models.title.title_type import TitleType
+from dressdiscover.api.models.view_type.view_type import ViewType
+from dressdiscover.api.models.vocab import Vocab
+from dressdiscover.api.models.vocab_ref import VocabRef
+from dressdiscover.etl._institution_loader import _InstitutionLoader
+from dressdiscover.etl.costume_core.costume_core_controlled_vocabularies import COSTUME_CORE_CONTROLLED_VOCABULARIES
 from yomeka.client.omeka_json_parser import OmekaJsonParser
 
 

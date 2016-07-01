@@ -2,32 +2,32 @@ from datetime import datetime
 
 import pytz
 
-from costume.api.models.agent.agent import Agent
-from costume.api.models.agent.agent_name import AgentName
-from costume.api.models.agent.agent_name_type import AgentNameType
-from costume.api.models.agent.agent_role import AgentRole
-from costume.api.models.color.color_type import ColorType
-from costume.api.models.cultural_context.cultural_context import CulturalContext
-from costume.api.models.date.date import Date
-from costume.api.models.date.date_bound import DateBound
-from costume.api.models.date.date_time_granularity import DateTimeGranularity
-from costume.api.models.date.date_type import DateType
-from costume.api.models.description.description import Description
-from costume.api.models.description.description_type import DescriptionType
-from costume.api.models.inscription.inscription import Inscription
-from costume.api.models.inscription.inscription_text import InscriptionText
-from costume.api.models.inscription.inscription_text_type import InscriptionTextType
-from costume.api.models.material.material import Material
-from costume.api.models.material.material_type import MaterialType
-from costume.api.models.measurements.measurements import Measurements
-from costume.api.models.measurements.measurements_type import MeasurementsType
-from costume.api.models.measurements.measurements_unit import MeasurementsUnit
-from costume.api.models.structure.structure_type import StructureType
-from costume.api.models.vocab import Vocab
-from costume.api.models.vocab_ref import VocabRef
-from costume.api.models.work_type.work_type import WorkType
-from costume.etl.costume_core.costume_core_omeka_loader import CostumeCoreOmekaLoader
-from costume.etl.dcmi_types import DCMI_TYPES_BASE_URL
+from dressdiscover.api.models.agent.agent import Agent
+from dressdiscover.api.models.agent.agent_name import AgentName
+from dressdiscover.api.models.agent.agent_name_type import AgentNameType
+from dressdiscover.api.models.agent.agent_role import AgentRole
+from dressdiscover.api.models.color.color_type import ColorType
+from dressdiscover.api.models.cultural_context.cultural_context import CulturalContext
+from dressdiscover.api.models.date.date import Date
+from dressdiscover.api.models.date.date_bound import DateBound
+from dressdiscover.api.models.date.date_time_granularity import DateTimeGranularity
+from dressdiscover.api.models.date.date_type import DateType
+from dressdiscover.api.models.description.description import Description
+from dressdiscover.api.models.description.description_type import DescriptionType
+from dressdiscover.api.models.inscription.inscription import Inscription
+from dressdiscover.api.models.inscription.inscription_text import InscriptionText
+from dressdiscover.api.models.inscription.inscription_text_type import InscriptionTextType
+from dressdiscover.api.models.material.material import Material
+from dressdiscover.api.models.material.material_type import MaterialType
+from dressdiscover.api.models.measurements.measurements import Measurements
+from dressdiscover.api.models.measurements.measurements_type import MeasurementsType
+from dressdiscover.api.models.measurements.measurements_unit import MeasurementsUnit
+from dressdiscover.api.models.structure.structure_type import StructureType
+from dressdiscover.api.models.vocab import Vocab
+from dressdiscover.api.models.vocab_ref import VocabRef
+from dressdiscover.api.models.work_type.work_type import WorkType
+from dressdiscover.etl.costume_core.costume_core_omeka_loader import CostumeCoreOmekaLoader
+from dressdiscover.etl.dcmi_types import DCMI_TYPES_BASE_URL
 
 
 class HistoricDressOmekaLoader(CostumeCoreOmekaLoader):

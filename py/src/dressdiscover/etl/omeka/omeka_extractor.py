@@ -1,7 +1,7 @@
 import json
 import os.path
 
-from costume.etl._extractor import _Extractor
+from dressdiscover.etl._extractor import _Extractor
 from yomeka.client.omeka_rest_api_client import OmekaRestApiClient
 
 

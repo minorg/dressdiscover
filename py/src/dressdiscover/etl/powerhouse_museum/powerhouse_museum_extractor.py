@@ -2,7 +2,7 @@ import json
 import os.path
 import urllib2
 
-from costume.etl._extractor import _Extractor
+from dressdiscover.etl._extractor import _Extractor
 
 
 class PowerhouseMuseumExtractor(_Extractor):

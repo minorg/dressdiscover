@@ -4,8 +4,8 @@ from os.path import os
 from com.google.common.collect import ImmutableList
 from net.lab1318.costume.api.services.object import NoSuchObjectException
 
-from costume.lib.stores.object.omeka._omeka_object_store import _OmekaObjectStore
-from costume.lib.stores.object.py_object_store_factory import PyObjectStoreFactory
+from dressdiscover.lib.stores.object.omeka._omeka_object_store import _OmekaObjectStore
+from dressdiscover.lib.stores.object.py_object_store_factory import PyObjectStoreFactory
 from net.lab1318.costume.lib.python import PythonApi
 from yomeka.client.omeka_json_parser import OmekaJsonParser
 

@@ -15,7 +15,7 @@ from net.lab1318.costume.api.models.title import TitleSet, Title, TitleType
 from net.lab1318.costume.api.models.view_type import ViewType
 from org.thryft.native_ import Uri, Url
 
-from costume.lib.stores.omeka_resource_mapper import OmekaResourceMapper
+from dressdiscover.lib.stores.omeka_resource_mapper import OmekaResourceMapper
 
 
 class WizardOmekaResourceMapper(OmekaResourceMapper):

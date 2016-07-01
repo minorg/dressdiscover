@@ -1,4 +1,4 @@
-from costume.etl.powerhouse_museum.powerhouse_museum_extractor import PowerhouseMuseumExtractor
+from dressdiscover.etl.powerhouse_museum.powerhouse_museum_extractor import PowerhouseMuseumExtractor
 
 
 PowerhouseMuseumExtractor.main()

@@ -1,6 +1,6 @@
 from net.lab1318.costume.lib.stores.object import ObjectStore
 
-from costume.lib.stores.omeka_resource_mapper import OmekaResourceMapper
+from dressdiscover.lib.stores.omeka_resource_mapper import OmekaResourceMapper
 
 
 class _OmekaObjectStore(ObjectStore):

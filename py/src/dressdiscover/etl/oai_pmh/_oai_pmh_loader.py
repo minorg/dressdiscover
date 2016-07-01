@@ -3,8 +3,8 @@ from os.path import os
 import urllib
 from xml.etree import ElementTree
 
-from costume.api.models.object.object import Object
-from costume.etl._institution_loader import _InstitutionLoader
+from dressdiscover.api.models.object.object import Object
+from dressdiscover.etl._institution_loader import _InstitutionLoader
 
 
 class _OaiPmhLoader(_InstitutionLoader):

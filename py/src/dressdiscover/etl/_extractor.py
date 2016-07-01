@@ -1,4 +1,4 @@
-from costume.etl._main import _Main
+from dressdiscover.etl._main import _Main
 
 
 class _Extractor(_Main):

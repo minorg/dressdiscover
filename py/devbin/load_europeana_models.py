@@ -1,4 +1,4 @@
-from costume.etl.europeana.europeana_loader import EuropeanaLoader
+from dressdiscover.etl.europeana.europeana_loader import EuropeanaLoader
 
 
 EuropeanaLoader.main()

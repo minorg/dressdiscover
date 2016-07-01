@@ -2,22 +2,22 @@ from datetime import datetime
 import json
 import os.path
 
-from costume.api.models.collection.collection import Collection
-from costume.api.models.inscription.inscription import Inscription
-from costume.api.models.inscription.inscription_set import InscriptionSet
-from costume.api.models.inscription.inscription_text import InscriptionText
-from costume.api.models.inscription.inscription_text_type import InscriptionTextType
-from costume.api.models.institution.institution import Institution
-from costume.api.models.material.material import Material
-from costume.api.models.material.material_set import MaterialSet
-from costume.api.models.material.material_type import MaterialType
-from costume.api.models.object.object import Object
-from costume.api.models.rights.rights import Rights
-from costume.api.models.rights.rights_set import RightsSet
-from costume.api.models.rights.rights_type import RightsType
-from costume.api.models.technique.technique import Technique
-from costume.api.models.technique.technique_set import TechniqueSet
-from costume.etl._institution_loader import _InstitutionLoader
+from dressdiscover.api.models.collection.collection import Collection
+from dressdiscover.api.models.inscription.inscription import Inscription
+from dressdiscover.api.models.inscription.inscription_set import InscriptionSet
+from dressdiscover.api.models.inscription.inscription_text import InscriptionText
+from dressdiscover.api.models.inscription.inscription_text_type import InscriptionTextType
+from dressdiscover.api.models.institution.institution import Institution
+from dressdiscover.api.models.material.material import Material
+from dressdiscover.api.models.material.material_set import MaterialSet
+from dressdiscover.api.models.material.material_type import MaterialType
+from dressdiscover.api.models.object.object import Object
+from dressdiscover.api.models.rights.rights import Rights
+from dressdiscover.api.models.rights.rights_set import RightsSet
+from dressdiscover.api.models.rights.rights_type import RightsType
+from dressdiscover.api.models.technique.technique import Technique
+from dressdiscover.api.models.technique.technique_set import TechniqueSet
+from dressdiscover.etl._institution_loader import _InstitutionLoader
 
 
 class VamLoader(_InstitutionLoader):

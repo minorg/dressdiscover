@@ -2,7 +2,7 @@ from os.path import os
 
 from org.thryft.native_ import Uri
 
-from costume.lib.stores.collection.omeka.omeka_fs_collection_store import OmekaFsCollectionStore
+from dressdiscover.lib.stores.collection.omeka.omeka_fs_collection_store import OmekaFsCollectionStore
 from costume_test.lib.stores.collection.omeka._omeka_collection_store_test import _OmekaCollectionStoreTest
 
 

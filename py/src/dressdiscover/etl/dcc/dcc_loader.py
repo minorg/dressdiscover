@@ -4,13 +4,13 @@ from decimal import Decimal
 from pprint import pprint
 import urllib2
 
-from costume.api.models.collection.collection import Collection
-from costume.api.models.institution.institution import Institution
-from costume.api.models.location.location import Location
-from costume.api.models.location.location_coordinates import LocationCoordinates
-from costume.api.models.location.location_set import LocationSet
-from costume.api.models.location.location_type import LocationType
-from costume.etl._loader import _Loader
+from dressdiscover.api.models.collection.collection import Collection
+from dressdiscover.api.models.institution.institution import Institution
+from dressdiscover.api.models.location.location import Location
+from dressdiscover.api.models.location.location_coordinates import LocationCoordinates
+from dressdiscover.api.models.location.location_set import LocationSet
+from dressdiscover.api.models.location.location_type import LocationType
+from dressdiscover.etl._loader import _Loader
 
 
 class DccLoader(_Loader):

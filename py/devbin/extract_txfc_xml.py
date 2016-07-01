@@ -1,4 +1,4 @@
-from costume.etl.txfc.txfc_extractor import TxfcExtractor
+from dressdiscover.etl.txfc.txfc_extractor import TxfcExtractor
 
 
 TxfcExtractor.main()

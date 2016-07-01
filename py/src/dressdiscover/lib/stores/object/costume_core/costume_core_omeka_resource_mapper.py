@@ -50,7 +50,7 @@ from net.lab1318.costume.api.models.textref import TextrefRefid
 from net.lab1318.costume.api.models.textref import TextrefRefidType
 from net.lab1318.costume.api.models.view_type import ViewType
 
-from costume.lib.stores.omeka_resource_mapper import OmekaResourceMapper
+from dressdiscover.lib.stores.omeka_resource_mapper import OmekaResourceMapper
 
 
 class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):

@@ -1,4 +1,4 @@
-from costume.etl.txfc.txfc_loader import TxfcLoader
+from dressdiscover.etl.txfc.txfc_loader import TxfcLoader
 
 
 TxfcLoader.main()

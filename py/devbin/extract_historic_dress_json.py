@@ -1,4 +1,4 @@
-from costume.etl.historic_dress.historic_dress_omeka_extractor import HistoricDressOmekaExtractor
+from dressdiscover.etl.historic_dress.historic_dress_omeka_extractor import HistoricDressOmekaExtractor
 
 
 HistoricDressOmekaExtractor.main()
