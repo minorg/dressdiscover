@@ -8,7 +8,7 @@ include "dressdiscover/api/models/location/location_refid.thrift"
 include "dressdiscover/api/models/location/location_type.thrift"
 
 // VRA Core 4.0 location element
-// @java_implements net.lab1318.costume.api.models.Element
+// @java_implements org.dressdiscover.api.models.Element
 struct Location {
 	1: location_type.LocationType type;
 

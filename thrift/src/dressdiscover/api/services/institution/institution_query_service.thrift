@@ -1,8 +1,8 @@
 namespace java org.dressdiscover.api.services.institution
-namespace json_rpc_client_py costume.client.services.institution
-namespace logging_service_java net.lab1318.costume.lib.services.institution
-namespace servlet_java net.lab1318.costume.server.controllers.institution
-namespace validating_service_java net.lab1318.costume.lib.services.institution
+namespace json_rpc_client_py dressdiscover.client.services.institution
+namespace logging_service_java org.dressdiscover.lib.services.institution
+namespace servlet_java org.dressdiscover.server.controllers.institution
+namespace validating_service_java org.dressdiscover.lib.services.institution
 namespace * dressdiscover.api.services.institution
 
 include "dressdiscover/api/models/institution/institution.thrift"

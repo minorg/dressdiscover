@@ -5,7 +5,7 @@ namespace * dressdiscover.api.models.component
 include "dressdiscover/api/models/component/component.thrift"
 
 // Costume Core componentSet element
-// @java_implements net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.component.Component>
+// @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.component.Component>
 struct ComponentSet {
 	// @validation {"minLength": 1}
 	1: list<component.Component> elements;

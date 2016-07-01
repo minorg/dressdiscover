@@ -7,7 +7,7 @@ include "dressdiscover/api/models/date/date_type.thrift"
 include "thryft/native/url.thrift"
 
 // VRA Core 4.0 date element
-// @java_implements net.lab1318.costume.api.models.Element
+// @java_implements org.dressdiscover.api.models.Element
 struct Date {
 	1: date_bound.DateBound earliest_date;
 

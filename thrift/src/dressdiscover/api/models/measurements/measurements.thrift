@@ -6,7 +6,7 @@ include "dressdiscover/api/models/measurements/measurements_type.thrift"
 include "dressdiscover/api/models/measurements/measurements_unit.thrift"
 
 // VRA Core 4.0 measurements element
-// @java_implements net.lab1318.costume.api.models.Element
+// @java_implements org.dressdiscover.api.models.Element
 struct Measurements {
 	// @validation {"minLength": 1}
 	1: string text;

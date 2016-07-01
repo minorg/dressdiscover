@@ -5,7 +5,7 @@ namespace * dressdiscover.api.models.measurements
 include "dressdiscover/api/models/measurements/measurements.thrift"
 
 // VRA Core 4.0 measurementsSet element
-// @java_implements net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.measurements.Measurements>
+// @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.measurements.Measurements>
 struct MeasurementsSet {
 	// @validation {"minLength": 1}
 	1: list<measurements.Measurements> elements;

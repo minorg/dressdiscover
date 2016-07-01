@@ -5,7 +5,7 @@ namespace * dressdiscover.api.models.title
 include "dressdiscover/api/models/title/title.thrift"
 
 // VRA Core 4.0 titleSet element
-// @java_implements net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.title.Title>
+// @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.title.Title>
 struct TitleSet {
 	// @validation {"minLength": 1}
 	1: list<title.Title> elements;

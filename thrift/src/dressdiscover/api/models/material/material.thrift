@@ -6,7 +6,7 @@ include "dressdiscover/api/models/vocab_ref.thrift"
 include "dressdiscover/api/models/material/material_type.thrift"
 
 // VRA Core 4.0 material element
-// @java_implements net.lab1318.costume.api.models.Element
+// @java_implements org.dressdiscover.api.models.Element
 struct Material {
 	// @validation {"minLength": 1}
 	2: string text;

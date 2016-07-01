@@ -6,7 +6,7 @@ include "dressdiscover/api/models/color/color_type.thrift"
 include "dressdiscover/api/models/vocab_ref.thrift"
 
 // Costume Core color element
-// @java_implements net.lab1318.costume.api.models.Element
+// @java_implements org.dressdiscover.api.models.Element
 struct Color {
 	// @validation {"minLength": 1}
 	1: string text;

@@ -6,7 +6,7 @@ include "dressdiscover/api/models/rights/rights_type.thrift"
 include "dressdiscover/api/models/vocab_ref.thrift"
 
 // VRA Core 4.0 rights element
-// @java_implements net.lab1318.costume.api.models.Element
+// @java_implements org.dressdiscover.api.models.Element
 struct Rights {
 	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}

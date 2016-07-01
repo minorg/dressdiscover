@@ -6,7 +6,7 @@ include "dressdiscover/api/models/component/component_term.thrift"
 include "dressdiscover/api/models/structure/structure_set.thrift"
 
 // Costume Core component element
-// @java_implements net.lab1318.costume.api.models.Element
+// @java_implements org.dressdiscover.api.models.Element
 struct Component {
 	1: component_term.ComponentTerm term;
 

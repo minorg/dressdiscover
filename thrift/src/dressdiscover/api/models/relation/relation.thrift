@@ -7,7 +7,7 @@ include "dressdiscover/api/models/relation/relation_type.thrift"
 include "thryft/native/url.thrift"
 
 // VRA Core 4.0 relation element
-// @java_implements net.lab1318.costume.api.models.Element
+// @java_implements org.dressdiscover.api.models.Element
 struct Relation {
 	1: relation_type.RelationType type;
 

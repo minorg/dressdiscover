@@ -6,7 +6,7 @@ include "dressdiscover/api/models/closure/closure_placement.thrift"
 include "dressdiscover/api/models/closure/closure_type.thrift"
 
 // Costume Core closure* elements
-// @java_implements net.lab1318.costume.api.models.Element
+// @java_implements org.dressdiscover.api.models.Element
 struct Closure {
 	1: closure_placement.ClosurePlacement placement;
 

@@ -1,8 +1,8 @@
 namespace java org.dressdiscover.api.services.user
-namespace json_rpc_client_py costume.client.services.user
-namespace logging_service_java net.lab1318.costume.lib.services.user
-namespace servlet_java net.lab1318.costume.server.controllers.user
-namespace validating_service_java net.lab1318.costume.lib.services.user
+namespace json_rpc_client_py dressdiscover.client.services.user
+namespace logging_service_java org.dressdiscover.lib.services.user
+namespace servlet_java org.dressdiscover.server.controllers.user
+namespace validating_service_java org.dressdiscover.lib.services.user
 namespace * dressdiscover.api.services.user
 
 include "dressdiscover/api/models/user/user.thrift"

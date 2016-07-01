@@ -5,7 +5,7 @@ namespace * dressdiscover.api.models.color
 include "dressdiscover/api/models/color/color.thrift"
 
 // Costume Core colorSet element
-// @java_implements net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.color.Color>
+// @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.color.Color>
 struct ColorSet {
 	// @validation {"minLength": 1}
 	1: list<color.Color> elements;

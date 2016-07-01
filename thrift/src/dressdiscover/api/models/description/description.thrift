@@ -5,7 +5,7 @@ namespace * dressdiscover.api.models.description
 include "dressdiscover/api/models/description/description_type.thrift"
 
 // VRA Core 4.0 description element
-// @java_implements net.lab1318.costume.api.models.Element
+// @java_implements org.dressdiscover.api.models.Element
 struct Description {
 	// @validation {"minLength": 1}
 	1: string text;

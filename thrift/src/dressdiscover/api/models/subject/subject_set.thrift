@@ -5,7 +5,7 @@ namespace * dressdiscover.api.models.subject
 include "dressdiscover/api/models/subject/subject.thrift"
 
 // VRA Core 4.0 subjectSet element
-// @java_implements net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.subject.Subject>
+// @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.subject.Subject>
 struct SubjectSet {
 	// @validation {"minLength": 1}
 	1: list<subject.Subject> elements;

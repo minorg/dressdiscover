@@ -5,7 +5,7 @@ namespace * dressdiscover.api.models.textref
 include "dressdiscover/api/models/textref/textref.thrift"
 
 // VRA Core 4.0 textrefSet element
-// @java_implements net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.textref.Textref>
+// @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.textref.Textref>
 struct TextrefSet {
 	// @validation {"minLength": 1}
 	1: list<textref.Textref> elements;

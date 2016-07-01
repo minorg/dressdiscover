@@ -6,7 +6,7 @@ include "dressdiscover/api/models/vocab_ref.thrift"
 include "dressdiscover/api/models/structure/structure_type.thrift"
 
 // Costume Core structure* elements
-// @java_implements net.lab1318.costume.api.models.Element
+// @java_implements org.dressdiscover.api.models.Element
 struct Structure {
 	// @validation {"minLength": 1}
 	1: string text;

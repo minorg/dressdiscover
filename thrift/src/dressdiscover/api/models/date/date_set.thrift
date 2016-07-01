@@ -5,7 +5,7 @@ namespace * dressdiscover.api.models.date
 include "dressdiscover/api/models/date/date.thrift"
 
 // VRA Core 4.0 dateSet element
-// @java_implements net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.date.Date>
+// @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.date.Date>
 struct DateSet {
 	// @validation {"minLength": 1}
 	1: list<date.Date> elements;

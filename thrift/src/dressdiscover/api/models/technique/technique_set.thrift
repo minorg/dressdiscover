@@ -5,7 +5,7 @@ namespace * dressdiscover.api.models.technique
 include "dressdiscover/api/models/technique/technique.thrift"
 
 // VRA Core 4.0 techniqueSet element
-// @java_implements net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.technique.Technique>
+// @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.technique.Technique>
 struct TechniqueSet {
 	// @validation {"minLength": 1}
 	1: list<technique.Technique> elements;

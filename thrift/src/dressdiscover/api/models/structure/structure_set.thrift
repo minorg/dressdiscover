@@ -5,7 +5,7 @@ namespace * dressdiscover.api.models.structure
 include "dressdiscover/api/models/structure/structure.thrift"
 
 // Costume Core structure* elements
-// @java_implements net.lab1318.costume.api.models.ElementSet<net.lab1318.costume.api.models.structure.Structure>
+// @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.structure.Structure>
 struct StructureSet {
 	// @validation {"minLength": 1}
 	1: list<structure.Structure> elements;
