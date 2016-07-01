@@ -269,7 +269,7 @@ public class UserCommandServiceJsonRpcServlet extends javax.servlet.http.HttpSer
             return;
         }
 
-        final net.lab1318.costume.api.models.user.UserId result;
+        final org.dressdiscover.api.models.user.UserId result;
         try {
             result = service.postUser(serviceRequest.getUser());
         } catch (final net.lab1318.costume.api.services.user.DuplicateUserException e) {
@@ -308,7 +308,7 @@ public class UserCommandServiceJsonRpcServlet extends javax.servlet.http.HttpSer
             return;
         }
 
-        final net.lab1318.costume.api.models.user.UserBookmarkId result;
+        final org.dressdiscover.api.models.user.UserBookmarkId result;
         try {
             result = service.postUserBookmark(serviceRequest.getUserBookmark());
         } catch (final net.lab1318.costume.api.services.user.DuplicateUserBookmarkException e) {

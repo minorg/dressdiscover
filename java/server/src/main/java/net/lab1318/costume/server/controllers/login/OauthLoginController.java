@@ -8,6 +8,8 @@ import java.net.URLEncoder;
 import java.util.Date;
 
 import org.apache.shiro.SecurityUtils;
+import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.models.user.UserEntryPasswordToken;
 import org.thryft.waf.server.controllers.oauth.AbstractOauthLoginController;
 import org.thryft.waf.server.controllers.oauth.GoogleOauthServiceProvider;
 import org.thryft.waf.server.controllers.oauth.OauthUserProfile;
@@ -24,8 +26,6 @@ import net.lab1318.costume.api.services.user.DuplicateUserException;
 import net.lab1318.costume.api.services.user.NoSuchUserException;
 import net.lab1318.costume.api.services.user.UserCommandService;
 import net.lab1318.costume.api.services.user.UserQueryService;
-import net.lab1318.costume.lib.CostumeProperties;
-import net.lab1318.costume.lib.models.user.UserEntryPasswordToken;
 
 @SuppressWarnings("serial")
 @Singleton

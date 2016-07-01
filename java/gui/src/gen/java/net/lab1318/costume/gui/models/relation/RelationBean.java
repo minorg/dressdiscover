@@ -8,7 +8,7 @@ public class RelationBean implements org.thryft.StructBean {
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TYPE("type", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.relation.RelationType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),
         HREF("href", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 2, "href", org.thryft.protocol.Type.STRING),
-        RELIDS("relids", new com.google.common.reflect.TypeToken<java.util.Set<net.lab1318.costume.api.models.object.ObjectId>>() {}, false, 3, "relids", org.thryft.protocol.Type.SET),
+        RELIDS("relids", new com.google.common.reflect.TypeToken<java.util.Set<org.dressdiscover.api.models.object.ObjectId>>() {}, false, 3, "relids", org.thryft.protocol.Type.SET),
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, false, 4, "text", org.thryft.protocol.Type.STRING);
 
         @Override
@@ -106,7 +106,7 @@ public class RelationBean implements org.thryft.StructBean {
     public RelationBean(final net.lab1318.costume.api.models.relation.Relation other) {
         this.type = other.getType();
         this.href = other.getHref().isPresent() ? other.getHref().get() : null;
-        this.relids = other.getRelids().isPresent() ? new java.util.LinkedHashSet<net.lab1318.costume.api.models.object.ObjectId>(other.getRelids().get()) : null;
+        this.relids = other.getRelids().isPresent() ? new java.util.LinkedHashSet<org.dressdiscover.api.models.object.ObjectId>(other.getRelids().get()) : null;
         this.text = other.getText().isPresent() ? other.getText().get() : null;
     }
 
@@ -154,7 +154,7 @@ public class RelationBean implements org.thryft.StructBean {
         return href;
     }
 
-    public java.util.Set<net.lab1318.costume.api.models.object.ObjectId> getRelids() {
+    public java.util.Set<org.dressdiscover.api.models.object.ObjectId> getRelids() {
         return relids;
     }
 
@@ -191,7 +191,7 @@ public class RelationBean implements org.thryft.StructBean {
         this.href = href;
     }
 
-    public void setRelids(final java.util.Set<net.lab1318.costume.api.models.object.ObjectId> relids) {
+    public void setRelids(final java.util.Set<org.dressdiscover.api.models.object.ObjectId> relids) {
         this.relids = relids;
     }
 
@@ -212,7 +212,7 @@ public class RelationBean implements org.thryft.StructBean {
 
     private org.thryft.native_.Url href;
 
-    private java.util.Set<net.lab1318.costume.api.models.object.ObjectId> relids;
+    private java.util.Set<org.dressdiscover.api.models.object.ObjectId> relids;
 
     private String text;
 }

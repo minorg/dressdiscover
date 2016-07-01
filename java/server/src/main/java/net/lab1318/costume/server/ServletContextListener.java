@@ -4,6 +4,10 @@ import static com.google.common.base.Preconditions.checkState;
 
 import javax.servlet.ServletContextEvent;
 
+import org.dressdiscover.gui.GuiModule;
+import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.python.PythonInterpreterFactory;
+import org.dressdiscover.lib.services.ServicesModule;
 import org.python.util.PythonInterpreter;
 import org.thryft.waf.lib.PropertiesModule;
 import org.thryft.waf.server.AbstractServletContextListener;
@@ -11,10 +15,6 @@ import org.thryft.waf.server.AbstractServletContextListener;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import net.lab1318.costume.gui.GuiModule;
-import net.lab1318.costume.lib.CostumeProperties;
-import net.lab1318.costume.lib.python.PythonInterpreterFactory;
-import net.lab1318.costume.lib.services.ServicesModule;
 import net.lab1318.costume.server.controllers.ServerControllersModule;
 
 public final class ServletContextListener extends AbstractServletContextListener {

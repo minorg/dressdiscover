@@ -4,9 +4,9 @@ public class UserBookmarkBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         NAME("name", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "name", org.thryft.protocol.Type.STRING),
-        USER_ID("userId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.user.UserId>() {}, true, 0, "user_id", org.thryft.protocol.Type.STRING),
+        USER_ID("userId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, 0, "user_id", org.thryft.protocol.Type.STRING),
         FOLDER("folder", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "folder", org.thryft.protocol.Type.STRING),
-        OBJECT_ID("objectId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.object.ObjectId>() {}, false, 0, "object_id", org.thryft.protocol.Type.STRING),
+        OBJECT_ID("objectId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectId>() {}, false, 0, "object_id", org.thryft.protocol.Type.STRING),
         OBJECT_QUERY("objectQuery", new com.google.common.reflect.TypeToken<net.lab1318.costume.gui.models.object.ObjectQueryBean>() {}, false, 0, "object_query", org.thryft.protocol.Type.STRUCT);
 
         @Override
@@ -162,7 +162,7 @@ public class UserBookmarkBean implements org.thryft.StructBean {
         return name;
     }
 
-    public net.lab1318.costume.api.models.object.ObjectId getObjectId() {
+    public org.dressdiscover.api.models.object.ObjectId getObjectId() {
         return objectId;
     }
 
@@ -170,7 +170,7 @@ public class UserBookmarkBean implements org.thryft.StructBean {
         return objectQuery;
     }
 
-    public net.lab1318.costume.api.models.user.UserId getUserId() {
+    public org.dressdiscover.api.models.user.UserId getUserId() {
         return userId;
     }
 
@@ -204,7 +204,7 @@ public class UserBookmarkBean implements org.thryft.StructBean {
         this.name = name;
     }
 
-    public void setObjectId(final net.lab1318.costume.api.models.object.ObjectId objectId) {
+    public void setObjectId(final org.dressdiscover.api.models.object.ObjectId objectId) {
         this.objectId = objectId;
     }
 
@@ -212,7 +212,7 @@ public class UserBookmarkBean implements org.thryft.StructBean {
         this.objectQuery = objectQuery;
     }
 
-    public void setUserId(final net.lab1318.costume.api.models.user.UserId userId) {
+    public void setUserId(final org.dressdiscover.api.models.user.UserId userId) {
         this.userId = userId;
     }
 
@@ -223,11 +223,11 @@ public class UserBookmarkBean implements org.thryft.StructBean {
 
     private String name;
 
-    private net.lab1318.costume.api.models.user.UserId userId;
+    private org.dressdiscover.api.models.user.UserId userId;
 
     private String folder;
 
-    private net.lab1318.costume.api.models.object.ObjectId objectId;
+    private org.dressdiscover.api.models.object.ObjectId objectId;
 
     private net.lab1318.costume.gui.models.object.ObjectQueryBean objectQuery;
 }

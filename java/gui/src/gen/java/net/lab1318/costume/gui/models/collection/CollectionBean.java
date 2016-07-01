@@ -3,7 +3,7 @@ package net.lab1318.costume.gui.models.collection;
 public class CollectionBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<net.lab1318.costume.api.models.institution.InstitutionId>() {}, true, 1, "institution_id", org.thryft.protocol.Type.STRING),
+        INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, true, 1, "institution_id", org.thryft.protocol.Type.STRING),
         TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "title", org.thryft.protocol.Type.STRING),
         DESCRIPTION("description", new com.google.common.reflect.TypeToken<String>() {}, false, 4, "description", org.thryft.protocol.Type.STRING),
         EXTERNAL("external", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 7, "external", org.thryft.protocol.Type.BOOL),
@@ -194,7 +194,7 @@ public class CollectionBean implements org.thryft.StructBean {
         return hidden;
     }
 
-    public net.lab1318.costume.api.models.institution.InstitutionId getInstitutionId() {
+    public org.dressdiscover.api.models.institution.InstitutionId getInstitutionId() {
         return institutionId;
     }
 
@@ -264,7 +264,7 @@ public class CollectionBean implements org.thryft.StructBean {
         this.hidden = hidden;
     }
 
-    public void setInstitutionId(final net.lab1318.costume.api.models.institution.InstitutionId institutionId) {
+    public void setInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
         this.institutionId = institutionId;
     }
 
@@ -293,7 +293,7 @@ public class CollectionBean implements org.thryft.StructBean {
         return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("institution_id", getInstitutionId()).add("title", getTitle()).add("description", getDescription()).add("external", getExternal()).add("hidden", getHidden()).add("locations", getLocations()).add("object_store_uri", getObjectStoreUri()).add("url", getUrl()).add("work_types", getWorkTypes()).toString();
     }
 
-    private net.lab1318.costume.api.models.institution.InstitutionId institutionId;
+    private org.dressdiscover.api.models.institution.InstitutionId institutionId;
 
     private String title;
 

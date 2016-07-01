@@ -10,6 +10,7 @@ import org.apache.shiro.authz.Permission;
 import org.apache.shiro.realm.AuthenticatingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
+import org.dressdiscover.lib.models.user.UserEntryPasswordToken;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableList;
@@ -17,7 +18,6 @@ import com.google.common.collect.ImmutableSet;
 import com.google.inject.Singleton;
 
 import net.lab1318.costume.api.models.user.UserEntry;
-import net.lab1318.costume.lib.models.user.UserEntryPasswordToken;
 
 @Singleton
 public class ServerRealm extends AuthenticatingRealm {
