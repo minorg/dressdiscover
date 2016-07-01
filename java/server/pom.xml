@@ -6,7 +6,7 @@
 	<packaging>war</packaging>
 
 	<parent>
-		<groupId>net.lab1318.costume</groupId>
+		<groupId>org.dressdiscover</groupId>
 		<artifactId>costume-parent</artifactId>
 		<version>1.0.7-SNAPSHOT</version>
 	</parent>
@@ -67,7 +67,7 @@
 					<execution>
 						<configuration>
 							<modules>
-								<module>net.lab1318.costume.gui.GuiWidgetSet</module>
+								<module>org.dressdiscover.gui.GuiWidgetSet</module>
 							</modules>
 						</configuration>
 					</execution>

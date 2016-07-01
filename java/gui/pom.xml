@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>costume-parent</artifactId>
-		<groupId>net.lab1318.costume</groupId>
+		<groupId>org.dressdiscover</groupId>
 		<version>1.0.7-SNAPSHOT</version>
 	</parent>
 	<artifactId>costume-gui</artifactId>

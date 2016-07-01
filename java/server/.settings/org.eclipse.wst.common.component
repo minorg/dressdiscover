@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="costume-java-server">
+    <wb-module deploy-name="dressdiscover-java-server">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/gen/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <dependent-module archiveName="costume-gui-1.0.7-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/costume-java-gui/costume-java-gui">
+        <dependent-module archiveName="costume-gui-1.0.7-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dressdiscover-java-gui/dressdiscover-java-gui">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="thryft-waf-gui-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/thryft-waf-java-gui/thryft-waf-java-gui">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="costume-lib-1.0.7-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/costume-java-lib/costume-java-lib">
+        <dependent-module archiveName="costume-lib-1.0.7-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dressdiscover-java-lib/dressdiscover-java-lib">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="costume-api-1.0.7-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/costume-java-api/costume-java-api">
+        <dependent-module archiveName="costume-api-1.0.7-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dressdiscover-java-api/dressdiscover-java-api">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="thryft-waf-api-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/thryft-waf-java-api/thryft-waf-java-api">
@@ -30,6 +30,6 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="costume-server"/>
-        <property name="java-output-path" value="/costume-java-server/target/classes"/>
+        <property name="java-output-path" value="/dressdiscover-java-server/target/classes"/>
     </wb-module>
 </project-modules>
