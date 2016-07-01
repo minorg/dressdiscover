@@ -3,12 +3,12 @@ package org.dressdiscover.gui.models.object;
 public class ObjectQueryBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "collection_id", org.thryft.protocol.Type.STRING),
+        COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, false, 0, "collection_id", org.thryft.protocol.Type.STRING),
         FACET_FILTERS("facetFilters", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.object.ObjectFacetFiltersBean>() {}, false, 0, "facet_filters", org.thryft.protocol.Type.STRUCT),
         INCLUDE_HIDDEN("includeHidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 0, "include_hidden", org.thryft.protocol.Type.BOOL),
-        INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "institution_id", org.thryft.protocol.Type.STRING),
-        MORE_LIKE_OBJECT_ID("moreLikeObjectId", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "more_like_object_id", org.thryft.protocol.Type.STRING),
-        OBJECT_IDS("objectIds", new com.google.common.reflect.TypeToken<java.util.Set<String>>() {}, false, 0, "object_ids", org.thryft.protocol.Type.SET),
+        INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, false, 0, "institution_id", org.thryft.protocol.Type.STRING),
+        MORE_LIKE_OBJECT_ID("moreLikeObjectId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectId>() {}, false, 0, "more_like_object_id", org.thryft.protocol.Type.STRING),
+        OBJECT_IDS("objectIds", new com.google.common.reflect.TypeToken<java.util.Set<org.dressdiscover.api.models.object.ObjectId>>() {}, false, 0, "object_ids", org.thryft.protocol.Type.SET),
         QUERY_STRING("queryString", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "query_string", org.thryft.protocol.Type.STRING),
         RELATION_TEXT("relationText", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "relation_text", org.thryft.protocol.Type.STRING),
         STRUCTURE_TEXTS("structureTexts", new com.google.common.reflect.TypeToken<java.util.Map<String, java.util.List<String>>>() {}, false, 0, "structure_texts", org.thryft.protocol.Type.MAP),
@@ -130,7 +130,7 @@ public class ObjectQueryBean implements org.thryft.StructBean {
         this.includeHidden = other.getIncludeHidden().isPresent() ? other.getIncludeHidden().get() : null;
         this.institutionId = other.getInstitutionId().isPresent() ? other.getInstitutionId().get() : null;
         this.moreLikeObjectId = other.getMoreLikeObjectId().isPresent() ? other.getMoreLikeObjectId().get() : null;
-        this.objectIds = other.getObjectIds().isPresent() ? new java.util.LinkedHashSet<String>(other.getObjectIds().get()) : null;
+        this.objectIds = other.getObjectIds().isPresent() ? new java.util.LinkedHashSet<org.dressdiscover.api.models.object.ObjectId>(other.getObjectIds().get()) : null;
         this.queryString = other.getQueryString().isPresent() ? other.getQueryString().get() : null;
         this.relationText = other.getRelationText().isPresent() ? other.getRelationText().get() : null;
         this.structureTexts = other.getStructureTexts().isPresent() ? (new com.google.common.base.Function<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>, java.util.Map<String, java.util.List<String>>>() {
@@ -198,7 +198,7 @@ public class ObjectQueryBean implements org.thryft.StructBean {
         }
     }
 
-    public String getCollectionId() {
+    public org.dressdiscover.api.models.collection.CollectionId getCollectionId() {
         return collectionId;
     }
 
@@ -210,15 +210,15 @@ public class ObjectQueryBean implements org.thryft.StructBean {
         return includeHidden;
     }
 
-    public String getInstitutionId() {
+    public org.dressdiscover.api.models.institution.InstitutionId getInstitutionId() {
         return institutionId;
     }
 
-    public String getMoreLikeObjectId() {
+    public org.dressdiscover.api.models.object.ObjectId getMoreLikeObjectId() {
         return moreLikeObjectId;
     }
 
-    public java.util.Set<String> getObjectIds() {
+    public java.util.Set<org.dressdiscover.api.models.object.ObjectId> getObjectIds() {
         return objectIds;
     }
 
@@ -282,7 +282,7 @@ public class ObjectQueryBean implements org.thryft.StructBean {
         return getCollectionId() == null && getFacetFilters() == null && getIncludeHidden() == null && getInstitutionId() == null && getMoreLikeObjectId() == null && getObjectIds() == null && getQueryString() == null && getRelationText() == null && getStructureTexts() == null && getWorkTypeText() == null;
     }
 
-    public void setCollectionId(final String collectionId) {
+    public void setCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
         this.collectionId = collectionId;
     }
 
@@ -294,15 +294,15 @@ public class ObjectQueryBean implements org.thryft.StructBean {
         this.includeHidden = includeHidden;
     }
 
-    public void setInstitutionId(final String institutionId) {
+    public void setInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
         this.institutionId = institutionId;
     }
 
-    public void setMoreLikeObjectId(final String moreLikeObjectId) {
+    public void setMoreLikeObjectId(final org.dressdiscover.api.models.object.ObjectId moreLikeObjectId) {
         this.moreLikeObjectId = moreLikeObjectId;
     }
 
-    public void setObjectIds(final java.util.Set<String> objectIds) {
+    public void setObjectIds(final java.util.Set<org.dressdiscover.api.models.object.ObjectId> objectIds) {
         this.objectIds = objectIds;
     }
 
@@ -327,17 +327,17 @@ public class ObjectQueryBean implements org.thryft.StructBean {
         return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("facet_filters", getFacetFilters()).add("include_hidden", getIncludeHidden()).add("institution_id", getInstitutionId()).add("more_like_object_id", getMoreLikeObjectId()).add("object_ids", getObjectIds()).add("query_string", getQueryString()).add("relation_text", getRelationText()).add("structure_texts", getStructureTexts()).add("work_type_text", getWorkTypeText()).toString();
     }
 
-    private String collectionId;
+    private org.dressdiscover.api.models.collection.CollectionId collectionId;
 
     private org.dressdiscover.gui.models.object.ObjectFacetFiltersBean facetFilters;
 
     private Boolean includeHidden;
 
-    private String institutionId;
+    private org.dressdiscover.api.models.institution.InstitutionId institutionId;
 
-    private String moreLikeObjectId;
+    private org.dressdiscover.api.models.object.ObjectId moreLikeObjectId;
 
-    private java.util.Set<String> objectIds;
+    private java.util.Set<org.dressdiscover.api.models.object.ObjectId> objectIds;
 
     private String queryString;
 

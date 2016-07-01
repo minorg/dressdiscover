@@ -3,7 +3,7 @@ package org.dressdiscover.gui.models.user;
 public class UserEntryBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        ID("id", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),
+        ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),
         MODEL("model", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.user.UserBean>() {}, true, 0, "model", org.thryft.protocol.Type.STRUCT);
 
         @Override
@@ -133,7 +133,7 @@ public class UserEntryBean implements org.thryft.StructBean {
         }
     }
 
-    public String getId() {
+    public org.dressdiscover.api.models.user.UserId getId() {
         return id;
     }
 
@@ -154,7 +154,7 @@ public class UserEntryBean implements org.thryft.StructBean {
         return false;
     }
 
-    public void setId(final String id) {
+    public void setId(final org.dressdiscover.api.models.user.UserId id) {
         this.id = id;
     }
 
@@ -167,7 +167,7 @@ public class UserEntryBean implements org.thryft.StructBean {
         return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("id", getId()).add("model", getModel()).toString();
     }
 
-    private String id;
+    private org.dressdiscover.api.models.user.UserId id;
 
     private org.dressdiscover.gui.models.user.UserBean model;
 }

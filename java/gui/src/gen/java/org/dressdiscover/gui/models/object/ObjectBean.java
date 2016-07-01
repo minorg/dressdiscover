@@ -3,8 +3,8 @@ package org.dressdiscover.gui.models.object;
 public class ObjectBean implements org.thryft.StructBean {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "collection_id", org.thryft.protocol.Type.STRING),
-        INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "institution_id", org.thryft.protocol.Type.STRING),
+        COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, true, 1, "collection_id", org.thryft.protocol.Type.STRING),
+        INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, true, 2, "institution_id", org.thryft.protocol.Type.STRING),
         TITLES("titles", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.title.TitleSetBean>() {}, true, 3, "titles", org.thryft.protocol.Type.STRUCT),
         AGENTS("agents", new com.google.common.reflect.TypeToken<org.dressdiscover.gui.models.agent.AgentSetBean>() {}, false, 20, "agents", org.thryft.protocol.Type.STRUCT),
         CATEGORIES("categories", new com.google.common.reflect.TypeToken<java.util.List<String>>() {}, false, 18, "categories", org.thryft.protocol.Type.LIST),
@@ -343,7 +343,7 @@ public class ObjectBean implements org.thryft.StructBean {
         return closures;
     }
 
-    public String getCollectionId() {
+    public org.dressdiscover.api.models.collection.CollectionId getCollectionId() {
         return collectionId;
     }
 
@@ -387,7 +387,7 @@ public class ObjectBean implements org.thryft.StructBean {
         return inscriptions;
     }
 
-    public String getInstitutionId() {
+    public org.dressdiscover.api.models.institution.InstitutionId getInstitutionId() {
         return institutionId;
     }
 
@@ -554,7 +554,7 @@ public class ObjectBean implements org.thryft.StructBean {
         this.closures = closures;
     }
 
-    public void setCollectionId(final String collectionId) {
+    public void setCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
         this.collectionId = collectionId;
     }
 
@@ -598,7 +598,7 @@ public class ObjectBean implements org.thryft.StructBean {
         this.inscriptions = inscriptions;
     }
 
-    public void setInstitutionId(final String institutionId) {
+    public void setInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
         this.institutionId = institutionId;
     }
 
@@ -663,9 +663,9 @@ public class ObjectBean implements org.thryft.StructBean {
         return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("titles", getTitles()).add("agents", getAgents()).add("categories", getCategories()).add("closures", getClosures()).add("colors", getColors()).add("components", getComponents()).add("condition", getCondition()).add("cultural_contexts", getCulturalContexts()).add("dates", getDates()).add("descriptions", getDescriptions()).add("gender", getGender()).add("hidden", getHidden()).add("images", getImages()).add("inscriptions", getInscriptions()).add("locations", getLocations()).add("materials", getMaterials()).add("measurements", getMeasurements()).add("provenance", getProvenance()).add("quantity", getQuantity()).add("relations", getRelations()).add("rights", getRights()).add("structures", getStructures()).add("subjects", getSubjects()).add("techniques", getTechniques()).add("textrefs", getTextrefs()).add("view_type", getViewType()).add("work_types", getWorkTypes()).toString();
     }
 
-    private String collectionId;
+    private org.dressdiscover.api.models.collection.CollectionId collectionId;
 
-    private String institutionId;
+    private org.dressdiscover.api.models.institution.InstitutionId institutionId;
 
     private org.dressdiscover.gui.models.title.TitleSetBean titles;
 

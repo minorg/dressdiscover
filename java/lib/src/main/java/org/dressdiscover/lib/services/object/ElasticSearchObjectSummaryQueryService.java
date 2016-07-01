@@ -14,6 +14,7 @@ import java.util.concurrent.ExecutionException;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.dressdiscover.api.models.collection.CollectionId;
 import org.dressdiscover.api.models.collection.InvalidCollectionIdException;
+import org.dressdiscover.api.models.gender.Gender;
 import org.dressdiscover.api.models.institution.InstitutionId;
 import org.dressdiscover.api.models.institution.InvalidInstitutionIdException;
 import org.dressdiscover.api.models.object.InvalidObjectIdException;
@@ -25,6 +26,11 @@ import org.dressdiscover.api.models.object.ObjectId;
 import org.dressdiscover.api.models.object.ObjectQuery;
 import org.dressdiscover.api.models.object.ObjectSummary;
 import org.dressdiscover.api.models.object.ObjectSummaryEntry;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
+import org.dressdiscover.api.services.object.GetObjectSummariesResult;
+import org.dressdiscover.api.services.object.ObjectSummaryQueryService;
+import org.dressdiscover.api.services.object.ObjectSummarySort;
 import org.dressdiscover.lib.services.IoExceptions;
 import org.dressdiscover.lib.services.object.LoggingObjectSummaryQueryService.Markers;
 import org.dressdiscover.lib.stores.object.ObjectSummaryElasticSearchIndex;
@@ -64,13 +70,6 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
-import org.dressdiscover.api.models.gender.Gender;
-import org.dressdiscover.api.services.IoException;
-import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
-import org.dressdiscover.api.services.object.GetObjectSummariesResult;
-import org.dressdiscover.api.services.object.ObjectSummaryQueryService;
-import org.dressdiscover.api.services.object.ObjectSummarySort;
 
 @Singleton
 public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQueryService {
@@ -344,7 +343,7 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
                                                                         .getThriftProtocolKey())
                                                                 .missing("_last")
                                                                 .order(sort
-                                                                        .getOrder() == org.dressdiscover.SortOrder.ASC
+                                                                        .getOrder() == org.dressdiscover.api.models.SortOrder.ASC
                                                                                 ? SortOrder.ASC : SortOrder.DESC));
                                     }
                                 }
