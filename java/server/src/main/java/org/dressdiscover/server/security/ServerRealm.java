@@ -1,4 +1,4 @@
-package net.lab1318.costume.server.security;
+package org.dressdiscover.server.security;
 
 import java.util.Collection;
 

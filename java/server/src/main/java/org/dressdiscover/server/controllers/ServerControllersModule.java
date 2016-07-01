@@ -1,4 +1,4 @@
-package net.lab1318.costume.server.controllers;
+package org.dressdiscover.server.controllers;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -8,14 +8,14 @@ import org.thryft.waf.server.controllers.LocalhostFilter;
 
 import com.google.inject.servlet.ServletModule;
 
-import net.lab1318.costume.server.controllers.collection.CollectionCommandServiceJsonRpcServlet;
-import net.lab1318.costume.server.controllers.collection.CollectionQueryServiceJsonRpcServlet;
-import net.lab1318.costume.server.controllers.institution.InstitutionCommandServiceJsonRpcServlet;
-import net.lab1318.costume.server.controllers.institution.InstitutionQueryServiceJsonRpcServlet;
-import net.lab1318.costume.server.controllers.login.OauthLoginController;
-import net.lab1318.costume.server.controllers.object.ObjectCommandServiceJsonRpcServlet;
-import net.lab1318.costume.server.controllers.object.ObjectQueryServiceJsonRpcServlet;
-import net.lab1318.costume.server.security.ServerRealm;
+import org.dressdiscover.server.controllers.collection.CollectionCommandServiceJsonRpcServlet;
+import org.dressdiscover.server.controllers.collection.CollectionQueryServiceJsonRpcServlet;
+import org.dressdiscover.server.controllers.institution.InstitutionCommandServiceJsonRpcServlet;
+import org.dressdiscover.server.controllers.institution.InstitutionQueryServiceJsonRpcServlet;
+import org.dressdiscover.server.controllers.login.OauthLoginController;
+import org.dressdiscover.server.controllers.object.ObjectCommandServiceJsonRpcServlet;
+import org.dressdiscover.server.controllers.object.ObjectQueryServiceJsonRpcServlet;
+import org.dressdiscover.server.security.ServerRealm;
 
 public final class ServerControllersModule extends ServletModule {
     private final static class JsonRpcControllersModule extends ServletModule {

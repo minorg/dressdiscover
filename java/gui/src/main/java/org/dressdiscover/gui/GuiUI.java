@@ -38,7 +38,7 @@ import com.vaadin.ui.UI;
 @SuppressWarnings("serial")
 @Theme("costume")
 @Title("DressDiscover")
-@Widgetset("net.lab1318.costume.gui.GuiWidgetSet")
+@Widgetset("org.dressdiscover.gui.GuiWidgetSet")
 public final class GuiUI extends UI {
     @Override
     protected void init(final VaadinRequest vaadinRequest) {

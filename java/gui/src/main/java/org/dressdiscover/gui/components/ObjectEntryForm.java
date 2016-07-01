@@ -170,7 +170,7 @@ public final class ObjectEntryForm extends HorizontalLayout {
 
         {
             if (objectEntry.getModel().getImages().isPresent()) {
-                for (final net.lab1318.costume.api.models.image.Image imageModel : objectEntry.getModel().getImages()
+                for (final org.dressdiscover.api.models.image.Image imageModel : objectEntry.getModel().getImages()
                         .get()) {
                     final ImageVersion bestImageModel;
                     if (imageModel.getFullSize().isPresent()) {

@@ -1,4 +1,4 @@
-package net.lab1318.costume.server.controllers.login;
+package org.dressdiscover.server.controllers.login;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

@@ -15,7 +15,7 @@ public final class GuiControllersModule extends ServletModule {
     @Override
     protected void configureServlets() {
         final ImmutableMap<String, String> initParams = ImmutableMap.of("productionMode",
-                productionMode ? "true" : "false", "widgetset", "net.lab1318.costume.gui.widgetset.GuiWidgetSet");
+                productionMode ? "true" : "false", "widgetset", "org.dressdiscover.gui.widgetset.GuiWidgetSet");
         serve("/catalog_wizard_export/*").with(CatalogWizardExportController.class);
         serve("/*").with(GuiServlet.class, initParams);
     }

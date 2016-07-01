@@ -1,4 +1,4 @@
-package net.lab1318.costume.server;
+package org.dressdiscover.server;
 
 import static com.google.common.base.Preconditions.checkState;
 
@@ -15,7 +15,7 @@ import org.thryft.waf.server.AbstractServletContextListener;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import net.lab1318.costume.server.controllers.ServerControllersModule;
+import org.dressdiscover.server.controllers.ServerControllersModule;
 
 public final class ServletContextListener extends AbstractServletContextListener {
     @Override

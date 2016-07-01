@@ -37,7 +37,7 @@ public final class ObjectSummaryEntriesCarousel extends CustomComponent {
             titleButton.setStyleName("title-button");
 
             if (objectSummaryEntry.getModel().getImage().isPresent()) {
-                final net.lab1318.costume.api.models.image.Image imageModel = objectSummaryEntry.getModel().getImage()
+                final org.dressdiscover.api.models.image.Image imageModel = objectSummaryEntry.getModel().getImage()
                         .get();
                 final Optional<ImageVersion> imageVersionModel = imageModel.getSquareThumbnail()
                         .or(imageModel.getThumbnail());
