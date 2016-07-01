@@ -212,7 +212,7 @@ class OmekaResourceMapper(object):
     def map_omeka_collection(self, collection_store_uri, institution_id, omeka_collection):
         collection_id = CollectionId.parse(str(institution_id) + '/' + str(omeka_collection.id))
 
-        collection_builder = Collection.Builder()
+        collection_builder = Collection.builder()
         collection_builder.setInstitutionId(institution_id)
 
         for element_text in omeka_collection.element_texts:

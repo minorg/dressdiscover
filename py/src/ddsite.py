@@ -23,7 +23,7 @@ from dressdiscover.lib.stores.object.wizard.wizard_omeka_resource_mapper import 
 def put_collection(collection_id, institution_id, title, hidden=None, object_store_uri=None):
     PythonApi.getInstance().getCollectionCommandService().putCollection(
         collection_id,
-        Collection.Builder()
+        Collection.builder()
             .setHidden(Optional.fromNullable(hidden))
             .setInstitutionId(institution_id)
             .setObjectStoreUri(Optional.fromNullable(object_store_uri))
@@ -34,9 +34,9 @@ def put_collection(collection_id, institution_id, title, hidden=None, object_sto
 def put_institution(institution_id, institution_title, institution_url, store_parameters, collection_store_uri=None, data_rights=None):
     if data_rights is None:
         data_rights = \
-            RightsSet.Builder()\
+            RightsSet.builder()\
                 .setElements(ImmutableList.of(
-                    Rights.Builder()
+                    Rights.builder()
                         .setRightsHolder(institution_title)
                         .setText("Copyright %s %s" % (datetime.now().year, institution_title))
                         .setType(RightsType.COPYRIGHTED)
@@ -47,7 +47,7 @@ def put_institution(institution_id, institution_title, institution_url, store_pa
 
     PythonApi.getInstance().getInstitutionCommandService().putInstitution(
         institution_id,
-        Institution.Builder()
+        Institution.builder()
             .setCollectionStoreUri(Optional.fromNullable(collection_store_uri))
             .setDataRights(data_rights)
             .setStoreParameters(store_parameters)
@@ -61,9 +61,9 @@ assert os.path.isdir(data_dir_path)
 
 put_institution(
     data_rights=\
-        RightsSet.Builder()
+        RightsSet.builder()
             .setElements(ImmutableList.of(
-                Rights.Builder()
+                Rights.builder()
                     .setRightsHolder('University of North Texas')
                     .setText("The contents of Texas Fashion Collection, hosted by the University of North Texas Libraries (digital content including images, text, and sound and video recordings) are made publicly available by the collection-holding partners for use in research, teaching, and private study. For the full terms of use, see http://digital.library.unt.edu/terms-of-use/")
                     .setType(RightsType.COPYRIGHTED)

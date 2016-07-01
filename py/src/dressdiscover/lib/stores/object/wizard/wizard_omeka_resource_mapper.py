@@ -64,12 +64,12 @@ class WizardOmekaResourceMapper(OmekaResourceMapper):
         if not omeka_collection.id in self.OMEKA_COLLECTIONS.values():
             return
         collection_entry = OmekaResourceMapper.map_omeka_collection(self, collection_store_uri, institution_id, omeka_collection)
-        return CollectionEntry(collection_entry.id, Collection.Builder(collection_entry.model).setHidden(True).build())
+        return CollectionEntry(collection_entry.id, Collection.builder(collection_entry.model).setHidden(True).build())
 
     def map_omeka_item(self, collection_id, endpoint_url, omeka_item, omeka_item_files, square_thumbnail_height_px, square_thumbnail_width_px):
         object_id = ObjectId.parse(str(collection_id) + '/' + str(omeka_item.id))
 
-        vocab_ref = VocabRef.Builder().setVocab(Vocab.COSTUME_CORE).build()
+        vocab_ref = VocabRef.builder().setVocab(Vocab.COSTUME_CORE).build()
 
         feature_name = None
         omeka_collection_id = int(collection_id.getUnqualifiedCollectionId())
@@ -98,16 +98,16 @@ class WizardOmekaResourceMapper(OmekaResourceMapper):
                 self._logger.warn("Omeka item %d has unknown element set name '%s'", omeka_item.id, element_text.element_set.name)
 
         object_builder = \
-            Object.Builder()\
+            Object.builder()\
                 .setCollectionId(collection_id)\
                 .setHidden(True)\
                 .setInstitutionId(collection_id.getInstitutionId())\
                 .setStructures(\
-                    StructureSet.Builder().setElements(ImmutableList.of(
-                        Structure.Builder()
+                    StructureSet.builder().setElements(ImmutableList.of(
+                        Structure.builder()
                             .setText(feature_value)
                             .setType(
-                                StructureType.Builder()
+                                StructureType.builder()
                                     .setText(feature_name)
                                     .setVocabRef(vocab_ref)
                                     .build()
@@ -117,8 +117,8 @@ class WizardOmekaResourceMapper(OmekaResourceMapper):
                         .build()
                 )\
                 .setTitles(
-                    TitleSet.Builder().setElements(ImmutableList.of(
-                        Title.Builder()
+                    TitleSet.builder().setElements(ImmutableList.of(
+                        Title.builder()
                             .setText("%(feature_value)s" % locals())
                             .setType(TitleType.DESCRIPTIVE)
                             .build()
@@ -155,7 +155,7 @@ class WizardOmekaResourceMapper(OmekaResourceMapper):
             elif image_license == 'CC0':
                 rights_type = RightsType.LICENSED
                 license_vocab_ref = \
-                    VocabRef.Builder()\
+                    VocabRef.builder()\
                         .setVocab(Vocab.CREATIVE_COMMONS)\
                         .setUri(Uri.parse('https://creativecommons.org/publicdomain/zero/1.0/'))\
                         .build()
@@ -164,19 +164,19 @@ class WizardOmekaResourceMapper(OmekaResourceMapper):
                 version = image_license[len('CC BY-SA '):]
                 float(version)
                 license_vocab_ref = \
-                    VocabRef.Builder()\
+                    VocabRef.builder()\
                         .setVocab(Vocab.CREATIVE_COMMONS)\
                         .setUri(Uri.parse("https://creativecommons.org/licenses/by-sa/%s/" % version))\
                         .build()
             else:
                 rights_type = RightsType.LICENSED
 
-            image_builder = Image.Builder()  # @UndefinedVariable
+            image_builder = Image.builder()
             file_urls = file_.file_urls
-            image_builder.setOriginal(ImageVersion.Builder().setUrl(Url.parse(file_urls.original)).build())
+            image_builder.setOriginal(ImageVersion.builder().setUrl(Url.parse(file_urls.original)).build())
             image_builder.setRights(
-                RightsSet.Builder().setElements(ImmutableList.of(
-                    Rights.Builder()
+                RightsSet.builder().setElements(ImmutableList.of(
+                    Rights.builder()
                         .setLicenseVocabRef(Optional.fromNullable(license_vocab_ref))
                         .setRightsHolder(image_credit_line)
                         .setText(image_license)
@@ -189,7 +189,7 @@ class WizardOmekaResourceMapper(OmekaResourceMapper):
                 self._logger.warn("Omeka item %d has a file %d missing a square thumbnail", omeka_item.id, file_.id)
                 continue
             image_builder.setSquareThumbnail(
-                ImageVersion.Builder()
+                ImageVersion.builder()
                     .setHeightPx(UnsignedInteger.valueOf(square_thumbnail_height_px))
                     .setUrl(Url.parse(file_urls.square_thumbnail))
                     .setWidthPx(UnsignedInteger.valueOf(square_thumbnail_width_px))

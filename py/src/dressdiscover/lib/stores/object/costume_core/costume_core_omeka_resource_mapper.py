@@ -578,34 +578,34 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
                 object_builder.structures_by_component_letter.setdefault(letter, []).append(self._parse_structure(object_builder=object_builder, text=structure_text, type_=type_))
 
     def _map_omeka_item_element_itm_structure_cut(self, **kwds):
-        self.__map_omeka_item_element_itm_structure(type_=StructureType.Builder().setText('Structure Cut').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
+        self.__map_omeka_item_element_itm_structure(type_=StructureType.builder().setText('Structure Cut').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
 
     def _map_omeka_item_element_itm_structure_hem(self, **kwds):
-        self.__map_omeka_item_element_itm_structure(type_=StructureType.Builder().setText('Structure Lining').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
+        self.__map_omeka_item_element_itm_structure(type_=StructureType.builder().setText('Structure Lining').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
 
     def _map_omeka_item_element_itm_structure_lining(self, **kwds):
-        self.__map_omeka_item_element_itm_structure(type_=StructureType.Builder().setText('Structure Lining').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
+        self.__map_omeka_item_element_itm_structure(type_=StructureType.builder().setText('Structure Lining').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
 
     def _map_omeka_item_element_itm_structure_neckline(self, **kwds):
-        self.__map_omeka_item_element_itm_structure(type_=StructureType.Builder().setText('Structure Neckline').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
+        self.__map_omeka_item_element_itm_structure(type_=StructureType.builder().setText('Structure Neckline').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
 
     def _map_omeka_item_element_itm_structure_pants(self, **kwds):
-        self.__map_omeka_item_element_itm_structure(type_=StructureType.Builder().setText('Structure Pants').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
+        self.__map_omeka_item_element_itm_structure(type_=StructureType.builder().setText('Structure Pants').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
 
     def _map_omeka_item_element_itm_structure_silhouette(self, **kwds):
-        self.__map_omeka_item_element_itm_structure(type_=StructureType.Builder().setText('Overall Silhouette').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
+        self.__map_omeka_item_element_itm_structure(type_=StructureType.builder().setText('Overall Silhouette').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
 
     def _map_omeka_item_element_itm_structure_skirt(self, **kwds):
-        self.__map_omeka_item_element_itm_structure(type_=StructureType.Builder().setText('Structure Skirt').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
+        self.__map_omeka_item_element_itm_structure(type_=StructureType.builder().setText('Structure Skirt').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
 
     def _map_omeka_item_element_itm_structure_sleeves(self, **kwds):
-        self.__map_omeka_item_element_itm_structure(type_=StructureType.Builder().setText('Structure Sleeves').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
+        self.__map_omeka_item_element_itm_structure(type_=StructureType.builder().setText('Structure Sleeves').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
 
     def _map_omeka_item_element_itm_structure_torso(self, **kwds):
-        self.__map_omeka_item_element_itm_structure(type_=StructureType.Builder().setText('Structure Torso').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
+        self.__map_omeka_item_element_itm_structure(type_=StructureType.builder().setText('Structure Torso').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
 
     def _map_omeka_item_element_itm_structure_waist(self, **kwds):
-        self.__map_omeka_item_element_itm_structure(type_=StructureType.Builder().setText('Structure Waist').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
+        self.__map_omeka_item_element_itm_structure(type_=StructureType.builder().setText('Structure Waist').setVocabRef(self._COSTUME_CORE_VOCAB_REF).build(), **kwds)
 
     def _map_omeka_item_element_itm_suffix(self, object_builder, text):
         pass # Accession number suffix

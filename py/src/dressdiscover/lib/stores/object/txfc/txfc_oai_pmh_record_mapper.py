@@ -55,7 +55,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
         def build(self):
             if self.start_date_bound is not None and self.end_date_bound is not None:
                 self.dates.append(
-                    Date.Builder()
+                    Date.builder()
                         .setEarliestDate(self.start_date_bound)
                         .setLatestDate(self.end_date_bound)
                         .setType(DateType.CREATION)
@@ -63,25 +63,25 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
                 )
 
             if len(self.agents) > 0:
-                self._object_builder.setAgents(AgentSet.Builder().setElements(ImmutableList.copyOf(self.agents)).build())
+                self._object_builder.setAgents(AgentSet.builder().setElements(ImmutableList.copyOf(self.agents)).build())
             if len(self.dates) > 0:
-                self._object_builder.setDates(DateSet.Builder().setElements(ImmutableList.copyOf(self.dates)).build())
+                self._object_builder.setDates(DateSet.builder().setElements(ImmutableList.copyOf(self.dates)).build())
             if len(self.descriptions) > 0:
-                self._object_builder.setDescriptions(DescriptionSet.Builder().setElements(ImmutableList.copyOf(self.descriptions)).build())
+                self._object_builder.setDescriptions(DescriptionSet.builder().setElements(ImmutableList.copyOf(self.descriptions)).build())
             if len(self.images) > 0:
                 self._object_builder.setImages(ImmutableList.copyOf(self.images))
             if len(self.locations) > 0:
-                self._object_builder.setLocations(LocationSet.Builder().setElements(ImmutableList.copyOf(self.locations)).build())
+                self._object_builder.setLocations(LocationSet.builder().setElements(ImmutableList.copyOf(self.locations)).build())
             if len(self.rights) > 0:
-                self._object_builder.setRights(RightsSet.Builder().setElements(ImmutableList.copyOf(self.rights)).build())
+                self._object_builder.setRights(RightsSet.builder().setElements(ImmutableList.copyOf(self.rights)).build())
             if len(self.subjects) > 0:
-                self._object_builder.setSubjects(SubjectSet.Builder().setElements(ImmutableList.copyOf(self.subjects)).build())
+                self._object_builder.setSubjects(SubjectSet.builder().setElements(ImmutableList.copyOf(self.subjects)).build())
             if len(self.textrefs) > 0:
-                self._object_builder.setTextrefs(TextrefSet.Builder().setElements(ImmutableList.copyOf(self.textrefs)).build())
+                self._object_builder.setTextrefs(TextrefSet.builder().setElements(ImmutableList.copyOf(self.textrefs)).build())
             if len(self.titles) > 0:
-                self._object_builder.setTitles(TitleSet.Builder().setElements(ImmutableList.copyOf(self.titles)).build())
+                self._object_builder.setTitles(TitleSet.builder().setElements(ImmutableList.copyOf(self.titles)).build())
             if len(self.work_types) > 0:
-                self._object_builder.setWorkTypes(WorkTypeSet.Builder().setElements(ImmutableList.copyOf(self.work_types)).build())
+                self._object_builder.setWorkTypes(WorkTypeSet.builder().setElements(ImmutableList.copyOf(self.work_types)).build())
             return self._object_builder.build()
 
     def __init__(self, *args, **kwds):
@@ -133,7 +133,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
         return ObjectEntry(object_id, object_builder.build())
 
     def __parse_date(self, text, circa=None):
-        date_bound_builder = DateBound.Builder().setText(text)
+        date_bound_builder = DateBound.builder().setText(text)
 
         if text[-1] == 'u':
             date_bound_builder.setCirca(True)
@@ -190,14 +190,14 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
         return date_range
 
     def __parse_record_metadata_agent_element(self, element, object_builder):
-        agent_builder = Agent.Builder()
+        agent_builder = Agent.builder()
 
         qualifier = element.attrib.get('qualifier', None)
         if qualifier is None:
             self._logger.warn("ignoring agent element without qualifier on record %s", object_builder.record_identifier)
             return
 
-        role = AgentRole.Builder().setText(self.__agent_qualifiers[qualifier]).build()
+        role = AgentRole.builder().setText(self.__agent_qualifiers[qualifier]).build()
         agent_builder.setRole(role)
 
         info = element.find(self._UNTL_NS + 'info')
@@ -224,7 +224,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
         else:
             name_type = AgentNameType.OTHER
 
-        agent_builder.name = AgentName.Builder().setText(name_text).setType(name_type).build()
+        agent_builder.name = AgentName.builder().setText(name_text).setType(name_type).build()
 
         object_builder.agents.append(agent_builder.build())
 
@@ -300,9 +300,9 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
                     location_names_temp.append(text)
 
             object_builder.locations.append(
-                Location.Builder()
+                Location.builder()
                     .setNames(ImmutableList.copyOf(
-                        LocationName.Builder()
+                        LocationName.builder()
                             .setExtent(extent)
                             .setText(text)
                             .setType(LocationNameType.GEOGRAPHIC)
@@ -342,7 +342,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
 
         earliest_date, latest_date = self.__parse_date_range(text)
         object_builder.dates.append(
-            Date.Builder()
+            Date.builder()
                 .setEarliestDate(earliest_date)
                 .setLatestDate(latest_date)
                 .setType(date_type)
@@ -365,7 +365,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
                 self._logger.warn("unknown description qualifier '%s'", qualifier)
 
         object_builder.descriptions.append(
-            Description.Builder()
+            Description.builder()
                 .setText(text)
                 .setType(Optional.fromNullable(description_type))
                 .build()
@@ -385,15 +385,15 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
             pass
         elif qualifier == 'itemURL':
             object_builder.textrefs.append(
-                Textref.Builder()
+                Textref.builder()
                     .setName(
-                        TextrefName.Builder()
+                        TextrefName.builder()
                             .setText("Item URL")
                             .setType(TextrefNameType.ELECTRONIC)
                             .build()
                     )
                     .setRefid(
-                        TextrefRefid.Builder()
+                        TextrefRefid.builder()
                             .setHref(Url.parse(text))
                             .setText(text)
                             .setType(TextrefRefidType.URI)
@@ -403,26 +403,26 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
             )
         elif qualifier == 'thumbnailURL':
             object_builder.images.append(
-                Image.Builder()
+                Image.builder()
                     .setFullSize(
-                        ImageVersion.Builder()
+                        ImageVersion.builder()
                             .setUrl(Url.parse("http://digital.library.unt.edu/ark:" + object_builder.record_identifier[len('info:ark'):] + '/m1/1/med_res/'))
                             .build()
                     )
                     .setOriginal(
-                        ImageVersion.Builder()
+                        ImageVersion.builder()
                             .setUrl(Url.parse("http://digital.library.unt.edu/ark:" + object_builder.record_identifier[len('info:ark'):] + '/m1/1/high_res/'))
                             .build()
                     )
                     .setSquareThumbnail(
-                        ImageVersion.Builder()
+                        ImageVersion.builder()
                             .setHeightPx(self._SQUARE_THUMBNAIL_HEIGHT_PX)
                             .setUrl(Url.parse("http://digital.library.unt.edu/ark:" + object_builder.record_identifier[len('info:ark'):] + '/m1/1/square/'))
                             .setWidthPx(self._SQUARE_THUMBNAIL_WIDTH_PX)
                             .build()
                     )
                     .setThumbnail(
-                        ImageVersion.Builder()
+                        ImageVersion.builder()
                             .setUrl(Url.parse(text))
                             .build()
                     )
@@ -463,14 +463,14 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
         qualifier = element.attrib.get('qualifier', None)
         if qualifier == 'digitalPreservation':
             object_builder.descriptions.append(
-                Description.Builder()
+                Description.builder()
                     .setText(text)
                     .setType(DescriptionType.HISTORY)
                     .build()
             )
         elif qualifier == 'display':
             object_builder.descriptions.append(
-                Description.Builder()
+                Description.builder()
                     .setText(text)
                     .setType(DescriptionType.PUBLIC)
                     .build()
@@ -479,7 +479,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
             pass
         else:
             object_builder.descriptions.append(
-                Description.Builder()
+                Description.builder()
                     .setText(text)
                     .setType(DescriptionType.HISTORY)
                     .build()
@@ -505,10 +505,10 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
             raise NotImplementedError(text)
 
         object_builder.work_types.append(
-            WorkType.Builder()\
+            WorkType.builder()\
                 .setText(text)\
                 .setVocabRef(
-                    VocabRef.Builder()
+                    VocabRef.builder()
                         .setRefid(text)\
                         .setVocab(Vocab.DCMI_TYPE)\
                         .setUri(Uri.parse(DCMI_TYPES_BASE_URL + text))\
@@ -532,7 +532,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
         elif qualifier == 'license':
             if text == 'by-nc-nd':
                 license_vocab_ref = \
-                    VocabRef.Builder()\
+                    VocabRef.builder()\
                         .setVocab(Vocab.CREATIVE_COMMONS)\
                         .setUri(Uri.parse('https://creativecommons.org/licenses/by-nc-nd/2.0/'))\
                         .build()
@@ -541,7 +541,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
                 self._logger.warn("ignoring unknown license text '%s' on record %s", text, object_builder.record_identifier)
 
             object_builder.rights.append(
-                Rights.Builder()
+                Rights.builder()
                     .setLicenseVocabRef(license_vocab_ref)
                     .setRightsHolder(self._RIGHTS_HOLDER)
                     .setText(text)
@@ -550,7 +550,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
             )
         elif qualifier == 'statement':
             object_builder.rights.append(
-                Rights.Builder()
+                Rights.builder()
                     .setRightsHolder(self._RIGHTS_HOLDER)
                     .setText(text)
                     .setType(RightsType.COPYRIGHTED)
@@ -565,7 +565,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
             return
 
         subject_term_builder = \
-            SubjectTerm.Builder()\
+            SubjectTerm.builder()\
                 .setText(text)\
                 .setType(SubjectTermType.OTHER_TOPIC)\
 
@@ -573,13 +573,13 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
         if qualifier is not None:
             try:
                 vocab = getattr(Vocab, qualifier)
-                subject_term_builder.setVocabRef(VocabRef.Builder().setVocab(vocab).build())
+                subject_term_builder.setVocabRef(VocabRef.builder().setVocab(vocab).build())
             except AttributeError:
                 if qualifier not in ('named_person', 'UNTL-BS',):
                     self._logger.warn("unknown subject vocabulary '%s'", qualifier)
 
         object_builder.subjects.append(
-            Subject.Builder()
+            Subject.builder()
                 .setTerms(ImmutableList.of(subject_term_builder.build()))
                 .build()
         )
@@ -604,7 +604,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
                 self._logger.warn("unknown title qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
 
         object_builder.titles.append(
-            Title.Builder()
+            Title.builder()
                 .setText(element.text)
                 .setType(title_type)
                 .build()
