@@ -7,7 +7,7 @@ import org.dressdiscover.api.models.institution.Institution;
 import org.dressdiscover.api.models.institution.InstitutionEntry;
 import org.dressdiscover.api.models.institution.InstitutionId;
 import org.dressdiscover.api.models.institution.InvalidInstitutionIdException;
-import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.DressDiscoverProperties;
 import org.dressdiscover.lib.stores.AbstractInstitutionCollectionObjectFileSystem;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
@@ -26,7 +26,7 @@ import net.logstash.logback.encoder.org.apache.commons.lang.exception.ExceptionU
 public class FileSystemInstitutionStore extends AbstractInstitutionCollectionObjectFileSystem<Institution>
 		implements InstitutionStore {
 	@Inject
-	public FileSystemInstitutionStore(final CostumeProperties properties) {
+	public FileSystemInstitutionStore(final DressDiscoverProperties properties) {
 		super(properties);
 	}
 

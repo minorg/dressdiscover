@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.DressDiscoverProperties;
 import org.thryft.waf.api.models.Model;
 
 import org.dressdiscover.api.services.IoException;
@@ -17,12 +17,12 @@ abstract class AbstractJdbcTable<ModelT extends Model> extends org.thryft.waf.li
         return exception;
     }
 
-    protected AbstractJdbcTable(final CostumeProperties properties) throws SQLException {
+    protected AbstractJdbcTable(final DressDiscoverProperties properties) throws SQLException {
         this(properties, "jdbc:h2:" + new File(new File(new File(properties.getHomeDirectoryPath()), "data"), "users")
                 + ";TRACE_LEVEL_FILE=0");
     }
 
-    protected AbstractJdbcTable(final CostumeProperties properties, final String url) throws SQLException {
+    protected AbstractJdbcTable(final DressDiscoverProperties properties, final String url) throws SQLException {
         super(url);
         try {
             Class.forName("org.h2.Driver");

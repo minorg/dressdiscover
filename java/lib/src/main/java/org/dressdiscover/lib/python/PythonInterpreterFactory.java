@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.lang3.StringUtils;
-import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.DressDiscoverProperties;
 import org.python.util.PythonInterpreter;
 
 import com.google.inject.Inject;
@@ -16,7 +16,7 @@ import com.google.inject.Singleton;
 @Singleton
 public class PythonInterpreterFactory {
     @Inject
-    public PythonInterpreterFactory(final Injector injector, final CostumeProperties properties) {
+    public PythonInterpreterFactory(final Injector injector, final DressDiscoverProperties properties) {
         injector.getInstance(PythonApi.class); // Force instantiation
         final Properties pythonInterpreterProperties = new Properties();
         final List<String> pythonPath = new ArrayList<>();

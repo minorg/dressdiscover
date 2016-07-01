@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.dressdiscover.api.models.collection.CollectionEntry;
 import org.dressdiscover.api.models.collection.CollectionId;
 import org.dressdiscover.api.models.object.ObjectEntry;
-import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.DressDiscoverProperties;
 import org.dressdiscover.lib.stores.object.FileSystemObjectStore;
 import org.dressdiscover.testdata.TestData;
 import org.junit.After;
@@ -22,7 +22,7 @@ import com.google.common.collect.ImmutableList;
 public final class FileSystemObjectStoreTest {
     @Before
     public void setUp() {
-        store = new FileSystemObjectStore(CostumeProperties.load());
+        store = new FileSystemObjectStore(DressDiscoverProperties.load());
     }
 
     @After

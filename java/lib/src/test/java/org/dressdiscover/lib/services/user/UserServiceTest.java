@@ -9,7 +9,7 @@ import org.dressdiscover.api.models.user.UserBookmark;
 import org.dressdiscover.api.models.user.UserBookmarkEntry;
 import org.dressdiscover.api.models.user.UserEntry;
 import org.dressdiscover.api.models.user.UserId;
-import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.DressDiscoverProperties;
 import org.dressdiscover.lib.services.ServiceTest;
 import org.dressdiscover.lib.services.ServicesModule;
 import org.dressdiscover.lib.services.user.IterableUserQueryService;
@@ -53,7 +53,7 @@ public abstract class UserServiceTest extends ServiceTest {
     }
 
     @Override
-    protected final ServicesModule _newServicesModule(final CostumeProperties properties) {
+    protected final ServicesModule _newServicesModule(final DressDiscoverProperties properties) {
         return new ServicesModule(properties) {
             @Override
             protected void _configureUserCommandService() {

@@ -2,7 +2,7 @@ package org.dressdiscover.lib.services;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.DressDiscoverProperties;
 import org.dressdiscover.lib.services.collection.LoggingCollectionCommandService;
 import org.dressdiscover.lib.services.collection.LoggingCollectionQueryService;
 import org.dressdiscover.lib.services.collection.StoreCollectionCommandService;
@@ -48,7 +48,7 @@ import org.dressdiscover.api.services.user.UserCommandService;
 import org.dressdiscover.api.services.user.UserQueryService;
 
 public class ServicesModule extends AbstractModule {
-    public ServicesModule(final CostumeProperties properties) {
+    public ServicesModule(final DressDiscoverProperties properties) {
         this.properties = checkNotNull(properties);
     }
 
@@ -145,5 +145,5 @@ public class ServicesModule extends AbstractModule {
         _configureUserQueryService();
     }
 
-    private final CostumeProperties properties;
+    private final DressDiscoverProperties properties;
 }

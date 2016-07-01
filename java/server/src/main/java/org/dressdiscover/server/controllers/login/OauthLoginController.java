@@ -8,7 +8,7 @@ import java.net.URLEncoder;
 import java.util.Date;
 
 import org.apache.shiro.SecurityUtils;
-import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.DressDiscoverProperties;
 import org.dressdiscover.lib.models.user.UserEntryPasswordToken;
 import org.thryft.waf.server.controllers.oauth.AbstractOauthLoginController;
 import org.thryft.waf.server.controllers.oauth.GoogleOauthServiceProvider;
@@ -31,7 +31,7 @@ import org.dressdiscover.api.services.user.UserQueryService;
 @Singleton
 public class OauthLoginController extends AbstractOauthLoginController<UserEntry> {
     @Inject
-    public OauthLoginController(final CostumeProperties properties, final UserCommandService userCommandService,
+    public OauthLoginController(final DressDiscoverProperties properties, final UserCommandService userCommandService,
             final UserQueryService userQueryService) {
         super(ImmutableMap.of("google",
                 new GoogleOauthServiceProvider(properties.getGoogleOauthKey(), properties.getGoogleOauthSecret())));

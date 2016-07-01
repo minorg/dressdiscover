@@ -4,7 +4,7 @@ import java.io.File;
 
 import org.dressdiscover.api.models.collection.CollectionId;
 import org.dressdiscover.api.models.institution.InstitutionId;
-import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.DressDiscoverProperties;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
 import org.thryft.waf.api.models.Model;
@@ -13,7 +13,7 @@ import org.thryft.waf.lib.stores.AbstractFileSystem;
 import com.google.common.collect.ImmutableList;
 
 public abstract class AbstractInstitutionCollectionObjectFileSystem<ModelT extends Model> extends AbstractFileSystem<ModelT> {
-    protected AbstractInstitutionCollectionObjectFileSystem(final CostumeProperties properties) {
+    protected AbstractInstitutionCollectionObjectFileSystem(final DressDiscoverProperties properties) {
         super(new File(new File(new File(new File(properties.getHomeDirectoryPath()), "data"), "loaded"),
                 properties.getEnvironment()));
     }

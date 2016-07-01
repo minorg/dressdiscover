@@ -14,7 +14,7 @@ import org.dressdiscover.api.models.object.ObjectEntry;
 import org.dressdiscover.api.models.object.ObjectId;
 import org.dressdiscover.api.models.object.ObjectSummary;
 import org.dressdiscover.api.models.object.ObjectSummaryEntry;
-import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.DressDiscoverProperties;
 import org.dressdiscover.lib.services.IoExceptions;
 import org.dressdiscover.lib.services.object.LoggingObjectCommandService.Markers;
 import org.dressdiscover.lib.stores.object.ObjectStoreCache;
@@ -41,7 +41,7 @@ public class StoreObjectCommandService implements ObjectCommandService {
     public StoreObjectCommandService(final CollectionQueryService collectionQueryService,
             final InstitutionQueryService institutionQueryService, final ObjectStoreCache objectStoreCache,
             final ObjectSummariesResultCache objectSummariesResultCache, final ObjectSummaryCache objectSummaryCache,
-            final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex, final CostumeProperties properties) {
+            final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex, final DressDiscoverProperties properties) {
         this.collectionQueryService = checkNotNull(collectionQueryService);
         this.institutionQueryService = checkNotNull(institutionQueryService);
         this.objectStoreCache = checkNotNull(objectStoreCache);

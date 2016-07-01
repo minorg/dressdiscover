@@ -5,7 +5,7 @@ import static com.google.common.base.Preconditions.checkState;
 import javax.servlet.ServletContextEvent;
 
 import org.dressdiscover.gui.GuiModule;
-import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.DressDiscoverProperties;
 import org.dressdiscover.lib.python.PythonInterpreterFactory;
 import org.dressdiscover.lib.services.ServicesModule;
 import org.python.util.PythonInterpreter;
@@ -20,7 +20,7 @@ import org.dressdiscover.server.controllers.ServerControllersModule;
 public final class ServletContextListener extends AbstractServletContextListener {
     @Override
     public void contextInitialized(final ServletContextEvent servletContextEvent) {
-        properties = CostumeProperties.load();
+        properties = DressDiscoverProperties.load();
         checkState(!properties.getEnvironment().equals("dev"), "running in dev environment?");
 
         _configureLogging("costume");
@@ -38,12 +38,12 @@ public final class ServletContextListener extends AbstractServletContextListener
         if (injector == null) {
             injector = Guice.createInjector(
                     // Order is important
-                    new PropertiesModule<CostumeProperties>(properties), new ServerControllersModule(),
+                    new PropertiesModule<DressDiscoverProperties>(properties), new ServerControllersModule(),
                     new ServicesModule(properties), new GuiModule(properties));
         }
         return injector;
     }
 
     private Injector injector;
-    private CostumeProperties properties;
+    private DressDiscoverProperties properties;
 }

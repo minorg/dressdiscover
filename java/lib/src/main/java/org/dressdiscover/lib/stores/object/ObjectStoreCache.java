@@ -8,7 +8,7 @@ import org.dressdiscover.api.models.collection.Collection;
 import org.dressdiscover.api.models.collection.CollectionId;
 import org.dressdiscover.api.models.institution.Institution;
 import org.dressdiscover.api.models.object.ObjectId;
-import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.DressDiscoverProperties;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -28,7 +28,7 @@ public class ObjectStoreCache {
     @Inject
     public ObjectStoreCache(final CollectionQueryService collectionQueryService,
             final FileSystemObjectStore defaultObjectStore, final InstitutionQueryService institutionQueryService,
-            final ObjectStoreFactoryRegistry objectStoreFactoryRegistry, final CostumeProperties properties) {
+            final ObjectStoreFactoryRegistry objectStoreFactoryRegistry, final DressDiscoverProperties properties) {
         this.collectionQueryService = checkNotNull(collectionQueryService);
         this.defaultObjectStore = checkNotNull(defaultObjectStore);
         this.institutionQueryService = checkNotNull(institutionQueryService);
@@ -80,5 +80,5 @@ public class ObjectStoreCache {
     private final FileSystemObjectStore defaultObjectStore;
     private final InstitutionQueryService institutionQueryService;
     private final ObjectStoreFactoryRegistry objectStoreFactoryRegistry;
-    private final CostumeProperties properties;
+    private final DressDiscoverProperties properties;
 }

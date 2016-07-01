@@ -10,7 +10,7 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.dressdiscover.api.models.user.User;
 import org.dressdiscover.api.models.user.UserEntry;
 import org.dressdiscover.api.models.user.UserId;
-import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.DressDiscoverProperties;
 import org.dressdiscover.lib.services.IoExceptions;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
@@ -29,12 +29,12 @@ import org.dressdiscover.api.services.user.NoSuchUserException;
 @Singleton
 public final class UserJdbcTable extends AbstractJdbcTable<User> implements UserStore {
     @Inject
-    public UserJdbcTable(final CostumeProperties properties) throws SQLException {
+    public UserJdbcTable(final DressDiscoverProperties properties) throws SQLException {
         super(properties);
 
     }
 
-    public UserJdbcTable(final CostumeProperties properties, final String url) throws SQLException {
+    public UserJdbcTable(final DressDiscoverProperties properties, final String url) throws SQLException {
         super(properties, url);
     }
 

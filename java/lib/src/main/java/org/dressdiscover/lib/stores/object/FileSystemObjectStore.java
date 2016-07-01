@@ -13,7 +13,7 @@ import org.dressdiscover.api.models.object.InvalidObjectIdException;
 import org.dressdiscover.api.models.object.Object;
 import org.dressdiscover.api.models.object.ObjectEntry;
 import org.dressdiscover.api.models.object.ObjectId;
-import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.DressDiscoverProperties;
 import org.dressdiscover.lib.stores.AbstractInstitutionCollectionObjectFileSystem;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
@@ -29,7 +29,7 @@ import com.google.inject.Singleton;
 public class FileSystemObjectStore extends AbstractInstitutionCollectionObjectFileSystem<Object>
         implements ObjectStore {
     @Inject
-    public FileSystemObjectStore(final CostumeProperties properties) {
+    public FileSystemObjectStore(final DressDiscoverProperties properties) {
         super(properties);
     }
 

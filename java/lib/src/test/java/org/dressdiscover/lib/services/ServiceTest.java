@@ -1,6 +1,6 @@
 package org.dressdiscover.lib.services;
 
-import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.DressDiscoverProperties;
 import org.dressdiscover.lib.services.ServicesModule;
 import org.junit.Before;
 import org.thryft.waf.lib.PropertiesModule;
@@ -16,9 +16,9 @@ public abstract class ServiceTest {
     protected ServiceTest(final boolean readOnly) {
         this.readOnly = readOnly;
 
-        properties = CostumeProperties.load();
+        properties = DressDiscoverProperties.load();
 
-        injector = Guice.createInjector(new PropertiesModule<CostumeProperties>(properties),
+        injector = Guice.createInjector(new PropertiesModule<DressDiscoverProperties>(properties),
                 _newServicesModule(properties));
     }
 
@@ -35,11 +35,11 @@ public abstract class ServiceTest {
         return injector;
     }
 
-    protected ServicesModule _newServicesModule(final CostumeProperties properties) {
+    protected ServicesModule _newServicesModule(final DressDiscoverProperties properties) {
         return new ServicesModule(properties);
     }
 
     private final boolean readOnly;
     private final Injector injector;
-    private final CostumeProperties properties;
+    private final DressDiscoverProperties properties;
 }

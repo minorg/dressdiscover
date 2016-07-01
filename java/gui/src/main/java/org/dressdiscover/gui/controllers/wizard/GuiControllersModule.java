@@ -2,13 +2,13 @@ package org.dressdiscover.gui.controllers.wizard;
 
 import org.dressdiscover.gui.controllers.CatalogWizardExportController;
 import org.dressdiscover.gui.controllers.GuiServlet;
-import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.DressDiscoverProperties;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.inject.servlet.ServletModule;
 
 public final class GuiControllersModule extends ServletModule {
-    public GuiControllersModule(final CostumeProperties properties) {
+    public GuiControllersModule(final DressDiscoverProperties properties) {
         this.productionMode = properties.getEnvironment().equals("production");
     }
 

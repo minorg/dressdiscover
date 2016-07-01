@@ -2,7 +2,7 @@ package org.dressdiscover.cli;
 
 import org.dressdiscover.cli.commands.PutElasticSearchTemplatesCommand;
 import org.dressdiscover.cli.commands.ResummarizeObjectsCommand;
-import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.DressDiscoverProperties;
 import org.dressdiscover.lib.python.PythonInterpreterFactory;
 import org.dressdiscover.lib.services.ServicesModule;
 import org.python.util.PythonInterpreter;
@@ -32,10 +32,10 @@ public final class CliMain extends org.thryft.waf.lib.AbstractMain {
 
         _configureLogging(args, "costume");
 
-        final CostumeProperties properties = CostumeProperties.load();
+        final DressDiscoverProperties properties = DressDiscoverProperties.load();
         _getLogger().debug(_getLogMarker(), "properties: {}", properties);
 
-        final Injector injector = Guice.createInjector(new PropertiesModule<CostumeProperties>(properties),
+        final Injector injector = Guice.createInjector(new PropertiesModule<DressDiscoverProperties>(properties),
                 new ServicesModule(properties));
 
         final PythonInterpreter pythonInterpreter = injector.getInstance(PythonInterpreterFactory.class)

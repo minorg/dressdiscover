@@ -7,7 +7,7 @@ import java.util.concurrent.ExecutionException;
 import org.dressdiscover.api.models.collection.CollectionId;
 import org.dressdiscover.api.models.institution.Institution;
 import org.dressdiscover.api.models.institution.InstitutionId;
-import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.DressDiscoverProperties;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -25,7 +25,7 @@ public class CollectionStoreCache {
     @Inject
     public CollectionStoreCache(final FileSystemCollectionStore defaultCollectionStore,
             final CollectionStoreFactoryRegistry collectionStoreFactoryRegistry,
-            final InstitutionQueryService institutionQueryService, final CostumeProperties properties) {
+            final InstitutionQueryService institutionQueryService, final DressDiscoverProperties properties) {
         this.defaultCollectionStore = properties.getCacheCollections()
                 ? new CachingCollectionStore(defaultCollectionStore) : defaultCollectionStore;
         this.collectionStoreFactoryRegistry = checkNotNull(collectionStoreFactoryRegistry);
@@ -77,5 +77,5 @@ public class CollectionStoreCache {
     private final CollectionStore defaultCollectionStore;
     private final CollectionStoreFactoryRegistry collectionStoreFactoryRegistry;
     private final InstitutionQueryService institutionQueryService;
-    private final CostumeProperties properties;
+    private final DressDiscoverProperties properties;
 }

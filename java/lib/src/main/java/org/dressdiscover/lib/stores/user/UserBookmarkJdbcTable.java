@@ -14,7 +14,7 @@ import org.dressdiscover.api.models.user.UserBookmark;
 import org.dressdiscover.api.models.user.UserBookmarkEntry;
 import org.dressdiscover.api.models.user.UserBookmarkId;
 import org.dressdiscover.api.models.user.UserId;
-import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.DressDiscoverProperties;
 import org.dressdiscover.lib.services.IoExceptions;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
@@ -36,11 +36,11 @@ import org.dressdiscover.api.services.user.NoSuchUserBookmarkException;
 @Singleton
 public class UserBookmarkJdbcTable extends AbstractJdbcTable<UserBookmark> implements UserBookmarkStore {
     @Inject
-    public UserBookmarkJdbcTable(final CostumeProperties properties) throws SQLException {
+    public UserBookmarkJdbcTable(final DressDiscoverProperties properties) throws SQLException {
         super(properties);
     }
 
-    public UserBookmarkJdbcTable(final CostumeProperties properties, final String url) throws SQLException {
+    public UserBookmarkJdbcTable(final DressDiscoverProperties properties, final String url) throws SQLException {
         super(properties, url);
     }
 

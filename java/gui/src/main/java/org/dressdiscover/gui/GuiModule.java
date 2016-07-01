@@ -3,13 +3,13 @@ package org.dressdiscover.gui;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.dressdiscover.gui.controllers.wizard.GuiControllersModule;
-import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.DressDiscoverProperties;
 import org.thryft.waf.gui.EventBusModule;
 
 import com.google.inject.AbstractModule;
 
 public final class GuiModule extends AbstractModule {
-    public GuiModule(final CostumeProperties properties) {
+    public GuiModule(final DressDiscoverProperties properties) {
         this.properties = checkNotNull(properties);
     }
 
@@ -19,5 +19,5 @@ public final class GuiModule extends AbstractModule {
         install(new GuiControllersModule(properties));
     }
 
-    private final CostumeProperties properties;
+    private final DressDiscoverProperties properties;
 }

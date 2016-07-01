@@ -1,7 +1,7 @@
 package org.dressdiscover.gui.views.institutions;
 
 import org.dressdiscover.gui.views.TopLevelView;
-import org.dressdiscover.lib.CostumeProperties;
+import org.dressdiscover.lib.DressDiscoverProperties;
 import org.thryft.waf.gui.EventBus;
 
 import com.google.common.collect.ImmutableMultimap;
@@ -28,7 +28,7 @@ public class InstitutionsView extends TopLevelView {
     }
 
     @Inject
-    public InstitutionsView(final EventBus eventBus, final CostumeProperties properties) {
+    public InstitutionsView(final EventBus eventBus, final DressDiscoverProperties properties) {
         super(eventBus);
         this.googleApiKey = properties.getGoogleApiKey();
     }
