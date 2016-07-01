@@ -76,8 +76,8 @@ class Main(thryft.main.Main):
              os.path.join(ROOT_DIR_PATH, 'java', 'gui', 'src', 'gen', 'java', 'net'),
              os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'gen', 'java', 'net'),
              os.path.join(ROOT_DIR_PATH, 'java', 'server', 'src', 'gen', 'java', 'net'),
-             os.path.join(ROOT_DIR_PATH, 'py', 'src', 'costume', 'api'),
-             os.path.join(ROOT_DIR_PATH, 'py', 'src', 'costume', 'client'),
+             os.path.join(ROOT_DIR_PATH, 'py', 'src', 'dressdiscover', 'api'),
+             os.path.join(ROOT_DIR_PATH, 'py', 'src', 'dressdiscover', 'client'),
              os.path.join(ROOT_DIR_PATH, 'py', 'src', 'thryft'),
              os.path.join(ROOT_DIR_PATH, 'sql'),
         ):
@@ -101,7 +101,7 @@ class Main(thryft.main.Main):
                 )
 
             for thrift_subdir_name in ('api', 'gui', 'lib', 'server'):
-                thrift_src_dir_path = os.path.join(thrift_src_root_dir_path, 'costume', thrift_subdir_name)
+                thrift_src_dir_path = os.path.join(thrift_src_root_dir_path, 'dressdiscover', thrift_subdir_name)
                 if not os.path.isdir(thrift_src_dir_path):
                     continue
 
@@ -121,13 +121,13 @@ class Main(thryft.main.Main):
 
                     if thrift_file_name == 'costume_properties.thrift':
                         self._compile_thrift_file(
-                            generator=PropertiesJavaGenerator(project_name='costume'),
+                            generator=PropertiesJavaGenerator(project_name='dressdiscover'),
                             out=os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'gen', 'java'),
                             **compile_kwds
                         )
 
                         self._compile_thrift_file(
-                            generator=PropertiesPyGenerator(project_name='costume'),
+                            generator=PropertiesPyGenerator(project_name='dressdiscover'),
                             out=os.path.join(ROOT_DIR_PATH, 'py', 'src'),
                             **compile_kwds
                         )
