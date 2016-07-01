@@ -8,6 +8,7 @@ import org.dressdiscover.gui.GuiModule;
 import org.dressdiscover.lib.DressDiscoverProperties;
 import org.dressdiscover.lib.python.PythonInterpreterFactory;
 import org.dressdiscover.lib.services.ServicesModule;
+import org.dressdiscover.server.controllers.ServerControllersModule;
 import org.python.util.PythonInterpreter;
 import org.thryft.waf.lib.PropertiesModule;
 import org.thryft.waf.server.AbstractServletContextListener;
@@ -15,16 +16,14 @@ import org.thryft.waf.server.AbstractServletContextListener;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import org.dressdiscover.server.controllers.ServerControllersModule;
-
 public final class ServletContextListener extends AbstractServletContextListener {
     @Override
     public void contextInitialized(final ServletContextEvent servletContextEvent) {
         properties = DressDiscoverProperties.load();
         checkState(!properties.getEnvironment().equals("dev"), "running in dev environment?");
 
-        _configureLogging("costume");
-        _createVaadinScssCache("costume", servletContextEvent);
+        _configureLogging("dressdiscover");
+        _createVaadinScssCache("dressdiscover", servletContextEvent);
 
         super.contextInitialized(servletContextEvent);
 
