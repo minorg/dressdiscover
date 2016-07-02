@@ -24,6 +24,8 @@ class OmekaApiObjectStore(_OmekaObjectStore):
         return \
             self._map_omeka_item(
                 collection_id=object_id.getCollectionId(),
+                logger=logger,
+                log_marker=log_marker,
                 omeka_item=omeka_item,
                 omeka_item_files=self.__api_client.get_all_files(item=omeka_item.id)
             )
@@ -35,6 +37,8 @@ class OmekaApiObjectStore(_OmekaObjectStore):
             objects.append(
                 self._map_omeka_item(
                     collection_id=collection_id,
+                    logger=logger,
+                    log_marker=log_marker,
                     omeka_item=omeka_item,
                     omeka_item_files=self.__api_client.get_all_files(item=omeka_item.id),
                 )

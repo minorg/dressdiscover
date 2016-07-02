@@ -104,7 +104,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
 
         self.__location_names_by_extent = {}
 
-    def map_oai_pmh_record(self, collection_id, record_etree):
+    def map_oai_pmh_record(self, collection_id, logger, log_marker, record_etree):
         record_identifier = record_etree.find('header').find('identifier').text
         object_id = ObjectId.parse(str(collection_id) + '/' + urllib.quote(record_identifier, ''))
         metadata_etree = record_etree.find('metadata')
@@ -113,6 +113,8 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
             self._ObjectBuilder(
                 collection_id=collection_id,
                 institution_id=collection_id.getInstitutionId(),
+                logger=logger,
+                log_marker=log_marker,
                 record_identifier=record_identifier
             )
 
@@ -123,7 +125,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
             try:
                 method = getattr(self, method_name)
             except AttributeError:
-                self._logger.warn("no such method '%s' for record %s with text '%s'", method_name, record_identifier, etree.text)
+                object_builder.logger.warn(object_builder.log_marker, "no such method '{}' for record {} with text '{}'", (method_name, record_identifier, etree.text,))
                 continue
             method(
                 element=etree,
@@ -151,7 +153,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
 
         return date_bound_builder.build()
 
-    def __parse_date_range(self, text):
+    def __parse_date_range(self, object_builder, text):
         original_text = text
 
         text = text.lstrip('[').rstrip(']')
@@ -184,9 +186,9 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
             date_range = earliest_date, latest_date
 
         if date_range[0].getParsedDateTime() is None or date_range[1].getParsedDateTime() is None:
-            self._logger.warn("unable to parse date range '%s'", original_text)
+            object_builder.logger.warn(object_builder.log_marker, "unable to parse date range '{}'", original_text)
         else:
-            self._logger.debug("parsed date range '%s' from '%s'", date_range, original_text)
+            object_builder.logger.debug(object_builder.log_marker, "parsed date range '{}' from '{}'", date_range, original_text)
         return date_range
 
     def __parse_record_metadata_agent_element(self, element, object_builder):
@@ -194,7 +196,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
 
         qualifier = element.attrib.get('qualifier', None)
         if qualifier is None:
-            self._logger.warn("ignoring agent element without qualifier on record %s", object_builder.record_identifier)
+            object_builder.logger.warn(object_builder.log_marker, "ignoring agent element without qualifier on record {}", object_builder.record_identifier)
             return
 
         role = AgentRole.builder().setText(self.__agent_qualifiers[qualifier]).build()
@@ -208,7 +210,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
         if name is not None and len(name.text) > 0:
             name_text = name.text
         else:
-            self._logger.warn("ignoring agent element with empty name text on record %s", object_builder.record_identifier)
+            object_builder.logger.warn(object_builder.log_marker, "ignoring agent element with empty name text on record {}", object_builder.record_identifier)
             return
 
         type_ = element.find(self._UNTL_NS + 'type')
@@ -247,21 +249,21 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
 
         qualifier = element.attrib.get('qualifier', None)
         if qualifier is None:
-            self._logger.warn("coverage element without qualifier on record %s", object_builder.record_identifier)
+            object_builder.logger.warn(object_builder.log_marker, "coverage element without qualifier on record {}", object_builder.record_identifier)
             return
 
         if qualifier == 'date':
             pass # Same as date element
         elif qualifier == 'eDate':
             if object_builder.end_date_bound is not None:
-                self._logger.warn("record %s has multiple eDate's", object_builder.record_identifier)
-            earliest_date, latest_date = self.__parse_date_range(text)
+                object_builder.logger.warn(object_builder.log_marker, "record {} has multiple eDate's", object_builder.record_identifier)
+            earliest_date, latest_date = self.__parse_date_range(object_builder=object_builder, text=text)
             if earliest_date != latest_date:
-                self._logger.warn("record %s has a eDate range: %s", object_builder.record_identifier, text)
+                object_builder.logger.warn(object_builder.log_marker, "record {} has a eDate range: {}", object_builder.record_identifier, text)
             object_builder.end_date_bound = latest_date
         elif qualifier == 'placeName':
             text_parts = [text_part.strip() for text_part in text.split(' - ')]
-            self._logger.debug('place name from record %s: %s', object_builder.record_identifier, text)
+            object_builder.logger.debug(object_builder.log_marker, 'place name from record {}: {}', object_builder.record_identifier, text)
 
             location_names_by_extent = {}
             location_names_by_extent['nation'] = nation = text_parts.pop(0)
@@ -314,13 +316,13 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
             )
         elif qualifier == 'sDate':
             if object_builder.start_date_bound is not None:
-                self._logger.warn("record %s has multiple sDate's", object_builder.record_identifier)
-            earliest_date, latest_date = self.__parse_date_range(text)
+                object_builder.logger.warn(object_builder.log_marker, "record {} has multiple sDate's", object_builder.record_identifier)
+            earliest_date, latest_date = self.__parse_date_range(object_builder=object_builder, text=text)
             if earliest_date != latest_date:
-                self._logger.warn("record %s has a sDate range: %s", object_builder.record_identifier, text)
+                object_builder.logger.warn(object_builder.log_marker, "record {} has a sDate range: {}", object_builder.record_identifier, text)
             object_builder.start_date_bound = earliest_date
         else:
-            self._logger.warn("unknown coverage qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
+            object_builder.logger.warn(object_builder.log_marker, "unknown coverage qualifier '{}' on record {}", qualifier, object_builder.record_identifier)
 
     def _parse_record_metadata_creator_element(self, **kwds):
         self.__parse_record_metadata_agent_element(**kwds)
@@ -338,9 +340,9 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
             elif qualifier == 'creation':
                 date_type = DateType.CREATION
             else:
-                self._logger.warn("unknown date qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
+                object_builder.logger.warn(object_builder.log_marker, "unknown date qualifier '{}' on record {}", qualifier, object_builder.record_identifier)
 
-        earliest_date, latest_date = self.__parse_date_range(text)
+        earliest_date, latest_date = self.__parse_date_range(object_builder=object_builder, text=text)
         object_builder.dates.append(
             Date.builder()
                 .setEarliestDate(earliest_date)
@@ -362,7 +364,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
             elif qualifier == 'physical':
                 description_type = DescriptionType.PHYSICAL
             else:
-                self._logger.warn("unknown description qualifier '%s'", qualifier)
+                object_builder.logger.warn(object_builder.log_marker, "unknown description qualifier '{}'", qualifier)
 
         object_builder.descriptions.append(
             Description.builder()
@@ -429,7 +431,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
                     .build()
             )
         elif qualifier is not None:
-            self._logger.warn("ignoring unknown identifier qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
+            object_builder.logger.warn(object_builder.log_marker, "ignoring unknown identifier qualifier '{}' on record {}", qualifier, object_builder.record_identifier)
 
     def _parse_record_metadata_meta_element(self, element, object_builder):
         text = element.text.strip()
@@ -438,7 +440,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
 
         qualifier = element.attrib.get('qualifier', None)
         if qualifier is None:
-            self._logger.warn("meta element without qualifier on record %s", object_builder.record_identifier)
+            object_builder.logger.warn(object_builder.log_marker, "meta element without qualifier on record {}", object_builder.record_identifier)
             return
 
         if qualifier in (
@@ -453,7 +455,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
         ):
             pass
         else:
-            self._logger.warn("ignoring unknown meta qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
+            object_builder.logger.warn(object_builder.log_marker, "ignoring unknown meta qualifier '{}' on record {}", qualifier, object_builder.record_identifier)
 
     def _parse_record_metadata_note_element(self, element, object_builder):
         text = element.text.strip()
@@ -484,7 +486,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
                     .setType(DescriptionType.HISTORY)
                     .build()
             )
-#             self._logger.warn("ignoring unknown note qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
+#             object_builder.logger.warn(object_builder.log_marker, "ignoring unknown note qualifier '{}' on record {}", qualifier, object_builder.record_identifier)
 
     def _parse_record_metadata_primarySource_element(self, **kwds):
         pass # Ignore
@@ -524,7 +526,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
 
         qualifier = element.attrib.get('qualifier', None)
         if qualifier is None:
-            self._logger.warn("rights element without qualifier on record %s", object_builder.record_identifier)
+            object_builder.logger.warn(object_builder.log_marker, "rights element without qualifier on record {}", object_builder.record_identifier)
             return
 
         if qualifier == 'access':
@@ -538,7 +540,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
                         .build()
             else:
                 license_vocab_ref = None
-                self._logger.warn("ignoring unknown license text '%s' on record %s", text, object_builder.record_identifier)
+                object_builder.logger.warn(object_builder.log_marker, "ignoring unknown license text '{}' on record {}", text, object_builder.record_identifier)
 
             object_builder.rights.append(
                 Rights.builder()
@@ -557,7 +559,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
                     .build()
             )
         else:
-            self._logger.warn("ignoring unknown rights qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
+            object_builder.logger.warn(object_builder.log_marker, "ignoring unknown rights qualifier '{}' on record {}", qualifier, object_builder.record_identifier)
 
     def _parse_record_metadata_subject_element(self, element, object_builder):
         text = element.text.strip()
@@ -576,7 +578,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
                 subject_term_builder.setVocabRef(VocabRef.builder().setVocab(vocab).build())
             except AttributeError:
                 if qualifier not in ('named_person', 'UNTL-BS',):
-                    self._logger.warn("unknown subject vocabulary '%s'", qualifier)
+                    object_builder.logger.warn(object_builder.log_marker, "unknown subject vocabulary '{}'", qualifier)
 
         object_builder.subjects.append(
             Subject.builder()
@@ -601,7 +603,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
             elif qualifier == 'seriestitle':
                 title_type = TitleType.REPOSITORY
             else:
-                self._logger.warn("unknown title qualifier '%s' on record %s", qualifier, object_builder.record_identifier)
+                object_builder.logger.warn(object_builder.log_marker, "unknown title qualifier '{}' on record {}", qualifier, object_builder.record_identifier)
 
         object_builder.titles.append(
             Title.builder()

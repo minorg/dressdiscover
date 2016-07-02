@@ -66,7 +66,17 @@ class WizardOmekaResourceMapper(OmekaResourceMapper):
         collection_entry = OmekaResourceMapper.map_omeka_collection(self, collection_store_uri, institution_id, omeka_collection)
         return CollectionEntry(collection_entry.id, Collection.builder(collection_entry.model).setHidden(True).build())
 
-    def map_omeka_item(self, collection_id, endpoint_url, omeka_item, omeka_item_files, square_thumbnail_height_px, square_thumbnail_width_px):
+    def map_omeka_item(
+        self,
+        collection_id,
+        endpoint_url,
+        logger,
+        log_marker,
+        omeka_item,
+        omeka_item_files,
+        square_thumbnail_height_px,
+        square_thumbnail_width_px
+    ):
         object_id = ObjectId.parse(str(collection_id) + '/' + str(omeka_item.id))
 
         vocab_ref = VocabRef.builder().setVocab(Vocab.COSTUME_CORE).build()
@@ -95,7 +105,7 @@ class WizardOmekaResourceMapper(OmekaResourceMapper):
                 elif element_text.element.name == 'Image License':
                     item_image_license = element_text.text
             else:
-                self._logger.warn("Omeka item %d has unknown element set name '%s'", omeka_item.id, element_text.element_set.name)
+                logger.warn(log_marker, "Omeka item {} has unknown element set name '{}'", omeka_item.id, element_text.element_set.name)
 
         object_builder = \
             Object.builder()\
@@ -142,11 +152,11 @@ class WizardOmekaResourceMapper(OmekaResourceMapper):
                         image_credit_line = element_text.text
 
             if image_credit_line is None or len(image_credit_line) == 0:
-                self._logger.warn("Omeka item %d has a file %d missing a Provenance", omeka_item.id, file_.id)
+                logger.warn(log_marker, "Omeka item {} has a file {} missing a Provenance", omeka_item.id, file_.id)
                 continue
 
             if image_license is None or len(image_license) == 0:
-                self._logger.warn("Omeka item %d has a file %d missing a License", omeka_item.id, file_.id)
+                logger.warn(log_marker, "Omeka item {} has a file {} missing a License", omeka_item.id, file_.id)
                 continue
 
             license_vocab_ref = None
@@ -186,7 +196,7 @@ class WizardOmekaResourceMapper(OmekaResourceMapper):
                 .build()
             )
             if file_urls.square_thumbnail is None:
-                self._logger.warn("Omeka item %d has a file %d missing a square thumbnail", omeka_item.id, file_.id)
+                logger.warn(log_marker, "Omeka item {} has a file {} missing a square thumbnail", omeka_item.id, file_.id)
                 continue
             image_builder.setSquareThumbnail(
                 ImageVersion.builder()
@@ -199,7 +209,7 @@ class WizardOmekaResourceMapper(OmekaResourceMapper):
         if len(images) > 0:
             object_builder.setImages(ImmutableList.copyOf(images))
         else:
-            self._logger.warn("Omeka item %d has no valid images", omeka_item.id)
+            logger.warn(log_marker, "Omeka item {} has no valid images", omeka_item.id)
 
         object_ = object_builder.build()
 

@@ -1,5 +1,4 @@
 from collections import Counter
-import logging
 
 from com.google.common.collect import ImmutableList
 from com.google.common.primitives import UnsignedInteger
@@ -44,14 +43,16 @@ class OmekaResourceMapper(object):
             self,
             endpoint_url,
             logger,
+            log_marker,
             object_id,
             omeka_item
         ):
+            self.__logger = logger
+            self.__log_marker = log_marker
             self._object_builder = \
                 Object.builder()\
                     .setCollectionId(object_id.getCollectionId())\
                     .setInstitutionId(object_id.getInstitutionId())
-            self.__logger = logger
             self.__object_id = object_id
             self.__omeka_item = omeka_item
 
@@ -167,7 +168,7 @@ class OmekaResourceMapper(object):
                     if unique:
                         existing_relation_builders.append(relation_builder)
                     else:
-                        self.__logger.warn("item %d has duplicate relation type=%s, text=%s", self.__omeka_item.id, relation_builder.type, relation_builder.text)
+                        self.__logger.warn(self.__log_marker, "item {} has duplicate relation type={}, text={}", (self.__omeka_item.id, relation_builder.type, relation_builder.text))
                 unique_relation_builders = []
                 for relation_builders in unique_relation_builders_by_text.values():
                     unique_relation_builders.extend(relation_builders)
@@ -197,6 +198,14 @@ class OmekaResourceMapper(object):
             return getattr(self._object_builder, attr)
 
         @property
+        def logger(self):
+            return self.__logger
+
+        @property
+        def log_marker(self):
+            return self.__log_marker
+
+        @property
         def object_id(self):
             return self.__object_id
 
@@ -206,7 +215,6 @@ class OmekaResourceMapper(object):
 
     def __init__(self):
         object.__init__(self)
-        self._logger = logging.getLogger(self.__class__.__module__ + '.' + self.__class__.__name__)
         self.__vocabulary_used = {}
 
     def map_omeka_collection(self, collection_store_uri, institution_id, omeka_collection):
@@ -233,13 +241,24 @@ class OmekaResourceMapper(object):
 
         return CollectionEntry(collection_id, collection)
 
-    def map_omeka_item(self, collection_id, endpoint_url, omeka_item, omeka_item_files, square_thumbnail_height_px, square_thumbnail_width_px):
+    def map_omeka_item(
+        self,
+        collection_id,
+        endpoint_url,
+        logger,
+        log_marker,
+        omeka_item,
+        omeka_item_files,
+        square_thumbnail_height_px,
+        square_thumbnail_width_px
+    ):
         object_id = ObjectId.parse(str(collection_id) + '/' + str(omeka_item.id))
 
         object_builder = \
             self._ObjectBuilder(
                 endpoint_url=endpoint_url,
-                logger=self._logger,
+                logger=logger,
+                log_marker=log_marker,
                 object_id=object_id,
                 omeka_item=omeka_item
             )
@@ -285,17 +304,17 @@ class OmekaResourceMapper(object):
             try:
                 method = getattr(self, method_name)
             except AttributeError:
-                self._logger.warn("no method %s, skipping item %d Dublin Core element %s: %s", method_name, object_builder.omeka_item.id, element_name, text.encode('ascii', 'ignore'))
+                object_builder.logger.warn(object_builder.log_marker, "no method {}, skipping item {} Dublin Core element {}: {}", (method_name, object_builder.omeka_item.id, element_name, text.encode('ascii', 'ignore')))
                 return
         elif element_set_name == 'Item Type Metadata':
             method_name = '_map_omeka_item_element_itm_' + element_name.lower().replace(' ', '_')
             try:
                 method = getattr(self, method_name)
             except AttributeError:
-                self._logger.warn("no method %s, skipping item %d Item Type Metadata element %s: %s", method_name, object_builder.omeka_item.id, element_name, text.encode('ascii', 'ignore'))
+                object_builder.logger.warn(object_builder.log_marker, "no method {}, skipping item {} Item Type Metadata element {}: {}", (method_name, object_builder.omeka_item.id, element_name, text.encode('ascii', 'ignore')))
                 return
         else:
-            self._logger.warn("skipping item %s element set", element_set_name)
+            object_builder.logger.warn(object_builder.log_marker, "skipping item {} element set", element_set_name)
             return
 
         method(object_builder=object_builder, text=text)
@@ -345,13 +364,13 @@ class OmekaResourceMapper(object):
 
     def _map_omeka_item_element_dc_date(self, object_builder, text):
         if object_builder.dc_date_builder.earliestDate is None:
-            earliest_date, latest_date = self._parse_date_range(text)
+            earliest_date, latest_date = self._parse_date_range(object_builder=object_builder, text=text)
             object_builder.dc_date_builder.setEarliestDate(earliest_date).setLatestDate(latest_date)
         else:
-            self._logger.warn("item %d in collection %d has two dates: %s", object_builder.omeka_item.id, object_builder.object_id.getCollectionId(), text)
+            object_builder.logger.warn(object_builder.log_marker, "item {} in collection {} has two dates: {}", (object_builder.omeka_item.id, object_builder.object_id.getCollectionId(), text))
 
     def _map_omeka_item_element_dc_date_created(self, object_builder, text):
-        earliest_date = self._parse_date(text)
+        earliest_date = self._parse_date(object_builder=object_builder, text=text)
         object_builder.dates.append(
             Date.builder()
                 .setEarliestDate(earliest_date)
@@ -527,7 +546,7 @@ class OmekaResourceMapper(object):
         if work_type is not None:
             object_builder.work_types.append(work_type)
 
-    def _parse_date(self, text):
+    def _parse_date(self, object_builder, text):
         date_bound_builder = DateBound.builder().setText(text)
 
         if text.endswith('?'):
@@ -541,16 +560,16 @@ class OmekaResourceMapper(object):
 
         return date_bound_builder.build()
 
-    def _parse_date_range(self, text):
+    def _parse_date_range(self, object_builder, text):
         text_split = text.split('-', 1)
         if len(text_split) == 1:
-            parsed_date = self._parse_date(text)
+            parsed_date = self._parse_date(object_builder=object_builder, text=text)
             date_range = parsed_date, parsed_date
         elif len(text_split) == 2:
-            date_range = self._parse_date(text_split[0]), self._parse_date(text_split[1])
+            date_range = self._parse_date(object_builder=object_builder, text=text_split[0]), self._parse_date(object_builder=object_builder, text=text_split[1])
         else:
             raise NotImplementedError
-        self._logger.debug("parsed date range '%s' from '%s'", date_range, text)
+        object_builder.logger.debug(object_builder.log_marker, "parsed date range '%s' from '%s'", date_range, text)
         return date_range
 
     def _parse_work_type(self, text):

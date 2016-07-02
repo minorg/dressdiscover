@@ -23,15 +23,13 @@ class _OmekaObjectStore(ObjectStore):
     def _endpoint_url(self):
         return self.__endpoint_url
 
-    def _map_omeka_item(self, collection_id, omeka_item, omeka_item_files):
+    def _map_omeka_item(self, **kwds):
         return \
             self._resource_mapper.map_omeka_item(
-                collection_id=collection_id,
                 endpoint_url=self._endpoint_url,
-                omeka_item=omeka_item,
-                omeka_item_files=omeka_item_files,
                 square_thumbnail_height_px=self.__square_thumbnail_height_px,
-                square_thumbnail_width_px=self.__square_thumbnail_width_px
+                square_thumbnail_width_px=self.__square_thumbnail_width_px,
+                **kwds
             )
 
     @property

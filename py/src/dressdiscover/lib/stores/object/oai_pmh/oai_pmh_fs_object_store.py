@@ -31,7 +31,13 @@ class OaiPmhFsObjectStore(ObjectStore):
         file_path = os.path.join(self.__data_dir_path, 'record', safe_record_identifier + '.xml')
         if not os.path.isfile(file_path):
             raise NoSuchObjectException
-        return self.__map_oai_pmh_record(collection_id=object_id.getCollectionId(), file_path=file_path).model
+        return \
+            self.__map_oai_pmh_record(
+                collection_id=object_id.getCollectionId(),
+                file_path=file_path,
+                logger=logger,
+                log_marker=log_marker
+            ).model
 
     def getObjectsByCollectionId(self, collection_id, logger, log_marker):
         objects = []
@@ -41,11 +47,23 @@ class OaiPmhFsObjectStore(ObjectStore):
                 if not file_path.endswith('.xml'):
                     os.rename(file_path, file_path + '.xml')
                     file_path = file_path + '.xml'
-                objects.append(self.__map_oai_pmh_record(collection_id=collection_id, file_path=file_path))
+                objects.append(
+                    self.__map_oai_pmh_record(
+                        collection_id=collection_id,
+                        file_path=file_path,
+                        logger=logger,
+                        log_marker=log_marker
+                ))
         return ImmutableList.copyOf(objects)
 
-    def __map_oai_pmh_record(self, collection_id, file_path):
-        return self.__record_mapper.map_oai_pmh_record(collection_id, record_etree=ElementTree.parse(file_path))
+    def __map_oai_pmh_record(self, collection_id, file_path, logger, log_marker):
+        return \
+            self.__record_mapper.map_oai_pmh_record(
+                collection_id,
+                logger=logger,
+                log_marker=log_marker,
+                record_etree=ElementTree.parse(file_path)
+            )
 
 if PythonApi.getInstance() is not None:
     PythonApi.getInstance().getObjectStoreFactoryRegistry().registerObjectStoreFactory(PyObjectStoreFactory(OaiPmhFsObjectStore), OaiPmhFsObjectStore.URI_SCHEME)

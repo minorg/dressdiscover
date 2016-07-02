@@ -24,6 +24,8 @@ class OmekaFsObjectStore(_OmekaObjectStore):
                     object_entry = \
                         self._map_omeka_item(
                             collection_id=object_id.getCollectionId(),
+                            logger=logger,
+                            log_marker=log_marker,
                             omeka_item=omeka_item,
                             omeka_item_files=self.__get_omeka_item_files(institution_id=object_id.getInstitutionId(), omeka_item=omeka_item)
                         )
@@ -40,6 +42,8 @@ class OmekaFsObjectStore(_OmekaObjectStore):
                 objects.append(
                     self._map_omeka_item(
                         collection_id=collection_id,
+                        logger=logger,
+                        log_marker=log_marker,
                         omeka_item=omeka_item,
                         omeka_item_files=self.__get_omeka_item_files(institution_id=collection_id.getInstitutionId(), omeka_item=omeka_item)
                     )
