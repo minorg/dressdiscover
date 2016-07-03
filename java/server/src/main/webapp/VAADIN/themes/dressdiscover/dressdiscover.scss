@@ -48,7 +48,7 @@ $v-selection-item-border-radius: 0;
 @import "WizardFeatureNavigationLayout";
 @import "WizardFeatureSetLayout";
 
-@mixin costume {
+@mixin dressdiscover {
   @include valo;
 
   // Put this first so it doesn't override other rules
@@ -69,7 +69,7 @@ $v-selection-item-border-radius: 0;
   }
 
   .collection-button {
-  	background-color: $costume-color-light-red;
+  	background-color: $dressdiscover-color-light-red;
   	color: white;
   }
 
@@ -78,7 +78,7 @@ $v-selection-item-border-radius: 0;
   }
 
   .institution-button {
-  	background-color: $costume-color-red;
+  	background-color: $dressdiscover-color-red;
   	color: white;
   }
 
