@@ -104,15 +104,15 @@ put_institution(
         'resource_mapper', VcccOmekaResourceMapper.__module__ + '.' + VcccOmekaResourceMapper.__name__  # @UndefinedVariable
     ),
 )
-put_institution(
-    collection_store_uri=Uri.parse(OmekaApiCollectionStore.URI_SCHEME + '://historicdress.org/omeka2/'),
-    institution_id=InstitutionId.parse('wizard'),
-    institution_title='Wizard',
-    institution_url=Url.parse('http://historicdress.org/omeka2/'),
-    store_parameters=ImmutableMap.of(
-        'api_key', open(os.path.join(os.path.dirname(__file__), 'historicdress.org-api-key.txt')).read(),
-        'square_thumbnail_height_px', '200',
-        'square_thumbnail_width_px', '200',
-        'resource_mapper', WizardOmekaResourceMapper.__module__ + '.' + WizardOmekaResourceMapper.__name__  # @UndefinedVariable
-    )
-)
+# put_institution(
+#     collection_store_uri=Uri.parse(OmekaApiCollectionStore.URI_SCHEME + '://historicdress.org/omeka2/'),
+#     institution_id=InstitutionId.parse('wizard'),
+#     institution_title='Wizard',
+#     institution_url=Url.parse('http://historicdress.org/omeka2/'),
+#     store_parameters=ImmutableMap.of(
+#         'api_key', open(os.path.join(os.path.dirname(__file__), 'historicdress.org-api-key.txt')).read(),
+#         'square_thumbnail_height_px', '200',
+#         'square_thumbnail_width_px', '200',
+#         'resource_mapper', WizardOmekaResourceMapper.__module__ + '.' + WizardOmekaResourceMapper.__name__  # @UndefinedVariable
+#     )
+# )
