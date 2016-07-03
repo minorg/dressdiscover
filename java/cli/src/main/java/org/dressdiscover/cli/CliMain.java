@@ -30,7 +30,7 @@ public final class CliMain extends org.thryft.waf.lib.AbstractMain {
 
         argParser.parse(argv);
 
-        _configureLogging(args, "costume");
+        _configureLogging(args, "dressdiscover");
 
         final DressDiscoverProperties properties = DressDiscoverProperties.load();
         _getLogger().debug(_getLogMarker(), "properties: {}", properties);

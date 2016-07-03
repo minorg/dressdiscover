@@ -36,7 +36,7 @@ import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.UI;
 
 @SuppressWarnings("serial")
-@Theme("costume")
+@Theme("dressdiscover")
 @Title("DressDiscover")
 @Widgetset("org.dressdiscover.gui.GuiWidgetSet")
 public final class GuiUI extends UI {

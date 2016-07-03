@@ -10,14 +10,13 @@ import org.apache.shiro.authz.Permission;
 import org.apache.shiro.realm.AuthenticatingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
+import org.dressdiscover.api.models.user.UserEntry;
 import org.dressdiscover.lib.models.user.UserEntryPasswordToken;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.inject.Singleton;
-
-import org.dressdiscover.api.models.user.UserEntry;
 
 @Singleton
 public class ServerRealm extends AuthenticatingRealm {
@@ -87,5 +86,5 @@ public class ServerRealm extends AuthenticatingRealm {
         return new Account(userEntry);
     }
 
-    public final static String NAME = "costume";
+    public final static String NAME = "dressdiscover";
 }
