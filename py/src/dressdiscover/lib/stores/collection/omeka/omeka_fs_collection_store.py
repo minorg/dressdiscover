@@ -4,13 +4,18 @@ from os.path import os
 from org.dressdiscover.api.services.collection import NoSuchCollectionException
 from org.dressdiscover.lib.python import PythonApi
 
+from dressdiscover.lib.stores._fs_store import _FsStore
 from dressdiscover.lib.stores.collection.omeka._omeka_collection_store import _OmekaCollectionStore
 from dressdiscover.lib.stores.collection.py_collection_store_factory import PyCollectionStoreFactory
 from yomeka.client.omeka_json_parser import OmekaJsonParser
 
 
-class OmekaFsCollectionStore(_OmekaCollectionStore):
+class OmekaFsCollectionStore(_OmekaCollectionStore, _FsStore):
     URI_SCHEME = 'omekafs'
+
+    def __init__(self, *args, **kwds):
+        _OmekaCollectionStore.__init__(self, *args, **kwds)
+        _FsStore.__init__(self, uri=self._uri)
 
     def getCollectionById(self, collectionId, logger, logMarker):
         collection_entries = self.getCollectionsByInstitutionId(collectionId.institutionId, logger, logMarker)
@@ -20,9 +25,7 @@ class OmekaFsCollectionStore(_OmekaCollectionStore):
         raise NoSuchCollectionException(collectionId)
 
     def getCollectionsByInstitutionId(self, institutionId, logger, logMarker):
-        data_dir_path = self._uri.path.get()[1:].replace('/', os.path.sep)
-        print self._uri.path.get(), data_dir_path
-        file_path = os.path.join(data_dir_path, str(institutionId), 'collections.json')
+        file_path = os.path.join(self._data_dir_path, str(institutionId), 'collections.json')
         with open(file_path) as f:
             return \
                 self._map_omeka_collections(

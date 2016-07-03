@@ -1,5 +1,6 @@
 from os.path import os
 import unittest
+import urllib
 
 from org.dressdiscover.api.models.collection import CollectionId
 from org.dressdiscover.api.models.object import ObjectId
@@ -29,7 +30,7 @@ class OaiPmhFsObjectStoreTest(unittest.TestCase):
         self.__store = \
             OaiPmhFsObjectStore(
                 record_mapper=TxfcOaiPmhRecordMapper(),
-                uri=Uri.parse(OaiPmhFsObjectStore.URI_SCHEME + ':/' + data_dir_path.replace(os.path.sep, '/'))
+                uri=Uri.parse(OaiPmhFsObjectStore.URI_SCHEME + ':/' + urllib.pathname2url(data_dir_path))
             )
 
     def test_getObjectById(self):

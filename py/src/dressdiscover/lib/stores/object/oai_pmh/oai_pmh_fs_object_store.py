@@ -4,16 +4,18 @@ from xml.etree import ElementTree
 
 from com.google.common.collect import ImmutableList
 from org.dressdiscover.api.services.object import NoSuchObjectException
+from org.dressdiscover.lib.python import PythonApi
 from org.dressdiscover.lib.stores.object import ObjectStore
 
+from dressdiscover.lib.stores._fs_store import _FsStore
 from dressdiscover.lib.stores.object.py_object_store_factory import PyObjectStoreFactory
-from org.dressdiscover.lib.python import PythonApi
 
 
-class OaiPmhFsObjectStore(ObjectStore):
+class OaiPmhFsObjectStore(ObjectStore, _FsStore):
     URI_SCHEME = 'oaipmhfs'
 
     def __init__(self, record_mapper, uri, **kwds):
+        _FsStore.__init__(self, uri=uri)
         if isinstance(record_mapper, basestring):
             record_mapper_class_qname_split = record_mapper.split('.')
             record_mapper_class = __import__('.'.join(record_mapper_class_qname_split[:-1]))
@@ -22,13 +24,12 @@ class OaiPmhFsObjectStore(ObjectStore):
             record_mapper = record_mapper_class()
         self.__record_mapper = record_mapper
         self.__uri = uri
-        self.__data_dir_path = self.__uri.path.get()[1:].replace('/', os.path.sep)
 
     def getObjectById(self, logger, log_marker, object_id):
         record_identifier = object_id.getUnqualifiedObjectId()
         unquoted_record_identifier = urllib.unquote(record_identifier)
         safe_record_identifier = unquoted_record_identifier.replace('/', '_').replace(':', '_')
-        file_path = os.path.join(self.__data_dir_path, 'record', safe_record_identifier + '.xml')
+        file_path = os.path.join(self._data_dir_path, 'record', safe_record_identifier + '.xml')
         if not os.path.isfile(file_path):
             raise NoSuchObjectException
         return \
@@ -41,7 +42,7 @@ class OaiPmhFsObjectStore(ObjectStore):
 
     def getObjectsByCollectionId(self, collection_id, logger, log_marker):
         objects = []
-        for root_dir_path, _, file_names in os.walk(os.path.join(self.__data_dir_path, 'record')):
+        for root_dir_path, _, file_names in os.walk(os.path.join(self._data_dir_path, 'record')):
             for file_name in file_names:
                 file_path = os.path.join(root_dir_path, file_name)
                 if not file_path.endswith('.xml'):
