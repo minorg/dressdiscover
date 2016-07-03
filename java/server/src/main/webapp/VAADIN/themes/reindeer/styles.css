@@ -78,11 +78,17 @@
 	display: inline-block;
 }
 
+/** sprite: verticals; sprite-image: url(common/img/vertical-sprites.png); sprite-layout: vertical */
 
+/** sprite: horizontals; sprite-image: url(common/img/horizontal-sprites.png); sprite-layout: horizontal */
 
+/** sprite: black-verticals; sprite-image: url(common/img/black-vertical-sprites.png); sprite-layout: vertical; sprite-matte-color: #1e2022 */
 
+/** sprite: black-horizontals; sprite-image: url(common/img/black-horizontal-sprites.png); sprite-layout: horizontal; sprite-matte-color: #1e2022 */
 
+/** sprite: buttons; sprite-image: url(button/img/button-sprites.png); sprite-layout: vertical */
 
+/** sprite: black-buttons; sprite-image: url(button/img/black-button-sprites.png); sprite-layout: vertical */
 
 .v-generated-body {
 	background: #f5f5f5;
@@ -4383,8 +4389,7 @@ body .reindeer.v-app .v-app-loading {
 .reindeer .v-accordion-item-caption {
 	height: 19px;
 	background: #e4e4e4 repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -0px;
+	background-image: url(tabsheet/img/tabbar-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 	font-size: 11px;
 	line-height: normal;
 	border-top: 1px solid #bebebe;
@@ -4408,8 +4413,7 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .v-accordion-item-open .v-accordion-item-caption {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -19px;
+	background-image: url(tabsheet/img/tabbar-bg-sel.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 	border-bottom: 1px solid #bbb;
 }
 
@@ -4429,26 +4433,22 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .v-button:focus {
-  background-image: url('button/img/button-sprites.png');
-  background-position: left -0px;
+	background-image: url(button/img/left-focus.png);/** sprite-ref: buttons */
 	outline: none;
 }
 
 .reindeer .v-button:focus .v-button-wrap {
-  background-image: url('button/img/button-sprites.png');
-  background-position: right -26px;
+	background-image: url(button/img/right-focus.png);/** sprite-ref: buttons; sprite-alignment: right */
 	outline: none;
 }
 
 .reindeer .v-button:active, .reindeer .v-button.v-pressed {
-  background-image: url('button/img/button-sprites.png');
-  background-position: left -52px;
+	background-image: url(button/img/left-pressed.png);/** sprite-ref: buttons */
 	outline: none;
 }
 
 .reindeer .v-button:active .v-button-wrap, .reindeer .v-button.v-pressed .v-button-wrap {
-  background-image: url('button/img/button-sprites.png');
-  background-position: right -78px;
+	background-image: url(button/img/right-pressed.png);/** sprite-ref: buttons; sprite-alignment: right */
 	outline: none;
 }
 
@@ -4457,8 +4457,7 @@ body .reindeer.v-app .v-app-loading {
 	padding: 0 0 0 6px;
 	background-color: transparent;
 	background-repeat: no-repeat;
-  background-image: url('button/img/button-sprites.png');
-  background-position: left -104px;
+	background-image: url(button/img/left.png);/** sprite-ref: buttons */
 	border: none;
 	cursor: default;
 }
@@ -4470,8 +4469,7 @@ body .reindeer.v-app .v-app-loading {
 	background-color: transparent;
 	background-repeat: no-repeat;
 	background-position: right top;
-  background-image: url('button/img/button-sprites.png');
-  background-position: right -130px;
+	background-image: url(button/img/right.png);/** sprite-ref: buttons; sprite-alignment: right */
 }
 
 .reindeer .v-button-caption {
@@ -4483,33 +4481,27 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .black .v-button:focus {
-  background-image: url('button/img/black-button-sprites.png');
-  background-position: left -0px;
+	background-image: url(button/img/black/left-focus.png);/** sprite-ref: black-buttons */
 }
 
 .reindeer .black .v-button:focus .v-button-wrap {
-  background-image: url('button/img/black-button-sprites.png');
-  background-position: right -26px;
+	background-image: url(button/img/black/right-focus.png);/** sprite-ref: black-buttons; sprite-alignment: right */
 }
 
 .reindeer .black .v-button:active, .reindeer .black .v-button.v-pressed {
-  background-image: url('button/img/black-button-sprites.png');
-  background-position: left -52px;
+	background-image: url(button/img/black/left-pressed.png);/** sprite-ref: black-buttons */
 }
 
 .reindeer .black .v-button:active .v-button-wrap, .reindeer .black .v-button.v-pressed .v-button-wrap {
-  background-image: url('button/img/black-button-sprites.png');
-  background-position: right -78px;
+	background-image: url(button/img/black/right-pressed.png);/** sprite-ref: black-buttons; sprite-alignment: right */
 }
 
 .reindeer .black .v-button, .reindeer .black .v-disabled.v-button {
-  background-image: url('button/img/black-button-sprites.png');
-  background-position: left -104px;
+	background-image: url(button/img/black/left.png);/** sprite-ref: black-buttons */
 }
 
 .reindeer .black .v-button-wrap, .reindeer .black .v-disabled.v-button .v-button-wrap {
-  background-image: url('button/img/black-button-sprites.png');
-  background-position: right -130px;
+	background-image: url(button/img/black/right.png);/** sprite-ref: black-buttons; sprite-alignment: right */
 }
 
 .reindeer .black .v-button-caption {
@@ -4518,95 +4510,77 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .v-button-primary:focus {
-  background-image: url('button/img/button-sprites.png');
-  background-position: left -156px;
+	background-image: url(button/img/primary-left-focus.png);/** sprite-ref: buttons */
 }
 
 .reindeer .v-button-primary:focus .v-button-wrap {
-  background-image: url('button/img/button-sprites.png');
-  background-position: right -182px;
+	background-image: url(button/img/primary-right-focus.png);/** sprite-ref: buttons; sprite-alignment: right */
 }
 
 .reindeer .v-button-primary:active, .reindeer .v-button-primary.v-pressed {
-  background-image: url('button/img/button-sprites.png');
-  background-position: left -208px;
+	background-image: url(button/img/primary-left-pressed.png);/** sprite-ref: buttons */
 }
 
 .reindeer .v-button-primary:active .v-button-wrap, .reindeer .v-button-primary.v-pressed .v-button-wrap {
-  background-image: url('button/img/button-sprites.png');
-  background-position: right -234px;
+	background-image: url(button/img/primary-right-pressed.png);/** sprite-ref: buttons; sprite-alignment: right */
 }
 
 .reindeer .v-button-primary, .reindeer .v-disabled.v-button-primary {
-  background-image: url('button/img/button-sprites.png');
-  background-position: left -260px;
+	background-image: url(button/img/primary-left.png);/** sprite-ref: buttons */
 }
 
 .reindeer .v-button-primary .v-button-wrap, .reindeer .v-disabled.v-button-primary .v-button-wrap {
-  background-image: url('button/img/button-sprites.png');
-  background-position: right -286px;
+	background-image: url(button/img/primary-right.png);/** sprite-ref: buttons; sprite-alignment: right */
 }
 
 .reindeer .black .v-button-primary:focus {
-  background-image: url('button/img/black-button-sprites.png');
-  background-position: left -156px;
+	background-image: url(button/img/black/primary-left-focus.png);/** sprite-ref: black-buttons */
 }
 
 .reindeer .black .v-button-primary:focus .v-button-wrap {
-  background-image: url('button/img/black-button-sprites.png');
-  background-position: right -182px;
+	background-image: url(button/img/black/primary-right-focus.png);/** sprite-ref: black-buttons; sprite-alignment: right */
 	color: #eaf4fb;
 }
 
 .reindeer .black .v-button-primary:active, .reindeer .black .v-button-primary.v-pressed {
-  background-image: url('button/img/black-button-sprites.png');
-  background-position: left -208px;
+	background-image: url(button/img/black/primary-left-pressed.png);/** sprite-ref: black-buttons */
 }
 
 .reindeer .black .v-button-primary:active .v-button-wrap, .reindeer .black .v-button-primary.v-pressed .v-button-wrap {
-  background-image: url('button/img/black-button-sprites.png');
-  background-position: right -234px;
+	background-image: url(button/img/black/primary-right-pressed.png);/** sprite-ref: black-buttons; sprite-alignment: right */
 }
 
 .reindeer .black .v-button-primary, .reindeer .black .v-disabled.v-button-primary {
-  background-image: url('button/img/black-button-sprites.png');
-  background-position: left -260px;
+	background-image: url(button/img/black/primary-left.png);/** sprite-ref: black-buttons */
 }
 
 .reindeer .black .v-button-primary .v-button-wrap, .reindeer .black .v-disabled.v-button-primary .v-button-wrap {
-  background-image: url('button/img/black-button-sprites.png');
-  background-position: right -286px;
+	background-image: url(button/img/black/primary-right.png);/** sprite-ref: black-buttons; sprite-alignment: right */
 }
 
 .reindeer .v-button-small:focus {
-  background-image: url('button/img/button-sprites.png');
-  background-position: left -312px;
+	background-image: url(button/img/small-left-focus.png);/** sprite-ref: buttons */
 }
 
 .reindeer .v-button-small:focus .v-button-wrap {
-  background-image: url('button/img/button-sprites.png');
-  background-position: right -332px;
+	background-image: url(button/img/small-right-focus.png);/** sprite-ref: buttons; sprite-alignment: right */
 }
 
 .reindeer .v-button-small:active, .reindeer .v-button-small.v-pressed {
-  background-image: url('button/img/button-sprites.png');
-  background-position: left -352px;
+	background-image: url(button/img/small-left-pressed.png);/** sprite-ref: buttons */
 }
 
 .reindeer .v-button-small:active .v-button-wrap, .reindeer .v-button-small.v-pressed .v-button-wrap {
-  background-image: url('button/img/button-sprites.png');
-  background-position: right -372px;
+	background-image: url(button/img/small-right-pressed.png);/** sprite-ref: buttons; sprite-alignment: right */
 }
 
 .reindeer .v-button-small, .reindeer .v-disabled.v-button-small {
-  background-image: url('button/img/button-sprites.png');
-  background-position: left -392px;
+	background-image: url(button/img/small-left.png);/** sprite-ref: buttons */
 	height: 20px;
 }
 
 .reindeer .v-button-small .v-button-wrap, .reindeer .v-disabled.v-button-small .v-button-wrap {
-  background-image: url('button/img/button-sprites.png');
-  background-position: right -412px;
+	background-image: url(button/img/small-right.png);/** sprite-ref: buttons; sprite-alignment: right */
 	height: 19px;
 	padding: 1px 14px 0 8px;
 }
@@ -4616,33 +4590,27 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .black .v-button-small:focus {
-  background-image: url('button/img/black-button-sprites.png');
-  background-position: left -312px;
+	background-image: url(button/img/black/small-left-focus.png);/** sprite-ref: black-buttons */
 }
 
 .reindeer .black .v-button-small:focus .v-button-wrap {
-  background-image: url('button/img/black-button-sprites.png');
-  background-position: right -332px;
+	background-image: url(button/img/black/small-right-focus.png);/** sprite-ref: black-buttons; sprite-alignment: right */
 }
 
 .reindeer .black .v-button-small:active, .reindeer .black .v-button-small.v-pressed {
-  background-image: url('button/img/black-button-sprites.png');
-  background-position: left -352px;
+	background-image: url(button/img/black/small-left-pressed.png);/** sprite-ref: black-buttons */
 }
 
 .reindeer .black .v-button-small:active .v-button-wrap, .reindeer .black .v-button-small.v-pressed .v-button-wrap {
-  background-image: url('button/img/black-button-sprites.png');
-  background-position: right -372px;
+	background-image: url(button/img/black/small-right-pressed.png);/** sprite-ref: black-buttons; sprite-alignment: right */
 }
 
 .reindeer .black .v-button-small, .reindeer .black .v-disabled.v-button-small {
-  background-image: url('button/img/black-button-sprites.png');
-  background-position: left -392px;
+	background-image: url(button/img/black/small-left.png);/** sprite-ref: black-buttons */
 }
 
 .reindeer .black .v-button-small .v-button-wrap, .reindeer .black .v-disabled.v-button-small .v-button-wrap {
-  background-image: url('button/img/black-button-sprites.png');
-  background-position: right -412px;
+	background-image: url(button/img/black/small-right.png);/** sprite-ref: black-buttons; sprite-alignment: right */
 }
 
 .reindeer .v-button.v-button-link, .reindeer .v-button.v-button-link:focus, .reindeer .v-button.v-button-link:active, .reindeer .v-button-link.v-pressed, .reindeer .v-disabled.v-button.v-button-link, .reindeer .v-button.v-button-link .v-button-wrap, .reindeer .v-button.v-button-link:focus .v-button-wrap, .reindeer .v-button.v-button-link:active .v-button-wrap, .reindeer .v-button-link.v-pressed .v-button-wrap, .reindeer .v-disabled.v-button.v-button-link .v-button-wrap {
@@ -4778,8 +4746,7 @@ body .reindeer.v-app .v-app-loading {
 
 .reindeer .v-contextmenu .gwt-MenuItem-selected {
 	background: transparent repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -38px;
+	background-image: url(common/img/sel-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 	color: #fff;
 	text-shadow: #3b5a7a 0 1px 0;
 }
@@ -4829,8 +4796,7 @@ body .reindeer.v-app .v-app-loading {
 .reindeer td.v-datefield-calendarpanel-month {
 	height: 23px;
 	background-repeat: repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -58px;
+	background-image: url(datefield/img/header-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 }
 
 .reindeer span.v-datefield-calendarpanel-month {
@@ -4880,8 +4846,7 @@ body .reindeer.v-app .v-app-loading {
 	border: none;
 	background: transparent;
 	background-repeat: no-repeat;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -81px;
+	background-image: url(datefield/img/year-prev.png);/** sprite-ref: verticals */
 	overflow: hidden;
 	padding: 0;
 	text-indent: -9999px;
@@ -4898,25 +4863,21 @@ body .reindeer.v-app .v-app-loading {
 
 .reindeer .v-datefield-calendarpanel-nextyear button {
 	background-position: left top;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -104px;
+	background-image: url(datefield/img/year-next.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-datefield-calendarpanel-prevyear button:active, .v-ie .reindeer .v-datefield-calendarpanel-prevyear button.v-pressed {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -127px;
+	background-image: url(datefield/img/year-prev-pressed.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-datefield-calendarpanel-nextyear button:active, .v-ie .reindeer .v-datefield-calendarpanel-nextyear button.v-pressed {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -150px;
+	background-image: url(datefield/img/year-next-pressed.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-datefield-calendarpanel-prevmonth, .reindeer .v-datefield-calendarpanel-nextmonth {
 	width: 24px;
 	background-repeat: repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -58px;
+	background-image: url(datefield/img/header-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 }
 
 .reindeer .v-datefield-calendarpanel-prevmonth button, .reindeer .v-datefield-calendarpanel-nextmonth button {
@@ -4926,8 +4887,7 @@ body .reindeer.v-app .v-app-loading {
 	border-right: 1px solid #d8d8d8;
 	background: transparent;
 	background-position: center top;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: center -173px;
+	background-image: url(datefield/img/month-prev.png);/** sprite-ref: verticals; sprite-alignment: center */
 	min-width: 24px;
 	margin-top: 1px;
 }
@@ -4937,20 +4897,17 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .v-datefield-calendarpanel-nextmonth button {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: center -194px;
+	background-image: url(datefield/img/month-next.png);/** sprite-ref: verticals; sprite-alignment: center */
 }
 
 .reindeer .v-datefield-calendarpanel-prevmonth button:active, .v-ie .reindeer .v-datefield-calendarpanel-prevmonth button.v-pressed {
 	background-position: center top;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: center -215px;
+	background-image: url(datefield/img/month-prev-pressed.png);/** sprite-ref: verticals; sprite-alignment: center */
 }
 
 .reindeer .v-datefield-calendarpanel-nextmonth button:active, .v-ie .reindeer .v-datefield-calendarpanel-nextmonth button.v-pressed {
 	background-position: center top;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: center -236px;
+	background-image: url(datefield/img/month-next-pressed.png);/** sprite-ref: verticals; sprite-alignment: center */
 }
 
 .reindeer .v-datefield-calendarpanel-body, .reindeer .v-datefield-calendarpanel-time {
@@ -4970,8 +4927,7 @@ body .reindeer.v-app .v-app-loading {
 	width: 14.2%;
 	overflow: hidden;
 	background-repeat: repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -257px;
+	background-image: url(datefield/img/weekday-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat; sprite-margin-bottom: 3px */
 	font-size: 10px;
 	line-height: normal;
 	text-transform: uppercase;
@@ -4995,15 +4951,13 @@ body .reindeer.v-app .v-app-loading {
 
 .reindeer .v-datefield-calendarpanel-weekdays .v-first {
 	background-repeat: no-repeat;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -276px;
+	background-image: url(datefield/img/weekday-first.png);/** sprite-ref: verticals; sprite-margin-bottom: 3px */
 }
 
 .reindeer .v-datefield-calendarpanel-weekdays .v-last {
 	background-repeat: no-repeat;
 	background-position: right top;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: right -295px;
+	background-image: url(datefield/img/weekday-last.png);/** sprite-ref: verticals; sprite-alignment: right; sprite-margin-bottom: 3px */
 }
 
 .v-ie .reindeer .v-datefield-calendarpanel-weekdays td {
@@ -5113,8 +5067,7 @@ body .reindeer.v-app .v-app-loading {
 	background: transparent;
 	border: none;
 	padding: 0;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -314px;
+	background-image: url(datefield/img/popup-btn.png);/** sprite-ref: verticals */
 	cursor: pointer;
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
@@ -5122,23 +5075,19 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .v-datefield-popupcalendar .v-datefield-button:active {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -337px;
+	background-image: url(datefield/img/popup-btn-pressed.png);/** sprite-ref: verticals */
 }
 
 .reindeer .black .v-datefield-popupcalendar .v-datefield-button {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -0px;
+	background-image: url(datefield/img/popup-btn-black.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .black .v-datefield-popupcalendar .v-datefield-button:active {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -23px;
+	background-image: url(datefield/img/popup-btn-black-pressed.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .black td.v-datefield-calendarpanel-month {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -46px;
+	background-image: url(datefield/img/header-bg-black.png);/** sprite-ref: black-verticals; sprite-alignment: repeat */
 	height: 21px;
 }
 
@@ -5152,52 +5101,43 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .black .v-datefield-calendarpanel-prevyear button, .reindeer .black .v-datefield-calendarpanel-nextyear button, .reindeer .black .v-datefield-calendarpanel-prevmonth button, .reindeer .black .v-datefield-calendarpanel-nextmonth button {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -67px;
+	background-image: url(datefield/img/year-prev-black.png);/** sprite-ref: black-verticals */
 	height: 21px;
 }
 
 .reindeer .black .v-datefield-calendarpanel-nextyear button {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -88px;
+	background-image: url(datefield/img/year-next-black.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .black .v-datefield-calendarpanel-prevyear button:active, .v-ie .reindeer .black .v-datefield-calendarpanel-prevyear button.v-pressed {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -109px;
+	background-image: url(datefield/img/year-prev-black-pressed.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .black .v-datefield-calendarpanel-nextyear button:active, .v-ie .reindeer .black .v-datefield-calendarpanel-nextyear button.v-pressed {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -130px;
+	background-image: url(datefield/img/year-next-black-pressed.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .black .v-datefield-calendarpanel-prevmonth, .reindeer .black .v-datefield-calendarpanel-nextmonth {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -46px;
+	background-image: url(datefield/img/header-bg-black.png);/** sprite-ref: black-verticals; sprite-alignment: repeat */
 }
 
 .reindeer .black .v-datefield-calendarpanel-prevmonth button, .reindeer .black .v-datefield-calendarpanel-nextmonth button {
 	border-left: 1px solid #333638;
 	border-right: 1px solid #232527;
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: center -151px;
+	background-image: url(datefield/img/month-prev-black.png);/** sprite-ref: black-verticals; sprite-alignment: center */
 	margin-top: 0;
 }
 
 .reindeer .black .v-datefield-calendarpanel-nextmonth button {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: center -172px;
+	background-image: url(datefield/img/month-next-black.png);/** sprite-ref: black-verticals; sprite-alignment: center */
 }
 
 .reindeer .black .v-datefield-calendarpanel-prevmonth button:active, .v-ie .reindeer .black .v-datefield-calendarpanel-prevmonth button.v-pressed {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: center -193px;
+	background-image: url(datefield/img/month-prev-black-pressed.png);/** sprite-ref: black-verticals; sprite-alignment: center */
 }
 
 .reindeer .black .v-datefield-calendarpanel-nextmonth button:active, .v-ie .reindeer .black .v-datefield-calendarpanel-nextmonth button.v-pressed {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: center -214px;
+	background-image: url(datefield/img/month-next-black-pressed.png);/** sprite-ref: black-verticals; sprite-alignment: center */
 }
 
 .v-ie .reindeer .black .v-datefield-calendarpanel-prevmonth button, .v-ie .reindeer .black .v-datefield-calendarpanel-nextmonth button {
@@ -5205,8 +5145,7 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .black .v-datefield-calendarpanel-weekdays td {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -235px;
+	background-image: url(datefield/img/weekday-bg-black.png);/** sprite-ref: black-verticals; sprite-alignment: repeat; sprite-margin-bottom: 3px */
 	color: #0a0b0b;
 	text-shadow: #5a5c5e 0 1px 0;
 }
@@ -5216,13 +5155,11 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .black .v-datefield-calendarpanel .v-first {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -254px;
+	background-image: url(datefield/img/weekday-first-black.png);/** sprite-ref: black-verticals; sprite-margin-bottom: 3px */
 }
 
 .reindeer .black .v-datefield-calendarpanel .v-last {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: right -273px;
+	background-image: url(datefield/img/weekday-last-black.png);/** sprite-ref: black-verticals; sprite-alignment: right */
 }
 
 .reindeer .black .v-datefield-prompt .v-datefield-textfield {
@@ -5255,8 +5192,7 @@ body .reindeer.v-app .v-app-loading {
 .reindeer td.v-inline-datefield-calendarpanel-month {
 	height: 23px;
 	background-repeat: repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -58px;
+	background-image: url(datefield/img/header-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 }
 
 .reindeer span.v-inline-datefield-calendarpanel-month {
@@ -5306,8 +5242,7 @@ body .reindeer.v-app .v-app-loading {
 	border: none;
 	background: transparent;
 	background-repeat: no-repeat;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -81px;
+	background-image: url(datefield/img/year-prev.png);/** sprite-ref: verticals */
 	overflow: hidden;
 	padding: 0;
 	text-indent: -9999px;
@@ -5324,25 +5259,21 @@ body .reindeer.v-app .v-app-loading {
 
 .reindeer .v-inline-datefield-calendarpanel-nextyear button {
 	background-position: left top;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -104px;
+	background-image: url(datefield/img/year-next.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-inline-datefield-calendarpanel-prevyear button:active, .v-ie .reindeer .v-inline-datefield-calendarpanel-prevyear button.v-pressed {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -127px;
+	background-image: url(datefield/img/year-prev-pressed.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-inline-datefield-calendarpanel-nextyear button:active, .v-ie .reindeer .v-inline-datefield-calendarpanel-nextyear button.v-pressed {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -150px;
+	background-image: url(datefield/img/year-next-pressed.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-inline-datefield-calendarpanel-prevmonth, .reindeer .v-inline-datefield-calendarpanel-nextmonth {
 	width: 24px;
 	background-repeat: repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -58px;
+	background-image: url(datefield/img/header-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 }
 
 .reindeer .v-inline-datefield-calendarpanel-prevmonth button, .reindeer .v-inline-datefield-calendarpanel-nextmonth button {
@@ -5352,8 +5283,7 @@ body .reindeer.v-app .v-app-loading {
 	border-right: 1px solid #d8d8d8;
 	background: transparent;
 	background-position: center top;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: center -173px;
+	background-image: url(datefield/img/month-prev.png);/** sprite-ref: verticals; sprite-alignment: center */
 	min-width: 24px;
 	margin-top: 1px;
 }
@@ -5363,20 +5293,17 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .v-inline-datefield-calendarpanel-nextmonth button {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: center -194px;
+	background-image: url(datefield/img/month-next.png);/** sprite-ref: verticals; sprite-alignment: center */
 }
 
 .reindeer .v-inline-datefield-calendarpanel-prevmonth button:active, .v-ie .reindeer .v-inline-datefield-calendarpanel-prevmonth button.v-pressed {
 	background-position: center top;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: center -215px;
+	background-image: url(datefield/img/month-prev-pressed.png);/** sprite-ref: verticals; sprite-alignment: center */
 }
 
 .reindeer .v-inline-datefield-calendarpanel-nextmonth button:active, .v-ie .reindeer .v-inline-datefield-calendarpanel-nextmonth button.v-pressed {
 	background-position: center top;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: center -236px;
+	background-image: url(datefield/img/month-next-pressed.png);/** sprite-ref: verticals; sprite-alignment: center */
 }
 
 .reindeer .v-inline-datefield-calendarpanel-body, .reindeer .v-inline-datefield-calendarpanel-time {
@@ -5396,8 +5323,7 @@ body .reindeer.v-app .v-app-loading {
 	width: 14.2%;
 	overflow: hidden;
 	background-repeat: repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -257px;
+	background-image: url(datefield/img/weekday-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat; sprite-margin-bottom: 3px */
 	font-size: 10px;
 	line-height: normal;
 	text-transform: uppercase;
@@ -5421,15 +5347,13 @@ body .reindeer.v-app .v-app-loading {
 
 .reindeer .v-inline-datefield-calendarpanel-weekdays .v-first {
 	background-repeat: no-repeat;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -276px;
+	background-image: url(datefield/img/weekday-first.png);/** sprite-ref: verticals; sprite-margin-bottom: 3px */
 }
 
 .reindeer .v-inline-datefield-calendarpanel-weekdays .v-last {
 	background-repeat: no-repeat;
 	background-position: right top;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: right -295px;
+	background-image: url(datefield/img/weekday-last.png);/** sprite-ref: verticals; sprite-alignment: right; sprite-margin-bottom: 3px */
 }
 
 .v-ie .reindeer .v-inline-datefield-calendarpanel-weekdays td {
@@ -5539,8 +5463,7 @@ body .reindeer.v-app .v-app-loading {
 	background: transparent;
 	border: none;
 	padding: 0;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -314px;
+	background-image: url(datefield/img/popup-btn.png);/** sprite-ref: verticals */
 	cursor: pointer;
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
@@ -5548,23 +5471,19 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .v-inline-datefield-popupcalendar .v-inline-datefield-button:active {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -337px;
+	background-image: url(datefield/img/popup-btn-pressed.png);/** sprite-ref: verticals */
 }
 
 .reindeer .black .v-inline-datefield-popupcalendar .v-inline-datefield-button {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -0px;
+	background-image: url(datefield/img/popup-btn-black.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .black .v-inline-datefield-popupcalendar .v-inline-datefield-button:active {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -23px;
+	background-image: url(datefield/img/popup-btn-black-pressed.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .black td.v-inline-datefield-calendarpanel-month {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -46px;
+	background-image: url(datefield/img/header-bg-black.png);/** sprite-ref: black-verticals; sprite-alignment: repeat */
 	height: 21px;
 }
 
@@ -5578,52 +5497,43 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .black .v-inline-datefield-calendarpanel-prevyear button, .reindeer .black .v-inline-datefield-calendarpanel-nextyear button, .reindeer .black .v-inline-datefield-calendarpanel-prevmonth button, .reindeer .black .v-inline-datefield-calendarpanel-nextmonth button {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -67px;
+	background-image: url(datefield/img/year-prev-black.png);/** sprite-ref: black-verticals */
 	height: 21px;
 }
 
 .reindeer .black .v-inline-datefield-calendarpanel-nextyear button {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -88px;
+	background-image: url(datefield/img/year-next-black.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .black .v-inline-datefield-calendarpanel-prevyear button:active, .v-ie .reindeer .black .v-inline-datefield-calendarpanel-prevyear button.v-pressed {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -109px;
+	background-image: url(datefield/img/year-prev-black-pressed.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .black .v-inline-datefield-calendarpanel-nextyear button:active, .v-ie .reindeer .black .v-inline-datefield-calendarpanel-nextyear button.v-pressed {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -130px;
+	background-image: url(datefield/img/year-next-black-pressed.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .black .v-inline-datefield-calendarpanel-prevmonth, .reindeer .black .v-inline-datefield-calendarpanel-nextmonth {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -46px;
+	background-image: url(datefield/img/header-bg-black.png);/** sprite-ref: black-verticals; sprite-alignment: repeat */
 }
 
 .reindeer .black .v-inline-datefield-calendarpanel-prevmonth button, .reindeer .black .v-inline-datefield-calendarpanel-nextmonth button {
 	border-left: 1px solid #333638;
 	border-right: 1px solid #232527;
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: center -151px;
+	background-image: url(datefield/img/month-prev-black.png);/** sprite-ref: black-verticals; sprite-alignment: center */
 	margin-top: 0;
 }
 
 .reindeer .black .v-inline-datefield-calendarpanel-nextmonth button {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: center -172px;
+	background-image: url(datefield/img/month-next-black.png);/** sprite-ref: black-verticals; sprite-alignment: center */
 }
 
 .reindeer .black .v-inline-datefield-calendarpanel-prevmonth button:active, .v-ie .reindeer .black .v-inline-datefield-calendarpanel-prevmonth button.v-pressed {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: center -193px;
+	background-image: url(datefield/img/month-prev-black-pressed.png);/** sprite-ref: black-verticals; sprite-alignment: center */
 }
 
 .reindeer .black .v-inline-datefield-calendarpanel-nextmonth button:active, .v-ie .reindeer .black .v-inline-datefield-calendarpanel-nextmonth button.v-pressed {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: center -214px;
+	background-image: url(datefield/img/month-next-black-pressed.png);/** sprite-ref: black-verticals; sprite-alignment: center */
 }
 
 .v-ie .reindeer .black .v-inline-datefield-calendarpanel-prevmonth button, .v-ie .reindeer .black .v-inline-datefield-calendarpanel-nextmonth button {
@@ -5631,8 +5541,7 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .black .v-inline-datefield-calendarpanel-weekdays td {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -235px;
+	background-image: url(datefield/img/weekday-bg-black.png);/** sprite-ref: black-verticals; sprite-alignment: repeat; sprite-margin-bottom: 3px */
 	color: #0a0b0b;
 	text-shadow: #5a5c5e 0 1px 0;
 }
@@ -5642,13 +5551,11 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .black .v-inline-datefield-calendarpanel .v-first {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -254px;
+	background-image: url(datefield/img/weekday-first-black.png);/** sprite-ref: black-verticals; sprite-margin-bottom: 3px */
 }
 
 .reindeer .black .v-inline-datefield-calendarpanel .v-last {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: right -273px;
+	background-image: url(datefield/img/weekday-last-black.png);/** sprite-ref: black-verticals; sprite-alignment: right */
 }
 
 .reindeer .black .v-inline-datefield-prompt .v-inline-datefield-textfield {
@@ -5958,8 +5865,7 @@ body .reindeer.v-app .v-app-loading {
 .reindeer .v-menubar {
 	height: 23px;
 	background: #323336 repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -360px;
+	background-image: url(menubar/img/bg.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 	color: #d1d3d6;
 	text-shadow: rgba(0, 0, 0, 0.9) 0 1px 0;
 	padding: 0 8px;
@@ -5997,15 +5903,13 @@ body .reindeer.v-app .v-app-loading {
 
 .reindeer .v-menubar .v-menubar-menuitem-selected, .reindeer .v-menubar-submenu .v-menubar-menuitem-selected {
 	background: #4d749f repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -38px;
+	background-image: url(common/img/sel-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 	color: #fff;
 	text-shadow: 0 1px 0 #3b5a7a;
 }
 
 .reindeer .v-menubar .v-menubar-menuitem-selected {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -383px;
+	background-image: url(menubar/img/menu-sel-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat; sprite-margin-bottom: 1px  */
 }
 
 .reindeer .v-menubar-submenu .v-menubar-submenu-indicator {
@@ -6212,16 +6116,14 @@ body .reindeer.v-app .v-app-loading {
 .reindeer .v-filterselect {
 	height: 24px;
 	background-repeat: no-repeat;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -407px;
+	background-image: url(select/img/left.png);/** sprite-ref: verticals; sprite-margin-bottom: 1px */
 	padding-left: 2px;
 	padding-right: 25px;
 }
 
 .reindeer.v-app .v-filterselect-input, .reindeer .v-window .v-filterselect-input, .reindeer .v-popupview-popup .v-filterselect-input {
 	background: transparent repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -432px;
+	background-image: url(select/img/center.png);/** sprite-ref: verticals; sprite-alignment: repeat; sprite-margin-bottom: 1px */
 	border: none;
 	height: 24px;
 }
@@ -6242,13 +6144,11 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .v-filterselect-focus {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -457px;
+	background-image: url(select/img/left-focus.png);/** sprite-ref: verticals; sprite-margin-bottom: 1px */
 }
 
 .reindeer .v-filterselect-focus .v-filterselect-input {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -482px;
+	background-image: url(select/img/center-focus.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 }
 
 .reindeer .v-filterselect-button {
@@ -6256,40 +6156,33 @@ body .reindeer.v-app .v-app-loading {
 	width: 25px;
 	height: 24px;
 	background-position: 0 0;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -506px;
+	background-image: url(select/img/right.png);/** sprite-ref: verticals ; sprite-margin-bottom: 1px */
 	cursor: default;
 	margin-right: -25px;
 }
 
 .reindeer .v-filterselect-button:hover {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -531px;
+	background-image: url(select/img/right-hover.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-filterselect-button:active {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -555px;
+	background-image: url(select/img/right-pressed.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-filterselect-focus .v-filterselect-button {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -579px;
+	background-image: url(select/img/right-focus.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-filterselect-focus .v-filterselect-button:hover {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -603px;
+	background-image: url(select/img/right-focus-hover.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-filterselect-focus .v-filterselect-button:active {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -627px;
+	background-image: url(select/img/right-focus-pressed.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-disabled .v-filterselect-button:hover, .reindeer .v-readonly .v-filterselect-button:hover {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -651px;
+	background-image: url(select/img/right.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-filterselect-suggestpopup {
@@ -6321,8 +6214,7 @@ body .reindeer.v-app .v-app-loading {
 
 .reindeer .v-filterselect-suggestmenu .gwt-MenuItem-selected {
 	background: transparent repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -38px;
+	background-image: url(common/img/sel-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 	color: #fff;
 	text-shadow: #3b5a7a 0 1px 0;
 }
@@ -6340,26 +6232,22 @@ body .reindeer.v-app .v-app-loading {
 
 .reindeer .v-filterselect-nextpage:hover {
 	background-repeat: repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -675px;
+	background-image: url(select/img/page-down-hover.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 }
 
 .reindeer .v-filterselect-prevpage:hover {
 	background-repeat: repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -686px;
+	background-image: url(select/img/page-up-hover.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 }
 
 .reindeer .v-filterselect-nextpage:active {
 	background-repeat: repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -697px;
+	background-image: url(select/img/page-down-pressed.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 }
 
 .reindeer .v-filterselect-prevpage:active {
 	background-repeat: repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -708px;
+	background-image: url(select/img/page-up-pressed.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 }
 
 .reindeer .v-filterselect-nextpage-off span, .reindeer .v-filterselect-prevpage-off span {
@@ -6373,26 +6261,22 @@ body .reindeer.v-app .v-app-loading {
 	overflow: hidden;
 	text-indent: -99999px;
 	background: transparent no-repeat center 3px;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: center -719px;
+	background-image: url(select/img/arrow-down.png);/** sprite-ref: verticals; sprite-margin-top: 3px; sprite-margin-bottom: 3px; sprite-alignment: center */
 	user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
 }
 
 .reindeer .v-filterselect-prevpage span {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: center -730px;
+	background-image: url(select/img/arrow-up.png);/** sprite-ref: verticals; sprite-margin-top: 3px; sprite-margin-bottom: 3px; sprite-alignment: center */
 }
 
 .reindeer .v-filterselect-nextpage:hover span {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: center -741px;
+	background-image: url(select/img/arrow-down-hover.png);/** sprite-ref: verticals; sprite-margin-top: 3px; sprite-margin-bottom: 3px; sprite-alignment: center */
 }
 
 .reindeer .v-filterselect-prevpage:hover span {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: center -752px;
+	background-image: url(select/img/arrow-up-hover.png);/** sprite-ref: verticals; sprite-margin-top: 3px; sprite-margin-bottom: 3px; sprite-alignment: center */
 }
 
 .reindeer .v-filterselect-status {
@@ -6404,8 +6288,7 @@ body .reindeer.v-app .v-app-loading {
 	height: 11px;
 	overflow: hidden;
 	background-repeat: repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -763px;
+	background-image: url(select/img/status-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 	-moz-border-radius-bottomleft: 3px;
 	-moz-border-radius-bottomright: 3px;
 	-webkit-border-bottom-left-radius: 3px;
@@ -6458,59 +6341,48 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .black .v-filterselect {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -289px;
+	background-image: url(select/img/black/left-black.png);/** sprite-ref: black-verticals; sprite-margin-bottom: 1px */
 }
 
 .reindeer.v-app .black .v-filterselect-input, .reindeer .v-window .black .v-filterselect-input, .reindeer .v-window-black .v-filterselect-input, .reindeer .v-popupview-popup .black .v-filterselect-input {
 	color: #c9ccce;
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -313px;
+	background-image: url(select/img/black/center-black.png);/** sprite-ref: black-verticals; sprite-alignment: repeat; sprite-margin-bottom: 1px */
 }
 
 .reindeer .black .v-filterselect-focus {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -337px;
+	background-image: url(select/img/black/left-black-focus.png);/** sprite-ref: black-verticals; sprite-margin-bottom: 1px */
 }
 
 .reindeer .black .v-filterselect-focus .v-filterselect-input {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -361px;
+	background-image: url(select/img/black/center-black-focus.png);/** sprite-ref: black-verticals; sprite-alignment: repeat; sprite-margin-bottom: 1px */
 }
 
 .reindeer .black .v-filterselect-button {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -385px;
+	background-image: url(select/img/black/right-black.png);/** sprite-ref: black-verticals; sprite-margin-bottom: 1px */
 }
 
 .reindeer .black .v-filterselect-button:hover {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -409px;
+	background-image: url(select/img/black/right-black-hover.png);/** sprite-ref: black-verticals; sprite-margin-bottom: 1px */
 }
 
 .reindeer .black .v-filterselect-button:active {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -433px;
+	background-image: url(select/img/black/right-black-pressed.png);/** sprite-ref: black-verticals; sprite-margin-bottom: 1px */
 }
 
 .reindeer .black .v-filterselect-focus .v-filterselect-button {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -457px;
+	background-image: url(select/img/black/right-black-focus.png);/** sprite-ref: black-verticals; sprite-margin-bottom: 1px */
 }
 
 .reindeer .black .v-filterselect-focus .v-filterselect-button:hover {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -481px;
+	background-image: url(select/img/black/right-black-focus-hover.png);/** sprite-ref: black-verticals; sprite-margin-bottom: 1px */
 }
 
 .reindeer .black .v-filterselect-focus .v-filterselect-button:active {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -505px;
+	background-image: url(select/img/black/right-black-focus-pressed.png);/** sprite-ref: black-verticals; sprite-margin-bottom: 1px */
 }
 
 .reindeer .black .v-disabled .v-filterselect-button:hover, .reindeer .black .v-readonly .v-filterselect-button:hover {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -385px;
+	background-image: url(select/img/black/right-black.png);/** sprite-ref: black-verticals; sprite-margin-bottom: 1px */
 }
 
 .reindeer .black .v-filterselect-prompt .v-filterselect-input {
@@ -6541,16 +6413,14 @@ body .reindeer.v-app .v-app-loading {
 
 .reindeer .v-slider-handle {
 	background: transparent;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -780px;
+	background-image: url(slider/img/knob.png);/** sprite-ref: verticals */
 	width: 10px;
 	height: 10px;
 	margin-top: -5px;
 }
 
 .reindeer .v-slider-handle-active {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -790px;
+	background-image: url(slider/img/knob-pressed.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-slider-vertical {
@@ -6578,8 +6448,7 @@ body .reindeer.v-app .v-app-loading {
 .reindeer .v-splitpanel-hsplitter, .reindeer .v-splitpanel-hsplitter-locked {
 	width: 7px;
 	background-repeat: repeat-y;
-  background-image: url('common/img/horizontal-sprites.png');
-  background-position: -0px top;
+	background-image: url(splitpanel/img/hor-bg.png);/** sprite-ref: horizontals; sprite-alignment: repeat */
 }
 
 .reindeer .v-splitpanel-hsplitter div {
@@ -6588,15 +6457,13 @@ body .reindeer.v-app .v-app-loading {
 	background: transparent;
 	background-repeat: no-repeat;
 	background-position: 50%;
-  background-image: url('common/img/horizontal-sprites.png');
-  background-position: -7px center;
+	background-image: url(splitpanel/img/hor-handle.png);/** sprite-ref: horizontals; sprite-alignment: center */
 }
 
 .reindeer .v-splitpanel-vsplitter, .reindeer .v-splitpanel-vsplitter-locked {
 	height: 7px;
 	background-repeat: repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -800px;
+	background-image: url(splitpanel/img/ver-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 }
 
 .reindeer .v-splitpanel-vsplitter div {
@@ -6604,8 +6471,7 @@ body .reindeer.v-app .v-app-loading {
 	background: transparent;
 	background-repeat: no-repeat;
 	background-position: 50%;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: center -807px;
+	background-image: url(splitpanel/img/ver-handle.png);/** sprite-ref: verticals; sprite-alignment: center */
 }
 
 .reindeer .blue .v-splitpanel-hsplitter-small, .reindeer .blue .v-splitpanel-hsplitter-small-locked {
@@ -6650,8 +6516,7 @@ body .reindeer.v-app .v-app-loading {
 .reindeer .v-table-header-wrap, .reindeer .white .v-table-header-wrap, .reindeer .v-table-footer-wrap, .reindeer .white .v-table-footer-wrap, .reindeer .v-table-header-drag {
 	border-color: #c2c3c4;
 	background: transparent repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -814px;
+	background-image: url(table/img/header-bg-light.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 	height: 20px;
 	text-transform: uppercase;
 	font-size: 10px;
@@ -6709,15 +6574,13 @@ body .reindeer.v-app .v-app-loading {
 
 .reindeer .v-table-header-cell-asc .v-table-sort-indicator {
 	background: transparent no-repeat right 7px;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: right -834px;
+	background-image: url(table/img/asc-light.png);/** sprite-ref: verticals; sprite-alignment: right; sprite-margin-top: 7px; sprite-margin-bottom: 6px; sprite-margin-right: 6px; */
 	width: 16px;
 }
 
 .reindeer .v-table-header-cell-desc .v-table-sort-indicator {
 	background: transparent no-repeat right 7px;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: right -854px;
+	background-image: url(table/img/desc-light.png);/** sprite-ref: verticals; sprite-alignment: right; sprite-margin-top: 7px; sprite-margin-bottom: 6px; sprite-margin-right: 6px; */
 	width: 16px;
 }
 
@@ -6775,13 +6638,11 @@ body .reindeer.v-app .v-app-loading {
 	height: 20px;
 	margin-top: -20px;
 	background: transparent no-repeat;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -874px;
+	background-image: url(table/img/col-sel-light.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-table-column-selector:active {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -894px;
+	background-image: url(table/img/col-sel-light-pressed.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-table-focus-slot-left {
@@ -6813,8 +6674,7 @@ body .reindeer.v-app .v-app-loading {
 
 .reindeer .v-table-scrollposition span {
 	background: transparent repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -914px;
+	background-image: url(table/img/scroll-indic-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 	border: 1px solid #939494;
 	border: none;
 	border-radius-bottomleft: 4px;
@@ -6842,8 +6702,7 @@ body .reindeer.v-app .v-app-loading {
 	display: inline-block;
 	zoom: 1;
 	background: transparent no-repeat 0 4px;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -936px;
+	background-image: url(common/icons/bullet.png);/** sprite-ref: verticals; sprite-margin-top: 4px; sprite-margin-bottom: 4px */
 	padding-left: 12px;
 	padding-right: 4px;
 }
@@ -6854,15 +6713,13 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .v-contextmenu .gwt-MenuItem-selected .v-on {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -950px;
+	background-image: url(common/icons/bullet-white.png);/** sprite-ref: verticals; sprite-margin-top: 4px; sprite-margin-bottom: 5px */
 }
 
 .reindeer .v-table-strong .v-table-header-wrap, .reindeer .v-table-strong .v-table-header-drag {
 	border-color: #2b3033;
 	border-top-color: #2b3033;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -965px;
+	background-image: url(table/img/header-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 	color: #e7e9ea;
 	text-shadow: #000 0 -1px 0;
 }
@@ -6876,23 +6733,19 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .v-table-strong .v-table-header-cell-asc .v-table-sort-indicator {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: right -985px;
+	background-image: url(table/img/asc.png);/** sprite-ref: verticals; sprite-alignment: right; sprite-margin-top: 7px; sprite-margin-bottom: 6px; sprite-margin-right: 6px; */
 }
 
 .reindeer .v-table-strong .v-table-header-cell-desc .v-table-sort-indicator {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: right -1004px;
+	background-image: url(table/img/desc.png);/** sprite-ref: verticals; sprite-alignment: right; sprite-margin-top: 7px; sprite-margin-bottom: 6px; sprite-margin-right: 6px; */
 }
 
 .reindeer .v-table-strong .v-table-column-selector {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1023px;
+	background-image: url(table/img/col-sel.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-table-strong .v-table-column-selector:active {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1043px;
+	background-image: url(table/img/col-sel-pressed.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-table-strong .v-table-focus-slot-left, .reindeer .v-table-strong .v-table-focus-slot-right {
@@ -6901,8 +6754,7 @@ body .reindeer.v-app .v-app-loading {
 
 .reindeer .black .v-table-header-wrap, .reindeer .black .v-table-header-drag {
 	border-color: #252729;
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -529px;
+	background-image: url(table/img/header-bg-black.png);/** sprite-ref: black-verticals; sprite-alignment: repeat */
 	color: #e7eaee;
 	text-shadow: #000 0 -1px 0;
 }
@@ -6912,23 +6764,19 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .black .v-table-header-cell-asc .v-table-sort-indicator {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: right -549px;
+	background-image: url(table/img/asc.png);/** sprite-ref: black-verticals; sprite-alignment: right; sprite-margin-top: 7px; sprite-margin-bottom: 6px; sprite-margin-right: 6px; */
 }
 
 .reindeer .black .v-table-header-cell-desc .v-table-sort-indicator {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: right -568px;
+	background-image: url(table/img/desc.png);/** sprite-ref: black-verticals; sprite-alignment: right; sprite-margin-top: 7px; sprite-margin-bottom: 6px; sprite-margin-right: 6px; */
 }
 
 .reindeer .black .v-table-column-selector {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -587px;
+	background-image: url(table/img/col-sel-black.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .black .v-table-column-selector:active {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -607px;
+	background-image: url(table/img/col-sel-black-pressed.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .black .v-table-focus-slot-left, .reindeer .black .v-table-focus-slot-right {
@@ -6967,23 +6815,20 @@ body .reindeer.v-app .v-app-loading {
 
 .reindeer .v-tabsheet-tabitemcell {
 	background: no-repeat;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1063px;
+	background-image: url(tabsheet/img/framed/tab-left.png);/** sprite-ref: verticals */
 	padding-left: 3px;
 }
 
 .reindeer .v-tabsheet-tabitemcell-first {
 	padding-left: 10px;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1095px;
+	background-image: url(tabsheet/img/framed/tab-first-left.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-tabsheet-tabitem, .reindeer .v-tabsheet-spacertd div {
 	border: none;
 	height: 32px;
 	background: transparent repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1127px;
+	background-image: url(tabsheet/img/framed/tab-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 	padding: 0;
 	color: #222;
 	text-shadow: #fff 0 1px 0;
@@ -6993,8 +6838,7 @@ body .reindeer.v-app .v-app-loading {
 	border: none;
 	height: 23px;
 	background: no-repeat right top;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: right -1159px;
+	background-image: url(tabsheet/img/framed/tab-right.png);/** sprite-ref: verticals; sprite-alignment: right */
 	padding: 9px 8px 0 6px;
 }
 
@@ -7016,8 +6860,7 @@ body .reindeer.v-app .v-app-loading {
 	margin: -1px -1px 0;
 	padding-left: 2px;
 	background: transparent;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1191px;
+	background-image: url(tabsheet/img/close-btn.png);/** sprite-ref: verticals */
 	cursor: default;
 	text-indent: -999px;
 	overflow: hidden;
@@ -7034,49 +6877,40 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .v-tabsheet-caption-close:hover {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1209px;
+	background-image: url(tabsheet/img/close-btn-hover.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-tabsheet-caption-close:active {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1227px;
+	background-image: url(tabsheet/img/close-btn-pressed.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-tabsheet-tabitem-selected .v-tabsheet-caption-close {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1245px;
+	background-image: url(tabsheet/img/close-btn-sel.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-tabsheet-tabitem-selected .v-tabsheet-caption-close:hover {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1263px;
+	background-image: url(tabsheet/img/close-btn-sel-hover.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-tabsheet-tabitem-selected .v-tabsheet-caption-close:active {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1281px;
+	background-image: url(tabsheet/img/close-btn-sel-pressed.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-tabsheet-tabitemcell-selected {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1299px;
+	background-image: url(tabsheet/img/framed/tab-left-sel.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-tabsheet-tabitemcell-selected-first {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1331px;
+	background-image: url(tabsheet/img/framed/tab-first-left-sel.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-tabsheet-tabitem-selected {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1363px;
+	background-image: url(tabsheet/img/framed/tab-bg-sel.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 	color: #232930;
 }
 
 .reindeer .v-tabsheet-tabitem-selected .v-caption {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: right -1395px;
+	background-image: url(tabsheet/img/framed/tab-right-sel.png);/** sprite-ref: verticals; sprite-alignment: right */
 }
 
 .reindeer .v-tabsheet-spacertd div {
@@ -7085,8 +6919,7 @@ body .reindeer.v-app .v-app-loading {
 
 .reindeer .v-tabsheet-spacertd {
 	background: transparent no-repeat right top;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: right -1427px;
+	background-image: url(tabsheet/img/framed/tab-spacer-right.png);/** sprite-ref: verticals; sprite-alignment: right */
 }
 
 .reindeer .blue .v-tabsheet-content {
@@ -7175,8 +7008,7 @@ body .reindeer.v-app .v-app-loading {
 .reindeer .v-tabsheet-scrollerPrev, .reindeer .v-tabsheet-scrollerNext, .reindeer .v-tabsheet-scrollerPrev-disabled, .reindeer .v-tabsheet-scrollerNext-disabled {
 	border: none;
 	background: transparent;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1459px;
+	background-image: url(tabsheet/img/tab-prev.png);/** sprite-ref: verticals */
 	width: 18px;
 	height: 17px;
 	overflow: hidden;
@@ -7187,30 +7019,25 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .v-tabsheet-scrollerNext {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1476px;
+	background-image: url(tabsheet/img/tab-next.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-tabsheet-scrollerPrev:active {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1493px;
+	background-image: url(tabsheet/img/tab-prev-pressed.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-tabsheet-scrollerNext:active {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1510px;
+	background-image: url(tabsheet/img/tab-next-pressed.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-tabsheet-scrollerPrev-disabled, .reindeer .v-tabsheet-scrollerPrev-disabled:active {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1527px;
+	background-image: url(tabsheet/img/tab-prev-disabled.png);/** sprite-ref: verticals */
 	opacity: 1;
 	filter: none;
 }
 
 .reindeer .v-tabsheet-scrollerNext-disabled, .reindeer .v-tabsheet-scrollerNext-disabled:active {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1544px;
+	background-image: url(tabsheet/img/tab-next-disabled.png);/** sprite-ref: verticals; sprite-margin-bottom: 1px */
 	opacity: 1;
 	filter: none;
 }
@@ -7395,28 +7222,24 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .v-tabsheet-tabs-bar .v-tabsheet-tabitemcell {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1562px;
+	background-image: url(tabsheet/img/bar/tab-left.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-tabsheet-tabs-bar .v-tabsheet-tabitemcell-first {
 	padding-left: 6px;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1582px;
+	background-image: url(tabsheet/img/bar/tab-first-left.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-tabsheet-tabs-bar .v-tabsheet-tabitem, .reindeer .v-tabsheet-tabs-bar .v-tabsheet-spacertd div {
 	height: 20px;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1602px;
+	background-image: url(tabsheet/img/bar/tab-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 	margin: 0;
 }
 
 .reindeer .v-tabsheet-tabs-bar .v-tabsheet-tabitem .v-caption {
 	font-size: 11px;
 	height: 18px;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: right -1622px;
+	background-image: url(tabsheet/img/bar/tab-right.png);/** sprite-ref: verticals; sprite-alignment: right */
 	padding: 2px 12px 0 10px;
 }
 
@@ -7475,32 +7298,27 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .v-tabsheet-tabs-bar .v-tabsheet-tabitemcell-selected {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1642px;
+	background-image: url(tabsheet/img/bar/tab-left-sel.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-tabsheet-tabs-bar .v-tabsheet-tabitemcell-selected-first {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1662px;
+	background-image: url(tabsheet/img/bar/tab-first-left-sel.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-tabsheet-tabs-bar .v-tabsheet-tabitem-selected {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1682px;
+	background-image: url(tabsheet/img/bar/tab-bg-sel.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 	color: #232930;
 }
 
 .reindeer .v-tabsheet-tabs-bar .v-tabsheet-tabitem-selected .v-caption {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: right -1702px;
+	background-image: url(tabsheet/img/bar/tab-right-sel.png);/** sprite-ref: verticals; sprite-alignment: right */
 }
 
 .reindeer .v-tabsheet-tabcontainer-bar .v-tabsheet-scroller {
 	margin-top: -20px;
 	height: 19px;
 	border-right: none;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1602px;
+	background-image: url(tabsheet/img/bar/tab-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 }
 
 .reindeer .v-tabsheet-tabcontainer-bar .v-tabsheet-scroller button {
@@ -7548,8 +7366,7 @@ body .reindeer.v-app .v-app-loading {
 	border-bottom-color: #d2d3d4;
 	background: #fff;
 	background-repeat: repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1722px;
+	background-image: url(textfield/img/bg.png);/** sprite-ref: verticals; sprite-alignment: repeat; sprite-margin-bottom: 22px */
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
@@ -7611,8 +7428,7 @@ body .reindeer.v-app .v-app-loading {
 	border-top-color: #2c2d2e;
 	border-bottom-color: #3e3f3f;
 	background: #151717;
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -627px;
+	background-image: url(textfield/img/bg-black.png);/** sprite-ref: black-verticals; sprite-alignment: repeat; sprite-margin-bottom: 22px */
 	color: #c9ccce;
 	text-shadow: #000 0 0 1px;
 }
@@ -7715,8 +7531,7 @@ body .reindeer.v-app .v-app-loading {
 	padding: 12px 52px 0 14px;
 	height: 37px;
 	background: black repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1745px;
+	background-image: url(window/img/header-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 }
 
 .reindeer .v-window-header {
@@ -7741,15 +7556,13 @@ body .reindeer.v-app .v-app-loading {
 	height: 15px;
 	cursor: se-resize;
 	background: transparent;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1782px;
+	background-image: url(window/img/resize.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-window-footer {
 	background-color: white;
 	background-repeat: repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1797px;
+	background-image: url(window/img/footer-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 	height: 15px;
 }
 
@@ -7759,18 +7572,15 @@ body .reindeer.v-app .v-app-loading {
 	width: 15px;
 	height: 16px;
 	background: transparent;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1812px;
+	background-image: url(window/img/close.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-window-closebox:hover {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1828px;
+	background-image: url(window/img/close-hover.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-window-closebox:active {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1844px;
+	background-image: url(window/img/close-pressed.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-window-maximizebox, .reindeer .v-window-restorebox {
@@ -7782,13 +7592,11 @@ body .reindeer.v-app .v-app-loading {
 }
 
 .reindeer .v-window-maximizebox, .reindeer .v-window-maximizebox:hover, .reindeer .v-window-maximizebox:active {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1860px;
+	background-image: url(window/img/maximize.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-window-restorebox, .reindeer .v-window-restorebox:hover, .reindeer .v-window-restorebox:active {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1876px;
+	background-image: url(window/img/restore.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-window-contents {
@@ -7813,8 +7621,7 @@ body .reindeer.v-app .v-app-loading {
 .reindeer .v-window-light .v-window-resizebox {
 	width: 12px;
 	height: 12px;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1892px;
+	background-image: url(window/img/light/resize.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-window-light .v-window-footer {
@@ -7827,50 +7634,41 @@ body .reindeer.v-app .v-app-loading {
 	top: 17px;
 	width: 19px;
 	height: 15px;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1904px;
+	background-image: url(window/img/light/close.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-window-light .v-window-closebox:hover {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1919px;
+	background-image: url(window/img/light/close-hover.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-window-light .v-window-closebox:active {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1934px;
+	background-image: url(window/img/light/close-pressed.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-window-light .v-window-maximizebox {
 	top: 17px;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1949px;
+	background-image: url(window/img/light/maximize.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-window-light .v-window-maximizebox:hover {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1964px;
+	background-image: url(window/img/light/maximize-hover.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-window-light .v-window-maximizebox:active {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1979px;
+	background-image: url(window/img/light/maximize-active.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-window-light .v-window-restorebox {
 	top: 17px;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -1994px;
+	background-image: url(window/img/light/restore.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-window-light .v-window-restorebox:hover {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -2009px;
+	background-image: url(window/img/light/restore-hover.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-window-light .v-window-restorebox:active {
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -2024px;
+	background-image: url(window/img/light/restore-active.png);/** sprite-ref: verticals */
 }
 
 .reindeer .v-window-light .v-window-contents {
@@ -7879,8 +7677,7 @@ body .reindeer.v-app .v-app-loading {
 
 .reindeer .v-window-light .v-window-wrap {
 	background: #f7f7f8 repeat-x;
-  background-image: url('common/img/vertical-sprites.png');
-  background-position: left -2039px;
+	background-image: url(window/img/light/content-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat */
 }
 
 .reindeer .v-window-black {
@@ -7913,8 +7710,7 @@ body .reindeer.v-app .v-app-loading {
 	height: 29px;
 	padding: 7px 14px;
 	background: transparent repeat-x;
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -650px;
+	background-image: url(window/img/black/header-bg.png);/** sprite-ref: black-verticals; sprite-alignment: repeat */
 	text-align: center;
 	-moz-border-radius-topright: 7px;
 	-moz-border-radius-topleft: 7px;
@@ -7932,18 +7728,15 @@ body .reindeer.v-app .v-app-loading {
 
 .reindeer .v-window-black .v-window-closebox {
 	top: 8px;
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -679px;
+	background-image: url(window/img/black/close.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .v-window-black .v-window-closebox:hover {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -694px;
+	background-image: url(window/img/black/close-hover.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .v-window-black .v-window-closebox:active {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -709px;
+	background-image: url(window/img/black/close-pressed.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .v-window-black .v-window-footer {
@@ -7954,47 +7747,39 @@ body .reindeer.v-app .v-app-loading {
 
 .reindeer .v-window-black .v-window-resizebox {
 	background: transparent no-repeat;
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -724px;
+	background-image: url(window/img/black/resize.png);/** sprite-ref: black-verticals; sprite-margin-bottom: 4px */
 	width: 14px;
 	height: 14px;
 }
 
 .reindeer .v-window-black .v-window-maximizebox {
 	top: 8px;
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -738px;
+	background-image: url(window/img/black/maximize.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .v-window-black .v-window-maximizebox:hover {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -753px;
+	background-image: url(window/img/black/maximize-hover.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .v-window-black .v-window-maximizebox:active {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -768px;
+	background-image: url(window/img/black/maximize-active.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .v-window-black .v-window-restorebox {
 	top: 8px;
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -783px;
+	background-image: url(window/img/black/restore.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .v-window-black .v-window-restorebox:hover {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -798px;
+	background-image: url(window/img/black/restore-hover.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .v-window-black .v-window-restorebox:active {
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -813px;
+	background-image: url(window/img/black/restore-active.png);/** sprite-ref: black-verticals */
 }
 
 .reindeer .v-window-black .v-window-contents {
 	border: none;
 	background: transparent repeat-x;
-  background-image: url('common/img/black-vertical-sprites.png');
-  background-position: left -828px;
+	background-image: url(window/img/black/content-bg.png);/** sprite-ref: black-verticals; sprite-alignment: repeat */
 }
