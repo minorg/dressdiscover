@@ -21,6 +21,7 @@ class OmekaFsCollectionStore(_OmekaCollectionStore):
 
     def getCollectionsByInstitutionId(self, institutionId, logger, logMarker):
         data_dir_path = self._uri.path.get()[1:].replace('/', os.path.sep)
+        print self._uri.path.get(), data_dir_path
         file_path = os.path.join(data_dir_path, str(institutionId), 'collections.json')
         with open(file_path) as f:
             return \

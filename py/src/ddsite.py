@@ -1,4 +1,5 @@
 from datetime import datetime
+import java.lang
 from os.path import os
 import sys
 import urllib
@@ -61,8 +62,10 @@ def put_institution(institution_id, institution_title, institution_url, store_pa
 data_dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'extracted'))
 assert os.path.isdir(data_dir_path), data_dir_path
 data_file_uri_authority_base = urllib.pathname2url(data_dir_path)
-if not sys.platform.startswith('win'):
+platform = java.lang.System.getProperty('os.name')
+if not platform.startswith('Windows'):
     data_file_uri_authority_base = '//' + data_file_uri_authority_base
+print 'Platform:', platform
 print 'Data directory path:', data_dir_path
 print 'Data file URI base:', data_file_uri_authority_base
 
