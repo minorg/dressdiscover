@@ -29,7 +29,7 @@
 	}
 
 .v-vaadin-version:after {
-	content: "7.6.2";
+	content: "7.6.7";
 }
 
 .v-generated-body {
@@ -2210,6 +2210,8 @@ body .base.v-app .v-app-loading {
 
 .base .v-grid-sidebar.v-contextmenu .v-grid-sidebar-content {
 	padding: 4px 0;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 .base .v-grid-sidebar.v-contextmenu .v-grid-sidebar-content .gwt-MenuBar .gwt-MenuItem .column-hiding-toggle {
