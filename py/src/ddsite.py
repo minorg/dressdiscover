@@ -1,6 +1,7 @@
 from datetime import datetime
 from os.path import os
 import sys
+import urllib
 
 from com.google.common.base import Optional
 from com.google.common.collect import ImmutableMap, ImmutableList
@@ -59,11 +60,13 @@ def put_institution(institution_id, institution_title, institution_url, store_pa
 
 data_dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'extracted'))
 assert os.path.isdir(data_dir_path), data_dir_path
-data_file_uri_base = data_dir_path.replace(os.path.sep, '/')
-if not sys.platform.startswith('win'):
-    data_file_uri_base = '/' + data_file_uri_base
+data_file_uri_authority_base = urllib.pathname2url(data_dir_path)
+# if sys.platform.startswith('win'):
+#     data_file_uri_authority_base = '///' + data_file_uri_authority_base
+# else:
+#     data_file_uri_authority_base = '//' + data_file_uri_authority_base
 print 'Data directory path:', data_dir_path
-print 'Data file URI base:', data_file_uri_base
+print 'Data file URI base:', data_file_uri_authority_base
 
 put_institution(
     data_rights=\
@@ -86,12 +89,12 @@ put_institution(
 put_collection(
     collection_id=CollectionId.parse('untvca/txfc'),
     institution_id=InstitutionId.parse('untvca'),
-    object_store_uri=Uri.parse(OaiPmhFsObjectStore.URI_SCHEME + ':/' + data_file_uri_base + '/untvca/txfc'),
+    object_store_uri=Uri.parse(OaiPmhFsObjectStore.URI_SCHEME + ':' + data_file_uri_authority_base + '/untvca/txfc'),
     title='Texas Fashion Collection'
 )
 
 put_institution(
-    collection_store_uri=Uri.parse(OmekaFsCollectionStore.URI_SCHEME + ':/' + data_file_uri_base),
+    collection_store_uri=Uri.parse(OmekaFsCollectionStore.URI_SCHEME + ':' + data_file_uri_authority_base),
     institution_id=InstitutionId.parse('vccc'),
     institution_title='Vassar College Costume Collection',
     institution_url=Url.parse('http://vcomeka.com/vccc/'),
