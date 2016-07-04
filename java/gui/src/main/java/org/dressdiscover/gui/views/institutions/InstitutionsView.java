@@ -1,5 +1,7 @@
 package org.dressdiscover.gui.views.institutions;
 
+import org.dressdiscover.api.models.collection.CollectionEntry;
+import org.dressdiscover.api.models.institution.InstitutionEntry;
 import org.dressdiscover.gui.views.TopLevelView;
 import org.dressdiscover.lib.DressDiscoverProperties;
 import org.thryft.waf.gui.EventBus;
@@ -11,9 +13,6 @@ import com.vaadin.annotations.DesignRoot;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.VerticalLayout;
 
-import org.dressdiscover.api.models.collection.CollectionEntry;
-import org.dressdiscover.api.models.institution.InstitutionEntry;
-
 @SuppressWarnings("serial")
 @SessionScoped
 public class InstitutionsView extends TopLevelView {
@@ -24,6 +23,7 @@ public class InstitutionsView extends TopLevelView {
         }
 
         Layout treeLayout;
+        @SuppressWarnings("unused")
         Layout mapLayout;
     }
 
@@ -38,11 +38,13 @@ public class InstitutionsView extends TopLevelView {
 
         design.treeLayout.addComponent(new InstitutionTree(_getEventBus(), modelTree));
 
-        design.mapLayout.addComponent(new InstitutionMap(_getEventBus(), googleApiKey, modelTree));
+        // design.mapLayout.addComponent(new InstitutionMap(_getEventBus(),
+        // googleApiKey, modelTree));
 
         setCompositionRoot(design);
     }
 
+    @SuppressWarnings("unused")
     private final String googleApiKey;
     public final static String NAME = "institutions";
 }
