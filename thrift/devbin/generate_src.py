@@ -25,6 +25,7 @@ from thryft.generators.java.json_rpc_servlet_java_generator import JsonRpcServle
 from thryft.generators.java.logging_service_java_generator import LoggingServiceJavaGenerator
 from thryft.generators.java.properties_java_generator import PropertiesJavaGenerator
 from thryft.generators.java.validating_service_java_generator import ValidatingServiceJavaGenerator
+from thryft.generators.lint.lint_generator import LintGenerator
 from thryft.generators.py.properties_py_generator import PropertiesPyGenerator
 from thryft.generators.py.json_rpc_client_py_generator import JsonRpcClientPyGenerator
 from thryft.generators.py.py_generator import PyGenerator
@@ -114,7 +115,10 @@ class Main(thryft.main.Main):
                         'thrift_file_path': thrift_file_path
                     }
 
-                    self._compile_thrift_file(generator=None, out=None, **compile_kwds)
+                    self._compile_thrift_file(
+                        generator=LintGenerator(),
+                        **compile_kwds
+                    )
 
                     if pass_i == 0:
                         continue
