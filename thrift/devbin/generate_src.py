@@ -78,7 +78,6 @@ class Main(thryft.main.Main):
              os.path.join(ROOT_DIR_PATH, 'java', 'server', 'src', 'gen', 'java', 'net'),
              os.path.join(ROOT_DIR_PATH, 'py', 'src', 'dressdiscover', 'api'),
              os.path.join(ROOT_DIR_PATH, 'py', 'src', 'dressdiscover', 'client'),
-             os.path.join(ROOT_DIR_PATH, 'py', 'src', 'thryft'),
              os.path.join(ROOT_DIR_PATH, 'sql'),
         ):
             if os.path.isdir(dir_path):
@@ -93,12 +92,6 @@ class Main(thryft.main.Main):
             # and avoids generating code when there's a compilation error
             if pass_i == 1:
                 self._clean()
-
-                # Copy thryft/lib/py to py/src
-                shutil.copytree(
-                    os.path.join(THRYFT_ROOT_DIR_PATH, 'lib', 'py', 'src', 'thryft'),
-                    os.path.join(ROOT_DIR_PATH, 'py', 'src', 'thryft')
-                )
 
             for thrift_subdir_name in ('api', 'gui', 'lib', 'server'):
                 thrift_src_dir_path = os.path.join(thrift_src_root_dir_path, 'dressdiscover', thrift_subdir_name)

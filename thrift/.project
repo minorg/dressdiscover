@@ -3,6 +3,7 @@
 	<name>dressdiscover-thrift</name>
 	<comment></comment>
 	<projects>
+		<project>thryft-compiler</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
