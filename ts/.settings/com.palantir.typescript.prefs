@@ -1,0 +1,5 @@
+build.path.exportedFolder=
+build.path.sourceFolder=app,typings
+compiler.outputDirOption=public
+compiler.outputFileOption=
+eclipse.preferences.version=1
