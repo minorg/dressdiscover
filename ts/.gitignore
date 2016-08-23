@@ -1,15 +1,9 @@
-# Numerous always-ignore extensions
-*.diff
-*.err
-*.orig
-*.log
-*.rej
-*.swo
-*.swp
-*.vi
-*~
-*.sass-cache
-
-node_modules/
-public/
-typings/
+/ts.csproj
+/ts.csproj.user
+/ts.sln
+/bin/
+/obj/
+/web.config
+/web.Debug.config
+/web.Release.config
+/.vs/
