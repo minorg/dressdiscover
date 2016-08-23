@@ -1,11 +1,16 @@
-'use strict';
-
+/// <binding AfterBuild='Run - Development' />
+require('es6-promise').polyfill();
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = {
+  devServer: {
+      contentBase: "public",
+      host: "localhost",
+      port: 9000
+  },
   devtool: 'source-map',
   entry: {
     app: ['./src/app.ts']

@@ -13,14 +13,15 @@
     "jquery": "~1.12.2",
     "underscore": "^1.8.3"
   },
- "devDependencies": {
+  "devDependencies": {
     "copy-webpack-plugin": "^1.1.1",
     "css-loader": "^0.23.1",
+    "es6-promise": "^3.2.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "style-loader": "^0.13.1",
     "stylus-loader": "^2.0.0",
-	"ts-loader": "^0.7.2",
-	"typescript": "^1.7.5",
+    "ts-loader": "^0.7.2",
+    "typescript": "^1.7.5",
     "webpack": "^1.12.15"
- }
+  }
 }
