@@ -12,5 +12,15 @@
     "backbone.marionette": "git://github.com/marionettejs/backbone.marionette#v3.0.0-pre.5",
     "jquery": "~1.12.2",
     "underscore": "^1.8.3"
-  }
+  },
+ "devDependencies": {
+    "copy-webpack-plugin": "^1.1.1",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "style-loader": "^0.13.1",
+    "stylus-loader": "^2.0.0",
+	"ts-loader": "^0.7.2",
+	"typescript": "^1.7.5",
+    "webpack": "^1.12.15"
+ }
 }
