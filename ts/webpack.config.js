@@ -8,7 +8,7 @@ const path = require('path');
 module.exports = {
   devtool: 'source-map',
   entry: {
-    app: ['./app/app.ts']
+    app: ['./src/app.ts']
   },
   module: {
     loaders: [
@@ -29,9 +29,9 @@ module.exports = {
     publicPath: '/public'
   },
   plugins: [
-    new ExtractTextPlugin('app.css'),
+    new ExtractTextPlugin('./src/css/app.css'),
     new CopyWebpackPlugin([{
-      from: './app/assets/index.html',
+      from: './src/index.html',
       to: './index.html'
     }]),
     new webpack.ProvidePlugin({
