@@ -318,11 +318,6 @@ public interface UserCommandService {
                 return hashCode;
             }
 
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
             public static DeleteUserBookmarkByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
             }
@@ -562,11 +557,6 @@ public interface UserCommandService {
             public int hashCode() {
                 int hashCode = 17;
                 return hashCode;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return true;
             }
 
             public static DeleteUserBookmarkByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -943,11 +933,6 @@ public interface UserCommandService {
                 return hashCode;
             }
 
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
             public static DeleteUserByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
             }
@@ -1189,11 +1174,6 @@ public interface UserCommandService {
                 return hashCode;
             }
 
-            @Override
-            public boolean isEmpty() {
-                return true;
-            }
-
             public static DeleteUserByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
             }
@@ -1405,11 +1385,6 @@ public interface UserCommandService {
                 return hashCode;
             }
 
-            @Override
-            public boolean isEmpty() {
-                return true;
-            }
-
             public static DeleteUsersRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
             }
@@ -1619,11 +1594,6 @@ public interface UserCommandService {
             public int hashCode() {
                 int hashCode = 17;
                 return hashCode;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return true;
             }
 
             public static DeleteUsersResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -1990,11 +1960,6 @@ public interface UserCommandService {
                 int hashCode = 17;
                 hashCode = 31 * hashCode + getUser().hashCode();
                 return hashCode;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
             }
 
             public static PostUserRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -2393,11 +2358,6 @@ public interface UserCommandService {
                 return hashCode;
             }
 
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
             public static PostUserResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
             }
@@ -2794,11 +2754,6 @@ public interface UserCommandService {
                 return hashCode;
             }
 
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
             public static PostUserBookmarkRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
             }
@@ -3193,11 +3148,6 @@ public interface UserCommandService {
                 int hashCode = 17;
                 hashCode = 31 * hashCode + getReturnValue().hashCode();
                 return hashCode;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
             }
 
             public static PostUserBookmarkResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -3640,11 +3590,6 @@ public interface UserCommandService {
                 return hashCode;
             }
 
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
             public static PutUserRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
             }
@@ -3903,11 +3848,6 @@ public interface UserCommandService {
             public int hashCode() {
                 int hashCode = 17;
                 return hashCode;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return true;
             }
 
             public static PutUserResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {

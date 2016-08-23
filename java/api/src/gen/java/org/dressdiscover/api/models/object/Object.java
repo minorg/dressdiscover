@@ -1833,11 +1833,6 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
     public static Object readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
         return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
     }

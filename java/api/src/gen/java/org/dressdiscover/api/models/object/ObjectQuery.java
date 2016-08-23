@@ -739,7 +739,7 @@ public class ObjectQuery implements org.thryft.Struct {
      */
     public ObjectQuery(final @javax.annotation.Nullable org.dressdiscover.api.models.collection.CollectionId collectionId, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectFacetFilters facetFilters, final @javax.annotation.Nullable Boolean includeHidden, final @javax.annotation.Nullable org.dressdiscover.api.models.institution.InstitutionId institutionId, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectId moreLikeObjectId, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> objectIds, final @javax.annotation.Nullable String queryString, final @javax.annotation.Nullable String relationText, final @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>> structureTexts, final @javax.annotation.Nullable String workTypeText) {
         this.collectionId = com.google.common.base.Optional.fromNullable(collectionId);
-        this.facetFilters = org.thryft.Preconditions.checkOptionalCompoundTypeNotEmpty(com.google.common.base.Optional.fromNullable(facetFilters), "org.dressdiscover.api.models.object.ObjectQuery: facetFilters is empty");
+        this.facetFilters = com.google.common.base.Optional.fromNullable(facetFilters);
         this.includeHidden = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(includeHidden), "org.dressdiscover.api.models.object.ObjectQuery: includeHidden must be true");
         this.institutionId = com.google.common.base.Optional.fromNullable(institutionId);
         this.moreLikeObjectId = com.google.common.base.Optional.fromNullable(moreLikeObjectId);
@@ -755,7 +755,7 @@ public class ObjectQuery implements org.thryft.Struct {
      */
     public ObjectQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters, final com.google.common.base.Optional<Boolean> includeHidden, final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds, final com.google.common.base.Optional<String> queryString, final com.google.common.base.Optional<String> relationText, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts, final com.google.common.base.Optional<String> workTypeText) {
         this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.ObjectQuery: missing collectionId");
-        this.facetFilters = org.thryft.Preconditions.checkOptionalCompoundTypeNotEmpty(com.google.common.base.Preconditions.checkNotNull(facetFilters, "org.dressdiscover.api.models.object.ObjectQuery: missing facetFilters"), "org.dressdiscover.api.models.object.ObjectQuery: facetFilters is empty");
+        this.facetFilters = com.google.common.base.Preconditions.checkNotNull(facetFilters, "org.dressdiscover.api.models.object.ObjectQuery: missing facetFilters");
         this.includeHidden = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(includeHidden, "org.dressdiscover.api.models.object.ObjectQuery: missing includeHidden"), "org.dressdiscover.api.models.object.ObjectQuery: includeHidden must be true");
         this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.ObjectQuery: missing institutionId");
         this.moreLikeObjectId = com.google.common.base.Preconditions.checkNotNull(moreLikeObjectId, "org.dressdiscover.api.models.object.ObjectQuery: missing moreLikeObjectId");
@@ -907,11 +907,6 @@ public class ObjectQuery implements org.thryft.Struct {
             hashCode = 31 * hashCode + getWorkTypeText().get().hashCode();
         }
         return hashCode;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return !getCollectionId().isPresent() && !getFacetFilters().isPresent() && !getIncludeHidden().isPresent() && !getInstitutionId().isPresent() && !getMoreLikeObjectId().isPresent() && !getObjectIds().isPresent() && !getQueryString().isPresent() && !getRelationText().isPresent() && !getStructureTexts().isPresent() && !getWorkTypeText().isPresent();
     }
 
     public static ObjectQuery readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {

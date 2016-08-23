@@ -315,11 +315,6 @@ public interface CollectionCommandService {
                 return hashCode;
             }
 
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
             public static DeleteCollectionByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
             }
@@ -559,11 +554,6 @@ public interface CollectionCommandService {
             public int hashCode() {
                 int hashCode = 17;
                 return hashCode;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return true;
             }
 
             public static DeleteCollectionByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -940,11 +930,6 @@ public interface CollectionCommandService {
                 return hashCode;
             }
 
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
             public static DeleteCollectionsByInstitutionIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
             }
@@ -1184,11 +1169,6 @@ public interface CollectionCommandService {
             public int hashCode() {
                 int hashCode = 17;
                 return hashCode;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return true;
             }
 
             public static DeleteCollectionsByInstitutionIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -1601,11 +1581,6 @@ public interface CollectionCommandService {
                 return hashCode;
             }
 
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
             public static PutCollectionRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
             }
@@ -1864,11 +1839,6 @@ public interface CollectionCommandService {
             public int hashCode() {
                 int hashCode = 17;
                 return hashCode;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return true;
             }
 
             public static PutCollectionResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {

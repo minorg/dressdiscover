@@ -447,11 +447,6 @@ public class ObjectFacetFiltersBean implements org.thryft.StructBean {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return getExcludeAll() == null && getExcludeCategories() == null && getExcludeCollections() == null && getExcludeColorTexts() == null && getExcludeCulturalContextTexts() == null && getExcludeGenders() == null && getExcludeInstitutions() == null && getExcludeLocationNameTexts() == null && getExcludeMaterialTexts() == null && getExcludeSubjectTermTexts() == null && getExcludeTechniqueTexts() == null && getExcludeWorkTypeTexts() == null && getIncludeCategories() == null && getIncludeCollections() == null && getIncludeColorTexts() == null && getIncludeCulturalContextTexts() == null && getIncludeGenders() == null && getIncludeInstitutions() == null && getIncludeLocationNameTexts() == null && getIncludeMaterialTexts() == null && getIncludeSubjectTermTexts() == null && getIncludeTechniqueTexts() == null && getIncludeWorkTypeTexts() == null;
-    }
-
     public void setExcludeAll(final Boolean excludeAll) {
         this.excludeAll = excludeAll;
     }

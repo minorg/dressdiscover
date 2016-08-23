@@ -378,11 +378,6 @@ public interface UserQueryService {
                 return hashCode;
             }
 
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
             public static GetUserBookmarksByUserIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
             }
@@ -841,11 +836,6 @@ public interface UserQueryService {
                 return hashCode;
             }
 
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
             public static GetUserBookmarksByUserIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
             }
@@ -1272,11 +1262,6 @@ public interface UserQueryService {
                 return hashCode;
             }
 
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
             public static GetUserByEmailAddressRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
             }
@@ -1663,11 +1648,6 @@ public interface UserQueryService {
                 int hashCode = 17;
                 hashCode = 31 * hashCode + getReturnValue().hashCode();
                 return hashCode;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
             }
 
             public static GetUserByEmailAddressResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -2066,11 +2046,6 @@ public interface UserQueryService {
                 return hashCode;
             }
 
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
             public static GetUserByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
                 return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
             }
@@ -2465,11 +2440,6 @@ public interface UserQueryService {
                 int hashCode = 17;
                 hashCode = 31 * hashCode + getReturnValue().hashCode();
                 return hashCode;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
             }
 
             public static GetUserByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {

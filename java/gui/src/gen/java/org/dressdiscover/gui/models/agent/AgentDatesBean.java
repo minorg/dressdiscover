@@ -168,11 +168,6 @@ public class AgentDatesBean implements org.thryft.StructBean {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
     public void setEarliestDate(final java.util.Date earliestDate) {
         this.earliestDate = earliestDate;
     }

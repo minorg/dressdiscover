@@ -520,11 +520,6 @@ public class Image implements org.thryft.Struct {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return !getFullSize().isPresent() && !getOriginal().isPresent() && !getRights().isPresent() && !getSquareThumbnail().isPresent() && !getThumbnail().isPresent();
-    }
-
     public static Image readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
         return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
     }

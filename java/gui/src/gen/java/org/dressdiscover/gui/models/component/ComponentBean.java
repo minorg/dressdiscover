@@ -154,11 +154,6 @@ public class ComponentBean implements org.thryft.StructBean {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
     public void setStructures(final org.dressdiscover.gui.models.structure.StructureSetBean structures) {
         this.structures = structures;
     }

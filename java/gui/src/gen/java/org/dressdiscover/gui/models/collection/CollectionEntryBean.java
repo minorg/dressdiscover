@@ -149,11 +149,6 @@ public class CollectionEntryBean implements org.thryft.StructBean {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
     public void setId(final org.dressdiscover.api.models.collection.CollectionId id) {
         this.id = id;
     }

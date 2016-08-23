@@ -502,11 +502,6 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
     public static UserBookmark readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
         return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
     }

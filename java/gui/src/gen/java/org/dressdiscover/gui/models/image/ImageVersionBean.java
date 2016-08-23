@@ -165,11 +165,6 @@ public class ImageVersionBean implements org.thryft.StructBean {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
     public void setHeightPx(final com.google.common.primitives.UnsignedInteger heightPx) {
         this.heightPx = heightPx;
     }

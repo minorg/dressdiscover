@@ -194,11 +194,6 @@ public class RightsBean implements org.thryft.StructBean {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
     public void setLicenseVocabRef(final org.dressdiscover.gui.models.VocabRefBean licenseVocabRef) {
         this.licenseVocabRef = licenseVocabRef;
     }

@@ -399,11 +399,6 @@ public class AgentName implements org.thryft.Struct {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
     public static AgentName readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
         return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
     }

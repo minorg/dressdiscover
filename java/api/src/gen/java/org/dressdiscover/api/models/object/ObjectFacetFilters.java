@@ -2233,11 +2233,6 @@ public class ObjectFacetFilters implements org.thryft.Struct {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return !getExcludeAll().isPresent() && !getExcludeCategories().isPresent() && !getExcludeCollections().isPresent() && !getExcludeColorTexts().isPresent() && !getExcludeCulturalContextTexts().isPresent() && !getExcludeGenders().isPresent() && !getExcludeInstitutions().isPresent() && !getExcludeLocationNameTexts().isPresent() && !getExcludeMaterialTexts().isPresent() && !getExcludeSubjectTermTexts().isPresent() && !getExcludeTechniqueTexts().isPresent() && !getExcludeWorkTypeTexts().isPresent() && !getIncludeCategories().isPresent() && !getIncludeCollections().isPresent() && !getIncludeColorTexts().isPresent() && !getIncludeCulturalContextTexts().isPresent() && !getIncludeGenders().isPresent() && !getIncludeInstitutions().isPresent() && !getIncludeLocationNameTexts().isPresent() && !getIncludeMaterialTexts().isPresent() && !getIncludeSubjectTermTexts().isPresent() && !getIncludeTechniqueTexts().isPresent() && !getIncludeWorkTypeTexts().isPresent();
-    }
-
     public static ObjectFacetFilters readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
         return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
     }

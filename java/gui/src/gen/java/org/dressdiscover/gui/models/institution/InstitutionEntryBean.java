@@ -149,11 +149,6 @@ public class InstitutionEntryBean implements org.thryft.StructBean {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
     public void setId(final org.dressdiscover.api.models.institution.InstitutionId id) {
         this.id = id;
     }

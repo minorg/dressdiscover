@@ -10,7 +10,6 @@ include "dressdiscover/api/models/object/object_facet_filters.thrift"
 struct ObjectQuery {
 	optional collection_id.CollectionId collection_id;
 
-	// @validation {"minLength": 1}
 	optional object_facet_filters.ObjectFacetFilters facet_filters;
 
 	// @validation {"acceptance": true}

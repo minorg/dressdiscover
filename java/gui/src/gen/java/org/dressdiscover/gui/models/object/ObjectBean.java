@@ -537,11 +537,6 @@ public class ObjectBean implements org.thryft.StructBean {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
     public void setAgents(final org.dressdiscover.gui.models.agent.AgentSetBean agents) {
         this.agents = agents;
     }

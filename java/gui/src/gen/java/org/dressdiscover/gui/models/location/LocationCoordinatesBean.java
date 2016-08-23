@@ -149,11 +149,6 @@ public class LocationCoordinatesBean implements org.thryft.StructBean {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
     public void setLatitude(final java.math.BigDecimal latitude) {
         this.latitude = latitude;
     }

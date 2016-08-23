@@ -191,11 +191,6 @@ public class UserBookmarkBean implements org.thryft.StructBean {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
     public void setFolder(final String folder) {
         this.folder = folder;
     }

@@ -149,11 +149,6 @@ public class UserEntryBean implements org.thryft.StructBean {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
     public void setId(final org.dressdiscover.api.models.user.UserId id) {
         this.id = id;
     }

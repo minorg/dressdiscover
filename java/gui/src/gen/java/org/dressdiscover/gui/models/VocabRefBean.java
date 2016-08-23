@@ -165,11 +165,6 @@ public class VocabRefBean implements org.thryft.StructBean {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
     public void setRefid(final String refid) {
         this.refid = refid;
     }

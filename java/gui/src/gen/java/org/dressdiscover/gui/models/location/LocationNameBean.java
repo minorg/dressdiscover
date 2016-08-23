@@ -180,11 +180,6 @@ public class LocationNameBean implements org.thryft.StructBean {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
     public void setExtent(final String extent) {
         this.extent = extent;
     }

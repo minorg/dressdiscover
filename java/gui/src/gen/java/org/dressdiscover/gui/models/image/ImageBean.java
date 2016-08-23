@@ -195,11 +195,6 @@ public class ImageBean implements org.thryft.StructBean {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return getFullSize() == null && getOriginal() == null && getRights() == null && getSquareThumbnail() == null && getThumbnail() == null;
-    }
-
     public void setFullSize(final org.dressdiscover.gui.models.image.ImageVersionBean fullSize) {
         this.fullSize = fullSize;
     }

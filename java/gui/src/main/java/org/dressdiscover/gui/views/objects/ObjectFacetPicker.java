@@ -9,6 +9,10 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.dressdiscover.api.models.object.ObjectFacetFilters;
+import org.dressdiscover.api.models.object.ObjectFacets;
+import org.dressdiscover.api.models.object.ObjectQuery;
+import org.dressdiscover.api.services.object.ObjectSummaryQueryService;
 import org.thryft.waf.gui.EventBus;
 import org.vaadin.viritin.components.DisclosurePanel;
 
@@ -22,11 +26,6 @@ import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
-
-import org.dressdiscover.api.models.object.ObjectFacetFilters;
-import org.dressdiscover.api.models.object.ObjectFacets;
-import org.dressdiscover.api.models.object.ObjectQuery;
-import org.dressdiscover.api.services.object.ObjectSummaryQueryService;
 
 @SuppressWarnings("serial")
 class ObjectFacetPicker<KeyT> extends CustomComponent {
@@ -227,21 +226,25 @@ class ObjectFacetPicker<KeyT> extends CustomComponent {
     private void __refresh() {
         final ObjectFacetFilters.Builder filtersBuilder = ObjectFacetFilters.builder(objectQuery.getFacetFilters())
                 .unsetExcludeAll();
+        boolean haveFilters = false;
 
         if (excludeAll) {
             filtersBuilder.setExcludeAll(true);
+            haveFilters = true;
         } else {
             filtersBuilder.unsetExcludeAll();
         }
 
         if (!excludeFacetKeys.isEmpty() && !excludeAll) {
             filtersBuilder.set("exclude_" + field.getThriftName(), ImmutableSet.copyOf(excludeFacetKeys));
+            haveFilters = true;
         } else {
             filtersBuilder.unset("exclude_" + field.getThriftName());
         }
 
         if (!includeFacetKeys.isEmpty() && !excludeAll) {
             filtersBuilder.set("include_" + field.getThriftName(), ImmutableSet.copyOf(includeFacetKeys));
+            haveFilters = true;
         } else {
             filtersBuilder.unset("include_" + field.getThriftName());
         }
@@ -249,7 +252,7 @@ class ObjectFacetPicker<KeyT> extends CustomComponent {
         final ObjectFacetFilters filters = filtersBuilder.build();
 
         final ObjectQuery.Builder queryBuilder = ObjectQuery.builder(objectQuery);
-        if (!filters.isEmpty()) {
+        if (haveFilters) {
             queryBuilder.setFacetFilters(filters);
         } else {
             queryBuilder.unsetFacetFilters();

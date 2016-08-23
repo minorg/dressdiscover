@@ -510,11 +510,6 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return !getFrom().isPresent() && !getIncludeFacets().isPresent() && !getSize().isPresent() && !getSorts().isPresent();
-    }
-
     public static GetObjectSummariesOptions readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
         return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
     }

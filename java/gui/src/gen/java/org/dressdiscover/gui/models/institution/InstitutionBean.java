@@ -235,11 +235,6 @@ public class InstitutionBean implements org.thryft.StructBean {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
     public void setCollectionStoreUri(final org.thryft.native_.Uri collectionStoreUri) {
         this.collectionStoreUri = collectionStoreUri;
     }

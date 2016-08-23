@@ -149,11 +149,6 @@ public class SubjectBean implements org.thryft.StructBean {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
     public void setTerms(final java.util.List<org.dressdiscover.gui.models.subject.SubjectTermBean> terms) {
         this.terms = terms;
     }

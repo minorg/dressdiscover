@@ -277,11 +277,6 @@ public class ObjectQueryBean implements org.thryft.StructBean {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return getCollectionId() == null && getFacetFilters() == null && getIncludeHidden() == null && getInstitutionId() == null && getMoreLikeObjectId() == null && getObjectIds() == null && getQueryString() == null && getRelationText() == null && getStructureTexts() == null && getWorkTypeText() == null;
-    }
-
     public void setCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
         this.collectionId = collectionId;
     }

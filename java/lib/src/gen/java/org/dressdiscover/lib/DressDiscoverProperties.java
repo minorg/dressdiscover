@@ -819,11 +819,6 @@ public class DressDiscoverProperties implements org.thryft.Struct, org.thryft.wa
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
 
     public static DressDiscoverProperties load() {
         return load(com.google.common.base.Optional.<java.io.File> absent());

@@ -192,11 +192,6 @@ public class DateBean implements org.thryft.StructBean {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
     public void setEarliestDate(final org.dressdiscover.gui.models.date.DateBoundBean earliestDate) {
         this.earliestDate = earliestDate;
     }

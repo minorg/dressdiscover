@@ -200,11 +200,6 @@ public class LocationBean implements org.thryft.StructBean {
         return hashCode;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
     public void setCoordinates(final org.dressdiscover.gui.models.location.LocationCoordinatesBean coordinates) {
         this.coordinates = coordinates;
     }
