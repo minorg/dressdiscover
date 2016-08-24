@@ -1,4 +1,4 @@
-/// <binding AfterBuild='Run - Development' />
+/// <binding AfterBuild='Watch - Development' />
 require('es6-promise').polyfill();
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -29,7 +29,7 @@ module.exports = {
     ]
   },
   output: {
-    filename: 'app.js',
+    filename: 'app.bundle.js',
     path: path.join(__dirname, './public'),
     publicPath: '/public'
   },
