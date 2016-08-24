@@ -87,6 +87,11 @@
 			<artifactId>dressdiscover-lib</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlet</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>
 		<dependency>
 			<groupId>org.thryft</groupId>
 			<artifactId>thryft-waf-server</artifactId>

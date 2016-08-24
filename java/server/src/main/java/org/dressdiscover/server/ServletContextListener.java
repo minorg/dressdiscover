@@ -4,7 +4,6 @@ import static com.google.common.base.Preconditions.checkState;
 
 import javax.servlet.ServletContextEvent;
 
-import org.dressdiscover.gui.GuiModule;
 import org.dressdiscover.lib.DressDiscoverProperties;
 import org.dressdiscover.lib.python.PythonInterpreterFactory;
 import org.dressdiscover.lib.services.ServicesModule;
@@ -37,8 +36,9 @@ public final class ServletContextListener extends AbstractServletContextListener
         if (injector == null) {
             injector = Guice.createInjector(
                     // Order is important
-                    new PropertiesModule<DressDiscoverProperties>(properties), new ServerControllersModule(),
-                    new ServicesModule(properties), new GuiModule(properties));
+                    new PropertiesModule<>(properties), new ServerControllersModule(properties),
+                    new ServicesModule(properties));// , new
+                                                    // GuiModule(properties));
         }
         return injector;
     }

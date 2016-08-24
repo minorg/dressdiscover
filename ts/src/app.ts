@@ -6,8 +6,7 @@ import $ = require("jquery");
 //import UserModel = require("./model/UserModel");
 
 $(() => {
-    alert("Hello world");
-    var body = $("content");
-    body.html('');
+    var body = $("#content");
+    body.html("whatever");
     //body.append(new UserView({ model: new UserModel() }).render().$el);
 });

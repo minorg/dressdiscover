@@ -2,12 +2,11 @@ package org.dressdiscover.server.controllers;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.io.File;
+
 import javax.servlet.ServletContext;
 
-import org.thryft.waf.server.controllers.LocalhostFilter;
-
-import com.google.inject.servlet.ServletModule;
-
+import org.dressdiscover.lib.DressDiscoverProperties;
 import org.dressdiscover.server.controllers.collection.CollectionCommandServiceJsonRpcServlet;
 import org.dressdiscover.server.controllers.collection.CollectionQueryServiceJsonRpcServlet;
 import org.dressdiscover.server.controllers.institution.InstitutionCommandServiceJsonRpcServlet;
@@ -16,6 +15,11 @@ import org.dressdiscover.server.controllers.login.OauthLoginController;
 import org.dressdiscover.server.controllers.object.ObjectCommandServiceJsonRpcServlet;
 import org.dressdiscover.server.controllers.object.ObjectQueryServiceJsonRpcServlet;
 import org.dressdiscover.server.security.ServerRealm;
+import org.eclipse.jetty.servlet.DefaultServlet;
+import org.thryft.waf.server.controllers.LocalhostFilter;
+
+import com.google.common.collect.ImmutableMap;
+import com.google.inject.servlet.ServletModule;
 
 public final class ServerControllersModule extends ServletModule {
     private final static class JsonRpcControllersModule extends ServletModule {
@@ -43,6 +47,10 @@ public final class ServerControllersModule extends ServletModule {
         }
     }
 
+    public ServerControllersModule(final DressDiscoverProperties properties) {
+        this.properties = checkNotNull(properties);
+    }
+
     @Override
     protected void configureServlets() {
         install(new JsonRpcControllersModule());
@@ -51,5 +59,12 @@ public final class ServerControllersModule extends ServletModule {
 
         install(new ShiroWebModule(checkNotNull(getServletContext())));
         org.apache.shiro.guice.web.ShiroWebModule.bindGuiceFilter(binder());
+
+        // Must be last
+        bind(DefaultServlet.class).asEagerSingleton();
+        serve("/*").with(DefaultServlet.class, ImmutableMap.of("dirAllowed", "false", "redirectWelcome", "true",
+                "resourceBase", new File(new File(properties.getHomeDirectoryPath(), "ts"), "public").toString()));
     }
+
+    private final DressDiscoverProperties properties;
 }
