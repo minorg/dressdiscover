@@ -859,7 +859,7 @@ public interface CollectionQueryService {
                                     try {
                                         sequenceBuilder.add(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
                                     } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                 }
                                 iprot.readListEnd();
@@ -896,7 +896,7 @@ public interface CollectionQueryService {
                                             try {
                                                 sequenceBuilder.add(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
                                             } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
                                             }
                                         }
                                         iprot.readListEnd();
@@ -1167,7 +1167,7 @@ public interface CollectionQueryService {
                                 try {
                                     sequenceBuilder.add(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
                                 } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                     throw new org.thryft.protocol.InputProtocolException(e);
                                 }
                             }
                             iprot.readListEnd();
@@ -1210,7 +1210,7 @@ public interface CollectionQueryService {
                                         try {
                                             sequenceBuilder.add(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
                                         } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                             throw new org.thryft.protocol.InputProtocolException(e);
                                         }
                                     }
                                     iprot.readListEnd();

@@ -92,6 +92,7 @@ public class Agent implements org.thryft.Struct, org.dressdiscover.api.models.El
                         }
                     }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw (org.thryft.protocol.InputProtocolException)e.getCause();
                 }
             }
             if (__list.getSize() > 4) {
@@ -151,6 +152,7 @@ public class Agent implements org.thryft.Struct, org.dressdiscover.api.models.El
                                 }
                             }).apply(iprot));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw (org.thryft.protocol.InputProtocolException)e.getCause();
                         }
                     }
                     break;
@@ -598,6 +600,7 @@ public class Agent implements org.thryft.Struct, org.dressdiscover.api.models.El
                     }
                 }).apply(iprot));
             } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw (org.thryft.protocol.InputProtocolException)e.getCause();
             }
         }
         if (__list.getSize() > 4) {
@@ -667,6 +670,7 @@ public class Agent implements org.thryft.Struct, org.dressdiscover.api.models.El
                             }
                         }).apply(iprot));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw (org.thryft.protocol.InputProtocolException)e.getCause();
                     }
                 }
                 break;

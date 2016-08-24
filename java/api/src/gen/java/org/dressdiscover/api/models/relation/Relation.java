@@ -79,7 +79,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
                                     try {
                                         sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
                                     } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                 }
                                 iprot.readSetEnd();
@@ -90,6 +90,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
                         }
                     }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw (org.thryft.protocol.InputProtocolException)e.getCause();
                 }
             }
             if (__list.getSize() > 3) {
@@ -139,7 +140,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
                                             try {
                                                 sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
                                             } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
-                                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
                                             }
                                         }
                                         iprot.readSetEnd();
@@ -150,6 +151,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
                                 }
                             }).apply(iprot));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw (org.thryft.protocol.InputProtocolException)e.getCause();
                         }
                     }
                     break;
@@ -553,7 +555,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
                                 try {
                                     sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
                                 } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
-                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                     throw new org.thryft.protocol.InputProtocolException(e);
                                 }
                             }
                             iprot.readSetEnd();
@@ -564,6 +566,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
                     }
                 }).apply(iprot));
             } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw (org.thryft.protocol.InputProtocolException)e.getCause();
             }
         }
         if (__list.getSize() > 3) {
@@ -622,7 +625,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
                                         try {
                                             sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
                                         } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
-                                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                             throw new org.thryft.protocol.InputProtocolException(e);
                                         }
                                     }
                                     iprot.readSetEnd();
@@ -633,6 +636,7 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
                             }
                         }).apply(iprot));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw (org.thryft.protocol.InputProtocolException)e.getCause();
                     }
                 }
                 break;

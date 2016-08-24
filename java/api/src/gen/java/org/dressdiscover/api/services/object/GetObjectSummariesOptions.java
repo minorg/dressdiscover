@@ -91,6 +91,7 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
                         }
                     }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw (org.thryft.protocol.InputProtocolException)e.getCause();
                 }
             }
             iprot.readListEnd();
@@ -146,6 +147,7 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
                             }
                         }).apply(iprot));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw (org.thryft.protocol.InputProtocolException)e.getCause();
                     }
                     break;
                 }
@@ -566,6 +568,7 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
                     }
                 }).apply(iprot));
             } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw (org.thryft.protocol.InputProtocolException)e.getCause();
             }
         }
         iprot.readListEnd();
@@ -630,6 +633,7 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
                         }
                     }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw (org.thryft.protocol.InputProtocolException)e.getCause();
                 }
                 break;
             }

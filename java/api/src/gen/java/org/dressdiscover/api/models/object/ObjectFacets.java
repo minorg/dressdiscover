@@ -112,7 +112,7 @@ public class ObjectFacets implements org.thryft.Struct {
                             try {
                                 value = iprot.readU32();
                             } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             map.put(key, value);
                         }
@@ -134,13 +134,13 @@ public class ObjectFacets implements org.thryft.Struct {
                             try {
                                 key = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
                             } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             final com.google.common.primitives.UnsignedInteger value;
                             try {
                                 value = iprot.readU32();
                             } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             map.put(key, value);
                         }
@@ -164,7 +164,7 @@ public class ObjectFacets implements org.thryft.Struct {
                             try {
                                 value = iprot.readU32();
                             } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             map.put(key, value);
                         }
@@ -188,7 +188,7 @@ public class ObjectFacets implements org.thryft.Struct {
                             try {
                                 value = iprot.readU32();
                             } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             map.put(key, value);
                         }
@@ -210,13 +210,13 @@ public class ObjectFacets implements org.thryft.Struct {
                             try {
                                 key = iprot.readEnum(org.dressdiscover.api.models.gender.Gender.class);
                             } catch (final IllegalArgumentException e) {
-                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             final com.google.common.primitives.UnsignedInteger value;
                             try {
                                 value = iprot.readU32();
                             } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             map.put(key, value);
                         }
@@ -238,13 +238,13 @@ public class ObjectFacets implements org.thryft.Struct {
                             try {
                                 key = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
                             } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             final com.google.common.primitives.UnsignedInteger value;
                             try {
                                 value = iprot.readU32();
                             } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             map.put(key, value);
                         }
@@ -268,7 +268,7 @@ public class ObjectFacets implements org.thryft.Struct {
                             try {
                                 value = iprot.readU32();
                             } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             map.put(key, value);
                         }
@@ -292,7 +292,7 @@ public class ObjectFacets implements org.thryft.Struct {
                             try {
                                 value = iprot.readU32();
                             } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             map.put(key, value);
                         }
@@ -316,7 +316,7 @@ public class ObjectFacets implements org.thryft.Struct {
                             try {
                                 value = iprot.readU32();
                             } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             map.put(key, value);
                         }
@@ -340,7 +340,7 @@ public class ObjectFacets implements org.thryft.Struct {
                             try {
                                 value = iprot.readU32();
                             } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             map.put(key, value);
                         }
@@ -364,7 +364,7 @@ public class ObjectFacets implements org.thryft.Struct {
                             try {
                                 value = iprot.readU32();
                             } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                 throw new org.thryft.protocol.InputProtocolException(e);
                             }
                             map.put(key, value);
                         }
@@ -405,7 +405,7 @@ public class ObjectFacets implements org.thryft.Struct {
                                     try {
                                         value = iprot.readU32();
                                     } catch (final NumberFormatException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                     map.put(key, value);
                                 }
@@ -430,13 +430,13 @@ public class ObjectFacets implements org.thryft.Struct {
                                     try {
                                         key = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
                                     } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                     final com.google.common.primitives.UnsignedInteger value;
                                     try {
                                         value = iprot.readU32();
                                     } catch (final NumberFormatException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                     map.put(key, value);
                                 }
@@ -463,7 +463,7 @@ public class ObjectFacets implements org.thryft.Struct {
                                     try {
                                         value = iprot.readU32();
                                     } catch (final NumberFormatException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                     map.put(key, value);
                                 }
@@ -490,7 +490,7 @@ public class ObjectFacets implements org.thryft.Struct {
                                     try {
                                         value = iprot.readU32();
                                     } catch (final NumberFormatException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                     map.put(key, value);
                                 }
@@ -515,13 +515,13 @@ public class ObjectFacets implements org.thryft.Struct {
                                     try {
                                         key = iprot.readEnum(org.dressdiscover.api.models.gender.Gender.class);
                                     } catch (final IllegalArgumentException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                     final com.google.common.primitives.UnsignedInteger value;
                                     try {
                                         value = iprot.readU32();
                                     } catch (final NumberFormatException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                     map.put(key, value);
                                 }
@@ -546,13 +546,13 @@ public class ObjectFacets implements org.thryft.Struct {
                                     try {
                                         key = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
                                     } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                     final com.google.common.primitives.UnsignedInteger value;
                                     try {
                                         value = iprot.readU32();
                                     } catch (final NumberFormatException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                     map.put(key, value);
                                 }
@@ -579,7 +579,7 @@ public class ObjectFacets implements org.thryft.Struct {
                                     try {
                                         value = iprot.readU32();
                                     } catch (final NumberFormatException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                     map.put(key, value);
                                 }
@@ -606,7 +606,7 @@ public class ObjectFacets implements org.thryft.Struct {
                                     try {
                                         value = iprot.readU32();
                                     } catch (final NumberFormatException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                     map.put(key, value);
                                 }
@@ -633,7 +633,7 @@ public class ObjectFacets implements org.thryft.Struct {
                                     try {
                                         value = iprot.readU32();
                                     } catch (final NumberFormatException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                     map.put(key, value);
                                 }
@@ -660,7 +660,7 @@ public class ObjectFacets implements org.thryft.Struct {
                                     try {
                                         value = iprot.readU32();
                                     } catch (final NumberFormatException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                     map.put(key, value);
                                 }
@@ -687,7 +687,7 @@ public class ObjectFacets implements org.thryft.Struct {
                                     try {
                                         value = iprot.readU32();
                                     } catch (final NumberFormatException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                     map.put(key, value);
                                 }
@@ -1222,7 +1222,7 @@ public class ObjectFacets implements org.thryft.Struct {
                         try {
                             value = iprot.readU32();
                         } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         map.put(key, value);
                     }
@@ -1244,13 +1244,13 @@ public class ObjectFacets implements org.thryft.Struct {
                         try {
                             key = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
                         } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         final com.google.common.primitives.UnsignedInteger value;
                         try {
                             value = iprot.readU32();
                         } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         map.put(key, value);
                     }
@@ -1274,7 +1274,7 @@ public class ObjectFacets implements org.thryft.Struct {
                         try {
                             value = iprot.readU32();
                         } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         map.put(key, value);
                     }
@@ -1298,7 +1298,7 @@ public class ObjectFacets implements org.thryft.Struct {
                         try {
                             value = iprot.readU32();
                         } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         map.put(key, value);
                     }
@@ -1320,13 +1320,13 @@ public class ObjectFacets implements org.thryft.Struct {
                         try {
                             key = iprot.readEnum(org.dressdiscover.api.models.gender.Gender.class);
                         } catch (final IllegalArgumentException e) {
-                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         final com.google.common.primitives.UnsignedInteger value;
                         try {
                             value = iprot.readU32();
                         } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         map.put(key, value);
                     }
@@ -1348,13 +1348,13 @@ public class ObjectFacets implements org.thryft.Struct {
                         try {
                             key = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
                         } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         final com.google.common.primitives.UnsignedInteger value;
                         try {
                             value = iprot.readU32();
                         } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         map.put(key, value);
                     }
@@ -1378,7 +1378,7 @@ public class ObjectFacets implements org.thryft.Struct {
                         try {
                             value = iprot.readU32();
                         } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         map.put(key, value);
                     }
@@ -1402,7 +1402,7 @@ public class ObjectFacets implements org.thryft.Struct {
                         try {
                             value = iprot.readU32();
                         } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         map.put(key, value);
                     }
@@ -1426,7 +1426,7 @@ public class ObjectFacets implements org.thryft.Struct {
                         try {
                             value = iprot.readU32();
                         } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         map.put(key, value);
                     }
@@ -1450,7 +1450,7 @@ public class ObjectFacets implements org.thryft.Struct {
                         try {
                             value = iprot.readU32();
                         } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         map.put(key, value);
                     }
@@ -1474,7 +1474,7 @@ public class ObjectFacets implements org.thryft.Struct {
                         try {
                             value = iprot.readU32();
                         } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                             throw new org.thryft.protocol.InputProtocolException(e);
                         }
                         map.put(key, value);
                     }
@@ -1531,7 +1531,7 @@ public class ObjectFacets implements org.thryft.Struct {
                                 try {
                                     value = iprot.readU32();
                                 } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                     throw new org.thryft.protocol.InputProtocolException(e);
                                 }
                                 map.put(key, value);
                             }
@@ -1556,13 +1556,13 @@ public class ObjectFacets implements org.thryft.Struct {
                                 try {
                                     key = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
                                 } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                     throw new org.thryft.protocol.InputProtocolException(e);
                                 }
                                 final com.google.common.primitives.UnsignedInteger value;
                                 try {
                                     value = iprot.readU32();
                                 } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                     throw new org.thryft.protocol.InputProtocolException(e);
                                 }
                                 map.put(key, value);
                             }
@@ -1589,7 +1589,7 @@ public class ObjectFacets implements org.thryft.Struct {
                                 try {
                                     value = iprot.readU32();
                                 } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                     throw new org.thryft.protocol.InputProtocolException(e);
                                 }
                                 map.put(key, value);
                             }
@@ -1616,7 +1616,7 @@ public class ObjectFacets implements org.thryft.Struct {
                                 try {
                                     value = iprot.readU32();
                                 } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                     throw new org.thryft.protocol.InputProtocolException(e);
                                 }
                                 map.put(key, value);
                             }
@@ -1641,13 +1641,13 @@ public class ObjectFacets implements org.thryft.Struct {
                                 try {
                                     key = iprot.readEnum(org.dressdiscover.api.models.gender.Gender.class);
                                 } catch (final IllegalArgumentException e) {
-                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                     throw new org.thryft.protocol.InputProtocolException(e);
                                 }
                                 final com.google.common.primitives.UnsignedInteger value;
                                 try {
                                     value = iprot.readU32();
                                 } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                     throw new org.thryft.protocol.InputProtocolException(e);
                                 }
                                 map.put(key, value);
                             }
@@ -1672,13 +1672,13 @@ public class ObjectFacets implements org.thryft.Struct {
                                 try {
                                     key = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
                                 } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                     throw new org.thryft.protocol.InputProtocolException(e);
                                 }
                                 final com.google.common.primitives.UnsignedInteger value;
                                 try {
                                     value = iprot.readU32();
                                 } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                     throw new org.thryft.protocol.InputProtocolException(e);
                                 }
                                 map.put(key, value);
                             }
@@ -1705,7 +1705,7 @@ public class ObjectFacets implements org.thryft.Struct {
                                 try {
                                     value = iprot.readU32();
                                 } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                     throw new org.thryft.protocol.InputProtocolException(e);
                                 }
                                 map.put(key, value);
                             }
@@ -1732,7 +1732,7 @@ public class ObjectFacets implements org.thryft.Struct {
                                 try {
                                     value = iprot.readU32();
                                 } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                     throw new org.thryft.protocol.InputProtocolException(e);
                                 }
                                 map.put(key, value);
                             }
@@ -1759,7 +1759,7 @@ public class ObjectFacets implements org.thryft.Struct {
                                 try {
                                     value = iprot.readU32();
                                 } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                     throw new org.thryft.protocol.InputProtocolException(e);
                                 }
                                 map.put(key, value);
                             }
@@ -1786,7 +1786,7 @@ public class ObjectFacets implements org.thryft.Struct {
                                 try {
                                     value = iprot.readU32();
                                 } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                     throw new org.thryft.protocol.InputProtocolException(e);
                                 }
                                 map.put(key, value);
                             }
@@ -1813,7 +1813,7 @@ public class ObjectFacets implements org.thryft.Struct {
                                 try {
                                     value = iprot.readU32();
                                 } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                     throw new org.thryft.protocol.InputProtocolException(e);
                                 }
                                 map.put(key, value);
                             }

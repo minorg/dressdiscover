@@ -243,6 +243,7 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
                         }
                     }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw (org.thryft.protocol.InputProtocolException)e.getCause();
                 }
             }
             if (__list.getSize() > 5) {
@@ -297,6 +298,7 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
                         }
                     }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw (org.thryft.protocol.InputProtocolException)e.getCause();
                 }
             }
             if (__list.getSize() > 15) {
@@ -415,6 +417,7 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
                                 }
                             }).apply(iprot));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw (org.thryft.protocol.InputProtocolException)e.getCause();
                         }
                     }
                     break;
@@ -499,6 +502,7 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
                                 }
                             }).apply(iprot));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw (org.thryft.protocol.InputProtocolException)e.getCause();
                         }
                     }
                     break;
@@ -1913,6 +1917,7 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
                     }
                 }).apply(iprot));
             } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw (org.thryft.protocol.InputProtocolException)e.getCause();
             }
         }
         if (__list.getSize() > 5) {
@@ -1967,6 +1972,7 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
                     }
                 }).apply(iprot));
             } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw (org.thryft.protocol.InputProtocolException)e.getCause();
             }
         }
         if (__list.getSize() > 15) {
@@ -2119,6 +2125,7 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
                             }
                         }).apply(iprot));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw (org.thryft.protocol.InputProtocolException)e.getCause();
                     }
                 }
                 break;
@@ -2203,6 +2210,7 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
                             }
                         }).apply(iprot));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw (org.thryft.protocol.InputProtocolException)e.getCause();
                     }
                 }
                 break;

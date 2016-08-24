@@ -132,7 +132,7 @@ public class ObjectQuery implements org.thryft.Struct {
                                     try {
                                         sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
                                     } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                 }
                                 iprot.readSetEnd();
@@ -143,6 +143,7 @@ public class ObjectQuery implements org.thryft.Struct {
                         }
                     }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw (org.thryft.protocol.InputProtocolException)e.getCause();
                 }
             }
             if (__list.getSize() > 6) {
@@ -181,7 +182,7 @@ public class ObjectQuery implements org.thryft.Struct {
                                             }
                                         }).apply(iprot);
                                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                     map.put(key, value);
                                 }
@@ -193,6 +194,7 @@ public class ObjectQuery implements org.thryft.Struct {
                         }
                     }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw (org.thryft.protocol.InputProtocolException)e.getCause();
                 }
             }
             if (__list.getSize() > 9) {
@@ -255,7 +257,7 @@ public class ObjectQuery implements org.thryft.Struct {
                                         try {
                                             sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
                                         } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
-                                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                             throw new org.thryft.protocol.InputProtocolException(e);
                                         }
                                     }
                                     iprot.readSetEnd();
@@ -266,6 +268,7 @@ public class ObjectQuery implements org.thryft.Struct {
                             }
                         }).apply(iprot));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw (org.thryft.protocol.InputProtocolException)e.getCause();
                     }
                     break;
                 }
@@ -307,7 +310,7 @@ public class ObjectQuery implements org.thryft.Struct {
                                                 }
                                             }).apply(iprot);
                                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                             throw new org.thryft.protocol.InputProtocolException(e);
                                         }
                                         map.put(key, value);
                                     }
@@ -319,6 +322,7 @@ public class ObjectQuery implements org.thryft.Struct {
                             }
                         }).apply(iprot));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw (org.thryft.protocol.InputProtocolException)e.getCause();
                     }
                     break;
                 }
@@ -973,7 +977,7 @@ public class ObjectQuery implements org.thryft.Struct {
                                 try {
                                     sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
                                 } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
-                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                     throw new org.thryft.protocol.InputProtocolException(e);
                                 }
                             }
                             iprot.readSetEnd();
@@ -984,6 +988,7 @@ public class ObjectQuery implements org.thryft.Struct {
                     }
                 }).apply(iprot));
             } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw (org.thryft.protocol.InputProtocolException)e.getCause();
             }
         }
         if (__list.getSize() > 6) {
@@ -1022,7 +1027,7 @@ public class ObjectQuery implements org.thryft.Struct {
                                         }
                                     }).apply(iprot);
                                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                     throw new org.thryft.protocol.InputProtocolException(e);
                                 }
                                 map.put(key, value);
                             }
@@ -1034,6 +1039,7 @@ public class ObjectQuery implements org.thryft.Struct {
                     }
                 }).apply(iprot));
             } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw (org.thryft.protocol.InputProtocolException)e.getCause();
             }
         }
         if (__list.getSize() > 9) {
@@ -1111,7 +1117,7 @@ public class ObjectQuery implements org.thryft.Struct {
                                     try {
                                         sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
                                     } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                 }
                                 iprot.readSetEnd();
@@ -1122,6 +1128,7 @@ public class ObjectQuery implements org.thryft.Struct {
                         }
                     }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw (org.thryft.protocol.InputProtocolException)e.getCause();
                 }
                 break;
             }
@@ -1163,7 +1170,7 @@ public class ObjectQuery implements org.thryft.Struct {
                                             }
                                         }).apply(iprot);
                                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                     map.put(key, value);
                                 }
@@ -1175,6 +1182,7 @@ public class ObjectQuery implements org.thryft.Struct {
                         }
                     }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw (org.thryft.protocol.InputProtocolException)e.getCause();
                 }
                 break;
             }

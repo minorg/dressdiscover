@@ -1527,7 +1527,7 @@ public interface InstitutionQueryService {
                                     try {
                                         sequenceBuilder.add(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                                     } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                 }
                                 iprot.readListEnd();
@@ -1564,7 +1564,7 @@ public interface InstitutionQueryService {
                                             try {
                                                 sequenceBuilder.add(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                                             } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
                                             }
                                         }
                                         iprot.readListEnd();
@@ -1835,7 +1835,7 @@ public interface InstitutionQueryService {
                                 try {
                                     sequenceBuilder.add(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                                 } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                     throw new org.thryft.protocol.InputProtocolException(e);
                                 }
                             }
                             iprot.readListEnd();
@@ -1878,7 +1878,7 @@ public interface InstitutionQueryService {
                                         try {
                                             sequenceBuilder.add(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                                         } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                                             throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                             throw new org.thryft.protocol.InputProtocolException(e);
                                         }
                                     }
                                     iprot.readListEnd();
