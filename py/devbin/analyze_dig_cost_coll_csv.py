@@ -18,6 +18,7 @@ with open(csv_file_path, 'rb') as csv_file:
 
 # CountVectorizer takes a list of strings, tokenizes each string into words, removes stopwords,
 # and counts the words
+# c.f. https://peekaboo-vision.blogspot.com/2012/11/a-wordcloud-in-python.html
 count_vectorizer = CountVectorizer(min_df=0,
                          stop_words="english", max_features=200)
 count_vectorizer.fit_transform(descriptions)
