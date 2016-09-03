@@ -243,6 +243,35 @@ public class RelationSet implements org.thryft.Struct, org.dressdiscover.api.mod
         private com.google.common.base.Optional<String> notes;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<RelationSet> {
+        @Override
+        public RelationSet readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return RelationSet.readAs(iprot, type);
+        }
+
+        @Override
+        public RelationSet readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return RelationSet.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public RelationSet readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return RelationSet.readAsList(iprot);
+        }
+
+        @Override
+        public RelationSet readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return RelationSet.readAsStruct(iprot);
+        }
+
+        @Override
+        public RelationSet readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return RelationSet.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         ELEMENTS("elements", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.relation.Relation>>() {}, true, 1, "elements", org.thryft.protocol.Type.LIST),

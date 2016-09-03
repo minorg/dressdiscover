@@ -168,6 +168,35 @@ public class UserBookmarkEntry implements org.thryft.Struct, org.thryft.waf.api.
         private org.dressdiscover.api.models.user.UserBookmark model;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<UserBookmarkEntry> {
+        @Override
+        public UserBookmarkEntry readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return UserBookmarkEntry.readAs(iprot, type);
+        }
+
+        @Override
+        public UserBookmarkEntry readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return UserBookmarkEntry.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public UserBookmarkEntry readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return UserBookmarkEntry.readAsList(iprot);
+        }
+
+        @Override
+        public UserBookmarkEntry readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return UserBookmarkEntry.readAsStruct(iprot);
+        }
+
+        @Override
+        public UserBookmarkEntry readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return UserBookmarkEntry.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserBookmarkId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),

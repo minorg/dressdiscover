@@ -151,6 +151,35 @@ public class NoSuchCollectionException extends org.thryft.Exception {
         private com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> id;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<NoSuchCollectionException> {
+        @Override
+        public NoSuchCollectionException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return NoSuchCollectionException.readAs(iprot, type);
+        }
+
+        @Override
+        public NoSuchCollectionException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return NoSuchCollectionException.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public NoSuchCollectionException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return NoSuchCollectionException.readAsList(iprot);
+        }
+
+        @Override
+        public NoSuchCollectionException readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return NoSuchCollectionException.readAsStruct(iprot);
+        }
+
+        @Override
+        public NoSuchCollectionException readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return NoSuchCollectionException.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, false, 0, "id", org.thryft.protocol.Type.STRING);
 

@@ -2,47 +2,20 @@ package org.dressdiscover.gui.presenters.objects;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.dressdiscover.api.models.collection.CollectionId;
-import org.dressdiscover.api.models.institution.InstitutionId;
-import org.dressdiscover.api.models.object.ObjectId;
-import org.dressdiscover.api.models.user.UserBookmarkId;
-import org.dressdiscover.api.models.user.UserId;
-import org.dressdiscover.gui.models.object.ObjectSummaryEntryBeanQueryDefinition;
-import org.dressdiscover.gui.models.object.ObjectSummaryEntryBeanQueryFactory;
-import org.dressdiscover.gui.presenters.Presenter;
-import org.dressdiscover.gui.views.objects.ObjectsView;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Marker;
-import org.thryft.protocol.InputProtocolException;
-import org.thryft.protocol.JacksonJsonInputProtocol;
-import org.thryft.waf.gui.EventBus;
-import org.thryft.waf.lib.logging.LoggingUtils;
-import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
-
-import com.google.common.base.Charsets;
-import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.eventbus.Subscribe;
-import com.google.common.primitives.UnsignedInteger;
-import com.google.inject.Inject;
-import com.google.inject.servlet.SessionScoped;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.server.SystemError;
-import com.vaadin.server.UserError;
-
 import org.dressdiscover.api.models.collection.Collection;
+import org.dressdiscover.api.models.collection.CollectionId;
 import org.dressdiscover.api.models.institution.Institution;
+import org.dressdiscover.api.models.institution.InstitutionId;
 import org.dressdiscover.api.models.object.ObjectFacets;
+import org.dressdiscover.api.models.object.ObjectId;
 import org.dressdiscover.api.models.object.ObjectQuery;
 import org.dressdiscover.api.models.user.UserBookmarkEntry;
+import org.dressdiscover.api.models.user.UserBookmarkId;
 import org.dressdiscover.api.models.user.UserEntry;
+import org.dressdiscover.api.models.user.UserId;
 import org.dressdiscover.api.services.IoException;
 import org.dressdiscover.api.services.collection.CollectionQueryService;
 import org.dressdiscover.api.services.collection.NoSuchCollectionException;
@@ -56,6 +29,28 @@ import org.dressdiscover.api.services.user.UserCommandService;
 import org.dressdiscover.api.services.user.UserCommandService.Messages.DeleteUserBookmarkByIdRequest;
 import org.dressdiscover.api.services.user.UserCommandService.Messages.PostUserBookmarkRequest;
 import org.dressdiscover.api.services.user.UserQueryService;
+import org.dressdiscover.gui.models.object.ObjectSummaryEntryBeanQueryDefinition;
+import org.dressdiscover.gui.models.object.ObjectSummaryEntryBeanQueryFactory;
+import org.dressdiscover.gui.presenters.Presenter;
+import org.dressdiscover.gui.views.objects.ObjectsView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.thryft.protocol.InputProtocolException;
+import org.thryft.waf.gui.EventBus;
+import org.thryft.waf.lib.logging.LoggingUtils;
+import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
+
+import com.google.common.base.Optional;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.eventbus.Subscribe;
+import com.google.common.primitives.UnsignedInteger;
+import com.google.inject.Inject;
+import com.google.inject.servlet.SessionScoped;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.SystemError;
+import com.vaadin.server.UserError;
 
 @SessionScoped
 public class ObjectsPresenter extends Presenter<ObjectsView> {
@@ -91,9 +86,8 @@ public class ObjectsPresenter extends Presenter<ObjectsView> {
     protected void _onViewEnter(final Optional<UserEntry> currentUser, final ViewChangeEvent event) {
         final ObjectQuery objectQuery;
         try {
-            objectQuery = ObjectQuery.readAsStruct(
-                    new JacksonJsonInputProtocol(URLDecoder.decode(event.getParameters(), Charsets.UTF_8.toString())));
-        } catch (final InputProtocolException | UnsupportedEncodingException e) {
+            objectQuery = _fromUrlEncodedJsonString(event.getParameters(), new ObjectQuery.Factory());
+        } catch (final InputProtocolException e) {
             _getView().setComponentError(new UserError("invalid query " + event.getParameters()));
             return;
         }

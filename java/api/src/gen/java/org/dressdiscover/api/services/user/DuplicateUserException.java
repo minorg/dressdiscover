@@ -175,6 +175,35 @@ public class DuplicateUserException extends org.thryft.Exception {
         private org.dressdiscover.api.models.user.UserId userId;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<DuplicateUserException> {
+        @Override
+        public DuplicateUserException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return DuplicateUserException.readAs(iprot, type);
+        }
+
+        @Override
+        public DuplicateUserException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return DuplicateUserException.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public DuplicateUserException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return DuplicateUserException.readAsList(iprot);
+        }
+
+        @Override
+        public DuplicateUserException readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return DuplicateUserException.readAsStruct(iprot);
+        }
+
+        @Override
+        public DuplicateUserException readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return DuplicateUserException.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         CAUSE_MESSAGE("causeMessage", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "cause_message", org.thryft.protocol.Type.STRING),
         USER_ID("userId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, 0, "user_id", org.thryft.protocol.Type.STRING);

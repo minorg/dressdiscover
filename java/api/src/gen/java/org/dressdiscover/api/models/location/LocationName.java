@@ -239,6 +239,35 @@ public class LocationName implements org.thryft.Struct {
         private com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<LocationName> {
+        @Override
+        public LocationName readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return LocationName.readAs(iprot, type);
+        }
+
+        @Override
+        public LocationName readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return LocationName.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public LocationName readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return LocationName.readAsList(iprot);
+        }
+
+        @Override
+        public LocationName readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return LocationName.readAsStruct(iprot);
+        }
+
+        @Override
+        public LocationName readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return LocationName.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "text", org.thryft.protocol.Type.STRING),

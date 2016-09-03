@@ -301,6 +301,35 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
         private com.google.common.base.Optional<String> text;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<Relation> {
+        @Override
+        public Relation readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return Relation.readAs(iprot, type);
+        }
+
+        @Override
+        public Relation readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Relation.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public Relation readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Relation.readAsList(iprot);
+        }
+
+        @Override
+        public Relation readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Relation.readAsStruct(iprot);
+        }
+
+        @Override
+        public Relation readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Relation.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TYPE("type", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.relation.RelationType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),

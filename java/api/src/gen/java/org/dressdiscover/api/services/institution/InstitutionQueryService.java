@@ -161,6 +161,35 @@ public interface InstitutionQueryService {
                 private org.dressdiscover.api.models.institution.InstitutionId id;
             }
 
+            public final static class Factory implements org.thryft.CompoundType.Factory<GetInstitutionByIdRequest> {
+                @Override
+                public GetInstitutionByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionByIdRequest.readAs(iprot, type);
+                }
+
+                @Override
+                public GetInstitutionByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionByIdRequest.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public GetInstitutionByIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionByIdRequest.readAsList(iprot);
+                }
+
+                @Override
+                public GetInstitutionByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionByIdRequest.readAsStruct(iprot);
+                }
+
+                @Override
+                public GetInstitutionByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionByIdRequest.readAsStruct(iprot, unknownFieldCallback);
+                }
+            }
+
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
                 ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING);
@@ -557,6 +586,35 @@ public interface InstitutionQueryService {
                 private org.dressdiscover.api.models.institution.Institution returnValue;
             }
 
+            public final static class Factory implements org.thryft.CompoundType.Factory<GetInstitutionByIdResponse> {
+                @Override
+                public GetInstitutionByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionByIdResponse.readAs(iprot, type);
+                }
+
+                @Override
+                public GetInstitutionByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionByIdResponse.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public GetInstitutionByIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionByIdResponse.readAsList(iprot);
+                }
+
+                @Override
+                public GetInstitutionByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionByIdResponse.readAsStruct(iprot);
+                }
+
+                @Override
+                public GetInstitutionByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionByIdResponse.readAsStruct(iprot, unknownFieldCallback);
+                }
+            }
+
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
                 RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.Institution>() {}, true, 0, "return_value", org.thryft.protocol.Type.STRUCT);
@@ -896,6 +954,35 @@ public interface InstitutionQueryService {
                 }
             }
 
+            public final static class Factory implements org.thryft.CompoundType.Factory<GetInstitutionsRequest> {
+                @Override
+                public GetInstitutionsRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionsRequest.readAs(iprot, type);
+                }
+
+                @Override
+                public GetInstitutionsRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionsRequest.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public GetInstitutionsRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionsRequest.readAsList(iprot);
+                }
+
+                @Override
+                public GetInstitutionsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionsRequest.readAsStruct(iprot);
+                }
+
+                @Override
+                public GetInstitutionsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionsRequest.readAsStruct(iprot, unknownFieldCallback);
+                }
+            }
+
             public GetInstitutionsRequest() {
             }
 
@@ -1185,6 +1272,35 @@ public interface InstitutionQueryService {
                 }
 
                 private com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> returnValue;
+            }
+
+            public final static class Factory implements org.thryft.CompoundType.Factory<GetInstitutionsResponse> {
+                @Override
+                public GetInstitutionsResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionsResponse.readAs(iprot, type);
+                }
+
+                @Override
+                public GetInstitutionsResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionsResponse.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public GetInstitutionsResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionsResponse.readAsList(iprot);
+                }
+
+                @Override
+                public GetInstitutionsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionsResponse.readAsStruct(iprot);
+                }
+
+                @Override
+                public GetInstitutionsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionsResponse.readAsStruct(iprot, unknownFieldCallback);
+                }
             }
 
             @SuppressWarnings("serial")
@@ -1652,6 +1768,35 @@ public interface InstitutionQueryService {
                 private com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids;
             }
 
+            public final static class Factory implements org.thryft.CompoundType.Factory<GetInstitutionsByIdsRequest> {
+                @Override
+                public GetInstitutionsByIdsRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionsByIdsRequest.readAs(iprot, type);
+                }
+
+                @Override
+                public GetInstitutionsByIdsRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionsByIdsRequest.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public GetInstitutionsByIdsRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionsByIdsRequest.readAsList(iprot);
+                }
+
+                @Override
+                public GetInstitutionsByIdsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionsByIdsRequest.readAsStruct(iprot);
+                }
+
+                @Override
+                public GetInstitutionsByIdsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionsByIdsRequest.readAsStruct(iprot, unknownFieldCallback);
+                }
+            }
+
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
                 IDS("ids", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId>>() {}, true, 0, "ids", org.thryft.protocol.Type.LIST);
@@ -2115,6 +2260,35 @@ public interface InstitutionQueryService {
                 }
 
                 private com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> returnValue;
+            }
+
+            public final static class Factory implements org.thryft.CompoundType.Factory<GetInstitutionsByIdsResponse> {
+                @Override
+                public GetInstitutionsByIdsResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionsByIdsResponse.readAs(iprot, type);
+                }
+
+                @Override
+                public GetInstitutionsByIdsResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionsByIdsResponse.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public GetInstitutionsByIdsResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionsByIdsResponse.readAsList(iprot);
+                }
+
+                @Override
+                public GetInstitutionsByIdsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionsByIdsResponse.readAsStruct(iprot);
+                }
+
+                @Override
+                public GetInstitutionsByIdsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return GetInstitutionsByIdsResponse.readAsStruct(iprot, unknownFieldCallback);
+                }
             }
 
             @SuppressWarnings("serial")

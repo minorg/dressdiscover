@@ -1777,6 +1777,35 @@ public class ObjectFacetFilters implements org.thryft.Struct {
         private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<ObjectFacetFilters> {
+        @Override
+        public ObjectFacetFilters readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return ObjectFacetFilters.readAs(iprot, type);
+        }
+
+        @Override
+        public ObjectFacetFilters readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return ObjectFacetFilters.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public ObjectFacetFilters readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return ObjectFacetFilters.readAsList(iprot);
+        }
+
+        @Override
+        public ObjectFacetFilters readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return ObjectFacetFilters.readAsStruct(iprot);
+        }
+
+        @Override
+        public ObjectFacetFilters readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return ObjectFacetFilters.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         EXCLUDE_ALL("excludeAll", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 0, "exclude_all", org.thryft.protocol.Type.BOOL),

@@ -136,6 +136,35 @@ public class InvalidObjectIdException extends org.thryft.Exception {
         private String causeMessage;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<InvalidObjectIdException> {
+        @Override
+        public InvalidObjectIdException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return InvalidObjectIdException.readAs(iprot, type);
+        }
+
+        @Override
+        public InvalidObjectIdException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return InvalidObjectIdException.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public InvalidObjectIdException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return InvalidObjectIdException.readAsList(iprot);
+        }
+
+        @Override
+        public InvalidObjectIdException readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return InvalidObjectIdException.readAsStruct(iprot);
+        }
+
+        @Override
+        public InvalidObjectIdException readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return InvalidObjectIdException.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         CAUSE_MESSAGE("causeMessage", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "cause_message", org.thryft.protocol.Type.STRING);
 

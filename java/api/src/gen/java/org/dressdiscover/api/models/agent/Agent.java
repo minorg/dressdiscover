@@ -323,6 +323,35 @@ public class Agent implements org.thryft.Struct, org.dressdiscover.api.models.El
         private com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<Agent> {
+        @Override
+        public Agent readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return Agent.readAs(iprot, type);
+        }
+
+        @Override
+        public Agent readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Agent.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public Agent readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Agent.readAsList(iprot);
+        }
+
+        @Override
+        public Agent readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Agent.readAsStruct(iprot);
+        }
+
+        @Override
+        public Agent readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Agent.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         NAME("name", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.agent.AgentName>() {}, true, 1, "name", org.thryft.protocol.Type.STRUCT),

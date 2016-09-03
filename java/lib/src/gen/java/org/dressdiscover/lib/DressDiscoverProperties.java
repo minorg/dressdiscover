@@ -441,6 +441,35 @@ public class DressDiscoverProperties implements org.thryft.Struct, org.thryft.wa
         private com.google.common.primitives.UnsignedInteger resummarizeObjectsBulkRequestSize;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<DressDiscoverProperties> {
+        @Override
+        public DressDiscoverProperties readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return DressDiscoverProperties.readAs(iprot, type);
+        }
+
+        @Override
+        public DressDiscoverProperties readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return DressDiscoverProperties.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public DressDiscoverProperties readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return DressDiscoverProperties.readAsList(iprot);
+        }
+
+        @Override
+        public DressDiscoverProperties readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return DressDiscoverProperties.readAsStruct(iprot);
+        }
+
+        @Override
+        public DressDiscoverProperties readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return DressDiscoverProperties.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         API_URL("apiUrl", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, true, 0, "api_url", org.thryft.protocol.Type.STRING),

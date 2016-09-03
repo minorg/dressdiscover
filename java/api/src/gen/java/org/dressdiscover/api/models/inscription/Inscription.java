@@ -243,6 +243,35 @@ public class Inscription implements org.thryft.Struct, org.dressdiscover.api.mod
         private com.google.common.base.Optional<String> position;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<Inscription> {
+        @Override
+        public Inscription readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return Inscription.readAs(iprot, type);
+        }
+
+        @Override
+        public Inscription readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Inscription.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public Inscription readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Inscription.readAsList(iprot);
+        }
+
+        @Override
+        public Inscription readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Inscription.readAsStruct(iprot);
+        }
+
+        @Override
+        public Inscription readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Inscription.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TEXTS("texts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText>>() {}, true, 1, "texts", org.thryft.protocol.Type.LIST),

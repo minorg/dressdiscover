@@ -167,6 +167,35 @@ public class Closure implements org.thryft.Struct, org.dressdiscover.api.models.
         private org.dressdiscover.api.models.closure.ClosureType type;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<Closure> {
+        @Override
+        public Closure readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return Closure.readAs(iprot, type);
+        }
+
+        @Override
+        public Closure readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Closure.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public Closure readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Closure.readAsList(iprot);
+        }
+
+        @Override
+        public Closure readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Closure.readAsStruct(iprot);
+        }
+
+        @Override
+        public Closure readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Closure.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         PLACEMENT("placement", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.closure.ClosurePlacement>() {}, true, 1, "placement", org.thryft.protocol.Type.STRUCT),

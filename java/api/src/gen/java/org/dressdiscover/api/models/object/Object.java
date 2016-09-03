@@ -1250,6 +1250,35 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
         private com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<Object> {
+        @Override
+        public Object readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return Object.readAs(iprot, type);
+        }
+
+        @Override
+        public Object readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Object.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public Object readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Object.readAsList(iprot);
+        }
+
+        @Override
+        public Object readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Object.readAsStruct(iprot);
+        }
+
+        @Override
+        public Object readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Object.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, true, 1, "collection_id", org.thryft.protocol.Type.STRING),

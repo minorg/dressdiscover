@@ -203,6 +203,35 @@ public class Title implements org.thryft.Struct, org.dressdiscover.api.models.El
         private com.google.common.base.Optional<Boolean> pref;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<Title> {
+        @Override
+        public Title readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return Title.readAs(iprot, type);
+        }
+
+        @Override
+        public Title readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Title.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public Title readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Title.readAsList(iprot);
+        }
+
+        @Override
+        public Title readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Title.readAsStruct(iprot);
+        }
+
+        @Override
+        public Title readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Title.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "text", org.thryft.protocol.Type.STRING),

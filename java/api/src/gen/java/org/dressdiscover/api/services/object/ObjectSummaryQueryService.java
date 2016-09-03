@@ -194,6 +194,35 @@ public interface ObjectSummaryQueryService {
                 private com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query;
             }
 
+            public final static class Factory implements org.thryft.CompoundType.Factory<GetObjectSummariesRequest> {
+                @Override
+                public GetObjectSummariesRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return GetObjectSummariesRequest.readAs(iprot, type);
+                }
+
+                @Override
+                public GetObjectSummariesRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return GetObjectSummariesRequest.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public GetObjectSummariesRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return GetObjectSummariesRequest.readAsList(iprot);
+                }
+
+                @Override
+                public GetObjectSummariesRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return GetObjectSummariesRequest.readAsStruct(iprot);
+                }
+
+                @Override
+                public GetObjectSummariesRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return GetObjectSummariesRequest.readAsStruct(iprot, unknownFieldCallback);
+                }
+            }
+
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
                 OPTIONS("options", new com.google.common.reflect.TypeToken<org.dressdiscover.api.services.object.GetObjectSummariesOptions>() {}, false, 0, "options", org.thryft.protocol.Type.STRUCT),
@@ -654,6 +683,35 @@ public interface ObjectSummaryQueryService {
                 }
 
                 private org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue;
+            }
+
+            public final static class Factory implements org.thryft.CompoundType.Factory<GetObjectSummariesResponse> {
+                @Override
+                public GetObjectSummariesResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return GetObjectSummariesResponse.readAs(iprot, type);
+                }
+
+                @Override
+                public GetObjectSummariesResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return GetObjectSummariesResponse.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public GetObjectSummariesResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return GetObjectSummariesResponse.readAsList(iprot);
+                }
+
+                @Override
+                public GetObjectSummariesResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return GetObjectSummariesResponse.readAsStruct(iprot);
+                }
+
+                @Override
+                public GetObjectSummariesResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return GetObjectSummariesResponse.readAsStruct(iprot, unknownFieldCallback);
+                }
             }
 
             @SuppressWarnings("serial")

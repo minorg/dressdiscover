@@ -160,6 +160,35 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
         private org.thryft.native_.EmailAddress emailAddress;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<User> {
+        @Override
+        public User readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return User.readAs(iprot, type);
+        }
+
+        @Override
+        public User readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return User.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public User readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return User.readAsList(iprot);
+        }
+
+        @Override
+        public User readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return User.readAsStruct(iprot);
+        }
+
+        @Override
+        public User readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return User.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         CTIME("ctime", new com.google.common.reflect.TypeToken<java.util.Date>() {}, true, 0, "ctime", org.thryft.protocol.Type.I64),

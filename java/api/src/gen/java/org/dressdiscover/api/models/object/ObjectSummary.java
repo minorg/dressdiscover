@@ -1276,6 +1276,35 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
         private com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<ObjectSummary> {
+        @Override
+        public ObjectSummary readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return ObjectSummary.readAs(iprot, type);
+        }
+
+        @Override
+        public ObjectSummary readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return ObjectSummary.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public ObjectSummary readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return ObjectSummary.readAsList(iprot);
+        }
+
+        @Override
+        public ObjectSummary readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return ObjectSummary.readAsStruct(iprot);
+        }
+
+        @Override
+        public ObjectSummary readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return ObjectSummary.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, true, 1, "collection_id", org.thryft.protocol.Type.STRING),

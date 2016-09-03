@@ -243,6 +243,35 @@ public class TextrefSet implements org.thryft.Struct, org.dressdiscover.api.mode
         private com.google.common.base.Optional<String> notes;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<TextrefSet> {
+        @Override
+        public TextrefSet readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return TextrefSet.readAs(iprot, type);
+        }
+
+        @Override
+        public TextrefSet readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return TextrefSet.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public TextrefSet readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return TextrefSet.readAsList(iprot);
+        }
+
+        @Override
+        public TextrefSet readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return TextrefSet.readAsStruct(iprot);
+        }
+
+        @Override
+        public TextrefSet readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return TextrefSet.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         ELEMENTS("elements", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.textref.Textref>>() {}, true, 1, "elements", org.thryft.protocol.Type.LIST),

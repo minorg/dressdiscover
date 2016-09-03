@@ -176,6 +176,35 @@ public class Component implements org.thryft.Struct, org.dressdiscover.api.model
         private com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<Component> {
+        @Override
+        public Component readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return Component.readAs(iprot, type);
+        }
+
+        @Override
+        public Component readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Component.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public Component readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Component.readAsList(iprot);
+        }
+
+        @Override
+        public Component readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Component.readAsStruct(iprot);
+        }
+
+        @Override
+        public Component readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Component.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TERM("term", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.component.ComponentTerm>() {}, true, 1, "term", org.thryft.protocol.Type.STRUCT),

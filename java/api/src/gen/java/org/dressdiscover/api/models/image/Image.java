@@ -290,6 +290,35 @@ public class Image implements org.thryft.Struct {
         private com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<Image> {
+        @Override
+        public Image readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return Image.readAs(iprot, type);
+        }
+
+        @Override
+        public Image readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Image.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public Image readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Image.readAsList(iprot);
+        }
+
+        @Override
+        public Image readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Image.readAsStruct(iprot);
+        }
+
+        @Override
+        public Image readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Image.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         FULL_SIZE("fullSize", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.image.ImageVersion>() {}, false, 2, "full_size", org.thryft.protocol.Type.STRUCT),

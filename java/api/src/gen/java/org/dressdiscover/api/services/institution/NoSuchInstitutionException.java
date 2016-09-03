@@ -151,6 +151,35 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
         private com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<NoSuchInstitutionException> {
+        @Override
+        public NoSuchInstitutionException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return NoSuchInstitutionException.readAs(iprot, type);
+        }
+
+        @Override
+        public NoSuchInstitutionException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return NoSuchInstitutionException.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public NoSuchInstitutionException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return NoSuchInstitutionException.readAsList(iprot);
+        }
+
+        @Override
+        public NoSuchInstitutionException readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return NoSuchInstitutionException.readAsStruct(iprot);
+        }
+
+        @Override
+        public NoSuchInstitutionException readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return NoSuchInstitutionException.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, false, 0, "id", org.thryft.protocol.Type.STRING);
 

@@ -325,6 +325,35 @@ public class Location implements org.thryft.Struct, org.dressdiscover.api.models
         private com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> refids;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<Location> {
+        @Override
+        public Location readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return Location.readAs(iprot, type);
+        }
+
+        @Override
+        public Location readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Location.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public Location readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Location.readAsList(iprot);
+        }
+
+        @Override
+        public Location readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Location.readAsStruct(iprot);
+        }
+
+        @Override
+        public Location readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Location.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TYPE("type", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.location.LocationType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),

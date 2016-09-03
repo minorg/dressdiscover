@@ -448,6 +448,35 @@ public class Institution implements org.thryft.Struct, org.thryft.waf.api.models
         private com.google.common.base.Optional<org.thryft.native_.Url> url;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<Institution> {
+        @Override
+        public Institution readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return Institution.readAs(iprot, type);
+        }
+
+        @Override
+        public Institution readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Institution.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public Institution readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Institution.readAsList(iprot);
+        }
+
+        @Override
+        public Institution readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Institution.readAsStruct(iprot);
+        }
+
+        @Override
+        public Institution readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Institution.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "title", org.thryft.protocol.Type.STRING),

@@ -272,6 +272,35 @@ public class Date implements org.thryft.Struct, org.dressdiscover.api.models.Ele
         private com.google.common.base.Optional<String> source;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<Date> {
+        @Override
+        public Date readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return Date.readAs(iprot, type);
+        }
+
+        @Override
+        public Date readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Date.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public Date readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Date.readAsList(iprot);
+        }
+
+        @Override
+        public Date readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Date.readAsStruct(iprot);
+        }
+
+        @Override
+        public Date readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Date.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         EARLIEST_DATE("earliestDate", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.date.DateBound>() {}, true, 1, "earliest_date", org.thryft.protocol.Type.STRUCT),

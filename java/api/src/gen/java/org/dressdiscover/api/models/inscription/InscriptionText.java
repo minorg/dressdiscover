@@ -200,6 +200,35 @@ public class InscriptionText implements org.thryft.Struct {
         private com.google.common.base.Optional<String> lang;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<InscriptionText> {
+        @Override
+        public InscriptionText readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return InscriptionText.readAs(iprot, type);
+        }
+
+        @Override
+        public InscriptionText readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return InscriptionText.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public InscriptionText readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return InscriptionText.readAsList(iprot);
+        }
+
+        @Override
+        public InscriptionText readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return InscriptionText.readAsStruct(iprot);
+        }
+
+        @Override
+        public InscriptionText readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return InscriptionText.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "text", org.thryft.protocol.Type.STRING),

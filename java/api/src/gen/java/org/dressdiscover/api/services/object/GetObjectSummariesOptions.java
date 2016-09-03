@@ -297,6 +297,35 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
         private com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<GetObjectSummariesOptions> {
+        @Override
+        public GetObjectSummariesOptions readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return GetObjectSummariesOptions.readAs(iprot, type);
+        }
+
+        @Override
+        public GetObjectSummariesOptions readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return GetObjectSummariesOptions.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public GetObjectSummariesOptions readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return GetObjectSummariesOptions.readAsList(iprot);
+        }
+
+        @Override
+        public GetObjectSummariesOptions readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return GetObjectSummariesOptions.readAsStruct(iprot);
+        }
+
+        @Override
+        public GetObjectSummariesOptions readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return GetObjectSummariesOptions.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         FROM_("from", new com.google.common.reflect.TypeToken<com.google.common.primitives.UnsignedInteger>() {}, false, 0, "from_", org.thryft.protocol.Type.I32),

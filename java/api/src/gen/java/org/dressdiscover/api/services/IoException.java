@@ -142,6 +142,35 @@ public class IoException extends org.thryft.Exception {
         private String causeMessage;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<IoException> {
+        @Override
+        public IoException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return IoException.readAs(iprot, type);
+        }
+
+        @Override
+        public IoException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return IoException.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public IoException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return IoException.readAsList(iprot);
+        }
+
+        @Override
+        public IoException readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return IoException.readAsStruct(iprot);
+        }
+
+        @Override
+        public IoException readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return IoException.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         CAUSE_MESSAGE("causeMessage", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "cause_message", org.thryft.protocol.Type.STRING);
 

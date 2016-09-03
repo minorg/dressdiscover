@@ -203,6 +203,35 @@ public class Material implements org.thryft.Struct, org.dressdiscover.api.models
         private com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<Material> {
+        @Override
+        public Material readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return Material.readAs(iprot, type);
+        }
+
+        @Override
+        public Material readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Material.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public Material readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Material.readAsList(iprot);
+        }
+
+        @Override
+        public Material readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return Material.readAsStruct(iprot);
+        }
+
+        @Override
+        public Material readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return Material.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "text", org.thryft.protocol.Type.STRING),

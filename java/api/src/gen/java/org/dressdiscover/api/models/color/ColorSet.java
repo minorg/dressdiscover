@@ -243,6 +243,35 @@ public class ColorSet implements org.thryft.Struct, org.dressdiscover.api.models
         private com.google.common.base.Optional<String> notes;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<ColorSet> {
+        @Override
+        public ColorSet readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return ColorSet.readAs(iprot, type);
+        }
+
+        @Override
+        public ColorSet readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return ColorSet.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public ColorSet readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return ColorSet.readAsList(iprot);
+        }
+
+        @Override
+        public ColorSet readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return ColorSet.readAsStruct(iprot);
+        }
+
+        @Override
+        public ColorSet readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return ColorSet.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         ELEMENTS("elements", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.color.Color>>() {}, true, 1, "elements", org.thryft.protocol.Type.LIST),

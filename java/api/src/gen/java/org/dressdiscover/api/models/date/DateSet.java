@@ -243,6 +243,35 @@ public class DateSet implements org.thryft.Struct, org.dressdiscover.api.models.
         private com.google.common.base.Optional<String> notes;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<DateSet> {
+        @Override
+        public DateSet readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return DateSet.readAs(iprot, type);
+        }
+
+        @Override
+        public DateSet readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return DateSet.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public DateSet readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return DateSet.readAsList(iprot);
+        }
+
+        @Override
+        public DateSet readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return DateSet.readAsStruct(iprot);
+        }
+
+        @Override
+        public DateSet readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return DateSet.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         ELEMENTS("elements", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.date.Date>>() {}, true, 1, "elements", org.thryft.protocol.Type.LIST),

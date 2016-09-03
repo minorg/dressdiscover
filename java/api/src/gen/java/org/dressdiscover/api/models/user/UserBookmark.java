@@ -276,6 +276,35 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
         private com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<UserBookmark> {
+        @Override
+        public UserBookmark readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return UserBookmark.readAs(iprot, type);
+        }
+
+        @Override
+        public UserBookmark readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return UserBookmark.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public UserBookmark readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return UserBookmark.readAsList(iprot);
+        }
+
+        @Override
+        public UserBookmark readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return UserBookmark.readAsStruct(iprot);
+        }
+
+        @Override
+        public UserBookmark readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return UserBookmark.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         NAME("name", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "name", org.thryft.protocol.Type.STRING),

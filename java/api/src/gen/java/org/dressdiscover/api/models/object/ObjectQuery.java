@@ -605,6 +605,35 @@ public class ObjectQuery implements org.thryft.Struct {
         private com.google.common.base.Optional<String> workTypeText;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<ObjectQuery> {
+        @Override
+        public ObjectQuery readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return ObjectQuery.readAs(iprot, type);
+        }
+
+        @Override
+        public ObjectQuery readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return ObjectQuery.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public ObjectQuery readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return ObjectQuery.readAsList(iprot);
+        }
+
+        @Override
+        public ObjectQuery readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return ObjectQuery.readAsStruct(iprot);
+        }
+
+        @Override
+        public ObjectQuery readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return ObjectQuery.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, false, 0, "collection_id", org.thryft.protocol.Type.STRING),

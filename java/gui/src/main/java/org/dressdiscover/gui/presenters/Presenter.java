@@ -63,24 +63,6 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
         UI.getCurrent().getNavigator().navigateTo(ObjectsView.NAME + "/" + _toUrlEncodedJsonString(query));
     }
 
-    protected static String _toUrlEncodedJsonString(final ObjectQuery query) {
-        String queryJson;
-        try {
-            final StringWriter jsonStringWriter = new StringWriter();
-            final JacksonJsonOutputProtocol oprot = new JacksonJsonOutputProtocol(jsonStringWriter);
-            query.writeAsStruct(oprot);
-            oprot.flush();
-            queryJson = jsonStringWriter.toString();
-        } catch (final OutputProtocolException e) {
-            throw new IllegalStateException();
-        }
-        try {
-            return URLEncoder.encode(queryJson, Charsets.UTF_8.toString());
-        } catch (final UnsupportedEncodingException e) {
-            throw new IllegalStateException(e);
-        }
-    }
-
     protected Presenter(final EventBus eventBus, final UserCommandService userCommandService,
             final UserQueryService userQueryService, final ViewT view) {
         super(eventBus, view);

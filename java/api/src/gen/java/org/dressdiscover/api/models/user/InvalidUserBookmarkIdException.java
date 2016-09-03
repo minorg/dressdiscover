@@ -136,6 +136,35 @@ public class InvalidUserBookmarkIdException extends org.thryft.Exception {
         private String causeMessage;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<InvalidUserBookmarkIdException> {
+        @Override
+        public InvalidUserBookmarkIdException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return InvalidUserBookmarkIdException.readAs(iprot, type);
+        }
+
+        @Override
+        public InvalidUserBookmarkIdException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return InvalidUserBookmarkIdException.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public InvalidUserBookmarkIdException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return InvalidUserBookmarkIdException.readAsList(iprot);
+        }
+
+        @Override
+        public InvalidUserBookmarkIdException readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return InvalidUserBookmarkIdException.readAsStruct(iprot);
+        }
+
+        @Override
+        public InvalidUserBookmarkIdException readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return InvalidUserBookmarkIdException.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         CAUSE_MESSAGE("causeMessage", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "cause_message", org.thryft.protocol.Type.STRING);
 

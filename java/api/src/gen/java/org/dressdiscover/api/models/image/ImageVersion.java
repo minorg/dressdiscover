@@ -221,6 +221,35 @@ public class ImageVersion implements org.thryft.Struct {
         private com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> widthPx;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<ImageVersion> {
+        @Override
+        public ImageVersion readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return ImageVersion.readAs(iprot, type);
+        }
+
+        @Override
+        public ImageVersion readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return ImageVersion.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public ImageVersion readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return ImageVersion.readAsList(iprot);
+        }
+
+        @Override
+        public ImageVersion readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return ImageVersion.readAsStruct(iprot);
+        }
+
+        @Override
+        public ImageVersion readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return ImageVersion.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, true, 1, "url", org.thryft.protocol.Type.STRING),

@@ -161,6 +161,35 @@ public interface CollectionCommandService {
                 private org.dressdiscover.api.models.collection.CollectionId id;
             }
 
+            public final static class Factory implements org.thryft.CompoundType.Factory<DeleteCollectionByIdRequest> {
+                @Override
+                public DeleteCollectionByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteCollectionByIdRequest.readAs(iprot, type);
+                }
+
+                @Override
+                public DeleteCollectionByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteCollectionByIdRequest.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public DeleteCollectionByIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteCollectionByIdRequest.readAsList(iprot);
+                }
+
+                @Override
+                public DeleteCollectionByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteCollectionByIdRequest.readAsStruct(iprot);
+                }
+
+                @Override
+                public DeleteCollectionByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteCollectionByIdRequest.readAsStruct(iprot, unknownFieldCallback);
+                }
+            }
+
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
                 ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING);
@@ -508,6 +537,35 @@ public interface CollectionCommandService {
                 }
             }
 
+            public final static class Factory implements org.thryft.CompoundType.Factory<DeleteCollectionByIdResponse> {
+                @Override
+                public DeleteCollectionByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteCollectionByIdResponse.readAs(iprot, type);
+                }
+
+                @Override
+                public DeleteCollectionByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteCollectionByIdResponse.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public DeleteCollectionByIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteCollectionByIdResponse.readAsList(iprot);
+                }
+
+                @Override
+                public DeleteCollectionByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteCollectionByIdResponse.readAsStruct(iprot);
+                }
+
+                @Override
+                public DeleteCollectionByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteCollectionByIdResponse.readAsStruct(iprot, unknownFieldCallback);
+                }
+            }
+
             public DeleteCollectionByIdResponse() {
             }
 
@@ -774,6 +832,35 @@ public interface CollectionCommandService {
                 }
 
                 private org.dressdiscover.api.models.institution.InstitutionId institutionId;
+            }
+
+            public final static class Factory implements org.thryft.CompoundType.Factory<DeleteCollectionsByInstitutionIdRequest> {
+                @Override
+                public DeleteCollectionsByInstitutionIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteCollectionsByInstitutionIdRequest.readAs(iprot, type);
+                }
+
+                @Override
+                public DeleteCollectionsByInstitutionIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteCollectionsByInstitutionIdRequest.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public DeleteCollectionsByInstitutionIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteCollectionsByInstitutionIdRequest.readAsList(iprot);
+                }
+
+                @Override
+                public DeleteCollectionsByInstitutionIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteCollectionsByInstitutionIdRequest.readAsStruct(iprot);
+                }
+
+                @Override
+                public DeleteCollectionsByInstitutionIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteCollectionsByInstitutionIdRequest.readAsStruct(iprot, unknownFieldCallback);
+                }
             }
 
             @SuppressWarnings("serial")
@@ -1123,6 +1210,35 @@ public interface CollectionCommandService {
                 }
             }
 
+            public final static class Factory implements org.thryft.CompoundType.Factory<DeleteCollectionsByInstitutionIdResponse> {
+                @Override
+                public DeleteCollectionsByInstitutionIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteCollectionsByInstitutionIdResponse.readAs(iprot, type);
+                }
+
+                @Override
+                public DeleteCollectionsByInstitutionIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteCollectionsByInstitutionIdResponse.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public DeleteCollectionsByInstitutionIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteCollectionsByInstitutionIdResponse.readAsList(iprot);
+                }
+
+                @Override
+                public DeleteCollectionsByInstitutionIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteCollectionsByInstitutionIdResponse.readAsStruct(iprot);
+                }
+
+                @Override
+                public DeleteCollectionsByInstitutionIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteCollectionsByInstitutionIdResponse.readAsStruct(iprot, unknownFieldCallback);
+                }
+            }
+
             public DeleteCollectionsByInstitutionIdResponse() {
             }
 
@@ -1414,6 +1530,35 @@ public interface CollectionCommandService {
 
                 private org.dressdiscover.api.models.collection.CollectionId id;
                 private org.dressdiscover.api.models.collection.Collection collection;
+            }
+
+            public final static class Factory implements org.thryft.CompoundType.Factory<PutCollectionRequest> {
+                @Override
+                public PutCollectionRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return PutCollectionRequest.readAs(iprot, type);
+                }
+
+                @Override
+                public PutCollectionRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return PutCollectionRequest.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public PutCollectionRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return PutCollectionRequest.readAsList(iprot);
+                }
+
+                @Override
+                public PutCollectionRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return PutCollectionRequest.readAsStruct(iprot);
+                }
+
+                @Override
+                public PutCollectionRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return PutCollectionRequest.readAsStruct(iprot, unknownFieldCallback);
+                }
             }
 
             @SuppressWarnings("serial")
@@ -1790,6 +1935,35 @@ public interface CollectionCommandService {
 
                 public Builder unset(final org.thryft.Struct.FieldMetadata fieldMetadata) {
                     throw new IllegalArgumentException();
+                }
+            }
+
+            public final static class Factory implements org.thryft.CompoundType.Factory<PutCollectionResponse> {
+                @Override
+                public PutCollectionResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return PutCollectionResponse.readAs(iprot, type);
+                }
+
+                @Override
+                public PutCollectionResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return PutCollectionResponse.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public PutCollectionResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return PutCollectionResponse.readAsList(iprot);
+                }
+
+                @Override
+                public PutCollectionResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return PutCollectionResponse.readAsStruct(iprot);
+                }
+
+                @Override
+                public PutCollectionResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return PutCollectionResponse.readAsStruct(iprot, unknownFieldCallback);
                 }
             }
 

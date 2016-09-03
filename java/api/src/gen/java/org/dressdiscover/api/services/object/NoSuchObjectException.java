@@ -87,6 +87,35 @@ public class NoSuchObjectException extends org.thryft.Exception {
         }
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<NoSuchObjectException> {
+        @Override
+        public NoSuchObjectException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return NoSuchObjectException.readAs(iprot, type);
+        }
+
+        @Override
+        public NoSuchObjectException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return NoSuchObjectException.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public NoSuchObjectException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return NoSuchObjectException.readAsList(iprot);
+        }
+
+        @Override
+        public NoSuchObjectException readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return NoSuchObjectException.readAsStruct(iprot);
+        }
+
+        @Override
+        public NoSuchObjectException readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return NoSuchObjectException.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     public NoSuchObjectException() {
     }
 

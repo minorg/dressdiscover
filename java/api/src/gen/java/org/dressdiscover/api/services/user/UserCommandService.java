@@ -164,6 +164,35 @@ public interface UserCommandService {
                 private org.dressdiscover.api.models.user.UserBookmarkId id;
             }
 
+            public final static class Factory implements org.thryft.CompoundType.Factory<DeleteUserBookmarkByIdRequest> {
+                @Override
+                public DeleteUserBookmarkByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUserBookmarkByIdRequest.readAs(iprot, type);
+                }
+
+                @Override
+                public DeleteUserBookmarkByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUserBookmarkByIdRequest.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public DeleteUserBookmarkByIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUserBookmarkByIdRequest.readAsList(iprot);
+                }
+
+                @Override
+                public DeleteUserBookmarkByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUserBookmarkByIdRequest.readAsStruct(iprot);
+                }
+
+                @Override
+                public DeleteUserBookmarkByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUserBookmarkByIdRequest.readAsStruct(iprot, unknownFieldCallback);
+                }
+            }
+
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
                 ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserBookmarkId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING);
@@ -511,6 +540,35 @@ public interface UserCommandService {
                 }
             }
 
+            public final static class Factory implements org.thryft.CompoundType.Factory<DeleteUserBookmarkByIdResponse> {
+                @Override
+                public DeleteUserBookmarkByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUserBookmarkByIdResponse.readAs(iprot, type);
+                }
+
+                @Override
+                public DeleteUserBookmarkByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUserBookmarkByIdResponse.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public DeleteUserBookmarkByIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUserBookmarkByIdResponse.readAsList(iprot);
+                }
+
+                @Override
+                public DeleteUserBookmarkByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUserBookmarkByIdResponse.readAsStruct(iprot);
+                }
+
+                @Override
+                public DeleteUserBookmarkByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUserBookmarkByIdResponse.readAsStruct(iprot, unknownFieldCallback);
+                }
+            }
+
             public DeleteUserBookmarkByIdResponse() {
             }
 
@@ -777,6 +835,35 @@ public interface UserCommandService {
                 }
 
                 private org.dressdiscover.api.models.user.UserId id;
+            }
+
+            public final static class Factory implements org.thryft.CompoundType.Factory<DeleteUserByIdRequest> {
+                @Override
+                public DeleteUserByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUserByIdRequest.readAs(iprot, type);
+                }
+
+                @Override
+                public DeleteUserByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUserByIdRequest.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public DeleteUserByIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUserByIdRequest.readAsList(iprot);
+                }
+
+                @Override
+                public DeleteUserByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUserByIdRequest.readAsStruct(iprot);
+                }
+
+                @Override
+                public DeleteUserByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUserByIdRequest.readAsStruct(iprot, unknownFieldCallback);
+                }
             }
 
             @SuppressWarnings("serial")
@@ -1126,6 +1213,35 @@ public interface UserCommandService {
                 }
             }
 
+            public final static class Factory implements org.thryft.CompoundType.Factory<DeleteUserByIdResponse> {
+                @Override
+                public DeleteUserByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUserByIdResponse.readAs(iprot, type);
+                }
+
+                @Override
+                public DeleteUserByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUserByIdResponse.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public DeleteUserByIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUserByIdResponse.readAsList(iprot);
+                }
+
+                @Override
+                public DeleteUserByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUserByIdResponse.readAsStruct(iprot);
+                }
+
+                @Override
+                public DeleteUserByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUserByIdResponse.readAsStruct(iprot, unknownFieldCallback);
+                }
+            }
+
             public DeleteUserByIdResponse() {
             }
 
@@ -1337,6 +1453,35 @@ public interface UserCommandService {
                 }
             }
 
+            public final static class Factory implements org.thryft.CompoundType.Factory<DeleteUsersRequest> {
+                @Override
+                public DeleteUsersRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUsersRequest.readAs(iprot, type);
+                }
+
+                @Override
+                public DeleteUsersRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUsersRequest.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public DeleteUsersRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUsersRequest.readAsList(iprot);
+                }
+
+                @Override
+                public DeleteUsersRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUsersRequest.readAsStruct(iprot);
+                }
+
+                @Override
+                public DeleteUsersRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUsersRequest.readAsStruct(iprot, unknownFieldCallback);
+                }
+            }
+
             public DeleteUsersRequest() {
             }
 
@@ -1545,6 +1690,35 @@ public interface UserCommandService {
 
                 public Builder unset(final org.thryft.Struct.FieldMetadata fieldMetadata) {
                     throw new IllegalArgumentException();
+                }
+            }
+
+            public final static class Factory implements org.thryft.CompoundType.Factory<DeleteUsersResponse> {
+                @Override
+                public DeleteUsersResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUsersResponse.readAs(iprot, type);
+                }
+
+                @Override
+                public DeleteUsersResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUsersResponse.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public DeleteUsersResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUsersResponse.readAsList(iprot);
+                }
+
+                @Override
+                public DeleteUsersResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUsersResponse.readAsStruct(iprot);
+                }
+
+                @Override
+                public DeleteUsersResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteUsersResponse.readAsStruct(iprot, unknownFieldCallback);
                 }
             }
 
@@ -1806,6 +1980,35 @@ public interface UserCommandService {
                 }
 
                 private org.dressdiscover.api.models.user.User user;
+            }
+
+            public final static class Factory implements org.thryft.CompoundType.Factory<PostUserRequest> {
+                @Override
+                public PostUserRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return PostUserRequest.readAs(iprot, type);
+                }
+
+                @Override
+                public PostUserRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return PostUserRequest.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public PostUserRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return PostUserRequest.readAsList(iprot);
+                }
+
+                @Override
+                public PostUserRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return PostUserRequest.readAsStruct(iprot);
+                }
+
+                @Override
+                public PostUserRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return PostUserRequest.readAsStruct(iprot, unknownFieldCallback);
+                }
             }
 
             @SuppressWarnings("serial")
@@ -2204,6 +2407,35 @@ public interface UserCommandService {
                 private org.dressdiscover.api.models.user.UserId returnValue;
             }
 
+            public final static class Factory implements org.thryft.CompoundType.Factory<PostUserResponse> {
+                @Override
+                public PostUserResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return PostUserResponse.readAs(iprot, type);
+                }
+
+                @Override
+                public PostUserResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return PostUserResponse.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public PostUserResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return PostUserResponse.readAsList(iprot);
+                }
+
+                @Override
+                public PostUserResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return PostUserResponse.readAsStruct(iprot);
+                }
+
+                @Override
+                public PostUserResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return PostUserResponse.readAsStruct(iprot, unknownFieldCallback);
+                }
+            }
+
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
                 RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, 0, "return_value", org.thryft.protocol.Type.STRING);
@@ -2600,6 +2832,35 @@ public interface UserCommandService {
                 private org.dressdiscover.api.models.user.UserBookmark userBookmark;
             }
 
+            public final static class Factory implements org.thryft.CompoundType.Factory<PostUserBookmarkRequest> {
+                @Override
+                public PostUserBookmarkRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return PostUserBookmarkRequest.readAs(iprot, type);
+                }
+
+                @Override
+                public PostUserBookmarkRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return PostUserBookmarkRequest.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public PostUserBookmarkRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return PostUserBookmarkRequest.readAsList(iprot);
+                }
+
+                @Override
+                public PostUserBookmarkRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return PostUserBookmarkRequest.readAsStruct(iprot);
+                }
+
+                @Override
+                public PostUserBookmarkRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return PostUserBookmarkRequest.readAsStruct(iprot, unknownFieldCallback);
+                }
+            }
+
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
                 USER_BOOKMARK("userBookmark", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserBookmark>() {}, true, 0, "user_bookmark", org.thryft.protocol.Type.STRUCT);
@@ -2994,6 +3255,35 @@ public interface UserCommandService {
                 }
 
                 private org.dressdiscover.api.models.user.UserBookmarkId returnValue;
+            }
+
+            public final static class Factory implements org.thryft.CompoundType.Factory<PostUserBookmarkResponse> {
+                @Override
+                public PostUserBookmarkResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return PostUserBookmarkResponse.readAs(iprot, type);
+                }
+
+                @Override
+                public PostUserBookmarkResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return PostUserBookmarkResponse.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public PostUserBookmarkResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return PostUserBookmarkResponse.readAsList(iprot);
+                }
+
+                @Override
+                public PostUserBookmarkResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return PostUserBookmarkResponse.readAsStruct(iprot);
+                }
+
+                @Override
+                public PostUserBookmarkResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return PostUserBookmarkResponse.readAsStruct(iprot, unknownFieldCallback);
+                }
             }
 
             @SuppressWarnings("serial")
@@ -3425,6 +3715,35 @@ public interface UserCommandService {
                 private org.dressdiscover.api.models.user.User user;
             }
 
+            public final static class Factory implements org.thryft.CompoundType.Factory<PutUserRequest> {
+                @Override
+                public PutUserRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return PutUserRequest.readAs(iprot, type);
+                }
+
+                @Override
+                public PutUserRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return PutUserRequest.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public PutUserRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return PutUserRequest.readAsList(iprot);
+                }
+
+                @Override
+                public PutUserRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return PutUserRequest.readAsStruct(iprot);
+                }
+
+                @Override
+                public PutUserRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return PutUserRequest.readAsStruct(iprot, unknownFieldCallback);
+                }
+            }
+
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
                 ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),
@@ -3799,6 +4118,35 @@ public interface UserCommandService {
 
                 public Builder unset(final org.thryft.Struct.FieldMetadata fieldMetadata) {
                     throw new IllegalArgumentException();
+                }
+            }
+
+            public final static class Factory implements org.thryft.CompoundType.Factory<PutUserResponse> {
+                @Override
+                public PutUserResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return PutUserResponse.readAs(iprot, type);
+                }
+
+                @Override
+                public PutUserResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return PutUserResponse.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public PutUserResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return PutUserResponse.readAsList(iprot);
+                }
+
+                @Override
+                public PutUserResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return PutUserResponse.readAsStruct(iprot);
+                }
+
+                @Override
+                public PutUserResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return PutUserResponse.readAsStruct(iprot, unknownFieldCallback);
                 }
             }
 

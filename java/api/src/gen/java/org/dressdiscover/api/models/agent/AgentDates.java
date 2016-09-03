@@ -224,6 +224,35 @@ public class AgentDates implements org.thryft.Struct {
         private com.google.common.base.Optional<java.util.Date> latestDate;
     }
 
+    public final static class Factory implements org.thryft.CompoundType.Factory<AgentDates> {
+        @Override
+        public AgentDates readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+            return AgentDates.readAs(iprot, type);
+        }
+
+        @Override
+        public AgentDates readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return AgentDates.readAs(iprot, type, unknownFieldCallback);
+        }
+
+        @Override
+        public AgentDates readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return AgentDates.readAsList(iprot);
+        }
+
+        @Override
+        public AgentDates readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return AgentDates.readAsStruct(iprot);
+        }
+
+        @Override
+        public AgentDates readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            return AgentDates.readAsStruct(iprot, unknownFieldCallback);
+        }
+    }
+
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TYPE("type", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.agent.AgentDatesType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),
