@@ -4,7 +4,6 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +30,6 @@ import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
 import org.dressdiscover.api.services.object.GetObjectSummariesResult;
 import org.dressdiscover.api.services.object.ObjectSummaryQueryService;
 import org.dressdiscover.api.services.object.ObjectSummarySort;
-import org.dressdiscover.lib.services.IoExceptions;
 import org.dressdiscover.lib.services.object.LoggingObjectSummaryQueryService.Markers;
 import org.dressdiscover.lib.stores.object.ObjectSummaryElasticSearchIndex;
 import org.elasticsearch.action.search.SearchRequestBuilder;
@@ -139,7 +137,7 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
 
     private final static class ObjectFacetAggregations extends ForwardingList<AbstractAggregationBuilder> {
         private ObjectFacetAggregations() {
-            aggregations = ImmutableList.<AbstractAggregationBuilder> of(
+            aggregations = ImmutableList.<AbstractAggregationBuilder>of(
                     __newTextsAggregation(ObjectSummary.FieldMetadata.AGENT_NAME_TEXTS),
                     __newTextsAggregation(ObjectSummary.FieldMetadata.CATEGORIES),
                     __newIdAggregation(ObjectSummary.FieldMetadata.COLLECTION_ID),
@@ -341,9 +339,8 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
                                                                         .valueOfThriftName(
                                                                                 sort.getField().name().toLowerCase())
                                                                         .getThriftProtocolKey())
-                                                                .missing("_last")
-                                                                .order(sort
-                                                                        .getOrder() == org.dressdiscover.api.models.SortOrder.ASC
+                                                                .missing("_last").order(
+                                                                        sort.getOrder() == org.dressdiscover.api.models.SortOrder.ASC
                                                                                 ? SortOrder.ASC : SortOrder.DESC));
                                     }
                                 }
@@ -357,8 +354,6 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
                                 logger.warn(Markers.GET_OBJECT_SUMMARIES,
                                         "object summaries index does not exist, returning empty results");
                                 return __getEmptyObjectSummariesResult(options);
-                            } catch (final IOException e) {
-                                throw IoExceptions.wrap(e, "error getting object summaries");
                             }
 
                             final GetObjectSummariesResult.Builder resultBuilder = GetObjectSummariesResult.builder();

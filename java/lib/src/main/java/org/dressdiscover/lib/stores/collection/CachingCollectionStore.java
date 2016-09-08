@@ -2,7 +2,6 @@ package org.dressdiscover.lib.stores.collection;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,10 +9,11 @@ import org.dressdiscover.api.models.collection.Collection;
 import org.dressdiscover.api.models.collection.CollectionEntry;
 import org.dressdiscover.api.models.collection.CollectionId;
 import org.dressdiscover.api.models.institution.InstitutionId;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.collection.NoSuchCollectionException;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
 import org.thryft.waf.lib.stores.InvalidModelException;
-import org.thryft.waf.lib.stores.NoSuchModelException;
 
 import com.google.common.collect.ImmutableList;
 
@@ -24,21 +24,21 @@ public class CachingCollectionStore implements CollectionStore {
 
     @Override
     public synchronized boolean deleteCollectionById(final CollectionId collectionId, final Logger logger,
-            final Marker logMarker) throws IOException {
+            final Marker logMarker) throws IoException {
         __clear(logger, logMarker);
         return underlyingCollectionStore.deleteCollectionById(collectionId, logger, logMarker);
     }
 
     @Override
     public synchronized void deleteCollectionsByInstitutionId(final InstitutionId institutionId, final Logger logger,
-            final Marker logMarker) throws IOException {
+            final Marker logMarker) throws IoException {
         __clear(logger, logMarker);
         underlyingCollectionStore.deleteCollectionsByInstitutionId(institutionId, logger, logMarker);
     }
 
     @Override
     public synchronized Collection getCollectionById(final CollectionId collectionId, final Logger logger,
-            final Marker logMarker) throws InvalidModelException, IOException, NoSuchModelException {
+            final Marker logMarker) throws InvalidModelException, IoException, NoSuchCollectionException {
         Collection result = collectionsById.get(collectionId);
         if (result != null) {
             return result;
@@ -50,7 +50,7 @@ public class CachingCollectionStore implements CollectionStore {
 
     @Override
     public synchronized ImmutableList<CollectionEntry> getCollectionsByInstitutionId(final InstitutionId institutionId,
-            final Logger logger, final Marker logMarker) throws IOException {
+            final Logger logger, final Marker logMarker) throws IoException {
         ImmutableList<CollectionEntry> result = collectionsByInstitutionId.get(institutionId);
         if (result != null) {
             return result;
@@ -62,7 +62,7 @@ public class CachingCollectionStore implements CollectionStore {
 
     @Override
     public synchronized void putCollection(final Collection collection, final CollectionId collectionId,
-            final Logger logger, final Marker logMarker) throws IOException {
+            final Logger logger, final Marker logMarker) throws IoException {
         __clear(logger, logMarker);
         underlyingCollectionStore.putCollection(collection, collectionId, logger, logMarker);
     }

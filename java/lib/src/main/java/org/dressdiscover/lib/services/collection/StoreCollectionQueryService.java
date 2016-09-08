@@ -2,28 +2,23 @@ package org.dressdiscover.lib.services.collection;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.io.IOException;
-
 import org.dressdiscover.api.models.collection.Collection;
 import org.dressdiscover.api.models.collection.CollectionEntry;
 import org.dressdiscover.api.models.collection.CollectionId;
 import org.dressdiscover.api.models.institution.InstitutionId;
-import org.dressdiscover.lib.services.IoExceptions;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.collection.CollectionQueryService;
+import org.dressdiscover.api.services.collection.NoSuchCollectionException;
+import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
 import org.dressdiscover.lib.services.collection.LoggingCollectionQueryService.Markers;
 import org.dressdiscover.lib.stores.collection.CollectionStoreCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thryft.waf.lib.stores.InvalidModelException;
-import org.thryft.waf.lib.stores.NoSuchModelException;
 
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
-import org.dressdiscover.api.services.IoException;
-import org.dressdiscover.api.services.collection.CollectionQueryService;
-import org.dressdiscover.api.services.collection.NoSuchCollectionException;
-import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
 
 @Singleton
 public class StoreCollectionQueryService implements CollectionQueryService {
@@ -41,10 +36,6 @@ public class StoreCollectionQueryService implements CollectionQueryService {
         } catch (final InvalidModelException e) {
             logger.warn(Markers.GET_COLLECTION_BY_ID, "invalid collection model {}: ", id, e);
             throw new NoSuchCollectionException();
-        } catch (final IOException e) {
-            throw IoExceptions.wrap(e, "error getting collection" + id);
-        } catch (final NoSuchModelException e) {
-            throw new NoSuchCollectionException();
         }
     }
 
@@ -59,13 +50,9 @@ public class StoreCollectionQueryService implements CollectionQueryService {
             try {
                 collectionsBuilder.add(collectionStoreCache.getCollectionStore(collectionId)
                         .getCollectionById(collectionId, logger, Markers.GET_COLLECTIONS_BY_IDS));
-            } catch (final IOException e) {
-                throw IoExceptions.wrap(e, "error getting collections by ids");
             } catch (final InvalidModelException e) {
                 logger.warn(Markers.GET_COLLECTIONS_BY_IDS, "invalid collection model {}: ", collectionId, e);
                 throw new NoSuchCollectionException(collectionId);
-            } catch (final NoSuchModelException e) {
-                throw new NoSuchCollectionException();
             }
         }
         return collectionsBuilder.build();
@@ -74,12 +61,8 @@ public class StoreCollectionQueryService implements CollectionQueryService {
     @Override
     public ImmutableList<CollectionEntry> getCollectionsByInstitutionId(final InstitutionId institutionId)
             throws IoException, NoSuchInstitutionException {
-        try {
-            return collectionStoreCache.getCollectionStore(institutionId).getCollectionsByInstitutionId(institutionId,
-                    logger, Markers.GET_COLLECTIONS_BY_INSTITUTION_ID);
-        } catch (final IOException e) {
-            throw IoExceptions.wrap(e, "error getting collections");
-        }
+        return collectionStoreCache.getCollectionStore(institutionId).getCollectionsByInstitutionId(institutionId,
+                logger, Markers.GET_COLLECTIONS_BY_INSTITUTION_ID);
     }
 
     private final CollectionStoreCache collectionStoreCache;

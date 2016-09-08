@@ -1,7 +1,6 @@
 package org.dressdiscover.lib.stores.object;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Iterator;
 
 import org.apache.commons.io.FileUtils;
@@ -13,6 +12,8 @@ import org.dressdiscover.api.models.object.InvalidObjectIdException;
 import org.dressdiscover.api.models.object.Object;
 import org.dressdiscover.api.models.object.ObjectEntry;
 import org.dressdiscover.api.models.object.ObjectId;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.object.NoSuchObjectException;
 import org.dressdiscover.lib.DressDiscoverProperties;
 import org.dressdiscover.lib.stores.AbstractInstitutionCollectionObjectFileSystem;
 import org.slf4j.Logger;
@@ -20,21 +21,26 @@ import org.slf4j.Marker;
 import org.thryft.protocol.InputProtocol;
 import org.thryft.protocol.InputProtocolException;
 import org.thryft.waf.lib.stores.InvalidModelException;
-import org.thryft.waf.lib.stores.NoSuchModelException;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 @Singleton
-public class FileSystemObjectStore extends AbstractInstitutionCollectionObjectFileSystem<Object>
+public class FileSystemObjectStore extends AbstractInstitutionCollectionObjectFileSystem<Object, NoSuchObjectException>
         implements ObjectStore {
     @Inject
     public FileSystemObjectStore(final DressDiscoverProperties properties) {
         super(properties);
     }
 
+    @Override
+    public final long deleteObjectsByCollectionId(final CollectionId collectionId, final Logger logger,
+            final Marker logMarker) throws IoException {
+        return _deleteDirectoryContents(false, _getCollectionDirectoryPath(collectionId), logger, logMarker);
+    }
+
     // public final long deleteObjects(final Logger logger, final Marker
-    // logMarker) throws IOException {
+    // logMarker) throws IoException {
     // long count = 0;
     // for (final File institutionDirectoryPath :
     // _getInstitutionDirectoryPaths(logger, logMarker)) {
@@ -49,15 +55,15 @@ public class FileSystemObjectStore extends AbstractInstitutionCollectionObjectFi
     // }
 
     @Override
-    public final long deleteObjectsByCollectionId(final CollectionId collectionId, final Logger logger,
-            final Marker logMarker) throws IOException {
-        return _deleteDirectoryContents(false, _getCollectionDirectoryPath(collectionId), logger, logMarker);
+    public final Object getObjectById(final Logger logger, final Marker logMarker, final ObjectId objectId)
+            throws InvalidModelException, IoException, NoSuchObjectException {
+        return _getModel(__getObjectFilePath(objectId), logger, logMarker);
     }
 
     // @Override
     // public final long deleteObjectsByInstitutionId(final InstitutionId
     // institutionId, final Logger logger,
-    // final Marker logMarker) throws IOException {
+    // final Marker logMarker) throws IoException {
     // long count = 0;
     // final File institutionDirectoryPath =
     // _getInstitutionDirectoryPath(institutionId);
@@ -70,9 +76,52 @@ public class FileSystemObjectStore extends AbstractInstitutionCollectionObjectFi
     // }
 
     @Override
-    public final Object getObjectById(final Logger logger, final Marker logMarker, final ObjectId objectId)
-            throws InvalidModelException, IOException, NoSuchModelException {
-        return _getModel(__getObjectFilePath(objectId), logger, logMarker);
+    public final Iterable<ObjectEntry> getObjectsByCollectionId(final CollectionId collectionId, final Logger logger,
+            final Marker logMarker) {
+        return new Iterable<ObjectEntry>() {
+            @Override
+            public Iterator<ObjectEntry> iterator() {
+                return new Iterator<ObjectEntry>() {
+                    @Override
+                    public boolean hasNext() {
+                        return fileIterator.hasNext();
+                    }
+
+                    @Override
+                    public ObjectEntry next() {
+                        final File objectFilePath = fileIterator.next();
+                        final File collectionDirectoryPath = objectFilePath.getParentFile();
+                        final File institutionDirectoryPath = collectionDirectoryPath.getParentFile();
+                        final ObjectId objectId;
+                        try {
+                            objectId = ObjectId.parse(_decodeFileName(institutionDirectoryPath.getName()) + '/'
+                                    + _decodeFileName(collectionDirectoryPath.getName()) + '/'
+                                    + _decodeFileName(FilenameUtils.getBaseName(objectFilePath.getName())));
+                        } catch (final InvalidObjectIdException e) {
+                            throw new RuntimeException(e);
+                        }
+                        try {
+                            return new ObjectEntry(objectId, _getModel(objectFilePath, logger, logMarker));
+                        } catch (InvalidModelException | IoException | NoSuchObjectException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+
+                    private final Iterator<File> fileIterator = FileUtils
+                            .iterateFiles(_getCollectionDirectoryPath(collectionId), new IOFileFilter() {
+                                @Override
+                                public boolean accept(final File file) {
+                                    return file.getName().charAt(0) != '.' && file.getName().endsWith(".json");
+                                }
+
+                                @Override
+                                public boolean accept(final File dir, final String name) {
+                                    return name.charAt(0) != '.' && name.endsWith(".json");
+                                }
+                            }, TrueFileFilter.INSTANCE);
+                };
+            }
+        };
     }
 
     // @Override
@@ -105,7 +154,7 @@ public class FileSystemObjectStore extends AbstractInstitutionCollectionObjectFi
     // try {
     // return new ObjectEntry(objectId, _getModel(objectFilePath, logger,
     // logMarker));
-    // } catch (InvalidModelException | IOException | NoSuchModelException e) {
+    // } catch (InvalidModelException | IoException | NoSuchModelException e) {
     // throw new RuntimeException(e);
     // }
     // }
@@ -130,58 +179,14 @@ public class FileSystemObjectStore extends AbstractInstitutionCollectionObjectFi
     // }
 
     @Override
-    public final Iterable<ObjectEntry> getObjectsByCollectionId(final CollectionId collectionId, final Logger logger,
-            final Marker logMarker) {
-        return new Iterable<ObjectEntry>() {
-            @Override
-            public Iterator<ObjectEntry> iterator() {
-                return new Iterator<ObjectEntry>() {
-                    @Override
-                    public boolean hasNext() {
-                        return fileIterator.hasNext();
-                    }
-
-                    @Override
-                    public ObjectEntry next() {
-                        final File objectFilePath = fileIterator.next();
-                        final File collectionDirectoryPath = objectFilePath.getParentFile();
-                        final File institutionDirectoryPath = collectionDirectoryPath.getParentFile();
-                        final ObjectId objectId;
-                        try {
-                            objectId = ObjectId.parse(_decodeFileName(institutionDirectoryPath.getName()) + '/'
-                                    + _decodeFileName(collectionDirectoryPath.getName()) + '/'
-                                    + _decodeFileName(FilenameUtils.getBaseName(objectFilePath.getName())));
-                        } catch (final InvalidObjectIdException e) {
-                            throw new RuntimeException(e);
-                        }
-                        try {
-                            return new ObjectEntry(objectId, _getModel(objectFilePath, logger, logMarker));
-                        } catch (InvalidModelException | IOException | NoSuchModelException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-
-                    private final Iterator<File> fileIterator = FileUtils
-                            .iterateFiles(_getCollectionDirectoryPath(collectionId), new IOFileFilter() {
-                                @Override
-                                public boolean accept(final File file) {
-                                    return file.getName().charAt(0) != '.' && file.getName().endsWith(".json");
-                                }
-
-                                @Override
-                                public boolean accept(final File dir, final String name) {
-                                    return name.charAt(0) != '.' && name.endsWith(".json");
-                                }
-                            }, TrueFileFilter.INSTANCE);
-                };
-            }
-        };
+    public final void putObject(final Logger logger, final Marker logMarker, final Object object,
+            final ObjectId objectId) throws IoException {
+        _putModel(__getObjectFilePath(objectId), logger, logMarker, object);
     }
 
     @Override
-    public final void putObject(final Logger logger, final Marker logMarker, final Object object,
-            final ObjectId objectId) throws IOException {
-        _putModel(__getObjectFilePath(objectId), logger, logMarker, object);
+    protected final NoSuchObjectException _newNoSuchModelException() {
+        return new NoSuchObjectException();
     }
 
     @Override

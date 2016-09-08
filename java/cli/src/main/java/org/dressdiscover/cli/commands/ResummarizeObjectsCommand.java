@@ -1,16 +1,14 @@
 package org.dressdiscover.cli.commands;
 
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.object.ObjectCommandService;
 import org.thryft.waf.cli.Command;
 
 import com.google.inject.Injector;
 
-import org.dressdiscover.api.services.IoException;
-import org.dressdiscover.api.services.object.ObjectCommandService;
-
-public final class ResummarizeObjectsCommand extends Command {
-    @Override
-    public Args getArgs() {
-        return args;
+public final class ResummarizeObjectsCommand extends Command<Command.Args> {
+    public ResummarizeObjectsCommand() {
+        super(new Args());
     }
 
     @Override
@@ -21,6 +19,4 @@ public final class ResummarizeObjectsCommand extends Command {
             logger.error(logMarker, "I/O exception: ", e);
         }
     }
-
-    private final Args args = new Args();
 }

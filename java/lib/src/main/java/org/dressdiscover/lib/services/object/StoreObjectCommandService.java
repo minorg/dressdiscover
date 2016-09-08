@@ -2,7 +2,6 @@ package org.dressdiscover.lib.services.object;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +13,13 @@ import org.dressdiscover.api.models.object.ObjectEntry;
 import org.dressdiscover.api.models.object.ObjectId;
 import org.dressdiscover.api.models.object.ObjectSummary;
 import org.dressdiscover.api.models.object.ObjectSummaryEntry;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.collection.CollectionQueryService;
+import org.dressdiscover.api.services.collection.NoSuchCollectionException;
+import org.dressdiscover.api.services.institution.InstitutionQueryService;
+import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
+import org.dressdiscover.api.services.object.ObjectCommandService;
 import org.dressdiscover.lib.DressDiscoverProperties;
-import org.dressdiscover.lib.services.IoExceptions;
 import org.dressdiscover.lib.services.object.LoggingObjectCommandService.Markers;
 import org.dressdiscover.lib.stores.object.ObjectStoreCache;
 import org.dressdiscover.lib.stores.object.ObjectSummaryElasticSearchIndex;
@@ -28,20 +32,14 @@ import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import org.dressdiscover.api.services.IoException;
-import org.dressdiscover.api.services.collection.CollectionQueryService;
-import org.dressdiscover.api.services.collection.NoSuchCollectionException;
-import org.dressdiscover.api.services.institution.InstitutionQueryService;
-import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
-import org.dressdiscover.api.services.object.ObjectCommandService;
-
 @Singleton
 public class StoreObjectCommandService implements ObjectCommandService {
     @Inject
     public StoreObjectCommandService(final CollectionQueryService collectionQueryService,
             final InstitutionQueryService institutionQueryService, final ObjectStoreCache objectStoreCache,
             final ObjectSummariesResultCache objectSummariesResultCache, final ObjectSummaryCache objectSummaryCache,
-            final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex, final DressDiscoverProperties properties) {
+            final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex,
+            final DressDiscoverProperties properties) {
         this.collectionQueryService = checkNotNull(collectionQueryService);
         this.institutionQueryService = checkNotNull(institutionQueryService);
         this.objectStoreCache = checkNotNull(objectStoreCache);
@@ -56,23 +54,12 @@ public class StoreObjectCommandService implements ObjectCommandService {
             throws IoException, NoSuchCollectionException, NoSuchInstitutionException {
         __invalidateCaches();
 
-        UnsignedInteger result;
-        try {
-            result = UnsignedInteger.valueOf(objectStoreCache.getObjectStore(collectionId)
-                    .deleteObjectsByCollectionId(collectionId, logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID));
-        } catch (final IOException e) {
-            throw IoExceptions.wrap(e, "error deleting objects by collection id");
-        }
+        final UnsignedInteger result = UnsignedInteger.valueOf(objectStoreCache.getObjectStore(collectionId)
+                .deleteObjectsByCollectionId(collectionId, logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID));
 
-        try {
-            objectSummaryElasticSearchIndex.deleteModels(logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID,
-                    QueryBuilders.boolQuery()
-                            .filter(QueryBuilders.termQuery(
-                                    ObjectSummary.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(),
-                                    collectionId.toString())));
-        } catch (final IOException e) {
-            throw IoExceptions.wrap(e, "error deleting object summaries by collection id");
-        }
+        objectSummaryElasticSearchIndex.deleteModels(logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID,
+                QueryBuilders.boolQuery().filter(QueryBuilders.termQuery(
+                        ObjectSummary.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(), collectionId.toString())));
 
         return result;
     }
@@ -82,18 +69,10 @@ public class StoreObjectCommandService implements ObjectCommandService {
             throws IoException, NoSuchCollectionException, NoSuchInstitutionException {
         __invalidateCaches();
 
-        try {
-            objectStoreCache.getObjectStore(id).putObject(logger, Markers.PUT_OBJECT, object, id);
-        } catch (final IOException e) {
-            throw IoExceptions.wrap(e, "error putting object");
-        }
+        objectStoreCache.getObjectStore(id).putObject(logger, Markers.PUT_OBJECT, object, id);
 
-        try {
-            objectSummaryElasticSearchIndex.putModel(logger, Markers.PUT_OBJECT,
-                    new ObjectSummaryEntry(id, ObjectSummarizer.getInstance().summarizeObject(object)));
-        } catch (final IOException e) {
-            throw IoExceptions.wrap(e, "error putting object summary");
-        }
+        objectSummaryElasticSearchIndex.putModel(logger, Markers.PUT_OBJECT,
+                new ObjectSummaryEntry(id, ObjectSummarizer.getInstance().summarizeObject(object)));
     }
 
     @Override
@@ -102,12 +81,8 @@ public class StoreObjectCommandService implements ObjectCommandService {
         __invalidateCaches();
 
         for (final ObjectEntry objectEntry : objects) {
-            try {
-                objectStoreCache.getObjectStore(objectEntry.getId()).putObject(logger, Markers.PUT_OBJECTS,
-                        objectEntry.getModel(), objectEntry.getId());
-            } catch (final IOException e) {
-                throw IoExceptions.wrap(e, "error putting objects");
-            }
+            objectStoreCache.getObjectStore(objectEntry.getId()).putObject(logger, Markers.PUT_OBJECTS,
+                    objectEntry.getModel(), objectEntry.getId());
         }
 
         final ImmutableList.Builder<ObjectSummaryEntry> objectSummariesBuilder = ImmutableList.builder();
@@ -115,11 +90,8 @@ public class StoreObjectCommandService implements ObjectCommandService {
             objectSummariesBuilder.add(new ObjectSummaryEntry(objectEntry.getId(),
                     ObjectSummarizer.getInstance().summarizeObject(objectEntry.getModel())));
         }
-        try {
-            objectSummaryElasticSearchIndex.putModels(logger, Markers.PUT_OBJECTS, objectSummariesBuilder.build());
-        } catch (final IOException e) {
-            throw IoExceptions.wrap(e, "error putting object summaries");
-        }
+
+        objectSummaryElasticSearchIndex.putModels(logger, Markers.PUT_OBJECTS, objectSummariesBuilder.build());
     }
 
     @Override
@@ -161,7 +133,7 @@ public class StoreObjectCommandService implements ObjectCommandService {
                         ImmutableList.copyOf(objectSummaries));
                 logger.info(Markers.RESUMMARIZE_OBJECTS, "put {} object summaries", objectSummaries.size());
             }
-        } catch (final IOException e) {
+        } catch (final IoException e) {
             logger.error(Markers.RESUMMARIZE_OBJECTS, "I/O exception: ", e);
         }
     }

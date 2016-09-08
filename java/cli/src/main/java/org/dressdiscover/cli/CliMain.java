@@ -35,7 +35,7 @@ public final class CliMain extends org.thryft.waf.lib.AbstractMain {
         final DressDiscoverProperties properties = DressDiscoverProperties.load();
         _getLogger().debug(_getLogMarker(), "properties: {}", properties);
 
-        final Injector injector = Guice.createInjector(new PropertiesModule<DressDiscoverProperties>(properties),
+        final Injector injector = Guice.createInjector(new PropertiesModule<>(properties),
                 new ServicesModule(properties));
 
         final PythonInterpreter pythonInterpreter = injector.getInstance(PythonInterpreterFactory.class)
@@ -45,6 +45,6 @@ public final class CliMain extends org.thryft.waf.lib.AbstractMain {
         argParser.getCommand().run(injector);
     }
 
-    private final Command[] commands = { new PutElasticSearchTemplatesCommand(), new ResummarizeObjectsCommand() };
+    private final Command<?>[] commands = { new PutElasticSearchTemplatesCommand(), new ResummarizeObjectsCommand() };
     private final static Marker LOG_MARKER = LoggingUtils.getMarker(CliMain.class);
 }

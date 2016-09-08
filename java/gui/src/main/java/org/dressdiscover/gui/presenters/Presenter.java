@@ -3,45 +3,18 @@ package org.dressdiscover.gui.presenters;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
-import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
-import org.dressdiscover.api.models.collection.CollectionId;
-import org.dressdiscover.api.models.institution.InstitutionId;
-import org.dressdiscover.api.models.user.UserBookmarkId;
-import org.dressdiscover.api.models.user.UserId;
-import org.dressdiscover.gui.events.user.UserLogoutRequest;
-import org.dressdiscover.gui.views.TopLevelView;
-import org.dressdiscover.gui.views.object_by_id.ObjectByIdView;
-import org.dressdiscover.gui.views.objects.ObjectsView;
-import org.dressdiscover.gui.views.user_bookmarks.UserBookmarksView;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Marker;
-import org.thryft.protocol.JacksonJsonOutputProtocol;
-import org.thryft.protocol.OutputProtocolException;
-import org.thryft.waf.gui.EventBus;
-import org.thryft.waf.gui.views.View;
-import org.thryft.waf.lib.logging.LoggingUtils;
-
-import com.google.common.base.Charsets;
-import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.eventbus.Subscribe;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.server.SystemError;
-import com.vaadin.ui.UI;
-
 import org.dressdiscover.api.models.collection.Collection;
+import org.dressdiscover.api.models.collection.CollectionId;
 import org.dressdiscover.api.models.institution.Institution;
+import org.dressdiscover.api.models.institution.InstitutionId;
 import org.dressdiscover.api.models.object.ObjectQuery;
 import org.dressdiscover.api.models.user.InvalidUserIdException;
 import org.dressdiscover.api.models.user.UserBookmark;
+import org.dressdiscover.api.models.user.UserBookmarkId;
 import org.dressdiscover.api.models.user.UserEntry;
+import org.dressdiscover.api.models.user.UserId;
 import org.dressdiscover.api.services.IoException;
 import org.dressdiscover.api.services.collection.CollectionQueryService;
 import org.dressdiscover.api.services.collection.CollectionQueryService.Messages.GetCollectionByIdRequest;
@@ -57,6 +30,25 @@ import org.dressdiscover.api.services.user.NoSuchUserException;
 import org.dressdiscover.api.services.user.UserCommandService;
 import org.dressdiscover.api.services.user.UserQueryService;
 import org.dressdiscover.api.services.user.UserQueryService.Messages.GetUserBookmarksByUserIdRequest;
+import org.dressdiscover.gui.events.user.UserLogoutRequest;
+import org.dressdiscover.gui.views.TopLevelView;
+import org.dressdiscover.gui.views.object_by_id.ObjectByIdView;
+import org.dressdiscover.gui.views.objects.ObjectsView;
+import org.dressdiscover.gui.views.user_bookmarks.UserBookmarksView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.thryft.waf.gui.EventBus;
+import org.thryft.waf.gui.views.View;
+import org.thryft.waf.lib.logging.LoggingUtils;
+
+import com.google.common.base.Optional;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.eventbus.Subscribe;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.SystemError;
+import com.vaadin.ui.UI;
 
 public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.presenters.Presenter<ViewT> {
     protected static void _navigateTo(final ObjectQuery query) {
