@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.user;
 
-public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model {
-    public static class Builder {
+public final class User implements org.thryft.Struct, org.thryft.waf.api.models.Model {
+    public final static class Builder {
         public Builder() {
             ctime = null;
             emailAddress = null;

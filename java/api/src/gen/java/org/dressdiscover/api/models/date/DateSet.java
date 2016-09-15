@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.date;
 /**
  * VRA Core 4.0 dateSet element
  */
-public class DateSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.date.Date> {
-    public static class Builder {
+public final class DateSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.date.Date> {
+    public final static class Builder {
         public Builder() {
             elements = null;
             display = com.google.common.base.Optional.<String> absent();

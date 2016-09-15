@@ -17,7 +17,7 @@ public interface ObjectQueryService {
 
     public static class Messages {
         public final static class GetObjectByIdRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     id = null;
                 }
@@ -454,7 +454,7 @@ public interface ObjectQueryService {
         }
 
         public final static class GetObjectByIdResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     returnValue = null;
                 }

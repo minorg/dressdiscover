@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.textref;
 /**
  * VRA Core 4.0 textref.refid subelement
  */
-public class TextrefRefid implements org.thryft.Struct {
-    public static class Builder {
+public final class TextrefRefid implements org.thryft.Struct {
+    public final static class Builder {
         public Builder() {
             text = null;
             type = null;

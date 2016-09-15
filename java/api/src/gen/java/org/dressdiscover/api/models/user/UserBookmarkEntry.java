@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.user;
 
-public class UserBookmarkEntry implements org.thryft.Struct, org.thryft.waf.api.models.ModelEntry<org.dressdiscover.api.models.user.UserBookmark, org.dressdiscover.api.models.user.UserBookmarkId> {
-    public static class Builder {
+public final class UserBookmarkEntry implements org.thryft.Struct, org.thryft.waf.api.models.ModelEntry<org.dressdiscover.api.models.user.UserBookmark, org.dressdiscover.api.models.user.UserBookmarkId> {
+    public final static class Builder {
         public Builder() {
             id = null;
             model = null;

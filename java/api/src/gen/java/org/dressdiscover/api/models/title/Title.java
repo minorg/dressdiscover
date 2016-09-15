@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.title;
 /**
  * VRA Core 4.0 title element
  */
-public class Title implements org.thryft.Struct, org.dressdiscover.api.models.Element {
-    public static class Builder {
+public final class Title implements org.thryft.Struct, org.dressdiscover.api.models.Element {
+    public final static class Builder {
         public Builder() {
             text = null;
             type = null;

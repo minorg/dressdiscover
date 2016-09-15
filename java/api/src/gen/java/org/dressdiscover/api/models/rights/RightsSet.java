@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.rights;
 /**
  * VRA Core 4.0 rightsSet element
  */
-public class RightsSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.rights.Rights> {
-    public static class Builder {
+public final class RightsSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.rights.Rights> {
+    public final static class Builder {
         public Builder() {
             elements = null;
             display = com.google.common.base.Optional.<String> absent();

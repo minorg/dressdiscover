@@ -1,8 +1,8 @@
 package org.dressdiscover.api.services.user;
 
 @SuppressWarnings({"serial"})
-public class DuplicateUserBookmarkException extends org.thryft.Exception {
-    public static class Builder {
+public final class DuplicateUserBookmarkException extends org.thryft.Exception {
+    public final static class Builder {
         public Builder() {
             causeMessage = null;
         }

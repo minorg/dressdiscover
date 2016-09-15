@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.color;
 /**
  * Costume Core colorSet element
  */
-public class ColorSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.color.Color> {
-    public static class Builder {
+public final class ColorSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.color.Color> {
+    public final static class Builder {
         public Builder() {
             elements = null;
             display = com.google.common.base.Optional.<String> absent();

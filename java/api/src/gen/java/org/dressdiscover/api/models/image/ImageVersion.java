@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.image;
 
-public class ImageVersion implements org.thryft.Struct {
-    public static class Builder {
+public final class ImageVersion implements org.thryft.Struct {
+    public final static class Builder {
         public Builder() {
             url = null;
             heightPx = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();

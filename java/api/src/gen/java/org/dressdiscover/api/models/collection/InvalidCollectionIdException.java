@@ -1,8 +1,8 @@
 package org.dressdiscover.api.models.collection;
 
 @SuppressWarnings({"serial"})
-public class InvalidCollectionIdException extends org.thryft.Exception {
-    public static class Builder {
+public final class InvalidCollectionIdException extends org.thryft.Exception {
+    public final static class Builder {
         public Builder() {
             causeMessage = null;
         }

@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.cultural_context;
 /**
  * VRA Core 4.0 culturalContextSet element
  */
-public class CulturalContextSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.cultural_context.CulturalContext> {
-    public static class Builder {
+public final class CulturalContextSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.cultural_context.CulturalContext> {
+    public final static class Builder {
         public Builder() {
             elements = null;
             display = com.google.common.base.Optional.<String> absent();

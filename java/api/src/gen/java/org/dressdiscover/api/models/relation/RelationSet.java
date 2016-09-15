@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.relation;
 /**
  * VRA Core 4.0 relationSet element
  */
-public class RelationSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.relation.Relation> {
-    public static class Builder {
+public final class RelationSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.relation.Relation> {
+    public final static class Builder {
         public Builder() {
             elements = null;
             display = com.google.common.base.Optional.<String> absent();

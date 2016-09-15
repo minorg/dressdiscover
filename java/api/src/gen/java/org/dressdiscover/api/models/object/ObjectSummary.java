@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.object;
 
-public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.models.Model {
-    public static class Builder {
+public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.models.Model {
+    public final static class Builder {
         public Builder() {
             collectionId = null;
             institutionId = null;

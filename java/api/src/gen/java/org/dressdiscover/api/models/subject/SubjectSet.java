@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.subject;
 /**
  * VRA Core 4.0 subjectSet element
  */
-public class SubjectSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.subject.Subject> {
-    public static class Builder {
+public final class SubjectSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.subject.Subject> {
+    public final static class Builder {
         public Builder() {
             elements = null;
             display = com.google.common.base.Optional.<String> absent();

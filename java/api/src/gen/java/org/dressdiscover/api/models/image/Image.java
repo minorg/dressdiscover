@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.image;
 
-public class Image implements org.thryft.Struct {
-    public static class Builder {
+public final class Image implements org.thryft.Struct {
+    public final static class Builder {
         public Builder() {
             fullSize = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
             original = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();

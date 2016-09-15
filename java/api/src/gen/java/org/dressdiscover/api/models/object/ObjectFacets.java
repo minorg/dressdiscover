@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.object;
 
-public class ObjectFacets implements org.thryft.Struct {
-    public static class Builder {
+public final class ObjectFacets implements org.thryft.Struct {
+    public final static class Builder {
         public Builder() {
             categories = null;
             collections = null;

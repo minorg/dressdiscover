@@ -19,7 +19,7 @@ public interface InstitutionQueryService {
 
     public static class Messages {
         public final static class GetInstitutionByIdRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     id = null;
                 }
@@ -456,7 +456,7 @@ public interface InstitutionQueryService {
         }
 
         public final static class GetInstitutionByIdResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     returnValue = null;
                 }
@@ -877,7 +877,7 @@ public interface InstitutionQueryService {
         }
 
         public final static class GetInstitutionsRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                 }
 
@@ -1121,7 +1121,7 @@ public interface InstitutionQueryService {
         }
 
         public final static class GetInstitutionsResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     returnValue = null;
                 }
@@ -1611,7 +1611,7 @@ public interface InstitutionQueryService {
         }
 
         public final static class GetInstitutionsByIdsRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     ids = null;
                 }
@@ -2117,7 +2117,7 @@ public interface InstitutionQueryService {
         }
 
         public final static class GetInstitutionsByIdsResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     returnValue = null;
                 }

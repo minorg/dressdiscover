@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.subject;
 /**
  * VRA Core 4.0 subject term element
  */
-public class SubjectTerm implements org.thryft.Struct {
-    public static class Builder {
+public final class SubjectTerm implements org.thryft.Struct {
+    public final static class Builder {
         public Builder() {
             text = null;
             type = null;

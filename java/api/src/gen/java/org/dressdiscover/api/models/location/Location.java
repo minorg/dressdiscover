@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.location;
 /**
  * VRA Core 4.0 location element
  */
-public class Location implements org.thryft.Struct, org.dressdiscover.api.models.Element {
-    public static class Builder {
+public final class Location implements org.thryft.Struct, org.dressdiscover.api.models.Element {
+    public final static class Builder {
         public Builder() {
             type = null;
             coordinates = com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationCoordinates> absent();

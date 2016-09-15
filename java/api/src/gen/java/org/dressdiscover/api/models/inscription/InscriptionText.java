@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.inscription;
 
-public class InscriptionText implements org.thryft.Struct {
-    public static class Builder {
+public final class InscriptionText implements org.thryft.Struct {
+    public final static class Builder {
         public Builder() {
             text = null;
             type = null;

@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.component;
 /**
  * Costume Core component element
  */
-public class Component implements org.thryft.Struct, org.dressdiscover.api.models.Element {
-    public static class Builder {
+public final class Component implements org.thryft.Struct, org.dressdiscover.api.models.Element {
+    public final static class Builder {
         public Builder() {
             term = null;
             structures = com.google.common.base.Optional.<org.dressdiscover.api.models.structure.StructureSet> absent();

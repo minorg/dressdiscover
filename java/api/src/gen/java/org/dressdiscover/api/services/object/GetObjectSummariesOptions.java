@@ -1,7 +1,7 @@
 package org.dressdiscover.api.services.object;
 
-public class GetObjectSummariesOptions implements org.thryft.Struct {
-    public static class Builder {
+public final class GetObjectSummariesOptions implements org.thryft.Struct {
+    public final static class Builder {
         public Builder() {
             from = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
             includeFacets = com.google.common.base.Optional.<Boolean> absent();

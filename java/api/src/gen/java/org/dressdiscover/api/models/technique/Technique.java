@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.technique;
 /**
  * VRA Core 4.0 technique element
  */
-public class Technique implements org.thryft.Struct, org.dressdiscover.api.models.Element {
-    public static class Builder {
+public final class Technique implements org.thryft.Struct, org.dressdiscover.api.models.Element {
+    public final static class Builder {
         public Builder() {
             text = null;
             vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();

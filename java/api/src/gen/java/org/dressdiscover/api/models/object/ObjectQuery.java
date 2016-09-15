@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.object;
 
-public class ObjectQuery implements org.thryft.Struct {
-    public static class Builder {
+public final class ObjectQuery implements org.thryft.Struct {
+    public final static class Builder {
         public Builder() {
             collectionId = com.google.common.base.Optional.<org.dressdiscover.api.models.collection.CollectionId> absent();
             facetFilters = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectFacetFilters> absent();

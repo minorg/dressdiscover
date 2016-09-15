@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.description;
 /**
  * VRA Core 4.0 descriptionSet element
  */
-public class DescriptionSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.description.Description> {
-    public static class Builder {
+public final class DescriptionSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.description.Description> {
+    public final static class Builder {
         public Builder() {
             elements = null;
             display = com.google.common.base.Optional.<String> absent();

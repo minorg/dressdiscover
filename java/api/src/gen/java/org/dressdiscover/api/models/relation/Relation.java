@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.relation;
 /**
  * VRA Core 4.0 relation element
  */
-public class Relation implements org.thryft.Struct, org.dressdiscover.api.models.Element {
-    public static class Builder {
+public final class Relation implements org.thryft.Struct, org.dressdiscover.api.models.Element {
+    public final static class Builder {
         public Builder() {
             type = null;
             href = com.google.common.base.Optional.<org.thryft.native_.Url> absent();

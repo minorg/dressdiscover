@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.measurements;
 /**
  * VRA Core 4.0 measurements element
  */
-public class Measurements implements org.thryft.Struct, org.dressdiscover.api.models.Element {
-    public static class Builder {
+public final class Measurements implements org.thryft.Struct, org.dressdiscover.api.models.Element {
+    public final static class Builder {
         public Builder() {
             text = null;
             type = null;

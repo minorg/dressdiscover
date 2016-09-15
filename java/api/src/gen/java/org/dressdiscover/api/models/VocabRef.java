@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models;
 
-public class VocabRef implements org.thryft.Struct {
-    public static class Builder {
+public final class VocabRef implements org.thryft.Struct {
+    public final static class Builder {
         public Builder() {
             vocab = null;
             refid = com.google.common.base.Optional.<String> absent();

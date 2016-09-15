@@ -17,7 +17,7 @@ public interface ObjectSummaryQueryService {
 
     public static class Messages {
         public final static class GetObjectSummariesRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     options = com.google.common.base.Optional.<org.dressdiscover.api.services.object.GetObjectSummariesOptions> absent();
                     query = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent();
@@ -558,7 +558,7 @@ public interface ObjectSummaryQueryService {
         }
 
         public final static class GetObjectSummariesResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     returnValue = null;
                 }

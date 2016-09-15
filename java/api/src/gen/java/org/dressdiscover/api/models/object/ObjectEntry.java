@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.object;
 
-public class ObjectEntry implements org.thryft.Struct, org.thryft.waf.api.models.ModelEntry<org.dressdiscover.api.models.object.Object, org.dressdiscover.api.models.object.ObjectId> {
-    public static class Builder {
+public final class ObjectEntry implements org.thryft.Struct, org.thryft.waf.api.models.ModelEntry<org.dressdiscover.api.models.object.Object, org.dressdiscover.api.models.object.ObjectId> {
+    public final static class Builder {
         public Builder() {
             id = null;
             model = null;

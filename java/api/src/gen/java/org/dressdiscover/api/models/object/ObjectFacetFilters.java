@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.object;
 
-public class ObjectFacetFilters implements org.thryft.Struct {
-    public static class Builder {
+public final class ObjectFacetFilters implements org.thryft.Struct {
+    public final static class Builder {
         public Builder() {
             excludeAll = com.google.common.base.Optional.<Boolean> absent();
             excludeCategories = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();

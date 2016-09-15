@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.agent;
 /**
  * VRA Core 4.0 agent.dates element
  */
-public class AgentDates implements org.thryft.Struct {
-    public static class Builder {
+public final class AgentDates implements org.thryft.Struct {
+    public final static class Builder {
         public Builder() {
             type = null;
             earliestDate = com.google.common.base.Optional.<java.util.Date> absent();

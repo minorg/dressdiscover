@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.color;
 /**
  * Costume Core color element
  */
-public class Color implements org.thryft.Struct, org.dressdiscover.api.models.Element {
-    public static class Builder {
+public final class Color implements org.thryft.Struct, org.dressdiscover.api.models.Element {
+    public final static class Builder {
         public Builder() {
             text = null;
             type = null;

@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.location;
 /**
  * VRA Core 4.0 location.refid subelement
  */
-public class LocationRefid implements org.thryft.Struct {
-    public static class Builder {
+public final class LocationRefid implements org.thryft.Struct {
+    public final static class Builder {
         public Builder() {
             text = null;
             type = null;

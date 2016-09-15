@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.agent;
 /**
  * VRA Core 4.0 agent role= attribute
  */
-public class AgentRole implements org.thryft.Struct {
-    public static class Builder {
+public final class AgentRole implements org.thryft.Struct {
+    public final static class Builder {
         public Builder() {
             text = null;
             vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();

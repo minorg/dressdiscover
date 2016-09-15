@@ -1,7 +1,7 @@
 package org.dressdiscover.api.services.object;
 
-public class ObjectSummarySort implements org.thryft.Struct {
-    public static class Builder {
+public final class ObjectSummarySort implements org.thryft.Struct {
+    public final static class Builder {
         public Builder() {
             field = null;
             order = null;

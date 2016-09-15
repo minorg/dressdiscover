@@ -1,8 +1,8 @@
 package org.dressdiscover.api.models.user;
 
 @SuppressWarnings({"serial"})
-public class InvalidUserIdException extends org.thryft.Exception {
-    public static class Builder {
+public final class InvalidUserIdException extends org.thryft.Exception {
+    public final static class Builder {
         public Builder() {
             causeMessage = null;
         }

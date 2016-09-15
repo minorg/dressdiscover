@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.date;
 /**
  * VRA Core 4.0 date element
  */
-public class Date implements org.thryft.Struct, org.dressdiscover.api.models.Element {
-    public static class Builder {
+public final class Date implements org.thryft.Struct, org.dressdiscover.api.models.Element {
+    public final static class Builder {
         public Builder() {
             earliestDate = null;
             latestDate = null;

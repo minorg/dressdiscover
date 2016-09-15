@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.material;
 /**
  * VRA Core 4.0 materialSet element
  */
-public class MaterialSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.material.Material> {
-    public static class Builder {
+public final class MaterialSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.material.Material> {
+    public final static class Builder {
         public Builder() {
             elements = null;
             display = com.google.common.base.Optional.<String> absent();

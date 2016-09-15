@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.inscription;
 /**
  * VRA Core 4.0 inscription element
  */
-public class Inscription implements org.thryft.Struct, org.dressdiscover.api.models.Element {
-    public static class Builder {
+public final class Inscription implements org.thryft.Struct, org.dressdiscover.api.models.Element {
+    public final static class Builder {
         public Builder() {
             texts = null;
             author = com.google.common.base.Optional.<org.dressdiscover.api.models.inscription.InscriptionAuthor> absent();

@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.work_type;
 /**
  * VRA Core 4.0 workTypeSet element
  */
-public class WorkTypeSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.work_type.WorkType> {
-    public static class Builder {
+public final class WorkTypeSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.work_type.WorkType> {
+    public final static class Builder {
         public Builder() {
             elements = null;
             display = com.google.common.base.Optional.<String> absent();

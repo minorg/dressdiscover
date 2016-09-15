@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.location;
 /**
  * VRA Core 4.0 location.name subelement
  */
-public class LocationName implements org.thryft.Struct {
-    public static class Builder {
+public final class LocationName implements org.thryft.Struct {
+    public final static class Builder {
         public Builder() {
             text = null;
             type = null;

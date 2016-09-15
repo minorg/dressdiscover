@@ -1,7 +1,7 @@
 package org.dressdiscover.api.services.object;
 
-public class GetObjectSummariesResult implements org.thryft.Struct {
-    public static class Builder {
+public final class GetObjectSummariesResult implements org.thryft.Struct {
+    public final static class Builder {
         public Builder() {
             hits = null;
             totalHits = com.google.common.primitives.UnsignedInteger.ZERO;

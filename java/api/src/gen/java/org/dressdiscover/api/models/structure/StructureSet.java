@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.structure;
 /**
  * Costume Core structure* elements
  */
-public class StructureSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.structure.Structure> {
-    public static class Builder {
+public final class StructureSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.structure.Structure> {
+    public final static class Builder {
         public Builder() {
             elements = null;
             display = com.google.common.base.Optional.<String> absent();

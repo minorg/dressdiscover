@@ -1,8 +1,8 @@
 package org.dressdiscover.api.services;
 
 @SuppressWarnings({"serial"})
-public class IoException extends org.thryft.Exception {
-    public static class Builder {
+public final class IoException extends org.thryft.Exception {
+    public final static class Builder {
         public Builder() {
             causeMessage = null;
         }

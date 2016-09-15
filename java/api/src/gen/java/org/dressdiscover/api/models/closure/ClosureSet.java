@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.closure;
 /**
  * Costume Core closureSet
  */
-public class ClosureSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.closure.Closure> {
-    public static class Builder {
+public final class ClosureSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.closure.Closure> {
+    public final static class Builder {
         public Builder() {
             elements = null;
             display = com.google.common.base.Optional.<String> absent();

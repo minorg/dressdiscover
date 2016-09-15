@@ -1,8 +1,8 @@
 package org.dressdiscover.api.services.user;
 
 @SuppressWarnings({"serial"})
-public class NoSuchUserBookmarkException extends org.thryft.Exception {
-    public static class Builder {
+public final class NoSuchUserBookmarkException extends org.thryft.Exception {
+    public final static class Builder {
         public Builder() {
             id = com.google.common.base.Optional.<org.dressdiscover.api.models.user.UserBookmarkId> absent();
         }

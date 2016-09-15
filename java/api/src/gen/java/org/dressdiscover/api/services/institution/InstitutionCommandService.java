@@ -18,7 +18,7 @@ public interface InstitutionCommandService {
 
     public static class Messages {
         public final static class DeleteInstitutionByIdRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     id = null;
                 }
@@ -455,7 +455,7 @@ public interface InstitutionCommandService {
         }
 
         public final static class DeleteInstitutionByIdResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                 }
 
@@ -699,7 +699,7 @@ public interface InstitutionCommandService {
         }
 
         public final static class PutInstitutionRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     id = null;
                     institution = null;
@@ -1191,7 +1191,7 @@ public interface InstitutionCommandService {
         }
 
         public final static class PutInstitutionResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                 }
 

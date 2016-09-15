@@ -1,8 +1,8 @@
 package org.dressdiscover.api.models.institution;
 
 @SuppressWarnings({"serial"})
-public class InvalidInstitutionIdException extends org.thryft.Exception {
-    public static class Builder {
+public final class InvalidInstitutionIdException extends org.thryft.Exception {
+    public final static class Builder {
         public Builder() {
             causeMessage = null;
         }

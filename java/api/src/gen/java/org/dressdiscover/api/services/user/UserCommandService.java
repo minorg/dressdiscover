@@ -22,7 +22,7 @@ public interface UserCommandService {
 
     public static class Messages {
         public final static class DeleteUserBookmarkByIdRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     id = null;
                 }
@@ -459,7 +459,7 @@ public interface UserCommandService {
         }
 
         public final static class DeleteUserBookmarkByIdResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                 }
 
@@ -703,7 +703,7 @@ public interface UserCommandService {
         }
 
         public final static class DeleteUserByIdRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     id = null;
                 }
@@ -1140,7 +1140,7 @@ public interface UserCommandService {
         }
 
         public final static class DeleteUserByIdResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                 }
 
@@ -1384,7 +1384,7 @@ public interface UserCommandService {
         }
 
         public final static class DeleteUsersRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                 }
 
@@ -1628,7 +1628,7 @@ public interface UserCommandService {
         }
 
         public final static class DeleteUsersResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                 }
 
@@ -1872,7 +1872,7 @@ public interface UserCommandService {
         }
 
         public final static class PostUserRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     user = null;
                 }
@@ -2293,7 +2293,7 @@ public interface UserCommandService {
         }
 
         public final static class PostUserResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     returnValue = null;
                 }
@@ -2730,7 +2730,7 @@ public interface UserCommandService {
         }
 
         public final static class PostUserBookmarkRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     userBookmark = null;
                 }
@@ -3151,7 +3151,7 @@ public interface UserCommandService {
         }
 
         public final static class PostUserBookmarkResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     returnValue = null;
                 }
@@ -3588,7 +3588,7 @@ public interface UserCommandService {
         }
 
         public final static class PutUserRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     id = null;
                     user = null;
@@ -4080,7 +4080,7 @@ public interface UserCommandService {
         }
 
         public final static class PutUserResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                 }
 

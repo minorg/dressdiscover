@@ -20,7 +20,7 @@ public interface ObjectCommandService {
 
     public static class Messages {
         public final static class DeleteObjectsByCollectionIdRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     collectionId = null;
                 }
@@ -457,7 +457,7 @@ public interface ObjectCommandService {
         }
 
         public final static class DeleteObjectsByCollectionIdResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     returnValue = com.google.common.primitives.UnsignedInteger.ZERO;
                 }
@@ -878,7 +878,7 @@ public interface ObjectCommandService {
         }
 
         public final static class PutObjectRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     id = null;
                     object = null;
@@ -1370,7 +1370,7 @@ public interface ObjectCommandService {
         }
 
         public final static class PutObjectResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                 }
 
@@ -1614,7 +1614,7 @@ public interface ObjectCommandService {
         }
 
         public final static class PutObjectsRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     objects = null;
                 }
@@ -2104,7 +2104,7 @@ public interface ObjectCommandService {
         }
 
         public final static class PutObjectsResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                 }
 
@@ -2348,7 +2348,7 @@ public interface ObjectCommandService {
         }
 
         public final static class ResummarizeObjectsRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                 }
 
@@ -2592,7 +2592,7 @@ public interface ObjectCommandService {
         }
 
         public final static class ResummarizeObjectsResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                 }
 

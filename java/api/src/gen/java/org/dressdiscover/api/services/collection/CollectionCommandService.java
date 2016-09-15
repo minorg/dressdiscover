@@ -19,7 +19,7 @@ public interface CollectionCommandService {
 
     public static class Messages {
         public final static class DeleteCollectionByIdRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     id = null;
                 }
@@ -456,7 +456,7 @@ public interface CollectionCommandService {
         }
 
         public final static class DeleteCollectionByIdResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                 }
 
@@ -700,7 +700,7 @@ public interface CollectionCommandService {
         }
 
         public final static class DeleteCollectionsByInstitutionIdRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     institutionId = null;
                 }
@@ -1137,7 +1137,7 @@ public interface CollectionCommandService {
         }
 
         public final static class DeleteCollectionsByInstitutionIdResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                 }
 
@@ -1381,7 +1381,7 @@ public interface CollectionCommandService {
         }
 
         public final static class PutCollectionRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     id = null;
                     collection = null;
@@ -1873,7 +1873,7 @@ public interface CollectionCommandService {
         }
 
         public final static class PutCollectionResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                 }
 

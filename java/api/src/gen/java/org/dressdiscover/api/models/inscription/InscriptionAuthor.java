@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.inscription;
 
-public class InscriptionAuthor implements org.thryft.Struct {
-    public static class Builder {
+public final class InscriptionAuthor implements org.thryft.Struct {
+    public final static class Builder {
         public Builder() {
             text = null;
             vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();

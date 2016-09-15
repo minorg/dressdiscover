@@ -19,7 +19,7 @@ public interface CollectionQueryService {
 
     public static class Messages {
         public final static class GetCollectionByIdRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     id = null;
                 }
@@ -456,7 +456,7 @@ public interface CollectionQueryService {
         }
 
         public final static class GetCollectionByIdResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     returnValue = null;
                 }
@@ -877,7 +877,7 @@ public interface CollectionQueryService {
         }
 
         public final static class GetCollectionsByIdsRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     ids = null;
                 }
@@ -1383,7 +1383,7 @@ public interface CollectionQueryService {
         }
 
         public final static class GetCollectionsByIdsResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     returnValue = null;
                 }
@@ -1873,7 +1873,7 @@ public interface CollectionQueryService {
         }
 
         public final static class GetCollectionsByInstitutionIdRequest implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     institutionId = null;
                 }
@@ -2310,7 +2310,7 @@ public interface CollectionQueryService {
         }
 
         public final static class GetCollectionsByInstitutionIdResponse implements org.thryft.Struct {
-            public static class Builder {
+            public final static class Builder {
                 public Builder() {
                     returnValue = null;
                 }

@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.location;
 
-public class LocationCoordinates implements org.thryft.Struct {
-    public static class Builder {
+public final class LocationCoordinates implements org.thryft.Struct {
+    public final static class Builder {
         public Builder() {
             latitude = null;
             longitude = null;

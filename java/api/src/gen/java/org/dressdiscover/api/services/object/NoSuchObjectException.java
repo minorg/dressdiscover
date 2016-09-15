@@ -1,8 +1,8 @@
 package org.dressdiscover.api.services.object;
 
 @SuppressWarnings({"serial"})
-public class NoSuchObjectException extends org.thryft.Exception {
-    public static class Builder {
+public final class NoSuchObjectException extends org.thryft.Exception {
+    public final static class Builder {
         public Builder() {
         }
 

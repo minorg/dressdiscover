@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.collection;
 
-public class CollectionEntry implements org.thryft.Struct, org.thryft.waf.api.models.ModelEntry<org.dressdiscover.api.models.collection.Collection, org.dressdiscover.api.models.collection.CollectionId> {
-    public static class Builder {
+public final class CollectionEntry implements org.thryft.Struct, org.thryft.waf.api.models.ModelEntry<org.dressdiscover.api.models.collection.Collection, org.dressdiscover.api.models.collection.CollectionId> {
+    public final static class Builder {
         public Builder() {
             id = null;
             model = null;

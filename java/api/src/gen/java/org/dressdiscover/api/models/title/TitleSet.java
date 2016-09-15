@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.title;
 /**
  * VRA Core 4.0 titleSet element
  */
-public class TitleSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.title.Title> {
-    public static class Builder {
+public final class TitleSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.title.Title> {
+    public final static class Builder {
         public Builder() {
             elements = null;
             display = com.google.common.base.Optional.<String> absent();

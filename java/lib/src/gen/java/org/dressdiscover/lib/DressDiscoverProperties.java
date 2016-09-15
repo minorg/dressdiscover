@@ -1,7 +1,7 @@
 package org.dressdiscover.lib;
 
-public class DressDiscoverProperties implements org.thryft.Struct, org.thryft.waf.lib.Properties {
-    public static class Builder {
+public final class DressDiscoverProperties implements org.thryft.Struct, org.thryft.waf.lib.Properties {
+    public final static class Builder {
         public Builder() {
             apiUrl = org.thryft.native_.Url.parse("http://middleware:8082/api/");
             cacheCollections = true;

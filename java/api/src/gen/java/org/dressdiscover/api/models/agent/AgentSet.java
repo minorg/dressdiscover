@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.agent;
 /**
  * VRA Core 4.0 agentSet element
  */
-public class AgentSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.agent.Agent> {
-    public static class Builder {
+public final class AgentSet implements org.thryft.Struct, org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.agent.Agent> {
+    public final static class Builder {
         public Builder() {
             elements = null;
             display = com.google.common.base.Optional.<String> absent();

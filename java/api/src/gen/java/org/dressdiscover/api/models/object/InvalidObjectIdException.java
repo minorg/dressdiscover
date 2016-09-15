@@ -1,8 +1,8 @@
 package org.dressdiscover.api.models.object;
 
 @SuppressWarnings({"serial"})
-public class InvalidObjectIdException extends org.thryft.Exception {
-    public static class Builder {
+public final class InvalidObjectIdException extends org.thryft.Exception {
+    public final static class Builder {
         public Builder() {
             causeMessage = null;
         }

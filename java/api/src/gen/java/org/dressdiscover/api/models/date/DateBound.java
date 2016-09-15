@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.date;
 /**
  * VRA Core 4.0 date earliestDate or latestDate subelement
  */
-public class DateBound implements org.thryft.Struct {
-    public static class Builder {
+public final class DateBound implements org.thryft.Struct {
+    public final static class Builder {
         public Builder() {
             text = null;
             circa = com.google.common.base.Optional.<Boolean> absent();

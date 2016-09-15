@@ -3,8 +3,8 @@ package org.dressdiscover.api.models.rights;
 /**
  * VRA Core 4.0 rights element
  */
-public class Rights implements org.thryft.Struct, org.dressdiscover.api.models.Element {
-    public static class Builder {
+public final class Rights implements org.thryft.Struct, org.dressdiscover.api.models.Element {
+    public final static class Builder {
         public Builder() {
             text = null;
             type = null;
