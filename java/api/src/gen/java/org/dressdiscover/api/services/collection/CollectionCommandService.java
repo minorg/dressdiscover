@@ -29,11 +29,11 @@ public interface CollectionCommandService {
                 }
 
                 protected DeleteCollectionByIdRequest _build(final org.dressdiscover.api.models.collection.CollectionId id) {
-                    return new DeleteCollectionByIdRequest(id);
+                    return new DeleteCollectionByIdRequest(id, DefaultConstructionValidator.getInstance());
                 }
 
                 public DeleteCollectionByIdRequest build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.collection.DeleteCollectionByIdRequest: missing id"));
+                    return _build(id);
                 }
 
                 public final org.dressdiscover.api.models.collection.CollectionId getId() {
@@ -120,7 +120,7 @@ public interface CollectionCommandService {
                 }
 
                 public Builder setId(final org.dressdiscover.api.models.collection.CollectionId id) {
-                    this.id = com.google.common.base.Preconditions.checkNotNull(id);
+                    this.id = DefaultConstructionValidator.getInstance().validateId(id);
                     return this;
                 }
 
@@ -273,15 +273,95 @@ public interface CollectionCommandService {
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+                public org.dressdiscover.api.models.collection.CollectionId validateId(final org.dressdiscover.api.models.collection.CollectionId id) throws ExceptionT;
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.collection.CollectionId validateId(final org.dressdiscover.api.models.collection.CollectionId id) throws RuntimeException {
+                    if (id == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.collection.DeleteCollectionByIdRequest: id is null");
+                    }
+                    return id;
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.collection.CollectionId validateId(final org.dressdiscover.api.models.collection.CollectionId id) {
+                    return id;
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.collection.CollectionId validateId(final org.dressdiscover.api.models.collection.CollectionId id) throws org.thryft.protocol.InputProtocolException {
+                    if (id == null) {
+                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.services.collection.DeleteCollectionByIdRequest: id is null");
+                    }
+                    return id;
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.collection.CollectionId validateId(final org.dressdiscover.api.models.collection.CollectionId id) {
+                    return id;
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             /**
              * Copy constructor
              */
             public DeleteCollectionByIdRequest(final DeleteCollectionByIdRequest other) {
-                this(other.getId());
+                this(other.getId(), NopConstructionValidator.getInstance());
             }
 
-            protected DeleteCollectionByIdRequest(final org.dressdiscover.api.models.collection.CollectionId id) {
-                this.id = id;
+            protected DeleteCollectionByIdRequest(final org.dressdiscover.api.models.collection.CollectionId id, ConstructionValidator validator) {
+                this.id = validator.validateId(id);
             }
 
             public static Builder builder() {
@@ -300,7 +380,7 @@ public interface CollectionCommandService {
              * Optional factory method
              */
             public static DeleteCollectionByIdRequest create(final org.dressdiscover.api.models.collection.CollectionId id) {
-                return new DeleteCollectionByIdRequest(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.collection.DeleteCollectionByIdRequest: missing id"));
+                return new DeleteCollectionByIdRequest(id, DefaultConstructionValidator.getInstance());
             }
 
             @Override
@@ -373,11 +453,7 @@ public interface CollectionCommandService {
                      throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 iprot.readListEnd();
-                try {
-                    return new DeleteCollectionByIdRequest(id);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new DeleteCollectionByIdRequest(DefaultReadValidator.getInstance().validateId(id), NopConstructionValidator.getInstance());
             }
 
             public static DeleteCollectionByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -411,15 +487,11 @@ public interface CollectionCommandService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new DeleteCollectionByIdRequest(id);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new DeleteCollectionByIdRequest(DefaultReadValidator.getInstance().validateId(id), NopConstructionValidator.getInstance());
             }
 
             public DeleteCollectionByIdRequest replaceId(final org.dressdiscover.api.models.collection.CollectionId id) {
-                return new DeleteCollectionByIdRequest(id);
+                return new DeleteCollectionByIdRequest(DefaultConstructionValidator.getInstance().validateId(id), NopConstructionValidator.getInstance());
             }
 
             @Override
@@ -570,6 +642,59 @@ public interface CollectionCommandService {
                 }
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             public DeleteCollectionByIdResponse() {
             }
 
@@ -640,11 +765,7 @@ public interface CollectionCommandService {
             public static DeleteCollectionByIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                 iprot.readListBegin();
                 iprot.readListEnd();
-                try {
-                    return new DeleteCollectionByIdResponse();
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new DeleteCollectionByIdResponse();
             }
 
             public static DeleteCollectionByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -668,11 +789,7 @@ public interface CollectionCommandService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new DeleteCollectionByIdResponse();
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new DeleteCollectionByIdResponse();
             }
 
             @Override
@@ -710,11 +827,11 @@ public interface CollectionCommandService {
                 }
 
                 protected DeleteCollectionsByInstitutionIdRequest _build(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-                    return new DeleteCollectionsByInstitutionIdRequest(institutionId);
+                    return new DeleteCollectionsByInstitutionIdRequest(institutionId, DefaultConstructionValidator.getInstance());
                 }
 
                 public DeleteCollectionsByInstitutionIdRequest build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.services.collection.DeleteCollectionsByInstitutionIdRequest: missing institutionId"));
+                    return _build(institutionId);
                 }
 
                 public final org.dressdiscover.api.models.institution.InstitutionId getInstitutionId() {
@@ -809,7 +926,7 @@ public interface CollectionCommandService {
                 }
 
                 public Builder setInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-                    this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId);
+                    this.institutionId = DefaultConstructionValidator.getInstance().validateInstitutionId(institutionId);
                     return this;
                 }
 
@@ -954,15 +1071,95 @@ public interface CollectionCommandService {
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+                public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws ExceptionT;
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws RuntimeException {
+                    if (institutionId == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.collection.DeleteCollectionsByInstitutionIdRequest: institutionId is null");
+                    }
+                    return institutionId;
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
+                    return institutionId;
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.thryft.protocol.InputProtocolException {
+                    if (institutionId == null) {
+                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, "org.dressdiscover.api.services.collection.DeleteCollectionsByInstitutionIdRequest: institutionId is null");
+                    }
+                    return institutionId;
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
+                    return institutionId;
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             /**
              * Copy constructor
              */
             public DeleteCollectionsByInstitutionIdRequest(final DeleteCollectionsByInstitutionIdRequest other) {
-                this(other.getInstitutionId());
+                this(other.getInstitutionId(), NopConstructionValidator.getInstance());
             }
 
-            protected DeleteCollectionsByInstitutionIdRequest(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-                this.institutionId = institutionId;
+            protected DeleteCollectionsByInstitutionIdRequest(final org.dressdiscover.api.models.institution.InstitutionId institutionId, ConstructionValidator validator) {
+                this.institutionId = validator.validateInstitutionId(institutionId);
             }
 
             public static Builder builder() {
@@ -981,7 +1178,7 @@ public interface CollectionCommandService {
              * Optional factory method
              */
             public static DeleteCollectionsByInstitutionIdRequest create(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-                return new DeleteCollectionsByInstitutionIdRequest(com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.services.collection.DeleteCollectionsByInstitutionIdRequest: missing institutionId"));
+                return new DeleteCollectionsByInstitutionIdRequest(institutionId, DefaultConstructionValidator.getInstance());
             }
 
             @Override
@@ -1054,11 +1251,7 @@ public interface CollectionCommandService {
                      throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 iprot.readListEnd();
-                try {
-                    return new DeleteCollectionsByInstitutionIdRequest(institutionId);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new DeleteCollectionsByInstitutionIdRequest(DefaultReadValidator.getInstance().validateInstitutionId(institutionId), NopConstructionValidator.getInstance());
             }
 
             public static DeleteCollectionsByInstitutionIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1092,15 +1285,11 @@ public interface CollectionCommandService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new DeleteCollectionsByInstitutionIdRequest(institutionId);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new DeleteCollectionsByInstitutionIdRequest(DefaultReadValidator.getInstance().validateInstitutionId(institutionId), NopConstructionValidator.getInstance());
             }
 
             public DeleteCollectionsByInstitutionIdRequest replaceInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-                return new DeleteCollectionsByInstitutionIdRequest(institutionId);
+                return new DeleteCollectionsByInstitutionIdRequest(DefaultConstructionValidator.getInstance().validateInstitutionId(institutionId), NopConstructionValidator.getInstance());
             }
 
             @Override
@@ -1251,6 +1440,59 @@ public interface CollectionCommandService {
                 }
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             public DeleteCollectionsByInstitutionIdResponse() {
             }
 
@@ -1321,11 +1563,7 @@ public interface CollectionCommandService {
             public static DeleteCollectionsByInstitutionIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                 iprot.readListBegin();
                 iprot.readListEnd();
-                try {
-                    return new DeleteCollectionsByInstitutionIdResponse();
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new DeleteCollectionsByInstitutionIdResponse();
             }
 
             public static DeleteCollectionsByInstitutionIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1349,11 +1587,7 @@ public interface CollectionCommandService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new DeleteCollectionsByInstitutionIdResponse();
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new DeleteCollectionsByInstitutionIdResponse();
             }
 
             @Override
@@ -1393,11 +1627,11 @@ public interface CollectionCommandService {
                 }
 
                 protected PutCollectionRequest _build(final org.dressdiscover.api.models.collection.CollectionId id, final org.dressdiscover.api.models.collection.Collection collection) {
-                    return new PutCollectionRequest(id, collection);
+                    return new PutCollectionRequest(id, collection, DefaultConstructionValidator.getInstance());
                 }
 
                 public PutCollectionRequest build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.collection.PutCollectionRequest: missing id"), com.google.common.base.Preconditions.checkNotNull(collection, "org.dressdiscover.api.services.collection.PutCollectionRequest: missing collection"));
+                    return _build(id, collection);
                 }
 
                 public final org.dressdiscover.api.models.collection.Collection getCollection() {
@@ -1494,12 +1728,12 @@ public interface CollectionCommandService {
                 }
 
                 public Builder setCollection(final org.dressdiscover.api.models.collection.Collection collection) {
-                    this.collection = com.google.common.base.Preconditions.checkNotNull(collection);
+                    this.collection = DefaultConstructionValidator.getInstance().validateCollection(collection);
                     return this;
                 }
 
                 public Builder setId(final org.dressdiscover.api.models.collection.CollectionId id) {
-                    this.id = com.google.common.base.Preconditions.checkNotNull(id);
+                    this.id = DefaultConstructionValidator.getInstance().validateId(id);
                     return this;
                 }
 
@@ -1663,16 +1897,124 @@ public interface CollectionCommandService {
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+                public org.dressdiscover.api.models.collection.CollectionId validateId(final org.dressdiscover.api.models.collection.CollectionId id) throws ExceptionT;
+
+                public org.dressdiscover.api.models.collection.Collection validateCollection(final org.dressdiscover.api.models.collection.Collection collection) throws ExceptionT;
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.collection.CollectionId validateId(final org.dressdiscover.api.models.collection.CollectionId id) throws RuntimeException {
+                    if (id == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.collection.PutCollectionRequest: id is null");
+                    }
+                    return id;
+                }
+
+                @Override
+                public org.dressdiscover.api.models.collection.Collection validateCollection(final org.dressdiscover.api.models.collection.Collection collection) throws RuntimeException {
+                    if (collection == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.collection.PutCollectionRequest: collection is null");
+                    }
+                    return collection;
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.collection.CollectionId validateId(final org.dressdiscover.api.models.collection.CollectionId id) {
+                    return id;
+                }
+
+                @Override
+                public org.dressdiscover.api.models.collection.Collection validateCollection(final org.dressdiscover.api.models.collection.Collection collection) {
+                    return collection;
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.collection.CollectionId validateId(final org.dressdiscover.api.models.collection.CollectionId id) throws org.thryft.protocol.InputProtocolException {
+                    if (id == null) {
+                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.services.collection.PutCollectionRequest: id is null");
+                    }
+                    return id;
+                }
+
+                @Override
+                public org.dressdiscover.api.models.collection.Collection validateCollection(final org.dressdiscover.api.models.collection.Collection collection) throws org.thryft.protocol.InputProtocolException {
+                    if (collection == null) {
+                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLLECTION, "org.dressdiscover.api.services.collection.PutCollectionRequest: collection is null");
+                    }
+                    return collection;
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.collection.CollectionId validateId(final org.dressdiscover.api.models.collection.CollectionId id) {
+                    return id;
+                }
+
+                @Override
+                public org.dressdiscover.api.models.collection.Collection validateCollection(final org.dressdiscover.api.models.collection.Collection collection) {
+                    return collection;
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             /**
              * Copy constructor
              */
             public PutCollectionRequest(final PutCollectionRequest other) {
-                this(other.getId(), other.getCollection());
+                this(other.getId(), other.getCollection(), NopConstructionValidator.getInstance());
             }
 
-            protected PutCollectionRequest(final org.dressdiscover.api.models.collection.CollectionId id, final org.dressdiscover.api.models.collection.Collection collection) {
-                this.id = id;
-                this.collection = collection;
+            protected PutCollectionRequest(final org.dressdiscover.api.models.collection.CollectionId id, final org.dressdiscover.api.models.collection.Collection collection, ConstructionValidator validator) {
+                this.id = validator.validateId(id);
+                this.collection = validator.validateCollection(collection);
             }
 
             public static Builder builder() {
@@ -1691,7 +2033,7 @@ public interface CollectionCommandService {
              * Optional factory method
              */
             public static PutCollectionRequest create(final org.dressdiscover.api.models.collection.CollectionId id, final org.dressdiscover.api.models.collection.Collection collection) {
-                return new PutCollectionRequest(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.collection.PutCollectionRequest: missing id"), com.google.common.base.Preconditions.checkNotNull(collection, "org.dressdiscover.api.services.collection.PutCollectionRequest: missing collection"));
+                return new PutCollectionRequest(id, collection, DefaultConstructionValidator.getInstance());
             }
 
             @Override
@@ -1773,11 +2115,7 @@ public interface CollectionCommandService {
                 }
                 collection = org.dressdiscover.api.models.collection.Collection.readAsStruct(iprot);
                 iprot.readListEnd();
-                try {
-                    return new PutCollectionRequest(id, collection);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new PutCollectionRequest(DefaultReadValidator.getInstance().validateId(id), DefaultReadValidator.getInstance().validateCollection(collection), NopConstructionValidator.getInstance());
             }
 
             public static PutCollectionRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1816,19 +2154,15 @@ public interface CollectionCommandService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new PutCollectionRequest(id, collection);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new PutCollectionRequest(DefaultReadValidator.getInstance().validateId(id), DefaultReadValidator.getInstance().validateCollection(collection), NopConstructionValidator.getInstance());
             }
 
             public PutCollectionRequest replaceCollection(final org.dressdiscover.api.models.collection.Collection collection) {
-                return new PutCollectionRequest(this.id, collection);
+                return new PutCollectionRequest(this.id, DefaultConstructionValidator.getInstance().validateCollection(collection), NopConstructionValidator.getInstance());
             }
 
             public PutCollectionRequest replaceId(final org.dressdiscover.api.models.collection.CollectionId id) {
-                return new PutCollectionRequest(id, this.collection);
+                return new PutCollectionRequest(DefaultConstructionValidator.getInstance().validateId(id), this.collection, NopConstructionValidator.getInstance());
             }
 
             @Override
@@ -1987,6 +2321,59 @@ public interface CollectionCommandService {
                 }
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             public PutCollectionResponse() {
             }
 
@@ -2057,11 +2444,7 @@ public interface CollectionCommandService {
             public static PutCollectionResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                 iprot.readListBegin();
                 iprot.readListEnd();
-                try {
-                    return new PutCollectionResponse();
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new PutCollectionResponse();
             }
 
             public static PutCollectionResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -2085,11 +2468,7 @@ public interface CollectionCommandService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new PutCollectionResponse();
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new PutCollectionResponse();
             }
 
             @Override

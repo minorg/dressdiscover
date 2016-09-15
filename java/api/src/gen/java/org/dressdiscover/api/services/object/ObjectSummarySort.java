@@ -13,11 +13,11 @@ public final class ObjectSummarySort implements org.thryft.Struct {
         }
 
         protected ObjectSummarySort _build(final org.dressdiscover.api.services.object.ObjectSummarySortField field, final org.dressdiscover.api.models.SortOrder order) {
-            return new ObjectSummarySort(field, order);
+            return new ObjectSummarySort(field, order, DefaultConstructionValidator.getInstance());
         }
 
         public ObjectSummarySort build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(field, "org.dressdiscover.api.services.object.ObjectSummarySort: missing field"), com.google.common.base.Preconditions.checkNotNull(order, "org.dressdiscover.api.services.object.ObjectSummarySort: missing order"));
+            return _build(field, order);
         }
 
         public final org.dressdiscover.api.services.object.ObjectSummarySortField getField() {
@@ -106,7 +106,7 @@ public final class ObjectSummarySort implements org.thryft.Struct {
         }
 
         public Builder setField(final org.dressdiscover.api.services.object.ObjectSummarySortField field) {
-            this.field = com.google.common.base.Preconditions.checkNotNull(field);
+            this.field = DefaultConstructionValidator.getInstance().validateField(field);
             return this;
         }
 
@@ -120,7 +120,7 @@ public final class ObjectSummarySort implements org.thryft.Struct {
         }
 
         public Builder setOrder(final org.dressdiscover.api.models.SortOrder order) {
-            this.order = com.google.common.base.Preconditions.checkNotNull(order);
+            this.order = DefaultConstructionValidator.getInstance().validateOrder(order);
             return this;
         }
 
@@ -275,16 +275,124 @@ public final class ObjectSummarySort implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public org.dressdiscover.api.services.object.ObjectSummarySortField validateField(final org.dressdiscover.api.services.object.ObjectSummarySortField field) throws ExceptionT;
+
+        public org.dressdiscover.api.models.SortOrder validateOrder(final org.dressdiscover.api.models.SortOrder order) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.services.object.ObjectSummarySortField validateField(final org.dressdiscover.api.services.object.ObjectSummarySortField field) throws RuntimeException {
+            if (field == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.object.ObjectSummarySort: field is null");
+            }
+            return field;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.SortOrder validateOrder(final org.dressdiscover.api.models.SortOrder order) throws RuntimeException {
+            if (order == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.object.ObjectSummarySort: order is null");
+            }
+            return order;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.services.object.ObjectSummarySortField validateField(final org.dressdiscover.api.services.object.ObjectSummarySortField field) {
+            return field;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.SortOrder validateOrder(final org.dressdiscover.api.models.SortOrder order) {
+            return order;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.services.object.ObjectSummarySortField validateField(final org.dressdiscover.api.services.object.ObjectSummarySortField field) throws org.thryft.protocol.InputProtocolException {
+            if (field == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.FIELD, "org.dressdiscover.api.services.object.ObjectSummarySort: field is null");
+            }
+            return field;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.SortOrder validateOrder(final org.dressdiscover.api.models.SortOrder order) throws org.thryft.protocol.InputProtocolException {
+            if (order == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ORDER, "org.dressdiscover.api.services.object.ObjectSummarySort: order is null");
+            }
+            return order;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.services.object.ObjectSummarySortField validateField(final org.dressdiscover.api.services.object.ObjectSummarySortField field) {
+            return field;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.SortOrder validateOrder(final org.dressdiscover.api.models.SortOrder order) {
+            return order;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public ObjectSummarySort(final ObjectSummarySort other) {
-        this(other.getField(), other.getOrder());
+        this(other.getField(), other.getOrder(), NopConstructionValidator.getInstance());
     }
 
-    protected ObjectSummarySort(final org.dressdiscover.api.services.object.ObjectSummarySortField field, final org.dressdiscover.api.models.SortOrder order) {
-        this.field = field;
-        this.order = order;
+    protected ObjectSummarySort(final org.dressdiscover.api.services.object.ObjectSummarySortField field, final org.dressdiscover.api.models.SortOrder order, ConstructionValidator validator) {
+        this.field = validator.validateField(field);
+        this.order = validator.validateOrder(order);
     }
 
     public static Builder builder() {
@@ -303,7 +411,7 @@ public final class ObjectSummarySort implements org.thryft.Struct {
      * Optional factory method
      */
     public static ObjectSummarySort create(final org.dressdiscover.api.services.object.ObjectSummarySortField field, final org.dressdiscover.api.models.SortOrder order) {
-        return new ObjectSummarySort(com.google.common.base.Preconditions.checkNotNull(field, "org.dressdiscover.api.services.object.ObjectSummarySort: missing field"), com.google.common.base.Preconditions.checkNotNull(order, "org.dressdiscover.api.services.object.ObjectSummarySort: missing order"));
+        return new ObjectSummarySort(field, order, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -381,11 +489,7 @@ public final class ObjectSummarySort implements org.thryft.Struct {
         field = iprot.readEnum(org.dressdiscover.api.services.object.ObjectSummarySortField.class);
         order = iprot.readEnum(org.dressdiscover.api.models.SortOrder.class);
         iprot.readListEnd();
-        try {
-            return new ObjectSummarySort(field, order);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new ObjectSummarySort(DefaultReadValidator.getInstance().validateField(field), DefaultReadValidator.getInstance().validateOrder(order), NopConstructionValidator.getInstance());
     }
 
     public static ObjectSummarySort readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -420,19 +524,15 @@ public final class ObjectSummarySort implements org.thryft.Struct {
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new ObjectSummarySort(field, order);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new ObjectSummarySort(DefaultReadValidator.getInstance().validateField(field), DefaultReadValidator.getInstance().validateOrder(order), NopConstructionValidator.getInstance());
     }
 
     public ObjectSummarySort replaceField(final org.dressdiscover.api.services.object.ObjectSummarySortField field) {
-        return new ObjectSummarySort(field, this.order);
+        return new ObjectSummarySort(DefaultConstructionValidator.getInstance().validateField(field), this.order, NopConstructionValidator.getInstance());
     }
 
     public ObjectSummarySort replaceOrder(final org.dressdiscover.api.models.SortOrder order) {
-        return new ObjectSummarySort(this.field, order);
+        return new ObjectSummarySort(this.field, DefaultConstructionValidator.getInstance().validateOrder(order), NopConstructionValidator.getInstance());
     }
 
     @Override

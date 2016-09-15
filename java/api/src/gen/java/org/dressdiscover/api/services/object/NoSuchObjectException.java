@@ -116,6 +116,59 @@ public final class NoSuchObjectException extends org.thryft.Exception {
         }
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     public NoSuchObjectException() {
     }
 
@@ -196,11 +249,7 @@ public final class NoSuchObjectException extends org.thryft.Exception {
     public static NoSuchObjectException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         iprot.readListBegin();
         iprot.readListEnd();
-        try {
-            return new NoSuchObjectException();
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new NoSuchObjectException();
     }
 
     public static NoSuchObjectException readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -224,11 +273,7 @@ public final class NoSuchObjectException extends org.thryft.Exception {
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new NoSuchObjectException();
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new NoSuchObjectException();
     }
 
     @Override

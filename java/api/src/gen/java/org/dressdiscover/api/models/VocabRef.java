@@ -15,11 +15,11 @@ public final class VocabRef implements org.thryft.Struct {
         }
 
         protected VocabRef _build(final org.dressdiscover.api.models.Vocab vocab, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<org.thryft.native_.Uri> uri) {
-            return new VocabRef(vocab, refid, uri);
+            return new VocabRef(vocab, refid, uri, DefaultConstructionValidator.getInstance());
         }
 
         public VocabRef build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(vocab, "org.dressdiscover.api.models.VocabRef: missing vocab"), com.google.common.base.Preconditions.checkNotNull(refid, "org.dressdiscover.api.models.VocabRef: missing refid"), com.google.common.base.Preconditions.checkNotNull(uri, "org.dressdiscover.api.models.VocabRef: missing uri"));
+            return _build(vocab, refid, uri);
         }
 
         public final com.google.common.base.Optional<String> getRefid() {
@@ -148,27 +148,25 @@ public final class VocabRef implements org.thryft.Struct {
         }
 
         public Builder setRefid(final com.google.common.base.Optional<String> refid) {
-            this.refid = com.google.common.base.Preconditions.checkNotNull(refid);
+            this.refid = DefaultConstructionValidator.getInstance().validateRefid(refid);
             return this;
         }
 
         public Builder setRefid(@javax.annotation.Nullable final String refid) {
-            this.refid = com.google.common.base.Optional.fromNullable(refid);
-            return this;
+            return setRefid(com.google.common.base.Optional.fromNullable(refid));
         }
 
         public Builder setUri(final com.google.common.base.Optional<org.thryft.native_.Uri> uri) {
-            this.uri = com.google.common.base.Preconditions.checkNotNull(uri);
+            this.uri = DefaultConstructionValidator.getInstance().validateUri(uri);
             return this;
         }
 
         public Builder setUri(@javax.annotation.Nullable final org.thryft.native_.Uri uri) {
-            this.uri = com.google.common.base.Optional.fromNullable(uri);
-            return this;
+            return setUri(com.google.common.base.Optional.fromNullable(uri));
         }
 
         public Builder setVocab(final org.dressdiscover.api.models.Vocab vocab) {
-            this.vocab = com.google.common.base.Preconditions.checkNotNull(vocab);
+            this.vocab = DefaultConstructionValidator.getInstance().validateVocab(vocab);
             return this;
         }
 
@@ -333,17 +331,171 @@ public final class VocabRef implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public org.dressdiscover.api.models.Vocab validateVocab(final org.dressdiscover.api.models.Vocab vocab) throws ExceptionT;
+
+        public com.google.common.base.Optional<String> validateRefid(final com.google.common.base.Optional<String> refid) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.thryft.native_.Uri> validateUri(final com.google.common.base.Optional<org.thryft.native_.Uri> uri) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.Vocab validateVocab(final org.dressdiscover.api.models.Vocab vocab) throws RuntimeException {
+            if (vocab == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.VocabRef: vocab is null");
+            }
+            return vocab;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateRefid(final com.google.common.base.Optional<String> refid) throws RuntimeException {
+            if (refid == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.VocabRef: refid is null");
+            }
+            if (!refid.isPresent()) {
+                return refid;
+            }
+            if (refid.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.VocabRef: refid is less than min length 1");
+            }
+            return refid;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Uri> validateUri(final com.google.common.base.Optional<org.thryft.native_.Uri> uri) throws RuntimeException {
+            if (uri == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.VocabRef: uri is null");
+            }
+            if (!uri.isPresent()) {
+                return uri;
+            }
+            return uri;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.Vocab validateVocab(final org.dressdiscover.api.models.Vocab vocab) {
+            return vocab;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateRefid(final com.google.common.base.Optional<String> refid) {
+            return refid;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Uri> validateUri(final com.google.common.base.Optional<org.thryft.native_.Uri> uri) {
+            return uri;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.Vocab validateVocab(final org.dressdiscover.api.models.Vocab vocab) throws org.thryft.protocol.InputProtocolException {
+            if (vocab == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.VOCAB, "org.dressdiscover.api.models.VocabRef: vocab is null");
+            }
+            return vocab;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateRefid(final com.google.common.base.Optional<String> refid) throws org.thryft.protocol.InputProtocolException {
+            if (refid == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.REFID, "org.dressdiscover.api.models.VocabRef: refid is null");
+            }
+            if (!refid.isPresent()) {
+                return refid;
+            }
+            if (refid.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.REFID, "org.dressdiscover.api.models.VocabRef: refid is less than min length 1");
+            }
+            return refid;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Uri> validateUri(final com.google.common.base.Optional<org.thryft.native_.Uri> uri) throws org.thryft.protocol.InputProtocolException {
+            if (uri == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.URI, "org.dressdiscover.api.models.VocabRef: uri is null");
+            }
+            if (!uri.isPresent()) {
+                return uri;
+            }
+            return uri;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.Vocab validateVocab(final org.dressdiscover.api.models.Vocab vocab) {
+            return vocab;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateRefid(final com.google.common.base.Optional<String> refid) {
+            return refid;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Uri> validateUri(final com.google.common.base.Optional<org.thryft.native_.Uri> uri) {
+            return uri;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public VocabRef(final VocabRef other) {
-        this(other.getVocab(), other.getRefid(), other.getUri());
+        this(other.getVocab(), other.getRefid(), other.getUri(), NopConstructionValidator.getInstance());
     }
 
-    protected VocabRef(final org.dressdiscover.api.models.Vocab vocab, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<org.thryft.native_.Uri> uri) {
-        this.vocab = vocab;
-        this.refid = refid;
-        this.uri = uri;
+    protected VocabRef(final org.dressdiscover.api.models.Vocab vocab, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<org.thryft.native_.Uri> uri, ConstructionValidator validator) {
+        this.vocab = validator.validateVocab(vocab);
+        this.refid = validator.validateRefid(refid);
+        this.uri = validator.validateUri(uri);
     }
 
     public static Builder builder() {
@@ -362,21 +514,21 @@ public final class VocabRef implements org.thryft.Struct {
      * Required factory method
      */
     public static VocabRef create(final org.dressdiscover.api.models.Vocab vocab) {
-        return new VocabRef(com.google.common.base.Preconditions.checkNotNull(vocab, "org.dressdiscover.api.models.VocabRef: missing vocab"), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.thryft.native_.Uri> absent());
+        return new VocabRef(vocab, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.thryft.native_.Uri> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static VocabRef create(final org.dressdiscover.api.models.Vocab vocab, final @javax.annotation.Nullable String refid, final @javax.annotation.Nullable org.thryft.native_.Uri uri) {
-        return new VocabRef(com.google.common.base.Preconditions.checkNotNull(vocab, "org.dressdiscover.api.models.VocabRef: missing vocab"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(refid), "org.dressdiscover.api.models.VocabRef: refid is empty"), com.google.common.base.Optional.fromNullable(uri));
+        return new VocabRef(vocab, com.google.common.base.Optional.fromNullable(refid), com.google.common.base.Optional.fromNullable(uri), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static VocabRef create(final org.dressdiscover.api.models.Vocab vocab, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<org.thryft.native_.Uri> uri) {
-        return new VocabRef(com.google.common.base.Preconditions.checkNotNull(vocab, "org.dressdiscover.api.models.VocabRef: missing vocab"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(refid, "org.dressdiscover.api.models.VocabRef: missing refid"), "org.dressdiscover.api.models.VocabRef: refid is empty"), com.google.common.base.Preconditions.checkNotNull(uri, "org.dressdiscover.api.models.VocabRef: missing uri"));
+        return new VocabRef(vocab, refid, uri, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -474,11 +626,7 @@ public final class VocabRef implements org.thryft.Struct {
             }
         }
         iprot.readListEnd();
-        try {
-            return new VocabRef(vocab, refid, uri);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new VocabRef(DefaultReadValidator.getInstance().validateVocab(vocab), DefaultReadValidator.getInstance().validateRefid(refid), DefaultReadValidator.getInstance().validateUri(uri), NopConstructionValidator.getInstance());
     }
 
     public static VocabRef readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -527,15 +675,11 @@ public final class VocabRef implements org.thryft.Struct {
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new VocabRef(vocab, refid, uri);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new VocabRef(DefaultReadValidator.getInstance().validateVocab(vocab), DefaultReadValidator.getInstance().validateRefid(refid), DefaultReadValidator.getInstance().validateUri(uri), NopConstructionValidator.getInstance());
     }
 
     public VocabRef replaceRefid(final com.google.common.base.Optional<String> refid) {
-        return new VocabRef(this.vocab, refid, this.uri);
+        return new VocabRef(this.vocab, DefaultConstructionValidator.getInstance().validateRefid(refid), this.uri, NopConstructionValidator.getInstance());
     }
 
     public VocabRef replaceRefid(final String refid) {
@@ -543,7 +687,7 @@ public final class VocabRef implements org.thryft.Struct {
     }
 
     public VocabRef replaceUri(final com.google.common.base.Optional<org.thryft.native_.Uri> uri) {
-        return new VocabRef(this.vocab, this.refid, uri);
+        return new VocabRef(this.vocab, this.refid, DefaultConstructionValidator.getInstance().validateUri(uri), NopConstructionValidator.getInstance());
     }
 
     public VocabRef replaceUri(final org.thryft.native_.Uri uri) {
@@ -551,7 +695,7 @@ public final class VocabRef implements org.thryft.Struct {
     }
 
     public VocabRef replaceVocab(final org.dressdiscover.api.models.Vocab vocab) {
-        return new VocabRef(vocab, this.refid, this.uri);
+        return new VocabRef(DefaultConstructionValidator.getInstance().validateVocab(vocab), this.refid, this.uri, NopConstructionValidator.getInstance());
     }
 
     @Override

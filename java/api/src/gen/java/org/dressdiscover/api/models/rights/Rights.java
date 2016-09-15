@@ -22,11 +22,11 @@ public final class Rights implements org.thryft.Struct, org.dressdiscover.api.mo
         }
 
         protected Rights _build(final String text, final org.dressdiscover.api.models.rights.RightsType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> licenseVocabRef, final com.google.common.base.Optional<String> notes, final com.google.common.base.Optional<String> rightsHolder) {
-            return new Rights(text, type, licenseVocabRef, notes, rightsHolder);
+            return new Rights(text, type, licenseVocabRef, notes, rightsHolder, DefaultConstructionValidator.getInstance());
         }
 
         public Rights build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.rights.Rights: missing text"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.rights.Rights: missing type"), com.google.common.base.Preconditions.checkNotNull(licenseVocabRef, "org.dressdiscover.api.models.rights.Rights: missing licenseVocabRef"), com.google.common.base.Preconditions.checkNotNull(notes, "org.dressdiscover.api.models.rights.Rights: missing notes"), com.google.common.base.Preconditions.checkNotNull(rightsHolder, "org.dressdiscover.api.models.rights.Rights: missing rightsHolder"));
+            return _build(text, type, licenseVocabRef, notes, rightsHolder);
         }
 
         public final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> getLicenseVocabRef() {
@@ -179,42 +179,39 @@ public final class Rights implements org.thryft.Struct, org.dressdiscover.api.mo
         }
 
         public Builder setLicenseVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> licenseVocabRef) {
-            this.licenseVocabRef = com.google.common.base.Preconditions.checkNotNull(licenseVocabRef);
+            this.licenseVocabRef = DefaultConstructionValidator.getInstance().validateLicenseVocabRef(licenseVocabRef);
             return this;
         }
 
         public Builder setLicenseVocabRef(@javax.annotation.Nullable final org.dressdiscover.api.models.VocabRef licenseVocabRef) {
-            this.licenseVocabRef = com.google.common.base.Optional.fromNullable(licenseVocabRef);
-            return this;
+            return setLicenseVocabRef(com.google.common.base.Optional.fromNullable(licenseVocabRef));
         }
 
         public Builder setNotes(final com.google.common.base.Optional<String> notes) {
-            this.notes = com.google.common.base.Preconditions.checkNotNull(notes);
+            this.notes = DefaultConstructionValidator.getInstance().validateNotes(notes);
             return this;
         }
 
         public Builder setNotes(@javax.annotation.Nullable final String notes) {
-            this.notes = com.google.common.base.Optional.fromNullable(notes);
-            return this;
+            return setNotes(com.google.common.base.Optional.fromNullable(notes));
         }
 
         public Builder setRightsHolder(final com.google.common.base.Optional<String> rightsHolder) {
-            this.rightsHolder = com.google.common.base.Preconditions.checkNotNull(rightsHolder);
+            this.rightsHolder = DefaultConstructionValidator.getInstance().validateRightsHolder(rightsHolder);
             return this;
         }
 
         public Builder setRightsHolder(@javax.annotation.Nullable final String rightsHolder) {
-            this.rightsHolder = com.google.common.base.Optional.fromNullable(rightsHolder);
-            return this;
+            return setRightsHolder(com.google.common.base.Optional.fromNullable(rightsHolder));
         }
 
         public Builder setText(final String text) {
-            this.text = com.google.common.base.Preconditions.checkNotNull(text);
+            this.text = DefaultConstructionValidator.getInstance().validateText(text);
             return this;
         }
 
         public Builder setType(final org.dressdiscover.api.models.rights.RightsType type) {
-            this.type = com.google.common.base.Preconditions.checkNotNull(type);
+            this.type = DefaultConstructionValidator.getInstance().validateType(type);
             return this;
         }
 
@@ -399,19 +396,247 @@ public final class Rights implements org.thryft.Struct, org.dressdiscover.api.mo
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public String validateText(final String text) throws ExceptionT;
+
+        public org.dressdiscover.api.models.rights.RightsType validateType(final org.dressdiscover.api.models.rights.RightsType type) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateLicenseVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> licenseVocabRef) throws ExceptionT;
+
+        public com.google.common.base.Optional<String> validateNotes(final com.google.common.base.Optional<String> notes) throws ExceptionT;
+
+        public com.google.common.base.Optional<String> validateRightsHolder(final com.google.common.base.Optional<String> rightsHolder) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws RuntimeException {
+            if (text == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.rights.Rights: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.rights.Rights: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.rights.RightsType validateType(final org.dressdiscover.api.models.rights.RightsType type) throws RuntimeException {
+            if (type == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.rights.Rights: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateLicenseVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> licenseVocabRef) throws RuntimeException {
+            if (licenseVocabRef == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.rights.Rights: licenseVocabRef is null");
+            }
+            if (!licenseVocabRef.isPresent()) {
+                return licenseVocabRef;
+            }
+            return licenseVocabRef;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateNotes(final com.google.common.base.Optional<String> notes) throws RuntimeException {
+            if (notes == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.rights.Rights: notes is null");
+            }
+            if (!notes.isPresent()) {
+                return notes;
+            }
+            if (notes.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.rights.Rights: notes is less than min length 1");
+            }
+            return notes;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateRightsHolder(final com.google.common.base.Optional<String> rightsHolder) throws RuntimeException {
+            if (rightsHolder == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.rights.Rights: rightsHolder is null");
+            }
+            if (!rightsHolder.isPresent()) {
+                return rightsHolder;
+            }
+            if (rightsHolder.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.rights.Rights: rightsHolder is less than min length 1");
+            }
+            return rightsHolder;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.rights.RightsType validateType(final org.dressdiscover.api.models.rights.RightsType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateLicenseVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> licenseVocabRef) {
+            return licenseVocabRef;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateNotes(final com.google.common.base.Optional<String> notes) {
+            return notes;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateRightsHolder(final com.google.common.base.Optional<String> rightsHolder) {
+            return rightsHolder;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws org.thryft.protocol.InputProtocolException {
+            if (text == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.rights.Rights: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.rights.Rights: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.rights.RightsType validateType(final org.dressdiscover.api.models.rights.RightsType type) throws org.thryft.protocol.InputProtocolException {
+            if (type == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.models.rights.Rights: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateLicenseVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> licenseVocabRef) throws org.thryft.protocol.InputProtocolException {
+            if (licenseVocabRef == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LICENSE_VOCAB_REF, "org.dressdiscover.api.models.rights.Rights: licenseVocabRef is null");
+            }
+            if (!licenseVocabRef.isPresent()) {
+                return licenseVocabRef;
+            }
+            return licenseVocabRef;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateNotes(final com.google.common.base.Optional<String> notes) throws org.thryft.protocol.InputProtocolException {
+            if (notes == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.NOTES, "org.dressdiscover.api.models.rights.Rights: notes is null");
+            }
+            if (!notes.isPresent()) {
+                return notes;
+            }
+            if (notes.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.NOTES, "org.dressdiscover.api.models.rights.Rights: notes is less than min length 1");
+            }
+            return notes;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateRightsHolder(final com.google.common.base.Optional<String> rightsHolder) throws org.thryft.protocol.InputProtocolException {
+            if (rightsHolder == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RIGHTS_HOLDER, "org.dressdiscover.api.models.rights.Rights: rightsHolder is null");
+            }
+            if (!rightsHolder.isPresent()) {
+                return rightsHolder;
+            }
+            if (rightsHolder.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_HOLDER, "org.dressdiscover.api.models.rights.Rights: rightsHolder is less than min length 1");
+            }
+            return rightsHolder;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.rights.RightsType validateType(final org.dressdiscover.api.models.rights.RightsType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateLicenseVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> licenseVocabRef) {
+            return licenseVocabRef;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateNotes(final com.google.common.base.Optional<String> notes) {
+            return notes;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateRightsHolder(final com.google.common.base.Optional<String> rightsHolder) {
+            return rightsHolder;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public Rights(final Rights other) {
-        this(other.getText(), other.getType(), other.getLicenseVocabRef(), other.getNotes(), other.getRightsHolder());
+        this(other.getText(), other.getType(), other.getLicenseVocabRef(), other.getNotes(), other.getRightsHolder(), NopConstructionValidator.getInstance());
     }
 
-    protected Rights(final String text, final org.dressdiscover.api.models.rights.RightsType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> licenseVocabRef, final com.google.common.base.Optional<String> notes, final com.google.common.base.Optional<String> rightsHolder) {
-        this.text = text;
-        this.type = type;
-        this.licenseVocabRef = licenseVocabRef;
-        this.notes = notes;
-        this.rightsHolder = rightsHolder;
+    protected Rights(final String text, final org.dressdiscover.api.models.rights.RightsType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> licenseVocabRef, final com.google.common.base.Optional<String> notes, final com.google.common.base.Optional<String> rightsHolder, ConstructionValidator validator) {
+        this.text = validator.validateText(text);
+        this.type = validator.validateType(type);
+        this.licenseVocabRef = validator.validateLicenseVocabRef(licenseVocabRef);
+        this.notes = validator.validateNotes(notes);
+        this.rightsHolder = validator.validateRightsHolder(rightsHolder);
     }
 
     public static Builder builder() {
@@ -430,21 +655,21 @@ public final class Rights implements org.thryft.Struct, org.dressdiscover.api.mo
      * Required factory method
      */
     public static Rights create(final String text, final org.dressdiscover.api.models.rights.RightsType type) {
-        return new Rights(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.rights.Rights: missing text"), "org.dressdiscover.api.models.rights.Rights: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.rights.Rights: missing type"), com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent());
+        return new Rights(text, type, com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static Rights create(final String text, final org.dressdiscover.api.models.rights.RightsType type, final @javax.annotation.Nullable org.dressdiscover.api.models.VocabRef licenseVocabRef, final @javax.annotation.Nullable String notes, final @javax.annotation.Nullable String rightsHolder) {
-        return new Rights(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.rights.Rights: missing text"), "org.dressdiscover.api.models.rights.Rights: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.rights.Rights: missing type"), com.google.common.base.Optional.fromNullable(licenseVocabRef), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(notes), "org.dressdiscover.api.models.rights.Rights: notes is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(rightsHolder), "org.dressdiscover.api.models.rights.Rights: rightsHolder is empty"));
+        return new Rights(text, type, com.google.common.base.Optional.fromNullable(licenseVocabRef), com.google.common.base.Optional.fromNullable(notes), com.google.common.base.Optional.fromNullable(rightsHolder), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static Rights create(final String text, final org.dressdiscover.api.models.rights.RightsType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> licenseVocabRef, final com.google.common.base.Optional<String> notes, final com.google.common.base.Optional<String> rightsHolder) {
-        return new Rights(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.rights.Rights: missing text"), "org.dressdiscover.api.models.rights.Rights: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.rights.Rights: missing type"), com.google.common.base.Preconditions.checkNotNull(licenseVocabRef, "org.dressdiscover.api.models.rights.Rights: missing licenseVocabRef"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(notes, "org.dressdiscover.api.models.rights.Rights: missing notes"), "org.dressdiscover.api.models.rights.Rights: notes is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(rightsHolder, "org.dressdiscover.api.models.rights.Rights: missing rightsHolder"), "org.dressdiscover.api.models.rights.Rights: rightsHolder is empty"));
+        return new Rights(text, type, licenseVocabRef, notes, rightsHolder, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -561,11 +786,7 @@ public final class Rights implements org.thryft.Struct, org.dressdiscover.api.mo
             rightsHolder = com.google.common.base.Optional.of(iprot.readString());
         }
         iprot.readListEnd();
-        try {
-            return new Rights(text, type, licenseVocabRef, notes, rightsHolder);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Rights(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateLicenseVocabRef(licenseVocabRef), DefaultReadValidator.getInstance().validateNotes(notes), DefaultReadValidator.getInstance().validateRightsHolder(rightsHolder), NopConstructionValidator.getInstance());
     }
 
     public static Rights readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -625,15 +846,11 @@ public final class Rights implements org.thryft.Struct, org.dressdiscover.api.mo
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new Rights(text, type, licenseVocabRef, notes, rightsHolder);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Rights(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateLicenseVocabRef(licenseVocabRef), DefaultReadValidator.getInstance().validateNotes(notes), DefaultReadValidator.getInstance().validateRightsHolder(rightsHolder), NopConstructionValidator.getInstance());
     }
 
     public Rights replaceLicenseVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> licenseVocabRef) {
-        return new Rights(this.text, this.type, licenseVocabRef, this.notes, this.rightsHolder);
+        return new Rights(this.text, this.type, DefaultConstructionValidator.getInstance().validateLicenseVocabRef(licenseVocabRef), this.notes, this.rightsHolder, NopConstructionValidator.getInstance());
     }
 
     public Rights replaceLicenseVocabRef(final org.dressdiscover.api.models.VocabRef licenseVocabRef) {
@@ -641,7 +858,7 @@ public final class Rights implements org.thryft.Struct, org.dressdiscover.api.mo
     }
 
     public Rights replaceNotes(final com.google.common.base.Optional<String> notes) {
-        return new Rights(this.text, this.type, this.licenseVocabRef, notes, this.rightsHolder);
+        return new Rights(this.text, this.type, this.licenseVocabRef, DefaultConstructionValidator.getInstance().validateNotes(notes), this.rightsHolder, NopConstructionValidator.getInstance());
     }
 
     public Rights replaceNotes(final String notes) {
@@ -649,7 +866,7 @@ public final class Rights implements org.thryft.Struct, org.dressdiscover.api.mo
     }
 
     public Rights replaceRightsHolder(final com.google.common.base.Optional<String> rightsHolder) {
-        return new Rights(this.text, this.type, this.licenseVocabRef, this.notes, rightsHolder);
+        return new Rights(this.text, this.type, this.licenseVocabRef, this.notes, DefaultConstructionValidator.getInstance().validateRightsHolder(rightsHolder), NopConstructionValidator.getInstance());
     }
 
     public Rights replaceRightsHolder(final String rightsHolder) {
@@ -657,11 +874,11 @@ public final class Rights implements org.thryft.Struct, org.dressdiscover.api.mo
     }
 
     public Rights replaceText(final String text) {
-        return new Rights(text, this.type, this.licenseVocabRef, this.notes, this.rightsHolder);
+        return new Rights(DefaultConstructionValidator.getInstance().validateText(text), this.type, this.licenseVocabRef, this.notes, this.rightsHolder, NopConstructionValidator.getInstance());
     }
 
     public Rights replaceType(final org.dressdiscover.api.models.rights.RightsType type) {
-        return new Rights(this.text, type, this.licenseVocabRef, this.notes, this.rightsHolder);
+        return new Rights(this.text, DefaultConstructionValidator.getInstance().validateType(type), this.licenseVocabRef, this.notes, this.rightsHolder, NopConstructionValidator.getInstance());
     }
 
     @Override

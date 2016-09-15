@@ -16,11 +16,11 @@ public final class Textref implements org.thryft.Struct, org.dressdiscover.api.m
         }
 
         protected Textref _build(final org.dressdiscover.api.models.textref.TextrefName name, final org.dressdiscover.api.models.textref.TextrefRefid refid) {
-            return new Textref(name, refid);
+            return new Textref(name, refid, DefaultConstructionValidator.getInstance());
         }
 
         public Textref build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.textref.Textref: missing name"), com.google.common.base.Preconditions.checkNotNull(refid, "org.dressdiscover.api.models.textref.Textref: missing refid"));
+            return _build(name, refid);
         }
 
         public final org.dressdiscover.api.models.textref.TextrefName getName() {
@@ -122,12 +122,12 @@ public final class Textref implements org.thryft.Struct, org.dressdiscover.api.m
         }
 
         public Builder setName(final org.dressdiscover.api.models.textref.TextrefName name) {
-            this.name = com.google.common.base.Preconditions.checkNotNull(name);
+            this.name = DefaultConstructionValidator.getInstance().validateName(name);
             return this;
         }
 
         public Builder setRefid(final org.dressdiscover.api.models.textref.TextrefRefid refid) {
-            this.refid = com.google.common.base.Preconditions.checkNotNull(refid);
+            this.refid = DefaultConstructionValidator.getInstance().validateRefid(refid);
             return this;
         }
 
@@ -282,16 +282,124 @@ public final class Textref implements org.thryft.Struct, org.dressdiscover.api.m
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public org.dressdiscover.api.models.textref.TextrefName validateName(final org.dressdiscover.api.models.textref.TextrefName name) throws ExceptionT;
+
+        public org.dressdiscover.api.models.textref.TextrefRefid validateRefid(final org.dressdiscover.api.models.textref.TextrefRefid refid) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.textref.TextrefName validateName(final org.dressdiscover.api.models.textref.TextrefName name) throws RuntimeException {
+            if (name == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.textref.Textref: name is null");
+            }
+            return name;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.textref.TextrefRefid validateRefid(final org.dressdiscover.api.models.textref.TextrefRefid refid) throws RuntimeException {
+            if (refid == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.textref.Textref: refid is null");
+            }
+            return refid;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.textref.TextrefName validateName(final org.dressdiscover.api.models.textref.TextrefName name) {
+            return name;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.textref.TextrefRefid validateRefid(final org.dressdiscover.api.models.textref.TextrefRefid refid) {
+            return refid;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.textref.TextrefName validateName(final org.dressdiscover.api.models.textref.TextrefName name) throws org.thryft.protocol.InputProtocolException {
+            if (name == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.NAME, "org.dressdiscover.api.models.textref.Textref: name is null");
+            }
+            return name;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.textref.TextrefRefid validateRefid(final org.dressdiscover.api.models.textref.TextrefRefid refid) throws org.thryft.protocol.InputProtocolException {
+            if (refid == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.REFID, "org.dressdiscover.api.models.textref.Textref: refid is null");
+            }
+            return refid;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.textref.TextrefName validateName(final org.dressdiscover.api.models.textref.TextrefName name) {
+            return name;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.textref.TextrefRefid validateRefid(final org.dressdiscover.api.models.textref.TextrefRefid refid) {
+            return refid;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public Textref(final Textref other) {
-        this(other.getName(), other.getRefid());
+        this(other.getName(), other.getRefid(), NopConstructionValidator.getInstance());
     }
 
-    protected Textref(final org.dressdiscover.api.models.textref.TextrefName name, final org.dressdiscover.api.models.textref.TextrefRefid refid) {
-        this.name = name;
-        this.refid = refid;
+    protected Textref(final org.dressdiscover.api.models.textref.TextrefName name, final org.dressdiscover.api.models.textref.TextrefRefid refid, ConstructionValidator validator) {
+        this.name = validator.validateName(name);
+        this.refid = validator.validateRefid(refid);
     }
 
     public static Builder builder() {
@@ -310,7 +418,7 @@ public final class Textref implements org.thryft.Struct, org.dressdiscover.api.m
      * Optional factory method
      */
     public static Textref create(final org.dressdiscover.api.models.textref.TextrefName name, final org.dressdiscover.api.models.textref.TextrefRefid refid) {
-        return new Textref(com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.textref.Textref: missing name"), com.google.common.base.Preconditions.checkNotNull(refid, "org.dressdiscover.api.models.textref.Textref: missing refid"));
+        return new Textref(name, refid, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -388,11 +496,7 @@ public final class Textref implements org.thryft.Struct, org.dressdiscover.api.m
         name = org.dressdiscover.api.models.textref.TextrefName.readAsStruct(iprot);
         refid = org.dressdiscover.api.models.textref.TextrefRefid.readAsStruct(iprot);
         iprot.readListEnd();
-        try {
-            return new Textref(name, refid);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Textref(DefaultReadValidator.getInstance().validateName(name), DefaultReadValidator.getInstance().validateRefid(refid), NopConstructionValidator.getInstance());
     }
 
     public static Textref readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -431,19 +535,15 @@ public final class Textref implements org.thryft.Struct, org.dressdiscover.api.m
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new Textref(name, refid);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Textref(DefaultReadValidator.getInstance().validateName(name), DefaultReadValidator.getInstance().validateRefid(refid), NopConstructionValidator.getInstance());
     }
 
     public Textref replaceName(final org.dressdiscover.api.models.textref.TextrefName name) {
-        return new Textref(name, this.refid);
+        return new Textref(DefaultConstructionValidator.getInstance().validateName(name), this.refid, NopConstructionValidator.getInstance());
     }
 
     public Textref replaceRefid(final org.dressdiscover.api.models.textref.TextrefRefid refid) {
-        return new Textref(this.name, refid);
+        return new Textref(this.name, DefaultConstructionValidator.getInstance().validateRefid(refid), NopConstructionValidator.getInstance());
     }
 
     @Override

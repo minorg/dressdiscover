@@ -18,11 +18,11 @@ public final class Color implements org.thryft.Struct, org.dressdiscover.api.mod
         }
 
         protected Color _build(final String text, final org.dressdiscover.api.models.color.ColorType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-            return new Color(text, type, vocabRef);
+            return new Color(text, type, vocabRef, DefaultConstructionValidator.getInstance());
         }
 
         public Color build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.color.Color: missing text"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.color.Color: missing type"), com.google.common.base.Preconditions.checkNotNull(vocabRef, "org.dressdiscover.api.models.color.Color: missing vocabRef"));
+            return _build(text, type, vocabRef);
         }
 
         public final String getText() {
@@ -141,23 +141,22 @@ public final class Color implements org.thryft.Struct, org.dressdiscover.api.mod
         }
 
         public Builder setText(final String text) {
-            this.text = com.google.common.base.Preconditions.checkNotNull(text);
+            this.text = DefaultConstructionValidator.getInstance().validateText(text);
             return this;
         }
 
         public Builder setType(final org.dressdiscover.api.models.color.ColorType type) {
-            this.type = com.google.common.base.Preconditions.checkNotNull(type);
+            this.type = DefaultConstructionValidator.getInstance().validateType(type);
             return this;
         }
 
         public Builder setVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-            this.vocabRef = com.google.common.base.Preconditions.checkNotNull(vocabRef);
+            this.vocabRef = DefaultConstructionValidator.getInstance().validateVocabRef(vocabRef);
             return this;
         }
 
         public Builder setVocabRef(@javax.annotation.Nullable final org.dressdiscover.api.models.VocabRef vocabRef) {
-            this.vocabRef = com.google.common.base.Optional.fromNullable(vocabRef);
-            return this;
+            return setVocabRef(com.google.common.base.Optional.fromNullable(vocabRef));
         }
 
         public Builder unset(final String fieldThriftName) {
@@ -321,17 +320,165 @@ public final class Color implements org.thryft.Struct, org.dressdiscover.api.mod
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public String validateText(final String text) throws ExceptionT;
+
+        public org.dressdiscover.api.models.color.ColorType validateType(final org.dressdiscover.api.models.color.ColorType type) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws RuntimeException {
+            if (text == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.color.Color: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.color.Color: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.color.ColorType validateType(final org.dressdiscover.api.models.color.ColorType type) throws RuntimeException {
+            if (type == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.color.Color: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) throws RuntimeException {
+            if (vocabRef == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.color.Color: vocabRef is null");
+            }
+            if (!vocabRef.isPresent()) {
+                return vocabRef;
+            }
+            return vocabRef;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.color.ColorType validateType(final org.dressdiscover.api.models.color.ColorType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
+            return vocabRef;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws org.thryft.protocol.InputProtocolException {
+            if (text == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.color.Color: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.color.Color: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.color.ColorType validateType(final org.dressdiscover.api.models.color.ColorType type) throws org.thryft.protocol.InputProtocolException {
+            if (type == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.models.color.Color: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) throws org.thryft.protocol.InputProtocolException {
+            if (vocabRef == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.VOCAB_REF, "org.dressdiscover.api.models.color.Color: vocabRef is null");
+            }
+            if (!vocabRef.isPresent()) {
+                return vocabRef;
+            }
+            return vocabRef;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.color.ColorType validateType(final org.dressdiscover.api.models.color.ColorType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
+            return vocabRef;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public Color(final Color other) {
-        this(other.getText(), other.getType(), other.getVocabRef());
+        this(other.getText(), other.getType(), other.getVocabRef(), NopConstructionValidator.getInstance());
     }
 
-    protected Color(final String text, final org.dressdiscover.api.models.color.ColorType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-        this.text = text;
-        this.type = type;
-        this.vocabRef = vocabRef;
+    protected Color(final String text, final org.dressdiscover.api.models.color.ColorType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef, ConstructionValidator validator) {
+        this.text = validator.validateText(text);
+        this.type = validator.validateType(type);
+        this.vocabRef = validator.validateVocabRef(vocabRef);
     }
 
     public static Builder builder() {
@@ -350,21 +497,21 @@ public final class Color implements org.thryft.Struct, org.dressdiscover.api.mod
      * Required factory method
      */
     public static Color create(final String text, final org.dressdiscover.api.models.color.ColorType type) {
-        return new Color(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.color.Color: missing text"), "org.dressdiscover.api.models.color.Color: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.color.Color: missing type"), com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent());
+        return new Color(text, type, com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static Color create(final String text, final org.dressdiscover.api.models.color.ColorType type, final @javax.annotation.Nullable org.dressdiscover.api.models.VocabRef vocabRef) {
-        return new Color(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.color.Color: missing text"), "org.dressdiscover.api.models.color.Color: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.color.Color: missing type"), com.google.common.base.Optional.fromNullable(vocabRef));
+        return new Color(text, type, com.google.common.base.Optional.fromNullable(vocabRef), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static Color create(final String text, final org.dressdiscover.api.models.color.ColorType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-        return new Color(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.color.Color: missing text"), "org.dressdiscover.api.models.color.Color: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.color.Color: missing type"), com.google.common.base.Preconditions.checkNotNull(vocabRef, "org.dressdiscover.api.models.color.Color: missing vocabRef"));
+        return new Color(text, type, vocabRef, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -455,11 +602,7 @@ public final class Color implements org.thryft.Struct, org.dressdiscover.api.mod
             vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.models.VocabRef.readAsStruct(iprot));
         }
         iprot.readListEnd();
-        try {
-            return new Color(text, type, vocabRef);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Color(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateVocabRef(vocabRef), NopConstructionValidator.getInstance());
     }
 
     public static Color readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -505,23 +648,19 @@ public final class Color implements org.thryft.Struct, org.dressdiscover.api.mod
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new Color(text, type, vocabRef);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Color(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateVocabRef(vocabRef), NopConstructionValidator.getInstance());
     }
 
     public Color replaceText(final String text) {
-        return new Color(text, this.type, this.vocabRef);
+        return new Color(DefaultConstructionValidator.getInstance().validateText(text), this.type, this.vocabRef, NopConstructionValidator.getInstance());
     }
 
     public Color replaceType(final org.dressdiscover.api.models.color.ColorType type) {
-        return new Color(this.text, type, this.vocabRef);
+        return new Color(this.text, DefaultConstructionValidator.getInstance().validateType(type), this.vocabRef, NopConstructionValidator.getInstance());
     }
 
     public Color replaceVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-        return new Color(this.text, this.type, vocabRef);
+        return new Color(this.text, this.type, DefaultConstructionValidator.getInstance().validateVocabRef(vocabRef), NopConstructionValidator.getInstance());
     }
 
     public Color replaceVocabRef(final org.dressdiscover.api.models.VocabRef vocabRef) {

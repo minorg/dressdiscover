@@ -29,11 +29,11 @@ public interface InstitutionQueryService {
                 }
 
                 protected GetInstitutionByIdRequest _build(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                    return new GetInstitutionByIdRequest(id);
+                    return new GetInstitutionByIdRequest(id, DefaultConstructionValidator.getInstance());
                 }
 
                 public GetInstitutionByIdRequest build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.GetInstitutionByIdRequest: missing id"));
+                    return _build(id);
                 }
 
                 public final org.dressdiscover.api.models.institution.InstitutionId getId() {
@@ -120,7 +120,7 @@ public interface InstitutionQueryService {
                 }
 
                 public Builder setId(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                    this.id = com.google.common.base.Preconditions.checkNotNull(id);
+                    this.id = DefaultConstructionValidator.getInstance().validateId(id);
                     return this;
                 }
 
@@ -273,15 +273,95 @@ public interface InstitutionQueryService {
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) throws ExceptionT;
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) throws RuntimeException {
+                    if (id == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.institution.GetInstitutionByIdRequest: id is null");
+                    }
+                    return id;
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) {
+                    return id;
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) throws org.thryft.protocol.InputProtocolException {
+                    if (id == null) {
+                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.services.institution.GetInstitutionByIdRequest: id is null");
+                    }
+                    return id;
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) {
+                    return id;
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             /**
              * Copy constructor
              */
             public GetInstitutionByIdRequest(final GetInstitutionByIdRequest other) {
-                this(other.getId());
+                this(other.getId(), NopConstructionValidator.getInstance());
             }
 
-            protected GetInstitutionByIdRequest(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                this.id = id;
+            protected GetInstitutionByIdRequest(final org.dressdiscover.api.models.institution.InstitutionId id, ConstructionValidator validator) {
+                this.id = validator.validateId(id);
             }
 
             public static Builder builder() {
@@ -300,7 +380,7 @@ public interface InstitutionQueryService {
              * Optional factory method
              */
             public static GetInstitutionByIdRequest create(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                return new GetInstitutionByIdRequest(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.GetInstitutionByIdRequest: missing id"));
+                return new GetInstitutionByIdRequest(id, DefaultConstructionValidator.getInstance());
             }
 
             @Override
@@ -373,11 +453,7 @@ public interface InstitutionQueryService {
                      throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 iprot.readListEnd();
-                try {
-                    return new GetInstitutionByIdRequest(id);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetInstitutionByIdRequest(DefaultReadValidator.getInstance().validateId(id), NopConstructionValidator.getInstance());
             }
 
             public static GetInstitutionByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -411,15 +487,11 @@ public interface InstitutionQueryService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new GetInstitutionByIdRequest(id);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetInstitutionByIdRequest(DefaultReadValidator.getInstance().validateId(id), NopConstructionValidator.getInstance());
             }
 
             public GetInstitutionByIdRequest replaceId(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                return new GetInstitutionByIdRequest(id);
+                return new GetInstitutionByIdRequest(DefaultConstructionValidator.getInstance().validateId(id), NopConstructionValidator.getInstance());
             }
 
             @Override
@@ -466,11 +538,11 @@ public interface InstitutionQueryService {
                 }
 
                 protected GetInstitutionByIdResponse _build(final org.dressdiscover.api.models.institution.Institution returnValue) {
-                    return new GetInstitutionByIdResponse(returnValue);
+                    return new GetInstitutionByIdResponse(returnValue, DefaultConstructionValidator.getInstance());
                 }
 
                 public GetInstitutionByIdResponse build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.institution.GetInstitutionByIdResponse: missing returnValue"));
+                    return _build(returnValue);
                 }
 
                 public final org.dressdiscover.api.models.institution.Institution getReturnValue() {
@@ -557,7 +629,7 @@ public interface InstitutionQueryService {
                 }
 
                 public Builder setReturnValue(final org.dressdiscover.api.models.institution.Institution returnValue) {
-                    this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue);
+                    this.returnValue = DefaultConstructionValidator.getInstance().validateReturnValue(returnValue);
                     return this;
                 }
 
@@ -702,15 +774,95 @@ public interface InstitutionQueryService {
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+                public org.dressdiscover.api.models.institution.Institution validateReturnValue(final org.dressdiscover.api.models.institution.Institution returnValue) throws ExceptionT;
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.Institution validateReturnValue(final org.dressdiscover.api.models.institution.Institution returnValue) throws RuntimeException {
+                    if (returnValue == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.institution.GetInstitutionByIdResponse: returnValue is null");
+                    }
+                    return returnValue;
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.Institution validateReturnValue(final org.dressdiscover.api.models.institution.Institution returnValue) {
+                    return returnValue;
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.Institution validateReturnValue(final org.dressdiscover.api.models.institution.Institution returnValue) throws org.thryft.protocol.InputProtocolException {
+                    if (returnValue == null) {
+                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RETURN_VALUE, "org.dressdiscover.api.services.institution.GetInstitutionByIdResponse: returnValue is null");
+                    }
+                    return returnValue;
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.Institution validateReturnValue(final org.dressdiscover.api.models.institution.Institution returnValue) {
+                    return returnValue;
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             /**
              * Copy constructor
              */
             public GetInstitutionByIdResponse(final GetInstitutionByIdResponse other) {
-                this(other.getReturnValue());
+                this(other.getReturnValue(), NopConstructionValidator.getInstance());
             }
 
-            protected GetInstitutionByIdResponse(final org.dressdiscover.api.models.institution.Institution returnValue) {
-                this.returnValue = returnValue;
+            protected GetInstitutionByIdResponse(final org.dressdiscover.api.models.institution.Institution returnValue, ConstructionValidator validator) {
+                this.returnValue = validator.validateReturnValue(returnValue);
             }
 
             public static Builder builder() {
@@ -729,7 +881,7 @@ public interface InstitutionQueryService {
              * Optional factory method
              */
             public static GetInstitutionByIdResponse create(final org.dressdiscover.api.models.institution.Institution returnValue) {
-                return new GetInstitutionByIdResponse(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.institution.InstitutionQueryService.getInstitutionById: missing returnValue"));
+                return new GetInstitutionByIdResponse(returnValue, DefaultConstructionValidator.getInstance());
             }
 
             @Override
@@ -798,11 +950,7 @@ public interface InstitutionQueryService {
                 iprot.readListBegin();
                 returnValue = org.dressdiscover.api.models.institution.Institution.readAsStruct(iprot);
                 iprot.readListEnd();
-                try {
-                    return new GetInstitutionByIdResponse(returnValue);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetInstitutionByIdResponse(DefaultReadValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
             }
 
             public static GetInstitutionByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -832,15 +980,11 @@ public interface InstitutionQueryService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new GetInstitutionByIdResponse(returnValue);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetInstitutionByIdResponse(DefaultReadValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
             }
 
             public GetInstitutionByIdResponse replaceReturnValue(final org.dressdiscover.api.models.institution.Institution returnValue) {
-                return new GetInstitutionByIdResponse(returnValue);
+                return new GetInstitutionByIdResponse(DefaultConstructionValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
             }
 
             @Override
@@ -991,6 +1135,59 @@ public interface InstitutionQueryService {
                 }
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             public GetInstitutionsRequest() {
             }
 
@@ -1061,11 +1258,7 @@ public interface InstitutionQueryService {
             public static GetInstitutionsRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                 iprot.readListBegin();
                 iprot.readListEnd();
-                try {
-                    return new GetInstitutionsRequest();
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetInstitutionsRequest();
             }
 
             public static GetInstitutionsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1089,11 +1282,7 @@ public interface InstitutionQueryService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new GetInstitutionsRequest();
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetInstitutionsRequest();
             }
 
             @Override
@@ -1131,11 +1320,11 @@ public interface InstitutionQueryService {
                 }
 
                 protected GetInstitutionsResponse _build(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> returnValue) {
-                    return new GetInstitutionsResponse(returnValue);
+                    return new GetInstitutionsResponse(returnValue, DefaultConstructionValidator.getInstance());
                 }
 
                 public GetInstitutionsResponse build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.institution.GetInstitutionsResponse: missing returnValue"));
+                    return _build(returnValue);
                 }
 
                 public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> getReturnValue() {
@@ -1253,7 +1442,7 @@ public interface InstitutionQueryService {
                 }
 
                 public Builder setReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> returnValue) {
-                    this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue);
+                    this.returnValue = DefaultConstructionValidator.getInstance().validateReturnValue(returnValue);
                     return this;
                 }
 
@@ -1398,15 +1587,95 @@ public interface InstitutionQueryService {
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> validateReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> returnValue) throws ExceptionT;
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                @Override
+                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> validateReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> returnValue) throws RuntimeException {
+                    if (returnValue == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.institution.GetInstitutionsResponse: returnValue is null");
+                    }
+                    return returnValue;
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                @Override
+                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> validateReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> returnValue) {
+                    return returnValue;
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                @Override
+                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> validateReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> returnValue) throws org.thryft.protocol.InputProtocolException {
+                    if (returnValue == null) {
+                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RETURN_VALUE, "org.dressdiscover.api.services.institution.GetInstitutionsResponse: returnValue is null");
+                    }
+                    return returnValue;
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                @Override
+                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> validateReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> returnValue) {
+                    return returnValue;
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             /**
              * Copy constructor
              */
             public GetInstitutionsResponse(final GetInstitutionsResponse other) {
-                this(other.getReturnValue());
+                this(other.getReturnValue(), NopConstructionValidator.getInstance());
             }
 
-            protected GetInstitutionsResponse(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> returnValue) {
-                this.returnValue = returnValue;
+            protected GetInstitutionsResponse(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> returnValue, ConstructionValidator validator) {
+                this.returnValue = validator.validateReturnValue(returnValue);
             }
 
             public static Builder builder() {
@@ -1425,7 +1694,7 @@ public interface InstitutionQueryService {
              * Optional factory method
              */
             public static GetInstitutionsResponse create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> returnValue) {
-                return new GetInstitutionsResponse(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.institution.InstitutionQueryService.getInstitutions: missing returnValue"));
+                return new GetInstitutionsResponse(returnValue, DefaultConstructionValidator.getInstance());
             }
 
             @Override
@@ -1509,11 +1778,7 @@ public interface InstitutionQueryService {
                     }
                 }).apply(iprot);
                 iprot.readListEnd();
-                try {
-                    return new GetInstitutionsResponse(returnValue);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetInstitutionsResponse(DefaultReadValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
             }
 
             public static GetInstitutionsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1558,15 +1823,11 @@ public interface InstitutionQueryService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new GetInstitutionsResponse(returnValue);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetInstitutionsResponse(DefaultReadValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
             }
 
             public GetInstitutionsResponse replaceReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> returnValue) {
-                return new GetInstitutionsResponse(returnValue);
+                return new GetInstitutionsResponse(DefaultConstructionValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
             }
 
             @Override
@@ -1621,11 +1882,11 @@ public interface InstitutionQueryService {
                 }
 
                 protected GetInstitutionsByIdsRequest _build(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) {
-                    return new GetInstitutionsByIdsRequest(ids);
+                    return new GetInstitutionsByIdsRequest(ids, DefaultConstructionValidator.getInstance());
                 }
 
                 public GetInstitutionsByIdsRequest build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(ids, "org.dressdiscover.api.services.institution.GetInstitutionsByIdsRequest: missing ids"));
+                    return _build(ids);
                 }
 
                 public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> getIds() {
@@ -1743,7 +2004,7 @@ public interface InstitutionQueryService {
                 }
 
                 public Builder setIds(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) {
-                    this.ids = com.google.common.base.Preconditions.checkNotNull(ids);
+                    this.ids = DefaultConstructionValidator.getInstance().validateIds(ids);
                     return this;
                 }
 
@@ -1896,15 +2157,95 @@ public interface InstitutionQueryService {
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> validateIds(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) throws ExceptionT;
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                @Override
+                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> validateIds(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) throws RuntimeException {
+                    if (ids == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.institution.GetInstitutionsByIdsRequest: ids is null");
+                    }
+                    return ids;
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                @Override
+                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> validateIds(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) {
+                    return ids;
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                @Override
+                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> validateIds(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) throws org.thryft.protocol.InputProtocolException {
+                    if (ids == null) {
+                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.IDS, "org.dressdiscover.api.services.institution.GetInstitutionsByIdsRequest: ids is null");
+                    }
+                    return ids;
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                @Override
+                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> validateIds(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) {
+                    return ids;
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             /**
              * Copy constructor
              */
             public GetInstitutionsByIdsRequest(final GetInstitutionsByIdsRequest other) {
-                this(other.getIds());
+                this(other.getIds(), NopConstructionValidator.getInstance());
             }
 
-            protected GetInstitutionsByIdsRequest(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) {
-                this.ids = ids;
+            protected GetInstitutionsByIdsRequest(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids, ConstructionValidator validator) {
+                this.ids = validator.validateIds(ids);
             }
 
             public static Builder builder() {
@@ -1923,7 +2264,7 @@ public interface InstitutionQueryService {
              * Optional factory method
              */
             public static GetInstitutionsByIdsRequest create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) {
-                return new GetInstitutionsByIdsRequest(com.google.common.base.Preconditions.checkNotNull(ids, "org.dressdiscover.api.services.institution.GetInstitutionsByIdsRequest: missing ids"));
+                return new GetInstitutionsByIdsRequest(ids, DefaultConstructionValidator.getInstance());
             }
 
             @Override
@@ -2011,11 +2352,7 @@ public interface InstitutionQueryService {
                     }
                 }).apply(iprot);
                 iprot.readListEnd();
-                try {
-                    return new GetInstitutionsByIdsRequest(ids);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetInstitutionsByIdsRequest(DefaultReadValidator.getInstance().validateIds(ids), NopConstructionValidator.getInstance());
             }
 
             public static GetInstitutionsByIdsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -2064,15 +2401,11 @@ public interface InstitutionQueryService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new GetInstitutionsByIdsRequest(ids);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetInstitutionsByIdsRequest(DefaultReadValidator.getInstance().validateIds(ids), NopConstructionValidator.getInstance());
             }
 
             public GetInstitutionsByIdsRequest replaceIds(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) {
-                return new GetInstitutionsByIdsRequest(ids);
+                return new GetInstitutionsByIdsRequest(DefaultConstructionValidator.getInstance().validateIds(ids), NopConstructionValidator.getInstance());
             }
 
             @Override
@@ -2127,11 +2460,11 @@ public interface InstitutionQueryService {
                 }
 
                 protected GetInstitutionsByIdsResponse _build(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> returnValue) {
-                    return new GetInstitutionsByIdsResponse(returnValue);
+                    return new GetInstitutionsByIdsResponse(returnValue, DefaultConstructionValidator.getInstance());
                 }
 
                 public GetInstitutionsByIdsResponse build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.institution.GetInstitutionsByIdsResponse: missing returnValue"));
+                    return _build(returnValue);
                 }
 
                 public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> getReturnValue() {
@@ -2249,7 +2582,7 @@ public interface InstitutionQueryService {
                 }
 
                 public Builder setReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> returnValue) {
-                    this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue);
+                    this.returnValue = DefaultConstructionValidator.getInstance().validateReturnValue(returnValue);
                     return this;
                 }
 
@@ -2394,15 +2727,95 @@ public interface InstitutionQueryService {
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> validateReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> returnValue) throws ExceptionT;
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                @Override
+                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> validateReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> returnValue) throws RuntimeException {
+                    if (returnValue == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.institution.GetInstitutionsByIdsResponse: returnValue is null");
+                    }
+                    return returnValue;
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                @Override
+                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> validateReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> returnValue) {
+                    return returnValue;
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                @Override
+                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> validateReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> returnValue) throws org.thryft.protocol.InputProtocolException {
+                    if (returnValue == null) {
+                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RETURN_VALUE, "org.dressdiscover.api.services.institution.GetInstitutionsByIdsResponse: returnValue is null");
+                    }
+                    return returnValue;
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                @Override
+                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> validateReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> returnValue) {
+                    return returnValue;
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             /**
              * Copy constructor
              */
             public GetInstitutionsByIdsResponse(final GetInstitutionsByIdsResponse other) {
-                this(other.getReturnValue());
+                this(other.getReturnValue(), NopConstructionValidator.getInstance());
             }
 
-            protected GetInstitutionsByIdsResponse(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> returnValue) {
-                this.returnValue = returnValue;
+            protected GetInstitutionsByIdsResponse(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> returnValue, ConstructionValidator validator) {
+                this.returnValue = validator.validateReturnValue(returnValue);
             }
 
             public static Builder builder() {
@@ -2421,7 +2834,7 @@ public interface InstitutionQueryService {
              * Optional factory method
              */
             public static GetInstitutionsByIdsResponse create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> returnValue) {
-                return new GetInstitutionsByIdsResponse(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.institution.InstitutionQueryService.getInstitutionsByIds: missing returnValue"));
+                return new GetInstitutionsByIdsResponse(returnValue, DefaultConstructionValidator.getInstance());
             }
 
             @Override
@@ -2505,11 +2918,7 @@ public interface InstitutionQueryService {
                     }
                 }).apply(iprot);
                 iprot.readListEnd();
-                try {
-                    return new GetInstitutionsByIdsResponse(returnValue);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetInstitutionsByIdsResponse(DefaultReadValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
             }
 
             public static GetInstitutionsByIdsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -2554,15 +2963,11 @@ public interface InstitutionQueryService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new GetInstitutionsByIdsResponse(returnValue);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetInstitutionsByIdsResponse(DefaultReadValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
             }
 
             public GetInstitutionsByIdsResponse replaceReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> returnValue) {
-                return new GetInstitutionsByIdsResponse(returnValue);
+                return new GetInstitutionsByIdsResponse(DefaultConstructionValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
             }
 
             @Override

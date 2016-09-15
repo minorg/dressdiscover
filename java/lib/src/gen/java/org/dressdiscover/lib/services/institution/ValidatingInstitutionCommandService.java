@@ -16,7 +16,7 @@ public class ValidatingInstitutionCommandService implements org.dressdiscover.ap
     }
 
     protected void _validateDeleteInstitutionByIdParameters(final org.dressdiscover.api.models.institution.InstitutionId id) {
-        com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.InstitutionCommandService.deleteInstitutionById: missing id");
+        org.dressdiscover.api.services.institution.InstitutionCommandService.Messages.DeleteInstitutionByIdRequest.DefaultConstructionValidator.getInstance().validateId(id);
     }
 
     @Override
@@ -26,8 +26,8 @@ public class ValidatingInstitutionCommandService implements org.dressdiscover.ap
     }
 
     protected void _validatePutInstitutionParameters(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution) {
-        com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.InstitutionCommandService.putInstitution: missing id");
-        com.google.common.base.Preconditions.checkNotNull(institution, "org.dressdiscover.api.services.institution.InstitutionCommandService.putInstitution: missing institution");
+        org.dressdiscover.api.services.institution.InstitutionCommandService.Messages.PutInstitutionRequest.DefaultConstructionValidator.getInstance().validateId(id);
+        org.dressdiscover.api.services.institution.InstitutionCommandService.Messages.PutInstitutionRequest.DefaultConstructionValidator.getInstance().validateInstitution(institution);
     }
 
     private final org.dressdiscover.api.services.institution.InstitutionCommandService delegate;

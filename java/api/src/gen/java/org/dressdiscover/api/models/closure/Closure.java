@@ -16,11 +16,11 @@ public final class Closure implements org.thryft.Struct, org.dressdiscover.api.m
         }
 
         protected Closure _build(final org.dressdiscover.api.models.closure.ClosurePlacement placement, final org.dressdiscover.api.models.closure.ClosureType type) {
-            return new Closure(placement, type);
+            return new Closure(placement, type, DefaultConstructionValidator.getInstance());
         }
 
         public Closure build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(placement, "org.dressdiscover.api.models.closure.Closure: missing placement"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.closure.Closure: missing type"));
+            return _build(placement, type);
         }
 
         public final org.dressdiscover.api.models.closure.ClosurePlacement getPlacement() {
@@ -122,12 +122,12 @@ public final class Closure implements org.thryft.Struct, org.dressdiscover.api.m
         }
 
         public Builder setPlacement(final org.dressdiscover.api.models.closure.ClosurePlacement placement) {
-            this.placement = com.google.common.base.Preconditions.checkNotNull(placement);
+            this.placement = DefaultConstructionValidator.getInstance().validatePlacement(placement);
             return this;
         }
 
         public Builder setType(final org.dressdiscover.api.models.closure.ClosureType type) {
-            this.type = com.google.common.base.Preconditions.checkNotNull(type);
+            this.type = DefaultConstructionValidator.getInstance().validateType(type);
             return this;
         }
 
@@ -282,16 +282,124 @@ public final class Closure implements org.thryft.Struct, org.dressdiscover.api.m
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public org.dressdiscover.api.models.closure.ClosurePlacement validatePlacement(final org.dressdiscover.api.models.closure.ClosurePlacement placement) throws ExceptionT;
+
+        public org.dressdiscover.api.models.closure.ClosureType validateType(final org.dressdiscover.api.models.closure.ClosureType type) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.closure.ClosurePlacement validatePlacement(final org.dressdiscover.api.models.closure.ClosurePlacement placement) throws RuntimeException {
+            if (placement == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.closure.Closure: placement is null");
+            }
+            return placement;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.closure.ClosureType validateType(final org.dressdiscover.api.models.closure.ClosureType type) throws RuntimeException {
+            if (type == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.closure.Closure: type is null");
+            }
+            return type;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.closure.ClosurePlacement validatePlacement(final org.dressdiscover.api.models.closure.ClosurePlacement placement) {
+            return placement;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.closure.ClosureType validateType(final org.dressdiscover.api.models.closure.ClosureType type) {
+            return type;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.closure.ClosurePlacement validatePlacement(final org.dressdiscover.api.models.closure.ClosurePlacement placement) throws org.thryft.protocol.InputProtocolException {
+            if (placement == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PLACEMENT, "org.dressdiscover.api.models.closure.Closure: placement is null");
+            }
+            return placement;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.closure.ClosureType validateType(final org.dressdiscover.api.models.closure.ClosureType type) throws org.thryft.protocol.InputProtocolException {
+            if (type == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.models.closure.Closure: type is null");
+            }
+            return type;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.closure.ClosurePlacement validatePlacement(final org.dressdiscover.api.models.closure.ClosurePlacement placement) {
+            return placement;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.closure.ClosureType validateType(final org.dressdiscover.api.models.closure.ClosureType type) {
+            return type;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public Closure(final Closure other) {
-        this(other.getPlacement(), other.getType());
+        this(other.getPlacement(), other.getType(), NopConstructionValidator.getInstance());
     }
 
-    protected Closure(final org.dressdiscover.api.models.closure.ClosurePlacement placement, final org.dressdiscover.api.models.closure.ClosureType type) {
-        this.placement = placement;
-        this.type = type;
+    protected Closure(final org.dressdiscover.api.models.closure.ClosurePlacement placement, final org.dressdiscover.api.models.closure.ClosureType type, ConstructionValidator validator) {
+        this.placement = validator.validatePlacement(placement);
+        this.type = validator.validateType(type);
     }
 
     public static Builder builder() {
@@ -310,7 +418,7 @@ public final class Closure implements org.thryft.Struct, org.dressdiscover.api.m
      * Optional factory method
      */
     public static Closure create(final org.dressdiscover.api.models.closure.ClosurePlacement placement, final org.dressdiscover.api.models.closure.ClosureType type) {
-        return new Closure(com.google.common.base.Preconditions.checkNotNull(placement, "org.dressdiscover.api.models.closure.Closure: missing placement"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.closure.Closure: missing type"));
+        return new Closure(placement, type, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -388,11 +496,7 @@ public final class Closure implements org.thryft.Struct, org.dressdiscover.api.m
         placement = org.dressdiscover.api.models.closure.ClosurePlacement.readAsStruct(iprot);
         type = org.dressdiscover.api.models.closure.ClosureType.readAsStruct(iprot);
         iprot.readListEnd();
-        try {
-            return new Closure(placement, type);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Closure(DefaultReadValidator.getInstance().validatePlacement(placement), DefaultReadValidator.getInstance().validateType(type), NopConstructionValidator.getInstance());
     }
 
     public static Closure readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -431,19 +535,15 @@ public final class Closure implements org.thryft.Struct, org.dressdiscover.api.m
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new Closure(placement, type);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Closure(DefaultReadValidator.getInstance().validatePlacement(placement), DefaultReadValidator.getInstance().validateType(type), NopConstructionValidator.getInstance());
     }
 
     public Closure replacePlacement(final org.dressdiscover.api.models.closure.ClosurePlacement placement) {
-        return new Closure(placement, this.type);
+        return new Closure(DefaultConstructionValidator.getInstance().validatePlacement(placement), this.type, NopConstructionValidator.getInstance());
     }
 
     public Closure replaceType(final org.dressdiscover.api.models.closure.ClosureType type) {
-        return new Closure(this.placement, type);
+        return new Closure(this.placement, DefaultConstructionValidator.getInstance().validateType(type), NopConstructionValidator.getInstance());
     }
 
     @Override

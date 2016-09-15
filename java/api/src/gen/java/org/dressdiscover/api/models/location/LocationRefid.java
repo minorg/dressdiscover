@@ -16,11 +16,11 @@ public final class LocationRefid implements org.thryft.Struct {
         }
 
         protected LocationRefid _build(final String text, final org.dressdiscover.api.models.location.LocationRefidType type) {
-            return new LocationRefid(text, type);
+            return new LocationRefid(text, type, DefaultConstructionValidator.getInstance());
         }
 
         public LocationRefid build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.location.LocationRefid: missing text"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.location.LocationRefid: missing type"));
+            return _build(text, type);
         }
 
         public final String getText() {
@@ -122,12 +122,12 @@ public final class LocationRefid implements org.thryft.Struct {
         }
 
         public Builder setText(final String text) {
-            this.text = com.google.common.base.Preconditions.checkNotNull(text);
+            this.text = DefaultConstructionValidator.getInstance().validateText(text);
             return this;
         }
 
         public Builder setType(final org.dressdiscover.api.models.location.LocationRefidType type) {
-            this.type = com.google.common.base.Preconditions.checkNotNull(type);
+            this.type = DefaultConstructionValidator.getInstance().validateType(type);
             return this;
         }
 
@@ -282,16 +282,130 @@ public final class LocationRefid implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public String validateText(final String text) throws ExceptionT;
+
+        public org.dressdiscover.api.models.location.LocationRefidType validateType(final org.dressdiscover.api.models.location.LocationRefidType type) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws RuntimeException {
+            if (text == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.location.LocationRefid: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.location.LocationRefid: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.location.LocationRefidType validateType(final org.dressdiscover.api.models.location.LocationRefidType type) throws RuntimeException {
+            if (type == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.location.LocationRefid: type is null");
+            }
+            return type;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.location.LocationRefidType validateType(final org.dressdiscover.api.models.location.LocationRefidType type) {
+            return type;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws org.thryft.protocol.InputProtocolException {
+            if (text == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.location.LocationRefid: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.location.LocationRefid: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.location.LocationRefidType validateType(final org.dressdiscover.api.models.location.LocationRefidType type) throws org.thryft.protocol.InputProtocolException {
+            if (type == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.models.location.LocationRefid: type is null");
+            }
+            return type;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.location.LocationRefidType validateType(final org.dressdiscover.api.models.location.LocationRefidType type) {
+            return type;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public LocationRefid(final LocationRefid other) {
-        this(other.getText(), other.getType());
+        this(other.getText(), other.getType(), NopConstructionValidator.getInstance());
     }
 
-    protected LocationRefid(final String text, final org.dressdiscover.api.models.location.LocationRefidType type) {
-        this.text = text;
-        this.type = type;
+    protected LocationRefid(final String text, final org.dressdiscover.api.models.location.LocationRefidType type, ConstructionValidator validator) {
+        this.text = validator.validateText(text);
+        this.type = validator.validateType(type);
     }
 
     public static Builder builder() {
@@ -310,7 +424,7 @@ public final class LocationRefid implements org.thryft.Struct {
      * Optional factory method
      */
     public static LocationRefid create(final String text, final org.dressdiscover.api.models.location.LocationRefidType type) {
-        return new LocationRefid(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.location.LocationRefid: missing text"), "org.dressdiscover.api.models.location.LocationRefid: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.location.LocationRefid: missing type"));
+        return new LocationRefid(text, type, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -388,11 +502,7 @@ public final class LocationRefid implements org.thryft.Struct {
         text = iprot.readString();
         type = iprot.readEnum(org.dressdiscover.api.models.location.LocationRefidType.class);
         iprot.readListEnd();
-        try {
-            return new LocationRefid(text, type);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new LocationRefid(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), NopConstructionValidator.getInstance());
     }
 
     public static LocationRefid readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -431,19 +541,15 @@ public final class LocationRefid implements org.thryft.Struct {
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new LocationRefid(text, type);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new LocationRefid(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), NopConstructionValidator.getInstance());
     }
 
     public LocationRefid replaceText(final String text) {
-        return new LocationRefid(text, this.type);
+        return new LocationRefid(DefaultConstructionValidator.getInstance().validateText(text), this.type, NopConstructionValidator.getInstance());
     }
 
     public LocationRefid replaceType(final org.dressdiscover.api.models.location.LocationRefidType type) {
-        return new LocationRefid(this.text, type);
+        return new LocationRefid(this.text, DefaultConstructionValidator.getInstance().validateType(type), NopConstructionValidator.getInstance());
     }
 
     @Override

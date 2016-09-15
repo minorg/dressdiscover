@@ -14,11 +14,11 @@ public final class DuplicateUserException extends org.thryft.Exception {
         }
 
         protected DuplicateUserException _build(final String causeMessage, final org.dressdiscover.api.models.user.UserId userId) {
-            return new DuplicateUserException(causeMessage, userId);
+            return new DuplicateUserException(causeMessage, userId, DefaultConstructionValidator.getInstance());
         }
 
         public DuplicateUserException build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.services.user.DuplicateUserException: missing causeMessage"), com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.services.user.DuplicateUserException: missing userId"));
+            return _build(causeMessage, userId);
         }
 
         /**
@@ -118,7 +118,7 @@ public final class DuplicateUserException extends org.thryft.Exception {
         }
 
         public Builder setCauseMessage(final String causeMessage) {
-            this.causeMessage = com.google.common.base.Preconditions.checkNotNull(causeMessage);
+            this.causeMessage = DefaultConstructionValidator.getInstance().validateCauseMessage(causeMessage);
             return this;
         }
 
@@ -132,7 +132,7 @@ public final class DuplicateUserException extends org.thryft.Exception {
         }
 
         public Builder setUserId(final org.dressdiscover.api.models.user.UserId userId) {
-            this.userId = com.google.common.base.Preconditions.checkNotNull(userId);
+            this.userId = DefaultConstructionValidator.getInstance().validateUserId(userId);
             return this;
         }
 
@@ -289,16 +289,124 @@ public final class DuplicateUserException extends org.thryft.Exception {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public String validateCauseMessage(final String causeMessage) throws ExceptionT;
+
+        public org.dressdiscover.api.models.user.UserId validateUserId(final org.dressdiscover.api.models.user.UserId userId) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public String validateCauseMessage(final String causeMessage) throws RuntimeException {
+            if (causeMessage == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.user.DuplicateUserException: causeMessage is null");
+            }
+            return causeMessage;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.user.UserId validateUserId(final org.dressdiscover.api.models.user.UserId userId) throws RuntimeException {
+            if (userId == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.user.DuplicateUserException: userId is null");
+            }
+            return userId;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public String validateCauseMessage(final String causeMessage) {
+            return causeMessage;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.user.UserId validateUserId(final org.dressdiscover.api.models.user.UserId userId) {
+            return userId;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public String validateCauseMessage(final String causeMessage) throws org.thryft.protocol.InputProtocolException {
+            if (causeMessage == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CAUSE_MESSAGE, "org.dressdiscover.api.services.user.DuplicateUserException: causeMessage is null");
+            }
+            return causeMessage;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.user.UserId validateUserId(final org.dressdiscover.api.models.user.UserId userId) throws org.thryft.protocol.InputProtocolException {
+            if (userId == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.USER_ID, "org.dressdiscover.api.services.user.DuplicateUserException: userId is null");
+            }
+            return userId;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public String validateCauseMessage(final String causeMessage) {
+            return causeMessage;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.user.UserId validateUserId(final org.dressdiscover.api.models.user.UserId userId) {
+            return userId;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public DuplicateUserException(final DuplicateUserException other) {
-        this(other.getCauseMessage(), other.getUserId());
+        this(other.getCauseMessage(), other.getUserId(), NopConstructionValidator.getInstance());
     }
 
-    protected DuplicateUserException(final String causeMessage, final org.dressdiscover.api.models.user.UserId userId) {
-        this.causeMessage = causeMessage;
-        this.userId = userId;
+    protected DuplicateUserException(final String causeMessage, final org.dressdiscover.api.models.user.UserId userId, ConstructionValidator validator) {
+        this.causeMessage = validator.validateCauseMessage(causeMessage);
+        this.userId = validator.validateUserId(userId);
     }
 
     public static Builder builder() {
@@ -317,7 +425,7 @@ public final class DuplicateUserException extends org.thryft.Exception {
      * Optional factory method
      */
     public static DuplicateUserException create(final String causeMessage, final org.dressdiscover.api.models.user.UserId userId) {
-        return new DuplicateUserException(com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.services.user.DuplicateUserException: missing causeMessage"), com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.services.user.DuplicateUserException: missing userId"));
+        return new DuplicateUserException(causeMessage, userId, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -412,11 +520,7 @@ public final class DuplicateUserException extends org.thryft.Exception {
              throw new org.thryft.protocol.InputProtocolException(e);
         }
         iprot.readListEnd();
-        try {
-            return new DuplicateUserException(causeMessage, userId);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new DuplicateUserException(DefaultReadValidator.getInstance().validateCauseMessage(causeMessage), DefaultReadValidator.getInstance().validateUserId(userId), NopConstructionValidator.getInstance());
     }
 
     public static DuplicateUserException readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -455,19 +559,15 @@ public final class DuplicateUserException extends org.thryft.Exception {
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new DuplicateUserException(causeMessage, userId);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new DuplicateUserException(DefaultReadValidator.getInstance().validateCauseMessage(causeMessage), DefaultReadValidator.getInstance().validateUserId(userId), NopConstructionValidator.getInstance());
     }
 
     public DuplicateUserException replaceCauseMessage(final String causeMessage) {
-        return new DuplicateUserException(causeMessage, this.userId);
+        return new DuplicateUserException(DefaultConstructionValidator.getInstance().validateCauseMessage(causeMessage), this.userId, NopConstructionValidator.getInstance());
     }
 
     public DuplicateUserException replaceUserId(final org.dressdiscover.api.models.user.UserId userId) {
-        return new DuplicateUserException(this.causeMessage, userId);
+        return new DuplicateUserException(this.causeMessage, DefaultConstructionValidator.getInstance().validateUserId(userId), NopConstructionValidator.getInstance());
     }
 
     @Override

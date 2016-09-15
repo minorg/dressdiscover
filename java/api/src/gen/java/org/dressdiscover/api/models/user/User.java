@@ -13,11 +13,11 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
         }
 
         protected User _build(final java.util.Date ctime, final org.thryft.native_.EmailAddress emailAddress) {
-            return new User(ctime, emailAddress);
+            return new User(ctime, emailAddress, DefaultConstructionValidator.getInstance());
         }
 
         public User build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(ctime, "org.dressdiscover.api.models.user.User: missing ctime"), com.google.common.base.Preconditions.checkNotNull(emailAddress, "org.dressdiscover.api.models.user.User: missing emailAddress"));
+            return _build(ctime, emailAddress);
         }
 
         public final java.util.Date getCtime() {
@@ -106,12 +106,12 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
         }
 
         public Builder setCtime(final java.util.Date ctime) {
-            this.ctime = com.google.common.base.Preconditions.checkNotNull(ctime);
+            this.ctime = DefaultConstructionValidator.getInstance().validateCtime(ctime);
             return this;
         }
 
         public Builder setEmailAddress(final org.thryft.native_.EmailAddress emailAddress) {
-            this.emailAddress = com.google.common.base.Preconditions.checkNotNull(emailAddress);
+            this.emailAddress = DefaultConstructionValidator.getInstance().validateEmailAddress(emailAddress);
             return this;
         }
 
@@ -275,16 +275,124 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public java.util.Date validateCtime(final java.util.Date ctime) throws ExceptionT;
+
+        public org.thryft.native_.EmailAddress validateEmailAddress(final org.thryft.native_.EmailAddress emailAddress) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public java.util.Date validateCtime(final java.util.Date ctime) throws RuntimeException {
+            if (ctime == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.user.User: ctime is null");
+            }
+            return ctime;
+        }
+
+        @Override
+        public org.thryft.native_.EmailAddress validateEmailAddress(final org.thryft.native_.EmailAddress emailAddress) throws RuntimeException {
+            if (emailAddress == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.user.User: emailAddress is null");
+            }
+            return emailAddress;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public java.util.Date validateCtime(final java.util.Date ctime) {
+            return ctime;
+        }
+
+        @Override
+        public org.thryft.native_.EmailAddress validateEmailAddress(final org.thryft.native_.EmailAddress emailAddress) {
+            return emailAddress;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public java.util.Date validateCtime(final java.util.Date ctime) throws org.thryft.protocol.InputProtocolException {
+            if (ctime == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CTIME, "org.dressdiscover.api.models.user.User: ctime is null");
+            }
+            return ctime;
+        }
+
+        @Override
+        public org.thryft.native_.EmailAddress validateEmailAddress(final org.thryft.native_.EmailAddress emailAddress) throws org.thryft.protocol.InputProtocolException {
+            if (emailAddress == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, "org.dressdiscover.api.models.user.User: emailAddress is null");
+            }
+            return emailAddress;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public java.util.Date validateCtime(final java.util.Date ctime) {
+            return ctime;
+        }
+
+        @Override
+        public org.thryft.native_.EmailAddress validateEmailAddress(final org.thryft.native_.EmailAddress emailAddress) {
+            return emailAddress;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public User(final User other) {
-        this(other.getCtime(), other.getEmailAddress());
+        this(other.getCtime(), other.getEmailAddress(), NopConstructionValidator.getInstance());
     }
 
-    protected User(final java.util.Date ctime, final org.thryft.native_.EmailAddress emailAddress) {
-        this.ctime = ctime;
-        this.emailAddress = emailAddress;
+    protected User(final java.util.Date ctime, final org.thryft.native_.EmailAddress emailAddress, ConstructionValidator validator) {
+        this.ctime = validator.validateCtime(ctime);
+        this.emailAddress = validator.validateEmailAddress(emailAddress);
     }
 
     public static Builder builder() {
@@ -303,7 +411,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
      * Optional factory method
      */
     public static User create(final java.util.Date ctime, final org.thryft.native_.EmailAddress emailAddress) {
-        return new User(com.google.common.base.Preconditions.checkNotNull(ctime, "org.dressdiscover.api.models.user.User: missing ctime"), com.google.common.base.Preconditions.checkNotNull(emailAddress, "org.dressdiscover.api.models.user.User: missing emailAddress"));
+        return new User(ctime, emailAddress, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -381,11 +489,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
         ctime = iprot.readDateTime();
         emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
         iprot.readListEnd();
-        try {
-            return new User(ctime, emailAddress);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new User(DefaultReadValidator.getInstance().validateCtime(ctime), DefaultReadValidator.getInstance().validateEmailAddress(emailAddress), NopConstructionValidator.getInstance());
     }
 
     public static User readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -420,19 +524,15 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new User(ctime, emailAddress);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new User(DefaultReadValidator.getInstance().validateCtime(ctime), DefaultReadValidator.getInstance().validateEmailAddress(emailAddress), NopConstructionValidator.getInstance());
     }
 
     public User replaceCtime(final java.util.Date ctime) {
-        return new User(ctime, this.emailAddress);
+        return new User(DefaultConstructionValidator.getInstance().validateCtime(ctime), this.emailAddress, NopConstructionValidator.getInstance());
     }
 
     public User replaceEmailAddress(final org.thryft.native_.EmailAddress emailAddress) {
-        return new User(this.ctime, emailAddress);
+        return new User(this.ctime, DefaultConstructionValidator.getInstance().validateEmailAddress(emailAddress), NopConstructionValidator.getInstance());
     }
 
     @Override

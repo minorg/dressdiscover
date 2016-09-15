@@ -15,11 +15,11 @@ public final class InscriptionText implements org.thryft.Struct {
         }
 
         protected InscriptionText _build(final String text, final org.dressdiscover.api.models.inscription.InscriptionTextType type, final com.google.common.base.Optional<String> lang) {
-            return new InscriptionText(text, type, lang);
+            return new InscriptionText(text, type, lang, DefaultConstructionValidator.getInstance());
         }
 
         public InscriptionText build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.inscription.InscriptionText: missing text"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.inscription.InscriptionText: missing type"), com.google.common.base.Preconditions.checkNotNull(lang, "org.dressdiscover.api.models.inscription.InscriptionText: missing lang"));
+            return _build(text, type, lang);
         }
 
         public final com.google.common.base.Optional<String> getLang() {
@@ -138,22 +138,21 @@ public final class InscriptionText implements org.thryft.Struct {
         }
 
         public Builder setLang(final com.google.common.base.Optional<String> lang) {
-            this.lang = com.google.common.base.Preconditions.checkNotNull(lang);
+            this.lang = DefaultConstructionValidator.getInstance().validateLang(lang);
             return this;
         }
 
         public Builder setLang(@javax.annotation.Nullable final String lang) {
-            this.lang = com.google.common.base.Optional.fromNullable(lang);
-            return this;
+            return setLang(com.google.common.base.Optional.fromNullable(lang));
         }
 
         public Builder setText(final String text) {
-            this.text = com.google.common.base.Preconditions.checkNotNull(text);
+            this.text = DefaultConstructionValidator.getInstance().validateText(text);
             return this;
         }
 
         public Builder setType(final org.dressdiscover.api.models.inscription.InscriptionTextType type) {
-            this.type = com.google.common.base.Preconditions.checkNotNull(type);
+            this.type = DefaultConstructionValidator.getInstance().validateType(type);
             return this;
         }
 
@@ -318,17 +317,177 @@ public final class InscriptionText implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public String validateText(final String text) throws ExceptionT;
+
+        public org.dressdiscover.api.models.inscription.InscriptionTextType validateType(final org.dressdiscover.api.models.inscription.InscriptionTextType type) throws ExceptionT;
+
+        public com.google.common.base.Optional<String> validateLang(final com.google.common.base.Optional<String> lang) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws RuntimeException {
+            if (text == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.inscription.InscriptionText: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.inscription.InscriptionText: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.inscription.InscriptionTextType validateType(final org.dressdiscover.api.models.inscription.InscriptionTextType type) throws RuntimeException {
+            if (type == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.inscription.InscriptionText: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateLang(final com.google.common.base.Optional<String> lang) throws RuntimeException {
+            if (lang == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.inscription.InscriptionText: lang is null");
+            }
+            if (!lang.isPresent()) {
+                return lang;
+            }
+            if (lang.get().length() < 2) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.inscription.InscriptionText: lang is less than min length 2");
+            }
+            if (lang.get().length() > 3) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.inscription.InscriptionText: lang is greater than max length 3");
+            }
+            return lang;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.inscription.InscriptionTextType validateType(final org.dressdiscover.api.models.inscription.InscriptionTextType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateLang(final com.google.common.base.Optional<String> lang) {
+            return lang;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws org.thryft.protocol.InputProtocolException {
+            if (text == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.inscription.InscriptionText: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.inscription.InscriptionText: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.inscription.InscriptionTextType validateType(final org.dressdiscover.api.models.inscription.InscriptionTextType type) throws org.thryft.protocol.InputProtocolException {
+            if (type == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.models.inscription.InscriptionText: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateLang(final com.google.common.base.Optional<String> lang) throws org.thryft.protocol.InputProtocolException {
+            if (lang == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LANG, "org.dressdiscover.api.models.inscription.InscriptionText: lang is null");
+            }
+            if (!lang.isPresent()) {
+                return lang;
+            }
+            if (lang.get().length() < 2) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LANG, "org.dressdiscover.api.models.inscription.InscriptionText: lang is less than min length 2");
+            }
+            if (lang.get().length() > 3) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LANG, "org.dressdiscover.api.models.inscription.InscriptionText: lang is greater than max length 3");
+            }
+            return lang;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.inscription.InscriptionTextType validateType(final org.dressdiscover.api.models.inscription.InscriptionTextType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateLang(final com.google.common.base.Optional<String> lang) {
+            return lang;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public InscriptionText(final InscriptionText other) {
-        this(other.getText(), other.getType(), other.getLang());
+        this(other.getText(), other.getType(), other.getLang(), NopConstructionValidator.getInstance());
     }
 
-    protected InscriptionText(final String text, final org.dressdiscover.api.models.inscription.InscriptionTextType type, final com.google.common.base.Optional<String> lang) {
-        this.text = text;
-        this.type = type;
-        this.lang = lang;
+    protected InscriptionText(final String text, final org.dressdiscover.api.models.inscription.InscriptionTextType type, final com.google.common.base.Optional<String> lang, ConstructionValidator validator) {
+        this.text = validator.validateText(text);
+        this.type = validator.validateType(type);
+        this.lang = validator.validateLang(lang);
     }
 
     public static Builder builder() {
@@ -347,21 +506,21 @@ public final class InscriptionText implements org.thryft.Struct {
      * Required factory method
      */
     public static InscriptionText create(final String text, final org.dressdiscover.api.models.inscription.InscriptionTextType type) {
-        return new InscriptionText(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.inscription.InscriptionText: missing text"), "org.dressdiscover.api.models.inscription.InscriptionText: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.inscription.InscriptionText: missing type"), com.google.common.base.Optional.<String> absent());
+        return new InscriptionText(text, type, com.google.common.base.Optional.<String> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static InscriptionText create(final String text, final org.dressdiscover.api.models.inscription.InscriptionTextType type, final @javax.annotation.Nullable String lang) {
-        return new InscriptionText(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.inscription.InscriptionText: missing text"), "org.dressdiscover.api.models.inscription.InscriptionText: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.inscription.InscriptionText: missing type"), org.thryft.Preconditions.checkOptionalStringMinLength(org.thryft.Preconditions.checkOptionalStringMaxLength(com.google.common.base.Optional.fromNullable(lang), 3, "org.dressdiscover.api.models.inscription.InscriptionText: lang must have a maximum length of 3"), 2, "org.dressdiscover.api.models.inscription.InscriptionText: lang must have a minimum length of 2"));
+        return new InscriptionText(text, type, com.google.common.base.Optional.fromNullable(lang), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static InscriptionText create(final String text, final org.dressdiscover.api.models.inscription.InscriptionTextType type, final com.google.common.base.Optional<String> lang) {
-        return new InscriptionText(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.inscription.InscriptionText: missing text"), "org.dressdiscover.api.models.inscription.InscriptionText: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.inscription.InscriptionText: missing type"), org.thryft.Preconditions.checkOptionalStringMinLength(org.thryft.Preconditions.checkOptionalStringMaxLength(com.google.common.base.Preconditions.checkNotNull(lang, "org.dressdiscover.api.models.inscription.InscriptionText: missing lang"), 3, "org.dressdiscover.api.models.inscription.InscriptionText: lang must have a maximum length of 3"), 2, "org.dressdiscover.api.models.inscription.InscriptionText: lang must have a minimum length of 2"));
+        return new InscriptionText(text, type, lang, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -452,11 +611,7 @@ public final class InscriptionText implements org.thryft.Struct {
             lang = com.google.common.base.Optional.of(iprot.readString());
         }
         iprot.readListEnd();
-        try {
-            return new InscriptionText(text, type, lang);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new InscriptionText(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateLang(lang), NopConstructionValidator.getInstance());
     }
 
     public static InscriptionText readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -502,15 +657,11 @@ public final class InscriptionText implements org.thryft.Struct {
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new InscriptionText(text, type, lang);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new InscriptionText(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateLang(lang), NopConstructionValidator.getInstance());
     }
 
     public InscriptionText replaceLang(final com.google.common.base.Optional<String> lang) {
-        return new InscriptionText(this.text, this.type, lang);
+        return new InscriptionText(this.text, this.type, DefaultConstructionValidator.getInstance().validateLang(lang), NopConstructionValidator.getInstance());
     }
 
     public InscriptionText replaceLang(final String lang) {
@@ -518,11 +669,11 @@ public final class InscriptionText implements org.thryft.Struct {
     }
 
     public InscriptionText replaceText(final String text) {
-        return new InscriptionText(text, this.type, this.lang);
+        return new InscriptionText(DefaultConstructionValidator.getInstance().validateText(text), this.type, this.lang, NopConstructionValidator.getInstance());
     }
 
     public InscriptionText replaceType(final org.dressdiscover.api.models.inscription.InscriptionTextType type) {
-        return new InscriptionText(this.text, type, this.lang);
+        return new InscriptionText(this.text, DefaultConstructionValidator.getInstance().validateType(type), this.lang, NopConstructionValidator.getInstance());
     }
 
     @Override

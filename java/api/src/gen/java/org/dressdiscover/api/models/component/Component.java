@@ -16,11 +16,11 @@ public final class Component implements org.thryft.Struct, org.dressdiscover.api
         }
 
         protected Component _build(final org.dressdiscover.api.models.component.ComponentTerm term, final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures) {
-            return new Component(term, structures);
+            return new Component(term, structures, DefaultConstructionValidator.getInstance());
         }
 
         public Component build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(term, "org.dressdiscover.api.models.component.Component: missing term"), com.google.common.base.Preconditions.checkNotNull(structures, "org.dressdiscover.api.models.component.Component: missing structures"));
+            return _build(term, structures);
         }
 
         public final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> getStructures() {
@@ -126,17 +126,16 @@ public final class Component implements org.thryft.Struct, org.dressdiscover.api
         }
 
         public Builder setStructures(final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures) {
-            this.structures = com.google.common.base.Preconditions.checkNotNull(structures);
+            this.structures = DefaultConstructionValidator.getInstance().validateStructures(structures);
             return this;
         }
 
         public Builder setStructures(@javax.annotation.Nullable final org.dressdiscover.api.models.structure.StructureSet structures) {
-            this.structures = com.google.common.base.Optional.fromNullable(structures);
-            return this;
+            return setStructures(com.google.common.base.Optional.fromNullable(structures));
         }
 
         public Builder setTerm(final org.dressdiscover.api.models.component.ComponentTerm term) {
-            this.term = com.google.common.base.Preconditions.checkNotNull(term);
+            this.term = DefaultConstructionValidator.getInstance().validateTerm(term);
             return this;
         }
 
@@ -291,16 +290,130 @@ public final class Component implements org.thryft.Struct, org.dressdiscover.api
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public org.dressdiscover.api.models.component.ComponentTerm validateTerm(final org.dressdiscover.api.models.component.ComponentTerm term) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> validateStructures(final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.component.ComponentTerm validateTerm(final org.dressdiscover.api.models.component.ComponentTerm term) throws RuntimeException {
+            if (term == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.component.Component: term is null");
+            }
+            return term;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> validateStructures(final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures) throws RuntimeException {
+            if (structures == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.component.Component: structures is null");
+            }
+            if (!structures.isPresent()) {
+                return structures;
+            }
+            return structures;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.component.ComponentTerm validateTerm(final org.dressdiscover.api.models.component.ComponentTerm term) {
+            return term;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> validateStructures(final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures) {
+            return structures;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.component.ComponentTerm validateTerm(final org.dressdiscover.api.models.component.ComponentTerm term) throws org.thryft.protocol.InputProtocolException {
+            if (term == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TERM, "org.dressdiscover.api.models.component.Component: term is null");
+            }
+            return term;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> validateStructures(final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures) throws org.thryft.protocol.InputProtocolException {
+            if (structures == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.STRUCTURES, "org.dressdiscover.api.models.component.Component: structures is null");
+            }
+            if (!structures.isPresent()) {
+                return structures;
+            }
+            return structures;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.component.ComponentTerm validateTerm(final org.dressdiscover.api.models.component.ComponentTerm term) {
+            return term;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> validateStructures(final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures) {
+            return structures;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public Component(final Component other) {
-        this(other.getTerm(), other.getStructures());
+        this(other.getTerm(), other.getStructures(), NopConstructionValidator.getInstance());
     }
 
-    protected Component(final org.dressdiscover.api.models.component.ComponentTerm term, final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures) {
-        this.term = term;
-        this.structures = structures;
+    protected Component(final org.dressdiscover.api.models.component.ComponentTerm term, final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures, ConstructionValidator validator) {
+        this.term = validator.validateTerm(term);
+        this.structures = validator.validateStructures(structures);
     }
 
     public static Builder builder() {
@@ -319,21 +432,21 @@ public final class Component implements org.thryft.Struct, org.dressdiscover.api
      * Required factory method
      */
     public static Component create(final org.dressdiscover.api.models.component.ComponentTerm term) {
-        return new Component(com.google.common.base.Preconditions.checkNotNull(term, "org.dressdiscover.api.models.component.Component: missing term"), com.google.common.base.Optional.<org.dressdiscover.api.models.structure.StructureSet> absent());
+        return new Component(term, com.google.common.base.Optional.<org.dressdiscover.api.models.structure.StructureSet> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static Component create(final org.dressdiscover.api.models.component.ComponentTerm term, final @javax.annotation.Nullable org.dressdiscover.api.models.structure.StructureSet structures) {
-        return new Component(com.google.common.base.Preconditions.checkNotNull(term, "org.dressdiscover.api.models.component.Component: missing term"), com.google.common.base.Optional.fromNullable(structures));
+        return new Component(term, com.google.common.base.Optional.fromNullable(structures), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static Component create(final org.dressdiscover.api.models.component.ComponentTerm term, final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures) {
-        return new Component(com.google.common.base.Preconditions.checkNotNull(term, "org.dressdiscover.api.models.component.Component: missing term"), com.google.common.base.Preconditions.checkNotNull(structures, "org.dressdiscover.api.models.component.Component: missing structures"));
+        return new Component(term, structures, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -415,11 +528,7 @@ public final class Component implements org.thryft.Struct, org.dressdiscover.api
             structures = com.google.common.base.Optional.of(org.dressdiscover.api.models.structure.StructureSet.readAsStruct(iprot));
         }
         iprot.readListEnd();
-        try {
-            return new Component(term, structures);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Component(DefaultReadValidator.getInstance().validateTerm(term), DefaultReadValidator.getInstance().validateStructures(structures), NopConstructionValidator.getInstance());
     }
 
     public static Component readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -458,15 +567,11 @@ public final class Component implements org.thryft.Struct, org.dressdiscover.api
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new Component(term, structures);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Component(DefaultReadValidator.getInstance().validateTerm(term), DefaultReadValidator.getInstance().validateStructures(structures), NopConstructionValidator.getInstance());
     }
 
     public Component replaceStructures(final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures) {
-        return new Component(this.term, structures);
+        return new Component(this.term, DefaultConstructionValidator.getInstance().validateStructures(structures), NopConstructionValidator.getInstance());
     }
 
     public Component replaceStructures(final org.dressdiscover.api.models.structure.StructureSet structures) {
@@ -474,7 +579,7 @@ public final class Component implements org.thryft.Struct, org.dressdiscover.api
     }
 
     public Component replaceTerm(final org.dressdiscover.api.models.component.ComponentTerm term) {
-        return new Component(term, this.structures);
+        return new Component(DefaultConstructionValidator.getInstance().validateTerm(term), this.structures, NopConstructionValidator.getInstance());
     }
 
     @Override

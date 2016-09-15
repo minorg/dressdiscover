@@ -31,11 +31,11 @@ public final class ObjectFacets implements org.thryft.Struct {
         }
 
         protected ObjectFacets _build(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
-            return new ObjectFacets(categories, collections, colorTexts, culturalContextTexts, genders, institutions, locationNameTexts, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts);
+            return new ObjectFacets(categories, collections, colorTexts, culturalContextTexts, genders, institutions, locationNameTexts, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts, DefaultConstructionValidator.getInstance());
         }
 
         public ObjectFacets build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(categories, "org.dressdiscover.api.models.object.ObjectFacets: missing categories"), com.google.common.base.Preconditions.checkNotNull(collections, "org.dressdiscover.api.models.object.ObjectFacets: missing collections"), com.google.common.base.Preconditions.checkNotNull(colorTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing colorTexts"), com.google.common.base.Preconditions.checkNotNull(culturalContextTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing culturalContextTexts"), com.google.common.base.Preconditions.checkNotNull(genders, "org.dressdiscover.api.models.object.ObjectFacets: missing genders"), com.google.common.base.Preconditions.checkNotNull(institutions, "org.dressdiscover.api.models.object.ObjectFacets: missing institutions"), com.google.common.base.Preconditions.checkNotNull(locationNameTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing locationNameTexts"), com.google.common.base.Preconditions.checkNotNull(materialTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing materialTexts"), com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing subjectTermTexts"), com.google.common.base.Preconditions.checkNotNull(techniqueTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing techniqueTexts"), com.google.common.base.Preconditions.checkNotNull(workTypeTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing workTypeTexts"));
+            return _build(categories, collections, colorTexts, culturalContextTexts, genders, institutions, locationNameTexts, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts);
         }
 
         public final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> getCategories() {
@@ -745,27 +745,27 @@ public final class ObjectFacets implements org.thryft.Struct {
         }
 
         public Builder setCategories(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories) {
-            this.categories = com.google.common.base.Preconditions.checkNotNull(categories);
+            this.categories = DefaultConstructionValidator.getInstance().validateCategories(categories);
             return this;
         }
 
         public Builder setCollections(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections) {
-            this.collections = com.google.common.base.Preconditions.checkNotNull(collections);
+            this.collections = DefaultConstructionValidator.getInstance().validateCollections(collections);
             return this;
         }
 
         public Builder setColorTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts) {
-            this.colorTexts = com.google.common.base.Preconditions.checkNotNull(colorTexts);
+            this.colorTexts = DefaultConstructionValidator.getInstance().validateColorTexts(colorTexts);
             return this;
         }
 
         public Builder setCulturalContextTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts) {
-            this.culturalContextTexts = com.google.common.base.Preconditions.checkNotNull(culturalContextTexts);
+            this.culturalContextTexts = DefaultConstructionValidator.getInstance().validateCulturalContextTexts(culturalContextTexts);
             return this;
         }
 
         public Builder setGenders(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders) {
-            this.genders = com.google.common.base.Preconditions.checkNotNull(genders);
+            this.genders = DefaultConstructionValidator.getInstance().validateGenders(genders);
             return this;
         }
 
@@ -788,32 +788,32 @@ public final class ObjectFacets implements org.thryft.Struct {
         }
 
         public Builder setInstitutions(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions) {
-            this.institutions = com.google.common.base.Preconditions.checkNotNull(institutions);
+            this.institutions = DefaultConstructionValidator.getInstance().validateInstitutions(institutions);
             return this;
         }
 
         public Builder setLocationNameTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts) {
-            this.locationNameTexts = com.google.common.base.Preconditions.checkNotNull(locationNameTexts);
+            this.locationNameTexts = DefaultConstructionValidator.getInstance().validateLocationNameTexts(locationNameTexts);
             return this;
         }
 
         public Builder setMaterialTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts) {
-            this.materialTexts = com.google.common.base.Preconditions.checkNotNull(materialTexts);
+            this.materialTexts = DefaultConstructionValidator.getInstance().validateMaterialTexts(materialTexts);
             return this;
         }
 
         public Builder setSubjectTermTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts) {
-            this.subjectTermTexts = com.google.common.base.Preconditions.checkNotNull(subjectTermTexts);
+            this.subjectTermTexts = DefaultConstructionValidator.getInstance().validateSubjectTermTexts(subjectTermTexts);
             return this;
         }
 
         public Builder setTechniqueTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts) {
-            this.techniqueTexts = com.google.common.base.Preconditions.checkNotNull(techniqueTexts);
+            this.techniqueTexts = DefaultConstructionValidator.getInstance().validateTechniqueTexts(techniqueTexts);
             return this;
         }
 
         public Builder setWorkTypeTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
-            this.workTypeTexts = com.google.common.base.Preconditions.checkNotNull(workTypeTexts);
+            this.workTypeTexts = DefaultConstructionValidator.getInstance().validateWorkTypeTexts(workTypeTexts);
             return this;
         }
 
@@ -1058,25 +1058,385 @@ public final class ObjectFacets implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateCategories(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories) throws ExceptionT;
+
+        public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> validateCollections(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections) throws ExceptionT;
+
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateColorTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts) throws ExceptionT;
+
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateCulturalContextTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts) throws ExceptionT;
+
+        public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> validateGenders(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders) throws ExceptionT;
+
+        public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> validateInstitutions(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions) throws ExceptionT;
+
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateLocationNameTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts) throws ExceptionT;
+
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateMaterialTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts) throws ExceptionT;
+
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateSubjectTermTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts) throws ExceptionT;
+
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateTechniqueTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts) throws ExceptionT;
+
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateWorkTypeTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateCategories(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories) throws RuntimeException {
+            if (categories == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: categories is null");
+            }
+            return categories;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> validateCollections(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections) throws RuntimeException {
+            if (collections == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: collections is null");
+            }
+            return collections;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateColorTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts) throws RuntimeException {
+            if (colorTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: colorTexts is null");
+            }
+            return colorTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateCulturalContextTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts) throws RuntimeException {
+            if (culturalContextTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: culturalContextTexts is null");
+            }
+            return culturalContextTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> validateGenders(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders) throws RuntimeException {
+            if (genders == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: genders is null");
+            }
+            return genders;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> validateInstitutions(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions) throws RuntimeException {
+            if (institutions == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: institutions is null");
+            }
+            return institutions;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateLocationNameTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts) throws RuntimeException {
+            if (locationNameTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: locationNameTexts is null");
+            }
+            return locationNameTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateMaterialTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts) throws RuntimeException {
+            if (materialTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: materialTexts is null");
+            }
+            return materialTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateSubjectTermTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts) throws RuntimeException {
+            if (subjectTermTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: subjectTermTexts is null");
+            }
+            return subjectTermTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateTechniqueTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts) throws RuntimeException {
+            if (techniqueTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: techniqueTexts is null");
+            }
+            return techniqueTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateWorkTypeTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) throws RuntimeException {
+            if (workTypeTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: workTypeTexts is null");
+            }
+            return workTypeTexts;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateCategories(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories) {
+            return categories;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> validateCollections(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections) {
+            return collections;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateColorTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts) {
+            return colorTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateCulturalContextTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts) {
+            return culturalContextTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> validateGenders(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders) {
+            return genders;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> validateInstitutions(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions) {
+            return institutions;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateLocationNameTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts) {
+            return locationNameTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateMaterialTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts) {
+            return materialTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateSubjectTermTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts) {
+            return subjectTermTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateTechniqueTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts) {
+            return techniqueTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateWorkTypeTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
+            return workTypeTexts;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateCategories(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories) throws org.thryft.protocol.InputProtocolException {
+            if (categories == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CATEGORIES, "org.dressdiscover.api.models.object.ObjectFacets: categories is null");
+            }
+            return categories;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> validateCollections(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections) throws org.thryft.protocol.InputProtocolException {
+            if (collections == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLLECTIONS, "org.dressdiscover.api.models.object.ObjectFacets: collections is null");
+            }
+            return collections;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateColorTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts) throws org.thryft.protocol.InputProtocolException {
+            if (colorTexts == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectFacets: colorTexts is null");
+            }
+            return colorTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateCulturalContextTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts) throws org.thryft.protocol.InputProtocolException {
+            if (culturalContextTexts == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectFacets: culturalContextTexts is null");
+            }
+            return culturalContextTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> validateGenders(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders) throws org.thryft.protocol.InputProtocolException {
+            if (genders == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.GENDERS, "org.dressdiscover.api.models.object.ObjectFacets: genders is null");
+            }
+            return genders;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> validateInstitutions(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions) throws org.thryft.protocol.InputProtocolException {
+            if (institutions == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INSTITUTIONS, "org.dressdiscover.api.models.object.ObjectFacets: institutions is null");
+            }
+            return institutions;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateLocationNameTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts) throws org.thryft.protocol.InputProtocolException {
+            if (locationNameTexts == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectFacets: locationNameTexts is null");
+            }
+            return locationNameTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateMaterialTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts) throws org.thryft.protocol.InputProtocolException {
+            if (materialTexts == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectFacets: materialTexts is null");
+            }
+            return materialTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateSubjectTermTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts) throws org.thryft.protocol.InputProtocolException {
+            if (subjectTermTexts == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectFacets: subjectTermTexts is null");
+            }
+            return subjectTermTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateTechniqueTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts) throws org.thryft.protocol.InputProtocolException {
+            if (techniqueTexts == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacets: techniqueTexts is null");
+            }
+            return techniqueTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateWorkTypeTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) throws org.thryft.protocol.InputProtocolException {
+            if (workTypeTexts == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacets: workTypeTexts is null");
+            }
+            return workTypeTexts;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateCategories(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories) {
+            return categories;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> validateCollections(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections) {
+            return collections;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateColorTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts) {
+            return colorTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateCulturalContextTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts) {
+            return culturalContextTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> validateGenders(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders) {
+            return genders;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> validateInstitutions(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions) {
+            return institutions;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateLocationNameTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts) {
+            return locationNameTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateMaterialTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts) {
+            return materialTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateSubjectTermTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts) {
+            return subjectTermTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateTechniqueTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts) {
+            return techniqueTexts;
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> validateWorkTypeTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
+            return workTypeTexts;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public ObjectFacets(final ObjectFacets other) {
-        this(other.getCategories(), other.getCollections(), other.getColorTexts(), other.getCulturalContextTexts(), other.getGenders(), other.getInstitutions(), other.getLocationNameTexts(), other.getMaterialTexts(), other.getSubjectTermTexts(), other.getTechniqueTexts(), other.getWorkTypeTexts());
+        this(other.getCategories(), other.getCollections(), other.getColorTexts(), other.getCulturalContextTexts(), other.getGenders(), other.getInstitutions(), other.getLocationNameTexts(), other.getMaterialTexts(), other.getSubjectTermTexts(), other.getTechniqueTexts(), other.getWorkTypeTexts(), NopConstructionValidator.getInstance());
     }
 
-    protected ObjectFacets(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
-        this.categories = categories;
-        this.collections = collections;
-        this.colorTexts = colorTexts;
-        this.culturalContextTexts = culturalContextTexts;
-        this.genders = genders;
-        this.institutions = institutions;
-        this.locationNameTexts = locationNameTexts;
-        this.materialTexts = materialTexts;
-        this.subjectTermTexts = subjectTermTexts;
-        this.techniqueTexts = techniqueTexts;
-        this.workTypeTexts = workTypeTexts;
+    protected ObjectFacets(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts, ConstructionValidator validator) {
+        this.categories = validator.validateCategories(categories);
+        this.collections = validator.validateCollections(collections);
+        this.colorTexts = validator.validateColorTexts(colorTexts);
+        this.culturalContextTexts = validator.validateCulturalContextTexts(culturalContextTexts);
+        this.genders = validator.validateGenders(genders);
+        this.institutions = validator.validateInstitutions(institutions);
+        this.locationNameTexts = validator.validateLocationNameTexts(locationNameTexts);
+        this.materialTexts = validator.validateMaterialTexts(materialTexts);
+        this.subjectTermTexts = validator.validateSubjectTermTexts(subjectTermTexts);
+        this.techniqueTexts = validator.validateTechniqueTexts(techniqueTexts);
+        this.workTypeTexts = validator.validateWorkTypeTexts(workTypeTexts);
     }
 
     public static Builder builder() {
@@ -1095,7 +1455,7 @@ public final class ObjectFacets implements org.thryft.Struct {
      * Optional factory method
      */
     public static ObjectFacets create(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
-        return new ObjectFacets(com.google.common.base.Preconditions.checkNotNull(categories, "org.dressdiscover.api.models.object.ObjectFacets: missing categories"), com.google.common.base.Preconditions.checkNotNull(collections, "org.dressdiscover.api.models.object.ObjectFacets: missing collections"), com.google.common.base.Preconditions.checkNotNull(colorTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing colorTexts"), com.google.common.base.Preconditions.checkNotNull(culturalContextTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing culturalContextTexts"), com.google.common.base.Preconditions.checkNotNull(genders, "org.dressdiscover.api.models.object.ObjectFacets: missing genders"), com.google.common.base.Preconditions.checkNotNull(institutions, "org.dressdiscover.api.models.object.ObjectFacets: missing institutions"), com.google.common.base.Preconditions.checkNotNull(locationNameTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing locationNameTexts"), com.google.common.base.Preconditions.checkNotNull(materialTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing materialTexts"), com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing subjectTermTexts"), com.google.common.base.Preconditions.checkNotNull(techniqueTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing techniqueTexts"), com.google.common.base.Preconditions.checkNotNull(workTypeTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing workTypeTexts"));
+        return new ObjectFacets(categories, collections, colorTexts, culturalContextTexts, genders, institutions, locationNameTexts, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -1519,11 +1879,7 @@ public final class ObjectFacets implements org.thryft.Struct {
             }
         }).apply(iprot);
         iprot.readListEnd();
-        try {
-            return new ObjectFacets(categories, collections, colorTexts, culturalContextTexts, genders, institutions, locationNameTexts, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new ObjectFacets(DefaultReadValidator.getInstance().validateCategories(categories), DefaultReadValidator.getInstance().validateCollections(collections), DefaultReadValidator.getInstance().validateColorTexts(colorTexts), DefaultReadValidator.getInstance().validateCulturalContextTexts(culturalContextTexts), DefaultReadValidator.getInstance().validateGenders(genders), DefaultReadValidator.getInstance().validateInstitutions(institutions), DefaultReadValidator.getInstance().validateLocationNameTexts(locationNameTexts), DefaultReadValidator.getInstance().validateMaterialTexts(materialTexts), DefaultReadValidator.getInstance().validateSubjectTermTexts(subjectTermTexts), DefaultReadValidator.getInstance().validateTechniqueTexts(techniqueTexts), DefaultReadValidator.getInstance().validateWorkTypeTexts(workTypeTexts), NopConstructionValidator.getInstance());
     }
 
     public static ObjectFacets readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1868,55 +2224,51 @@ public final class ObjectFacets implements org.thryft.Struct {
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new ObjectFacets(categories, collections, colorTexts, culturalContextTexts, genders, institutions, locationNameTexts, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new ObjectFacets(DefaultReadValidator.getInstance().validateCategories(categories), DefaultReadValidator.getInstance().validateCollections(collections), DefaultReadValidator.getInstance().validateColorTexts(colorTexts), DefaultReadValidator.getInstance().validateCulturalContextTexts(culturalContextTexts), DefaultReadValidator.getInstance().validateGenders(genders), DefaultReadValidator.getInstance().validateInstitutions(institutions), DefaultReadValidator.getInstance().validateLocationNameTexts(locationNameTexts), DefaultReadValidator.getInstance().validateMaterialTexts(materialTexts), DefaultReadValidator.getInstance().validateSubjectTermTexts(subjectTermTexts), DefaultReadValidator.getInstance().validateTechniqueTexts(techniqueTexts), DefaultReadValidator.getInstance().validateWorkTypeTexts(workTypeTexts), NopConstructionValidator.getInstance());
     }
 
     public ObjectFacets replaceCategories(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories) {
-        return new ObjectFacets(categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
+        return new ObjectFacets(DefaultConstructionValidator.getInstance().validateCategories(categories), this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectFacets replaceCollections(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections) {
-        return new ObjectFacets(this.categories, collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
+        return new ObjectFacets(this.categories, DefaultConstructionValidator.getInstance().validateCollections(collections), this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectFacets replaceColorTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts) {
-        return new ObjectFacets(this.categories, this.collections, colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
+        return new ObjectFacets(this.categories, this.collections, DefaultConstructionValidator.getInstance().validateColorTexts(colorTexts), this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectFacets replaceCulturalContextTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts) {
-        return new ObjectFacets(this.categories, this.collections, this.colorTexts, culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
+        return new ObjectFacets(this.categories, this.collections, this.colorTexts, DefaultConstructionValidator.getInstance().validateCulturalContextTexts(culturalContextTexts), this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectFacets replaceGenders(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders) {
-        return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
+        return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, DefaultConstructionValidator.getInstance().validateGenders(genders), this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectFacets replaceInstitutions(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions) {
-        return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
+        return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, DefaultConstructionValidator.getInstance().validateInstitutions(institutions), this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectFacets replaceLocationNameTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts) {
-        return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
+        return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, DefaultConstructionValidator.getInstance().validateLocationNameTexts(locationNameTexts), this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectFacets replaceMaterialTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts) {
-        return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
+        return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, DefaultConstructionValidator.getInstance().validateMaterialTexts(materialTexts), this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectFacets replaceSubjectTermTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts) {
-        return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
+        return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, DefaultConstructionValidator.getInstance().validateSubjectTermTexts(subjectTermTexts), this.techniqueTexts, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectFacets replaceTechniqueTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts) {
-        return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, techniqueTexts, this.workTypeTexts);
+        return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, DefaultConstructionValidator.getInstance().validateTechniqueTexts(techniqueTexts), this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectFacets replaceWorkTypeTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
-        return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, workTypeTexts);
+        return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, DefaultConstructionValidator.getInstance().validateWorkTypeTexts(workTypeTexts), NopConstructionValidator.getInstance());
     }
 
     @Override

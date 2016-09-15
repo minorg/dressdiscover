@@ -14,11 +14,11 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.m
         }
 
         protected Subject _build(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.subject.SubjectTerm> terms) {
-            return new Subject(terms);
+            return new Subject(terms, DefaultConstructionValidator.getInstance());
         }
 
         public Subject build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(terms, "org.dressdiscover.api.models.subject.Subject: missing terms"));
+            return _build(terms);
         }
 
         public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.subject.SubjectTerm> getTerms() {
@@ -138,7 +138,7 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.m
         }
 
         public Builder setTerms(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.subject.SubjectTerm> terms) {
-            this.terms = com.google.common.base.Preconditions.checkNotNull(terms);
+            this.terms = DefaultConstructionValidator.getInstance().validateTerms(terms);
             return this;
         }
 
@@ -283,15 +283,101 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.m
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.subject.SubjectTerm> validateTerms(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.subject.SubjectTerm> terms) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.subject.SubjectTerm> validateTerms(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.subject.SubjectTerm> terms) throws RuntimeException {
+            if (terms == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.subject.Subject: terms is null");
+            }
+            if (terms.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.subject.Subject: terms is less than min length 1");
+            }
+            return terms;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.subject.SubjectTerm> validateTerms(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.subject.SubjectTerm> terms) {
+            return terms;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.subject.SubjectTerm> validateTerms(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.subject.SubjectTerm> terms) throws org.thryft.protocol.InputProtocolException {
+            if (terms == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TERMS, "org.dressdiscover.api.models.subject.Subject: terms is null");
+            }
+            if (terms.isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TERMS, "org.dressdiscover.api.models.subject.Subject: terms is less than min length 1");
+            }
+            return terms;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.subject.SubjectTerm> validateTerms(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.subject.SubjectTerm> terms) {
+            return terms;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public Subject(final Subject other) {
-        this(other.getTerms());
+        this(other.getTerms(), NopConstructionValidator.getInstance());
     }
 
-    protected Subject(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.subject.SubjectTerm> terms) {
-        this.terms = terms;
+    protected Subject(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.subject.SubjectTerm> terms, ConstructionValidator validator) {
+        this.terms = validator.validateTerms(terms);
     }
 
     public static Builder builder() {
@@ -310,7 +396,7 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.m
      * Optional factory method
      */
     public static Subject create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.subject.SubjectTerm> terms) {
-        return new Subject(org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(terms, "org.dressdiscover.api.models.subject.Subject: missing terms"), "org.dressdiscover.api.models.subject.Subject: terms is empty"));
+        return new Subject(terms, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -394,11 +480,7 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.m
             }
         }).apply(iprot);
         iprot.readListEnd();
-        try {
-            return new Subject(terms);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Subject(DefaultReadValidator.getInstance().validateTerms(terms), NopConstructionValidator.getInstance());
     }
 
     public static Subject readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -445,15 +527,11 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.m
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new Subject(terms);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Subject(DefaultReadValidator.getInstance().validateTerms(terms), NopConstructionValidator.getInstance());
     }
 
     public Subject replaceTerms(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.subject.SubjectTerm> terms) {
-        return new Subject(terms);
+        return new Subject(DefaultConstructionValidator.getInstance().validateTerms(terms), NopConstructionValidator.getInstance());
     }
 
     @Override

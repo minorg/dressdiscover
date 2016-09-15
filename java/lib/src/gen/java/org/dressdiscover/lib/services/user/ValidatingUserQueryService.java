@@ -12,32 +12,32 @@ public class ValidatingUserQueryService implements org.dressdiscover.api.service
     @Override
     public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> getUserBookmarksByUserId(final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
         _validateGetUserBookmarksByUserIdParameters(userId, objectIdsOnly);
-        return com.google.common.base.Preconditions.checkNotNull(delegate.getUserBookmarksByUserId(userId, objectIdsOnly), "org.dressdiscover.api.services.user.UserQueryService.getUserBookmarksByUserId: missing returnValue");
+        return org.dressdiscover.api.services.user.UserQueryService.Messages.GetUserBookmarksByUserIdResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.getUserBookmarksByUserId(userId, objectIdsOnly));
     }
 
     protected void _validateGetUserBookmarksByUserIdParameters(final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) {
-        com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.services.user.UserQueryService.getUserBookmarksByUserId: missing userId");
-        com.google.common.base.Preconditions.checkNotNull(objectIdsOnly, "org.dressdiscover.api.services.user.UserQueryService.getUserBookmarksByUserId: missing objectIdsOnly");
+        org.dressdiscover.api.services.user.UserQueryService.Messages.GetUserBookmarksByUserIdRequest.DefaultConstructionValidator.getInstance().validateUserId(userId);
+        org.dressdiscover.api.services.user.UserQueryService.Messages.GetUserBookmarksByUserIdRequest.DefaultConstructionValidator.getInstance().validateObjectIdsOnly(objectIdsOnly);
     }
 
     @Override
     public final org.dressdiscover.api.models.user.UserEntry getUserByEmailAddress(final org.thryft.native_.EmailAddress emailAddress) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
         _validateGetUserByEmailAddressParameters(emailAddress);
-        return com.google.common.base.Preconditions.checkNotNull(delegate.getUserByEmailAddress(emailAddress), "org.dressdiscover.api.services.user.UserQueryService.getUserByEmailAddress: missing returnValue");
+        return org.dressdiscover.api.services.user.UserQueryService.Messages.GetUserByEmailAddressResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.getUserByEmailAddress(emailAddress));
     }
 
     protected void _validateGetUserByEmailAddressParameters(final org.thryft.native_.EmailAddress emailAddress) {
-        com.google.common.base.Preconditions.checkNotNull(emailAddress, "org.dressdiscover.api.services.user.UserQueryService.getUserByEmailAddress: missing emailAddress");
+        org.dressdiscover.api.services.user.UserQueryService.Messages.GetUserByEmailAddressRequest.DefaultConstructionValidator.getInstance().validateEmailAddress(emailAddress);
     }
 
     @Override
     public final org.dressdiscover.api.models.user.User getUserById(final org.dressdiscover.api.models.user.UserId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
         _validateGetUserByIdParameters(id);
-        return com.google.common.base.Preconditions.checkNotNull(delegate.getUserById(id), "org.dressdiscover.api.services.user.UserQueryService.getUserById: missing returnValue");
+        return org.dressdiscover.api.services.user.UserQueryService.Messages.GetUserByIdResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.getUserById(id));
     }
 
     protected void _validateGetUserByIdParameters(final org.dressdiscover.api.models.user.UserId id) {
-        com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.UserQueryService.getUserById: missing id");
+        org.dressdiscover.api.services.user.UserQueryService.Messages.GetUserByIdRequest.DefaultConstructionValidator.getInstance().validateId(id);
     }
 
     private final org.dressdiscover.api.services.user.UserQueryService delegate;

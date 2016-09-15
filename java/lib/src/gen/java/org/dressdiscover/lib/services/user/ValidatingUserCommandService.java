@@ -16,7 +16,7 @@ public class ValidatingUserCommandService implements org.dressdiscover.api.servi
     }
 
     protected void _validateDeleteUserBookmarkByIdParameters(final org.dressdiscover.api.models.user.UserBookmarkId id) {
-        com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.UserCommandService.deleteUserBookmarkById: missing id");
+        org.dressdiscover.api.services.user.UserCommandService.Messages.DeleteUserBookmarkByIdRequest.DefaultConstructionValidator.getInstance().validateId(id);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class ValidatingUserCommandService implements org.dressdiscover.api.servi
     }
 
     protected void _validateDeleteUserByIdParameters(final org.dressdiscover.api.models.user.UserId id) {
-        com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.UserCommandService.deleteUserById: missing id");
+        org.dressdiscover.api.services.user.UserCommandService.Messages.DeleteUserByIdRequest.DefaultConstructionValidator.getInstance().validateId(id);
     }
 
     @Override
@@ -37,21 +37,21 @@ public class ValidatingUserCommandService implements org.dressdiscover.api.servi
     @Override
     public final org.dressdiscover.api.models.user.UserId postUser(final org.dressdiscover.api.models.user.User user) throws org.dressdiscover.api.services.user.DuplicateUserException, org.dressdiscover.api.services.IoException {
         _validatePostUserParameters(user);
-        return com.google.common.base.Preconditions.checkNotNull(delegate.postUser(user), "org.dressdiscover.api.services.user.UserCommandService.postUser: missing returnValue");
+        return org.dressdiscover.api.services.user.UserCommandService.Messages.PostUserResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.postUser(user));
     }
 
     protected void _validatePostUserParameters(final org.dressdiscover.api.models.user.User user) {
-        com.google.common.base.Preconditions.checkNotNull(user, "org.dressdiscover.api.services.user.UserCommandService.postUser: missing user");
+        org.dressdiscover.api.services.user.UserCommandService.Messages.PostUserRequest.DefaultConstructionValidator.getInstance().validateUser(user);
     }
 
     @Override
     public final org.dressdiscover.api.models.user.UserBookmarkId postUserBookmark(final org.dressdiscover.api.models.user.UserBookmark userBookmark) throws org.dressdiscover.api.services.user.DuplicateUserBookmarkException, org.dressdiscover.api.services.IoException {
         _validatePostUserBookmarkParameters(userBookmark);
-        return com.google.common.base.Preconditions.checkNotNull(delegate.postUserBookmark(userBookmark), "org.dressdiscover.api.services.user.UserCommandService.postUserBookmark: missing returnValue");
+        return org.dressdiscover.api.services.user.UserCommandService.Messages.PostUserBookmarkResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.postUserBookmark(userBookmark));
     }
 
     protected void _validatePostUserBookmarkParameters(final org.dressdiscover.api.models.user.UserBookmark userBookmark) {
-        com.google.common.base.Preconditions.checkNotNull(userBookmark, "org.dressdiscover.api.services.user.UserCommandService.postUserBookmark: missing userBookmark");
+        org.dressdiscover.api.services.user.UserCommandService.Messages.PostUserBookmarkRequest.DefaultConstructionValidator.getInstance().validateUserBookmark(userBookmark);
     }
 
     @Override
@@ -61,8 +61,8 @@ public class ValidatingUserCommandService implements org.dressdiscover.api.servi
     }
 
     protected void _validatePutUserParameters(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.User user) {
-        com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.UserCommandService.putUser: missing id");
-        com.google.common.base.Preconditions.checkNotNull(user, "org.dressdiscover.api.services.user.UserCommandService.putUser: missing user");
+        org.dressdiscover.api.services.user.UserCommandService.Messages.PutUserRequest.DefaultConstructionValidator.getInstance().validateId(id);
+        org.dressdiscover.api.services.user.UserCommandService.Messages.PutUserRequest.DefaultConstructionValidator.getInstance().validateUser(user);
     }
 
     private final org.dressdiscover.api.services.user.UserCommandService delegate;

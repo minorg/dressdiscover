@@ -18,11 +18,11 @@ public final class SubjectTerm implements org.thryft.Struct {
         }
 
         protected SubjectTerm _build(final String text, final org.dressdiscover.api.models.subject.SubjectTermType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-            return new SubjectTerm(text, type, vocabRef);
+            return new SubjectTerm(text, type, vocabRef, DefaultConstructionValidator.getInstance());
         }
 
         public SubjectTerm build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.subject.SubjectTerm: missing text"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.subject.SubjectTerm: missing type"), com.google.common.base.Preconditions.checkNotNull(vocabRef, "org.dressdiscover.api.models.subject.SubjectTerm: missing vocabRef"));
+            return _build(text, type, vocabRef);
         }
 
         public final String getText() {
@@ -141,23 +141,22 @@ public final class SubjectTerm implements org.thryft.Struct {
         }
 
         public Builder setText(final String text) {
-            this.text = com.google.common.base.Preconditions.checkNotNull(text);
+            this.text = DefaultConstructionValidator.getInstance().validateText(text);
             return this;
         }
 
         public Builder setType(final org.dressdiscover.api.models.subject.SubjectTermType type) {
-            this.type = com.google.common.base.Preconditions.checkNotNull(type);
+            this.type = DefaultConstructionValidator.getInstance().validateType(type);
             return this;
         }
 
         public Builder setVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-            this.vocabRef = com.google.common.base.Preconditions.checkNotNull(vocabRef);
+            this.vocabRef = DefaultConstructionValidator.getInstance().validateVocabRef(vocabRef);
             return this;
         }
 
         public Builder setVocabRef(@javax.annotation.Nullable final org.dressdiscover.api.models.VocabRef vocabRef) {
-            this.vocabRef = com.google.common.base.Optional.fromNullable(vocabRef);
-            return this;
+            return setVocabRef(com.google.common.base.Optional.fromNullable(vocabRef));
         }
 
         public Builder unset(final String fieldThriftName) {
@@ -321,17 +320,165 @@ public final class SubjectTerm implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public String validateText(final String text) throws ExceptionT;
+
+        public org.dressdiscover.api.models.subject.SubjectTermType validateType(final org.dressdiscover.api.models.subject.SubjectTermType type) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws RuntimeException {
+            if (text == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.subject.SubjectTerm: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.subject.SubjectTerm: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.subject.SubjectTermType validateType(final org.dressdiscover.api.models.subject.SubjectTermType type) throws RuntimeException {
+            if (type == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.subject.SubjectTerm: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) throws RuntimeException {
+            if (vocabRef == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.subject.SubjectTerm: vocabRef is null");
+            }
+            if (!vocabRef.isPresent()) {
+                return vocabRef;
+            }
+            return vocabRef;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.subject.SubjectTermType validateType(final org.dressdiscover.api.models.subject.SubjectTermType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
+            return vocabRef;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws org.thryft.protocol.InputProtocolException {
+            if (text == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.subject.SubjectTerm: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.subject.SubjectTerm: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.subject.SubjectTermType validateType(final org.dressdiscover.api.models.subject.SubjectTermType type) throws org.thryft.protocol.InputProtocolException {
+            if (type == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.models.subject.SubjectTerm: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) throws org.thryft.protocol.InputProtocolException {
+            if (vocabRef == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.VOCAB_REF, "org.dressdiscover.api.models.subject.SubjectTerm: vocabRef is null");
+            }
+            if (!vocabRef.isPresent()) {
+                return vocabRef;
+            }
+            return vocabRef;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.subject.SubjectTermType validateType(final org.dressdiscover.api.models.subject.SubjectTermType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
+            return vocabRef;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public SubjectTerm(final SubjectTerm other) {
-        this(other.getText(), other.getType(), other.getVocabRef());
+        this(other.getText(), other.getType(), other.getVocabRef(), NopConstructionValidator.getInstance());
     }
 
-    protected SubjectTerm(final String text, final org.dressdiscover.api.models.subject.SubjectTermType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-        this.text = text;
-        this.type = type;
-        this.vocabRef = vocabRef;
+    protected SubjectTerm(final String text, final org.dressdiscover.api.models.subject.SubjectTermType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef, ConstructionValidator validator) {
+        this.text = validator.validateText(text);
+        this.type = validator.validateType(type);
+        this.vocabRef = validator.validateVocabRef(vocabRef);
     }
 
     public static Builder builder() {
@@ -350,21 +497,21 @@ public final class SubjectTerm implements org.thryft.Struct {
      * Required factory method
      */
     public static SubjectTerm create(final String text, final org.dressdiscover.api.models.subject.SubjectTermType type) {
-        return new SubjectTerm(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.subject.SubjectTerm: missing text"), "org.dressdiscover.api.models.subject.SubjectTerm: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.subject.SubjectTerm: missing type"), com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent());
+        return new SubjectTerm(text, type, com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static SubjectTerm create(final String text, final org.dressdiscover.api.models.subject.SubjectTermType type, final @javax.annotation.Nullable org.dressdiscover.api.models.VocabRef vocabRef) {
-        return new SubjectTerm(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.subject.SubjectTerm: missing text"), "org.dressdiscover.api.models.subject.SubjectTerm: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.subject.SubjectTerm: missing type"), com.google.common.base.Optional.fromNullable(vocabRef));
+        return new SubjectTerm(text, type, com.google.common.base.Optional.fromNullable(vocabRef), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static SubjectTerm create(final String text, final org.dressdiscover.api.models.subject.SubjectTermType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-        return new SubjectTerm(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.subject.SubjectTerm: missing text"), "org.dressdiscover.api.models.subject.SubjectTerm: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.subject.SubjectTerm: missing type"), com.google.common.base.Preconditions.checkNotNull(vocabRef, "org.dressdiscover.api.models.subject.SubjectTerm: missing vocabRef"));
+        return new SubjectTerm(text, type, vocabRef, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -455,11 +602,7 @@ public final class SubjectTerm implements org.thryft.Struct {
             vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.models.VocabRef.readAsStruct(iprot));
         }
         iprot.readListEnd();
-        try {
-            return new SubjectTerm(text, type, vocabRef);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new SubjectTerm(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateVocabRef(vocabRef), NopConstructionValidator.getInstance());
     }
 
     public static SubjectTerm readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -505,23 +648,19 @@ public final class SubjectTerm implements org.thryft.Struct {
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new SubjectTerm(text, type, vocabRef);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new SubjectTerm(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateVocabRef(vocabRef), NopConstructionValidator.getInstance());
     }
 
     public SubjectTerm replaceText(final String text) {
-        return new SubjectTerm(text, this.type, this.vocabRef);
+        return new SubjectTerm(DefaultConstructionValidator.getInstance().validateText(text), this.type, this.vocabRef, NopConstructionValidator.getInstance());
     }
 
     public SubjectTerm replaceType(final org.dressdiscover.api.models.subject.SubjectTermType type) {
-        return new SubjectTerm(this.text, type, this.vocabRef);
+        return new SubjectTerm(this.text, DefaultConstructionValidator.getInstance().validateType(type), this.vocabRef, NopConstructionValidator.getInstance());
     }
 
     public SubjectTerm replaceVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-        return new SubjectTerm(this.text, this.type, vocabRef);
+        return new SubjectTerm(this.text, this.type, DefaultConstructionValidator.getInstance().validateVocabRef(vocabRef), NopConstructionValidator.getInstance());
     }
 
     public SubjectTerm replaceVocabRef(final org.dressdiscover.api.models.VocabRef vocabRef) {

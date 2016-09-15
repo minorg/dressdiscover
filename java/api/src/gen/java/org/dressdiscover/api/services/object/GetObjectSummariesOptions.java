@@ -17,11 +17,11 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
         }
 
         protected GetObjectSummariesOptions _build(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from, final com.google.common.base.Optional<Boolean> includeFacets, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) {
-            return new GetObjectSummariesOptions(from, includeFacets, size, sorts);
+            return new GetObjectSummariesOptions(from, includeFacets, size, sorts, DefaultConstructionValidator.getInstance());
         }
 
         public GetObjectSummariesOptions build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(from, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: missing from"), com.google.common.base.Preconditions.checkNotNull(includeFacets, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: missing includeFacets"), com.google.common.base.Preconditions.checkNotNull(size, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: missing size"), com.google.common.base.Preconditions.checkNotNull(sorts, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: missing sorts"));
+            return _build(from, includeFacets, size, sorts);
         }
 
         public final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> getFrom() {
@@ -189,13 +189,12 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
         }
 
         public Builder setFrom(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from) {
-            this.from = com.google.common.base.Preconditions.checkNotNull(from);
+            this.from = DefaultConstructionValidator.getInstance().validateFrom(from);
             return this;
         }
 
         public Builder setFrom(@javax.annotation.Nullable final com.google.common.primitives.UnsignedInteger from) {
-            this.from = com.google.common.base.Optional.fromNullable(from);
-            return this;
+            return setFrom(com.google.common.base.Optional.fromNullable(from));
         }
 
         public Builder setIfPresent(final GetObjectSummariesOptions other) {
@@ -218,33 +217,30 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
         }
 
         public Builder setIncludeFacets(final com.google.common.base.Optional<Boolean> includeFacets) {
-            this.includeFacets = com.google.common.base.Preconditions.checkNotNull(includeFacets);
+            this.includeFacets = DefaultConstructionValidator.getInstance().validateIncludeFacets(includeFacets);
             return this;
         }
 
         public Builder setIncludeFacets(@javax.annotation.Nullable final Boolean includeFacets) {
-            this.includeFacets = com.google.common.base.Optional.fromNullable(includeFacets);
-            return this;
+            return setIncludeFacets(com.google.common.base.Optional.fromNullable(includeFacets));
         }
 
         public Builder setSize(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size) {
-            this.size = com.google.common.base.Preconditions.checkNotNull(size);
+            this.size = DefaultConstructionValidator.getInstance().validateSize(size);
             return this;
         }
 
         public Builder setSize(@javax.annotation.Nullable final com.google.common.primitives.UnsignedInteger size) {
-            this.size = com.google.common.base.Optional.fromNullable(size);
-            return this;
+            return setSize(com.google.common.base.Optional.fromNullable(size));
         }
 
         public Builder setSorts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) {
-            this.sorts = com.google.common.base.Preconditions.checkNotNull(sorts);
+            this.sorts = DefaultConstructionValidator.getInstance().validateSorts(sorts);
             return this;
         }
 
         public Builder setSorts(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort> sorts) {
-            this.sorts = com.google.common.base.Optional.fromNullable(sorts);
-            return this;
+            return setSorts(com.google.common.base.Optional.fromNullable(sorts));
         }
 
         public Builder unset(final String fieldThriftName) {
@@ -418,6 +414,200 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> validateFrom(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from) throws ExceptionT;
+
+        public com.google.common.base.Optional<Boolean> validateIncludeFacets(final com.google.common.base.Optional<Boolean> includeFacets) throws ExceptionT;
+
+        public com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> validateSize(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size) throws ExceptionT;
+
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> validateSorts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> validateFrom(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from) throws RuntimeException {
+            if (from == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: from is null");
+            }
+            if (!from.isPresent()) {
+                return from;
+            }
+            return from;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validateIncludeFacets(final com.google.common.base.Optional<Boolean> includeFacets) throws RuntimeException {
+            if (!includeFacets.isPresent()) {
+                return includeFacets;
+            }
+            if (!includeFacets.get()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: includeFacets is not true");
+            }
+            return includeFacets;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> validateSize(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size) throws RuntimeException {
+            if (size == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: size is null");
+            }
+            if (!size.isPresent()) {
+                return size;
+            }
+            return size;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> validateSorts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) throws RuntimeException {
+            if (sorts == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: sorts is null");
+            }
+            if (!sorts.isPresent()) {
+                return sorts;
+            }
+            if (sorts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: sorts is less than min length 1");
+            }
+            return sorts;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> validateFrom(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from) {
+            return from;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validateIncludeFacets(final com.google.common.base.Optional<Boolean> includeFacets) {
+            return includeFacets;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> validateSize(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size) {
+            return size;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> validateSorts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) {
+            return sorts;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> validateFrom(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from) throws org.thryft.protocol.InputProtocolException {
+            if (from == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.FROM_, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: from is null");
+            }
+            if (!from.isPresent()) {
+                return from;
+            }
+            return from;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validateIncludeFacets(final com.google.common.base.Optional<Boolean> includeFacets) throws org.thryft.protocol.InputProtocolException {
+            if (!includeFacets.isPresent()) {
+                return includeFacets;
+            }
+            if (!includeFacets.get()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_FACETS, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: includeFacets is not true");
+            }
+            return includeFacets;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> validateSize(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size) throws org.thryft.protocol.InputProtocolException {
+            if (size == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SIZE, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: size is null");
+            }
+            if (!size.isPresent()) {
+                return size;
+            }
+            return size;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> validateSorts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) throws org.thryft.protocol.InputProtocolException {
+            if (sorts == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SORTS, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: sorts is null");
+            }
+            if (!sorts.isPresent()) {
+                return sorts;
+            }
+            if (sorts.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SORTS, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: sorts is less than min length 1");
+            }
+            return sorts;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> validateFrom(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from) {
+            return from;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validateIncludeFacets(final com.google.common.base.Optional<Boolean> includeFacets) {
+            return includeFacets;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> validateSize(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size) {
+            return size;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> validateSorts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) {
+            return sorts;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Default constructor
      */
@@ -432,14 +622,14 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
      * Copy constructor
      */
     public GetObjectSummariesOptions(final GetObjectSummariesOptions other) {
-        this(other.getFrom(), other.getIncludeFacets(), other.getSize(), other.getSorts());
+        this(other.getFrom(), other.getIncludeFacets(), other.getSize(), other.getSorts(), NopConstructionValidator.getInstance());
     }
 
-    protected GetObjectSummariesOptions(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from, final com.google.common.base.Optional<Boolean> includeFacets, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) {
-        this.from = from;
-        this.includeFacets = includeFacets;
-        this.size = size;
-        this.sorts = sorts;
+    protected GetObjectSummariesOptions(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from, final com.google.common.base.Optional<Boolean> includeFacets, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts, ConstructionValidator validator) {
+        this.from = validator.validateFrom(from);
+        this.includeFacets = validator.validateIncludeFacets(includeFacets);
+        this.size = validator.validateSize(size);
+        this.sorts = validator.validateSorts(sorts);
     }
 
     public static Builder builder() {
@@ -462,14 +652,14 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
      * Total Nullable factory method
      */
     public static GetObjectSummariesOptions create(final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger from, final @javax.annotation.Nullable Boolean includeFacets, final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger size, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort> sorts) {
-        return new GetObjectSummariesOptions(com.google.common.base.Optional.fromNullable(from), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(includeFacets), "org.dressdiscover.api.services.object.GetObjectSummariesOptions: includeFacets must be true"), com.google.common.base.Optional.fromNullable(size), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(sorts), "org.dressdiscover.api.services.object.GetObjectSummariesOptions: sorts is empty"));
+        return new GetObjectSummariesOptions(com.google.common.base.Optional.fromNullable(from), com.google.common.base.Optional.fromNullable(includeFacets), com.google.common.base.Optional.fromNullable(size), com.google.common.base.Optional.fromNullable(sorts), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static GetObjectSummariesOptions create(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from, final com.google.common.base.Optional<Boolean> includeFacets, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) {
-        return new GetObjectSummariesOptions(com.google.common.base.Preconditions.checkNotNull(from, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: missing from"), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(includeFacets, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: missing includeFacets"), "org.dressdiscover.api.services.object.GetObjectSummariesOptions: includeFacets must be true"), com.google.common.base.Preconditions.checkNotNull(size, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: missing size"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(sorts, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: missing sorts"), "org.dressdiscover.api.services.object.GetObjectSummariesOptions: sorts is empty"));
+        return new GetObjectSummariesOptions(from, includeFacets, size, sorts, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -606,11 +796,7 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
             }
         }
         iprot.readListEnd();
-        try {
-            return new GetObjectSummariesOptions(from, includeFacets, size, sorts);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new GetObjectSummariesOptions(DefaultReadValidator.getInstance().validateFrom(from), DefaultReadValidator.getInstance().validateIncludeFacets(includeFacets), DefaultReadValidator.getInstance().validateSize(size), DefaultReadValidator.getInstance().validateSorts(sorts), NopConstructionValidator.getInstance());
     }
 
     public static GetObjectSummariesOptions readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -680,15 +866,11 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new GetObjectSummariesOptions(from, includeFacets, size, sorts);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new GetObjectSummariesOptions(DefaultReadValidator.getInstance().validateFrom(from), DefaultReadValidator.getInstance().validateIncludeFacets(includeFacets), DefaultReadValidator.getInstance().validateSize(size), DefaultReadValidator.getInstance().validateSorts(sorts), NopConstructionValidator.getInstance());
     }
 
     public GetObjectSummariesOptions replaceFrom(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from) {
-        return new GetObjectSummariesOptions(from, this.includeFacets, this.size, this.sorts);
+        return new GetObjectSummariesOptions(DefaultConstructionValidator.getInstance().validateFrom(from), this.includeFacets, this.size, this.sorts, NopConstructionValidator.getInstance());
     }
 
     public GetObjectSummariesOptions replaceFrom(final com.google.common.primitives.UnsignedInteger from) {
@@ -696,7 +878,7 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
     }
 
     public GetObjectSummariesOptions replaceIncludeFacets(final com.google.common.base.Optional<Boolean> includeFacets) {
-        return new GetObjectSummariesOptions(this.from, includeFacets, this.size, this.sorts);
+        return new GetObjectSummariesOptions(this.from, DefaultConstructionValidator.getInstance().validateIncludeFacets(includeFacets), this.size, this.sorts, NopConstructionValidator.getInstance());
     }
 
     public GetObjectSummariesOptions replaceIncludeFacets(final boolean includeFacets) {
@@ -704,7 +886,7 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
     }
 
     public GetObjectSummariesOptions replaceSize(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size) {
-        return new GetObjectSummariesOptions(this.from, this.includeFacets, size, this.sorts);
+        return new GetObjectSummariesOptions(this.from, this.includeFacets, DefaultConstructionValidator.getInstance().validateSize(size), this.sorts, NopConstructionValidator.getInstance());
     }
 
     public GetObjectSummariesOptions replaceSize(final com.google.common.primitives.UnsignedInteger size) {
@@ -712,7 +894,7 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
     }
 
     public GetObjectSummariesOptions replaceSorts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) {
-        return new GetObjectSummariesOptions(this.from, this.includeFacets, this.size, sorts);
+        return new GetObjectSummariesOptions(this.from, this.includeFacets, this.size, DefaultConstructionValidator.getInstance().validateSorts(sorts), NopConstructionValidator.getInstance());
     }
 
     public GetObjectSummariesOptions replaceSorts(final com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort> sorts) {

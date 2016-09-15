@@ -18,11 +18,11 @@ public final class Description implements org.thryft.Struct, org.dressdiscover.a
         }
 
         protected Description _build(final String text, final com.google.common.base.Optional<String> source, final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> type) {
-            return new Description(text, source, type);
+            return new Description(text, source, type, DefaultConstructionValidator.getInstance());
         }
 
         public Description build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.description.Description: missing text"), com.google.common.base.Preconditions.checkNotNull(source, "org.dressdiscover.api.models.description.Description: missing source"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.description.Description: missing type"));
+            return _build(text, source, type);
         }
 
         public final com.google.common.base.Optional<String> getSource() {
@@ -151,28 +151,26 @@ public final class Description implements org.thryft.Struct, org.dressdiscover.a
         }
 
         public Builder setSource(final com.google.common.base.Optional<String> source) {
-            this.source = com.google.common.base.Preconditions.checkNotNull(source);
+            this.source = DefaultConstructionValidator.getInstance().validateSource(source);
             return this;
         }
 
         public Builder setSource(@javax.annotation.Nullable final String source) {
-            this.source = com.google.common.base.Optional.fromNullable(source);
-            return this;
+            return setSource(com.google.common.base.Optional.fromNullable(source));
         }
 
         public Builder setText(final String text) {
-            this.text = com.google.common.base.Preconditions.checkNotNull(text);
+            this.text = DefaultConstructionValidator.getInstance().validateText(text);
             return this;
         }
 
         public Builder setType(final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> type) {
-            this.type = com.google.common.base.Preconditions.checkNotNull(type);
+            this.type = DefaultConstructionValidator.getInstance().validateType(type);
             return this;
         }
 
         public Builder setType(@javax.annotation.Nullable final org.dressdiscover.api.models.description.DescriptionType type) {
-            this.type = com.google.common.base.Optional.fromNullable(type);
-            return this;
+            return setType(com.google.common.base.Optional.fromNullable(type));
         }
 
         public Builder unset(final String fieldThriftName) {
@@ -336,17 +334,177 @@ public final class Description implements org.thryft.Struct, org.dressdiscover.a
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public String validateText(final String text) throws ExceptionT;
+
+        public com.google.common.base.Optional<String> validateSource(final com.google.common.base.Optional<String> source) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> validateType(final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> type) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws RuntimeException {
+            if (text == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.description.Description: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.description.Description: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateSource(final com.google.common.base.Optional<String> source) throws RuntimeException {
+            if (source == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.description.Description: source is null");
+            }
+            if (!source.isPresent()) {
+                return source;
+            }
+            if (source.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.description.Description: source is less than min length 1");
+            }
+            return source;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> validateType(final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> type) throws RuntimeException {
+            if (type == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.description.Description: type is null");
+            }
+            if (!type.isPresent()) {
+                return type;
+            }
+            return type;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateSource(final com.google.common.base.Optional<String> source) {
+            return source;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> validateType(final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> type) {
+            return type;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws org.thryft.protocol.InputProtocolException {
+            if (text == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.description.Description: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.description.Description: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateSource(final com.google.common.base.Optional<String> source) throws org.thryft.protocol.InputProtocolException {
+            if (source == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SOURCE, "org.dressdiscover.api.models.description.Description: source is null");
+            }
+            if (!source.isPresent()) {
+                return source;
+            }
+            if (source.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SOURCE, "org.dressdiscover.api.models.description.Description: source is less than min length 1");
+            }
+            return source;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> validateType(final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> type) throws org.thryft.protocol.InputProtocolException {
+            if (type == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.models.description.Description: type is null");
+            }
+            if (!type.isPresent()) {
+                return type;
+            }
+            return type;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateSource(final com.google.common.base.Optional<String> source) {
+            return source;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> validateType(final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> type) {
+            return type;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public Description(final Description other) {
-        this(other.getText(), other.getSource(), other.getType());
+        this(other.getText(), other.getSource(), other.getType(), NopConstructionValidator.getInstance());
     }
 
-    protected Description(final String text, final com.google.common.base.Optional<String> source, final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> type) {
-        this.text = text;
-        this.source = source;
-        this.type = type;
+    protected Description(final String text, final com.google.common.base.Optional<String> source, final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> type, ConstructionValidator validator) {
+        this.text = validator.validateText(text);
+        this.source = validator.validateSource(source);
+        this.type = validator.validateType(type);
     }
 
     public static Builder builder() {
@@ -365,21 +523,21 @@ public final class Description implements org.thryft.Struct, org.dressdiscover.a
      * Required factory method
      */
     public static Description create(final String text) {
-        return new Description(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.description.Description: missing text"), "org.dressdiscover.api.models.description.Description: text is empty"), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.description.DescriptionType> absent());
+        return new Description(text, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.description.DescriptionType> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static Description create(final String text, final @javax.annotation.Nullable String source, final @javax.annotation.Nullable org.dressdiscover.api.models.description.DescriptionType type) {
-        return new Description(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.description.Description: missing text"), "org.dressdiscover.api.models.description.Description: text is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(source), "org.dressdiscover.api.models.description.Description: source is empty"), com.google.common.base.Optional.fromNullable(type));
+        return new Description(text, com.google.common.base.Optional.fromNullable(source), com.google.common.base.Optional.fromNullable(type), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static Description create(final String text, final com.google.common.base.Optional<String> source, final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> type) {
-        return new Description(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.description.Description: missing text"), "org.dressdiscover.api.models.description.Description: text is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(source, "org.dressdiscover.api.models.description.Description: missing source"), "org.dressdiscover.api.models.description.Description: source is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.description.Description: missing type"));
+        return new Description(text, source, type, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -477,11 +635,7 @@ public final class Description implements org.thryft.Struct, org.dressdiscover.a
             }
         }
         iprot.readListEnd();
-        try {
-            return new Description(text, source, type);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Description(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateSource(source), DefaultReadValidator.getInstance().validateType(type), NopConstructionValidator.getInstance());
     }
 
     public static Description readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -530,15 +684,11 @@ public final class Description implements org.thryft.Struct, org.dressdiscover.a
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new Description(text, source, type);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Description(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateSource(source), DefaultReadValidator.getInstance().validateType(type), NopConstructionValidator.getInstance());
     }
 
     public Description replaceSource(final com.google.common.base.Optional<String> source) {
-        return new Description(this.text, source, this.type);
+        return new Description(this.text, DefaultConstructionValidator.getInstance().validateSource(source), this.type, NopConstructionValidator.getInstance());
     }
 
     public Description replaceSource(final String source) {
@@ -546,11 +696,11 @@ public final class Description implements org.thryft.Struct, org.dressdiscover.a
     }
 
     public Description replaceText(final String text) {
-        return new Description(text, this.source, this.type);
+        return new Description(DefaultConstructionValidator.getInstance().validateText(text), this.source, this.type, NopConstructionValidator.getInstance());
     }
 
     public Description replaceType(final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> type) {
-        return new Description(this.text, this.source, type);
+        return new Description(this.text, this.source, DefaultConstructionValidator.getInstance().validateType(type), NopConstructionValidator.getInstance());
     }
 
     public Description replaceType(final org.dressdiscover.api.models.description.DescriptionType type) {

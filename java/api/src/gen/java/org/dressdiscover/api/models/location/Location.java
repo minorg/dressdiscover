@@ -20,11 +20,11 @@ public final class Location implements org.thryft.Struct, org.dressdiscover.api.
         }
 
         protected Location _build(final org.dressdiscover.api.models.location.LocationType type, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> coordinates, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> names, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> refids) {
-            return new Location(type, coordinates, names, refids);
+            return new Location(type, coordinates, names, refids, DefaultConstructionValidator.getInstance());
         }
 
         public Location build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.location.Location: missing type"), com.google.common.base.Preconditions.checkNotNull(coordinates, "org.dressdiscover.api.models.location.Location: missing coordinates"), com.google.common.base.Preconditions.checkNotNull(names, "org.dressdiscover.api.models.location.Location: missing names"), com.google.common.base.Preconditions.checkNotNull(refids, "org.dressdiscover.api.models.location.Location: missing refids"));
+            return _build(type, coordinates, names, refids);
         }
 
         public final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> getCoordinates() {
@@ -224,13 +224,12 @@ public final class Location implements org.thryft.Struct, org.dressdiscover.api.
         }
 
         public Builder setCoordinates(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> coordinates) {
-            this.coordinates = com.google.common.base.Preconditions.checkNotNull(coordinates);
+            this.coordinates = DefaultConstructionValidator.getInstance().validateCoordinates(coordinates);
             return this;
         }
 
         public Builder setCoordinates(@javax.annotation.Nullable final org.dressdiscover.api.models.location.LocationCoordinates coordinates) {
-            this.coordinates = com.google.common.base.Optional.fromNullable(coordinates);
-            return this;
+            return setCoordinates(com.google.common.base.Optional.fromNullable(coordinates));
         }
 
         public Builder setIfPresent(final Location other) {
@@ -251,27 +250,25 @@ public final class Location implements org.thryft.Struct, org.dressdiscover.api.
         }
 
         public Builder setNames(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> names) {
-            this.names = com.google.common.base.Preconditions.checkNotNull(names);
+            this.names = DefaultConstructionValidator.getInstance().validateNames(names);
             return this;
         }
 
         public Builder setNames(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName> names) {
-            this.names = com.google.common.base.Optional.fromNullable(names);
-            return this;
+            return setNames(com.google.common.base.Optional.fromNullable(names));
         }
 
         public Builder setRefids(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> refids) {
-            this.refids = com.google.common.base.Preconditions.checkNotNull(refids);
+            this.refids = DefaultConstructionValidator.getInstance().validateRefids(refids);
             return this;
         }
 
         public Builder setRefids(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid> refids) {
-            this.refids = com.google.common.base.Optional.fromNullable(refids);
-            return this;
+            return setRefids(com.google.common.base.Optional.fromNullable(refids));
         }
 
         public Builder setType(final org.dressdiscover.api.models.location.LocationType type) {
-            this.type = com.google.common.base.Preconditions.checkNotNull(type);
+            this.type = DefaultConstructionValidator.getInstance().validateType(type);
             return this;
         }
 
@@ -446,18 +443,212 @@ public final class Location implements org.thryft.Struct, org.dressdiscover.api.
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public org.dressdiscover.api.models.location.LocationType validateType(final org.dressdiscover.api.models.location.LocationType type) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> validateCoordinates(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> coordinates) throws ExceptionT;
+
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> validateNames(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> names) throws ExceptionT;
+
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> validateRefids(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> refids) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.location.LocationType validateType(final org.dressdiscover.api.models.location.LocationType type) throws RuntimeException {
+            if (type == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.location.Location: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> validateCoordinates(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> coordinates) throws RuntimeException {
+            if (coordinates == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.location.Location: coordinates is null");
+            }
+            if (!coordinates.isPresent()) {
+                return coordinates;
+            }
+            return coordinates;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> validateNames(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> names) throws RuntimeException {
+            if (names == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.location.Location: names is null");
+            }
+            if (!names.isPresent()) {
+                return names;
+            }
+            if (names.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.location.Location: names is less than min length 1");
+            }
+            return names;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> validateRefids(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> refids) throws RuntimeException {
+            if (refids == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.location.Location: refids is null");
+            }
+            if (!refids.isPresent()) {
+                return refids;
+            }
+            if (refids.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.location.Location: refids is less than min length 1");
+            }
+            return refids;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.location.LocationType validateType(final org.dressdiscover.api.models.location.LocationType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> validateCoordinates(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> coordinates) {
+            return coordinates;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> validateNames(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> names) {
+            return names;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> validateRefids(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> refids) {
+            return refids;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.location.LocationType validateType(final org.dressdiscover.api.models.location.LocationType type) throws org.thryft.protocol.InputProtocolException {
+            if (type == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.models.location.Location: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> validateCoordinates(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> coordinates) throws org.thryft.protocol.InputProtocolException {
+            if (coordinates == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COORDINATES, "org.dressdiscover.api.models.location.Location: coordinates is null");
+            }
+            if (!coordinates.isPresent()) {
+                return coordinates;
+            }
+            return coordinates;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> validateNames(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> names) throws org.thryft.protocol.InputProtocolException {
+            if (names == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.NAMES, "org.dressdiscover.api.models.location.Location: names is null");
+            }
+            if (!names.isPresent()) {
+                return names;
+            }
+            if (names.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.NAMES, "org.dressdiscover.api.models.location.Location: names is less than min length 1");
+            }
+            return names;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> validateRefids(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> refids) throws org.thryft.protocol.InputProtocolException {
+            if (refids == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.REFIDS, "org.dressdiscover.api.models.location.Location: refids is null");
+            }
+            if (!refids.isPresent()) {
+                return refids;
+            }
+            if (refids.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.REFIDS, "org.dressdiscover.api.models.location.Location: refids is less than min length 1");
+            }
+            return refids;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.location.LocationType validateType(final org.dressdiscover.api.models.location.LocationType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> validateCoordinates(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> coordinates) {
+            return coordinates;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> validateNames(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> names) {
+            return names;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> validateRefids(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> refids) {
+            return refids;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public Location(final Location other) {
-        this(other.getType(), other.getCoordinates(), other.getNames(), other.getRefids());
+        this(other.getType(), other.getCoordinates(), other.getNames(), other.getRefids(), NopConstructionValidator.getInstance());
     }
 
-    protected Location(final org.dressdiscover.api.models.location.LocationType type, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> coordinates, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> names, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> refids) {
-        this.type = type;
-        this.coordinates = coordinates;
-        this.names = names;
-        this.refids = refids;
+    protected Location(final org.dressdiscover.api.models.location.LocationType type, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> coordinates, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> names, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> refids, ConstructionValidator validator) {
+        this.type = validator.validateType(type);
+        this.coordinates = validator.validateCoordinates(coordinates);
+        this.names = validator.validateNames(names);
+        this.refids = validator.validateRefids(refids);
     }
 
     public static Builder builder() {
@@ -476,21 +667,21 @@ public final class Location implements org.thryft.Struct, org.dressdiscover.api.
      * Required factory method
      */
     public static Location create(final org.dressdiscover.api.models.location.LocationType type) {
-        return new Location(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.location.Location: missing type"), com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationCoordinates> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> absent());
+        return new Location(type, com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationCoordinates> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static Location create(final org.dressdiscover.api.models.location.LocationType type, final @javax.annotation.Nullable org.dressdiscover.api.models.location.LocationCoordinates coordinates, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName> names, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid> refids) {
-        return new Location(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.location.Location: missing type"), com.google.common.base.Optional.fromNullable(coordinates), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(names), "org.dressdiscover.api.models.location.Location: names is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(refids), "org.dressdiscover.api.models.location.Location: refids is empty"));
+        return new Location(type, com.google.common.base.Optional.fromNullable(coordinates), com.google.common.base.Optional.fromNullable(names), com.google.common.base.Optional.fromNullable(refids), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static Location create(final org.dressdiscover.api.models.location.LocationType type, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> coordinates, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> names, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> refids) {
-        return new Location(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.location.Location: missing type"), com.google.common.base.Preconditions.checkNotNull(coordinates, "org.dressdiscover.api.models.location.Location: missing coordinates"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(names, "org.dressdiscover.api.models.location.Location: missing names"), "org.dressdiscover.api.models.location.Location: names is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(refids, "org.dressdiscover.api.models.location.Location: missing refids"), "org.dressdiscover.api.models.location.Location: refids is empty"));
+        return new Location(type, coordinates, names, refids, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -636,11 +827,7 @@ public final class Location implements org.thryft.Struct, org.dressdiscover.api.
             }
         }
         iprot.readListEnd();
-        try {
-            return new Location(type, coordinates, names, refids);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Location(DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateCoordinates(coordinates), DefaultReadValidator.getInstance().validateNames(names), DefaultReadValidator.getInstance().validateRefids(refids), NopConstructionValidator.getInstance());
     }
 
     public static Location readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -731,15 +918,11 @@ public final class Location implements org.thryft.Struct, org.dressdiscover.api.
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new Location(type, coordinates, names, refids);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Location(DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateCoordinates(coordinates), DefaultReadValidator.getInstance().validateNames(names), DefaultReadValidator.getInstance().validateRefids(refids), NopConstructionValidator.getInstance());
     }
 
     public Location replaceCoordinates(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> coordinates) {
-        return new Location(this.type, coordinates, this.names, this.refids);
+        return new Location(this.type, DefaultConstructionValidator.getInstance().validateCoordinates(coordinates), this.names, this.refids, NopConstructionValidator.getInstance());
     }
 
     public Location replaceCoordinates(final org.dressdiscover.api.models.location.LocationCoordinates coordinates) {
@@ -747,7 +930,7 @@ public final class Location implements org.thryft.Struct, org.dressdiscover.api.
     }
 
     public Location replaceNames(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> names) {
-        return new Location(this.type, this.coordinates, names, this.refids);
+        return new Location(this.type, this.coordinates, DefaultConstructionValidator.getInstance().validateNames(names), this.refids, NopConstructionValidator.getInstance());
     }
 
     public Location replaceNames(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName> names) {
@@ -755,7 +938,7 @@ public final class Location implements org.thryft.Struct, org.dressdiscover.api.
     }
 
     public Location replaceRefids(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> refids) {
-        return new Location(this.type, this.coordinates, this.names, refids);
+        return new Location(this.type, this.coordinates, this.names, DefaultConstructionValidator.getInstance().validateRefids(refids), NopConstructionValidator.getInstance());
     }
 
     public Location replaceRefids(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid> refids) {
@@ -763,7 +946,7 @@ public final class Location implements org.thryft.Struct, org.dressdiscover.api.
     }
 
     public Location replaceType(final org.dressdiscover.api.models.location.LocationType type) {
-        return new Location(type, this.coordinates, this.names, this.refids);
+        return new Location(DefaultConstructionValidator.getInstance().validateType(type), this.coordinates, this.names, this.refids, NopConstructionValidator.getInstance());
     }
 
     @Override

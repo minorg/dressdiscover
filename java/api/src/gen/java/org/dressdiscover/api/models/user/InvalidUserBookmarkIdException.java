@@ -12,11 +12,11 @@ public final class InvalidUserBookmarkIdException extends org.thryft.Exception {
         }
 
         protected InvalidUserBookmarkIdException _build(final String causeMessage) {
-            return new InvalidUserBookmarkIdException(causeMessage);
+            return new InvalidUserBookmarkIdException(causeMessage, DefaultConstructionValidator.getInstance());
         }
 
         public InvalidUserBookmarkIdException build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.models.user.InvalidUserBookmarkIdException: missing causeMessage"));
+            return _build(causeMessage);
         }
 
         public final String getCauseMessage() {
@@ -95,7 +95,7 @@ public final class InvalidUserBookmarkIdException extends org.thryft.Exception {
         }
 
         public Builder setCauseMessage(final String causeMessage) {
-            this.causeMessage = com.google.common.base.Preconditions.checkNotNull(causeMessage);
+            this.causeMessage = DefaultConstructionValidator.getInstance().validateCauseMessage(causeMessage);
             return this;
         }
 
@@ -247,15 +247,95 @@ public final class InvalidUserBookmarkIdException extends org.thryft.Exception {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public String validateCauseMessage(final String causeMessage) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public String validateCauseMessage(final String causeMessage) throws RuntimeException {
+            if (causeMessage == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.user.InvalidUserBookmarkIdException: causeMessage is null");
+            }
+            return causeMessage;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public String validateCauseMessage(final String causeMessage) {
+            return causeMessage;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public String validateCauseMessage(final String causeMessage) throws org.thryft.protocol.InputProtocolException {
+            if (causeMessage == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CAUSE_MESSAGE, "org.dressdiscover.api.models.user.InvalidUserBookmarkIdException: causeMessage is null");
+            }
+            return causeMessage;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public String validateCauseMessage(final String causeMessage) {
+            return causeMessage;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public InvalidUserBookmarkIdException(final InvalidUserBookmarkIdException other) {
-        this(other.getCauseMessage());
+        this(other.getCauseMessage(), NopConstructionValidator.getInstance());
     }
 
-    protected InvalidUserBookmarkIdException(final String causeMessage) {
-        this.causeMessage = causeMessage;
+    protected InvalidUserBookmarkIdException(final String causeMessage, ConstructionValidator validator) {
+        this.causeMessage = validator.validateCauseMessage(causeMessage);
     }
 
     public static Builder builder() {
@@ -274,7 +354,7 @@ public final class InvalidUserBookmarkIdException extends org.thryft.Exception {
      * Optional factory method
      */
     public static InvalidUserBookmarkIdException create(final String causeMessage) {
-        return new InvalidUserBookmarkIdException(com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.models.user.InvalidUserBookmarkIdException: missing causeMessage"));
+        return new InvalidUserBookmarkIdException(causeMessage, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -353,11 +433,7 @@ public final class InvalidUserBookmarkIdException extends org.thryft.Exception {
         iprot.readListBegin();
         causeMessage = iprot.readString();
         iprot.readListEnd();
-        try {
-            return new InvalidUserBookmarkIdException(causeMessage);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new InvalidUserBookmarkIdException(DefaultReadValidator.getInstance().validateCauseMessage(causeMessage), NopConstructionValidator.getInstance());
     }
 
     public static InvalidUserBookmarkIdException readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -387,15 +463,11 @@ public final class InvalidUserBookmarkIdException extends org.thryft.Exception {
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new InvalidUserBookmarkIdException(causeMessage);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new InvalidUserBookmarkIdException(DefaultReadValidator.getInstance().validateCauseMessage(causeMessage), NopConstructionValidator.getInstance());
     }
 
     public InvalidUserBookmarkIdException replaceCauseMessage(final String causeMessage) {
-        return new InvalidUserBookmarkIdException(causeMessage);
+        return new InvalidUserBookmarkIdException(DefaultConstructionValidator.getInstance().validateCauseMessage(causeMessage), NopConstructionValidator.getInstance());
     }
 
     @Override

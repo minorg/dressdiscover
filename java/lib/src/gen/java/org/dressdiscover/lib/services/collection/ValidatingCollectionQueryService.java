@@ -12,31 +12,31 @@ public class ValidatingCollectionQueryService implements org.dressdiscover.api.s
     @Override
     public final org.dressdiscover.api.models.collection.Collection getCollectionById(final org.dressdiscover.api.models.collection.CollectionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         _validateGetCollectionByIdParameters(id);
-        return com.google.common.base.Preconditions.checkNotNull(delegate.getCollectionById(id), "org.dressdiscover.api.services.collection.CollectionQueryService.getCollectionById: missing returnValue");
+        return org.dressdiscover.api.services.collection.CollectionQueryService.Messages.GetCollectionByIdResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.getCollectionById(id));
     }
 
     protected void _validateGetCollectionByIdParameters(final org.dressdiscover.api.models.collection.CollectionId id) {
-        com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.collection.CollectionQueryService.getCollectionById: missing id");
+        org.dressdiscover.api.services.collection.CollectionQueryService.Messages.GetCollectionByIdRequest.DefaultConstructionValidator.getInstance().validateId(id);
     }
 
     @Override
     public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.Collection> getCollectionsByIds(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.CollectionId> ids) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         _validateGetCollectionsByIdsParameters(ids);
-        return com.google.common.base.Preconditions.checkNotNull(delegate.getCollectionsByIds(ids), "org.dressdiscover.api.services.collection.CollectionQueryService.getCollectionsByIds: missing returnValue");
+        return org.dressdiscover.api.services.collection.CollectionQueryService.Messages.GetCollectionsByIdsResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.getCollectionsByIds(ids));
     }
 
     protected void _validateGetCollectionsByIdsParameters(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.CollectionId> ids) {
-        com.google.common.base.Preconditions.checkNotNull(ids, "org.dressdiscover.api.services.collection.CollectionQueryService.getCollectionsByIds: missing ids");
+        org.dressdiscover.api.services.collection.CollectionQueryService.Messages.GetCollectionsByIdsRequest.DefaultConstructionValidator.getInstance().validateIds(ids);
     }
 
     @Override
     public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.CollectionEntry> getCollectionsByInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         _validateGetCollectionsByInstitutionIdParameters(institutionId);
-        return com.google.common.base.Preconditions.checkNotNull(delegate.getCollectionsByInstitutionId(institutionId), "org.dressdiscover.api.services.collection.CollectionQueryService.getCollectionsByInstitutionId: missing returnValue");
+        return org.dressdiscover.api.services.collection.CollectionQueryService.Messages.GetCollectionsByInstitutionIdResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.getCollectionsByInstitutionId(institutionId));
     }
 
     protected void _validateGetCollectionsByInstitutionIdParameters(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-        com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.services.collection.CollectionQueryService.getCollectionsByInstitutionId: missing institutionId");
+        org.dressdiscover.api.services.collection.CollectionQueryService.Messages.GetCollectionsByInstitutionIdRequest.DefaultConstructionValidator.getInstance().validateInstitutionId(institutionId);
     }
 
     private final org.dressdiscover.api.services.collection.CollectionQueryService delegate;

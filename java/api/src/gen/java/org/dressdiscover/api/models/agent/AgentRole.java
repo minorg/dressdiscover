@@ -16,11 +16,11 @@ public final class AgentRole implements org.thryft.Struct {
         }
 
         protected AgentRole _build(final String text, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-            return new AgentRole(text, vocabRef);
+            return new AgentRole(text, vocabRef, DefaultConstructionValidator.getInstance());
         }
 
         public AgentRole build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.agent.AgentRole: missing text"), com.google.common.base.Preconditions.checkNotNull(vocabRef, "org.dressdiscover.api.models.agent.AgentRole: missing vocabRef"));
+            return _build(text, vocabRef);
         }
 
         public final String getText() {
@@ -126,18 +126,17 @@ public final class AgentRole implements org.thryft.Struct {
         }
 
         public Builder setText(final String text) {
-            this.text = com.google.common.base.Preconditions.checkNotNull(text);
+            this.text = DefaultConstructionValidator.getInstance().validateText(text);
             return this;
         }
 
         public Builder setVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-            this.vocabRef = com.google.common.base.Preconditions.checkNotNull(vocabRef);
+            this.vocabRef = DefaultConstructionValidator.getInstance().validateVocabRef(vocabRef);
             return this;
         }
 
         public Builder setVocabRef(@javax.annotation.Nullable final org.dressdiscover.api.models.VocabRef vocabRef) {
-            this.vocabRef = com.google.common.base.Optional.fromNullable(vocabRef);
-            return this;
+            return setVocabRef(com.google.common.base.Optional.fromNullable(vocabRef));
         }
 
         public Builder unset(final String fieldThriftName) {
@@ -291,16 +290,136 @@ public final class AgentRole implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public String validateText(final String text) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws RuntimeException {
+            if (text == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.agent.AgentRole: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.agent.AgentRole: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) throws RuntimeException {
+            if (vocabRef == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.agent.AgentRole: vocabRef is null");
+            }
+            if (!vocabRef.isPresent()) {
+                return vocabRef;
+            }
+            return vocabRef;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
+            return vocabRef;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws org.thryft.protocol.InputProtocolException {
+            if (text == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.agent.AgentRole: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.agent.AgentRole: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) throws org.thryft.protocol.InputProtocolException {
+            if (vocabRef == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.VOCAB_REF, "org.dressdiscover.api.models.agent.AgentRole: vocabRef is null");
+            }
+            if (!vocabRef.isPresent()) {
+                return vocabRef;
+            }
+            return vocabRef;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
+            return vocabRef;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public AgentRole(final AgentRole other) {
-        this(other.getText(), other.getVocabRef());
+        this(other.getText(), other.getVocabRef(), NopConstructionValidator.getInstance());
     }
 
-    protected AgentRole(final String text, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-        this.text = text;
-        this.vocabRef = vocabRef;
+    protected AgentRole(final String text, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef, ConstructionValidator validator) {
+        this.text = validator.validateText(text);
+        this.vocabRef = validator.validateVocabRef(vocabRef);
     }
 
     public static Builder builder() {
@@ -319,21 +438,21 @@ public final class AgentRole implements org.thryft.Struct {
      * Required factory method
      */
     public static AgentRole create(final String text) {
-        return new AgentRole(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.agent.AgentRole: missing text"), "org.dressdiscover.api.models.agent.AgentRole: text is empty"), com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent());
+        return new AgentRole(text, com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static AgentRole create(final String text, final @javax.annotation.Nullable org.dressdiscover.api.models.VocabRef vocabRef) {
-        return new AgentRole(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.agent.AgentRole: missing text"), "org.dressdiscover.api.models.agent.AgentRole: text is empty"), com.google.common.base.Optional.fromNullable(vocabRef));
+        return new AgentRole(text, com.google.common.base.Optional.fromNullable(vocabRef), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static AgentRole create(final String text, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-        return new AgentRole(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.agent.AgentRole: missing text"), "org.dressdiscover.api.models.agent.AgentRole: text is empty"), com.google.common.base.Preconditions.checkNotNull(vocabRef, "org.dressdiscover.api.models.agent.AgentRole: missing vocabRef"));
+        return new AgentRole(text, vocabRef, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -415,11 +534,7 @@ public final class AgentRole implements org.thryft.Struct {
             vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.models.VocabRef.readAsStruct(iprot));
         }
         iprot.readListEnd();
-        try {
-            return new AgentRole(text, vocabRef);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new AgentRole(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateVocabRef(vocabRef), NopConstructionValidator.getInstance());
     }
 
     public static AgentRole readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -458,19 +573,15 @@ public final class AgentRole implements org.thryft.Struct {
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new AgentRole(text, vocabRef);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new AgentRole(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateVocabRef(vocabRef), NopConstructionValidator.getInstance());
     }
 
     public AgentRole replaceText(final String text) {
-        return new AgentRole(text, this.vocabRef);
+        return new AgentRole(DefaultConstructionValidator.getInstance().validateText(text), this.vocabRef, NopConstructionValidator.getInstance());
     }
 
     public AgentRole replaceVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-        return new AgentRole(this.text, vocabRef);
+        return new AgentRole(this.text, DefaultConstructionValidator.getInstance().validateVocabRef(vocabRef), NopConstructionValidator.getInstance());
     }
 
     public AgentRole replaceVocabRef(final org.dressdiscover.api.models.VocabRef vocabRef) {

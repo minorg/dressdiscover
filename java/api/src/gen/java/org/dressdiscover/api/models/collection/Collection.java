@@ -27,11 +27,11 @@ public final class Collection implements org.thryft.Struct, org.thryft.waf.api.m
         }
 
         protected Collection _build(final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations, final com.google.common.base.Optional<org.thryft.native_.Uri> objectStoreUri, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
-            return new Collection(institutionId, title, description, external, hidden, locations, objectStoreUri, url, workTypes);
+            return new Collection(institutionId, title, description, external, hidden, locations, objectStoreUri, url, workTypes, DefaultConstructionValidator.getInstance());
         }
 
         public Collection build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.collection.Collection: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.collection.Collection: missing title"), com.google.common.base.Preconditions.checkNotNull(description, "org.dressdiscover.api.models.collection.Collection: missing description"), com.google.common.base.Preconditions.checkNotNull(external, "org.dressdiscover.api.models.collection.Collection: missing external"), com.google.common.base.Preconditions.checkNotNull(hidden, "org.dressdiscover.api.models.collection.Collection: missing hidden"), com.google.common.base.Preconditions.checkNotNull(locations, "org.dressdiscover.api.models.collection.Collection: missing locations"), com.google.common.base.Preconditions.checkNotNull(objectStoreUri, "org.dressdiscover.api.models.collection.Collection: missing objectStoreUri"), com.google.common.base.Preconditions.checkNotNull(url, "org.dressdiscover.api.models.collection.Collection: missing url"), com.google.common.base.Preconditions.checkNotNull(workTypes, "org.dressdiscover.api.models.collection.Collection: missing workTypes"));
+            return _build(institutionId, title, description, external, hidden, locations, objectStoreUri, url, workTypes);
         }
 
         public final com.google.common.base.Optional<String> getDescription() {
@@ -242,33 +242,30 @@ public final class Collection implements org.thryft.Struct, org.thryft.waf.api.m
         }
 
         public Builder setDescription(final com.google.common.base.Optional<String> description) {
-            this.description = com.google.common.base.Preconditions.checkNotNull(description);
+            this.description = DefaultConstructionValidator.getInstance().validateDescription(description);
             return this;
         }
 
         public Builder setDescription(@javax.annotation.Nullable final String description) {
-            this.description = com.google.common.base.Optional.fromNullable(description);
-            return this;
+            return setDescription(com.google.common.base.Optional.fromNullable(description));
         }
 
         public Builder setExternal(final com.google.common.base.Optional<Boolean> external) {
-            this.external = com.google.common.base.Preconditions.checkNotNull(external);
+            this.external = DefaultConstructionValidator.getInstance().validateExternal(external);
             return this;
         }
 
         public Builder setExternal(@javax.annotation.Nullable final Boolean external) {
-            this.external = com.google.common.base.Optional.fromNullable(external);
-            return this;
+            return setExternal(com.google.common.base.Optional.fromNullable(external));
         }
 
         public Builder setHidden(final com.google.common.base.Optional<Boolean> hidden) {
-            this.hidden = com.google.common.base.Preconditions.checkNotNull(hidden);
+            this.hidden = DefaultConstructionValidator.getInstance().validateHidden(hidden);
             return this;
         }
 
         public Builder setHidden(@javax.annotation.Nullable final Boolean hidden) {
-            this.hidden = com.google.common.base.Optional.fromNullable(hidden);
-            return this;
+            return setHidden(com.google.common.base.Optional.fromNullable(hidden));
         }
 
         public Builder setIfPresent(final Collection other) {
@@ -302,53 +299,49 @@ public final class Collection implements org.thryft.Struct, org.thryft.waf.api.m
         }
 
         public Builder setInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-            this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId);
+            this.institutionId = DefaultConstructionValidator.getInstance().validateInstitutionId(institutionId);
             return this;
         }
 
         public Builder setLocations(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations) {
-            this.locations = com.google.common.base.Preconditions.checkNotNull(locations);
+            this.locations = DefaultConstructionValidator.getInstance().validateLocations(locations);
             return this;
         }
 
         public Builder setLocations(@javax.annotation.Nullable final org.dressdiscover.api.models.location.LocationSet locations) {
-            this.locations = com.google.common.base.Optional.fromNullable(locations);
-            return this;
+            return setLocations(com.google.common.base.Optional.fromNullable(locations));
         }
 
         public Builder setObjectStoreUri(final com.google.common.base.Optional<org.thryft.native_.Uri> objectStoreUri) {
-            this.objectStoreUri = com.google.common.base.Preconditions.checkNotNull(objectStoreUri);
+            this.objectStoreUri = DefaultConstructionValidator.getInstance().validateObjectStoreUri(objectStoreUri);
             return this;
         }
 
         public Builder setObjectStoreUri(@javax.annotation.Nullable final org.thryft.native_.Uri objectStoreUri) {
-            this.objectStoreUri = com.google.common.base.Optional.fromNullable(objectStoreUri);
-            return this;
+            return setObjectStoreUri(com.google.common.base.Optional.fromNullable(objectStoreUri));
         }
 
         public Builder setTitle(final String title) {
-            this.title = com.google.common.base.Preconditions.checkNotNull(title);
+            this.title = DefaultConstructionValidator.getInstance().validateTitle(title);
             return this;
         }
 
         public Builder setUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) {
-            this.url = com.google.common.base.Preconditions.checkNotNull(url);
+            this.url = DefaultConstructionValidator.getInstance().validateUrl(url);
             return this;
         }
 
         public Builder setUrl(@javax.annotation.Nullable final org.thryft.native_.Url url) {
-            this.url = com.google.common.base.Optional.fromNullable(url);
-            return this;
+            return setUrl(com.google.common.base.Optional.fromNullable(url));
         }
 
         public Builder setWorkTypes(final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
-            this.workTypes = com.google.common.base.Preconditions.checkNotNull(workTypes);
+            this.workTypes = DefaultConstructionValidator.getInstance().validateWorkTypes(workTypes);
             return this;
         }
 
         public Builder setWorkTypes(@javax.annotation.Nullable final org.dressdiscover.api.models.work_type.WorkTypeSet workTypes) {
-            this.workTypes = com.google.common.base.Optional.fromNullable(workTypes);
-            return this;
+            return setWorkTypes(com.google.common.base.Optional.fromNullable(workTypes));
         }
 
         public Builder unset(final String fieldThriftName) {
@@ -572,23 +565,381 @@ public final class Collection implements org.thryft.Struct, org.thryft.waf.api.m
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws ExceptionT;
+
+        public String validateTitle(final String title) throws ExceptionT;
+
+        public com.google.common.base.Optional<String> validateDescription(final com.google.common.base.Optional<String> description) throws ExceptionT;
+
+        public com.google.common.base.Optional<Boolean> validateExternal(final com.google.common.base.Optional<Boolean> external) throws ExceptionT;
+
+        public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> validateLocations(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.thryft.native_.Uri> validateObjectStoreUri(final com.google.common.base.Optional<org.thryft.native_.Uri> objectStoreUri) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> validateWorkTypes(final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws RuntimeException {
+            if (institutionId == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.collection.Collection: institutionId is null");
+            }
+            return institutionId;
+        }
+
+        @Override
+        public String validateTitle(final String title) throws RuntimeException {
+            if (title == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.collection.Collection: title is null");
+            }
+            if (title.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.collection.Collection: title is less than min length 1");
+            }
+            return title;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateDescription(final com.google.common.base.Optional<String> description) throws RuntimeException {
+            if (description == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.collection.Collection: description is null");
+            }
+            if (!description.isPresent()) {
+                return description;
+            }
+            if (description.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.collection.Collection: description is less than min length 1");
+            }
+            return description;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validateExternal(final com.google.common.base.Optional<Boolean> external) throws RuntimeException {
+            if (!external.isPresent()) {
+                return external;
+            }
+            if (!external.get()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.collection.Collection: external is not true");
+            }
+            return external;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) throws RuntimeException {
+            if (!hidden.isPresent()) {
+                return hidden;
+            }
+            if (!hidden.get()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.collection.Collection: hidden is not true");
+            }
+            return hidden;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> validateLocations(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations) throws RuntimeException {
+            if (locations == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.collection.Collection: locations is null");
+            }
+            if (!locations.isPresent()) {
+                return locations;
+            }
+            return locations;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Uri> validateObjectStoreUri(final com.google.common.base.Optional<org.thryft.native_.Uri> objectStoreUri) throws RuntimeException {
+            if (objectStoreUri == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.collection.Collection: objectStoreUri is null");
+            }
+            if (!objectStoreUri.isPresent()) {
+                return objectStoreUri;
+            }
+            return objectStoreUri;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) throws RuntimeException {
+            if (url == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.collection.Collection: url is null");
+            }
+            if (!url.isPresent()) {
+                return url;
+            }
+            return url;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> validateWorkTypes(final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) throws RuntimeException {
+            if (workTypes == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.collection.Collection: workTypes is null");
+            }
+            if (!workTypes.isPresent()) {
+                return workTypes;
+            }
+            return workTypes;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
+            return institutionId;
+        }
+
+        @Override
+        public String validateTitle(final String title) {
+            return title;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateDescription(final com.google.common.base.Optional<String> description) {
+            return description;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validateExternal(final com.google.common.base.Optional<Boolean> external) {
+            return external;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) {
+            return hidden;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> validateLocations(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations) {
+            return locations;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Uri> validateObjectStoreUri(final com.google.common.base.Optional<org.thryft.native_.Uri> objectStoreUri) {
+            return objectStoreUri;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) {
+            return url;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> validateWorkTypes(final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
+            return workTypes;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.thryft.protocol.InputProtocolException {
+            if (institutionId == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, "org.dressdiscover.api.models.collection.Collection: institutionId is null");
+            }
+            return institutionId;
+        }
+
+        @Override
+        public String validateTitle(final String title) throws org.thryft.protocol.InputProtocolException {
+            if (title == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TITLE, "org.dressdiscover.api.models.collection.Collection: title is null");
+            }
+            if (title.isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLE, "org.dressdiscover.api.models.collection.Collection: title is less than min length 1");
+            }
+            return title;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateDescription(final com.google.common.base.Optional<String> description) throws org.thryft.protocol.InputProtocolException {
+            if (description == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DESCRIPTION, "org.dressdiscover.api.models.collection.Collection: description is null");
+            }
+            if (!description.isPresent()) {
+                return description;
+            }
+            if (description.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTION, "org.dressdiscover.api.models.collection.Collection: description is less than min length 1");
+            }
+            return description;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validateExternal(final com.google.common.base.Optional<Boolean> external) throws org.thryft.protocol.InputProtocolException {
+            if (!external.isPresent()) {
+                return external;
+            }
+            if (!external.get()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTERNAL, "org.dressdiscover.api.models.collection.Collection: external is not true");
+            }
+            return external;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) throws org.thryft.protocol.InputProtocolException {
+            if (!hidden.isPresent()) {
+                return hidden;
+            }
+            if (!hidden.get()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.HIDDEN, "org.dressdiscover.api.models.collection.Collection: hidden is not true");
+            }
+            return hidden;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> validateLocations(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations) throws org.thryft.protocol.InputProtocolException {
+            if (locations == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LOCATIONS, "org.dressdiscover.api.models.collection.Collection: locations is null");
+            }
+            if (!locations.isPresent()) {
+                return locations;
+            }
+            return locations;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Uri> validateObjectStoreUri(final com.google.common.base.Optional<org.thryft.native_.Uri> objectStoreUri) throws org.thryft.protocol.InputProtocolException {
+            if (objectStoreUri == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.OBJECT_STORE_URI, "org.dressdiscover.api.models.collection.Collection: objectStoreUri is null");
+            }
+            if (!objectStoreUri.isPresent()) {
+                return objectStoreUri;
+            }
+            return objectStoreUri;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) throws org.thryft.protocol.InputProtocolException {
+            if (url == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.URL, "org.dressdiscover.api.models.collection.Collection: url is null");
+            }
+            if (!url.isPresent()) {
+                return url;
+            }
+            return url;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> validateWorkTypes(final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) throws org.thryft.protocol.InputProtocolException {
+            if (workTypes == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.WORK_TYPES, "org.dressdiscover.api.models.collection.Collection: workTypes is null");
+            }
+            if (!workTypes.isPresent()) {
+                return workTypes;
+            }
+            return workTypes;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
+            return institutionId;
+        }
+
+        @Override
+        public String validateTitle(final String title) {
+            return title;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateDescription(final com.google.common.base.Optional<String> description) {
+            return description;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validateExternal(final com.google.common.base.Optional<Boolean> external) {
+            return external;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) {
+            return hidden;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> validateLocations(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations) {
+            return locations;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Uri> validateObjectStoreUri(final com.google.common.base.Optional<org.thryft.native_.Uri> objectStoreUri) {
+            return objectStoreUri;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) {
+            return url;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> validateWorkTypes(final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
+            return workTypes;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public Collection(final Collection other) {
-        this(other.getInstitutionId(), other.getTitle(), other.getDescription(), other.getExternal(), other.getHidden(), other.getLocations(), other.getObjectStoreUri(), other.getUrl(), other.getWorkTypes());
+        this(other.getInstitutionId(), other.getTitle(), other.getDescription(), other.getExternal(), other.getHidden(), other.getLocations(), other.getObjectStoreUri(), other.getUrl(), other.getWorkTypes(), NopConstructionValidator.getInstance());
     }
 
-    protected Collection(final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations, final com.google.common.base.Optional<org.thryft.native_.Uri> objectStoreUri, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
-        this.institutionId = institutionId;
-        this.title = title;
-        this.description = description;
-        this.external = external;
-        this.hidden = hidden;
-        this.locations = locations;
-        this.objectStoreUri = objectStoreUri;
-        this.url = url;
-        this.workTypes = workTypes;
+    protected Collection(final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations, final com.google.common.base.Optional<org.thryft.native_.Uri> objectStoreUri, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes, ConstructionValidator validator) {
+        this.institutionId = validator.validateInstitutionId(institutionId);
+        this.title = validator.validateTitle(title);
+        this.description = validator.validateDescription(description);
+        this.external = validator.validateExternal(external);
+        this.hidden = validator.validateHidden(hidden);
+        this.locations = validator.validateLocations(locations);
+        this.objectStoreUri = validator.validateObjectStoreUri(objectStoreUri);
+        this.url = validator.validateUrl(url);
+        this.workTypes = validator.validateWorkTypes(workTypes);
     }
 
     public static Builder builder() {
@@ -607,21 +958,21 @@ public final class Collection implements org.thryft.Struct, org.thryft.waf.api.m
      * Required factory method
      */
     public static Collection create(final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title) {
-        return new Collection(com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.collection.Collection: missing institutionId"), org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.collection.Collection: missing title"), "org.dressdiscover.api.models.collection.Collection: title is empty"), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationSet> absent(), com.google.common.base.Optional.<org.thryft.native_.Uri> absent(), com.google.common.base.Optional.<org.thryft.native_.Url> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.work_type.WorkTypeSet> absent());
+        return new Collection(institutionId, title, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationSet> absent(), com.google.common.base.Optional.<org.thryft.native_.Uri> absent(), com.google.common.base.Optional.<org.thryft.native_.Url> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.work_type.WorkTypeSet> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static Collection create(final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final @javax.annotation.Nullable String description, final @javax.annotation.Nullable Boolean external, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable org.dressdiscover.api.models.location.LocationSet locations, final @javax.annotation.Nullable org.thryft.native_.Uri objectStoreUri, final @javax.annotation.Nullable org.thryft.native_.Url url, final @javax.annotation.Nullable org.dressdiscover.api.models.work_type.WorkTypeSet workTypes) {
-        return new Collection(com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.collection.Collection: missing institutionId"), org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.collection.Collection: missing title"), "org.dressdiscover.api.models.collection.Collection: title is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(description), "org.dressdiscover.api.models.collection.Collection: description is empty"), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(external), "org.dressdiscover.api.models.collection.Collection: external must be true"), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(hidden), "org.dressdiscover.api.models.collection.Collection: hidden must be true"), com.google.common.base.Optional.fromNullable(locations), com.google.common.base.Optional.fromNullable(objectStoreUri), com.google.common.base.Optional.fromNullable(url), com.google.common.base.Optional.fromNullable(workTypes));
+        return new Collection(institutionId, title, com.google.common.base.Optional.fromNullable(description), com.google.common.base.Optional.fromNullable(external), com.google.common.base.Optional.fromNullable(hidden), com.google.common.base.Optional.fromNullable(locations), com.google.common.base.Optional.fromNullable(objectStoreUri), com.google.common.base.Optional.fromNullable(url), com.google.common.base.Optional.fromNullable(workTypes), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static Collection create(final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations, final com.google.common.base.Optional<org.thryft.native_.Uri> objectStoreUri, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
-        return new Collection(com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.collection.Collection: missing institutionId"), org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.collection.Collection: missing title"), "org.dressdiscover.api.models.collection.Collection: title is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(description, "org.dressdiscover.api.models.collection.Collection: missing description"), "org.dressdiscover.api.models.collection.Collection: description is empty"), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(external, "org.dressdiscover.api.models.collection.Collection: missing external"), "org.dressdiscover.api.models.collection.Collection: external must be true"), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(hidden, "org.dressdiscover.api.models.collection.Collection: missing hidden"), "org.dressdiscover.api.models.collection.Collection: hidden must be true"), com.google.common.base.Preconditions.checkNotNull(locations, "org.dressdiscover.api.models.collection.Collection: missing locations"), com.google.common.base.Preconditions.checkNotNull(objectStoreUri, "org.dressdiscover.api.models.collection.Collection: missing objectStoreUri"), com.google.common.base.Preconditions.checkNotNull(url, "org.dressdiscover.api.models.collection.Collection: missing url"), com.google.common.base.Preconditions.checkNotNull(workTypes, "org.dressdiscover.api.models.collection.Collection: missing workTypes"));
+        return new Collection(institutionId, title, description, external, hidden, locations, objectStoreUri, url, workTypes, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -800,11 +1151,7 @@ public final class Collection implements org.thryft.Struct, org.thryft.waf.api.m
             workTypes = com.google.common.base.Optional.of(org.dressdiscover.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
         }
         iprot.readListEnd();
-        try {
-            return new Collection(institutionId, title, description, external, hidden, locations, objectStoreUri, url, workTypes);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Collection(DefaultReadValidator.getInstance().validateInstitutionId(institutionId), DefaultReadValidator.getInstance().validateTitle(title), DefaultReadValidator.getInstance().validateDescription(description), DefaultReadValidator.getInstance().validateExternal(external), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateLocations(locations), DefaultReadValidator.getInstance().validateObjectStoreUri(objectStoreUri), DefaultReadValidator.getInstance().validateUrl(url), DefaultReadValidator.getInstance().validateWorkTypes(workTypes), NopConstructionValidator.getInstance());
     }
 
     public static Collection readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -902,15 +1249,11 @@ public final class Collection implements org.thryft.Struct, org.thryft.waf.api.m
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new Collection(institutionId, title, description, external, hidden, locations, objectStoreUri, url, workTypes);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Collection(DefaultReadValidator.getInstance().validateInstitutionId(institutionId), DefaultReadValidator.getInstance().validateTitle(title), DefaultReadValidator.getInstance().validateDescription(description), DefaultReadValidator.getInstance().validateExternal(external), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateLocations(locations), DefaultReadValidator.getInstance().validateObjectStoreUri(objectStoreUri), DefaultReadValidator.getInstance().validateUrl(url), DefaultReadValidator.getInstance().validateWorkTypes(workTypes), NopConstructionValidator.getInstance());
     }
 
     public Collection replaceDescription(final com.google.common.base.Optional<String> description) {
-        return new Collection(this.institutionId, this.title, description, this.external, this.hidden, this.locations, this.objectStoreUri, this.url, this.workTypes);
+        return new Collection(this.institutionId, this.title, DefaultConstructionValidator.getInstance().validateDescription(description), this.external, this.hidden, this.locations, this.objectStoreUri, this.url, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Collection replaceDescription(final String description) {
@@ -918,7 +1261,7 @@ public final class Collection implements org.thryft.Struct, org.thryft.waf.api.m
     }
 
     public Collection replaceExternal(final com.google.common.base.Optional<Boolean> external) {
-        return new Collection(this.institutionId, this.title, this.description, external, this.hidden, this.locations, this.objectStoreUri, this.url, this.workTypes);
+        return new Collection(this.institutionId, this.title, this.description, DefaultConstructionValidator.getInstance().validateExternal(external), this.hidden, this.locations, this.objectStoreUri, this.url, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Collection replaceExternal(final boolean external) {
@@ -926,7 +1269,7 @@ public final class Collection implements org.thryft.Struct, org.thryft.waf.api.m
     }
 
     public Collection replaceHidden(final com.google.common.base.Optional<Boolean> hidden) {
-        return new Collection(this.institutionId, this.title, this.description, this.external, hidden, this.locations, this.objectStoreUri, this.url, this.workTypes);
+        return new Collection(this.institutionId, this.title, this.description, this.external, DefaultConstructionValidator.getInstance().validateHidden(hidden), this.locations, this.objectStoreUri, this.url, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Collection replaceHidden(final boolean hidden) {
@@ -934,11 +1277,11 @@ public final class Collection implements org.thryft.Struct, org.thryft.waf.api.m
     }
 
     public Collection replaceInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-        return new Collection(institutionId, this.title, this.description, this.external, this.hidden, this.locations, this.objectStoreUri, this.url, this.workTypes);
+        return new Collection(DefaultConstructionValidator.getInstance().validateInstitutionId(institutionId), this.title, this.description, this.external, this.hidden, this.locations, this.objectStoreUri, this.url, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Collection replaceLocations(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations) {
-        return new Collection(this.institutionId, this.title, this.description, this.external, this.hidden, locations, this.objectStoreUri, this.url, this.workTypes);
+        return new Collection(this.institutionId, this.title, this.description, this.external, this.hidden, DefaultConstructionValidator.getInstance().validateLocations(locations), this.objectStoreUri, this.url, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Collection replaceLocations(final org.dressdiscover.api.models.location.LocationSet locations) {
@@ -946,7 +1289,7 @@ public final class Collection implements org.thryft.Struct, org.thryft.waf.api.m
     }
 
     public Collection replaceObjectStoreUri(final com.google.common.base.Optional<org.thryft.native_.Uri> objectStoreUri) {
-        return new Collection(this.institutionId, this.title, this.description, this.external, this.hidden, this.locations, objectStoreUri, this.url, this.workTypes);
+        return new Collection(this.institutionId, this.title, this.description, this.external, this.hidden, this.locations, DefaultConstructionValidator.getInstance().validateObjectStoreUri(objectStoreUri), this.url, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Collection replaceObjectStoreUri(final org.thryft.native_.Uri objectStoreUri) {
@@ -954,11 +1297,11 @@ public final class Collection implements org.thryft.Struct, org.thryft.waf.api.m
     }
 
     public Collection replaceTitle(final String title) {
-        return new Collection(this.institutionId, title, this.description, this.external, this.hidden, this.locations, this.objectStoreUri, this.url, this.workTypes);
+        return new Collection(this.institutionId, DefaultConstructionValidator.getInstance().validateTitle(title), this.description, this.external, this.hidden, this.locations, this.objectStoreUri, this.url, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Collection replaceUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) {
-        return new Collection(this.institutionId, this.title, this.description, this.external, this.hidden, this.locations, this.objectStoreUri, url, this.workTypes);
+        return new Collection(this.institutionId, this.title, this.description, this.external, this.hidden, this.locations, this.objectStoreUri, DefaultConstructionValidator.getInstance().validateUrl(url), this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Collection replaceUrl(final org.thryft.native_.Url url) {
@@ -966,7 +1309,7 @@ public final class Collection implements org.thryft.Struct, org.thryft.waf.api.m
     }
 
     public Collection replaceWorkTypes(final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
-        return new Collection(this.institutionId, this.title, this.description, this.external, this.hidden, this.locations, this.objectStoreUri, this.url, workTypes);
+        return new Collection(this.institutionId, this.title, this.description, this.external, this.hidden, this.locations, this.objectStoreUri, this.url, DefaultConstructionValidator.getInstance().validateWorkTypes(workTypes), NopConstructionValidator.getInstance());
     }
 
     public Collection replaceWorkTypes(final org.dressdiscover.api.models.work_type.WorkTypeSet workTypes) {

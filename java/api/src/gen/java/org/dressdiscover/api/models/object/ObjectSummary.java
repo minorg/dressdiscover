@@ -49,11 +49,11 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
         }
 
         protected ObjectSummary _build(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts, final com.google.common.base.Optional<String> date, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
-            return new ObjectSummary(collectionId, institutionId, title, agentNameTexts, categories, colorTexts, culturalContextTexts, date, description, gender, hidden, image, locationNameTexts, materialTexts, relationTexts, structureTexts, subjectTermTexts, techniqueTexts, url, workTypeTexts);
+            return new ObjectSummary(collectionId, institutionId, title, agentNameTexts, categories, colorTexts, culturalContextTexts, date, description, gender, hidden, image, locationNameTexts, materialTexts, relationTexts, structureTexts, subjectTermTexts, techniqueTexts, url, workTypeTexts, DefaultConstructionValidator.getInstance());
         }
 
         public ObjectSummary build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.ObjectSummary: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.ObjectSummary: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.object.ObjectSummary: missing title"), com.google.common.base.Preconditions.checkNotNull(agentNameTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing agentNameTexts"), com.google.common.base.Preconditions.checkNotNull(categories, "org.dressdiscover.api.models.object.ObjectSummary: missing categories"), com.google.common.base.Preconditions.checkNotNull(colorTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing colorTexts"), com.google.common.base.Preconditions.checkNotNull(culturalContextTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing culturalContextTexts"), com.google.common.base.Preconditions.checkNotNull(date, "org.dressdiscover.api.models.object.ObjectSummary: missing date"), com.google.common.base.Preconditions.checkNotNull(description, "org.dressdiscover.api.models.object.ObjectSummary: missing description"), com.google.common.base.Preconditions.checkNotNull(gender, "org.dressdiscover.api.models.object.ObjectSummary: missing gender"), com.google.common.base.Preconditions.checkNotNull(hidden, "org.dressdiscover.api.models.object.ObjectSummary: missing hidden"), com.google.common.base.Preconditions.checkNotNull(image, "org.dressdiscover.api.models.object.ObjectSummary: missing image"), com.google.common.base.Preconditions.checkNotNull(locationNameTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing locationNameTexts"), com.google.common.base.Preconditions.checkNotNull(materialTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing materialTexts"), com.google.common.base.Preconditions.checkNotNull(relationTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing relationTexts"), com.google.common.base.Preconditions.checkNotNull(structureTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing structureTexts"), com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing subjectTermTexts"), com.google.common.base.Preconditions.checkNotNull(techniqueTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing techniqueTexts"), com.google.common.base.Preconditions.checkNotNull(url, "org.dressdiscover.api.models.object.ObjectSummary: missing url"), com.google.common.base.Preconditions.checkNotNull(workTypeTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing workTypeTexts"));
+            return _build(collectionId, institutionId, title, agentNameTexts, categories, colorTexts, culturalContextTexts, date, description, gender, hidden, image, locationNameTexts, materialTexts, relationTexts, structureTexts, subjectTermTexts, techniqueTexts, url, workTypeTexts);
         }
 
         public final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> getAgentNameTexts() {
@@ -860,88 +860,80 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
         }
 
         public Builder setAgentNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts) {
-            this.agentNameTexts = com.google.common.base.Preconditions.checkNotNull(agentNameTexts);
+            this.agentNameTexts = DefaultConstructionValidator.getInstance().validateAgentNameTexts(agentNameTexts);
             return this;
         }
 
         public Builder setAgentNameTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> agentNameTexts) {
-            this.agentNameTexts = com.google.common.base.Optional.fromNullable(agentNameTexts);
-            return this;
+            return setAgentNameTexts(com.google.common.base.Optional.fromNullable(agentNameTexts));
         }
 
         public Builder setCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories) {
-            this.categories = com.google.common.base.Preconditions.checkNotNull(categories);
+            this.categories = DefaultConstructionValidator.getInstance().validateCategories(categories);
             return this;
         }
 
         public Builder setCategories(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> categories) {
-            this.categories = com.google.common.base.Optional.fromNullable(categories);
-            return this;
+            return setCategories(com.google.common.base.Optional.fromNullable(categories));
         }
 
         public Builder setCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
-            this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId);
+            this.collectionId = DefaultConstructionValidator.getInstance().validateCollectionId(collectionId);
             return this;
         }
 
         public Builder setColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts) {
-            this.colorTexts = com.google.common.base.Preconditions.checkNotNull(colorTexts);
+            this.colorTexts = DefaultConstructionValidator.getInstance().validateColorTexts(colorTexts);
             return this;
         }
 
         public Builder setColorTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> colorTexts) {
-            this.colorTexts = com.google.common.base.Optional.fromNullable(colorTexts);
-            return this;
+            return setColorTexts(com.google.common.base.Optional.fromNullable(colorTexts));
         }
 
         public Builder setCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts) {
-            this.culturalContextTexts = com.google.common.base.Preconditions.checkNotNull(culturalContextTexts);
+            this.culturalContextTexts = DefaultConstructionValidator.getInstance().validateCulturalContextTexts(culturalContextTexts);
             return this;
         }
 
         public Builder setCulturalContextTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> culturalContextTexts) {
-            this.culturalContextTexts = com.google.common.base.Optional.fromNullable(culturalContextTexts);
-            return this;
+            return setCulturalContextTexts(com.google.common.base.Optional.fromNullable(culturalContextTexts));
         }
 
         public Builder setDate(final com.google.common.base.Optional<String> date) {
-            this.date = com.google.common.base.Preconditions.checkNotNull(date);
+            this.date = DefaultConstructionValidator.getInstance().validateDate(date);
             return this;
         }
 
         public Builder setDate(@javax.annotation.Nullable final String date) {
-            this.date = com.google.common.base.Optional.fromNullable(date);
-            return this;
+            return setDate(com.google.common.base.Optional.fromNullable(date));
         }
 
         public Builder setDescription(final com.google.common.base.Optional<String> description) {
-            this.description = com.google.common.base.Preconditions.checkNotNull(description);
+            this.description = DefaultConstructionValidator.getInstance().validateDescription(description);
             return this;
         }
 
         public Builder setDescription(@javax.annotation.Nullable final String description) {
-            this.description = com.google.common.base.Optional.fromNullable(description);
-            return this;
+            return setDescription(com.google.common.base.Optional.fromNullable(description));
         }
 
         public Builder setGender(final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender) {
-            this.gender = com.google.common.base.Preconditions.checkNotNull(gender);
+            this.gender = DefaultConstructionValidator.getInstance().validateGender(gender);
             return this;
         }
 
         public Builder setGender(@javax.annotation.Nullable final org.dressdiscover.api.models.gender.Gender gender) {
-            this.gender = com.google.common.base.Optional.fromNullable(gender);
-            return this;
+            return setGender(com.google.common.base.Optional.fromNullable(gender));
         }
 
         public Builder setHidden(final com.google.common.base.Optional<Boolean> hidden) {
-            this.hidden = com.google.common.base.Preconditions.checkNotNull(hidden);
+            this.hidden = DefaultConstructionValidator.getInstance().validateHidden(hidden);
             return this;
         }
 
         public Builder setHidden(@javax.annotation.Nullable final Boolean hidden) {
-            this.hidden = com.google.common.base.Optional.fromNullable(hidden);
-            return this;
+            return setHidden(com.google.common.base.Optional.fromNullable(hidden));
         }
 
         public Builder setIfPresent(final ObjectSummary other) {
@@ -1006,103 +998,94 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
         }
 
         public Builder setImage(final com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image) {
-            this.image = com.google.common.base.Preconditions.checkNotNull(image);
+            this.image = DefaultConstructionValidator.getInstance().validateImage(image);
             return this;
         }
 
         public Builder setImage(@javax.annotation.Nullable final org.dressdiscover.api.models.image.Image image) {
-            this.image = com.google.common.base.Optional.fromNullable(image);
-            return this;
+            return setImage(com.google.common.base.Optional.fromNullable(image));
         }
 
         public Builder setInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-            this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId);
+            this.institutionId = DefaultConstructionValidator.getInstance().validateInstitutionId(institutionId);
             return this;
         }
 
         public Builder setLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts) {
-            this.locationNameTexts = com.google.common.base.Preconditions.checkNotNull(locationNameTexts);
+            this.locationNameTexts = DefaultConstructionValidator.getInstance().validateLocationNameTexts(locationNameTexts);
             return this;
         }
 
         public Builder setLocationNameTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> locationNameTexts) {
-            this.locationNameTexts = com.google.common.base.Optional.fromNullable(locationNameTexts);
-            return this;
+            return setLocationNameTexts(com.google.common.base.Optional.fromNullable(locationNameTexts));
         }
 
         public Builder setMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts) {
-            this.materialTexts = com.google.common.base.Preconditions.checkNotNull(materialTexts);
+            this.materialTexts = DefaultConstructionValidator.getInstance().validateMaterialTexts(materialTexts);
             return this;
         }
 
         public Builder setMaterialTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> materialTexts) {
-            this.materialTexts = com.google.common.base.Optional.fromNullable(materialTexts);
-            return this;
+            return setMaterialTexts(com.google.common.base.Optional.fromNullable(materialTexts));
         }
 
         public Builder setRelationTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts) {
-            this.relationTexts = com.google.common.base.Preconditions.checkNotNull(relationTexts);
+            this.relationTexts = DefaultConstructionValidator.getInstance().validateRelationTexts(relationTexts);
             return this;
         }
 
         public Builder setRelationTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> relationTexts) {
-            this.relationTexts = com.google.common.base.Optional.fromNullable(relationTexts);
-            return this;
+            return setRelationTexts(com.google.common.base.Optional.fromNullable(relationTexts));
         }
 
         public Builder setStructureTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts) {
-            this.structureTexts = com.google.common.base.Preconditions.checkNotNull(structureTexts);
+            this.structureTexts = DefaultConstructionValidator.getInstance().validateStructureTexts(structureTexts);
             return this;
         }
 
         public Builder setStructureTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableMap<String, String> structureTexts) {
-            this.structureTexts = com.google.common.base.Optional.fromNullable(structureTexts);
-            return this;
+            return setStructureTexts(com.google.common.base.Optional.fromNullable(structureTexts));
         }
 
         public Builder setSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts) {
-            this.subjectTermTexts = com.google.common.base.Preconditions.checkNotNull(subjectTermTexts);
+            this.subjectTermTexts = DefaultConstructionValidator.getInstance().validateSubjectTermTexts(subjectTermTexts);
             return this;
         }
 
         public Builder setSubjectTermTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> subjectTermTexts) {
-            this.subjectTermTexts = com.google.common.base.Optional.fromNullable(subjectTermTexts);
-            return this;
+            return setSubjectTermTexts(com.google.common.base.Optional.fromNullable(subjectTermTexts));
         }
 
         public Builder setTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts) {
-            this.techniqueTexts = com.google.common.base.Preconditions.checkNotNull(techniqueTexts);
+            this.techniqueTexts = DefaultConstructionValidator.getInstance().validateTechniqueTexts(techniqueTexts);
             return this;
         }
 
         public Builder setTechniqueTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> techniqueTexts) {
-            this.techniqueTexts = com.google.common.base.Optional.fromNullable(techniqueTexts);
-            return this;
+            return setTechniqueTexts(com.google.common.base.Optional.fromNullable(techniqueTexts));
         }
 
         public Builder setTitle(final String title) {
-            this.title = com.google.common.base.Preconditions.checkNotNull(title);
+            this.title = DefaultConstructionValidator.getInstance().validateTitle(title);
             return this;
         }
 
         public Builder setUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) {
-            this.url = com.google.common.base.Preconditions.checkNotNull(url);
+            this.url = DefaultConstructionValidator.getInstance().validateUrl(url);
             return this;
         }
 
         public Builder setUrl(@javax.annotation.Nullable final org.thryft.native_.Url url) {
-            this.url = com.google.common.base.Optional.fromNullable(url);
-            return this;
+            return setUrl(com.google.common.base.Optional.fromNullable(url));
         }
 
         public Builder setWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
-            this.workTypeTexts = com.google.common.base.Preconditions.checkNotNull(workTypeTexts);
+            this.workTypeTexts = DefaultConstructionValidator.getInstance().validateWorkTypeTexts(workTypeTexts);
             return this;
         }
 
         public Builder setWorkTypeTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> workTypeTexts) {
-            this.workTypeTexts = com.google.common.base.Optional.fromNullable(workTypeTexts);
-            return this;
+            return setWorkTypeTexts(com.google.common.base.Optional.fromNullable(workTypeTexts));
         }
 
         public Builder unset(final String fieldThriftName) {
@@ -1445,34 +1428,832 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public org.dressdiscover.api.models.collection.CollectionId validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws ExceptionT;
+
+        public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws ExceptionT;
+
+        public String validateTitle(final String title) throws ExceptionT;
+
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateAgentNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts) throws ExceptionT;
+
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories) throws ExceptionT;
+
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts) throws ExceptionT;
+
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts) throws ExceptionT;
+
+        public com.google.common.base.Optional<String> validateDate(final com.google.common.base.Optional<String> date) throws ExceptionT;
+
+        public com.google.common.base.Optional<String> validateDescription(final com.google.common.base.Optional<String> description) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> validateGender(final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender) throws ExceptionT;
+
+        public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> validateImage(final com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image) throws ExceptionT;
+
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts) throws ExceptionT;
+
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts) throws ExceptionT;
+
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateRelationTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts) throws ExceptionT;
+
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateStructureTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts) throws ExceptionT;
+
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts) throws ExceptionT;
+
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) throws ExceptionT;
+
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.collection.CollectionId validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws RuntimeException {
+            if (collectionId == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: collectionId is null");
+            }
+            return collectionId;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws RuntimeException {
+            if (institutionId == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: institutionId is null");
+            }
+            return institutionId;
+        }
+
+        @Override
+        public String validateTitle(final String title) throws RuntimeException {
+            if (title == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: title is null");
+            }
+            if (title.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: title is less than min length 1");
+            }
+            return title;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateAgentNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts) throws RuntimeException {
+            if (agentNameTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: agentNameTexts is null");
+            }
+            if (!agentNameTexts.isPresent()) {
+                return agentNameTexts;
+            }
+            if (agentNameTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: agentNameTexts is less than min length 1");
+            }
+            return agentNameTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories) throws RuntimeException {
+            if (categories == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: categories is null");
+            }
+            if (!categories.isPresent()) {
+                return categories;
+            }
+            if (categories.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: categories is less than min length 1");
+            }
+            return categories;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts) throws RuntimeException {
+            if (colorTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: colorTexts is null");
+            }
+            if (!colorTexts.isPresent()) {
+                return colorTexts;
+            }
+            if (colorTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: colorTexts is less than min length 1");
+            }
+            return colorTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts) throws RuntimeException {
+            if (culturalContextTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: culturalContextTexts is null");
+            }
+            if (!culturalContextTexts.isPresent()) {
+                return culturalContextTexts;
+            }
+            if (culturalContextTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: culturalContextTexts is less than min length 1");
+            }
+            return culturalContextTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateDate(final com.google.common.base.Optional<String> date) throws RuntimeException {
+            if (date == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: date is null");
+            }
+            if (!date.isPresent()) {
+                return date;
+            }
+            if (date.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: date is less than min length 1");
+            }
+            return date;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateDescription(final com.google.common.base.Optional<String> description) throws RuntimeException {
+            if (description == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: description is null");
+            }
+            if (!description.isPresent()) {
+                return description;
+            }
+            if (description.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: description is less than min length 1");
+            }
+            return description;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> validateGender(final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender) throws RuntimeException {
+            if (gender == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: gender is null");
+            }
+            if (!gender.isPresent()) {
+                return gender;
+            }
+            return gender;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) throws RuntimeException {
+            if (!hidden.isPresent()) {
+                return hidden;
+            }
+            if (!hidden.get()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: hidden is not true");
+            }
+            return hidden;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> validateImage(final com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image) throws RuntimeException {
+            if (image == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: image is null");
+            }
+            if (!image.isPresent()) {
+                return image;
+            }
+            return image;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts) throws RuntimeException {
+            if (locationNameTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: locationNameTexts is null");
+            }
+            if (!locationNameTexts.isPresent()) {
+                return locationNameTexts;
+            }
+            if (locationNameTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: locationNameTexts is less than min length 1");
+            }
+            return locationNameTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts) throws RuntimeException {
+            if (materialTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: materialTexts is null");
+            }
+            if (!materialTexts.isPresent()) {
+                return materialTexts;
+            }
+            if (materialTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: materialTexts is less than min length 1");
+            }
+            return materialTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateRelationTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts) throws RuntimeException {
+            if (relationTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: relationTexts is null");
+            }
+            if (!relationTexts.isPresent()) {
+                return relationTexts;
+            }
+            if (relationTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: relationTexts is less than min length 1");
+            }
+            return relationTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateStructureTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts) throws RuntimeException {
+            if (structureTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: structureTexts is null");
+            }
+            if (!structureTexts.isPresent()) {
+                return structureTexts;
+            }
+            if (structureTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: structureTexts is less than min length 1");
+            }
+            return structureTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts) throws RuntimeException {
+            if (subjectTermTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: subjectTermTexts is null");
+            }
+            if (!subjectTermTexts.isPresent()) {
+                return subjectTermTexts;
+            }
+            if (subjectTermTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: subjectTermTexts is less than min length 1");
+            }
+            return subjectTermTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts) throws RuntimeException {
+            if (techniqueTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: techniqueTexts is null");
+            }
+            if (!techniqueTexts.isPresent()) {
+                return techniqueTexts;
+            }
+            if (techniqueTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: techniqueTexts is less than min length 1");
+            }
+            return techniqueTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) throws RuntimeException {
+            if (url == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: url is null");
+            }
+            if (!url.isPresent()) {
+                return url;
+            }
+            return url;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) throws RuntimeException {
+            if (workTypeTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: workTypeTexts is null");
+            }
+            if (!workTypeTexts.isPresent()) {
+                return workTypeTexts;
+            }
+            if (workTypeTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: workTypeTexts is less than min length 1");
+            }
+            return workTypeTexts;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.collection.CollectionId validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
+            return collectionId;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
+            return institutionId;
+        }
+
+        @Override
+        public String validateTitle(final String title) {
+            return title;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateAgentNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts) {
+            return agentNameTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories) {
+            return categories;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts) {
+            return colorTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts) {
+            return culturalContextTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateDate(final com.google.common.base.Optional<String> date) {
+            return date;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateDescription(final com.google.common.base.Optional<String> description) {
+            return description;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> validateGender(final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender) {
+            return gender;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) {
+            return hidden;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> validateImage(final com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image) {
+            return image;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts) {
+            return locationNameTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts) {
+            return materialTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateRelationTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts) {
+            return relationTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateStructureTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts) {
+            return structureTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts) {
+            return subjectTermTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts) {
+            return techniqueTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) {
+            return url;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
+            return workTypeTexts;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.collection.CollectionId validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.thryft.protocol.InputProtocolException {
+            if (collectionId == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLLECTION_ID, "org.dressdiscover.api.models.object.ObjectSummary: collectionId is null");
+            }
+            return collectionId;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.thryft.protocol.InputProtocolException {
+            if (institutionId == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, "org.dressdiscover.api.models.object.ObjectSummary: institutionId is null");
+            }
+            return institutionId;
+        }
+
+        @Override
+        public String validateTitle(final String title) throws org.thryft.protocol.InputProtocolException {
+            if (title == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TITLE, "org.dressdiscover.api.models.object.ObjectSummary: title is null");
+            }
+            if (title.isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLE, "org.dressdiscover.api.models.object.ObjectSummary: title is less than min length 1");
+            }
+            return title;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateAgentNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts) throws org.thryft.protocol.InputProtocolException {
+            if (agentNameTexts == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.AGENT_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: agentNameTexts is null");
+            }
+            if (!agentNameTexts.isPresent()) {
+                return agentNameTexts;
+            }
+            if (agentNameTexts.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AGENT_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: agentNameTexts is less than min length 1");
+            }
+            return agentNameTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories) throws org.thryft.protocol.InputProtocolException {
+            if (categories == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CATEGORIES, "org.dressdiscover.api.models.object.ObjectSummary: categories is null");
+            }
+            if (!categories.isPresent()) {
+                return categories;
+            }
+            if (categories.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CATEGORIES, "org.dressdiscover.api.models.object.ObjectSummary: categories is less than min length 1");
+            }
+            return categories;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts) throws org.thryft.protocol.InputProtocolException {
+            if (colorTexts == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: colorTexts is null");
+            }
+            if (!colorTexts.isPresent()) {
+                return colorTexts;
+            }
+            if (colorTexts.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: colorTexts is less than min length 1");
+            }
+            return colorTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts) throws org.thryft.protocol.InputProtocolException {
+            if (culturalContextTexts == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: culturalContextTexts is null");
+            }
+            if (!culturalContextTexts.isPresent()) {
+                return culturalContextTexts;
+            }
+            if (culturalContextTexts.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: culturalContextTexts is less than min length 1");
+            }
+            return culturalContextTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateDate(final com.google.common.base.Optional<String> date) throws org.thryft.protocol.InputProtocolException {
+            if (date == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DATE, "org.dressdiscover.api.models.object.ObjectSummary: date is null");
+            }
+            if (!date.isPresent()) {
+                return date;
+            }
+            if (date.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATE, "org.dressdiscover.api.models.object.ObjectSummary: date is less than min length 1");
+            }
+            return date;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateDescription(final com.google.common.base.Optional<String> description) throws org.thryft.protocol.InputProtocolException {
+            if (description == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DESCRIPTION, "org.dressdiscover.api.models.object.ObjectSummary: description is null");
+            }
+            if (!description.isPresent()) {
+                return description;
+            }
+            if (description.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTION, "org.dressdiscover.api.models.object.ObjectSummary: description is less than min length 1");
+            }
+            return description;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> validateGender(final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender) throws org.thryft.protocol.InputProtocolException {
+            if (gender == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.GENDER, "org.dressdiscover.api.models.object.ObjectSummary: gender is null");
+            }
+            if (!gender.isPresent()) {
+                return gender;
+            }
+            return gender;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) throws org.thryft.protocol.InputProtocolException {
+            if (!hidden.isPresent()) {
+                return hidden;
+            }
+            if (!hidden.get()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.HIDDEN, "org.dressdiscover.api.models.object.ObjectSummary: hidden is not true");
+            }
+            return hidden;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> validateImage(final com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image) throws org.thryft.protocol.InputProtocolException {
+            if (image == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.IMAGE, "org.dressdiscover.api.models.object.ObjectSummary: image is null");
+            }
+            if (!image.isPresent()) {
+                return image;
+            }
+            return image;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts) throws org.thryft.protocol.InputProtocolException {
+            if (locationNameTexts == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: locationNameTexts is null");
+            }
+            if (!locationNameTexts.isPresent()) {
+                return locationNameTexts;
+            }
+            if (locationNameTexts.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: locationNameTexts is less than min length 1");
+            }
+            return locationNameTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts) throws org.thryft.protocol.InputProtocolException {
+            if (materialTexts == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: materialTexts is null");
+            }
+            if (!materialTexts.isPresent()) {
+                return materialTexts;
+            }
+            if (materialTexts.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: materialTexts is less than min length 1");
+            }
+            return materialTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateRelationTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts) throws org.thryft.protocol.InputProtocolException {
+            if (relationTexts == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RELATION_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: relationTexts is null");
+            }
+            if (!relationTexts.isPresent()) {
+                return relationTexts;
+            }
+            if (relationTexts.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATION_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: relationTexts is less than min length 1");
+            }
+            return relationTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateStructureTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts) throws org.thryft.protocol.InputProtocolException {
+            if (structureTexts == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.STRUCTURE_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: structureTexts is null");
+            }
+            if (!structureTexts.isPresent()) {
+                return structureTexts;
+            }
+            if (structureTexts.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STRUCTURE_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: structureTexts is less than min length 1");
+            }
+            return structureTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts) throws org.thryft.protocol.InputProtocolException {
+            if (subjectTermTexts == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: subjectTermTexts is null");
+            }
+            if (!subjectTermTexts.isPresent()) {
+                return subjectTermTexts;
+            }
+            if (subjectTermTexts.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: subjectTermTexts is less than min length 1");
+            }
+            return subjectTermTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts) throws org.thryft.protocol.InputProtocolException {
+            if (techniqueTexts == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: techniqueTexts is null");
+            }
+            if (!techniqueTexts.isPresent()) {
+                return techniqueTexts;
+            }
+            if (techniqueTexts.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: techniqueTexts is less than min length 1");
+            }
+            return techniqueTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) throws org.thryft.protocol.InputProtocolException {
+            if (url == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.URL, "org.dressdiscover.api.models.object.ObjectSummary: url is null");
+            }
+            if (!url.isPresent()) {
+                return url;
+            }
+            return url;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) throws org.thryft.protocol.InputProtocolException {
+            if (workTypeTexts == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: workTypeTexts is null");
+            }
+            if (!workTypeTexts.isPresent()) {
+                return workTypeTexts;
+            }
+            if (workTypeTexts.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: workTypeTexts is less than min length 1");
+            }
+            return workTypeTexts;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.collection.CollectionId validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
+            return collectionId;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
+            return institutionId;
+        }
+
+        @Override
+        public String validateTitle(final String title) {
+            return title;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateAgentNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts) {
+            return agentNameTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories) {
+            return categories;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts) {
+            return colorTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts) {
+            return culturalContextTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateDate(final com.google.common.base.Optional<String> date) {
+            return date;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateDescription(final com.google.common.base.Optional<String> description) {
+            return description;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> validateGender(final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender) {
+            return gender;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) {
+            return hidden;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> validateImage(final com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image) {
+            return image;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts) {
+            return locationNameTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts) {
+            return materialTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateRelationTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts) {
+            return relationTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateStructureTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts) {
+            return structureTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts) {
+            return subjectTermTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts) {
+            return techniqueTexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) {
+            return url;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
+            return workTypeTexts;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public ObjectSummary(final ObjectSummary other) {
-        this(other.getCollectionId(), other.getInstitutionId(), other.getTitle(), other.getAgentNameTexts(), other.getCategories(), other.getColorTexts(), other.getCulturalContextTexts(), other.getDate(), other.getDescription(), other.getGender(), other.getHidden(), other.getImage(), other.getLocationNameTexts(), other.getMaterialTexts(), other.getRelationTexts(), other.getStructureTexts(), other.getSubjectTermTexts(), other.getTechniqueTexts(), other.getUrl(), other.getWorkTypeTexts());
+        this(other.getCollectionId(), other.getInstitutionId(), other.getTitle(), other.getAgentNameTexts(), other.getCategories(), other.getColorTexts(), other.getCulturalContextTexts(), other.getDate(), other.getDescription(), other.getGender(), other.getHidden(), other.getImage(), other.getLocationNameTexts(), other.getMaterialTexts(), other.getRelationTexts(), other.getStructureTexts(), other.getSubjectTermTexts(), other.getTechniqueTexts(), other.getUrl(), other.getWorkTypeTexts(), NopConstructionValidator.getInstance());
     }
 
-    protected ObjectSummary(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts, final com.google.common.base.Optional<String> date, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
-        this.collectionId = collectionId;
-        this.institutionId = institutionId;
-        this.title = title;
-        this.agentNameTexts = agentNameTexts;
-        this.categories = categories;
-        this.colorTexts = colorTexts;
-        this.culturalContextTexts = culturalContextTexts;
-        this.date = date;
-        this.description = description;
-        this.gender = gender;
-        this.hidden = hidden;
-        this.image = image;
-        this.locationNameTexts = locationNameTexts;
-        this.materialTexts = materialTexts;
-        this.relationTexts = relationTexts;
-        this.structureTexts = structureTexts;
-        this.subjectTermTexts = subjectTermTexts;
-        this.techniqueTexts = techniqueTexts;
-        this.url = url;
-        this.workTypeTexts = workTypeTexts;
+    protected ObjectSummary(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts, final com.google.common.base.Optional<String> date, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts, ConstructionValidator validator) {
+        this.collectionId = validator.validateCollectionId(collectionId);
+        this.institutionId = validator.validateInstitutionId(institutionId);
+        this.title = validator.validateTitle(title);
+        this.agentNameTexts = validator.validateAgentNameTexts(agentNameTexts);
+        this.categories = validator.validateCategories(categories);
+        this.colorTexts = validator.validateColorTexts(colorTexts);
+        this.culturalContextTexts = validator.validateCulturalContextTexts(culturalContextTexts);
+        this.date = validator.validateDate(date);
+        this.description = validator.validateDescription(description);
+        this.gender = validator.validateGender(gender);
+        this.hidden = validator.validateHidden(hidden);
+        this.image = validator.validateImage(image);
+        this.locationNameTexts = validator.validateLocationNameTexts(locationNameTexts);
+        this.materialTexts = validator.validateMaterialTexts(materialTexts);
+        this.relationTexts = validator.validateRelationTexts(relationTexts);
+        this.structureTexts = validator.validateStructureTexts(structureTexts);
+        this.subjectTermTexts = validator.validateSubjectTermTexts(subjectTermTexts);
+        this.techniqueTexts = validator.validateTechniqueTexts(techniqueTexts);
+        this.url = validator.validateUrl(url);
+        this.workTypeTexts = validator.validateWorkTypeTexts(workTypeTexts);
     }
 
     public static Builder builder() {
@@ -1491,21 +2272,21 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
      * Required factory method
      */
     public static ObjectSummary create(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title) {
-        return new ObjectSummary(com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.ObjectSummary: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.ObjectSummary: missing institutionId"), org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.object.ObjectSummary: missing title"), "org.dressdiscover.api.models.object.ObjectSummary: title is empty"), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.gender.Gender> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.image.Image> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<org.thryft.native_.Url> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent());
+        return new ObjectSummary(collectionId, institutionId, title, com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.gender.Gender> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.image.Image> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<org.thryft.native_.Url> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static ObjectSummary create(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> agentNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> categories, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> colorTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> culturalContextTexts, final @javax.annotation.Nullable String date, final @javax.annotation.Nullable String description, final @javax.annotation.Nullable org.dressdiscover.api.models.gender.Gender gender, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable org.dressdiscover.api.models.image.Image image, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> locationNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> materialTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> relationTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, String> structureTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> subjectTermTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> techniqueTexts, final @javax.annotation.Nullable org.thryft.native_.Url url, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> workTypeTexts) {
-        return new ObjectSummary(com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.ObjectSummary: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.ObjectSummary: missing institutionId"), org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.object.ObjectSummary: missing title"), "org.dressdiscover.api.models.object.ObjectSummary: title is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(agentNameTexts), "org.dressdiscover.api.models.object.ObjectSummary: agentNameTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(categories), "org.dressdiscover.api.models.object.ObjectSummary: categories is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(colorTexts), "org.dressdiscover.api.models.object.ObjectSummary: colorTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(culturalContextTexts), "org.dressdiscover.api.models.object.ObjectSummary: culturalContextTexts is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(date), "org.dressdiscover.api.models.object.ObjectSummary: date is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(description), "org.dressdiscover.api.models.object.ObjectSummary: description is empty"), com.google.common.base.Optional.fromNullable(gender), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(hidden), "org.dressdiscover.api.models.object.ObjectSummary: hidden must be true"), com.google.common.base.Optional.fromNullable(image), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(locationNameTexts), "org.dressdiscover.api.models.object.ObjectSummary: locationNameTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(materialTexts), "org.dressdiscover.api.models.object.ObjectSummary: materialTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(relationTexts), "org.dressdiscover.api.models.object.ObjectSummary: relationTexts is empty"), org.thryft.Preconditions.checkOptionalMapNotEmpty(com.google.common.base.Optional.fromNullable(structureTexts), "org.dressdiscover.api.models.object.ObjectSummary: structureTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(subjectTermTexts), "org.dressdiscover.api.models.object.ObjectSummary: subjectTermTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(techniqueTexts), "org.dressdiscover.api.models.object.ObjectSummary: techniqueTexts is empty"), com.google.common.base.Optional.fromNullable(url), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(workTypeTexts), "org.dressdiscover.api.models.object.ObjectSummary: workTypeTexts is empty"));
+        return new ObjectSummary(collectionId, institutionId, title, com.google.common.base.Optional.fromNullable(agentNameTexts), com.google.common.base.Optional.fromNullable(categories), com.google.common.base.Optional.fromNullable(colorTexts), com.google.common.base.Optional.fromNullable(culturalContextTexts), com.google.common.base.Optional.fromNullable(date), com.google.common.base.Optional.fromNullable(description), com.google.common.base.Optional.fromNullable(gender), com.google.common.base.Optional.fromNullable(hidden), com.google.common.base.Optional.fromNullable(image), com.google.common.base.Optional.fromNullable(locationNameTexts), com.google.common.base.Optional.fromNullable(materialTexts), com.google.common.base.Optional.fromNullable(relationTexts), com.google.common.base.Optional.fromNullable(structureTexts), com.google.common.base.Optional.fromNullable(subjectTermTexts), com.google.common.base.Optional.fromNullable(techniqueTexts), com.google.common.base.Optional.fromNullable(url), com.google.common.base.Optional.fromNullable(workTypeTexts), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static ObjectSummary create(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts, final com.google.common.base.Optional<String> date, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
-        return new ObjectSummary(com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.ObjectSummary: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.ObjectSummary: missing institutionId"), org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.object.ObjectSummary: missing title"), "org.dressdiscover.api.models.object.ObjectSummary: title is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(agentNameTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing agentNameTexts"), "org.dressdiscover.api.models.object.ObjectSummary: agentNameTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(categories, "org.dressdiscover.api.models.object.ObjectSummary: missing categories"), "org.dressdiscover.api.models.object.ObjectSummary: categories is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(colorTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing colorTexts"), "org.dressdiscover.api.models.object.ObjectSummary: colorTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(culturalContextTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing culturalContextTexts"), "org.dressdiscover.api.models.object.ObjectSummary: culturalContextTexts is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(date, "org.dressdiscover.api.models.object.ObjectSummary: missing date"), "org.dressdiscover.api.models.object.ObjectSummary: date is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(description, "org.dressdiscover.api.models.object.ObjectSummary: missing description"), "org.dressdiscover.api.models.object.ObjectSummary: description is empty"), com.google.common.base.Preconditions.checkNotNull(gender, "org.dressdiscover.api.models.object.ObjectSummary: missing gender"), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(hidden, "org.dressdiscover.api.models.object.ObjectSummary: missing hidden"), "org.dressdiscover.api.models.object.ObjectSummary: hidden must be true"), com.google.common.base.Preconditions.checkNotNull(image, "org.dressdiscover.api.models.object.ObjectSummary: missing image"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(locationNameTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing locationNameTexts"), "org.dressdiscover.api.models.object.ObjectSummary: locationNameTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(materialTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing materialTexts"), "org.dressdiscover.api.models.object.ObjectSummary: materialTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(relationTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing relationTexts"), "org.dressdiscover.api.models.object.ObjectSummary: relationTexts is empty"), org.thryft.Preconditions.checkOptionalMapNotEmpty(com.google.common.base.Preconditions.checkNotNull(structureTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing structureTexts"), "org.dressdiscover.api.models.object.ObjectSummary: structureTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing subjectTermTexts"), "org.dressdiscover.api.models.object.ObjectSummary: subjectTermTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(techniqueTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing techniqueTexts"), "org.dressdiscover.api.models.object.ObjectSummary: techniqueTexts is empty"), com.google.common.base.Preconditions.checkNotNull(url, "org.dressdiscover.api.models.object.ObjectSummary: missing url"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(workTypeTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing workTypeTexts"), "org.dressdiscover.api.models.object.ObjectSummary: workTypeTexts is empty"));
+        return new ObjectSummary(collectionId, institutionId, title, agentNameTexts, categories, colorTexts, culturalContextTexts, date, description, gender, hidden, image, locationNameTexts, materialTexts, relationTexts, structureTexts, subjectTermTexts, techniqueTexts, url, workTypeTexts, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -2049,11 +2830,7 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
             }
         }
         iprot.readListEnd();
-        try {
-            return new ObjectSummary(collectionId, institutionId, title, agentNameTexts, categories, colorTexts, culturalContextTexts, date, description, gender, hidden, image, locationNameTexts, materialTexts, relationTexts, structureTexts, subjectTermTexts, techniqueTexts, url, workTypeTexts);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new ObjectSummary(DefaultReadValidator.getInstance().validateCollectionId(collectionId), DefaultReadValidator.getInstance().validateInstitutionId(institutionId), DefaultReadValidator.getInstance().validateTitle(title), DefaultReadValidator.getInstance().validateAgentNameTexts(agentNameTexts), DefaultReadValidator.getInstance().validateCategories(categories), DefaultReadValidator.getInstance().validateColorTexts(colorTexts), DefaultReadValidator.getInstance().validateCulturalContextTexts(culturalContextTexts), DefaultReadValidator.getInstance().validateDate(date), DefaultReadValidator.getInstance().validateDescription(description), DefaultReadValidator.getInstance().validateGender(gender), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateImage(image), DefaultReadValidator.getInstance().validateLocationNameTexts(locationNameTexts), DefaultReadValidator.getInstance().validateMaterialTexts(materialTexts), DefaultReadValidator.getInstance().validateRelationTexts(relationTexts), DefaultReadValidator.getInstance().validateStructureTexts(structureTexts), DefaultReadValidator.getInstance().validateSubjectTermTexts(subjectTermTexts), DefaultReadValidator.getInstance().validateTechniqueTexts(techniqueTexts), DefaultReadValidator.getInstance().validateUrl(url), DefaultReadValidator.getInstance().validateWorkTypeTexts(workTypeTexts), NopConstructionValidator.getInstance());
     }
 
     public static ObjectSummary readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -2445,15 +3222,11 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new ObjectSummary(collectionId, institutionId, title, agentNameTexts, categories, colorTexts, culturalContextTexts, date, description, gender, hidden, image, locationNameTexts, materialTexts, relationTexts, structureTexts, subjectTermTexts, techniqueTexts, url, workTypeTexts);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new ObjectSummary(DefaultReadValidator.getInstance().validateCollectionId(collectionId), DefaultReadValidator.getInstance().validateInstitutionId(institutionId), DefaultReadValidator.getInstance().validateTitle(title), DefaultReadValidator.getInstance().validateAgentNameTexts(agentNameTexts), DefaultReadValidator.getInstance().validateCategories(categories), DefaultReadValidator.getInstance().validateColorTexts(colorTexts), DefaultReadValidator.getInstance().validateCulturalContextTexts(culturalContextTexts), DefaultReadValidator.getInstance().validateDate(date), DefaultReadValidator.getInstance().validateDescription(description), DefaultReadValidator.getInstance().validateGender(gender), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateImage(image), DefaultReadValidator.getInstance().validateLocationNameTexts(locationNameTexts), DefaultReadValidator.getInstance().validateMaterialTexts(materialTexts), DefaultReadValidator.getInstance().validateRelationTexts(relationTexts), DefaultReadValidator.getInstance().validateStructureTexts(structureTexts), DefaultReadValidator.getInstance().validateSubjectTermTexts(subjectTermTexts), DefaultReadValidator.getInstance().validateTechniqueTexts(techniqueTexts), DefaultReadValidator.getInstance().validateUrl(url), DefaultReadValidator.getInstance().validateWorkTypeTexts(workTypeTexts), NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceAgentNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.title, agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.title, DefaultConstructionValidator.getInstance().validateAgentNameTexts(agentNameTexts), this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceAgentNameTexts(final com.google.common.collect.ImmutableList<String> agentNameTexts) {
@@ -2461,7 +3234,7 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
     }
 
     public ObjectSummary replaceCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, DefaultConstructionValidator.getInstance().validateCategories(categories), this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceCategories(final com.google.common.collect.ImmutableList<String> categories) {
@@ -2469,11 +3242,11 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
     }
 
     public ObjectSummary replaceCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
-        return new ObjectSummary(collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts);
+        return new ObjectSummary(DefaultConstructionValidator.getInstance().validateCollectionId(collectionId), this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, DefaultConstructionValidator.getInstance().validateColorTexts(colorTexts), this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceColorTexts(final com.google.common.collect.ImmutableList<String> colorTexts) {
@@ -2481,7 +3254,7 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
     }
 
     public ObjectSummary replaceCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, DefaultConstructionValidator.getInstance().validateCulturalContextTexts(culturalContextTexts), this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceCulturalContextTexts(final com.google.common.collect.ImmutableList<String> culturalContextTexts) {
@@ -2489,7 +3262,7 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
     }
 
     public ObjectSummary replaceDate(final com.google.common.base.Optional<String> date) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, DefaultConstructionValidator.getInstance().validateDate(date), this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceDate(final String date) {
@@ -2497,7 +3270,7 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
     }
 
     public ObjectSummary replaceDescription(final com.google.common.base.Optional<String> description) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, DefaultConstructionValidator.getInstance().validateDescription(description), this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceDescription(final String description) {
@@ -2505,7 +3278,7 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
     }
 
     public ObjectSummary replaceGender(final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, DefaultConstructionValidator.getInstance().validateGender(gender), this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceGender(final org.dressdiscover.api.models.gender.Gender gender) {
@@ -2513,7 +3286,7 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
     }
 
     public ObjectSummary replaceHidden(final com.google.common.base.Optional<Boolean> hidden) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, DefaultConstructionValidator.getInstance().validateHidden(hidden), this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceHidden(final boolean hidden) {
@@ -2521,7 +3294,7 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
     }
 
     public ObjectSummary replaceImage(final com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, DefaultConstructionValidator.getInstance().validateImage(image), this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceImage(final org.dressdiscover.api.models.image.Image image) {
@@ -2529,11 +3302,11 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
     }
 
     public ObjectSummary replaceInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-        return new ObjectSummary(this.collectionId, institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, DefaultConstructionValidator.getInstance().validateInstitutionId(institutionId), this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, DefaultConstructionValidator.getInstance().validateLocationNameTexts(locationNameTexts), this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceLocationNameTexts(final com.google.common.collect.ImmutableList<String> locationNameTexts) {
@@ -2541,7 +3314,7 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
     }
 
     public ObjectSummary replaceMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, DefaultConstructionValidator.getInstance().validateMaterialTexts(materialTexts), this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceMaterialTexts(final com.google.common.collect.ImmutableList<String> materialTexts) {
@@ -2549,7 +3322,7 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
     }
 
     public ObjectSummary replaceRelationTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, DefaultConstructionValidator.getInstance().validateRelationTexts(relationTexts), this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceRelationTexts(final com.google.common.collect.ImmutableList<String> relationTexts) {
@@ -2557,7 +3330,7 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
     }
 
     public ObjectSummary replaceStructureTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, DefaultConstructionValidator.getInstance().validateStructureTexts(structureTexts), this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceStructureTexts(final com.google.common.collect.ImmutableMap<String, String> structureTexts) {
@@ -2565,7 +3338,7 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
     }
 
     public ObjectSummary replaceSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, DefaultConstructionValidator.getInstance().validateSubjectTermTexts(subjectTermTexts), this.techniqueTexts, this.url, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceSubjectTermTexts(final com.google.common.collect.ImmutableList<String> subjectTermTexts) {
@@ -2573,7 +3346,7 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
     }
 
     public ObjectSummary replaceTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, techniqueTexts, this.url, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, DefaultConstructionValidator.getInstance().validateTechniqueTexts(techniqueTexts), this.url, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceTechniqueTexts(final com.google.common.collect.ImmutableList<String> techniqueTexts) {
@@ -2581,11 +3354,11 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
     }
 
     public ObjectSummary replaceTitle(final String title) {
-        return new ObjectSummary(this.collectionId, this.institutionId, title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, DefaultConstructionValidator.getInstance().validateTitle(title), this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, url, this.workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, DefaultConstructionValidator.getInstance().validateUrl(url), this.workTypeTexts, NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceUrl(final org.thryft.native_.Url url) {
@@ -2593,7 +3366,7 @@ public final class ObjectSummary implements org.thryft.Struct, org.thryft.waf.ap
     }
 
     public ObjectSummary replaceWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
-        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, workTypeTexts);
+        return new ObjectSummary(this.collectionId, this.institutionId, this.title, this.agentNameTexts, this.categories, this.colorTexts, this.culturalContextTexts, this.date, this.description, this.gender, this.hidden, this.image, this.locationNameTexts, this.materialTexts, this.relationTexts, this.structureTexts, this.subjectTermTexts, this.techniqueTexts, this.url, DefaultConstructionValidator.getInstance().validateWorkTypeTexts(workTypeTexts), NopConstructionValidator.getInstance());
     }
 
     public ObjectSummary replaceWorkTypeTexts(final com.google.common.collect.ImmutableList<String> workTypeTexts) {

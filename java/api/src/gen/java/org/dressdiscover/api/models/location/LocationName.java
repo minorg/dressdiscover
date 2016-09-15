@@ -20,11 +20,11 @@ public final class LocationName implements org.thryft.Struct {
         }
 
         protected LocationName _build(final String text, final org.dressdiscover.api.models.location.LocationNameType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-            return new LocationName(text, type, extent, vocabRef);
+            return new LocationName(text, type, extent, vocabRef, DefaultConstructionValidator.getInstance());
         }
 
         public LocationName build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.location.LocationName: missing text"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.location.LocationName: missing type"), com.google.common.base.Preconditions.checkNotNull(extent, "org.dressdiscover.api.models.location.LocationName: missing extent"), com.google.common.base.Preconditions.checkNotNull(vocabRef, "org.dressdiscover.api.models.location.LocationName: missing vocabRef"));
+            return _build(text, type, extent, vocabRef);
         }
 
         public final com.google.common.base.Optional<String> getExtent() {
@@ -145,13 +145,12 @@ public final class LocationName implements org.thryft.Struct {
         }
 
         public Builder setExtent(final com.google.common.base.Optional<String> extent) {
-            this.extent = com.google.common.base.Preconditions.checkNotNull(extent);
+            this.extent = DefaultConstructionValidator.getInstance().validateExtent(extent);
             return this;
         }
 
         public Builder setExtent(@javax.annotation.Nullable final String extent) {
-            this.extent = com.google.common.base.Optional.fromNullable(extent);
-            return this;
+            return setExtent(com.google.common.base.Optional.fromNullable(extent));
         }
 
         public Builder setIfPresent(final LocationName other) {
@@ -170,23 +169,22 @@ public final class LocationName implements org.thryft.Struct {
         }
 
         public Builder setText(final String text) {
-            this.text = com.google.common.base.Preconditions.checkNotNull(text);
+            this.text = DefaultConstructionValidator.getInstance().validateText(text);
             return this;
         }
 
         public Builder setType(final org.dressdiscover.api.models.location.LocationNameType type) {
-            this.type = com.google.common.base.Preconditions.checkNotNull(type);
+            this.type = DefaultConstructionValidator.getInstance().validateType(type);
             return this;
         }
 
         public Builder setVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-            this.vocabRef = com.google.common.base.Preconditions.checkNotNull(vocabRef);
+            this.vocabRef = DefaultConstructionValidator.getInstance().validateVocabRef(vocabRef);
             return this;
         }
 
         public Builder setVocabRef(@javax.annotation.Nullable final org.dressdiscover.api.models.VocabRef vocabRef) {
-            this.vocabRef = com.google.common.base.Optional.fromNullable(vocabRef);
-            return this;
+            return setVocabRef(com.google.common.base.Optional.fromNullable(vocabRef));
         }
 
         public Builder unset(final String fieldThriftName) {
@@ -360,18 +358,206 @@ public final class LocationName implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public String validateText(final String text) throws ExceptionT;
+
+        public org.dressdiscover.api.models.location.LocationNameType validateType(final org.dressdiscover.api.models.location.LocationNameType type) throws ExceptionT;
+
+        public com.google.common.base.Optional<String> validateExtent(final com.google.common.base.Optional<String> extent) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws RuntimeException {
+            if (text == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.location.LocationName: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.location.LocationName: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.location.LocationNameType validateType(final org.dressdiscover.api.models.location.LocationNameType type) throws RuntimeException {
+            if (type == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.location.LocationName: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateExtent(final com.google.common.base.Optional<String> extent) throws RuntimeException {
+            if (extent == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.location.LocationName: extent is null");
+            }
+            if (!extent.isPresent()) {
+                return extent;
+            }
+            if (extent.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.location.LocationName: extent is less than min length 1");
+            }
+            return extent;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) throws RuntimeException {
+            if (vocabRef == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.location.LocationName: vocabRef is null");
+            }
+            if (!vocabRef.isPresent()) {
+                return vocabRef;
+            }
+            return vocabRef;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.location.LocationNameType validateType(final org.dressdiscover.api.models.location.LocationNameType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateExtent(final com.google.common.base.Optional<String> extent) {
+            return extent;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
+            return vocabRef;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws org.thryft.protocol.InputProtocolException {
+            if (text == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.location.LocationName: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.location.LocationName: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.location.LocationNameType validateType(final org.dressdiscover.api.models.location.LocationNameType type) throws org.thryft.protocol.InputProtocolException {
+            if (type == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.models.location.LocationName: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateExtent(final com.google.common.base.Optional<String> extent) throws org.thryft.protocol.InputProtocolException {
+            if (extent == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXTENT, "org.dressdiscover.api.models.location.LocationName: extent is null");
+            }
+            if (!extent.isPresent()) {
+                return extent;
+            }
+            if (extent.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENT, "org.dressdiscover.api.models.location.LocationName: extent is less than min length 1");
+            }
+            return extent;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) throws org.thryft.protocol.InputProtocolException {
+            if (vocabRef == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.VOCAB_REF, "org.dressdiscover.api.models.location.LocationName: vocabRef is null");
+            }
+            if (!vocabRef.isPresent()) {
+                return vocabRef;
+            }
+            return vocabRef;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.location.LocationNameType validateType(final org.dressdiscover.api.models.location.LocationNameType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateExtent(final com.google.common.base.Optional<String> extent) {
+            return extent;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
+            return vocabRef;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public LocationName(final LocationName other) {
-        this(other.getText(), other.getType(), other.getExtent(), other.getVocabRef());
+        this(other.getText(), other.getType(), other.getExtent(), other.getVocabRef(), NopConstructionValidator.getInstance());
     }
 
-    protected LocationName(final String text, final org.dressdiscover.api.models.location.LocationNameType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-        this.text = text;
-        this.type = type;
-        this.extent = extent;
-        this.vocabRef = vocabRef;
+    protected LocationName(final String text, final org.dressdiscover.api.models.location.LocationNameType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef, ConstructionValidator validator) {
+        this.text = validator.validateText(text);
+        this.type = validator.validateType(type);
+        this.extent = validator.validateExtent(extent);
+        this.vocabRef = validator.validateVocabRef(vocabRef);
     }
 
     public static Builder builder() {
@@ -390,21 +576,21 @@ public final class LocationName implements org.thryft.Struct {
      * Required factory method
      */
     public static LocationName create(final String text, final org.dressdiscover.api.models.location.LocationNameType type) {
-        return new LocationName(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.location.LocationName: missing text"), "org.dressdiscover.api.models.location.LocationName: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.location.LocationName: missing type"), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent());
+        return new LocationName(text, type, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static LocationName create(final String text, final org.dressdiscover.api.models.location.LocationNameType type, final @javax.annotation.Nullable String extent, final @javax.annotation.Nullable org.dressdiscover.api.models.VocabRef vocabRef) {
-        return new LocationName(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.location.LocationName: missing text"), "org.dressdiscover.api.models.location.LocationName: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.location.LocationName: missing type"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(extent), "org.dressdiscover.api.models.location.LocationName: extent is empty"), com.google.common.base.Optional.fromNullable(vocabRef));
+        return new LocationName(text, type, com.google.common.base.Optional.fromNullable(extent), com.google.common.base.Optional.fromNullable(vocabRef), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static LocationName create(final String text, final org.dressdiscover.api.models.location.LocationNameType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-        return new LocationName(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.location.LocationName: missing text"), "org.dressdiscover.api.models.location.LocationName: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.location.LocationName: missing type"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(extent, "org.dressdiscover.api.models.location.LocationName: missing extent"), "org.dressdiscover.api.models.location.LocationName: extent is empty"), com.google.common.base.Preconditions.checkNotNull(vocabRef, "org.dressdiscover.api.models.location.LocationName: missing vocabRef"));
+        return new LocationName(text, type, extent, vocabRef, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -508,11 +694,7 @@ public final class LocationName implements org.thryft.Struct {
             vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.models.VocabRef.readAsStruct(iprot));
         }
         iprot.readListEnd();
-        try {
-            return new LocationName(text, type, extent, vocabRef);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new LocationName(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateExtent(extent), DefaultReadValidator.getInstance().validateVocabRef(vocabRef), NopConstructionValidator.getInstance());
     }
 
     public static LocationName readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -565,15 +747,11 @@ public final class LocationName implements org.thryft.Struct {
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new LocationName(text, type, extent, vocabRef);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new LocationName(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateExtent(extent), DefaultReadValidator.getInstance().validateVocabRef(vocabRef), NopConstructionValidator.getInstance());
     }
 
     public LocationName replaceExtent(final com.google.common.base.Optional<String> extent) {
-        return new LocationName(this.text, this.type, extent, this.vocabRef);
+        return new LocationName(this.text, this.type, DefaultConstructionValidator.getInstance().validateExtent(extent), this.vocabRef, NopConstructionValidator.getInstance());
     }
 
     public LocationName replaceExtent(final String extent) {
@@ -581,15 +759,15 @@ public final class LocationName implements org.thryft.Struct {
     }
 
     public LocationName replaceText(final String text) {
-        return new LocationName(text, this.type, this.extent, this.vocabRef);
+        return new LocationName(DefaultConstructionValidator.getInstance().validateText(text), this.type, this.extent, this.vocabRef, NopConstructionValidator.getInstance());
     }
 
     public LocationName replaceType(final org.dressdiscover.api.models.location.LocationNameType type) {
-        return new LocationName(this.text, type, this.extent, this.vocabRef);
+        return new LocationName(this.text, DefaultConstructionValidator.getInstance().validateType(type), this.extent, this.vocabRef, NopConstructionValidator.getInstance());
     }
 
     public LocationName replaceVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-        return new LocationName(this.text, this.type, this.extent, vocabRef);
+        return new LocationName(this.text, this.type, this.extent, DefaultConstructionValidator.getInstance().validateVocabRef(vocabRef), NopConstructionValidator.getInstance());
     }
 
     public LocationName replaceVocabRef(final org.dressdiscover.api.models.VocabRef vocabRef) {

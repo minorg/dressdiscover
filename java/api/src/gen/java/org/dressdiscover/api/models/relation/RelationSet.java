@@ -18,11 +18,11 @@ public final class RelationSet implements org.thryft.Struct, org.dressdiscover.a
         }
 
         protected RelationSet _build(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.relation.Relation> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-            return new RelationSet(elements, display, notes);
+            return new RelationSet(elements, display, notes, DefaultConstructionValidator.getInstance());
         }
 
         public RelationSet build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(elements, "org.dressdiscover.api.models.relation.RelationSet: missing elements"), com.google.common.base.Preconditions.checkNotNull(display, "org.dressdiscover.api.models.relation.RelationSet: missing display"), com.google.common.base.Preconditions.checkNotNull(notes, "org.dressdiscover.api.models.relation.RelationSet: missing notes"));
+            return _build(elements, display, notes);
         }
 
         public final com.google.common.base.Optional<String> getDisplay() {
@@ -162,17 +162,16 @@ public final class RelationSet implements org.thryft.Struct, org.dressdiscover.a
         }
 
         public Builder setDisplay(final com.google.common.base.Optional<String> display) {
-            this.display = com.google.common.base.Preconditions.checkNotNull(display);
+            this.display = DefaultConstructionValidator.getInstance().validateDisplay(display);
             return this;
         }
 
         public Builder setDisplay(@javax.annotation.Nullable final String display) {
-            this.display = com.google.common.base.Optional.fromNullable(display);
-            return this;
+            return setDisplay(com.google.common.base.Optional.fromNullable(display));
         }
 
         public Builder setElements(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.relation.Relation> elements) {
-            this.elements = com.google.common.base.Preconditions.checkNotNull(elements);
+            this.elements = DefaultConstructionValidator.getInstance().validateElements(elements);
             return this;
         }
 
@@ -191,13 +190,12 @@ public final class RelationSet implements org.thryft.Struct, org.dressdiscover.a
         }
 
         public Builder setNotes(final com.google.common.base.Optional<String> notes) {
-            this.notes = com.google.common.base.Preconditions.checkNotNull(notes);
+            this.notes = DefaultConstructionValidator.getInstance().validateNotes(notes);
             return this;
         }
 
         public Builder setNotes(@javax.annotation.Nullable final String notes) {
-            this.notes = com.google.common.base.Optional.fromNullable(notes);
-            return this;
+            return setNotes(com.google.common.base.Optional.fromNullable(notes));
         }
 
         public Builder unset(final String fieldThriftName) {
@@ -361,17 +359,183 @@ public final class RelationSet implements org.thryft.Struct, org.dressdiscover.a
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.relation.Relation> validateElements(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.relation.Relation> elements) throws ExceptionT;
+
+        public com.google.common.base.Optional<String> validateDisplay(final com.google.common.base.Optional<String> display) throws ExceptionT;
+
+        public com.google.common.base.Optional<String> validateNotes(final com.google.common.base.Optional<String> notes) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.relation.Relation> validateElements(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.relation.Relation> elements) throws RuntimeException {
+            if (elements == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.relation.RelationSet: elements is null");
+            }
+            if (elements.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.relation.RelationSet: elements is less than min length 1");
+            }
+            return elements;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateDisplay(final com.google.common.base.Optional<String> display) throws RuntimeException {
+            if (display == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.relation.RelationSet: display is null");
+            }
+            if (!display.isPresent()) {
+                return display;
+            }
+            if (display.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.relation.RelationSet: display is less than min length 1");
+            }
+            return display;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateNotes(final com.google.common.base.Optional<String> notes) throws RuntimeException {
+            if (notes == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.relation.RelationSet: notes is null");
+            }
+            if (!notes.isPresent()) {
+                return notes;
+            }
+            if (notes.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.relation.RelationSet: notes is less than min length 1");
+            }
+            return notes;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.relation.Relation> validateElements(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.relation.Relation> elements) {
+            return elements;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateDisplay(final com.google.common.base.Optional<String> display) {
+            return display;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateNotes(final com.google.common.base.Optional<String> notes) {
+            return notes;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.relation.Relation> validateElements(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.relation.Relation> elements) throws org.thryft.protocol.InputProtocolException {
+            if (elements == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ELEMENTS, "org.dressdiscover.api.models.relation.RelationSet: elements is null");
+            }
+            if (elements.isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ELEMENTS, "org.dressdiscover.api.models.relation.RelationSet: elements is less than min length 1");
+            }
+            return elements;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateDisplay(final com.google.common.base.Optional<String> display) throws org.thryft.protocol.InputProtocolException {
+            if (display == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DISPLAY, "org.dressdiscover.api.models.relation.RelationSet: display is null");
+            }
+            if (!display.isPresent()) {
+                return display;
+            }
+            if (display.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DISPLAY, "org.dressdiscover.api.models.relation.RelationSet: display is less than min length 1");
+            }
+            return display;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateNotes(final com.google.common.base.Optional<String> notes) throws org.thryft.protocol.InputProtocolException {
+            if (notes == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.NOTES, "org.dressdiscover.api.models.relation.RelationSet: notes is null");
+            }
+            if (!notes.isPresent()) {
+                return notes;
+            }
+            if (notes.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.NOTES, "org.dressdiscover.api.models.relation.RelationSet: notes is less than min length 1");
+            }
+            return notes;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.relation.Relation> validateElements(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.relation.Relation> elements) {
+            return elements;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateDisplay(final com.google.common.base.Optional<String> display) {
+            return display;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateNotes(final com.google.common.base.Optional<String> notes) {
+            return notes;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public RelationSet(final RelationSet other) {
-        this(other.getElements(), other.getDisplay(), other.getNotes());
+        this(other.getElements(), other.getDisplay(), other.getNotes(), NopConstructionValidator.getInstance());
     }
 
-    protected RelationSet(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.relation.Relation> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-        this.elements = elements;
-        this.display = display;
-        this.notes = notes;
+    protected RelationSet(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.relation.Relation> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes, ConstructionValidator validator) {
+        this.elements = validator.validateElements(elements);
+        this.display = validator.validateDisplay(display);
+        this.notes = validator.validateNotes(notes);
     }
 
     public static Builder builder() {
@@ -390,21 +554,21 @@ public final class RelationSet implements org.thryft.Struct, org.dressdiscover.a
      * Required factory method
      */
     public static RelationSet create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.relation.Relation> elements) {
-        return new RelationSet(org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "org.dressdiscover.api.models.relation.RelationSet: missing elements"), "org.dressdiscover.api.models.relation.RelationSet: elements is empty"), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent());
+        return new RelationSet(elements, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static RelationSet create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.relation.Relation> elements, final @javax.annotation.Nullable String display, final @javax.annotation.Nullable String notes) {
-        return new RelationSet(org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "org.dressdiscover.api.models.relation.RelationSet: missing elements"), "org.dressdiscover.api.models.relation.RelationSet: elements is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(display), "org.dressdiscover.api.models.relation.RelationSet: display is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(notes), "org.dressdiscover.api.models.relation.RelationSet: notes is empty"));
+        return new RelationSet(elements, com.google.common.base.Optional.fromNullable(display), com.google.common.base.Optional.fromNullable(notes), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static RelationSet create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.relation.Relation> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-        return new RelationSet(org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "org.dressdiscover.api.models.relation.RelationSet: missing elements"), "org.dressdiscover.api.models.relation.RelationSet: elements is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(display, "org.dressdiscover.api.models.relation.RelationSet: missing display"), "org.dressdiscover.api.models.relation.RelationSet: display is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(notes, "org.dressdiscover.api.models.relation.RelationSet: missing notes"), "org.dressdiscover.api.models.relation.RelationSet: notes is empty"));
+        return new RelationSet(elements, display, notes, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -514,11 +678,7 @@ public final class RelationSet implements org.thryft.Struct, org.dressdiscover.a
             notes = com.google.common.base.Optional.of(iprot.readString());
         }
         iprot.readListEnd();
-        try {
-            return new RelationSet(elements, display, notes);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new RelationSet(DefaultReadValidator.getInstance().validateElements(elements), DefaultReadValidator.getInstance().validateDisplay(display), DefaultReadValidator.getInstance().validateNotes(notes), NopConstructionValidator.getInstance());
     }
 
     public static RelationSet readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -579,15 +739,11 @@ public final class RelationSet implements org.thryft.Struct, org.dressdiscover.a
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new RelationSet(elements, display, notes);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new RelationSet(DefaultReadValidator.getInstance().validateElements(elements), DefaultReadValidator.getInstance().validateDisplay(display), DefaultReadValidator.getInstance().validateNotes(notes), NopConstructionValidator.getInstance());
     }
 
     public RelationSet replaceDisplay(final com.google.common.base.Optional<String> display) {
-        return new RelationSet(this.elements, display, this.notes);
+        return new RelationSet(this.elements, DefaultConstructionValidator.getInstance().validateDisplay(display), this.notes, NopConstructionValidator.getInstance());
     }
 
     public RelationSet replaceDisplay(final String display) {
@@ -595,11 +751,11 @@ public final class RelationSet implements org.thryft.Struct, org.dressdiscover.a
     }
 
     public RelationSet replaceElements(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.relation.Relation> elements) {
-        return new RelationSet(elements, this.display, this.notes);
+        return new RelationSet(DefaultConstructionValidator.getInstance().validateElements(elements), this.display, this.notes, NopConstructionValidator.getInstance());
     }
 
     public RelationSet replaceNotes(final com.google.common.base.Optional<String> notes) {
-        return new RelationSet(this.elements, this.display, notes);
+        return new RelationSet(this.elements, this.display, DefaultConstructionValidator.getInstance().validateNotes(notes), NopConstructionValidator.getInstance());
     }
 
     public RelationSet replaceNotes(final String notes) {

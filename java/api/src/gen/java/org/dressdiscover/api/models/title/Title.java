@@ -18,11 +18,11 @@ public final class Title implements org.thryft.Struct, org.dressdiscover.api.mod
         }
 
         protected Title _build(final String text, final org.dressdiscover.api.models.title.TitleType type, final com.google.common.base.Optional<Boolean> pref) {
-            return new Title(text, type, pref);
+            return new Title(text, type, pref, DefaultConstructionValidator.getInstance());
         }
 
         public Title build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.title.Title: missing text"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.title.Title: missing type"), com.google.common.base.Preconditions.checkNotNull(pref, "org.dressdiscover.api.models.title.Title: missing pref"));
+            return _build(text, type, pref);
         }
 
         public final com.google.common.base.Optional<Boolean> getPref() {
@@ -141,22 +141,21 @@ public final class Title implements org.thryft.Struct, org.dressdiscover.api.mod
         }
 
         public Builder setPref(final com.google.common.base.Optional<Boolean> pref) {
-            this.pref = com.google.common.base.Preconditions.checkNotNull(pref);
+            this.pref = DefaultConstructionValidator.getInstance().validatePref(pref);
             return this;
         }
 
         public Builder setPref(@javax.annotation.Nullable final Boolean pref) {
-            this.pref = com.google.common.base.Optional.fromNullable(pref);
-            return this;
+            return setPref(com.google.common.base.Optional.fromNullable(pref));
         }
 
         public Builder setText(final String text) {
-            this.text = com.google.common.base.Preconditions.checkNotNull(text);
+            this.text = DefaultConstructionValidator.getInstance().validateText(text);
             return this;
         }
 
         public Builder setType(final org.dressdiscover.api.models.title.TitleType type) {
-            this.type = com.google.common.base.Preconditions.checkNotNull(type);
+            this.type = DefaultConstructionValidator.getInstance().validateType(type);
             return this;
         }
 
@@ -321,17 +320,165 @@ public final class Title implements org.thryft.Struct, org.dressdiscover.api.mod
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public String validateText(final String text) throws ExceptionT;
+
+        public org.dressdiscover.api.models.title.TitleType validateType(final org.dressdiscover.api.models.title.TitleType type) throws ExceptionT;
+
+        public com.google.common.base.Optional<Boolean> validatePref(final com.google.common.base.Optional<Boolean> pref) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws RuntimeException {
+            if (text == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.title.Title: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.title.Title: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.title.TitleType validateType(final org.dressdiscover.api.models.title.TitleType type) throws RuntimeException {
+            if (type == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.title.Title: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validatePref(final com.google.common.base.Optional<Boolean> pref) throws RuntimeException {
+            if (!pref.isPresent()) {
+                return pref;
+            }
+            if (!pref.get()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.title.Title: pref is not true");
+            }
+            return pref;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.title.TitleType validateType(final org.dressdiscover.api.models.title.TitleType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validatePref(final com.google.common.base.Optional<Boolean> pref) {
+            return pref;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws org.thryft.protocol.InputProtocolException {
+            if (text == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.title.Title: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.title.Title: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.title.TitleType validateType(final org.dressdiscover.api.models.title.TitleType type) throws org.thryft.protocol.InputProtocolException {
+            if (type == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.models.title.Title: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validatePref(final com.google.common.base.Optional<Boolean> pref) throws org.thryft.protocol.InputProtocolException {
+            if (!pref.isPresent()) {
+                return pref;
+            }
+            if (!pref.get()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PREF, "org.dressdiscover.api.models.title.Title: pref is not true");
+            }
+            return pref;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.title.TitleType validateType(final org.dressdiscover.api.models.title.TitleType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validatePref(final com.google.common.base.Optional<Boolean> pref) {
+            return pref;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public Title(final Title other) {
-        this(other.getText(), other.getType(), other.getPref());
+        this(other.getText(), other.getType(), other.getPref(), NopConstructionValidator.getInstance());
     }
 
-    protected Title(final String text, final org.dressdiscover.api.models.title.TitleType type, final com.google.common.base.Optional<Boolean> pref) {
-        this.text = text;
-        this.type = type;
-        this.pref = pref;
+    protected Title(final String text, final org.dressdiscover.api.models.title.TitleType type, final com.google.common.base.Optional<Boolean> pref, ConstructionValidator validator) {
+        this.text = validator.validateText(text);
+        this.type = validator.validateType(type);
+        this.pref = validator.validatePref(pref);
     }
 
     public static Builder builder() {
@@ -350,21 +497,21 @@ public final class Title implements org.thryft.Struct, org.dressdiscover.api.mod
      * Required factory method
      */
     public static Title create(final String text, final org.dressdiscover.api.models.title.TitleType type) {
-        return new Title(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.title.Title: missing text"), "org.dressdiscover.api.models.title.Title: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.title.Title: missing type"), com.google.common.base.Optional.<Boolean> absent());
+        return new Title(text, type, com.google.common.base.Optional.<Boolean> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static Title create(final String text, final org.dressdiscover.api.models.title.TitleType type, final @javax.annotation.Nullable Boolean pref) {
-        return new Title(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.title.Title: missing text"), "org.dressdiscover.api.models.title.Title: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.title.Title: missing type"), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(pref), "org.dressdiscover.api.models.title.Title: pref must be true"));
+        return new Title(text, type, com.google.common.base.Optional.fromNullable(pref), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static Title create(final String text, final org.dressdiscover.api.models.title.TitleType type, final com.google.common.base.Optional<Boolean> pref) {
-        return new Title(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.title.Title: missing text"), "org.dressdiscover.api.models.title.Title: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.title.Title: missing type"), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(pref, "org.dressdiscover.api.models.title.Title: missing pref"), "org.dressdiscover.api.models.title.Title: pref must be true"));
+        return new Title(text, type, pref, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -455,11 +602,7 @@ public final class Title implements org.thryft.Struct, org.dressdiscover.api.mod
             pref = com.google.common.base.Optional.of(iprot.readBool());
         }
         iprot.readListEnd();
-        try {
-            return new Title(text, type, pref);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Title(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validatePref(pref), NopConstructionValidator.getInstance());
     }
 
     public static Title readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -505,15 +648,11 @@ public final class Title implements org.thryft.Struct, org.dressdiscover.api.mod
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new Title(text, type, pref);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Title(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validatePref(pref), NopConstructionValidator.getInstance());
     }
 
     public Title replacePref(final com.google.common.base.Optional<Boolean> pref) {
-        return new Title(this.text, this.type, pref);
+        return new Title(this.text, this.type, DefaultConstructionValidator.getInstance().validatePref(pref), NopConstructionValidator.getInstance());
     }
 
     public Title replacePref(final boolean pref) {
@@ -521,11 +660,11 @@ public final class Title implements org.thryft.Struct, org.dressdiscover.api.mod
     }
 
     public Title replaceText(final String text) {
-        return new Title(text, this.type, this.pref);
+        return new Title(DefaultConstructionValidator.getInstance().validateText(text), this.type, this.pref, NopConstructionValidator.getInstance());
     }
 
     public Title replaceType(final org.dressdiscover.api.models.title.TitleType type) {
-        return new Title(this.text, type, this.pref);
+        return new Title(this.text, DefaultConstructionValidator.getInstance().validateType(type), this.pref, NopConstructionValidator.getInstance());
     }
 
     @Override

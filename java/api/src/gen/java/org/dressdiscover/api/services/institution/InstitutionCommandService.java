@@ -28,11 +28,11 @@ public interface InstitutionCommandService {
                 }
 
                 protected DeleteInstitutionByIdRequest _build(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                    return new DeleteInstitutionByIdRequest(id);
+                    return new DeleteInstitutionByIdRequest(id, DefaultConstructionValidator.getInstance());
                 }
 
                 public DeleteInstitutionByIdRequest build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.DeleteInstitutionByIdRequest: missing id"));
+                    return _build(id);
                 }
 
                 public final org.dressdiscover.api.models.institution.InstitutionId getId() {
@@ -119,7 +119,7 @@ public interface InstitutionCommandService {
                 }
 
                 public Builder setId(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                    this.id = com.google.common.base.Preconditions.checkNotNull(id);
+                    this.id = DefaultConstructionValidator.getInstance().validateId(id);
                     return this;
                 }
 
@@ -272,15 +272,95 @@ public interface InstitutionCommandService {
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) throws ExceptionT;
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) throws RuntimeException {
+                    if (id == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.institution.DeleteInstitutionByIdRequest: id is null");
+                    }
+                    return id;
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) {
+                    return id;
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) throws org.thryft.protocol.InputProtocolException {
+                    if (id == null) {
+                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.services.institution.DeleteInstitutionByIdRequest: id is null");
+                    }
+                    return id;
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) {
+                    return id;
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             /**
              * Copy constructor
              */
             public DeleteInstitutionByIdRequest(final DeleteInstitutionByIdRequest other) {
-                this(other.getId());
+                this(other.getId(), NopConstructionValidator.getInstance());
             }
 
-            protected DeleteInstitutionByIdRequest(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                this.id = id;
+            protected DeleteInstitutionByIdRequest(final org.dressdiscover.api.models.institution.InstitutionId id, ConstructionValidator validator) {
+                this.id = validator.validateId(id);
             }
 
             public static Builder builder() {
@@ -299,7 +379,7 @@ public interface InstitutionCommandService {
              * Optional factory method
              */
             public static DeleteInstitutionByIdRequest create(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                return new DeleteInstitutionByIdRequest(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.DeleteInstitutionByIdRequest: missing id"));
+                return new DeleteInstitutionByIdRequest(id, DefaultConstructionValidator.getInstance());
             }
 
             @Override
@@ -372,11 +452,7 @@ public interface InstitutionCommandService {
                      throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 iprot.readListEnd();
-                try {
-                    return new DeleteInstitutionByIdRequest(id);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new DeleteInstitutionByIdRequest(DefaultReadValidator.getInstance().validateId(id), NopConstructionValidator.getInstance());
             }
 
             public static DeleteInstitutionByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -410,15 +486,11 @@ public interface InstitutionCommandService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new DeleteInstitutionByIdRequest(id);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new DeleteInstitutionByIdRequest(DefaultReadValidator.getInstance().validateId(id), NopConstructionValidator.getInstance());
             }
 
             public DeleteInstitutionByIdRequest replaceId(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                return new DeleteInstitutionByIdRequest(id);
+                return new DeleteInstitutionByIdRequest(DefaultConstructionValidator.getInstance().validateId(id), NopConstructionValidator.getInstance());
             }
 
             @Override
@@ -569,6 +641,59 @@ public interface InstitutionCommandService {
                 }
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             public DeleteInstitutionByIdResponse() {
             }
 
@@ -639,11 +764,7 @@ public interface InstitutionCommandService {
             public static DeleteInstitutionByIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                 iprot.readListBegin();
                 iprot.readListEnd();
-                try {
-                    return new DeleteInstitutionByIdResponse();
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new DeleteInstitutionByIdResponse();
             }
 
             public static DeleteInstitutionByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -667,11 +788,7 @@ public interface InstitutionCommandService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new DeleteInstitutionByIdResponse();
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new DeleteInstitutionByIdResponse();
             }
 
             @Override
@@ -711,11 +828,11 @@ public interface InstitutionCommandService {
                 }
 
                 protected PutInstitutionRequest _build(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution) {
-                    return new PutInstitutionRequest(id, institution);
+                    return new PutInstitutionRequest(id, institution, DefaultConstructionValidator.getInstance());
                 }
 
                 public PutInstitutionRequest build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.PutInstitutionRequest: missing id"), com.google.common.base.Preconditions.checkNotNull(institution, "org.dressdiscover.api.services.institution.PutInstitutionRequest: missing institution"));
+                    return _build(id, institution);
                 }
 
                 public final org.dressdiscover.api.models.institution.InstitutionId getId() {
@@ -812,7 +929,7 @@ public interface InstitutionCommandService {
                 }
 
                 public Builder setId(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                    this.id = com.google.common.base.Preconditions.checkNotNull(id);
+                    this.id = DefaultConstructionValidator.getInstance().validateId(id);
                     return this;
                 }
 
@@ -826,7 +943,7 @@ public interface InstitutionCommandService {
                 }
 
                 public Builder setInstitution(final org.dressdiscover.api.models.institution.Institution institution) {
-                    this.institution = com.google.common.base.Preconditions.checkNotNull(institution);
+                    this.institution = DefaultConstructionValidator.getInstance().validateInstitution(institution);
                     return this;
                 }
 
@@ -981,16 +1098,124 @@ public interface InstitutionCommandService {
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) throws ExceptionT;
+
+                public org.dressdiscover.api.models.institution.Institution validateInstitution(final org.dressdiscover.api.models.institution.Institution institution) throws ExceptionT;
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) throws RuntimeException {
+                    if (id == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.institution.PutInstitutionRequest: id is null");
+                    }
+                    return id;
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.Institution validateInstitution(final org.dressdiscover.api.models.institution.Institution institution) throws RuntimeException {
+                    if (institution == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.institution.PutInstitutionRequest: institution is null");
+                    }
+                    return institution;
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) {
+                    return id;
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.Institution validateInstitution(final org.dressdiscover.api.models.institution.Institution institution) {
+                    return institution;
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) throws org.thryft.protocol.InputProtocolException {
+                    if (id == null) {
+                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.services.institution.PutInstitutionRequest: id is null");
+                    }
+                    return id;
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.Institution validateInstitution(final org.dressdiscover.api.models.institution.Institution institution) throws org.thryft.protocol.InputProtocolException {
+                    if (institution == null) {
+                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INSTITUTION, "org.dressdiscover.api.services.institution.PutInstitutionRequest: institution is null");
+                    }
+                    return institution;
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) {
+                    return id;
+                }
+
+                @Override
+                public org.dressdiscover.api.models.institution.Institution validateInstitution(final org.dressdiscover.api.models.institution.Institution institution) {
+                    return institution;
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             /**
              * Copy constructor
              */
             public PutInstitutionRequest(final PutInstitutionRequest other) {
-                this(other.getId(), other.getInstitution());
+                this(other.getId(), other.getInstitution(), NopConstructionValidator.getInstance());
             }
 
-            protected PutInstitutionRequest(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution) {
-                this.id = id;
-                this.institution = institution;
+            protected PutInstitutionRequest(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution, ConstructionValidator validator) {
+                this.id = validator.validateId(id);
+                this.institution = validator.validateInstitution(institution);
             }
 
             public static Builder builder() {
@@ -1009,7 +1234,7 @@ public interface InstitutionCommandService {
              * Optional factory method
              */
             public static PutInstitutionRequest create(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution) {
-                return new PutInstitutionRequest(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.PutInstitutionRequest: missing id"), com.google.common.base.Preconditions.checkNotNull(institution, "org.dressdiscover.api.services.institution.PutInstitutionRequest: missing institution"));
+                return new PutInstitutionRequest(id, institution, DefaultConstructionValidator.getInstance());
             }
 
             @Override
@@ -1091,11 +1316,7 @@ public interface InstitutionCommandService {
                 }
                 institution = org.dressdiscover.api.models.institution.Institution.readAsStruct(iprot);
                 iprot.readListEnd();
-                try {
-                    return new PutInstitutionRequest(id, institution);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new PutInstitutionRequest(DefaultReadValidator.getInstance().validateId(id), DefaultReadValidator.getInstance().validateInstitution(institution), NopConstructionValidator.getInstance());
             }
 
             public static PutInstitutionRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1134,19 +1355,15 @@ public interface InstitutionCommandService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new PutInstitutionRequest(id, institution);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new PutInstitutionRequest(DefaultReadValidator.getInstance().validateId(id), DefaultReadValidator.getInstance().validateInstitution(institution), NopConstructionValidator.getInstance());
             }
 
             public PutInstitutionRequest replaceId(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                return new PutInstitutionRequest(id, this.institution);
+                return new PutInstitutionRequest(DefaultConstructionValidator.getInstance().validateId(id), this.institution, NopConstructionValidator.getInstance());
             }
 
             public PutInstitutionRequest replaceInstitution(final org.dressdiscover.api.models.institution.Institution institution) {
-                return new PutInstitutionRequest(this.id, institution);
+                return new PutInstitutionRequest(this.id, DefaultConstructionValidator.getInstance().validateInstitution(institution), NopConstructionValidator.getInstance());
             }
 
             @Override
@@ -1305,6 +1522,59 @@ public interface InstitutionCommandService {
                 }
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             public PutInstitutionResponse() {
             }
 
@@ -1375,11 +1645,7 @@ public interface InstitutionCommandService {
             public static PutInstitutionResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                 iprot.readListBegin();
                 iprot.readListEnd();
-                try {
-                    return new PutInstitutionResponse();
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new PutInstitutionResponse();
             }
 
             public static PutInstitutionResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1403,11 +1669,7 @@ public interface InstitutionCommandService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new PutInstitutionResponse();
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new PutInstitutionResponse();
             }
 
             @Override

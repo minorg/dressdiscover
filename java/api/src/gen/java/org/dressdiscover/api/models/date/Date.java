@@ -22,11 +22,11 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.mode
         }
 
         protected Date _build(final org.dressdiscover.api.models.date.DateBound earliestDate, final org.dressdiscover.api.models.date.DateBound latestDate, final org.dressdiscover.api.models.date.DateType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<String> source) {
-            return new Date(earliestDate, latestDate, type, href, source);
+            return new Date(earliestDate, latestDate, type, href, source, DefaultConstructionValidator.getInstance());
         }
 
         public Date build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(earliestDate, "org.dressdiscover.api.models.date.Date: missing earliestDate"), com.google.common.base.Preconditions.checkNotNull(latestDate, "org.dressdiscover.api.models.date.Date: missing latestDate"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.date.Date: missing type"), com.google.common.base.Preconditions.checkNotNull(href, "org.dressdiscover.api.models.date.Date: missing href"), com.google.common.base.Preconditions.checkNotNull(source, "org.dressdiscover.api.models.date.Date: missing source"));
+            return _build(earliestDate, latestDate, type, href, source);
         }
 
         public final org.dressdiscover.api.models.date.DateBound getEarliestDate() {
@@ -165,18 +165,17 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.mode
         }
 
         public Builder setEarliestDate(final org.dressdiscover.api.models.date.DateBound earliestDate) {
-            this.earliestDate = com.google.common.base.Preconditions.checkNotNull(earliestDate);
+            this.earliestDate = DefaultConstructionValidator.getInstance().validateEarliestDate(earliestDate);
             return this;
         }
 
         public Builder setHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) {
-            this.href = com.google.common.base.Preconditions.checkNotNull(href);
+            this.href = DefaultConstructionValidator.getInstance().validateHref(href);
             return this;
         }
 
         public Builder setHref(@javax.annotation.Nullable final org.thryft.native_.Url href) {
-            this.href = com.google.common.base.Optional.fromNullable(href);
-            return this;
+            return setHref(com.google.common.base.Optional.fromNullable(href));
         }
 
         public Builder setIfPresent(final Date other) {
@@ -196,22 +195,21 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.mode
         }
 
         public Builder setLatestDate(final org.dressdiscover.api.models.date.DateBound latestDate) {
-            this.latestDate = com.google.common.base.Preconditions.checkNotNull(latestDate);
+            this.latestDate = DefaultConstructionValidator.getInstance().validateLatestDate(latestDate);
             return this;
         }
 
         public Builder setSource(final com.google.common.base.Optional<String> source) {
-            this.source = com.google.common.base.Preconditions.checkNotNull(source);
+            this.source = DefaultConstructionValidator.getInstance().validateSource(source);
             return this;
         }
 
         public Builder setSource(@javax.annotation.Nullable final String source) {
-            this.source = com.google.common.base.Optional.fromNullable(source);
-            return this;
+            return setSource(com.google.common.base.Optional.fromNullable(source));
         }
 
         public Builder setType(final org.dressdiscover.api.models.date.DateType type) {
-            this.type = com.google.common.base.Preconditions.checkNotNull(type);
+            this.type = DefaultConstructionValidator.getInstance().validateType(type);
             return this;
         }
 
@@ -396,19 +394,229 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.mode
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public org.dressdiscover.api.models.date.DateBound validateEarliestDate(final org.dressdiscover.api.models.date.DateBound earliestDate) throws ExceptionT;
+
+        public org.dressdiscover.api.models.date.DateBound validateLatestDate(final org.dressdiscover.api.models.date.DateBound latestDate) throws ExceptionT;
+
+        public org.dressdiscover.api.models.date.DateType validateType(final org.dressdiscover.api.models.date.DateType type) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) throws ExceptionT;
+
+        public com.google.common.base.Optional<String> validateSource(final com.google.common.base.Optional<String> source) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.date.DateBound validateEarliestDate(final org.dressdiscover.api.models.date.DateBound earliestDate) throws RuntimeException {
+            if (earliestDate == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.date.Date: earliestDate is null");
+            }
+            return earliestDate;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.date.DateBound validateLatestDate(final org.dressdiscover.api.models.date.DateBound latestDate) throws RuntimeException {
+            if (latestDate == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.date.Date: latestDate is null");
+            }
+            return latestDate;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.date.DateType validateType(final org.dressdiscover.api.models.date.DateType type) throws RuntimeException {
+            if (type == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.date.Date: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) throws RuntimeException {
+            if (href == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.date.Date: href is null");
+            }
+            if (!href.isPresent()) {
+                return href;
+            }
+            return href;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateSource(final com.google.common.base.Optional<String> source) throws RuntimeException {
+            if (source == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.date.Date: source is null");
+            }
+            if (!source.isPresent()) {
+                return source;
+            }
+            if (source.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.date.Date: source is less than min length 1");
+            }
+            return source;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.date.DateBound validateEarliestDate(final org.dressdiscover.api.models.date.DateBound earliestDate) {
+            return earliestDate;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.date.DateBound validateLatestDate(final org.dressdiscover.api.models.date.DateBound latestDate) {
+            return latestDate;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.date.DateType validateType(final org.dressdiscover.api.models.date.DateType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) {
+            return href;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateSource(final com.google.common.base.Optional<String> source) {
+            return source;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.date.DateBound validateEarliestDate(final org.dressdiscover.api.models.date.DateBound earliestDate) throws org.thryft.protocol.InputProtocolException {
+            if (earliestDate == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EARLIEST_DATE, "org.dressdiscover.api.models.date.Date: earliestDate is null");
+            }
+            return earliestDate;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.date.DateBound validateLatestDate(final org.dressdiscover.api.models.date.DateBound latestDate) throws org.thryft.protocol.InputProtocolException {
+            if (latestDate == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LATEST_DATE, "org.dressdiscover.api.models.date.Date: latestDate is null");
+            }
+            return latestDate;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.date.DateType validateType(final org.dressdiscover.api.models.date.DateType type) throws org.thryft.protocol.InputProtocolException {
+            if (type == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.models.date.Date: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) throws org.thryft.protocol.InputProtocolException {
+            if (href == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.HREF, "org.dressdiscover.api.models.date.Date: href is null");
+            }
+            if (!href.isPresent()) {
+                return href;
+            }
+            return href;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateSource(final com.google.common.base.Optional<String> source) throws org.thryft.protocol.InputProtocolException {
+            if (source == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SOURCE, "org.dressdiscover.api.models.date.Date: source is null");
+            }
+            if (!source.isPresent()) {
+                return source;
+            }
+            if (source.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SOURCE, "org.dressdiscover.api.models.date.Date: source is less than min length 1");
+            }
+            return source;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.date.DateBound validateEarliestDate(final org.dressdiscover.api.models.date.DateBound earliestDate) {
+            return earliestDate;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.date.DateBound validateLatestDate(final org.dressdiscover.api.models.date.DateBound latestDate) {
+            return latestDate;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.date.DateType validateType(final org.dressdiscover.api.models.date.DateType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) {
+            return href;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateSource(final com.google.common.base.Optional<String> source) {
+            return source;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public Date(final Date other) {
-        this(other.getEarliestDate(), other.getLatestDate(), other.getType(), other.getHref(), other.getSource());
+        this(other.getEarliestDate(), other.getLatestDate(), other.getType(), other.getHref(), other.getSource(), NopConstructionValidator.getInstance());
     }
 
-    protected Date(final org.dressdiscover.api.models.date.DateBound earliestDate, final org.dressdiscover.api.models.date.DateBound latestDate, final org.dressdiscover.api.models.date.DateType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<String> source) {
-        this.earliestDate = earliestDate;
-        this.latestDate = latestDate;
-        this.type = type;
-        this.href = href;
-        this.source = source;
+    protected Date(final org.dressdiscover.api.models.date.DateBound earliestDate, final org.dressdiscover.api.models.date.DateBound latestDate, final org.dressdiscover.api.models.date.DateType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<String> source, ConstructionValidator validator) {
+        this.earliestDate = validator.validateEarliestDate(earliestDate);
+        this.latestDate = validator.validateLatestDate(latestDate);
+        this.type = validator.validateType(type);
+        this.href = validator.validateHref(href);
+        this.source = validator.validateSource(source);
     }
 
     public static Builder builder() {
@@ -427,21 +635,21 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.mode
      * Required factory method
      */
     public static Date create(final org.dressdiscover.api.models.date.DateBound earliestDate, final org.dressdiscover.api.models.date.DateBound latestDate, final org.dressdiscover.api.models.date.DateType type) {
-        return new Date(com.google.common.base.Preconditions.checkNotNull(earliestDate, "org.dressdiscover.api.models.date.Date: missing earliestDate"), com.google.common.base.Preconditions.checkNotNull(latestDate, "org.dressdiscover.api.models.date.Date: missing latestDate"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.date.Date: missing type"), com.google.common.base.Optional.<org.thryft.native_.Url> absent(), com.google.common.base.Optional.<String> absent());
+        return new Date(earliestDate, latestDate, type, com.google.common.base.Optional.<org.thryft.native_.Url> absent(), com.google.common.base.Optional.<String> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static Date create(final org.dressdiscover.api.models.date.DateBound earliestDate, final org.dressdiscover.api.models.date.DateBound latestDate, final org.dressdiscover.api.models.date.DateType type, final @javax.annotation.Nullable org.thryft.native_.Url href, final @javax.annotation.Nullable String source) {
-        return new Date(com.google.common.base.Preconditions.checkNotNull(earliestDate, "org.dressdiscover.api.models.date.Date: missing earliestDate"), com.google.common.base.Preconditions.checkNotNull(latestDate, "org.dressdiscover.api.models.date.Date: missing latestDate"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.date.Date: missing type"), com.google.common.base.Optional.fromNullable(href), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(source), "org.dressdiscover.api.models.date.Date: source is empty"));
+        return new Date(earliestDate, latestDate, type, com.google.common.base.Optional.fromNullable(href), com.google.common.base.Optional.fromNullable(source), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static Date create(final org.dressdiscover.api.models.date.DateBound earliestDate, final org.dressdiscover.api.models.date.DateBound latestDate, final org.dressdiscover.api.models.date.DateType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<String> source) {
-        return new Date(com.google.common.base.Preconditions.checkNotNull(earliestDate, "org.dressdiscover.api.models.date.Date: missing earliestDate"), com.google.common.base.Preconditions.checkNotNull(latestDate, "org.dressdiscover.api.models.date.Date: missing latestDate"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.date.Date: missing type"), com.google.common.base.Preconditions.checkNotNull(href, "org.dressdiscover.api.models.date.Date: missing href"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(source, "org.dressdiscover.api.models.date.Date: missing source"), "org.dressdiscover.api.models.date.Date: source is empty"));
+        return new Date(earliestDate, latestDate, type, href, source, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -557,11 +765,7 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.mode
             source = com.google.common.base.Optional.of(iprot.readString());
         }
         iprot.readListEnd();
-        try {
-            return new Date(earliestDate, latestDate, type, href, source);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Date(DefaultReadValidator.getInstance().validateEarliestDate(earliestDate), DefaultReadValidator.getInstance().validateLatestDate(latestDate), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateHref(href), DefaultReadValidator.getInstance().validateSource(source), NopConstructionValidator.getInstance());
     }
 
     public static Date readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -624,19 +828,15 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.mode
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new Date(earliestDate, latestDate, type, href, source);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Date(DefaultReadValidator.getInstance().validateEarliestDate(earliestDate), DefaultReadValidator.getInstance().validateLatestDate(latestDate), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateHref(href), DefaultReadValidator.getInstance().validateSource(source), NopConstructionValidator.getInstance());
     }
 
     public Date replaceEarliestDate(final org.dressdiscover.api.models.date.DateBound earliestDate) {
-        return new Date(earliestDate, this.latestDate, this.type, this.href, this.source);
+        return new Date(DefaultConstructionValidator.getInstance().validateEarliestDate(earliestDate), this.latestDate, this.type, this.href, this.source, NopConstructionValidator.getInstance());
     }
 
     public Date replaceHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) {
-        return new Date(this.earliestDate, this.latestDate, this.type, href, this.source);
+        return new Date(this.earliestDate, this.latestDate, this.type, DefaultConstructionValidator.getInstance().validateHref(href), this.source, NopConstructionValidator.getInstance());
     }
 
     public Date replaceHref(final org.thryft.native_.Url href) {
@@ -644,11 +844,11 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.mode
     }
 
     public Date replaceLatestDate(final org.dressdiscover.api.models.date.DateBound latestDate) {
-        return new Date(this.earliestDate, latestDate, this.type, this.href, this.source);
+        return new Date(this.earliestDate, DefaultConstructionValidator.getInstance().validateLatestDate(latestDate), this.type, this.href, this.source, NopConstructionValidator.getInstance());
     }
 
     public Date replaceSource(final com.google.common.base.Optional<String> source) {
-        return new Date(this.earliestDate, this.latestDate, this.type, this.href, source);
+        return new Date(this.earliestDate, this.latestDate, this.type, this.href, DefaultConstructionValidator.getInstance().validateSource(source), NopConstructionValidator.getInstance());
     }
 
     public Date replaceSource(final String source) {
@@ -656,7 +856,7 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.mode
     }
 
     public Date replaceType(final org.dressdiscover.api.models.date.DateType type) {
-        return new Date(this.earliestDate, this.latestDate, type, this.href, this.source);
+        return new Date(this.earliestDate, this.latestDate, DefaultConstructionValidator.getInstance().validateType(type), this.href, this.source, NopConstructionValidator.getInstance());
     }
 
     @Override

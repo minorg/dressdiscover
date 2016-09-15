@@ -18,11 +18,11 @@ public final class AgentDates implements org.thryft.Struct {
         }
 
         protected AgentDates _build(final org.dressdiscover.api.models.agent.AgentDatesType type, final com.google.common.base.Optional<java.util.Date> earliestDate, final com.google.common.base.Optional<java.util.Date> latestDate) {
-            return new AgentDates(type, earliestDate, latestDate);
+            return new AgentDates(type, earliestDate, latestDate, DefaultConstructionValidator.getInstance());
         }
 
         public AgentDates build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.agent.AgentDates: missing type"), com.google.common.base.Preconditions.checkNotNull(earliestDate, "org.dressdiscover.api.models.agent.AgentDates: missing earliestDate"), com.google.common.base.Preconditions.checkNotNull(latestDate, "org.dressdiscover.api.models.agent.AgentDates: missing latestDate"));
+            return _build(type, earliestDate, latestDate);
         }
 
         public final com.google.common.base.Optional<java.util.Date> getEarliestDate() {
@@ -143,13 +143,12 @@ public final class AgentDates implements org.thryft.Struct {
         }
 
         public Builder setEarliestDate(final com.google.common.base.Optional<java.util.Date> earliestDate) {
-            this.earliestDate = com.google.common.base.Preconditions.checkNotNull(earliestDate);
+            this.earliestDate = DefaultConstructionValidator.getInstance().validateEarliestDate(earliestDate);
             return this;
         }
 
         public Builder setEarliestDate(@javax.annotation.Nullable final java.util.Date earliestDate) {
-            this.earliestDate = com.google.common.base.Optional.fromNullable(earliestDate);
-            return this;
+            return setEarliestDate(com.google.common.base.Optional.fromNullable(earliestDate));
         }
 
         public Builder setIfPresent(final AgentDates other) {
@@ -167,17 +166,16 @@ public final class AgentDates implements org.thryft.Struct {
         }
 
         public Builder setLatestDate(final com.google.common.base.Optional<java.util.Date> latestDate) {
-            this.latestDate = com.google.common.base.Preconditions.checkNotNull(latestDate);
+            this.latestDate = DefaultConstructionValidator.getInstance().validateLatestDate(latestDate);
             return this;
         }
 
         public Builder setLatestDate(@javax.annotation.Nullable final java.util.Date latestDate) {
-            this.latestDate = com.google.common.base.Optional.fromNullable(latestDate);
-            return this;
+            return setLatestDate(com.google.common.base.Optional.fromNullable(latestDate));
         }
 
         public Builder setType(final org.dressdiscover.api.models.agent.AgentDatesType type) {
-            this.type = com.google.common.base.Preconditions.checkNotNull(type);
+            this.type = DefaultConstructionValidator.getInstance().validateType(type);
             return this;
         }
 
@@ -342,17 +340,165 @@ public final class AgentDates implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public org.dressdiscover.api.models.agent.AgentDatesType validateType(final org.dressdiscover.api.models.agent.AgentDatesType type) throws ExceptionT;
+
+        public com.google.common.base.Optional<java.util.Date> validateEarliestDate(final com.google.common.base.Optional<java.util.Date> earliestDate) throws ExceptionT;
+
+        public com.google.common.base.Optional<java.util.Date> validateLatestDate(final com.google.common.base.Optional<java.util.Date> latestDate) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.agent.AgentDatesType validateType(final org.dressdiscover.api.models.agent.AgentDatesType type) throws RuntimeException {
+            if (type == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.agent.AgentDates: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<java.util.Date> validateEarliestDate(final com.google.common.base.Optional<java.util.Date> earliestDate) throws RuntimeException {
+            if (earliestDate == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.agent.AgentDates: earliestDate is null");
+            }
+            if (!earliestDate.isPresent()) {
+                return earliestDate;
+            }
+            return earliestDate;
+        }
+
+        @Override
+        public com.google.common.base.Optional<java.util.Date> validateLatestDate(final com.google.common.base.Optional<java.util.Date> latestDate) throws RuntimeException {
+            if (latestDate == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.agent.AgentDates: latestDate is null");
+            }
+            if (!latestDate.isPresent()) {
+                return latestDate;
+            }
+            return latestDate;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.agent.AgentDatesType validateType(final org.dressdiscover.api.models.agent.AgentDatesType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<java.util.Date> validateEarliestDate(final com.google.common.base.Optional<java.util.Date> earliestDate) {
+            return earliestDate;
+        }
+
+        @Override
+        public com.google.common.base.Optional<java.util.Date> validateLatestDate(final com.google.common.base.Optional<java.util.Date> latestDate) {
+            return latestDate;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.agent.AgentDatesType validateType(final org.dressdiscover.api.models.agent.AgentDatesType type) throws org.thryft.protocol.InputProtocolException {
+            if (type == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.models.agent.AgentDates: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<java.util.Date> validateEarliestDate(final com.google.common.base.Optional<java.util.Date> earliestDate) throws org.thryft.protocol.InputProtocolException {
+            if (earliestDate == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EARLIEST_DATE, "org.dressdiscover.api.models.agent.AgentDates: earliestDate is null");
+            }
+            if (!earliestDate.isPresent()) {
+                return earliestDate;
+            }
+            return earliestDate;
+        }
+
+        @Override
+        public com.google.common.base.Optional<java.util.Date> validateLatestDate(final com.google.common.base.Optional<java.util.Date> latestDate) throws org.thryft.protocol.InputProtocolException {
+            if (latestDate == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LATEST_DATE, "org.dressdiscover.api.models.agent.AgentDates: latestDate is null");
+            }
+            if (!latestDate.isPresent()) {
+                return latestDate;
+            }
+            return latestDate;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.agent.AgentDatesType validateType(final org.dressdiscover.api.models.agent.AgentDatesType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<java.util.Date> validateEarliestDate(final com.google.common.base.Optional<java.util.Date> earliestDate) {
+            return earliestDate;
+        }
+
+        @Override
+        public com.google.common.base.Optional<java.util.Date> validateLatestDate(final com.google.common.base.Optional<java.util.Date> latestDate) {
+            return latestDate;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public AgentDates(final AgentDates other) {
-        this(other.getType(), other.getEarliestDate(), other.getLatestDate());
+        this(other.getType(), other.getEarliestDate(), other.getLatestDate(), NopConstructionValidator.getInstance());
     }
 
-    protected AgentDates(final org.dressdiscover.api.models.agent.AgentDatesType type, final com.google.common.base.Optional<java.util.Date> earliestDate, final com.google.common.base.Optional<java.util.Date> latestDate) {
-        this.type = type;
-        this.earliestDate = earliestDate;
-        this.latestDate = latestDate;
+    protected AgentDates(final org.dressdiscover.api.models.agent.AgentDatesType type, final com.google.common.base.Optional<java.util.Date> earliestDate, final com.google.common.base.Optional<java.util.Date> latestDate, ConstructionValidator validator) {
+        this.type = validator.validateType(type);
+        this.earliestDate = validator.validateEarliestDate(earliestDate);
+        this.latestDate = validator.validateLatestDate(latestDate);
     }
 
     public static Builder builder() {
@@ -371,21 +517,21 @@ public final class AgentDates implements org.thryft.Struct {
      * Required factory method
      */
     public static AgentDates create(final org.dressdiscover.api.models.agent.AgentDatesType type) {
-        return new AgentDates(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.agent.AgentDates: missing type"), com.google.common.base.Optional.<java.util.Date> absent(), com.google.common.base.Optional.<java.util.Date> absent());
+        return new AgentDates(type, com.google.common.base.Optional.<java.util.Date> absent(), com.google.common.base.Optional.<java.util.Date> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static AgentDates create(final org.dressdiscover.api.models.agent.AgentDatesType type, final @javax.annotation.Nullable java.util.Date earliestDate, final @javax.annotation.Nullable java.util.Date latestDate) {
-        return new AgentDates(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.agent.AgentDates: missing type"), com.google.common.base.Optional.fromNullable(earliestDate), com.google.common.base.Optional.fromNullable(latestDate));
+        return new AgentDates(type, com.google.common.base.Optional.fromNullable(earliestDate), com.google.common.base.Optional.fromNullable(latestDate), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static AgentDates create(final org.dressdiscover.api.models.agent.AgentDatesType type, final com.google.common.base.Optional<java.util.Date> earliestDate, final com.google.common.base.Optional<java.util.Date> latestDate) {
-        return new AgentDates(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.agent.AgentDates: missing type"), com.google.common.base.Preconditions.checkNotNull(earliestDate, "org.dressdiscover.api.models.agent.AgentDates: missing earliestDate"), com.google.common.base.Preconditions.checkNotNull(latestDate, "org.dressdiscover.api.models.agent.AgentDates: missing latestDate"));
+        return new AgentDates(type, earliestDate, latestDate, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -486,11 +632,7 @@ public final class AgentDates implements org.thryft.Struct {
             }
         }
         iprot.readListEnd();
-        try {
-            return new AgentDates(type, earliestDate, latestDate);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new AgentDates(DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateEarliestDate(earliestDate), DefaultReadValidator.getInstance().validateLatestDate(latestDate), NopConstructionValidator.getInstance());
     }
 
     public static AgentDates readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -542,15 +684,11 @@ public final class AgentDates implements org.thryft.Struct {
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new AgentDates(type, earliestDate, latestDate);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new AgentDates(DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateEarliestDate(earliestDate), DefaultReadValidator.getInstance().validateLatestDate(latestDate), NopConstructionValidator.getInstance());
     }
 
     public AgentDates replaceEarliestDate(final com.google.common.base.Optional<java.util.Date> earliestDate) {
-        return new AgentDates(this.type, earliestDate, this.latestDate);
+        return new AgentDates(this.type, DefaultConstructionValidator.getInstance().validateEarliestDate(earliestDate), this.latestDate, NopConstructionValidator.getInstance());
     }
 
     public AgentDates replaceEarliestDate(final java.util.Date earliestDate) {
@@ -558,7 +696,7 @@ public final class AgentDates implements org.thryft.Struct {
     }
 
     public AgentDates replaceLatestDate(final com.google.common.base.Optional<java.util.Date> latestDate) {
-        return new AgentDates(this.type, this.earliestDate, latestDate);
+        return new AgentDates(this.type, this.earliestDate, DefaultConstructionValidator.getInstance().validateLatestDate(latestDate), NopConstructionValidator.getInstance());
     }
 
     public AgentDates replaceLatestDate(final java.util.Date latestDate) {
@@ -566,7 +704,7 @@ public final class AgentDates implements org.thryft.Struct {
     }
 
     public AgentDates replaceType(final org.dressdiscover.api.models.agent.AgentDatesType type) {
-        return new AgentDates(type, this.earliestDate, this.latestDate);
+        return new AgentDates(DefaultConstructionValidator.getInstance().validateType(type), this.earliestDate, this.latestDate, NopConstructionValidator.getInstance());
     }
 
     @Override

@@ -19,11 +19,11 @@ public final class UserBookmark implements org.thryft.Struct, org.thryft.waf.api
         }
 
         protected UserBookmark _build(final String name, final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<String> folder, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) {
-            return new UserBookmark(name, userId, folder, objectId, objectQuery);
+            return new UserBookmark(name, userId, folder, objectId, objectQuery, DefaultConstructionValidator.getInstance());
         }
 
         public UserBookmark build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.user.UserBookmark: missing name"), com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.models.user.UserBookmark: missing userId"), com.google.common.base.Preconditions.checkNotNull(folder, "org.dressdiscover.api.models.user.UserBookmark: missing folder"), com.google.common.base.Preconditions.checkNotNull(objectId, "org.dressdiscover.api.models.user.UserBookmark: missing objectId"), com.google.common.base.Preconditions.checkNotNull(objectQuery, "org.dressdiscover.api.models.user.UserBookmark: missing objectQuery"));
+            return _build(name, userId, folder, objectId, objectQuery);
         }
 
         public final com.google.common.base.Optional<String> getFolder() {
@@ -162,13 +162,12 @@ public final class UserBookmark implements org.thryft.Struct, org.thryft.waf.api
         }
 
         public Builder setFolder(final com.google.common.base.Optional<String> folder) {
-            this.folder = com.google.common.base.Preconditions.checkNotNull(folder);
+            this.folder = DefaultConstructionValidator.getInstance().validateFolder(folder);
             return this;
         }
 
         public Builder setFolder(@javax.annotation.Nullable final String folder) {
-            this.folder = com.google.common.base.Optional.fromNullable(folder);
-            return this;
+            return setFolder(com.google.common.base.Optional.fromNullable(folder));
         }
 
         public Builder setIfPresent(final UserBookmark other) {
@@ -190,32 +189,30 @@ public final class UserBookmark implements org.thryft.Struct, org.thryft.waf.api
         }
 
         public Builder setName(final String name) {
-            this.name = com.google.common.base.Preconditions.checkNotNull(name);
+            this.name = DefaultConstructionValidator.getInstance().validateName(name);
             return this;
         }
 
         public Builder setObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId) {
-            this.objectId = com.google.common.base.Preconditions.checkNotNull(objectId);
+            this.objectId = DefaultConstructionValidator.getInstance().validateObjectId(objectId);
             return this;
         }
 
         public Builder setObjectId(@javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectId objectId) {
-            this.objectId = com.google.common.base.Optional.fromNullable(objectId);
-            return this;
+            return setObjectId(com.google.common.base.Optional.fromNullable(objectId));
         }
 
         public Builder setObjectQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) {
-            this.objectQuery = com.google.common.base.Preconditions.checkNotNull(objectQuery);
+            this.objectQuery = DefaultConstructionValidator.getInstance().validateObjectQuery(objectQuery);
             return this;
         }
 
         public Builder setObjectQuery(@javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectQuery objectQuery) {
-            this.objectQuery = com.google.common.base.Optional.fromNullable(objectQuery);
-            return this;
+            return setObjectQuery(com.google.common.base.Optional.fromNullable(objectQuery));
         }
 
         public Builder setUserId(final org.dressdiscover.api.models.user.UserId userId) {
-            this.userId = com.google.common.base.Preconditions.checkNotNull(userId);
+            this.userId = DefaultConstructionValidator.getInstance().validateUserId(userId);
             return this;
         }
 
@@ -400,19 +397,241 @@ public final class UserBookmark implements org.thryft.Struct, org.thryft.waf.api
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public String validateName(final String name) throws ExceptionT;
+
+        public org.dressdiscover.api.models.user.UserId validateUserId(final org.dressdiscover.api.models.user.UserId userId) throws ExceptionT;
+
+        public com.google.common.base.Optional<String> validateFolder(final com.google.common.base.Optional<String> folder) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> validateObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> validateObjectQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public String validateName(final String name) throws RuntimeException {
+            if (name == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.user.UserBookmark: name is null");
+            }
+            if (name.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.user.UserBookmark: name is less than min length 1");
+            }
+            return name;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.user.UserId validateUserId(final org.dressdiscover.api.models.user.UserId userId) throws RuntimeException {
+            if (userId == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.user.UserBookmark: userId is null");
+            }
+            return userId;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateFolder(final com.google.common.base.Optional<String> folder) throws RuntimeException {
+            if (folder == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.user.UserBookmark: folder is null");
+            }
+            if (!folder.isPresent()) {
+                return folder;
+            }
+            if (folder.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.user.UserBookmark: folder is less than min length 1");
+            }
+            return folder;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> validateObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId) throws RuntimeException {
+            if (objectId == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.user.UserBookmark: objectId is null");
+            }
+            if (!objectId.isPresent()) {
+                return objectId;
+            }
+            return objectId;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> validateObjectQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) throws RuntimeException {
+            if (objectQuery == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.user.UserBookmark: objectQuery is null");
+            }
+            if (!objectQuery.isPresent()) {
+                return objectQuery;
+            }
+            return objectQuery;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public String validateName(final String name) {
+            return name;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.user.UserId validateUserId(final org.dressdiscover.api.models.user.UserId userId) {
+            return userId;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateFolder(final com.google.common.base.Optional<String> folder) {
+            return folder;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> validateObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId) {
+            return objectId;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> validateObjectQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) {
+            return objectQuery;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public String validateName(final String name) throws org.thryft.protocol.InputProtocolException {
+            if (name == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.NAME, "org.dressdiscover.api.models.user.UserBookmark: name is null");
+            }
+            if (name.isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.NAME, "org.dressdiscover.api.models.user.UserBookmark: name is less than min length 1");
+            }
+            return name;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.user.UserId validateUserId(final org.dressdiscover.api.models.user.UserId userId) throws org.thryft.protocol.InputProtocolException {
+            if (userId == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.USER_ID, "org.dressdiscover.api.models.user.UserBookmark: userId is null");
+            }
+            return userId;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateFolder(final com.google.common.base.Optional<String> folder) throws org.thryft.protocol.InputProtocolException {
+            if (folder == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.FOLDER, "org.dressdiscover.api.models.user.UserBookmark: folder is null");
+            }
+            if (!folder.isPresent()) {
+                return folder;
+            }
+            if (folder.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FOLDER, "org.dressdiscover.api.models.user.UserBookmark: folder is less than min length 1");
+            }
+            return folder;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> validateObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId) throws org.thryft.protocol.InputProtocolException {
+            if (objectId == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.OBJECT_ID, "org.dressdiscover.api.models.user.UserBookmark: objectId is null");
+            }
+            if (!objectId.isPresent()) {
+                return objectId;
+            }
+            return objectId;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> validateObjectQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) throws org.thryft.protocol.InputProtocolException {
+            if (objectQuery == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.OBJECT_QUERY, "org.dressdiscover.api.models.user.UserBookmark: objectQuery is null");
+            }
+            if (!objectQuery.isPresent()) {
+                return objectQuery;
+            }
+            return objectQuery;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public String validateName(final String name) {
+            return name;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.user.UserId validateUserId(final org.dressdiscover.api.models.user.UserId userId) {
+            return userId;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateFolder(final com.google.common.base.Optional<String> folder) {
+            return folder;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> validateObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId) {
+            return objectId;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> validateObjectQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) {
+            return objectQuery;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public UserBookmark(final UserBookmark other) {
-        this(other.getName(), other.getUserId(), other.getFolder(), other.getObjectId(), other.getObjectQuery());
+        this(other.getName(), other.getUserId(), other.getFolder(), other.getObjectId(), other.getObjectQuery(), NopConstructionValidator.getInstance());
     }
 
-    protected UserBookmark(final String name, final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<String> folder, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) {
-        this.name = name;
-        this.userId = userId;
-        this.folder = folder;
-        this.objectId = objectId;
-        this.objectQuery = objectQuery;
+    protected UserBookmark(final String name, final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<String> folder, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery, ConstructionValidator validator) {
+        this.name = validator.validateName(name);
+        this.userId = validator.validateUserId(userId);
+        this.folder = validator.validateFolder(folder);
+        this.objectId = validator.validateObjectId(objectId);
+        this.objectQuery = validator.validateObjectQuery(objectQuery);
     }
 
     public static Builder builder() {
@@ -431,21 +650,21 @@ public final class UserBookmark implements org.thryft.Struct, org.thryft.waf.api
      * Required factory method
      */
     public static UserBookmark create(final String name, final org.dressdiscover.api.models.user.UserId userId) {
-        return new UserBookmark(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.user.UserBookmark: missing name"), "org.dressdiscover.api.models.user.UserBookmark: name is empty"), com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.models.user.UserBookmark: missing userId"), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent());
+        return new UserBookmark(name, userId, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static UserBookmark create(final String name, final org.dressdiscover.api.models.user.UserId userId, final @javax.annotation.Nullable String folder, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectId objectId, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectQuery objectQuery) {
-        return new UserBookmark(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.user.UserBookmark: missing name"), "org.dressdiscover.api.models.user.UserBookmark: name is empty"), com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.models.user.UserBookmark: missing userId"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(folder), "org.dressdiscover.api.models.user.UserBookmark: folder is empty"), com.google.common.base.Optional.fromNullable(objectId), com.google.common.base.Optional.fromNullable(objectQuery));
+        return new UserBookmark(name, userId, com.google.common.base.Optional.fromNullable(folder), com.google.common.base.Optional.fromNullable(objectId), com.google.common.base.Optional.fromNullable(objectQuery), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static UserBookmark create(final String name, final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<String> folder, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) {
-        return new UserBookmark(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.user.UserBookmark: missing name"), "org.dressdiscover.api.models.user.UserBookmark: name is empty"), com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.models.user.UserBookmark: missing userId"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(folder, "org.dressdiscover.api.models.user.UserBookmark: missing folder"), "org.dressdiscover.api.models.user.UserBookmark: folder is empty"), com.google.common.base.Preconditions.checkNotNull(objectId, "org.dressdiscover.api.models.user.UserBookmark: missing objectId"), com.google.common.base.Preconditions.checkNotNull(objectQuery, "org.dressdiscover.api.models.user.UserBookmark: missing objectQuery"));
+        return new UserBookmark(name, userId, folder, objectId, objectQuery, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -569,11 +788,7 @@ public final class UserBookmark implements org.thryft.Struct, org.thryft.waf.api
             objectQuery = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectQuery.readAsStruct(iprot));
         }
         iprot.readListEnd();
-        try {
-            return new UserBookmark(name, userId, folder, objectId, objectQuery);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new UserBookmark(DefaultReadValidator.getInstance().validateName(name), DefaultReadValidator.getInstance().validateUserId(userId), DefaultReadValidator.getInstance().validateFolder(folder), DefaultReadValidator.getInstance().validateObjectId(objectId), DefaultReadValidator.getInstance().validateObjectQuery(objectQuery), NopConstructionValidator.getInstance());
     }
 
     public static UserBookmark readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -630,15 +845,11 @@ public final class UserBookmark implements org.thryft.Struct, org.thryft.waf.api
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new UserBookmark(name, userId, folder, objectId, objectQuery);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new UserBookmark(DefaultReadValidator.getInstance().validateName(name), DefaultReadValidator.getInstance().validateUserId(userId), DefaultReadValidator.getInstance().validateFolder(folder), DefaultReadValidator.getInstance().validateObjectId(objectId), DefaultReadValidator.getInstance().validateObjectQuery(objectQuery), NopConstructionValidator.getInstance());
     }
 
     public UserBookmark replaceFolder(final com.google.common.base.Optional<String> folder) {
-        return new UserBookmark(this.name, this.userId, folder, this.objectId, this.objectQuery);
+        return new UserBookmark(this.name, this.userId, DefaultConstructionValidator.getInstance().validateFolder(folder), this.objectId, this.objectQuery, NopConstructionValidator.getInstance());
     }
 
     public UserBookmark replaceFolder(final String folder) {
@@ -646,11 +857,11 @@ public final class UserBookmark implements org.thryft.Struct, org.thryft.waf.api
     }
 
     public UserBookmark replaceName(final String name) {
-        return new UserBookmark(name, this.userId, this.folder, this.objectId, this.objectQuery);
+        return new UserBookmark(DefaultConstructionValidator.getInstance().validateName(name), this.userId, this.folder, this.objectId, this.objectQuery, NopConstructionValidator.getInstance());
     }
 
     public UserBookmark replaceObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId) {
-        return new UserBookmark(this.name, this.userId, this.folder, objectId, this.objectQuery);
+        return new UserBookmark(this.name, this.userId, this.folder, DefaultConstructionValidator.getInstance().validateObjectId(objectId), this.objectQuery, NopConstructionValidator.getInstance());
     }
 
     public UserBookmark replaceObjectId(final org.dressdiscover.api.models.object.ObjectId objectId) {
@@ -658,7 +869,7 @@ public final class UserBookmark implements org.thryft.Struct, org.thryft.waf.api
     }
 
     public UserBookmark replaceObjectQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) {
-        return new UserBookmark(this.name, this.userId, this.folder, this.objectId, objectQuery);
+        return new UserBookmark(this.name, this.userId, this.folder, this.objectId, DefaultConstructionValidator.getInstance().validateObjectQuery(objectQuery), NopConstructionValidator.getInstance());
     }
 
     public UserBookmark replaceObjectQuery(final org.dressdiscover.api.models.object.ObjectQuery objectQuery) {
@@ -666,7 +877,7 @@ public final class UserBookmark implements org.thryft.Struct, org.thryft.waf.api
     }
 
     public UserBookmark replaceUserId(final org.dressdiscover.api.models.user.UserId userId) {
-        return new UserBookmark(this.name, userId, this.folder, this.objectId, this.objectQuery);
+        return new UserBookmark(this.name, DefaultConstructionValidator.getInstance().validateUserId(userId), this.folder, this.objectId, this.objectQuery, NopConstructionValidator.getInstance());
     }
 
     @Override

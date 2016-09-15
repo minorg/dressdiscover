@@ -22,11 +22,11 @@ public final class Agent implements org.thryft.Struct, org.dressdiscover.api.mod
         }
 
         protected Agent _build(final org.dressdiscover.api.models.agent.AgentName name, final com.google.common.base.Optional<String> attribution, final com.google.common.base.Optional<String> culture, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> dates, final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role) {
-            return new Agent(name, attribution, culture, dates, role);
+            return new Agent(name, attribution, culture, dates, role, DefaultConstructionValidator.getInstance());
         }
 
         public Agent build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.agent.Agent: missing name"), com.google.common.base.Preconditions.checkNotNull(attribution, "org.dressdiscover.api.models.agent.Agent: missing attribution"), com.google.common.base.Preconditions.checkNotNull(culture, "org.dressdiscover.api.models.agent.Agent: missing culture"), com.google.common.base.Preconditions.checkNotNull(dates, "org.dressdiscover.api.models.agent.Agent: missing dates"), com.google.common.base.Preconditions.checkNotNull(role, "org.dressdiscover.api.models.agent.Agent: missing role"));
+            return _build(name, attribution, culture, dates, role);
         }
 
         public final com.google.common.base.Optional<String> getAttribution() {
@@ -202,33 +202,30 @@ public final class Agent implements org.thryft.Struct, org.dressdiscover.api.mod
         }
 
         public Builder setAttribution(final com.google.common.base.Optional<String> attribution) {
-            this.attribution = com.google.common.base.Preconditions.checkNotNull(attribution);
+            this.attribution = DefaultConstructionValidator.getInstance().validateAttribution(attribution);
             return this;
         }
 
         public Builder setAttribution(@javax.annotation.Nullable final String attribution) {
-            this.attribution = com.google.common.base.Optional.fromNullable(attribution);
-            return this;
+            return setAttribution(com.google.common.base.Optional.fromNullable(attribution));
         }
 
         public Builder setCulture(final com.google.common.base.Optional<String> culture) {
-            this.culture = com.google.common.base.Preconditions.checkNotNull(culture);
+            this.culture = DefaultConstructionValidator.getInstance().validateCulture(culture);
             return this;
         }
 
         public Builder setCulture(@javax.annotation.Nullable final String culture) {
-            this.culture = com.google.common.base.Optional.fromNullable(culture);
-            return this;
+            return setCulture(com.google.common.base.Optional.fromNullable(culture));
         }
 
         public Builder setDates(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> dates) {
-            this.dates = com.google.common.base.Preconditions.checkNotNull(dates);
+            this.dates = DefaultConstructionValidator.getInstance().validateDates(dates);
             return this;
         }
 
         public Builder setDates(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates> dates) {
-            this.dates = com.google.common.base.Optional.fromNullable(dates);
-            return this;
+            return setDates(com.google.common.base.Optional.fromNullable(dates));
         }
 
         public Builder setIfPresent(final Agent other) {
@@ -252,18 +249,17 @@ public final class Agent implements org.thryft.Struct, org.dressdiscover.api.mod
         }
 
         public Builder setName(final org.dressdiscover.api.models.agent.AgentName name) {
-            this.name = com.google.common.base.Preconditions.checkNotNull(name);
+            this.name = DefaultConstructionValidator.getInstance().validateName(name);
             return this;
         }
 
         public Builder setRole(final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role) {
-            this.role = com.google.common.base.Preconditions.checkNotNull(role);
+            this.role = DefaultConstructionValidator.getInstance().validateRole(role);
             return this;
         }
 
         public Builder setRole(@javax.annotation.Nullable final org.dressdiscover.api.models.agent.AgentRole role) {
-            this.role = com.google.common.base.Optional.fromNullable(role);
-            return this;
+            return setRole(com.google.common.base.Optional.fromNullable(role));
         }
 
         public Builder unset(final String fieldThriftName) {
@@ -447,19 +443,253 @@ public final class Agent implements org.thryft.Struct, org.dressdiscover.api.mod
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public org.dressdiscover.api.models.agent.AgentName validateName(final org.dressdiscover.api.models.agent.AgentName name) throws ExceptionT;
+
+        public com.google.common.base.Optional<String> validateAttribution(final com.google.common.base.Optional<String> attribution) throws ExceptionT;
+
+        public com.google.common.base.Optional<String> validateCulture(final com.google.common.base.Optional<String> culture) throws ExceptionT;
+
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> validateDates(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> dates) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> validateRole(final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.agent.AgentName validateName(final org.dressdiscover.api.models.agent.AgentName name) throws RuntimeException {
+            if (name == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.agent.Agent: name is null");
+            }
+            return name;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateAttribution(final com.google.common.base.Optional<String> attribution) throws RuntimeException {
+            if (attribution == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.agent.Agent: attribution is null");
+            }
+            if (!attribution.isPresent()) {
+                return attribution;
+            }
+            if (attribution.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.agent.Agent: attribution is less than min length 1");
+            }
+            return attribution;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateCulture(final com.google.common.base.Optional<String> culture) throws RuntimeException {
+            if (culture == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.agent.Agent: culture is null");
+            }
+            if (!culture.isPresent()) {
+                return culture;
+            }
+            if (culture.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.agent.Agent: culture is less than min length 1");
+            }
+            return culture;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> validateDates(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> dates) throws RuntimeException {
+            if (dates == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.agent.Agent: dates is null");
+            }
+            if (!dates.isPresent()) {
+                return dates;
+            }
+            if (dates.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.agent.Agent: dates is less than min length 1");
+            }
+            return dates;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> validateRole(final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role) throws RuntimeException {
+            if (role == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.agent.Agent: role is null");
+            }
+            if (!role.isPresent()) {
+                return role;
+            }
+            return role;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.agent.AgentName validateName(final org.dressdiscover.api.models.agent.AgentName name) {
+            return name;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateAttribution(final com.google.common.base.Optional<String> attribution) {
+            return attribution;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateCulture(final com.google.common.base.Optional<String> culture) {
+            return culture;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> validateDates(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> dates) {
+            return dates;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> validateRole(final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role) {
+            return role;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.agent.AgentName validateName(final org.dressdiscover.api.models.agent.AgentName name) throws org.thryft.protocol.InputProtocolException {
+            if (name == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.NAME, "org.dressdiscover.api.models.agent.Agent: name is null");
+            }
+            return name;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateAttribution(final com.google.common.base.Optional<String> attribution) throws org.thryft.protocol.InputProtocolException {
+            if (attribution == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ATTRIBUTION, "org.dressdiscover.api.models.agent.Agent: attribution is null");
+            }
+            if (!attribution.isPresent()) {
+                return attribution;
+            }
+            if (attribution.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ATTRIBUTION, "org.dressdiscover.api.models.agent.Agent: attribution is less than min length 1");
+            }
+            return attribution;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateCulture(final com.google.common.base.Optional<String> culture) throws org.thryft.protocol.InputProtocolException {
+            if (culture == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CULTURE, "org.dressdiscover.api.models.agent.Agent: culture is null");
+            }
+            if (!culture.isPresent()) {
+                return culture;
+            }
+            if (culture.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURE, "org.dressdiscover.api.models.agent.Agent: culture is less than min length 1");
+            }
+            return culture;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> validateDates(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> dates) throws org.thryft.protocol.InputProtocolException {
+            if (dates == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DATES, "org.dressdiscover.api.models.agent.Agent: dates is null");
+            }
+            if (!dates.isPresent()) {
+                return dates;
+            }
+            if (dates.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATES, "org.dressdiscover.api.models.agent.Agent: dates is less than min length 1");
+            }
+            return dates;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> validateRole(final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role) throws org.thryft.protocol.InputProtocolException {
+            if (role == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ROLE, "org.dressdiscover.api.models.agent.Agent: role is null");
+            }
+            if (!role.isPresent()) {
+                return role;
+            }
+            return role;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.agent.AgentName validateName(final org.dressdiscover.api.models.agent.AgentName name) {
+            return name;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateAttribution(final com.google.common.base.Optional<String> attribution) {
+            return attribution;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateCulture(final com.google.common.base.Optional<String> culture) {
+            return culture;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> validateDates(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> dates) {
+            return dates;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> validateRole(final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role) {
+            return role;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public Agent(final Agent other) {
-        this(other.getName(), other.getAttribution(), other.getCulture(), other.getDates(), other.getRole());
+        this(other.getName(), other.getAttribution(), other.getCulture(), other.getDates(), other.getRole(), NopConstructionValidator.getInstance());
     }
 
-    protected Agent(final org.dressdiscover.api.models.agent.AgentName name, final com.google.common.base.Optional<String> attribution, final com.google.common.base.Optional<String> culture, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> dates, final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role) {
-        this.name = name;
-        this.attribution = attribution;
-        this.culture = culture;
-        this.dates = dates;
-        this.role = role;
+    protected Agent(final org.dressdiscover.api.models.agent.AgentName name, final com.google.common.base.Optional<String> attribution, final com.google.common.base.Optional<String> culture, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> dates, final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role, ConstructionValidator validator) {
+        this.name = validator.validateName(name);
+        this.attribution = validator.validateAttribution(attribution);
+        this.culture = validator.validateCulture(culture);
+        this.dates = validator.validateDates(dates);
+        this.role = validator.validateRole(role);
     }
 
     public static Builder builder() {
@@ -478,21 +708,21 @@ public final class Agent implements org.thryft.Struct, org.dressdiscover.api.mod
      * Required factory method
      */
     public static Agent create(final org.dressdiscover.api.models.agent.AgentName name) {
-        return new Agent(com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.agent.Agent: missing name"), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.agent.AgentRole> absent());
+        return new Agent(name, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.agent.AgentRole> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static Agent create(final org.dressdiscover.api.models.agent.AgentName name, final @javax.annotation.Nullable String attribution, final @javax.annotation.Nullable String culture, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates> dates, final @javax.annotation.Nullable org.dressdiscover.api.models.agent.AgentRole role) {
-        return new Agent(com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.agent.Agent: missing name"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(attribution), "org.dressdiscover.api.models.agent.Agent: attribution is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(culture), "org.dressdiscover.api.models.agent.Agent: culture is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(dates), "org.dressdiscover.api.models.agent.Agent: dates is empty"), com.google.common.base.Optional.fromNullable(role));
+        return new Agent(name, com.google.common.base.Optional.fromNullable(attribution), com.google.common.base.Optional.fromNullable(culture), com.google.common.base.Optional.fromNullable(dates), com.google.common.base.Optional.fromNullable(role), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static Agent create(final org.dressdiscover.api.models.agent.AgentName name, final com.google.common.base.Optional<String> attribution, final com.google.common.base.Optional<String> culture, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> dates, final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role) {
-        return new Agent(com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.agent.Agent: missing name"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(attribution, "org.dressdiscover.api.models.agent.Agent: missing attribution"), "org.dressdiscover.api.models.agent.Agent: attribution is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(culture, "org.dressdiscover.api.models.agent.Agent: missing culture"), "org.dressdiscover.api.models.agent.Agent: culture is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(dates, "org.dressdiscover.api.models.agent.Agent: missing dates"), "org.dressdiscover.api.models.agent.Agent: dates is empty"), com.google.common.base.Preconditions.checkNotNull(role, "org.dressdiscover.api.models.agent.Agent: missing role"));
+        return new Agent(name, attribution, culture, dates, role, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -632,11 +862,7 @@ public final class Agent implements org.thryft.Struct, org.dressdiscover.api.mod
             role = com.google.common.base.Optional.of(org.dressdiscover.api.models.agent.AgentRole.readAsStruct(iprot));
         }
         iprot.readListEnd();
-        try {
-            return new Agent(name, attribution, culture, dates, role);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Agent(DefaultReadValidator.getInstance().validateName(name), DefaultReadValidator.getInstance().validateAttribution(attribution), DefaultReadValidator.getInstance().validateCulture(culture), DefaultReadValidator.getInstance().validateDates(dates), DefaultReadValidator.getInstance().validateRole(role), NopConstructionValidator.getInstance());
     }
 
     public static Agent readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -715,15 +941,11 @@ public final class Agent implements org.thryft.Struct, org.dressdiscover.api.mod
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new Agent(name, attribution, culture, dates, role);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Agent(DefaultReadValidator.getInstance().validateName(name), DefaultReadValidator.getInstance().validateAttribution(attribution), DefaultReadValidator.getInstance().validateCulture(culture), DefaultReadValidator.getInstance().validateDates(dates), DefaultReadValidator.getInstance().validateRole(role), NopConstructionValidator.getInstance());
     }
 
     public Agent replaceAttribution(final com.google.common.base.Optional<String> attribution) {
-        return new Agent(this.name, attribution, this.culture, this.dates, this.role);
+        return new Agent(this.name, DefaultConstructionValidator.getInstance().validateAttribution(attribution), this.culture, this.dates, this.role, NopConstructionValidator.getInstance());
     }
 
     public Agent replaceAttribution(final String attribution) {
@@ -731,7 +953,7 @@ public final class Agent implements org.thryft.Struct, org.dressdiscover.api.mod
     }
 
     public Agent replaceCulture(final com.google.common.base.Optional<String> culture) {
-        return new Agent(this.name, this.attribution, culture, this.dates, this.role);
+        return new Agent(this.name, this.attribution, DefaultConstructionValidator.getInstance().validateCulture(culture), this.dates, this.role, NopConstructionValidator.getInstance());
     }
 
     public Agent replaceCulture(final String culture) {
@@ -739,7 +961,7 @@ public final class Agent implements org.thryft.Struct, org.dressdiscover.api.mod
     }
 
     public Agent replaceDates(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> dates) {
-        return new Agent(this.name, this.attribution, this.culture, dates, this.role);
+        return new Agent(this.name, this.attribution, this.culture, DefaultConstructionValidator.getInstance().validateDates(dates), this.role, NopConstructionValidator.getInstance());
     }
 
     public Agent replaceDates(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates> dates) {
@@ -747,11 +969,11 @@ public final class Agent implements org.thryft.Struct, org.dressdiscover.api.mod
     }
 
     public Agent replaceName(final org.dressdiscover.api.models.agent.AgentName name) {
-        return new Agent(name, this.attribution, this.culture, this.dates, this.role);
+        return new Agent(DefaultConstructionValidator.getInstance().validateName(name), this.attribution, this.culture, this.dates, this.role, NopConstructionValidator.getInstance());
     }
 
     public Agent replaceRole(final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role) {
-        return new Agent(this.name, this.attribution, this.culture, this.dates, role);
+        return new Agent(this.name, this.attribution, this.culture, this.dates, DefaultConstructionValidator.getInstance().validateRole(role), NopConstructionValidator.getInstance());
     }
 
     public Agent replaceRole(final org.dressdiscover.api.models.agent.AgentRole role) {

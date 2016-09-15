@@ -18,11 +18,11 @@ public final class TextrefRefid implements org.thryft.Struct {
         }
 
         protected TextrefRefid _build(final String text, final org.dressdiscover.api.models.textref.TextrefRefidType type, final com.google.common.base.Optional<org.thryft.native_.Url> href) {
-            return new TextrefRefid(text, type, href);
+            return new TextrefRefid(text, type, href, DefaultConstructionValidator.getInstance());
         }
 
         public TextrefRefid build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.textref.TextrefRefid: missing text"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.textref.TextrefRefid: missing type"), com.google.common.base.Preconditions.checkNotNull(href, "org.dressdiscover.api.models.textref.TextrefRefid: missing href"));
+            return _build(text, type, href);
         }
 
         public final com.google.common.base.Optional<org.thryft.native_.Url> getHref() {
@@ -135,13 +135,12 @@ public final class TextrefRefid implements org.thryft.Struct {
         }
 
         public Builder setHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) {
-            this.href = com.google.common.base.Preconditions.checkNotNull(href);
+            this.href = DefaultConstructionValidator.getInstance().validateHref(href);
             return this;
         }
 
         public Builder setHref(@javax.annotation.Nullable final org.thryft.native_.Url href) {
-            this.href = com.google.common.base.Optional.fromNullable(href);
-            return this;
+            return setHref(com.google.common.base.Optional.fromNullable(href));
         }
 
         public Builder setIfPresent(final TextrefRefid other) {
@@ -157,12 +156,12 @@ public final class TextrefRefid implements org.thryft.Struct {
         }
 
         public Builder setText(final String text) {
-            this.text = com.google.common.base.Preconditions.checkNotNull(text);
+            this.text = DefaultConstructionValidator.getInstance().validateText(text);
             return this;
         }
 
         public Builder setType(final org.dressdiscover.api.models.textref.TextrefRefidType type) {
-            this.type = com.google.common.base.Preconditions.checkNotNull(type);
+            this.type = DefaultConstructionValidator.getInstance().validateType(type);
             return this;
         }
 
@@ -327,17 +326,165 @@ public final class TextrefRefid implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public String validateText(final String text) throws ExceptionT;
+
+        public org.dressdiscover.api.models.textref.TextrefRefidType validateType(final org.dressdiscover.api.models.textref.TextrefRefidType type) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws RuntimeException {
+            if (text == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.textref.TextrefRefid: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.textref.TextrefRefid: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.textref.TextrefRefidType validateType(final org.dressdiscover.api.models.textref.TextrefRefidType type) throws RuntimeException {
+            if (type == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.textref.TextrefRefid: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) throws RuntimeException {
+            if (href == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.textref.TextrefRefid: href is null");
+            }
+            if (!href.isPresent()) {
+                return href;
+            }
+            return href;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.textref.TextrefRefidType validateType(final org.dressdiscover.api.models.textref.TextrefRefidType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) {
+            return href;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws org.thryft.protocol.InputProtocolException {
+            if (text == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.textref.TextrefRefid: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.textref.TextrefRefid: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.textref.TextrefRefidType validateType(final org.dressdiscover.api.models.textref.TextrefRefidType type) throws org.thryft.protocol.InputProtocolException {
+            if (type == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.models.textref.TextrefRefid: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) throws org.thryft.protocol.InputProtocolException {
+            if (href == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.HREF, "org.dressdiscover.api.models.textref.TextrefRefid: href is null");
+            }
+            if (!href.isPresent()) {
+                return href;
+            }
+            return href;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.textref.TextrefRefidType validateType(final org.dressdiscover.api.models.textref.TextrefRefidType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) {
+            return href;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public TextrefRefid(final TextrefRefid other) {
-        this(other.getText(), other.getType(), other.getHref());
+        this(other.getText(), other.getType(), other.getHref(), NopConstructionValidator.getInstance());
     }
 
-    protected TextrefRefid(final String text, final org.dressdiscover.api.models.textref.TextrefRefidType type, final com.google.common.base.Optional<org.thryft.native_.Url> href) {
-        this.text = text;
-        this.type = type;
-        this.href = href;
+    protected TextrefRefid(final String text, final org.dressdiscover.api.models.textref.TextrefRefidType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, ConstructionValidator validator) {
+        this.text = validator.validateText(text);
+        this.type = validator.validateType(type);
+        this.href = validator.validateHref(href);
     }
 
     public static Builder builder() {
@@ -356,21 +503,21 @@ public final class TextrefRefid implements org.thryft.Struct {
      * Required factory method
      */
     public static TextrefRefid create(final String text, final org.dressdiscover.api.models.textref.TextrefRefidType type) {
-        return new TextrefRefid(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.textref.TextrefRefid: missing text"), "org.dressdiscover.api.models.textref.TextrefRefid: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.textref.TextrefRefid: missing type"), com.google.common.base.Optional.<org.thryft.native_.Url> absent());
+        return new TextrefRefid(text, type, com.google.common.base.Optional.<org.thryft.native_.Url> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static TextrefRefid create(final String text, final org.dressdiscover.api.models.textref.TextrefRefidType type, final @javax.annotation.Nullable org.thryft.native_.Url href) {
-        return new TextrefRefid(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.textref.TextrefRefid: missing text"), "org.dressdiscover.api.models.textref.TextrefRefid: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.textref.TextrefRefid: missing type"), com.google.common.base.Optional.fromNullable(href));
+        return new TextrefRefid(text, type, com.google.common.base.Optional.fromNullable(href), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static TextrefRefid create(final String text, final org.dressdiscover.api.models.textref.TextrefRefidType type, final com.google.common.base.Optional<org.thryft.native_.Url> href) {
-        return new TextrefRefid(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.textref.TextrefRefid: missing text"), "org.dressdiscover.api.models.textref.TextrefRefid: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.textref.TextrefRefid: missing type"), com.google.common.base.Preconditions.checkNotNull(href, "org.dressdiscover.api.models.textref.TextrefRefid: missing href"));
+        return new TextrefRefid(text, type, href, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -464,11 +611,7 @@ public final class TextrefRefid implements org.thryft.Struct {
             }
         }
         iprot.readListEnd();
-        try {
-            return new TextrefRefid(text, type, href);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new TextrefRefid(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateHref(href), NopConstructionValidator.getInstance());
     }
 
     public static TextrefRefid readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -517,15 +660,11 @@ public final class TextrefRefid implements org.thryft.Struct {
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new TextrefRefid(text, type, href);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new TextrefRefid(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateHref(href), NopConstructionValidator.getInstance());
     }
 
     public TextrefRefid replaceHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) {
-        return new TextrefRefid(this.text, this.type, href);
+        return new TextrefRefid(this.text, this.type, DefaultConstructionValidator.getInstance().validateHref(href), NopConstructionValidator.getInstance());
     }
 
     public TextrefRefid replaceHref(final org.thryft.native_.Url href) {
@@ -533,11 +672,11 @@ public final class TextrefRefid implements org.thryft.Struct {
     }
 
     public TextrefRefid replaceText(final String text) {
-        return new TextrefRefid(text, this.type, this.href);
+        return new TextrefRefid(DefaultConstructionValidator.getInstance().validateText(text), this.type, this.href, NopConstructionValidator.getInstance());
     }
 
     public TextrefRefid replaceType(final org.dressdiscover.api.models.textref.TextrefRefidType type) {
-        return new TextrefRefid(this.text, type, this.href);
+        return new TextrefRefid(this.text, DefaultConstructionValidator.getInstance().validateType(type), this.href, NopConstructionValidator.getInstance());
     }
 
     @Override

@@ -67,11 +67,11 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         protected Object _build(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.models.title.TitleSet titles, final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> agents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> closures, final com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> colors, final com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> components, final com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> condition, final com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> culturalContexts, final com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> dates, final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> descriptions, final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images, final com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> inscriptions, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations, final com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> materials, final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> measurements, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> quantity, final com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> relations, final com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures, final com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> subjects, final com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> techniques, final com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> textrefs, final com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> viewType, final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
-            return new Object(collectionId, institutionId, titles, agents, categories, closures, colors, components, condition, culturalContexts, dates, descriptions, gender, hidden, images, inscriptions, locations, materials, measurements, provenance, quantity, relations, rights, structures, subjects, techniques, textrefs, viewType, workTypes);
+            return new Object(collectionId, institutionId, titles, agents, categories, closures, colors, components, condition, culturalContexts, dates, descriptions, gender, hidden, images, inscriptions, locations, materials, measurements, provenance, quantity, relations, rights, structures, subjects, techniques, textrefs, viewType, workTypes, DefaultConstructionValidator.getInstance());
         }
 
         public Object build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.Object: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.Object: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(titles, "org.dressdiscover.api.models.object.Object: missing titles"), com.google.common.base.Preconditions.checkNotNull(agents, "org.dressdiscover.api.models.object.Object: missing agents"), com.google.common.base.Preconditions.checkNotNull(categories, "org.dressdiscover.api.models.object.Object: missing categories"), com.google.common.base.Preconditions.checkNotNull(closures, "org.dressdiscover.api.models.object.Object: missing closures"), com.google.common.base.Preconditions.checkNotNull(colors, "org.dressdiscover.api.models.object.Object: missing colors"), com.google.common.base.Preconditions.checkNotNull(components, "org.dressdiscover.api.models.object.Object: missing components"), com.google.common.base.Preconditions.checkNotNull(condition, "org.dressdiscover.api.models.object.Object: missing condition"), com.google.common.base.Preconditions.checkNotNull(culturalContexts, "org.dressdiscover.api.models.object.Object: missing culturalContexts"), com.google.common.base.Preconditions.checkNotNull(dates, "org.dressdiscover.api.models.object.Object: missing dates"), com.google.common.base.Preconditions.checkNotNull(descriptions, "org.dressdiscover.api.models.object.Object: missing descriptions"), com.google.common.base.Preconditions.checkNotNull(gender, "org.dressdiscover.api.models.object.Object: missing gender"), com.google.common.base.Preconditions.checkNotNull(hidden, "org.dressdiscover.api.models.object.Object: missing hidden"), com.google.common.base.Preconditions.checkNotNull(images, "org.dressdiscover.api.models.object.Object: missing images"), com.google.common.base.Preconditions.checkNotNull(inscriptions, "org.dressdiscover.api.models.object.Object: missing inscriptions"), com.google.common.base.Preconditions.checkNotNull(locations, "org.dressdiscover.api.models.object.Object: missing locations"), com.google.common.base.Preconditions.checkNotNull(materials, "org.dressdiscover.api.models.object.Object: missing materials"), com.google.common.base.Preconditions.checkNotNull(measurements, "org.dressdiscover.api.models.object.Object: missing measurements"), com.google.common.base.Preconditions.checkNotNull(provenance, "org.dressdiscover.api.models.object.Object: missing provenance"), com.google.common.base.Preconditions.checkNotNull(quantity, "org.dressdiscover.api.models.object.Object: missing quantity"), com.google.common.base.Preconditions.checkNotNull(relations, "org.dressdiscover.api.models.object.Object: missing relations"), com.google.common.base.Preconditions.checkNotNull(rights, "org.dressdiscover.api.models.object.Object: missing rights"), com.google.common.base.Preconditions.checkNotNull(structures, "org.dressdiscover.api.models.object.Object: missing structures"), com.google.common.base.Preconditions.checkNotNull(subjects, "org.dressdiscover.api.models.object.Object: missing subjects"), com.google.common.base.Preconditions.checkNotNull(techniques, "org.dressdiscover.api.models.object.Object: missing techniques"), com.google.common.base.Preconditions.checkNotNull(textrefs, "org.dressdiscover.api.models.object.Object: missing textrefs"), com.google.common.base.Preconditions.checkNotNull(viewType, "org.dressdiscover.api.models.object.Object: missing viewType"), com.google.common.base.Preconditions.checkNotNull(workTypes, "org.dressdiscover.api.models.object.Object: missing workTypes"));
+            return _build(collectionId, institutionId, titles, agents, categories, closures, colors, components, condition, culturalContexts, dates, descriptions, gender, hidden, images, inscriptions, locations, materials, measurements, provenance, quantity, relations, rights, structures, subjects, techniques, textrefs, viewType, workTypes);
         }
 
         public final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> getAgents() {
@@ -660,118 +660,107 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         public Builder setAgents(final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> agents) {
-            this.agents = com.google.common.base.Preconditions.checkNotNull(agents);
+            this.agents = DefaultConstructionValidator.getInstance().validateAgents(agents);
             return this;
         }
 
         public Builder setAgents(@javax.annotation.Nullable final org.dressdiscover.api.models.agent.AgentSet agents) {
-            this.agents = com.google.common.base.Optional.fromNullable(agents);
-            return this;
+            return setAgents(com.google.common.base.Optional.fromNullable(agents));
         }
 
         public Builder setCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories) {
-            this.categories = com.google.common.base.Preconditions.checkNotNull(categories);
+            this.categories = DefaultConstructionValidator.getInstance().validateCategories(categories);
             return this;
         }
 
         public Builder setCategories(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> categories) {
-            this.categories = com.google.common.base.Optional.fromNullable(categories);
-            return this;
+            return setCategories(com.google.common.base.Optional.fromNullable(categories));
         }
 
         public Builder setClosures(final com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> closures) {
-            this.closures = com.google.common.base.Preconditions.checkNotNull(closures);
+            this.closures = DefaultConstructionValidator.getInstance().validateClosures(closures);
             return this;
         }
 
         public Builder setClosures(@javax.annotation.Nullable final org.dressdiscover.api.models.closure.ClosureSet closures) {
-            this.closures = com.google.common.base.Optional.fromNullable(closures);
-            return this;
+            return setClosures(com.google.common.base.Optional.fromNullable(closures));
         }
 
         public Builder setCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
-            this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId);
+            this.collectionId = DefaultConstructionValidator.getInstance().validateCollectionId(collectionId);
             return this;
         }
 
         public Builder setColors(final com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> colors) {
-            this.colors = com.google.common.base.Preconditions.checkNotNull(colors);
+            this.colors = DefaultConstructionValidator.getInstance().validateColors(colors);
             return this;
         }
 
         public Builder setColors(@javax.annotation.Nullable final org.dressdiscover.api.models.color.ColorSet colors) {
-            this.colors = com.google.common.base.Optional.fromNullable(colors);
-            return this;
+            return setColors(com.google.common.base.Optional.fromNullable(colors));
         }
 
         public Builder setComponents(final com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> components) {
-            this.components = com.google.common.base.Preconditions.checkNotNull(components);
+            this.components = DefaultConstructionValidator.getInstance().validateComponents(components);
             return this;
         }
 
         public Builder setComponents(@javax.annotation.Nullable final org.dressdiscover.api.models.component.ComponentSet components) {
-            this.components = com.google.common.base.Optional.fromNullable(components);
-            return this;
+            return setComponents(com.google.common.base.Optional.fromNullable(components));
         }
 
         public Builder setCondition(final com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> condition) {
-            this.condition = com.google.common.base.Preconditions.checkNotNull(condition);
+            this.condition = DefaultConstructionValidator.getInstance().validateCondition(condition);
             return this;
         }
 
         public Builder setCondition(@javax.annotation.Nullable final org.dressdiscover.api.models.condition.Condition condition) {
-            this.condition = com.google.common.base.Optional.fromNullable(condition);
-            return this;
+            return setCondition(com.google.common.base.Optional.fromNullable(condition));
         }
 
         public Builder setCulturalContexts(final com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> culturalContexts) {
-            this.culturalContexts = com.google.common.base.Preconditions.checkNotNull(culturalContexts);
+            this.culturalContexts = DefaultConstructionValidator.getInstance().validateCulturalContexts(culturalContexts);
             return this;
         }
 
         public Builder setCulturalContexts(@javax.annotation.Nullable final org.dressdiscover.api.models.cultural_context.CulturalContextSet culturalContexts) {
-            this.culturalContexts = com.google.common.base.Optional.fromNullable(culturalContexts);
-            return this;
+            return setCulturalContexts(com.google.common.base.Optional.fromNullable(culturalContexts));
         }
 
         public Builder setDates(final com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> dates) {
-            this.dates = com.google.common.base.Preconditions.checkNotNull(dates);
+            this.dates = DefaultConstructionValidator.getInstance().validateDates(dates);
             return this;
         }
 
         public Builder setDates(@javax.annotation.Nullable final org.dressdiscover.api.models.date.DateSet dates) {
-            this.dates = com.google.common.base.Optional.fromNullable(dates);
-            return this;
+            return setDates(com.google.common.base.Optional.fromNullable(dates));
         }
 
         public Builder setDescriptions(final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> descriptions) {
-            this.descriptions = com.google.common.base.Preconditions.checkNotNull(descriptions);
+            this.descriptions = DefaultConstructionValidator.getInstance().validateDescriptions(descriptions);
             return this;
         }
 
         public Builder setDescriptions(@javax.annotation.Nullable final org.dressdiscover.api.models.description.DescriptionSet descriptions) {
-            this.descriptions = com.google.common.base.Optional.fromNullable(descriptions);
-            return this;
+            return setDescriptions(com.google.common.base.Optional.fromNullable(descriptions));
         }
 
         public Builder setGender(final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender) {
-            this.gender = com.google.common.base.Preconditions.checkNotNull(gender);
+            this.gender = DefaultConstructionValidator.getInstance().validateGender(gender);
             return this;
         }
 
         public Builder setGender(@javax.annotation.Nullable final org.dressdiscover.api.models.gender.Gender gender) {
-            this.gender = com.google.common.base.Optional.fromNullable(gender);
-            return this;
+            return setGender(com.google.common.base.Optional.fromNullable(gender));
         }
 
         public Builder setHidden(final com.google.common.base.Optional<Boolean> hidden) {
-            this.hidden = com.google.common.base.Preconditions.checkNotNull(hidden);
+            this.hidden = DefaultConstructionValidator.getInstance().validateHidden(hidden);
             return this;
         }
 
         public Builder setHidden(@javax.annotation.Nullable final Boolean hidden) {
-            this.hidden = com.google.common.base.Optional.fromNullable(hidden);
-            return this;
+            return setHidden(com.google.common.base.Optional.fromNullable(hidden));
         }
 
         public Builder setIfPresent(final Object other) {
@@ -863,163 +852,148 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         public Builder setImages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images) {
-            this.images = com.google.common.base.Preconditions.checkNotNull(images);
+            this.images = DefaultConstructionValidator.getInstance().validateImages(images);
             return this;
         }
 
         public Builder setImages(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> images) {
-            this.images = com.google.common.base.Optional.fromNullable(images);
-            return this;
+            return setImages(com.google.common.base.Optional.fromNullable(images));
         }
 
         public Builder setInscriptions(final com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> inscriptions) {
-            this.inscriptions = com.google.common.base.Preconditions.checkNotNull(inscriptions);
+            this.inscriptions = DefaultConstructionValidator.getInstance().validateInscriptions(inscriptions);
             return this;
         }
 
         public Builder setInscriptions(@javax.annotation.Nullable final org.dressdiscover.api.models.inscription.InscriptionSet inscriptions) {
-            this.inscriptions = com.google.common.base.Optional.fromNullable(inscriptions);
-            return this;
+            return setInscriptions(com.google.common.base.Optional.fromNullable(inscriptions));
         }
 
         public Builder setInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-            this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId);
+            this.institutionId = DefaultConstructionValidator.getInstance().validateInstitutionId(institutionId);
             return this;
         }
 
         public Builder setLocations(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations) {
-            this.locations = com.google.common.base.Preconditions.checkNotNull(locations);
+            this.locations = DefaultConstructionValidator.getInstance().validateLocations(locations);
             return this;
         }
 
         public Builder setLocations(@javax.annotation.Nullable final org.dressdiscover.api.models.location.LocationSet locations) {
-            this.locations = com.google.common.base.Optional.fromNullable(locations);
-            return this;
+            return setLocations(com.google.common.base.Optional.fromNullable(locations));
         }
 
         public Builder setMaterials(final com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> materials) {
-            this.materials = com.google.common.base.Preconditions.checkNotNull(materials);
+            this.materials = DefaultConstructionValidator.getInstance().validateMaterials(materials);
             return this;
         }
 
         public Builder setMaterials(@javax.annotation.Nullable final org.dressdiscover.api.models.material.MaterialSet materials) {
-            this.materials = com.google.common.base.Optional.fromNullable(materials);
-            return this;
+            return setMaterials(com.google.common.base.Optional.fromNullable(materials));
         }
 
         public Builder setMeasurements(final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> measurements) {
-            this.measurements = com.google.common.base.Preconditions.checkNotNull(measurements);
+            this.measurements = DefaultConstructionValidator.getInstance().validateMeasurements(measurements);
             return this;
         }
 
         public Builder setMeasurements(@javax.annotation.Nullable final org.dressdiscover.api.models.measurements.MeasurementsSet measurements) {
-            this.measurements = com.google.common.base.Optional.fromNullable(measurements);
-            return this;
+            return setMeasurements(com.google.common.base.Optional.fromNullable(measurements));
         }
 
         public Builder setProvenance(final com.google.common.base.Optional<String> provenance) {
-            this.provenance = com.google.common.base.Preconditions.checkNotNull(provenance);
+            this.provenance = DefaultConstructionValidator.getInstance().validateProvenance(provenance);
             return this;
         }
 
         public Builder setProvenance(@javax.annotation.Nullable final String provenance) {
-            this.provenance = com.google.common.base.Optional.fromNullable(provenance);
-            return this;
+            return setProvenance(com.google.common.base.Optional.fromNullable(provenance));
         }
 
         public Builder setQuantity(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> quantity) {
-            this.quantity = com.google.common.base.Preconditions.checkNotNull(quantity);
+            this.quantity = DefaultConstructionValidator.getInstance().validateQuantity(quantity);
             return this;
         }
 
         public Builder setQuantity(@javax.annotation.Nullable final com.google.common.primitives.UnsignedInteger quantity) {
-            this.quantity = com.google.common.base.Optional.fromNullable(quantity);
-            return this;
+            return setQuantity(com.google.common.base.Optional.fromNullable(quantity));
         }
 
         public Builder setRelations(final com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> relations) {
-            this.relations = com.google.common.base.Preconditions.checkNotNull(relations);
+            this.relations = DefaultConstructionValidator.getInstance().validateRelations(relations);
             return this;
         }
 
         public Builder setRelations(@javax.annotation.Nullable final org.dressdiscover.api.models.relation.RelationSet relations) {
-            this.relations = com.google.common.base.Optional.fromNullable(relations);
-            return this;
+            return setRelations(com.google.common.base.Optional.fromNullable(relations));
         }
 
         public Builder setRights(final com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights) {
-            this.rights = com.google.common.base.Preconditions.checkNotNull(rights);
+            this.rights = DefaultConstructionValidator.getInstance().validateRights(rights);
             return this;
         }
 
         public Builder setRights(@javax.annotation.Nullable final org.dressdiscover.api.models.rights.RightsSet rights) {
-            this.rights = com.google.common.base.Optional.fromNullable(rights);
-            return this;
+            return setRights(com.google.common.base.Optional.fromNullable(rights));
         }
 
         public Builder setStructures(final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures) {
-            this.structures = com.google.common.base.Preconditions.checkNotNull(structures);
+            this.structures = DefaultConstructionValidator.getInstance().validateStructures(structures);
             return this;
         }
 
         public Builder setStructures(@javax.annotation.Nullable final org.dressdiscover.api.models.structure.StructureSet structures) {
-            this.structures = com.google.common.base.Optional.fromNullable(structures);
-            return this;
+            return setStructures(com.google.common.base.Optional.fromNullable(structures));
         }
 
         public Builder setSubjects(final com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> subjects) {
-            this.subjects = com.google.common.base.Preconditions.checkNotNull(subjects);
+            this.subjects = DefaultConstructionValidator.getInstance().validateSubjects(subjects);
             return this;
         }
 
         public Builder setSubjects(@javax.annotation.Nullable final org.dressdiscover.api.models.subject.SubjectSet subjects) {
-            this.subjects = com.google.common.base.Optional.fromNullable(subjects);
-            return this;
+            return setSubjects(com.google.common.base.Optional.fromNullable(subjects));
         }
 
         public Builder setTechniques(final com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> techniques) {
-            this.techniques = com.google.common.base.Preconditions.checkNotNull(techniques);
+            this.techniques = DefaultConstructionValidator.getInstance().validateTechniques(techniques);
             return this;
         }
 
         public Builder setTechniques(@javax.annotation.Nullable final org.dressdiscover.api.models.technique.TechniqueSet techniques) {
-            this.techniques = com.google.common.base.Optional.fromNullable(techniques);
-            return this;
+            return setTechniques(com.google.common.base.Optional.fromNullable(techniques));
         }
 
         public Builder setTextrefs(final com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> textrefs) {
-            this.textrefs = com.google.common.base.Preconditions.checkNotNull(textrefs);
+            this.textrefs = DefaultConstructionValidator.getInstance().validateTextrefs(textrefs);
             return this;
         }
 
         public Builder setTextrefs(@javax.annotation.Nullable final org.dressdiscover.api.models.textref.TextrefSet textrefs) {
-            this.textrefs = com.google.common.base.Optional.fromNullable(textrefs);
-            return this;
+            return setTextrefs(com.google.common.base.Optional.fromNullable(textrefs));
         }
 
         public Builder setTitles(final org.dressdiscover.api.models.title.TitleSet titles) {
-            this.titles = com.google.common.base.Preconditions.checkNotNull(titles);
+            this.titles = DefaultConstructionValidator.getInstance().validateTitles(titles);
             return this;
         }
 
         public Builder setViewType(final com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> viewType) {
-            this.viewType = com.google.common.base.Preconditions.checkNotNull(viewType);
+            this.viewType = DefaultConstructionValidator.getInstance().validateViewType(viewType);
             return this;
         }
 
         public Builder setViewType(@javax.annotation.Nullable final org.dressdiscover.api.models.view_type.ViewType viewType) {
-            this.viewType = com.google.common.base.Optional.fromNullable(viewType);
-            return this;
+            return setViewType(com.google.common.base.Optional.fromNullable(viewType));
         }
 
         public Builder setWorkTypes(final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
-            this.workTypes = com.google.common.base.Preconditions.checkNotNull(workTypes);
+            this.workTypes = DefaultConstructionValidator.getInstance().validateWorkTypes(workTypes);
             return this;
         }
 
         public Builder setWorkTypes(@javax.annotation.Nullable final org.dressdiscover.api.models.work_type.WorkTypeSet workTypes) {
-            this.workTypes = com.google.common.base.Optional.fromNullable(workTypes);
-            return this;
+            return setWorkTypes(com.google.common.base.Optional.fromNullable(workTypes));
         }
 
         public Builder unset(final String fieldThriftName) {
@@ -1446,43 +1420,1081 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public org.dressdiscover.api.models.collection.CollectionId validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws ExceptionT;
+
+        public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws ExceptionT;
+
+        public org.dressdiscover.api.models.title.TitleSet validateTitles(final org.dressdiscover.api.models.title.TitleSet titles) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> validateAgents(final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> agents) throws ExceptionT;
+
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> validateClosures(final com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> closures) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> validateColors(final com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> colors) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> validateComponents(final com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> components) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> validateCondition(final com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> condition) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> validateCulturalContexts(final com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> culturalContexts) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> validateDates(final com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> dates) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> validateDescriptions(final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> descriptions) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> validateGender(final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender) throws ExceptionT;
+
+        public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) throws ExceptionT;
+
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> validateImages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> validateInscriptions(final com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> inscriptions) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> validateLocations(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> validateMaterials(final com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> materials) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> validateMeasurements(final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> measurements) throws ExceptionT;
+
+        public com.google.common.base.Optional<String> validateProvenance(final com.google.common.base.Optional<String> provenance) throws ExceptionT;
+
+        public com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> validateQuantity(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> quantity) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> validateRelations(final com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> relations) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> validateRights(final com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> validateStructures(final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> validateSubjects(final com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> subjects) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> validateTechniques(final com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> techniques) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> validateTextrefs(final com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> textrefs) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> validateViewType(final com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> viewType) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> validateWorkTypes(final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.collection.CollectionId validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws RuntimeException {
+            if (collectionId == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: collectionId is null");
+            }
+            return collectionId;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws RuntimeException {
+            if (institutionId == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: institutionId is null");
+            }
+            return institutionId;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.title.TitleSet validateTitles(final org.dressdiscover.api.models.title.TitleSet titles) throws RuntimeException {
+            if (titles == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: titles is null");
+            }
+            return titles;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> validateAgents(final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> agents) throws RuntimeException {
+            if (agents == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: agents is null");
+            }
+            if (!agents.isPresent()) {
+                return agents;
+            }
+            return agents;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories) throws RuntimeException {
+            if (categories == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: categories is null");
+            }
+            if (!categories.isPresent()) {
+                return categories;
+            }
+            if (categories.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.Object: categories is less than min length 1");
+            }
+            return categories;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> validateClosures(final com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> closures) throws RuntimeException {
+            if (closures == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: closures is null");
+            }
+            if (!closures.isPresent()) {
+                return closures;
+            }
+            return closures;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> validateColors(final com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> colors) throws RuntimeException {
+            if (colors == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: colors is null");
+            }
+            if (!colors.isPresent()) {
+                return colors;
+            }
+            return colors;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> validateComponents(final com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> components) throws RuntimeException {
+            if (components == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: components is null");
+            }
+            if (!components.isPresent()) {
+                return components;
+            }
+            return components;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> validateCondition(final com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> condition) throws RuntimeException {
+            if (condition == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: condition is null");
+            }
+            if (!condition.isPresent()) {
+                return condition;
+            }
+            return condition;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> validateCulturalContexts(final com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> culturalContexts) throws RuntimeException {
+            if (culturalContexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: culturalContexts is null");
+            }
+            if (!culturalContexts.isPresent()) {
+                return culturalContexts;
+            }
+            return culturalContexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> validateDates(final com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> dates) throws RuntimeException {
+            if (dates == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: dates is null");
+            }
+            if (!dates.isPresent()) {
+                return dates;
+            }
+            return dates;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> validateDescriptions(final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> descriptions) throws RuntimeException {
+            if (descriptions == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: descriptions is null");
+            }
+            if (!descriptions.isPresent()) {
+                return descriptions;
+            }
+            return descriptions;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> validateGender(final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender) throws RuntimeException {
+            if (gender == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: gender is null");
+            }
+            if (!gender.isPresent()) {
+                return gender;
+            }
+            return gender;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) throws RuntimeException {
+            if (!hidden.isPresent()) {
+                return hidden;
+            }
+            if (!hidden.get()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.Object: hidden is not true");
+            }
+            return hidden;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> validateImages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images) throws RuntimeException {
+            if (images == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: images is null");
+            }
+            if (!images.isPresent()) {
+                return images;
+            }
+            if (images.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.Object: images is less than min length 1");
+            }
+            return images;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> validateInscriptions(final com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> inscriptions) throws RuntimeException {
+            if (inscriptions == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: inscriptions is null");
+            }
+            if (!inscriptions.isPresent()) {
+                return inscriptions;
+            }
+            return inscriptions;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> validateLocations(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations) throws RuntimeException {
+            if (locations == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: locations is null");
+            }
+            if (!locations.isPresent()) {
+                return locations;
+            }
+            return locations;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> validateMaterials(final com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> materials) throws RuntimeException {
+            if (materials == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: materials is null");
+            }
+            if (!materials.isPresent()) {
+                return materials;
+            }
+            return materials;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> validateMeasurements(final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> measurements) throws RuntimeException {
+            if (measurements == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: measurements is null");
+            }
+            if (!measurements.isPresent()) {
+                return measurements;
+            }
+            return measurements;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateProvenance(final com.google.common.base.Optional<String> provenance) throws RuntimeException {
+            if (provenance == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: provenance is null");
+            }
+            if (!provenance.isPresent()) {
+                return provenance;
+            }
+            if (provenance.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.Object: provenance is less than min length 1");
+            }
+            return provenance;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> validateQuantity(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> quantity) throws RuntimeException {
+            if (quantity == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: quantity is null");
+            }
+            if (!quantity.isPresent()) {
+                return quantity;
+            }
+            return quantity;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> validateRelations(final com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> relations) throws RuntimeException {
+            if (relations == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: relations is null");
+            }
+            if (!relations.isPresent()) {
+                return relations;
+            }
+            return relations;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> validateRights(final com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights) throws RuntimeException {
+            if (rights == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: rights is null");
+            }
+            if (!rights.isPresent()) {
+                return rights;
+            }
+            return rights;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> validateStructures(final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures) throws RuntimeException {
+            if (structures == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: structures is null");
+            }
+            if (!structures.isPresent()) {
+                return structures;
+            }
+            return structures;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> validateSubjects(final com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> subjects) throws RuntimeException {
+            if (subjects == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: subjects is null");
+            }
+            if (!subjects.isPresent()) {
+                return subjects;
+            }
+            return subjects;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> validateTechniques(final com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> techniques) throws RuntimeException {
+            if (techniques == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: techniques is null");
+            }
+            if (!techniques.isPresent()) {
+                return techniques;
+            }
+            return techniques;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> validateTextrefs(final com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> textrefs) throws RuntimeException {
+            if (textrefs == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: textrefs is null");
+            }
+            if (!textrefs.isPresent()) {
+                return textrefs;
+            }
+            return textrefs;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> validateViewType(final com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> viewType) throws RuntimeException {
+            if (viewType == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: viewType is null");
+            }
+            if (!viewType.isPresent()) {
+                return viewType;
+            }
+            return viewType;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> validateWorkTypes(final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) throws RuntimeException {
+            if (workTypes == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: workTypes is null");
+            }
+            if (!workTypes.isPresent()) {
+                return workTypes;
+            }
+            return workTypes;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.collection.CollectionId validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
+            return collectionId;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
+            return institutionId;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.title.TitleSet validateTitles(final org.dressdiscover.api.models.title.TitleSet titles) {
+            return titles;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> validateAgents(final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> agents) {
+            return agents;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories) {
+            return categories;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> validateClosures(final com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> closures) {
+            return closures;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> validateColors(final com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> colors) {
+            return colors;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> validateComponents(final com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> components) {
+            return components;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> validateCondition(final com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> condition) {
+            return condition;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> validateCulturalContexts(final com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> culturalContexts) {
+            return culturalContexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> validateDates(final com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> dates) {
+            return dates;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> validateDescriptions(final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> descriptions) {
+            return descriptions;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> validateGender(final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender) {
+            return gender;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) {
+            return hidden;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> validateImages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images) {
+            return images;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> validateInscriptions(final com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> inscriptions) {
+            return inscriptions;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> validateLocations(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations) {
+            return locations;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> validateMaterials(final com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> materials) {
+            return materials;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> validateMeasurements(final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> measurements) {
+            return measurements;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateProvenance(final com.google.common.base.Optional<String> provenance) {
+            return provenance;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> validateQuantity(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> quantity) {
+            return quantity;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> validateRelations(final com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> relations) {
+            return relations;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> validateRights(final com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights) {
+            return rights;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> validateStructures(final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures) {
+            return structures;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> validateSubjects(final com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> subjects) {
+            return subjects;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> validateTechniques(final com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> techniques) {
+            return techniques;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> validateTextrefs(final com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> textrefs) {
+            return textrefs;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> validateViewType(final com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> viewType) {
+            return viewType;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> validateWorkTypes(final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
+            return workTypes;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.collection.CollectionId validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.thryft.protocol.InputProtocolException {
+            if (collectionId == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLLECTION_ID, "org.dressdiscover.api.models.object.Object: collectionId is null");
+            }
+            return collectionId;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.thryft.protocol.InputProtocolException {
+            if (institutionId == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, "org.dressdiscover.api.models.object.Object: institutionId is null");
+            }
+            return institutionId;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.title.TitleSet validateTitles(final org.dressdiscover.api.models.title.TitleSet titles) throws org.thryft.protocol.InputProtocolException {
+            if (titles == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TITLES, "org.dressdiscover.api.models.object.Object: titles is null");
+            }
+            return titles;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> validateAgents(final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> agents) throws org.thryft.protocol.InputProtocolException {
+            if (agents == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.AGENTS, "org.dressdiscover.api.models.object.Object: agents is null");
+            }
+            if (!agents.isPresent()) {
+                return agents;
+            }
+            return agents;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories) throws org.thryft.protocol.InputProtocolException {
+            if (categories == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CATEGORIES, "org.dressdiscover.api.models.object.Object: categories is null");
+            }
+            if (!categories.isPresent()) {
+                return categories;
+            }
+            if (categories.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CATEGORIES, "org.dressdiscover.api.models.object.Object: categories is less than min length 1");
+            }
+            return categories;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> validateClosures(final com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> closures) throws org.thryft.protocol.InputProtocolException {
+            if (closures == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CLOSURES, "org.dressdiscover.api.models.object.Object: closures is null");
+            }
+            if (!closures.isPresent()) {
+                return closures;
+            }
+            return closures;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> validateColors(final com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> colors) throws org.thryft.protocol.InputProtocolException {
+            if (colors == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLORS, "org.dressdiscover.api.models.object.Object: colors is null");
+            }
+            if (!colors.isPresent()) {
+                return colors;
+            }
+            return colors;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> validateComponents(final com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> components) throws org.thryft.protocol.InputProtocolException {
+            if (components == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COMPONENTS, "org.dressdiscover.api.models.object.Object: components is null");
+            }
+            if (!components.isPresent()) {
+                return components;
+            }
+            return components;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> validateCondition(final com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> condition) throws org.thryft.protocol.InputProtocolException {
+            if (condition == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CONDITION, "org.dressdiscover.api.models.object.Object: condition is null");
+            }
+            if (!condition.isPresent()) {
+                return condition;
+            }
+            return condition;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> validateCulturalContexts(final com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> culturalContexts) throws org.thryft.protocol.InputProtocolException {
+            if (culturalContexts == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXTS, "org.dressdiscover.api.models.object.Object: culturalContexts is null");
+            }
+            if (!culturalContexts.isPresent()) {
+                return culturalContexts;
+            }
+            return culturalContexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> validateDates(final com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> dates) throws org.thryft.protocol.InputProtocolException {
+            if (dates == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DATES, "org.dressdiscover.api.models.object.Object: dates is null");
+            }
+            if (!dates.isPresent()) {
+                return dates;
+            }
+            return dates;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> validateDescriptions(final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> descriptions) throws org.thryft.protocol.InputProtocolException {
+            if (descriptions == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DESCRIPTIONS, "org.dressdiscover.api.models.object.Object: descriptions is null");
+            }
+            if (!descriptions.isPresent()) {
+                return descriptions;
+            }
+            return descriptions;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> validateGender(final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender) throws org.thryft.protocol.InputProtocolException {
+            if (gender == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.GENDER, "org.dressdiscover.api.models.object.Object: gender is null");
+            }
+            if (!gender.isPresent()) {
+                return gender;
+            }
+            return gender;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) throws org.thryft.protocol.InputProtocolException {
+            if (!hidden.isPresent()) {
+                return hidden;
+            }
+            if (!hidden.get()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.HIDDEN, "org.dressdiscover.api.models.object.Object: hidden is not true");
+            }
+            return hidden;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> validateImages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images) throws org.thryft.protocol.InputProtocolException {
+            if (images == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.IMAGES, "org.dressdiscover.api.models.object.Object: images is null");
+            }
+            if (!images.isPresent()) {
+                return images;
+            }
+            if (images.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IMAGES, "org.dressdiscover.api.models.object.Object: images is less than min length 1");
+            }
+            return images;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> validateInscriptions(final com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> inscriptions) throws org.thryft.protocol.InputProtocolException {
+            if (inscriptions == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INSCRIPTIONS, "org.dressdiscover.api.models.object.Object: inscriptions is null");
+            }
+            if (!inscriptions.isPresent()) {
+                return inscriptions;
+            }
+            return inscriptions;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> validateLocations(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations) throws org.thryft.protocol.InputProtocolException {
+            if (locations == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LOCATIONS, "org.dressdiscover.api.models.object.Object: locations is null");
+            }
+            if (!locations.isPresent()) {
+                return locations;
+            }
+            return locations;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> validateMaterials(final com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> materials) throws org.thryft.protocol.InputProtocolException {
+            if (materials == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MATERIALS, "org.dressdiscover.api.models.object.Object: materials is null");
+            }
+            if (!materials.isPresent()) {
+                return materials;
+            }
+            return materials;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> validateMeasurements(final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> measurements) throws org.thryft.protocol.InputProtocolException {
+            if (measurements == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MEASUREMENTS, "org.dressdiscover.api.models.object.Object: measurements is null");
+            }
+            if (!measurements.isPresent()) {
+                return measurements;
+            }
+            return measurements;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateProvenance(final com.google.common.base.Optional<String> provenance) throws org.thryft.protocol.InputProtocolException {
+            if (provenance == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PROVENANCE, "org.dressdiscover.api.models.object.Object: provenance is null");
+            }
+            if (!provenance.isPresent()) {
+                return provenance;
+            }
+            if (provenance.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PROVENANCE, "org.dressdiscover.api.models.object.Object: provenance is less than min length 1");
+            }
+            return provenance;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> validateQuantity(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> quantity) throws org.thryft.protocol.InputProtocolException {
+            if (quantity == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.QUANTITY, "org.dressdiscover.api.models.object.Object: quantity is null");
+            }
+            if (!quantity.isPresent()) {
+                return quantity;
+            }
+            return quantity;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> validateRelations(final com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> relations) throws org.thryft.protocol.InputProtocolException {
+            if (relations == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RELATIONS, "org.dressdiscover.api.models.object.Object: relations is null");
+            }
+            if (!relations.isPresent()) {
+                return relations;
+            }
+            return relations;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> validateRights(final com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights) throws org.thryft.protocol.InputProtocolException {
+            if (rights == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RIGHTS, "org.dressdiscover.api.models.object.Object: rights is null");
+            }
+            if (!rights.isPresent()) {
+                return rights;
+            }
+            return rights;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> validateStructures(final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures) throws org.thryft.protocol.InputProtocolException {
+            if (structures == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.STRUCTURES, "org.dressdiscover.api.models.object.Object: structures is null");
+            }
+            if (!structures.isPresent()) {
+                return structures;
+            }
+            return structures;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> validateSubjects(final com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> subjects) throws org.thryft.protocol.InputProtocolException {
+            if (subjects == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SUBJECTS, "org.dressdiscover.api.models.object.Object: subjects is null");
+            }
+            if (!subjects.isPresent()) {
+                return subjects;
+            }
+            return subjects;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> validateTechniques(final com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> techniques) throws org.thryft.protocol.InputProtocolException {
+            if (techniques == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TECHNIQUES, "org.dressdiscover.api.models.object.Object: techniques is null");
+            }
+            if (!techniques.isPresent()) {
+                return techniques;
+            }
+            return techniques;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> validateTextrefs(final com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> textrefs) throws org.thryft.protocol.InputProtocolException {
+            if (textrefs == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXTREFS, "org.dressdiscover.api.models.object.Object: textrefs is null");
+            }
+            if (!textrefs.isPresent()) {
+                return textrefs;
+            }
+            return textrefs;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> validateViewType(final com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> viewType) throws org.thryft.protocol.InputProtocolException {
+            if (viewType == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.VIEW_TYPE, "org.dressdiscover.api.models.object.Object: viewType is null");
+            }
+            if (!viewType.isPresent()) {
+                return viewType;
+            }
+            return viewType;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> validateWorkTypes(final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) throws org.thryft.protocol.InputProtocolException {
+            if (workTypes == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.WORK_TYPES, "org.dressdiscover.api.models.object.Object: workTypes is null");
+            }
+            if (!workTypes.isPresent()) {
+                return workTypes;
+            }
+            return workTypes;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.collection.CollectionId validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
+            return collectionId;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
+            return institutionId;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.title.TitleSet validateTitles(final org.dressdiscover.api.models.title.TitleSet titles) {
+            return titles;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> validateAgents(final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> agents) {
+            return agents;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories) {
+            return categories;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> validateClosures(final com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> closures) {
+            return closures;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> validateColors(final com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> colors) {
+            return colors;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> validateComponents(final com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> components) {
+            return components;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> validateCondition(final com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> condition) {
+            return condition;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> validateCulturalContexts(final com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> culturalContexts) {
+            return culturalContexts;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> validateDates(final com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> dates) {
+            return dates;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> validateDescriptions(final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> descriptions) {
+            return descriptions;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> validateGender(final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender) {
+            return gender;
+        }
+
+        @Override
+        public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) {
+            return hidden;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> validateImages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images) {
+            return images;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> validateInscriptions(final com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> inscriptions) {
+            return inscriptions;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> validateLocations(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations) {
+            return locations;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> validateMaterials(final com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> materials) {
+            return materials;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> validateMeasurements(final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> measurements) {
+            return measurements;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateProvenance(final com.google.common.base.Optional<String> provenance) {
+            return provenance;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> validateQuantity(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> quantity) {
+            return quantity;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> validateRelations(final com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> relations) {
+            return relations;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> validateRights(final com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights) {
+            return rights;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> validateStructures(final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures) {
+            return structures;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> validateSubjects(final com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> subjects) {
+            return subjects;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> validateTechniques(final com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> techniques) {
+            return techniques;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> validateTextrefs(final com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> textrefs) {
+            return textrefs;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> validateViewType(final com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> viewType) {
+            return viewType;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> validateWorkTypes(final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
+            return workTypes;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public Object(final Object other) {
-        this(other.getCollectionId(), other.getInstitutionId(), other.getTitles(), other.getAgents(), other.getCategories(), other.getClosures(), other.getColors(), other.getComponents(), other.getCondition(), other.getCulturalContexts(), other.getDates(), other.getDescriptions(), other.getGender(), other.getHidden(), other.getImages(), other.getInscriptions(), other.getLocations(), other.getMaterials(), other.getMeasurements(), other.getProvenance(), other.getQuantity(), other.getRelations(), other.getRights(), other.getStructures(), other.getSubjects(), other.getTechniques(), other.getTextrefs(), other.getViewType(), other.getWorkTypes());
+        this(other.getCollectionId(), other.getInstitutionId(), other.getTitles(), other.getAgents(), other.getCategories(), other.getClosures(), other.getColors(), other.getComponents(), other.getCondition(), other.getCulturalContexts(), other.getDates(), other.getDescriptions(), other.getGender(), other.getHidden(), other.getImages(), other.getInscriptions(), other.getLocations(), other.getMaterials(), other.getMeasurements(), other.getProvenance(), other.getQuantity(), other.getRelations(), other.getRights(), other.getStructures(), other.getSubjects(), other.getTechniques(), other.getTextrefs(), other.getViewType(), other.getWorkTypes(), NopConstructionValidator.getInstance());
     }
 
-    protected Object(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.models.title.TitleSet titles, final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> agents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> closures, final com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> colors, final com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> components, final com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> condition, final com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> culturalContexts, final com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> dates, final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> descriptions, final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images, final com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> inscriptions, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations, final com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> materials, final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> measurements, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> quantity, final com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> relations, final com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures, final com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> subjects, final com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> techniques, final com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> textrefs, final com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> viewType, final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
-        this.collectionId = collectionId;
-        this.institutionId = institutionId;
-        this.titles = titles;
-        this.agents = agents;
-        this.categories = categories;
-        this.closures = closures;
-        this.colors = colors;
-        this.components = components;
-        this.condition = condition;
-        this.culturalContexts = culturalContexts;
-        this.dates = dates;
-        this.descriptions = descriptions;
-        this.gender = gender;
-        this.hidden = hidden;
-        this.images = images;
-        this.inscriptions = inscriptions;
-        this.locations = locations;
-        this.materials = materials;
-        this.measurements = measurements;
-        this.provenance = provenance;
-        this.quantity = quantity;
-        this.relations = relations;
-        this.rights = rights;
-        this.structures = structures;
-        this.subjects = subjects;
-        this.techniques = techniques;
-        this.textrefs = textrefs;
-        this.viewType = viewType;
-        this.workTypes = workTypes;
+    protected Object(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.models.title.TitleSet titles, final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> agents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> closures, final com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> colors, final com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> components, final com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> condition, final com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> culturalContexts, final com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> dates, final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> descriptions, final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images, final com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> inscriptions, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations, final com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> materials, final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> measurements, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> quantity, final com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> relations, final com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures, final com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> subjects, final com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> techniques, final com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> textrefs, final com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> viewType, final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes, ConstructionValidator validator) {
+        this.collectionId = validator.validateCollectionId(collectionId);
+        this.institutionId = validator.validateInstitutionId(institutionId);
+        this.titles = validator.validateTitles(titles);
+        this.agents = validator.validateAgents(agents);
+        this.categories = validator.validateCategories(categories);
+        this.closures = validator.validateClosures(closures);
+        this.colors = validator.validateColors(colors);
+        this.components = validator.validateComponents(components);
+        this.condition = validator.validateCondition(condition);
+        this.culturalContexts = validator.validateCulturalContexts(culturalContexts);
+        this.dates = validator.validateDates(dates);
+        this.descriptions = validator.validateDescriptions(descriptions);
+        this.gender = validator.validateGender(gender);
+        this.hidden = validator.validateHidden(hidden);
+        this.images = validator.validateImages(images);
+        this.inscriptions = validator.validateInscriptions(inscriptions);
+        this.locations = validator.validateLocations(locations);
+        this.materials = validator.validateMaterials(materials);
+        this.measurements = validator.validateMeasurements(measurements);
+        this.provenance = validator.validateProvenance(provenance);
+        this.quantity = validator.validateQuantity(quantity);
+        this.relations = validator.validateRelations(relations);
+        this.rights = validator.validateRights(rights);
+        this.structures = validator.validateStructures(structures);
+        this.subjects = validator.validateSubjects(subjects);
+        this.techniques = validator.validateTechniques(techniques);
+        this.textrefs = validator.validateTextrefs(textrefs);
+        this.viewType = validator.validateViewType(viewType);
+        this.workTypes = validator.validateWorkTypes(workTypes);
     }
 
     public static Builder builder() {
@@ -1501,21 +2513,21 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
      * Required factory method
      */
     public static Object create(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.models.title.TitleSet titles) {
-        return new Object(com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.Object: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.Object: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(titles, "org.dressdiscover.api.models.object.Object: missing titles"), com.google.common.base.Optional.<org.dressdiscover.api.models.agent.AgentSet> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.closure.ClosureSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.color.ColorSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.component.ComponentSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.condition.Condition> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.cultural_context.CulturalContextSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.date.DateSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.description.DescriptionSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.gender.Gender> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.inscription.InscriptionSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.material.MaterialSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.measurements.MeasurementsSet> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.relation.RelationSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.rights.RightsSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.structure.StructureSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.subject.SubjectSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.technique.TechniqueSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.textref.TextrefSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.view_type.ViewType> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.work_type.WorkTypeSet> absent());
+        return new Object(collectionId, institutionId, titles, com.google.common.base.Optional.<org.dressdiscover.api.models.agent.AgentSet> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.closure.ClosureSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.color.ColorSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.component.ComponentSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.condition.Condition> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.cultural_context.CulturalContextSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.date.DateSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.description.DescriptionSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.gender.Gender> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.inscription.InscriptionSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.material.MaterialSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.measurements.MeasurementsSet> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.relation.RelationSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.rights.RightsSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.structure.StructureSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.subject.SubjectSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.technique.TechniqueSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.textref.TextrefSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.view_type.ViewType> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.work_type.WorkTypeSet> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static Object create(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.models.title.TitleSet titles, final @javax.annotation.Nullable org.dressdiscover.api.models.agent.AgentSet agents, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> categories, final @javax.annotation.Nullable org.dressdiscover.api.models.closure.ClosureSet closures, final @javax.annotation.Nullable org.dressdiscover.api.models.color.ColorSet colors, final @javax.annotation.Nullable org.dressdiscover.api.models.component.ComponentSet components, final @javax.annotation.Nullable org.dressdiscover.api.models.condition.Condition condition, final @javax.annotation.Nullable org.dressdiscover.api.models.cultural_context.CulturalContextSet culturalContexts, final @javax.annotation.Nullable org.dressdiscover.api.models.date.DateSet dates, final @javax.annotation.Nullable org.dressdiscover.api.models.description.DescriptionSet descriptions, final @javax.annotation.Nullable org.dressdiscover.api.models.gender.Gender gender, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> images, final @javax.annotation.Nullable org.dressdiscover.api.models.inscription.InscriptionSet inscriptions, final @javax.annotation.Nullable org.dressdiscover.api.models.location.LocationSet locations, final @javax.annotation.Nullable org.dressdiscover.api.models.material.MaterialSet materials, final @javax.annotation.Nullable org.dressdiscover.api.models.measurements.MeasurementsSet measurements, final @javax.annotation.Nullable String provenance, final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger quantity, final @javax.annotation.Nullable org.dressdiscover.api.models.relation.RelationSet relations, final @javax.annotation.Nullable org.dressdiscover.api.models.rights.RightsSet rights, final @javax.annotation.Nullable org.dressdiscover.api.models.structure.StructureSet structures, final @javax.annotation.Nullable org.dressdiscover.api.models.subject.SubjectSet subjects, final @javax.annotation.Nullable org.dressdiscover.api.models.technique.TechniqueSet techniques, final @javax.annotation.Nullable org.dressdiscover.api.models.textref.TextrefSet textrefs, final @javax.annotation.Nullable org.dressdiscover.api.models.view_type.ViewType viewType, final @javax.annotation.Nullable org.dressdiscover.api.models.work_type.WorkTypeSet workTypes) {
-        return new Object(com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.Object: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.Object: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(titles, "org.dressdiscover.api.models.object.Object: missing titles"), com.google.common.base.Optional.fromNullable(agents), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(categories), "org.dressdiscover.api.models.object.Object: categories is empty"), com.google.common.base.Optional.fromNullable(closures), com.google.common.base.Optional.fromNullable(colors), com.google.common.base.Optional.fromNullable(components), com.google.common.base.Optional.fromNullable(condition), com.google.common.base.Optional.fromNullable(culturalContexts), com.google.common.base.Optional.fromNullable(dates), com.google.common.base.Optional.fromNullable(descriptions), com.google.common.base.Optional.fromNullable(gender), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(hidden), "org.dressdiscover.api.models.object.Object: hidden must be true"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(images), "org.dressdiscover.api.models.object.Object: images is empty"), com.google.common.base.Optional.fromNullable(inscriptions), com.google.common.base.Optional.fromNullable(locations), com.google.common.base.Optional.fromNullable(materials), com.google.common.base.Optional.fromNullable(measurements), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(provenance), "org.dressdiscover.api.models.object.Object: provenance is empty"), com.google.common.base.Optional.fromNullable(quantity), com.google.common.base.Optional.fromNullable(relations), com.google.common.base.Optional.fromNullable(rights), com.google.common.base.Optional.fromNullable(structures), com.google.common.base.Optional.fromNullable(subjects), com.google.common.base.Optional.fromNullable(techniques), com.google.common.base.Optional.fromNullable(textrefs), com.google.common.base.Optional.fromNullable(viewType), com.google.common.base.Optional.fromNullable(workTypes));
+        return new Object(collectionId, institutionId, titles, com.google.common.base.Optional.fromNullable(agents), com.google.common.base.Optional.fromNullable(categories), com.google.common.base.Optional.fromNullable(closures), com.google.common.base.Optional.fromNullable(colors), com.google.common.base.Optional.fromNullable(components), com.google.common.base.Optional.fromNullable(condition), com.google.common.base.Optional.fromNullable(culturalContexts), com.google.common.base.Optional.fromNullable(dates), com.google.common.base.Optional.fromNullable(descriptions), com.google.common.base.Optional.fromNullable(gender), com.google.common.base.Optional.fromNullable(hidden), com.google.common.base.Optional.fromNullable(images), com.google.common.base.Optional.fromNullable(inscriptions), com.google.common.base.Optional.fromNullable(locations), com.google.common.base.Optional.fromNullable(materials), com.google.common.base.Optional.fromNullable(measurements), com.google.common.base.Optional.fromNullable(provenance), com.google.common.base.Optional.fromNullable(quantity), com.google.common.base.Optional.fromNullable(relations), com.google.common.base.Optional.fromNullable(rights), com.google.common.base.Optional.fromNullable(structures), com.google.common.base.Optional.fromNullable(subjects), com.google.common.base.Optional.fromNullable(techniques), com.google.common.base.Optional.fromNullable(textrefs), com.google.common.base.Optional.fromNullable(viewType), com.google.common.base.Optional.fromNullable(workTypes), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static Object create(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.models.title.TitleSet titles, final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> agents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> closures, final com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> colors, final com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> components, final com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> condition, final com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> culturalContexts, final com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> dates, final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> descriptions, final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images, final com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> inscriptions, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations, final com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> materials, final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> measurements, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> quantity, final com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> relations, final com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures, final com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> subjects, final com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> techniques, final com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> textrefs, final com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> viewType, final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
-        return new Object(com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.Object: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.Object: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(titles, "org.dressdiscover.api.models.object.Object: missing titles"), com.google.common.base.Preconditions.checkNotNull(agents, "org.dressdiscover.api.models.object.Object: missing agents"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(categories, "org.dressdiscover.api.models.object.Object: missing categories"), "org.dressdiscover.api.models.object.Object: categories is empty"), com.google.common.base.Preconditions.checkNotNull(closures, "org.dressdiscover.api.models.object.Object: missing closures"), com.google.common.base.Preconditions.checkNotNull(colors, "org.dressdiscover.api.models.object.Object: missing colors"), com.google.common.base.Preconditions.checkNotNull(components, "org.dressdiscover.api.models.object.Object: missing components"), com.google.common.base.Preconditions.checkNotNull(condition, "org.dressdiscover.api.models.object.Object: missing condition"), com.google.common.base.Preconditions.checkNotNull(culturalContexts, "org.dressdiscover.api.models.object.Object: missing culturalContexts"), com.google.common.base.Preconditions.checkNotNull(dates, "org.dressdiscover.api.models.object.Object: missing dates"), com.google.common.base.Preconditions.checkNotNull(descriptions, "org.dressdiscover.api.models.object.Object: missing descriptions"), com.google.common.base.Preconditions.checkNotNull(gender, "org.dressdiscover.api.models.object.Object: missing gender"), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(hidden, "org.dressdiscover.api.models.object.Object: missing hidden"), "org.dressdiscover.api.models.object.Object: hidden must be true"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(images, "org.dressdiscover.api.models.object.Object: missing images"), "org.dressdiscover.api.models.object.Object: images is empty"), com.google.common.base.Preconditions.checkNotNull(inscriptions, "org.dressdiscover.api.models.object.Object: missing inscriptions"), com.google.common.base.Preconditions.checkNotNull(locations, "org.dressdiscover.api.models.object.Object: missing locations"), com.google.common.base.Preconditions.checkNotNull(materials, "org.dressdiscover.api.models.object.Object: missing materials"), com.google.common.base.Preconditions.checkNotNull(measurements, "org.dressdiscover.api.models.object.Object: missing measurements"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(provenance, "org.dressdiscover.api.models.object.Object: missing provenance"), "org.dressdiscover.api.models.object.Object: provenance is empty"), com.google.common.base.Preconditions.checkNotNull(quantity, "org.dressdiscover.api.models.object.Object: missing quantity"), com.google.common.base.Preconditions.checkNotNull(relations, "org.dressdiscover.api.models.object.Object: missing relations"), com.google.common.base.Preconditions.checkNotNull(rights, "org.dressdiscover.api.models.object.Object: missing rights"), com.google.common.base.Preconditions.checkNotNull(structures, "org.dressdiscover.api.models.object.Object: missing structures"), com.google.common.base.Preconditions.checkNotNull(subjects, "org.dressdiscover.api.models.object.Object: missing subjects"), com.google.common.base.Preconditions.checkNotNull(techniques, "org.dressdiscover.api.models.object.Object: missing techniques"), com.google.common.base.Preconditions.checkNotNull(textrefs, "org.dressdiscover.api.models.object.Object: missing textrefs"), com.google.common.base.Preconditions.checkNotNull(viewType, "org.dressdiscover.api.models.object.Object: missing viewType"), com.google.common.base.Preconditions.checkNotNull(workTypes, "org.dressdiscover.api.models.object.Object: missing workTypes"));
+        return new Object(collectionId, institutionId, titles, agents, categories, closures, colors, components, condition, culturalContexts, dates, descriptions, gender, hidden, images, inscriptions, locations, materials, measurements, provenance, quantity, relations, rights, structures, subjects, techniques, textrefs, viewType, workTypes, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -2001,11 +3013,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
             workTypes = com.google.common.base.Optional.of(org.dressdiscover.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
         }
         iprot.readListEnd();
-        try {
-            return new Object(collectionId, institutionId, titles, agents, categories, closures, colors, components, condition, culturalContexts, dates, descriptions, gender, hidden, images, inscriptions, locations, materials, measurements, provenance, quantity, relations, rights, structures, subjects, techniques, textrefs, viewType, workTypes);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Object(DefaultReadValidator.getInstance().validateCollectionId(collectionId), DefaultReadValidator.getInstance().validateInstitutionId(institutionId), DefaultReadValidator.getInstance().validateTitles(titles), DefaultReadValidator.getInstance().validateAgents(agents), DefaultReadValidator.getInstance().validateCategories(categories), DefaultReadValidator.getInstance().validateClosures(closures), DefaultReadValidator.getInstance().validateColors(colors), DefaultReadValidator.getInstance().validateComponents(components), DefaultReadValidator.getInstance().validateCondition(condition), DefaultReadValidator.getInstance().validateCulturalContexts(culturalContexts), DefaultReadValidator.getInstance().validateDates(dates), DefaultReadValidator.getInstance().validateDescriptions(descriptions), DefaultReadValidator.getInstance().validateGender(gender), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateImages(images), DefaultReadValidator.getInstance().validateInscriptions(inscriptions), DefaultReadValidator.getInstance().validateLocations(locations), DefaultReadValidator.getInstance().validateMaterials(materials), DefaultReadValidator.getInstance().validateMeasurements(measurements), DefaultReadValidator.getInstance().validateProvenance(provenance), DefaultReadValidator.getInstance().validateQuantity(quantity), DefaultReadValidator.getInstance().validateRelations(relations), DefaultReadValidator.getInstance().validateRights(rights), DefaultReadValidator.getInstance().validateStructures(structures), DefaultReadValidator.getInstance().validateSubjects(subjects), DefaultReadValidator.getInstance().validateTechniques(techniques), DefaultReadValidator.getInstance().validateTextrefs(textrefs), DefaultReadValidator.getInstance().validateViewType(viewType), DefaultReadValidator.getInstance().validateWorkTypes(workTypes), NopConstructionValidator.getInstance());
     }
 
     public static Object readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -2291,15 +3299,11 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new Object(collectionId, institutionId, titles, agents, categories, closures, colors, components, condition, culturalContexts, dates, descriptions, gender, hidden, images, inscriptions, locations, materials, measurements, provenance, quantity, relations, rights, structures, subjects, techniques, textrefs, viewType, workTypes);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Object(DefaultReadValidator.getInstance().validateCollectionId(collectionId), DefaultReadValidator.getInstance().validateInstitutionId(institutionId), DefaultReadValidator.getInstance().validateTitles(titles), DefaultReadValidator.getInstance().validateAgents(agents), DefaultReadValidator.getInstance().validateCategories(categories), DefaultReadValidator.getInstance().validateClosures(closures), DefaultReadValidator.getInstance().validateColors(colors), DefaultReadValidator.getInstance().validateComponents(components), DefaultReadValidator.getInstance().validateCondition(condition), DefaultReadValidator.getInstance().validateCulturalContexts(culturalContexts), DefaultReadValidator.getInstance().validateDates(dates), DefaultReadValidator.getInstance().validateDescriptions(descriptions), DefaultReadValidator.getInstance().validateGender(gender), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateImages(images), DefaultReadValidator.getInstance().validateInscriptions(inscriptions), DefaultReadValidator.getInstance().validateLocations(locations), DefaultReadValidator.getInstance().validateMaterials(materials), DefaultReadValidator.getInstance().validateMeasurements(measurements), DefaultReadValidator.getInstance().validateProvenance(provenance), DefaultReadValidator.getInstance().validateQuantity(quantity), DefaultReadValidator.getInstance().validateRelations(relations), DefaultReadValidator.getInstance().validateRights(rights), DefaultReadValidator.getInstance().validateStructures(structures), DefaultReadValidator.getInstance().validateSubjects(subjects), DefaultReadValidator.getInstance().validateTechniques(techniques), DefaultReadValidator.getInstance().validateTextrefs(textrefs), DefaultReadValidator.getInstance().validateViewType(viewType), DefaultReadValidator.getInstance().validateWorkTypes(workTypes), NopConstructionValidator.getInstance());
     }
 
     public Object replaceAgents(final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> agents) {
-        return new Object(this.collectionId, this.institutionId, this.titles, agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, DefaultConstructionValidator.getInstance().validateAgents(agents), this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceAgents(final org.dressdiscover.api.models.agent.AgentSet agents) {
@@ -2307,7 +3311,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, DefaultConstructionValidator.getInstance().validateCategories(categories), this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceCategories(final com.google.common.collect.ImmutableList<String> categories) {
@@ -2315,7 +3319,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceClosures(final com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> closures) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, DefaultConstructionValidator.getInstance().validateClosures(closures), this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceClosures(final org.dressdiscover.api.models.closure.ClosureSet closures) {
@@ -2323,11 +3327,11 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
-        return new Object(collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(DefaultConstructionValidator.getInstance().validateCollectionId(collectionId), this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceColors(final com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> colors) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, DefaultConstructionValidator.getInstance().validateColors(colors), this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceColors(final org.dressdiscover.api.models.color.ColorSet colors) {
@@ -2335,7 +3339,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceComponents(final com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> components) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, DefaultConstructionValidator.getInstance().validateComponents(components), this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceComponents(final org.dressdiscover.api.models.component.ComponentSet components) {
@@ -2343,7 +3347,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceCondition(final com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> condition) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, DefaultConstructionValidator.getInstance().validateCondition(condition), this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceCondition(final org.dressdiscover.api.models.condition.Condition condition) {
@@ -2351,7 +3355,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceCulturalContexts(final com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> culturalContexts) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, DefaultConstructionValidator.getInstance().validateCulturalContexts(culturalContexts), this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceCulturalContexts(final org.dressdiscover.api.models.cultural_context.CulturalContextSet culturalContexts) {
@@ -2359,7 +3363,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceDates(final com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> dates) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, DefaultConstructionValidator.getInstance().validateDates(dates), this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceDates(final org.dressdiscover.api.models.date.DateSet dates) {
@@ -2367,7 +3371,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceDescriptions(final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> descriptions) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, DefaultConstructionValidator.getInstance().validateDescriptions(descriptions), this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceDescriptions(final org.dressdiscover.api.models.description.DescriptionSet descriptions) {
@@ -2375,7 +3379,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceGender(final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, DefaultConstructionValidator.getInstance().validateGender(gender), this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceGender(final org.dressdiscover.api.models.gender.Gender gender) {
@@ -2383,7 +3387,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceHidden(final com.google.common.base.Optional<Boolean> hidden) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, DefaultConstructionValidator.getInstance().validateHidden(hidden), this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceHidden(final boolean hidden) {
@@ -2391,7 +3395,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceImages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, DefaultConstructionValidator.getInstance().validateImages(images), this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceImages(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> images) {
@@ -2399,7 +3403,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceInscriptions(final com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> inscriptions) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, DefaultConstructionValidator.getInstance().validateInscriptions(inscriptions), this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceInscriptions(final org.dressdiscover.api.models.inscription.InscriptionSet inscriptions) {
@@ -2407,11 +3411,11 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-        return new Object(this.collectionId, institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, DefaultConstructionValidator.getInstance().validateInstitutionId(institutionId), this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceLocations(final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, DefaultConstructionValidator.getInstance().validateLocations(locations), this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceLocations(final org.dressdiscover.api.models.location.LocationSet locations) {
@@ -2419,7 +3423,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceMaterials(final com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> materials) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, DefaultConstructionValidator.getInstance().validateMaterials(materials), this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceMaterials(final org.dressdiscover.api.models.material.MaterialSet materials) {
@@ -2427,7 +3431,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceMeasurements(final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> measurements) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, DefaultConstructionValidator.getInstance().validateMeasurements(measurements), this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceMeasurements(final org.dressdiscover.api.models.measurements.MeasurementsSet measurements) {
@@ -2435,7 +3439,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceProvenance(final com.google.common.base.Optional<String> provenance) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, DefaultConstructionValidator.getInstance().validateProvenance(provenance), this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceProvenance(final String provenance) {
@@ -2443,7 +3447,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceQuantity(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> quantity) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, DefaultConstructionValidator.getInstance().validateQuantity(quantity), this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceQuantity(final com.google.common.primitives.UnsignedInteger quantity) {
@@ -2451,7 +3455,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceRelations(final com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> relations) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, DefaultConstructionValidator.getInstance().validateRelations(relations), this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceRelations(final org.dressdiscover.api.models.relation.RelationSet relations) {
@@ -2459,7 +3463,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceRights(final com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, DefaultConstructionValidator.getInstance().validateRights(rights), this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceRights(final org.dressdiscover.api.models.rights.RightsSet rights) {
@@ -2467,7 +3471,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceStructures(final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, DefaultConstructionValidator.getInstance().validateStructures(structures), this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceStructures(final org.dressdiscover.api.models.structure.StructureSet structures) {
@@ -2475,7 +3479,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceSubjects(final com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> subjects) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, DefaultConstructionValidator.getInstance().validateSubjects(subjects), this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceSubjects(final org.dressdiscover.api.models.subject.SubjectSet subjects) {
@@ -2483,7 +3487,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceTechniques(final com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> techniques) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, DefaultConstructionValidator.getInstance().validateTechniques(techniques), this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceTechniques(final org.dressdiscover.api.models.technique.TechniqueSet techniques) {
@@ -2491,7 +3495,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceTextrefs(final com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> textrefs) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, DefaultConstructionValidator.getInstance().validateTextrefs(textrefs), this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceTextrefs(final org.dressdiscover.api.models.textref.TextrefSet textrefs) {
@@ -2499,11 +3503,11 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceTitles(final org.dressdiscover.api.models.title.TitleSet titles) {
-        return new Object(this.collectionId, this.institutionId, titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, DefaultConstructionValidator.getInstance().validateTitles(titles), this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceViewType(final com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> viewType) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, viewType, this.workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, DefaultConstructionValidator.getInstance().validateViewType(viewType), this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceViewType(final org.dressdiscover.api.models.view_type.ViewType viewType) {
@@ -2511,7 +3515,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceWorkTypes(final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, workTypes);
+        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, DefaultConstructionValidator.getInstance().validateWorkTypes(workTypes), NopConstructionValidator.getInstance());
     }
 
     public Object replaceWorkTypes(final org.dressdiscover.api.models.work_type.WorkTypeSet workTypes) {

@@ -13,11 +13,11 @@ public final class ObjectEntry implements org.thryft.Struct, org.thryft.waf.api.
         }
 
         protected ObjectEntry _build(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object model) {
-            return new ObjectEntry(id, model);
+            return new ObjectEntry(id, model, DefaultConstructionValidator.getInstance());
         }
 
         public ObjectEntry build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.models.object.ObjectEntry: missing id"), com.google.common.base.Preconditions.checkNotNull(model, "org.dressdiscover.api.models.object.ObjectEntry: missing model"));
+            return _build(id, model);
         }
 
         public final org.dressdiscover.api.models.object.ObjectId getId() {
@@ -114,7 +114,7 @@ public final class ObjectEntry implements org.thryft.Struct, org.thryft.waf.api.
         }
 
         public Builder setId(final org.dressdiscover.api.models.object.ObjectId id) {
-            this.id = com.google.common.base.Preconditions.checkNotNull(id);
+            this.id = DefaultConstructionValidator.getInstance().validateId(id);
             return this;
         }
 
@@ -128,7 +128,7 @@ public final class ObjectEntry implements org.thryft.Struct, org.thryft.waf.api.
         }
 
         public Builder setModel(final org.dressdiscover.api.models.object.Object model) {
-            this.model = com.google.common.base.Preconditions.checkNotNull(model);
+            this.model = DefaultConstructionValidator.getInstance().validateModel(model);
             return this;
         }
 
@@ -283,16 +283,124 @@ public final class ObjectEntry implements org.thryft.Struct, org.thryft.waf.api.
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public org.dressdiscover.api.models.object.ObjectId validateId(final org.dressdiscover.api.models.object.ObjectId id) throws ExceptionT;
+
+        public org.dressdiscover.api.models.object.Object validateModel(final org.dressdiscover.api.models.object.Object model) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.object.ObjectId validateId(final org.dressdiscover.api.models.object.ObjectId id) throws RuntimeException {
+            if (id == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectEntry: id is null");
+            }
+            return id;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.object.Object validateModel(final org.dressdiscover.api.models.object.Object model) throws RuntimeException {
+            if (model == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectEntry: model is null");
+            }
+            return model;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.object.ObjectId validateId(final org.dressdiscover.api.models.object.ObjectId id) {
+            return id;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.object.Object validateModel(final org.dressdiscover.api.models.object.Object model) {
+            return model;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.object.ObjectId validateId(final org.dressdiscover.api.models.object.ObjectId id) throws org.thryft.protocol.InputProtocolException {
+            if (id == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.models.object.ObjectEntry: id is null");
+            }
+            return id;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.object.Object validateModel(final org.dressdiscover.api.models.object.Object model) throws org.thryft.protocol.InputProtocolException {
+            if (model == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MODEL, "org.dressdiscover.api.models.object.ObjectEntry: model is null");
+            }
+            return model;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.object.ObjectId validateId(final org.dressdiscover.api.models.object.ObjectId id) {
+            return id;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.object.Object validateModel(final org.dressdiscover.api.models.object.Object model) {
+            return model;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public ObjectEntry(final ObjectEntry other) {
-        this(other.getId(), other.getModel());
+        this(other.getId(), other.getModel(), NopConstructionValidator.getInstance());
     }
 
-    protected ObjectEntry(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object model) {
-        this.id = id;
-        this.model = model;
+    protected ObjectEntry(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object model, ConstructionValidator validator) {
+        this.id = validator.validateId(id);
+        this.model = validator.validateModel(model);
     }
 
     public static Builder builder() {
@@ -311,7 +419,7 @@ public final class ObjectEntry implements org.thryft.Struct, org.thryft.waf.api.
      * Optional factory method
      */
     public static ObjectEntry create(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object model) {
-        return new ObjectEntry(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.models.object.ObjectEntry: missing id"), com.google.common.base.Preconditions.checkNotNull(model, "org.dressdiscover.api.models.object.ObjectEntry: missing model"));
+        return new ObjectEntry(id, model, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -393,11 +501,7 @@ public final class ObjectEntry implements org.thryft.Struct, org.thryft.waf.api.
         }
         model = org.dressdiscover.api.models.object.Object.readAsStruct(iprot);
         iprot.readListEnd();
-        try {
-            return new ObjectEntry(id, model);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new ObjectEntry(DefaultReadValidator.getInstance().validateId(id), DefaultReadValidator.getInstance().validateModel(model), NopConstructionValidator.getInstance());
     }
 
     public static ObjectEntry readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -436,19 +540,15 @@ public final class ObjectEntry implements org.thryft.Struct, org.thryft.waf.api.
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new ObjectEntry(id, model);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new ObjectEntry(DefaultReadValidator.getInstance().validateId(id), DefaultReadValidator.getInstance().validateModel(model), NopConstructionValidator.getInstance());
     }
 
     public ObjectEntry replaceId(final org.dressdiscover.api.models.object.ObjectId id) {
-        return new ObjectEntry(id, this.model);
+        return new ObjectEntry(DefaultConstructionValidator.getInstance().validateId(id), this.model, NopConstructionValidator.getInstance());
     }
 
     public ObjectEntry replaceModel(final org.dressdiscover.api.models.object.Object model) {
-        return new ObjectEntry(this.id, model);
+        return new ObjectEntry(this.id, DefaultConstructionValidator.getInstance().validateModel(model), NopConstructionValidator.getInstance());
     }
 
     @Override

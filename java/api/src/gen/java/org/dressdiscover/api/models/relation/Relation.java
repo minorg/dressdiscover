@@ -20,11 +20,11 @@ public final class Relation implements org.thryft.Struct, org.dressdiscover.api.
         }
 
         protected Relation _build(final org.dressdiscover.api.models.relation.RelationType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids, final com.google.common.base.Optional<String> text) {
-            return new Relation(type, href, relids, text);
+            return new Relation(type, href, relids, text, DefaultConstructionValidator.getInstance());
         }
 
         public Relation build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.relation.Relation: missing type"), com.google.common.base.Preconditions.checkNotNull(href, "org.dressdiscover.api.models.relation.Relation: missing href"), com.google.common.base.Preconditions.checkNotNull(relids, "org.dressdiscover.api.models.relation.Relation: missing relids"), com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.relation.Relation: missing text"));
+            return _build(type, href, relids, text);
         }
 
         public final com.google.common.base.Optional<org.thryft.native_.Url> getHref() {
@@ -200,13 +200,12 @@ public final class Relation implements org.thryft.Struct, org.dressdiscover.api.
         }
 
         public Builder setHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) {
-            this.href = com.google.common.base.Preconditions.checkNotNull(href);
+            this.href = DefaultConstructionValidator.getInstance().validateHref(href);
             return this;
         }
 
         public Builder setHref(@javax.annotation.Nullable final org.thryft.native_.Url href) {
-            this.href = com.google.common.base.Optional.fromNullable(href);
-            return this;
+            return setHref(com.google.common.base.Optional.fromNullable(href));
         }
 
         public Builder setIfPresent(final Relation other) {
@@ -227,27 +226,25 @@ public final class Relation implements org.thryft.Struct, org.dressdiscover.api.
         }
 
         public Builder setRelids(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids) {
-            this.relids = com.google.common.base.Preconditions.checkNotNull(relids);
+            this.relids = DefaultConstructionValidator.getInstance().validateRelids(relids);
             return this;
         }
 
         public Builder setRelids(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> relids) {
-            this.relids = com.google.common.base.Optional.fromNullable(relids);
-            return this;
+            return setRelids(com.google.common.base.Optional.fromNullable(relids));
         }
 
         public Builder setText(final com.google.common.base.Optional<String> text) {
-            this.text = com.google.common.base.Preconditions.checkNotNull(text);
+            this.text = DefaultConstructionValidator.getInstance().validateText(text);
             return this;
         }
 
         public Builder setText(@javax.annotation.Nullable final String text) {
-            this.text = com.google.common.base.Optional.fromNullable(text);
-            return this;
+            return setText(com.google.common.base.Optional.fromNullable(text));
         }
 
         public Builder setType(final org.dressdiscover.api.models.relation.RelationType type) {
-            this.type = com.google.common.base.Preconditions.checkNotNull(type);
+            this.type = DefaultConstructionValidator.getInstance().validateType(type);
             return this;
         }
 
@@ -422,18 +419,212 @@ public final class Relation implements org.thryft.Struct, org.dressdiscover.api.
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public org.dressdiscover.api.models.relation.RelationType validateType(final org.dressdiscover.api.models.relation.RelationType type) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) throws ExceptionT;
+
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> validateRelids(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids) throws ExceptionT;
+
+        public com.google.common.base.Optional<String> validateText(final com.google.common.base.Optional<String> text) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.relation.RelationType validateType(final org.dressdiscover.api.models.relation.RelationType type) throws RuntimeException {
+            if (type == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.relation.Relation: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) throws RuntimeException {
+            if (href == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.relation.Relation: href is null");
+            }
+            if (!href.isPresent()) {
+                return href;
+            }
+            return href;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> validateRelids(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids) throws RuntimeException {
+            if (relids == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.relation.Relation: relids is null");
+            }
+            if (!relids.isPresent()) {
+                return relids;
+            }
+            if (relids.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.relation.Relation: relids is less than min length 1");
+            }
+            return relids;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateText(final com.google.common.base.Optional<String> text) throws RuntimeException {
+            if (text == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.relation.Relation: text is null");
+            }
+            if (!text.isPresent()) {
+                return text;
+            }
+            if (text.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.relation.Relation: text is less than min length 1");
+            }
+            return text;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.relation.RelationType validateType(final org.dressdiscover.api.models.relation.RelationType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) {
+            return href;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> validateRelids(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids) {
+            return relids;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateText(final com.google.common.base.Optional<String> text) {
+            return text;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.relation.RelationType validateType(final org.dressdiscover.api.models.relation.RelationType type) throws org.thryft.protocol.InputProtocolException {
+            if (type == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.models.relation.Relation: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) throws org.thryft.protocol.InputProtocolException {
+            if (href == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.HREF, "org.dressdiscover.api.models.relation.Relation: href is null");
+            }
+            if (!href.isPresent()) {
+                return href;
+            }
+            return href;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> validateRelids(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids) throws org.thryft.protocol.InputProtocolException {
+            if (relids == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RELIDS, "org.dressdiscover.api.models.relation.Relation: relids is null");
+            }
+            if (!relids.isPresent()) {
+                return relids;
+            }
+            if (relids.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELIDS, "org.dressdiscover.api.models.relation.Relation: relids is less than min length 1");
+            }
+            return relids;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateText(final com.google.common.base.Optional<String> text) throws org.thryft.protocol.InputProtocolException {
+            if (text == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.relation.Relation: text is null");
+            }
+            if (!text.isPresent()) {
+                return text;
+            }
+            if (text.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.relation.Relation: text is less than min length 1");
+            }
+            return text;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public org.dressdiscover.api.models.relation.RelationType validateType(final org.dressdiscover.api.models.relation.RelationType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.thryft.native_.Url> validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) {
+            return href;
+        }
+
+        @Override
+        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> validateRelids(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids) {
+            return relids;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateText(final com.google.common.base.Optional<String> text) {
+            return text;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public Relation(final Relation other) {
-        this(other.getType(), other.getHref(), other.getRelids(), other.getText());
+        this(other.getType(), other.getHref(), other.getRelids(), other.getText(), NopConstructionValidator.getInstance());
     }
 
-    protected Relation(final org.dressdiscover.api.models.relation.RelationType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids, final com.google.common.base.Optional<String> text) {
-        this.type = type;
-        this.href = href;
-        this.relids = relids;
-        this.text = text;
+    protected Relation(final org.dressdiscover.api.models.relation.RelationType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids, final com.google.common.base.Optional<String> text, ConstructionValidator validator) {
+        this.type = validator.validateType(type);
+        this.href = validator.validateHref(href);
+        this.relids = validator.validateRelids(relids);
+        this.text = validator.validateText(text);
     }
 
     public static Builder builder() {
@@ -452,21 +643,21 @@ public final class Relation implements org.thryft.Struct, org.dressdiscover.api.
      * Required factory method
      */
     public static Relation create(final org.dressdiscover.api.models.relation.RelationType type) {
-        return new Relation(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.relation.Relation: missing type"), com.google.common.base.Optional.<org.thryft.native_.Url> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> absent(), com.google.common.base.Optional.<String> absent());
+        return new Relation(type, com.google.common.base.Optional.<org.thryft.native_.Url> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> absent(), com.google.common.base.Optional.<String> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static Relation create(final org.dressdiscover.api.models.relation.RelationType type, final @javax.annotation.Nullable org.thryft.native_.Url href, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> relids, final @javax.annotation.Nullable String text) {
-        return new Relation(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.relation.Relation: missing type"), com.google.common.base.Optional.fromNullable(href), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(relids), "org.dressdiscover.api.models.relation.Relation: relids is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(text), "org.dressdiscover.api.models.relation.Relation: text is empty"));
+        return new Relation(type, com.google.common.base.Optional.fromNullable(href), com.google.common.base.Optional.fromNullable(relids), com.google.common.base.Optional.fromNullable(text), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static Relation create(final org.dressdiscover.api.models.relation.RelationType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids, final com.google.common.base.Optional<String> text) {
-        return new Relation(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.relation.Relation: missing type"), com.google.common.base.Preconditions.checkNotNull(href, "org.dressdiscover.api.models.relation.Relation: missing href"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(relids, "org.dressdiscover.api.models.relation.Relation: missing relids"), "org.dressdiscover.api.models.relation.Relation: relids is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.relation.Relation: missing text"), "org.dressdiscover.api.models.relation.Relation: text is empty"));
+        return new Relation(type, href, relids, text, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -600,11 +791,7 @@ public final class Relation implements org.thryft.Struct, org.dressdiscover.api.
             text = com.google.common.base.Optional.of(iprot.readString());
         }
         iprot.readListEnd();
-        try {
-            return new Relation(type, href, relids, text);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Relation(DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateHref(href), DefaultReadValidator.getInstance().validateRelids(relids), DefaultReadValidator.getInstance().validateText(text), NopConstructionValidator.getInstance());
     }
 
     public static Relation readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -683,15 +870,11 @@ public final class Relation implements org.thryft.Struct, org.dressdiscover.api.
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new Relation(type, href, relids, text);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Relation(DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateHref(href), DefaultReadValidator.getInstance().validateRelids(relids), DefaultReadValidator.getInstance().validateText(text), NopConstructionValidator.getInstance());
     }
 
     public Relation replaceHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) {
-        return new Relation(this.type, href, this.relids, this.text);
+        return new Relation(this.type, DefaultConstructionValidator.getInstance().validateHref(href), this.relids, this.text, NopConstructionValidator.getInstance());
     }
 
     public Relation replaceHref(final org.thryft.native_.Url href) {
@@ -699,7 +882,7 @@ public final class Relation implements org.thryft.Struct, org.dressdiscover.api.
     }
 
     public Relation replaceRelids(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids) {
-        return new Relation(this.type, this.href, relids, this.text);
+        return new Relation(this.type, this.href, DefaultConstructionValidator.getInstance().validateRelids(relids), this.text, NopConstructionValidator.getInstance());
     }
 
     public Relation replaceRelids(final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> relids) {
@@ -707,7 +890,7 @@ public final class Relation implements org.thryft.Struct, org.dressdiscover.api.
     }
 
     public Relation replaceText(final com.google.common.base.Optional<String> text) {
-        return new Relation(this.type, this.href, this.relids, text);
+        return new Relation(this.type, this.href, this.relids, DefaultConstructionValidator.getInstance().validateText(text), NopConstructionValidator.getInstance());
     }
 
     public Relation replaceText(final String text) {
@@ -715,7 +898,7 @@ public final class Relation implements org.thryft.Struct, org.dressdiscover.api.
     }
 
     public Relation replaceType(final org.dressdiscover.api.models.relation.RelationType type) {
-        return new Relation(type, this.href, this.relids, this.text);
+        return new Relation(DefaultConstructionValidator.getInstance().validateType(type), this.href, this.relids, this.text, NopConstructionValidator.getInstance());
     }
 
     @Override

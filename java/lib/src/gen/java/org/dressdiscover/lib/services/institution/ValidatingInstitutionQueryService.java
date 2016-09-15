@@ -12,26 +12,26 @@ public class ValidatingInstitutionQueryService implements org.dressdiscover.api.
     @Override
     public final org.dressdiscover.api.models.institution.Institution getInstitutionById(final org.dressdiscover.api.models.institution.InstitutionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         _validateGetInstitutionByIdParameters(id);
-        return com.google.common.base.Preconditions.checkNotNull(delegate.getInstitutionById(id), "org.dressdiscover.api.services.institution.InstitutionQueryService.getInstitutionById: missing returnValue");
+        return org.dressdiscover.api.services.institution.InstitutionQueryService.Messages.GetInstitutionByIdResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.getInstitutionById(id));
     }
 
     protected void _validateGetInstitutionByIdParameters(final org.dressdiscover.api.models.institution.InstitutionId id) {
-        com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.InstitutionQueryService.getInstitutionById: missing id");
+        org.dressdiscover.api.services.institution.InstitutionQueryService.Messages.GetInstitutionByIdRequest.DefaultConstructionValidator.getInstance().validateId(id);
     }
 
     @Override
     public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> getInstitutions() throws org.dressdiscover.api.services.IoException {
-        return com.google.common.base.Preconditions.checkNotNull(delegate.getInstitutions(), "org.dressdiscover.api.services.institution.InstitutionQueryService.getInstitutions: missing returnValue");
+        return org.dressdiscover.api.services.institution.InstitutionQueryService.Messages.GetInstitutionsResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.getInstitutions());
     }
 
     @Override
     public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> getInstitutionsByIds(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         _validateGetInstitutionsByIdsParameters(ids);
-        return com.google.common.base.Preconditions.checkNotNull(delegate.getInstitutionsByIds(ids), "org.dressdiscover.api.services.institution.InstitutionQueryService.getInstitutionsByIds: missing returnValue");
+        return org.dressdiscover.api.services.institution.InstitutionQueryService.Messages.GetInstitutionsByIdsResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.getInstitutionsByIds(ids));
     }
 
     protected void _validateGetInstitutionsByIdsParameters(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) {
-        com.google.common.base.Preconditions.checkNotNull(ids, "org.dressdiscover.api.services.institution.InstitutionQueryService.getInstitutionsByIds: missing ids");
+        org.dressdiscover.api.services.institution.InstitutionQueryService.Messages.GetInstitutionsByIdsRequest.DefaultConstructionValidator.getInstance().validateIds(ids);
     }
 
     private final org.dressdiscover.api.services.institution.InstitutionQueryService delegate;

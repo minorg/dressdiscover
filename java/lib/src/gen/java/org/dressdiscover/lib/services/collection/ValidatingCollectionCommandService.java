@@ -16,7 +16,7 @@ public class ValidatingCollectionCommandService implements org.dressdiscover.api
     }
 
     protected void _validateDeleteCollectionByIdParameters(final org.dressdiscover.api.models.collection.CollectionId id) {
-        com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.collection.CollectionCommandService.deleteCollectionById: missing id");
+        org.dressdiscover.api.services.collection.CollectionCommandService.Messages.DeleteCollectionByIdRequest.DefaultConstructionValidator.getInstance().validateId(id);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class ValidatingCollectionCommandService implements org.dressdiscover.api
     }
 
     protected void _validateDeleteCollectionsByInstitutionIdParameters(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-        com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.services.collection.CollectionCommandService.deleteCollectionsByInstitutionId: missing institutionId");
+        org.dressdiscover.api.services.collection.CollectionCommandService.Messages.DeleteCollectionsByInstitutionIdRequest.DefaultConstructionValidator.getInstance().validateInstitutionId(institutionId);
     }
 
     @Override
@@ -36,8 +36,8 @@ public class ValidatingCollectionCommandService implements org.dressdiscover.api
     }
 
     protected void _validatePutCollectionParameters(final org.dressdiscover.api.models.collection.CollectionId id, final org.dressdiscover.api.models.collection.Collection collection) {
-        com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.collection.CollectionCommandService.putCollection: missing id");
-        com.google.common.base.Preconditions.checkNotNull(collection, "org.dressdiscover.api.services.collection.CollectionCommandService.putCollection: missing collection");
+        org.dressdiscover.api.services.collection.CollectionCommandService.Messages.PutCollectionRequest.DefaultConstructionValidator.getInstance().validateId(id);
+        org.dressdiscover.api.services.collection.CollectionCommandService.Messages.PutCollectionRequest.DefaultConstructionValidator.getInstance().validateCollection(collection);
     }
 
     private final org.dressdiscover.api.services.collection.CollectionCommandService delegate;

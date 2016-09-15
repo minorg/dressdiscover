@@ -20,11 +20,11 @@ public final class Measurements implements org.thryft.Struct, org.dressdiscover.
         }
 
         protected Measurements _build(final String text, final org.dressdiscover.api.models.measurements.MeasurementsType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> unit) {
-            return new Measurements(text, type, extent, unit);
+            return new Measurements(text, type, extent, unit, DefaultConstructionValidator.getInstance());
         }
 
         public Measurements build() {
-            return _build(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.measurements.Measurements: missing text"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.measurements.Measurements: missing type"), com.google.common.base.Preconditions.checkNotNull(extent, "org.dressdiscover.api.models.measurements.Measurements: missing extent"), com.google.common.base.Preconditions.checkNotNull(unit, "org.dressdiscover.api.models.measurements.Measurements: missing unit"));
+            return _build(text, type, extent, unit);
         }
 
         public final com.google.common.base.Optional<String> getExtent() {
@@ -151,13 +151,12 @@ public final class Measurements implements org.thryft.Struct, org.dressdiscover.
         }
 
         public Builder setExtent(final com.google.common.base.Optional<String> extent) {
-            this.extent = com.google.common.base.Preconditions.checkNotNull(extent);
+            this.extent = DefaultConstructionValidator.getInstance().validateExtent(extent);
             return this;
         }
 
         public Builder setExtent(@javax.annotation.Nullable final String extent) {
-            this.extent = com.google.common.base.Optional.fromNullable(extent);
-            return this;
+            return setExtent(com.google.common.base.Optional.fromNullable(extent));
         }
 
         public Builder setIfPresent(final Measurements other) {
@@ -176,23 +175,22 @@ public final class Measurements implements org.thryft.Struct, org.dressdiscover.
         }
 
         public Builder setText(final String text) {
-            this.text = com.google.common.base.Preconditions.checkNotNull(text);
+            this.text = DefaultConstructionValidator.getInstance().validateText(text);
             return this;
         }
 
         public Builder setType(final org.dressdiscover.api.models.measurements.MeasurementsType type) {
-            this.type = com.google.common.base.Preconditions.checkNotNull(type);
+            this.type = DefaultConstructionValidator.getInstance().validateType(type);
             return this;
         }
 
         public Builder setUnit(final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> unit) {
-            this.unit = com.google.common.base.Preconditions.checkNotNull(unit);
+            this.unit = DefaultConstructionValidator.getInstance().validateUnit(unit);
             return this;
         }
 
         public Builder setUnit(@javax.annotation.Nullable final org.dressdiscover.api.models.measurements.MeasurementsUnit unit) {
-            this.unit = com.google.common.base.Optional.fromNullable(unit);
-            return this;
+            return setUnit(com.google.common.base.Optional.fromNullable(unit));
         }
 
         public Builder unset(final String fieldThriftName) {
@@ -366,18 +364,206 @@ public final class Measurements implements org.thryft.Struct, org.dressdiscover.
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
+    public interface Validator<ExceptionT extends Exception> {
+        public String validateText(final String text) throws ExceptionT;
+
+        public org.dressdiscover.api.models.measurements.MeasurementsType validateType(final org.dressdiscover.api.models.measurements.MeasurementsType type) throws ExceptionT;
+
+        public com.google.common.base.Optional<String> validateExtent(final com.google.common.base.Optional<String> extent) throws ExceptionT;
+
+        public com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> validateUnit(final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> unit) throws ExceptionT;
+    }
+
+    public interface ConstructionValidator extends Validator<RuntimeException> {
+    }
+
+    public static class DefaultConstructionValidator implements ConstructionValidator {
+        public static DefaultConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws RuntimeException {
+            if (text == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.measurements.Measurements: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.measurements.Measurements: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.measurements.MeasurementsType validateType(final org.dressdiscover.api.models.measurements.MeasurementsType type) throws RuntimeException {
+            if (type == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.measurements.Measurements: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateExtent(final com.google.common.base.Optional<String> extent) throws RuntimeException {
+            if (extent == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.measurements.Measurements: extent is null");
+            }
+            if (!extent.isPresent()) {
+                return extent;
+            }
+            if (extent.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.measurements.Measurements: extent is less than min length 1");
+            }
+            return extent;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> validateUnit(final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> unit) throws RuntimeException {
+            if (unit == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.measurements.Measurements: unit is null");
+            }
+            if (!unit.isPresent()) {
+                return unit;
+            }
+            return unit;
+        }
+
+        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+    }
+
+    public static class NopConstructionValidator implements ConstructionValidator {
+        public static NopConstructionValidator getInstance() {
+            return instance;
+        }
+
+        public NopConstructionValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.measurements.MeasurementsType validateType(final org.dressdiscover.api.models.measurements.MeasurementsType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateExtent(final com.google.common.base.Optional<String> extent) {
+            return extent;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> validateUnit(final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> unit) {
+            return unit;
+        }
+
+        private final static NopConstructionValidator instance = new NopConstructionValidator();
+    }
+
+    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+    }
+
+    public static class DefaultReadValidator implements ReadValidator {
+        public static DefaultReadValidator getInstance() {
+            return instance;
+        }
+
+        public DefaultReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) throws org.thryft.protocol.InputProtocolException {
+            if (text == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.measurements.Measurements: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.models.measurements.Measurements: text is less than min length 1");
+            }
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.measurements.MeasurementsType validateType(final org.dressdiscover.api.models.measurements.MeasurementsType type) throws org.thryft.protocol.InputProtocolException {
+            if (type == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.models.measurements.Measurements: type is null");
+            }
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateExtent(final com.google.common.base.Optional<String> extent) throws org.thryft.protocol.InputProtocolException {
+            if (extent == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXTENT, "org.dressdiscover.api.models.measurements.Measurements: extent is null");
+            }
+            if (!extent.isPresent()) {
+                return extent;
+            }
+            if (extent.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENT, "org.dressdiscover.api.models.measurements.Measurements: extent is less than min length 1");
+            }
+            return extent;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> validateUnit(final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> unit) throws org.thryft.protocol.InputProtocolException {
+            if (unit == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.UNIT, "org.dressdiscover.api.models.measurements.Measurements: unit is null");
+            }
+            if (!unit.isPresent()) {
+                return unit;
+            }
+            return unit;
+        }
+
+        private final static DefaultReadValidator instance = new DefaultReadValidator();
+    }
+
+    public static class NopReadValidator implements ReadValidator {
+        public static NopReadValidator getInstance() {
+            return instance;
+        }
+
+        public NopReadValidator() {
+        }
+
+        @Override
+        public String validateText(final String text) {
+            return text;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.measurements.MeasurementsType validateType(final org.dressdiscover.api.models.measurements.MeasurementsType type) {
+            return type;
+        }
+
+        @Override
+        public com.google.common.base.Optional<String> validateExtent(final com.google.common.base.Optional<String> extent) {
+            return extent;
+        }
+
+        @Override
+        public com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> validateUnit(final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> unit) {
+            return unit;
+        }
+
+        private final static NopReadValidator instance = new NopReadValidator();
+    }
+
     /**
      * Copy constructor
      */
     public Measurements(final Measurements other) {
-        this(other.getText(), other.getType(), other.getExtent(), other.getUnit());
+        this(other.getText(), other.getType(), other.getExtent(), other.getUnit(), NopConstructionValidator.getInstance());
     }
 
-    protected Measurements(final String text, final org.dressdiscover.api.models.measurements.MeasurementsType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> unit) {
-        this.text = text;
-        this.type = type;
-        this.extent = extent;
-        this.unit = unit;
+    protected Measurements(final String text, final org.dressdiscover.api.models.measurements.MeasurementsType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> unit, ConstructionValidator validator) {
+        this.text = validator.validateText(text);
+        this.type = validator.validateType(type);
+        this.extent = validator.validateExtent(extent);
+        this.unit = validator.validateUnit(unit);
     }
 
     public static Builder builder() {
@@ -396,21 +582,21 @@ public final class Measurements implements org.thryft.Struct, org.dressdiscover.
      * Required factory method
      */
     public static Measurements create(final String text, final org.dressdiscover.api.models.measurements.MeasurementsType type) {
-        return new Measurements(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.measurements.Measurements: missing text"), "org.dressdiscover.api.models.measurements.Measurements: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.measurements.Measurements: missing type"), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.measurements.MeasurementsUnit> absent());
+        return new Measurements(text, type, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.measurements.MeasurementsUnit> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
     public static Measurements create(final String text, final org.dressdiscover.api.models.measurements.MeasurementsType type, final @javax.annotation.Nullable String extent, final @javax.annotation.Nullable org.dressdiscover.api.models.measurements.MeasurementsUnit unit) {
-        return new Measurements(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.measurements.Measurements: missing text"), "org.dressdiscover.api.models.measurements.Measurements: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.measurements.Measurements: missing type"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(extent), "org.dressdiscover.api.models.measurements.Measurements: extent is empty"), com.google.common.base.Optional.fromNullable(unit));
+        return new Measurements(text, type, com.google.common.base.Optional.fromNullable(extent), com.google.common.base.Optional.fromNullable(unit), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
     public static Measurements create(final String text, final org.dressdiscover.api.models.measurements.MeasurementsType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> unit) {
-        return new Measurements(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.measurements.Measurements: missing text"), "org.dressdiscover.api.models.measurements.Measurements: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.measurements.Measurements: missing type"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(extent, "org.dressdiscover.api.models.measurements.Measurements: missing extent"), "org.dressdiscover.api.models.measurements.Measurements: extent is empty"), com.google.common.base.Preconditions.checkNotNull(unit, "org.dressdiscover.api.models.measurements.Measurements: missing unit"));
+        return new Measurements(text, type, extent, unit, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -517,11 +703,7 @@ public final class Measurements implements org.thryft.Struct, org.dressdiscover.
             }
         }
         iprot.readListEnd();
-        try {
-            return new Measurements(text, type, extent, unit);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Measurements(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateExtent(extent), DefaultReadValidator.getInstance().validateUnit(unit), NopConstructionValidator.getInstance());
     }
 
     public static Measurements readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -577,15 +759,11 @@ public final class Measurements implements org.thryft.Struct, org.dressdiscover.
             iprot.readFieldEnd();
         }
         iprot.readStructEnd();
-        try {
-            return new Measurements(text, type, extent, unit);
-        } catch (final IllegalArgumentException | NullPointerException e) {
-            throw new org.thryft.protocol.InputProtocolException(e);
-        }
+        return new Measurements(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateExtent(extent), DefaultReadValidator.getInstance().validateUnit(unit), NopConstructionValidator.getInstance());
     }
 
     public Measurements replaceExtent(final com.google.common.base.Optional<String> extent) {
-        return new Measurements(this.text, this.type, extent, this.unit);
+        return new Measurements(this.text, this.type, DefaultConstructionValidator.getInstance().validateExtent(extent), this.unit, NopConstructionValidator.getInstance());
     }
 
     public Measurements replaceExtent(final String extent) {
@@ -593,15 +771,15 @@ public final class Measurements implements org.thryft.Struct, org.dressdiscover.
     }
 
     public Measurements replaceText(final String text) {
-        return new Measurements(text, this.type, this.extent, this.unit);
+        return new Measurements(DefaultConstructionValidator.getInstance().validateText(text), this.type, this.extent, this.unit, NopConstructionValidator.getInstance());
     }
 
     public Measurements replaceType(final org.dressdiscover.api.models.measurements.MeasurementsType type) {
-        return new Measurements(this.text, type, this.extent, this.unit);
+        return new Measurements(this.text, DefaultConstructionValidator.getInstance().validateType(type), this.extent, this.unit, NopConstructionValidator.getInstance());
     }
 
     public Measurements replaceUnit(final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> unit) {
-        return new Measurements(this.text, this.type, this.extent, unit);
+        return new Measurements(this.text, this.type, this.extent, DefaultConstructionValidator.getInstance().validateUnit(unit), NopConstructionValidator.getInstance());
     }
 
     public Measurements replaceUnit(final org.dressdiscover.api.models.measurements.MeasurementsUnit unit) {

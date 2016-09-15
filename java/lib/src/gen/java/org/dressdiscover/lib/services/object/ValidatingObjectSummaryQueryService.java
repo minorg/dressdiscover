@@ -12,12 +12,12 @@ public class ValidatingObjectSummaryQueryService implements org.dressdiscover.ap
     @Override
     public final org.dressdiscover.api.services.object.GetObjectSummariesResult getObjectSummaries(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) throws org.dressdiscover.api.services.IoException {
         _validateGetObjectSummariesParameters(options, query);
-        return com.google.common.base.Preconditions.checkNotNull(delegate.getObjectSummaries(options, query), "org.dressdiscover.api.services.object.ObjectSummaryQueryService.getObjectSummaries: missing returnValue");
+        return org.dressdiscover.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.getObjectSummaries(options, query));
     }
 
     protected void _validateGetObjectSummariesParameters(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) {
-        com.google.common.base.Preconditions.checkNotNull(options, "org.dressdiscover.api.services.object.ObjectSummaryQueryService.getObjectSummaries: missing options");
-        com.google.common.base.Preconditions.checkNotNull(query, "org.dressdiscover.api.services.object.ObjectSummaryQueryService.getObjectSummaries: missing query");
+        org.dressdiscover.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest.DefaultConstructionValidator.getInstance().validateOptions(options);
+        org.dressdiscover.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest.DefaultConstructionValidator.getInstance().validateQuery(query);
     }
 
     private final org.dressdiscover.api.services.object.ObjectSummaryQueryService delegate;

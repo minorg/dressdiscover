@@ -31,11 +31,11 @@ public interface UserQueryService {
                 }
 
                 protected GetUserBookmarksByUserIdRequest _build(final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) {
-                    return new GetUserBookmarksByUserIdRequest(userId, objectIdsOnly);
+                    return new GetUserBookmarksByUserIdRequest(userId, objectIdsOnly, DefaultConstructionValidator.getInstance());
                 }
 
                 public GetUserBookmarksByUserIdRequest build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: missing userId"), com.google.common.base.Preconditions.checkNotNull(objectIdsOnly, "org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: missing objectIdsOnly"));
+                    return _build(userId, objectIdsOnly);
                 }
 
                 public final com.google.common.base.Optional<Boolean> getObjectIdsOnly() {
@@ -145,17 +145,16 @@ public interface UserQueryService {
                 }
 
                 public Builder setObjectIdsOnly(final com.google.common.base.Optional<Boolean> objectIdsOnly) {
-                    this.objectIdsOnly = com.google.common.base.Preconditions.checkNotNull(objectIdsOnly);
+                    this.objectIdsOnly = DefaultConstructionValidator.getInstance().validateObjectIdsOnly(objectIdsOnly);
                     return this;
                 }
 
                 public Builder setObjectIdsOnly(@javax.annotation.Nullable final Boolean objectIdsOnly) {
-                    this.objectIdsOnly = com.google.common.base.Optional.fromNullable(objectIdsOnly);
-                    return this;
+                    return setObjectIdsOnly(com.google.common.base.Optional.fromNullable(objectIdsOnly));
                 }
 
                 public Builder setUserId(final org.dressdiscover.api.models.user.UserId userId) {
-                    this.userId = com.google.common.base.Preconditions.checkNotNull(userId);
+                    this.userId = DefaultConstructionValidator.getInstance().validateUserId(userId);
                     return this;
                 }
 
@@ -310,16 +309,124 @@ public interface UserQueryService {
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+                public org.dressdiscover.api.models.user.UserId validateUserId(final org.dressdiscover.api.models.user.UserId userId) throws ExceptionT;
+
+                public com.google.common.base.Optional<Boolean> validateObjectIdsOnly(final com.google.common.base.Optional<Boolean> objectIdsOnly) throws ExceptionT;
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.user.UserId validateUserId(final org.dressdiscover.api.models.user.UserId userId) throws RuntimeException {
+                    if (userId == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: userId is null");
+                    }
+                    return userId;
+                }
+
+                @Override
+                public com.google.common.base.Optional<Boolean> validateObjectIdsOnly(final com.google.common.base.Optional<Boolean> objectIdsOnly) throws RuntimeException {
+                    if (!objectIdsOnly.isPresent()) {
+                        return objectIdsOnly;
+                    }
+                    return objectIdsOnly;
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.user.UserId validateUserId(final org.dressdiscover.api.models.user.UserId userId) {
+                    return userId;
+                }
+
+                @Override
+                public com.google.common.base.Optional<Boolean> validateObjectIdsOnly(final com.google.common.base.Optional<Boolean> objectIdsOnly) {
+                    return objectIdsOnly;
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.user.UserId validateUserId(final org.dressdiscover.api.models.user.UserId userId) throws org.thryft.protocol.InputProtocolException {
+                    if (userId == null) {
+                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.USER_ID, "org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: userId is null");
+                    }
+                    return userId;
+                }
+
+                @Override
+                public com.google.common.base.Optional<Boolean> validateObjectIdsOnly(final com.google.common.base.Optional<Boolean> objectIdsOnly) throws org.thryft.protocol.InputProtocolException {
+                    if (!objectIdsOnly.isPresent()) {
+                        return objectIdsOnly;
+                    }
+                    return objectIdsOnly;
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.user.UserId validateUserId(final org.dressdiscover.api.models.user.UserId userId) {
+                    return userId;
+                }
+
+                @Override
+                public com.google.common.base.Optional<Boolean> validateObjectIdsOnly(final com.google.common.base.Optional<Boolean> objectIdsOnly) {
+                    return objectIdsOnly;
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             /**
              * Copy constructor
              */
             public GetUserBookmarksByUserIdRequest(final GetUserBookmarksByUserIdRequest other) {
-                this(other.getUserId(), other.getObjectIdsOnly());
+                this(other.getUserId(), other.getObjectIdsOnly(), NopConstructionValidator.getInstance());
             }
 
-            protected GetUserBookmarksByUserIdRequest(final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) {
-                this.userId = userId;
-                this.objectIdsOnly = objectIdsOnly;
+            protected GetUserBookmarksByUserIdRequest(final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly, ConstructionValidator validator) {
+                this.userId = validator.validateUserId(userId);
+                this.objectIdsOnly = validator.validateObjectIdsOnly(objectIdsOnly);
             }
 
             public static Builder builder() {
@@ -338,21 +445,21 @@ public interface UserQueryService {
              * Required factory method
              */
             public static GetUserBookmarksByUserIdRequest create(final org.dressdiscover.api.models.user.UserId userId) {
-                return new GetUserBookmarksByUserIdRequest(com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: missing userId"), com.google.common.base.Optional.<Boolean> absent());
+                return new GetUserBookmarksByUserIdRequest(userId, com.google.common.base.Optional.<Boolean> absent(), DefaultConstructionValidator.getInstance());
             }
 
             /**
              * Total Nullable factory method
              */
             public static GetUserBookmarksByUserIdRequest create(final org.dressdiscover.api.models.user.UserId userId, final @javax.annotation.Nullable Boolean objectIdsOnly) {
-                return new GetUserBookmarksByUserIdRequest(com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: missing userId"), com.google.common.base.Optional.fromNullable(objectIdsOnly));
+                return new GetUserBookmarksByUserIdRequest(userId, com.google.common.base.Optional.fromNullable(objectIdsOnly), DefaultConstructionValidator.getInstance());
             }
 
             /**
              * Optional factory method
              */
             public static GetUserBookmarksByUserIdRequest create(final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) {
-                return new GetUserBookmarksByUserIdRequest(com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: missing userId"), com.google.common.base.Preconditions.checkNotNull(objectIdsOnly, "org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: missing objectIdsOnly"));
+                return new GetUserBookmarksByUserIdRequest(userId, objectIdsOnly, DefaultConstructionValidator.getInstance());
             }
 
             @Override
@@ -438,11 +545,7 @@ public interface UserQueryService {
                     objectIdsOnly = com.google.common.base.Optional.of(iprot.readBool());
                 }
                 iprot.readListEnd();
-                try {
-                    return new GetUserBookmarksByUserIdRequest(userId, objectIdsOnly);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetUserBookmarksByUserIdRequest(DefaultReadValidator.getInstance().validateUserId(userId), DefaultReadValidator.getInstance().validateObjectIdsOnly(objectIdsOnly), NopConstructionValidator.getInstance());
             }
 
             public static GetUserBookmarksByUserIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -481,15 +584,11 @@ public interface UserQueryService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new GetUserBookmarksByUserIdRequest(userId, objectIdsOnly);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetUserBookmarksByUserIdRequest(DefaultReadValidator.getInstance().validateUserId(userId), DefaultReadValidator.getInstance().validateObjectIdsOnly(objectIdsOnly), NopConstructionValidator.getInstance());
             }
 
             public GetUserBookmarksByUserIdRequest replaceObjectIdsOnly(final com.google.common.base.Optional<Boolean> objectIdsOnly) {
-                return new GetUserBookmarksByUserIdRequest(this.userId, objectIdsOnly);
+                return new GetUserBookmarksByUserIdRequest(this.userId, DefaultConstructionValidator.getInstance().validateObjectIdsOnly(objectIdsOnly), NopConstructionValidator.getInstance());
             }
 
             public GetUserBookmarksByUserIdRequest replaceObjectIdsOnly(final boolean objectIdsOnly) {
@@ -497,7 +596,7 @@ public interface UserQueryService {
             }
 
             public GetUserBookmarksByUserIdRequest replaceUserId(final org.dressdiscover.api.models.user.UserId userId) {
-                return new GetUserBookmarksByUserIdRequest(userId, this.objectIdsOnly);
+                return new GetUserBookmarksByUserIdRequest(DefaultConstructionValidator.getInstance().validateUserId(userId), this.objectIdsOnly, NopConstructionValidator.getInstance());
             }
 
             @Override
@@ -558,11 +657,11 @@ public interface UserQueryService {
                 }
 
                 protected GetUserBookmarksByUserIdResponse _build(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) {
-                    return new GetUserBookmarksByUserIdResponse(returnValue);
+                    return new GetUserBookmarksByUserIdResponse(returnValue, DefaultConstructionValidator.getInstance());
                 }
 
                 public GetUserBookmarksByUserIdResponse build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.user.GetUserBookmarksByUserIdResponse: missing returnValue"));
+                    return _build(returnValue);
                 }
 
                 public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> getReturnValue() {
@@ -680,7 +779,7 @@ public interface UserQueryService {
                 }
 
                 public Builder setReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) {
-                    this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue);
+                    this.returnValue = DefaultConstructionValidator.getInstance().validateReturnValue(returnValue);
                     return this;
                 }
 
@@ -825,15 +924,95 @@ public interface UserQueryService {
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> validateReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) throws ExceptionT;
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                @Override
+                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> validateReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) throws RuntimeException {
+                    if (returnValue == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.user.GetUserBookmarksByUserIdResponse: returnValue is null");
+                    }
+                    return returnValue;
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                @Override
+                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> validateReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) {
+                    return returnValue;
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                @Override
+                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> validateReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) throws org.thryft.protocol.InputProtocolException {
+                    if (returnValue == null) {
+                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RETURN_VALUE, "org.dressdiscover.api.services.user.GetUserBookmarksByUserIdResponse: returnValue is null");
+                    }
+                    return returnValue;
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                @Override
+                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> validateReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) {
+                    return returnValue;
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             /**
              * Copy constructor
              */
             public GetUserBookmarksByUserIdResponse(final GetUserBookmarksByUserIdResponse other) {
-                this(other.getReturnValue());
+                this(other.getReturnValue(), NopConstructionValidator.getInstance());
             }
 
-            protected GetUserBookmarksByUserIdResponse(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) {
-                this.returnValue = returnValue;
+            protected GetUserBookmarksByUserIdResponse(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue, ConstructionValidator validator) {
+                this.returnValue = validator.validateReturnValue(returnValue);
             }
 
             public static Builder builder() {
@@ -852,7 +1031,7 @@ public interface UserQueryService {
              * Optional factory method
              */
             public static GetUserBookmarksByUserIdResponse create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) {
-                return new GetUserBookmarksByUserIdResponse(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.user.UserQueryService.getUserBookmarksByUserId: missing returnValue"));
+                return new GetUserBookmarksByUserIdResponse(returnValue, DefaultConstructionValidator.getInstance());
             }
 
             @Override
@@ -936,11 +1115,7 @@ public interface UserQueryService {
                     }
                 }).apply(iprot);
                 iprot.readListEnd();
-                try {
-                    return new GetUserBookmarksByUserIdResponse(returnValue);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetUserBookmarksByUserIdResponse(DefaultReadValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
             }
 
             public static GetUserBookmarksByUserIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -985,15 +1160,11 @@ public interface UserQueryService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new GetUserBookmarksByUserIdResponse(returnValue);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetUserBookmarksByUserIdResponse(DefaultReadValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
             }
 
             public GetUserBookmarksByUserIdResponse replaceReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) {
-                return new GetUserBookmarksByUserIdResponse(returnValue);
+                return new GetUserBookmarksByUserIdResponse(DefaultConstructionValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
             }
 
             @Override
@@ -1048,11 +1219,11 @@ public interface UserQueryService {
                 }
 
                 protected GetUserByEmailAddressRequest _build(final org.thryft.native_.EmailAddress emailAddress) {
-                    return new GetUserByEmailAddressRequest(emailAddress);
+                    return new GetUserByEmailAddressRequest(emailAddress, DefaultConstructionValidator.getInstance());
                 }
 
                 public GetUserByEmailAddressRequest build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(emailAddress, "org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: missing emailAddress"));
+                    return _build(emailAddress);
                 }
 
                 public final org.thryft.native_.EmailAddress getEmailAddress() {
@@ -1131,7 +1302,7 @@ public interface UserQueryService {
                 }
 
                 public Builder setEmailAddress(final org.thryft.native_.EmailAddress emailAddress) {
-                    this.emailAddress = com.google.common.base.Preconditions.checkNotNull(emailAddress);
+                    this.emailAddress = DefaultConstructionValidator.getInstance().validateEmailAddress(emailAddress);
                     return this;
                 }
 
@@ -1284,15 +1455,95 @@ public interface UserQueryService {
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+                public org.thryft.native_.EmailAddress validateEmailAddress(final org.thryft.native_.EmailAddress emailAddress) throws ExceptionT;
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                @Override
+                public org.thryft.native_.EmailAddress validateEmailAddress(final org.thryft.native_.EmailAddress emailAddress) throws RuntimeException {
+                    if (emailAddress == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: emailAddress is null");
+                    }
+                    return emailAddress;
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                @Override
+                public org.thryft.native_.EmailAddress validateEmailAddress(final org.thryft.native_.EmailAddress emailAddress) {
+                    return emailAddress;
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                @Override
+                public org.thryft.native_.EmailAddress validateEmailAddress(final org.thryft.native_.EmailAddress emailAddress) throws org.thryft.protocol.InputProtocolException {
+                    if (emailAddress == null) {
+                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, "org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: emailAddress is null");
+                    }
+                    return emailAddress;
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                @Override
+                public org.thryft.native_.EmailAddress validateEmailAddress(final org.thryft.native_.EmailAddress emailAddress) {
+                    return emailAddress;
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             /**
              * Copy constructor
              */
             public GetUserByEmailAddressRequest(final GetUserByEmailAddressRequest other) {
-                this(other.getEmailAddress());
+                this(other.getEmailAddress(), NopConstructionValidator.getInstance());
             }
 
-            protected GetUserByEmailAddressRequest(final org.thryft.native_.EmailAddress emailAddress) {
-                this.emailAddress = emailAddress;
+            protected GetUserByEmailAddressRequest(final org.thryft.native_.EmailAddress emailAddress, ConstructionValidator validator) {
+                this.emailAddress = validator.validateEmailAddress(emailAddress);
             }
 
             public static Builder builder() {
@@ -1311,7 +1562,7 @@ public interface UserQueryService {
              * Optional factory method
              */
             public static GetUserByEmailAddressRequest create(final org.thryft.native_.EmailAddress emailAddress) {
-                return new GetUserByEmailAddressRequest(com.google.common.base.Preconditions.checkNotNull(emailAddress, "org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: missing emailAddress"));
+                return new GetUserByEmailAddressRequest(emailAddress, DefaultConstructionValidator.getInstance());
             }
 
             @Override
@@ -1380,11 +1631,7 @@ public interface UserQueryService {
                 iprot.readListBegin();
                 emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
                 iprot.readListEnd();
-                try {
-                    return new GetUserByEmailAddressRequest(emailAddress);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetUserByEmailAddressRequest(DefaultReadValidator.getInstance().validateEmailAddress(emailAddress), NopConstructionValidator.getInstance());
             }
 
             public static GetUserByEmailAddressRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1414,15 +1661,11 @@ public interface UserQueryService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new GetUserByEmailAddressRequest(emailAddress);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetUserByEmailAddressRequest(DefaultReadValidator.getInstance().validateEmailAddress(emailAddress), NopConstructionValidator.getInstance());
             }
 
             public GetUserByEmailAddressRequest replaceEmailAddress(final org.thryft.native_.EmailAddress emailAddress) {
-                return new GetUserByEmailAddressRequest(emailAddress);
+                return new GetUserByEmailAddressRequest(DefaultConstructionValidator.getInstance().validateEmailAddress(emailAddress), NopConstructionValidator.getInstance());
             }
 
             @Override
@@ -1469,11 +1712,11 @@ public interface UserQueryService {
                 }
 
                 protected GetUserByEmailAddressResponse _build(final org.dressdiscover.api.models.user.UserEntry returnValue) {
-                    return new GetUserByEmailAddressResponse(returnValue);
+                    return new GetUserByEmailAddressResponse(returnValue, DefaultConstructionValidator.getInstance());
                 }
 
                 public GetUserByEmailAddressResponse build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.user.GetUserByEmailAddressResponse: missing returnValue"));
+                    return _build(returnValue);
                 }
 
                 public final org.dressdiscover.api.models.user.UserEntry getReturnValue() {
@@ -1560,7 +1803,7 @@ public interface UserQueryService {
                 }
 
                 public Builder setReturnValue(final org.dressdiscover.api.models.user.UserEntry returnValue) {
-                    this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue);
+                    this.returnValue = DefaultConstructionValidator.getInstance().validateReturnValue(returnValue);
                     return this;
                 }
 
@@ -1705,15 +1948,95 @@ public interface UserQueryService {
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+                public org.dressdiscover.api.models.user.UserEntry validateReturnValue(final org.dressdiscover.api.models.user.UserEntry returnValue) throws ExceptionT;
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.user.UserEntry validateReturnValue(final org.dressdiscover.api.models.user.UserEntry returnValue) throws RuntimeException {
+                    if (returnValue == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.user.GetUserByEmailAddressResponse: returnValue is null");
+                    }
+                    return returnValue;
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.user.UserEntry validateReturnValue(final org.dressdiscover.api.models.user.UserEntry returnValue) {
+                    return returnValue;
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.user.UserEntry validateReturnValue(final org.dressdiscover.api.models.user.UserEntry returnValue) throws org.thryft.protocol.InputProtocolException {
+                    if (returnValue == null) {
+                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RETURN_VALUE, "org.dressdiscover.api.services.user.GetUserByEmailAddressResponse: returnValue is null");
+                    }
+                    return returnValue;
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.user.UserEntry validateReturnValue(final org.dressdiscover.api.models.user.UserEntry returnValue) {
+                    return returnValue;
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             /**
              * Copy constructor
              */
             public GetUserByEmailAddressResponse(final GetUserByEmailAddressResponse other) {
-                this(other.getReturnValue());
+                this(other.getReturnValue(), NopConstructionValidator.getInstance());
             }
 
-            protected GetUserByEmailAddressResponse(final org.dressdiscover.api.models.user.UserEntry returnValue) {
-                this.returnValue = returnValue;
+            protected GetUserByEmailAddressResponse(final org.dressdiscover.api.models.user.UserEntry returnValue, ConstructionValidator validator) {
+                this.returnValue = validator.validateReturnValue(returnValue);
             }
 
             public static Builder builder() {
@@ -1732,7 +2055,7 @@ public interface UserQueryService {
              * Optional factory method
              */
             public static GetUserByEmailAddressResponse create(final org.dressdiscover.api.models.user.UserEntry returnValue) {
-                return new GetUserByEmailAddressResponse(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.user.UserQueryService.getUserByEmailAddress: missing returnValue"));
+                return new GetUserByEmailAddressResponse(returnValue, DefaultConstructionValidator.getInstance());
             }
 
             @Override
@@ -1801,11 +2124,7 @@ public interface UserQueryService {
                 iprot.readListBegin();
                 returnValue = org.dressdiscover.api.models.user.UserEntry.readAsStruct(iprot);
                 iprot.readListEnd();
-                try {
-                    return new GetUserByEmailAddressResponse(returnValue);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetUserByEmailAddressResponse(DefaultReadValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
             }
 
             public static GetUserByEmailAddressResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1835,15 +2154,11 @@ public interface UserQueryService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new GetUserByEmailAddressResponse(returnValue);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetUserByEmailAddressResponse(DefaultReadValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
             }
 
             public GetUserByEmailAddressResponse replaceReturnValue(final org.dressdiscover.api.models.user.UserEntry returnValue) {
-                return new GetUserByEmailAddressResponse(returnValue);
+                return new GetUserByEmailAddressResponse(DefaultConstructionValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
             }
 
             @Override
@@ -1890,11 +2205,11 @@ public interface UserQueryService {
                 }
 
                 protected GetUserByIdRequest _build(final org.dressdiscover.api.models.user.UserId id) {
-                    return new GetUserByIdRequest(id);
+                    return new GetUserByIdRequest(id, DefaultConstructionValidator.getInstance());
                 }
 
                 public GetUserByIdRequest build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.GetUserByIdRequest: missing id"));
+                    return _build(id);
                 }
 
                 public final org.dressdiscover.api.models.user.UserId getId() {
@@ -1981,7 +2296,7 @@ public interface UserQueryService {
                 }
 
                 public Builder setId(final org.dressdiscover.api.models.user.UserId id) {
-                    this.id = com.google.common.base.Preconditions.checkNotNull(id);
+                    this.id = DefaultConstructionValidator.getInstance().validateId(id);
                     return this;
                 }
 
@@ -2134,15 +2449,95 @@ public interface UserQueryService {
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+                public org.dressdiscover.api.models.user.UserId validateId(final org.dressdiscover.api.models.user.UserId id) throws ExceptionT;
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.user.UserId validateId(final org.dressdiscover.api.models.user.UserId id) throws RuntimeException {
+                    if (id == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.user.GetUserByIdRequest: id is null");
+                    }
+                    return id;
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.user.UserId validateId(final org.dressdiscover.api.models.user.UserId id) {
+                    return id;
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.user.UserId validateId(final org.dressdiscover.api.models.user.UserId id) throws org.thryft.protocol.InputProtocolException {
+                    if (id == null) {
+                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.services.user.GetUserByIdRequest: id is null");
+                    }
+                    return id;
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.user.UserId validateId(final org.dressdiscover.api.models.user.UserId id) {
+                    return id;
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             /**
              * Copy constructor
              */
             public GetUserByIdRequest(final GetUserByIdRequest other) {
-                this(other.getId());
+                this(other.getId(), NopConstructionValidator.getInstance());
             }
 
-            protected GetUserByIdRequest(final org.dressdiscover.api.models.user.UserId id) {
-                this.id = id;
+            protected GetUserByIdRequest(final org.dressdiscover.api.models.user.UserId id, ConstructionValidator validator) {
+                this.id = validator.validateId(id);
             }
 
             public static Builder builder() {
@@ -2161,7 +2556,7 @@ public interface UserQueryService {
              * Optional factory method
              */
             public static GetUserByIdRequest create(final org.dressdiscover.api.models.user.UserId id) {
-                return new GetUserByIdRequest(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.GetUserByIdRequest: missing id"));
+                return new GetUserByIdRequest(id, DefaultConstructionValidator.getInstance());
             }
 
             @Override
@@ -2234,11 +2629,7 @@ public interface UserQueryService {
                      throw new org.thryft.protocol.InputProtocolException(e);
                 }
                 iprot.readListEnd();
-                try {
-                    return new GetUserByIdRequest(id);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetUserByIdRequest(DefaultReadValidator.getInstance().validateId(id), NopConstructionValidator.getInstance());
             }
 
             public static GetUserByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -2272,15 +2663,11 @@ public interface UserQueryService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new GetUserByIdRequest(id);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetUserByIdRequest(DefaultReadValidator.getInstance().validateId(id), NopConstructionValidator.getInstance());
             }
 
             public GetUserByIdRequest replaceId(final org.dressdiscover.api.models.user.UserId id) {
-                return new GetUserByIdRequest(id);
+                return new GetUserByIdRequest(DefaultConstructionValidator.getInstance().validateId(id), NopConstructionValidator.getInstance());
             }
 
             @Override
@@ -2327,11 +2714,11 @@ public interface UserQueryService {
                 }
 
                 protected GetUserByIdResponse _build(final org.dressdiscover.api.models.user.User returnValue) {
-                    return new GetUserByIdResponse(returnValue);
+                    return new GetUserByIdResponse(returnValue, DefaultConstructionValidator.getInstance());
                 }
 
                 public GetUserByIdResponse build() {
-                    return _build(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.user.GetUserByIdResponse: missing returnValue"));
+                    return _build(returnValue);
                 }
 
                 public final org.dressdiscover.api.models.user.User getReturnValue() {
@@ -2418,7 +2805,7 @@ public interface UserQueryService {
                 }
 
                 public Builder setReturnValue(final org.dressdiscover.api.models.user.User returnValue) {
-                    this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue);
+                    this.returnValue = DefaultConstructionValidator.getInstance().validateReturnValue(returnValue);
                     return this;
                 }
 
@@ -2563,15 +2950,95 @@ public interface UserQueryService {
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
+            public interface Validator<ExceptionT extends Exception> {
+                public org.dressdiscover.api.models.user.User validateReturnValue(final org.dressdiscover.api.models.user.User returnValue) throws ExceptionT;
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.user.User validateReturnValue(final org.dressdiscover.api.models.user.User returnValue) throws RuntimeException {
+                    if (returnValue == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.user.GetUserByIdResponse: returnValue is null");
+                    }
+                    return returnValue;
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.user.User validateReturnValue(final org.dressdiscover.api.models.user.User returnValue) {
+                    return returnValue;
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.user.User validateReturnValue(final org.dressdiscover.api.models.user.User returnValue) throws org.thryft.protocol.InputProtocolException {
+                    if (returnValue == null) {
+                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RETURN_VALUE, "org.dressdiscover.api.services.user.GetUserByIdResponse: returnValue is null");
+                    }
+                    return returnValue;
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                @Override
+                public org.dressdiscover.api.models.user.User validateReturnValue(final org.dressdiscover.api.models.user.User returnValue) {
+                    return returnValue;
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
             /**
              * Copy constructor
              */
             public GetUserByIdResponse(final GetUserByIdResponse other) {
-                this(other.getReturnValue());
+                this(other.getReturnValue(), NopConstructionValidator.getInstance());
             }
 
-            protected GetUserByIdResponse(final org.dressdiscover.api.models.user.User returnValue) {
-                this.returnValue = returnValue;
+            protected GetUserByIdResponse(final org.dressdiscover.api.models.user.User returnValue, ConstructionValidator validator) {
+                this.returnValue = validator.validateReturnValue(returnValue);
             }
 
             public static Builder builder() {
@@ -2590,7 +3057,7 @@ public interface UserQueryService {
              * Optional factory method
              */
             public static GetUserByIdResponse create(final org.dressdiscover.api.models.user.User returnValue) {
-                return new GetUserByIdResponse(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.user.UserQueryService.getUserById: missing returnValue"));
+                return new GetUserByIdResponse(returnValue, DefaultConstructionValidator.getInstance());
             }
 
             @Override
@@ -2659,11 +3126,7 @@ public interface UserQueryService {
                 iprot.readListBegin();
                 returnValue = org.dressdiscover.api.models.user.User.readAsStruct(iprot);
                 iprot.readListEnd();
-                try {
-                    return new GetUserByIdResponse(returnValue);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetUserByIdResponse(DefaultReadValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
             }
 
             public static GetUserByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -2693,15 +3156,11 @@ public interface UserQueryService {
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
-                try {
-                    return new GetUserByIdResponse(returnValue);
-                } catch (final IllegalArgumentException | NullPointerException e) {
-                    throw new org.thryft.protocol.InputProtocolException(e);
-                }
+                return new GetUserByIdResponse(DefaultReadValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
             }
 
             public GetUserByIdResponse replaceReturnValue(final org.dressdiscover.api.models.user.User returnValue) {
-                return new GetUserByIdResponse(returnValue);
+                return new GetUserByIdResponse(DefaultConstructionValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
             }
 
             @Override
