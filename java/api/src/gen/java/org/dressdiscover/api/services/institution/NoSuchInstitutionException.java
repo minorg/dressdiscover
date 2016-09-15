@@ -1,7 +1,7 @@
 package org.dressdiscover.api.services.institution;
 
 @SuppressWarnings({"serial"})
-public final class NoSuchInstitutionException extends org.thryft.Exception {
+public final class NoSuchInstitutionException extends org.thryft.waf.api.services.NoSuchModelException {
     public final static class Builder {
         public Builder() {
             id = com.google.common.base.Optional.<org.dressdiscover.api.models.institution.InstitutionId> absent();

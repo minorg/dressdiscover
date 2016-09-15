@@ -1,7 +1,7 @@
 package org.dressdiscover.api.services.collection;
 
 @SuppressWarnings({"serial"})
-public final class NoSuchCollectionException extends org.thryft.Exception {
+public final class NoSuchCollectionException extends org.thryft.waf.api.services.NoSuchModelException {
     public final static class Builder {
         public Builder() {
             id = com.google.common.base.Optional.<org.dressdiscover.api.models.collection.CollectionId> absent();
