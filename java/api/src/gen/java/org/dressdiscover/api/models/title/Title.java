@@ -8,7 +8,7 @@ public class Title implements org.thryft.Struct, org.dressdiscover.api.models.El
         public Builder() {
             text = null;
             type = null;
-            pref = com.google.common.base.Optional.absent();
+            pref = com.google.common.base.Optional.<Boolean> absent();
         }
 
         public Builder(final Title other) {
@@ -184,7 +184,7 @@ public class Title implements org.thryft.Struct, org.dressdiscover.api.models.El
         }
 
         public Builder unsetPref() {
-            this.pref = com.google.common.base.Optional.absent();
+            this.pref = com.google.common.base.Optional.<Boolean> absent();
             return this;
         }
 
@@ -328,31 +328,10 @@ public class Title implements org.thryft.Struct, org.dressdiscover.api.models.El
         this(other.getText(), other.getType(), other.getPref());
     }
 
-    /**
-     * Required constructor
-     */
-    public Title(final String text, final org.dressdiscover.api.models.title.TitleType type) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.title.Title: missing text"), "org.dressdiscover.api.models.title.Title: text is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.title.Title: missing type");
-        this.pref = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public Title(final String text, final org.dressdiscover.api.models.title.TitleType type, final @javax.annotation.Nullable Boolean pref) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.title.Title: missing text"), "org.dressdiscover.api.models.title.Title: text is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.title.Title: missing type");
-        this.pref = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(pref), "org.dressdiscover.api.models.title.Title: pref must be true");
-    }
-
-    /**
-     * Optional constructor
-     */
-    public Title(final String text, final org.dressdiscover.api.models.title.TitleType type, final com.google.common.base.Optional<Boolean> pref) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.title.Title: missing text"), "org.dressdiscover.api.models.title.Title: text is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.title.Title: missing type");
-        this.pref = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(pref, "org.dressdiscover.api.models.title.Title: missing pref"), "org.dressdiscover.api.models.title.Title: pref must be true");
+    protected Title(final String text, final org.dressdiscover.api.models.title.TitleType type, final com.google.common.base.Optional<Boolean> pref) {
+        this.text = text;
+        this.type = type;
+        this.pref = pref;
     }
 
     public static Builder builder() {
@@ -365,6 +344,27 @@ public class Title implements org.thryft.Struct, org.dressdiscover.api.models.El
 
     public static Builder builder(final com.google.common.base.Optional<Title> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static Title create(final String text, final org.dressdiscover.api.models.title.TitleType type) {
+        return new Title(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.title.Title: missing text"), "org.dressdiscover.api.models.title.Title: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.title.Title: missing type"), com.google.common.base.Optional.<Boolean> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static Title create(final String text, final org.dressdiscover.api.models.title.TitleType type, final @javax.annotation.Nullable Boolean pref) {
+        return new Title(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.title.Title: missing text"), "org.dressdiscover.api.models.title.Title: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.title.Title: missing type"), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(pref), "org.dressdiscover.api.models.title.Title: pref must be true"));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static Title create(final String text, final org.dressdiscover.api.models.title.TitleType type, final com.google.common.base.Optional<Boolean> pref) {
+        return new Title(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.title.Title: missing text"), "org.dressdiscover.api.models.title.Title: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.title.Title: missing type"), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(pref, "org.dressdiscover.api.models.title.Title: missing pref"), "org.dressdiscover.api.models.title.Title: pref must be true"));
     }
 
     @Override
@@ -446,7 +446,7 @@ public class Title implements org.thryft.Struct, org.dressdiscover.api.models.El
     public static Title readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         String text = null;
         org.dressdiscover.api.models.title.TitleType type = null;
-        com.google.common.base.Optional<Boolean> pref = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<Boolean> pref = com.google.common.base.Optional.<Boolean> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         text = iprot.readString();
@@ -469,7 +469,7 @@ public class Title implements org.thryft.Struct, org.dressdiscover.api.models.El
     public static Title readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         String text = null;
         org.dressdiscover.api.models.title.TitleType type = null;
-        com.google.common.base.Optional<Boolean> pref = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<Boolean> pref = com.google.common.base.Optional.<Boolean> absent();
 
         iprot.readStructBegin();
         while (true) {

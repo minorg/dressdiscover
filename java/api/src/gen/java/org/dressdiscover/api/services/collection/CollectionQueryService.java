@@ -280,11 +280,8 @@ public interface CollectionQueryService {
                 this(other.getId());
             }
 
-            /**
-             * Optional constructor
-             */
-            public GetCollectionByIdRequest(final org.dressdiscover.api.models.collection.CollectionId id) {
-                this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.collection.GetCollectionByIdRequest: missing id");
+            protected GetCollectionByIdRequest(final org.dressdiscover.api.models.collection.CollectionId id) {
+                this.id = id;
             }
 
             public static Builder builder() {
@@ -297,6 +294,13 @@ public interface CollectionQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetCollectionByIdRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetCollectionByIdRequest create(final org.dressdiscover.api.models.collection.CollectionId id) {
+                return new GetCollectionByIdRequest(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.collection.GetCollectionByIdRequest: missing id"));
             }
 
             @Override
@@ -705,11 +709,8 @@ public interface CollectionQueryService {
                 this(other.getReturnValue());
             }
 
-            /**
-             * Optional constructor
-             */
-            public GetCollectionByIdResponse(final org.dressdiscover.api.models.collection.Collection returnValue) {
-                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.collection.CollectionQueryService.getCollectionById: missing returnValue");
+            protected GetCollectionByIdResponse(final org.dressdiscover.api.models.collection.Collection returnValue) {
+                this.returnValue = returnValue;
             }
 
             public static Builder builder() {
@@ -722,6 +723,13 @@ public interface CollectionQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetCollectionByIdResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetCollectionByIdResponse create(final org.dressdiscover.api.models.collection.Collection returnValue) {
+                return new GetCollectionByIdResponse(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.collection.CollectionQueryService.getCollectionById: missing returnValue"));
             }
 
             @Override
@@ -1161,11 +1169,8 @@ public interface CollectionQueryService {
                 this(other.getIds());
             }
 
-            /**
-             * Optional constructor
-             */
-            public GetCollectionsByIdsRequest(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.CollectionId> ids) {
-                this.ids = com.google.common.base.Preconditions.checkNotNull(ids, "org.dressdiscover.api.services.collection.GetCollectionsByIdsRequest: missing ids");
+            protected GetCollectionsByIdsRequest(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.CollectionId> ids) {
+                this.ids = ids;
             }
 
             public static Builder builder() {
@@ -1178,6 +1183,13 @@ public interface CollectionQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetCollectionsByIdsRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetCollectionsByIdsRequest create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.CollectionId> ids) {
+                return new GetCollectionsByIdsRequest(com.google.common.base.Preconditions.checkNotNull(ids, "org.dressdiscover.api.services.collection.GetCollectionsByIdsRequest: missing ids"));
             }
 
             @Override
@@ -1655,11 +1667,8 @@ public interface CollectionQueryService {
                 this(other.getReturnValue());
             }
 
-            /**
-             * Optional constructor
-             */
-            public GetCollectionsByIdsResponse(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.Collection> returnValue) {
-                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.collection.CollectionQueryService.getCollectionsByIds: missing returnValue");
+            protected GetCollectionsByIdsResponse(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.Collection> returnValue) {
+                this.returnValue = returnValue;
             }
 
             public static Builder builder() {
@@ -1672,6 +1681,13 @@ public interface CollectionQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetCollectionsByIdsResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetCollectionsByIdsResponse create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.Collection> returnValue) {
+                return new GetCollectionsByIdsResponse(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.collection.CollectionQueryService.getCollectionsByIds: missing returnValue"));
             }
 
             @Override
@@ -2118,11 +2134,8 @@ public interface CollectionQueryService {
                 this(other.getInstitutionId());
             }
 
-            /**
-             * Optional constructor
-             */
-            public GetCollectionsByInstitutionIdRequest(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-                this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.services.collection.GetCollectionsByInstitutionIdRequest: missing institutionId");
+            protected GetCollectionsByInstitutionIdRequest(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
+                this.institutionId = institutionId;
             }
 
             public static Builder builder() {
@@ -2135,6 +2148,13 @@ public interface CollectionQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetCollectionsByInstitutionIdRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetCollectionsByInstitutionIdRequest create(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
+                return new GetCollectionsByInstitutionIdRequest(com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.services.collection.GetCollectionsByInstitutionIdRequest: missing institutionId"));
             }
 
             @Override
@@ -2574,11 +2594,8 @@ public interface CollectionQueryService {
                 this(other.getReturnValue());
             }
 
-            /**
-             * Optional constructor
-             */
-            public GetCollectionsByInstitutionIdResponse(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.CollectionEntry> returnValue) {
-                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.collection.CollectionQueryService.getCollectionsByInstitutionId: missing returnValue");
+            protected GetCollectionsByInstitutionIdResponse(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.CollectionEntry> returnValue) {
+                this.returnValue = returnValue;
             }
 
             public static Builder builder() {
@@ -2591,6 +2608,13 @@ public interface CollectionQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetCollectionsByInstitutionIdResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetCollectionsByInstitutionIdResponse create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.CollectionEntry> returnValue) {
+                return new GetCollectionsByInstitutionIdResponse(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.collection.CollectionQueryService.getCollectionsByInstitutionId: missing returnValue"));
             }
 
             @Override

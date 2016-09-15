@@ -2,7 +2,29 @@ package org.dressdiscover.gui.presenters.object_by_id;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.dressdiscover.api.models.collection.Collection;
+import org.dressdiscover.api.models.collection.CollectionEntry;
+import org.dressdiscover.api.models.institution.Institution;
+import org.dressdiscover.api.models.institution.InstitutionEntry;
+import org.dressdiscover.api.models.object.InvalidObjectIdException;
+import org.dressdiscover.api.models.object.Object;
+import org.dressdiscover.api.models.object.ObjectEntry;
 import org.dressdiscover.api.models.object.ObjectId;
+import org.dressdiscover.api.models.object.ObjectQuery;
+import org.dressdiscover.api.models.object.ObjectSummaryEntry;
+import org.dressdiscover.api.models.relation.Relation;
+import org.dressdiscover.api.models.user.UserEntry;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.collection.CollectionQueryService;
+import org.dressdiscover.api.services.collection.NoSuchCollectionException;
+import org.dressdiscover.api.services.institution.InstitutionQueryService;
+import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
+import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
+import org.dressdiscover.api.services.object.NoSuchObjectException;
+import org.dressdiscover.api.services.object.ObjectQueryService;
+import org.dressdiscover.api.services.object.ObjectSummaryQueryService;
+import org.dressdiscover.api.services.user.UserCommandService;
+import org.dressdiscover.api.services.user.UserQueryService;
 import org.dressdiscover.gui.events.object_by_id.ObjectAddMetadataRequest;
 import org.dressdiscover.gui.events.object_by_id.ObjectElementSelectionRequest;
 import org.dressdiscover.gui.events.object_by_id.ObjectMoreLikeThisRequest;
@@ -24,29 +46,6 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.SystemError;
 import com.vaadin.server.UserError;
 import com.vaadin.ui.UI;
-
-import org.dressdiscover.api.models.collection.Collection;
-import org.dressdiscover.api.models.collection.CollectionEntry;
-import org.dressdiscover.api.models.institution.Institution;
-import org.dressdiscover.api.models.institution.InstitutionEntry;
-import org.dressdiscover.api.models.object.InvalidObjectIdException;
-import org.dressdiscover.api.models.object.Object;
-import org.dressdiscover.api.models.object.ObjectEntry;
-import org.dressdiscover.api.models.object.ObjectQuery;
-import org.dressdiscover.api.models.object.ObjectSummaryEntry;
-import org.dressdiscover.api.models.relation.Relation;
-import org.dressdiscover.api.models.user.UserEntry;
-import org.dressdiscover.api.services.IoException;
-import org.dressdiscover.api.services.collection.CollectionQueryService;
-import org.dressdiscover.api.services.collection.NoSuchCollectionException;
-import org.dressdiscover.api.services.institution.InstitutionQueryService;
-import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
-import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
-import org.dressdiscover.api.services.object.NoSuchObjectException;
-import org.dressdiscover.api.services.object.ObjectQueryService;
-import org.dressdiscover.api.services.object.ObjectSummaryQueryService;
-import org.dressdiscover.api.services.user.UserCommandService;
-import org.dressdiscover.api.services.user.UserQueryService;
 
 @SessionScoped
 public class ObjectByIdPresenter extends Presenter<ObjectByIdView> {
@@ -163,9 +162,9 @@ public class ObjectByIdPresenter extends Presenter<ObjectByIdView> {
                 relatedObjectSummaryEntries = ImmutableMap.of();
             }
 
-            _getView().setModels(new CollectionEntry(object.getCollectionId(), collection),
-                    new InstitutionEntry(collection.getInstitutionId(), institution), new ObjectEntry(objectId, object),
-                    relatedObjectSummaryEntries);
+            _getView().setModels(CollectionEntry.create(object.getCollectionId(), collection),
+                    InstitutionEntry.create(collection.getInstitutionId(), institution),
+                    ObjectEntry.create(objectId, object), relatedObjectSummaryEntries);
         } catch (final IoException e) {
             _getView().setComponentError(new SystemError("I/O exception", e));
             return;

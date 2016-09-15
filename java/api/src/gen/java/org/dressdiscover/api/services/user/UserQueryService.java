@@ -22,7 +22,7 @@ public interface UserQueryService {
             public static class Builder {
                 public Builder() {
                     userId = null;
-                    objectIdsOnly = com.google.common.base.Optional.absent();
+                    objectIdsOnly = com.google.common.base.Optional.<Boolean> absent();
                 }
 
                 public Builder(final GetUserBookmarksByUserIdRequest other) {
@@ -182,7 +182,7 @@ public interface UserQueryService {
                 }
 
                 public Builder unsetObjectIdsOnly() {
-                    this.objectIdsOnly = com.google.common.base.Optional.absent();
+                    this.objectIdsOnly = com.google.common.base.Optional.<Boolean> absent();
                     return this;
                 }
 
@@ -317,28 +317,9 @@ public interface UserQueryService {
                 this(other.getUserId(), other.getObjectIdsOnly());
             }
 
-            /**
-             * Required constructor
-             */
-            public GetUserBookmarksByUserIdRequest(final org.dressdiscover.api.models.user.UserId userId) {
-                this.userId = com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: missing userId");
-                this.objectIdsOnly = com.google.common.base.Optional.absent();
-            }
-
-            /**
-             * Total Nullable constructor
-             */
-            public GetUserBookmarksByUserIdRequest(final org.dressdiscover.api.models.user.UserId userId, final @javax.annotation.Nullable Boolean objectIdsOnly) {
-                this.userId = com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: missing userId");
-                this.objectIdsOnly = com.google.common.base.Optional.fromNullable(objectIdsOnly);
-            }
-
-            /**
-             * Optional constructor
-             */
-            public GetUserBookmarksByUserIdRequest(final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) {
-                this.userId = com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: missing userId");
-                this.objectIdsOnly = com.google.common.base.Preconditions.checkNotNull(objectIdsOnly, "org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: missing objectIdsOnly");
+            protected GetUserBookmarksByUserIdRequest(final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) {
+                this.userId = userId;
+                this.objectIdsOnly = objectIdsOnly;
             }
 
             public static Builder builder() {
@@ -351,6 +332,27 @@ public interface UserQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetUserBookmarksByUserIdRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Required factory method
+             */
+            public static GetUserBookmarksByUserIdRequest create(final org.dressdiscover.api.models.user.UserId userId) {
+                return new GetUserBookmarksByUserIdRequest(com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: missing userId"), com.google.common.base.Optional.<Boolean> absent());
+            }
+
+            /**
+             * Total Nullable factory method
+             */
+            public static GetUserBookmarksByUserIdRequest create(final org.dressdiscover.api.models.user.UserId userId, final @javax.annotation.Nullable Boolean objectIdsOnly) {
+                return new GetUserBookmarksByUserIdRequest(com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: missing userId"), com.google.common.base.Optional.fromNullable(objectIdsOnly));
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetUserBookmarksByUserIdRequest create(final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) {
+                return new GetUserBookmarksByUserIdRequest(com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: missing userId"), com.google.common.base.Preconditions.checkNotNull(objectIdsOnly, "org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: missing objectIdsOnly"));
             }
 
             @Override
@@ -424,7 +426,7 @@ public interface UserQueryService {
 
             public static GetUserBookmarksByUserIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                 org.dressdiscover.api.models.user.UserId userId = null;
-                com.google.common.base.Optional<Boolean> objectIdsOnly = com.google.common.base.Optional.absent();
+                com.google.common.base.Optional<Boolean> objectIdsOnly = com.google.common.base.Optional.<Boolean> absent();
 
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 try {
@@ -449,7 +451,7 @@ public interface UserQueryService {
 
             public static GetUserBookmarksByUserIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 org.dressdiscover.api.models.user.UserId userId = null;
-                com.google.common.base.Optional<Boolean> objectIdsOnly = com.google.common.base.Optional.absent();
+                com.google.common.base.Optional<Boolean> objectIdsOnly = com.google.common.base.Optional.<Boolean> absent();
 
                 iprot.readStructBegin();
                 while (true) {
@@ -830,11 +832,8 @@ public interface UserQueryService {
                 this(other.getReturnValue());
             }
 
-            /**
-             * Optional constructor
-             */
-            public GetUserBookmarksByUserIdResponse(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) {
-                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.user.UserQueryService.getUserBookmarksByUserId: missing returnValue");
+            protected GetUserBookmarksByUserIdResponse(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) {
+                this.returnValue = returnValue;
             }
 
             public static Builder builder() {
@@ -847,6 +846,13 @@ public interface UserQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetUserBookmarksByUserIdResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetUserBookmarksByUserIdResponse create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) {
+                return new GetUserBookmarksByUserIdResponse(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.user.UserQueryService.getUserBookmarksByUserId: missing returnValue"));
             }
 
             @Override
@@ -1285,11 +1291,8 @@ public interface UserQueryService {
                 this(other.getEmailAddress());
             }
 
-            /**
-             * Optional constructor
-             */
-            public GetUserByEmailAddressRequest(final org.thryft.native_.EmailAddress emailAddress) {
-                this.emailAddress = com.google.common.base.Preconditions.checkNotNull(emailAddress, "org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: missing emailAddress");
+            protected GetUserByEmailAddressRequest(final org.thryft.native_.EmailAddress emailAddress) {
+                this.emailAddress = emailAddress;
             }
 
             public static Builder builder() {
@@ -1302,6 +1305,13 @@ public interface UserQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetUserByEmailAddressRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetUserByEmailAddressRequest create(final org.thryft.native_.EmailAddress emailAddress) {
+                return new GetUserByEmailAddressRequest(com.google.common.base.Preconditions.checkNotNull(emailAddress, "org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: missing emailAddress"));
             }
 
             @Override
@@ -1702,11 +1712,8 @@ public interface UserQueryService {
                 this(other.getReturnValue());
             }
 
-            /**
-             * Optional constructor
-             */
-            public GetUserByEmailAddressResponse(final org.dressdiscover.api.models.user.UserEntry returnValue) {
-                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.user.UserQueryService.getUserByEmailAddress: missing returnValue");
+            protected GetUserByEmailAddressResponse(final org.dressdiscover.api.models.user.UserEntry returnValue) {
+                this.returnValue = returnValue;
             }
 
             public static Builder builder() {
@@ -1719,6 +1726,13 @@ public interface UserQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetUserByEmailAddressResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetUserByEmailAddressResponse create(final org.dressdiscover.api.models.user.UserEntry returnValue) {
+                return new GetUserByEmailAddressResponse(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.user.UserQueryService.getUserByEmailAddress: missing returnValue"));
             }
 
             @Override
@@ -2127,11 +2141,8 @@ public interface UserQueryService {
                 this(other.getId());
             }
 
-            /**
-             * Optional constructor
-             */
-            public GetUserByIdRequest(final org.dressdiscover.api.models.user.UserId id) {
-                this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.GetUserByIdRequest: missing id");
+            protected GetUserByIdRequest(final org.dressdiscover.api.models.user.UserId id) {
+                this.id = id;
             }
 
             public static Builder builder() {
@@ -2144,6 +2155,13 @@ public interface UserQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetUserByIdRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetUserByIdRequest create(final org.dressdiscover.api.models.user.UserId id) {
+                return new GetUserByIdRequest(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.GetUserByIdRequest: missing id"));
             }
 
             @Override
@@ -2552,11 +2570,8 @@ public interface UserQueryService {
                 this(other.getReturnValue());
             }
 
-            /**
-             * Optional constructor
-             */
-            public GetUserByIdResponse(final org.dressdiscover.api.models.user.User returnValue) {
-                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.user.UserQueryService.getUserById: missing returnValue");
+            protected GetUserByIdResponse(final org.dressdiscover.api.models.user.User returnValue) {
+                this.returnValue = returnValue;
             }
 
             public static Builder builder() {
@@ -2569,6 +2584,13 @@ public interface UserQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetUserByIdResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetUserByIdResponse create(final org.dressdiscover.api.models.user.User returnValue) {
+                return new GetUserByIdResponse(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.user.UserQueryService.getUserById: missing returnValue"));
             }
 
             @Override

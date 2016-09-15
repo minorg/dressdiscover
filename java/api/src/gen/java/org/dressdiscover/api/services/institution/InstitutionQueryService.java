@@ -280,11 +280,8 @@ public interface InstitutionQueryService {
                 this(other.getId());
             }
 
-            /**
-             * Optional constructor
-             */
-            public GetInstitutionByIdRequest(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.GetInstitutionByIdRequest: missing id");
+            protected GetInstitutionByIdRequest(final org.dressdiscover.api.models.institution.InstitutionId id) {
+                this.id = id;
             }
 
             public static Builder builder() {
@@ -297,6 +294,13 @@ public interface InstitutionQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetInstitutionByIdRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetInstitutionByIdRequest create(final org.dressdiscover.api.models.institution.InstitutionId id) {
+                return new GetInstitutionByIdRequest(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.GetInstitutionByIdRequest: missing id"));
             }
 
             @Override
@@ -705,11 +709,8 @@ public interface InstitutionQueryService {
                 this(other.getReturnValue());
             }
 
-            /**
-             * Optional constructor
-             */
-            public GetInstitutionByIdResponse(final org.dressdiscover.api.models.institution.Institution returnValue) {
-                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.institution.InstitutionQueryService.getInstitutionById: missing returnValue");
+            protected GetInstitutionByIdResponse(final org.dressdiscover.api.models.institution.Institution returnValue) {
+                this.returnValue = returnValue;
             }
 
             public static Builder builder() {
@@ -722,6 +723,13 @@ public interface InstitutionQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetInstitutionByIdResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetInstitutionByIdResponse create(final org.dressdiscover.api.models.institution.Institution returnValue) {
+                return new GetInstitutionByIdResponse(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.institution.InstitutionQueryService.getInstitutionById: missing returnValue"));
             }
 
             @Override
@@ -1002,6 +1010,10 @@ public interface InstitutionQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetInstitutionsRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            public static GetInstitutionsRequest create() {
+                return new GetInstitutionsRequest();
             }
 
             @Override
@@ -1393,11 +1405,8 @@ public interface InstitutionQueryService {
                 this(other.getReturnValue());
             }
 
-            /**
-             * Optional constructor
-             */
-            public GetInstitutionsResponse(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> returnValue) {
-                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.institution.InstitutionQueryService.getInstitutions: missing returnValue");
+            protected GetInstitutionsResponse(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> returnValue) {
+                this.returnValue = returnValue;
             }
 
             public static Builder builder() {
@@ -1410,6 +1419,13 @@ public interface InstitutionQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetInstitutionsResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetInstitutionsResponse create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> returnValue) {
+                return new GetInstitutionsResponse(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.institution.InstitutionQueryService.getInstitutions: missing returnValue"));
             }
 
             @Override
@@ -1887,11 +1903,8 @@ public interface InstitutionQueryService {
                 this(other.getIds());
             }
 
-            /**
-             * Optional constructor
-             */
-            public GetInstitutionsByIdsRequest(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) {
-                this.ids = com.google.common.base.Preconditions.checkNotNull(ids, "org.dressdiscover.api.services.institution.GetInstitutionsByIdsRequest: missing ids");
+            protected GetInstitutionsByIdsRequest(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) {
+                this.ids = ids;
             }
 
             public static Builder builder() {
@@ -1904,6 +1917,13 @@ public interface InstitutionQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetInstitutionsByIdsRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetInstitutionsByIdsRequest create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) {
+                return new GetInstitutionsByIdsRequest(com.google.common.base.Preconditions.checkNotNull(ids, "org.dressdiscover.api.services.institution.GetInstitutionsByIdsRequest: missing ids"));
             }
 
             @Override
@@ -2381,11 +2401,8 @@ public interface InstitutionQueryService {
                 this(other.getReturnValue());
             }
 
-            /**
-             * Optional constructor
-             */
-            public GetInstitutionsByIdsResponse(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> returnValue) {
-                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.institution.InstitutionQueryService.getInstitutionsByIds: missing returnValue");
+            protected GetInstitutionsByIdsResponse(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> returnValue) {
+                this.returnValue = returnValue;
             }
 
             public static Builder builder() {
@@ -2398,6 +2415,13 @@ public interface InstitutionQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetInstitutionsByIdsResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetInstitutionsByIdsResponse create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> returnValue) {
+                return new GetInstitutionsByIdsResponse(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.institution.InstitutionQueryService.getInstitutionsByIds: missing returnValue"));
             }
 
             @Override

@@ -72,7 +72,7 @@ public class StoreObjectCommandService implements ObjectCommandService {
         objectStoreCache.getObjectStore(id).putObject(logger, Markers.PUT_OBJECT, object, id);
 
         objectSummaryElasticSearchIndex.putModel(logger, Markers.PUT_OBJECT,
-                new ObjectSummaryEntry(id, ObjectSummarizer.getInstance().summarizeObject(object)));
+                ObjectSummaryEntry.create(id, ObjectSummarizer.getInstance().summarizeObject(object)));
     }
 
     @Override
@@ -87,7 +87,7 @@ public class StoreObjectCommandService implements ObjectCommandService {
 
         final ImmutableList.Builder<ObjectSummaryEntry> objectSummariesBuilder = ImmutableList.builder();
         for (final ObjectEntry objectEntry : objects) {
-            objectSummariesBuilder.add(new ObjectSummaryEntry(objectEntry.getId(),
+            objectSummariesBuilder.add(ObjectSummaryEntry.create(objectEntry.getId(),
                     ObjectSummarizer.getInstance().summarizeObject(objectEntry.getModel())));
         }
 
@@ -108,7 +108,7 @@ public class StoreObjectCommandService implements ObjectCommandService {
                             for (final ObjectEntry objectEntry : objectStoreCache
                                     .getObjectStore(collectionEntry.getId()).getObjectsByCollectionId(
                                             collectionEntry.getId(), logger, Markers.RESUMMARIZE_OBJECTS)) {
-                                objectSummaries.add(new ObjectSummaryEntry(objectEntry.getId(),
+                                objectSummaries.add(ObjectSummaryEntry.create(objectEntry.getId(),
                                         ObjectSummarizer.getInstance().summarizeObject(objectEntry.getModel())));
                                 if (objectSummaries.size() == resummarizeObjectsBulkRequestSize) {
                                     objectSummaryElasticSearchIndex.putModels(logger, Markers.RESUMMARIZE_OBJECTS,

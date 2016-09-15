@@ -11,21 +11,21 @@ import org.dressdiscover.api.models.institution.InvalidInstitutionIdException;
 public final class CollectionId extends StringModelId {
     public static CollectionId parse(final String value) throws InvalidCollectionIdException {
         if (value.isEmpty()) {
-            throw new InvalidCollectionIdException("empty string");
+            throw InvalidCollectionIdException.create("empty string");
         }
         final String[] valueSplit = value.split("/");
         if (valueSplit.length != 2) {
-            throw new InvalidCollectionIdException("malformed collection ID: " + value);
+            throw InvalidCollectionIdException.create("malformed collection ID: " + value);
         }
         InstitutionId institutionId;
         try {
             institutionId = InstitutionId.parse(valueSplit[0].trim());
         } catch (final InvalidInstitutionIdException e) {
-            throw new InvalidCollectionIdException(e.toString());
+            throw InvalidCollectionIdException.create(e.toString());
         }
         final String unqualifiedCollectionId = valueSplit[1].trim();
         if (unqualifiedCollectionId.isEmpty()) {
-            throw new InvalidCollectionIdException("empty collection ID: " + value);
+            throw InvalidCollectionIdException.create("empty collection ID: " + value);
         }
         return new CollectionId(unqualifiedCollectionId, institutionId, value);
     }

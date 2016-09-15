@@ -280,11 +280,8 @@ public interface CollectionCommandService {
                 this(other.getId());
             }
 
-            /**
-             * Optional constructor
-             */
-            public DeleteCollectionByIdRequest(final org.dressdiscover.api.models.collection.CollectionId id) {
-                this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.collection.DeleteCollectionByIdRequest: missing id");
+            protected DeleteCollectionByIdRequest(final org.dressdiscover.api.models.collection.CollectionId id) {
+                this.id = id;
             }
 
             public static Builder builder() {
@@ -297,6 +294,13 @@ public interface CollectionCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<DeleteCollectionByIdRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static DeleteCollectionByIdRequest create(final org.dressdiscover.api.models.collection.CollectionId id) {
+                return new DeleteCollectionByIdRequest(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.collection.DeleteCollectionByIdRequest: missing id"));
             }
 
             @Override
@@ -585,6 +589,10 @@ public interface CollectionCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<DeleteCollectionByIdResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            public static DeleteCollectionByIdResponse create() {
+                return new DeleteCollectionByIdResponse();
             }
 
             @Override
@@ -953,11 +961,8 @@ public interface CollectionCommandService {
                 this(other.getInstitutionId());
             }
 
-            /**
-             * Optional constructor
-             */
-            public DeleteCollectionsByInstitutionIdRequest(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-                this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.services.collection.DeleteCollectionsByInstitutionIdRequest: missing institutionId");
+            protected DeleteCollectionsByInstitutionIdRequest(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
+                this.institutionId = institutionId;
             }
 
             public static Builder builder() {
@@ -970,6 +975,13 @@ public interface CollectionCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<DeleteCollectionsByInstitutionIdRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static DeleteCollectionsByInstitutionIdRequest create(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
+                return new DeleteCollectionsByInstitutionIdRequest(com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.services.collection.DeleteCollectionsByInstitutionIdRequest: missing institutionId"));
             }
 
             @Override
@@ -1258,6 +1270,10 @@ public interface CollectionCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<DeleteCollectionsByInstitutionIdResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            public static DeleteCollectionsByInstitutionIdResponse create() {
+                return new DeleteCollectionsByInstitutionIdResponse();
             }
 
             @Override
@@ -1654,12 +1670,9 @@ public interface CollectionCommandService {
                 this(other.getId(), other.getCollection());
             }
 
-            /**
-             * Optional constructor
-             */
-            public PutCollectionRequest(final org.dressdiscover.api.models.collection.CollectionId id, final org.dressdiscover.api.models.collection.Collection collection) {
-                this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.collection.PutCollectionRequest: missing id");
-                this.collection = com.google.common.base.Preconditions.checkNotNull(collection, "org.dressdiscover.api.services.collection.PutCollectionRequest: missing collection");
+            protected PutCollectionRequest(final org.dressdiscover.api.models.collection.CollectionId id, final org.dressdiscover.api.models.collection.Collection collection) {
+                this.id = id;
+                this.collection = collection;
             }
 
             public static Builder builder() {
@@ -1672,6 +1685,13 @@ public interface CollectionCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<PutCollectionRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static PutCollectionRequest create(final org.dressdiscover.api.models.collection.CollectionId id, final org.dressdiscover.api.models.collection.Collection collection) {
+                return new PutCollectionRequest(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.collection.PutCollectionRequest: missing id"), com.google.common.base.Preconditions.checkNotNull(collection, "org.dressdiscover.api.services.collection.PutCollectionRequest: missing collection"));
             }
 
             @Override
@@ -1986,6 +2006,10 @@ public interface CollectionCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<PutCollectionResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            public static PutCollectionResponse create() {
+                return new PutCollectionResponse();
             }
 
             @Override

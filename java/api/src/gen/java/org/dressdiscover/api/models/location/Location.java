@@ -7,9 +7,9 @@ public class Location implements org.thryft.Struct, org.dressdiscover.api.models
     public static class Builder {
         public Builder() {
             type = null;
-            coordinates = com.google.common.base.Optional.absent();
-            names = com.google.common.base.Optional.absent();
-            refids = com.google.common.base.Optional.absent();
+            coordinates = com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationCoordinates> absent();
+            names = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> absent();
+            refids = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> absent();
         }
 
         public Builder(final Location other) {
@@ -300,17 +300,17 @@ public class Location implements org.thryft.Struct, org.dressdiscover.api.models
         }
 
         public Builder unsetCoordinates() {
-            this.coordinates = com.google.common.base.Optional.absent();
+            this.coordinates = com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationCoordinates> absent();
             return this;
         }
 
         public Builder unsetNames() {
-            this.names = com.google.common.base.Optional.absent();
+            this.names = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> absent();
             return this;
         }
 
         public Builder unsetRefids() {
-            this.refids = com.google.common.base.Optional.absent();
+            this.refids = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> absent();
             return this;
         }
 
@@ -453,34 +453,11 @@ public class Location implements org.thryft.Struct, org.dressdiscover.api.models
         this(other.getType(), other.getCoordinates(), other.getNames(), other.getRefids());
     }
 
-    /**
-     * Required constructor
-     */
-    public Location(final org.dressdiscover.api.models.location.LocationType type) {
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.location.Location: missing type");
-        this.coordinates = com.google.common.base.Optional.absent();
-        this.names = com.google.common.base.Optional.absent();
-        this.refids = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public Location(final org.dressdiscover.api.models.location.LocationType type, final @javax.annotation.Nullable org.dressdiscover.api.models.location.LocationCoordinates coordinates, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName> names, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid> refids) {
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.location.Location: missing type");
-        this.coordinates = com.google.common.base.Optional.fromNullable(coordinates);
-        this.names = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(names), "org.dressdiscover.api.models.location.Location: names is empty");
-        this.refids = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(refids), "org.dressdiscover.api.models.location.Location: refids is empty");
-    }
-
-    /**
-     * Optional constructor
-     */
-    public Location(final org.dressdiscover.api.models.location.LocationType type, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> coordinates, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> names, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> refids) {
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.location.Location: missing type");
-        this.coordinates = com.google.common.base.Preconditions.checkNotNull(coordinates, "org.dressdiscover.api.models.location.Location: missing coordinates");
-        this.names = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(names, "org.dressdiscover.api.models.location.Location: missing names"), "org.dressdiscover.api.models.location.Location: names is empty");
-        this.refids = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(refids, "org.dressdiscover.api.models.location.Location: missing refids"), "org.dressdiscover.api.models.location.Location: refids is empty");
+    protected Location(final org.dressdiscover.api.models.location.LocationType type, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> coordinates, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> names, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> refids) {
+        this.type = type;
+        this.coordinates = coordinates;
+        this.names = names;
+        this.refids = refids;
     }
 
     public static Builder builder() {
@@ -493,6 +470,27 @@ public class Location implements org.thryft.Struct, org.dressdiscover.api.models
 
     public static Builder builder(final com.google.common.base.Optional<Location> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static Location create(final org.dressdiscover.api.models.location.LocationType type) {
+        return new Location(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.location.Location: missing type"), com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationCoordinates> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static Location create(final org.dressdiscover.api.models.location.LocationType type, final @javax.annotation.Nullable org.dressdiscover.api.models.location.LocationCoordinates coordinates, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName> names, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid> refids) {
+        return new Location(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.location.Location: missing type"), com.google.common.base.Optional.fromNullable(coordinates), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(names), "org.dressdiscover.api.models.location.Location: names is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(refids), "org.dressdiscover.api.models.location.Location: refids is empty"));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static Location create(final org.dressdiscover.api.models.location.LocationType type, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> coordinates, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> names, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> refids) {
+        return new Location(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.location.Location: missing type"), com.google.common.base.Preconditions.checkNotNull(coordinates, "org.dressdiscover.api.models.location.Location: missing coordinates"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(names, "org.dressdiscover.api.models.location.Location: missing names"), "org.dressdiscover.api.models.location.Location: names is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(refids, "org.dressdiscover.api.models.location.Location: missing refids"), "org.dressdiscover.api.models.location.Location: refids is empty"));
     }
 
     @Override
@@ -584,9 +582,9 @@ public class Location implements org.thryft.Struct, org.dressdiscover.api.models
 
     public static Location readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         org.dressdiscover.api.models.location.LocationType type = null;
-        com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> coordinates = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> names = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> refids = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> coordinates = com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationCoordinates> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> names = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> refids = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         type = iprot.readEnum(org.dressdiscover.api.models.location.LocationType.class);
@@ -651,9 +649,9 @@ public class Location implements org.thryft.Struct, org.dressdiscover.api.models
 
     public static Location readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         org.dressdiscover.api.models.location.LocationType type = null;
-        com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> coordinates = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> names = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> refids = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationCoordinates> coordinates = com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationCoordinates> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> names = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationName>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> refids = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.location.LocationRefid>> absent();
 
         iprot.readStructBegin();
         while (true) {

@@ -5,9 +5,9 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
         public Builder() {
             name = null;
             userId = null;
-            folder = com.google.common.base.Optional.absent();
-            objectId = com.google.common.base.Optional.absent();
-            objectQuery = com.google.common.base.Optional.absent();
+            folder = com.google.common.base.Optional.<String> absent();
+            objectId = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent();
+            objectQuery = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent();
         }
 
         public Builder(final UserBookmark other) {
@@ -245,7 +245,7 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         public Builder unsetFolder() {
-            this.folder = com.google.common.base.Optional.absent();
+            this.folder = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
@@ -255,12 +255,12 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         public Builder unsetObjectId() {
-            this.objectId = com.google.common.base.Optional.absent();
+            this.objectId = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent();
             return this;
         }
 
         public Builder unsetObjectQuery() {
-            this.objectQuery = com.google.common.base.Optional.absent();
+            this.objectQuery = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent();
             return this;
         }
 
@@ -407,37 +407,12 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
         this(other.getName(), other.getUserId(), other.getFolder(), other.getObjectId(), other.getObjectQuery());
     }
 
-    /**
-     * Required constructor
-     */
-    public UserBookmark(final String name, final org.dressdiscover.api.models.user.UserId userId) {
-        this.name = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.user.UserBookmark: missing name"), "org.dressdiscover.api.models.user.UserBookmark: name is empty");
-        this.userId = com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.models.user.UserBookmark: missing userId");
-        this.folder = com.google.common.base.Optional.absent();
-        this.objectId = com.google.common.base.Optional.absent();
-        this.objectQuery = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public UserBookmark(final String name, final org.dressdiscover.api.models.user.UserId userId, final @javax.annotation.Nullable String folder, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectId objectId, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectQuery objectQuery) {
-        this.name = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.user.UserBookmark: missing name"), "org.dressdiscover.api.models.user.UserBookmark: name is empty");
-        this.userId = com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.models.user.UserBookmark: missing userId");
-        this.folder = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(folder), "org.dressdiscover.api.models.user.UserBookmark: folder is empty");
-        this.objectId = com.google.common.base.Optional.fromNullable(objectId);
-        this.objectQuery = com.google.common.base.Optional.fromNullable(objectQuery);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public UserBookmark(final String name, final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<String> folder, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) {
-        this.name = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.user.UserBookmark: missing name"), "org.dressdiscover.api.models.user.UserBookmark: name is empty");
-        this.userId = com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.models.user.UserBookmark: missing userId");
-        this.folder = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(folder, "org.dressdiscover.api.models.user.UserBookmark: missing folder"), "org.dressdiscover.api.models.user.UserBookmark: folder is empty");
-        this.objectId = com.google.common.base.Preconditions.checkNotNull(objectId, "org.dressdiscover.api.models.user.UserBookmark: missing objectId");
-        this.objectQuery = com.google.common.base.Preconditions.checkNotNull(objectQuery, "org.dressdiscover.api.models.user.UserBookmark: missing objectQuery");
+    protected UserBookmark(final String name, final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<String> folder, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) {
+        this.name = name;
+        this.userId = userId;
+        this.folder = folder;
+        this.objectId = objectId;
+        this.objectQuery = objectQuery;
     }
 
     public static Builder builder() {
@@ -450,6 +425,27 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
 
     public static Builder builder(final com.google.common.base.Optional<UserBookmark> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static UserBookmark create(final String name, final org.dressdiscover.api.models.user.UserId userId) {
+        return new UserBookmark(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.user.UserBookmark: missing name"), "org.dressdiscover.api.models.user.UserBookmark: name is empty"), com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.models.user.UserBookmark: missing userId"), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static UserBookmark create(final String name, final org.dressdiscover.api.models.user.UserId userId, final @javax.annotation.Nullable String folder, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectId objectId, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectQuery objectQuery) {
+        return new UserBookmark(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.user.UserBookmark: missing name"), "org.dressdiscover.api.models.user.UserBookmark: name is empty"), com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.models.user.UserBookmark: missing userId"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(folder), "org.dressdiscover.api.models.user.UserBookmark: folder is empty"), com.google.common.base.Optional.fromNullable(objectId), com.google.common.base.Optional.fromNullable(objectQuery));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static UserBookmark create(final String name, final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<String> folder, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) {
+        return new UserBookmark(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.user.UserBookmark: missing name"), "org.dressdiscover.api.models.user.UserBookmark: name is empty"), com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.models.user.UserBookmark: missing userId"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(folder, "org.dressdiscover.api.models.user.UserBookmark: missing folder"), "org.dressdiscover.api.models.user.UserBookmark: folder is empty"), com.google.common.base.Preconditions.checkNotNull(objectId, "org.dressdiscover.api.models.user.UserBookmark: missing objectId"), com.google.common.base.Preconditions.checkNotNull(objectQuery, "org.dressdiscover.api.models.user.UserBookmark: missing objectQuery"));
     }
 
     @Override
@@ -549,9 +545,9 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
     public static UserBookmark readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         String name = null;
         org.dressdiscover.api.models.user.UserId userId = null;
-        com.google.common.base.Optional<String> folder = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> folder = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         name = iprot.readString();
@@ -587,9 +583,9 @@ public class UserBookmark implements org.thryft.Struct, org.thryft.waf.api.model
     public static UserBookmark readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         String name = null;
         org.dressdiscover.api.models.user.UserId userId = null;
-        com.google.common.base.Optional<String> folder = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> folder = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent();
 
         iprot.readStructBegin();
         while (true) {

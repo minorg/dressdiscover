@@ -177,7 +177,7 @@ public final class UserJdbcTable extends AbstractJdbcTable<User> implements User
             final UserId userId = new UserId(resultSet.getInt("id"));
             try {
                 final User user = User.readAsStruct(iprot);
-                usersBuilder.add(new UserEntry(userId, user));
+                usersBuilder.add(UserEntry.create(userId, user));
             } catch (final InputProtocolException e) {
                 logger.warn(logMarker, "user model {} is invalid: {}", userId, ExceptionUtils.getRootCauseMessage(e));
             }

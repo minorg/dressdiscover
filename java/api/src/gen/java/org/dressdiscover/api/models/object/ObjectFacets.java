@@ -1065,21 +1065,18 @@ public class ObjectFacets implements org.thryft.Struct {
         this(other.getCategories(), other.getCollections(), other.getColorTexts(), other.getCulturalContextTexts(), other.getGenders(), other.getInstitutions(), other.getLocationNameTexts(), other.getMaterialTexts(), other.getSubjectTermTexts(), other.getTechniqueTexts(), other.getWorkTypeTexts());
     }
 
-    /**
-     * Optional constructor
-     */
-    public ObjectFacets(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
-        this.categories = com.google.common.base.Preconditions.checkNotNull(categories, "org.dressdiscover.api.models.object.ObjectFacets: missing categories");
-        this.collections = com.google.common.base.Preconditions.checkNotNull(collections, "org.dressdiscover.api.models.object.ObjectFacets: missing collections");
-        this.colorTexts = com.google.common.base.Preconditions.checkNotNull(colorTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing colorTexts");
-        this.culturalContextTexts = com.google.common.base.Preconditions.checkNotNull(culturalContextTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing culturalContextTexts");
-        this.genders = com.google.common.base.Preconditions.checkNotNull(genders, "org.dressdiscover.api.models.object.ObjectFacets: missing genders");
-        this.institutions = com.google.common.base.Preconditions.checkNotNull(institutions, "org.dressdiscover.api.models.object.ObjectFacets: missing institutions");
-        this.locationNameTexts = com.google.common.base.Preconditions.checkNotNull(locationNameTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing locationNameTexts");
-        this.materialTexts = com.google.common.base.Preconditions.checkNotNull(materialTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing materialTexts");
-        this.subjectTermTexts = com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing subjectTermTexts");
-        this.techniqueTexts = com.google.common.base.Preconditions.checkNotNull(techniqueTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing techniqueTexts");
-        this.workTypeTexts = com.google.common.base.Preconditions.checkNotNull(workTypeTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing workTypeTexts");
+    protected ObjectFacets(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
+        this.categories = categories;
+        this.collections = collections;
+        this.colorTexts = colorTexts;
+        this.culturalContextTexts = culturalContextTexts;
+        this.genders = genders;
+        this.institutions = institutions;
+        this.locationNameTexts = locationNameTexts;
+        this.materialTexts = materialTexts;
+        this.subjectTermTexts = subjectTermTexts;
+        this.techniqueTexts = techniqueTexts;
+        this.workTypeTexts = workTypeTexts;
     }
 
     public static Builder builder() {
@@ -1092,6 +1089,13 @@ public class ObjectFacets implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<ObjectFacets> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static ObjectFacets create(final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts, final com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts) {
+        return new ObjectFacets(com.google.common.base.Preconditions.checkNotNull(categories, "org.dressdiscover.api.models.object.ObjectFacets: missing categories"), com.google.common.base.Preconditions.checkNotNull(collections, "org.dressdiscover.api.models.object.ObjectFacets: missing collections"), com.google.common.base.Preconditions.checkNotNull(colorTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing colorTexts"), com.google.common.base.Preconditions.checkNotNull(culturalContextTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing culturalContextTexts"), com.google.common.base.Preconditions.checkNotNull(genders, "org.dressdiscover.api.models.object.ObjectFacets: missing genders"), com.google.common.base.Preconditions.checkNotNull(institutions, "org.dressdiscover.api.models.object.ObjectFacets: missing institutions"), com.google.common.base.Preconditions.checkNotNull(locationNameTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing locationNameTexts"), com.google.common.base.Preconditions.checkNotNull(materialTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing materialTexts"), com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing subjectTermTexts"), com.google.common.base.Preconditions.checkNotNull(techniqueTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing techniqueTexts"), com.google.common.base.Preconditions.checkNotNull(workTypeTexts, "org.dressdiscover.api.models.object.ObjectFacets: missing workTypeTexts"));
     }
 
     @Override

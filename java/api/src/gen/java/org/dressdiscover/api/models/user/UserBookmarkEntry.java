@@ -290,12 +290,9 @@ public class UserBookmarkEntry implements org.thryft.Struct, org.thryft.waf.api.
         this(other.getId(), other.getModel());
     }
 
-    /**
-     * Optional constructor
-     */
-    public UserBookmarkEntry(final org.dressdiscover.api.models.user.UserBookmarkId id, final org.dressdiscover.api.models.user.UserBookmark model) {
-        this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.models.user.UserBookmarkEntry: missing id");
-        this.model = com.google.common.base.Preconditions.checkNotNull(model, "org.dressdiscover.api.models.user.UserBookmarkEntry: missing model");
+    protected UserBookmarkEntry(final org.dressdiscover.api.models.user.UserBookmarkId id, final org.dressdiscover.api.models.user.UserBookmark model) {
+        this.id = id;
+        this.model = model;
     }
 
     public static Builder builder() {
@@ -308,6 +305,13 @@ public class UserBookmarkEntry implements org.thryft.Struct, org.thryft.waf.api.
 
     public static Builder builder(final com.google.common.base.Optional<UserBookmarkEntry> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static UserBookmarkEntry create(final org.dressdiscover.api.models.user.UserBookmarkId id, final org.dressdiscover.api.models.user.UserBookmark model) {
+        return new UserBookmarkEntry(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.models.user.UserBookmarkEntry: missing id"), com.google.common.base.Preconditions.checkNotNull(model, "org.dressdiscover.api.models.user.UserBookmarkEntry: missing model"));
     }
 
     @Override

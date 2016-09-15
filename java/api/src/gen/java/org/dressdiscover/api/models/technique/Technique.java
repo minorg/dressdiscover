@@ -7,7 +7,7 @@ public class Technique implements org.thryft.Struct, org.dressdiscover.api.model
     public static class Builder {
         public Builder() {
             text = null;
-            vocabRef = com.google.common.base.Optional.absent();
+            vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
         }
 
         public Builder(final Technique other) {
@@ -168,7 +168,7 @@ public class Technique implements org.thryft.Struct, org.dressdiscover.api.model
         }
 
         public Builder unsetVocabRef() {
-            this.vocabRef = com.google.common.base.Optional.absent();
+            this.vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
             return this;
         }
 
@@ -298,28 +298,9 @@ public class Technique implements org.thryft.Struct, org.dressdiscover.api.model
         this(other.getText(), other.getVocabRef());
     }
 
-    /**
-     * Required constructor
-     */
-    public Technique(final String text) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.technique.Technique: missing text"), "org.dressdiscover.api.models.technique.Technique: text is empty");
-        this.vocabRef = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public Technique(final String text, final @javax.annotation.Nullable org.dressdiscover.api.models.VocabRef vocabRef) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.technique.Technique: missing text"), "org.dressdiscover.api.models.technique.Technique: text is empty");
-        this.vocabRef = com.google.common.base.Optional.fromNullable(vocabRef);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public Technique(final String text, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.technique.Technique: missing text"), "org.dressdiscover.api.models.technique.Technique: text is empty");
-        this.vocabRef = com.google.common.base.Preconditions.checkNotNull(vocabRef, "org.dressdiscover.api.models.technique.Technique: missing vocabRef");
+    protected Technique(final String text, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
+        this.text = text;
+        this.vocabRef = vocabRef;
     }
 
     public static Builder builder() {
@@ -332,6 +313,27 @@ public class Technique implements org.thryft.Struct, org.dressdiscover.api.model
 
     public static Builder builder(final com.google.common.base.Optional<Technique> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static Technique create(final String text) {
+        return new Technique(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.technique.Technique: missing text"), "org.dressdiscover.api.models.technique.Technique: text is empty"), com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static Technique create(final String text, final @javax.annotation.Nullable org.dressdiscover.api.models.VocabRef vocabRef) {
+        return new Technique(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.technique.Technique: missing text"), "org.dressdiscover.api.models.technique.Technique: text is empty"), com.google.common.base.Optional.fromNullable(vocabRef));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static Technique create(final String text, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
+        return new Technique(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.technique.Technique: missing text"), "org.dressdiscover.api.models.technique.Technique: text is empty"), com.google.common.base.Preconditions.checkNotNull(vocabRef, "org.dressdiscover.api.models.technique.Technique: missing vocabRef"));
     }
 
     @Override
@@ -405,7 +407,7 @@ public class Technique implements org.thryft.Struct, org.dressdiscover.api.model
 
     public static Technique readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         String text = null;
-        com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         text = iprot.readString();
@@ -426,7 +428,7 @@ public class Technique implements org.thryft.Struct, org.dressdiscover.api.model
 
     public static Technique readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         String text = null;
-        com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
 
         iprot.readStructBegin();
         while (true) {

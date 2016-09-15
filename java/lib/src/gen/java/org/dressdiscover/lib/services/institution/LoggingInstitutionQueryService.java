@@ -28,7 +28,7 @@ public class LoggingInstitutionQueryService implements org.dressdiscover.api.ser
 
         __logMessageStringBuilder.append("get_institution_by_id(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.GetInstitutionByIdRequest(id));
+        __logMessageArgs.add(Messages.GetInstitutionByIdRequest.create(id));
         __logMessageStringBuilder.append(")");
 
         try {
@@ -83,7 +83,7 @@ public class LoggingInstitutionQueryService implements org.dressdiscover.api.ser
 
         __logMessageStringBuilder.append("get_institutions_by_ids(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.GetInstitutionsByIdsRequest(ids));
+        __logMessageArgs.add(Messages.GetInstitutionsByIdsRequest.create(ids));
         __logMessageStringBuilder.append(")");
 
         try {

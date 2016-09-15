@@ -83,7 +83,7 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
         public ObjectEntry createModelEntry(final String id, final BytesReference document)
                 throws InvalidModelException {
             try {
-                return new ObjectEntry(ObjectId.parse(id),
+                return ObjectEntry.create(ObjectId.parse(id),
                         Object.readAsStruct(new ElasticSearchInputProtocol(document)));
             } catch (final InputProtocolException | InvalidObjectIdException e) {
                 throw new InvalidModelException(id,
@@ -115,7 +115,7 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
                     @Override
                     public ObjectSummaryEntry call() throws Exception {
                         try {
-                            return new ObjectSummaryEntry(objectId,
+                            return ObjectSummaryEntry.create(objectId,
                                     ObjectSummary.readAsStruct(new ElasticSearchInputProtocol(document)));
                         } catch (final InputProtocolException e) {
                             throw new InvalidModelException(id, ExceptionUtils.combineMessages(e,

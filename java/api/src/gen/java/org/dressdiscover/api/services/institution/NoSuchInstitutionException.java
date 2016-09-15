@@ -4,7 +4,7 @@ package org.dressdiscover.api.services.institution;
 public class NoSuchInstitutionException extends org.thryft.Exception {
     public static class Builder {
         public Builder() {
-            id = com.google.common.base.Optional.absent();
+            id = com.google.common.base.Optional.<org.dressdiscover.api.models.institution.InstitutionId> absent();
         }
 
         public Builder(final NoSuchInstitutionException other) {
@@ -144,7 +144,7 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
         }
 
         public Builder unsetId() {
-            this.id = com.google.common.base.Optional.absent();
+            this.id = com.google.common.base.Optional.<org.dressdiscover.api.models.institution.InstitutionId> absent();
             return this;
         }
 
@@ -266,7 +266,7 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
      * Default constructor
      */
     public NoSuchInstitutionException() {
-        id = com.google.common.base.Optional.absent();
+        id = com.google.common.base.Optional.<org.dressdiscover.api.models.institution.InstitutionId> absent();
     }
 
     /**
@@ -276,18 +276,8 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
         this(other.getId());
     }
 
-    /**
-     * Total Nullable constructor
-     */
-    public NoSuchInstitutionException(final @javax.annotation.Nullable org.dressdiscover.api.models.institution.InstitutionId id) {
-        this.id = com.google.common.base.Optional.fromNullable(id);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public NoSuchInstitutionException(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) {
-        this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.NoSuchInstitutionException: missing id");
+    protected NoSuchInstitutionException(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) {
+        this.id = id;
     }
 
     public static Builder builder() {
@@ -300,6 +290,24 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
 
     public static Builder builder(final com.google.common.base.Optional<NoSuchInstitutionException> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    public static NoSuchInstitutionException create() {
+        return new NoSuchInstitutionException();
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static NoSuchInstitutionException create(final @javax.annotation.Nullable org.dressdiscover.api.models.institution.InstitutionId id) {
+        return new NoSuchInstitutionException(com.google.common.base.Optional.fromNullable(id));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static NoSuchInstitutionException create(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) {
+        return new NoSuchInstitutionException(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.NoSuchInstitutionException: missing id"));
     }
 
     @Override
@@ -375,7 +383,7 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
     }
 
     public static NoSuchInstitutionException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id = com.google.common.base.Optional.<org.dressdiscover.api.models.institution.InstitutionId> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         if (__list.getSize() > 0) {
@@ -397,7 +405,7 @@ public class NoSuchInstitutionException extends org.thryft.Exception {
     }
 
     public static NoSuchInstitutionException readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id = com.google.common.base.Optional.<org.dressdiscover.api.models.institution.InstitutionId> absent();
 
         iprot.readStructBegin();
         while (true) {

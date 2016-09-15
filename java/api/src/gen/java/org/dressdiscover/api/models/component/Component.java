@@ -7,7 +7,7 @@ public class Component implements org.thryft.Struct, org.dressdiscover.api.model
     public static class Builder {
         public Builder() {
             term = null;
-            structures = com.google.common.base.Optional.absent();
+            structures = com.google.common.base.Optional.<org.dressdiscover.api.models.structure.StructureSet> absent();
         }
 
         public Builder(final Component other) {
@@ -163,7 +163,7 @@ public class Component implements org.thryft.Struct, org.dressdiscover.api.model
         }
 
         public Builder unsetStructures() {
-            this.structures = com.google.common.base.Optional.absent();
+            this.structures = com.google.common.base.Optional.<org.dressdiscover.api.models.structure.StructureSet> absent();
             return this;
         }
 
@@ -298,28 +298,9 @@ public class Component implements org.thryft.Struct, org.dressdiscover.api.model
         this(other.getTerm(), other.getStructures());
     }
 
-    /**
-     * Required constructor
-     */
-    public Component(final org.dressdiscover.api.models.component.ComponentTerm term) {
-        this.term = com.google.common.base.Preconditions.checkNotNull(term, "org.dressdiscover.api.models.component.Component: missing term");
-        this.structures = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public Component(final org.dressdiscover.api.models.component.ComponentTerm term, final @javax.annotation.Nullable org.dressdiscover.api.models.structure.StructureSet structures) {
-        this.term = com.google.common.base.Preconditions.checkNotNull(term, "org.dressdiscover.api.models.component.Component: missing term");
-        this.structures = com.google.common.base.Optional.fromNullable(structures);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public Component(final org.dressdiscover.api.models.component.ComponentTerm term, final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures) {
-        this.term = com.google.common.base.Preconditions.checkNotNull(term, "org.dressdiscover.api.models.component.Component: missing term");
-        this.structures = com.google.common.base.Preconditions.checkNotNull(structures, "org.dressdiscover.api.models.component.Component: missing structures");
+    protected Component(final org.dressdiscover.api.models.component.ComponentTerm term, final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures) {
+        this.term = term;
+        this.structures = structures;
     }
 
     public static Builder builder() {
@@ -332,6 +313,27 @@ public class Component implements org.thryft.Struct, org.dressdiscover.api.model
 
     public static Builder builder(final com.google.common.base.Optional<Component> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static Component create(final org.dressdiscover.api.models.component.ComponentTerm term) {
+        return new Component(com.google.common.base.Preconditions.checkNotNull(term, "org.dressdiscover.api.models.component.Component: missing term"), com.google.common.base.Optional.<org.dressdiscover.api.models.structure.StructureSet> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static Component create(final org.dressdiscover.api.models.component.ComponentTerm term, final @javax.annotation.Nullable org.dressdiscover.api.models.structure.StructureSet structures) {
+        return new Component(com.google.common.base.Preconditions.checkNotNull(term, "org.dressdiscover.api.models.component.Component: missing term"), com.google.common.base.Optional.fromNullable(structures));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static Component create(final org.dressdiscover.api.models.component.ComponentTerm term, final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures) {
+        return new Component(com.google.common.base.Preconditions.checkNotNull(term, "org.dressdiscover.api.models.component.Component: missing term"), com.google.common.base.Preconditions.checkNotNull(structures, "org.dressdiscover.api.models.component.Component: missing structures"));
     }
 
     @Override
@@ -405,7 +407,7 @@ public class Component implements org.thryft.Struct, org.dressdiscover.api.model
 
     public static Component readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         org.dressdiscover.api.models.component.ComponentTerm term = null;
-        com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures = com.google.common.base.Optional.<org.dressdiscover.api.models.structure.StructureSet> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         term = org.dressdiscover.api.models.component.ComponentTerm.readAsStruct(iprot);
@@ -426,7 +428,7 @@ public class Component implements org.thryft.Struct, org.dressdiscover.api.model
 
     public static Component readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         org.dressdiscover.api.models.component.ComponentTerm term = null;
-        com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures = com.google.common.base.Optional.<org.dressdiscover.api.models.structure.StructureSet> absent();
 
         iprot.readStructBegin();
         while (true) {

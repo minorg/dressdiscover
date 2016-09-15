@@ -289,12 +289,9 @@ public class Textref implements org.thryft.Struct, org.dressdiscover.api.models.
         this(other.getName(), other.getRefid());
     }
 
-    /**
-     * Optional constructor
-     */
-    public Textref(final org.dressdiscover.api.models.textref.TextrefName name, final org.dressdiscover.api.models.textref.TextrefRefid refid) {
-        this.name = com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.textref.Textref: missing name");
-        this.refid = com.google.common.base.Preconditions.checkNotNull(refid, "org.dressdiscover.api.models.textref.Textref: missing refid");
+    protected Textref(final org.dressdiscover.api.models.textref.TextrefName name, final org.dressdiscover.api.models.textref.TextrefRefid refid) {
+        this.name = name;
+        this.refid = refid;
     }
 
     public static Builder builder() {
@@ -307,6 +304,13 @@ public class Textref implements org.thryft.Struct, org.dressdiscover.api.models.
 
     public static Builder builder(final com.google.common.base.Optional<Textref> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static Textref create(final org.dressdiscover.api.models.textref.TextrefName name, final org.dressdiscover.api.models.textref.TextrefRefid refid) {
+        return new Textref(com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.textref.Textref: missing name"), com.google.common.base.Preconditions.checkNotNull(refid, "org.dressdiscover.api.models.textref.Textref: missing refid"));
     }
 
     @Override

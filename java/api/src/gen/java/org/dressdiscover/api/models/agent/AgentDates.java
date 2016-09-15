@@ -7,8 +7,8 @@ public class AgentDates implements org.thryft.Struct {
     public static class Builder {
         public Builder() {
             type = null;
-            earliestDate = com.google.common.base.Optional.absent();
-            latestDate = com.google.common.base.Optional.absent();
+            earliestDate = com.google.common.base.Optional.<java.util.Date> absent();
+            latestDate = com.google.common.base.Optional.<java.util.Date> absent();
         }
 
         public Builder(final AgentDates other) {
@@ -205,12 +205,12 @@ public class AgentDates implements org.thryft.Struct {
         }
 
         public Builder unsetEarliestDate() {
-            this.earliestDate = com.google.common.base.Optional.absent();
+            this.earliestDate = com.google.common.base.Optional.<java.util.Date> absent();
             return this;
         }
 
         public Builder unsetLatestDate() {
-            this.latestDate = com.google.common.base.Optional.absent();
+            this.latestDate = com.google.common.base.Optional.<java.util.Date> absent();
             return this;
         }
 
@@ -349,31 +349,10 @@ public class AgentDates implements org.thryft.Struct {
         this(other.getType(), other.getEarliestDate(), other.getLatestDate());
     }
 
-    /**
-     * Required constructor
-     */
-    public AgentDates(final org.dressdiscover.api.models.agent.AgentDatesType type) {
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.agent.AgentDates: missing type");
-        this.earliestDate = com.google.common.base.Optional.absent();
-        this.latestDate = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public AgentDates(final org.dressdiscover.api.models.agent.AgentDatesType type, final @javax.annotation.Nullable java.util.Date earliestDate, final @javax.annotation.Nullable java.util.Date latestDate) {
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.agent.AgentDates: missing type");
-        this.earliestDate = com.google.common.base.Optional.fromNullable(earliestDate);
-        this.latestDate = com.google.common.base.Optional.fromNullable(latestDate);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public AgentDates(final org.dressdiscover.api.models.agent.AgentDatesType type, final com.google.common.base.Optional<java.util.Date> earliestDate, final com.google.common.base.Optional<java.util.Date> latestDate) {
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.agent.AgentDates: missing type");
-        this.earliestDate = com.google.common.base.Preconditions.checkNotNull(earliestDate, "org.dressdiscover.api.models.agent.AgentDates: missing earliestDate");
-        this.latestDate = com.google.common.base.Preconditions.checkNotNull(latestDate, "org.dressdiscover.api.models.agent.AgentDates: missing latestDate");
+    protected AgentDates(final org.dressdiscover.api.models.agent.AgentDatesType type, final com.google.common.base.Optional<java.util.Date> earliestDate, final com.google.common.base.Optional<java.util.Date> latestDate) {
+        this.type = type;
+        this.earliestDate = earliestDate;
+        this.latestDate = latestDate;
     }
 
     public static Builder builder() {
@@ -386,6 +365,27 @@ public class AgentDates implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<AgentDates> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static AgentDates create(final org.dressdiscover.api.models.agent.AgentDatesType type) {
+        return new AgentDates(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.agent.AgentDates: missing type"), com.google.common.base.Optional.<java.util.Date> absent(), com.google.common.base.Optional.<java.util.Date> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static AgentDates create(final org.dressdiscover.api.models.agent.AgentDatesType type, final @javax.annotation.Nullable java.util.Date earliestDate, final @javax.annotation.Nullable java.util.Date latestDate) {
+        return new AgentDates(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.agent.AgentDates: missing type"), com.google.common.base.Optional.fromNullable(earliestDate), com.google.common.base.Optional.fromNullable(latestDate));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static AgentDates create(final org.dressdiscover.api.models.agent.AgentDatesType type, final com.google.common.base.Optional<java.util.Date> earliestDate, final com.google.common.base.Optional<java.util.Date> latestDate) {
+        return new AgentDates(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.agent.AgentDates: missing type"), com.google.common.base.Preconditions.checkNotNull(earliestDate, "org.dressdiscover.api.models.agent.AgentDates: missing earliestDate"), com.google.common.base.Preconditions.checkNotNull(latestDate, "org.dressdiscover.api.models.agent.AgentDates: missing latestDate"));
     }
 
     @Override
@@ -468,8 +468,8 @@ public class AgentDates implements org.thryft.Struct {
 
     public static AgentDates readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         org.dressdiscover.api.models.agent.AgentDatesType type = null;
-        com.google.common.base.Optional<java.util.Date> earliestDate = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<java.util.Date> latestDate = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<java.util.Date> earliestDate = com.google.common.base.Optional.<java.util.Date> absent();
+        com.google.common.base.Optional<java.util.Date> latestDate = com.google.common.base.Optional.<java.util.Date> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         type = iprot.readEnum(org.dressdiscover.api.models.agent.AgentDatesType.class);
@@ -499,8 +499,8 @@ public class AgentDates implements org.thryft.Struct {
 
     public static AgentDates readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         org.dressdiscover.api.models.agent.AgentDatesType type = null;
-        com.google.common.base.Optional<java.util.Date> earliestDate = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<java.util.Date> latestDate = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<java.util.Date> earliestDate = com.google.common.base.Optional.<java.util.Date> absent();
+        com.google.common.base.Optional<java.util.Date> latestDate = com.google.common.base.Optional.<java.util.Date> absent();
 
         iprot.readStructBegin();
         while (true) {

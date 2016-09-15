@@ -76,7 +76,7 @@ public class FileSystemInstitutionStore
                         ExceptionUtils.getRootCauseMessage(e));
                 continue;
             }
-            builder.add(new InstitutionEntry(institutionId, institution));
+            builder.add(InstitutionEntry.create(institutionId, institution));
         }
         return builder.build();
     }

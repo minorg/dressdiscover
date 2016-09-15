@@ -9,8 +9,8 @@ public class Date implements org.thryft.Struct, org.dressdiscover.api.models.Ele
             earliestDate = null;
             latestDate = null;
             type = null;
-            href = com.google.common.base.Optional.absent();
-            source = com.google.common.base.Optional.absent();
+            href = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
+            source = com.google.common.base.Optional.<String> absent();
         }
 
         public Builder(final Date other) {
@@ -246,7 +246,7 @@ public class Date implements org.thryft.Struct, org.dressdiscover.api.models.Ele
         }
 
         public Builder unsetHref() {
-            this.href = com.google.common.base.Optional.absent();
+            this.href = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
             return this;
         }
 
@@ -256,7 +256,7 @@ public class Date implements org.thryft.Struct, org.dressdiscover.api.models.Ele
         }
 
         public Builder unsetSource() {
-            this.source = com.google.common.base.Optional.absent();
+            this.source = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
@@ -403,37 +403,12 @@ public class Date implements org.thryft.Struct, org.dressdiscover.api.models.Ele
         this(other.getEarliestDate(), other.getLatestDate(), other.getType(), other.getHref(), other.getSource());
     }
 
-    /**
-     * Required constructor
-     */
-    public Date(final org.dressdiscover.api.models.date.DateBound earliestDate, final org.dressdiscover.api.models.date.DateBound latestDate, final org.dressdiscover.api.models.date.DateType type) {
-        this.earliestDate = com.google.common.base.Preconditions.checkNotNull(earliestDate, "org.dressdiscover.api.models.date.Date: missing earliestDate");
-        this.latestDate = com.google.common.base.Preconditions.checkNotNull(latestDate, "org.dressdiscover.api.models.date.Date: missing latestDate");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.date.Date: missing type");
-        this.href = com.google.common.base.Optional.absent();
-        this.source = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public Date(final org.dressdiscover.api.models.date.DateBound earliestDate, final org.dressdiscover.api.models.date.DateBound latestDate, final org.dressdiscover.api.models.date.DateType type, final @javax.annotation.Nullable org.thryft.native_.Url href, final @javax.annotation.Nullable String source) {
-        this.earliestDate = com.google.common.base.Preconditions.checkNotNull(earliestDate, "org.dressdiscover.api.models.date.Date: missing earliestDate");
-        this.latestDate = com.google.common.base.Preconditions.checkNotNull(latestDate, "org.dressdiscover.api.models.date.Date: missing latestDate");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.date.Date: missing type");
-        this.href = com.google.common.base.Optional.fromNullable(href);
-        this.source = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(source), "org.dressdiscover.api.models.date.Date: source is empty");
-    }
-
-    /**
-     * Optional constructor
-     */
-    public Date(final org.dressdiscover.api.models.date.DateBound earliestDate, final org.dressdiscover.api.models.date.DateBound latestDate, final org.dressdiscover.api.models.date.DateType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<String> source) {
-        this.earliestDate = com.google.common.base.Preconditions.checkNotNull(earliestDate, "org.dressdiscover.api.models.date.Date: missing earliestDate");
-        this.latestDate = com.google.common.base.Preconditions.checkNotNull(latestDate, "org.dressdiscover.api.models.date.Date: missing latestDate");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.date.Date: missing type");
-        this.href = com.google.common.base.Preconditions.checkNotNull(href, "org.dressdiscover.api.models.date.Date: missing href");
-        this.source = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(source, "org.dressdiscover.api.models.date.Date: missing source"), "org.dressdiscover.api.models.date.Date: source is empty");
+    protected Date(final org.dressdiscover.api.models.date.DateBound earliestDate, final org.dressdiscover.api.models.date.DateBound latestDate, final org.dressdiscover.api.models.date.DateType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<String> source) {
+        this.earliestDate = earliestDate;
+        this.latestDate = latestDate;
+        this.type = type;
+        this.href = href;
+        this.source = source;
     }
 
     public static Builder builder() {
@@ -446,6 +421,27 @@ public class Date implements org.thryft.Struct, org.dressdiscover.api.models.Ele
 
     public static Builder builder(final com.google.common.base.Optional<Date> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static Date create(final org.dressdiscover.api.models.date.DateBound earliestDate, final org.dressdiscover.api.models.date.DateBound latestDate, final org.dressdiscover.api.models.date.DateType type) {
+        return new Date(com.google.common.base.Preconditions.checkNotNull(earliestDate, "org.dressdiscover.api.models.date.Date: missing earliestDate"), com.google.common.base.Preconditions.checkNotNull(latestDate, "org.dressdiscover.api.models.date.Date: missing latestDate"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.date.Date: missing type"), com.google.common.base.Optional.<org.thryft.native_.Url> absent(), com.google.common.base.Optional.<String> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static Date create(final org.dressdiscover.api.models.date.DateBound earliestDate, final org.dressdiscover.api.models.date.DateBound latestDate, final org.dressdiscover.api.models.date.DateType type, final @javax.annotation.Nullable org.thryft.native_.Url href, final @javax.annotation.Nullable String source) {
+        return new Date(com.google.common.base.Preconditions.checkNotNull(earliestDate, "org.dressdiscover.api.models.date.Date: missing earliestDate"), com.google.common.base.Preconditions.checkNotNull(latestDate, "org.dressdiscover.api.models.date.Date: missing latestDate"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.date.Date: missing type"), com.google.common.base.Optional.fromNullable(href), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(source), "org.dressdiscover.api.models.date.Date: source is empty"));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static Date create(final org.dressdiscover.api.models.date.DateBound earliestDate, final org.dressdiscover.api.models.date.DateBound latestDate, final org.dressdiscover.api.models.date.DateType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<String> source) {
+        return new Date(com.google.common.base.Preconditions.checkNotNull(earliestDate, "org.dressdiscover.api.models.date.Date: missing earliestDate"), com.google.common.base.Preconditions.checkNotNull(latestDate, "org.dressdiscover.api.models.date.Date: missing latestDate"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.date.Date: missing type"), com.google.common.base.Preconditions.checkNotNull(href, "org.dressdiscover.api.models.date.Date: missing href"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(source, "org.dressdiscover.api.models.date.Date: missing source"), "org.dressdiscover.api.models.date.Date: source is empty"));
     }
 
     @Override
@@ -544,8 +540,8 @@ public class Date implements org.thryft.Struct, org.dressdiscover.api.models.Ele
         org.dressdiscover.api.models.date.DateBound earliestDate = null;
         org.dressdiscover.api.models.date.DateBound latestDate = null;
         org.dressdiscover.api.models.date.DateType type = null;
-        com.google.common.base.Optional<org.thryft.native_.Url> href = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> source = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.thryft.native_.Url> href = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
+        com.google.common.base.Optional<String> source = com.google.common.base.Optional.<String> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         earliestDate = org.dressdiscover.api.models.date.DateBound.readAsStruct(iprot);
@@ -576,8 +572,8 @@ public class Date implements org.thryft.Struct, org.dressdiscover.api.models.Ele
         org.dressdiscover.api.models.date.DateBound earliestDate = null;
         org.dressdiscover.api.models.date.DateBound latestDate = null;
         org.dressdiscover.api.models.date.DateType type = null;
-        com.google.common.base.Optional<org.thryft.native_.Url> href = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> source = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.thryft.native_.Url> href = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
+        com.google.common.base.Optional<String> source = com.google.common.base.Optional.<String> absent();
 
         iprot.readStructBegin();
         while (true) {

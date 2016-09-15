@@ -2,6 +2,10 @@ package org.dressdiscover.gui.components;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.dressdiscover.api.models.object.ObjectQuery;
+import org.dressdiscover.api.models.user.UserEntry;
+import org.dressdiscover.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
+import org.dressdiscover.api.services.user.UserQueryService.Messages.GetUserBookmarksByUserIdRequest;
 import org.dressdiscover.gui.events.user.UserLogoutRequest;
 import org.dressdiscover.gui.views.home.HomeView;
 import org.thryft.waf.gui.EventBus;
@@ -24,11 +28,6 @@ import com.vaadin.ui.MenuBar.Command;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
-
-import org.dressdiscover.api.models.object.ObjectQuery;
-import org.dressdiscover.api.models.user.UserEntry;
-import org.dressdiscover.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest;
-import org.dressdiscover.api.services.user.UserQueryService.Messages.GetUserBookmarksByUserIdRequest;
 
 @SuppressWarnings("serial")
 public final class Navbar extends CustomComponent {
@@ -94,7 +93,7 @@ public final class Navbar extends CustomComponent {
             bookmarksMenuItem = design.rightMenuBar.addItem("Bookmarks", new Command() {
                 @Override
                 public void menuSelected(final MenuItem selectedItem) {
-                    eventBus.post(new GetUserBookmarksByUserIdRequest(currentUser.get().getId()));
+                    eventBus.post(GetUserBookmarksByUserIdRequest.create(currentUser.get().getId()));
                 }
             });
             bookmarksMenuItem.setStyleName("bookmarks-menubar-menuitem");

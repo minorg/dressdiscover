@@ -3,10 +3,10 @@ package org.dressdiscover.api.services.object;
 public class GetObjectSummariesOptions implements org.thryft.Struct {
     public static class Builder {
         public Builder() {
-            from = com.google.common.base.Optional.absent();
-            includeFacets = com.google.common.base.Optional.absent();
-            size = com.google.common.base.Optional.absent();
-            sorts = com.google.common.base.Optional.absent();
+            from = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
+            includeFacets = com.google.common.base.Optional.<Boolean> absent();
+            size = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
+            sorts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> absent();
         }
 
         public Builder(final GetObjectSummariesOptions other) {
@@ -272,22 +272,22 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
         }
 
         public Builder unsetFrom() {
-            this.from = com.google.common.base.Optional.absent();
+            this.from = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
             return this;
         }
 
         public Builder unsetIncludeFacets() {
-            this.includeFacets = com.google.common.base.Optional.absent();
+            this.includeFacets = com.google.common.base.Optional.<Boolean> absent();
             return this;
         }
 
         public Builder unsetSize() {
-            this.size = com.google.common.base.Optional.absent();
+            this.size = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
             return this;
         }
 
         public Builder unsetSorts() {
-            this.sorts = com.google.common.base.Optional.absent();
+            this.sorts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> absent();
             return this;
         }
 
@@ -422,10 +422,10 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
      * Default constructor
      */
     public GetObjectSummariesOptions() {
-        from = com.google.common.base.Optional.absent();
-        includeFacets = com.google.common.base.Optional.absent();
-        size = com.google.common.base.Optional.absent();
-        sorts = com.google.common.base.Optional.absent();
+        from = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
+        includeFacets = com.google.common.base.Optional.<Boolean> absent();
+        size = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
+        sorts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> absent();
     }
 
     /**
@@ -435,24 +435,11 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
         this(other.getFrom(), other.getIncludeFacets(), other.getSize(), other.getSorts());
     }
 
-    /**
-     * Total Nullable constructor
-     */
-    public GetObjectSummariesOptions(final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger from, final @javax.annotation.Nullable Boolean includeFacets, final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger size, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort> sorts) {
-        this.from = com.google.common.base.Optional.fromNullable(from);
-        this.includeFacets = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(includeFacets), "org.dressdiscover.api.services.object.GetObjectSummariesOptions: includeFacets must be true");
-        this.size = com.google.common.base.Optional.fromNullable(size);
-        this.sorts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(sorts), "org.dressdiscover.api.services.object.GetObjectSummariesOptions: sorts is empty");
-    }
-
-    /**
-     * Optional constructor
-     */
-    public GetObjectSummariesOptions(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from, final com.google.common.base.Optional<Boolean> includeFacets, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) {
-        this.from = com.google.common.base.Preconditions.checkNotNull(from, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: missing from");
-        this.includeFacets = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(includeFacets, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: missing includeFacets"), "org.dressdiscover.api.services.object.GetObjectSummariesOptions: includeFacets must be true");
-        this.size = com.google.common.base.Preconditions.checkNotNull(size, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: missing size");
-        this.sorts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(sorts, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: missing sorts"), "org.dressdiscover.api.services.object.GetObjectSummariesOptions: sorts is empty");
+    protected GetObjectSummariesOptions(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from, final com.google.common.base.Optional<Boolean> includeFacets, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) {
+        this.from = from;
+        this.includeFacets = includeFacets;
+        this.size = size;
+        this.sorts = sorts;
     }
 
     public static Builder builder() {
@@ -465,6 +452,24 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<GetObjectSummariesOptions> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    public static GetObjectSummariesOptions create() {
+        return new GetObjectSummariesOptions();
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static GetObjectSummariesOptions create(final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger from, final @javax.annotation.Nullable Boolean includeFacets, final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger size, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort> sorts) {
+        return new GetObjectSummariesOptions(com.google.common.base.Optional.fromNullable(from), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(includeFacets), "org.dressdiscover.api.services.object.GetObjectSummariesOptions: includeFacets must be true"), com.google.common.base.Optional.fromNullable(size), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(sorts), "org.dressdiscover.api.services.object.GetObjectSummariesOptions: sorts is empty"));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static GetObjectSummariesOptions create(final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from, final com.google.common.base.Optional<Boolean> includeFacets, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) {
+        return new GetObjectSummariesOptions(com.google.common.base.Preconditions.checkNotNull(from, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: missing from"), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(includeFacets, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: missing includeFacets"), "org.dressdiscover.api.services.object.GetObjectSummariesOptions: includeFacets must be true"), com.google.common.base.Preconditions.checkNotNull(size, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: missing size"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(sorts, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: missing sorts"), "org.dressdiscover.api.services.object.GetObjectSummariesOptions: sorts is empty"));
     }
 
     @Override
@@ -557,10 +562,10 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
     }
 
     public static GetObjectSummariesOptions readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<Boolean> includeFacets = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
+        com.google.common.base.Optional<Boolean> includeFacets = com.google.common.base.Optional.<Boolean> absent();
+        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         if (__list.getSize() > 0) {
@@ -613,10 +618,10 @@ public class GetObjectSummariesOptions implements org.thryft.Struct {
     }
 
     public static GetObjectSummariesOptions readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<Boolean> includeFacets = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> from = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
+        com.google.common.base.Optional<Boolean> includeFacets = com.google.common.base.Optional.<Boolean> absent();
+        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> size = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> absent();
 
         iprot.readStructBegin();
         while (true) {

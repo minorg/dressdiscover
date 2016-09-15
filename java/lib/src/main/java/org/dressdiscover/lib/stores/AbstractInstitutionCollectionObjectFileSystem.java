@@ -52,6 +52,6 @@ public abstract class AbstractInstitutionCollectionObjectFileSystem<ModelT exten
 
     @Override
     protected final IoException _newIoException(final String message) {
-        return new IoException(message);
+        return IoException.create(message);
     }
 }

@@ -24,7 +24,7 @@ public class LoggingObjectSummaryQueryService implements org.dressdiscover.api.s
 
         __logMessageStringBuilder.append("get_object_summaries(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.GetObjectSummariesRequest(options, query));
+        __logMessageArgs.add(Messages.GetObjectSummariesRequest.create(options, query));
         __logMessageStringBuilder.append(")");
 
         try {

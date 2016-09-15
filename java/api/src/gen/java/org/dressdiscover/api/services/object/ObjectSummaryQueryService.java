@@ -19,8 +19,8 @@ public interface ObjectSummaryQueryService {
         public final static class GetObjectSummariesRequest implements org.thryft.Struct {
             public static class Builder {
                 public Builder() {
-                    options = com.google.common.base.Optional.absent();
-                    query = com.google.common.base.Optional.absent();
+                    options = com.google.common.base.Optional.<org.dressdiscover.api.services.object.GetObjectSummariesOptions> absent();
+                    query = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent();
                 }
 
                 public Builder(final GetObjectSummariesRequest other) {
@@ -181,12 +181,12 @@ public interface ObjectSummaryQueryService {
                 }
 
                 public Builder unsetOptions() {
-                    this.options = com.google.common.base.Optional.absent();
+                    this.options = com.google.common.base.Optional.<org.dressdiscover.api.services.object.GetObjectSummariesOptions> absent();
                     return this;
                 }
 
                 public Builder unsetQuery() {
-                    this.query = com.google.common.base.Optional.absent();
+                    this.query = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent();
                     return this;
                 }
 
@@ -313,8 +313,8 @@ public interface ObjectSummaryQueryService {
              * Default constructor
              */
             public GetObjectSummariesRequest() {
-                options = com.google.common.base.Optional.absent();
-                query = com.google.common.base.Optional.absent();
+                options = com.google.common.base.Optional.<org.dressdiscover.api.services.object.GetObjectSummariesOptions> absent();
+                query = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent();
             }
 
             /**
@@ -324,20 +324,9 @@ public interface ObjectSummaryQueryService {
                 this(other.getOptions(), other.getQuery());
             }
 
-            /**
-             * Total Nullable constructor
-             */
-            public GetObjectSummariesRequest(final @javax.annotation.Nullable org.dressdiscover.api.services.object.GetObjectSummariesOptions options, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectQuery query) {
-                this.options = com.google.common.base.Optional.fromNullable(options);
-                this.query = com.google.common.base.Optional.fromNullable(query);
-            }
-
-            /**
-             * Optional constructor
-             */
-            public GetObjectSummariesRequest(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) {
-                this.options = com.google.common.base.Preconditions.checkNotNull(options, "org.dressdiscover.api.services.object.GetObjectSummariesRequest: missing options");
-                this.query = com.google.common.base.Preconditions.checkNotNull(query, "org.dressdiscover.api.services.object.GetObjectSummariesRequest: missing query");
+            protected GetObjectSummariesRequest(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) {
+                this.options = options;
+                this.query = query;
             }
 
             public static Builder builder() {
@@ -350,6 +339,24 @@ public interface ObjectSummaryQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetObjectSummariesRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            public static GetObjectSummariesRequest create() {
+                return new GetObjectSummariesRequest();
+            }
+
+            /**
+             * Total Nullable factory method
+             */
+            public static GetObjectSummariesRequest create(final @javax.annotation.Nullable org.dressdiscover.api.services.object.GetObjectSummariesOptions options, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectQuery query) {
+                return new GetObjectSummariesRequest(com.google.common.base.Optional.fromNullable(options), com.google.common.base.Optional.fromNullable(query));
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetObjectSummariesRequest create(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) {
+                return new GetObjectSummariesRequest(com.google.common.base.Preconditions.checkNotNull(options, "org.dressdiscover.api.services.object.GetObjectSummariesRequest: missing options"), com.google.common.base.Preconditions.checkNotNull(query, "org.dressdiscover.api.services.object.GetObjectSummariesRequest: missing query"));
             }
 
             @Override
@@ -424,8 +431,8 @@ public interface ObjectSummaryQueryService {
             }
 
             public static GetObjectSummariesRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options = com.google.common.base.Optional.absent();
-                com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query = com.google.common.base.Optional.absent();
+                com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options = com.google.common.base.Optional.<org.dressdiscover.api.services.object.GetObjectSummariesOptions> absent();
+                com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent();
 
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 if (__list.getSize() > 0) {
@@ -447,8 +454,8 @@ public interface ObjectSummaryQueryService {
             }
 
             public static GetObjectSummariesRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options = com.google.common.base.Optional.absent();
-                com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query = com.google.common.base.Optional.absent();
+                com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options = com.google.common.base.Optional.<org.dressdiscover.api.services.object.GetObjectSummariesOptions> absent();
+                com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent();
 
                 iprot.readStructBegin();
                 while (true) {
@@ -804,11 +811,8 @@ public interface ObjectSummaryQueryService {
                 this(other.getReturnValue());
             }
 
-            /**
-             * Optional constructor
-             */
-            public GetObjectSummariesResponse(final org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue) {
-                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.object.ObjectSummaryQueryService.getObjectSummaries: missing returnValue");
+            protected GetObjectSummariesResponse(final org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue) {
+                this.returnValue = returnValue;
             }
 
             public static Builder builder() {
@@ -821,6 +825,13 @@ public interface ObjectSummaryQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetObjectSummariesResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetObjectSummariesResponse create(final org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue) {
+                return new GetObjectSummariesResponse(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.object.ObjectSummaryQueryService.getObjectSummaries: missing returnValue"));
             }
 
             @Override

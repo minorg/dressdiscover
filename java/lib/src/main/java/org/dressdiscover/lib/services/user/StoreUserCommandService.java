@@ -49,7 +49,7 @@ abstract class StoreUserCommandService implements UserCommandService {
     public UserBookmarkId postUserBookmark(final UserBookmark userBookmark)
             throws DuplicateUserBookmarkException, IoException {
         if (!(userBookmark.getObjectId().isPresent() ^ userBookmark.getObjectQuery().isPresent())) {
-            throw new IoException("user bookmark must have object_id xor object_query");
+            throw IoException.create("user bookmark must have object_id xor object_query");
         }
 
         return userBookmarkStore.postUserBookmark(logger, Markers.POST_USER_BOOKMARK, userBookmark);

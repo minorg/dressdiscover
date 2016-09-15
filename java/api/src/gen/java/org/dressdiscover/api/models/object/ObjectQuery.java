@@ -3,16 +3,16 @@ package org.dressdiscover.api.models.object;
 public class ObjectQuery implements org.thryft.Struct {
     public static class Builder {
         public Builder() {
-            collectionId = com.google.common.base.Optional.absent();
-            facetFilters = com.google.common.base.Optional.absent();
-            includeHidden = com.google.common.base.Optional.absent();
-            institutionId = com.google.common.base.Optional.absent();
-            moreLikeObjectId = com.google.common.base.Optional.absent();
-            objectIds = com.google.common.base.Optional.absent();
-            queryString = com.google.common.base.Optional.absent();
-            relationText = com.google.common.base.Optional.absent();
-            structureTexts = com.google.common.base.Optional.absent();
-            workTypeText = com.google.common.base.Optional.absent();
+            collectionId = com.google.common.base.Optional.<org.dressdiscover.api.models.collection.CollectionId> absent();
+            facetFilters = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectFacetFilters> absent();
+            includeHidden = com.google.common.base.Optional.<Boolean> absent();
+            institutionId = com.google.common.base.Optional.<org.dressdiscover.api.models.institution.InstitutionId> absent();
+            moreLikeObjectId = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent();
+            objectIds = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> absent();
+            queryString = com.google.common.base.Optional.<String> absent();
+            relationText = com.google.common.base.Optional.<String> absent();
+            structureTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> absent();
+            workTypeText = com.google.common.base.Optional.<String> absent();
         }
 
         public Builder(final ObjectQuery other) {
@@ -541,52 +541,52 @@ public class ObjectQuery implements org.thryft.Struct {
         }
 
         public Builder unsetCollectionId() {
-            this.collectionId = com.google.common.base.Optional.absent();
+            this.collectionId = com.google.common.base.Optional.<org.dressdiscover.api.models.collection.CollectionId> absent();
             return this;
         }
 
         public Builder unsetFacetFilters() {
-            this.facetFilters = com.google.common.base.Optional.absent();
+            this.facetFilters = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectFacetFilters> absent();
             return this;
         }
 
         public Builder unsetIncludeHidden() {
-            this.includeHidden = com.google.common.base.Optional.absent();
+            this.includeHidden = com.google.common.base.Optional.<Boolean> absent();
             return this;
         }
 
         public Builder unsetInstitutionId() {
-            this.institutionId = com.google.common.base.Optional.absent();
+            this.institutionId = com.google.common.base.Optional.<org.dressdiscover.api.models.institution.InstitutionId> absent();
             return this;
         }
 
         public Builder unsetMoreLikeObjectId() {
-            this.moreLikeObjectId = com.google.common.base.Optional.absent();
+            this.moreLikeObjectId = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent();
             return this;
         }
 
         public Builder unsetObjectIds() {
-            this.objectIds = com.google.common.base.Optional.absent();
+            this.objectIds = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> absent();
             return this;
         }
 
         public Builder unsetQueryString() {
-            this.queryString = com.google.common.base.Optional.absent();
+            this.queryString = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
         public Builder unsetRelationText() {
-            this.relationText = com.google.common.base.Optional.absent();
+            this.relationText = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
         public Builder unsetStructureTexts() {
-            this.structureTexts = com.google.common.base.Optional.absent();
+            this.structureTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> absent();
             return this;
         }
 
         public Builder unsetWorkTypeText() {
-            this.workTypeText = com.google.common.base.Optional.absent();
+            this.workTypeText = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
@@ -748,16 +748,16 @@ public class ObjectQuery implements org.thryft.Struct {
      * Default constructor
      */
     public ObjectQuery() {
-        collectionId = com.google.common.base.Optional.absent();
-        facetFilters = com.google.common.base.Optional.absent();
-        includeHidden = com.google.common.base.Optional.absent();
-        institutionId = com.google.common.base.Optional.absent();
-        moreLikeObjectId = com.google.common.base.Optional.absent();
-        objectIds = com.google.common.base.Optional.absent();
-        queryString = com.google.common.base.Optional.absent();
-        relationText = com.google.common.base.Optional.absent();
-        structureTexts = com.google.common.base.Optional.absent();
-        workTypeText = com.google.common.base.Optional.absent();
+        collectionId = com.google.common.base.Optional.<org.dressdiscover.api.models.collection.CollectionId> absent();
+        facetFilters = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectFacetFilters> absent();
+        includeHidden = com.google.common.base.Optional.<Boolean> absent();
+        institutionId = com.google.common.base.Optional.<org.dressdiscover.api.models.institution.InstitutionId> absent();
+        moreLikeObjectId = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent();
+        objectIds = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> absent();
+        queryString = com.google.common.base.Optional.<String> absent();
+        relationText = com.google.common.base.Optional.<String> absent();
+        structureTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> absent();
+        workTypeText = com.google.common.base.Optional.<String> absent();
     }
 
     /**
@@ -767,36 +767,17 @@ public class ObjectQuery implements org.thryft.Struct {
         this(other.getCollectionId(), other.getFacetFilters(), other.getIncludeHidden(), other.getInstitutionId(), other.getMoreLikeObjectId(), other.getObjectIds(), other.getQueryString(), other.getRelationText(), other.getStructureTexts(), other.getWorkTypeText());
     }
 
-    /**
-     * Total Nullable constructor
-     */
-    public ObjectQuery(final @javax.annotation.Nullable org.dressdiscover.api.models.collection.CollectionId collectionId, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectFacetFilters facetFilters, final @javax.annotation.Nullable Boolean includeHidden, final @javax.annotation.Nullable org.dressdiscover.api.models.institution.InstitutionId institutionId, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectId moreLikeObjectId, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> objectIds, final @javax.annotation.Nullable String queryString, final @javax.annotation.Nullable String relationText, final @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>> structureTexts, final @javax.annotation.Nullable String workTypeText) {
-        this.collectionId = com.google.common.base.Optional.fromNullable(collectionId);
-        this.facetFilters = com.google.common.base.Optional.fromNullable(facetFilters);
-        this.includeHidden = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(includeHidden), "org.dressdiscover.api.models.object.ObjectQuery: includeHidden must be true");
-        this.institutionId = com.google.common.base.Optional.fromNullable(institutionId);
-        this.moreLikeObjectId = com.google.common.base.Optional.fromNullable(moreLikeObjectId);
-        this.objectIds = com.google.common.base.Optional.fromNullable(objectIds);
-        this.queryString = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(queryString), "org.dressdiscover.api.models.object.ObjectQuery: queryString is empty");
-        this.relationText = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(relationText), "org.dressdiscover.api.models.object.ObjectQuery: relationText is empty");
-        this.structureTexts = org.thryft.Preconditions.checkOptionalMapNotEmpty(com.google.common.base.Optional.fromNullable(structureTexts), "org.dressdiscover.api.models.object.ObjectQuery: structureTexts is empty");
-        this.workTypeText = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(workTypeText), "org.dressdiscover.api.models.object.ObjectQuery: workTypeText is empty");
-    }
-
-    /**
-     * Optional constructor
-     */
-    public ObjectQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters, final com.google.common.base.Optional<Boolean> includeHidden, final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds, final com.google.common.base.Optional<String> queryString, final com.google.common.base.Optional<String> relationText, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts, final com.google.common.base.Optional<String> workTypeText) {
-        this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.ObjectQuery: missing collectionId");
-        this.facetFilters = com.google.common.base.Preconditions.checkNotNull(facetFilters, "org.dressdiscover.api.models.object.ObjectQuery: missing facetFilters");
-        this.includeHidden = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(includeHidden, "org.dressdiscover.api.models.object.ObjectQuery: missing includeHidden"), "org.dressdiscover.api.models.object.ObjectQuery: includeHidden must be true");
-        this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.ObjectQuery: missing institutionId");
-        this.moreLikeObjectId = com.google.common.base.Preconditions.checkNotNull(moreLikeObjectId, "org.dressdiscover.api.models.object.ObjectQuery: missing moreLikeObjectId");
-        this.objectIds = com.google.common.base.Preconditions.checkNotNull(objectIds, "org.dressdiscover.api.models.object.ObjectQuery: missing objectIds");
-        this.queryString = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(queryString, "org.dressdiscover.api.models.object.ObjectQuery: missing queryString"), "org.dressdiscover.api.models.object.ObjectQuery: queryString is empty");
-        this.relationText = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(relationText, "org.dressdiscover.api.models.object.ObjectQuery: missing relationText"), "org.dressdiscover.api.models.object.ObjectQuery: relationText is empty");
-        this.structureTexts = org.thryft.Preconditions.checkOptionalMapNotEmpty(com.google.common.base.Preconditions.checkNotNull(structureTexts, "org.dressdiscover.api.models.object.ObjectQuery: missing structureTexts"), "org.dressdiscover.api.models.object.ObjectQuery: structureTexts is empty");
-        this.workTypeText = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(workTypeText, "org.dressdiscover.api.models.object.ObjectQuery: missing workTypeText"), "org.dressdiscover.api.models.object.ObjectQuery: workTypeText is empty");
+    protected ObjectQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters, final com.google.common.base.Optional<Boolean> includeHidden, final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds, final com.google.common.base.Optional<String> queryString, final com.google.common.base.Optional<String> relationText, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts, final com.google.common.base.Optional<String> workTypeText) {
+        this.collectionId = collectionId;
+        this.facetFilters = facetFilters;
+        this.includeHidden = includeHidden;
+        this.institutionId = institutionId;
+        this.moreLikeObjectId = moreLikeObjectId;
+        this.objectIds = objectIds;
+        this.queryString = queryString;
+        this.relationText = relationText;
+        this.structureTexts = structureTexts;
+        this.workTypeText = workTypeText;
     }
 
     public static Builder builder() {
@@ -809,6 +790,24 @@ public class ObjectQuery implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<ObjectQuery> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    public static ObjectQuery create() {
+        return new ObjectQuery();
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static ObjectQuery create(final @javax.annotation.Nullable org.dressdiscover.api.models.collection.CollectionId collectionId, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectFacetFilters facetFilters, final @javax.annotation.Nullable Boolean includeHidden, final @javax.annotation.Nullable org.dressdiscover.api.models.institution.InstitutionId institutionId, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectId moreLikeObjectId, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> objectIds, final @javax.annotation.Nullable String queryString, final @javax.annotation.Nullable String relationText, final @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>> structureTexts, final @javax.annotation.Nullable String workTypeText) {
+        return new ObjectQuery(com.google.common.base.Optional.fromNullable(collectionId), com.google.common.base.Optional.fromNullable(facetFilters), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(includeHidden), "org.dressdiscover.api.models.object.ObjectQuery: includeHidden must be true"), com.google.common.base.Optional.fromNullable(institutionId), com.google.common.base.Optional.fromNullable(moreLikeObjectId), com.google.common.base.Optional.fromNullable(objectIds), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(queryString), "org.dressdiscover.api.models.object.ObjectQuery: queryString is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(relationText), "org.dressdiscover.api.models.object.ObjectQuery: relationText is empty"), org.thryft.Preconditions.checkOptionalMapNotEmpty(com.google.common.base.Optional.fromNullable(structureTexts), "org.dressdiscover.api.models.object.ObjectQuery: structureTexts is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(workTypeText), "org.dressdiscover.api.models.object.ObjectQuery: workTypeText is empty"));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static ObjectQuery create(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters, final com.google.common.base.Optional<Boolean> includeHidden, final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds, final com.google.common.base.Optional<String> queryString, final com.google.common.base.Optional<String> relationText, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts, final com.google.common.base.Optional<String> workTypeText) {
+        return new ObjectQuery(com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.ObjectQuery: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(facetFilters, "org.dressdiscover.api.models.object.ObjectQuery: missing facetFilters"), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(includeHidden, "org.dressdiscover.api.models.object.ObjectQuery: missing includeHidden"), "org.dressdiscover.api.models.object.ObjectQuery: includeHidden must be true"), com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.ObjectQuery: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(moreLikeObjectId, "org.dressdiscover.api.models.object.ObjectQuery: missing moreLikeObjectId"), com.google.common.base.Preconditions.checkNotNull(objectIds, "org.dressdiscover.api.models.object.ObjectQuery: missing objectIds"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(queryString, "org.dressdiscover.api.models.object.ObjectQuery: missing queryString"), "org.dressdiscover.api.models.object.ObjectQuery: queryString is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(relationText, "org.dressdiscover.api.models.object.ObjectQuery: missing relationText"), "org.dressdiscover.api.models.object.ObjectQuery: relationText is empty"), org.thryft.Preconditions.checkOptionalMapNotEmpty(com.google.common.base.Preconditions.checkNotNull(structureTexts, "org.dressdiscover.api.models.object.ObjectQuery: missing structureTexts"), "org.dressdiscover.api.models.object.ObjectQuery: structureTexts is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(workTypeText, "org.dressdiscover.api.models.object.ObjectQuery: missing workTypeText"), "org.dressdiscover.api.models.object.ObjectQuery: workTypeText is empty"));
     }
 
     @Override
@@ -958,16 +957,16 @@ public class ObjectQuery implements org.thryft.Struct {
     }
 
     public static ObjectQuery readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<Boolean> includeHidden = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> queryString = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> relationText = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> workTypeText = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId = com.google.common.base.Optional.<org.dressdiscover.api.models.collection.CollectionId> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectFacetFilters> absent();
+        com.google.common.base.Optional<Boolean> includeHidden = com.google.common.base.Optional.<Boolean> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId = com.google.common.base.Optional.<org.dressdiscover.api.models.institution.InstitutionId> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> absent();
+        com.google.common.base.Optional<String> queryString = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<String> relationText = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> absent();
+        com.google.common.base.Optional<String> workTypeText = com.google.common.base.Optional.<String> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         if (__list.getSize() > 0) {
@@ -1087,16 +1086,16 @@ public class ObjectQuery implements org.thryft.Struct {
     }
 
     public static ObjectQuery readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<Boolean> includeHidden = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> queryString = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> relationText = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> workTypeText = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId = com.google.common.base.Optional.<org.dressdiscover.api.models.collection.CollectionId> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectFacetFilters> absent();
+        com.google.common.base.Optional<Boolean> includeHidden = com.google.common.base.Optional.<Boolean> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId = com.google.common.base.Optional.<org.dressdiscover.api.models.institution.InstitutionId> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> absent();
+        com.google.common.base.Optional<String> queryString = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<String> relationText = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> absent();
+        com.google.common.base.Optional<String> workTypeText = com.google.common.base.Optional.<String> absent();
 
         iprot.readStructBegin();
         while (true) {

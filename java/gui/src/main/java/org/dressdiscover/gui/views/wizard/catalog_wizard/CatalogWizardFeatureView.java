@@ -76,7 +76,7 @@ public class CatalogWizardFeatureView extends TopLevelView {
             label.setStyleName("existing-object-label");
             design.existingObjectLayout.addComponent(label);
             final ObjectEntryForm objectEntryForm = new ObjectEntryForm(_getEventBus(), objectInstitution.get(),
-                    new ObjectEntry(state.getObjectId().get(), object.get()));
+                    ObjectEntry.create(state.getObjectId().get(), object.get()));
             design.existingObjectLayout.addComponent(objectEntryForm);
         }
 

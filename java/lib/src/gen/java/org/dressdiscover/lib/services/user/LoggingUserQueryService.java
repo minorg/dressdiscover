@@ -28,7 +28,7 @@ public class LoggingUserQueryService implements org.dressdiscover.api.services.u
 
         __logMessageStringBuilder.append("get_user_bookmarks_by_user_id(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.GetUserBookmarksByUserIdRequest(userId, objectIdsOnly));
+        __logMessageArgs.add(Messages.GetUserBookmarksByUserIdRequest.create(userId, objectIdsOnly));
         __logMessageStringBuilder.append(")");
 
         try {
@@ -59,7 +59,7 @@ public class LoggingUserQueryService implements org.dressdiscover.api.services.u
 
         __logMessageStringBuilder.append("get_user_by_email_address(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.GetUserByEmailAddressRequest(emailAddress));
+        __logMessageArgs.add(Messages.GetUserByEmailAddressRequest.create(emailAddress));
         __logMessageStringBuilder.append(")");
 
         try {
@@ -90,7 +90,7 @@ public class LoggingUserQueryService implements org.dressdiscover.api.services.u
 
         __logMessageStringBuilder.append("get_user_by_id(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.GetUserByIdRequest(id));
+        __logMessageArgs.add(Messages.GetUserByIdRequest.create(id));
         __logMessageStringBuilder.append(")");
 
         try {

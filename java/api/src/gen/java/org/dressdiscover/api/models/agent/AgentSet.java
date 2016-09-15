@@ -7,8 +7,8 @@ public class AgentSet implements org.thryft.Struct, org.dressdiscover.api.models
     public static class Builder {
         public Builder() {
             elements = null;
-            display = com.google.common.base.Optional.absent();
-            notes = com.google.common.base.Optional.absent();
+            display = com.google.common.base.Optional.<String> absent();
+            notes = com.google.common.base.Optional.<String> absent();
         }
 
         public Builder(final AgentSet other) {
@@ -224,7 +224,7 @@ public class AgentSet implements org.thryft.Struct, org.dressdiscover.api.models
         }
 
         public Builder unsetDisplay() {
-            this.display = com.google.common.base.Optional.absent();
+            this.display = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
@@ -234,7 +234,7 @@ public class AgentSet implements org.thryft.Struct, org.dressdiscover.api.models
         }
 
         public Builder unsetNotes() {
-            this.notes = com.google.common.base.Optional.absent();
+            this.notes = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
@@ -368,31 +368,10 @@ public class AgentSet implements org.thryft.Struct, org.dressdiscover.api.models
         this(other.getElements(), other.getDisplay(), other.getNotes());
     }
 
-    /**
-     * Required constructor
-     */
-    public AgentSet(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.Agent> elements) {
-        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "org.dressdiscover.api.models.agent.AgentSet: missing elements"), "org.dressdiscover.api.models.agent.AgentSet: elements is empty");
-        this.display = com.google.common.base.Optional.absent();
-        this.notes = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public AgentSet(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.Agent> elements, final @javax.annotation.Nullable String display, final @javax.annotation.Nullable String notes) {
-        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "org.dressdiscover.api.models.agent.AgentSet: missing elements"), "org.dressdiscover.api.models.agent.AgentSet: elements is empty");
-        this.display = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(display), "org.dressdiscover.api.models.agent.AgentSet: display is empty");
-        this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(notes), "org.dressdiscover.api.models.agent.AgentSet: notes is empty");
-    }
-
-    /**
-     * Optional constructor
-     */
-    public AgentSet(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.Agent> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "org.dressdiscover.api.models.agent.AgentSet: missing elements"), "org.dressdiscover.api.models.agent.AgentSet: elements is empty");
-        this.display = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(display, "org.dressdiscover.api.models.agent.AgentSet: missing display"), "org.dressdiscover.api.models.agent.AgentSet: display is empty");
-        this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(notes, "org.dressdiscover.api.models.agent.AgentSet: missing notes"), "org.dressdiscover.api.models.agent.AgentSet: notes is empty");
+    protected AgentSet(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.Agent> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+        this.elements = elements;
+        this.display = display;
+        this.notes = notes;
     }
 
     public static Builder builder() {
@@ -405,6 +384,27 @@ public class AgentSet implements org.thryft.Struct, org.dressdiscover.api.models
 
     public static Builder builder(final com.google.common.base.Optional<AgentSet> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static AgentSet create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.Agent> elements) {
+        return new AgentSet(org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "org.dressdiscover.api.models.agent.AgentSet: missing elements"), "org.dressdiscover.api.models.agent.AgentSet: elements is empty"), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static AgentSet create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.Agent> elements, final @javax.annotation.Nullable String display, final @javax.annotation.Nullable String notes) {
+        return new AgentSet(org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "org.dressdiscover.api.models.agent.AgentSet: missing elements"), "org.dressdiscover.api.models.agent.AgentSet: elements is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(display), "org.dressdiscover.api.models.agent.AgentSet: display is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(notes), "org.dressdiscover.api.models.agent.AgentSet: notes is empty"));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static AgentSet create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.Agent> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+        return new AgentSet(org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "org.dressdiscover.api.models.agent.AgentSet: missing elements"), "org.dressdiscover.api.models.agent.AgentSet: elements is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(display, "org.dressdiscover.api.models.agent.AgentSet: missing display"), "org.dressdiscover.api.models.agent.AgentSet: display is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(notes, "org.dressdiscover.api.models.agent.AgentSet: missing notes"), "org.dressdiscover.api.models.agent.AgentSet: notes is empty"));
     }
 
     @Override
@@ -487,8 +487,8 @@ public class AgentSet implements org.thryft.Struct, org.dressdiscover.api.models
 
     public static AgentSet readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.Agent> elements = null;
-        com.google.common.base.Optional<String> display = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> display = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<String> notes = com.google.common.base.Optional.<String> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.Agent>>() {
@@ -527,8 +527,8 @@ public class AgentSet implements org.thryft.Struct, org.dressdiscover.api.models
 
     public static AgentSet readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.Agent> elements = null;
-        com.google.common.base.Optional<String> display = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> display = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<String> notes = com.google.common.base.Optional.<String> absent();
 
         iprot.readStructBegin();
         while (true) {

@@ -28,7 +28,7 @@ public class LoggingCollectionCommandService implements org.dressdiscover.api.se
 
         __logMessageStringBuilder.append("delete_collection_by_id(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.DeleteCollectionByIdRequest(id));
+        __logMessageArgs.add(Messages.DeleteCollectionByIdRequest.create(id));
         __logMessageStringBuilder.append(")");
 
         try {
@@ -59,7 +59,7 @@ public class LoggingCollectionCommandService implements org.dressdiscover.api.se
 
         __logMessageStringBuilder.append("delete_collections_by_institution_id(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.DeleteCollectionsByInstitutionIdRequest(institutionId));
+        __logMessageArgs.add(Messages.DeleteCollectionsByInstitutionIdRequest.create(institutionId));
         __logMessageStringBuilder.append(")");
 
         try {
@@ -85,7 +85,7 @@ public class LoggingCollectionCommandService implements org.dressdiscover.api.se
 
         __logMessageStringBuilder.append("put_collection(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.PutCollectionRequest(id, collection));
+        __logMessageArgs.add(Messages.PutCollectionRequest.create(id, collection));
         __logMessageStringBuilder.append(")");
 
         try {

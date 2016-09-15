@@ -137,6 +137,10 @@ public class NoSuchObjectException extends org.thryft.Exception {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
     }
 
+    public static NoSuchObjectException create() {
+        return new NoSuchObjectException();
+    }
+
     @Override
     public boolean equals(final java.lang.Object otherObject) {
         if (otherObject == this) {

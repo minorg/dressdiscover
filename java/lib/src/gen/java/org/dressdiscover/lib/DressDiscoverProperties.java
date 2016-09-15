@@ -596,61 +596,20 @@ public class DressDiscoverProperties implements org.thryft.Struct, org.thryft.wa
         this(other.getApiUrl(), other.getCacheCollections(), other.getCacheInstitutions(), other.getElasticSearchHost(), other.getElasticSearchPort(), other.getEnvironment(), other.getGoogleApiKey(), other.getGoogleOauthKey(), other.getGoogleOauthSecret(), other.getHomeDirectoryPath(), other.getObjectSummariesResultCacheSize(), other.getObjectSummaryCacheSize(), other.getResummarizeObjectsBulkRequestSize());
     }
 
-    /**
-     * Required constructor
-     */
-    public DressDiscoverProperties(final String environment, final String googleApiKey, final String googleOauthKey, final String googleOauthSecret, final String homeDirectoryPath) {
-        this.apiUrl = org.thryft.native_.Url.parse("http://middleware:8082/api/");
-        this.cacheCollections = true;
-        this.cacheInstitutions = true;
-        this.elasticSearchHost = "elasticsearch";
-        this.elasticSearchPort = com.google.common.primitives.UnsignedInteger.valueOf(9300);
-        this.environment = com.google.common.base.Preconditions.checkNotNull(environment, "org.dressdiscover.lib.DressDiscoverProperties: missing environment");
-        this.googleApiKey = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleApiKey, "org.dressdiscover.lib.DressDiscoverProperties: missing googleApiKey"), "org.dressdiscover.lib.DressDiscoverProperties: googleApiKey is empty");
-        this.googleOauthKey = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleOauthKey, "org.dressdiscover.lib.DressDiscoverProperties: missing googleOauthKey"), "org.dressdiscover.lib.DressDiscoverProperties: googleOauthKey is empty");
-        this.googleOauthSecret = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleOauthSecret, "org.dressdiscover.lib.DressDiscoverProperties: missing googleOauthSecret"), "org.dressdiscover.lib.DressDiscoverProperties: googleOauthSecret is empty");
-        this.homeDirectoryPath = com.google.common.base.Preconditions.checkNotNull(homeDirectoryPath, "org.dressdiscover.lib.DressDiscoverProperties: missing homeDirectoryPath");
-        this.objectSummariesResultCacheSize = com.google.common.primitives.UnsignedInteger.valueOf(1024);
-        this.objectSummaryCacheSize = com.google.common.primitives.UnsignedInteger.valueOf(1024);
-        this.resummarizeObjectsBulkRequestSize = com.google.common.primitives.UnsignedInteger.valueOf(1000);
-    }
-
-    /**
-     * Total boxed constructor
-     */
-    public DressDiscoverProperties(final org.thryft.native_.Url apiUrl, final Boolean cacheCollections, final Boolean cacheInstitutions, final String elasticSearchHost, final com.google.common.primitives.UnsignedInteger elasticSearchPort, final String environment, final String googleApiKey, final String googleOauthKey, final String googleOauthSecret, final String homeDirectoryPath, final com.google.common.primitives.UnsignedInteger objectSummariesResultCacheSize, final com.google.common.primitives.UnsignedInteger objectSummaryCacheSize, final com.google.common.primitives.UnsignedInteger resummarizeObjectsBulkRequestSize) {
-        this.apiUrl = com.google.common.base.Preconditions.checkNotNull(apiUrl, "org.dressdiscover.lib.DressDiscoverProperties: missing apiUrl");
-        this.cacheCollections = com.google.common.base.Preconditions.checkNotNull(cacheCollections, "org.dressdiscover.lib.DressDiscoverProperties: missing cacheCollections");
-        this.cacheInstitutions = com.google.common.base.Preconditions.checkNotNull(cacheInstitutions, "org.dressdiscover.lib.DressDiscoverProperties: missing cacheInstitutions");
-        this.elasticSearchHost = com.google.common.base.Preconditions.checkNotNull(elasticSearchHost, "org.dressdiscover.lib.DressDiscoverProperties: missing elasticSearchHost");
-        this.elasticSearchPort = com.google.common.base.Preconditions.checkNotNull(elasticSearchPort, "org.dressdiscover.lib.DressDiscoverProperties: missing elasticSearchPort");
-        this.environment = com.google.common.base.Preconditions.checkNotNull(environment, "org.dressdiscover.lib.DressDiscoverProperties: missing environment");
-        this.googleApiKey = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleApiKey, "org.dressdiscover.lib.DressDiscoverProperties: missing googleApiKey"), "org.dressdiscover.lib.DressDiscoverProperties: googleApiKey is empty");
-        this.googleOauthKey = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleOauthKey, "org.dressdiscover.lib.DressDiscoverProperties: missing googleOauthKey"), "org.dressdiscover.lib.DressDiscoverProperties: googleOauthKey is empty");
-        this.googleOauthSecret = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleOauthSecret, "org.dressdiscover.lib.DressDiscoverProperties: missing googleOauthSecret"), "org.dressdiscover.lib.DressDiscoverProperties: googleOauthSecret is empty");
-        this.homeDirectoryPath = com.google.common.base.Preconditions.checkNotNull(homeDirectoryPath, "org.dressdiscover.lib.DressDiscoverProperties: missing homeDirectoryPath");
-        this.objectSummariesResultCacheSize = com.google.common.base.Preconditions.checkNotNull(objectSummariesResultCacheSize, "org.dressdiscover.lib.DressDiscoverProperties: missing objectSummariesResultCacheSize");
-        this.objectSummaryCacheSize = com.google.common.base.Preconditions.checkNotNull(objectSummaryCacheSize, "org.dressdiscover.lib.DressDiscoverProperties: missing objectSummaryCacheSize");
-        this.resummarizeObjectsBulkRequestSize = com.google.common.base.Preconditions.checkNotNull(resummarizeObjectsBulkRequestSize, "org.dressdiscover.lib.DressDiscoverProperties: missing resummarizeObjectsBulkRequestSize");
-    }
-
-    /**
-     * Optional constructor
-     */
-    public DressDiscoverProperties(final org.thryft.native_.Url apiUrl, final boolean cacheCollections, final boolean cacheInstitutions, final String elasticSearchHost, final com.google.common.primitives.UnsignedInteger elasticSearchPort, final String environment, final String googleApiKey, final String googleOauthKey, final String googleOauthSecret, final String homeDirectoryPath, final com.google.common.primitives.UnsignedInteger objectSummariesResultCacheSize, final com.google.common.primitives.UnsignedInteger objectSummaryCacheSize, final com.google.common.primitives.UnsignedInteger resummarizeObjectsBulkRequestSize) {
-        this.apiUrl = com.google.common.base.Preconditions.checkNotNull(apiUrl, "org.dressdiscover.lib.DressDiscoverProperties: missing apiUrl");
+    protected DressDiscoverProperties(final org.thryft.native_.Url apiUrl, final boolean cacheCollections, final boolean cacheInstitutions, final String elasticSearchHost, final com.google.common.primitives.UnsignedInteger elasticSearchPort, final String environment, final String googleApiKey, final String googleOauthKey, final String googleOauthSecret, final String homeDirectoryPath, final com.google.common.primitives.UnsignedInteger objectSummariesResultCacheSize, final com.google.common.primitives.UnsignedInteger objectSummaryCacheSize, final com.google.common.primitives.UnsignedInteger resummarizeObjectsBulkRequestSize) {
+        this.apiUrl = apiUrl;
         this.cacheCollections = cacheCollections;
         this.cacheInstitutions = cacheInstitutions;
-        this.elasticSearchHost = com.google.common.base.Preconditions.checkNotNull(elasticSearchHost, "org.dressdiscover.lib.DressDiscoverProperties: missing elasticSearchHost");
-        this.elasticSearchPort = com.google.common.base.Preconditions.checkNotNull(elasticSearchPort, "org.dressdiscover.lib.DressDiscoverProperties: missing elasticSearchPort");
-        this.environment = com.google.common.base.Preconditions.checkNotNull(environment, "org.dressdiscover.lib.DressDiscoverProperties: missing environment");
-        this.googleApiKey = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleApiKey, "org.dressdiscover.lib.DressDiscoverProperties: missing googleApiKey"), "org.dressdiscover.lib.DressDiscoverProperties: googleApiKey is empty");
-        this.googleOauthKey = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleOauthKey, "org.dressdiscover.lib.DressDiscoverProperties: missing googleOauthKey"), "org.dressdiscover.lib.DressDiscoverProperties: googleOauthKey is empty");
-        this.googleOauthSecret = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleOauthSecret, "org.dressdiscover.lib.DressDiscoverProperties: missing googleOauthSecret"), "org.dressdiscover.lib.DressDiscoverProperties: googleOauthSecret is empty");
-        this.homeDirectoryPath = com.google.common.base.Preconditions.checkNotNull(homeDirectoryPath, "org.dressdiscover.lib.DressDiscoverProperties: missing homeDirectoryPath");
-        this.objectSummariesResultCacheSize = com.google.common.base.Preconditions.checkNotNull(objectSummariesResultCacheSize, "org.dressdiscover.lib.DressDiscoverProperties: missing objectSummariesResultCacheSize");
-        this.objectSummaryCacheSize = com.google.common.base.Preconditions.checkNotNull(objectSummaryCacheSize, "org.dressdiscover.lib.DressDiscoverProperties: missing objectSummaryCacheSize");
-        this.resummarizeObjectsBulkRequestSize = com.google.common.base.Preconditions.checkNotNull(resummarizeObjectsBulkRequestSize, "org.dressdiscover.lib.DressDiscoverProperties: missing resummarizeObjectsBulkRequestSize");
+        this.elasticSearchHost = elasticSearchHost;
+        this.elasticSearchPort = elasticSearchPort;
+        this.environment = environment;
+        this.googleApiKey = googleApiKey;
+        this.googleOauthKey = googleOauthKey;
+        this.googleOauthSecret = googleOauthSecret;
+        this.homeDirectoryPath = homeDirectoryPath;
+        this.objectSummariesResultCacheSize = objectSummariesResultCacheSize;
+        this.objectSummaryCacheSize = objectSummaryCacheSize;
+        this.resummarizeObjectsBulkRequestSize = resummarizeObjectsBulkRequestSize;
     }
 
     private static java.util.Properties __mergeProperties(
@@ -714,6 +673,27 @@ public class DressDiscoverProperties implements org.thryft.Struct, org.thryft.wa
 
     public static Builder builder(final com.google.common.base.Optional<DressDiscoverProperties> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static DressDiscoverProperties create(final String environment, final String googleApiKey, final String googleOauthKey, final String googleOauthSecret, final String homeDirectoryPath) {
+        return new DressDiscoverProperties(org.thryft.native_.Url.parse("http://middleware:8082/api/"), true, true, "elasticsearch", com.google.common.primitives.UnsignedInteger.valueOf(9300), com.google.common.base.Preconditions.checkNotNull(environment, "org.dressdiscover.lib.DressDiscoverProperties: missing environment"), org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleApiKey, "org.dressdiscover.lib.DressDiscoverProperties: missing googleApiKey"), "org.dressdiscover.lib.DressDiscoverProperties: googleApiKey is empty"), org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleOauthKey, "org.dressdiscover.lib.DressDiscoverProperties: missing googleOauthKey"), "org.dressdiscover.lib.DressDiscoverProperties: googleOauthKey is empty"), org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleOauthSecret, "org.dressdiscover.lib.DressDiscoverProperties: missing googleOauthSecret"), "org.dressdiscover.lib.DressDiscoverProperties: googleOauthSecret is empty"), com.google.common.base.Preconditions.checkNotNull(homeDirectoryPath, "org.dressdiscover.lib.DressDiscoverProperties: missing homeDirectoryPath"), com.google.common.primitives.UnsignedInteger.valueOf(1024), com.google.common.primitives.UnsignedInteger.valueOf(1024), com.google.common.primitives.UnsignedInteger.valueOf(1000));
+    }
+
+    /**
+     * Total boxed factory method
+     */
+    public static DressDiscoverProperties create(org.thryft.native_.Url apiUrl, Boolean cacheCollections, Boolean cacheInstitutions, String elasticSearchHost, com.google.common.primitives.UnsignedInteger elasticSearchPort, String environment, String googleApiKey, String googleOauthKey, String googleOauthSecret, String homeDirectoryPath, com.google.common.primitives.UnsignedInteger objectSummariesResultCacheSize, com.google.common.primitives.UnsignedInteger objectSummaryCacheSize, com.google.common.primitives.UnsignedInteger resummarizeObjectsBulkRequestSize) {
+        return new DressDiscoverProperties(com.google.common.base.Preconditions.checkNotNull(apiUrl, "org.dressdiscover.lib.DressDiscoverProperties: missing apiUrl"), com.google.common.base.Preconditions.checkNotNull(cacheCollections, "org.dressdiscover.lib.DressDiscoverProperties: missing cacheCollections"), com.google.common.base.Preconditions.checkNotNull(cacheInstitutions, "org.dressdiscover.lib.DressDiscoverProperties: missing cacheInstitutions"), com.google.common.base.Preconditions.checkNotNull(elasticSearchHost, "org.dressdiscover.lib.DressDiscoverProperties: missing elasticSearchHost"), com.google.common.base.Preconditions.checkNotNull(elasticSearchPort, "org.dressdiscover.lib.DressDiscoverProperties: missing elasticSearchPort"), com.google.common.base.Preconditions.checkNotNull(environment, "org.dressdiscover.lib.DressDiscoverProperties: missing environment"), org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleApiKey, "org.dressdiscover.lib.DressDiscoverProperties: missing googleApiKey"), "org.dressdiscover.lib.DressDiscoverProperties: googleApiKey is empty"), org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleOauthKey, "org.dressdiscover.lib.DressDiscoverProperties: missing googleOauthKey"), "org.dressdiscover.lib.DressDiscoverProperties: googleOauthKey is empty"), org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleOauthSecret, "org.dressdiscover.lib.DressDiscoverProperties: missing googleOauthSecret"), "org.dressdiscover.lib.DressDiscoverProperties: googleOauthSecret is empty"), com.google.common.base.Preconditions.checkNotNull(homeDirectoryPath, "org.dressdiscover.lib.DressDiscoverProperties: missing homeDirectoryPath"), com.google.common.base.Preconditions.checkNotNull(objectSummariesResultCacheSize, "org.dressdiscover.lib.DressDiscoverProperties: missing objectSummariesResultCacheSize"), com.google.common.base.Preconditions.checkNotNull(objectSummaryCacheSize, "org.dressdiscover.lib.DressDiscoverProperties: missing objectSummaryCacheSize"), com.google.common.base.Preconditions.checkNotNull(resummarizeObjectsBulkRequestSize, "org.dressdiscover.lib.DressDiscoverProperties: missing resummarizeObjectsBulkRequestSize"));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static DressDiscoverProperties create(final org.thryft.native_.Url apiUrl, final boolean cacheCollections, final boolean cacheInstitutions, final String elasticSearchHost, final com.google.common.primitives.UnsignedInteger elasticSearchPort, final String environment, final String googleApiKey, final String googleOauthKey, final String googleOauthSecret, final String homeDirectoryPath, final com.google.common.primitives.UnsignedInteger objectSummariesResultCacheSize, final com.google.common.primitives.UnsignedInteger objectSummaryCacheSize, final com.google.common.primitives.UnsignedInteger resummarizeObjectsBulkRequestSize) {
+        return new DressDiscoverProperties(com.google.common.base.Preconditions.checkNotNull(apiUrl, "org.dressdiscover.lib.DressDiscoverProperties: missing apiUrl"), cacheCollections, cacheInstitutions, com.google.common.base.Preconditions.checkNotNull(elasticSearchHost, "org.dressdiscover.lib.DressDiscoverProperties: missing elasticSearchHost"), com.google.common.base.Preconditions.checkNotNull(elasticSearchPort, "org.dressdiscover.lib.DressDiscoverProperties: missing elasticSearchPort"), com.google.common.base.Preconditions.checkNotNull(environment, "org.dressdiscover.lib.DressDiscoverProperties: missing environment"), org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleApiKey, "org.dressdiscover.lib.DressDiscoverProperties: missing googleApiKey"), "org.dressdiscover.lib.DressDiscoverProperties: googleApiKey is empty"), org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleOauthKey, "org.dressdiscover.lib.DressDiscoverProperties: missing googleOauthKey"), "org.dressdiscover.lib.DressDiscoverProperties: googleOauthKey is empty"), org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(googleOauthSecret, "org.dressdiscover.lib.DressDiscoverProperties: missing googleOauthSecret"), "org.dressdiscover.lib.DressDiscoverProperties: googleOauthSecret is empty"), com.google.common.base.Preconditions.checkNotNull(homeDirectoryPath, "org.dressdiscover.lib.DressDiscoverProperties: missing homeDirectoryPath"), com.google.common.base.Preconditions.checkNotNull(objectSummariesResultCacheSize, "org.dressdiscover.lib.DressDiscoverProperties: missing objectSummariesResultCacheSize"), com.google.common.base.Preconditions.checkNotNull(objectSummaryCacheSize, "org.dressdiscover.lib.DressDiscoverProperties: missing objectSummaryCacheSize"), com.google.common.base.Preconditions.checkNotNull(resummarizeObjectsBulkRequestSize, "org.dressdiscover.lib.DressDiscoverProperties: missing resummarizeObjectsBulkRequestSize"));
     }
 
     @Override

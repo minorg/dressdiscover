@@ -8,8 +8,8 @@ public class Measurements implements org.thryft.Struct, org.dressdiscover.api.mo
         public Builder() {
             text = null;
             type = null;
-            extent = com.google.common.base.Optional.absent();
-            unit = com.google.common.base.Optional.absent();
+            extent = com.google.common.base.Optional.<String> absent();
+            unit = com.google.common.base.Optional.<org.dressdiscover.api.models.measurements.MeasurementsUnit> absent();
         }
 
         public Builder(final Measurements other) {
@@ -220,7 +220,7 @@ public class Measurements implements org.thryft.Struct, org.dressdiscover.api.mo
         }
 
         public Builder unsetExtent() {
-            this.extent = com.google.common.base.Optional.absent();
+            this.extent = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
@@ -235,7 +235,7 @@ public class Measurements implements org.thryft.Struct, org.dressdiscover.api.mo
         }
 
         public Builder unsetUnit() {
-            this.unit = com.google.common.base.Optional.absent();
+            this.unit = com.google.common.base.Optional.<org.dressdiscover.api.models.measurements.MeasurementsUnit> absent();
             return this;
         }
 
@@ -373,34 +373,11 @@ public class Measurements implements org.thryft.Struct, org.dressdiscover.api.mo
         this(other.getText(), other.getType(), other.getExtent(), other.getUnit());
     }
 
-    /**
-     * Required constructor
-     */
-    public Measurements(final String text, final org.dressdiscover.api.models.measurements.MeasurementsType type) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.measurements.Measurements: missing text"), "org.dressdiscover.api.models.measurements.Measurements: text is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.measurements.Measurements: missing type");
-        this.extent = com.google.common.base.Optional.absent();
-        this.unit = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public Measurements(final String text, final org.dressdiscover.api.models.measurements.MeasurementsType type, final @javax.annotation.Nullable String extent, final @javax.annotation.Nullable org.dressdiscover.api.models.measurements.MeasurementsUnit unit) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.measurements.Measurements: missing text"), "org.dressdiscover.api.models.measurements.Measurements: text is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.measurements.Measurements: missing type");
-        this.extent = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(extent), "org.dressdiscover.api.models.measurements.Measurements: extent is empty");
-        this.unit = com.google.common.base.Optional.fromNullable(unit);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public Measurements(final String text, final org.dressdiscover.api.models.measurements.MeasurementsType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> unit) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.measurements.Measurements: missing text"), "org.dressdiscover.api.models.measurements.Measurements: text is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.measurements.Measurements: missing type");
-        this.extent = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(extent, "org.dressdiscover.api.models.measurements.Measurements: missing extent"), "org.dressdiscover.api.models.measurements.Measurements: extent is empty");
-        this.unit = com.google.common.base.Preconditions.checkNotNull(unit, "org.dressdiscover.api.models.measurements.Measurements: missing unit");
+    protected Measurements(final String text, final org.dressdiscover.api.models.measurements.MeasurementsType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> unit) {
+        this.text = text;
+        this.type = type;
+        this.extent = extent;
+        this.unit = unit;
     }
 
     public static Builder builder() {
@@ -413,6 +390,27 @@ public class Measurements implements org.thryft.Struct, org.dressdiscover.api.mo
 
     public static Builder builder(final com.google.common.base.Optional<Measurements> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static Measurements create(final String text, final org.dressdiscover.api.models.measurements.MeasurementsType type) {
+        return new Measurements(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.measurements.Measurements: missing text"), "org.dressdiscover.api.models.measurements.Measurements: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.measurements.Measurements: missing type"), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.measurements.MeasurementsUnit> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static Measurements create(final String text, final org.dressdiscover.api.models.measurements.MeasurementsType type, final @javax.annotation.Nullable String extent, final @javax.annotation.Nullable org.dressdiscover.api.models.measurements.MeasurementsUnit unit) {
+        return new Measurements(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.measurements.Measurements: missing text"), "org.dressdiscover.api.models.measurements.Measurements: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.measurements.Measurements: missing type"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(extent), "org.dressdiscover.api.models.measurements.Measurements: extent is empty"), com.google.common.base.Optional.fromNullable(unit));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static Measurements create(final String text, final org.dressdiscover.api.models.measurements.MeasurementsType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> unit) {
+        return new Measurements(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.measurements.Measurements: missing text"), "org.dressdiscover.api.models.measurements.Measurements: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.measurements.Measurements: missing type"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(extent, "org.dressdiscover.api.models.measurements.Measurements: missing extent"), "org.dressdiscover.api.models.measurements.Measurements: extent is empty"), com.google.common.base.Preconditions.checkNotNull(unit, "org.dressdiscover.api.models.measurements.Measurements: missing unit"));
     }
 
     @Override
@@ -503,8 +501,8 @@ public class Measurements implements org.thryft.Struct, org.dressdiscover.api.mo
     public static Measurements readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         String text = null;
         org.dressdiscover.api.models.measurements.MeasurementsType type = null;
-        com.google.common.base.Optional<String> extent = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> unit = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> extent = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> unit = com.google.common.base.Optional.<org.dressdiscover.api.models.measurements.MeasurementsUnit> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         text = iprot.readString();
@@ -533,8 +531,8 @@ public class Measurements implements org.thryft.Struct, org.dressdiscover.api.mo
     public static Measurements readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         String text = null;
         org.dressdiscover.api.models.measurements.MeasurementsType type = null;
-        com.google.common.base.Optional<String> extent = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> unit = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> extent = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsUnit> unit = com.google.common.base.Optional.<org.dressdiscover.api.models.measurements.MeasurementsUnit> absent();
 
         iprot.readStructBegin();
         while (true) {

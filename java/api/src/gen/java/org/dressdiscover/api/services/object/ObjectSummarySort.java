@@ -282,12 +282,9 @@ public class ObjectSummarySort implements org.thryft.Struct {
         this(other.getField(), other.getOrder());
     }
 
-    /**
-     * Optional constructor
-     */
-    public ObjectSummarySort(final org.dressdiscover.api.services.object.ObjectSummarySortField field, final org.dressdiscover.api.models.SortOrder order) {
-        this.field = com.google.common.base.Preconditions.checkNotNull(field, "org.dressdiscover.api.services.object.ObjectSummarySort: missing field");
-        this.order = com.google.common.base.Preconditions.checkNotNull(order, "org.dressdiscover.api.services.object.ObjectSummarySort: missing order");
+    protected ObjectSummarySort(final org.dressdiscover.api.services.object.ObjectSummarySortField field, final org.dressdiscover.api.models.SortOrder order) {
+        this.field = field;
+        this.order = order;
     }
 
     public static Builder builder() {
@@ -300,6 +297,13 @@ public class ObjectSummarySort implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<ObjectSummarySort> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static ObjectSummarySort create(final org.dressdiscover.api.services.object.ObjectSummarySortField field, final org.dressdiscover.api.models.SortOrder order) {
+        return new ObjectSummarySort(com.google.common.base.Preconditions.checkNotNull(field, "org.dressdiscover.api.services.object.ObjectSummarySort: missing field"), com.google.common.base.Preconditions.checkNotNull(order, "org.dressdiscover.api.services.object.ObjectSummarySort: missing order"));
     }
 
     @Override

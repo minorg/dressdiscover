@@ -6,32 +6,32 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
             collectionId = null;
             institutionId = null;
             titles = null;
-            agents = com.google.common.base.Optional.absent();
-            categories = com.google.common.base.Optional.absent();
-            closures = com.google.common.base.Optional.absent();
-            colors = com.google.common.base.Optional.absent();
-            components = com.google.common.base.Optional.absent();
-            condition = com.google.common.base.Optional.absent();
-            culturalContexts = com.google.common.base.Optional.absent();
-            dates = com.google.common.base.Optional.absent();
-            descriptions = com.google.common.base.Optional.absent();
-            gender = com.google.common.base.Optional.absent();
-            hidden = com.google.common.base.Optional.absent();
-            images = com.google.common.base.Optional.absent();
-            inscriptions = com.google.common.base.Optional.absent();
-            locations = com.google.common.base.Optional.absent();
-            materials = com.google.common.base.Optional.absent();
-            measurements = com.google.common.base.Optional.absent();
-            provenance = com.google.common.base.Optional.absent();
-            quantity = com.google.common.base.Optional.absent();
-            relations = com.google.common.base.Optional.absent();
-            rights = com.google.common.base.Optional.absent();
-            structures = com.google.common.base.Optional.absent();
-            subjects = com.google.common.base.Optional.absent();
-            techniques = com.google.common.base.Optional.absent();
-            textrefs = com.google.common.base.Optional.absent();
-            viewType = com.google.common.base.Optional.absent();
-            workTypes = com.google.common.base.Optional.absent();
+            agents = com.google.common.base.Optional.<org.dressdiscover.api.models.agent.AgentSet> absent();
+            categories = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+            closures = com.google.common.base.Optional.<org.dressdiscover.api.models.closure.ClosureSet> absent();
+            colors = com.google.common.base.Optional.<org.dressdiscover.api.models.color.ColorSet> absent();
+            components = com.google.common.base.Optional.<org.dressdiscover.api.models.component.ComponentSet> absent();
+            condition = com.google.common.base.Optional.<org.dressdiscover.api.models.condition.Condition> absent();
+            culturalContexts = com.google.common.base.Optional.<org.dressdiscover.api.models.cultural_context.CulturalContextSet> absent();
+            dates = com.google.common.base.Optional.<org.dressdiscover.api.models.date.DateSet> absent();
+            descriptions = com.google.common.base.Optional.<org.dressdiscover.api.models.description.DescriptionSet> absent();
+            gender = com.google.common.base.Optional.<org.dressdiscover.api.models.gender.Gender> absent();
+            hidden = com.google.common.base.Optional.<Boolean> absent();
+            images = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> absent();
+            inscriptions = com.google.common.base.Optional.<org.dressdiscover.api.models.inscription.InscriptionSet> absent();
+            locations = com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationSet> absent();
+            materials = com.google.common.base.Optional.<org.dressdiscover.api.models.material.MaterialSet> absent();
+            measurements = com.google.common.base.Optional.<org.dressdiscover.api.models.measurements.MeasurementsSet> absent();
+            provenance = com.google.common.base.Optional.<String> absent();
+            quantity = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
+            relations = com.google.common.base.Optional.<org.dressdiscover.api.models.relation.RelationSet> absent();
+            rights = com.google.common.base.Optional.<org.dressdiscover.api.models.rights.RightsSet> absent();
+            structures = com.google.common.base.Optional.<org.dressdiscover.api.models.structure.StructureSet> absent();
+            subjects = com.google.common.base.Optional.<org.dressdiscover.api.models.subject.SubjectSet> absent();
+            techniques = com.google.common.base.Optional.<org.dressdiscover.api.models.technique.TechniqueSet> absent();
+            textrefs = com.google.common.base.Optional.<org.dressdiscover.api.models.textref.TextrefSet> absent();
+            viewType = com.google.common.base.Optional.<org.dressdiscover.api.models.view_type.ViewType> absent();
+            workTypes = com.google.common.base.Optional.<org.dressdiscover.api.models.work_type.WorkTypeSet> absent();
         }
 
         public Builder(final Object other) {
@@ -1072,17 +1072,17 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
         }
 
         public Builder unsetAgents() {
-            this.agents = com.google.common.base.Optional.absent();
+            this.agents = com.google.common.base.Optional.<org.dressdiscover.api.models.agent.AgentSet> absent();
             return this;
         }
 
         public Builder unsetCategories() {
-            this.categories = com.google.common.base.Optional.absent();
+            this.categories = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
             return this;
         }
 
         public Builder unsetClosures() {
-            this.closures = com.google.common.base.Optional.absent();
+            this.closures = com.google.common.base.Optional.<org.dressdiscover.api.models.closure.ClosureSet> absent();
             return this;
         }
 
@@ -1092,52 +1092,52 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
         }
 
         public Builder unsetColors() {
-            this.colors = com.google.common.base.Optional.absent();
+            this.colors = com.google.common.base.Optional.<org.dressdiscover.api.models.color.ColorSet> absent();
             return this;
         }
 
         public Builder unsetComponents() {
-            this.components = com.google.common.base.Optional.absent();
+            this.components = com.google.common.base.Optional.<org.dressdiscover.api.models.component.ComponentSet> absent();
             return this;
         }
 
         public Builder unsetCondition() {
-            this.condition = com.google.common.base.Optional.absent();
+            this.condition = com.google.common.base.Optional.<org.dressdiscover.api.models.condition.Condition> absent();
             return this;
         }
 
         public Builder unsetCulturalContexts() {
-            this.culturalContexts = com.google.common.base.Optional.absent();
+            this.culturalContexts = com.google.common.base.Optional.<org.dressdiscover.api.models.cultural_context.CulturalContextSet> absent();
             return this;
         }
 
         public Builder unsetDates() {
-            this.dates = com.google.common.base.Optional.absent();
+            this.dates = com.google.common.base.Optional.<org.dressdiscover.api.models.date.DateSet> absent();
             return this;
         }
 
         public Builder unsetDescriptions() {
-            this.descriptions = com.google.common.base.Optional.absent();
+            this.descriptions = com.google.common.base.Optional.<org.dressdiscover.api.models.description.DescriptionSet> absent();
             return this;
         }
 
         public Builder unsetGender() {
-            this.gender = com.google.common.base.Optional.absent();
+            this.gender = com.google.common.base.Optional.<org.dressdiscover.api.models.gender.Gender> absent();
             return this;
         }
 
         public Builder unsetHidden() {
-            this.hidden = com.google.common.base.Optional.absent();
+            this.hidden = com.google.common.base.Optional.<Boolean> absent();
             return this;
         }
 
         public Builder unsetImages() {
-            this.images = com.google.common.base.Optional.absent();
+            this.images = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> absent();
             return this;
         }
 
         public Builder unsetInscriptions() {
-            this.inscriptions = com.google.common.base.Optional.absent();
+            this.inscriptions = com.google.common.base.Optional.<org.dressdiscover.api.models.inscription.InscriptionSet> absent();
             return this;
         }
 
@@ -1147,57 +1147,57 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
         }
 
         public Builder unsetLocations() {
-            this.locations = com.google.common.base.Optional.absent();
+            this.locations = com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationSet> absent();
             return this;
         }
 
         public Builder unsetMaterials() {
-            this.materials = com.google.common.base.Optional.absent();
+            this.materials = com.google.common.base.Optional.<org.dressdiscover.api.models.material.MaterialSet> absent();
             return this;
         }
 
         public Builder unsetMeasurements() {
-            this.measurements = com.google.common.base.Optional.absent();
+            this.measurements = com.google.common.base.Optional.<org.dressdiscover.api.models.measurements.MeasurementsSet> absent();
             return this;
         }
 
         public Builder unsetProvenance() {
-            this.provenance = com.google.common.base.Optional.absent();
+            this.provenance = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
         public Builder unsetQuantity() {
-            this.quantity = com.google.common.base.Optional.absent();
+            this.quantity = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
             return this;
         }
 
         public Builder unsetRelations() {
-            this.relations = com.google.common.base.Optional.absent();
+            this.relations = com.google.common.base.Optional.<org.dressdiscover.api.models.relation.RelationSet> absent();
             return this;
         }
 
         public Builder unsetRights() {
-            this.rights = com.google.common.base.Optional.absent();
+            this.rights = com.google.common.base.Optional.<org.dressdiscover.api.models.rights.RightsSet> absent();
             return this;
         }
 
         public Builder unsetStructures() {
-            this.structures = com.google.common.base.Optional.absent();
+            this.structures = com.google.common.base.Optional.<org.dressdiscover.api.models.structure.StructureSet> absent();
             return this;
         }
 
         public Builder unsetSubjects() {
-            this.subjects = com.google.common.base.Optional.absent();
+            this.subjects = com.google.common.base.Optional.<org.dressdiscover.api.models.subject.SubjectSet> absent();
             return this;
         }
 
         public Builder unsetTechniques() {
-            this.techniques = com.google.common.base.Optional.absent();
+            this.techniques = com.google.common.base.Optional.<org.dressdiscover.api.models.technique.TechniqueSet> absent();
             return this;
         }
 
         public Builder unsetTextrefs() {
-            this.textrefs = com.google.common.base.Optional.absent();
+            this.textrefs = com.google.common.base.Optional.<org.dressdiscover.api.models.textref.TextrefSet> absent();
             return this;
         }
 
@@ -1207,12 +1207,12 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
         }
 
         public Builder unsetViewType() {
-            this.viewType = com.google.common.base.Optional.absent();
+            this.viewType = com.google.common.base.Optional.<org.dressdiscover.api.models.view_type.ViewType> absent();
             return this;
         }
 
         public Builder unsetWorkTypes() {
-            this.workTypes = com.google.common.base.Optional.absent();
+            this.workTypes = com.google.common.base.Optional.<org.dressdiscover.api.models.work_type.WorkTypeSet> absent();
             return this;
         }
 
@@ -1453,109 +1453,36 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
         this(other.getCollectionId(), other.getInstitutionId(), other.getTitles(), other.getAgents(), other.getCategories(), other.getClosures(), other.getColors(), other.getComponents(), other.getCondition(), other.getCulturalContexts(), other.getDates(), other.getDescriptions(), other.getGender(), other.getHidden(), other.getImages(), other.getInscriptions(), other.getLocations(), other.getMaterials(), other.getMeasurements(), other.getProvenance(), other.getQuantity(), other.getRelations(), other.getRights(), other.getStructures(), other.getSubjects(), other.getTechniques(), other.getTextrefs(), other.getViewType(), other.getWorkTypes());
     }
 
-    /**
-     * Required constructor
-     */
-    public Object(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.models.title.TitleSet titles) {
-        this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.Object: missing collectionId");
-        this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.Object: missing institutionId");
-        this.titles = com.google.common.base.Preconditions.checkNotNull(titles, "org.dressdiscover.api.models.object.Object: missing titles");
-        this.agents = com.google.common.base.Optional.absent();
-        this.categories = com.google.common.base.Optional.absent();
-        this.closures = com.google.common.base.Optional.absent();
-        this.colors = com.google.common.base.Optional.absent();
-        this.components = com.google.common.base.Optional.absent();
-        this.condition = com.google.common.base.Optional.absent();
-        this.culturalContexts = com.google.common.base.Optional.absent();
-        this.dates = com.google.common.base.Optional.absent();
-        this.descriptions = com.google.common.base.Optional.absent();
-        this.gender = com.google.common.base.Optional.absent();
-        this.hidden = com.google.common.base.Optional.absent();
-        this.images = com.google.common.base.Optional.absent();
-        this.inscriptions = com.google.common.base.Optional.absent();
-        this.locations = com.google.common.base.Optional.absent();
-        this.materials = com.google.common.base.Optional.absent();
-        this.measurements = com.google.common.base.Optional.absent();
-        this.provenance = com.google.common.base.Optional.absent();
-        this.quantity = com.google.common.base.Optional.absent();
-        this.relations = com.google.common.base.Optional.absent();
-        this.rights = com.google.common.base.Optional.absent();
-        this.structures = com.google.common.base.Optional.absent();
-        this.subjects = com.google.common.base.Optional.absent();
-        this.techniques = com.google.common.base.Optional.absent();
-        this.textrefs = com.google.common.base.Optional.absent();
-        this.viewType = com.google.common.base.Optional.absent();
-        this.workTypes = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public Object(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.models.title.TitleSet titles, final @javax.annotation.Nullable org.dressdiscover.api.models.agent.AgentSet agents, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> categories, final @javax.annotation.Nullable org.dressdiscover.api.models.closure.ClosureSet closures, final @javax.annotation.Nullable org.dressdiscover.api.models.color.ColorSet colors, final @javax.annotation.Nullable org.dressdiscover.api.models.component.ComponentSet components, final @javax.annotation.Nullable org.dressdiscover.api.models.condition.Condition condition, final @javax.annotation.Nullable org.dressdiscover.api.models.cultural_context.CulturalContextSet culturalContexts, final @javax.annotation.Nullable org.dressdiscover.api.models.date.DateSet dates, final @javax.annotation.Nullable org.dressdiscover.api.models.description.DescriptionSet descriptions, final @javax.annotation.Nullable org.dressdiscover.api.models.gender.Gender gender, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> images, final @javax.annotation.Nullable org.dressdiscover.api.models.inscription.InscriptionSet inscriptions, final @javax.annotation.Nullable org.dressdiscover.api.models.location.LocationSet locations, final @javax.annotation.Nullable org.dressdiscover.api.models.material.MaterialSet materials, final @javax.annotation.Nullable org.dressdiscover.api.models.measurements.MeasurementsSet measurements, final @javax.annotation.Nullable String provenance, final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger quantity, final @javax.annotation.Nullable org.dressdiscover.api.models.relation.RelationSet relations, final @javax.annotation.Nullable org.dressdiscover.api.models.rights.RightsSet rights, final @javax.annotation.Nullable org.dressdiscover.api.models.structure.StructureSet structures, final @javax.annotation.Nullable org.dressdiscover.api.models.subject.SubjectSet subjects, final @javax.annotation.Nullable org.dressdiscover.api.models.technique.TechniqueSet techniques, final @javax.annotation.Nullable org.dressdiscover.api.models.textref.TextrefSet textrefs, final @javax.annotation.Nullable org.dressdiscover.api.models.view_type.ViewType viewType, final @javax.annotation.Nullable org.dressdiscover.api.models.work_type.WorkTypeSet workTypes) {
-        this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.Object: missing collectionId");
-        this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.Object: missing institutionId");
-        this.titles = com.google.common.base.Preconditions.checkNotNull(titles, "org.dressdiscover.api.models.object.Object: missing titles");
-        this.agents = com.google.common.base.Optional.fromNullable(agents);
-        this.categories = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(categories), "org.dressdiscover.api.models.object.Object: categories is empty");
-        this.closures = com.google.common.base.Optional.fromNullable(closures);
-        this.colors = com.google.common.base.Optional.fromNullable(colors);
-        this.components = com.google.common.base.Optional.fromNullable(components);
-        this.condition = com.google.common.base.Optional.fromNullable(condition);
-        this.culturalContexts = com.google.common.base.Optional.fromNullable(culturalContexts);
-        this.dates = com.google.common.base.Optional.fromNullable(dates);
-        this.descriptions = com.google.common.base.Optional.fromNullable(descriptions);
-        this.gender = com.google.common.base.Optional.fromNullable(gender);
-        this.hidden = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(hidden), "org.dressdiscover.api.models.object.Object: hidden must be true");
-        this.images = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(images), "org.dressdiscover.api.models.object.Object: images is empty");
-        this.inscriptions = com.google.common.base.Optional.fromNullable(inscriptions);
-        this.locations = com.google.common.base.Optional.fromNullable(locations);
-        this.materials = com.google.common.base.Optional.fromNullable(materials);
-        this.measurements = com.google.common.base.Optional.fromNullable(measurements);
-        this.provenance = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(provenance), "org.dressdiscover.api.models.object.Object: provenance is empty");
-        this.quantity = com.google.common.base.Optional.fromNullable(quantity);
-        this.relations = com.google.common.base.Optional.fromNullable(relations);
-        this.rights = com.google.common.base.Optional.fromNullable(rights);
-        this.structures = com.google.common.base.Optional.fromNullable(structures);
-        this.subjects = com.google.common.base.Optional.fromNullable(subjects);
-        this.techniques = com.google.common.base.Optional.fromNullable(techniques);
-        this.textrefs = com.google.common.base.Optional.fromNullable(textrefs);
-        this.viewType = com.google.common.base.Optional.fromNullable(viewType);
-        this.workTypes = com.google.common.base.Optional.fromNullable(workTypes);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public Object(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.models.title.TitleSet titles, final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> agents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> closures, final com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> colors, final com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> components, final com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> condition, final com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> culturalContexts, final com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> dates, final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> descriptions, final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images, final com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> inscriptions, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations, final com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> materials, final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> measurements, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> quantity, final com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> relations, final com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures, final com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> subjects, final com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> techniques, final com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> textrefs, final com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> viewType, final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
-        this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.Object: missing collectionId");
-        this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.Object: missing institutionId");
-        this.titles = com.google.common.base.Preconditions.checkNotNull(titles, "org.dressdiscover.api.models.object.Object: missing titles");
-        this.agents = com.google.common.base.Preconditions.checkNotNull(agents, "org.dressdiscover.api.models.object.Object: missing agents");
-        this.categories = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(categories, "org.dressdiscover.api.models.object.Object: missing categories"), "org.dressdiscover.api.models.object.Object: categories is empty");
-        this.closures = com.google.common.base.Preconditions.checkNotNull(closures, "org.dressdiscover.api.models.object.Object: missing closures");
-        this.colors = com.google.common.base.Preconditions.checkNotNull(colors, "org.dressdiscover.api.models.object.Object: missing colors");
-        this.components = com.google.common.base.Preconditions.checkNotNull(components, "org.dressdiscover.api.models.object.Object: missing components");
-        this.condition = com.google.common.base.Preconditions.checkNotNull(condition, "org.dressdiscover.api.models.object.Object: missing condition");
-        this.culturalContexts = com.google.common.base.Preconditions.checkNotNull(culturalContexts, "org.dressdiscover.api.models.object.Object: missing culturalContexts");
-        this.dates = com.google.common.base.Preconditions.checkNotNull(dates, "org.dressdiscover.api.models.object.Object: missing dates");
-        this.descriptions = com.google.common.base.Preconditions.checkNotNull(descriptions, "org.dressdiscover.api.models.object.Object: missing descriptions");
-        this.gender = com.google.common.base.Preconditions.checkNotNull(gender, "org.dressdiscover.api.models.object.Object: missing gender");
-        this.hidden = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(hidden, "org.dressdiscover.api.models.object.Object: missing hidden"), "org.dressdiscover.api.models.object.Object: hidden must be true");
-        this.images = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(images, "org.dressdiscover.api.models.object.Object: missing images"), "org.dressdiscover.api.models.object.Object: images is empty");
-        this.inscriptions = com.google.common.base.Preconditions.checkNotNull(inscriptions, "org.dressdiscover.api.models.object.Object: missing inscriptions");
-        this.locations = com.google.common.base.Preconditions.checkNotNull(locations, "org.dressdiscover.api.models.object.Object: missing locations");
-        this.materials = com.google.common.base.Preconditions.checkNotNull(materials, "org.dressdiscover.api.models.object.Object: missing materials");
-        this.measurements = com.google.common.base.Preconditions.checkNotNull(measurements, "org.dressdiscover.api.models.object.Object: missing measurements");
-        this.provenance = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(provenance, "org.dressdiscover.api.models.object.Object: missing provenance"), "org.dressdiscover.api.models.object.Object: provenance is empty");
-        this.quantity = com.google.common.base.Preconditions.checkNotNull(quantity, "org.dressdiscover.api.models.object.Object: missing quantity");
-        this.relations = com.google.common.base.Preconditions.checkNotNull(relations, "org.dressdiscover.api.models.object.Object: missing relations");
-        this.rights = com.google.common.base.Preconditions.checkNotNull(rights, "org.dressdiscover.api.models.object.Object: missing rights");
-        this.structures = com.google.common.base.Preconditions.checkNotNull(structures, "org.dressdiscover.api.models.object.Object: missing structures");
-        this.subjects = com.google.common.base.Preconditions.checkNotNull(subjects, "org.dressdiscover.api.models.object.Object: missing subjects");
-        this.techniques = com.google.common.base.Preconditions.checkNotNull(techniques, "org.dressdiscover.api.models.object.Object: missing techniques");
-        this.textrefs = com.google.common.base.Preconditions.checkNotNull(textrefs, "org.dressdiscover.api.models.object.Object: missing textrefs");
-        this.viewType = com.google.common.base.Preconditions.checkNotNull(viewType, "org.dressdiscover.api.models.object.Object: missing viewType");
-        this.workTypes = com.google.common.base.Preconditions.checkNotNull(workTypes, "org.dressdiscover.api.models.object.Object: missing workTypes");
+    protected Object(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.models.title.TitleSet titles, final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> agents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> closures, final com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> colors, final com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> components, final com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> condition, final com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> culturalContexts, final com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> dates, final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> descriptions, final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images, final com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> inscriptions, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations, final com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> materials, final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> measurements, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> quantity, final com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> relations, final com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures, final com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> subjects, final com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> techniques, final com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> textrefs, final com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> viewType, final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
+        this.collectionId = collectionId;
+        this.institutionId = institutionId;
+        this.titles = titles;
+        this.agents = agents;
+        this.categories = categories;
+        this.closures = closures;
+        this.colors = colors;
+        this.components = components;
+        this.condition = condition;
+        this.culturalContexts = culturalContexts;
+        this.dates = dates;
+        this.descriptions = descriptions;
+        this.gender = gender;
+        this.hidden = hidden;
+        this.images = images;
+        this.inscriptions = inscriptions;
+        this.locations = locations;
+        this.materials = materials;
+        this.measurements = measurements;
+        this.provenance = provenance;
+        this.quantity = quantity;
+        this.relations = relations;
+        this.rights = rights;
+        this.structures = structures;
+        this.subjects = subjects;
+        this.techniques = techniques;
+        this.textrefs = textrefs;
+        this.viewType = viewType;
+        this.workTypes = workTypes;
     }
 
     public static Builder builder() {
@@ -1568,6 +1495,27 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
 
     public static Builder builder(final com.google.common.base.Optional<Object> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static Object create(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.models.title.TitleSet titles) {
+        return new Object(com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.Object: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.Object: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(titles, "org.dressdiscover.api.models.object.Object: missing titles"), com.google.common.base.Optional.<org.dressdiscover.api.models.agent.AgentSet> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.closure.ClosureSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.color.ColorSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.component.ComponentSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.condition.Condition> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.cultural_context.CulturalContextSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.date.DateSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.description.DescriptionSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.gender.Gender> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.inscription.InscriptionSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.material.MaterialSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.measurements.MeasurementsSet> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.relation.RelationSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.rights.RightsSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.structure.StructureSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.subject.SubjectSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.technique.TechniqueSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.textref.TextrefSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.view_type.ViewType> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.work_type.WorkTypeSet> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static Object create(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.models.title.TitleSet titles, final @javax.annotation.Nullable org.dressdiscover.api.models.agent.AgentSet agents, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> categories, final @javax.annotation.Nullable org.dressdiscover.api.models.closure.ClosureSet closures, final @javax.annotation.Nullable org.dressdiscover.api.models.color.ColorSet colors, final @javax.annotation.Nullable org.dressdiscover.api.models.component.ComponentSet components, final @javax.annotation.Nullable org.dressdiscover.api.models.condition.Condition condition, final @javax.annotation.Nullable org.dressdiscover.api.models.cultural_context.CulturalContextSet culturalContexts, final @javax.annotation.Nullable org.dressdiscover.api.models.date.DateSet dates, final @javax.annotation.Nullable org.dressdiscover.api.models.description.DescriptionSet descriptions, final @javax.annotation.Nullable org.dressdiscover.api.models.gender.Gender gender, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> images, final @javax.annotation.Nullable org.dressdiscover.api.models.inscription.InscriptionSet inscriptions, final @javax.annotation.Nullable org.dressdiscover.api.models.location.LocationSet locations, final @javax.annotation.Nullable org.dressdiscover.api.models.material.MaterialSet materials, final @javax.annotation.Nullable org.dressdiscover.api.models.measurements.MeasurementsSet measurements, final @javax.annotation.Nullable String provenance, final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger quantity, final @javax.annotation.Nullable org.dressdiscover.api.models.relation.RelationSet relations, final @javax.annotation.Nullable org.dressdiscover.api.models.rights.RightsSet rights, final @javax.annotation.Nullable org.dressdiscover.api.models.structure.StructureSet structures, final @javax.annotation.Nullable org.dressdiscover.api.models.subject.SubjectSet subjects, final @javax.annotation.Nullable org.dressdiscover.api.models.technique.TechniqueSet techniques, final @javax.annotation.Nullable org.dressdiscover.api.models.textref.TextrefSet textrefs, final @javax.annotation.Nullable org.dressdiscover.api.models.view_type.ViewType viewType, final @javax.annotation.Nullable org.dressdiscover.api.models.work_type.WorkTypeSet workTypes) {
+        return new Object(com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.Object: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.Object: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(titles, "org.dressdiscover.api.models.object.Object: missing titles"), com.google.common.base.Optional.fromNullable(agents), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(categories), "org.dressdiscover.api.models.object.Object: categories is empty"), com.google.common.base.Optional.fromNullable(closures), com.google.common.base.Optional.fromNullable(colors), com.google.common.base.Optional.fromNullable(components), com.google.common.base.Optional.fromNullable(condition), com.google.common.base.Optional.fromNullable(culturalContexts), com.google.common.base.Optional.fromNullable(dates), com.google.common.base.Optional.fromNullable(descriptions), com.google.common.base.Optional.fromNullable(gender), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(hidden), "org.dressdiscover.api.models.object.Object: hidden must be true"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(images), "org.dressdiscover.api.models.object.Object: images is empty"), com.google.common.base.Optional.fromNullable(inscriptions), com.google.common.base.Optional.fromNullable(locations), com.google.common.base.Optional.fromNullable(materials), com.google.common.base.Optional.fromNullable(measurements), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(provenance), "org.dressdiscover.api.models.object.Object: provenance is empty"), com.google.common.base.Optional.fromNullable(quantity), com.google.common.base.Optional.fromNullable(relations), com.google.common.base.Optional.fromNullable(rights), com.google.common.base.Optional.fromNullable(structures), com.google.common.base.Optional.fromNullable(subjects), com.google.common.base.Optional.fromNullable(techniques), com.google.common.base.Optional.fromNullable(textrefs), com.google.common.base.Optional.fromNullable(viewType), com.google.common.base.Optional.fromNullable(workTypes));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static Object create(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.models.title.TitleSet titles, final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> agents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> closures, final com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> colors, final com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> components, final com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> condition, final com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> culturalContexts, final com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> dates, final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> descriptions, final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images, final com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> inscriptions, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations, final com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> materials, final com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> measurements, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> quantity, final com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> relations, final com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures, final com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> subjects, final com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> techniques, final com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> textrefs, final com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> viewType, final com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes) {
+        return new Object(com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.Object: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.Object: missing institutionId"), com.google.common.base.Preconditions.checkNotNull(titles, "org.dressdiscover.api.models.object.Object: missing titles"), com.google.common.base.Preconditions.checkNotNull(agents, "org.dressdiscover.api.models.object.Object: missing agents"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(categories, "org.dressdiscover.api.models.object.Object: missing categories"), "org.dressdiscover.api.models.object.Object: categories is empty"), com.google.common.base.Preconditions.checkNotNull(closures, "org.dressdiscover.api.models.object.Object: missing closures"), com.google.common.base.Preconditions.checkNotNull(colors, "org.dressdiscover.api.models.object.Object: missing colors"), com.google.common.base.Preconditions.checkNotNull(components, "org.dressdiscover.api.models.object.Object: missing components"), com.google.common.base.Preconditions.checkNotNull(condition, "org.dressdiscover.api.models.object.Object: missing condition"), com.google.common.base.Preconditions.checkNotNull(culturalContexts, "org.dressdiscover.api.models.object.Object: missing culturalContexts"), com.google.common.base.Preconditions.checkNotNull(dates, "org.dressdiscover.api.models.object.Object: missing dates"), com.google.common.base.Preconditions.checkNotNull(descriptions, "org.dressdiscover.api.models.object.Object: missing descriptions"), com.google.common.base.Preconditions.checkNotNull(gender, "org.dressdiscover.api.models.object.Object: missing gender"), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(hidden, "org.dressdiscover.api.models.object.Object: missing hidden"), "org.dressdiscover.api.models.object.Object: hidden must be true"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(images, "org.dressdiscover.api.models.object.Object: missing images"), "org.dressdiscover.api.models.object.Object: images is empty"), com.google.common.base.Preconditions.checkNotNull(inscriptions, "org.dressdiscover.api.models.object.Object: missing inscriptions"), com.google.common.base.Preconditions.checkNotNull(locations, "org.dressdiscover.api.models.object.Object: missing locations"), com.google.common.base.Preconditions.checkNotNull(materials, "org.dressdiscover.api.models.object.Object: missing materials"), com.google.common.base.Preconditions.checkNotNull(measurements, "org.dressdiscover.api.models.object.Object: missing measurements"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(provenance, "org.dressdiscover.api.models.object.Object: missing provenance"), "org.dressdiscover.api.models.object.Object: provenance is empty"), com.google.common.base.Preconditions.checkNotNull(quantity, "org.dressdiscover.api.models.object.Object: missing quantity"), com.google.common.base.Preconditions.checkNotNull(relations, "org.dressdiscover.api.models.object.Object: missing relations"), com.google.common.base.Preconditions.checkNotNull(rights, "org.dressdiscover.api.models.object.Object: missing rights"), com.google.common.base.Preconditions.checkNotNull(structures, "org.dressdiscover.api.models.object.Object: missing structures"), com.google.common.base.Preconditions.checkNotNull(subjects, "org.dressdiscover.api.models.object.Object: missing subjects"), com.google.common.base.Preconditions.checkNotNull(techniques, "org.dressdiscover.api.models.object.Object: missing techniques"), com.google.common.base.Preconditions.checkNotNull(textrefs, "org.dressdiscover.api.models.object.Object: missing textrefs"), com.google.common.base.Preconditions.checkNotNull(viewType, "org.dressdiscover.api.models.object.Object: missing viewType"), com.google.common.base.Preconditions.checkNotNull(workTypes, "org.dressdiscover.api.models.object.Object: missing workTypes"));
     }
 
     @Override
@@ -1885,32 +1833,32 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
         org.dressdiscover.api.models.collection.CollectionId collectionId = null;
         org.dressdiscover.api.models.institution.InstitutionId institutionId = null;
         org.dressdiscover.api.models.title.TitleSet titles = null;
-        com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> agents = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> closures = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> colors = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> components = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> condition = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> culturalContexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> dates = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> descriptions = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<Boolean> hidden = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> inscriptions = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> materials = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> measurements = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> provenance = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> quantity = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> relations = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> subjects = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> techniques = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> textrefs = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> viewType = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> agents = com.google.common.base.Optional.<org.dressdiscover.api.models.agent.AgentSet> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> closures = com.google.common.base.Optional.<org.dressdiscover.api.models.closure.ClosureSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> colors = com.google.common.base.Optional.<org.dressdiscover.api.models.color.ColorSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> components = com.google.common.base.Optional.<org.dressdiscover.api.models.component.ComponentSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> condition = com.google.common.base.Optional.<org.dressdiscover.api.models.condition.Condition> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> culturalContexts = com.google.common.base.Optional.<org.dressdiscover.api.models.cultural_context.CulturalContextSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> dates = com.google.common.base.Optional.<org.dressdiscover.api.models.date.DateSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> descriptions = com.google.common.base.Optional.<org.dressdiscover.api.models.description.DescriptionSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender = com.google.common.base.Optional.<org.dressdiscover.api.models.gender.Gender> absent();
+        com.google.common.base.Optional<Boolean> hidden = com.google.common.base.Optional.<Boolean> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> inscriptions = com.google.common.base.Optional.<org.dressdiscover.api.models.inscription.InscriptionSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations = com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> materials = com.google.common.base.Optional.<org.dressdiscover.api.models.material.MaterialSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> measurements = com.google.common.base.Optional.<org.dressdiscover.api.models.measurements.MeasurementsSet> absent();
+        com.google.common.base.Optional<String> provenance = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> quantity = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> relations = com.google.common.base.Optional.<org.dressdiscover.api.models.relation.RelationSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights = com.google.common.base.Optional.<org.dressdiscover.api.models.rights.RightsSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures = com.google.common.base.Optional.<org.dressdiscover.api.models.structure.StructureSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> subjects = com.google.common.base.Optional.<org.dressdiscover.api.models.subject.SubjectSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> techniques = com.google.common.base.Optional.<org.dressdiscover.api.models.technique.TechniqueSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> textrefs = com.google.common.base.Optional.<org.dressdiscover.api.models.textref.TextrefSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> viewType = com.google.common.base.Optional.<org.dressdiscover.api.models.view_type.ViewType> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes = com.google.common.base.Optional.<org.dressdiscover.api.models.work_type.WorkTypeSet> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         try {
@@ -2068,32 +2016,32 @@ public class Object implements org.thryft.Struct, org.thryft.waf.api.models.Mode
         org.dressdiscover.api.models.collection.CollectionId collectionId = null;
         org.dressdiscover.api.models.institution.InstitutionId institutionId = null;
         org.dressdiscover.api.models.title.TitleSet titles = null;
-        com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> agents = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> closures = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> colors = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> components = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> condition = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> culturalContexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> dates = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> descriptions = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<Boolean> hidden = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> inscriptions = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> materials = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> measurements = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> provenance = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> quantity = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> relations = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> subjects = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> techniques = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> textrefs = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> viewType = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentSet> agents = com.google.common.base.Optional.<org.dressdiscover.api.models.agent.AgentSet> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.closure.ClosureSet> closures = com.google.common.base.Optional.<org.dressdiscover.api.models.closure.ClosureSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.color.ColorSet> colors = com.google.common.base.Optional.<org.dressdiscover.api.models.color.ColorSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.component.ComponentSet> components = com.google.common.base.Optional.<org.dressdiscover.api.models.component.ComponentSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.condition.Condition> condition = com.google.common.base.Optional.<org.dressdiscover.api.models.condition.Condition> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.cultural_context.CulturalContextSet> culturalContexts = com.google.common.base.Optional.<org.dressdiscover.api.models.cultural_context.CulturalContextSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.date.DateSet> dates = com.google.common.base.Optional.<org.dressdiscover.api.models.date.DateSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionSet> descriptions = com.google.common.base.Optional.<org.dressdiscover.api.models.description.DescriptionSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender = com.google.common.base.Optional.<org.dressdiscover.api.models.gender.Gender> absent();
+        com.google.common.base.Optional<Boolean> hidden = com.google.common.base.Optional.<Boolean> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionSet> inscriptions = com.google.common.base.Optional.<org.dressdiscover.api.models.inscription.InscriptionSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations = com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.material.MaterialSet> materials = com.google.common.base.Optional.<org.dressdiscover.api.models.material.MaterialSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.measurements.MeasurementsSet> measurements = com.google.common.base.Optional.<org.dressdiscover.api.models.measurements.MeasurementsSet> absent();
+        com.google.common.base.Optional<String> provenance = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> quantity = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.relation.RelationSet> relations = com.google.common.base.Optional.<org.dressdiscover.api.models.relation.RelationSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights = com.google.common.base.Optional.<org.dressdiscover.api.models.rights.RightsSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures = com.google.common.base.Optional.<org.dressdiscover.api.models.structure.StructureSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.subject.SubjectSet> subjects = com.google.common.base.Optional.<org.dressdiscover.api.models.subject.SubjectSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.technique.TechniqueSet> techniques = com.google.common.base.Optional.<org.dressdiscover.api.models.technique.TechniqueSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.textref.TextrefSet> textrefs = com.google.common.base.Optional.<org.dressdiscover.api.models.textref.TextrefSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> viewType = com.google.common.base.Optional.<org.dressdiscover.api.models.view_type.ViewType> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes = com.google.common.base.Optional.<org.dressdiscover.api.models.work_type.WorkTypeSet> absent();
 
         iprot.readStructBegin();
         while (true) {

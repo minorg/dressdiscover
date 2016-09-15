@@ -26,7 +26,7 @@ public class LoggingInstitutionCommandService implements org.dressdiscover.api.s
 
         __logMessageStringBuilder.append("delete_institution_by_id(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.DeleteInstitutionByIdRequest(id));
+        __logMessageArgs.add(Messages.DeleteInstitutionByIdRequest.create(id));
         __logMessageStringBuilder.append(")");
 
         try {
@@ -52,7 +52,7 @@ public class LoggingInstitutionCommandService implements org.dressdiscover.api.s
 
         __logMessageStringBuilder.append("put_institution(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.PutInstitutionRequest(id, institution));
+        __logMessageArgs.add(Messages.PutInstitutionRequest.create(id, institution));
         __logMessageStringBuilder.append(")");
 
         try {

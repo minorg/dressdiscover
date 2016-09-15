@@ -279,11 +279,8 @@ public interface InstitutionCommandService {
                 this(other.getId());
             }
 
-            /**
-             * Optional constructor
-             */
-            public DeleteInstitutionByIdRequest(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.DeleteInstitutionByIdRequest: missing id");
+            protected DeleteInstitutionByIdRequest(final org.dressdiscover.api.models.institution.InstitutionId id) {
+                this.id = id;
             }
 
             public static Builder builder() {
@@ -296,6 +293,13 @@ public interface InstitutionCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<DeleteInstitutionByIdRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static DeleteInstitutionByIdRequest create(final org.dressdiscover.api.models.institution.InstitutionId id) {
+                return new DeleteInstitutionByIdRequest(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.DeleteInstitutionByIdRequest: missing id"));
             }
 
             @Override
@@ -584,6 +588,10 @@ public interface InstitutionCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<DeleteInstitutionByIdResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            public static DeleteInstitutionByIdResponse create() {
+                return new DeleteInstitutionByIdResponse();
             }
 
             @Override
@@ -980,12 +988,9 @@ public interface InstitutionCommandService {
                 this(other.getId(), other.getInstitution());
             }
 
-            /**
-             * Optional constructor
-             */
-            public PutInstitutionRequest(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution) {
-                this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.PutInstitutionRequest: missing id");
-                this.institution = com.google.common.base.Preconditions.checkNotNull(institution, "org.dressdiscover.api.services.institution.PutInstitutionRequest: missing institution");
+            protected PutInstitutionRequest(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution) {
+                this.id = id;
+                this.institution = institution;
             }
 
             public static Builder builder() {
@@ -998,6 +1003,13 @@ public interface InstitutionCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<PutInstitutionRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static PutInstitutionRequest create(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution) {
+                return new PutInstitutionRequest(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.institution.PutInstitutionRequest: missing id"), com.google.common.base.Preconditions.checkNotNull(institution, "org.dressdiscover.api.services.institution.PutInstitutionRequest: missing institution"));
             }
 
             @Override
@@ -1312,6 +1324,10 @@ public interface InstitutionCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<PutInstitutionResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            public static PutInstitutionResponse create() {
+                return new PutInstitutionResponse();
             }
 
             @Override

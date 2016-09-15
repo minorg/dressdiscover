@@ -28,7 +28,7 @@ public class LoggingCollectionQueryService implements org.dressdiscover.api.serv
 
         __logMessageStringBuilder.append("get_collection_by_id(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.GetCollectionByIdRequest(id));
+        __logMessageArgs.add(Messages.GetCollectionByIdRequest.create(id));
         __logMessageStringBuilder.append(")");
 
         try {
@@ -64,7 +64,7 @@ public class LoggingCollectionQueryService implements org.dressdiscover.api.serv
 
         __logMessageStringBuilder.append("get_collections_by_ids(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.GetCollectionsByIdsRequest(ids));
+        __logMessageArgs.add(Messages.GetCollectionsByIdsRequest.create(ids));
         __logMessageStringBuilder.append(")");
 
         try {
@@ -100,7 +100,7 @@ public class LoggingCollectionQueryService implements org.dressdiscover.api.serv
 
         __logMessageStringBuilder.append("get_collections_by_institution_id(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.GetCollectionsByInstitutionIdRequest(institutionId));
+        __logMessageArgs.add(Messages.GetCollectionsByInstitutionIdRequest.create(institutionId));
         __logMessageStringBuilder.append(")");
 
         try {

@@ -254,11 +254,8 @@ public class InvalidInstitutionIdException extends org.thryft.Exception {
         this(other.getCauseMessage());
     }
 
-    /**
-     * Optional constructor
-     */
-    public InvalidInstitutionIdException(final String causeMessage) {
-        this.causeMessage = com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.models.institution.InvalidInstitutionIdException: missing causeMessage");
+    protected InvalidInstitutionIdException(final String causeMessage) {
+        this.causeMessage = causeMessage;
     }
 
     public static Builder builder() {
@@ -271,6 +268,13 @@ public class InvalidInstitutionIdException extends org.thryft.Exception {
 
     public static Builder builder(final com.google.common.base.Optional<InvalidInstitutionIdException> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static InvalidInstitutionIdException create(final String causeMessage) {
+        return new InvalidInstitutionIdException(com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.models.institution.InvalidInstitutionIdException: missing causeMessage"));
     }
 
     @Override

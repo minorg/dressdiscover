@@ -7,10 +7,23 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import org.dressdiscover.api.models.collection.Collection;
 import org.dressdiscover.api.models.collection.CollectionId;
+import org.dressdiscover.api.models.institution.Institution;
 import org.dressdiscover.api.models.institution.InstitutionId;
 import org.dressdiscover.api.models.object.ObjectId;
+import org.dressdiscover.api.models.object.ObjectSummary;
+import org.dressdiscover.api.models.object.ObjectSummaryEntry;
+import org.dressdiscover.api.models.user.UserBookmark;
+import org.dressdiscover.api.models.user.UserBookmarkEntry;
 import org.dressdiscover.api.models.user.UserId;
+import org.dressdiscover.api.services.collection.CollectionQueryService;
+import org.dressdiscover.api.services.institution.InstitutionQueryService;
+import org.dressdiscover.api.services.object.ObjectQueryService;
+import org.dressdiscover.api.services.user.UserCommandService.Messages.DeleteUserBookmarkByIdRequest;
+import org.dressdiscover.api.services.user.UserCommandService.Messages.PostUserBookmarkRequest;
+import org.dressdiscover.gui.models.image.ImageBean;
+import org.dressdiscover.gui.models.image.ImageVersionBean;
 import org.thryft.native_.Url;
 import org.thryft.waf.gui.EventBus;
 import org.vaadin.addons.lazyquerycontainer.LazyQueryContainer;
@@ -28,20 +41,6 @@ import com.vaadin.ui.Link;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.Table.ColumnGenerator;
 import com.vaadin.ui.UI;
-
-import org.dressdiscover.api.models.collection.Collection;
-import org.dressdiscover.api.models.institution.Institution;
-import org.dressdiscover.api.models.object.ObjectSummary;
-import org.dressdiscover.api.models.object.ObjectSummaryEntry;
-import org.dressdiscover.api.models.user.UserBookmark;
-import org.dressdiscover.api.models.user.UserBookmarkEntry;
-import org.dressdiscover.api.services.collection.CollectionQueryService;
-import org.dressdiscover.api.services.institution.InstitutionQueryService;
-import org.dressdiscover.api.services.object.ObjectQueryService;
-import org.dressdiscover.api.services.user.UserCommandService.Messages.DeleteUserBookmarkByIdRequest;
-import org.dressdiscover.api.services.user.UserCommandService.Messages.PostUserBookmarkRequest;
-import org.dressdiscover.gui.models.image.ImageBean;
-import org.dressdiscover.gui.models.image.ImageVersionBean;
 
 @SuppressWarnings("serial")
 public final class ObjectSummaryEntriesTable extends CustomComponent {
@@ -90,7 +89,7 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
                         button.addClickListener(new Button.ClickListener() {
                             @Override
                             public void buttonClick(final ClickEvent event) {
-                                eventBus.post(new DeleteUserBookmarkByIdRequest(bookmarkEntry.getId()));
+                                eventBus.post(DeleteUserBookmarkByIdRequest.create(bookmarkEntry.getId()));
                             }
                         });
                         button.setIcon(FontAwesome.STAR);
@@ -129,8 +128,8 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
                                 new Button.ClickListener() {
                                     @Override
                                     public void buttonClick(final ClickEvent event) {
-                                        eventBus.post(new CollectionQueryService.Messages.GetCollectionByIdRequest(
-                                                collectionId));
+                                        eventBus.post(CollectionQueryService.Messages.GetCollectionByIdRequest
+                                                .create(collectionId));
                                     }
                                 });
                         button.setStyleName("collection-button");
@@ -150,8 +149,8 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
                                 new Button.ClickListener() {
                                     @Override
                                     public void buttonClick(final ClickEvent event) {
-                                        eventBus.post(new InstitutionQueryService.Messages.GetInstitutionByIdRequest(
-                                                institutionId));
+                                        eventBus.post(InstitutionQueryService.Messages.GetInstitutionByIdRequest
+                                                .create(institutionId));
                                     }
                                 });
                         button.setStyleName("institution-button");
@@ -186,7 +185,7 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
                             public void click(final com.vaadin.event.MouseEvents.ClickEvent event) {
                                 final ObjectId objectId = (ObjectId) source.getContainerDataSource()
                                         .getContainerProperty(itemId, "id").getValue();
-                                eventBus.post(new ObjectQueryService.Messages.GetObjectByIdRequest(objectId));
+                                eventBus.post(ObjectQueryService.Messages.GetObjectByIdRequest.create(objectId));
                             }
                         });
                         return thumbnailView;
@@ -225,7 +224,7 @@ public final class ObjectSummaryEntriesTable extends CustomComponent {
                         final Button button = new Button(title, new Button.ClickListener() {
                             @Override
                             public void buttonClick(final ClickEvent event) {
-                                eventBus.post(new ObjectQueryService.Messages.GetObjectByIdRequest(objectId));
+                                eventBus.post(ObjectQueryService.Messages.GetObjectByIdRequest.create(objectId));
                             }
                         });
                         button.setStyleName("title-button");

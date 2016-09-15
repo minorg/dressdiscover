@@ -260,11 +260,8 @@ public class DuplicateUserBookmarkException extends org.thryft.Exception {
         this(other.getCauseMessage());
     }
 
-    /**
-     * Optional constructor
-     */
-    public DuplicateUserBookmarkException(final String causeMessage) {
-        this.causeMessage = com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.services.user.DuplicateUserBookmarkException: missing causeMessage");
+    protected DuplicateUserBookmarkException(final String causeMessage) {
+        this.causeMessage = causeMessage;
     }
 
     public static Builder builder() {
@@ -277,6 +274,13 @@ public class DuplicateUserBookmarkException extends org.thryft.Exception {
 
     public static Builder builder(final com.google.common.base.Optional<DuplicateUserBookmarkException> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static DuplicateUserBookmarkException create(final String causeMessage) {
+        return new DuplicateUserBookmarkException(com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.services.user.DuplicateUserBookmarkException: missing causeMessage"));
     }
 
     @Override

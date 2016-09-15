@@ -278,11 +278,8 @@ public interface ObjectQueryService {
                 this(other.getId());
             }
 
-            /**
-             * Optional constructor
-             */
-            public GetObjectByIdRequest(final org.dressdiscover.api.models.object.ObjectId id) {
-                this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.object.GetObjectByIdRequest: missing id");
+            protected GetObjectByIdRequest(final org.dressdiscover.api.models.object.ObjectId id) {
+                this.id = id;
             }
 
             public static Builder builder() {
@@ -295,6 +292,13 @@ public interface ObjectQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetObjectByIdRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetObjectByIdRequest create(final org.dressdiscover.api.models.object.ObjectId id) {
+                return new GetObjectByIdRequest(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.object.GetObjectByIdRequest: missing id"));
             }
 
             @Override
@@ -703,11 +707,8 @@ public interface ObjectQueryService {
                 this(other.getReturnValue());
             }
 
-            /**
-             * Optional constructor
-             */
-            public GetObjectByIdResponse(final org.dressdiscover.api.models.object.Object returnValue) {
-                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.object.ObjectQueryService.getObjectById: missing returnValue");
+            protected GetObjectByIdResponse(final org.dressdiscover.api.models.object.Object returnValue) {
+                this.returnValue = returnValue;
             }
 
             public static Builder builder() {
@@ -720,6 +721,13 @@ public interface ObjectQueryService {
 
             public static Builder builder(final com.google.common.base.Optional<GetObjectByIdResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static GetObjectByIdResponse create(final org.dressdiscover.api.models.object.Object returnValue) {
+                return new GetObjectByIdResponse(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.object.ObjectQueryService.getObjectById: missing returnValue"));
             }
 
             @Override

@@ -4,7 +4,7 @@ public class StructureType implements org.thryft.Struct {
     public static class Builder {
         public Builder() {
             text = null;
-            vocabRef = com.google.common.base.Optional.absent();
+            vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
         }
 
         public Builder(final StructureType other) {
@@ -165,7 +165,7 @@ public class StructureType implements org.thryft.Struct {
         }
 
         public Builder unsetVocabRef() {
-            this.vocabRef = com.google.common.base.Optional.absent();
+            this.vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
             return this;
         }
 
@@ -295,28 +295,9 @@ public class StructureType implements org.thryft.Struct {
         this(other.getText(), other.getVocabRef());
     }
 
-    /**
-     * Required constructor
-     */
-    public StructureType(final String text) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.structure.StructureType: missing text"), "org.dressdiscover.api.models.structure.StructureType: text is empty");
-        this.vocabRef = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public StructureType(final String text, final @javax.annotation.Nullable org.dressdiscover.api.models.VocabRef vocabRef) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.structure.StructureType: missing text"), "org.dressdiscover.api.models.structure.StructureType: text is empty");
-        this.vocabRef = com.google.common.base.Optional.fromNullable(vocabRef);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public StructureType(final String text, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.structure.StructureType: missing text"), "org.dressdiscover.api.models.structure.StructureType: text is empty");
-        this.vocabRef = com.google.common.base.Preconditions.checkNotNull(vocabRef, "org.dressdiscover.api.models.structure.StructureType: missing vocabRef");
+    protected StructureType(final String text, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
+        this.text = text;
+        this.vocabRef = vocabRef;
     }
 
     public static Builder builder() {
@@ -329,6 +310,27 @@ public class StructureType implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<StructureType> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static StructureType create(final String text) {
+        return new StructureType(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.structure.StructureType: missing text"), "org.dressdiscover.api.models.structure.StructureType: text is empty"), com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static StructureType create(final String text, final @javax.annotation.Nullable org.dressdiscover.api.models.VocabRef vocabRef) {
+        return new StructureType(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.structure.StructureType: missing text"), "org.dressdiscover.api.models.structure.StructureType: text is empty"), com.google.common.base.Optional.fromNullable(vocabRef));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static StructureType create(final String text, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
+        return new StructureType(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.structure.StructureType: missing text"), "org.dressdiscover.api.models.structure.StructureType: text is empty"), com.google.common.base.Preconditions.checkNotNull(vocabRef, "org.dressdiscover.api.models.structure.StructureType: missing vocabRef"));
     }
 
     @Override
@@ -402,7 +404,7 @@ public class StructureType implements org.thryft.Struct {
 
     public static StructureType readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         String text = null;
-        com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         text = iprot.readString();
@@ -423,7 +425,7 @@ public class StructureType implements org.thryft.Struct {
 
     public static StructureType readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         String text = null;
-        com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
 
         iprot.readStructBegin();
         while (true) {

@@ -1,7 +1,14 @@
 package org.dressdiscover.gui.views.object_by_id;
 
 import org.apache.commons.lang3.StringUtils;
+import org.dressdiscover.api.models.collection.CollectionEntry;
+import org.dressdiscover.api.models.institution.InstitutionEntry;
+import org.dressdiscover.api.models.object.ObjectEntry;
 import org.dressdiscover.api.models.object.ObjectId;
+import org.dressdiscover.api.models.object.ObjectSummaryEntry;
+import org.dressdiscover.api.models.relation.Relation;
+import org.dressdiscover.api.services.collection.CollectionQueryService;
+import org.dressdiscover.api.services.institution.InstitutionQueryService;
 import org.dressdiscover.gui.components.ObjectEntryForm;
 import org.dressdiscover.gui.events.object_by_id.ObjectAddMetadataRequest;
 import org.dressdiscover.gui.events.object_by_id.ObjectMoreLikeThisRequest;
@@ -19,14 +26,6 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.VerticalLayout;
-
-import org.dressdiscover.api.models.collection.CollectionEntry;
-import org.dressdiscover.api.models.institution.InstitutionEntry;
-import org.dressdiscover.api.models.object.ObjectEntry;
-import org.dressdiscover.api.models.object.ObjectSummaryEntry;
-import org.dressdiscover.api.models.relation.Relation;
-import org.dressdiscover.api.services.collection.CollectionQueryService;
-import org.dressdiscover.api.services.institution.InstitutionQueryService;
 
 @SuppressWarnings("serial")
 @SessionScoped
@@ -66,7 +65,7 @@ public class ObjectByIdView extends TopLevelView {
             @Override
             public void buttonClick(final ClickEvent event) {
                 _getEventBus()
-                        .post(new CollectionQueryService.Messages.GetCollectionByIdRequest(collectionEntry.getId()));
+                        .post(CollectionQueryService.Messages.GetCollectionByIdRequest.create(collectionEntry.getId()));
             }
         });
         design.collectionButton.setCaption("Collection: " + collectionEntry.getModel().getTitle());
@@ -74,8 +73,8 @@ public class ObjectByIdView extends TopLevelView {
         design.institutionButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(final ClickEvent event) {
-                _getEventBus()
-                        .post(new InstitutionQueryService.Messages.GetInstitutionByIdRequest(institutionEntry.getId()));
+                _getEventBus().post(
+                        InstitutionQueryService.Messages.GetInstitutionByIdRequest.create(institutionEntry.getId()));
             }
         });
         design.institutionButton.setCaption("Institution: " + institutionEntry.getModel().getTitle());

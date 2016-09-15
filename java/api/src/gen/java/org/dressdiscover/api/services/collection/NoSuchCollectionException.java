@@ -4,7 +4,7 @@ package org.dressdiscover.api.services.collection;
 public class NoSuchCollectionException extends org.thryft.Exception {
     public static class Builder {
         public Builder() {
-            id = com.google.common.base.Optional.absent();
+            id = com.google.common.base.Optional.<org.dressdiscover.api.models.collection.CollectionId> absent();
         }
 
         public Builder(final NoSuchCollectionException other) {
@@ -144,7 +144,7 @@ public class NoSuchCollectionException extends org.thryft.Exception {
         }
 
         public Builder unsetId() {
-            this.id = com.google.common.base.Optional.absent();
+            this.id = com.google.common.base.Optional.<org.dressdiscover.api.models.collection.CollectionId> absent();
             return this;
         }
 
@@ -266,7 +266,7 @@ public class NoSuchCollectionException extends org.thryft.Exception {
      * Default constructor
      */
     public NoSuchCollectionException() {
-        id = com.google.common.base.Optional.absent();
+        id = com.google.common.base.Optional.<org.dressdiscover.api.models.collection.CollectionId> absent();
     }
 
     /**
@@ -276,18 +276,8 @@ public class NoSuchCollectionException extends org.thryft.Exception {
         this(other.getId());
     }
 
-    /**
-     * Total Nullable constructor
-     */
-    public NoSuchCollectionException(final @javax.annotation.Nullable org.dressdiscover.api.models.collection.CollectionId id) {
-        this.id = com.google.common.base.Optional.fromNullable(id);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public NoSuchCollectionException(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> id) {
-        this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.collection.NoSuchCollectionException: missing id");
+    protected NoSuchCollectionException(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> id) {
+        this.id = id;
     }
 
     public static Builder builder() {
@@ -300,6 +290,24 @@ public class NoSuchCollectionException extends org.thryft.Exception {
 
     public static Builder builder(final com.google.common.base.Optional<NoSuchCollectionException> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    public static NoSuchCollectionException create() {
+        return new NoSuchCollectionException();
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static NoSuchCollectionException create(final @javax.annotation.Nullable org.dressdiscover.api.models.collection.CollectionId id) {
+        return new NoSuchCollectionException(com.google.common.base.Optional.fromNullable(id));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static NoSuchCollectionException create(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> id) {
+        return new NoSuchCollectionException(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.collection.NoSuchCollectionException: missing id"));
     }
 
     @Override
@@ -375,7 +383,7 @@ public class NoSuchCollectionException extends org.thryft.Exception {
     }
 
     public static NoSuchCollectionException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> id = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> id = com.google.common.base.Optional.<org.dressdiscover.api.models.collection.CollectionId> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         if (__list.getSize() > 0) {
@@ -397,7 +405,7 @@ public class NoSuchCollectionException extends org.thryft.Exception {
     }
 
     public static NoSuchCollectionException readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> id = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> id = com.google.common.base.Optional.<org.dressdiscover.api.models.collection.CollectionId> absent();
 
         iprot.readStructBegin();
         while (true) {

@@ -31,7 +31,7 @@ public abstract class UserServiceTest extends ServiceTest {
     public static ImmutableList<UserEntry> postUsers(final UserCommandService userCommandService) throws Exception {
         final ImmutableList.Builder<UserEntry> userEntriesBuilder = ImmutableList.builder();
         for (final User user : TestData.getInstance().getUsers()) {
-            userEntriesBuilder.add(new UserEntry(userCommandService.postUser(user), user));
+            userEntriesBuilder.add(UserEntry.create(userCommandService.postUser(user), user));
         }
         return userEntriesBuilder.build();
     }
@@ -82,7 +82,7 @@ public abstract class UserServiceTest extends ServiceTest {
             final UserBookmark userBookmark = UserBookmark.builder().setFolder("My folder")
                     .setName("Test bookmark " + i).setObjectId(ObjectId.parse("institution/collection/object" + i))
                     .setUserId(userId).build();
-            resultBuilder.add(new UserBookmarkEntry(userCommandService.postUserBookmark(userBookmark), userBookmark));
+            resultBuilder.add(UserBookmarkEntry.create(userCommandService.postUserBookmark(userBookmark), userBookmark));
         }
         return resultBuilder.build();
     }
@@ -96,7 +96,7 @@ public abstract class UserServiceTest extends ServiceTest {
                     .setObjectQuery(ObjectQuery.builder()
                             .setObjectIds(ImmutableSet.of(ObjectId.parse("institution/collection/object" + i))).build())
                     .setUserId(userId).build();
-            resultBuilder.add(new UserBookmarkEntry(userCommandService.postUserBookmark(userBookmark), userBookmark));
+            resultBuilder.add(UserBookmarkEntry.create(userCommandService.postUserBookmark(userBookmark), userBookmark));
         }
         return resultBuilder.build();
     }

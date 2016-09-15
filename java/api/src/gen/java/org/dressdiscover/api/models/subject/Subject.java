@@ -290,11 +290,8 @@ public class Subject implements org.thryft.Struct, org.dressdiscover.api.models.
         this(other.getTerms());
     }
 
-    /**
-     * Optional constructor
-     */
-    public Subject(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.subject.SubjectTerm> terms) {
-        this.terms = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(terms, "org.dressdiscover.api.models.subject.Subject: missing terms"), "org.dressdiscover.api.models.subject.Subject: terms is empty");
+    protected Subject(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.subject.SubjectTerm> terms) {
+        this.terms = terms;
     }
 
     public static Builder builder() {
@@ -307,6 +304,13 @@ public class Subject implements org.thryft.Struct, org.dressdiscover.api.models.
 
     public static Builder builder(final com.google.common.base.Optional<Subject> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static Subject create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.subject.SubjectTerm> terms) {
+        return new Subject(org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(terms, "org.dressdiscover.api.models.subject.Subject: missing terms"), "org.dressdiscover.api.models.subject.Subject: terms is empty"));
     }
 
     @Override

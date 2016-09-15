@@ -3,29 +3,29 @@ package org.dressdiscover.api.models.object;
 public class ObjectFacetFilters implements org.thryft.Struct {
     public static class Builder {
         public Builder() {
-            excludeAll = com.google.common.base.Optional.absent();
-            excludeCategories = com.google.common.base.Optional.absent();
-            excludeCollections = com.google.common.base.Optional.absent();
-            excludeColorTexts = com.google.common.base.Optional.absent();
-            excludeCulturalContextTexts = com.google.common.base.Optional.absent();
-            excludeGenders = com.google.common.base.Optional.absent();
-            excludeInstitutions = com.google.common.base.Optional.absent();
-            excludeLocationNameTexts = com.google.common.base.Optional.absent();
-            excludeMaterialTexts = com.google.common.base.Optional.absent();
-            excludeSubjectTermTexts = com.google.common.base.Optional.absent();
-            excludeTechniqueTexts = com.google.common.base.Optional.absent();
-            excludeWorkTypeTexts = com.google.common.base.Optional.absent();
-            includeCategories = com.google.common.base.Optional.absent();
-            includeCollections = com.google.common.base.Optional.absent();
-            includeColorTexts = com.google.common.base.Optional.absent();
-            includeCulturalContextTexts = com.google.common.base.Optional.absent();
-            includeGenders = com.google.common.base.Optional.absent();
-            includeInstitutions = com.google.common.base.Optional.absent();
-            includeLocationNameTexts = com.google.common.base.Optional.absent();
-            includeMaterialTexts = com.google.common.base.Optional.absent();
-            includeSubjectTermTexts = com.google.common.base.Optional.absent();
-            includeTechniqueTexts = com.google.common.base.Optional.absent();
-            includeWorkTypeTexts = com.google.common.base.Optional.absent();
+            excludeAll = com.google.common.base.Optional.<Boolean> absent();
+            excludeCategories = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+            excludeCollections = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> absent();
+            excludeColorTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+            excludeCulturalContextTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+            excludeGenders = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> absent();
+            excludeInstitutions = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> absent();
+            excludeLocationNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+            excludeMaterialTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+            excludeSubjectTermTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+            excludeTechniqueTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+            excludeWorkTypeTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+            includeCategories = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+            includeCollections = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> absent();
+            includeColorTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+            includeCulturalContextTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+            includeGenders = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> absent();
+            includeInstitutions = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> absent();
+            includeLocationNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+            includeMaterialTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+            includeSubjectTermTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+            includeTechniqueTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+            includeWorkTypeTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
         }
 
         public Builder(final ObjectFacetFilters other) {
@@ -1638,117 +1638,117 @@ public class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder unsetExcludeAll() {
-            this.excludeAll = com.google.common.base.Optional.absent();
+            this.excludeAll = com.google.common.base.Optional.<Boolean> absent();
             return this;
         }
 
         public Builder unsetExcludeCategories() {
-            this.excludeCategories = com.google.common.base.Optional.absent();
+            this.excludeCategories = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
             return this;
         }
 
         public Builder unsetExcludeCollections() {
-            this.excludeCollections = com.google.common.base.Optional.absent();
+            this.excludeCollections = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> absent();
             return this;
         }
 
         public Builder unsetExcludeColorTexts() {
-            this.excludeColorTexts = com.google.common.base.Optional.absent();
+            this.excludeColorTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
             return this;
         }
 
         public Builder unsetExcludeCulturalContextTexts() {
-            this.excludeCulturalContextTexts = com.google.common.base.Optional.absent();
+            this.excludeCulturalContextTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
             return this;
         }
 
         public Builder unsetExcludeGenders() {
-            this.excludeGenders = com.google.common.base.Optional.absent();
+            this.excludeGenders = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> absent();
             return this;
         }
 
         public Builder unsetExcludeInstitutions() {
-            this.excludeInstitutions = com.google.common.base.Optional.absent();
+            this.excludeInstitutions = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> absent();
             return this;
         }
 
         public Builder unsetExcludeLocationNameTexts() {
-            this.excludeLocationNameTexts = com.google.common.base.Optional.absent();
+            this.excludeLocationNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
             return this;
         }
 
         public Builder unsetExcludeMaterialTexts() {
-            this.excludeMaterialTexts = com.google.common.base.Optional.absent();
+            this.excludeMaterialTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
             return this;
         }
 
         public Builder unsetExcludeSubjectTermTexts() {
-            this.excludeSubjectTermTexts = com.google.common.base.Optional.absent();
+            this.excludeSubjectTermTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
             return this;
         }
 
         public Builder unsetExcludeTechniqueTexts() {
-            this.excludeTechniqueTexts = com.google.common.base.Optional.absent();
+            this.excludeTechniqueTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
             return this;
         }
 
         public Builder unsetExcludeWorkTypeTexts() {
-            this.excludeWorkTypeTexts = com.google.common.base.Optional.absent();
+            this.excludeWorkTypeTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
             return this;
         }
 
         public Builder unsetIncludeCategories() {
-            this.includeCategories = com.google.common.base.Optional.absent();
+            this.includeCategories = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
             return this;
         }
 
         public Builder unsetIncludeCollections() {
-            this.includeCollections = com.google.common.base.Optional.absent();
+            this.includeCollections = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> absent();
             return this;
         }
 
         public Builder unsetIncludeColorTexts() {
-            this.includeColorTexts = com.google.common.base.Optional.absent();
+            this.includeColorTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
             return this;
         }
 
         public Builder unsetIncludeCulturalContextTexts() {
-            this.includeCulturalContextTexts = com.google.common.base.Optional.absent();
+            this.includeCulturalContextTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
             return this;
         }
 
         public Builder unsetIncludeGenders() {
-            this.includeGenders = com.google.common.base.Optional.absent();
+            this.includeGenders = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> absent();
             return this;
         }
 
         public Builder unsetIncludeInstitutions() {
-            this.includeInstitutions = com.google.common.base.Optional.absent();
+            this.includeInstitutions = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> absent();
             return this;
         }
 
         public Builder unsetIncludeLocationNameTexts() {
-            this.includeLocationNameTexts = com.google.common.base.Optional.absent();
+            this.includeLocationNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
             return this;
         }
 
         public Builder unsetIncludeMaterialTexts() {
-            this.includeMaterialTexts = com.google.common.base.Optional.absent();
+            this.includeMaterialTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
             return this;
         }
 
         public Builder unsetIncludeSubjectTermTexts() {
-            this.includeSubjectTermTexts = com.google.common.base.Optional.absent();
+            this.includeSubjectTermTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
             return this;
         }
 
         public Builder unsetIncludeTechniqueTexts() {
-            this.includeTechniqueTexts = com.google.common.base.Optional.absent();
+            this.includeTechniqueTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
             return this;
         }
 
         public Builder unsetIncludeWorkTypeTexts() {
-            this.includeWorkTypeTexts = com.google.common.base.Optional.absent();
+            this.includeWorkTypeTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
             return this;
         }
 
@@ -1959,29 +1959,29 @@ public class ObjectFacetFilters implements org.thryft.Struct {
      * Default constructor
      */
     public ObjectFacetFilters() {
-        excludeAll = com.google.common.base.Optional.absent();
-        excludeCategories = com.google.common.base.Optional.absent();
-        excludeCollections = com.google.common.base.Optional.absent();
-        excludeColorTexts = com.google.common.base.Optional.absent();
-        excludeCulturalContextTexts = com.google.common.base.Optional.absent();
-        excludeGenders = com.google.common.base.Optional.absent();
-        excludeInstitutions = com.google.common.base.Optional.absent();
-        excludeLocationNameTexts = com.google.common.base.Optional.absent();
-        excludeMaterialTexts = com.google.common.base.Optional.absent();
-        excludeSubjectTermTexts = com.google.common.base.Optional.absent();
-        excludeTechniqueTexts = com.google.common.base.Optional.absent();
-        excludeWorkTypeTexts = com.google.common.base.Optional.absent();
-        includeCategories = com.google.common.base.Optional.absent();
-        includeCollections = com.google.common.base.Optional.absent();
-        includeColorTexts = com.google.common.base.Optional.absent();
-        includeCulturalContextTexts = com.google.common.base.Optional.absent();
-        includeGenders = com.google.common.base.Optional.absent();
-        includeInstitutions = com.google.common.base.Optional.absent();
-        includeLocationNameTexts = com.google.common.base.Optional.absent();
-        includeMaterialTexts = com.google.common.base.Optional.absent();
-        includeSubjectTermTexts = com.google.common.base.Optional.absent();
-        includeTechniqueTexts = com.google.common.base.Optional.absent();
-        includeWorkTypeTexts = com.google.common.base.Optional.absent();
+        excludeAll = com.google.common.base.Optional.<Boolean> absent();
+        excludeCategories = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        excludeCollections = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> absent();
+        excludeColorTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        excludeCulturalContextTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        excludeGenders = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> absent();
+        excludeInstitutions = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> absent();
+        excludeLocationNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        excludeMaterialTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        excludeSubjectTermTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        excludeTechniqueTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        excludeWorkTypeTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        includeCategories = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        includeCollections = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> absent();
+        includeColorTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        includeCulturalContextTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        includeGenders = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> absent();
+        includeInstitutions = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> absent();
+        includeLocationNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        includeMaterialTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        includeSubjectTermTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        includeTechniqueTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        includeWorkTypeTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
     }
 
     /**
@@ -1991,62 +1991,30 @@ public class ObjectFacetFilters implements org.thryft.Struct {
         this(other.getExcludeAll(), other.getExcludeCategories(), other.getExcludeCollections(), other.getExcludeColorTexts(), other.getExcludeCulturalContextTexts(), other.getExcludeGenders(), other.getExcludeInstitutions(), other.getExcludeLocationNameTexts(), other.getExcludeMaterialTexts(), other.getExcludeSubjectTermTexts(), other.getExcludeTechniqueTexts(), other.getExcludeWorkTypeTexts(), other.getIncludeCategories(), other.getIncludeCollections(), other.getIncludeColorTexts(), other.getIncludeCulturalContextTexts(), other.getIncludeGenders(), other.getIncludeInstitutions(), other.getIncludeLocationNameTexts(), other.getIncludeMaterialTexts(), other.getIncludeSubjectTermTexts(), other.getIncludeTechniqueTexts(), other.getIncludeWorkTypeTexts());
     }
 
-    /**
-     * Total Nullable constructor
-     */
-    public ObjectFacetFilters(final @javax.annotation.Nullable Boolean excludeAll, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeCategories, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> excludeCollections, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeColorTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeCulturalContextTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender> excludeGenders, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> excludeInstitutions, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeLocationNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeMaterialTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeSubjectTermTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeTechniqueTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeWorkTypeTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeCategories, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> includeCollections, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeColorTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeCulturalContextTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender> includeGenders, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> includeInstitutions, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeLocationNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeMaterialTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeSubjectTermTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeTechniqueTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeWorkTypeTexts) {
-        this.excludeAll = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(excludeAll), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeAll must be true");
-        this.excludeCategories = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeCategories), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCategories is empty");
-        this.excludeCollections = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeCollections), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCollections is empty");
-        this.excludeColorTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeColorTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeColorTexts is empty");
-        this.excludeCulturalContextTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeCulturalContextTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCulturalContextTexts is empty");
-        this.excludeGenders = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeGenders), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeGenders is empty");
-        this.excludeInstitutions = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeInstitutions), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeInstitutions is empty");
-        this.excludeLocationNameTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeLocationNameTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeLocationNameTexts is empty");
-        this.excludeMaterialTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeMaterialTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeMaterialTexts is empty");
-        this.excludeSubjectTermTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeSubjectTermTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeSubjectTermTexts is empty");
-        this.excludeTechniqueTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeTechniqueTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeTechniqueTexts is empty");
-        this.excludeWorkTypeTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeWorkTypeTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeWorkTypeTexts is empty");
-        this.includeCategories = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeCategories), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCategories is empty");
-        this.includeCollections = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeCollections), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCollections is empty");
-        this.includeColorTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeColorTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeColorTexts is empty");
-        this.includeCulturalContextTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeCulturalContextTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCulturalContextTexts is empty");
-        this.includeGenders = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeGenders), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeGenders is empty");
-        this.includeInstitutions = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeInstitutions), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeInstitutions is empty");
-        this.includeLocationNameTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeLocationNameTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeLocationNameTexts is empty");
-        this.includeMaterialTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeMaterialTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeMaterialTexts is empty");
-        this.includeSubjectTermTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeSubjectTermTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeSubjectTermTexts is empty");
-        this.includeTechniqueTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeTechniqueTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeTechniqueTexts is empty");
-        this.includeWorkTypeTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeWorkTypeTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeWorkTypeTexts is empty");
-    }
-
-    /**
-     * Optional constructor
-     */
-    public ObjectFacetFilters(final com.google.common.base.Optional<Boolean> excludeAll, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> excludeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> includeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
-        this.excludeAll = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(excludeAll, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeAll"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeAll must be true");
-        this.excludeCategories = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeCategories, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeCategories"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCategories is empty");
-        this.excludeCollections = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeCollections, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeCollections"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCollections is empty");
-        this.excludeColorTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeColorTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeColorTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeColorTexts is empty");
-        this.excludeCulturalContextTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeCulturalContextTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeCulturalContextTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCulturalContextTexts is empty");
-        this.excludeGenders = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeGenders, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeGenders"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeGenders is empty");
-        this.excludeInstitutions = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeInstitutions, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeInstitutions"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeInstitutions is empty");
-        this.excludeLocationNameTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeLocationNameTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeLocationNameTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeLocationNameTexts is empty");
-        this.excludeMaterialTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeMaterialTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeMaterialTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeMaterialTexts is empty");
-        this.excludeSubjectTermTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeSubjectTermTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeSubjectTermTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeSubjectTermTexts is empty");
-        this.excludeTechniqueTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeTechniqueTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeTechniqueTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeTechniqueTexts is empty");
-        this.excludeWorkTypeTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeWorkTypeTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeWorkTypeTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeWorkTypeTexts is empty");
-        this.includeCategories = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeCategories, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeCategories"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCategories is empty");
-        this.includeCollections = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeCollections, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeCollections"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCollections is empty");
-        this.includeColorTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeColorTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeColorTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeColorTexts is empty");
-        this.includeCulturalContextTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeCulturalContextTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeCulturalContextTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCulturalContextTexts is empty");
-        this.includeGenders = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeGenders, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeGenders"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeGenders is empty");
-        this.includeInstitutions = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeInstitutions, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeInstitutions"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeInstitutions is empty");
-        this.includeLocationNameTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeLocationNameTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeLocationNameTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeLocationNameTexts is empty");
-        this.includeMaterialTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeMaterialTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeMaterialTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeMaterialTexts is empty");
-        this.includeSubjectTermTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeSubjectTermTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeSubjectTermTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeSubjectTermTexts is empty");
-        this.includeTechniqueTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeTechniqueTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeTechniqueTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeTechniqueTexts is empty");
-        this.includeWorkTypeTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeWorkTypeTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeWorkTypeTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeWorkTypeTexts is empty");
+    protected ObjectFacetFilters(final com.google.common.base.Optional<Boolean> excludeAll, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> excludeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> includeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
+        this.excludeAll = excludeAll;
+        this.excludeCategories = excludeCategories;
+        this.excludeCollections = excludeCollections;
+        this.excludeColorTexts = excludeColorTexts;
+        this.excludeCulturalContextTexts = excludeCulturalContextTexts;
+        this.excludeGenders = excludeGenders;
+        this.excludeInstitutions = excludeInstitutions;
+        this.excludeLocationNameTexts = excludeLocationNameTexts;
+        this.excludeMaterialTexts = excludeMaterialTexts;
+        this.excludeSubjectTermTexts = excludeSubjectTermTexts;
+        this.excludeTechniqueTexts = excludeTechniqueTexts;
+        this.excludeWorkTypeTexts = excludeWorkTypeTexts;
+        this.includeCategories = includeCategories;
+        this.includeCollections = includeCollections;
+        this.includeColorTexts = includeColorTexts;
+        this.includeCulturalContextTexts = includeCulturalContextTexts;
+        this.includeGenders = includeGenders;
+        this.includeInstitutions = includeInstitutions;
+        this.includeLocationNameTexts = includeLocationNameTexts;
+        this.includeMaterialTexts = includeMaterialTexts;
+        this.includeSubjectTermTexts = includeSubjectTermTexts;
+        this.includeTechniqueTexts = includeTechniqueTexts;
+        this.includeWorkTypeTexts = includeWorkTypeTexts;
     }
 
     public static Builder builder() {
@@ -2059,6 +2027,24 @@ public class ObjectFacetFilters implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<ObjectFacetFilters> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    public static ObjectFacetFilters create() {
+        return new ObjectFacetFilters();
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static ObjectFacetFilters create(final @javax.annotation.Nullable Boolean excludeAll, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeCategories, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> excludeCollections, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeColorTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeCulturalContextTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender> excludeGenders, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> excludeInstitutions, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeLocationNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeMaterialTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeSubjectTermTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeTechniqueTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeWorkTypeTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeCategories, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> includeCollections, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeColorTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeCulturalContextTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender> includeGenders, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> includeInstitutions, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeLocationNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeMaterialTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeSubjectTermTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeTechniqueTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeWorkTypeTexts) {
+        return new ObjectFacetFilters(org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(excludeAll), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeAll must be true"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeCategories), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCategories is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeCollections), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCollections is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeColorTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeColorTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeCulturalContextTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCulturalContextTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeGenders), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeGenders is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeInstitutions), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeInstitutions is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeLocationNameTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeLocationNameTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeMaterialTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeMaterialTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeSubjectTermTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeSubjectTermTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeTechniqueTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeTechniqueTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(excludeWorkTypeTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeWorkTypeTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeCategories), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCategories is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeCollections), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCollections is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeColorTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeColorTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeCulturalContextTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCulturalContextTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeGenders), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeGenders is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeInstitutions), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeInstitutions is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeLocationNameTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeLocationNameTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeMaterialTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeMaterialTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeSubjectTermTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeSubjectTermTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeTechniqueTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeTechniqueTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(includeWorkTypeTexts), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeWorkTypeTexts is empty"));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static ObjectFacetFilters create(final com.google.common.base.Optional<Boolean> excludeAll, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> excludeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> includeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
+        return new ObjectFacetFilters(org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(excludeAll, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeAll"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeAll must be true"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeCategories, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeCategories"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCategories is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeCollections, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeCollections"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCollections is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeColorTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeColorTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeColorTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeCulturalContextTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeCulturalContextTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCulturalContextTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeGenders, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeGenders"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeGenders is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeInstitutions, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeInstitutions"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeInstitutions is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeLocationNameTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeLocationNameTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeLocationNameTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeMaterialTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeMaterialTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeMaterialTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeSubjectTermTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeSubjectTermTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeSubjectTermTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeTechniqueTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeTechniqueTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeTechniqueTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(excludeWorkTypeTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing excludeWorkTypeTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeWorkTypeTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeCategories, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeCategories"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCategories is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeCollections, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeCollections"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCollections is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeColorTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeColorTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeColorTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeCulturalContextTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeCulturalContextTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCulturalContextTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeGenders, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeGenders"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeGenders is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeInstitutions, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeInstitutions"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeInstitutions is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeLocationNameTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeLocationNameTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeLocationNameTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeMaterialTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeMaterialTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeMaterialTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeSubjectTermTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeSubjectTermTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeSubjectTermTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeTechniqueTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeTechniqueTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeTechniqueTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(includeWorkTypeTexts, "org.dressdiscover.api.models.object.ObjectFacetFilters: missing includeWorkTypeTexts"), "org.dressdiscover.api.models.object.ObjectFacetFilters: includeWorkTypeTexts is empty"));
     }
 
     @Override
@@ -2322,29 +2308,29 @@ public class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public static ObjectFacetFilters readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<Boolean> excludeAll = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> excludeGenders = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> includeGenders = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<Boolean> excludeAll = com.google.common.base.Optional.<Boolean> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> excludeGenders = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> includeGenders = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         if (__list.getSize() > 0) {
@@ -2871,29 +2857,29 @@ public class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public static ObjectFacetFilters readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<Boolean> excludeAll = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> excludeGenders = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> includeGenders = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<Boolean> excludeAll = com.google.common.base.Optional.<Boolean> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> excludeGenders = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> includeGenders = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.gender.Gender>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
 
         iprot.readStructBegin();
         while (true) {

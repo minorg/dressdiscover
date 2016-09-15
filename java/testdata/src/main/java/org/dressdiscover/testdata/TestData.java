@@ -2,6 +2,10 @@ package org.dressdiscover.testdata;
 
 import java.util.Date;
 
+import org.dressdiscover.api.models.agent.Agent;
+import org.dressdiscover.api.models.agent.AgentName;
+import org.dressdiscover.api.models.agent.AgentNameType;
+import org.dressdiscover.api.models.agent.AgentSet;
 import org.dressdiscover.api.models.collection.Collection;
 import org.dressdiscover.api.models.collection.CollectionEntry;
 import org.dressdiscover.api.models.collection.CollectionId;
@@ -14,18 +18,6 @@ import org.dressdiscover.api.models.object.InvalidObjectIdException;
 import org.dressdiscover.api.models.object.Object;
 import org.dressdiscover.api.models.object.ObjectEntry;
 import org.dressdiscover.api.models.object.ObjectId;
-import org.dressdiscover.api.models.user.User;
-import org.thryft.native_.EmailAddress;
-import org.thryft.native_.Url;
-
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.ImmutableTable;
-
-import org.dressdiscover.api.models.agent.Agent;
-import org.dressdiscover.api.models.agent.AgentName;
-import org.dressdiscover.api.models.agent.AgentNameType;
-import org.dressdiscover.api.models.agent.AgentSet;
 import org.dressdiscover.api.models.rights.Rights;
 import org.dressdiscover.api.models.rights.RightsSet;
 import org.dressdiscover.api.models.rights.RightsType;
@@ -36,6 +28,13 @@ import org.dressdiscover.api.models.subject.SubjectTermType;
 import org.dressdiscover.api.models.title.Title;
 import org.dressdiscover.api.models.title.TitleSet;
 import org.dressdiscover.api.models.title.TitleType;
+import org.dressdiscover.api.models.user.User;
+import org.thryft.native_.EmailAddress;
+import org.thryft.native_.Url;
+
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.ImmutableTable;
 
 public final class TestData {
     public static synchronized TestData getInstance() {
@@ -53,10 +52,8 @@ public final class TestData {
                 .builder();
 
         {
-            agents = ImmutableList.<Agent> builder()
-                    .add(Agent.builder()
-                            .setName(AgentName.builder().setText("Test agent").setType(AgentNameType.PERSONAL).build())
-                            .build())
+            agents = ImmutableList.<Agent>builder().add(Agent.builder()
+                    .setName(AgentName.builder().setText("Test agent").setType(AgentNameType.PERSONAL).build()).build())
                     .build();
         }
 
@@ -65,7 +62,7 @@ public final class TestData {
         }
 
         {
-            subjects = ImmutableList.<Subject> builder()
+            subjects = ImmutableList.<Subject>builder()
                     .add(Subject.builder().setTerms(ImmutableList.of(
                             SubjectTerm.builder().setText("Test subject").setType(SubjectTermType.FAMILY_NAME).build()))
                             .build())
@@ -74,7 +71,7 @@ public final class TestData {
 
         try {
             for (final InstitutionId institutionId : new InstitutionId[] { InstitutionId.parse("test_institution") }) {
-                institutionsBuilder.add(new InstitutionEntry(institutionId,
+                institutionsBuilder.add(InstitutionEntry.create(institutionId,
                         Institution.builder().setDataRights(RightsSet.builder().setDisplay("Copyright notice")
                                 .setElements(ImmutableList.of(Rights.builder().setRightsHolder("Test rights holder")
                                         .setText("Test rights text").setType(RightsType.COPYRIGHTED).build()))
@@ -85,18 +82,18 @@ public final class TestData {
                         .setTitle("Test collection").build();
                 final CollectionId collectionId = CollectionId.parse(institutionId.toString() + "/test_collection");
 
-                collectionsBuilder.put(institutionId, new CollectionEntry(collectionId, collection));
+                collectionsBuilder.put(institutionId, CollectionEntry.create(collectionId, collection));
 
                 {
-                    final Object.Builder objectBuilder = Object.builder().setAgents(new AgentSet(agents))
+                    final Object.Builder objectBuilder = Object.builder().setAgents(AgentSet.create(agents))
                             .setCategories(categories).setCollectionId(collectionId).setInstitutionId(institutionId)
-                            .setSubjects(new SubjectSet(subjects))
+                            .setSubjects(SubjectSet.create(subjects))
                             .setTitles(TitleSet.builder().setElements(ImmutableList
                                     .of(Title.builder().setText("Test object").setType(TitleType.DESCRIPTIVE).build()))
                                     .build());
 
-                    objectsBuilder.put(institutionId, collectionId, new ObjectEntry(
-                            ObjectId.parse(collectionId.toString() + "/test_object"), objectBuilder.build()));
+                    objectsBuilder.put(institutionId, collectionId, ObjectEntry
+                            .create(ObjectId.parse(collectionId.toString() + "/test_object"), objectBuilder.build()));
                 }
             }
         } catch (final InvalidCollectionIdException | InvalidInstitutionIdException | InvalidObjectIdException e) {

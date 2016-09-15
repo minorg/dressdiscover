@@ -4,7 +4,7 @@ package org.dressdiscover.api.services.user;
 public class NoSuchUserBookmarkException extends org.thryft.Exception {
     public static class Builder {
         public Builder() {
-            id = com.google.common.base.Optional.absent();
+            id = com.google.common.base.Optional.<org.dressdiscover.api.models.user.UserBookmarkId> absent();
         }
 
         public Builder(final NoSuchUserBookmarkException other) {
@@ -144,7 +144,7 @@ public class NoSuchUserBookmarkException extends org.thryft.Exception {
         }
 
         public Builder unsetId() {
-            this.id = com.google.common.base.Optional.absent();
+            this.id = com.google.common.base.Optional.<org.dressdiscover.api.models.user.UserBookmarkId> absent();
             return this;
         }
 
@@ -266,7 +266,7 @@ public class NoSuchUserBookmarkException extends org.thryft.Exception {
      * Default constructor
      */
     public NoSuchUserBookmarkException() {
-        id = com.google.common.base.Optional.absent();
+        id = com.google.common.base.Optional.<org.dressdiscover.api.models.user.UserBookmarkId> absent();
     }
 
     /**
@@ -276,18 +276,8 @@ public class NoSuchUserBookmarkException extends org.thryft.Exception {
         this(other.getId());
     }
 
-    /**
-     * Total Nullable constructor
-     */
-    public NoSuchUserBookmarkException(final @javax.annotation.Nullable org.dressdiscover.api.models.user.UserBookmarkId id) {
-        this.id = com.google.common.base.Optional.fromNullable(id);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public NoSuchUserBookmarkException(final com.google.common.base.Optional<org.dressdiscover.api.models.user.UserBookmarkId> id) {
-        this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.NoSuchUserBookmarkException: missing id");
+    protected NoSuchUserBookmarkException(final com.google.common.base.Optional<org.dressdiscover.api.models.user.UserBookmarkId> id) {
+        this.id = id;
     }
 
     public static Builder builder() {
@@ -300,6 +290,24 @@ public class NoSuchUserBookmarkException extends org.thryft.Exception {
 
     public static Builder builder(final com.google.common.base.Optional<NoSuchUserBookmarkException> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    public static NoSuchUserBookmarkException create() {
+        return new NoSuchUserBookmarkException();
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static NoSuchUserBookmarkException create(final @javax.annotation.Nullable org.dressdiscover.api.models.user.UserBookmarkId id) {
+        return new NoSuchUserBookmarkException(com.google.common.base.Optional.fromNullable(id));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static NoSuchUserBookmarkException create(final com.google.common.base.Optional<org.dressdiscover.api.models.user.UserBookmarkId> id) {
+        return new NoSuchUserBookmarkException(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.NoSuchUserBookmarkException: missing id"));
     }
 
     @Override
@@ -375,7 +383,7 @@ public class NoSuchUserBookmarkException extends org.thryft.Exception {
     }
 
     public static NoSuchUserBookmarkException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<org.dressdiscover.api.models.user.UserBookmarkId> id = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.user.UserBookmarkId> id = com.google.common.base.Optional.<org.dressdiscover.api.models.user.UserBookmarkId> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         if (__list.getSize() > 0) {
@@ -397,7 +405,7 @@ public class NoSuchUserBookmarkException extends org.thryft.Exception {
     }
 
     public static NoSuchUserBookmarkException readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<org.dressdiscover.api.models.user.UserBookmarkId> id = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.user.UserBookmarkId> id = com.google.common.base.Optional.<org.dressdiscover.api.models.user.UserBookmarkId> absent();
 
         iprot.readStructBegin();
         while (true) {

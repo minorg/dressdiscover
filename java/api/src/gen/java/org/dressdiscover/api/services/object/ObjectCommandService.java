@@ -281,11 +281,8 @@ public interface ObjectCommandService {
                 this(other.getCollectionId());
             }
 
-            /**
-             * Optional constructor
-             */
-            public DeleteObjectsByCollectionIdRequest(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
-                this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.services.object.DeleteObjectsByCollectionIdRequest: missing collectionId");
+            protected DeleteObjectsByCollectionIdRequest(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
+                this.collectionId = collectionId;
             }
 
             public static Builder builder() {
@@ -298,6 +295,13 @@ public interface ObjectCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<DeleteObjectsByCollectionIdRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static DeleteObjectsByCollectionIdRequest create(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
+                return new DeleteObjectsByCollectionIdRequest(com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.services.object.DeleteObjectsByCollectionIdRequest: missing collectionId"));
             }
 
             @Override
@@ -706,11 +710,8 @@ public interface ObjectCommandService {
                 this(other.getReturnValue());
             }
 
-            /**
-             * Optional constructor
-             */
-            public DeleteObjectsByCollectionIdResponse(final com.google.common.primitives.UnsignedInteger returnValue) {
-                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.object.ObjectCommandService.deleteObjectsByCollectionId: missing returnValue");
+            protected DeleteObjectsByCollectionIdResponse(final com.google.common.primitives.UnsignedInteger returnValue) {
+                this.returnValue = returnValue;
             }
 
             public static Builder builder() {
@@ -723,6 +724,13 @@ public interface ObjectCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<DeleteObjectsByCollectionIdResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static DeleteObjectsByCollectionIdResponse create(final com.google.common.primitives.UnsignedInteger returnValue) {
+                return new DeleteObjectsByCollectionIdResponse(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.object.ObjectCommandService.deleteObjectsByCollectionId: missing returnValue"));
             }
 
             @Override
@@ -1159,12 +1167,9 @@ public interface ObjectCommandService {
                 this(other.getId(), other.getObject());
             }
 
-            /**
-             * Optional constructor
-             */
-            public PutObjectRequest(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object object) {
-                this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.object.PutObjectRequest: missing id");
-                this.object = com.google.common.base.Preconditions.checkNotNull(object, "org.dressdiscover.api.services.object.PutObjectRequest: missing object");
+            protected PutObjectRequest(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object object) {
+                this.id = id;
+                this.object = object;
             }
 
             public static Builder builder() {
@@ -1177,6 +1182,13 @@ public interface ObjectCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<PutObjectRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static PutObjectRequest create(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object object) {
+                return new PutObjectRequest(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.object.PutObjectRequest: missing id"), com.google.common.base.Preconditions.checkNotNull(object, "org.dressdiscover.api.services.object.PutObjectRequest: missing object"));
             }
 
             @Override
@@ -1491,6 +1503,10 @@ public interface ObjectCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<PutObjectResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            public static PutObjectResponse create() {
+                return new PutObjectResponse();
             }
 
             @Override
@@ -1882,11 +1898,8 @@ public interface ObjectCommandService {
                 this(other.getObjects());
             }
 
-            /**
-             * Optional constructor
-             */
-            public PutObjectsRequest(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) {
-                this.objects = com.google.common.base.Preconditions.checkNotNull(objects, "org.dressdiscover.api.services.object.PutObjectsRequest: missing objects");
+            protected PutObjectsRequest(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) {
+                this.objects = objects;
             }
 
             public static Builder builder() {
@@ -1899,6 +1912,13 @@ public interface ObjectCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<PutObjectsRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static PutObjectsRequest create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) {
+                return new PutObjectsRequest(com.google.common.base.Preconditions.checkNotNull(objects, "org.dressdiscover.api.services.object.PutObjectsRequest: missing objects"));
             }
 
             @Override
@@ -2219,6 +2239,10 @@ public interface ObjectCommandService {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
             }
 
+            public static PutObjectsResponse create() {
+                return new PutObjectsResponse();
+            }
+
             @Override
             public boolean equals(final java.lang.Object otherObject) {
                 if (otherObject == this) {
@@ -2459,6 +2483,10 @@ public interface ObjectCommandService {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
             }
 
+            public static ResummarizeObjectsRequest create() {
+                return new ResummarizeObjectsRequest();
+            }
+
             @Override
             public boolean equals(final java.lang.Object otherObject) {
                 if (otherObject == this) {
@@ -2697,6 +2725,10 @@ public interface ObjectCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<ResummarizeObjectsResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            public static ResummarizeObjectsResponse create() {
+                return new ResummarizeObjectsResponse();
             }
 
             @Override

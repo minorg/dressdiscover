@@ -14,6 +14,9 @@ import org.dressdiscover.api.models.user.UserBookmark;
 import org.dressdiscover.api.models.user.UserBookmarkEntry;
 import org.dressdiscover.api.models.user.UserBookmarkId;
 import org.dressdiscover.api.models.user.UserId;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.user.DuplicateUserBookmarkException;
+import org.dressdiscover.api.services.user.NoSuchUserBookmarkException;
 import org.dressdiscover.lib.DressDiscoverProperties;
 import org.dressdiscover.lib.services.IoExceptions;
 import org.slf4j.Logger;
@@ -28,10 +31,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
-import org.dressdiscover.api.services.IoException;
-import org.dressdiscover.api.services.user.DuplicateUserBookmarkException;
-import org.dressdiscover.api.services.user.NoSuchUserBookmarkException;
 
 @Singleton
 public class UserBookmarkJdbcTable extends AbstractJdbcTable<UserBookmark> implements UserBookmarkStore {
@@ -97,8 +96,8 @@ public class UserBookmarkJdbcTable extends AbstractJdbcTable<UserBookmark> imple
                     try (ResultSet resultSet = selectStatement.executeQuery()) {
                         if (resultSet.next()) {
                             final int id = resultSet.getInt("id");
-                            throw new DuplicateUserBookmarkException(
-                                    String.format("duplicate bookmark %d with same object id", id));
+                            throw DuplicateUserBookmarkException
+                                    .create(String.format("duplicate bookmark %d with same object id", id));
                         }
                     }
                 }
@@ -116,8 +115,8 @@ public class UserBookmarkJdbcTable extends AbstractJdbcTable<UserBookmark> imple
                     try (ResultSet resultSet = selectStatement.executeQuery()) {
                         if (resultSet.next()) {
                             final int id = resultSet.getInt("id");
-                            throw new DuplicateUserBookmarkException(
-                                    String.format("duplicate bookmark %d with same object query", id));
+                            throw DuplicateUserBookmarkException
+                                    .create(String.format("duplicate bookmark %d with same object query", id));
                         }
                     }
                 }
@@ -158,7 +157,7 @@ public class UserBookmarkJdbcTable extends AbstractJdbcTable<UserBookmark> imple
                     userBookmarkBuilder
                             .setObjectQuery(ObjectQuery.readAsStruct(new JacksonJsonInputProtocol(objectQueryJson)));
                 }
-                userBookmarksBuilder.add(new UserBookmarkEntry(userBookmarkId, userBookmarkBuilder.build()));
+                userBookmarksBuilder.add(UserBookmarkEntry.create(userBookmarkId, userBookmarkBuilder.build()));
             } catch (final InputProtocolException e) {
                 logger.warn(logMarker, "user bookmark model {} is invalid: {}", userBookmarkId,
                         ExceptionUtils.getRootCauseMessage(e));

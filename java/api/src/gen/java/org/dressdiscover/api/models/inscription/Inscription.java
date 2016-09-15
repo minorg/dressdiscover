@@ -7,8 +7,8 @@ public class Inscription implements org.thryft.Struct, org.dressdiscover.api.mod
     public static class Builder {
         public Builder() {
             texts = null;
-            author = com.google.common.base.Optional.absent();
-            position = com.google.common.base.Optional.absent();
+            author = com.google.common.base.Optional.<org.dressdiscover.api.models.inscription.InscriptionAuthor> absent();
+            position = com.google.common.base.Optional.<String> absent();
         }
 
         public Builder(final Inscription other) {
@@ -224,12 +224,12 @@ public class Inscription implements org.thryft.Struct, org.dressdiscover.api.mod
         }
 
         public Builder unsetAuthor() {
-            this.author = com.google.common.base.Optional.absent();
+            this.author = com.google.common.base.Optional.<org.dressdiscover.api.models.inscription.InscriptionAuthor> absent();
             return this;
         }
 
         public Builder unsetPosition() {
-            this.position = com.google.common.base.Optional.absent();
+            this.position = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
@@ -368,31 +368,10 @@ public class Inscription implements org.thryft.Struct, org.dressdiscover.api.mod
         this(other.getTexts(), other.getAuthor(), other.getPosition());
     }
 
-    /**
-     * Required constructor
-     */
-    public Inscription(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText> texts) {
-        this.texts = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(texts, "org.dressdiscover.api.models.inscription.Inscription: missing texts"), "org.dressdiscover.api.models.inscription.Inscription: texts is empty");
-        this.author = com.google.common.base.Optional.absent();
-        this.position = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public Inscription(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText> texts, final @javax.annotation.Nullable org.dressdiscover.api.models.inscription.InscriptionAuthor author, final @javax.annotation.Nullable String position) {
-        this.texts = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(texts, "org.dressdiscover.api.models.inscription.Inscription: missing texts"), "org.dressdiscover.api.models.inscription.Inscription: texts is empty");
-        this.author = com.google.common.base.Optional.fromNullable(author);
-        this.position = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(position), "org.dressdiscover.api.models.inscription.Inscription: position is empty");
-    }
-
-    /**
-     * Optional constructor
-     */
-    public Inscription(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText> texts, final com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionAuthor> author, final com.google.common.base.Optional<String> position) {
-        this.texts = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(texts, "org.dressdiscover.api.models.inscription.Inscription: missing texts"), "org.dressdiscover.api.models.inscription.Inscription: texts is empty");
-        this.author = com.google.common.base.Preconditions.checkNotNull(author, "org.dressdiscover.api.models.inscription.Inscription: missing author");
-        this.position = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(position, "org.dressdiscover.api.models.inscription.Inscription: missing position"), "org.dressdiscover.api.models.inscription.Inscription: position is empty");
+    protected Inscription(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText> texts, final com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionAuthor> author, final com.google.common.base.Optional<String> position) {
+        this.texts = texts;
+        this.author = author;
+        this.position = position;
     }
 
     public static Builder builder() {
@@ -405,6 +384,27 @@ public class Inscription implements org.thryft.Struct, org.dressdiscover.api.mod
 
     public static Builder builder(final com.google.common.base.Optional<Inscription> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static Inscription create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText> texts) {
+        return new Inscription(org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(texts, "org.dressdiscover.api.models.inscription.Inscription: missing texts"), "org.dressdiscover.api.models.inscription.Inscription: texts is empty"), com.google.common.base.Optional.<org.dressdiscover.api.models.inscription.InscriptionAuthor> absent(), com.google.common.base.Optional.<String> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static Inscription create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText> texts, final @javax.annotation.Nullable org.dressdiscover.api.models.inscription.InscriptionAuthor author, final @javax.annotation.Nullable String position) {
+        return new Inscription(org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(texts, "org.dressdiscover.api.models.inscription.Inscription: missing texts"), "org.dressdiscover.api.models.inscription.Inscription: texts is empty"), com.google.common.base.Optional.fromNullable(author), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(position), "org.dressdiscover.api.models.inscription.Inscription: position is empty"));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static Inscription create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText> texts, final com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionAuthor> author, final com.google.common.base.Optional<String> position) {
+        return new Inscription(org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(texts, "org.dressdiscover.api.models.inscription.Inscription: missing texts"), "org.dressdiscover.api.models.inscription.Inscription: texts is empty"), com.google.common.base.Preconditions.checkNotNull(author, "org.dressdiscover.api.models.inscription.Inscription: missing author"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(position, "org.dressdiscover.api.models.inscription.Inscription: missing position"), "org.dressdiscover.api.models.inscription.Inscription: position is empty"));
     }
 
     @Override
@@ -487,8 +487,8 @@ public class Inscription implements org.thryft.Struct, org.dressdiscover.api.mod
 
     public static Inscription readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText> texts = null;
-        com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionAuthor> author = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> position = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionAuthor> author = com.google.common.base.Optional.<org.dressdiscover.api.models.inscription.InscriptionAuthor> absent();
+        com.google.common.base.Optional<String> position = com.google.common.base.Optional.<String> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         texts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText>>() {
@@ -527,8 +527,8 @@ public class Inscription implements org.thryft.Struct, org.dressdiscover.api.mod
 
     public static Inscription readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText> texts = null;
-        com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionAuthor> author = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> position = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionAuthor> author = com.google.common.base.Optional.<org.dressdiscover.api.models.inscription.InscriptionAuthor> absent();
+        com.google.common.base.Optional<String> position = com.google.common.base.Optional.<String> absent();
 
         iprot.readStructBegin();
         while (true) {

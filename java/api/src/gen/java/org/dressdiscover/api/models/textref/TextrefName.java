@@ -289,12 +289,9 @@ public class TextrefName implements org.thryft.Struct {
         this(other.getText(), other.getType());
     }
 
-    /**
-     * Optional constructor
-     */
-    public TextrefName(final String text, final org.dressdiscover.api.models.textref.TextrefNameType type) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.textref.TextrefName: missing text"), "org.dressdiscover.api.models.textref.TextrefName: text is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.textref.TextrefName: missing type");
+    protected TextrefName(final String text, final org.dressdiscover.api.models.textref.TextrefNameType type) {
+        this.text = text;
+        this.type = type;
     }
 
     public static Builder builder() {
@@ -307,6 +304,13 @@ public class TextrefName implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<TextrefName> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static TextrefName create(final String text, final org.dressdiscover.api.models.textref.TextrefNameType type) {
+        return new TextrefName(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.textref.TextrefName: missing text"), "org.dressdiscover.api.models.textref.TextrefName: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.textref.TextrefName: missing type"));
     }
 
     @Override

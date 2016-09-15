@@ -34,7 +34,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
 
         __logMessageStringBuilder.append("delete_user_bookmark_by_id(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.DeleteUserBookmarkByIdRequest(id));
+        __logMessageArgs.add(Messages.DeleteUserBookmarkByIdRequest.create(id));
         __logMessageStringBuilder.append(")");
 
         try {
@@ -60,7 +60,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
 
         __logMessageStringBuilder.append("delete_user_by_id(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.DeleteUserByIdRequest(id));
+        __logMessageArgs.add(Messages.DeleteUserByIdRequest.create(id));
         __logMessageStringBuilder.append(")");
 
         try {
@@ -105,7 +105,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
 
         __logMessageStringBuilder.append("post_user(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.PostUserRequest(user));
+        __logMessageArgs.add(Messages.PostUserRequest.create(user));
         __logMessageStringBuilder.append(")");
 
         try {
@@ -136,7 +136,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
 
         __logMessageStringBuilder.append("post_user_bookmark(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.PostUserBookmarkRequest(userBookmark));
+        __logMessageArgs.add(Messages.PostUserBookmarkRequest.create(userBookmark));
         __logMessageStringBuilder.append(")");
 
         try {
@@ -167,7 +167,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
 
         __logMessageStringBuilder.append("put_user(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.PutUserRequest(id, user));
+        __logMessageArgs.add(Messages.PutUserRequest.create(id, user));
         __logMessageStringBuilder.append(")");
 
         try {

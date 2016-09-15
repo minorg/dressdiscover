@@ -289,12 +289,9 @@ public class Closure implements org.thryft.Struct, org.dressdiscover.api.models.
         this(other.getPlacement(), other.getType());
     }
 
-    /**
-     * Optional constructor
-     */
-    public Closure(final org.dressdiscover.api.models.closure.ClosurePlacement placement, final org.dressdiscover.api.models.closure.ClosureType type) {
-        this.placement = com.google.common.base.Preconditions.checkNotNull(placement, "org.dressdiscover.api.models.closure.Closure: missing placement");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.closure.Closure: missing type");
+    protected Closure(final org.dressdiscover.api.models.closure.ClosurePlacement placement, final org.dressdiscover.api.models.closure.ClosureType type) {
+        this.placement = placement;
+        this.type = type;
     }
 
     public static Builder builder() {
@@ -307,6 +304,13 @@ public class Closure implements org.thryft.Struct, org.dressdiscover.api.models.
 
     public static Builder builder(final com.google.common.base.Optional<Closure> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static Closure create(final org.dressdiscover.api.models.closure.ClosurePlacement placement, final org.dressdiscover.api.models.closure.ClosureType type) {
+        return new Closure(com.google.common.base.Preconditions.checkNotNull(placement, "org.dressdiscover.api.models.closure.Closure: missing placement"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.closure.Closure: missing type"));
     }
 
     @Override

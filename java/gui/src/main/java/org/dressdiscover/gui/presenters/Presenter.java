@@ -217,7 +217,7 @@ public abstract class Presenter<ViewT extends View> extends org.thryft.waf.gui.p
         }
 
         try {
-            return Optional.of(new UserEntry(currentUserId, userQueryService.getUserById(currentUserId)));
+            return Optional.of(UserEntry.create(currentUserId, userQueryService.getUserById(currentUserId)));
         } catch (final IoException e) {
             logger.error(logMarker, "error getting user id '{}': {}", currentUserId, e);
             return Optional.absent();

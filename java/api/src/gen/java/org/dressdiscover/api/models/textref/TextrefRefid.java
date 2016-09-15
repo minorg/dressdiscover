@@ -8,7 +8,7 @@ public class TextrefRefid implements org.thryft.Struct {
         public Builder() {
             text = null;
             type = null;
-            href = com.google.common.base.Optional.absent();
+            href = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
         }
 
         public Builder(final TextrefRefid other) {
@@ -190,7 +190,7 @@ public class TextrefRefid implements org.thryft.Struct {
         }
 
         public Builder unsetHref() {
-            this.href = com.google.common.base.Optional.absent();
+            this.href = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
             return this;
         }
 
@@ -334,31 +334,10 @@ public class TextrefRefid implements org.thryft.Struct {
         this(other.getText(), other.getType(), other.getHref());
     }
 
-    /**
-     * Required constructor
-     */
-    public TextrefRefid(final String text, final org.dressdiscover.api.models.textref.TextrefRefidType type) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.textref.TextrefRefid: missing text"), "org.dressdiscover.api.models.textref.TextrefRefid: text is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.textref.TextrefRefid: missing type");
-        this.href = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public TextrefRefid(final String text, final org.dressdiscover.api.models.textref.TextrefRefidType type, final @javax.annotation.Nullable org.thryft.native_.Url href) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.textref.TextrefRefid: missing text"), "org.dressdiscover.api.models.textref.TextrefRefid: text is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.textref.TextrefRefid: missing type");
-        this.href = com.google.common.base.Optional.fromNullable(href);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public TextrefRefid(final String text, final org.dressdiscover.api.models.textref.TextrefRefidType type, final com.google.common.base.Optional<org.thryft.native_.Url> href) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.textref.TextrefRefid: missing text"), "org.dressdiscover.api.models.textref.TextrefRefid: text is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.textref.TextrefRefid: missing type");
-        this.href = com.google.common.base.Preconditions.checkNotNull(href, "org.dressdiscover.api.models.textref.TextrefRefid: missing href");
+    protected TextrefRefid(final String text, final org.dressdiscover.api.models.textref.TextrefRefidType type, final com.google.common.base.Optional<org.thryft.native_.Url> href) {
+        this.text = text;
+        this.type = type;
+        this.href = href;
     }
 
     public static Builder builder() {
@@ -371,6 +350,27 @@ public class TextrefRefid implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<TextrefRefid> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static TextrefRefid create(final String text, final org.dressdiscover.api.models.textref.TextrefRefidType type) {
+        return new TextrefRefid(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.textref.TextrefRefid: missing text"), "org.dressdiscover.api.models.textref.TextrefRefid: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.textref.TextrefRefid: missing type"), com.google.common.base.Optional.<org.thryft.native_.Url> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static TextrefRefid create(final String text, final org.dressdiscover.api.models.textref.TextrefRefidType type, final @javax.annotation.Nullable org.thryft.native_.Url href) {
+        return new TextrefRefid(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.textref.TextrefRefid: missing text"), "org.dressdiscover.api.models.textref.TextrefRefid: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.textref.TextrefRefid: missing type"), com.google.common.base.Optional.fromNullable(href));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static TextrefRefid create(final String text, final org.dressdiscover.api.models.textref.TextrefRefidType type, final com.google.common.base.Optional<org.thryft.native_.Url> href) {
+        return new TextrefRefid(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.textref.TextrefRefid: missing text"), "org.dressdiscover.api.models.textref.TextrefRefid: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.textref.TextrefRefid: missing type"), com.google.common.base.Preconditions.checkNotNull(href, "org.dressdiscover.api.models.textref.TextrefRefid: missing href"));
     }
 
     @Override
@@ -452,7 +452,7 @@ public class TextrefRefid implements org.thryft.Struct {
     public static TextrefRefid readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         String text = null;
         org.dressdiscover.api.models.textref.TextrefRefidType type = null;
-        com.google.common.base.Optional<org.thryft.native_.Url> href = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.thryft.native_.Url> href = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         text = iprot.readString();
@@ -478,7 +478,7 @@ public class TextrefRefid implements org.thryft.Struct {
     public static TextrefRefid readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         String text = null;
         org.dressdiscover.api.models.textref.TextrefRefidType type = null;
-        com.google.common.base.Optional<org.thryft.native_.Url> href = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.thryft.native_.Url> href = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
 
         iprot.readStructBegin();
         while (true) {

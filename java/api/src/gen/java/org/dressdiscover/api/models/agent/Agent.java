@@ -7,10 +7,10 @@ public class Agent implements org.thryft.Struct, org.dressdiscover.api.models.El
     public static class Builder {
         public Builder() {
             name = null;
-            attribution = com.google.common.base.Optional.absent();
-            culture = com.google.common.base.Optional.absent();
-            dates = com.google.common.base.Optional.absent();
-            role = com.google.common.base.Optional.absent();
+            attribution = com.google.common.base.Optional.<String> absent();
+            culture = com.google.common.base.Optional.<String> absent();
+            dates = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> absent();
+            role = com.google.common.base.Optional.<org.dressdiscover.api.models.agent.AgentRole> absent();
         }
 
         public Builder(final Agent other) {
@@ -292,17 +292,17 @@ public class Agent implements org.thryft.Struct, org.dressdiscover.api.models.El
         }
 
         public Builder unsetAttribution() {
-            this.attribution = com.google.common.base.Optional.absent();
+            this.attribution = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
         public Builder unsetCulture() {
-            this.culture = com.google.common.base.Optional.absent();
+            this.culture = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
         public Builder unsetDates() {
-            this.dates = com.google.common.base.Optional.absent();
+            this.dates = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> absent();
             return this;
         }
 
@@ -312,7 +312,7 @@ public class Agent implements org.thryft.Struct, org.dressdiscover.api.models.El
         }
 
         public Builder unsetRole() {
-            this.role = com.google.common.base.Optional.absent();
+            this.role = com.google.common.base.Optional.<org.dressdiscover.api.models.agent.AgentRole> absent();
             return this;
         }
 
@@ -454,37 +454,12 @@ public class Agent implements org.thryft.Struct, org.dressdiscover.api.models.El
         this(other.getName(), other.getAttribution(), other.getCulture(), other.getDates(), other.getRole());
     }
 
-    /**
-     * Required constructor
-     */
-    public Agent(final org.dressdiscover.api.models.agent.AgentName name) {
-        this.name = com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.agent.Agent: missing name");
-        this.attribution = com.google.common.base.Optional.absent();
-        this.culture = com.google.common.base.Optional.absent();
-        this.dates = com.google.common.base.Optional.absent();
-        this.role = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public Agent(final org.dressdiscover.api.models.agent.AgentName name, final @javax.annotation.Nullable String attribution, final @javax.annotation.Nullable String culture, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates> dates, final @javax.annotation.Nullable org.dressdiscover.api.models.agent.AgentRole role) {
-        this.name = com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.agent.Agent: missing name");
-        this.attribution = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(attribution), "org.dressdiscover.api.models.agent.Agent: attribution is empty");
-        this.culture = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(culture), "org.dressdiscover.api.models.agent.Agent: culture is empty");
-        this.dates = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(dates), "org.dressdiscover.api.models.agent.Agent: dates is empty");
-        this.role = com.google.common.base.Optional.fromNullable(role);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public Agent(final org.dressdiscover.api.models.agent.AgentName name, final com.google.common.base.Optional<String> attribution, final com.google.common.base.Optional<String> culture, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> dates, final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role) {
-        this.name = com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.agent.Agent: missing name");
-        this.attribution = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(attribution, "org.dressdiscover.api.models.agent.Agent: missing attribution"), "org.dressdiscover.api.models.agent.Agent: attribution is empty");
-        this.culture = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(culture, "org.dressdiscover.api.models.agent.Agent: missing culture"), "org.dressdiscover.api.models.agent.Agent: culture is empty");
-        this.dates = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(dates, "org.dressdiscover.api.models.agent.Agent: missing dates"), "org.dressdiscover.api.models.agent.Agent: dates is empty");
-        this.role = com.google.common.base.Preconditions.checkNotNull(role, "org.dressdiscover.api.models.agent.Agent: missing role");
+    protected Agent(final org.dressdiscover.api.models.agent.AgentName name, final com.google.common.base.Optional<String> attribution, final com.google.common.base.Optional<String> culture, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> dates, final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role) {
+        this.name = name;
+        this.attribution = attribution;
+        this.culture = culture;
+        this.dates = dates;
+        this.role = role;
     }
 
     public static Builder builder() {
@@ -497,6 +472,27 @@ public class Agent implements org.thryft.Struct, org.dressdiscover.api.models.El
 
     public static Builder builder(final com.google.common.base.Optional<Agent> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static Agent create(final org.dressdiscover.api.models.agent.AgentName name) {
+        return new Agent(com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.agent.Agent: missing name"), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.agent.AgentRole> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static Agent create(final org.dressdiscover.api.models.agent.AgentName name, final @javax.annotation.Nullable String attribution, final @javax.annotation.Nullable String culture, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates> dates, final @javax.annotation.Nullable org.dressdiscover.api.models.agent.AgentRole role) {
+        return new Agent(com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.agent.Agent: missing name"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(attribution), "org.dressdiscover.api.models.agent.Agent: attribution is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(culture), "org.dressdiscover.api.models.agent.Agent: culture is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(dates), "org.dressdiscover.api.models.agent.Agent: dates is empty"), com.google.common.base.Optional.fromNullable(role));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static Agent create(final org.dressdiscover.api.models.agent.AgentName name, final com.google.common.base.Optional<String> attribution, final com.google.common.base.Optional<String> culture, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> dates, final com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role) {
+        return new Agent(com.google.common.base.Preconditions.checkNotNull(name, "org.dressdiscover.api.models.agent.Agent: missing name"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(attribution, "org.dressdiscover.api.models.agent.Agent: missing attribution"), "org.dressdiscover.api.models.agent.Agent: attribution is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(culture, "org.dressdiscover.api.models.agent.Agent: missing culture"), "org.dressdiscover.api.models.agent.Agent: culture is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(dates, "org.dressdiscover.api.models.agent.Agent: missing dates"), "org.dressdiscover.api.models.agent.Agent: dates is empty"), com.google.common.base.Preconditions.checkNotNull(role, "org.dressdiscover.api.models.agent.Agent: missing role"));
     }
 
     @Override
@@ -597,10 +593,10 @@ public class Agent implements org.thryft.Struct, org.dressdiscover.api.models.El
 
     public static Agent readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         org.dressdiscover.api.models.agent.AgentName name = null;
-        com.google.common.base.Optional<String> attribution = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> culture = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> dates = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> attribution = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<String> culture = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> dates = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role = com.google.common.base.Optional.<org.dressdiscover.api.models.agent.AgentRole> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         name = org.dressdiscover.api.models.agent.AgentName.readAsStruct(iprot);
@@ -649,10 +645,10 @@ public class Agent implements org.thryft.Struct, org.dressdiscover.api.models.El
 
     public static Agent readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         org.dressdiscover.api.models.agent.AgentName name = null;
-        com.google.common.base.Optional<String> attribution = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> culture = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> dates = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> attribution = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<String> culture = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> dates = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role = com.google.common.base.Optional.<org.dressdiscover.api.models.agent.AgentRole> absent();
 
         iprot.readStructBegin();
         while (true) {

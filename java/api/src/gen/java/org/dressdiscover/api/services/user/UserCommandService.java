@@ -283,11 +283,8 @@ public interface UserCommandService {
                 this(other.getId());
             }
 
-            /**
-             * Optional constructor
-             */
-            public DeleteUserBookmarkByIdRequest(final org.dressdiscover.api.models.user.UserBookmarkId id) {
-                this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.DeleteUserBookmarkByIdRequest: missing id");
+            protected DeleteUserBookmarkByIdRequest(final org.dressdiscover.api.models.user.UserBookmarkId id) {
+                this.id = id;
             }
 
             public static Builder builder() {
@@ -300,6 +297,13 @@ public interface UserCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<DeleteUserBookmarkByIdRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static DeleteUserBookmarkByIdRequest create(final org.dressdiscover.api.models.user.UserBookmarkId id) {
+                return new DeleteUserBookmarkByIdRequest(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.DeleteUserBookmarkByIdRequest: missing id"));
             }
 
             @Override
@@ -588,6 +592,10 @@ public interface UserCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<DeleteUserBookmarkByIdResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            public static DeleteUserBookmarkByIdResponse create() {
+                return new DeleteUserBookmarkByIdResponse();
             }
 
             @Override
@@ -956,11 +964,8 @@ public interface UserCommandService {
                 this(other.getId());
             }
 
-            /**
-             * Optional constructor
-             */
-            public DeleteUserByIdRequest(final org.dressdiscover.api.models.user.UserId id) {
-                this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.DeleteUserByIdRequest: missing id");
+            protected DeleteUserByIdRequest(final org.dressdiscover.api.models.user.UserId id) {
+                this.id = id;
             }
 
             public static Builder builder() {
@@ -973,6 +978,13 @@ public interface UserCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<DeleteUserByIdRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static DeleteUserByIdRequest create(final org.dressdiscover.api.models.user.UserId id) {
+                return new DeleteUserByIdRequest(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.DeleteUserByIdRequest: missing id"));
             }
 
             @Override
@@ -1263,6 +1275,10 @@ public interface UserCommandService {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
             }
 
+            public static DeleteUserByIdResponse create() {
+                return new DeleteUserByIdResponse();
+            }
+
             @Override
             public boolean equals(final java.lang.Object otherObject) {
                 if (otherObject == this) {
@@ -1503,6 +1519,10 @@ public interface UserCommandService {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
             }
 
+            public static DeleteUsersRequest create() {
+                return new DeleteUsersRequest();
+            }
+
             @Override
             public boolean equals(final java.lang.Object otherObject) {
                 if (otherObject == this) {
@@ -1741,6 +1761,10 @@ public interface UserCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<DeleteUsersResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            public static DeleteUsersResponse create() {
+                return new DeleteUsersResponse();
             }
 
             @Override
@@ -2101,11 +2125,8 @@ public interface UserCommandService {
                 this(other.getUser());
             }
 
-            /**
-             * Optional constructor
-             */
-            public PostUserRequest(final org.dressdiscover.api.models.user.User user) {
-                this.user = com.google.common.base.Preconditions.checkNotNull(user, "org.dressdiscover.api.services.user.PostUserRequest: missing user");
+            protected PostUserRequest(final org.dressdiscover.api.models.user.User user) {
+                this.user = user;
             }
 
             public static Builder builder() {
@@ -2118,6 +2139,13 @@ public interface UserCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<PostUserRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static PostUserRequest create(final org.dressdiscover.api.models.user.User user) {
+                return new PostUserRequest(com.google.common.base.Preconditions.checkNotNull(user, "org.dressdiscover.api.services.user.PostUserRequest: missing user"));
             }
 
             @Override
@@ -2526,11 +2554,8 @@ public interface UserCommandService {
                 this(other.getReturnValue());
             }
 
-            /**
-             * Optional constructor
-             */
-            public PostUserResponse(final org.dressdiscover.api.models.user.UserId returnValue) {
-                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.user.UserCommandService.postUser: missing returnValue");
+            protected PostUserResponse(final org.dressdiscover.api.models.user.UserId returnValue) {
+                this.returnValue = returnValue;
             }
 
             public static Builder builder() {
@@ -2543,6 +2568,13 @@ public interface UserCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<PostUserResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static PostUserResponse create(final org.dressdiscover.api.models.user.UserId returnValue) {
+                return new PostUserResponse(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.user.UserCommandService.postUser: missing returnValue"));
             }
 
             @Override
@@ -2951,11 +2983,8 @@ public interface UserCommandService {
                 this(other.getUserBookmark());
             }
 
-            /**
-             * Optional constructor
-             */
-            public PostUserBookmarkRequest(final org.dressdiscover.api.models.user.UserBookmark userBookmark) {
-                this.userBookmark = com.google.common.base.Preconditions.checkNotNull(userBookmark, "org.dressdiscover.api.services.user.PostUserBookmarkRequest: missing userBookmark");
+            protected PostUserBookmarkRequest(final org.dressdiscover.api.models.user.UserBookmark userBookmark) {
+                this.userBookmark = userBookmark;
             }
 
             public static Builder builder() {
@@ -2968,6 +2997,13 @@ public interface UserCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<PostUserBookmarkRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static PostUserBookmarkRequest create(final org.dressdiscover.api.models.user.UserBookmark userBookmark) {
+                return new PostUserBookmarkRequest(com.google.common.base.Preconditions.checkNotNull(userBookmark, "org.dressdiscover.api.services.user.PostUserBookmarkRequest: missing userBookmark"));
             }
 
             @Override
@@ -3376,11 +3412,8 @@ public interface UserCommandService {
                 this(other.getReturnValue());
             }
 
-            /**
-             * Optional constructor
-             */
-            public PostUserBookmarkResponse(final org.dressdiscover.api.models.user.UserBookmarkId returnValue) {
-                this.returnValue = com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.user.UserCommandService.postUserBookmark: missing returnValue");
+            protected PostUserBookmarkResponse(final org.dressdiscover.api.models.user.UserBookmarkId returnValue) {
+                this.returnValue = returnValue;
             }
 
             public static Builder builder() {
@@ -3393,6 +3426,13 @@ public interface UserCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<PostUserBookmarkResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static PostUserBookmarkResponse create(final org.dressdiscover.api.models.user.UserBookmarkId returnValue) {
+                return new PostUserBookmarkResponse(com.google.common.base.Preconditions.checkNotNull(returnValue, "org.dressdiscover.api.services.user.UserCommandService.postUserBookmark: missing returnValue"));
             }
 
             @Override
@@ -3837,12 +3877,9 @@ public interface UserCommandService {
                 this(other.getId(), other.getUser());
             }
 
-            /**
-             * Optional constructor
-             */
-            public PutUserRequest(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.User user) {
-                this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.PutUserRequest: missing id");
-                this.user = com.google.common.base.Preconditions.checkNotNull(user, "org.dressdiscover.api.services.user.PutUserRequest: missing user");
+            protected PutUserRequest(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.User user) {
+                this.id = id;
+                this.user = user;
             }
 
             public static Builder builder() {
@@ -3855,6 +3892,13 @@ public interface UserCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<PutUserRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            /**
+             * Optional factory method
+             */
+            public static PutUserRequest create(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.User user) {
+                return new PutUserRequest(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.PutUserRequest: missing id"), com.google.common.base.Preconditions.checkNotNull(user, "org.dressdiscover.api.services.user.PutUserRequest: missing user"));
             }
 
             @Override
@@ -4169,6 +4213,10 @@ public interface UserCommandService {
 
             public static Builder builder(final com.google.common.base.Optional<PutUserResponse> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            public static PutUserResponse create() {
+                return new PutUserResponse();
             }
 
             @Override

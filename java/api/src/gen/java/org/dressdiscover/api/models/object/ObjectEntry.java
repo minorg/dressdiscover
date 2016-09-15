@@ -290,12 +290,9 @@ public class ObjectEntry implements org.thryft.Struct, org.thryft.waf.api.models
         this(other.getId(), other.getModel());
     }
 
-    /**
-     * Optional constructor
-     */
-    public ObjectEntry(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object model) {
-        this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.models.object.ObjectEntry: missing id");
-        this.model = com.google.common.base.Preconditions.checkNotNull(model, "org.dressdiscover.api.models.object.ObjectEntry: missing model");
+    protected ObjectEntry(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object model) {
+        this.id = id;
+        this.model = model;
     }
 
     public static Builder builder() {
@@ -308,6 +305,13 @@ public class ObjectEntry implements org.thryft.Struct, org.thryft.waf.api.models
 
     public static Builder builder(final com.google.common.base.Optional<ObjectEntry> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static ObjectEntry create(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object model) {
+        return new ObjectEntry(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.models.object.ObjectEntry: missing id"), com.google.common.base.Preconditions.checkNotNull(model, "org.dressdiscover.api.models.object.ObjectEntry: missing model"));
     }
 
     @Override

@@ -286,12 +286,9 @@ public class LocationCoordinates implements org.thryft.Struct {
         this(other.getLatitude(), other.getLongitude());
     }
 
-    /**
-     * Optional constructor
-     */
-    public LocationCoordinates(final java.math.BigDecimal latitude, final java.math.BigDecimal longitude) {
-        this.latitude = com.google.common.base.Preconditions.checkNotNull(latitude, "org.dressdiscover.api.models.location.LocationCoordinates: missing latitude");
-        this.longitude = com.google.common.base.Preconditions.checkNotNull(longitude, "org.dressdiscover.api.models.location.LocationCoordinates: missing longitude");
+    protected LocationCoordinates(final java.math.BigDecimal latitude, final java.math.BigDecimal longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public static Builder builder() {
@@ -304,6 +301,13 @@ public class LocationCoordinates implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<LocationCoordinates> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static LocationCoordinates create(final java.math.BigDecimal latitude, final java.math.BigDecimal longitude) {
+        return new LocationCoordinates(com.google.common.base.Preconditions.checkNotNull(latitude, "org.dressdiscover.api.models.location.LocationCoordinates: missing latitude"), com.google.common.base.Preconditions.checkNotNull(longitude, "org.dressdiscover.api.models.location.LocationCoordinates: missing longitude"));
     }
 
     @Override

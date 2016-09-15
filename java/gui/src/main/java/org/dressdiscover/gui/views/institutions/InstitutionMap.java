@@ -8,6 +8,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.dressdiscover.api.models.collection.CollectionEntry;
+import org.dressdiscover.api.models.institution.InstitutionEntry;
+import org.dressdiscover.api.models.location.Location;
+import org.dressdiscover.api.models.location.LocationCoordinates;
+import org.dressdiscover.api.models.location.LocationSet;
+import org.dressdiscover.api.services.collection.CollectionQueryService;
 import org.thryft.native_.Url;
 import org.thryft.waf.gui.EventBus;
 
@@ -20,13 +26,6 @@ import com.vaadin.tapio.googlemaps.client.events.MarkerClickListener;
 import com.vaadin.tapio.googlemaps.client.overlays.GoogleMapMarker;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.UI;
-
-import org.dressdiscover.api.models.collection.CollectionEntry;
-import org.dressdiscover.api.models.institution.InstitutionEntry;
-import org.dressdiscover.api.models.location.Location;
-import org.dressdiscover.api.models.location.LocationCoordinates;
-import org.dressdiscover.api.models.location.LocationSet;
-import org.dressdiscover.api.services.collection.CollectionQueryService;
 
 @SuppressWarnings("serial")
 final class InstitutionMap extends CustomComponent {
@@ -50,7 +49,7 @@ final class InstitutionMap extends CustomComponent {
                     }
                 } else {
                     eventBus.post(
-                            new CollectionQueryService.Messages.GetCollectionByIdRequest(collectionEntry.getId()));
+                            CollectionQueryService.Messages.GetCollectionByIdRequest.create(collectionEntry.getId()));
                 }
             }
         });

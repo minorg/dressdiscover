@@ -254,11 +254,8 @@ public class InvalidUserIdException extends org.thryft.Exception {
         this(other.getCauseMessage());
     }
 
-    /**
-     * Optional constructor
-     */
-    public InvalidUserIdException(final String causeMessage) {
-        this.causeMessage = com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.models.user.InvalidUserIdException: missing causeMessage");
+    protected InvalidUserIdException(final String causeMessage) {
+        this.causeMessage = causeMessage;
     }
 
     public static Builder builder() {
@@ -271,6 +268,13 @@ public class InvalidUserIdException extends org.thryft.Exception {
 
     public static Builder builder(final com.google.common.base.Optional<InvalidUserIdException> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static InvalidUserIdException create(final String causeMessage) {
+        return new InvalidUserIdException(com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.models.user.InvalidUserIdException: missing causeMessage"));
     }
 
     @Override

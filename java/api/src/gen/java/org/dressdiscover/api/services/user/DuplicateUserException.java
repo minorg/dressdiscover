@@ -296,12 +296,9 @@ public class DuplicateUserException extends org.thryft.Exception {
         this(other.getCauseMessage(), other.getUserId());
     }
 
-    /**
-     * Optional constructor
-     */
-    public DuplicateUserException(final String causeMessage, final org.dressdiscover.api.models.user.UserId userId) {
-        this.causeMessage = com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.services.user.DuplicateUserException: missing causeMessage");
-        this.userId = com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.services.user.DuplicateUserException: missing userId");
+    protected DuplicateUserException(final String causeMessage, final org.dressdiscover.api.models.user.UserId userId) {
+        this.causeMessage = causeMessage;
+        this.userId = userId;
     }
 
     public static Builder builder() {
@@ -314,6 +311,13 @@ public class DuplicateUserException extends org.thryft.Exception {
 
     public static Builder builder(final com.google.common.base.Optional<DuplicateUserException> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static DuplicateUserException create(final String causeMessage, final org.dressdiscover.api.models.user.UserId userId) {
+        return new DuplicateUserException(com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.services.user.DuplicateUserException: missing causeMessage"), com.google.common.base.Preconditions.checkNotNull(userId, "org.dressdiscover.api.services.user.DuplicateUserException: missing userId"));
     }
 
     @Override

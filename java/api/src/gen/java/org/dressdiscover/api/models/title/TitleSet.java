@@ -7,8 +7,8 @@ public class TitleSet implements org.thryft.Struct, org.dressdiscover.api.models
     public static class Builder {
         public Builder() {
             elements = null;
-            display = com.google.common.base.Optional.absent();
-            notes = com.google.common.base.Optional.absent();
+            display = com.google.common.base.Optional.<String> absent();
+            notes = com.google.common.base.Optional.<String> absent();
         }
 
         public Builder(final TitleSet other) {
@@ -224,7 +224,7 @@ public class TitleSet implements org.thryft.Struct, org.dressdiscover.api.models
         }
 
         public Builder unsetDisplay() {
-            this.display = com.google.common.base.Optional.absent();
+            this.display = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
@@ -234,7 +234,7 @@ public class TitleSet implements org.thryft.Struct, org.dressdiscover.api.models
         }
 
         public Builder unsetNotes() {
-            this.notes = com.google.common.base.Optional.absent();
+            this.notes = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
@@ -368,31 +368,10 @@ public class TitleSet implements org.thryft.Struct, org.dressdiscover.api.models
         this(other.getElements(), other.getDisplay(), other.getNotes());
     }
 
-    /**
-     * Required constructor
-     */
-    public TitleSet(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.title.Title> elements) {
-        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "org.dressdiscover.api.models.title.TitleSet: missing elements"), "org.dressdiscover.api.models.title.TitleSet: elements is empty");
-        this.display = com.google.common.base.Optional.absent();
-        this.notes = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public TitleSet(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.title.Title> elements, final @javax.annotation.Nullable String display, final @javax.annotation.Nullable String notes) {
-        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "org.dressdiscover.api.models.title.TitleSet: missing elements"), "org.dressdiscover.api.models.title.TitleSet: elements is empty");
-        this.display = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(display), "org.dressdiscover.api.models.title.TitleSet: display is empty");
-        this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(notes), "org.dressdiscover.api.models.title.TitleSet: notes is empty");
-    }
-
-    /**
-     * Optional constructor
-     */
-    public TitleSet(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.title.Title> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-        this.elements = org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "org.dressdiscover.api.models.title.TitleSet: missing elements"), "org.dressdiscover.api.models.title.TitleSet: elements is empty");
-        this.display = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(display, "org.dressdiscover.api.models.title.TitleSet: missing display"), "org.dressdiscover.api.models.title.TitleSet: display is empty");
-        this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(notes, "org.dressdiscover.api.models.title.TitleSet: missing notes"), "org.dressdiscover.api.models.title.TitleSet: notes is empty");
+    protected TitleSet(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.title.Title> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+        this.elements = elements;
+        this.display = display;
+        this.notes = notes;
     }
 
     public static Builder builder() {
@@ -405,6 +384,27 @@ public class TitleSet implements org.thryft.Struct, org.dressdiscover.api.models
 
     public static Builder builder(final com.google.common.base.Optional<TitleSet> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static TitleSet create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.title.Title> elements) {
+        return new TitleSet(org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "org.dressdiscover.api.models.title.TitleSet: missing elements"), "org.dressdiscover.api.models.title.TitleSet: elements is empty"), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static TitleSet create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.title.Title> elements, final @javax.annotation.Nullable String display, final @javax.annotation.Nullable String notes) {
+        return new TitleSet(org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "org.dressdiscover.api.models.title.TitleSet: missing elements"), "org.dressdiscover.api.models.title.TitleSet: elements is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(display), "org.dressdiscover.api.models.title.TitleSet: display is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(notes), "org.dressdiscover.api.models.title.TitleSet: notes is empty"));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static TitleSet create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.title.Title> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+        return new TitleSet(org.thryft.Preconditions.checkCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(elements, "org.dressdiscover.api.models.title.TitleSet: missing elements"), "org.dressdiscover.api.models.title.TitleSet: elements is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(display, "org.dressdiscover.api.models.title.TitleSet: missing display"), "org.dressdiscover.api.models.title.TitleSet: display is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(notes, "org.dressdiscover.api.models.title.TitleSet: missing notes"), "org.dressdiscover.api.models.title.TitleSet: notes is empty"));
     }
 
     @Override
@@ -487,8 +487,8 @@ public class TitleSet implements org.thryft.Struct, org.dressdiscover.api.models
 
     public static TitleSet readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         com.google.common.collect.ImmutableList<org.dressdiscover.api.models.title.Title> elements = null;
-        com.google.common.base.Optional<String> display = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> display = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<String> notes = com.google.common.base.Optional.<String> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.title.Title>>() {
@@ -527,8 +527,8 @@ public class TitleSet implements org.thryft.Struct, org.dressdiscover.api.models
 
     public static TitleSet readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         com.google.common.collect.ImmutableList<org.dressdiscover.api.models.title.Title> elements = null;
-        com.google.common.base.Optional<String> display = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> display = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<String> notes = com.google.common.base.Optional.<String> absent();
 
         iprot.readStructBegin();
         while (true) {

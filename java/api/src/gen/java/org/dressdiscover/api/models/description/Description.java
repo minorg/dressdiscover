@@ -7,8 +7,8 @@ public class Description implements org.thryft.Struct, org.dressdiscover.api.mod
     public static class Builder {
         public Builder() {
             text = null;
-            source = com.google.common.base.Optional.absent();
-            type = com.google.common.base.Optional.absent();
+            source = com.google.common.base.Optional.<String> absent();
+            type = com.google.common.base.Optional.<org.dressdiscover.api.models.description.DescriptionType> absent();
         }
 
         public Builder(final Description other) {
@@ -199,7 +199,7 @@ public class Description implements org.thryft.Struct, org.dressdiscover.api.mod
         }
 
         public Builder unsetSource() {
-            this.source = com.google.common.base.Optional.absent();
+            this.source = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
@@ -209,7 +209,7 @@ public class Description implements org.thryft.Struct, org.dressdiscover.api.mod
         }
 
         public Builder unsetType() {
-            this.type = com.google.common.base.Optional.absent();
+            this.type = com.google.common.base.Optional.<org.dressdiscover.api.models.description.DescriptionType> absent();
             return this;
         }
 
@@ -343,31 +343,10 @@ public class Description implements org.thryft.Struct, org.dressdiscover.api.mod
         this(other.getText(), other.getSource(), other.getType());
     }
 
-    /**
-     * Required constructor
-     */
-    public Description(final String text) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.description.Description: missing text"), "org.dressdiscover.api.models.description.Description: text is empty");
-        this.source = com.google.common.base.Optional.absent();
-        this.type = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public Description(final String text, final @javax.annotation.Nullable String source, final @javax.annotation.Nullable org.dressdiscover.api.models.description.DescriptionType type) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.description.Description: missing text"), "org.dressdiscover.api.models.description.Description: text is empty");
-        this.source = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(source), "org.dressdiscover.api.models.description.Description: source is empty");
-        this.type = com.google.common.base.Optional.fromNullable(type);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public Description(final String text, final com.google.common.base.Optional<String> source, final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> type) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.description.Description: missing text"), "org.dressdiscover.api.models.description.Description: text is empty");
-        this.source = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(source, "org.dressdiscover.api.models.description.Description: missing source"), "org.dressdiscover.api.models.description.Description: source is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.description.Description: missing type");
+    protected Description(final String text, final com.google.common.base.Optional<String> source, final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> type) {
+        this.text = text;
+        this.source = source;
+        this.type = type;
     }
 
     public static Builder builder() {
@@ -380,6 +359,27 @@ public class Description implements org.thryft.Struct, org.dressdiscover.api.mod
 
     public static Builder builder(final com.google.common.base.Optional<Description> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static Description create(final String text) {
+        return new Description(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.description.Description: missing text"), "org.dressdiscover.api.models.description.Description: text is empty"), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.description.DescriptionType> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static Description create(final String text, final @javax.annotation.Nullable String source, final @javax.annotation.Nullable org.dressdiscover.api.models.description.DescriptionType type) {
+        return new Description(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.description.Description: missing text"), "org.dressdiscover.api.models.description.Description: text is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(source), "org.dressdiscover.api.models.description.Description: source is empty"), com.google.common.base.Optional.fromNullable(type));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static Description create(final String text, final com.google.common.base.Optional<String> source, final com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> type) {
+        return new Description(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.description.Description: missing text"), "org.dressdiscover.api.models.description.Description: text is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(source, "org.dressdiscover.api.models.description.Description: missing source"), "org.dressdiscover.api.models.description.Description: source is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.description.Description: missing type"));
     }
 
     @Override
@@ -462,8 +462,8 @@ public class Description implements org.thryft.Struct, org.dressdiscover.api.mod
 
     public static Description readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         String text = null;
-        com.google.common.base.Optional<String> source = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> type = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> source = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> type = com.google.common.base.Optional.<org.dressdiscover.api.models.description.DescriptionType> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         text = iprot.readString();
@@ -490,8 +490,8 @@ public class Description implements org.thryft.Struct, org.dressdiscover.api.mod
 
     public static Description readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         String text = null;
-        com.google.common.base.Optional<String> source = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> type = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> source = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.description.DescriptionType> type = com.google.common.base.Optional.<org.dressdiscover.api.models.description.DescriptionType> absent();
 
         iprot.readStructBegin();
         while (true) {

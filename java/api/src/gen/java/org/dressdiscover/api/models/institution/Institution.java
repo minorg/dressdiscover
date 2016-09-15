@@ -4,13 +4,13 @@ public class Institution implements org.thryft.Struct, org.thryft.waf.api.models
     public static class Builder {
         public Builder() {
             title = null;
-            collectionStoreUri = com.google.common.base.Optional.absent();
-            dataRights = com.google.common.base.Optional.absent();
-            external = com.google.common.base.Optional.absent();
-            hidden = com.google.common.base.Optional.absent();
-            locations = com.google.common.base.Optional.absent();
-            storeParameters = com.google.common.base.Optional.absent();
-            url = com.google.common.base.Optional.absent();
+            collectionStoreUri = com.google.common.base.Optional.<org.thryft.native_.Uri> absent();
+            dataRights = com.google.common.base.Optional.<org.dressdiscover.api.models.rights.RightsSet> absent();
+            external = com.google.common.base.Optional.<Boolean> absent();
+            hidden = com.google.common.base.Optional.<Boolean> absent();
+            locations = com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationSet> absent();
+            storeParameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
+            url = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
         }
 
         public Builder(final Institution other) {
@@ -399,32 +399,32 @@ public class Institution implements org.thryft.Struct, org.thryft.waf.api.models
         }
 
         public Builder unsetCollectionStoreUri() {
-            this.collectionStoreUri = com.google.common.base.Optional.absent();
+            this.collectionStoreUri = com.google.common.base.Optional.<org.thryft.native_.Uri> absent();
             return this;
         }
 
         public Builder unsetDataRights() {
-            this.dataRights = com.google.common.base.Optional.absent();
+            this.dataRights = com.google.common.base.Optional.<org.dressdiscover.api.models.rights.RightsSet> absent();
             return this;
         }
 
         public Builder unsetExternal() {
-            this.external = com.google.common.base.Optional.absent();
+            this.external = com.google.common.base.Optional.<Boolean> absent();
             return this;
         }
 
         public Builder unsetHidden() {
-            this.hidden = com.google.common.base.Optional.absent();
+            this.hidden = com.google.common.base.Optional.<Boolean> absent();
             return this;
         }
 
         public Builder unsetLocations() {
-            this.locations = com.google.common.base.Optional.absent();
+            this.locations = com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationSet> absent();
             return this;
         }
 
         public Builder unsetStoreParameters() {
-            this.storeParameters = com.google.common.base.Optional.absent();
+            this.storeParameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
             return this;
         }
 
@@ -434,7 +434,7 @@ public class Institution implements org.thryft.Struct, org.thryft.waf.api.models
         }
 
         public Builder unsetUrl() {
-            this.url = com.google.common.base.Optional.absent();
+            this.url = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
             return this;
         }
 
@@ -588,46 +588,15 @@ public class Institution implements org.thryft.Struct, org.thryft.waf.api.models
         this(other.getTitle(), other.getCollectionStoreUri(), other.getDataRights(), other.getExternal(), other.getHidden(), other.getLocations(), other.getStoreParameters(), other.getUrl());
     }
 
-    /**
-     * Required constructor
-     */
-    public Institution(final String title) {
-        this.title = com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.institution.Institution: missing title");
-        this.collectionStoreUri = com.google.common.base.Optional.absent();
-        this.dataRights = com.google.common.base.Optional.absent();
-        this.external = com.google.common.base.Optional.absent();
-        this.hidden = com.google.common.base.Optional.absent();
-        this.locations = com.google.common.base.Optional.absent();
-        this.storeParameters = com.google.common.base.Optional.absent();
-        this.url = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public Institution(final String title, final @javax.annotation.Nullable org.thryft.native_.Uri collectionStoreUri, final @javax.annotation.Nullable org.dressdiscover.api.models.rights.RightsSet dataRights, final @javax.annotation.Nullable Boolean external, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable org.dressdiscover.api.models.location.LocationSet locations, final @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, String> storeParameters, final @javax.annotation.Nullable org.thryft.native_.Url url) {
-        this.title = com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.institution.Institution: missing title");
-        this.collectionStoreUri = com.google.common.base.Optional.fromNullable(collectionStoreUri);
-        this.dataRights = com.google.common.base.Optional.fromNullable(dataRights);
-        this.external = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(external), "org.dressdiscover.api.models.institution.Institution: external must be true");
-        this.hidden = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(hidden), "org.dressdiscover.api.models.institution.Institution: hidden must be true");
-        this.locations = com.google.common.base.Optional.fromNullable(locations);
-        this.storeParameters = org.thryft.Preconditions.checkOptionalMapNotEmpty(com.google.common.base.Optional.fromNullable(storeParameters), "org.dressdiscover.api.models.institution.Institution: storeParameters is empty");
-        this.url = com.google.common.base.Optional.fromNullable(url);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public Institution(final String title, final com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri, final com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> dataRights, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters, final com.google.common.base.Optional<org.thryft.native_.Url> url) {
-        this.title = com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.institution.Institution: missing title");
-        this.collectionStoreUri = com.google.common.base.Preconditions.checkNotNull(collectionStoreUri, "org.dressdiscover.api.models.institution.Institution: missing collectionStoreUri");
-        this.dataRights = com.google.common.base.Preconditions.checkNotNull(dataRights, "org.dressdiscover.api.models.institution.Institution: missing dataRights");
-        this.external = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(external, "org.dressdiscover.api.models.institution.Institution: missing external"), "org.dressdiscover.api.models.institution.Institution: external must be true");
-        this.hidden = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(hidden, "org.dressdiscover.api.models.institution.Institution: missing hidden"), "org.dressdiscover.api.models.institution.Institution: hidden must be true");
-        this.locations = com.google.common.base.Preconditions.checkNotNull(locations, "org.dressdiscover.api.models.institution.Institution: missing locations");
-        this.storeParameters = org.thryft.Preconditions.checkOptionalMapNotEmpty(com.google.common.base.Preconditions.checkNotNull(storeParameters, "org.dressdiscover.api.models.institution.Institution: missing storeParameters"), "org.dressdiscover.api.models.institution.Institution: storeParameters is empty");
-        this.url = com.google.common.base.Preconditions.checkNotNull(url, "org.dressdiscover.api.models.institution.Institution: missing url");
+    protected Institution(final String title, final com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri, final com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> dataRights, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters, final com.google.common.base.Optional<org.thryft.native_.Url> url) {
+        this.title = title;
+        this.collectionStoreUri = collectionStoreUri;
+        this.dataRights = dataRights;
+        this.external = external;
+        this.hidden = hidden;
+        this.locations = locations;
+        this.storeParameters = storeParameters;
+        this.url = url;
     }
 
     public static Builder builder() {
@@ -640,6 +609,27 @@ public class Institution implements org.thryft.Struct, org.thryft.waf.api.models
 
     public static Builder builder(final com.google.common.base.Optional<Institution> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static Institution create(final String title) {
+        return new Institution(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.institution.Institution: missing title"), com.google.common.base.Optional.<org.thryft.native_.Uri> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.rights.RightsSet> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationSet> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent(), com.google.common.base.Optional.<org.thryft.native_.Url> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static Institution create(final String title, final @javax.annotation.Nullable org.thryft.native_.Uri collectionStoreUri, final @javax.annotation.Nullable org.dressdiscover.api.models.rights.RightsSet dataRights, final @javax.annotation.Nullable Boolean external, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable org.dressdiscover.api.models.location.LocationSet locations, final @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, String> storeParameters, final @javax.annotation.Nullable org.thryft.native_.Url url) {
+        return new Institution(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.institution.Institution: missing title"), com.google.common.base.Optional.fromNullable(collectionStoreUri), com.google.common.base.Optional.fromNullable(dataRights), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(external), "org.dressdiscover.api.models.institution.Institution: external must be true"), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(hidden), "org.dressdiscover.api.models.institution.Institution: hidden must be true"), com.google.common.base.Optional.fromNullable(locations), org.thryft.Preconditions.checkOptionalMapNotEmpty(com.google.common.base.Optional.fromNullable(storeParameters), "org.dressdiscover.api.models.institution.Institution: storeParameters is empty"), com.google.common.base.Optional.fromNullable(url));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static Institution create(final String title, final com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri, final com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> dataRights, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters, final com.google.common.base.Optional<org.thryft.native_.Url> url) {
+        return new Institution(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.institution.Institution: missing title"), com.google.common.base.Preconditions.checkNotNull(collectionStoreUri, "org.dressdiscover.api.models.institution.Institution: missing collectionStoreUri"), com.google.common.base.Preconditions.checkNotNull(dataRights, "org.dressdiscover.api.models.institution.Institution: missing dataRights"), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(external, "org.dressdiscover.api.models.institution.Institution: missing external"), "org.dressdiscover.api.models.institution.Institution: external must be true"), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(hidden, "org.dressdiscover.api.models.institution.Institution: missing hidden"), "org.dressdiscover.api.models.institution.Institution: hidden must be true"), com.google.common.base.Preconditions.checkNotNull(locations, "org.dressdiscover.api.models.institution.Institution: missing locations"), org.thryft.Preconditions.checkOptionalMapNotEmpty(com.google.common.base.Preconditions.checkNotNull(storeParameters, "org.dressdiscover.api.models.institution.Institution: missing storeParameters"), "org.dressdiscover.api.models.institution.Institution: storeParameters is empty"), com.google.common.base.Preconditions.checkNotNull(url, "org.dressdiscover.api.models.institution.Institution: missing url"));
     }
 
     @Override
@@ -767,13 +757,13 @@ public class Institution implements org.thryft.Struct, org.thryft.waf.api.models
 
     public static Institution readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         String title = null;
-        com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> dataRights = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<Boolean> external = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<Boolean> hidden = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri = com.google.common.base.Optional.<org.thryft.native_.Uri> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> dataRights = com.google.common.base.Optional.<org.dressdiscover.api.models.rights.RightsSet> absent();
+        com.google.common.base.Optional<Boolean> external = com.google.common.base.Optional.<Boolean> absent();
+        com.google.common.base.Optional<Boolean> hidden = com.google.common.base.Optional.<Boolean> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations = com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationSet> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
+        com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         title = iprot.readString();
@@ -841,13 +831,13 @@ public class Institution implements org.thryft.Struct, org.thryft.waf.api.models
 
     public static Institution readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         String title = null;
-        com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> dataRights = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<Boolean> external = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<Boolean> hidden = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri = com.google.common.base.Optional.<org.thryft.native_.Uri> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> dataRights = com.google.common.base.Optional.<org.dressdiscover.api.models.rights.RightsSet> absent();
+        com.google.common.base.Optional<Boolean> external = com.google.common.base.Optional.<Boolean> absent();
+        com.google.common.base.Optional<Boolean> hidden = com.google.common.base.Optional.<Boolean> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.location.LocationSet> locations = com.google.common.base.Optional.<org.dressdiscover.api.models.location.LocationSet> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
+        com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
 
         iprot.readStructBegin();
         while (true) {

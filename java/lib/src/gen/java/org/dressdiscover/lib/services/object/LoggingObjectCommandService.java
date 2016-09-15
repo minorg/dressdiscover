@@ -30,7 +30,7 @@ public class LoggingObjectCommandService implements org.dressdiscover.api.servic
 
         __logMessageStringBuilder.append("delete_objects_by_collection_id(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.DeleteObjectsByCollectionIdRequest(collectionId));
+        __logMessageArgs.add(Messages.DeleteObjectsByCollectionIdRequest.create(collectionId));
         __logMessageStringBuilder.append(")");
 
         try {
@@ -66,7 +66,7 @@ public class LoggingObjectCommandService implements org.dressdiscover.api.servic
 
         __logMessageStringBuilder.append("put_object(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.PutObjectRequest(id, object));
+        __logMessageArgs.add(Messages.PutObjectRequest.create(id, object));
         __logMessageStringBuilder.append(")");
 
         try {
@@ -97,7 +97,7 @@ public class LoggingObjectCommandService implements org.dressdiscover.api.servic
 
         __logMessageStringBuilder.append("put_objects(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.PutObjectsRequest(objects));
+        __logMessageArgs.add(Messages.PutObjectsRequest.create(objects));
         __logMessageStringBuilder.append(")");
 
         try {

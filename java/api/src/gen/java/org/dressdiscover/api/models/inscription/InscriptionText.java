@@ -5,7 +5,7 @@ public class InscriptionText implements org.thryft.Struct {
         public Builder() {
             text = null;
             type = null;
-            lang = com.google.common.base.Optional.absent();
+            lang = com.google.common.base.Optional.<String> absent();
         }
 
         public Builder(final InscriptionText other) {
@@ -181,7 +181,7 @@ public class InscriptionText implements org.thryft.Struct {
         }
 
         public Builder unsetLang() {
-            this.lang = com.google.common.base.Optional.absent();
+            this.lang = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
@@ -325,31 +325,10 @@ public class InscriptionText implements org.thryft.Struct {
         this(other.getText(), other.getType(), other.getLang());
     }
 
-    /**
-     * Required constructor
-     */
-    public InscriptionText(final String text, final org.dressdiscover.api.models.inscription.InscriptionTextType type) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.inscription.InscriptionText: missing text"), "org.dressdiscover.api.models.inscription.InscriptionText: text is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.inscription.InscriptionText: missing type");
-        this.lang = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public InscriptionText(final String text, final org.dressdiscover.api.models.inscription.InscriptionTextType type, final @javax.annotation.Nullable String lang) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.inscription.InscriptionText: missing text"), "org.dressdiscover.api.models.inscription.InscriptionText: text is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.inscription.InscriptionText: missing type");
-        this.lang = org.thryft.Preconditions.checkOptionalStringMinLength(org.thryft.Preconditions.checkOptionalStringMaxLength(com.google.common.base.Optional.fromNullable(lang), 3, "org.dressdiscover.api.models.inscription.InscriptionText: lang must have a maximum length of 3"), 2, "org.dressdiscover.api.models.inscription.InscriptionText: lang must have a minimum length of 2");
-    }
-
-    /**
-     * Optional constructor
-     */
-    public InscriptionText(final String text, final org.dressdiscover.api.models.inscription.InscriptionTextType type, final com.google.common.base.Optional<String> lang) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.inscription.InscriptionText: missing text"), "org.dressdiscover.api.models.inscription.InscriptionText: text is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.inscription.InscriptionText: missing type");
-        this.lang = org.thryft.Preconditions.checkOptionalStringMinLength(org.thryft.Preconditions.checkOptionalStringMaxLength(com.google.common.base.Preconditions.checkNotNull(lang, "org.dressdiscover.api.models.inscription.InscriptionText: missing lang"), 3, "org.dressdiscover.api.models.inscription.InscriptionText: lang must have a maximum length of 3"), 2, "org.dressdiscover.api.models.inscription.InscriptionText: lang must have a minimum length of 2");
+    protected InscriptionText(final String text, final org.dressdiscover.api.models.inscription.InscriptionTextType type, final com.google.common.base.Optional<String> lang) {
+        this.text = text;
+        this.type = type;
+        this.lang = lang;
     }
 
     public static Builder builder() {
@@ -362,6 +341,27 @@ public class InscriptionText implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<InscriptionText> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static InscriptionText create(final String text, final org.dressdiscover.api.models.inscription.InscriptionTextType type) {
+        return new InscriptionText(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.inscription.InscriptionText: missing text"), "org.dressdiscover.api.models.inscription.InscriptionText: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.inscription.InscriptionText: missing type"), com.google.common.base.Optional.<String> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static InscriptionText create(final String text, final org.dressdiscover.api.models.inscription.InscriptionTextType type, final @javax.annotation.Nullable String lang) {
+        return new InscriptionText(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.inscription.InscriptionText: missing text"), "org.dressdiscover.api.models.inscription.InscriptionText: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.inscription.InscriptionText: missing type"), org.thryft.Preconditions.checkOptionalStringMinLength(org.thryft.Preconditions.checkOptionalStringMaxLength(com.google.common.base.Optional.fromNullable(lang), 3, "org.dressdiscover.api.models.inscription.InscriptionText: lang must have a maximum length of 3"), 2, "org.dressdiscover.api.models.inscription.InscriptionText: lang must have a minimum length of 2"));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static InscriptionText create(final String text, final org.dressdiscover.api.models.inscription.InscriptionTextType type, final com.google.common.base.Optional<String> lang) {
+        return new InscriptionText(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.inscription.InscriptionText: missing text"), "org.dressdiscover.api.models.inscription.InscriptionText: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.inscription.InscriptionText: missing type"), org.thryft.Preconditions.checkOptionalStringMinLength(org.thryft.Preconditions.checkOptionalStringMaxLength(com.google.common.base.Preconditions.checkNotNull(lang, "org.dressdiscover.api.models.inscription.InscriptionText: missing lang"), 3, "org.dressdiscover.api.models.inscription.InscriptionText: lang must have a maximum length of 3"), 2, "org.dressdiscover.api.models.inscription.InscriptionText: lang must have a minimum length of 2"));
     }
 
     @Override
@@ -443,7 +443,7 @@ public class InscriptionText implements org.thryft.Struct {
     public static InscriptionText readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         String text = null;
         org.dressdiscover.api.models.inscription.InscriptionTextType type = null;
-        com.google.common.base.Optional<String> lang = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> lang = com.google.common.base.Optional.<String> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         text = iprot.readString();
@@ -466,7 +466,7 @@ public class InscriptionText implements org.thryft.Struct {
     public static InscriptionText readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         String text = null;
         org.dressdiscover.api.models.inscription.InscriptionTextType type = null;
-        com.google.common.base.Optional<String> lang = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> lang = com.google.common.base.Optional.<String> absent();
 
         iprot.readStructBegin();
         while (true) {

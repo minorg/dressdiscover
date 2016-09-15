@@ -8,7 +8,7 @@ public class Material implements org.thryft.Struct, org.dressdiscover.api.models
         public Builder() {
             text = null;
             type = null;
-            vocabRef = com.google.common.base.Optional.absent();
+            vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
         }
 
         public Builder(final Material other) {
@@ -194,7 +194,7 @@ public class Material implements org.thryft.Struct, org.dressdiscover.api.models
         }
 
         public Builder unsetVocabRef() {
-            this.vocabRef = com.google.common.base.Optional.absent();
+            this.vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
             return this;
         }
 
@@ -328,31 +328,10 @@ public class Material implements org.thryft.Struct, org.dressdiscover.api.models
         this(other.getText(), other.getType(), other.getVocabRef());
     }
 
-    /**
-     * Required constructor
-     */
-    public Material(final String text, final org.dressdiscover.api.models.material.MaterialType type) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.material.Material: missing text"), "org.dressdiscover.api.models.material.Material: text is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.material.Material: missing type");
-        this.vocabRef = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public Material(final String text, final org.dressdiscover.api.models.material.MaterialType type, final @javax.annotation.Nullable org.dressdiscover.api.models.VocabRef vocabRef) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.material.Material: missing text"), "org.dressdiscover.api.models.material.Material: text is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.material.Material: missing type");
-        this.vocabRef = com.google.common.base.Optional.fromNullable(vocabRef);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public Material(final String text, final org.dressdiscover.api.models.material.MaterialType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.material.Material: missing text"), "org.dressdiscover.api.models.material.Material: text is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.material.Material: missing type");
-        this.vocabRef = com.google.common.base.Preconditions.checkNotNull(vocabRef, "org.dressdiscover.api.models.material.Material: missing vocabRef");
+    protected Material(final String text, final org.dressdiscover.api.models.material.MaterialType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
+        this.text = text;
+        this.type = type;
+        this.vocabRef = vocabRef;
     }
 
     public static Builder builder() {
@@ -365,6 +344,27 @@ public class Material implements org.thryft.Struct, org.dressdiscover.api.models
 
     public static Builder builder(final com.google.common.base.Optional<Material> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static Material create(final String text, final org.dressdiscover.api.models.material.MaterialType type) {
+        return new Material(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.material.Material: missing text"), "org.dressdiscover.api.models.material.Material: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.material.Material: missing type"), com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static Material create(final String text, final org.dressdiscover.api.models.material.MaterialType type, final @javax.annotation.Nullable org.dressdiscover.api.models.VocabRef vocabRef) {
+        return new Material(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.material.Material: missing text"), "org.dressdiscover.api.models.material.Material: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.material.Material: missing type"), com.google.common.base.Optional.fromNullable(vocabRef));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static Material create(final String text, final org.dressdiscover.api.models.material.MaterialType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
+        return new Material(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.material.Material: missing text"), "org.dressdiscover.api.models.material.Material: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.material.Material: missing type"), com.google.common.base.Preconditions.checkNotNull(vocabRef, "org.dressdiscover.api.models.material.Material: missing vocabRef"));
     }
 
     @Override
@@ -446,7 +446,7 @@ public class Material implements org.thryft.Struct, org.dressdiscover.api.models
     public static Material readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         String text = null;
         org.dressdiscover.api.models.material.MaterialType type = null;
-        com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         text = iprot.readString();
@@ -469,7 +469,7 @@ public class Material implements org.thryft.Struct, org.dressdiscover.api.models
     public static Material readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         String text = null;
         org.dressdiscover.api.models.material.MaterialType type = null;
-        com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
 
         iprot.readStructBegin();
         while (true) {

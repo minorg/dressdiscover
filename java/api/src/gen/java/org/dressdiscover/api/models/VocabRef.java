@@ -4,8 +4,8 @@ public class VocabRef implements org.thryft.Struct {
     public static class Builder {
         public Builder() {
             vocab = null;
-            refid = com.google.common.base.Optional.absent();
-            uri = com.google.common.base.Optional.absent();
+            refid = com.google.common.base.Optional.<String> absent();
+            uri = com.google.common.base.Optional.<org.thryft.native_.Uri> absent();
         }
 
         public Builder(final VocabRef other) {
@@ -196,12 +196,12 @@ public class VocabRef implements org.thryft.Struct {
         }
 
         public Builder unsetRefid() {
-            this.refid = com.google.common.base.Optional.absent();
+            this.refid = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
         public Builder unsetUri() {
-            this.uri = com.google.common.base.Optional.absent();
+            this.uri = com.google.common.base.Optional.<org.thryft.native_.Uri> absent();
             return this;
         }
 
@@ -340,31 +340,10 @@ public class VocabRef implements org.thryft.Struct {
         this(other.getVocab(), other.getRefid(), other.getUri());
     }
 
-    /**
-     * Required constructor
-     */
-    public VocabRef(final org.dressdiscover.api.models.Vocab vocab) {
-        this.vocab = com.google.common.base.Preconditions.checkNotNull(vocab, "org.dressdiscover.api.models.VocabRef: missing vocab");
-        this.refid = com.google.common.base.Optional.absent();
-        this.uri = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public VocabRef(final org.dressdiscover.api.models.Vocab vocab, final @javax.annotation.Nullable String refid, final @javax.annotation.Nullable org.thryft.native_.Uri uri) {
-        this.vocab = com.google.common.base.Preconditions.checkNotNull(vocab, "org.dressdiscover.api.models.VocabRef: missing vocab");
-        this.refid = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(refid), "org.dressdiscover.api.models.VocabRef: refid is empty");
-        this.uri = com.google.common.base.Optional.fromNullable(uri);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public VocabRef(final org.dressdiscover.api.models.Vocab vocab, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<org.thryft.native_.Uri> uri) {
-        this.vocab = com.google.common.base.Preconditions.checkNotNull(vocab, "org.dressdiscover.api.models.VocabRef: missing vocab");
-        this.refid = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(refid, "org.dressdiscover.api.models.VocabRef: missing refid"), "org.dressdiscover.api.models.VocabRef: refid is empty");
-        this.uri = com.google.common.base.Preconditions.checkNotNull(uri, "org.dressdiscover.api.models.VocabRef: missing uri");
+    protected VocabRef(final org.dressdiscover.api.models.Vocab vocab, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<org.thryft.native_.Uri> uri) {
+        this.vocab = vocab;
+        this.refid = refid;
+        this.uri = uri;
     }
 
     public static Builder builder() {
@@ -377,6 +356,27 @@ public class VocabRef implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<VocabRef> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static VocabRef create(final org.dressdiscover.api.models.Vocab vocab) {
+        return new VocabRef(com.google.common.base.Preconditions.checkNotNull(vocab, "org.dressdiscover.api.models.VocabRef: missing vocab"), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.thryft.native_.Uri> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static VocabRef create(final org.dressdiscover.api.models.Vocab vocab, final @javax.annotation.Nullable String refid, final @javax.annotation.Nullable org.thryft.native_.Uri uri) {
+        return new VocabRef(com.google.common.base.Preconditions.checkNotNull(vocab, "org.dressdiscover.api.models.VocabRef: missing vocab"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(refid), "org.dressdiscover.api.models.VocabRef: refid is empty"), com.google.common.base.Optional.fromNullable(uri));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static VocabRef create(final org.dressdiscover.api.models.Vocab vocab, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<org.thryft.native_.Uri> uri) {
+        return new VocabRef(com.google.common.base.Preconditions.checkNotNull(vocab, "org.dressdiscover.api.models.VocabRef: missing vocab"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(refid, "org.dressdiscover.api.models.VocabRef: missing refid"), "org.dressdiscover.api.models.VocabRef: refid is empty"), com.google.common.base.Preconditions.checkNotNull(uri, "org.dressdiscover.api.models.VocabRef: missing uri"));
     }
 
     @Override
@@ -459,8 +459,8 @@ public class VocabRef implements org.thryft.Struct {
 
     public static VocabRef readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         org.dressdiscover.api.models.Vocab vocab = null;
-        com.google.common.base.Optional<String> refid = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.thryft.native_.Uri> uri = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> refid = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<org.thryft.native_.Uri> uri = com.google.common.base.Optional.<org.thryft.native_.Uri> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         vocab = iprot.readEnum(org.dressdiscover.api.models.Vocab.class);
@@ -487,8 +487,8 @@ public class VocabRef implements org.thryft.Struct {
 
     public static VocabRef readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         org.dressdiscover.api.models.Vocab vocab = null;
-        com.google.common.base.Optional<String> refid = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.thryft.native_.Uri> uri = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<String> refid = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<org.thryft.native_.Uri> uri = com.google.common.base.Optional.<org.thryft.native_.Uri> absent();
 
         iprot.readStructBegin();
         while (true) {

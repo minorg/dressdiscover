@@ -254,11 +254,8 @@ public class InvalidCollectionIdException extends org.thryft.Exception {
         this(other.getCauseMessage());
     }
 
-    /**
-     * Optional constructor
-     */
-    public InvalidCollectionIdException(final String causeMessage) {
-        this.causeMessage = com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.models.collection.InvalidCollectionIdException: missing causeMessage");
+    protected InvalidCollectionIdException(final String causeMessage) {
+        this.causeMessage = causeMessage;
     }
 
     public static Builder builder() {
@@ -271,6 +268,13 @@ public class InvalidCollectionIdException extends org.thryft.Exception {
 
     public static Builder builder(final com.google.common.base.Optional<InvalidCollectionIdException> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static InvalidCollectionIdException create(final String causeMessage) {
+        return new InvalidCollectionIdException(com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.models.collection.InvalidCollectionIdException: missing causeMessage"));
     }
 
     @Override

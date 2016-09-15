@@ -5,7 +5,7 @@ public class GetObjectSummariesResult implements org.thryft.Struct {
         public Builder() {
             hits = null;
             totalHits = com.google.common.primitives.UnsignedInteger.ZERO;
-            facets = com.google.common.base.Optional.absent();
+            facets = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectFacets> absent();
         }
 
         public Builder(final GetObjectSummariesResult other) {
@@ -206,7 +206,7 @@ public class GetObjectSummariesResult implements org.thryft.Struct {
         }
 
         public Builder unsetFacets() {
-            this.facets = com.google.common.base.Optional.absent();
+            this.facets = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectFacets> absent();
             return this;
         }
 
@@ -350,31 +350,10 @@ public class GetObjectSummariesResult implements org.thryft.Struct {
         this(other.getHits(), other.getTotalHits(), other.getFacets());
     }
 
-    /**
-     * Required constructor
-     */
-    public GetObjectSummariesResult(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits, final com.google.common.primitives.UnsignedInteger totalHits) {
-        this.hits = com.google.common.base.Preconditions.checkNotNull(hits, "org.dressdiscover.api.services.object.GetObjectSummariesResult: missing hits");
-        this.totalHits = com.google.common.base.Preconditions.checkNotNull(totalHits, "org.dressdiscover.api.services.object.GetObjectSummariesResult: missing totalHits");
-        this.facets = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public GetObjectSummariesResult(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits, final com.google.common.primitives.UnsignedInteger totalHits, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectFacets facets) {
-        this.hits = com.google.common.base.Preconditions.checkNotNull(hits, "org.dressdiscover.api.services.object.GetObjectSummariesResult: missing hits");
-        this.totalHits = com.google.common.base.Preconditions.checkNotNull(totalHits, "org.dressdiscover.api.services.object.GetObjectSummariesResult: missing totalHits");
-        this.facets = com.google.common.base.Optional.fromNullable(facets);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public GetObjectSummariesResult(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits, final com.google.common.primitives.UnsignedInteger totalHits, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets) {
-        this.hits = com.google.common.base.Preconditions.checkNotNull(hits, "org.dressdiscover.api.services.object.GetObjectSummariesResult: missing hits");
-        this.totalHits = com.google.common.base.Preconditions.checkNotNull(totalHits, "org.dressdiscover.api.services.object.GetObjectSummariesResult: missing totalHits");
-        this.facets = com.google.common.base.Preconditions.checkNotNull(facets, "org.dressdiscover.api.services.object.GetObjectSummariesResult: missing facets");
+    protected GetObjectSummariesResult(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits, final com.google.common.primitives.UnsignedInteger totalHits, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets) {
+        this.hits = hits;
+        this.totalHits = totalHits;
+        this.facets = facets;
     }
 
     public static Builder builder() {
@@ -387,6 +366,27 @@ public class GetObjectSummariesResult implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<GetObjectSummariesResult> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static GetObjectSummariesResult create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits, final com.google.common.primitives.UnsignedInteger totalHits) {
+        return new GetObjectSummariesResult(com.google.common.base.Preconditions.checkNotNull(hits, "org.dressdiscover.api.services.object.GetObjectSummariesResult: missing hits"), com.google.common.base.Preconditions.checkNotNull(totalHits, "org.dressdiscover.api.services.object.GetObjectSummariesResult: missing totalHits"), com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectFacets> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static GetObjectSummariesResult create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits, final com.google.common.primitives.UnsignedInteger totalHits, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectFacets facets) {
+        return new GetObjectSummariesResult(com.google.common.base.Preconditions.checkNotNull(hits, "org.dressdiscover.api.services.object.GetObjectSummariesResult: missing hits"), com.google.common.base.Preconditions.checkNotNull(totalHits, "org.dressdiscover.api.services.object.GetObjectSummariesResult: missing totalHits"), com.google.common.base.Optional.fromNullable(facets));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static GetObjectSummariesResult create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits, final com.google.common.primitives.UnsignedInteger totalHits, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets) {
+        return new GetObjectSummariesResult(com.google.common.base.Preconditions.checkNotNull(hits, "org.dressdiscover.api.services.object.GetObjectSummariesResult: missing hits"), com.google.common.base.Preconditions.checkNotNull(totalHits, "org.dressdiscover.api.services.object.GetObjectSummariesResult: missing totalHits"), com.google.common.base.Preconditions.checkNotNull(facets, "org.dressdiscover.api.services.object.GetObjectSummariesResult: missing facets"));
     }
 
     @Override
@@ -468,7 +468,7 @@ public class GetObjectSummariesResult implements org.thryft.Struct {
     public static GetObjectSummariesResult readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits = null;
         com.google.common.primitives.UnsignedInteger totalHits = com.google.common.primitives.UnsignedInteger.ZERO;
-        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectFacets> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         hits = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry>>() {
@@ -506,7 +506,7 @@ public class GetObjectSummariesResult implements org.thryft.Struct {
     public static GetObjectSummariesResult readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits = null;
         com.google.common.primitives.UnsignedInteger totalHits = com.google.common.primitives.UnsignedInteger.ZERO;
-        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectFacets> absent();
 
         iprot.readStructBegin();
         while (true) {

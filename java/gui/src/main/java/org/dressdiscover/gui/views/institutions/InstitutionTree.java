@@ -3,8 +3,12 @@ package org.dressdiscover.gui.views.institutions;
 import java.util.Collection;
 import java.util.Map;
 
+import org.dressdiscover.api.models.collection.CollectionEntry;
 import org.dressdiscover.api.models.collection.CollectionId;
+import org.dressdiscover.api.models.institution.InstitutionEntry;
 import org.dressdiscover.api.models.institution.InstitutionId;
+import org.dressdiscover.api.models.work_type.WorkType;
+import org.dressdiscover.api.services.collection.CollectionQueryService;
 import org.thryft.waf.gui.EventBus;
 
 import com.google.common.collect.ImmutableMultimap;
@@ -12,11 +16,6 @@ import com.vaadin.data.Item;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.event.ItemClickEvent.ItemClickListener;
 import com.vaadin.ui.Tree;
-
-import org.dressdiscover.api.models.collection.CollectionEntry;
-import org.dressdiscover.api.models.institution.InstitutionEntry;
-import org.dressdiscover.api.models.work_type.WorkType;
-import org.dressdiscover.api.services.collection.CollectionQueryService;
 
 @SuppressWarnings("serial")
 final class InstitutionTree extends Tree {
@@ -30,8 +29,8 @@ final class InstitutionTree extends Tree {
             @Override
             public void itemClick(final ItemClickEvent event) {
                 if (event.getItemId() instanceof CollectionId) {
-                    eventBus.post(new CollectionQueryService.Messages.GetCollectionByIdRequest(
-                            (CollectionId) event.getItemId()));
+                    eventBus.post(CollectionQueryService.Messages.GetCollectionByIdRequest
+                            .create((CollectionId) event.getItemId()));
                 } else if (event.getItemId() instanceof InstitutionId) {
                     if (!isExpanded(event.getItemId())) {
                         expandItem(event.getItemId());

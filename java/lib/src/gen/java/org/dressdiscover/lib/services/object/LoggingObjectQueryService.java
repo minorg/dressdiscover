@@ -24,7 +24,7 @@ public class LoggingObjectQueryService implements org.dressdiscover.api.services
 
         __logMessageStringBuilder.append("get_object_by_id(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(new Messages.GetObjectByIdRequest(id));
+        __logMessageArgs.add(Messages.GetObjectByIdRequest.create(id));
         __logMessageStringBuilder.append(")");
 
         try {

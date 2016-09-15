@@ -8,9 +8,9 @@ public class Rights implements org.thryft.Struct, org.dressdiscover.api.models.E
         public Builder() {
             text = null;
             type = null;
-            licenseVocabRef = com.google.common.base.Optional.absent();
-            notes = com.google.common.base.Optional.absent();
-            rightsHolder = com.google.common.base.Optional.absent();
+            licenseVocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
+            notes = com.google.common.base.Optional.<String> absent();
+            rightsHolder = com.google.common.base.Optional.<String> absent();
         }
 
         public Builder(final Rights other) {
@@ -244,17 +244,17 @@ public class Rights implements org.thryft.Struct, org.dressdiscover.api.models.E
         }
 
         public Builder unsetLicenseVocabRef() {
-            this.licenseVocabRef = com.google.common.base.Optional.absent();
+            this.licenseVocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
             return this;
         }
 
         public Builder unsetNotes() {
-            this.notes = com.google.common.base.Optional.absent();
+            this.notes = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
         public Builder unsetRightsHolder() {
-            this.rightsHolder = com.google.common.base.Optional.absent();
+            this.rightsHolder = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
@@ -406,37 +406,12 @@ public class Rights implements org.thryft.Struct, org.dressdiscover.api.models.E
         this(other.getText(), other.getType(), other.getLicenseVocabRef(), other.getNotes(), other.getRightsHolder());
     }
 
-    /**
-     * Required constructor
-     */
-    public Rights(final String text, final org.dressdiscover.api.models.rights.RightsType type) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.rights.Rights: missing text"), "org.dressdiscover.api.models.rights.Rights: text is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.rights.Rights: missing type");
-        this.licenseVocabRef = com.google.common.base.Optional.absent();
-        this.notes = com.google.common.base.Optional.absent();
-        this.rightsHolder = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public Rights(final String text, final org.dressdiscover.api.models.rights.RightsType type, final @javax.annotation.Nullable org.dressdiscover.api.models.VocabRef licenseVocabRef, final @javax.annotation.Nullable String notes, final @javax.annotation.Nullable String rightsHolder) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.rights.Rights: missing text"), "org.dressdiscover.api.models.rights.Rights: text is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.rights.Rights: missing type");
-        this.licenseVocabRef = com.google.common.base.Optional.fromNullable(licenseVocabRef);
-        this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(notes), "org.dressdiscover.api.models.rights.Rights: notes is empty");
-        this.rightsHolder = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(rightsHolder), "org.dressdiscover.api.models.rights.Rights: rightsHolder is empty");
-    }
-
-    /**
-     * Optional constructor
-     */
-    public Rights(final String text, final org.dressdiscover.api.models.rights.RightsType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> licenseVocabRef, final com.google.common.base.Optional<String> notes, final com.google.common.base.Optional<String> rightsHolder) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.rights.Rights: missing text"), "org.dressdiscover.api.models.rights.Rights: text is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.rights.Rights: missing type");
-        this.licenseVocabRef = com.google.common.base.Preconditions.checkNotNull(licenseVocabRef, "org.dressdiscover.api.models.rights.Rights: missing licenseVocabRef");
-        this.notes = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(notes, "org.dressdiscover.api.models.rights.Rights: missing notes"), "org.dressdiscover.api.models.rights.Rights: notes is empty");
-        this.rightsHolder = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(rightsHolder, "org.dressdiscover.api.models.rights.Rights: missing rightsHolder"), "org.dressdiscover.api.models.rights.Rights: rightsHolder is empty");
+    protected Rights(final String text, final org.dressdiscover.api.models.rights.RightsType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> licenseVocabRef, final com.google.common.base.Optional<String> notes, final com.google.common.base.Optional<String> rightsHolder) {
+        this.text = text;
+        this.type = type;
+        this.licenseVocabRef = licenseVocabRef;
+        this.notes = notes;
+        this.rightsHolder = rightsHolder;
     }
 
     public static Builder builder() {
@@ -449,6 +424,27 @@ public class Rights implements org.thryft.Struct, org.dressdiscover.api.models.E
 
     public static Builder builder(final com.google.common.base.Optional<Rights> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static Rights create(final String text, final org.dressdiscover.api.models.rights.RightsType type) {
+        return new Rights(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.rights.Rights: missing text"), "org.dressdiscover.api.models.rights.Rights: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.rights.Rights: missing type"), com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static Rights create(final String text, final org.dressdiscover.api.models.rights.RightsType type, final @javax.annotation.Nullable org.dressdiscover.api.models.VocabRef licenseVocabRef, final @javax.annotation.Nullable String notes, final @javax.annotation.Nullable String rightsHolder) {
+        return new Rights(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.rights.Rights: missing text"), "org.dressdiscover.api.models.rights.Rights: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.rights.Rights: missing type"), com.google.common.base.Optional.fromNullable(licenseVocabRef), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(notes), "org.dressdiscover.api.models.rights.Rights: notes is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(rightsHolder), "org.dressdiscover.api.models.rights.Rights: rightsHolder is empty"));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static Rights create(final String text, final org.dressdiscover.api.models.rights.RightsType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> licenseVocabRef, final com.google.common.base.Optional<String> notes, final com.google.common.base.Optional<String> rightsHolder) {
+        return new Rights(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.rights.Rights: missing text"), "org.dressdiscover.api.models.rights.Rights: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.rights.Rights: missing type"), com.google.common.base.Preconditions.checkNotNull(licenseVocabRef, "org.dressdiscover.api.models.rights.Rights: missing licenseVocabRef"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(notes, "org.dressdiscover.api.models.rights.Rights: missing notes"), "org.dressdiscover.api.models.rights.Rights: notes is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(rightsHolder, "org.dressdiscover.api.models.rights.Rights: missing rightsHolder"), "org.dressdiscover.api.models.rights.Rights: rightsHolder is empty"));
     }
 
     @Override
@@ -548,9 +544,9 @@ public class Rights implements org.thryft.Struct, org.dressdiscover.api.models.E
     public static Rights readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         String text = null;
         org.dressdiscover.api.models.rights.RightsType type = null;
-        com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> licenseVocabRef = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> rightsHolder = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> licenseVocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
+        com.google.common.base.Optional<String> notes = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<String> rightsHolder = com.google.common.base.Optional.<String> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         text = iprot.readString();
@@ -579,9 +575,9 @@ public class Rights implements org.thryft.Struct, org.dressdiscover.api.models.E
     public static Rights readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         String text = null;
         org.dressdiscover.api.models.rights.RightsType type = null;
-        com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> licenseVocabRef = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> notes = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> rightsHolder = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> licenseVocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
+        com.google.common.base.Optional<String> notes = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<String> rightsHolder = com.google.common.base.Optional.<String> absent();
 
         iprot.readStructBegin();
         while (true) {

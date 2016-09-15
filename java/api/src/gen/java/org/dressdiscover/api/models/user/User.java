@@ -282,12 +282,9 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
         this(other.getCtime(), other.getEmailAddress());
     }
 
-    /**
-     * Optional constructor
-     */
-    public User(final java.util.Date ctime, final org.thryft.native_.EmailAddress emailAddress) {
-        this.ctime = com.google.common.base.Preconditions.checkNotNull(ctime, "org.dressdiscover.api.models.user.User: missing ctime");
-        this.emailAddress = com.google.common.base.Preconditions.checkNotNull(emailAddress, "org.dressdiscover.api.models.user.User: missing emailAddress");
+    protected User(final java.util.Date ctime, final org.thryft.native_.EmailAddress emailAddress) {
+        this.ctime = ctime;
+        this.emailAddress = emailAddress;
     }
 
     public static Builder builder() {
@@ -300,6 +297,13 @@ public class User implements org.thryft.Struct, org.thryft.waf.api.models.Model 
 
     public static Builder builder(final com.google.common.base.Optional<User> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static User create(final java.util.Date ctime, final org.thryft.native_.EmailAddress emailAddress) {
+        return new User(com.google.common.base.Preconditions.checkNotNull(ctime, "org.dressdiscover.api.models.user.User: missing ctime"), com.google.common.base.Preconditions.checkNotNull(emailAddress, "org.dressdiscover.api.models.user.User: missing emailAddress"));
     }
 
     @Override

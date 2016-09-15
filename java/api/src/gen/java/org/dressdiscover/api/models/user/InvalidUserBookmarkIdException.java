@@ -254,11 +254,8 @@ public class InvalidUserBookmarkIdException extends org.thryft.Exception {
         this(other.getCauseMessage());
     }
 
-    /**
-     * Optional constructor
-     */
-    public InvalidUserBookmarkIdException(final String causeMessage) {
-        this.causeMessage = com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.models.user.InvalidUserBookmarkIdException: missing causeMessage");
+    protected InvalidUserBookmarkIdException(final String causeMessage) {
+        this.causeMessage = causeMessage;
     }
 
     public static Builder builder() {
@@ -271,6 +268,13 @@ public class InvalidUserBookmarkIdException extends org.thryft.Exception {
 
     public static Builder builder(final com.google.common.base.Optional<InvalidUserBookmarkIdException> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static InvalidUserBookmarkIdException create(final String causeMessage) {
+        return new InvalidUserBookmarkIdException(com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.models.user.InvalidUserBookmarkIdException: missing causeMessage"));
     }
 
     @Override

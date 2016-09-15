@@ -52,7 +52,7 @@ public class StoreInstitutionQueryService implements InstitutionQueryService {
                 resultBuilder.add(store.getInstitutionById(institutionId, logger, Markers.GET_INSTITUTIONS_BY_IDS));
             } catch (final InvalidModelException e) {
                 logger.warn(Markers.GET_INSTITUTIONS_BY_IDS, "invalid institution model {}: ", institutionId, e);
-                throw new NoSuchInstitutionException(institutionId);
+                throw NoSuchInstitutionException.create(institutionId);
             }
         }
         return resultBuilder.build();

@@ -7,9 +7,9 @@ public class DateBound implements org.thryft.Struct {
     public static class Builder {
         public Builder() {
             text = null;
-            circa = com.google.common.base.Optional.absent();
-            parsedDateTime = com.google.common.base.Optional.absent();
-            parsedDateTimeGranularity = com.google.common.base.Optional.absent();
+            circa = com.google.common.base.Optional.<Boolean> absent();
+            parsedDateTime = com.google.common.base.Optional.<java.util.Date> absent();
+            parsedDateTimeGranularity = com.google.common.base.Optional.<org.dressdiscover.api.models.date.DateTimeGranularity> absent();
         }
 
         public Builder(final DateBound other) {
@@ -235,17 +235,17 @@ public class DateBound implements org.thryft.Struct {
         }
 
         public Builder unsetCirca() {
-            this.circa = com.google.common.base.Optional.absent();
+            this.circa = com.google.common.base.Optional.<Boolean> absent();
             return this;
         }
 
         public Builder unsetParsedDateTime() {
-            this.parsedDateTime = com.google.common.base.Optional.absent();
+            this.parsedDateTime = com.google.common.base.Optional.<java.util.Date> absent();
             return this;
         }
 
         public Builder unsetParsedDateTimeGranularity() {
-            this.parsedDateTimeGranularity = com.google.common.base.Optional.absent();
+            this.parsedDateTimeGranularity = com.google.common.base.Optional.<org.dressdiscover.api.models.date.DateTimeGranularity> absent();
             return this;
         }
 
@@ -388,34 +388,11 @@ public class DateBound implements org.thryft.Struct {
         this(other.getText(), other.getCirca(), other.getParsedDateTime(), other.getParsedDateTimeGranularity());
     }
 
-    /**
-     * Required constructor
-     */
-    public DateBound(final String text) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.date.DateBound: missing text"), "org.dressdiscover.api.models.date.DateBound: text is empty");
-        this.circa = com.google.common.base.Optional.absent();
-        this.parsedDateTime = com.google.common.base.Optional.absent();
-        this.parsedDateTimeGranularity = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public DateBound(final String text, final @javax.annotation.Nullable Boolean circa, final @javax.annotation.Nullable java.util.Date parsedDateTime, final @javax.annotation.Nullable org.dressdiscover.api.models.date.DateTimeGranularity parsedDateTimeGranularity) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.date.DateBound: missing text"), "org.dressdiscover.api.models.date.DateBound: text is empty");
-        this.circa = com.google.common.base.Optional.fromNullable(circa);
-        this.parsedDateTime = com.google.common.base.Optional.fromNullable(parsedDateTime);
-        this.parsedDateTimeGranularity = com.google.common.base.Optional.fromNullable(parsedDateTimeGranularity);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public DateBound(final String text, final com.google.common.base.Optional<Boolean> circa, final com.google.common.base.Optional<java.util.Date> parsedDateTime, final com.google.common.base.Optional<org.dressdiscover.api.models.date.DateTimeGranularity> parsedDateTimeGranularity) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.date.DateBound: missing text"), "org.dressdiscover.api.models.date.DateBound: text is empty");
-        this.circa = com.google.common.base.Preconditions.checkNotNull(circa, "org.dressdiscover.api.models.date.DateBound: missing circa");
-        this.parsedDateTime = com.google.common.base.Preconditions.checkNotNull(parsedDateTime, "org.dressdiscover.api.models.date.DateBound: missing parsedDateTime");
-        this.parsedDateTimeGranularity = com.google.common.base.Preconditions.checkNotNull(parsedDateTimeGranularity, "org.dressdiscover.api.models.date.DateBound: missing parsedDateTimeGranularity");
+    protected DateBound(final String text, final com.google.common.base.Optional<Boolean> circa, final com.google.common.base.Optional<java.util.Date> parsedDateTime, final com.google.common.base.Optional<org.dressdiscover.api.models.date.DateTimeGranularity> parsedDateTimeGranularity) {
+        this.text = text;
+        this.circa = circa;
+        this.parsedDateTime = parsedDateTime;
+        this.parsedDateTimeGranularity = parsedDateTimeGranularity;
     }
 
     public static Builder builder() {
@@ -428,6 +405,27 @@ public class DateBound implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<DateBound> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static DateBound create(final String text) {
+        return new DateBound(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.date.DateBound: missing text"), "org.dressdiscover.api.models.date.DateBound: text is empty"), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<java.util.Date> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.date.DateTimeGranularity> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static DateBound create(final String text, final @javax.annotation.Nullable Boolean circa, final @javax.annotation.Nullable java.util.Date parsedDateTime, final @javax.annotation.Nullable org.dressdiscover.api.models.date.DateTimeGranularity parsedDateTimeGranularity) {
+        return new DateBound(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.date.DateBound: missing text"), "org.dressdiscover.api.models.date.DateBound: text is empty"), com.google.common.base.Optional.fromNullable(circa), com.google.common.base.Optional.fromNullable(parsedDateTime), com.google.common.base.Optional.fromNullable(parsedDateTimeGranularity));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static DateBound create(final String text, final com.google.common.base.Optional<Boolean> circa, final com.google.common.base.Optional<java.util.Date> parsedDateTime, final com.google.common.base.Optional<org.dressdiscover.api.models.date.DateTimeGranularity> parsedDateTimeGranularity) {
+        return new DateBound(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.date.DateBound: missing text"), "org.dressdiscover.api.models.date.DateBound: text is empty"), com.google.common.base.Preconditions.checkNotNull(circa, "org.dressdiscover.api.models.date.DateBound: missing circa"), com.google.common.base.Preconditions.checkNotNull(parsedDateTime, "org.dressdiscover.api.models.date.DateBound: missing parsedDateTime"), com.google.common.base.Preconditions.checkNotNull(parsedDateTimeGranularity, "org.dressdiscover.api.models.date.DateBound: missing parsedDateTimeGranularity"));
     }
 
     @Override
@@ -519,9 +517,9 @@ public class DateBound implements org.thryft.Struct {
 
     public static DateBound readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         String text = null;
-        com.google.common.base.Optional<Boolean> circa = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<java.util.Date> parsedDateTime = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.date.DateTimeGranularity> parsedDateTimeGranularity = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<Boolean> circa = com.google.common.base.Optional.<Boolean> absent();
+        com.google.common.base.Optional<java.util.Date> parsedDateTime = com.google.common.base.Optional.<java.util.Date> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.date.DateTimeGranularity> parsedDateTimeGranularity = com.google.common.base.Optional.<org.dressdiscover.api.models.date.DateTimeGranularity> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         text = iprot.readString();
@@ -554,9 +552,9 @@ public class DateBound implements org.thryft.Struct {
 
     public static DateBound readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         String text = null;
-        com.google.common.base.Optional<Boolean> circa = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<java.util.Date> parsedDateTime = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.date.DateTimeGranularity> parsedDateTimeGranularity = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<Boolean> circa = com.google.common.base.Optional.<Boolean> absent();
+        com.google.common.base.Optional<java.util.Date> parsedDateTime = com.google.common.base.Optional.<java.util.Date> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.date.DateTimeGranularity> parsedDateTimeGranularity = com.google.common.base.Optional.<org.dressdiscover.api.models.date.DateTimeGranularity> absent();
 
         iprot.readStructBegin();
         while (true) {

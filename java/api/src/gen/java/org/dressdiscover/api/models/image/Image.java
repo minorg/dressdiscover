@@ -3,11 +3,11 @@ package org.dressdiscover.api.models.image;
 public class Image implements org.thryft.Struct {
     public static class Builder {
         public Builder() {
-            fullSize = com.google.common.base.Optional.absent();
-            original = com.google.common.base.Optional.absent();
-            rights = com.google.common.base.Optional.absent();
-            squareThumbnail = com.google.common.base.Optional.absent();
-            thumbnail = com.google.common.base.Optional.absent();
+            fullSize = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
+            original = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
+            rights = com.google.common.base.Optional.<org.dressdiscover.api.models.rights.RightsSet> absent();
+            squareThumbnail = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
+            thumbnail = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
         }
 
         public Builder(final Image other) {
@@ -259,27 +259,27 @@ public class Image implements org.thryft.Struct {
         }
 
         public Builder unsetFullSize() {
-            this.fullSize = com.google.common.base.Optional.absent();
+            this.fullSize = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
             return this;
         }
 
         public Builder unsetOriginal() {
-            this.original = com.google.common.base.Optional.absent();
+            this.original = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
             return this;
         }
 
         public Builder unsetRights() {
-            this.rights = com.google.common.base.Optional.absent();
+            this.rights = com.google.common.base.Optional.<org.dressdiscover.api.models.rights.RightsSet> absent();
             return this;
         }
 
         public Builder unsetSquareThumbnail() {
-            this.squareThumbnail = com.google.common.base.Optional.absent();
+            this.squareThumbnail = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
             return this;
         }
 
         public Builder unsetThumbnail() {
-            this.thumbnail = com.google.common.base.Optional.absent();
+            this.thumbnail = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
             return this;
         }
 
@@ -418,11 +418,11 @@ public class Image implements org.thryft.Struct {
      * Default constructor
      */
     public Image() {
-        fullSize = com.google.common.base.Optional.absent();
-        original = com.google.common.base.Optional.absent();
-        rights = com.google.common.base.Optional.absent();
-        squareThumbnail = com.google.common.base.Optional.absent();
-        thumbnail = com.google.common.base.Optional.absent();
+        fullSize = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
+        original = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
+        rights = com.google.common.base.Optional.<org.dressdiscover.api.models.rights.RightsSet> absent();
+        squareThumbnail = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
+        thumbnail = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
     }
 
     /**
@@ -432,26 +432,12 @@ public class Image implements org.thryft.Struct {
         this(other.getFullSize(), other.getOriginal(), other.getRights(), other.getSquareThumbnail(), other.getThumbnail());
     }
 
-    /**
-     * Total Nullable constructor
-     */
-    public Image(final @javax.annotation.Nullable org.dressdiscover.api.models.image.ImageVersion fullSize, final @javax.annotation.Nullable org.dressdiscover.api.models.image.ImageVersion original, final @javax.annotation.Nullable org.dressdiscover.api.models.rights.RightsSet rights, final @javax.annotation.Nullable org.dressdiscover.api.models.image.ImageVersion squareThumbnail, final @javax.annotation.Nullable org.dressdiscover.api.models.image.ImageVersion thumbnail) {
-        this.fullSize = com.google.common.base.Optional.fromNullable(fullSize);
-        this.original = com.google.common.base.Optional.fromNullable(original);
-        this.rights = com.google.common.base.Optional.fromNullable(rights);
-        this.squareThumbnail = com.google.common.base.Optional.fromNullable(squareThumbnail);
-        this.thumbnail = com.google.common.base.Optional.fromNullable(thumbnail);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public Image(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> fullSize, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> original, final com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail) {
-        this.fullSize = com.google.common.base.Preconditions.checkNotNull(fullSize, "org.dressdiscover.api.models.image.Image: missing fullSize");
-        this.original = com.google.common.base.Preconditions.checkNotNull(original, "org.dressdiscover.api.models.image.Image: missing original");
-        this.rights = com.google.common.base.Preconditions.checkNotNull(rights, "org.dressdiscover.api.models.image.Image: missing rights");
-        this.squareThumbnail = com.google.common.base.Preconditions.checkNotNull(squareThumbnail, "org.dressdiscover.api.models.image.Image: missing squareThumbnail");
-        this.thumbnail = com.google.common.base.Preconditions.checkNotNull(thumbnail, "org.dressdiscover.api.models.image.Image: missing thumbnail");
+    protected Image(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> fullSize, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> original, final com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail) {
+        this.fullSize = fullSize;
+        this.original = original;
+        this.rights = rights;
+        this.squareThumbnail = squareThumbnail;
+        this.thumbnail = thumbnail;
     }
 
     public static Builder builder() {
@@ -464,6 +450,24 @@ public class Image implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<Image> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    public static Image create() {
+        return new Image();
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static Image create(final @javax.annotation.Nullable org.dressdiscover.api.models.image.ImageVersion fullSize, final @javax.annotation.Nullable org.dressdiscover.api.models.image.ImageVersion original, final @javax.annotation.Nullable org.dressdiscover.api.models.rights.RightsSet rights, final @javax.annotation.Nullable org.dressdiscover.api.models.image.ImageVersion squareThumbnail, final @javax.annotation.Nullable org.dressdiscover.api.models.image.ImageVersion thumbnail) {
+        return new Image(com.google.common.base.Optional.fromNullable(fullSize), com.google.common.base.Optional.fromNullable(original), com.google.common.base.Optional.fromNullable(rights), com.google.common.base.Optional.fromNullable(squareThumbnail), com.google.common.base.Optional.fromNullable(thumbnail));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static Image create(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> fullSize, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> original, final com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail) {
+        return new Image(com.google.common.base.Preconditions.checkNotNull(fullSize, "org.dressdiscover.api.models.image.Image: missing fullSize"), com.google.common.base.Preconditions.checkNotNull(original, "org.dressdiscover.api.models.image.Image: missing original"), com.google.common.base.Preconditions.checkNotNull(rights, "org.dressdiscover.api.models.image.Image: missing rights"), com.google.common.base.Preconditions.checkNotNull(squareThumbnail, "org.dressdiscover.api.models.image.Image: missing squareThumbnail"), com.google.common.base.Preconditions.checkNotNull(thumbnail, "org.dressdiscover.api.models.image.Image: missing thumbnail"));
     }
 
     @Override
@@ -565,11 +569,11 @@ public class Image implements org.thryft.Struct {
     }
 
     public static Image readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> fullSize = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> original = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> fullSize = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> original = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights = com.google.common.base.Optional.<org.dressdiscover.api.models.rights.RightsSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         if (__list.getSize() > 0) {
@@ -600,11 +604,11 @@ public class Image implements org.thryft.Struct {
     }
 
     public static Image readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> fullSize = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> original = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> fullSize = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> original = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.rights.RightsSet> rights = com.google.common.base.Optional.<org.dressdiscover.api.models.rights.RightsSet> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
 
         iprot.readStructBegin();
         while (true) {

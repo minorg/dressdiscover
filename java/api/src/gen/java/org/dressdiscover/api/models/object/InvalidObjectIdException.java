@@ -254,11 +254,8 @@ public class InvalidObjectIdException extends org.thryft.Exception {
         this(other.getCauseMessage());
     }
 
-    /**
-     * Optional constructor
-     */
-    public InvalidObjectIdException(final String causeMessage) {
-        this.causeMessage = com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.models.object.InvalidObjectIdException: missing causeMessage");
+    protected InvalidObjectIdException(final String causeMessage) {
+        this.causeMessage = causeMessage;
     }
 
     public static Builder builder() {
@@ -271,6 +268,13 @@ public class InvalidObjectIdException extends org.thryft.Exception {
 
     public static Builder builder(final com.google.common.base.Optional<InvalidObjectIdException> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static InvalidObjectIdException create(final String causeMessage) {
+        return new InvalidObjectIdException(com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.models.object.InvalidObjectIdException: missing causeMessage"));
     }
 
     @Override

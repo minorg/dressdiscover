@@ -260,11 +260,8 @@ public class IoException extends org.thryft.Exception {
         this(other.getCauseMessage());
     }
 
-    /**
-     * Optional constructor
-     */
-    public IoException(final String causeMessage) {
-        this.causeMessage = com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.services.IoException: missing causeMessage");
+    protected IoException(final String causeMessage) {
+        this.causeMessage = causeMessage;
     }
 
     public static Builder builder() {
@@ -277,6 +274,13 @@ public class IoException extends org.thryft.Exception {
 
     public static Builder builder(final com.google.common.base.Optional<IoException> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static IoException create(final String causeMessage) {
+        return new IoException(com.google.common.base.Preconditions.checkNotNull(causeMessage, "org.dressdiscover.api.services.IoException: missing causeMessage"));
     }
 
     @Override

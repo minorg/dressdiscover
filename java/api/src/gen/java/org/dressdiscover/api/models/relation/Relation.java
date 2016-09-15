@@ -7,9 +7,9 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
     public static class Builder {
         public Builder() {
             type = null;
-            href = com.google.common.base.Optional.absent();
-            relids = com.google.common.base.Optional.absent();
-            text = com.google.common.base.Optional.absent();
+            href = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
+            relids = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> absent();
+            text = com.google.common.base.Optional.<String> absent();
         }
 
         public Builder(final Relation other) {
@@ -276,17 +276,17 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
         }
 
         public Builder unsetHref() {
-            this.href = com.google.common.base.Optional.absent();
+            this.href = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
             return this;
         }
 
         public Builder unsetRelids() {
-            this.relids = com.google.common.base.Optional.absent();
+            this.relids = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> absent();
             return this;
         }
 
         public Builder unsetText() {
-            this.text = com.google.common.base.Optional.absent();
+            this.text = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
@@ -429,34 +429,11 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
         this(other.getType(), other.getHref(), other.getRelids(), other.getText());
     }
 
-    /**
-     * Required constructor
-     */
-    public Relation(final org.dressdiscover.api.models.relation.RelationType type) {
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.relation.Relation: missing type");
-        this.href = com.google.common.base.Optional.absent();
-        this.relids = com.google.common.base.Optional.absent();
-        this.text = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public Relation(final org.dressdiscover.api.models.relation.RelationType type, final @javax.annotation.Nullable org.thryft.native_.Url href, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> relids, final @javax.annotation.Nullable String text) {
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.relation.Relation: missing type");
-        this.href = com.google.common.base.Optional.fromNullable(href);
-        this.relids = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(relids), "org.dressdiscover.api.models.relation.Relation: relids is empty");
-        this.text = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(text), "org.dressdiscover.api.models.relation.Relation: text is empty");
-    }
-
-    /**
-     * Optional constructor
-     */
-    public Relation(final org.dressdiscover.api.models.relation.RelationType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids, final com.google.common.base.Optional<String> text) {
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.relation.Relation: missing type");
-        this.href = com.google.common.base.Preconditions.checkNotNull(href, "org.dressdiscover.api.models.relation.Relation: missing href");
-        this.relids = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(relids, "org.dressdiscover.api.models.relation.Relation: missing relids"), "org.dressdiscover.api.models.relation.Relation: relids is empty");
-        this.text = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.relation.Relation: missing text"), "org.dressdiscover.api.models.relation.Relation: text is empty");
+    protected Relation(final org.dressdiscover.api.models.relation.RelationType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids, final com.google.common.base.Optional<String> text) {
+        this.type = type;
+        this.href = href;
+        this.relids = relids;
+        this.text = text;
     }
 
     public static Builder builder() {
@@ -469,6 +446,27 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
 
     public static Builder builder(final com.google.common.base.Optional<Relation> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static Relation create(final org.dressdiscover.api.models.relation.RelationType type) {
+        return new Relation(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.relation.Relation: missing type"), com.google.common.base.Optional.<org.thryft.native_.Url> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> absent(), com.google.common.base.Optional.<String> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static Relation create(final org.dressdiscover.api.models.relation.RelationType type, final @javax.annotation.Nullable org.thryft.native_.Url href, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> relids, final @javax.annotation.Nullable String text) {
+        return new Relation(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.relation.Relation: missing type"), com.google.common.base.Optional.fromNullable(href), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(relids), "org.dressdiscover.api.models.relation.Relation: relids is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(text), "org.dressdiscover.api.models.relation.Relation: text is empty"));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static Relation create(final org.dressdiscover.api.models.relation.RelationType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids, final com.google.common.base.Optional<String> text) {
+        return new Relation(com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.relation.Relation: missing type"), com.google.common.base.Preconditions.checkNotNull(href, "org.dressdiscover.api.models.relation.Relation: missing href"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(relids, "org.dressdiscover.api.models.relation.Relation: missing relids"), "org.dressdiscover.api.models.relation.Relation: relids is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.relation.Relation: missing text"), "org.dressdiscover.api.models.relation.Relation: text is empty"));
     }
 
     @Override
@@ -560,9 +558,9 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
 
     public static Relation readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         org.dressdiscover.api.models.relation.RelationType type = null;
-        com.google.common.base.Optional<org.thryft.native_.Url> href = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> text = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.thryft.native_.Url> href = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> absent();
+        com.google.common.base.Optional<String> text = com.google.common.base.Optional.<String> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         type = iprot.readEnum(org.dressdiscover.api.models.relation.RelationType.class);
@@ -615,9 +613,9 @@ public class Relation implements org.thryft.Struct, org.dressdiscover.api.models
 
     public static Relation readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         org.dressdiscover.api.models.relation.RelationType type = null;
-        com.google.common.base.Optional<org.thryft.native_.Url> href = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> text = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.thryft.native_.Url> href = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> absent();
+        com.google.common.base.Optional<String> text = com.google.common.base.Optional.<String> absent();
 
         iprot.readStructBegin();
         while (true) {

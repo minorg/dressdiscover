@@ -1,5 +1,8 @@
 package org.dressdiscover.gui.views.object_by_id;
 
+import org.dressdiscover.api.models.image.ImageVersion;
+import org.dressdiscover.api.models.object.ObjectSummaryEntry;
+import org.dressdiscover.api.services.object.ObjectQueryService;
 import org.thryft.waf.gui.EventBus;
 
 import com.google.common.base.Optional;
@@ -16,10 +19,6 @@ import com.vaadin.ui.Link;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-import org.dressdiscover.api.models.image.ImageVersion;
-import org.dressdiscover.api.models.object.ObjectSummaryEntry;
-import org.dressdiscover.api.services.object.ObjectQueryService;
-
 @SuppressWarnings("serial")
 public final class ObjectSummaryEntriesCarousel extends CustomComponent {
     public ObjectSummaryEntriesCarousel(final String caption, final EventBus eventBus,
@@ -31,7 +30,7 @@ public final class ObjectSummaryEntriesCarousel extends CustomComponent {
             final Button titleButton = new Button(objectSummaryEntry.getModel().getTitle(), new Button.ClickListener() {
                 @Override
                 public void buttonClick(final com.vaadin.ui.Button.ClickEvent event) {
-                    eventBus.post(new ObjectQueryService.Messages.GetObjectByIdRequest(objectSummaryEntry.getId()));
+                    eventBus.post(ObjectQueryService.Messages.GetObjectByIdRequest.create(objectSummaryEntry.getId()));
                 }
             });
             titleButton.setStyleName("title-button");
@@ -55,8 +54,8 @@ public final class ObjectSummaryEntriesCarousel extends CustomComponent {
                     imageView.addClickListener(new ClickListener() {
                         @Override
                         public void click(final ClickEvent event) {
-                            eventBus.post(
-                                    new ObjectQueryService.Messages.GetObjectByIdRequest(objectSummaryEntry.getId()));
+                            eventBus.post(ObjectQueryService.Messages.GetObjectByIdRequest
+                                    .create(objectSummaryEntry.getId()));
                         }
                     });
                     imageLayout.addComponent(imageView);

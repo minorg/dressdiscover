@@ -52,7 +52,7 @@ public class StoreCollectionQueryService implements CollectionQueryService {
                         .getCollectionById(collectionId, logger, Markers.GET_COLLECTIONS_BY_IDS));
             } catch (final InvalidModelException e) {
                 logger.warn(Markers.GET_COLLECTIONS_BY_IDS, "invalid collection model {}: ", collectionId, e);
-                throw new NoSuchCollectionException(collectionId);
+                throw NoSuchCollectionException.create(collectionId);
             }
         }
         return collectionsBuilder.build();

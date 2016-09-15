@@ -6,23 +6,23 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
             collectionId = null;
             institutionId = null;
             title = null;
-            agentNameTexts = com.google.common.base.Optional.absent();
-            categories = com.google.common.base.Optional.absent();
-            colorTexts = com.google.common.base.Optional.absent();
-            culturalContextTexts = com.google.common.base.Optional.absent();
-            date = com.google.common.base.Optional.absent();
-            description = com.google.common.base.Optional.absent();
-            gender = com.google.common.base.Optional.absent();
-            hidden = com.google.common.base.Optional.absent();
-            image = com.google.common.base.Optional.absent();
-            locationNameTexts = com.google.common.base.Optional.absent();
-            materialTexts = com.google.common.base.Optional.absent();
-            relationTexts = com.google.common.base.Optional.absent();
-            structureTexts = com.google.common.base.Optional.absent();
-            subjectTermTexts = com.google.common.base.Optional.absent();
-            techniqueTexts = com.google.common.base.Optional.absent();
-            url = com.google.common.base.Optional.absent();
-            workTypeTexts = com.google.common.base.Optional.absent();
+            agentNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+            categories = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+            colorTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+            culturalContextTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+            date = com.google.common.base.Optional.<String> absent();
+            description = com.google.common.base.Optional.<String> absent();
+            gender = com.google.common.base.Optional.<org.dressdiscover.api.models.gender.Gender> absent();
+            hidden = com.google.common.base.Optional.<Boolean> absent();
+            image = com.google.common.base.Optional.<org.dressdiscover.api.models.image.Image> absent();
+            locationNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+            materialTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+            relationTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+            structureTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
+            subjectTermTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+            techniqueTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+            url = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
+            workTypeTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
         }
 
         public Builder(final ObjectSummary other) {
@@ -1146,12 +1146,12 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
         }
 
         public Builder unsetAgentNameTexts() {
-            this.agentNameTexts = com.google.common.base.Optional.absent();
+            this.agentNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
             return this;
         }
 
         public Builder unsetCategories() {
-            this.categories = com.google.common.base.Optional.absent();
+            this.categories = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
             return this;
         }
 
@@ -1161,37 +1161,37 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
         }
 
         public Builder unsetColorTexts() {
-            this.colorTexts = com.google.common.base.Optional.absent();
+            this.colorTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
             return this;
         }
 
         public Builder unsetCulturalContextTexts() {
-            this.culturalContextTexts = com.google.common.base.Optional.absent();
+            this.culturalContextTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
             return this;
         }
 
         public Builder unsetDate() {
-            this.date = com.google.common.base.Optional.absent();
+            this.date = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
         public Builder unsetDescription() {
-            this.description = com.google.common.base.Optional.absent();
+            this.description = com.google.common.base.Optional.<String> absent();
             return this;
         }
 
         public Builder unsetGender() {
-            this.gender = com.google.common.base.Optional.absent();
+            this.gender = com.google.common.base.Optional.<org.dressdiscover.api.models.gender.Gender> absent();
             return this;
         }
 
         public Builder unsetHidden() {
-            this.hidden = com.google.common.base.Optional.absent();
+            this.hidden = com.google.common.base.Optional.<Boolean> absent();
             return this;
         }
 
         public Builder unsetImage() {
-            this.image = com.google.common.base.Optional.absent();
+            this.image = com.google.common.base.Optional.<org.dressdiscover.api.models.image.Image> absent();
             return this;
         }
 
@@ -1201,32 +1201,32 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
         }
 
         public Builder unsetLocationNameTexts() {
-            this.locationNameTexts = com.google.common.base.Optional.absent();
+            this.locationNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
             return this;
         }
 
         public Builder unsetMaterialTexts() {
-            this.materialTexts = com.google.common.base.Optional.absent();
+            this.materialTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
             return this;
         }
 
         public Builder unsetRelationTexts() {
-            this.relationTexts = com.google.common.base.Optional.absent();
+            this.relationTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
             return this;
         }
 
         public Builder unsetStructureTexts() {
-            this.structureTexts = com.google.common.base.Optional.absent();
+            this.structureTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
             return this;
         }
 
         public Builder unsetSubjectTermTexts() {
-            this.subjectTermTexts = com.google.common.base.Optional.absent();
+            this.subjectTermTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
             return this;
         }
 
         public Builder unsetTechniqueTexts() {
-            this.techniqueTexts = com.google.common.base.Optional.absent();
+            this.techniqueTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
             return this;
         }
 
@@ -1236,12 +1236,12 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
         }
 
         public Builder unsetUrl() {
-            this.url = com.google.common.base.Optional.absent();
+            this.url = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
             return this;
         }
 
         public Builder unsetWorkTypeTexts() {
-            this.workTypeTexts = com.google.common.base.Optional.absent();
+            this.workTypeTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
             return this;
         }
 
@@ -1452,82 +1452,27 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
         this(other.getCollectionId(), other.getInstitutionId(), other.getTitle(), other.getAgentNameTexts(), other.getCategories(), other.getColorTexts(), other.getCulturalContextTexts(), other.getDate(), other.getDescription(), other.getGender(), other.getHidden(), other.getImage(), other.getLocationNameTexts(), other.getMaterialTexts(), other.getRelationTexts(), other.getStructureTexts(), other.getSubjectTermTexts(), other.getTechniqueTexts(), other.getUrl(), other.getWorkTypeTexts());
     }
 
-    /**
-     * Required constructor
-     */
-    public ObjectSummary(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title) {
-        this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.ObjectSummary: missing collectionId");
-        this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.ObjectSummary: missing institutionId");
-        this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.object.ObjectSummary: missing title"), "org.dressdiscover.api.models.object.ObjectSummary: title is empty");
-        this.agentNameTexts = com.google.common.base.Optional.absent();
-        this.categories = com.google.common.base.Optional.absent();
-        this.colorTexts = com.google.common.base.Optional.absent();
-        this.culturalContextTexts = com.google.common.base.Optional.absent();
-        this.date = com.google.common.base.Optional.absent();
-        this.description = com.google.common.base.Optional.absent();
-        this.gender = com.google.common.base.Optional.absent();
-        this.hidden = com.google.common.base.Optional.absent();
-        this.image = com.google.common.base.Optional.absent();
-        this.locationNameTexts = com.google.common.base.Optional.absent();
-        this.materialTexts = com.google.common.base.Optional.absent();
-        this.relationTexts = com.google.common.base.Optional.absent();
-        this.structureTexts = com.google.common.base.Optional.absent();
-        this.subjectTermTexts = com.google.common.base.Optional.absent();
-        this.techniqueTexts = com.google.common.base.Optional.absent();
-        this.url = com.google.common.base.Optional.absent();
-        this.workTypeTexts = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public ObjectSummary(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> agentNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> categories, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> colorTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> culturalContextTexts, final @javax.annotation.Nullable String date, final @javax.annotation.Nullable String description, final @javax.annotation.Nullable org.dressdiscover.api.models.gender.Gender gender, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable org.dressdiscover.api.models.image.Image image, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> locationNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> materialTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> relationTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, String> structureTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> subjectTermTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> techniqueTexts, final @javax.annotation.Nullable org.thryft.native_.Url url, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> workTypeTexts) {
-        this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.ObjectSummary: missing collectionId");
-        this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.ObjectSummary: missing institutionId");
-        this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.object.ObjectSummary: missing title"), "org.dressdiscover.api.models.object.ObjectSummary: title is empty");
-        this.agentNameTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(agentNameTexts), "org.dressdiscover.api.models.object.ObjectSummary: agentNameTexts is empty");
-        this.categories = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(categories), "org.dressdiscover.api.models.object.ObjectSummary: categories is empty");
-        this.colorTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(colorTexts), "org.dressdiscover.api.models.object.ObjectSummary: colorTexts is empty");
-        this.culturalContextTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(culturalContextTexts), "org.dressdiscover.api.models.object.ObjectSummary: culturalContextTexts is empty");
-        this.date = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(date), "org.dressdiscover.api.models.object.ObjectSummary: date is empty");
-        this.description = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(description), "org.dressdiscover.api.models.object.ObjectSummary: description is empty");
-        this.gender = com.google.common.base.Optional.fromNullable(gender);
-        this.hidden = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(hidden), "org.dressdiscover.api.models.object.ObjectSummary: hidden must be true");
-        this.image = com.google.common.base.Optional.fromNullable(image);
-        this.locationNameTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(locationNameTexts), "org.dressdiscover.api.models.object.ObjectSummary: locationNameTexts is empty");
-        this.materialTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(materialTexts), "org.dressdiscover.api.models.object.ObjectSummary: materialTexts is empty");
-        this.relationTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(relationTexts), "org.dressdiscover.api.models.object.ObjectSummary: relationTexts is empty");
-        this.structureTexts = org.thryft.Preconditions.checkOptionalMapNotEmpty(com.google.common.base.Optional.fromNullable(structureTexts), "org.dressdiscover.api.models.object.ObjectSummary: structureTexts is empty");
-        this.subjectTermTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(subjectTermTexts), "org.dressdiscover.api.models.object.ObjectSummary: subjectTermTexts is empty");
-        this.techniqueTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(techniqueTexts), "org.dressdiscover.api.models.object.ObjectSummary: techniqueTexts is empty");
-        this.url = com.google.common.base.Optional.fromNullable(url);
-        this.workTypeTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(workTypeTexts), "org.dressdiscover.api.models.object.ObjectSummary: workTypeTexts is empty");
-    }
-
-    /**
-     * Optional constructor
-     */
-    public ObjectSummary(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts, final com.google.common.base.Optional<String> date, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
-        this.collectionId = com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.ObjectSummary: missing collectionId");
-        this.institutionId = com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.ObjectSummary: missing institutionId");
-        this.title = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.object.ObjectSummary: missing title"), "org.dressdiscover.api.models.object.ObjectSummary: title is empty");
-        this.agentNameTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(agentNameTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing agentNameTexts"), "org.dressdiscover.api.models.object.ObjectSummary: agentNameTexts is empty");
-        this.categories = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(categories, "org.dressdiscover.api.models.object.ObjectSummary: missing categories"), "org.dressdiscover.api.models.object.ObjectSummary: categories is empty");
-        this.colorTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(colorTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing colorTexts"), "org.dressdiscover.api.models.object.ObjectSummary: colorTexts is empty");
-        this.culturalContextTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(culturalContextTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing culturalContextTexts"), "org.dressdiscover.api.models.object.ObjectSummary: culturalContextTexts is empty");
-        this.date = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(date, "org.dressdiscover.api.models.object.ObjectSummary: missing date"), "org.dressdiscover.api.models.object.ObjectSummary: date is empty");
-        this.description = org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(description, "org.dressdiscover.api.models.object.ObjectSummary: missing description"), "org.dressdiscover.api.models.object.ObjectSummary: description is empty");
-        this.gender = com.google.common.base.Preconditions.checkNotNull(gender, "org.dressdiscover.api.models.object.ObjectSummary: missing gender");
-        this.hidden = org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(hidden, "org.dressdiscover.api.models.object.ObjectSummary: missing hidden"), "org.dressdiscover.api.models.object.ObjectSummary: hidden must be true");
-        this.image = com.google.common.base.Preconditions.checkNotNull(image, "org.dressdiscover.api.models.object.ObjectSummary: missing image");
-        this.locationNameTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(locationNameTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing locationNameTexts"), "org.dressdiscover.api.models.object.ObjectSummary: locationNameTexts is empty");
-        this.materialTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(materialTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing materialTexts"), "org.dressdiscover.api.models.object.ObjectSummary: materialTexts is empty");
-        this.relationTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(relationTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing relationTexts"), "org.dressdiscover.api.models.object.ObjectSummary: relationTexts is empty");
-        this.structureTexts = org.thryft.Preconditions.checkOptionalMapNotEmpty(com.google.common.base.Preconditions.checkNotNull(structureTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing structureTexts"), "org.dressdiscover.api.models.object.ObjectSummary: structureTexts is empty");
-        this.subjectTermTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing subjectTermTexts"), "org.dressdiscover.api.models.object.ObjectSummary: subjectTermTexts is empty");
-        this.techniqueTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(techniqueTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing techniqueTexts"), "org.dressdiscover.api.models.object.ObjectSummary: techniqueTexts is empty");
-        this.url = com.google.common.base.Preconditions.checkNotNull(url, "org.dressdiscover.api.models.object.ObjectSummary: missing url");
-        this.workTypeTexts = org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(workTypeTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing workTypeTexts"), "org.dressdiscover.api.models.object.ObjectSummary: workTypeTexts is empty");
+    protected ObjectSummary(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts, final com.google.common.base.Optional<String> date, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
+        this.collectionId = collectionId;
+        this.institutionId = institutionId;
+        this.title = title;
+        this.agentNameTexts = agentNameTexts;
+        this.categories = categories;
+        this.colorTexts = colorTexts;
+        this.culturalContextTexts = culturalContextTexts;
+        this.date = date;
+        this.description = description;
+        this.gender = gender;
+        this.hidden = hidden;
+        this.image = image;
+        this.locationNameTexts = locationNameTexts;
+        this.materialTexts = materialTexts;
+        this.relationTexts = relationTexts;
+        this.structureTexts = structureTexts;
+        this.subjectTermTexts = subjectTermTexts;
+        this.techniqueTexts = techniqueTexts;
+        this.url = url;
+        this.workTypeTexts = workTypeTexts;
     }
 
     public static Builder builder() {
@@ -1540,6 +1485,27 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
 
     public static Builder builder(final com.google.common.base.Optional<ObjectSummary> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static ObjectSummary create(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title) {
+        return new ObjectSummary(com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.ObjectSummary: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.ObjectSummary: missing institutionId"), org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.object.ObjectSummary: missing title"), "org.dressdiscover.api.models.object.ObjectSummary: title is empty"), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.gender.Gender> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.image.Image> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<org.thryft.native_.Url> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static ObjectSummary create(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> agentNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> categories, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> colorTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> culturalContextTexts, final @javax.annotation.Nullable String date, final @javax.annotation.Nullable String description, final @javax.annotation.Nullable org.dressdiscover.api.models.gender.Gender gender, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable org.dressdiscover.api.models.image.Image image, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> locationNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> materialTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> relationTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, String> structureTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> subjectTermTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> techniqueTexts, final @javax.annotation.Nullable org.thryft.native_.Url url, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> workTypeTexts) {
+        return new ObjectSummary(com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.ObjectSummary: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.ObjectSummary: missing institutionId"), org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.object.ObjectSummary: missing title"), "org.dressdiscover.api.models.object.ObjectSummary: title is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(agentNameTexts), "org.dressdiscover.api.models.object.ObjectSummary: agentNameTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(categories), "org.dressdiscover.api.models.object.ObjectSummary: categories is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(colorTexts), "org.dressdiscover.api.models.object.ObjectSummary: colorTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(culturalContextTexts), "org.dressdiscover.api.models.object.ObjectSummary: culturalContextTexts is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(date), "org.dressdiscover.api.models.object.ObjectSummary: date is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Optional.fromNullable(description), "org.dressdiscover.api.models.object.ObjectSummary: description is empty"), com.google.common.base.Optional.fromNullable(gender), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Optional.fromNullable(hidden), "org.dressdiscover.api.models.object.ObjectSummary: hidden must be true"), com.google.common.base.Optional.fromNullable(image), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(locationNameTexts), "org.dressdiscover.api.models.object.ObjectSummary: locationNameTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(materialTexts), "org.dressdiscover.api.models.object.ObjectSummary: materialTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(relationTexts), "org.dressdiscover.api.models.object.ObjectSummary: relationTexts is empty"), org.thryft.Preconditions.checkOptionalMapNotEmpty(com.google.common.base.Optional.fromNullable(structureTexts), "org.dressdiscover.api.models.object.ObjectSummary: structureTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(subjectTermTexts), "org.dressdiscover.api.models.object.ObjectSummary: subjectTermTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(techniqueTexts), "org.dressdiscover.api.models.object.ObjectSummary: techniqueTexts is empty"), com.google.common.base.Optional.fromNullable(url), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Optional.fromNullable(workTypeTexts), "org.dressdiscover.api.models.object.ObjectSummary: workTypeTexts is empty"));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static ObjectSummary create(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final String title, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts, final com.google.common.base.Optional<String> date, final com.google.common.base.Optional<String> description, final com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts, final com.google.common.base.Optional<org.thryft.native_.Url> url, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
+        return new ObjectSummary(com.google.common.base.Preconditions.checkNotNull(collectionId, "org.dressdiscover.api.models.object.ObjectSummary: missing collectionId"), com.google.common.base.Preconditions.checkNotNull(institutionId, "org.dressdiscover.api.models.object.ObjectSummary: missing institutionId"), org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(title, "org.dressdiscover.api.models.object.ObjectSummary: missing title"), "org.dressdiscover.api.models.object.ObjectSummary: title is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(agentNameTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing agentNameTexts"), "org.dressdiscover.api.models.object.ObjectSummary: agentNameTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(categories, "org.dressdiscover.api.models.object.ObjectSummary: missing categories"), "org.dressdiscover.api.models.object.ObjectSummary: categories is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(colorTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing colorTexts"), "org.dressdiscover.api.models.object.ObjectSummary: colorTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(culturalContextTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing culturalContextTexts"), "org.dressdiscover.api.models.object.ObjectSummary: culturalContextTexts is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(date, "org.dressdiscover.api.models.object.ObjectSummary: missing date"), "org.dressdiscover.api.models.object.ObjectSummary: date is empty"), org.thryft.Preconditions.checkOptionalStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(description, "org.dressdiscover.api.models.object.ObjectSummary: missing description"), "org.dressdiscover.api.models.object.ObjectSummary: description is empty"), com.google.common.base.Preconditions.checkNotNull(gender, "org.dressdiscover.api.models.object.ObjectSummary: missing gender"), org.thryft.Preconditions.checkOptionalBooleanTrue(com.google.common.base.Preconditions.checkNotNull(hidden, "org.dressdiscover.api.models.object.ObjectSummary: missing hidden"), "org.dressdiscover.api.models.object.ObjectSummary: hidden must be true"), com.google.common.base.Preconditions.checkNotNull(image, "org.dressdiscover.api.models.object.ObjectSummary: missing image"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(locationNameTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing locationNameTexts"), "org.dressdiscover.api.models.object.ObjectSummary: locationNameTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(materialTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing materialTexts"), "org.dressdiscover.api.models.object.ObjectSummary: materialTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(relationTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing relationTexts"), "org.dressdiscover.api.models.object.ObjectSummary: relationTexts is empty"), org.thryft.Preconditions.checkOptionalMapNotEmpty(com.google.common.base.Preconditions.checkNotNull(structureTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing structureTexts"), "org.dressdiscover.api.models.object.ObjectSummary: structureTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(subjectTermTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing subjectTermTexts"), "org.dressdiscover.api.models.object.ObjectSummary: subjectTermTexts is empty"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(techniqueTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing techniqueTexts"), "org.dressdiscover.api.models.object.ObjectSummary: techniqueTexts is empty"), com.google.common.base.Preconditions.checkNotNull(url, "org.dressdiscover.api.models.object.ObjectSummary: missing url"), org.thryft.Preconditions.checkOptionalCollectionNotEmpty(com.google.common.base.Preconditions.checkNotNull(workTypeTexts, "org.dressdiscover.api.models.object.ObjectSummary: missing workTypeTexts"), "org.dressdiscover.api.models.object.ObjectSummary: workTypeTexts is empty"));
     }
 
     @Override
@@ -1782,23 +1748,23 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
         org.dressdiscover.api.models.collection.CollectionId collectionId = null;
         org.dressdiscover.api.models.institution.InstitutionId institutionId = null;
         String title = null;
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> date = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> description = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<Boolean> hidden = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<String> date = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<String> description = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender = com.google.common.base.Optional.<org.dressdiscover.api.models.gender.Gender> absent();
+        com.google.common.base.Optional<Boolean> hidden = com.google.common.base.Optional.<Boolean> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image = com.google.common.base.Optional.<org.dressdiscover.api.models.image.Image> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         try {
@@ -2098,23 +2064,23 @@ public class ObjectSummary implements org.thryft.Struct, org.thryft.waf.api.mode
         org.dressdiscover.api.models.collection.CollectionId collectionId = null;
         org.dressdiscover.api.models.institution.InstitutionId institutionId = null;
         String title = null;
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> date = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<String> description = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<Boolean> hidden = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> agentNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> colorTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> culturalContextTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<String> date = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<String> description = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.gender.Gender> gender = com.google.common.base.Optional.<org.dressdiscover.api.models.gender.Gender> absent();
+        com.google.common.base.Optional<Boolean> hidden = com.google.common.base.Optional.<Boolean> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.image.Image> image = com.google.common.base.Optional.<org.dressdiscover.api.models.image.Image> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> materialTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> structureTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectTermTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> techniqueTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
 
         iprot.readStructBegin();
         while (true) {

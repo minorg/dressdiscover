@@ -101,7 +101,7 @@ public class FileSystemObjectStore extends AbstractInstitutionCollectionObjectFi
                             throw new RuntimeException(e);
                         }
                         try {
-                            return new ObjectEntry(objectId, _getModel(objectFilePath, logger, logMarker));
+                            return ObjectEntry.create(objectId, _getModel(objectFilePath, logger, logMarker));
                         } catch (InvalidModelException | IoException | NoSuchObjectException e) {
                             throw new RuntimeException(e);
                         }
@@ -152,7 +152,7 @@ public class FileSystemObjectStore extends AbstractInstitutionCollectionObjectFi
     // throw new RuntimeException(e);
     // }
     // try {
-    // return new ObjectEntry(objectId, _getModel(objectFilePath, logger,
+    // return ObjectEntry.create(objectId, _getModel(objectFilePath, logger,
     // logMarker));
     // } catch (InvalidModelException | IoException | NoSuchModelException e) {
     // throw new RuntimeException(e);

@@ -140,7 +140,7 @@ public class FileSystemCollectionStore
                 throw new IllegalStateException(e);
             }
 
-            resultBuilder.add(new CollectionEntry(collectionId, collection));
+            resultBuilder.add(CollectionEntry.create(collectionId, collection));
         }
     }
 

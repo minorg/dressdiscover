@@ -289,12 +289,9 @@ public class LocationRefid implements org.thryft.Struct {
         this(other.getText(), other.getType());
     }
 
-    /**
-     * Optional constructor
-     */
-    public LocationRefid(final String text, final org.dressdiscover.api.models.location.LocationRefidType type) {
-        this.text = org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.location.LocationRefid: missing text"), "org.dressdiscover.api.models.location.LocationRefid: text is empty");
-        this.type = com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.location.LocationRefid: missing type");
+    protected LocationRefid(final String text, final org.dressdiscover.api.models.location.LocationRefidType type) {
+        this.text = text;
+        this.type = type;
     }
 
     public static Builder builder() {
@@ -307,6 +304,13 @@ public class LocationRefid implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<LocationRefid> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static LocationRefid create(final String text, final org.dressdiscover.api.models.location.LocationRefidType type) {
+        return new LocationRefid(org.thryft.Preconditions.checkStringNotEmpty(com.google.common.base.Preconditions.checkNotNull(text, "org.dressdiscover.api.models.location.LocationRefid: missing text"), "org.dressdiscover.api.models.location.LocationRefid: text is empty"), com.google.common.base.Preconditions.checkNotNull(type, "org.dressdiscover.api.models.location.LocationRefid: missing type"));
     }
 
     @Override

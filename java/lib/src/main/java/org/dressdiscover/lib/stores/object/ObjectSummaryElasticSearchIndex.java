@@ -41,7 +41,7 @@ public class ObjectSummaryElasticSearchIndex
 
             @Override
             public IoException newIoException(final String message) {
-                return new IoException(message);
+                return IoException.create(message);
             }
 
             @Override

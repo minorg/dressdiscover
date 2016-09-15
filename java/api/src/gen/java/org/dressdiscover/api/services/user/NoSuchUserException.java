@@ -4,7 +4,7 @@ package org.dressdiscover.api.services.user;
 public class NoSuchUserException extends org.thryft.Exception {
     public static class Builder {
         public Builder() {
-            id = com.google.common.base.Optional.absent();
+            id = com.google.common.base.Optional.<org.dressdiscover.api.models.user.UserId> absent();
         }
 
         public Builder(final NoSuchUserException other) {
@@ -144,7 +144,7 @@ public class NoSuchUserException extends org.thryft.Exception {
         }
 
         public Builder unsetId() {
-            this.id = com.google.common.base.Optional.absent();
+            this.id = com.google.common.base.Optional.<org.dressdiscover.api.models.user.UserId> absent();
             return this;
         }
 
@@ -266,7 +266,7 @@ public class NoSuchUserException extends org.thryft.Exception {
      * Default constructor
      */
     public NoSuchUserException() {
-        id = com.google.common.base.Optional.absent();
+        id = com.google.common.base.Optional.<org.dressdiscover.api.models.user.UserId> absent();
     }
 
     /**
@@ -276,18 +276,8 @@ public class NoSuchUserException extends org.thryft.Exception {
         this(other.getId());
     }
 
-    /**
-     * Total Nullable constructor
-     */
-    public NoSuchUserException(final @javax.annotation.Nullable org.dressdiscover.api.models.user.UserId id) {
-        this.id = com.google.common.base.Optional.fromNullable(id);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public NoSuchUserException(final com.google.common.base.Optional<org.dressdiscover.api.models.user.UserId> id) {
-        this.id = com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.NoSuchUserException: missing id");
+    protected NoSuchUserException(final com.google.common.base.Optional<org.dressdiscover.api.models.user.UserId> id) {
+        this.id = id;
     }
 
     public static Builder builder() {
@@ -300,6 +290,24 @@ public class NoSuchUserException extends org.thryft.Exception {
 
     public static Builder builder(final com.google.common.base.Optional<NoSuchUserException> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    public static NoSuchUserException create() {
+        return new NoSuchUserException();
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static NoSuchUserException create(final @javax.annotation.Nullable org.dressdiscover.api.models.user.UserId id) {
+        return new NoSuchUserException(com.google.common.base.Optional.fromNullable(id));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static NoSuchUserException create(final com.google.common.base.Optional<org.dressdiscover.api.models.user.UserId> id) {
+        return new NoSuchUserException(com.google.common.base.Preconditions.checkNotNull(id, "org.dressdiscover.api.services.user.NoSuchUserException: missing id"));
     }
 
     @Override
@@ -375,7 +383,7 @@ public class NoSuchUserException extends org.thryft.Exception {
     }
 
     public static NoSuchUserException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<org.dressdiscover.api.models.user.UserId> id = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.user.UserId> id = com.google.common.base.Optional.<org.dressdiscover.api.models.user.UserId> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         if (__list.getSize() > 0) {
@@ -397,7 +405,7 @@ public class NoSuchUserException extends org.thryft.Exception {
     }
 
     public static NoSuchUserException readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<org.dressdiscover.api.models.user.UserId> id = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.user.UserId> id = com.google.common.base.Optional.<org.dressdiscover.api.models.user.UserId> absent();
 
         iprot.readStructBegin();
         while (true) {

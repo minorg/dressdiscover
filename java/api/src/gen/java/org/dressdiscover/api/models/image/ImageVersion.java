@@ -4,8 +4,8 @@ public class ImageVersion implements org.thryft.Struct {
     public static class Builder {
         public Builder() {
             url = null;
-            heightPx = com.google.common.base.Optional.absent();
-            widthPx = com.google.common.base.Optional.absent();
+            heightPx = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
+            widthPx = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
         }
 
         public Builder(final ImageVersion other) {
@@ -202,7 +202,7 @@ public class ImageVersion implements org.thryft.Struct {
         }
 
         public Builder unsetHeightPx() {
-            this.heightPx = com.google.common.base.Optional.absent();
+            this.heightPx = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
             return this;
         }
 
@@ -212,7 +212,7 @@ public class ImageVersion implements org.thryft.Struct {
         }
 
         public Builder unsetWidthPx() {
-            this.widthPx = com.google.common.base.Optional.absent();
+            this.widthPx = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
             return this;
         }
 
@@ -346,31 +346,10 @@ public class ImageVersion implements org.thryft.Struct {
         this(other.getUrl(), other.getHeightPx(), other.getWidthPx());
     }
 
-    /**
-     * Required constructor
-     */
-    public ImageVersion(final org.thryft.native_.Url url) {
-        this.url = com.google.common.base.Preconditions.checkNotNull(url, "org.dressdiscover.api.models.image.ImageVersion: missing url");
-        this.heightPx = com.google.common.base.Optional.absent();
-        this.widthPx = com.google.common.base.Optional.absent();
-    }
-
-    /**
-     * Total Nullable constructor
-     */
-    public ImageVersion(final org.thryft.native_.Url url, final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger heightPx, final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger widthPx) {
-        this.url = com.google.common.base.Preconditions.checkNotNull(url, "org.dressdiscover.api.models.image.ImageVersion: missing url");
-        this.heightPx = com.google.common.base.Optional.fromNullable(heightPx);
-        this.widthPx = com.google.common.base.Optional.fromNullable(widthPx);
-    }
-
-    /**
-     * Optional constructor
-     */
-    public ImageVersion(final org.thryft.native_.Url url, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> heightPx, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> widthPx) {
-        this.url = com.google.common.base.Preconditions.checkNotNull(url, "org.dressdiscover.api.models.image.ImageVersion: missing url");
-        this.heightPx = com.google.common.base.Preconditions.checkNotNull(heightPx, "org.dressdiscover.api.models.image.ImageVersion: missing heightPx");
-        this.widthPx = com.google.common.base.Preconditions.checkNotNull(widthPx, "org.dressdiscover.api.models.image.ImageVersion: missing widthPx");
+    protected ImageVersion(final org.thryft.native_.Url url, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> heightPx, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> widthPx) {
+        this.url = url;
+        this.heightPx = heightPx;
+        this.widthPx = widthPx;
     }
 
     public static Builder builder() {
@@ -383,6 +362,27 @@ public class ImageVersion implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<ImageVersion> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
+    }
+
+    /**
+     * Required factory method
+     */
+    public static ImageVersion create(final org.thryft.native_.Url url) {
+        return new ImageVersion(com.google.common.base.Preconditions.checkNotNull(url, "org.dressdiscover.api.models.image.ImageVersion: missing url"), com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent(), com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent());
+    }
+
+    /**
+     * Total Nullable factory method
+     */
+    public static ImageVersion create(final org.thryft.native_.Url url, final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger heightPx, final @javax.annotation.Nullable com.google.common.primitives.UnsignedInteger widthPx) {
+        return new ImageVersion(com.google.common.base.Preconditions.checkNotNull(url, "org.dressdiscover.api.models.image.ImageVersion: missing url"), com.google.common.base.Optional.fromNullable(heightPx), com.google.common.base.Optional.fromNullable(widthPx));
+    }
+
+    /**
+     * Optional factory method
+     */
+    public static ImageVersion create(final org.thryft.native_.Url url, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> heightPx, final com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> widthPx) {
+        return new ImageVersion(com.google.common.base.Preconditions.checkNotNull(url, "org.dressdiscover.api.models.image.ImageVersion: missing url"), com.google.common.base.Preconditions.checkNotNull(heightPx, "org.dressdiscover.api.models.image.ImageVersion: missing heightPx"), com.google.common.base.Preconditions.checkNotNull(widthPx, "org.dressdiscover.api.models.image.ImageVersion: missing widthPx"));
     }
 
     @Override
@@ -465,8 +465,8 @@ public class ImageVersion implements org.thryft.Struct {
 
     public static ImageVersion readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         org.thryft.native_.Url url = null;
-        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> heightPx = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> widthPx = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> heightPx = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
+        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> widthPx = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
 
         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         url = org.thryft.native_.Url.parse(iprot.readString());
@@ -496,8 +496,8 @@ public class ImageVersion implements org.thryft.Struct {
 
     public static ImageVersion readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         org.thryft.native_.Url url = null;
-        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> heightPx = com.google.common.base.Optional.absent();
-        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> widthPx = com.google.common.base.Optional.absent();
+        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> heightPx = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
+        com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> widthPx = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
 
         iprot.readStructBegin();
         while (true) {
